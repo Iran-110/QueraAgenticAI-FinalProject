@@ -25,17 +25,17 @@ To maximize efficiency, the workload is divided into four primary roles. Team me
 
 ### Day 1: Foundation, Domain Selection & Data Pipeline
 **Goal:** Setup the environment, choose a domain, and acquire the raw data locally.
-*   **All:** Kickoff meeting. **Crucial Decision:** Select a specific domain (e.g., "Session State" or "Deployment") to keep the dataset under 300 issues. Configure `pyproject.toml`.
-*   **Member 1:** Write `scripts/fetch_data.py`. Use a GitHub Personal Access Token to bypass rate limits. Clone `streamlit/docs` at commit `695e6ce...`. **Rule:** Cache all fetched data to `data/raw/`—no web calls during evaluation.
-*   **Member 2:** Define Pydantic models/schemas for the data (e.g., `Issue`, `Comment`, `AnalysisResult`).
-*   **Member 3:** Set up the local database structure (`sqlite` or JSON) to track ticket states (the "local tracker").
-*   **Member 4:** Build the basic scaffold for the CLI/Web UI and create the skeleton for the final report.
+*   **All:** [x] **Crucial Decision:** Select a specific domain (e.g., "Session State" or "Deployment") to keep the dataset under 300 issues. [x] Configure `pyproject.toml`.
+*   **Member 1:** [ ] Write `scripts/fetch_data.py`. Use a GitHub Personal Access Token to bypass rate limits. Clone `streamlit/docs` at commit `695e6ce...`. **Rule:** Cache all fetched data to `data/raw/`—no web calls during evaluation.
+*   **Member 2:** [ ] Define Pydantic models/schemas for the data (e.g., `Issue`, `Comment`, `AnalysisResult`).
+*   **Member 3:** [ ] Set up the local database structure (`sqlite` or JSON) to track ticket states (the "local tracker").
+*   **Member 4:** [x] Build the basic scaffold for the CLI/Web UI and create the skeleton for the final report.
 
 ### Day 2: Advanced Retrieval & Prompt Engineering (Problem 1)
 **Goal:** Build a robust retrieval system and a single-turn analysis agent.
 *   **Member 1:** Implement vector embeddings. **Crucial Step:** Ensure every chunk has metadata (`source_url`, `commit_hash`, `type`). Implement Self-Querying Retrieval to filter irrelevant chunks before LLM synthesis.
 *   **Member 2:** Write the core LLM prompts. **Strict Rule:** Instruct the LLM *never* to hallucinate missing information (like OS or Python versions). Output must differentiate between known facts, evidence (with citations), and missing info.
-*   **Member 3:** Manually curate the 15 "Development" cases from the raw dataset for immediate prompt tuning.
+*   **Member 3:** [ ] Use agent to curate the 15 "Development" cases from the raw dataset for immediate prompt tuning.
 *   **Member 4:** Implement the HITL pause mechanism in the UI, allowing a user to accept, reject, or edit a proposed action.
 
 ### Day 3: LangGraph Multi-turn Agent & State Management (Problem 2)
