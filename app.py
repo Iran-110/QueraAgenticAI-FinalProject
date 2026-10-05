@@ -8,6 +8,16 @@ st.set_page_config(
     layout="wide"
 )
 
+# Apply Vazirmatn font for Persian text support
+st.html("""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');
+html, body, [class*="css"], [class*="st-"], * {
+    font-family: 'Vazirmatn', sans-serif !important;
+}
+</style>
+""")
+
 def read_md(file_path):
     if os.path.exists(file_path):
         with open(file_path, "r", encoding="utf-8") as f:
