@@ -9,14 +9,19 @@ st.set_page_config(
 )
 
 # Apply Vazirmatn font for Persian text support
-st.html("""
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');
-html, body, [class*="css"], [class*="st-"], * {
-    font-family: 'Vazirmatn', sans-serif !important;
-}
-</style>
-""")
+st.markdown("""
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');
+        
+        html, body, [class*="st-"], .stApp {
+            font-family: 'Vazirmatn', sans-serif !important;
+        }
+        
+        * {
+            font-family: 'Vazirmatn', sans-serif !important;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
 def read_md(file_path):
     if os.path.exists(file_path):
