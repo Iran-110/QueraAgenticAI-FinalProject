@@ -23,13 +23,18 @@ st.markdown("""
         
         /* Auto-detect RTL/LTR direction based on paragraph content */
         .stTitle, .stHeader, .stSubheader,
-        div[data-testid="stMarkdownContainer"] > p,
-        div[data-testid="stMarkdownContainer"] > ul,
-        div[data-testid="stMarkdownContainer"] > ol,
-        div[data-testid="stMarkdownContainer"] > h1,
-        div[data-testid="stMarkdownContainer"] > h2,
-        div[data-testid="stMarkdownContainer"] > h3,
-        div[data-testid="stMarkdownContainer"] > h4,
+        div[data-testid="stMarkdownContainer"] p,
+        div[data-testid="stMarkdownContainer"] ul,
+        div[data-testid="stMarkdownContainer"] ol,
+        div[data-testid="stMarkdownContainer"] li,
+        div[data-testid="stMarkdownContainer"] h1,
+        div[data-testid="stMarkdownContainer"] h2,
+        div[data-testid="stMarkdownContainer"] h3,
+        div[data-testid="stMarkdownContainer"] h4,
+        div[data-testid="stMarkdownContainer"] h5,
+        div[data-testid="stMarkdownContainer"] h6,
+        div[data-testid="stMarkdownContainer"] table,
+        div[data-testid="stMarkdownContainer"] blockquote,
         div[data-testid="stText"] {
             unicode-bidi: plaintext;
             text-align: start;
