@@ -1,5 +1,6 @@
 # TODO: Import LangGraph agent, state manager, and local tracker utilities
 import streamlit as st
+from streamlit_option_menu import option_menu
 import os
 
 st.set_page_config(
@@ -63,22 +64,24 @@ with st.sidebar:
         
     st.divider()
 
-    st.header("Navigation")
-    view = st.radio(
-        "Select View",
-        [
-            "💬 Support Assistant", 
-            "📋 Project Definition", 
-            "📅 Project Plan", 
-            "👤 Member 1 Todo", 
-            "👤 Member 2 Todo", 
-            "👤 Member 3 Todo", 
-            "👤 Member 4 Todo"
-        ]
+    view = option_menu(
+        menu_title="Navigation",
+        options=[
+            "Support Assistant", 
+            "Project Definition", 
+            "Project Plan", 
+            "Member 1 Todo", 
+            "Member 2 Todo", 
+            "Member 3 Todo", 
+            "Member 4 Todo"
+        ],
+        icons=["chat-text", "file-earmark-text", "calendar-event", "person-badge", "person-badge", "person-badge", "person-badge"],
+        menu_icon="compass",
+        default_index=0,
     )
 
 # Main Area Rendering based on selected view
-if view == "💬 Support Assistant":
+if view == "Support Assistant":
     st.title("Streamlit Support Assistant")
     st.markdown("Welcome to the Agentic AI Support Assistant for Streamlit issues.")
 
@@ -110,20 +113,20 @@ if view == "💬 Support Assistant":
         # Add assistant response to chat history
         st.session_state.messages.append({"role": "assistant", "content": response})
 
-elif view == "📋 Project Definition":
+elif view == "Project Definition":
     st.markdown(read_md("QBC13_AgenticAI_FinalProject.md"))
 
-elif view == "📅 Project Plan":
+elif view == "Project Plan":
     st.markdown(read_md("plan/plan.md"))
 
-elif view == "👤 Member 1 Todo":
+elif view == "Member 1 Todo":
     st.markdown(read_md("plan/member_1_todo.md"))
 
-elif view == "👤 Member 2 Todo":
+elif view == "Member 2 Todo":
     st.markdown(read_md("plan/member_2_todo.md"))
 
-elif view == "👤 Member 3 Todo":
+elif view == "Member 3 Todo":
     st.markdown(read_md("plan/member_3_todo.md"))
 
-elif view == "👤 Member 4 Todo":
+elif view == "Member 4 Todo":
     st.markdown(read_md("plan/member_4_todo.md"))
