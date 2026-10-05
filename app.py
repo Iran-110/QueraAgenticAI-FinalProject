@@ -22,6 +22,7 @@ st.markdown("""
         }
         
         /* Auto-detect RTL/LTR direction based on paragraph content */
+        .stTitle, .stHeader, .stSubheader,
         div[data-testid="stMarkdownContainer"] > p,
         div[data-testid="stMarkdownContainer"] > ul,
         div[data-testid="stMarkdownContainer"] > ol,
