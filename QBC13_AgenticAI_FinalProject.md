@@ -8,11 +8,21 @@
 **مهلت ارسال پاسخ: دوشنبه ۲۰ مهرماه**  
 **زمان ارائه‌ی گروهی: سه شنبه و چهارشنبه ۲۱ و ۲۲ مهرماه**
 
+*   **Actionable Plan:** Set up a strict timeline (as done in `plan.md`). Feature freeze must happen by Sunday, 19th of Mehr. 
+*   **Links:** [plan.md](./plan.md)
+
 # معرفی داده
 
 در این پروژه، برای کاربران و نگه‌دارندگان یک محصول واقعی دستیار پشتیبانی فنی می‌سازید. محصول انتخاب‌شده Streamlit است؛ ابزاری پایتونی برای ساخت برنامه‌های تعاملی. دادهٔ پروژه از گزارش‌های واقعی کاربران در GitHub، گفت‌وگوهای مربوط به آن‌ها، مستندات رسمی و توضیحات انتشار نسخه‌ها به دست می‌آید. هدف، فهمیدن یک مشکل، پیدا کردن شواهد قابل اتکا و پیش بردن پرونده تا یک نتیجهٔ مفید است.
 
+*   **Code Structure:** We are building a conversational RAG + Tool-use agent. 
+*   **Tech Stack:** Python, LangChain/LangGraph for orchestration.
+
 این منابع عمومی هستند، اما یک مجموعه‌دادهٔ آماده با پاسخ صحیح برای هر سؤال نیستند. انتخاب دامنه، دریافت داده، پاک‌سازی، حفظ ارتباط میان منابع و ساخت نسخهٔ ثابت از داده بخشی از کار گروه است. می‌توانید روی حوزه‌ای مشخص مانند وضعیت نشست، ویجت‌ها یا استقرار برنامه تمرکز کنید؛ دامنه باید به‌اندازه‌ای متنوع باشد که سیستم با چند پاسخ از پیش نوشته‌شده قابل پیاده‌سازی نباشد.
+
+*   **Actionable Plan:** 
+    *   **Domain Selection:** Choose a specific subset of Streamlit issues (e.g., "Session State" or "Deployment/Streamlit Cloud" issues) to keep the dataset manageable.
+    *   **Data Pipeline:** Write a Python script (`scripts/fetch_data.py`) to hit the GitHub API, filter by specific labels (e.g., `area:session-state`), and store them locally as JSON or SQLite.
 
 ## منابع دریافت داده
 
@@ -25,6 +35,11 @@
 [توضیحات انتشار نسخه‌ها و تغییرات محصول](https://docs.streamlit.io/develop/quick-reference/release-notes)  
 برای دریافت نظرهای یک گزارش، شمارهٔ آن را در مسیر /repos/streamlit/streamlit/issues/{issue\_number}/comments قرار دهید. داده را یک بار دریافت و ذخیره کنید، صفحه‌بندی و محدودیت نرخ GitHub را رعایت کنید و هنگام اجرای ارزیابی دوباره از وب نخوانید. پاسخ endpoint گزارش‌ها ممکن است Pull Request هم داشته باشد؛ این رکوردها با فیلد pull\_request قابل تشخیص‌اند و باید جدا شوند.
 
+*   **Actionable Plan:**
+    *   **Docs Fetching:** Clone the `streamlit/docs` repo at the specified commit (`695e6ce2fb1b23afc6df66b40420ab0013ad72fd`).
+    *   **GitHub API:** Use `requests` library in Python with a GitHub Personal Access Token (PAT) to increase rate limits.
+    *   **Caching:** Store all responses locally (`data/raw/`). Do **not** hit the web API during the evaluation phase.
+
 ## اطلاعات مهم گزارش‌ها
 
 number و html\_url: شمارهٔ گزارش در مخزن و نشانی منبع؛ مبنای ارجاع و اتصال نظرها به پرونده.  
@@ -32,16 +47,43 @@ title و body: عنوان و متن گزارش، شامل شرح مشکل، مر
 created\_at، updated\_at و closed\_at: زمان‌های ثبت، ویرایش و بسته‌شدن؛ برای ترتیب رویدادها و کنترل نشت اطلاعات.  
 state، state\_reason و labels: وضعیت و برچسب‌های ثبت‌شده؛ این‌ها لزوماً حقیقت قطعی دربارهٔ علت مشکل نیستند و ممکن است پس از گفت‌وگو تغییر کرده باشند.  
 comments و comments\_url: تعداد نظرها و مسیر دریافت آن‌ها؛ خودِ comments فهرست متن گفت‌وگو نیست.  
-id، body، created\_at، updated\_at، html\_url و author\_association در نظرها: شناسه، متن، زمان، نشانی و نسبت نویسنده با مخزن. این نسبت یک قرینه است، نه تضمین درست بودن گفته.  
+id، body، created\_at، updated\_at، html\_url و author\_association در نظرها: شناسه، متن، زمان، نشانی و نسبت نویسنده با مخزن. این نسبت یک قرینه است، نه تضمین درست بودن گفته.
+
+*   **Code Structure / Schema Definition:**
+    ```python
+    from pydantic import BaseModel
+    from typing import List, Optional
+
+    class Comment(BaseModel):
+        id: int
+        body: str
+        created_at: str
+        author_association: str # e.g., 'CONTRIBUTOR', 'NONE'
+
+    class Issue(BaseModel):
+        number: int
+        url: str
+        title: str
+        body: str
+        state: str
+        labels: List[str]
+        comments: List[Comment]
+    ```  
 نسخهٔ Streamlit و Python، سیستم‌عامل، مرورگر و مراحل بازتولید معمولاً در متن body آمده‌اند، نه در ستون‌های استاندارد جداگانه. مقدار غایب را نامشخص نگه دارید؛ نباید نسخه یا نتیجهٔ آزمایش را حدس بزنید.
+
+*   **Prompt Engineering Rule:** The agent prompt MUST include a strict instruction: "Do not hallucinate missing information like OS, Python version, or Streamlit version. If it is not in the text, mark it as 'Unknown'."
 
 ## مستندات، نسخه‌ها و کیفیت داده
 
 برای هر سند عنوان، متن قابل استفاده، نشانی منبع، شناسهٔ نسخه یا commit و بخش مربوط را نگه دارید. برای Release Note نیز شمارهٔ نسخه، تاریخ انتشار و توضیح تغییر یا رفع خطا مهم است. بعضی صفحات خام مستندات به‌جای متن کامل، مؤلفهٔ تولید خودکار دارند؛ در این موارد متن رندرشده یا منبع محتوای آن لازم است.
 
+*   **Vector DB Schema:** Every chunk embedded in ChromaDB/FAISS must have metadata: `{"source_url": "...", "commit_hash": "...", "type": "doc|release_note|issue"}`.
+
 از متن و کد فقط آنچه برای مسئله لازم است نگه دارید؛ حذف تکرارها، پاسخ‌های خودکار و اطلاعات شخصی غیرضروری باید قابل توضیح باشد. بسته‌شدن یک گزارش الزاماً به معنی حل‌شدن آن نیست، و یک راه‌حل مربوط به نسخه‌ای دیگر ممکن است برای کاربر فعلی نامناسب باشد.
 
 برای شروع، چندصد گزارش مرتبط همراه با نظرها و مجموعه‌ای محدود از مستندات مناسب است. استفاده از تمام مخزن لازم نیست. تعداد گزارش‌ها، نظرها و اسناد، روش نمونه‌گیری، زمان دریافت و شناسهٔ نسخه‌ها را ثبت کنید تا دادهٔ استفاده‌شده در آزمایش‌ها قابل بازسازی باشد.
+
+*   **Actionable Plan:** Cap the dataset at ~200-300 carefully selected issues. Document the exact script and random seed / query used to generate this dataset.
 
 # مسئله‌ی ۱: بررسی گزارش و پیشنهاد مسیر حل
 
@@ -49,15 +91,29 @@ id، body، created\_at، updated\_at، html\_url و author\_association در ن
 
 ورودی می‌تواند عنوان و متن یک گزارش جدید، خطا یا قطعه‌کد موجود و سابقهٔ گفت‌وگوی همان پرونده باشد. خروجی باید روشن کند چه چیزی معلوم است، کدام شواهد به مسئله مربوط‌اند، چه چیزی هنوز نامشخص است و چه اقدام یا پرسشی بیشترین کمک را به پیشبرد بررسی می‌کند.
 
+*   **Code Structure (Output Schema):**
+    ```python
+    class AnalysisResult(BaseModel):
+        known_facts: List[str]
+        relevant_evidence: List[str] # with citations
+        missing_information: List[str]
+        suggested_next_step: str # Action or Question
+    ```
+
 ## بخش ۱) یافتن و ترکیب شواهد
 
 دستیار باید اطلاعات مرتبط را از مستندات، گزارش‌های پیشین و توضیحات نسخه‌ها پیدا کند. بازیابی چند متن شبیه کافی نیست؛ باید مشخص باشد هر منبع چه ارتباطی با نشانه‌های گزارش و محیط کاربر دارد. روش Chunking، Embedding، جست‌وجو، رتبه‌بندی و ترکیب منابع بر عهدهٔ گروه است.
+
+*   **Actionable Plan:** Implement **Self-Querying Retrieval** or **Multi-Query Retrieval** in LangChain to ensure we fetch relevant chunks. 
+*   **Code:** Use `ContextualCompressionRetriever` or an LLM reranker to filter out irrelevant chunks before synthesizing.
 
 هر ادعای فنی مؤثر بر پاسخ، مانند وجود یک محدودیت، علت احتمالی خطا یا نسخهٔ رفع مشکل، باید به منبع و بخش قابل بررسی ارجاع داشته باشد. میان واقعیت گزارش‌شده، توضیح مستند و فرضیهٔ دستیار تفاوت بگذارید. اگر دو منبع ناسازگارند، دلیل ترجیح یکی یا باقی‌ماندن ابهام را توضیح دهید.
 
 ## بخش ۲) تشخیص اطلاعات گمشده و قدم بعدی
 
 سیستم باید در صورت کافی نبودن اطلاعات، سؤال مشخص بپرسد یا یک بررسی عملی پیشنهاد کند. سؤال باید به یک تصمیم مرتبط باشد؛ پرسیدن فهرستی ثابت از همهٔ مشخصات در تمام پرونده‌ها، بدون توجه به اطلاعات موجود، کافی نیست. همچنین نباید آزمایشی را که قبلاً انجام شده بی‌دلیل تکرار کند.
+
+*   **Prompt Engineering Rule:** "Evaluate if the issue can be reproduced with current info. Only ask for OS/Version if the bug is likely environment-specific. Do not ask for info already provided in the issue body."
 
 برای مثال، کاربر می‌گوید: «برنامه روی سیستم خودم باز می‌شود، اما روی سرور در صفحهٔ بارگذاری می‌ماند. نصب دوباره هم کمکی نکرد.» دستیار باید با توجه به گزارش و شواهد موجود مشخص کند کدام اطلاعات یا بررسی بعدی میان توضیح‌های محتمل تمایز ایجاد می‌کند.
 
@@ -67,11 +123,15 @@ id، body، created\_at، updated\_at، html\_url و author\_association در ن
 
 خروجی نهایی این بخش باید یک پاسخ پیشنهادی برای کاربر و یک خلاصهٔ فنی برای نگه‌دارنده داشته باشد. خلاصه شامل مسئله، اطلاعات محیط، بررسی‌های انجام‌شده، منابع مؤثر، ابهام‌های باقی‌مانده و قدم بعدی است. نتیجه می‌تواند راهنمای استفاده، توضیح یک مشکل شناخته‌شده، درخواست اطلاعات یا پیشنهاد ارجاع برای بررسی بیشتر باشد.
 
+*   **Code Structure:** Create a two-part output prompt. One section formatted as a friendly Markdown reply to the user, and one as a bulleted technical summary for the maintainer.
+
 یک Baseline ساده بسازید و آن را با سیستم نهایی روی مجموعهٔ یکسان مقایسه کنید. بهبود باید با کیفیت شواهد، درستی پاسخ یا مفیدتر شدن قدم بعدی نشان داده شود. انتخاب روش پیچیده‌تر یا افزایش تعداد فراخوانی مدل به‌خودی‌خود ارزش ندارد.
 
 # مسئله‌ی ۲: پیگیری پرونده با یک عامل قابل اتکا
 
 اکنون دستیار بخش قبل باید بتواند یک پرونده را در چند نوبت پیگیری کند. کاربر اطلاعات تازه می‌دهد، نتیجهٔ یک بررسی را اعلام می‌کند یا گفتهٔ قبلی خود را اصلاح می‌کند. نگه‌دارنده نیز ممکن است پاسخ پیشنهادی را تأیید، ویرایش یا رد کند. سیستم باید با حفظ وضعیت پرونده، تصمیم بعدی را بگیرد و اقدام مجاز را از طریق ابزار اجرا کند.
+
+*   **Code Structure:** Use **LangGraph** to build a cyclic graph with nodes: `[Analyze] -> [Draft_Response] -> [Wait_for_Human] -> [Execute_Action]`.
 
 ## بخش ۱) وضعیت، حافظه و ابزارها
 
@@ -81,9 +141,21 @@ id، body، created\_at، updated\_at، html\_url و author\_association در ن
 
 اقدام‌ها را روی یک رهگیر محلی قابل بازنشانی انجام دهید؛ چند تابع پایتونی و ذخیره‌سازی در SQLite یا JSON کافی است. هدف ساخت سامانهٔ کامل تیکتینگ نیست. ثبت آزمایش‌ها در مخزن اصلی Streamlit یا ارسال پیام به کاربران واقعی جزو پروژه نیست.
 
+*   **Code Structure:**
+    ```python
+    # local_tracker.py
+    import json
+    def update_issue_state(issue_number, new_state, new_comment):
+        # Update local JSON file simulating the GitHub issue tracker
+        pass
+    ```
+*   **Tools:** Define explicit Python tools using `@tool` decorator in LangChain: `search_docs(query)`, `search_similar_issues(query)`, `ask_user_for_info(question)`, `propose_solution(response)`.
+
 ## بخش ۲) تأیید انسانی و اجرای درست
 
 پیش از هر تغییر قابل مشاهده در پرونده، نگه‌دارنده باید بتواند متن یا تغییر پیشنهادی را ببیند و تأیید، اصلاح یا رد کند. تأیید مربوط به همان پرونده و همان پیشنهاد است؛ تأیید قبلی نباید اجازهٔ اجرای پیشنهادی تغییرکرده را بدهد. پس از رد، هیچ تغییری نباید انجام شود.
+
+*   **Actionable Plan:** LangGraph's `interrupt_before` functionality is perfect for this. The graph pauses execution before the `Execute_Action` node, returning the state to the UI (CLI or Web). The UI accepts user input (Approve/Reject/Edit) and resumes the graph with the updated state.
 
 اگر فراخوانی تکرار شد یا ارتباط پس از انجام یک اقدام قطع شد، سیستم باید نتیجه را بررسی کند تا نظر یا تغییر تکراری ایجاد نشود. پیش از اجرا نیز بررسی کنید که اطلاعات جدید پرونده، پیشنهاد تأییدشده را نامعتبر نکرده باشد. محدودیت تعداد مرحله و فراخوانی برای جلوگیری از حلقهٔ بی‌پایان لازم است.
 
@@ -93,6 +165,11 @@ id، body، created\_at، updated\_at، html\_url و author\_association در ن
 
 در ارزیابی، علاوه بر مسیر عادی، اصلاح یک واقعیت توسط کاربر، رد یا ویرایش پیشنهاد توسط نگه‌دارنده، توقف هنگام انتظار برای تأیید، تکرار یک درخواست، تغییر پرونده پیش از اجرا، خرابی ابزار و جابه‌جایی میان دو پرونده را بررسی کنید. چند سناریو باید واقعاً چندنوبتی باشند و به پاسخ قبلی کاربر وابسته بمانند.
 
+*   **Actionable Plan:** When building the 30 evaluation cases, intentionally craft "adversarial" cases:
+    *   Case where user gives wrong version, then corrects it.
+    *   Case where a tool returns a 404 error.
+    *   Case where the maintainer rejects the agent's first proposal.
+
 مثلاً دستیار نسخهٔ محصول را می‌پرسد؛ کاربر پاسخ می‌دهد و بعد اصلاح می‌کند که خطا فقط روی سرور دیگری رخ می‌دهد. سیستم باید برداشت خود را اصلاح کند، پاسخ جدیدی بسازد و پس از تأیید، فقط یک بار آن را در پرونده ثبت کند. در پایان باید دقیقاً بگوید چه کاری انجام شده و چه چیزی هنوز حل نشده است.
 
 موفقیت همیشه به معنی بستن پرونده نیست. درخواست اطلاعات ضروری یا ارجاع همراه با شواهد می‌تواند نتیجهٔ درست باشد. حل‌شدن مشکل را بدون تأیید یا شاهد معتبر اعلام نکنید. تولید Patch، اجرای خودکار کد گزارش‌ها و رفع تمام خطاهای محصول جزو الزامات اصلی نیست.
@@ -101,11 +178,15 @@ id، body، created\_at، updated\_at، html\_url و author\_association در ن
 
 نمایش چند نمونهٔ موفق کافی نیست. حداقل ۳۰ پروندهٔ متنوع برای ارزیابی انتخاب کنید؛ ۱۵ پرونده برای توسعه و ۱۵ پرونده برای آزمون نهایی. تقسیم را در سطح کل پرونده و خانوادهٔ گزارش‌های تکراری انجام دهید، نه در سطح تکه‌های متن. از مجموعهٔ آزمون برای تنظیم پرامپت، بازیابی یا انتخاب مدل استفاده نکنید.
 
+*   **Actionable Plan:** Create a directory `eval_data/` with `dev_set.json` (15 cases) and `test_set.json` (15 cases).
+
 پرونده‌های ارزیابی و همهٔ نظرها، نتیجه‌ها و برچسب‌های نهایی آن‌ها باید از پایگاه جست‌وجو جدا بمانند. تنها اطلاعاتی را به دستیار بدهید که در نقطهٔ شروع سناریو موجود است؛ پاسخ‌های بعدی کاربر به‌ترتیب گفت‌وگو آشکار می‌شوند. توضیحات، پیوندهای تکراری یا اسناد حاوی پاسخ مستقیم همان پرونده نیز باید از نظر نشت بررسی شوند. زمان و نسخهٔ منابع را ثبت کنید و اگر ارزیابی را تاریخی می‌نامید، از اطلاعات آینده استفاده نکنید.
 
 برای هر پرونده، ورودی قابل مشاهده، منابع قابل قبول، اطلاعات گمشده و چند نتیجه یا قدم بعدی قابل دفاع را مشخص کنید. حداقل ۱۰ سناریوی چندنوبتی برای بخش دوم داشته باشید که نیمی از آن‌ها در آزمون نهایی باشند؛ می‌توانند از همان ۳۰ پرونده ساخته شوند. پاسخ تکمیلی طراحی‌شده برای یک سناریو را از گفت‌وگوی واقعی تفکیک کنید.
 
 کیفیت شواهد: آیا منابع بازیابی‌شده به مسئله مربوط‌اند و ادعا را پشتیبانی می‌کنند؟ معیارهایی مانند Recall@k را روی زیرمجموعه‌ای با شواهد برچسب‌خورده گزارش کنید.
+
+*   **Code Structure:** Implement **RAGAS** (RAG Assessment) framework or a custom LLM-as-a-judge prompt to evaluate `context_relevancy` and `faithfulness`.
 
 کیفیت تصمیم: آیا پاسخ یا سؤال بعدی مفید، قابل دفاع و متناسب با اطلاعات موجود است؟ عملکرد روی پرونده‌های قابل پاسخ، مبهم و نیازمند ارجاع را جدا گزارش کنید تا خودداری از پاسخ به همهٔ موارد موفقیت محسوب نشود.
 
@@ -120,6 +201,8 @@ id، body، created\_at، updated\_at، html\_url و author\_association در ن
 ## محدودیت هزینه‌ی API
 
 برای هر تیم حداکثر ۵ دلار اعتبار API در نظر گرفته شده است. این سقف برای کل پروژه است و توسعه، Embedding، آزمایش، ارزیابی با مدل، اجرای نهایی و بخش امتیازی را دربرمی‌گیرد؛ برای هر عضو، هر مسئله یا هر بار اجرا بودجهٔ جداگانه‌ای وجود ندارد.
+
+*   **Actionable Plan:** Implement LangChain's `get_openai_callback` (or equivalent for Gemini/Anthropic) wrapped around every agent invocation to log costs to a `cost_tracker.csv` file.
 
 این API مستقیم از متیس هست و به تمامی مدل هایی که دارن دسترسی خواهید داشت.
 
@@ -140,6 +223,8 @@ id، body، created\_at، updated\_at، html\_url و author\_association در ن
 # بخش امتیازی (بیشینه: ۲۵ نمره)
 
 موارد زیر مسیرهای باز و پیشنهادی‌اند؛ انجام همهٔ آن‌ها لازم نیست. یک مسیر جدی را انتخاب کنید و با آزمایش منصفانه نشان دهید چه قابلیت یا بهبودی ایجاد کرده است. صرف نصب کتابخانه، تغییر نام معماری یا نمایش یک نمونهٔ موفق امتیاز ندارد. دامنه و سهم امتیاز کار پیشنهادی را با منتور هماهنگ کنید؛ مجموع امتیاز اضافه حداکثر ۲۵ است و سقف هزینه تغییر نمی‌کند.
+
+*   **Actionable Plan:** Refer to [plan.md](./plan.md) for assigning this to Member 4. The easiest and most impactful bonus is **Durable Execution** (saving agent state to disk so it can resume after a crash) or using an **MCP (Model Context Protocol)** layer for tool definitions.
 
 • یادگیری انتخاب مدل، ابزار یا راهبرد جست‌وجو با Contextual Bandits، با هدف بهبود کیفیت در بودجهٔ ثابت.  
 • یادگیری سیاست برنامه‌ریزی یا توقف با Reinforcement Learning بر پایهٔ ردگیری‌های اجرای عامل.  
