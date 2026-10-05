@@ -1,6 +1,6 @@
 # Member 3 Todo List (System & Evaluation Lead)
 
-- [x] **Day 1**: Select a specific domain (e.g., "Session State" or "Deployment"). Configure `pyproject.toml`.
+- [ ] **Day 1**: Review the selected domain (e.g., "Session State" or "Deployment").
 - [ ] **Day 1**: Set up the local database structure (`sqlite` or JSON) to track ticket states (the "local tracker").
 - [ ] **Day 2**: Use agent to curate the 15 "Development" cases from the raw dataset for immediate prompt tuning.
 - [ ] **Day 3**: Connect the LangGraph agent to the local SQLite/JSON tracker. Ensure state persists if the script is restarted.

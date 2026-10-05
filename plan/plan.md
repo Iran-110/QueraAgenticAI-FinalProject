@@ -21,15 +21,23 @@ To maximize efficiency, the workload is divided into four primary roles. Team me
 
 ---
 
+## Done
+
+*   [x] **Crucial Decision:** Select a specific domain (e.g., "Session State" or "Deployment") to keep the dataset under 300 issues.
+*   [x] Configure `pyproject.toml`.
+*   [x] Build the basic scaffold for the CLI/Web UI and create the skeleton for the final report.
+
+---
+
 ## Daily Schedule
 
 ### Day 1: Foundation, Domain Selection & Data Pipeline
 **Goal:** Setup the environment, choose a domain, and acquire the raw data locally.
-*   **All:** [x] **Crucial Decision:** Select a specific domain (e.g., "Session State" or "Deployment") to keep the dataset under 300 issues. [x] Configure `pyproject.toml`.
+*   **All:** [ ] Review the selected domain and architecture before coding starts.
 *   **Member 1:** [ ] Write `scripts/fetch_data.py`. Use a GitHub Personal Access Token to bypass rate limits. Clone `streamlit/docs` at commit `695e6ce...`. **Rule:** Cache all fetched data to `data/raw/`—no web calls during evaluation.
 *   **Member 2:** [ ] Define Pydantic models/schemas for the data (e.g., `Issue`, `Comment`, `AnalysisResult`).
 *   **Member 3:** [ ] Set up the local database structure (`sqlite` or JSON) to track ticket states (the "local tracker").
-*   **Member 4:** [x] Build the basic scaffold for the CLI/Web UI and create the skeleton for the final report.
+*   **Member 4:** [ ] Add the HITL pause mechanism UI placeholders in the built scaffold.
 
 ### Day 2: Advanced Retrieval & Prompt Engineering (Problem 1)
 **Goal:** Build a robust retrieval system and a single-turn analysis agent.
