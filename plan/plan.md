@@ -23,9 +23,19 @@ To maximize efficiency, the workload is divided into four primary roles. Team me
 
 ## Done
 
-*   [x] **Crucial Decision:** Select a specific domain (e.g., "Session State" or "Deployment") to keep the dataset under 300 issues.
 *   [x] Configure `pyproject.toml`.
 *   [x] Build the basic scaffold for the CLI/Web UI and create the skeleton for the final report.
+
+---
+
+## Meetings & Decisions
+
+### Next Meeting (To Be Discussed)
+*   **Crucial Decision:** Select a specific domain to keep the dataset under 300 issues.
+    *   *Options to discuss:* Session State, Deployment, Caching, UI Components.
+
+### Meeting Todos (To Be Judged)
+*   *(Empty for today)*
 
 ---
 
