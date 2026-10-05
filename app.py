@@ -16,6 +16,19 @@ def read_md(file_path):
 
 # Sidebar Navigation and Controls
 with st.sidebar:
+    st.header("Agent Controls")
+    st.info("This is where Human-in-the-Loop (HITL) approval actions will appear.")
+    
+    # TODO: Check if the LangGraph agent is paused at an `interrupt_before` node
+    # TODO: Display the proposed action and provide "Approve", "Reject", and "Edit" buttons
+    # TODO: Resume the agent execution with the human's feedback
+
+    if st.button("Reset Session"):
+        st.session_state.messages = []
+        st.rerun()
+        
+    st.divider()
+
     st.header("Navigation")
     view = st.radio(
         "Select View",
@@ -29,19 +42,6 @@ with st.sidebar:
             "👤 Member 4 Todo"
         ]
     )
-    
-    st.divider()
-    
-    st.header("Agent Controls")
-    st.info("This is where Human-in-the-Loop (HITL) approval actions will appear.")
-    
-    # TODO: Check if the LangGraph agent is paused at an `interrupt_before` node
-    # TODO: Display the proposed action and provide "Approve", "Reject", and "Edit" buttons
-    # TODO: Resume the agent execution with the human's feedback
-
-    if st.button("Reset Session"):
-        st.session_state.messages = []
-        st.rerun()
 
 # Main Area Rendering based on selected view
 if view == "💬 Support Assistant":
