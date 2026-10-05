@@ -8,7 +8,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# Apply Vazirmatn font for Persian text support
+# Apply Vazirmatn font and RTL direction for Persian text support
 st.markdown("""
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');
@@ -19,6 +19,17 @@ st.markdown("""
         
         * {
             font-family: 'Vazirmatn', sans-serif !important;
+        }
+        
+        /* Enforce RTL and right alignment */
+        .stApp, .stMarkdown, div[data-testid="stMarkdownContainer"] p, div[data-testid="stMarkdownContainer"] ul, div[data-testid="stMarkdownContainer"] ol, div[data-testid="stText"] {
+            direction: rtl !important;
+            text-align: right !important;
+        }
+        
+        /* Handle sidebar RTL */
+        section[data-testid="stSidebar"] {
+            direction: rtl !important;
         }
     </style>
 """, unsafe_allow_html=True)
