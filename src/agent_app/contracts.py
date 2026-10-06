@@ -233,10 +233,10 @@ class AnalysisResult(Contract):
 
 
 class RunLimits(Contract):
-    max_model_attempts: PositiveInt = 2
-    max_retrieval_rounds: PositiveInt = 2
+    max_model_attempts: Annotated[int, Field(strict=True, ge=1, le=2)] = 2
+    max_retrieval_rounds: Annotated[int, Field(strict=True, ge=1, le=2)] = 2
     max_queries_per_round: Annotated[int, Field(strict=True, ge=1, le=2)] = 2
-    max_steps: PositiveInt = 8
+    max_steps: Annotated[int, Field(strict=True, ge=1, le=8)] = 8
 
 
 class TraceEvent(Contract):

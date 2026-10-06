@@ -238,9 +238,60 @@ def test_run_limits_are_positive(field):
         RunLimits(**{field: 0})
 
 
-def test_query_limit_cannot_exceed_contract_query_count():
-    with pytest.raises(ValidationError):
-        RunLimits(max_queries_per_round=3)
+@pytest.mark.parametrize(
+    ("field", "ceiling"),
+    [
+        ("max_model_attempts", 2),
+        ("max_retrieval_rounds", 2),
+        ("max_queries_per_round", 2),
+        ("max_steps", 8),
+    ],
+)
+@pytest.mark.parametrize("excess", [1, 100])
+def test_run_limits_reject_values_above_hard_ceilings(field, ceiling, excess):
+    payload = {field: ceiling + excess}
+    for validate in (
+        RunLimits.model_validate,
+        lambda data: RunLimits.model_validate_json(json.dumps(data)),
+    ):
+        with pytest.raises(ValidationError) as caught:
+            validate(payload)
+        error = caught.value.errors()[0]
+        assert error["loc"] == (field,)
+        assert error["type"] == "less_than_equal"
+        assert error["ctx"]["le"] == ceiling
+
+
+@pytest.mark.parametrize(
+    ("field", "ceiling"),
+    [
+        ("max_model_attempts", 2),
+        ("max_retrieval_rounds", 2),
+        ("max_queries_per_round", 2),
+        ("max_steps", 8),
+    ],
+)
+def test_limit_payloads_built_without_validation_are_rejected_at_revalidation(field, ceiling):
+    # model_construct and model_copy(update=...) intentionally bypass Pydantic
+    # validation. Ports must revalidate serialized values rather than trust type.
+    unsafe_limits = (
+        RunLimits.model_construct(**{field: ceiling + 1}),
+        RunLimits().model_copy(update={field: ceiling + 1}),
+    )
+    for limits in unsafe_limits:
+        with pytest.raises(ValidationError) as caught:
+            RunLimits.model_validate(limits.model_dump())
+        assert caught.value.errors()[0]["loc"] == (field,)
+
+
+def test_callers_can_tighten_run_limits_without_exceeding_hard_ceilings():
+    limits = RunLimits(
+        max_model_attempts=1,
+        max_retrieval_rounds=1,
+        max_queries_per_round=1,
+        max_steps=4,
+    )
+    assert RunLimits.model_validate_json(limits.model_dump_json()) == limits
 
 
 def test_awaiting_approval_requires_final_analysis():

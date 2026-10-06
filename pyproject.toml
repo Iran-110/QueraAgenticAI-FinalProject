@@ -33,6 +33,8 @@ addopts = "-ra"
 target-version = "py313"
 line-length = 100
 src = ["src"]
+# Check Python code/config, not illustrative snippets in the original Markdown brief.
+include = ["*.py", "*.pyi", "pyproject.toml"]
 # The existing UI/examples belong to other owners; checks cover the new core.
 extend-exclude = ["app.py", "streamlit_examples"]
 
