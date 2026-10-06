@@ -20,6 +20,12 @@ All demo scenarios run offline, using synthetic evidence and scripted decisions.
 
 Ruff currently checks the new Python core and tests; the unchanged `app.py` and `streamlit_examples/` are excluded until their owner updates them.
 
+## Automatic checks
+
+GitHub Actions runs the locked install, Ruff lint/format checks, the full test suite, and an offline refinement demo on every branch push and PR update. It needs no API key and makes no paid calls. Review results in the PR checks or repository Actions tab.
+
+The workflow must be present in a branch to check its pushes. After the foundation PR is merged, update existing feature branches from `main`; new branches then inherit the same checks. Future modules should add their behavioral tests to `tests/` so CI picks them up. Making a successful check mandatory for merging is a separate repository setting for the maintainer.
+
 ## Branches and handoff
 
 Suggested branch names: `feat/agent-core-foundation`, `feat/data-rag`, `feat/local-tracker`, `feat/ui-evaluation`. Create your own branch from the agreed integration branch:
