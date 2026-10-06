@@ -25,3 +25,16 @@ ENV/
 # Project specific
 *.log
 .env
+.env.*
+!.env.example
+
+# Local sources, indexes, tracker state and gateway caches
+/data/raw/
+/data/processed/
+/data/indexes/
+/runtime/
+/cache/
+*.sqlite
+*.sqlite3
+*.sqlite3-shm
+*.sqlite3-wal
