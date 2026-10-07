@@ -43,6 +43,7 @@ jobs:
           uv run python -m agent_app.reasoning.experiments --plan experiments/decision_quality/protocol-shape-v2.json
           uv run python -m agent_app.reasoning.experiments --suite experiments/decision_quality/cases-model-probe.json --plan experiments/decision_quality/protocol-model-4o.json
           uv run python -m agent_app.reasoning.experiments --suite experiments/decision_quality/cases-model-probe.json --plan experiments/decision_quality/protocol-model-41.json
+          uv run python -m agent_app.reasoning.ablations
       - name: Smoke-test bounded refinement
         run: uv run agent-app demo --scenario refine
       - name: Smoke-test gateway accounting without network

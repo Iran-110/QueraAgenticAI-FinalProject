@@ -103,7 +103,14 @@ class ExperimentGate:
         snapshot = self.ledger.snapshot()
         if self.plan.continuation_id:
             grant = self.ledger.continuation_status(self.plan.continuation_id)
-            if not grant.active or grant.allowed_model != self.plan.model or snapshot.reserved_usd:
+            accounting_invalid = (
+                not grant.active and grant.block_reason != "ContinuationCapExceeded"
+            )
+            if (
+                accounting_invalid
+                or grant.allowed_model != self.plan.model
+                or snapshot.reserved_usd
+            ):
                 raise ReasoningStopped("LedgerUnavailable", "budget_stopped")
         elif snapshot.halted or snapshot.reserved_usd or snapshot.uncertain_usd:
             raise ReasoningStopped("LedgerUnavailable", "budget_stopped")

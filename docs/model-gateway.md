@@ -1,12 +1,11 @@
 # Model gateway and shared budget
 
-Latest development status: [the decision-quality experiments](decision-quality.md)
-completed 55 additional settled requests, then a `gpt-4.1-mini` serving-ID
-mismatch stopped the next request. The local runner is **halted**, with USD
-0.008560640 held uncertain. No further paid request was sent. Obtain provider
-usage/billing evidence and verify the serving identity/pricing before any paid
-resume; preserve the ledger and reservation. The historical milestones below
-describe their recorded states, not the current runner balance.
+The [first decision-quality experiments](decision-quality.md) stopped on a
+`gpt-4.1-mini` serving-ID mismatch. That incident remains unresolved. The later
+source/state comparison uses an explicit user-authorized, capped continuation
+for the already verified `gpt-4o-mini` route. The global ledger halt remains set;
+ordinary live calls are still denied. Historical milestones below describe their
+recorded states, not the current runner balance.
 
 Status, 2026-10-07: offline tests and controlled live checks cover the gateway. After reproducing the original decision-field failure, corrected prompts returned valid questions, a referenced answer and a repaired decision on synthetic inputs. Usage was settled in the ledger. This verifies those compatibility paths, not real support quality or RAG relevance. Account deductions have not been reconciled; no real key is required for offline demos.
 
@@ -82,6 +81,32 @@ Initialize the ledger explicitly with a team limit no higher than USD 5 and the 
 Amounts are stored as integer nanoUSD: USD 1 = 1,000,000,000 units. A reservation is committed before any network request. Valid known usage settles the reservation at the verified price; timeout or unknown usage retains it and stops further paid retry. A request that costs more than its bound halts further work instead of silently borrowing from the remaining budget. Restart does not discard outstanding reservations.
 
 Missing or malformed usage and unknown returned models also halt new reservations globally. A timeout stops its invocation while keeping the uncertain amount charged against the available budget. There is no automatic unhalt or refund. `BudgetLedger.settle()` can reconcile a recorded reservation with verified observed usage even while halted; it does not clear the halt. Phase tags are audit labels, not separate phase budgets.
+
+### Explicit continuation after a quarantined incident
+
+`BudgetLedger.authorize_continuation()` is a trusted caller operation requiring
+explicit human authorization. It handles one recorded `gpt-4.1-mini`
+`ProviderModelMismatch` incident only, with no pending request or observed cost
+overrun. It preserves that uncertain reservation, monotonically increases its
+held allocation to at least USD 0.02, and records an immutable authorization,
+request attribution and audit events in the existing database. This allocation
+is **not a verified cost bound or billing reconciliation**.
+
+Only a caller that explicitly supplies the grant's `continuation_id` can reserve
+for `gpt-4o-mini` in the development phase, at most USD 0.02 per request. Atomic
+reservations enforce both the grant's cumulative cap and the original global
+ceiling. Ordinary callers remain blocked. The exact quarantined record must
+remain unchanged; any new uncertainty, halt, observed overrun or pending request
+blocks further work. A new halt or uncertainty revokes the grant. Replaying its
+authorization cannot replenish it or reactivate it. Settling the old incident
+also invalidates the exception rather than creating extra grant credit.
+
+Grant selection is local trusted configuration. Model output, retrieved text,
+environment-variable defaults and normal CLI demos cannot create or select one.
+The ablation runner reads an explicitly registered grant ID, checks its scope
+before each attempt and preserves private start/observation receipts. It never
+authorizes a grant or clears a halt itself. Continue normal reconciliation work
+before enabling the unverified model route.
 
 Defaults reserve 32,768 input tokens and cap output at 1,024 tokens, with a USD 0.02 per-request cap. The prompt's UTF-8 byte count plus a 1,024 framing margin must fit that input reserve. This is an operational bound to test in the live pilot, not a provider billing guarantee. Usage-based amounts are estimates at the pinned public rates; the ledger does not fetch account deductions.
 

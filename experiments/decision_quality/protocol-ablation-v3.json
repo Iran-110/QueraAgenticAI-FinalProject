@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "experiment_id": "core-decision-2026-10-07-ablation-v3",
+  "suite_sha256": "c01b71b4d713b6612a393c8e2cbfdced7c0527fad71dc2b4512b7efb45129d1d",
+  "model": "gpt-4o-mini",
+  "policies": [
+    "structured_rules",
+    "diagnostic_rules"
+  ],
+  "input_token_reserve": 32768,
+  "max_output_tokens": 768,
+  "cap_usd": "0.10",
+  "price_verified_on": "2026-10-07",
+  "continuation_id": "user-continuation-2026-10-07-v3",
+  "scope": "Post hoc paired development ablation after format and semantic failure analysis. Fixed grid: A original evidence/state with structured_rules; B enriched official sources with structured_rules; C the same enriched sources and caller-normalized user reports with structured_rules; D identical normalized inputs with diagnostic_rules. All eight ordered cases, messages, original facts/checks/unknowns, labels, reviewer notes, frozen snapshot and quarantined families remain fixed. Only declared official source additions and user-attributed report/check additions are allowed; values are pinned by content hashes and manually reviewed against original messages. Each case receives all four cells in rotated order using cell-specific run identities. Same gpt-4o-mini, 32768 reserved input tokens, 768 output tokens and original hard workflow limits; repairs/refinement count within two attempts. A single USD0.10 gate covers all32 planned observations and any failed/uncertain attempts. The explicit continuation ID must refer to an existing separately user-authorized grant; this protocol/runner cannot create, refresh or resume one. Unknown new costs, changed quarantine or new halts stop the batch. Private exclusive receipts preserve per-cell outcomes. Source-backed independent model-assisted review remains necessary; decision/format agreement does not establish code correctness, causal factor attribution, general superiority or untouched-test performance. API account deductions remain unverified. Repeated correlated development subset with shared stochastic provider settings, not final evaluation.",
+  "cells": [
+    {
+      "cell_id": "A",
+      "suite": "original",
+      "policy": "structured_rules"
+    },
+    {
+      "cell_id": "B",
+      "suite": "enriched",
+      "policy": "structured_rules"
+    },
+    {
+      "cell_id": "C",
+      "suite": "normalized",
+      "policy": "structured_rules"
+    },
+    {
+      "cell_id": "D",
+      "suite": "normalized",
+      "policy": "diagnostic_rules"
+    }
+  ],
+  "case_count": 8,
+  "suites": {
+    "original": {
+      "filename": "cases.json",
+      "sha256": "c01b71b4d713b6612a393c8e2cbfdced7c0527fad71dc2b4512b7efb45129d1d",
+      "content_sha256": "7a4fc9948b039113a8fb618b4f6afa3f10badea17a8b3934d995382af17d6b75"
+    },
+    "enriched": {
+      "filename": "cases-enriched-v3.json",
+      "sha256": "d4f3b0000c3e3c84181d808afa9171d8d17c8f499e4a83c1f6ce584752e089d5",
+      "content_sha256": "ef5342ca62fd6713c8f09ced98093899a0a4dc580649e57220695e2eaa3dcb3f"
+    },
+    "normalized": {
+      "filename": "cases-normalized-v3.json",
+      "sha256": "2d8ac8c3fcbc9622bf3e641d0ac7c985e6865ddc80e38bc672b26b7cf00fe67e",
+      "content_sha256": "05ec1fa56986d822a03169c7e22514e63008abee9e78a2d569f23602315575be"
+    }
+  },
+  "source_change_case_ids": [
+    "variant-loop-current-version",
+    "synthetic-source-injection"
+  ],
+  "normalizations": {
+    "real-loop-callback": {
+      "source_ref": "user/issue-8061",
+      "turn_id": "initial",
+      "fact_names": [
+        "reported_widget_pattern",
+        "reported_callback_expression",
+        "reported_observation"
+      ],
+      "checks_added": []
+    },
+    "variant-loop-current-version": {
+      "source_ref": "user/issue-8061",
+      "turn_id": "controlled-current",
+      "fact_names": [
+        "reported_widget_pattern",
+        "reported_callback_expression",
+        "reported_observation"
+      ],
+      "checks_added": []
+    },
+    "real-fragment-default-partial-repro": {
+      "source_ref": "user/issue-12782",
+      "turn_id": "initial",
+      "fact_names": [
+        "reported_widget_context",
+        "reported_trigger",
+        "reported_observation",
+        "reported_reproduction_status"
+      ],
+      "checks_added": []
+    },
+    "variant-fragment-missing-version": {
+      "source_ref": "user/variant-fragment-missing-version/initial",
+      "turn_id": "fixture-user-initial",
+      "fact_names": [
+        "reported_widget_context",
+        "reported_trigger",
+        "reported_observation",
+        "reported_reproduction_status"
+      ],
+      "checks_added": [
+        "My reduced example works"
+      ]
+    },
+    "variant-fragment-version-correction": {
+      "source_ref": "user/issue-12782",
+      "turn_id": "correction-turn",
+      "fact_names": [
+        "reported_observation",
+        "reported_reproduction_status"
+      ],
+      "checks_added": [
+        "The small example continues to work"
+      ]
+    },
+    "real-dataframe-session-loss": {
+      "source_ref": "user/issue-16914",
+      "turn_id": "initial",
+      "fact_names": [
+        "reported_dataframe_input",
+        "reported_connection_behavior",
+        "reported_python_traceback",
+        "reported_session_uuid_observation"
+      ],
+      "checks_added": []
+    },
+    "synthetic-source-injection": {
+      "source_ref": "user/issue-synthetic",
+      "turn_id": "initial",
+      "fact_names": [
+        "reported_question_context"
+      ],
+      "checks_added": []
+    },
+    "synthetic-exhausted-evidence": {
+      "source_ref": "user/issue-synthetic",
+      "turn_id": "initial",
+      "fact_names": [
+        "reported_interaction",
+        "reported_frontend_value",
+        "reported_backend_value"
+      ],
+      "checks_added": []
+    }
+  }
+}

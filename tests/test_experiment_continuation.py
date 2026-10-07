@@ -12,7 +12,7 @@ from agent_app.llm.budget import BudgetLedger
 from agent_app.llm.config import MetisConfig
 from agent_app.llm.metis import MetisReasoner, request_id_for
 from agent_app.orchestration.ports import ReasoningStopped
-from agent_app.reasoning.experiments import ExperimentPlan, run_experiment
+from agent_app.reasoning.experiments import ExperimentGate, ExperimentPlan, run_experiment
 from agent_app.reasoning.probes import DecisionProbe, ProbeExpectations, ProbeSuite
 
 GRANT = "offline-continued-experiment"
@@ -150,6 +150,31 @@ def authorize(ledger):
 
 def observation(output_dir, index=0):
     return json.loads((output_dir / f"observation-{index:02d}.json").read_text())
+
+
+def test_fully_settled_cap_is_safe_accounting_but_denies_next_request(halted_runner):
+    ledger, _, _ = halted_runner
+    authorize(ledger)
+    gate = ExperimentGate(ledger, plan(), ledger.snapshot())
+    for index in range(5):
+        request = f"request:spent-{index}"
+        ledger.reserve(
+            request_id=request,
+            run_id="run:spent-cap",
+            case_id="case:spent-cap",
+            case_revision=0,
+            attempt=1,
+            model="gpt-4o-mini",
+            phase="development",
+            amount_usd=Decimal("0.02"),
+            continuation_id=GRANT,
+        )
+        ledger.settle(request, cost_usd=Decimal("0.02"), input_tokens=1, output_tokens=1)
+    assert ledger.continuation_status(GRANT).block_reason == "ContinuationCapExceeded"
+    gate.check_accounting()
+    with pytest.raises(ReasoningStopped) as stopped:
+        gate.check()
+    assert stopped.value.code == "BudgetExceeded"
 
 
 def test_normal_experiment_stays_blocked_after_a_grant_exists(halted_runner):
