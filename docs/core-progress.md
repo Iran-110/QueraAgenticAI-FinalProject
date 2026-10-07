@@ -60,6 +60,21 @@ Working branch: `feat/agent-core-integration`, after sharing the tested foundati
 
 No paid comparison request has been made at this milestone. Candidates are implemented choices rather than a demonstrated quality improvement. Source presence alone still cannot establish claim entailment; the planned comparison needs independent source-based review.
 
+## 2026-10-07 — measured decision experiments and syntax checking
+
+Branch remains `feat/agent-core-integration`; no changes from it have been merged to main.
+
+- Registered fixed-source inputs and expectations before paid requests. Eight development probes include three real-report anchors, three correlated variants and two synthetic stresses; no formal held-out test was used. Sources and reviewer aids are inspectable in `experiments/decision_quality/`.
+- Compared baseline, decision rubric and bounded rubric, then preregistered a follow-up explicit shape matrix against a fresh baseline. `structured_rules` produced 8/8 accepted proposals on its first attempts in the follow-up versus 7/8 accepted baseline proposals across ten attempts. This is a format-reliability observation, not general semantic superiority.
+- Blinded source-based review of all proposals found repeated known questions, incorrect callback/API advice and inaccurate summaries. Public aggregates preserve the independent assistant's judgments and document source-audit disagreements; they are not human gold quality scores.
+- Added bounded AST syntax checks for labeled Python fences without executing them. Malformed proposed code can use the remaining shared repair attempt; authority/evidence violations still stop immediately. Wrong arity, API parameters and inline/unlabeled code remain outside this guard.
+- A targeted three-case 4o block completed with one actual refinement then escalation. A planned 4.1-mini block stopped on its first request with `ProviderModelMismatch`; no semantic response was accepted and no model ranking is justified.
+- Verified **565 passing offline tests**, Ruff lint/format, locked dependencies, all four protocol validations and installed offline demos. CI validates registered inputs without requiring a key or making paid calls.
+
+This work made 56 HTTP attempts across 44 observations: 55 settled requests at an estimated **USD 0.026699475**, plus **USD 0.008560640 held uncertain** for the serving-ID mismatch. Including the six earlier compatibility calls, the runner ledger contains USD 0.028673040 settled and USD 0.008560640 uncertain, with USD 4.462766320 available under its USD 4.50 ceiling. It is **halted** pending provider usage/billing evidence and verified serving identity/pricing. The ledger and reservation are preserved; no further paid request was made. Account deductions are unverified.
+
+Default policy remains baseline; `METIS_PROMPT_POLICY=structured_rules` is an explicit development opt-in once live accounting can safely resume. See `docs/decision-quality.md` for methods, quantitative results, failures, limitations and specific future retrieval/state integration work. Keys, ledger, validated proposals and blinded review files remain private ignored runtime data.
+
 ## Next integration work
 
 | Work | Owner | Completion evidence |

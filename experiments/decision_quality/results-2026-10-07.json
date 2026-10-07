@@ -1,0 +1,357 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-07",
+  "scope": "Exploratory owner-level fixed-source development probes; three real anchors plus correlated variants/synthetics. Not formal15dev/15test or RAG performance.",
+  "semantic_review": "Independent model-assisted blinded review, not human gold. Counts require source-specific audit and are not a calibrated quality score.",
+  "runs": [
+    {
+      "experiment_id": "core-decision-2026-10-07-v1",
+      "model": "gpt-4o-mini",
+      "suite_sha256": "c01b71b4d713b6612a393c8e2cbfdced7c0527fad71dc2b4512b7efb45129d1d",
+      "code_sha256": "5caa2557db1f1f8f9757c05d79fbea5b536ba592c535dd46dac15d76e2b05320",
+      "scope": "Preregistered exploratory paired development comparison: eight fixed-source probes with three real-report anchors and correlated variants. Baseline uses the current prompt plus common user-fact authority clarification and repaired runtime guards; it is not an unchanged-main end-to-end A/B. Candidate policies add a decision rubric, then caller-owned remaining capacity. One pass per case/policy in rotated order; no formal test, live retrieval, keyword semantic scoring or paid judge. Review accepted proposals independently against sources before recommending a policy. All attempt repairs/refinements share two-attempt allowance, reserved and ambiguous costs count, stop the whole batch on accounting uncertainty. Provider defaults including sampling are identical and no reproducibility guarantee is assumed.",
+      "planned_observations": 24,
+      "completed_observations": 24,
+      "stop_reason": null,
+      "policies": {
+        "baseline": {
+          "cases": 8,
+          "accepted": 7,
+          "allowed_final_decisions": 6,
+          "first_pass_schema_valid": 7,
+          "model_attempts": 9,
+          "retrieval_rounds": 8,
+          "http_attempts": 9,
+          "settled_requests": 9,
+          "uncertain_requests": 0,
+          "estimated_settled_usd": "0.004021215",
+          "held_uncertain_usd": "0",
+          "output_issue_codes": {
+            "final_drafts_required": 2
+          },
+          "terminal_error_codes": {
+            "ModelOutputInvalid": 1
+          },
+          "review_verdicts": {
+            "needs_revision": 5,
+            "unusable": 1,
+            "acceptable": 2
+          },
+          "by_kind": {
+            "real_report": {
+              "cases": 3,
+              "accepted": 2,
+              "allowed_final_decisions": 2
+            },
+            "controlled_variant": {
+              "cases": 3,
+              "accepted": 3,
+              "allowed_final_decisions": 3
+            },
+            "synthetic": {
+              "cases": 2,
+              "accepted": 2,
+              "allowed_final_decisions": 1
+            }
+          },
+          "mean_seconds": 4.775,
+          "median_seconds": 4.037,
+          "known_settled_input_tokens": 16539,
+          "known_settled_output_tokens": 1958
+        },
+        "decision_rubric": {
+          "cases": 8,
+          "accepted": 5,
+          "allowed_final_decisions": 4,
+          "first_pass_schema_valid": 3,
+          "model_attempts": 13,
+          "retrieval_rounds": 8,
+          "http_attempts": 13,
+          "settled_requests": 13,
+          "uncertain_requests": 0,
+          "estimated_settled_usd": "0.006071505",
+          "held_uncertain_usd": "0",
+          "output_issue_codes": {
+            "final_drafts_required": 8
+          },
+          "terminal_error_codes": {
+            "ModelOutputInvalid": 3
+          },
+          "review_verdicts": {
+            "needs_revision": 3,
+            "unusable": 4,
+            "acceptable": 1
+          },
+          "by_kind": {
+            "real_report": {
+              "cases": 3,
+              "accepted": 1,
+              "allowed_final_decisions": 1
+            },
+            "controlled_variant": {
+              "cases": 3,
+              "accepted": 2,
+              "allowed_final_decisions": 2
+            },
+            "synthetic": {
+              "cases": 2,
+              "accepted": 2,
+              "allowed_final_decisions": 1
+            }
+          },
+          "mean_seconds": 5.548,
+          "median_seconds": 5.912,
+          "known_settled_input_tokens": 27193,
+          "known_settled_output_tokens": 2401
+        },
+        "bounded_rubric": {
+          "cases": 8,
+          "accepted": 7,
+          "allowed_final_decisions": 6,
+          "first_pass_schema_valid": 5,
+          "model_attempts": 11,
+          "retrieval_rounds": 8,
+          "http_attempts": 11,
+          "settled_requests": 11,
+          "uncertain_requests": 0,
+          "estimated_settled_usd": "0.005382300",
+          "held_uncertain_usd": "0",
+          "output_issue_codes": {
+            "final_drafts_required": 4
+          },
+          "terminal_error_codes": {
+            "ModelOutputInvalid": 1
+          },
+          "review_verdicts": {
+            "needs_revision": 4,
+            "acceptable": 3,
+            "unusable": 1
+          },
+          "by_kind": {
+            "real_report": {
+              "cases": 3,
+              "accepted": 2,
+              "allowed_final_decisions": 2
+            },
+            "controlled_variant": {
+              "cases": 3,
+              "accepted": 3,
+              "allowed_final_decisions": 2
+            },
+            "synthetic": {
+              "cases": 2,
+              "accepted": 2,
+              "allowed_final_decisions": 2
+            }
+          },
+          "mean_seconds": 4.772,
+          "median_seconds": 4.258,
+          "known_settled_input_tokens": 24296,
+          "known_settled_output_tokens": 2081
+        }
+      }
+    },
+    {
+      "experiment_id": "core-decision-2026-10-07-shape-v2",
+      "model": "gpt-4o-mini",
+      "suite_sha256": "c01b71b4d713b6612a393c8e2cbfdced7c0527fad71dc2b4512b7efb45129d1d",
+      "code_sha256": "c97ce3c156e6fba8671f5413692cc11a2204fc4b16232c3e6bad1cbca9f270d7",
+      "scope": "Exploratory follow-up after registered v1 failures: repeated final_drafts_required errors motivate an explicit caller-supplied decision shape matrix on the bounded-rubric candidate. Reuse exactly the preregistered eight development probes, facts, fixed sources and expectations, with one fresh baseline and one fresh structured_rules output per case in rotated order. No formal test or new independent examples. Baseline and original candidate prompts remain byte-for-byte unchanged. Model/token settings and gateway guards fixed. Independent blinded model-assisted source review is required in addition to shape validation. Parent comparison completed at estimated USD0.015475020 with zero unresolved reservations; this additional USD0.06 cap keeps maximum combined comparison spending USD0.075475020 below the original USD0.16 cap. Output shape instructions do not authorize actions or establish semantic correctness. Provider sampling defaults are shared and stochastic repetition can change outcomes.",
+      "planned_observations": 16,
+      "completed_observations": 16,
+      "stop_reason": null,
+      "policies": {
+        "baseline": {
+          "cases": 8,
+          "accepted": 7,
+          "allowed_final_decisions": 6,
+          "first_pass_schema_valid": 6,
+          "model_attempts": 10,
+          "retrieval_rounds": 8,
+          "http_attempts": 10,
+          "settled_requests": 10,
+          "uncertain_requests": 0,
+          "estimated_settled_usd": "0.004480905",
+          "held_uncertain_usd": "0",
+          "output_issue_codes": {
+            "final_drafts_required": 3
+          },
+          "terminal_error_codes": {
+            "ModelOutputInvalid": 1
+          },
+          "review_verdicts": {
+            "unusable": 2,
+            "acceptable": 2,
+            "needs_revision": 4
+          },
+          "by_kind": {
+            "real_report": {
+              "cases": 3,
+              "accepted": 2,
+              "allowed_final_decisions": 2
+            },
+            "controlled_variant": {
+              "cases": 3,
+              "accepted": 3,
+              "allowed_final_decisions": 3
+            },
+            "synthetic": {
+              "cases": 2,
+              "accepted": 2,
+              "allowed_final_decisions": 1
+            }
+          },
+          "mean_seconds": 4.554,
+          "median_seconds": 3.959,
+          "known_settled_input_tokens": 18373,
+          "known_settled_output_tokens": 2196
+        },
+        "structured_rules": {
+          "cases": 8,
+          "accepted": 8,
+          "allowed_final_decisions": 7,
+          "first_pass_schema_valid": 8,
+          "model_attempts": 8,
+          "retrieval_rounds": 8,
+          "http_attempts": 8,
+          "settled_requests": 8,
+          "uncertain_requests": 0,
+          "estimated_settled_usd": "0.004557465",
+          "held_uncertain_usd": "0",
+          "output_issue_codes": {},
+          "terminal_error_codes": {},
+          "review_verdicts": {
+            "needs_revision": 6,
+            "acceptable": 2
+          },
+          "by_kind": {
+            "real_report": {
+              "cases": 3,
+              "accepted": 3,
+              "allowed_final_decisions": 3
+            },
+            "controlled_variant": {
+              "cases": 3,
+              "accepted": 3,
+              "allowed_final_decisions": 2
+            },
+            "synthetic": {
+              "cases": 2,
+              "accepted": 2,
+              "allowed_final_decisions": 2
+            }
+          },
+          "mean_seconds": 5.1,
+          "median_seconds": 3.926,
+          "known_settled_input_tokens": 20193,
+          "known_settled_output_tokens": 1857
+        }
+      }
+    },
+    {
+      "experiment_id": "core-decision-2026-10-07-model-4o",
+      "model": "gpt-4o-mini",
+      "suite_sha256": "cc65014f82d4cb63dfa9d486e420b1da1e12b1a1aadc601dedc84f8cc0a9aed5",
+      "code_sha256": "c5165c96c627c014217c8ed252bf4165fdd95ad5a0de97278f80a327c388c2b6",
+      "scope": "Exploratory focused model comparison after observed wrong callback/API advice and reversed case summary. Three previously used development cases selected for failure analysis: one controlled variant and two synthetic stresses, no independent real-report anchors. Case contents/labels/sources unchanged from preregistration. Both models use structured_rules, same token limits and current engine syntax gate, which was added AFTER the first two comparisons. One pass per case/model on designated sequential runner, 4o block then 4.1 block; time/order/sampling effects remain. Model-assisted blinded source review, not formal/human gold. Prior comparison spend USD0.024513390 settled without unresolved costs; these two additional caps sum USD0.045, keeping combined comparison maximum USD0.069513390 below original USD0.16.",
+      "planned_observations": 3,
+      "completed_observations": 3,
+      "stop_reason": null,
+      "policies": {
+        "structured_rules": {
+          "cases": 3,
+          "accepted": 3,
+          "allowed_final_decisions": 2,
+          "first_pass_schema_valid": 3,
+          "model_attempts": 4,
+          "retrieval_rounds": 4,
+          "http_attempts": 4,
+          "settled_requests": 4,
+          "uncertain_requests": 0,
+          "estimated_settled_usd": "0.002186085",
+          "held_uncertain_usd": "0",
+          "output_issue_codes": {},
+          "terminal_error_codes": {},
+          "review_verdicts": {
+            "needs_revision": 2,
+            "acceptable": 1
+          },
+          "by_kind": {
+            "controlled_variant": {
+              "cases": 1,
+              "accepted": 1,
+              "allowed_final_decisions": 0
+            },
+            "synthetic": {
+              "cases": 2,
+              "accepted": 2,
+              "allowed_final_decisions": 2
+            }
+          },
+          "mean_seconds": 5.479,
+          "median_seconds": 5.397,
+          "known_settled_input_tokens": 9997,
+          "known_settled_output_tokens": 813
+        }
+      }
+    },
+    {
+      "experiment_id": "core-decision-2026-10-07-model-41",
+      "model": "gpt-4.1-mini",
+      "suite_sha256": "cc65014f82d4cb63dfa9d486e420b1da1e12b1a1aadc601dedc84f8cc0a9aed5",
+      "code_sha256": "c5165c96c627c014217c8ed252bf4165fdd95ad5a0de97278f80a327c388c2b6",
+      "scope": "Exploratory focused model comparison after observed wrong callback/API advice and reversed case summary. Three previously used development cases selected for failure analysis: one controlled variant and two synthetic stresses, no independent real-report anchors. Case contents/labels/sources unchanged from preregistration. Both models use structured_rules, same token limits and current engine syntax gate, which was added AFTER the first two comparisons. One pass per case/model on designated sequential runner, 4o block then 4.1 block; time/order/sampling effects remain. Model-assisted blinded source review, not formal/human gold. Prior comparison spend USD0.024513390 settled without unresolved costs; these two additional caps sum USD0.045, keeping combined comparison maximum USD0.069513390 below original USD0.16.",
+      "planned_observations": 3,
+      "completed_observations": 1,
+      "stop_reason": "UnreconciledLedger",
+      "policies": {
+        "structured_rules": {
+          "cases": 1,
+          "accepted": 0,
+          "allowed_final_decisions": 0,
+          "first_pass_schema_valid": 0,
+          "model_attempts": 1,
+          "retrieval_rounds": 1,
+          "http_attempts": 1,
+          "settled_requests": 0,
+          "uncertain_requests": 1,
+          "estimated_settled_usd": "0",
+          "held_uncertain_usd": "0.00856064",
+          "output_issue_codes": {},
+          "terminal_error_codes": {
+            "ProviderModelMismatch": 1
+          },
+          "review_verdicts": {
+            "unusable": 1
+          },
+          "by_kind": {
+            "controlled_variant": {
+              "cases": 1,
+              "accepted": 0,
+              "allowed_final_decisions": 0
+            }
+          },
+          "mean_seconds": 7.201,
+          "median_seconds": 7.201,
+          "known_settled_input_tokens": 0,
+          "known_settled_output_tokens": 0
+        }
+      }
+    }
+  ],
+  "account_deductions_reconciled": false,
+  "final_runner_ledger": {
+    "limit_usd": "4.5",
+    "opening_spend_usd": "0",
+    "settled_usd": "0.02867304",
+    "reserved_usd": "0",
+    "uncertain_usd": "0.00856064",
+    "available_usd": "4.46276632",
+    "halted": true
+  },
+  "private_proposals_exported": false,
+  "formal_test_used": false,
+  "production_prompt_policy_default": "baseline",
+  "live_requests_allowed_after_run": false,
+  "unknown_request_token_usage": "Not retained/verified for the failed model-identity request; zero known settled tokens does not mean zero actual usage."
+}

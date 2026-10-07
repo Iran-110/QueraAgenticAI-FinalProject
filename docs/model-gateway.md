@@ -1,5 +1,13 @@
 # Model gateway and shared budget
 
+Latest development status: [the decision-quality experiments](decision-quality.md)
+completed 55 additional settled requests, then a `gpt-4.1-mini` serving-ID
+mismatch stopped the next request. The local runner is **halted**, with USD
+0.008560640 held uncertain. No further paid request was sent. Obtain provider
+usage/billing evidence and verify the serving identity/pricing before any paid
+resume; preserve the ledger and reservation. The historical milestones below
+describe their recorded states, not the current runner balance.
+
 Status, 2026-10-07: offline tests and controlled live checks cover the gateway. After reproducing the original decision-field failure, corrected prompts returned valid questions, a referenced answer and a repaired decision on synthetic inputs. Usage was settled in the ledger. This verifies those compatibility paths, not real support quality or RAG relevance. Account deductions have not been reconciled; no real key is required for offline demos.
 
 ## First live compatibility check

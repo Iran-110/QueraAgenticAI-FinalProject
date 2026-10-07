@@ -66,3 +66,17 @@ Automatic acceptance and allowed-decision agreement are reported separately from
 `reserved_issue_ids` reserves #8061, #12782 and #16914 plus the conservatively linked family candidate #8901. Exclude their complete first bodies, comments, outcomes and confirmed duplicate families from future RAG and final held-out evaluation. Variants of an anchor remain in that anchor's development family.
 
 The local family-review catalog links #16914 to #8901. A link does not prove a duplicate, so #8901 is provisionally quarantined until a reviewer resolves the relationship. Other linked/duplicate family members must be reviewed and excluded before claiming leak-free evaluation. This JSON is a reservation declaration; enforcement in corpus construction remains the data/evaluation owners' work.
+
+## Observed results and follow-up protocols
+
+See [the decision-quality report](../../docs/decision-quality.md) and [public aggregates](results-2026-10-07.json). The original cases and expectations are unchanged. `protocol-shape-v2.json` records a post-hoc development follow-up for draft-field failures; its candidate exposes trusted explicit shape rules. `cases-model-probe.json` copies three previously used hard cases without changing their input/evidence/expectations. The two `protocol-model-*.json` files record a focused, incomplete model check, not a new holdout or fair completed ranking. The syntax gate was added after the first two comparisons and before that focused check.
+
+The first two completed comparisons cost an estimated USD 0.024513390. The focused 4o block added USD 0.002186085; the first 4.1 request was rejected for an unverified serving ID and retains USD 0.008560640 uncertain. The runner is now halted. Do not replay completed/partial experiment IDs, replace the ledger, infer an unverified alias's price, or clear held accounting without provider evidence. Validation and all automated checks remain offline.
+
+Validate all follow-up protocols without a key:
+
+```bash
+uv run --no-sync python -m agent_app.reasoning.experiments --plan experiments/decision_quality/protocol-shape-v2.json
+uv run --no-sync python -m agent_app.reasoning.experiments --suite experiments/decision_quality/cases-model-probe.json --plan experiments/decision_quality/protocol-model-4o.json
+uv run --no-sync python -m agent_app.reasoning.experiments --suite experiments/decision_quality/cases-model-probe.json --plan experiments/decision_quality/protocol-model-41.json
+```

@@ -75,6 +75,28 @@ remain relevant, the retriever must include them in the new bundle within the
 same `top_k` limit. The engine records the actual retrieval round. A valid locator
 establishes source presence, not whether a claim faithfully follows the source.
 
+Only active user-provenance facts establish the installed environment. Evidence
+facts cannot replace a conflicting confirmed user value. The initial query packs
+whole confirmed facts and prioritizes versions over long descriptive fields.
+
+## Reasoning policy and output checks
+
+The engine supplies `ReasoningContext` with remaining attempts, retrieval rounds,
+`can_refine` and `query_limit`. These defaulted fields preserve existing callers;
+workflow hints and output feedback never change a ledger request's identity.
+
+`MetisConfig(prompt_policy="structured_rules", ...)` opts in to the development
+candidate with explicit conditional output requirements. `METIS_PROMPT_POLICY`
+can select it through environment configuration. The default remains `baseline`;
+see the [measured comparison and limitations](decision-quality.md). Do not treat
+validation as semantic correctness or add another model call outside the shared
+attempt allowance.
+
+Explicitly labeled Python fences in proposed drafts receive bounded syntax
+checking without execution. An invalid snippet may use the remaining output
+repair attempt; evidence/authority violations remain terminal. Syntax validity
+does not verify APIs, callback arity or correct diagnosis.
+
 ## Tracker and UI handoff
 
 The tracker owns authoritative state. For user updates, deduplicate the event
