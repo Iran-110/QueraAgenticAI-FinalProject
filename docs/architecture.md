@@ -27,7 +27,7 @@ Refinement analyzes only the latest `EvidenceBundle`; the engine does not implic
 
 Persistence and execution authorization need the real integrations. All returned drafts await separate human review; a draft is not proof of an executed action or a solved case.
 
-A Metis client and durable cost ledger now implement the model boundary. One controlled live request verified endpoint access and token accounting; its output failed the core's validation. Response compatibility and account deductions remain unverified. A real retrieval index, durable case tracker and backend connection to Streamlit remain pending. Scripted responses do not establish answer quality. See [model gateway and shared budget](model-gateway.md).
+A Metis client and durable cost ledger now implement the model boundary. Controlled live checks on synthetic cases verify valid question, referenced answer and repair outputs plus token accounting. The initial failure was reproduced as an `ask` response missing `next_question`; the prompt now explains decision-dependent rules. Schema failures produce allowlisted diagnostics, and the second attempt receives them without echoing the failed response. Evidence and authority violations remain terminal. Account deductions and real support quality are unverified. A real retrieval index, durable case tracker and backend connection to Streamlit remain pending. See [model gateway and shared budget](model-gateway.md) and the [runnable integration example](integration.md).
 
 ## Four ownership boundaries
 
@@ -40,7 +40,7 @@ A Metis client and durable cost ledger now implement the model boundary. One con
 
 Python module paths are relative to `src/agent_app/`. Both ports are defined in `orchestration/ports.py`, and their returned values are validated by the engine. Tests follow the corresponding owner. `pyproject.toml`, `uv.lock`, README, and shared contracts need coordinated review. Proposed paths are reserved boundaries, not evidence that those implementations already exist.
 
-`ReasoningContext` identifies the run, case revision and attempt index. Terminal adapter failures use `ReasoningStopped`; the engine does not retry them. Ledger request IDs are derived from the trusted context, so resubmitting the same attempt cannot silently create another send. This does not implement response replay or tracker restart recovery.
+`ReasoningContext` identifies the run, case revision and attempt index. It may carry validated `OutputFeedback` on attempt 2. Terminal adapter failures use `ReasoningStopped`; the engine does not retry them. Ledger request IDs use only the original run/case/revision/attempt identity and exclude feedback, so changing a repair hint cannot resend a used attempt. Pre-feedback request IDs remain valid. This does not implement response replay or tracker restart recovery.
 
 ## Integration requirements
 

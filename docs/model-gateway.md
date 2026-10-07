@@ -1,14 +1,36 @@
 # Model gateway and shared budget
 
-Status, 2026-10-07: the gateway is covered by simulated HTTP tests and one controlled live request. The live endpoint accepted `gpt-4o-mini` and returned usage that the ledger settled. The response failed `AnalysisResult` validation, so full response compatibility and model quality remain unverified. Account deductions have not been reconciled; no real key is required for the offline demos.
+Status, 2026-10-07: offline tests and controlled live checks cover the gateway. After reproducing the original decision-field failure, corrected prompts returned valid questions, a referenced answer and a repaired decision on synthetic inputs. Usage was settled in the ledger. This verifies those compatibility paths, not real support quality or RAG relevance. Account deductions have not been reconciled; no real key is required for offline demos.
 
 ## First live compatibility check
 
 The pilot used an empty synthetic evidence bundle and a widget question with unknown version/code. It allowed one model attempt, 8,192 reserved input tokens and at most 512 output tokens. One HTTP send returned status 200 in about 4.1 seconds. Reported usage was 1,229 input and 174 output tokens; the ledger settled **USD 0.000317625** at the pinned public rates and released the unused reservation. No pending or uncertain amount remained, and the ledger did not halt.
 
-The core returned `ModelOutputInvalid` and did not buy another attempt. The raw output was not retained, so this result does not establish which JSON or contract rule failed. The prompt was subsequently clarified to request a JSON instance, exclude Markdown, and explain the decision-dependent fields that JSON Schema alone does not express. That change has not been retested live. A later controlled check needs sanitized validation diagnostics and comparison with the account dashboard; routine development remains offline.
+The core returned `ModelOutputInvalid` and did not buy another attempt. The raw output was not retained, so that request's exact failed rule is unknown. The prompt was subsequently clarified to request a JSON instance, exclude Markdown, and explain the decision-dependent fields that JSON Schema alone does not express. Later diagnostic and verification checks are recorded below; routine development remains offline.
 
 The credential, ledger and local pilot receipt stay outside Git. The receipt contains operational counts and cost estimates, not the key or raw model response. The local runner retains a USD 4.50 ceiling and USD 0.50 outside it; after this request its available ledger amount was USD 4.499682375. This is local accounting, not a fetched provider balance.
+
+## Diagnosis and corrected live checks
+
+Two further requests using the original prompt both produced valid JSON that violated a decision rule. The diagnostic reproduction identified `ask_question_required`: `decision="ask"` was returned without a non-null `next_question`. JSON Schema alone does not express that model-validator condition. The updated system instruction explicitly explains it, along with the question/query/draft rules for all four decisions.
+
+The corrected prompt passed a live question check. A separate live answer on a synthetic source passed citation validation. A repair check injected one invalid scripted first response, then used exactly one live second attempt with `ask_question_required` feedback; it returned a valid question. That test made one paid request, not two. These are narrow compatibility observations, not a success-rate benchmark, real retrieval results or evidence of semantic correctness on production cases.
+
+Across the initial pilot and these checks, **six HTTP requests** settled: 7,673 input and 1,072 output tokens, estimated total **USD 0.001973565** at pinned public rates. The designated ledger has no reserved or uncertain amount, is not halted, and has USD 4.498026435 available under its USD 4.50 ceiling. Provider billing reconciliation is still pending. No raw response or credential was written to the receipts or Git.
+
+## Strict output validation and bounded repair
+
+The parser accepts one bare JSON object or a validated port mapping/model. Markdown wrappers, surrounding prose, duplicate keys (including nested ones), nonstandard numeric constants and oversized text fail validation. It does not extract a JSON-looking substring or quietly discard extra fields. The `AnalysisResult` decision and authority rules remain unchanged.
+
+`RunResult.output_issues` contains bounded allowlisted issue codes and known top-level fields. It never includes arbitrary field names, model values, raw validation messages, inputs or contexts. A successful repaired run may still include the first attempt's issues; use `status` to decide whether a preview is available. For example:
+
+```json
+{"code":"ask_question_required","field":"next_question"}
+```
+
+The engine places these diagnostics in caller-owned `ReasoningContext.output_feedback` only on attempt 2. The gateway adds them to trusted system instructions without echoing the failed response. They consume the original two-attempt allowance; they cannot trigger a third attempt. Unsupported evidence, invented user facts, stale revisions and terminal provider failures remain terminal rather than buying a repair.
+
+Ledger identity excludes `output_feedback` and preserves the original run/case/revision/attempt serialization. Changing a hint cannot resend an already used attempt, and records created before feedback was introduced still block duplicates. This preserves accounting idempotency, not case-event replay or tracker persistence.
 
 ## Integration
 

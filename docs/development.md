@@ -12,6 +12,7 @@ uv run agent-app demo --scenario escalate
 uv run agent-app demo --scenario refine
 uv run agent-app demo --scenario error
 uv run agent-app gateway-demo --scenario repair
+uv run agent-app turn-demo
 uv run pytest
 uv run ruff check .
 uv run ruff format --check .
@@ -23,7 +24,7 @@ Ruff currently checks the new Python core and tests; the unchanged `app.py` and 
 
 ## Automatic checks
 
-GitHub Actions runs the locked install, Ruff lint/format checks, the full test suite, and an offline refinement demo on every branch push and PR update. It needs no API key and makes no paid calls. Review results in the PR checks or repository Actions tab.
+GitHub Actions runs the locked install, Ruff lint/format checks, the full test suite, and offline refinement, gateway accounting and user-turn demos on every branch push and PR update. It needs no API key and makes no paid calls. Review results in the PR checks or repository Actions tab.
 
 The workflow must be present in a branch to check its pushes. After the foundation PR is merged, update existing feature branches from `main`; new branches then inherit the same checks. Future modules should add their behavioral tests to `tests/` so CI picks them up. Making a successful check mandatory for merging is a separate repository setting for the maintainer.
 
@@ -42,13 +43,15 @@ Replace the branch name with your work area. Start with a clean checkout, or pre
 
 Before implementation, agree on a valid input/output example. Build against a small mock for the other module instead of changing its files. Contracts are shared; propose changes early and adapt consumers together.
 
+The [integration guide](integration.md) has a runnable adapter example and the retrieval, tracker and UI handoff rules. It works without another teammate's module or a real key.
+
 Commit when a coherent part works: contracts, an orchestration behavior, a verified integration, or useful docs. Stage the intended paths explicitly, inspect the staged diff, and use a short factual message such as `feat(core): bound retrieval refinement`. Do not split a trivial edit into many commits or alter timestamps to create activity.
 
 ## Data and cost
 
 Raw datasets, downloaded documentation, databases, caches, and credentials do not belong in code commits. Check in the collection recipe and snapshot metadata; coordinate where the team shares the actual snapshot. Existing local downloads outside the repo are working material, not automatically part of a teammate's clone.
 
-Use mocks and recorded responses for daily development. The Metis adapter and durable cost ledger are implemented; their live pilot is pending. Keep one designated live runner and one authoritative ledger, as described in [the gateway guide](model-gateway.md). Before its first real run, agree on the model, price basis, small pilot limit, remaining budget, and a single place to record spending. The USD 5 ceiling includes the bonus and evaluation; separate local demos from paid results in every report.
+Use mocks and synthetic responses for daily development. Small live compatibility checks now validate question, source-referenced answer and repair behavior, using synthetic inputs. They do not evaluate real support quality. Keep one designated live runner and one authoritative ledger, as described in [the gateway guide](model-gateway.md). Before broader live work, agree on the model, price basis, run limit, remaining budget and a single place to record spending; reconcile estimates with account billing. The USD 5 ceiling includes the bonus and evaluation; separate local demos from paid results in every report.
 
 Evaluation owns the dev/test split before retrieval builds the index. Do not tune prompts, models, or retrieval on the test set. Each outcome should be supported by saved evidence and actual tracker state, not just the model's explanation.
 
