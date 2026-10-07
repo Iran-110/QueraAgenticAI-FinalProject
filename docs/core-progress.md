@@ -214,6 +214,22 @@ See `docs/decision-quality-v5.md` and its aggregate for exact results and limits
 
 ## Next integration work
 
+### Shared release — 2026-10-07
+
+PR #2 was reviewed and merged with a normal merge commit
+`bc7f1939a9eb575d46d1f517accc80b642593ced`. The registered experiment commits
+remain reachable. Main now contains the tested core, guarded user facts, bounded
+query packing, source/syntax validation, optional proposal checks, continuation
+accounting, frozen development evidence and integration documentation. Production
+defaults remain `baseline` and `proposal_checks=False`; this does not turn on live
+requests or connect teammate-owned production adapters.
+
+Both exact-head PR checks passed; main's offline CI run `37690357252` also passed
+at that merge commit. Independent release review ran 174 focused authority,
+engine, schema and continuation tests successfully. Feature development continues
+on `feat/agent-core-integration`; previous milestones describe their historical
+branch and accounting state rather than the current release.
+
 | Work | Owner | Completion evidence |
 | --- | --- | --- |
 | Real retrieval adapter and frozen corpus | Data/RAG | Inspectable sources, metadata, and dev retrieval measurements |
