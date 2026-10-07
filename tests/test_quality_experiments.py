@@ -27,6 +27,7 @@ from agent_app.reasoning import quality_experiments
 from agent_app.reasoning.experiments import sha256_file
 from agent_app.reasoning.probes import DecisionProbe, ProbeExpectations, ProbeSuite
 from agent_app.reasoning.quality_experiments import (
+    COMPILED_VARIANTS,
     CONTINUATION_ID,
     VARIANTS,
     QualityExperimentPlan,
@@ -295,6 +296,74 @@ def test_variants_cannot_conflate_prompt_metadata_and_enforcement():
             ),
         )
     assert quality_run_id("run", "B", "probe") != quality_run_id("run", "C", "probe")
+
+
+@pytest.mark.parametrize(
+    ("policies", "variants"),
+    [
+        (("structured_rules", "compiled_rules"), VARIANTS),
+        (("structured_rules", "grounded_rules"), COMPILED_VARIANTS),
+        (("structured_rules", "grounded_rules", "compiled_rules"), VARIANTS),
+        (("compiled_rules", "structured_rules"), COMPILED_VARIANTS),
+        (
+            ("structured_rules", "compiled_rules"),
+            (COMPILED_VARIANTS[0], VARIANTS[1], COMPILED_VARIANTS[2]),
+        ),
+        (
+            ("structured_rules", "compiled_rules"),
+            (
+                COMPILED_VARIANTS[0],
+                COMPILED_VARIANTS[1],
+                COMPILED_VARIANTS[2].model_copy(update={"proposal_checks": False}),
+            ),
+        ),
+    ],
+)
+def test_hybrid_or_changed_checking_designs_cannot_be_registered(policies, variants):
+    suite, catalog = fixture_inputs()
+    with pytest.raises(ValidationError, match="three-variant design"):
+        fixture_plan(suite, catalog, policies=policies, variants=variants)
+
+
+def test_compiled_conditions_have_identical_first_model_inputs_and_only_enforcement_differs(
+    runtime,
+):
+    suite, catalog = fixture_inputs()
+    plan = fixture_plan(
+        suite,
+        catalog,
+        policies=("structured_rules", "compiled_rules"),
+        variants=COMPILED_VARIANTS,
+    )
+    summary, calls = run(runtime, suite, catalog, plan, [answer_body() for _ in range(3)])
+    assert summary["completed_observations"] == 3
+    assert calls[1] == calls[2]
+    observations = [
+        json.loads((runtime[2] / f"observation-{index:02d}.json").read_text()) for index in (1, 2)
+    ]
+    assert [item["policy"] for item in observations] == ["compiled_rules", "compiled_rules"]
+    assert [item["use_catalog"] for item in observations] == [True, True]
+    assert [item["proposal_checks"] for item in observations] == [False, True]
+    assert (
+        observations[0]["ledger_entries"][0]["request_id"]
+        != observations[1]["ledger_entries"][0]["request_id"]
+    )
+
+
+def test_v5_registration_preserves_inputs_while_selecting_separate_compiled_candidate():
+    base = Path("experiments/decision_quality")
+    old_suite, old_catalog, old_plan = validate_quality_inputs(base / "protocol-guards-v4.json")
+    suite, catalog, plan = validate_quality_inputs(base / "protocol-guards-v5.json")
+    assert suite == old_suite and catalog == old_catalog
+    assert old_plan.policies == ("structured_rules", "grounded_rules")
+    assert old_plan.variants == VARIANTS
+    assert plan.policies == ("structured_rules", "compiled_rules")
+    assert plan.variants == COMPILED_VARIANTS
+    assert plan.cap_usd == Decimal("0.04")
+    assert plan.suite_sha256 == old_plan.suite_sha256
+    assert plan.requirements_sha256 == old_plan.requirements_sha256
+    assert plan.continuation_id == old_plan.continuation_id
+    assert len(list(schedule_quality(suite, plan))) == 27
 
 
 def test_rotated_conditions_get_distinct_requests_and_never_receive_review_oracles(runtime):

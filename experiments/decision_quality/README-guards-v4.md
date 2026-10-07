@@ -151,3 +151,61 @@ local official catalogs. These checks make no API calls and execute no embedded
 source or user snippet. Paid execution requires a separately registered
 comparison protocol and the designated gateway/ledger authorization; this suite
 does not grant it.
+
+## Registered follow-up v5: compile constraints into the response schema
+
+[`protocol-guards-v5.json`](protocol-guards-v5.json) registers a repeat of the
+same 27 observations before V5 outputs. In V4, C failed to recover two question
+observations within the two-attempt allowance and rejected one answer without
+evidence links. Neither of its two repair attempts recovered an accepted
+proposal. The follow-up hypothesis is that displaying the registered question
+pairs and answer-citation requirements in the response schema and decision
+metadata may improve conformance before hard checks run.
+
+The follow-up adds a separate experimental `compiled_rules` policy. The measured
+V4 `grounded_rules` and the earlier five prompt policies remain byte-identical
+and separately selectable if the new candidate regresses. Compiled schema content
+remains application metadata; native provider structured-output enforcement is
+not assumed. Expected
+decisions, reviewer notes and gold response content never become model input.
+The ordinary output contracts, citation/authority rules and hard workflow limits
+still apply.
+
+The same A/B/C grid uses the unchanged case and caller-catalog file/content
+hashes. A's unchanged `structured_rules` is a repeat control. B and C both use
+the new `compiled_rules` schema presentation with the same registered catalog;
+only C enables the optional deterministic proposal checks. All nine user
+messages, states, sources, expectations and catalogs remain frozen. The same
+model, input/output allowances, rotated condition order and two-attempt/
+two-retrieval bounds apply. Request identities use the new V5 experiment ID so
+they cannot resend or overwrite the V4 records.
+
+The entire repeat has a USD 0.04 cap under the existing original continuation
+grant. Neither the protocol nor runner creates a grant, restores spent scope,
+resets the ledger, clears the global halt, releases uncertain funds or confirms
+account billing. New uncertainty still stops the batch. Private receipts record
+the exact execution code hash as well as the unchanged suite/catalog hashes.
+
+The separate [`review-guards-v5.json`](review-guards-v5.json) preregisters three
+newly assigned independent assistant reviewers, each receiving three whole case
+groups with nine aliased observations. Alias mapping and raw artifacts remain
+private. Reviewers receive the same user context, sources and caller catalog for
+all variants, without variant/prompt, attempt, cost, conformance/error outcomes,
+past proposals or prior review ratings. Semantic question usefulness is judged
+separately from exact canonical conformance. The absence of an accepted proposal
+is rated unusable. Original ratings are preserved; root source-audit reservations
+and disagreements are published separately.
+
+This repeat uses **already exposed post hoc synthetic development inputs** and a
+targeted adaptation learned from V4. It is not fresh or held-out evaluation or
+human gold. Related mechanisms, curated caller constraints, stochastic draws
+and sequential runs limit inference. Changes relative to V4 cannot establish
+causal improvements, and A's repeat is not a replay of a past response. Review
+the complete proposal rather than treating compiled schema or accepted JSON as
+proof of technical correctness.
+
+Offline validation requires no key, ledger access or paid request:
+
+```bash
+uv run --no-sync python -m agent_app.reasoning.quality_experiments --plan experiments/decision_quality/protocol-guards-v5.json
+```

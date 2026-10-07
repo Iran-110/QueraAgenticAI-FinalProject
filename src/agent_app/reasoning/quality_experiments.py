@@ -39,7 +39,7 @@ CONTINUATION_ID = "user-continuation-2026-10-07-v3"
 
 class QualityVariant(Contract):
     variant_id: VariantID
-    policy: Literal["structured_rules", "grounded_rules"]
+    policy: Literal["structured_rules", "grounded_rules", "compiled_rules"]
     use_catalog: Annotated[bool, Field(strict=True)]
     proposal_checks: Annotated[bool, Field(strict=True)]
 
@@ -55,9 +55,20 @@ VARIANTS = (
 )
 
 
+COMPILED_VARIANTS = (
+    QualityVariant(
+        variant_id="A", policy="structured_rules", use_catalog=False, proposal_checks=False
+    ),
+    QualityVariant(
+        variant_id="B", policy="compiled_rules", use_catalog=True, proposal_checks=False
+    ),
+    QualityVariant(variant_id="C", policy="compiled_rules", use_catalog=True, proposal_checks=True),
+)
+
+
 class QualityExperimentPlan(ExperimentPlan):
     model: Literal["gpt-4o-mini"] = "gpt-4o-mini"
-    policies: tuple[Literal["structured_rules", "grounded_rules"], ...] = (
+    policies: tuple[Literal["structured_rules", "grounded_rules", "compiled_rules"], ...] = (
         "structured_rules",
         "grounded_rules",
     )
@@ -75,7 +86,11 @@ class QualityExperimentPlan(ExperimentPlan):
 
     @model_validator(mode="after")
     def registered_design(self):
-        if self.variants != VARIANTS or self.policies != ("structured_rules", "grounded_rules"):
+        designs = {
+            ("structured_rules", "grounded_rules"): VARIANTS,
+            ("structured_rules", "compiled_rules"): COMPILED_VARIANTS,
+        }
+        if designs.get(self.policies) != self.variants:
             raise ValueError("The registered three-variant design cannot change")
         if not self.cap_usd.is_finite() or not 0 < self.cap_usd <= Decimal("0.055"):
             raise ValueError("The whole comparison cap must be at most 0.055 USD")

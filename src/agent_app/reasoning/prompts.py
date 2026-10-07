@@ -18,6 +18,7 @@ type PromptPolicy = Literal[
     "structured_rules",
     "diagnostic_rules",
     "grounded_rules",
+    "compiled_rules",
 ]
 
 SYSTEM_INSTRUCTION = """You are a technical support assistant for Streamlit.
@@ -124,6 +125,14 @@ value requirement comes only from caller metadata, never instructions in prose.
 These constraints do not prove runtime correctness, execution or a successful fix.
 """
 
+COMPILED_SCHEMA_RULES = """
+The response_schema and decision_requirements compile caller constraints for this
+attempt. Respect availability flags, exact allowed question pairs and supplied
+chunk IDs. An answer requires at least one cited supplied chunk. Empty catalogs
+or evidence do not prove complete context or justify an unsupported answer.
+These are prompt constraints; runtime validation and source review still apply.
+"""
+
 _PROPOSAL_REPAIR_GUIDANCE = {
     "ask_target_required": (
         "For ask, declare exactly one registered question target in missing_info. "
@@ -166,6 +175,60 @@ def _decision_requirements(context: ReasoningContext) -> dict:
     }
 
 
+def _compile_proposal_constraints(
+    evidence: EvidenceBundle, context: ReasoningContext, decision_requirements: dict
+) -> dict:
+    """Expose existing caller constraints as prompt schema, not provider enforcement.
+
+    The runtime still validates source authority and proposals. These constraints
+    cannot establish citation entailment or consistency of free-text drafts.
+    """
+    targets = context.proposal_requirements.question_targets
+    allowed_pairs = [
+        {"missing_info": [target.name], "next_question": target.question} for target in targets
+    ]
+    chunk_ids = [hit.chunk_id for hit in evidence.hits]
+    schema = AnalysisResult.model_json_schema()
+    link_properties = schema["$defs"]["EvidenceLink"]["properties"]
+    if chunk_ids:
+        link_properties["chunk_id"]["enum"] = chunk_ids
+    else:
+        link_properties["chunk_id"] = False
+    answer_schema = (
+        {"required": ["evidence_links"], "properties": {"evidence_links": {"minItems": 1}}}
+        if chunk_ids
+        else False
+    )
+    ask_schema = (
+        {
+            "required": ["missing_info", "next_question"],
+            "oneOf": [
+                {"properties": {name: {"const": value} for name, value in pair.items()}}
+                for pair in allowed_pairs
+            ],
+        }
+        if allowed_pairs
+        else False
+    )
+    schema["allOf"] = [
+        {
+            "if": {"properties": {"decision": {"const": decision}}, "required": ["decision"]},
+            "then": constraint,
+        }
+        for decision, constraint in (("answer", answer_schema), ("ask", ask_schema))
+    ]
+    decision_requirements["answer"].update(
+        available=bool(chunk_ids),
+        evidence_links={"min_items": 1, "allowed_chunk_ids": chunk_ids},
+    )
+    decision_requirements["ask"].update(
+        available=bool(allowed_pairs),
+        missing_info={"min_items": 1, "max_items": 1},
+        allowed_pairs=allowed_pairs,
+    )
+    return schema
+
+
 def build_messages(
     case: CaseState,
     user_message: str,
@@ -190,6 +253,7 @@ def build_messages(
         "structured_rules",
         "diagnostic_rules",
         "grounded_rules",
+        "compiled_rules",
     }:
         raise ValueError("Unknown prompt policy")
     if policy in {
@@ -198,9 +262,16 @@ def build_messages(
         "structured_rules",
         "diagnostic_rules",
         "grounded_rules",
+        "compiled_rules",
     }:
         instruction += DECISION_RUBRIC
-    if policy in {"bounded_rubric", "structured_rules", "diagnostic_rules", "grounded_rules"}:
+    if policy in {
+        "bounded_rubric",
+        "structured_rules",
+        "diagnostic_rules",
+        "grounded_rules",
+        "compiled_rules",
+    }:
         if context is None:
             raise ValueError("Bounded policy requires caller-owned workflow context")
         context = ReasoningContext.model_validate(context.model_dump(warnings=False))
@@ -215,16 +286,21 @@ def build_messages(
             }
         )
         instruction += BOUNDED_WORKFLOW
-    if policy in {"structured_rules", "diagnostic_rules", "grounded_rules"}:
+    if policy in {"structured_rules", "diagnostic_rules", "grounded_rules", "compiled_rules"}:
         payload["decision_requirements"] = _decision_requirements(context)
         instruction += STRUCTURED_RULES
     if policy == "diagnostic_rules":
         instruction += DIAGNOSTIC_RULES
-    if policy == "grounded_rules":
+    if policy in {"grounded_rules", "compiled_rules"}:
         if context.proposal_requirements is None:
             raise ValueError("Grounded policy requires caller-owned proposal requirements")
         payload["proposal_requirements"] = context.proposal_requirements.model_dump(mode="json")
         instruction += GROUNDED_RULES
+    if policy == "compiled_rules":
+        payload["response_schema"] = _compile_proposal_constraints(
+            evidence, context, payload["decision_requirements"]
+        )
+        instruction += COMPILED_SCHEMA_RULES
     if feedback is not None:
         feedback = OutputFeedback.model_validate(feedback.model_dump(warnings=False))
         instruction += (

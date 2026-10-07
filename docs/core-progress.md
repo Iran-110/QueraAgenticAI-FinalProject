@@ -166,6 +166,28 @@ ratings, source-audit reservations and manual-catalog limitations. The next
 focused hypothesis is to compile the same constraints into model-visible schema
 and metadata, then separately register a repeat on exposed development inputs.
 
+## 2026-10-07 — registered compiled-schema follow-up
+
+Added a separate `compiled_rules` candidate that binds ask name/question pairs
+and supplied answer citation IDs in model-visible JSON Schema and decision
+metadata. All six earlier policies, including measured `grounded_rules`, remain
+byte-identical and selectable. The gateway still sends prompted text and runtime
+validation stays authoritative; native provider schema enforcement is not assumed.
+Whole-draft consistency, source entailment and runtime correctness remain outside
+these shape guarantees.
+
+Registered V5 before outputs on the same **already exposed** nine synthetic
+development probes. The unchanged A policy is a repeat control; B/C use compiled
+schema with the same catalog, differing only in deterministic enforcement. Fixed
+designs reject hybrid policies/flags. The USD 0.04 batch ceiling uses the existing
+continuation and original ledger. A/B/C differences and V4/V5 changes remain
+exploratory, not independent causal or held-out measurements. A separate blinded
+procedure preserves ratings and source-audit reservations.
+
+Verified **875 offline tests**, Ruff lint/format, seven registered protocol
+validations and installed demos. No paid V5 request preceded this registration.
+Frozen V4 inputs/protocol and gateway/ledger implementation remain unchanged.
+
 ## Next integration work
 
 | Work | Owner | Completion evidence |

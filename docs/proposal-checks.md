@@ -12,6 +12,11 @@ fresh-widget-value requirement to one case and revision. Pass it through
 `SupportEngine.run(..., proposal_requirements=requirements)`. Configure the engine
 with `proposal_checks=True` to enforce it. The `grounded_rules` prompt is a
 separate explicit opt-in that requires this catalog in `ReasoningContext`.
+The experimental `compiled_rules` policy additionally encodes registered
+question pairs and supplied citation IDs in the model-visible schema and decision
+metadata. It is separate so the measured earlier `grounded_rules` option remains
+available. The gateway still sends ordinary prompted text; no native provider
+schema enforcement is assumed, and the core's runtime checks remain authoritative.
 
 ```python
 from agent_app.contracts import ProposalRequirements, QuestionTarget
