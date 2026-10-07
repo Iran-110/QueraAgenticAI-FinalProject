@@ -19,6 +19,7 @@ from agent_app.contracts import (
     TraceEvent,
 )
 from agent_app.orchestration.ports import Reasoner, ReasoningStopped, Retriever
+from agent_app.reasoning.code_checks import has_invalid_python_code
 from agent_app.reasoning.output import InvalidAnalysis, parse_analysis
 
 
@@ -267,6 +268,10 @@ class SupportEngine:
             self._ensure_current(case)
             try:
                 analysis = parse_analysis(raw)
+                # Source/authority violations remain terminal, even alongside bad code.
+                self._validate_analysis(case, evidence, analysis)
+                if has_invalid_python_code(analysis):
+                    raise InvalidAnalysis((OutputIssue(code="invalid_python_syntax"),))
             except InvalidAnalysis as error:
                 feedback = OutputFeedback(issues=error.issues)
                 progress.output_issues.extend(error.issues)
@@ -282,8 +287,6 @@ class SupportEngine:
                 progress.note("reasoning_failed", last_error)
                 progress.note("output_validation", "invalid_shape")
                 continue
-            # Invalid evidence/unsupported facts fail closed rather than buying another attempt.
-            self._validate_analysis(case, evidence, analysis)
             return analysis
         raise _Stopped(last_error)
 

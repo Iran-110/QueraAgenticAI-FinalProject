@@ -75,4 +75,5 @@ class MetisConfig(BaseModel):
             api_key=SecretStr(key),
             live_enabled=os.environ.get("METIS_LIVE_ENABLED") == "true",
             model=os.environ.get("METIS_MODEL", "gpt-4o-mini"),
+            prompt_policy=os.environ.get("METIS_PROMPT_POLICY", "baseline"),
         )

@@ -32,7 +32,7 @@ class ExperimentPlan(Contract):
     schema_version: Literal[1] = 1
     experiment_id: Annotated[str, StringConstraints(pattern=r"^[a-z0-9][a-z0-9-]{0,63}$")]
     suite_sha256: Annotated[str, StringConstraints(pattern=r"^[a-f0-9]{64}$")]
-    model: Literal["gpt-4o-mini"] = "gpt-4o-mini"
+    model: Literal["gpt-4o-mini", "gpt-4.1-mini"] = "gpt-4o-mini"
     policies: tuple[PromptPolicy, ...] = ("baseline", "decision_rubric", "bounded_rubric")
     input_token_reserve: Literal[16384] = 16384
     max_output_tokens: Literal[768] = 768

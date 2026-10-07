@@ -333,6 +333,7 @@ class OutputIssue(Contract):
         "missing_field",
         "unknown_field",
         "invalid_field",
+        "invalid_python_syntax",
         "retrieve_more_queries_required",
         "retrieve_more_final_payload_forbidden",
         "final_drafts_required",
