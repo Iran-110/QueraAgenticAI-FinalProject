@@ -83,6 +83,17 @@ def test_valid_json_with_bad_python_gets_one_targeted_repair_within_the_same_run
     assert CASE.model_dump() == before
 
 
+def test_duplicate_callback_parameter_uses_existing_syntax_repair_allowance():
+    parseable_invalid = "def callback(step, step):\n    pass"
+    result, _, reasoner = run([answer(parseable_invalid), answer()])
+    assert result.status == "awaiting_approval"
+    assert result.model_attempts == 2
+    assert result.analysis == answer()
+    assert reasoner.contexts[1].output_feedback.issues == (
+        OutputIssue(code="invalid_python_syntax"),
+    )
+
+
 def test_bad_python_in_the_second_maintainer_draft_stops_after_two_attempts():
     result, _, reasoner = run(
         [answer(INVALID_SOURCE), answer(maintainer_source=INVALID_SOURCE), answer()]
