@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "experiment_id": "core-decision-2026-10-07-v1",
+  "suite_sha256": "c01b71b4d713b6612a393c8e2cbfdced7c0527fad71dc2b4512b7efb45129d1d",
+  "model": "gpt-4o-mini",
+  "policies": [
+    "baseline",
+    "decision_rubric",
+    "bounded_rubric"
+  ],
+  "input_token_reserve": 16384,
+  "max_output_tokens": 768,
+  "cap_usd": "0.16",
+  "price_verified_on": "2026-10-07",
+  "scope": "Preregistered exploratory paired development comparison: eight fixed-source probes with three real-report anchors and correlated variants. Baseline uses the current prompt plus common user-fact authority clarification and repaired runtime guards; it is not an unchanged-main end-to-end A/B. Candidate policies add a decision rubric, then caller-owned remaining capacity. One pass per case/policy in rotated order; no formal test, live retrieval, keyword semantic scoring or paid judge. Review accepted proposals independently against sources before recommending a policy. All attempt repairs/refinements share two-attempt allowance, reserved and ambiguous costs count, stop the whole batch on accounting uncertainty. Provider defaults including sampling are identical and no reproducibility guarantee is assumed."
+}
