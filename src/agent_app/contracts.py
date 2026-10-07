@@ -375,6 +375,7 @@ class OutputIssue(Contract):
         "ask_question_mismatch",
         "invalid_api_keyword",
         "callback_value_captured",
+        "callback_arity_mismatch",
         "retrieve_more_queries_required",
         "retrieve_more_final_payload_forbidden",
         "final_drafts_required",

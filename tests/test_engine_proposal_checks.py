@@ -268,6 +268,18 @@ def test_quality_flag_is_trusted_strict_configuration(value):
             "invalid_api_keyword",
             False,
         ),
+        (
+            "synthetic-own-widget-pass-key-control",
+            "import streamlit as st\ndef changed(key):\n"
+            '    st.session_state["received"] = st.session_state[key]\n'
+            'st.selectbox("Region", ["Oslo", "Lima"], key="region", on_change=changed)',
+            "import streamlit as st\ndef changed(key):\n"
+            '    st.session_state["received"] = st.session_state[key]\n'
+            'st.selectbox("Region", ["Oslo", "Lima"], key="region", '
+            'on_change=changed, args=("region",))',
+            "callback_arity_mismatch",
+            True,
+        ),
     ],
 )
 def test_source_grounded_callback_finding_uses_existing_one_repair(

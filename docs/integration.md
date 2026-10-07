@@ -93,9 +93,13 @@ validation as semantic correctness or add another model call outside the shared
 attempt allowance.
 
 Explicitly labeled Python fences in proposed drafts receive bounded syntax
-checking without execution. An invalid snippet may use the remaining output
+checking through parsing and static compilation without executing code objects.
+This also rejects duplicate parameters and invalid module-level control flow.
+An invalid snippet may use the remaining output
 repair attempt; evidence/authority violations remain terminal. Syntax validity
-does not verify APIs, callback arity or correct diagnosis.
+does not verify APIs, callback arity or correct diagnosis. Explicit development
+proposal checks cover a small source-grounded subset separately; see
+[their applicability and limits](proposal-checks.md).
 
 ## Tracker and UI handoff
 

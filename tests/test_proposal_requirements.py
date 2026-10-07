@@ -258,6 +258,7 @@ def test_default_policy_remains_baseline_and_does_not_export_caller_metadata():
         OutputIssue(code="ask_question_mismatch", field="next_question"),
         OutputIssue(code="invalid_api_keyword"),
         OutputIssue(code="callback_value_captured"),
+        OutputIssue(code="callback_arity_mismatch"),
     ],
 )
 def test_new_semantic_feedback_uses_only_stable_general_guidance(issue):

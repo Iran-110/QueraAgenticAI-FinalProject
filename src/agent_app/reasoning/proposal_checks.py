@@ -5,6 +5,8 @@ Only complete labeled Python fences with an explicit unshadowed module import
 are covered. Uncertain imports, signatures, versions and expressions are skipped.
 Fresh-value capture additionally requires caller-owned intent; a previous-value
 snapshot is legitimate when that intent is absent.
+Arity findings additionally require explicit callback-argument documentation and
+a direct, unique, statically bound handler in an otherwise inert module.
 """
 
 import ast
@@ -31,6 +33,10 @@ _TIMING_PHRASES = (
     "not later when the user interacts with the widget",
     "you can't pass that value to the callback function via the `args` parameter",
     "look up its value using `st.session_state` _within the callback function_",
+)
+_CALLBACK_ARGUMENT_PHRASES = (
+    "args: list or tuple; default=None An optional list or tuple of args to pass to the callback.",
+    "kwargs: dict; default=None An optional dict of kwargs to pass to the callback.",
 )
 
 
@@ -312,6 +318,275 @@ def _captures_value(call: ast.Call, signature: _Signature, alias: str) -> bool:
     return False
 
 
+def _arity_api_functions(
+    evidence: EvidenceBundle, version: str, signatures: dict[str, _Signature]
+) -> frozenset[str]:
+    """Require both a pinned signature and the actual callback argument contract.
+
+    A signature alone says nothing about how a widget invokes a supplied callable.
+    This reviewed documentation commit is distinct from historical timing scope.
+    """
+    pinned_hits = tuple(
+        hit
+        for hit in evidence.hits
+        if hit.source_commit == _REVIEWED_TIMING_COMMIT
+        and _official_path(hit) == "python/streamlit.json"
+        and version in hit.applicable_versions
+    )
+    pinned_signatures = _signatures(
+        EvidenceBundle(snapshot_id=evidence.snapshot_id, hits=pinned_hits), version
+    )
+    documented = set()
+    for hit in pinned_hits:
+        excerpt = " ".join(hit.excerpt.split())
+        if not all(phrase in excerpt for phrase in _CALLBACK_ARGUMENT_PHRASES):
+            continue
+        for name, signature in pinned_signatures.items():
+            if (
+                signatures.get(name) == signature
+                and not signature.accepts_arbitrary_keywords
+                and {"args", "kwargs"}.issubset(signature.keyword_names)
+                and {"on_change", "on_click"} & signature.keyword_names
+                and hit.source_id == f"docstring:{version}:streamlit.{name}"
+                and hit.source_span
+                and hit.source_span.startswith(f"JSON pointer /{version}/streamlit.{name};")
+            ):
+                documented.add(name)
+    return frozenset(documented)
+
+
+def _inert_value(node: ast.AST, alias: str, *, depth: int = 0) -> bool:
+    """Recognize expressions whose evaluation cannot call an opaque helper.
+
+    Names are plain loads; arbitrary attributes, subscriptions, formatting,
+    operators, comprehensions, calls and assignment expressions are excluded.
+    The one supported subscription is the unshadowed Streamlit state proxy with
+    a literal key. This checks syntax, not value types or widget runtime behavior.
+    """
+    if depth > 16:
+        return False
+    if isinstance(node, (ast.Name, ast.Constant)):
+        return True
+    if isinstance(node, (ast.Tuple, ast.List)):
+        return all(_inert_value(value, alias, depth=depth + 1) for value in node.elts)
+    if isinstance(node, ast.Dict):
+        return all(
+            isinstance(key, ast.Constant)
+            and isinstance(key.value, str)
+            and _inert_value(value, alias, depth=depth + 1)
+            for key, value in zip(node.keys, node.values, strict=True)
+        )
+    state_key = _state_read(node, alias)
+    return bool(state_key and state_key[0] == "constant")
+
+
+def _inert_definition(node: ast.FunctionDef, alias: str) -> bool:
+    if node.decorator_list or node.type_params:
+        return False
+    args = node.args
+    parameters = (*args.posonlyargs, *args.args, *args.kwonlyargs)
+    names = [arg.arg for arg in parameters]
+    names.extend(arg.arg for arg in (args.vararg, args.kwarg) if arg is not None)
+    if len(names) != len(set(names)):
+        # ast.parse accepts duplicate parameter names; compilation would not.
+        # Never infer a callable contract from an invalid definition.
+        return False
+    defaults = (*args.defaults, *(value for value in args.kw_defaults if value is not None))
+    annotations = (
+        node.returns,
+        *(arg.annotation for arg in (*args.posonlyargs, *args.args, *args.kwonlyargs)),
+        args.vararg.annotation if args.vararg else None,
+        args.kwarg.annotation if args.kwarg else None,
+    )
+    return all(_inert_value(value, alias) for value in defaults) and all(
+        value is None or isinstance(value, (ast.Name, ast.Constant)) for value in annotations
+    )
+
+
+def _direct_call(statement: ast.stmt) -> ast.Call | None:
+    if isinstance(statement, ast.Assign) and not all(
+        isinstance(target, ast.Name) for target in statement.targets
+    ):
+        return None
+    if isinstance(statement, ast.AnnAssign) and not (
+        isinstance(statement.target, ast.Name)
+        and isinstance(statement.annotation, (ast.Name, ast.Constant))
+    ):
+        return None
+    if isinstance(statement, (ast.Expr, ast.Assign, ast.AnnAssign)) and isinstance(
+        statement.value, ast.Call
+    ):
+        return statement.value
+    return None
+
+
+def _inert_statement(statement: ast.stmt, alias: str) -> bool:
+    if isinstance(statement, ast.Import):
+        return all(item.name == "streamlit" for item in statement.names)
+    if isinstance(statement, ast.FunctionDef):
+        return _inert_definition(statement, alias)
+    if isinstance(statement, ast.Pass):
+        return True
+    if isinstance(statement, ast.Expr):
+        return isinstance(statement.value, ast.Constant)
+    if isinstance(statement, ast.Assign):
+        return all(isinstance(target, ast.Name) for target in statement.targets) and _inert_value(
+            statement.value, alias
+        )
+    if isinstance(statement, ast.AnnAssign):
+        return (
+            isinstance(statement.target, ast.Name)
+            and isinstance(statement.annotation, (ast.Name, ast.Constant))
+            and (statement.value is None or _inert_value(statement.value, alias))
+        )
+    # Control flow, classes, imports with opaque initialization, other calls and
+    # module-level attribute/subscription writes are outside this proof subset.
+    return False
+
+
+def _bound_handler(
+    module: ast.Module,
+    nodes: tuple[ast.AST, ...],
+    statement: ast.stmt,
+    call: ast.Call,
+    callback: ast.Name,
+    alias: str,
+) -> ast.FunctionDef | None:
+    definitions = [
+        node
+        for node in nodes
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef))
+        and node.name == callback.id
+    ]
+    if len(definitions) != 1:
+        return None
+    definition = definitions[0]
+    if not isinstance(definition, ast.FunctionDef) or definition not in module.body:
+        return None
+    if module.body.index(definition) >= module.body.index(statement):
+        return None
+    if not any(
+        isinstance(item, ast.Import)
+        and any(
+            value.name == "streamlit" and (value.asname or value.name) == alias
+            for value in item.names
+        )
+        for item in module.body[: module.body.index(statement)]
+    ):
+        return None
+    if not all(item is statement or _inert_statement(item, alias) for item in module.body):
+        return None
+    for node in nodes:
+        if isinstance(node, ast.Name) and node.id == callback.id and node is not callback:
+            # Even a load can escape the function through an alias or another
+            # callable that changes __defaults__, __kwdefaults__ or __code__.
+            return None
+        if isinstance(node, ast.arg) and node.arg == callback.id:
+            return None
+        if callback.id in _import_bindings(node):
+            return None
+        if isinstance(node, (ast.Global, ast.Nonlocal)) and callback.id in node.names:
+            return None
+        if isinstance(node, (ast.ExceptHandler, ast.MatchAs, ast.MatchStar)):
+            if node.name == callback.id:
+                return None
+        if isinstance(node, ast.MatchMapping) and node.rest == callback.id:
+            return None
+    if any(
+        not _inert_value(value, alias) for value in (*call.args, *(k.value for k in call.keywords))
+    ):
+        return None
+    return definition
+
+
+def _literal_callback_arguments(call: ast.Call) -> tuple[int, frozenset[str]] | None:
+    keywords = {keyword.arg: keyword.value for keyword in call.keywords}
+    if None in keywords or len(keywords) != len(call.keywords):
+        return None
+    args = keywords.get("args")
+    if args is None or (isinstance(args, ast.Constant) and args.value is None):
+        count = 0
+    elif isinstance(args, (ast.Tuple, ast.List)) and not any(
+        isinstance(value, ast.Starred) for value in args.elts
+    ):
+        count = len(args.elts)
+    else:
+        return None
+    kwargs = keywords.get("kwargs")
+    if kwargs is None or (isinstance(kwargs, ast.Constant) and kwargs.value is None):
+        names = frozenset()
+    elif isinstance(kwargs, ast.Dict) and all(
+        isinstance(key, ast.Constant) and isinstance(key.value, str) for key in kwargs.keys
+    ):
+        # Duplicate literal dictionary keys resolve to one key before invocation.
+        names = frozenset(key.value for key in kwargs.keys)
+    else:
+        return None
+    return count, names
+
+
+def _binding_mismatch(args: ast.arguments, count: int, names: frozenset[str]) -> bool:
+    positional = (*args.posonlyargs, *args.args)
+    if count > len(positional) and args.vararg is None:
+        return True
+    posonly = {arg.arg for arg in args.posonlyargs}
+    normal = {arg.arg: index for index, arg in enumerate(positional) if arg.arg not in posonly}
+    kwonly = {arg.arg for arg in args.kwonlyargs}
+    for name in names:
+        if name in normal:
+            if normal[name] < count:
+                return True
+        elif name not in kwonly and args.kwarg is None:
+            # A positional-only name is allowed in **kwargs, but cannot bind its
+            # positional-only parameter or satisfy that parameter's requirement.
+            return True
+    required = len(positional) - len(args.defaults)
+    if any(
+        index >= count and (arg.arg in posonly or arg.arg not in names)
+        for index, arg in enumerate(positional[:required])
+    ):
+        return True
+    return any(
+        default is None and arg.arg not in names
+        for arg, default in zip(args.kwonlyargs, args.kw_defaults, strict=True)
+    )
+
+
+def _has_arity_mismatch(
+    module: ast.Module,
+    nodes: tuple[ast.AST, ...],
+    aliases: frozenset[str],
+    signatures: dict[str, _Signature],
+    applicable: frozenset[str],
+) -> bool:
+    for statement in module.body:
+        call = _direct_call(statement)
+        if not (
+            call
+            and isinstance(call.func, ast.Attribute)
+            and isinstance(call.func.value, ast.Name)
+            and call.func.value.id in aliases
+            and call.func.attr in applicable
+        ):
+            continue
+        keywords = {keyword.arg: keyword.value for keyword in call.keywords}
+        signature = signatures[call.func.attr]
+        callbacks = [
+            keywords[name]
+            for name in ("on_change", "on_click")
+            if name in keywords and name in signature.keyword_names
+        ]
+        if len(callbacks) != 1 or not isinstance(callbacks[0], ast.Name):
+            continue
+        supplied = _literal_callback_arguments(call)
+        if supplied is None:
+            continue
+        handler = _bound_handler(module, nodes, statement, call, callbacks[0], call.func.value.id)
+        if handler is not None and _binding_mismatch(handler.args, *supplied):
+            return True
+    return False
+
+
 def callback_code_issues(
     analysis: AnalysisResult,
     case: CaseState,
@@ -336,12 +611,17 @@ def callback_code_issues(
         if modules is None:
             return ()
         fresh = require_fresh_widget_value and _has_timing(evidence, version)
+        arity_applicable = _arity_api_functions(evidence, version, signatures)
         codes = set()
         for module in modules:
             nodes = _nodes(module)
             if nodes is None:
                 continue
             aliases = _aliases(module, nodes)
+            if arity_applicable and _has_arity_mismatch(
+                module, nodes, aliases, signatures, arity_applicable
+            ):
+                codes.add("callback_arity_mismatch")
             for node in nodes:
                 if not (
                     isinstance(node, ast.Call)
@@ -362,7 +642,11 @@ def callback_code_issues(
                     codes.add("callback_value_captured")
         return tuple(
             OutputIssue(code=code)
-            for code in ("invalid_api_keyword", "callback_value_captured")
+            for code in (
+                "invalid_api_keyword",
+                "callback_value_captured",
+                "callback_arity_mismatch",
+            )
             if code in codes
         )
     except (ValueError, TypeError, UnicodeError, RecursionError, MemoryError):
