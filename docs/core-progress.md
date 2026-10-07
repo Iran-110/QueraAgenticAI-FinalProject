@@ -75,6 +75,39 @@ This work made 56 HTTP attempts across 44 observations: 55 settled requests at a
 
 Default policy remains baseline; `METIS_PROMPT_POLICY=structured_rules` is an explicit development opt-in once live accounting can safely resume. See `docs/decision-quality.md` for methods, quantitative results, failures, limitations and specific future retrieval/state integration work. Keys, ledger, validated proposals and blinded review files remain private ignored runtime data.
 
+## 2026-10-07 — paired sources, user reports and prompt comparison
+
+- Added an audited, explicit user continuation for the verified 4o development
+  route. The original global halt and USD 4.50 ceiling stay set; the unresolved
+  4.1 request remains uncertain with a monotonically raised USD 0.02 allocation.
+  An immutable USD 0.10 scope attributes each request and stops on new uncertainty,
+  halt or overrun. There is no automatic refund, global unhalt or billing claim.
+- Preregistered four paired cells across the same eight development probes:
+  original inputs; exact-source enrichment; source enrichment plus attributed
+  user reports; then identical normalized inputs with an extra diagnostic prompt.
+  All source/fact/label boundaries and hashes were checked before paid execution.
+- Ran 32 actual HTTP requests, all accepted on the first attempt. Estimated fresh
+  cost was **USD 0.019914180**. Blinded source-based assistant review rated A/B/C/D
+  acceptable on 4/5/6/5 of eight cases respectively. C matched all expected decisions,
+  but still generated incorrect callback code. These are correlated development
+  observations, not held-out quality scores or a demonstrated general winner.
+- Found no observed benefit from the longer diagnostic prompt. Source enrichment
+  alone did not fix its two changed probes; B's extra acceptable rating occurred
+  with unchanged sources. Explicit symptoms/checks helped the reproduced mismatch
+  escalation, while citations and syntax checks still missed stale callback values.
+- Verified **651 offline tests**, Ruff, locked dependencies, protocol validation
+  and installed demos. The new protocol is validated in CI without API calls.
+
+The ledger now contains USD 0.048587220 settled estimates, USD 0.02 retained
+uncertainty, zero pending reservations and USD 4.431412780 available under the
+original ceiling. The explicit continuation has USD 0.080085820 remaining;
+ordinary paid calls are still halted. Account deductions and the 4.1 identity
+incident are not reconciled. The hold increase is not observed spending or a
+verified cost bound. Default remains baseline; no extra production agent or
+teammate-owned RAG/tracker implementation was added. See
+`docs/decision-quality-v3.md` and its public aggregate for methods, findings and
+source/state handoff recommendations. Work remains on the feature branch.
+
 ## Next integration work
 
 | Work | Owner | Completion evidence |

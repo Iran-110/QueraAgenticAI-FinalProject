@@ -7,6 +7,11 @@ for the already verified `gpt-4o-mini` route. The global ledger halt remains set
 ordinary live calls are still denied. Historical milestones below describe their
 recorded states, not the current runner balance.
 
+The [paired source/state comparison](decision-quality-v3.md) completed 32 settled
+requests at an estimated USD 0.019914180. The unresolved incident is held at USD
+0.02; account deductions remain unverified. Full accounting and review results
+are recorded in that report.
+
 Status, 2026-10-07: offline tests and controlled live checks cover the gateway. After reproducing the original decision-field failure, corrected prompts returned valid questions, a referenced answer and a repaired decision on synthetic inputs. Usage was settled in the ledger. This verifies those compatibility paths, not real support quality or RAG relevance. Account deductions have not been reconciled; no real key is required for offline demos.
 
 ## First live compatibility check
@@ -45,7 +50,11 @@ Ledger identity excludes `output_feedback` and preserves the original run/case/r
 
 HTTPx sends a plain nonstreaming `POST` to `https://api.metisai.ir/openai/v1/chat/completions` with the shared messages and `max_tokens`. Live calls require explicit configuration and a secret key; `live_enabled` defaults to `False`, and the key uses `SecretStr`. HTTP retries, redirects, and environment proxies are disabled. The adapter requests structured text through the prompt; the engine validates it with Pydantic. Native `response_format` and tool calling are not assumed. The endpoint and `max_tokens` follow [Metis's official OpenAI wrapper example](https://docs.metisai.ir/api/wrapper/openai/), which also warns that feature coverage is incomplete.
 
-`MetisConfig.from_env()` reads `METIS_API_KEY`, `METIS_MODEL`, and `METIS_LIVE_ENABLED`; only the exact value `true` enables live requests. It does not load a `.env` file automatically. The CLI has no live-call flag; normal development does not need a real key.
+`MetisConfig.from_env()` reads `METIS_API_KEY`, `METIS_MODEL`, `METIS_PROMPT_POLICY`
+and `METIS_LIVE_ENABLED`; only the exact value `true` enables live requests. It
+does not load a `.env` file automatically. The main `agent-app` CLI has no
+live-call flag; the separately registered experiment runners require explicit
+`--live`. Normal development does not need a real key.
 
 The engine still returns drafts for human review. Source-locator validation does not prove semantic faithfulness, and this gateway does not provide a tracker or permission to execute an action.
 

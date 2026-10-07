@@ -71,7 +71,12 @@ The local family-review catalog links #16914 to #8901. A link does not prove a d
 
 See [the decision-quality report](../../docs/decision-quality.md) and [public aggregates](results-2026-10-07.json). The original cases and expectations are unchanged. `protocol-shape-v2.json` records a post-hoc development follow-up for draft-field failures; its candidate exposes trusted explicit shape rules. `cases-model-probe.json` copies three previously used hard cases without changing their input/evidence/expectations. The two `protocol-model-*.json` files record a focused, incomplete model check, not a new holdout or fair completed ranking. The syntax gate was added after the first two comparisons and before that focused check.
 
-The first two completed comparisons cost an estimated USD 0.024513390. The focused 4o block added USD 0.002186085; the first 4.1 request was rejected for an unverified serving ID and retains USD 0.008560640 uncertain. The runner is now halted. Do not replay completed/partial experiment IDs, replace the ledger, infer an unverified alias's price, or clear held accounting without provider evidence. Validation and all automated checks remain offline.
+The first two completed comparisons cost an estimated USD 0.024513390. The focused 4o block added USD 0.002186085; the first 4.1 request was rejected for an unverified serving ID and retained USD 0.008560640 uncertain at this milestone. The runner halted. Do not replay completed/partial experiment IDs, replace the ledger, infer an unverified alias's price, or clear held accounting without provider evidence. Validation and all automated checks remain offline.
+
+The [later four-cell source/state comparison](README-enrichment-v3.md) uses a
+separate immutable protocol and an explicit user-authorized 4o continuation. The
+global halt remains set and the unresolved allocation increased to USD 0.02; it
+was not refunded or reconciled. See [the measured results](../../docs/decision-quality-v3.md).
 
 Validate all follow-up protocols without a key:
 

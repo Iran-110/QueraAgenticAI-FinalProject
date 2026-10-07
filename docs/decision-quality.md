@@ -1,5 +1,11 @@
 # Decision-quality development experiments
 
+This report records the earlier policy and incomplete model comparisons. The
+[later paired source/state experiment](decision-quality-v3.md) documents 32 new
+requests under an explicit capped continuation for the verified 4o route. The
+global halt and unresolved 4.1 reservation remain; historical accounting below
+is preserved at its recorded point.
+
 The explicit decision-shape policy improved output reliability in this small run. It did **not** establish a semantic winner. Keep `baseline` as the default; `structured_rules` is an opt-in candidate for the next reviewed pilot. Adding another judge agent is not justified by these measurements yet.
 
 The core now also rejects evidence facts that contradict confirmed user facts, prioritizes whole environment facts in retrieval queries, exposes trusted remaining capacity, and checks labeled Python proposals for syntax without executing them. These are tested behavioral improvements, separate from model-quality claims.
