@@ -132,7 +132,9 @@ def test_attempt_context_uses_trusted_run_and_case_identity_across_repairs_and_r
     )
     assert result.status == "awaiting_approval"
     assert result.run_id == "run:context-attribution"
-    assert reasoner.contexts == [
+    assert [
+        context.model_copy(update={"output_feedback": None}) for context in reasoner.contexts
+    ] == [
         ReasoningContext(
             run_id=result.run_id,
             case_id=case.case_id,
@@ -141,6 +143,11 @@ def test_attempt_context_uses_trusted_run_and_case_identity_across_repairs_and_r
         )
         for index in range(1, result.model_attempts + 1)
     ]
+    if path == "repair":
+        assert reasoner.contexts[1].output_feedback.issues == result.output_issues
+        assert result.output_issues[0].code == "invalid_json"
+    else:
+        assert all(context.output_feedback is None for context in reasoner.contexts)
     assert result.model_attempts == (1 if path == "direct" else 2)
 
 

@@ -17,6 +17,7 @@ from pydantic import (
     field_validator,
     model_validator,
 )
+from pydantic_core import PydanticCustomError
 
 __all__ = [
     "Decision",
@@ -32,6 +33,8 @@ __all__ = [
     "AnalysisResult",
     "RunLimits",
     "ReasoningContext",
+    "OutputIssue",
+    "OutputFeedback",
     "RunResult",
     "TraceEvent",
 ]
@@ -286,19 +289,29 @@ class AnalysisResult(Contract):
     def decision_has_required_payload(self) -> Self:
         if self.decision == "retrieve_more":
             if not self.retrieval_queries:
-                raise ValueError("retrieve_more requires retrieval_queries")
+                raise PydanticCustomError(
+                    "retrieve_more_queries_required", "retrieve_more requires retrieval_queries"
+                )
             if self.user_draft or self.maintainer_summary or self.next_question is not None:
-                raise ValueError("retrieve_more must not contain a final draft or next_question")
+                raise PydanticCustomError(
+                    "retrieve_more_final_payload_forbidden",
+                    "retrieve_more must not contain a final draft or next_question",
+                )
         else:
             if not self.user_draft or not self.maintainer_summary:
-                raise ValueError("a final decision requires user_draft and maintainer_summary")
+                raise PydanticCustomError(
+                    "final_drafts_required",
+                    "a final decision requires user_draft and maintainer_summary",
+                )
             if self.retrieval_queries:
-                raise ValueError("only retrieve_more may request retrieval_queries")
+                raise PydanticCustomError(
+                    "final_queries_forbidden", "only retrieve_more may request retrieval_queries"
+                )
 
         if self.decision == "ask" and self.next_question is None:
-            raise ValueError("ask requires next_question")
+            raise PydanticCustomError("ask_question_required", "ask requires next_question")
         if self.decision != "ask" and self.next_question is not None:
-            raise ValueError("only ask may contain next_question")
+            raise PydanticCustomError("question_forbidden", "only ask may contain next_question")
         return self
 
 
@@ -309,6 +322,45 @@ class RunLimits(Contract):
     max_steps: Annotated[int, Field(strict=True, ge=1, le=8)] = 8
 
 
+class OutputIssue(Contract):
+    """Allowlisted validation metadata; no model values or arbitrary field paths."""
+
+    code: Literal[
+        "invalid_json",
+        "duplicate_field",
+        "invalid_shape",
+        "output_too_large",
+        "missing_field",
+        "unknown_field",
+        "invalid_field",
+        "retrieve_more_queries_required",
+        "retrieve_more_final_payload_forbidden",
+        "final_drafts_required",
+        "final_queries_forbidden",
+        "ask_question_required",
+        "question_forbidden",
+    ]
+    field: (
+        Literal[
+            "decision",
+            "user_draft",
+            "maintainer_summary",
+            "rationale",
+            "evidence_links",
+            "missing_info",
+            "next_question",
+            "retrieval_queries",
+            "facts_delta",
+            "checks_suggested",
+        ]
+        | None
+    ) = None
+
+
+class OutputFeedback(Contract):
+    issues: tuple[OutputIssue, ...] = Field(min_length=1, max_length=8)
+
+
 class ReasoningContext(Contract):
     """Caller-owned attribution for one attempt, never supplied by model output."""
 
@@ -316,6 +368,13 @@ class ReasoningContext(Contract):
     case_id: Identifier
     case_revision: NonnegativeInt
     attempt_index: Annotated[int, Field(strict=True, ge=1, le=2)]
+    output_feedback: OutputFeedback | None = None
+
+    @model_validator(mode="after")
+    def feedback_is_only_for_repair(self) -> Self:
+        if self.output_feedback is not None and self.attempt_index != 2:
+            raise ValueError("output feedback belongs only to the second attempt")
+        return self
 
 
 class TraceEvent(Contract):
@@ -338,6 +397,7 @@ class RunResult(Contract):
     steps: NonnegativeInt = 0
     error_code: Identifier | None = None
     trace: tuple[TraceEvent, ...] = Field(default=(), max_length=200)
+    output_issues: tuple[OutputIssue, ...] = Field(default=(), max_length=16)
 
     @model_validator(mode="after")
     def status_matches_payload(self) -> Self:

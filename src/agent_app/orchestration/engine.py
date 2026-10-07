@@ -1,6 +1,6 @@
 """A mock-first workflow that returns previews and never executes case changes."""
 
-from collections.abc import Callable, Mapping
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from uuid import uuid4
 
@@ -10,6 +10,8 @@ from agent_app.contracts import (
     AnalysisResult,
     CaseState,
     EvidenceBundle,
+    OutputFeedback,
+    OutputIssue,
     ReasoningContext,
     RetrievalRequest,
     RunLimits,
@@ -17,6 +19,7 @@ from agent_app.contracts import (
     TraceEvent,
 )
 from agent_app.orchestration.ports import Reasoner, ReasoningStopped, Retriever
+from agent_app.reasoning.output import InvalidAnalysis, parse_analysis
 
 
 def _normalize(text: str) -> str:
@@ -43,6 +46,7 @@ class _Progress:
     retrieval_rounds: int = 0
     steps: int = 0
     trace: list[TraceEvent] = field(default_factory=list)
+    output_issues: list[OutputIssue] = field(default_factory=list)
 
     def step(self, stage: str, message: str) -> None:
         if self.steps >= self.limits.max_steps:
@@ -106,6 +110,7 @@ class SupportEngine:
                 steps=progress.steps,
                 error_code=code,
                 trace=tuple(progress.trace),
+                output_issues=tuple(progress.output_issues),
             )
 
         try:
@@ -199,6 +204,7 @@ class SupportEngine:
         run_id: str,
     ) -> AnalysisResult:
         last_error = "ModelAttemptLimitExceeded"
+        feedback = None
         while progress.model_attempts < self.limits.max_model_attempts:
             self._ensure_current(case)
             progress.step("reasoning", "Requesting a structured decision.")
@@ -213,6 +219,7 @@ class SupportEngine:
                         case_id=case.case_id,
                         case_revision=case.case_revision,
                         attempt_index=progress.model_attempts,
+                        output_feedback=feedback,
                     ),
                 )
             except ReasoningStopped as stopped:
@@ -225,17 +232,21 @@ class SupportEngine:
                 continue
             self._ensure_current(case)
             try:
-                if isinstance(raw, str):
-                    analysis = AnalysisResult.model_validate_json(raw)
-                elif isinstance(raw, AnalysisResult):
-                    analysis = AnalysisResult.model_validate(raw.model_dump(warnings=False))
-                elif isinstance(raw, Mapping):
-                    analysis = AnalysisResult.model_validate(dict(raw))
-                else:
-                    raise ValueError("Unsupported output type")
-            except (ValidationError, ValueError, TypeError):
+                analysis = parse_analysis(raw)
+            except InvalidAnalysis as error:
+                feedback = OutputFeedback(issues=error.issues)
+                progress.output_issues.extend(error.issues)
+                last_error = "ModelOutputInvalid"
+                codes = ", ".join(issue.code for issue in error.issues)
+                progress.note("reasoning_failed", last_error)
+                progress.note("output_validation", codes)
+                continue
+            except (ValueError, TypeError, RecursionError):
+                feedback = OutputFeedback(issues=(OutputIssue(code="invalid_shape"),))
+                progress.output_issues.extend(feedback.issues)
                 last_error = "ModelOutputInvalid"
                 progress.note("reasoning_failed", last_error)
+                progress.note("output_validation", "invalid_shape")
                 continue
             # Invalid evidence/unsupported facts fail closed rather than buying another attempt.
             self._validate_analysis(case, evidence, analysis)

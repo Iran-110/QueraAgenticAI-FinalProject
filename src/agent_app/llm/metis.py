@@ -63,7 +63,7 @@ class MetisReasoner:
         price = get_price(self.config.model)
         if price is None:
             raise ReasoningStopped("UnknownPricing", "budget_stopped")
-        messages = build_messages(case, user_message, evidence)
+        messages = build_messages(case, user_message, evidence, feedback=context.output_feedback)
         # UTF-8 byte count plus framing margin is a conservative operational guard,
         # not a provider billing guarantee. The live pilot must verify this assumption.
         message_bytes = len(json.dumps(messages, ensure_ascii=False).encode("utf-8"))
@@ -72,7 +72,9 @@ class MetisReasoner:
         reserve = price.cost(self.config.input_token_reserve, self.config.max_output_tokens)
         if reserve > self.config.max_request_usd:
             raise ReasoningStopped("CostBoundExceeded", "budget_stopped")
-        identity = context.model_dump_json()
+        # Feedback changes the prompt, never the identity of an already used
+        # attempt. Excluding it also preserves pre-feedback ledger request IDs.
+        identity = context.model_dump_json(exclude={"output_feedback"})
         request_id = "call:" + hashlib.sha256(identity.encode()).hexdigest()
         try:
             self.ledger.reserve(

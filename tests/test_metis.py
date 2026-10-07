@@ -1,5 +1,6 @@
 """Exercise the real provider port with intercepted HTTP and a real local ledger."""
 
+import hashlib
 import json
 import sqlite3
 from copy import deepcopy
@@ -16,6 +17,8 @@ from agent_app.contracts import (
     EvidenceHit,
     EvidenceLink,
     Fact,
+    OutputFeedback,
+    OutputIssue,
     ReasoningContext,
 )
 from agent_app.llm.budget import BudgetLedger
@@ -410,6 +413,68 @@ def test_duplicate_context_cannot_resend_even_with_different_user_text(provider_
     assert stopped.value.code == "DuplicateModelRequest"
     assert len(calls) == len(reservations(path)) == 1
     assert ledger.snapshot().settled_usd == observed_cost()
+
+
+def test_schema_repair_gets_specific_feedback_without_echoing_the_failed_response(provider_factory):
+    invalid = response_body()
+    data = ANSWER.model_dump(mode="json") | {
+        "retrieval_queries": ["synthetic extra query"],
+        "user_draft": "PRIVATE_FAILED_RESPONSE_MARKER",
+    }
+    invalid["choices"][0]["message"]["content"] = json.dumps(data)
+    port, ledger, calls, path = provider_factory([invalid, response_body(), response_body()])
+    result = engine_result(port)
+    assert result.status == "awaiting_approval"
+    assert len(calls) == result.model_attempts == 2
+    assert result.output_issues == (
+        OutputIssue(code="final_queries_forbidden", field="retrieval_queries"),
+    )
+    first, repaired = [json.loads(request.content)["messages"][0]["content"] for request in calls]
+    assert "previous attempt failed" not in first
+    assert "previous attempt failed" in repaired
+    assert '"code":"final_queries_forbidden"' in repaired
+    assert "PRIVATE_FAILED_RESPONSE_MARKER" not in repaired
+    assert ledger.snapshot().settled_usd == 2 * observed_cost()
+    assert len(reservations(path)) == 2
+
+
+def test_changing_repair_feedback_cannot_resend_an_already_used_attempt(provider_factory):
+    port, _, calls, path = provider_factory()
+    attribution = context(
+        attempt_index=2,
+        output_feedback=OutputFeedback(issues=(OutputIssue(code="invalid_json"),)),
+    )
+    port.analyze(CASE, MESSAGE, EVIDENCE, context=attribution)
+    different_feedback = attribution.model_copy(
+        update={"output_feedback": OutputFeedback(issues=(OutputIssue(code="invalid_shape"),))}
+    )
+    with pytest.raises(ReasoningStopped) as stopped:
+        port.analyze(CASE, MESSAGE, EVIDENCE, context=different_feedback)
+    assert stopped.value.code == "DuplicateModelRequest"
+    assert len(calls) == len(reservations(path)) == 1
+
+
+def test_existing_pre_feedback_request_ids_still_block_resending(provider_factory):
+    port, ledger, calls, path = provider_factory()
+    legacy_identity = (
+        '{"run_id":"run:provider","case_id":"case:provider","case_revision":4,"attempt_index":1}'
+    )
+    request_id = "call:" + hashlib.sha256(legacy_identity.encode()).hexdigest()
+    ledger.reserve(
+        request_id=request_id,
+        run_id="run:provider",
+        case_id=CASE.case_id,
+        case_revision=4,
+        attempt=1,
+        model="gpt-4o-mini",
+        phase="development",
+        amount_usd=Decimal("0.01"),
+    )
+    result = engine_result(port)
+    assert result.error_code == "DuplicateModelRequest"
+    assert calls == []
+    assert len(reservations(path)) == 1
+    assert ledger.snapshot().reserved_usd == Decimal("0.01")
 
 
 def test_observed_cost_overrun_is_recorded_and_blocks_further_sends(provider_factory):
