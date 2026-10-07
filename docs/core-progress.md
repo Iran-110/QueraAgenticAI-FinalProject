@@ -137,6 +137,16 @@ it cannot create a new grant, reset receipts or release the unresolved model
 hold. The original ledger and previous accounting state are preserved. See
 `docs/proposal-checks.md` for applicability, interface and coverage limits.
 
+## 2026-10-07 — isolate proposal constraints at the reasoner boundary
+
+Independent integration review reproduced an adapter-mutation bypass: the port
+context shared the engine's enforcement catalog. Each attempt now receives deep
+copies of proposal requirements and repair feedback. Replacing targets, mutating
+a nested question, disabling fresh-value intent or changing feedback issues
+cannot alter the private enforcement copy or retained diagnostics. Four new
+offline regressions cover these paths. **824 tests** and Ruff pass; no paid
+request was made before this correction.
+
 ## Next integration work
 
 | Work | Owner | Completion evidence |

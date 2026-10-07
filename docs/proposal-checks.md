@@ -38,7 +38,8 @@ The snippet assumes caller-supplied adapters and a genuinely absent helper. It
 does not infer missing facts from arbitrary prose. Rebuild requirements whenever
 the authoritative revision changes. Stale/unrelated catalogs and targets naming
 active user facts fail before adapters run. Evidence facts do not establish what
-the user knows.
+the user knows. Each reasoner attempt receives independent deep copies of the
+catalog and feedback so adapter-side mutation cannot change enforcement.
 
 For an `ask` decision, checks require one registered `missing_info` name and its
 exact registered `next_question`. An empty catalog registers no available

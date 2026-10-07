@@ -360,3 +360,154 @@ def test_intentional_previous_value_snapshot_survives_opt_in_checks():
     assert result.status == "awaiting_approval"
     assert result.model_attempts == 1
     assert result.output_issues == ()
+
+
+@pytest.mark.parametrize(
+    ("mutation", "bad", "expected_issue"),
+    [
+        (
+            "replace_catalog",
+            ask(missing_info=("unregistered_target",), next_question="An unapproved question?"),
+            "ask_unregistered_target",
+        ),
+        (
+            "change_nested_question",
+            ask(next_question="An unapproved question?"),
+            "ask_question_mismatch",
+        ),
+    ],
+)
+def test_adapter_cannot_mutate_the_catalog_used_for_enforcement(mutation, bad, expected_issue):
+    trusted = requirements()
+
+    class MutatingReasoner(FakeReasoner):
+        def __init__(self):
+            super().__init__((bad, ask()))
+            self.received_requirements = []
+
+        def analyze(self, case, user_message, evidence, *, context):
+            self.received_requirements.append(context.proposal_requirements.model_copy(deep=True))
+            if not self.inputs:
+                if mutation == "replace_catalog":
+                    object.__setattr__(
+                        context.proposal_requirements,
+                        "question_targets",
+                        (
+                            QuestionTarget(
+                                name="unregistered_target", question="An unapproved question?"
+                            ),
+                        ),
+                    )
+                else:
+                    object.__setattr__(
+                        context.proposal_requirements.question_targets[0],
+                        "question",
+                        "An unapproved question?",
+                    )
+            return super().analyze(case, user_message, evidence, context=context)
+
+    reasoner = MutatingReasoner()
+    result = SupportEngine(
+        FakeRetriever((bundle(),)), reasoner, snapshot_id=SNAPSHOT, proposal_checks=True
+    ).run(
+        case(),
+        "The reduced example works but the full helper is missing.",
+        proposal_requirements=trusted,
+    )
+    assert result.status == "awaiting_approval"
+    assert result.model_attempts == 2
+    assert result.analysis.next_question == QUESTION
+    assert [issue.code for issue in result.output_issues] == [expected_issue]
+    assert reasoner.received_requirements == [trusted, trusted]
+    assert trusted == requirements()
+    assert reasoner.contexts[0].proposal_requirements.question_targets[0].question == (
+        "An unapproved question?"
+    )
+
+
+def test_adapter_cannot_disable_the_private_fresh_value_requirement_across_repair():
+    suite = load_suite(
+        Path(__file__).parents[1] / "experiments/decision_quality/cases-guards-v4.json"
+    )
+    probe = next(probe for probe in suite.cases if probe.id == "synthetic-own-widget-stale-args")
+    trusted = ProposalRequirements(
+        case_id=probe.case_state.case_id,
+        case_revision=probe.case_state.case_revision,
+        require_fresh_widget_value=True,
+    )
+    bad_code = (
+        "import streamlit as st\n"
+        "def changed(value):\n    pass\n"
+        'st.selectbox("Region", ["Oslo", "Lima"], key="region", '
+        'on_change=changed, args=(st.session_state["region"],))'
+    )
+    fixed_code = (
+        "import streamlit as st\n"
+        'def changed(key):\n    st.session_state["received"] = st.session_state[key]\n'
+        'st.selectbox("Region", ["Oslo", "Lima"], key="region", '
+        'on_change=changed, args=("region",))'
+    )
+
+    def proposal(code):
+        return AnalysisResult(
+            decision="answer",
+            user_draft=f"```python\n{code}\n```",
+            maintainer_summary="Proposed callback code, not executed.",
+            rationale="Frozen applicable source metadata permits a bounded static check.",
+            evidence_links=(
+                EvidenceLink(claim="Callback timing", chunk_id=probe.bundles[0].hits[0].chunk_id),
+            ),
+        )
+
+    class MutatingReasoner(FakeReasoner):
+        def __init__(self):
+            super().__init__((proposal(bad_code), proposal(fixed_code)))
+            self.received_fresh_flags = []
+
+        def analyze(self, case, user_message, evidence, *, context):
+            self.received_fresh_flags.append(
+                context.proposal_requirements.require_fresh_widget_value
+            )
+            if not self.inputs:
+                object.__setattr__(
+                    context.proposal_requirements, "require_fresh_widget_value", False
+                )
+            return super().analyze(case, user_message, evidence, context=context)
+
+    reasoner = MutatingReasoner()
+    result = SupportEngine(
+        FakeRetriever((probe.bundles[0],)),
+        reasoner,
+        snapshot_id=suite.snapshot_id,
+        proposal_checks=True,
+    ).run(probe.case_state, probe.user_message, proposal_requirements=trusted)
+    assert result.status == "awaiting_approval"
+    assert (result.model_attempts, result.retrieval_rounds) == (2, 1)
+    assert result.analysis.user_draft == proposal(fixed_code).user_draft
+    assert [issue.code for issue in result.output_issues] == ["callback_value_captured"]
+    assert reasoner.received_fresh_flags == [True, True]
+    assert reasoner.contexts[0].proposal_requirements.require_fresh_widget_value is False
+    assert trusted.require_fresh_widget_value is True
+
+
+def test_adapter_cannot_rewrite_retained_diagnostics_through_second_attempt_feedback():
+    class MutatingReasoner(FakeReasoner):
+        def analyze(self, case, user_message, evidence, *, context):
+            if context.output_feedback is not None:
+                issue = context.output_feedback.issues[0]
+                assert (issue.code, issue.field) == ("ask_target_required", "missing_info")
+                object.__setattr__(issue, "code", "invalid_api_keyword")
+                object.__setattr__(issue, "field", None)
+            return super().analyze(case, user_message, evidence, context=context)
+
+    reasoner = MutatingReasoner((ask(missing_info=()), ask()))
+    result = SupportEngine(
+        FakeRetriever((bundle(),)), reasoner, snapshot_id=SNAPSHOT, proposal_checks=True
+    ).run(case(), "The full helper is missing.", proposal_requirements=requirements())
+    assert result.status == "awaiting_approval"
+    assert result.model_attempts == 2
+    assert [(issue.code, issue.field) for issue in result.output_issues] == [
+        ("ask_target_required", "missing_info")
+    ]
+    assert reasoner.contexts[1].output_feedback.issues[0].code == "invalid_api_keyword"
+    assert reasoner.contexts[1].output_feedback.issues[0].field is None

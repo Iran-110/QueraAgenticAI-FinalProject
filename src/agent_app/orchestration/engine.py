@@ -286,8 +286,12 @@ class SupportEngine:
                         case_id=case.case_id,
                         case_revision=case.case_revision,
                         attempt_index=progress.model_attempts,
-                        output_feedback=feedback,
-                        proposal_requirements=proposal_requirements,
+                        output_feedback=feedback.model_copy(deep=True) if feedback else None,
+                        proposal_requirements=(
+                            proposal_requirements.model_copy(deep=True)
+                            if proposal_requirements is not None
+                            else None
+                        ),
                         query_limit=self.limits.max_queries_per_round,
                         remaining_model_attempts=self.limits.max_model_attempts
                         - progress.model_attempts,
