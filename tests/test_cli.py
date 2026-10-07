@@ -105,3 +105,33 @@ def test_reading_a_missing_budget_does_not_create_one(tmp_path, capsys):
     assert main(["budget", "status", "--path", str(path)]) == 1
     assert json.loads(capsys.readouterr().out)["error"] == "BudgetLedgerOperationFailed"
     assert not path.exists()
+
+
+def test_turn_cli_resumes_with_user_facts_then_replaces_the_corrected_version(capsys):
+    assert main(["turn-demo"]) == 0
+    output = json.loads(capsys.readouterr().out)
+    assert output["mode"] == "synthetic_in_memory_turns"
+    assert output["real_api_calls"] == output["paid_cost_usd"] == 0
+    assert output["state_persisted"] is False
+    first, second, third = output["turns"]
+    assert first["result"]["analysis"]["decision"] == "ask"
+    assert [entry["transition"]["candidate"]["case_revision"] for entry in output["turns"]] == [
+        1,
+        2,
+        3,
+    ]
+    assert second["transition"]["candidate"]["unknowns"] == []
+    assert "streamlit_version=1.50" in second["retrieval_query"]
+    assert "streamlit_version=1.51" in third["retrieval_query"]
+    assert "1.50" not in third["retrieval_query"]
+    assert third["transition"]["invalidated_checks"] == [
+        "Checked the widget key in this environment."
+    ]
+    assert third["transition"]["candidate"]["checks_performed"] == []
+    versions = [
+        (fact["value"], fact["status"])
+        for fact in third["transition"]["candidate"]["facts"]
+        if fact["name"] == "streamlit_version"
+    ]
+    assert versions == [("1.50", "superseded"), ("1.51", "active")]
+    assert all(entry["result"]["status"] == "awaiting_approval" for entry in output["turns"])

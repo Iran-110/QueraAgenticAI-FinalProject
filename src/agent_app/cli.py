@@ -34,6 +34,9 @@ def main(argv: list[str] | None = None) -> int:
     gateway.add_argument(
         "--scenario", choices=("success", "repair", "timeout", "budget"), default="success"
     )
+    subcommands.add_parser(
+        "turn-demo", help="Simulate a question, user facts, and a correction without storage"
+    )
     budget = subcommands.add_parser(
         "budget", help="Initialize or inspect the local shared-runner ledger"
     )
@@ -68,7 +71,11 @@ def main(argv: list[str] | None = None) -> int:
             return 1
         print(json.dumps(output, indent=2, default=str))
         return 0
-    if args.command == "gateway-demo":
+    if args.command == "turn-demo":
+        from agent_app.turn_demo import run_turn_demo
+
+        output = run_turn_demo()
+    elif args.command == "gateway-demo":
         from agent_app.llm.demo import run_gateway_demo
 
         output = run_gateway_demo(args.scenario)
