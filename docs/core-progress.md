@@ -147,6 +147,25 @@ cannot alter the private enforcement copy or retained diagnostics. Four new
 offline regressions cover these paths. **824 tests** and Ruff pass; no paid
 request was made before this correction.
 
+## 2026-10-07 — fresh guard comparison results
+
+Completed all 27 registered observations with 30 actual HTTP requests. Independent
+blinded assistant review rated A/B/C acceptable on **5/8/4 of nine** respectively.
+B's manual catalog plus prompt helped, while hard checking in C rejected questions
+in two observations but failed to recover usable proposals. Citation omissions
+also caused terminal failures. No live callback/API AST finding occurred, so this
+run does not establish those guards' live benefit. Intentional old-value snapshots
+and component-specific mismatch reports were preserved by all variants.
+
+Fresh settled estimate was USD 0.024606450. The original ledger now records
+USD 0.073193670 settled, USD 0.02 retained uncertainty, zero pending and
+USD 4.406806330 available. The same continuation has USD 0.055479370 remaining;
+global halt and unresolved accounting remain. No production default changed.
+See `docs/decision-quality-v4.md` and the public aggregate for exact outcomes,
+ratings, source-audit reservations and manual-catalog limitations. The next
+focused hypothesis is to compile the same constraints into model-visible schema
+and metadata, then separately register a repeat on exposed development inputs.
+
 ## Next integration work
 
 | Work | Owner | Completion evidence |
