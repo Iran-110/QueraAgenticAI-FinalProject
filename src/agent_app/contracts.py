@@ -24,6 +24,9 @@ __all__ = [
     "EvidenceBundle",
     "Fact",
     "CaseState",
+    "ReportedFact",
+    "UserTurn",
+    "CaseTransition",
     "RetrievalRequest",
     "EvidenceLink",
     "AnalysisResult",
@@ -159,6 +162,72 @@ class CaseState(Contract):
         if len(set(values)) != len(values):
             raise ValueError("evidence_refs must not contain duplicates")
         return values
+
+
+class ReportedFact(Contract):
+    """A caller-attributed user statement; None explicitly withdraws a fact."""
+
+    name: ShortText
+    value: Text | None
+
+
+class UserTurn(Contract):
+    """Structured input from the user, never inferred from a model's response."""
+
+    case_id: Identifier
+    expected_revision: NonnegativeInt
+    turn_id: Identifier
+    source_ref: Identifier
+    message: Text
+    reported_facts: tuple[ReportedFact, ...] = Field(default=(), max_length=50)
+    unknowns: tuple[ShortText, ...] = Field(default=(), max_length=100)
+    checks_performed: tuple[Text, ...] = Field(default=(), max_length=100)
+    context_changed: Annotated[bool, Field(strict=True)] = False
+
+    @field_validator("reported_facts")
+    @classmethod
+    def unique_fact_names(cls, values: tuple[ReportedFact, ...]) -> tuple[ReportedFact, ...]:
+        if len({value.name.casefold() for value in values}) != len(values):
+            raise ValueError("reported_facts must have unique names")
+        return values
+
+    @field_validator("unknowns")
+    @classmethod
+    def unique_unknowns(cls, values: tuple[str, ...]) -> tuple[str, ...]:
+        return _unique_text(values, "unknowns")
+
+    @field_validator("checks_performed")
+    @classmethod
+    def unique_checks(cls, values: tuple[str, ...]) -> tuple[str, ...]:
+        if len({" ".join(value.split()).casefold() for value in values}) != len(values):
+            raise ValueError("checks_performed must not contain equivalent checks")
+        return values
+
+
+class CaseTransition(Contract):
+    """An uncommitted candidate; only the tracker can accept and persist it."""
+
+    expected_revision: NonnegativeInt
+    turn_id: Identifier
+    source_ref: Identifier
+    event_hash: Annotated[str, StringConstraints(strict=True, pattern=r"^[a-f0-9]{64}$")]
+    candidate: CaseState
+    changed_fact_names: tuple[ShortText, ...] = Field(default=(), max_length=250)
+    context_changed: Annotated[bool, Field(strict=True)]
+    invalidated_checks: tuple[Text, ...] = Field(default=(), max_length=100)
+
+    @field_validator("changed_fact_names")
+    @classmethod
+    def unique_changed_names(cls, values: tuple[str, ...]) -> tuple[str, ...]:
+        return _unique_text(values, "changed_fact_names")
+
+    @model_validator(mode="after")
+    def candidate_is_unapproved_next_revision(self) -> Self:
+        if self.candidate.case_revision != self.expected_revision + 1:
+            raise ValueError("candidate must advance exactly one revision")
+        if self.candidate.pending_proposal_id is not None:
+            raise ValueError("a new user turn must invalidate the pending proposal")
+        return self
 
 
 class RetrievalRequest(Contract):
