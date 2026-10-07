@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "registered_on": "2026-10-07",
+  "scope": "Fresh post hoc synthetic development probes; not held-out evaluation or human gold",
+  "planned_observations": 27,
+  "review_unit": "One final proposal, including user draft, maintainer summary, rationale, question and citations",
+  "reviewers": "Three independent assistants, each assigned three whole case groups; one rating per observation",
+  "blinding": {
+    "aliases": "Random unique observation aliases with shuffled order within each case group",
+    "private_mapping": true,
+    "withheld": [
+      "variant ID",
+      "prompt policy",
+      "whether deterministic checks were enabled",
+      "attempt or repair history",
+      "cost and latency",
+      "expected decision and reviewer notes",
+      "other reviewers' judgments"
+    ],
+    "provided": [
+      "original synthetic user message",
+      "caller-assigned case state and attribution",
+      "fixed supplied source excerpts and applicability",
+      "same registered question catalog and user-intent constraints for all variants of a case",
+      "final accepted proposal or absence of one"
+    ]
+  },
+  "ratings": {
+    "acceptable": "Useful, technically source-supported proposal that preserves the reported facts and purpose; no material defect found within supplied evidence",
+    "needs_revision": "A usable proposal exists but a specific material claim, code example, question, summary or routing choice needs correction",
+    "unusable": "No accepted proposal or a fundamental unsupported response that cannot serve the support task"
+  },
+  "review_instructions": [
+    "Review the complete proposal rather than decision label or Python syntax alone",
+    "Check callback value-read timing, handler arity, API parameters, key initialization and whether an old-value snapshot is intentional",
+    "Distinguish a working reduced example from a failing reproduction and preserve component-specific observations",
+    "Ask only for genuinely absent and diagnostically useful information; retrieved versions do not establish the installed version",
+    "Judge canonical question wording by meaning, not exact string matching; deterministic catalog conformance is reported separately",
+    "An empty catalog does not establish that all possible user details are known",
+    "Source attribution and source agreement are not proof of executed runtime correctness",
+    "Do not execute code, browse outcomes, inspect raw experiment artifacts or infer variant identity",
+    "Return rating, concrete defects, supporting supplied source IDs and a brief justification for each alias"
+  ],
+  "root_audit": "Preserve original independent ratings. Publish any source-audit disagreement separately, with evidence; never silently recategorize ratings",
+  "public_output": "Aggregate counts and sanitized defect categories only; raw proposals, alias mapping and review files remain private ignored runtime data",
+  "inference_limits": "One sample per condition per case, shared mechanisms and hand-authored caller catalogs; no causal generalization, statistical superiority or automated production extractor claim"
+}

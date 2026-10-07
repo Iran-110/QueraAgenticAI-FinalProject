@@ -11,6 +11,7 @@ from agent_app.contracts import (
     Contract,
     EvidenceBundle,
     Identifier,
+    ProposalRequirements,
     ReasoningContext,
     ShortText,
     Text,
@@ -108,13 +109,26 @@ class ObservedReasoner:
         return raw
 
 
-def run_probe(probe: DecisionProbe, reasoner: Reasoner, *, snapshot_id: str, run_id: str) -> dict:
+def run_probe(
+    probe: DecisionProbe,
+    reasoner: Reasoner,
+    *,
+    snapshot_id: str,
+    run_id: str,
+    proposal_requirements: ProposalRequirements | None = None,
+    proposal_checks: bool = False,
+) -> dict:
     probe = DecisionProbe.model_validate(probe.model_dump(warnings=False))
     observed = ObservedReasoner(reasoner)
     retriever = FakeRetriever(probe.bundles)
     started = time.monotonic()
-    result = SupportEngine(retriever, observed, snapshot_id=snapshot_id).run(
-        probe.case_state, probe.user_message, run_id=run_id
+    result = SupportEngine(
+        retriever, observed, snapshot_id=snapshot_id, proposal_checks=proposal_checks
+    ).run(
+        probe.case_state,
+        probe.user_message,
+        run_id=run_id,
+        proposal_requirements=proposal_requirements,
     )
     accepted = result.status == "awaiting_approval"
     decision = result.analysis.decision if result.analysis else None

@@ -73,6 +73,7 @@ uv run streamlit run app.py
 - [پیشرفت واقعی هسته و کارهای بعدی](docs/core-progress.md)
 - [مقایسه روش‌های تصمیم‌گیری و محدودیت نتایج](docs/decision-quality.md)
 - [مقایسه منابع و اطلاعات کاربر با نتایج بازبینی](docs/decision-quality-v3.md)
+- [چک‌های اختیاری callback و سؤال‌های مجاز](docs/proposal-checks.md)
 - [راهنمای مشترک ایجنت‌های کدنویسی](AGENTS.md) و [ورودی Claude Code](CLAUDE.md)
 - [پلن اولیهٔ تیم](plan/plan.md) و [نسخهٔ داخل ریپو از صورت‌مسئله](QBC13_AgenticAI_FinalProject.md)
 

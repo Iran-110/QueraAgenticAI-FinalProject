@@ -1,0 +1,75 @@
+{
+  "synthetic-own-widget-stale-args": {
+    "case_id": "case-synthetic-own-widget-stale-args",
+    "case_revision": 0,
+    "question_targets": [],
+    "require_fresh_widget_value": true
+  },
+  "synthetic-own-widget-pass-key-control": {
+    "case_id": "case-synthetic-own-widget-pass-key-control",
+    "case_revision": 0,
+    "question_targets": [],
+    "require_fresh_widget_value": true
+  },
+  "synthetic-form-submit-exact-parameter": {
+    "case_id": "case-synthetic-form-submit-exact-parameter",
+    "case_revision": 0,
+    "question_targets": [],
+    "require_fresh_widget_value": false
+  },
+  "synthetic-missing-widget-helper": {
+    "case_id": "case-synthetic-missing-widget-helper",
+    "case_revision": 0,
+    "question_targets": [
+      {
+        "name": "widget_implementation",
+        "question": "Could you share the implementation of draw_choice_panel and the surrounding region-selector code?"
+      }
+    ],
+    "require_fresh_widget_value": false
+  },
+  "synthetic-known-environment-callback-display": {
+    "case_id": "case-synthetic-known-environment-callback-display",
+    "case_revision": 0,
+    "question_targets": [],
+    "require_fresh_widget_value": false
+  },
+  "synthetic-unknown-installed-version": {
+    "case_id": "case-synthetic-unknown-installed-version",
+    "case_revision": 0,
+    "question_targets": [
+      {
+        "name": "streamlit_version",
+        "question": "What Streamlit version is installed in the environment that raises this error?"
+      }
+    ],
+    "require_fresh_widget_value": false
+  },
+  "synthetic-corrected-version-working-reduction": {
+    "case_id": "case-synthetic-corrected-version-working-reduction",
+    "case_revision": 0,
+    "question_targets": [
+      {
+        "name": "options_builder_implementation",
+        "question": "Could you share the options-builder helper and the failing fragment path from the full app?"
+      },
+      {
+        "name": "minimal_failing_reproduction",
+        "question": "Could you share a minimal failing example that includes the options builder and the region-change path?"
+      }
+    ],
+    "require_fresh_widget_value": false
+  },
+  "synthetic-reproduced-front-back-mismatch": {
+    "case_id": "case-synthetic-reproduced-front-back-mismatch",
+    "case_revision": 0,
+    "question_targets": [],
+    "require_fresh_widget_value": false
+  },
+  "synthetic-previous-value-snapshot-control": {
+    "case_id": "case-synthetic-previous-value-snapshot-control",
+    "case_revision": 0,
+    "question_targets": [],
+    "require_fresh_widget_value": false
+  }
+}

@@ -45,17 +45,18 @@ class _OpenFence:
         return line
 
 
-def has_invalid_python_code(analysis: AnalysisResult) -> bool:
-    """Fail closed on invalid/unfinished labeled snippets or bounded-parser failures.
+def _python_modules(analysis: AnalysisResult) -> tuple[ast.Module, ...] | None:
+    """Parse complete labeled fences within the shared resource limits.
 
-    Input is a validated AnalysisResult. Only a static boolean leaves this check;
-    source text and exception messages are never returned or logged.
+    ``None`` means invalid syntax or a bounded-parser failure. Parsed modules
+    remain internal; source text and exception messages never leave the checker.
     """
     block_count = 0
     total_bytes = 0
+    modules = []
     for draft in (analysis.user_draft, analysis.maintainer_summary):
         if not isinstance(draft, str):
-            return True
+            return None
         opened = None
         # Python does not treat every Unicode splitlines() separator as a newline.
         # Preserve those characters so ast.parse can reject invalid source.
@@ -70,14 +71,14 @@ def has_invalid_python_code(analysis: AnalysisResult) -> bool:
                 if python:
                     block_count += 1
                     if block_count > _MAX_BLOCKS:
-                        return True
+                        return None
                 continue
             if opened.closes(match):
                 if opened.python:
                     try:
-                        ast.parse("\n".join(opened.lines) + "\n", mode="exec")
+                        modules.append(ast.parse("\n".join(opened.lines) + "\n", mode="exec"))
                     except (SyntaxError, ValueError, TypeError, RecursionError, MemoryError):
-                        return True
+                        return None
                 opened = None
                 continue
             if opened.python:
@@ -85,12 +86,21 @@ def has_invalid_python_code(analysis: AnalysisResult) -> bool:
                 try:
                     line_bytes = len((source_line + "\n").encode("utf-8"))
                 except UnicodeError:
-                    return True
+                    return None
                 opened.byte_count += line_bytes
                 total_bytes += line_bytes
                 if opened.byte_count > _MAX_BLOCK_BYTES or total_bytes > _MAX_TOTAL_BYTES:
-                    return True
+                    return None
                 opened.lines.append(source_line)
         if opened is not None and opened.python:
-            return True
-    return False
+            return None
+    return tuple(modules)
+
+
+def has_invalid_python_code(analysis: AnalysisResult) -> bool:
+    """Fail closed on invalid/unfinished labeled snippets or bounded-parser failures.
+
+    Input is a validated AnalysisResult. Only a static boolean leaves this check;
+    source text and exception messages are never returned or logged.
+    """
+    return _python_modules(analysis) is None

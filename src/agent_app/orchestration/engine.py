@@ -12,6 +12,7 @@ from agent_app.contracts import (
     EvidenceBundle,
     OutputFeedback,
     OutputIssue,
+    ProposalRequirements,
     ReasoningContext,
     RetrievalRequest,
     RunLimits,
@@ -21,6 +22,7 @@ from agent_app.contracts import (
 from agent_app.orchestration.ports import Reasoner, ReasoningStopped, Retriever
 from agent_app.reasoning.code_checks import has_invalid_python_code
 from agent_app.reasoning.output import InvalidAnalysis, parse_analysis
+from agent_app.reasoning.proposal_checks import callback_code_issues
 
 
 def _normalize(text: str) -> str:
@@ -100,6 +102,7 @@ class SupportEngine:
         limits: RunLimits | None = None,
         top_k: int = 5,
         current_revision: Callable[[str], int] | None = None,
+        proposal_checks: bool = False,
     ) -> None:
         self.retriever = retriever
         self.reasoner = reasoner
@@ -111,11 +114,42 @@ class SupportEngine:
         )
         self.top_k = top_k
         self.current_revision = current_revision
+        if type(proposal_checks) is not bool:
+            raise ValueError("Proposal checks require an explicit boolean.")
+        self.proposal_checks = proposal_checks
         # Validate configuration before a port is invoked.
         RetrievalRequest(queries=("configuration-check",), snapshot_id=snapshot_id, top_k=top_k)
 
-    def run(self, case: CaseState, user_message: str, *, run_id: str | None = None) -> RunResult:
+    def run(
+        self,
+        case: CaseState,
+        user_message: str,
+        *,
+        run_id: str | None = None,
+        proposal_requirements: ProposalRequirements | None = None,
+    ) -> RunResult:
         case = CaseState.model_validate(case.model_dump(warnings=False))
+        if proposal_requirements is not None:
+            try:
+                proposal_requirements = ProposalRequirements.model_validate(
+                    proposal_requirements.model_dump(warnings=False)
+                )
+                known = {
+                    fact.name.casefold()
+                    for fact in case.facts
+                    if fact.status == "active" and fact.provenance_kind == "user"
+                }
+                if (
+                    proposal_requirements.case_id != case.case_id
+                    or proposal_requirements.case_revision != case.case_revision
+                    or any(
+                        target.name.casefold() in known
+                        for target in proposal_requirements.question_targets
+                    )
+                ):
+                    raise ValueError
+            except (ValidationError, ValueError, TypeError, AttributeError):
+                raise ValueError("Invalid caller-owned proposal requirements.") from None
         progress = _Progress(self.limits)
         run_id = run_id if run_id is not None else str(uuid4())
         # Bad caller IDs fail validation before adapters are invoked.
@@ -151,7 +185,14 @@ class SupportEngine:
             seen_queries: set[str] = set()
             while True:
                 evidence = self._retrieve(case, queries, seen_queries, progress)
-                analysis = self._analyze(case, user_message, evidence, progress, run_id=run_id)
+                analysis = self._analyze(
+                    case,
+                    user_message,
+                    evidence,
+                    progress,
+                    run_id=run_id,
+                    proposal_requirements=proposal_requirements,
+                )
                 if analysis.decision != "retrieve_more":
                     self._ensure_current(case)
                     progress.step("awaiting_approval", f"Prepared an {analysis.decision} preview.")
@@ -227,6 +268,7 @@ class SupportEngine:
         progress: _Progress,
         *,
         run_id: str,
+        proposal_requirements: ProposalRequirements | None = None,
     ) -> AnalysisResult:
         last_error = "ModelAttemptLimitExceeded"
         feedback = None
@@ -245,6 +287,7 @@ class SupportEngine:
                         case_revision=case.case_revision,
                         attempt_index=progress.model_attempts,
                         output_feedback=feedback,
+                        proposal_requirements=proposal_requirements,
                         query_limit=self.limits.max_queries_per_round,
                         remaining_model_attempts=self.limits.max_model_attempts
                         - progress.model_attempts,
@@ -272,6 +315,36 @@ class SupportEngine:
                 self._validate_analysis(case, evidence, analysis)
                 if has_invalid_python_code(analysis):
                     raise InvalidAnalysis((OutputIssue(code="invalid_python_syntax"),))
+                if self.proposal_checks:
+                    issues = list(
+                        callback_code_issues(
+                            analysis,
+                            case,
+                            evidence,
+                            require_fresh_widget_value=bool(
+                                proposal_requirements
+                                and proposal_requirements.require_fresh_widget_value
+                            ),
+                        )
+                    )
+                    if proposal_requirements is not None and analysis.decision == "ask":
+                        targets = {
+                            target.name: target for target in proposal_requirements.question_targets
+                        }
+                        if len(analysis.missing_info) != 1:
+                            issues.append(
+                                OutputIssue(code="ask_target_required", field="missing_info")
+                            )
+                        elif analysis.missing_info[0] not in targets:
+                            issues.append(
+                                OutputIssue(code="ask_unregistered_target", field="missing_info")
+                            )
+                        elif analysis.next_question != targets[analysis.missing_info[0]].question:
+                            issues.append(
+                                OutputIssue(code="ask_question_mismatch", field="next_question")
+                            )
+                    if issues:
+                        raise InvalidAnalysis(tuple(issues[:8]))
             except InvalidAnalysis as error:
                 feedback = OutputFeedback(issues=error.issues)
                 progress.output_issues.extend(error.issues)

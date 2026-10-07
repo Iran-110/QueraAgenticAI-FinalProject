@@ -108,6 +108,35 @@ teammate-owned RAG/tracker implementation was added. See
 `docs/decision-quality-v3.md` and its public aggregate for methods, findings and
 source/state handoff recommendations. Work remains on the feature branch.
 
+## 2026-10-07 — registered callback and question checks
+
+- Added optional caller-owned, case/revision-bound question catalogs and explicit
+  fresh-widget-value intent. Catalogs are manually curated input, not a free-text
+  extractor. The new `grounded_rules` policy exposes them; five prior policy
+  payloads remain unchanged when the new feedback is absent.
+- Added optional bounded static checks for explicit API keywords and own-widget
+  construction-time value capture using applicable pinned source metadata. An
+  intentional previous-value snapshot stays valid without fresh-value intent.
+  Questions are checked against registered structured targets and wording;
+  unrestricted draft prose still needs whole-proposal review.
+- Kept authority checks first and the shared two-attempt allowance unchanged.
+  All changes are opt-in; production defaults, action permissions and tracker
+  ownership stay unchanged. No source or user snippet is executed.
+- Registered nine fresh synthetic development probes, including positive controls,
+  with A/B/C separating the current shape policy, caller metadata plus prompt,
+  and identical inputs with deterministic enforcement. Input/catalog hashes,
+  rotated condition order and blinded-review procedure are frozen before outputs.
+  These are related development scenarios, not formal held-out evaluation.
+- Verified **820 passing offline tests**, Ruff lint/format, locked dependencies,
+  six protocol validations and installed demos. CI validates the new protocol
+  offline. All mock HTTP and test ledgers remain separate from the original runner.
+
+No paid call was made for this implementation milestone. The planned comparison
+has a USD 0.055 batch ceiling within the existing user-authorized continuation;
+it cannot create a new grant, reset receipts or release the unresolved model
+hold. The original ledger and previous accounting state are preserved. See
+`docs/proposal-checks.md` for applicability, interface and coverage limits.
+
 ## Next integration work
 
 | Work | Owner | Completion evidence |

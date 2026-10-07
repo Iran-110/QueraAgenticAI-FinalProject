@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "experiment_id": "core-decision-2026-10-07-guards-v4",
+  "suite_sha256": "14cef1e4633d59dbc26d77cd60a175a4abcbe35b62a476823b7ed9a9e20001a1",
+  "model": "gpt-4o-mini",
+  "policies": [
+    "structured_rules",
+    "grounded_rules"
+  ],
+  "input_token_reserve": 32768,
+  "max_output_tokens": 768,
+  "cap_usd": "0.055",
+  "price_verified_on": "2026-10-07",
+  "continuation_id": "user-continuation-2026-10-07-v3",
+  "scope": "Post hoc synthetic development comparison registered before outputs. Same nine newly authored fixed-source probes in all three variants: A structured_rules without caller catalog or optional proposal checks; B grounded_rules with the separately registered caller question/fresh-value catalog and no optional proposal checks; C the identical grounded_rules and catalog with deterministic proposal checks enabled. This distinguishes metadata/prompt from enforcement, not general causal certainty. Catalogs target only explicitly missing user details, never source gaps or expected decisions; empty catalogs register no clarification rather than proving full context. Fresh-value intent is false for deliberate previous-value snapshots. Expected decisions and reviewer notes never enter model input. Variant order rotates across cases and variant-specific identities separate B/C despite their shared policy. Same verified gpt-4o-mini, 32768 input reservation, 768 output allowance, existing two-attempt/two-retrieval/eight-step limits. Repairs and refinement consume the same attempt and accounting scope. USD0.055 cap covers the entire27-observation batch under the original independently user-authorized continuation; the runner cannot create, reset, refresh or globally unhalt the ledger, release the original unknown-model hold or reconcile billing. New uncertainty and accounting anomalies stop the batch. Private exclusive receipts retain attribution, hashes, HTTP counts and known usage. Source-backed blinded assistant review remains necessary; accepted schema or matching decision does not establish code correctness, real retrieval quality, production readiness, untouched-test performance or an extra-agent benefit. Caller catalogs are manually curated development input, not a production free-text extractor. The related synthetic mechanisms are development probes, not independent benchmark samples.",
+  "variants": [
+    {
+      "variant_id": "A",
+      "policy": "structured_rules",
+      "use_catalog": false,
+      "proposal_checks": false
+    },
+    {
+      "variant_id": "B",
+      "policy": "grounded_rules",
+      "use_catalog": true,
+      "proposal_checks": false
+    },
+    {
+      "variant_id": "C",
+      "policy": "grounded_rules",
+      "use_catalog": true,
+      "proposal_checks": true
+    }
+  ],
+  "case_count": 9,
+  "suite_filename": "cases-guards-v4.json",
+  "suite_content_sha256": "2ad80974a902786874871cf2a16baeac2d899e00aa31cb3ecd3d85954ed011b6",
+  "requirements_filename": "requirements-guards-v4.json",
+  "requirements_sha256": "22a703fe4d8fe91fa1f9958b252bd23c9fbbc11108326e5331cd4d8fa1b7bbef",
+  "requirements_content_sha256": "edd60f1c139275c964b84890b49d0a93e3576200c0392a14e081e658cdf69c55",
+  "catalog": {
+    "synthetic-own-widget-stale-args": {
+      "case_id": "case-synthetic-own-widget-stale-args",
+      "case_revision": 0,
+      "question_targets": [],
+      "require_fresh_widget_value": true
+    },
+    "synthetic-own-widget-pass-key-control": {
+      "case_id": "case-synthetic-own-widget-pass-key-control",
+      "case_revision": 0,
+      "question_targets": [],
+      "require_fresh_widget_value": true
+    },
+    "synthetic-form-submit-exact-parameter": {
+      "case_id": "case-synthetic-form-submit-exact-parameter",
+      "case_revision": 0,
+      "question_targets": [],
+      "require_fresh_widget_value": false
+    },
+    "synthetic-missing-widget-helper": {
+      "case_id": "case-synthetic-missing-widget-helper",
+      "case_revision": 0,
+      "question_targets": [
+        {
+          "name": "widget_implementation",
+          "question": "Could you share the implementation of draw_choice_panel and the surrounding region-selector code?"
+        }
+      ],
+      "require_fresh_widget_value": false
+    },
+    "synthetic-known-environment-callback-display": {
+      "case_id": "case-synthetic-known-environment-callback-display",
+      "case_revision": 0,
+      "question_targets": [],
+      "require_fresh_widget_value": false
+    },
+    "synthetic-unknown-installed-version": {
+      "case_id": "case-synthetic-unknown-installed-version",
+      "case_revision": 0,
+      "question_targets": [
+        {
+          "name": "streamlit_version",
+          "question": "What Streamlit version is installed in the environment that raises this error?"
+        }
+      ],
+      "require_fresh_widget_value": false
+    },
+    "synthetic-corrected-version-working-reduction": {
+      "case_id": "case-synthetic-corrected-version-working-reduction",
+      "case_revision": 0,
+      "question_targets": [
+        {
+          "name": "options_builder_implementation",
+          "question": "Could you share the options-builder helper and the failing fragment path from the full app?"
+        },
+        {
+          "name": "minimal_failing_reproduction",
+          "question": "Could you share a minimal failing example that includes the options builder and the region-change path?"
+        }
+      ],
+      "require_fresh_widget_value": false
+    },
+    "synthetic-reproduced-front-back-mismatch": {
+      "case_id": "case-synthetic-reproduced-front-back-mismatch",
+      "case_revision": 0,
+      "question_targets": [],
+      "require_fresh_widget_value": false
+    },
+    "synthetic-previous-value-snapshot-control": {
+      "case_id": "case-synthetic-previous-value-snapshot-control",
+      "case_revision": 0,
+      "question_targets": [],
+      "require_fresh_widget_value": false
+    }
+  }
+}
