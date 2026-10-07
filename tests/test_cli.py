@@ -53,3 +53,55 @@ def test_cli_rejects_unknown_commands_scenarios_and_provider_flags(args, capsys)
     captured = capsys.readouterr()
     assert captured.out == ""
     assert "usage:" in captured.err
+
+
+@pytest.mark.parametrize(
+    ("scenario", "sends", "status", "exit_code"),
+    [
+        ("success", 1, "awaiting_approval", 0),
+        ("repair", 2, "awaiting_approval", 0),
+        ("timeout", 1, "error", 1),
+        ("budget", 0, "budget_stopped", 1),
+    ],
+)
+def test_gateway_cli_exercises_accounting_without_real_requests(
+    scenario, sends, status, exit_code, capsys
+):
+    assert main(["gateway-demo", "--scenario", scenario]) == exit_code
+    payload = json.loads(capsys.readouterr().out)
+    assert payload["mode"] == "synthetic_http"
+    assert payload["real_api_calls"] == payload["paid_cost_usd"] == 0
+    assert payload["mock_http_requests"] == sends
+    assert payload["result"]["status"] == status
+    if scenario == "timeout":
+        assert payload["simulated_ledger"]["uncertain_usd"] != "0"
+    if scenario == "repair":
+        assert payload["simulated_usage_cost_usd"] == "0.000297"
+
+
+def test_budget_cli_preserves_existing_spend_and_refuses_reinitialization(tmp_path, capsys):
+    path = str(tmp_path / "runtime" / "budget.sqlite3")
+    arguments = [
+        "budget",
+        "init",
+        "--path",
+        path,
+        "--limit-usd",
+        "4.50",
+        "--opening-spend-usd",
+        "0.75",
+    ]
+    assert main(arguments) == 0
+    initial = json.loads(capsys.readouterr().out)
+    assert initial["available_usd"] == "3.75"
+    assert main(arguments) == 1
+    assert json.loads(capsys.readouterr().out)["error"] == "BudgetLedgerOperationFailed"
+    assert main(["budget", "status", "--path", path]) == 0
+    assert json.loads(capsys.readouterr().out) == initial
+
+
+def test_reading_a_missing_budget_does_not_create_one(tmp_path, capsys):
+    path = tmp_path / "budget.sqlite3"
+    assert main(["budget", "status", "--path", str(path)]) == 1
+    assert json.loads(capsys.readouterr().out)["error"] == "BudgetLedgerOperationFailed"
+    assert not path.exists()

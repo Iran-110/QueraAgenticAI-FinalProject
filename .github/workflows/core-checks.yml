@@ -39,3 +39,5 @@ jobs:
         run: uv run pytest
       - name: Smoke-test bounded refinement
         run: uv run agent-app demo --scenario refine
+      - name: Smoke-test gateway accounting without network
+        run: uv run agent-app gateway-demo --scenario repair
