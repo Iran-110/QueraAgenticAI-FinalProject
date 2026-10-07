@@ -33,6 +33,7 @@ uv run ruff check .
 uv run ruff format --check .
 uv run agent-app demo --scenario refine
 uv run agent-app gateway-demo --scenario repair
+uv run agent-app turn-demo
 ```
 
 Add meaningful tests for behavior changes, especially limits, evidence validation, corrections, and failure handling. For documentation-only changes, verify paths and commands without duplicating behavioral tests. Report exactly what was checked and any remaining limitation.

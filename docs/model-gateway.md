@@ -1,6 +1,14 @@
 # Model gateway and shared budget
 
-Status, 2026-10-07: the gateway is developed against simulated HTTP responses. No live pilot has been run. Account model access, usage reporting, final billing, and provider output behavior remain unverified; no real key is required for the offline demo.
+Status, 2026-10-07: the gateway is covered by simulated HTTP tests and one controlled live request. The live endpoint accepted `gpt-4o-mini` and returned usage that the ledger settled. The response failed `AnalysisResult` validation, so full response compatibility and model quality remain unverified. Account deductions have not been reconciled; no real key is required for the offline demos.
+
+## First live compatibility check
+
+The pilot used an empty synthetic evidence bundle and a widget question with unknown version/code. It allowed one model attempt, 8,192 reserved input tokens and at most 512 output tokens. One HTTP send returned status 200 in about 4.1 seconds. Reported usage was 1,229 input and 174 output tokens; the ledger settled **USD 0.000317625** at the pinned public rates and released the unused reservation. No pending or uncertain amount remained, and the ledger did not halt.
+
+The core returned `ModelOutputInvalid` and did not buy another attempt. The raw output was not retained, so this result does not establish which JSON or contract rule failed. The prompt was subsequently clarified to request a JSON instance, exclude Markdown, and explain the decision-dependent fields that JSON Schema alone does not express. That change has not been retested live. A later controlled check needs sanitized validation diagnostics and comparison with the account dashboard; routine development remains offline.
+
+The credential, ledger and local pilot receipt stay outside Git. The receipt contains operational counts and cost estimates, not the key or raw model response. The local runner retains a USD 4.50 ceiling and USD 0.50 outside it; after this request its available ledger amount was USD 4.499682375. This is local accounting, not a fetched provider balance.
 
 ## Integration
 
