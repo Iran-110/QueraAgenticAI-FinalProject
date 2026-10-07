@@ -1,0 +1,407 @@
+{
+  "schema_version": 1,
+  "experiment_id": "core-decision-2026-10-07-ablation-v3",
+  "model": "gpt-4o-mini",
+  "protocol_sha256": "7654b07e26a6235806500adb8955c40f879c838fabd3647d09edd0c930be984f",
+  "code_sha256": "443b1f1c336a438f6d70865f39f94023a8ef3859367d990d9b152381ee645610",
+  "completed_observations": 32,
+  "actual_http_requests": 32,
+  "stop_reason": null,
+  "cells": [
+    {
+      "cell_id": "A",
+      "suite": "original",
+      "policy": "structured_rules"
+    },
+    {
+      "cell_id": "B",
+      "suite": "enriched",
+      "policy": "structured_rules"
+    },
+    {
+      "cell_id": "C",
+      "suite": "normalized",
+      "policy": "structured_rules"
+    },
+    {
+      "cell_id": "D",
+      "suite": "normalized",
+      "policy": "diagnostic_rules"
+    }
+  ],
+  "per_cell": {
+    "A": {
+      "cases": 8,
+      "accepted": 8,
+      "allowed_final_decisions": 6,
+      "first_pass_schema_valid": 8,
+      "model_attempts": 8,
+      "retrieval_rounds": 8,
+      "http_requests": 8,
+      "known_settled_input_tokens": 20193,
+      "known_settled_output_tokens": 1815,
+      "estimated_usd": "0.004529745",
+      "blinded_review": {
+        "needs_revision": 4,
+        "acceptable": 4
+      },
+      "review_categories": {
+        "decision_error": 3,
+        "summary_inaccuracy": 1,
+        "repeat_known_question": 2,
+        "callback_or_api_error": 1,
+        "unsupported_claim": 1,
+        "version_applicability": 1
+      },
+      "mean_elapsed_seconds": 4.089
+    },
+    "B": {
+      "cases": 8,
+      "accepted": 8,
+      "allowed_final_decisions": 6,
+      "first_pass_schema_valid": 8,
+      "model_attempts": 8,
+      "retrieval_rounds": 8,
+      "http_requests": 8,
+      "known_settled_input_tokens": 21555,
+      "known_settled_output_tokens": 1752,
+      "estimated_usd": "0.004712895",
+      "blinded_review": {
+        "acceptable": 5,
+        "needs_revision": 3
+      },
+      "review_categories": {
+        "repeat_known_question": 1,
+        "callback_or_api_error": 2,
+        "unsupported_claim": 3,
+        "decision_error": 1,
+        "summary_inaccuracy": 1
+      },
+      "mean_elapsed_seconds": 3.944
+    },
+    "C": {
+      "cases": 8,
+      "accepted": 8,
+      "allowed_final_decisions": 8,
+      "first_pass_schema_valid": 8,
+      "model_attempts": 8,
+      "retrieval_rounds": 8,
+      "http_requests": 8,
+      "known_settled_input_tokens": 22988,
+      "known_settled_output_tokens": 2239,
+      "estimated_usd": "0.005270760",
+      "blinded_review": {
+        "needs_revision": 2,
+        "acceptable": 6
+      },
+      "review_categories": {
+        "repeat_known_question": 1,
+        "decision_error": 1,
+        "callback_or_api_error": 1,
+        "unsupported_claim": 1,
+        "summary_inaccuracy": 1
+      },
+      "mean_elapsed_seconds": 4.64
+    },
+    "D": {
+      "cases": 8,
+      "accepted": 8,
+      "allowed_final_decisions": 6,
+      "first_pass_schema_valid": 8,
+      "model_attempts": 8,
+      "retrieval_rounds": 8,
+      "http_requests": 8,
+      "known_settled_input_tokens": 24900,
+      "known_settled_output_tokens": 1958,
+      "estimated_usd": "0.005400780",
+      "blinded_review": {
+        "needs_revision": 3,
+        "acceptable": 5
+      },
+      "review_categories": {
+        "repeat_known_question": 2,
+        "decision_error": 3,
+        "callback_or_api_error": 1,
+        "unsupported_claim": 1,
+        "summary_inaccuracy": 1
+      },
+      "mean_elapsed_seconds": 4.686
+    }
+  },
+  "per_case": {
+    "real-loop-callback": {
+      "A": {
+        "decision": "ask",
+        "classification": "needs_revision",
+        "categories": [
+          "decision_error",
+          "summary_inaccuracy"
+        ]
+      },
+      "B": {
+        "decision": "ask",
+        "classification": "acceptable",
+        "categories": []
+      },
+      "C": {
+        "decision": "ask",
+        "classification": "needs_revision",
+        "categories": [
+          "repeat_known_question",
+          "decision_error"
+        ]
+      },
+      "D": {
+        "decision": "ask",
+        "classification": "needs_revision",
+        "categories": [
+          "repeat_known_question",
+          "decision_error"
+        ]
+      }
+    },
+    "variant-loop-current-version": {
+      "B": {
+        "decision": "ask",
+        "classification": "needs_revision",
+        "categories": [
+          "repeat_known_question",
+          "callback_or_api_error",
+          "unsupported_claim",
+          "decision_error"
+        ]
+      },
+      "C": {
+        "decision": "answer",
+        "classification": "needs_revision",
+        "categories": [
+          "callback_or_api_error",
+          "unsupported_claim",
+          "summary_inaccuracy"
+        ]
+      },
+      "D": {
+        "decision": "ask",
+        "classification": "needs_revision",
+        "categories": [
+          "callback_or_api_error",
+          "unsupported_claim",
+          "decision_error"
+        ]
+      },
+      "A": {
+        "decision": "ask",
+        "classification": "needs_revision",
+        "categories": [
+          "repeat_known_question",
+          "decision_error"
+        ]
+      }
+    },
+    "real-fragment-default-partial-repro": {
+      "C": {
+        "decision": "ask",
+        "classification": "acceptable",
+        "categories": []
+      },
+      "D": {
+        "decision": "ask",
+        "classification": "acceptable",
+        "categories": []
+      },
+      "A": {
+        "decision": "ask",
+        "classification": "acceptable",
+        "categories": []
+      },
+      "B": {
+        "decision": "ask",
+        "classification": "acceptable",
+        "categories": []
+      }
+    },
+    "variant-fragment-missing-version": {
+      "D": {
+        "decision": "ask",
+        "classification": "acceptable",
+        "categories": []
+      },
+      "A": {
+        "decision": "ask",
+        "classification": "acceptable",
+        "categories": []
+      },
+      "B": {
+        "decision": "ask",
+        "classification": "acceptable",
+        "categories": []
+      },
+      "C": {
+        "decision": "ask",
+        "classification": "acceptable",
+        "categories": []
+      }
+    },
+    "variant-fragment-version-correction": {
+      "A": {
+        "decision": "ask",
+        "classification": "acceptable",
+        "categories": []
+      },
+      "B": {
+        "decision": "ask",
+        "classification": "acceptable",
+        "categories": []
+      },
+      "C": {
+        "decision": "ask",
+        "classification": "acceptable",
+        "categories": []
+      },
+      "D": {
+        "decision": "ask",
+        "classification": "acceptable",
+        "categories": []
+      }
+    },
+    "real-dataframe-session-loss": {
+      "B": {
+        "decision": "ask",
+        "classification": "acceptable",
+        "categories": []
+      },
+      "C": {
+        "decision": "ask",
+        "classification": "acceptable",
+        "categories": []
+      },
+      "D": {
+        "decision": "ask",
+        "classification": "acceptable",
+        "categories": []
+      },
+      "A": {
+        "decision": "ask",
+        "classification": "acceptable",
+        "categories": []
+      }
+    },
+    "synthetic-source-injection": {
+      "C": {
+        "decision": "answer",
+        "classification": "acceptable",
+        "categories": []
+      },
+      "D": {
+        "decision": "answer",
+        "classification": "acceptable",
+        "categories": []
+      },
+      "A": {
+        "decision": "answer",
+        "classification": "needs_revision",
+        "categories": [
+          "callback_or_api_error",
+          "unsupported_claim"
+        ]
+      },
+      "B": {
+        "decision": "answer",
+        "classification": "needs_revision",
+        "categories": [
+          "callback_or_api_error",
+          "unsupported_claim"
+        ]
+      }
+    },
+    "synthetic-exhausted-evidence": {
+      "D": {
+        "decision": "ask",
+        "classification": "needs_revision",
+        "categories": [
+          "repeat_known_question",
+          "summary_inaccuracy",
+          "decision_error"
+        ]
+      },
+      "A": {
+        "decision": "ask",
+        "classification": "needs_revision",
+        "categories": [
+          "repeat_known_question",
+          "version_applicability",
+          "decision_error"
+        ]
+      },
+      "B": {
+        "decision": "ask",
+        "classification": "needs_revision",
+        "categories": [
+          "unsupported_claim",
+          "summary_inaccuracy"
+        ]
+      },
+      "C": {
+        "decision": "escalate",
+        "classification": "acceptable",
+        "categories": []
+      }
+    }
+  },
+  "fresh_estimated_settled_usd": "0.019914180",
+  "reviewer_kind": "Three independent blinded assistants; root source audit; not human gold",
+  "production_default": "baseline",
+  "account_deductions_reconciled": false,
+  "ledger": {
+    "limit_usd": "4.5",
+    "opening_spend_usd": "0",
+    "settled_usd": "0.04858722",
+    "reserved_usd": "0",
+    "uncertain_usd": "0.02",
+    "available_usd": "4.43141278",
+    "halted": true
+  },
+  "continuation": {
+    "authorization_id": "user-continuation-2026-10-07-v3",
+    "authorization_ref": "user:2026-10-07:continue-quality-experiments",
+    "expected_request_id": "call:00d470ec94177a11f66c6cb3dbbb6c83069dd1385ddd6ac7b1e3df96fa50f7fa",
+    "allowed_model": "gpt-4o-mini",
+    "additional_cap_usd": "0.1",
+    "held_usd": "0.02",
+    "used_usd": "0.01991418",
+    "remaining_usd": "0.08008582",
+    "active": true,
+    "block_reason": null
+  },
+  "held_allocation_is_verified_cost_bound": false,
+  "root_audit_notes": [
+    {
+      "case_id": "real-loop-callback",
+      "cell_id": "B",
+      "independent_rating_preserved": "acceptable",
+      "note": "Useful late-binding explanation, but an offer of further instructions is not a diagnostic missing-information question. Workflow suitability remains debatable; published independent counts are not silently adjusted."
+    },
+    {
+      "case_id": "variant-loop-current-version",
+      "cells": [
+        "C",
+        "D"
+      ],
+      "note": "Syntax-valid code captures its own widget value in args at construction, contradicting the supplied callback-time lookup excerpt. Arity/API/runtime semantics remain outside the AST syntax guard."
+    },
+    {
+      "case_id": "synthetic-source-injection",
+      "cell_id": "B",
+      "note": "User draft placement is correct, but rationale incorrectly claims on_change for the submit button despite supplied on_click signature. All structured fields need review."
+    }
+  ],
+  "limits": [
+    "Post hoc development only: eight correlated probes, three real-report anchors, no final held-out test",
+    "Fixed-source fixtures and caller-assigned state normalization; no real RAG or persistent tracker integration",
+    "A/B changes evidence only in two target cases; the raw B gain occurs in a case with identical sources",
+    "One sample per case/cell; changes in unmodified inputs demonstrate stochastic variation",
+    "C has best raw decision/review counts in this run, but its current callback code remains incorrect",
+    "Longer diagnostic prompt has no observed advantage over C; no extra production judge agent is justified",
+    "The previous gpt-4.1-mini identity/usage incident is unresolved and remains held; no model ranking"
+  ]
+}

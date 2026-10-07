@@ -7,6 +7,8 @@ automatic refund. This ledger does not coordinate independent database copies.
 
 from __future__ import annotations
 
+import hashlib
+import json
 import os
 import re
 import sqlite3
@@ -21,6 +23,7 @@ __all__ = [
     "BudgetDenied",
     "BudgetLedger",
     "BudgetSnapshot",
+    "ContinuationStatus",
     "LedgerConflict",
     "LedgerUnavailable",
     "Reservation",
@@ -80,6 +83,22 @@ class BudgetSnapshot:
     uncertain_usd: Decimal
     available_usd: Decimal
     halted: bool
+
+
+@dataclass(frozen=True, slots=True)
+class ContinuationStatus:
+    """Usable scope of an explicit user-authorized exception to a global halt."""
+
+    authorization_id: str
+    authorization_ref: str
+    expected_request_id: str
+    allowed_model: str
+    additional_cap_usd: Decimal
+    held_usd: Decimal
+    used_usd: Decimal
+    remaining_usd: Decimal
+    active: bool
+    block_reason: str | None
 
 
 def _identifier(value: str) -> str:
@@ -257,6 +276,190 @@ def _totals(connection: sqlite3.Connection) -> tuple[int, int, int]:
     return settled, reserved, uncertain
 
 
+def _continuations_exist(connection: sqlite3.Connection) -> bool:
+    return (
+        connection.execute(
+            "SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'ledger_continuations'"
+        ).fetchone()
+        is not None
+    )
+
+
+def _continuation_schema(connection: sqlite3.Connection) -> None:
+    """Add controls only during explicit authorization, never reset existing data."""
+    connection.execute(
+        """CREATE TABLE IF NOT EXISTS ledger_continuations (
+        authorization_id TEXT PRIMARY KEY,
+        authorization_ref TEXT NOT NULL,
+        expected_request_id TEXT NOT NULL UNIQUE REFERENCES reservations(request_id),
+        allowed_model TEXT NOT NULL CHECK (allowed_model = 'gpt-4o-mini'),
+        cap_nanos INTEGER NOT NULL CHECK (cap_nanos > 0),
+        held_nanos INTEGER NOT NULL CHECK (held_nanos >= 20000000),
+        prior_held_nanos INTEGER NOT NULL CHECK (prior_held_nanos >= 0),
+        quarantine_fingerprint TEXT NOT NULL,
+        active INTEGER NOT NULL CHECK (active IN (0, 1)),
+        revocation_code TEXT,
+        recorded_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now'))
+        )"""
+    )
+    connection.execute(
+        """CREATE TABLE IF NOT EXISTS continuation_requests (
+        request_id TEXT PRIMARY KEY REFERENCES reservations(request_id),
+        authorization_id TEXT NOT NULL REFERENCES ledger_continuations(authorization_id)
+        )"""
+    )
+    connection.execute(
+        """CREATE TABLE IF NOT EXISTS continuation_events (
+        event_id INTEGER PRIMARY KEY,
+        authorization_id TEXT NOT NULL REFERENCES ledger_continuations(authorization_id),
+        status TEXT NOT NULL,
+        reason_code TEXT NOT NULL,
+        recorded_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now'))
+        )"""
+    )
+
+
+def _quarantine_fingerprint(row: sqlite3.Row) -> str:
+    return hashlib.sha256(
+        json.dumps(dict(row), sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
+
+
+def _find_continuation(connection: sqlite3.Connection, authorization_id: str) -> sqlite3.Row:
+    if not _continuations_exist(connection):
+        raise LedgerConflict()
+    row = connection.execute(
+        "SELECT * FROM ledger_continuations WHERE authorization_id = ?", (authorization_id,)
+    ).fetchone()
+    if row is None:
+        raise LedgerConflict()
+    try:
+        for key in (
+            "authorization_id",
+            "authorization_ref",
+            "expected_request_id",
+            "allowed_model",
+        ):
+            _identifier(row[key])
+        _counter(row["cap_nanos"], minimum=1, maximum=5_000_000_000)
+        _counter(row["held_nanos"], minimum=20_000_000)
+        _counter(row["prior_held_nanos"])
+        if (
+            row["allowed_model"] != "gpt-4o-mini"
+            or row["held_nanos"] < row["prior_held_nanos"]
+            or not isinstance(row["quarantine_fingerprint"], str)
+            or re.fullmatch(r"[a-f0-9]{64}", row["quarantine_fingerprint"]) is None
+            or row["active"] not in (0, 1)
+        ):
+            raise ValueError
+        if row["active"]:
+            if row["revocation_code"] is not None:
+                raise ValueError
+        else:
+            _identifier(row["revocation_code"])
+    except (IndexError, KeyError, TypeError, ValueError):
+        raise LedgerUnavailable() from None
+    return row
+
+
+def _observed_overrun(connection: sqlite3.Connection) -> bool:
+    for row in connection.execute(f"SELECT {_REQUEST_COLUMNS} FROM reservations"):
+        _validate_row(row)
+        if row["status"] == "settled" and row["cost_nanos"] > row["amount_nanos"]:
+            return True
+    return False
+
+
+def _continuation_usage(connection: sqlite3.Connection, authorization_id: str) -> int:
+    used = 0
+    rows = connection.execute(
+        f"""SELECT {_REQUEST_COLUMNS} FROM reservations WHERE request_id IN
+        (SELECT request_id FROM continuation_requests WHERE authorization_id = ?)""",
+        (authorization_id,),
+    ).fetchall()
+    count = connection.execute(
+        "SELECT COUNT(*) FROM continuation_requests WHERE authorization_id = ?", (authorization_id,)
+    ).fetchone()[0]
+    if len(rows) != count:
+        raise LedgerUnavailable()
+    for row in rows:
+        _validate_row(row)
+        if row["model"] != "gpt-4o-mini" or row["phase"] != "development":
+            raise LedgerUnavailable()
+        if row["status"] == "settled":
+            used += row["cost_nanos"]
+        elif row["status"] in ("reserved", "uncertain"):
+            used += row["amount_nanos"]
+    return used
+
+
+def _continuation_status(
+    connection: sqlite3.Connection, authorization_id: str
+) -> ContinuationStatus:
+    row = _find_continuation(connection, authorization_id)
+    _, _, halted = _configuration(connection)
+    _totals(connection)
+    pending = (
+        connection.execute(
+            "SELECT 1 FROM reservations WHERE status = 'reserved' LIMIT 1"
+        ).fetchone()
+        is not None
+    )
+    quarantined = _required(connection, row["expected_request_id"])
+    unknown_ids = [
+        item[0]
+        for item in connection.execute(
+            "SELECT request_id FROM reservations WHERE status = 'uncertain'"
+        )
+    ]
+    used = _continuation_usage(connection, authorization_id)
+    remaining = max(0, row["cap_nanos"] - used)
+    block_reason = None
+    if not row["active"]:
+        block_reason = row["revocation_code"]
+    elif not halted:
+        block_reason = "GlobalHaltChanged"
+    elif _quarantine_fingerprint(quarantined) != row["quarantine_fingerprint"]:
+        block_reason = "QuarantineChanged"
+    elif unknown_ids != [row["expected_request_id"]]:
+        block_reason = "UncertaintyChanged"
+    elif _observed_overrun(connection):
+        block_reason = "CostOverrun"
+    elif pending:
+        block_reason = "PendingRequest"
+    elif remaining == 0:
+        block_reason = "ContinuationCapExceeded"
+    return ContinuationStatus(
+        authorization_id=row["authorization_id"],
+        authorization_ref=row["authorization_ref"],
+        expected_request_id=row["expected_request_id"],
+        allowed_model=row["allowed_model"],
+        additional_cap_usd=_usd(row["cap_nanos"]),
+        held_usd=_usd(row["held_nanos"]),
+        used_usd=_usd(used),
+        remaining_usd=_usd(remaining),
+        active=block_reason is None,
+        block_reason=block_reason,
+    )
+
+
+def _revoke_continuations(connection: sqlite3.Connection, reason_code: str) -> None:
+    if not _continuations_exist(connection):
+        return
+    for row in connection.execute(
+        "SELECT authorization_id FROM ledger_continuations WHERE active = 1"
+    ).fetchall():
+        _find_continuation(connection, row["authorization_id"])
+        connection.execute(
+            "UPDATE ledger_continuations SET active = 0, revocation_code = ? WHERE authorization_id = ?",
+            (reason_code, row["authorization_id"]),
+        )
+        connection.execute(
+            "INSERT INTO continuation_events (authorization_id, status, reason_code) VALUES (?, 'revoked', ?)",
+            (row["authorization_id"], reason_code),
+        )
+
+
 class BudgetLedger:
     """Open an existing ledger; use create explicitly for its first initialization."""
 
@@ -347,6 +550,117 @@ class BudgetLedger:
                 with suppress(OSError):
                     ledger_path.unlink()
 
+    def authorize_continuation(
+        self,
+        *,
+        authorization_id: str,
+        authorization_ref: str,
+        expected_request_id: str,
+        held_usd: Decimal,
+        allowed_model: str = "gpt-4o-mini",
+        additional_cap_usd: Decimal,
+    ) -> ContinuationStatus:
+        """Record a caller-verified human exception; never clear the global halt.
+
+        The caller must hold explicit human authorization for this exact scope.
+        A larger held allocation is not provider usage evidence or reconciliation.
+        One immutable grant is allowed per quarantined incident; replay cannot
+        refresh its budget or resurrect a revoked grant.
+        """
+        authorization_id, authorization_ref, expected_request_id = map(
+            _identifier, (authorization_id, authorization_ref, expected_request_id)
+        )
+        held = _money(held_usd)
+        cap = _money(additional_cap_usd, ceiling=False)
+        if allowed_model != "gpt-4o-mini" or held < 20_000_000 or not 0 < cap <= 5_000_000_000:
+            raise ValueError("Invalid continuation scope.")
+        with _transaction(self._path, write=True) as connection:
+            limit, opening, halted = _configuration(connection)
+            _totals(connection)
+            _continuation_schema(connection)
+            existing = connection.execute(
+                "SELECT authorization_id FROM ledger_continuations WHERE authorization_id = ?",
+                (authorization_id,),
+            ).fetchone()
+            if existing:
+                row = _find_continuation(connection, authorization_id)
+                if (
+                    row["authorization_ref"] != authorization_ref
+                    or row["expected_request_id"] != expected_request_id
+                    or row["allowed_model"] != allowed_model
+                    or row["held_nanos"] != held
+                    or row["cap_nanos"] != cap
+                ):
+                    raise LedgerConflict()
+                return _continuation_status(connection, authorization_id)
+            if connection.execute(
+                "SELECT 1 FROM ledger_continuations WHERE expected_request_id = ?",
+                (expected_request_id,),
+            ).fetchone():
+                raise LedgerConflict()
+            row = _required(connection, expected_request_id)
+            unknown_ids = [
+                item[0]
+                for item in connection.execute(
+                    "SELECT request_id FROM reservations WHERE status = 'uncertain'"
+                )
+            ]
+            pending = (
+                connection.execute(
+                    "SELECT 1 FROM reservations WHERE status = 'reserved' LIMIT 1"
+                ).fetchone()
+                is not None
+            )
+            if (
+                not halted
+                or row["status"] != "uncertain"
+                or row["error_code"] != "ProviderModelMismatch"
+                or row["model"] != "gpt-4.1-mini"
+                or unknown_ids != [expected_request_id]
+                or pending
+                or _observed_overrun(connection)
+            ):
+                raise BudgetDenied()
+            if held < row["amount_nanos"]:
+                raise ValueError("An unresolved hold cannot decrease.")
+            settled, _, _ = _totals(connection)
+            if opening + settled + held + cap > limit:
+                raise BudgetDenied()
+            prior_held = row["amount_nanos"]
+            connection.execute(
+                "UPDATE reservations SET amount_nanos = ? WHERE request_id = ?",
+                (held, expected_request_id),
+            )
+            fingerprint = _quarantine_fingerprint(_required(connection, expected_request_id))
+            connection.execute(
+                """INSERT INTO ledger_continuations
+                (authorization_id, authorization_ref, expected_request_id, allowed_model,
+                 cap_nanos, held_nanos, prior_held_nanos, quarantine_fingerprint, active)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1)""",
+                (
+                    authorization_id,
+                    authorization_ref,
+                    expected_request_id,
+                    allowed_model,
+                    cap,
+                    held,
+                    prior_held,
+                    fingerprint,
+                ),
+            )
+            _audit(connection, expected_request_id, "held_increased", "UserAuthorizedContinuation")
+            connection.execute(
+                """INSERT INTO continuation_events (authorization_id, status, reason_code)
+                VALUES (?, 'authorized', 'UserAuthorizedContinuation')""",
+                (authorization_id,),
+            )
+            return _continuation_status(connection, authorization_id)
+
+    def continuation_status(self, authorization_id: str) -> ContinuationStatus:
+        authorization_id = _identifier(authorization_id)
+        with _transaction(self._path) as connection:
+            return _continuation_status(connection, authorization_id)
+
     def reserve(
         self,
         *,
@@ -358,6 +672,7 @@ class BudgetLedger:
         model: str,
         phase: str,
         amount_usd: Decimal,
+        continuation_id: str | None = None,
     ) -> Reservation:
         request_id = _identifier(request_id)
         with _transaction(self._path, write=True) as connection:
@@ -371,7 +686,23 @@ class BudgetLedger:
                 raise ValueError("Invalid ledger phase.")
             amount = _money(amount_usd)
             settled, reserved, uncertain = _totals(connection)
-            if halted or opening + settled + reserved + uncertain + amount > limit:
+            if continuation_id is not None:
+                continuation_id = _identifier(continuation_id)
+                try:
+                    scope = _continuation_status(connection, continuation_id)
+                except LedgerConflict:
+                    raise BudgetDenied() from None
+                if (
+                    not scope.active
+                    or model != scope.allowed_model
+                    or phase != "development"
+                    or amount > 20_000_000
+                    or amount > _money(scope.remaining_usd, ceiling=False)
+                ):
+                    raise BudgetDenied()
+            elif halted:
+                raise BudgetDenied()
+            if opening + settled + reserved + uncertain + amount > limit:
                 raise BudgetDenied()
             connection.execute(
                 """INSERT INTO reservations
@@ -379,6 +710,11 @@ class BudgetLedger:
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'reserved')""",
                 (request_id, run_id, case_id, case_revision, attempt, model, phase, amount),
             )
+            if continuation_id is not None:
+                connection.execute(
+                    "INSERT INTO continuation_requests (request_id, authorization_id) VALUES (?, ?)",
+                    (request_id, continuation_id),
+                )
             _audit(connection, request_id, "reserved")
             return _reservation(_required(connection, request_id))
 
@@ -417,6 +753,15 @@ class BudgetLedger:
             )
             if cost > row["amount_nanos"]:
                 connection.execute("UPDATE ledger_meta SET halted = 1 WHERE singleton = 1")
+                _revoke_continuations(connection, "CostOverrun")
+            elif (
+                _continuations_exist(connection)
+                and connection.execute(
+                    "SELECT 1 FROM ledger_continuations WHERE expected_request_id = ? AND active = 1",
+                    (request_id,),
+                ).fetchone()
+            ):
+                _revoke_continuations(connection, "QuarantineChanged")
             _audit(connection, request_id, "settled")
             return _reservation(_required(connection, request_id))
 
@@ -433,6 +778,7 @@ class BudgetLedger:
                 "UPDATE reservations SET status = 'uncertain', error_code = ? WHERE request_id = ?",
                 (error_code, request_id),
             )
+            _revoke_continuations(connection, "NewUncertainty")
             _audit(connection, request_id, "uncertain", error_code)
             return _reservation(_required(connection, request_id))
 
@@ -471,6 +817,7 @@ class BudgetLedger:
         with _transaction(self._path, write=True) as connection:
             _configuration(connection)
             connection.execute("UPDATE ledger_meta SET halted = 1 WHERE singleton = 1")
+            _revoke_continuations(connection, "HaltedAgain")
 
     def get(self, request_id: str) -> Reservation | None:
         request_id = _identifier(request_id)

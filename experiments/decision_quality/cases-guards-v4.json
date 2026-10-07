@@ -1,0 +1,1769 @@
+{
+  "schema_version": 1,
+  "snapshot_id": "core-quality-guards-v4",
+  "purpose": "posthoc_synthetic_development_guard_probes_v4_authored_before_new_outputs_not_final_test",
+  "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+  "source_snapshot_date": "2026-10-06",
+  "reserved_issue_ids": [
+    8061,
+    8901,
+    12782,
+    16914
+  ],
+  "cases": [
+    {
+      "id": "synthetic-own-widget-stale-args",
+      "kind": "synthetic",
+      "origin_url": null,
+      "origin_issue_id": null,
+      "origin_created_at": null,
+      "description": "Own-widget value supplied to callback args at widget construction, without a loop or closure.",
+      "case_state": {
+        "case_id": "case-synthetic-own-widget-stale-args",
+        "case_revision": 0,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.64.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-stale-args",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "python_version",
+            "value": "3.13.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-stale-args",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Ubuntu 24.04",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-stale-args",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Firefox 143",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-stale-args",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_callback_argument",
+            "value": "args=(st.session_state[\"shade\"],) passes the own-widget value",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-stale-args",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_frontend_value",
+            "value": "Teal",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-stale-args",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_callback_value",
+            "value": "Amber",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-stale-args",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [
+          "User reports repeating the example in a fresh tab"
+        ],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "On Streamlit 1.64.0 with Python 3.13.0 on Ubuntu 24.04 and Firefox 143 I run this complete example. When I change Shade from Amber to Teal the selectbox shows Teal but remembered still shows Amber. I repeated that in a fresh tab. How should the callback get the new Shade value?\n\n```python\nimport streamlit as st\nst.session_state.setdefault(\"shade\", \"Amber\")\ndef remember(value):\n    st.session_state[\"remembered\"] = value\nst.selectbox(\"Shade\", [\"Amber\", \"Teal\"], key=\"shade\",\n             on_change=remember, args=(st.session_state[\"shade\"],))\nst.write(st.session_state.get(\"remembered\"))\n```",
+      "bundles": [
+        {
+          "snapshot_id": "core-quality-guards-v4",
+          "hits": [
+            {
+              "chunk_id": "selectbox-164-callback-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A callable: Streamlit will rerun the app and execute the\ncallable as a callback function before the rest of the app.\n\nNone: This is the same as on_change=\"rerun\". This value\nexists for backwards compatibility and shouldn't be used.\n\nargs: list or tuple; default=None\nAn optional list or tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; on_change callable behavior, args, kwargs parameters in normalized docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-signature-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "st.selectbox(label, options, index=0, format_func=special_internal_function, key=None, help=None, on_change=\"rerun\", args=None, kwargs=None, *, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, filter_mode=\"fuzzy\", width=\"stretch\", bind=None, persist_state=None)",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; complete callable signature in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-key-access-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A key lets you read or update the widget's value via\nst.session_state[key]. For more details, see Widget\nbehavior.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; key parameter, Session State access in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "widget-callback-order-snapshot-v4",
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "excerpt": "When a user interacts with a widget, the widget is updated and triggers a rerun in the following order:\n\n1. The widget value in `st.session_state` is updated.\n2. The callback function (if any) is executed.\n3. The page reruns with the widget command returning its new value.\n\nIf the callback function displays anything on the screen, that content will appear above the rest of the page. A callback function runs as a _prefix_ to the script run. Consequently, that means anything written via a callback function will disappear as soon as the user performs their next action. Widget commands should generally not be called within a callback function.\n\n<Note>\n\nIf a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget. In particular, if you want to use a widget's value in its own callback function, you can't pass that value to the callback function via the `args` parameter; you must assign a key to the widget and look up its value using `st.session_state` _within the callback function_.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L104",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [],
+              "source_span": "Markdown lines 104-114, Order of operations; unversioned October 2026 snapshot, not historical 1.27.2 documentation"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 1,
+          "warnings": []
+        },
+        {
+          "snapshot_id": "core-quality-guards-v4",
+          "hits": [
+            {
+              "chunk_id": "selectbox-164-callback-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A callable: Streamlit will rerun the app and execute the\ncallable as a callback function before the rest of the app.\n\nNone: This is the same as on_change=\"rerun\". This value\nexists for backwards compatibility and shouldn't be used.\n\nargs: list or tuple; default=None\nAn optional list or tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; on_change callable behavior, args, kwargs parameters in normalized docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-signature-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "st.selectbox(label, options, index=0, format_func=special_internal_function, key=None, help=None, on_change=\"rerun\", args=None, kwargs=None, *, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, filter_mode=\"fuzzy\", width=\"stretch\", bind=None, persist_state=None)",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; complete callable signature in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-key-access-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A key lets you read or update the widget's value via\nst.session_state[key]. For more details, see Widget\nbehavior.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; key parameter, Session State access in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "widget-callback-order-snapshot-v4",
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "excerpt": "When a user interacts with a widget, the widget is updated and triggers a rerun in the following order:\n\n1. The widget value in `st.session_state` is updated.\n2. The callback function (if any) is executed.\n3. The page reruns with the widget command returning its new value.\n\nIf the callback function displays anything on the screen, that content will appear above the rest of the page. A callback function runs as a _prefix_ to the script run. Consequently, that means anything written via a callback function will disappear as soon as the user performs their next action. Widget commands should generally not be called within a callback function.\n\n<Note>\n\nIf a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget. In particular, if you want to use a widget's value in its own callback function, you can't pass that value to the callback function via the `args` parameter; you must assign a key to the widget and look up its value using `st.session_state` _within the callback function_.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L104",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [],
+              "source_span": "Markdown lines 104-114, Order of operations; unversioned October 2026 snapshot, not historical 1.27.2 documentation"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 2,
+          "warnings": []
+        }
+      ],
+      "expectations": {
+        "acceptable_decisions": [
+          "answer"
+        ],
+        "allowed_missing_info": [],
+        "required_terms": [],
+        "forbidden_terms": [],
+        "require_evidence": true,
+        "require_uncertainty": false,
+        "forbid_repeated_checks": true
+      },
+      "reviewer_notes": [
+        "The supplied code freezes the argument value when the widget is constructed. Read the keyed current value within the callback and adjust the callable signature consistently. Merely replacing the handler with a closure over the old value does not solve it.",
+        "No loop-variable late binding is present. A claim about a loop closure would invent a diagnosis."
+      ]
+    },
+    {
+      "id": "synthetic-own-widget-pass-key-control",
+      "kind": "synthetic",
+      "origin_url": null,
+      "origin_issue_id": null,
+      "origin_created_at": null,
+      "description": "Positive control: pass the stable widget key and read its value during invocation.",
+      "case_state": {
+        "case_id": "case-synthetic-own-widget-pass-key-control",
+        "case_revision": 0,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.64.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-pass-key-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "python_version",
+            "value": "3.13.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-pass-key-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Ubuntu 24.04",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-pass-key-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Firefox 143",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-pass-key-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_callback_argument",
+            "value": "The stable key shade is passed as args=(\"shade\",)",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-pass-key-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_failure_status",
+            "value": "No failure is being reported",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-pass-key-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "I am checking this design on Streamlit 1.64.0 and Python 3.13.0 on Ubuntu 24.04 with Firefox 143. The callback receives the key and looks up Session State inside the callback. Is this the right way to get the newly selected value or must I pass st.session_state[\"shade\"] through args instead? No failure is being reported.\n\n```python\nimport streamlit as st\ndef remember(widget_key):\n    st.session_state[\"remembered\"] = st.session_state[widget_key]\nst.selectbox(\"Shade\", [\"Amber\", \"Teal\"], key=\"shade\",\n             on_change=remember, args=(\"shade\",))\nst.write(st.session_state.get(\"remembered\"))\n```",
+      "bundles": [
+        {
+          "snapshot_id": "core-quality-guards-v4",
+          "hits": [
+            {
+              "chunk_id": "selectbox-164-callback-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A callable: Streamlit will rerun the app and execute the\ncallable as a callback function before the rest of the app.\n\nNone: This is the same as on_change=\"rerun\". This value\nexists for backwards compatibility and shouldn't be used.\n\nargs: list or tuple; default=None\nAn optional list or tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; on_change callable behavior, args, kwargs parameters in normalized docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-signature-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "st.selectbox(label, options, index=0, format_func=special_internal_function, key=None, help=None, on_change=\"rerun\", args=None, kwargs=None, *, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, filter_mode=\"fuzzy\", width=\"stretch\", bind=None, persist_state=None)",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; complete callable signature in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-key-access-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A key lets you read or update the widget's value via\nst.session_state[key]. For more details, see Widget\nbehavior.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; key parameter, Session State access in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "widget-callback-order-snapshot-v4",
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "excerpt": "When a user interacts with a widget, the widget is updated and triggers a rerun in the following order:\n\n1. The widget value in `st.session_state` is updated.\n2. The callback function (if any) is executed.\n3. The page reruns with the widget command returning its new value.\n\nIf the callback function displays anything on the screen, that content will appear above the rest of the page. A callback function runs as a _prefix_ to the script run. Consequently, that means anything written via a callback function will disappear as soon as the user performs their next action. Widget commands should generally not be called within a callback function.\n\n<Note>\n\nIf a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget. In particular, if you want to use a widget's value in its own callback function, you can't pass that value to the callback function via the `args` parameter; you must assign a key to the widget and look up its value using `st.session_state` _within the callback function_.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L104",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [],
+              "source_span": "Markdown lines 104-114, Order of operations; unversioned October 2026 snapshot, not historical 1.27.2 documentation"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 1,
+          "warnings": []
+        },
+        {
+          "snapshot_id": "core-quality-guards-v4",
+          "hits": [
+            {
+              "chunk_id": "selectbox-164-callback-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A callable: Streamlit will rerun the app and execute the\ncallable as a callback function before the rest of the app.\n\nNone: This is the same as on_change=\"rerun\". This value\nexists for backwards compatibility and shouldn't be used.\n\nargs: list or tuple; default=None\nAn optional list or tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; on_change callable behavior, args, kwargs parameters in normalized docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-signature-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "st.selectbox(label, options, index=0, format_func=special_internal_function, key=None, help=None, on_change=\"rerun\", args=None, kwargs=None, *, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, filter_mode=\"fuzzy\", width=\"stretch\", bind=None, persist_state=None)",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; complete callable signature in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-key-access-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A key lets you read or update the widget's value via\nst.session_state[key]. For more details, see Widget\nbehavior.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; key parameter, Session State access in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "widget-callback-order-snapshot-v4",
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "excerpt": "When a user interacts with a widget, the widget is updated and triggers a rerun in the following order:\n\n1. The widget value in `st.session_state` is updated.\n2. The callback function (if any) is executed.\n3. The page reruns with the widget command returning its new value.\n\nIf the callback function displays anything on the screen, that content will appear above the rest of the page. A callback function runs as a _prefix_ to the script run. Consequently, that means anything written via a callback function will disappear as soon as the user performs their next action. Widget commands should generally not be called within a callback function.\n\n<Note>\n\nIf a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget. In particular, if you want to use a widget's value in its own callback function, you can't pass that value to the callback function via the `args` parameter; you must assign a key to the widget and look up its value using `st.session_state` _within the callback function_.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L104",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [],
+              "source_span": "Markdown lines 104-114, Order of operations; unversioned October 2026 snapshot, not historical 1.27.2 documentation"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 2,
+          "warnings": []
+        }
+      ],
+      "expectations": {
+        "acceptable_decisions": [
+          "answer"
+        ],
+        "allowed_missing_info": [],
+        "required_terms": [],
+        "forbidden_terms": [],
+        "require_evidence": true,
+        "require_uncertainty": false,
+        "forbid_repeated_checks": true
+      },
+      "reviewer_notes": [
+        "Affirm the supplied pass-key/read-inside design. Do not invent a failure or rewrite it into value-at-construction args.",
+        "This positive control is intentionally close in mechanism to the stale-args case and is not an independent benchmark sample."
+      ]
+    },
+    {
+      "id": "synthetic-form-submit-exact-parameter",
+      "kind": "synthetic",
+      "origin_url": null,
+      "origin_issue_id": null,
+      "origin_created_at": null,
+      "description": "Exact versioned submit-button callback signature rather than general form concepts.",
+      "case_state": {
+        "case_id": "case-synthetic-form-submit-exact-parameter",
+        "case_revision": 0,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.64.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-form-submit-exact-parameter",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "python_version",
+            "value": "3.13.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-form-submit-exact-parameter",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Ubuntu 24.04",
+            "source_ref": "user/synthetic-guards-v4/synthetic-form-submit-exact-parameter",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Firefox 143",
+            "source_ref": "user/synthetic-guards-v4/synthetic-form-submit-exact-parameter",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_execution_status",
+            "value": "The form draft has not been run",
+            "source_ref": "user/synthetic-guards-v4/synthetic-form-submit-exact-parameter",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_desired_behavior",
+            "value": "save should read the selected destination when Save is submitted",
+            "source_ref": "user/synthetic-guards-v4/synthetic-form-submit-exact-parameter",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "I am writing this form for Streamlit 1.64.0 with Python 3.13.0 on Ubuntu 24.04 and Firefox 143. I have not run this draft. I want save to read the selected destination when Save is submitted. Is on_change the supported callback parameter for form_submit_button here and if not what should I change?\n\n```python\nimport streamlit as st\ndef save():\n    st.session_state[\"saved_destination\"] = st.session_state[\"destination\"]\nwith st.form(\"trip\"):\n    st.selectbox(\"Destination\", [\"Kyoto\", \"Porto\"], key=\"destination\")\n    st.form_submit_button(\"Save\", on_change=save)\n```",
+      "bundles": [
+        {
+          "snapshot_id": "core-quality-guards-v4",
+          "hits": [
+            {
+              "chunk_id": "form-164-callback-v4",
+              "source_id": "docstring:1.64.0:streamlit.form",
+              "excerpt": "Within a form, the only widget that can have a callback function is\nst.form_submit_button.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.form; form constraints in normalized docstring"
+            },
+            {
+              "chunk_id": "submit-button-164-signature-v4",
+              "source_id": "docstring:1.64.0:streamlit.form_submit_button",
+              "excerpt": "st.form_submit_button(label=\"Submit\", help=None, on_click=None, args=None, kwargs=None, *, key=None, type=\"secondary\", icon=None, icon_position=\"left\", disabled=False, use_container_width=None, width=\"content\", shortcut=None, wrap=None)\n\nDisplay a form submit button.\n\nWhen this button is clicked, all widget values inside the form will be\nsent from the user's browser to your Streamlit server in a batch.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.form_submit_button; complete callable signature and submit batching behavior in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "submit-button-164-on-click-v4",
+              "source_id": "docstring:1.64.0:streamlit.form_submit_button",
+              "excerpt": "on_click: callable; default=None\nAn optional callback invoked when this button is clicked.\n\nargs: list or tuple; default=None\nAn optional list or tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.form_submit_button; on_click, args and kwargs parameters in normalized version-specific docstring"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 1,
+          "warnings": []
+        },
+        {
+          "snapshot_id": "core-quality-guards-v4",
+          "hits": [
+            {
+              "chunk_id": "form-164-callback-v4",
+              "source_id": "docstring:1.64.0:streamlit.form",
+              "excerpt": "Within a form, the only widget that can have a callback function is\nst.form_submit_button.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.form; form constraints in normalized docstring"
+            },
+            {
+              "chunk_id": "submit-button-164-signature-v4",
+              "source_id": "docstring:1.64.0:streamlit.form_submit_button",
+              "excerpt": "st.form_submit_button(label=\"Submit\", help=None, on_click=None, args=None, kwargs=None, *, key=None, type=\"secondary\", icon=None, icon_position=\"left\", disabled=False, use_container_width=None, width=\"content\", shortcut=None, wrap=None)\n\nDisplay a form submit button.\n\nWhen this button is clicked, all widget values inside the form will be\nsent from the user's browser to your Streamlit server in a batch.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.form_submit_button; complete callable signature and submit batching behavior in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "submit-button-164-on-click-v4",
+              "source_id": "docstring:1.64.0:streamlit.form_submit_button",
+              "excerpt": "on_click: callable; default=None\nAn optional callback invoked when this button is clicked.\n\nargs: list or tuple; default=None\nAn optional list or tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.form_submit_button; on_click, args and kwargs parameters in normalized version-specific docstring"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 2,
+          "warnings": []
+        }
+      ],
+      "expectations": {
+        "acceptable_decisions": [
+          "answer"
+        ],
+        "allowed_missing_info": [],
+        "required_terms": [],
+        "forbidden_terms": [],
+        "require_evidence": true,
+        "require_uncertainty": false,
+        "forbid_repeated_checks": true
+      },
+      "reviewer_notes": [
+        "The exact frozen 1.64.0 form_submit_button signature supplies on_click. Do not suggest on_change for this API or attach an ordinary-widget callback inside the form.",
+        "Any code must preserve the handler arity and use the current keyed form value inside save. The user has not reported an executed failure."
+      ]
+    },
+    {
+      "id": "synthetic-missing-widget-helper",
+      "kind": "synthetic",
+      "origin_url": null,
+      "origin_issue_id": null,
+      "origin_created_at": null,
+      "description": "A genuinely missing custom helper implementation warrants a focused question.",
+      "case_state": {
+        "case_id": "case-synthetic-missing-widget-helper",
+        "case_revision": 0,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.64.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-missing-widget-helper",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "python_version",
+            "value": "3.13.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-missing-widget-helper",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Ubuntu 24.04",
+            "source_ref": "user/synthetic-guards-v4/synthetic-missing-widget-helper",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Firefox 143",
+            "source_ref": "user/synthetic-guards-v4/synthetic-missing-widget-helper",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_widget_call",
+            "value": "draw_choice_panel(\"fruit\", [\"Pear\", \"Plum\"])",
+            "source_ref": "user/synthetic-guards-v4/synthetic-missing-widget-helper",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_missing_implementation",
+            "value": "draw_choice_panel is in another file and was not supplied",
+            "source_ref": "user/synthetic-guards-v4/synthetic-missing-widget-helper",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [
+          "widget_implementation"
+        ],
+        "checks_performed": [],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "On Streamlit 1.64.0 with Python 3.13.0 on Ubuntu 24.04 and Firefox 143 my page calls draw_choice_panel(\"fruit\", [\"Pear\", \"Plum\"]). The fruit selection returns to Pear after I change the separate region selector. I have not included draw_choice_panel because it is in another file. It creates the affected widget but I do not know which arguments it supplies. What should I change?",
+      "bundles": [
+        {
+          "snapshot_id": "core-quality-guards-v4",
+          "hits": [
+            {
+              "chunk_id": "selectbox-164-callback-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A callable: Streamlit will rerun the app and execute the\ncallable as a callback function before the rest of the app.\n\nNone: This is the same as on_change=\"rerun\". This value\nexists for backwards compatibility and shouldn't be used.\n\nargs: list or tuple; default=None\nAn optional list or tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; on_change callable behavior, args, kwargs parameters in normalized docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-signature-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "st.selectbox(label, options, index=0, format_func=special_internal_function, key=None, help=None, on_change=\"rerun\", args=None, kwargs=None, *, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, filter_mode=\"fuzzy\", width=\"stretch\", bind=None, persist_state=None)",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; complete callable signature in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-key-access-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A key lets you read or update the widget's value via\nst.session_state[key]. For more details, see Widget\nbehavior.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; key parameter, Session State access in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "widget-callback-order-snapshot-v4",
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "excerpt": "When a user interacts with a widget, the widget is updated and triggers a rerun in the following order:\n\n1. The widget value in `st.session_state` is updated.\n2. The callback function (if any) is executed.\n3. The page reruns with the widget command returning its new value.\n\nIf the callback function displays anything on the screen, that content will appear above the rest of the page. A callback function runs as a _prefix_ to the script run. Consequently, that means anything written via a callback function will disappear as soon as the user performs their next action. Widget commands should generally not be called within a callback function.\n\n<Note>\n\nIf a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget. In particular, if you want to use a widget's value in its own callback function, you can't pass that value to the callback function via the `args` parameter; you must assign a key to the widget and look up its value using `st.session_state` _within the callback function_.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L104",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [],
+              "source_span": "Markdown lines 104-114, Order of operations; unversioned October 2026 snapshot, not historical 1.27.2 documentation"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 1,
+          "warnings": []
+        },
+        {
+          "snapshot_id": "core-quality-guards-v4",
+          "hits": [
+            {
+              "chunk_id": "selectbox-164-callback-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A callable: Streamlit will rerun the app and execute the\ncallable as a callback function before the rest of the app.\n\nNone: This is the same as on_change=\"rerun\". This value\nexists for backwards compatibility and shouldn't be used.\n\nargs: list or tuple; default=None\nAn optional list or tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; on_change callable behavior, args, kwargs parameters in normalized docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-signature-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "st.selectbox(label, options, index=0, format_func=special_internal_function, key=None, help=None, on_change=\"rerun\", args=None, kwargs=None, *, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, filter_mode=\"fuzzy\", width=\"stretch\", bind=None, persist_state=None)",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; complete callable signature in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-key-access-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A key lets you read or update the widget's value via\nst.session_state[key]. For more details, see Widget\nbehavior.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; key parameter, Session State access in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "widget-callback-order-snapshot-v4",
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "excerpt": "When a user interacts with a widget, the widget is updated and triggers a rerun in the following order:\n\n1. The widget value in `st.session_state` is updated.\n2. The callback function (if any) is executed.\n3. The page reruns with the widget command returning its new value.\n\nIf the callback function displays anything on the screen, that content will appear above the rest of the page. A callback function runs as a _prefix_ to the script run. Consequently, that means anything written via a callback function will disappear as soon as the user performs their next action. Widget commands should generally not be called within a callback function.\n\n<Note>\n\nIf a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget. In particular, if you want to use a widget's value in its own callback function, you can't pass that value to the callback function via the `args` parameter; you must assign a key to the widget and look up its value using `st.session_state` _within the callback function_.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L104",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [],
+              "source_span": "Markdown lines 104-114, Order of operations; unversioned October 2026 snapshot, not historical 1.27.2 documentation"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 2,
+          "warnings": []
+        }
+      ],
+      "expectations": {
+        "acceptable_decisions": [
+          "ask"
+        ],
+        "allowed_missing_info": [
+          "widget_implementation",
+          "minimal_failing_reproduction"
+        ],
+        "required_terms": [],
+        "forbidden_terms": [],
+        "require_evidence": false,
+        "require_uncertainty": false,
+        "forbid_repeated_checks": true
+      },
+      "reviewer_notes": [
+        "Ask for the implementation of the named helper and relevant call context. The widget key, default/index, callback and any form/fragment use are genuinely absent.",
+        "Do not ask for installed version or browser again. Do not infer a specific reset cause or propose a definitive key/default fix without seeing the helper."
+      ]
+    },
+    {
+      "id": "synthetic-known-environment-callback-display",
+      "kind": "synthetic",
+      "origin_url": null,
+      "origin_issue_id": null,
+      "origin_created_at": null,
+      "description": "Already-known environment and complete callback explain prefix display without another diagnostic question.",
+      "case_state": {
+        "case_id": "case-synthetic-known-environment-callback-display",
+        "case_revision": 0,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.64.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-known-environment-callback-display",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "python_version",
+            "value": "3.13.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-known-environment-callback-display",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Ubuntu 24.04",
+            "source_ref": "user/synthetic-guards-v4/synthetic-known-environment-callback-display",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Firefox 143",
+            "source_ref": "user/synthetic-guards-v4/synthetic-known-environment-callback-display",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_question_scope",
+            "value": "The position and temporary lifetime of output written by the callback",
+            "source_ref": "user/synthetic-guards-v4/synthetic-known-environment-callback-display",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_value_status",
+            "value": "No wrong callback value is reported",
+            "source_ref": "user/synthetic-guards-v4/synthetic-known-environment-callback-display",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser_console_output",
+            "value": "No errors were observed",
+            "source_ref": "user/synthetic-guards-v4/synthetic-known-environment-callback-display",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [
+          "User checked browser console and observed no errors"
+        ],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "Streamlit 1.64.0 Python 3.13.0 Ubuntu 24.04 Firefox 143. This complete app prints Selection now above the selectbox after a change. The callback text disappears when I later interact with another widget in the page. I checked the browser console and there are no errors. I am asking about where callback output is displayed and why it is temporary rather than reporting a wrong value.\n\n```python\nimport streamlit as st\ndef announce():\n    st.write(\"Selection now:\", st.session_state[\"route\"])\nst.selectbox(\"Route\", [\"East\", \"West\"], key=\"route\", on_change=announce)\nst.write(\"Main page\")\nst.checkbox(\"Other page setting\")\n```",
+      "bundles": [
+        {
+          "snapshot_id": "core-quality-guards-v4",
+          "hits": [
+            {
+              "chunk_id": "selectbox-164-callback-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A callable: Streamlit will rerun the app and execute the\ncallable as a callback function before the rest of the app.\n\nNone: This is the same as on_change=\"rerun\". This value\nexists for backwards compatibility and shouldn't be used.\n\nargs: list or tuple; default=None\nAn optional list or tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; on_change callable behavior, args, kwargs parameters in normalized docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-signature-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "st.selectbox(label, options, index=0, format_func=special_internal_function, key=None, help=None, on_change=\"rerun\", args=None, kwargs=None, *, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, filter_mode=\"fuzzy\", width=\"stretch\", bind=None, persist_state=None)",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; complete callable signature in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-key-access-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A key lets you read or update the widget's value via\nst.session_state[key]. For more details, see Widget\nbehavior.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; key parameter, Session State access in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "widget-callback-order-snapshot-v4",
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "excerpt": "When a user interacts with a widget, the widget is updated and triggers a rerun in the following order:\n\n1. The widget value in `st.session_state` is updated.\n2. The callback function (if any) is executed.\n3. The page reruns with the widget command returning its new value.\n\nIf the callback function displays anything on the screen, that content will appear above the rest of the page. A callback function runs as a _prefix_ to the script run. Consequently, that means anything written via a callback function will disappear as soon as the user performs their next action. Widget commands should generally not be called within a callback function.\n\n<Note>\n\nIf a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget. In particular, if you want to use a widget's value in its own callback function, you can't pass that value to the callback function via the `args` parameter; you must assign a key to the widget and look up its value using `st.session_state` _within the callback function_.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L104",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [],
+              "source_span": "Markdown lines 104-114, Order of operations; unversioned October 2026 snapshot, not historical 1.27.2 documentation"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 1,
+          "warnings": []
+        },
+        {
+          "snapshot_id": "core-quality-guards-v4",
+          "hits": [
+            {
+              "chunk_id": "selectbox-164-callback-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A callable: Streamlit will rerun the app and execute the\ncallable as a callback function before the rest of the app.\n\nNone: This is the same as on_change=\"rerun\". This value\nexists for backwards compatibility and shouldn't be used.\n\nargs: list or tuple; default=None\nAn optional list or tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; on_change callable behavior, args, kwargs parameters in normalized docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-signature-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "st.selectbox(label, options, index=0, format_func=special_internal_function, key=None, help=None, on_change=\"rerun\", args=None, kwargs=None, *, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, filter_mode=\"fuzzy\", width=\"stretch\", bind=None, persist_state=None)",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; complete callable signature in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-key-access-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A key lets you read or update the widget's value via\nst.session_state[key]. For more details, see Widget\nbehavior.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; key parameter, Session State access in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "widget-callback-order-snapshot-v4",
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "excerpt": "When a user interacts with a widget, the widget is updated and triggers a rerun in the following order:\n\n1. The widget value in `st.session_state` is updated.\n2. The callback function (if any) is executed.\n3. The page reruns with the widget command returning its new value.\n\nIf the callback function displays anything on the screen, that content will appear above the rest of the page. A callback function runs as a _prefix_ to the script run. Consequently, that means anything written via a callback function will disappear as soon as the user performs their next action. Widget commands should generally not be called within a callback function.\n\n<Note>\n\nIf a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget. In particular, if you want to use a widget's value in its own callback function, you can't pass that value to the callback function via the `args` parameter; you must assign a key to the widget and look up its value using `st.session_state` _within the callback function_.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L104",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [],
+              "source_span": "Markdown lines 104-114, Order of operations; unversioned October 2026 snapshot, not historical 1.27.2 documentation"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 2,
+          "warnings": []
+        }
+      ],
+      "expectations": {
+        "acceptable_decisions": [
+          "answer"
+        ],
+        "allowed_missing_info": [],
+        "required_terms": [],
+        "forbidden_terms": [],
+        "require_evidence": true,
+        "require_uncertainty": false,
+        "forbid_repeated_checks": true
+      },
+      "reviewer_notes": [
+        "The pinned widget-behavior concept explicitly describes callback output above the rest of the page and its disappearance on the next action. Explain this with the supplied environment and source scope.",
+        "A repeated version/browser/console question or diagnosis of stale values would ignore supplied information."
+      ]
+    },
+    {
+      "id": "synthetic-unknown-installed-version",
+      "kind": "synthetic",
+      "origin_url": null,
+      "origin_issue_id": null,
+      "origin_created_at": null,
+      "description": "A genuinely unreported installed version must not be filled from retrieved current API docs.",
+      "case_state": {
+        "case_id": "case-synthetic-unknown-installed-version",
+        "case_revision": 0,
+        "facts": [
+          {
+            "name": "python_version",
+            "value": "3.13.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-unknown-installed-version",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Ubuntu 24.04",
+            "source_ref": "user/synthetic-guards-v4/synthetic-unknown-installed-version",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Firefox 143",
+            "source_ref": "user/synthetic-guards-v4/synthetic-unknown-installed-version",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_error",
+            "value": "TypeError: selectbox got an unexpected keyword argument bind",
+            "source_ref": "user/synthetic-guards-v4/synthetic-unknown-installed-version",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_version_check_status",
+            "value": "Installed Streamlit version has not been checked",
+            "source_ref": "user/synthetic-guards-v4/synthetic-unknown-installed-version",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [
+          "streamlit_version"
+        ],
+        "checks_performed": [],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "I copied a selectbox example using bind and persist_state from a documentation page. My installed app raises TypeError saying selectbox got an unexpected keyword argument bind. I use Python 3.13.0 on Ubuntu 24.04 with Firefox 143. I do not know the installed Streamlit version and have not checked it. Which selectbox signature applies to my installation?",
+      "bundles": [
+        {
+          "snapshot_id": "core-quality-guards-v4",
+          "hits": [
+            {
+              "chunk_id": "selectbox-164-callback-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A callable: Streamlit will rerun the app and execute the\ncallable as a callback function before the rest of the app.\n\nNone: This is the same as on_change=\"rerun\". This value\nexists for backwards compatibility and shouldn't be used.\n\nargs: list or tuple; default=None\nAn optional list or tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; on_change callable behavior, args, kwargs parameters in normalized docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-signature-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "st.selectbox(label, options, index=0, format_func=special_internal_function, key=None, help=None, on_change=\"rerun\", args=None, kwargs=None, *, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, filter_mode=\"fuzzy\", width=\"stretch\", bind=None, persist_state=None)",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; complete callable signature in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-key-access-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A key lets you read or update the widget's value via\nst.session_state[key]. For more details, see Widget\nbehavior.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; key parameter, Session State access in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "widget-callback-order-snapshot-v4",
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "excerpt": "When a user interacts with a widget, the widget is updated and triggers a rerun in the following order:\n\n1. The widget value in `st.session_state` is updated.\n2. The callback function (if any) is executed.\n3. The page reruns with the widget command returning its new value.\n\nIf the callback function displays anything on the screen, that content will appear above the rest of the page. A callback function runs as a _prefix_ to the script run. Consequently, that means anything written via a callback function will disappear as soon as the user performs their next action. Widget commands should generally not be called within a callback function.\n\n<Note>\n\nIf a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget. In particular, if you want to use a widget's value in its own callback function, you can't pass that value to the callback function via the `args` parameter; you must assign a key to the widget and look up its value using `st.session_state` _within the callback function_.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L104",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [],
+              "source_span": "Markdown lines 104-114, Order of operations; unversioned October 2026 snapshot, not historical 1.27.2 documentation"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 1,
+          "warnings": []
+        },
+        {
+          "snapshot_id": "core-quality-guards-v4",
+          "hits": [
+            {
+              "chunk_id": "selectbox-164-callback-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A callable: Streamlit will rerun the app and execute the\ncallable as a callback function before the rest of the app.\n\nNone: This is the same as on_change=\"rerun\". This value\nexists for backwards compatibility and shouldn't be used.\n\nargs: list or tuple; default=None\nAn optional list or tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; on_change callable behavior, args, kwargs parameters in normalized docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-signature-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "st.selectbox(label, options, index=0, format_func=special_internal_function, key=None, help=None, on_change=\"rerun\", args=None, kwargs=None, *, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, filter_mode=\"fuzzy\", width=\"stretch\", bind=None, persist_state=None)",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; complete callable signature in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-key-access-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A key lets you read or update the widget's value via\nst.session_state[key]. For more details, see Widget\nbehavior.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; key parameter, Session State access in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "widget-callback-order-snapshot-v4",
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "excerpt": "When a user interacts with a widget, the widget is updated and triggers a rerun in the following order:\n\n1. The widget value in `st.session_state` is updated.\n2. The callback function (if any) is executed.\n3. The page reruns with the widget command returning its new value.\n\nIf the callback function displays anything on the screen, that content will appear above the rest of the page. A callback function runs as a _prefix_ to the script run. Consequently, that means anything written via a callback function will disappear as soon as the user performs their next action. Widget commands should generally not be called within a callback function.\n\n<Note>\n\nIf a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget. In particular, if you want to use a widget's value in its own callback function, you can't pass that value to the callback function via the `args` parameter; you must assign a key to the widget and look up its value using `st.session_state` _within the callback function_.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L104",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [],
+              "source_span": "Markdown lines 104-114, Order of operations; unversioned October 2026 snapshot, not historical 1.27.2 documentation"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 2,
+          "warnings": []
+        }
+      ],
+      "expectations": {
+        "acceptable_decisions": [
+          "ask"
+        ],
+        "allowed_missing_info": [
+          "streamlit_version"
+        ],
+        "required_terms": [],
+        "forbidden_terms": [],
+        "require_evidence": false,
+        "require_uncertainty": true,
+        "forbid_repeated_checks": true
+      },
+      "reviewer_notes": [
+        "Ask for the actual installed Streamlit version, for example its reported package version. Exact 1.64.0 retrieved metadata is not an installed-version fact.",
+        "Do not recommend an upgrade as an established fix, claim a specific release introduced the keyword, or erase the explicit unknown from case state."
+      ]
+    },
+    {
+      "id": "synthetic-corrected-version-working-reduction",
+      "kind": "synthetic",
+      "origin_url": null,
+      "origin_issue_id": null,
+      "origin_created_at": null,
+      "description": "Active version correction and acknowledged working reduced example leave failing application context missing.",
+      "case_state": {
+        "case_id": "case-synthetic-corrected-version-working-reduction",
+        "case_revision": 0,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.63.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-corrected-version-working-reduction",
+            "turn_id": "synthetic-prior",
+            "provenance_kind": "user",
+            "status": "superseded"
+          },
+          {
+            "name": "streamlit_version",
+            "value": "1.64.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-corrected-version-working-reduction",
+            "turn_id": "synthetic-correction",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "python_version",
+            "value": "3.13.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-corrected-version-working-reduction",
+            "turn_id": "synthetic-correction",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Ubuntu 24.04",
+            "source_ref": "user/synthetic-guards-v4/synthetic-corrected-version-working-reduction",
+            "turn_id": "synthetic-correction",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Firefox 143",
+            "source_ref": "user/synthetic-guards-v4/synthetic-corrected-version-working-reduction",
+            "turn_id": "synthetic-correction",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_reduced_example_result",
+            "value": "The isolated fragment and multiselect example works",
+            "source_ref": "user/synthetic-guards-v4/synthetic-corrected-version-working-reduction",
+            "turn_id": "synthetic-correction",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_missing_failing_context",
+            "value": "The failing complete app and options-builder are not provided",
+            "source_ref": "user/synthetic-guards-v4/synthetic-corrected-version-working-reduction",
+            "turn_id": "synthetic-correction",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [
+          "minimal_failing_reproduction",
+          "options_builder_implementation"
+        ],
+        "checks_performed": [
+          "User reports the isolated fragment with constant options and default=[\"Pear\"] works"
+        ],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "Correction to my earlier environment report: the affected app is running Streamlit 1.64.0 rather than 1.63.0. Python is 3.13.0 on Ubuntu 24.04 with Firefox 143. In the full app a multiselect inside a fragment becomes empty after the region changes. I already tried an isolated fragment with a constant options list and default=[\"Pear\"] and it works. My full app builds the options in a helper that is not included and I have not made a failing reduced example of that path. What evidence do you need next?",
+      "bundles": [
+        {
+          "snapshot_id": "core-quality-guards-v4",
+          "hits": [
+            {
+              "chunk_id": "multiselect-164-default-v4",
+              "source_id": "docstring:1.64.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.multiselect; default parameter in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "fragment-164-rerun-v4",
+              "source_id": "docstring:1.64.0:streamlit.fragment",
+              "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.fragment; fragment rerun behavior in normalized version-specific docstring"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 1,
+          "warnings": []
+        },
+        {
+          "snapshot_id": "core-quality-guards-v4",
+          "hits": [
+            {
+              "chunk_id": "multiselect-164-default-v4",
+              "source_id": "docstring:1.64.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.multiselect; default parameter in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "fragment-164-rerun-v4",
+              "source_id": "docstring:1.64.0:streamlit.fragment",
+              "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.fragment; fragment rerun behavior in normalized version-specific docstring"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 2,
+          "warnings": []
+        }
+      ],
+      "expectations": {
+        "acceptable_decisions": [
+          "ask"
+        ],
+        "allowed_missing_info": [
+          "minimal_failing_reproduction",
+          "options_builder_implementation"
+        ],
+        "required_terms": [],
+        "forbidden_terms": [],
+        "require_evidence": false,
+        "require_uncertainty": true,
+        "forbid_repeated_checks": true
+      },
+      "reviewer_notes": [
+        "Use the active corrected 1.64.0 value. Preserve the superseded fact as history rather than treating it as the installed version.",
+        "A focused request for the failing full-app path or options builder is legitimate. Do not claim no reduction was tried, ask to repeat the acknowledged working isolated test, or assert a regression/root cause from API concepts."
+      ]
+    },
+    {
+      "id": "synthetic-reproduced-front-back-mismatch",
+      "kind": "synthetic",
+      "origin_url": null,
+      "origin_issue_id": null,
+      "origin_created_at": null,
+      "description": "Fully supplied correct callback plus reproduced frontend/backend disagreement without matching cause evidence.",
+      "case_state": {
+        "case_id": "case-synthetic-reproduced-front-back-mismatch",
+        "case_revision": 0,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.64.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-reproduced-front-back-mismatch",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "python_version",
+            "value": "3.13.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-reproduced-front-back-mismatch",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Ubuntu 24.04",
+            "source_ref": "user/synthetic-guards-v4/synthetic-reproduced-front-back-mismatch",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Firefox 143",
+            "source_ref": "user/synthetic-guards-v4/synthetic-reproduced-front-back-mismatch",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "minimal_failing_reproduction",
+            "value": "import streamlit as st\ndef record(widget_key):\n    st.session_state[\"seen\"] = st.session_state[widget_key]\nst.selectbox(\"City\", [\"Oslo\", \"Lima\"], key=\"city\",\n             on_change=record, args=(\"city\",))\nst.write(\"Session State city:\", st.session_state.get(\"city\"))\nst.write(\"Callback saw:\", st.session_state.get(\"seen\"))",
+            "source_ref": "user/synthetic-guards-v4/synthetic-reproduced-front-back-mismatch",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_frontend_value",
+            "value": "Lima",
+            "source_ref": "user/synthetic-guards-v4/synthetic-reproduced-front-back-mismatch",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_backend_session_state_value",
+            "value": "Oslo",
+            "source_ref": "user/synthetic-guards-v4/synthetic-reproduced-front-back-mismatch",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_callback_value",
+            "value": "Oslo",
+            "source_ref": "user/synthetic-guards-v4/synthetic-reproduced-front-back-mismatch",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser_console_output",
+            "value": "No errors were observed",
+            "source_ref": "user/synthetic-guards-v4/synthetic-reproduced-front-back-mismatch",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_external_helper_status",
+            "value": "No external helper functions are used",
+            "source_ref": "user/synthetic-guards-v4/synthetic-reproduced-front-back-mismatch",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [
+          "User reproduced the frontend Lima versus backend Oslo mismatch in the supplied standalone file",
+          "User reproduced the same mismatch in a new browser tab",
+          "User checked browser console and observed no errors"
+        ],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "I reproduced this in a standalone file on Streamlit 1.64.0 Python 3.13.0 Ubuntu 24.04 and Firefox 143. After selecting Lima the dropdown visibly shows Lima but both Session State city and Callback saw show Oslo. The same mismatch reproduced after starting a new browser tab. The browser console has no errors. This is the entire file and there are no helper functions outside it. What should the support report say next?\n\n```python\nimport streamlit as st\ndef record(widget_key):\n    st.session_state[\"seen\"] = st.session_state[widget_key]\nst.selectbox(\"City\", [\"Oslo\", \"Lima\"], key=\"city\",\n             on_change=record, args=(\"city\",))\nst.write(\"Session State city:\", st.session_state.get(\"city\"))\nst.write(\"Callback saw:\", st.session_state.get(\"seen\"))\n```",
+      "bundles": [
+        {
+          "snapshot_id": "core-quality-guards-v4",
+          "hits": [
+            {
+              "chunk_id": "selectbox-164-callback-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A callable: Streamlit will rerun the app and execute the\ncallable as a callback function before the rest of the app.\n\nNone: This is the same as on_change=\"rerun\". This value\nexists for backwards compatibility and shouldn't be used.\n\nargs: list or tuple; default=None\nAn optional list or tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; on_change callable behavior, args, kwargs parameters in normalized docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-signature-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "st.selectbox(label, options, index=0, format_func=special_internal_function, key=None, help=None, on_change=\"rerun\", args=None, kwargs=None, *, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, filter_mode=\"fuzzy\", width=\"stretch\", bind=None, persist_state=None)",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; complete callable signature in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-key-access-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A key lets you read or update the widget's value via\nst.session_state[key]. For more details, see Widget\nbehavior.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; key parameter, Session State access in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "widget-callback-order-snapshot-v4",
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "excerpt": "When a user interacts with a widget, the widget is updated and triggers a rerun in the following order:\n\n1. The widget value in `st.session_state` is updated.\n2. The callback function (if any) is executed.\n3. The page reruns with the widget command returning its new value.\n\nIf the callback function displays anything on the screen, that content will appear above the rest of the page. A callback function runs as a _prefix_ to the script run. Consequently, that means anything written via a callback function will disappear as soon as the user performs their next action. Widget commands should generally not be called within a callback function.\n\n<Note>\n\nIf a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget. In particular, if you want to use a widget's value in its own callback function, you can't pass that value to the callback function via the `args` parameter; you must assign a key to the widget and look up its value using `st.session_state` _within the callback function_.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L104",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [],
+              "source_span": "Markdown lines 104-114, Order of operations; unversioned October 2026 snapshot, not historical 1.27.2 documentation"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 1,
+          "warnings": []
+        },
+        {
+          "snapshot_id": "core-quality-guards-v4",
+          "hits": [
+            {
+              "chunk_id": "selectbox-164-callback-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A callable: Streamlit will rerun the app and execute the\ncallable as a callback function before the rest of the app.\n\nNone: This is the same as on_change=\"rerun\". This value\nexists for backwards compatibility and shouldn't be used.\n\nargs: list or tuple; default=None\nAn optional list or tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; on_change callable behavior, args, kwargs parameters in normalized docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-signature-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "st.selectbox(label, options, index=0, format_func=special_internal_function, key=None, help=None, on_change=\"rerun\", args=None, kwargs=None, *, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, filter_mode=\"fuzzy\", width=\"stretch\", bind=None, persist_state=None)",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; complete callable signature in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-key-access-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A key lets you read or update the widget's value via\nst.session_state[key]. For more details, see Widget\nbehavior.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; key parameter, Session State access in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "widget-callback-order-snapshot-v4",
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "excerpt": "When a user interacts with a widget, the widget is updated and triggers a rerun in the following order:\n\n1. The widget value in `st.session_state` is updated.\n2. The callback function (if any) is executed.\n3. The page reruns with the widget command returning its new value.\n\nIf the callback function displays anything on the screen, that content will appear above the rest of the page. A callback function runs as a _prefix_ to the script run. Consequently, that means anything written via a callback function will disappear as soon as the user performs their next action. Widget commands should generally not be called within a callback function.\n\n<Note>\n\nIf a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget. In particular, if you want to use a widget's value in its own callback function, you can't pass that value to the callback function via the `args` parameter; you must assign a key to the widget and look up its value using `st.session_state` _within the callback function_.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L104",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [],
+              "source_span": "Markdown lines 104-114, Order of operations; unversioned October 2026 snapshot, not historical 1.27.2 documentation"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 2,
+          "warnings": []
+        }
+      ],
+      "expectations": {
+        "acceptable_decisions": [
+          "escalate"
+        ],
+        "allowed_missing_info": [],
+        "required_terms": [],
+        "forbidden_terms": [],
+        "require_evidence": false,
+        "require_uncertainty": true,
+        "forbid_repeated_checks": true
+      },
+      "reviewer_notes": [
+        "After the two fixed pools provide no cause-specific evidence, preserve the exact frontend Lima and backend Oslo direction in a maintainer-oriented escalation. A bounded refinement is permissible but the final decision should remain escalation.",
+        "The complete supplied callback already passes the stable key and reads inside invocation. Do not ask for a missing callback body, loop binding, code or browser information already supplied. Do not invent a bug fix, released regression or additional completed checks.",
+        "The mismatch is explicitly a synthetic user report, not an observed execution or an established Streamlit defect."
+      ]
+    },
+    {
+      "id": "synthetic-previous-value-snapshot-control",
+      "kind": "synthetic",
+      "origin_url": null,
+      "origin_issue_id": null,
+      "origin_created_at": null,
+      "description": "Independent positive control: construction-time old-value snapshot is intentional and compared with a fresh read.",
+      "case_state": {
+        "case_id": "case-synthetic-previous-value-snapshot-control",
+        "case_revision": 0,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.64.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-previous-value-snapshot-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "python_version",
+            "value": "3.13.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-previous-value-snapshot-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Ubuntu 24.04",
+            "source_ref": "user/synthetic-guards-v4/synthetic-previous-value-snapshot-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Firefox 143",
+            "source_ref": "user/synthetic-guards-v4/synthetic-previous-value-snapshot-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_callback_intent",
+            "value": "Capture the value at widget construction as an old-value snapshot; read the current value within the callback for old/new comparison",
+            "source_ref": "user/synthetic-guards-v4/synthetic-previous-value-snapshot-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_expected_comparison",
+            "value": "For North to South, the intended pair is (\"North\", \"South\")",
+            "source_ref": "user/synthetic-guards-v4/synthetic-previous-value-snapshot-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_failure_status",
+            "value": "No failure is being reported",
+            "source_ref": "user/synthetic-guards-v4/synthetic-previous-value-snapshot-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "On Streamlit 1.64.0 with Python 3.13.0 on Ubuntu 24.04 and Firefox 143 I deliberately want the callback argument to be the value from when this widget was constructed. The callback then reads the current value from Session State so I can compare old and new. For a change from North to South I want comparison to contain (\"North\", \"South\"). I am asking whether that construction-time snapshot design is valid and I am not reporting a failure.\n\n```python\nimport streamlit as st\nst.session_state.setdefault(\"direction\", \"North\")\ndef compare(old_value):\n    new_value = st.session_state[\"direction\"]\n    st.session_state[\"comparison\"] = (old_value, new_value)\nst.selectbox(\"Direction\", [\"North\", \"South\"], key=\"direction\",\n             on_change=compare, args=(st.session_state[\"direction\"],))\nst.write(st.session_state.get(\"comparison\"))\n```",
+      "bundles": [
+        {
+          "snapshot_id": "core-quality-guards-v4",
+          "hits": [
+            {
+              "chunk_id": "selectbox-164-callback-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A callable: Streamlit will rerun the app and execute the\ncallable as a callback function before the rest of the app.\n\nNone: This is the same as on_change=\"rerun\". This value\nexists for backwards compatibility and shouldn't be used.\n\nargs: list or tuple; default=None\nAn optional list or tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; on_change callable behavior, args, kwargs parameters in normalized docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-signature-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "st.selectbox(label, options, index=0, format_func=special_internal_function, key=None, help=None, on_change=\"rerun\", args=None, kwargs=None, *, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, filter_mode=\"fuzzy\", width=\"stretch\", bind=None, persist_state=None)",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; complete callable signature in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-key-access-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A key lets you read or update the widget's value via\nst.session_state[key]. For more details, see Widget\nbehavior.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; key parameter, Session State access in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "widget-callback-order-snapshot-v4",
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "excerpt": "When a user interacts with a widget, the widget is updated and triggers a rerun in the following order:\n\n1. The widget value in `st.session_state` is updated.\n2. The callback function (if any) is executed.\n3. The page reruns with the widget command returning its new value.\n\nIf the callback function displays anything on the screen, that content will appear above the rest of the page. A callback function runs as a _prefix_ to the script run. Consequently, that means anything written via a callback function will disappear as soon as the user performs their next action. Widget commands should generally not be called within a callback function.\n\n<Note>\n\nIf a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget. In particular, if you want to use a widget's value in its own callback function, you can't pass that value to the callback function via the `args` parameter; you must assign a key to the widget and look up its value using `st.session_state` _within the callback function_.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L104",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [],
+              "source_span": "Markdown lines 104-114, Order of operations; unversioned October 2026 snapshot, not historical 1.27.2 documentation"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 1,
+          "warnings": []
+        },
+        {
+          "snapshot_id": "core-quality-guards-v4",
+          "hits": [
+            {
+              "chunk_id": "selectbox-164-callback-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A callable: Streamlit will rerun the app and execute the\ncallable as a callback function before the rest of the app.\n\nNone: This is the same as on_change=\"rerun\". This value\nexists for backwards compatibility and shouldn't be used.\n\nargs: list or tuple; default=None\nAn optional list or tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; on_change callable behavior, args, kwargs parameters in normalized docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-signature-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "st.selectbox(label, options, index=0, format_func=special_internal_function, key=None, help=None, on_change=\"rerun\", args=None, kwargs=None, *, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, filter_mode=\"fuzzy\", width=\"stretch\", bind=None, persist_state=None)",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; complete callable signature in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "selectbox-164-key-access-v4",
+              "source_id": "docstring:1.64.0:streamlit.selectbox",
+              "excerpt": "A key lets you read or update the widget's value via\nst.session_state[key]. For more details, see Widget\nbehavior.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.64.0"
+              ],
+              "source_span": "JSON pointer /1.64.0/streamlit.selectbox; key parameter, Session State access in normalized version-specific docstring"
+            },
+            {
+              "chunk_id": "widget-callback-order-snapshot-v4",
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "excerpt": "When a user interacts with a widget, the widget is updated and triggers a rerun in the following order:\n\n1. The widget value in `st.session_state` is updated.\n2. The callback function (if any) is executed.\n3. The page reruns with the widget command returning its new value.\n\nIf the callback function displays anything on the screen, that content will appear above the rest of the page. A callback function runs as a _prefix_ to the script run. Consequently, that means anything written via a callback function will disappear as soon as the user performs their next action. Widget commands should generally not be called within a callback function.\n\n<Note>\n\nIf a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget. In particular, if you want to use a widget's value in its own callback function, you can't pass that value to the callback function via the `args` parameter; you must assign a key to the widget and look up its value using `st.session_state` _within the callback function_.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L104",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [],
+              "source_span": "Markdown lines 104-114, Order of operations; unversioned October 2026 snapshot, not historical 1.27.2 documentation"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 2,
+          "warnings": []
+        }
+      ],
+      "expectations": {
+        "acceptable_decisions": [
+          "answer"
+        ],
+        "allowed_missing_info": [],
+        "required_terms": [],
+        "forbidden_terms": [],
+        "require_evidence": true,
+        "require_uncertainty": false,
+        "forbid_repeated_checks": true
+      },
+      "reviewer_notes": [
+        "The user explicitly wants the construction-time value in args as an old-value snapshot. The pinned timing excerpt supports that behavior; the callback separately reads the current value from the keyed Session State.",
+        "Affirm this deliberate snapshot intent without claiming args supplies a fresh value. Do not rewrite away the old-value argument, diagnose a reported failure, or impose a freshness requirement that contradicts caller intent.",
+        "This positive control checks whether the guard distinguishes intent, not whether the supplied snippet has been executed or every possible widget lifecycle is equivalent."
+      ]
+    }
+  ],
+  "family_quarantine_candidates": [
+    {
+      "origin_issue_id": 16914,
+      "candidate_issue_id": 8901,
+      "reason": "Explicit selected-case link in local family_review_candidates.json; conservative quarantine until human duplicate-family review"
+    }
+  ]
+}

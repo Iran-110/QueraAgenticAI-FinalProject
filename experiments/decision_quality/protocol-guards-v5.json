@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "experiment_id": "core-decision-2026-10-07-guards-v5",
+  "suite_sha256": "14cef1e4633d59dbc26d77cd60a175a4abcbe35b62a476823b7ed9a9e20001a1",
+  "model": "gpt-4o-mini",
+  "policies": [
+    "structured_rules",
+    "compiled_rules"
+  ],
+  "input_token_reserve": 32768,
+  "max_output_tokens": 768,
+  "cap_usd": "0.04",
+  "price_verified_on": "2026-10-07",
+  "continuation_id": "user-continuation-2026-10-07-v3",
+  "scope": "Post hoc targeted development follow-up registered before V5 outputs on the already exposed nine synthetic guard probes. V4 variant C rejected two question observations that failed to recover within the existing two-attempt allowance and one answer missing evidence links; its two repair attempts did not recover accepted proposals. This observed failure motivates compiling the same caller question pairs and answer-citation requirements into a new compiled_rules model-visible response schema and decision metadata. Native provider structured-output support is not assumed. The measured V4 grounded_rules candidate and all earlier five prompt policies remain unchanged and separately selectable. Fixed A/B/C catalog/checking factors and input/catalog hashes are unchanged from V4 while B/C select the separately registered new policy: A unchanged structured_rules without catalog or optional proposal checks is a repeat control; B uses the new compiled_rules with the registered catalog and no optional checks; C uses exactly B model inputs with deterministic proposal checks enabled. This adaptation changes model-visible constraint presentation, not reviewer expectations, user facts, question catalogs, evidence pools or workflow limits. No gold answers, expected decisions or reviewer notes enter model input. All27 observations use the same verified gpt-4o-mini,32768 input reservation,768 output allowance, rotated order, variant-specific identities and original two-attempt/two-retrieval/eight-step bounds. Repairs/refinement consume those same attempts and accounting scope. USD0.04 covers the entire V5 batch under the existing user-continuation-2026-10-07-v3 grant; no new grant, refresh, reset, global unhalt, release of retained uncertainty or account reconciliation is authorized by this protocol or runner. New accounting uncertainty stops the batch. Exclusive private receipts pin the exact code and input/catalog hashes before requests. Three newly assigned independent assistants will review randomized private aliases with the same registered caller catalog provided for every variant; semantic question quality is judged separately from exact conformance, absence of an accepted proposal is unusable, original ratings are preserved and root reservations are published separately. These are repeated exposed development cases and hand-authored caller metadata, not fresh or held-out evaluation, independent benchmark samples, a production extractor or human gold. Within-run and sequential V4/V5 stochastic differences do not establish causal attribution or general superiority; A is a repeat control and not a paired replay of a past response. Whole-proposal source-backed review remains required, including callback arity, intent, API names and source claim support.",
+  "variants": [
+    {
+      "variant_id": "A",
+      "policy": "structured_rules",
+      "use_catalog": false,
+      "proposal_checks": false
+    },
+    {
+      "variant_id": "B",
+      "policy": "compiled_rules",
+      "use_catalog": true,
+      "proposal_checks": false
+    },
+    {
+      "variant_id": "C",
+      "policy": "compiled_rules",
+      "use_catalog": true,
+      "proposal_checks": true
+    }
+  ],
+  "case_count": 9,
+  "suite_filename": "cases-guards-v4.json",
+  "suite_content_sha256": "2ad80974a902786874871cf2a16baeac2d899e00aa31cb3ecd3d85954ed011b6",
+  "requirements_filename": "requirements-guards-v4.json",
+  "requirements_sha256": "22a703fe4d8fe91fa1f9958b252bd23c9fbbc11108326e5331cd4d8fa1b7bbef",
+  "requirements_content_sha256": "edd60f1c139275c964b84890b49d0a93e3576200c0392a14e081e658cdf69c55",
+  "catalog": {
+    "synthetic-own-widget-stale-args": {
+      "case_id": "case-synthetic-own-widget-stale-args",
+      "case_revision": 0,
+      "question_targets": [],
+      "require_fresh_widget_value": true
+    },
+    "synthetic-own-widget-pass-key-control": {
+      "case_id": "case-synthetic-own-widget-pass-key-control",
+      "case_revision": 0,
+      "question_targets": [],
+      "require_fresh_widget_value": true
+    },
+    "synthetic-form-submit-exact-parameter": {
+      "case_id": "case-synthetic-form-submit-exact-parameter",
+      "case_revision": 0,
+      "question_targets": [],
+      "require_fresh_widget_value": false
+    },
+    "synthetic-missing-widget-helper": {
+      "case_id": "case-synthetic-missing-widget-helper",
+      "case_revision": 0,
+      "question_targets": [
+        {
+          "name": "widget_implementation",
+          "question": "Could you share the implementation of draw_choice_panel and the surrounding region-selector code?"
+        }
+      ],
+      "require_fresh_widget_value": false
+    },
+    "synthetic-known-environment-callback-display": {
+      "case_id": "case-synthetic-known-environment-callback-display",
+      "case_revision": 0,
+      "question_targets": [],
+      "require_fresh_widget_value": false
+    },
+    "synthetic-unknown-installed-version": {
+      "case_id": "case-synthetic-unknown-installed-version",
+      "case_revision": 0,
+      "question_targets": [
+        {
+          "name": "streamlit_version",
+          "question": "What Streamlit version is installed in the environment that raises this error?"
+        }
+      ],
+      "require_fresh_widget_value": false
+    },
+    "synthetic-corrected-version-working-reduction": {
+      "case_id": "case-synthetic-corrected-version-working-reduction",
+      "case_revision": 0,
+      "question_targets": [
+        {
+          "name": "options_builder_implementation",
+          "question": "Could you share the options-builder helper and the failing fragment path from the full app?"
+        },
+        {
+          "name": "minimal_failing_reproduction",
+          "question": "Could you share a minimal failing example that includes the options builder and the region-change path?"
+        }
+      ],
+      "require_fresh_widget_value": false
+    },
+    "synthetic-reproduced-front-back-mismatch": {
+      "case_id": "case-synthetic-reproduced-front-back-mismatch",
+      "case_revision": 0,
+      "question_targets": [],
+      "require_fresh_widget_value": false
+    },
+    "synthetic-previous-value-snapshot-control": {
+      "case_id": "case-synthetic-previous-value-snapshot-control",
+      "case_revision": 0,
+      "question_targets": [],
+      "require_fresh_widget_value": false
+    }
+  }
+}

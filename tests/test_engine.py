@@ -133,7 +133,15 @@ def test_attempt_context_uses_trusted_run_and_case_identity_across_repairs_and_r
     assert result.status == "awaiting_approval"
     assert result.run_id == "run:context-attribution"
     assert [
-        context.model_copy(update={"output_feedback": None}) for context in reasoner.contexts
+        context.model_copy(
+            update={
+                "output_feedback": None,
+                "remaining_model_attempts": 0,
+                "remaining_retrieval_rounds": 0,
+                "can_refine": False,
+            }
+        )
+        for context in reasoner.contexts
     ] == [
         ReasoningContext(
             run_id=result.run_id,
@@ -149,6 +157,9 @@ def test_attempt_context_uses_trusted_run_and_case_identity_across_repairs_and_r
     else:
         assert all(context.output_feedback is None for context in reasoner.contexts)
     assert result.model_attempts == (1 if path == "direct" else 2)
+    assert reasoner.contexts[0].can_refine is True
+    if len(reasoner.contexts) == 2:
+        assert reasoner.contexts[1].can_refine is False
 
 
 @pytest.mark.parametrize(

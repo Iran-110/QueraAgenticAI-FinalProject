@@ -1,5 +1,26 @@
 # Model gateway and shared budget
 
+The [first decision-quality experiments](decision-quality.md) stopped on a
+`gpt-4.1-mini` serving-ID mismatch. That incident remains unresolved. The later
+source/state and guard comparisons use an explicit user-authorized, capped continuation
+for the already verified `gpt-4o-mini` route. The global ledger halt remains set;
+ordinary live calls are still denied. Historical milestones below describe their
+recorded states, not the current runner balance.
+
+The [paired source/state comparison](decision-quality-v3.md) completed 32 settled
+requests at an estimated USD 0.019914180. The unresolved incident is held at USD
+0.02; account deductions remain unverified. Full accounting and review results
+are recorded in that report.
+
+The [fresh guard comparison](decision-quality-v4.md) and
+[compiled-schema follow-up](decision-quality-v5.md) made 57 further settled
+requests at USD 0.048125550. Current local ledger snapshot after V5: USD
+0.096712770 settled, zero pending, USD 0.02 retained uncertainty and USD
+4.383287230 available. The same immutable continuation has USD 0.031960270
+remaining; ordinary live calls remain halted. No billing reconciliation, hold
+release or grant refresh is claimed. Schema acceptance improved in the repeat,
+but semantic quality did not establish a benefit for the stronger candidate.
+
 Status, 2026-10-07: offline tests and controlled live checks cover the gateway. After reproducing the original decision-field failure, corrected prompts returned valid questions, a referenced answer and a repaired decision on synthetic inputs. Usage was settled in the ledger. This verifies those compatibility paths, not real support quality or RAG relevance. Account deductions have not been reconciled; no real key is required for offline demos.
 
 ## First live compatibility check
@@ -38,7 +59,11 @@ Ledger identity excludes `output_feedback` and preserves the original run/case/r
 
 HTTPx sends a plain nonstreaming `POST` to `https://api.metisai.ir/openai/v1/chat/completions` with the shared messages and `max_tokens`. Live calls require explicit configuration and a secret key; `live_enabled` defaults to `False`, and the key uses `SecretStr`. HTTP retries, redirects, and environment proxies are disabled. The adapter requests structured text through the prompt; the engine validates it with Pydantic. Native `response_format` and tool calling are not assumed. The endpoint and `max_tokens` follow [Metis's official OpenAI wrapper example](https://docs.metisai.ir/api/wrapper/openai/), which also warns that feature coverage is incomplete.
 
-`MetisConfig.from_env()` reads `METIS_API_KEY`, `METIS_MODEL`, and `METIS_LIVE_ENABLED`; only the exact value `true` enables live requests. It does not load a `.env` file automatically. The CLI has no live-call flag; normal development does not need a real key.
+`MetisConfig.from_env()` reads `METIS_API_KEY`, `METIS_MODEL`, `METIS_PROMPT_POLICY`
+and `METIS_LIVE_ENABLED`; only the exact value `true` enables live requests. It
+does not load a `.env` file automatically. The main `agent-app` CLI has no
+live-call flag; the separately registered experiment runners require explicit
+`--live`. Normal development does not need a real key.
 
 The engine still returns drafts for human review. Source-locator validation does not prove semantic faithfulness, and this gateway does not provide a tracker or permission to execute an action.
 
@@ -74,6 +99,32 @@ Initialize the ledger explicitly with a team limit no higher than USD 5 and the 
 Amounts are stored as integer nanoUSD: USD 1 = 1,000,000,000 units. A reservation is committed before any network request. Valid known usage settles the reservation at the verified price; timeout or unknown usage retains it and stops further paid retry. A request that costs more than its bound halts further work instead of silently borrowing from the remaining budget. Restart does not discard outstanding reservations.
 
 Missing or malformed usage and unknown returned models also halt new reservations globally. A timeout stops its invocation while keeping the uncertain amount charged against the available budget. There is no automatic unhalt or refund. `BudgetLedger.settle()` can reconcile a recorded reservation with verified observed usage even while halted; it does not clear the halt. Phase tags are audit labels, not separate phase budgets.
+
+### Explicit continuation after a quarantined incident
+
+`BudgetLedger.authorize_continuation()` is a trusted caller operation requiring
+explicit human authorization. It handles one recorded `gpt-4.1-mini`
+`ProviderModelMismatch` incident only, with no pending request or observed cost
+overrun. It preserves that uncertain reservation, monotonically increases its
+held allocation to at least USD 0.02, and records an immutable authorization,
+request attribution and audit events in the existing database. This allocation
+is **not a verified cost bound or billing reconciliation**.
+
+Only a caller that explicitly supplies the grant's `continuation_id` can reserve
+for `gpt-4o-mini` in the development phase, at most USD 0.02 per request. Atomic
+reservations enforce both the grant's cumulative cap and the original global
+ceiling. Ordinary callers remain blocked. The exact quarantined record must
+remain unchanged; any new uncertainty, halt, observed overrun or pending request
+blocks further work. A new halt or uncertainty revokes the grant. Replaying its
+authorization cannot replenish it or reactivate it. Settling the old incident
+also invalidates the exception rather than creating extra grant credit.
+
+Grant selection is local trusted configuration. Model output, retrieved text,
+environment-variable defaults and normal CLI demos cannot create or select one.
+The ablation runner reads an explicitly registered grant ID, checks its scope
+before each attempt and preserves private start/observation receipts. It never
+authorizes a grant or clears a halt itself. Continue normal reconciliation work
+before enabling the unverified model route.
 
 Defaults reserve 32,768 input tokens and cap output at 1,024 tokens, with a USD 0.02 per-request cap. The prompt's UTF-8 byte count plus a 1,024 framing margin must fit that input reserve. This is an operational bound to test in the live pilot, not a provider billing guarantee. Usage-based amounts are estimates at the pinned public rates; the ledger does not fetch account deductions.
 

@@ -13,6 +13,15 @@ from agent_app.orchestration.ports import ReasoningStopped
 from agent_app.reasoning.prompts import build_messages
 
 
+def request_id_for(context: ReasoningContext) -> str:
+    """Feedback and workflow hints never create another billable attempt identity."""
+    context = ReasoningContext.model_validate(context.model_dump(warnings=False))
+    identity = context.model_dump_json(
+        include={"run_id", "case_id", "case_revision", "attempt_index"}
+    )
+    return "call:" + hashlib.sha256(identity.encode()).hexdigest()
+
+
 class MetisReasoner:
     def __init__(
         self,
@@ -63,7 +72,14 @@ class MetisReasoner:
         price = get_price(self.config.model)
         if price is None:
             raise ReasoningStopped("UnknownPricing", "budget_stopped")
-        messages = build_messages(case, user_message, evidence, feedback=context.output_feedback)
+        messages = build_messages(
+            case,
+            user_message,
+            evidence,
+            feedback=context.output_feedback,
+            policy=self.config.prompt_policy,
+            context=context,
+        )
         # UTF-8 byte count plus framing margin is a conservative operational guard,
         # not a provider billing guarantee. The live pilot must verify this assumption.
         message_bytes = len(json.dumps(messages, ensure_ascii=False).encode("utf-8"))
@@ -74,8 +90,7 @@ class MetisReasoner:
             raise ReasoningStopped("CostBoundExceeded", "budget_stopped")
         # Feedback changes the prompt, never the identity of an already used
         # attempt. Excluding it also preserves pre-feedback ledger request IDs.
-        identity = context.model_dump_json(exclude={"output_feedback"})
-        request_id = "call:" + hashlib.sha256(identity.encode()).hexdigest()
+        request_id = request_id_for(context)
         try:
             self.ledger.reserve(
                 request_id=request_id,
@@ -86,6 +101,7 @@ class MetisReasoner:
                 model=self.config.model,
                 phase=self.config.phase,
                 amount_usd=reserve,
+                continuation_id=self.config.continuation_id,
             )
         except BudgetDenied:
             raise ReasoningStopped("BudgetExceeded", "budget_stopped") from None

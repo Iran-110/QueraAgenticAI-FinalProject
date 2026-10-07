@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "experiment_id": "core-decision-2026-10-07-model-4o",
+  "suite_sha256": "cc65014f82d4cb63dfa9d486e420b1da1e12b1a1aadc601dedc84f8cc0a9aed5",
+  "model": "gpt-4o-mini",
+  "policies": [
+    "structured_rules"
+  ],
+  "input_token_reserve": 16384,
+  "max_output_tokens": 768,
+  "cap_usd": "0.015",
+  "price_verified_on": "2026-10-07",
+  "scope": "Exploratory focused model comparison after observed wrong callback/API advice and reversed case summary. Three previously used development cases selected for failure analysis: one controlled variant and two synthetic stresses, no independent real-report anchors. Case contents/labels/sources unchanged from preregistration. Both models use structured_rules, same token limits and current engine syntax gate, which was added AFTER the first two comparisons. One pass per case/model on designated sequential runner, 4o block then 4.1 block; time/order/sampling effects remain. Model-assisted blinded source review, not formal/human gold. Prior comparison spend USD0.024513390 settled without unresolved costs; these two additional caps sum USD0.045, keeping combined comparison maximum USD0.069513390 below original USD0.16."
+}

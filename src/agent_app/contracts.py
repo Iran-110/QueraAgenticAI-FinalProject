@@ -32,6 +32,8 @@ __all__ = [
     "EvidenceLink",
     "AnalysisResult",
     "RunLimits",
+    "QuestionTarget",
+    "ProposalRequirements",
     "ReasoningContext",
     "OutputIssue",
     "OutputFeedback",
@@ -322,6 +324,40 @@ class RunLimits(Contract):
     max_steps: Annotated[int, Field(strict=True, ge=1, le=8)] = 8
 
 
+class QuestionTarget(Contract):
+    """A caller-approved clarification, never inferred from a source instruction."""
+
+    name: ShortText
+    question: Text
+
+
+class ProposalRequirements(Contract):
+    """Optional caller intent bound to one immutable case revision.
+
+    An empty question catalog registers no clarification; it does not prove that
+    all user information is known. These constraints grant no action authority.
+    """
+
+    case_id: Identifier
+    case_revision: NonnegativeInt
+    question_targets: tuple[QuestionTarget, ...] = Field(default=(), max_length=8)
+    require_fresh_widget_value: Annotated[bool, Field(strict=True)] = False
+
+    @field_validator("question_targets")
+    @classmethod
+    def unique_questions(cls, targets: tuple[QuestionTarget, ...]) -> tuple[QuestionTarget, ...]:
+        targets = tuple(
+            QuestionTarget.model_validate(target.model_dump(warnings=False)) for target in targets
+        )
+        if len({target.name.casefold() for target in targets}) != len(targets):
+            raise ValueError("question_targets must have unique names")
+        if len({" ".join(target.question.split()).casefold() for target in targets}) != len(
+            targets
+        ):
+            raise ValueError("question_targets must have distinct questions")
+        return targets
+
+
 class OutputIssue(Contract):
     """Allowlisted validation metadata; no model values or arbitrary field paths."""
 
@@ -333,6 +369,12 @@ class OutputIssue(Contract):
         "missing_field",
         "unknown_field",
         "invalid_field",
+        "invalid_python_syntax",
+        "ask_target_required",
+        "ask_unregistered_target",
+        "ask_question_mismatch",
+        "invalid_api_keyword",
+        "callback_value_captured",
         "retrieve_more_queries_required",
         "retrieve_more_final_payload_forbidden",
         "final_drafts_required",
@@ -369,11 +411,31 @@ class ReasoningContext(Contract):
     case_revision: NonnegativeInt
     attempt_index: Annotated[int, Field(strict=True, ge=1, le=2)]
     output_feedback: OutputFeedback | None = None
+    remaining_model_attempts: Annotated[int, Field(strict=True, ge=0, le=1)] = 0
+    remaining_retrieval_rounds: Annotated[int, Field(strict=True, ge=0, le=1)] = 0
+    can_refine: Annotated[bool, Field(strict=True)] = False
+    query_limit: Annotated[int, Field(strict=True, ge=1, le=2)] = 2
+    proposal_requirements: ProposalRequirements | None = None
 
     @model_validator(mode="after")
     def feedback_is_only_for_repair(self) -> Self:
         if self.output_feedback is not None and self.attempt_index != 2:
             raise ValueError("output feedback belongs only to the second attempt")
+        if self.remaining_model_attempts > 2 - self.attempt_index:
+            raise ValueError("remaining model attempts exceed the hard allowance")
+        if self.can_refine and not (
+            self.remaining_model_attempts and self.remaining_retrieval_rounds
+        ):
+            raise ValueError("refinement requires remaining analysis and retrieval capacity")
+        if self.proposal_requirements is not None:
+            requirements = ProposalRequirements.model_validate(
+                self.proposal_requirements.model_dump(warnings=False)
+            )
+            if (
+                requirements.case_id != self.case_id
+                or requirements.case_revision != self.case_revision
+            ):
+                raise ValueError("proposal requirements do not match the reasoning context")
         return self
 
 

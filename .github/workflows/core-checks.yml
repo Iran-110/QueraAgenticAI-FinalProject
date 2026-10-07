@@ -37,6 +37,15 @@ jobs:
           uv run ruff format --check .
       - name: Run offline tests
         run: uv run pytest
+      - name: Validate registered decision probes without network
+        run: |
+          uv run python -m agent_app.reasoning.experiments
+          uv run python -m agent_app.reasoning.experiments --plan experiments/decision_quality/protocol-shape-v2.json
+          uv run python -m agent_app.reasoning.experiments --suite experiments/decision_quality/cases-model-probe.json --plan experiments/decision_quality/protocol-model-4o.json
+          uv run python -m agent_app.reasoning.experiments --suite experiments/decision_quality/cases-model-probe.json --plan experiments/decision_quality/protocol-model-41.json
+          uv run python -m agent_app.reasoning.ablations
+          uv run python -m agent_app.reasoning.quality_experiments
+          uv run python -m agent_app.reasoning.quality_experiments --plan experiments/decision_quality/protocol-guards-v5.json
       - name: Smoke-test bounded refinement
         run: uv run agent-app demo --scenario refine
       - name: Smoke-test gateway accounting without network
