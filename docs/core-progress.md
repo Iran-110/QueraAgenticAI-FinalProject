@@ -188,6 +188,30 @@ Verified **875 offline tests**, Ruff lint/format, seven registered protocol
 validations and installed demos. No paid V5 request preceded this registration.
 Frozen V4 inputs/protocol and gateway/ledger implementation remain unchanged.
 
+## 2026-10-07 — compiled-schema repeat results
+
+Completed all 27 V5 observations with one HTTP request each, no repair/refinement
+or new accounting anomaly. All passed core validation, while independent blinded
+review rated A/B/C acceptable on **8/5/6 of nine**. The unchanged A control improved
+from V4, so improvements cannot all be attributed to new compilation. B/C still
+invented a callback diagnosis for the fully specified frontend/backend mismatch;
+both were rated unusable there. Known citation IDs and valid JSON did not prove
+claim support. No live deterministic finding occurred in this repeat.
+
+Keep the shorter `structured_rules` option for the first integrated development
+pilot with human review, retain measured `grounded_rules` for curated-catalog
+trials, and leave `compiled_rules` experimental. Production defaults remain
+unchanged; no extra production agent was added or justified. RAG, tracker and
+UI/evaluation continue under their own module boundaries.
+
+V5 fresh estimate: USD 0.023519100; V4/V5 combined: 57 HTTP requests across
+54 observations, USD 0.048125550. The original ledger now has USD 0.096712770
+settled, zero pending, USD 0.02 retained uncertainty and USD 4.383287230 available.
+The original continuation has USD 0.031960270 remaining, with global halt and
+the unresolved incident preserved. Historical report snapshots stay unchanged.
+**875 offline tests**, Ruff, seven protocol validations and installed demos pass.
+See `docs/decision-quality-v5.md` and its aggregate for exact results and limits.
+
 ## Next integration work
 
 | Work | Owner | Completion evidence |
