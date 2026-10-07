@@ -1,0 +1,45 @@
+name: Core checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - "**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: core-checks-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  offline-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up uv and Python
+        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "0.12.17"
+          python-version: "3.13"
+          enable-cache: true
+      - name: Install locked dependencies
+        run: uv sync --locked --group dev
+      - name: Check code style
+        run: |
+          uv run ruff check .
+          uv run ruff format --check .
+      - name: Run offline tests
+        run: uv run pytest
+      - name: Smoke-test bounded refinement
+        run: uv run agent-app demo --scenario refine
+      - name: Smoke-test gateway accounting without network
+        run: uv run agent-app gateway-demo --scenario repair
+      - name: Smoke-test user facts and corrections without storage
+        run: uv run agent-app turn-demo
