@@ -12,6 +12,7 @@ from agent_app.contracts import (
     EvidenceHit,
     EvidenceLink,
     Fact,
+    ReasoningContext,
     RetrievalRequest,
     RunLimits,
     RunResult,
@@ -222,6 +223,44 @@ def test_duplicate_citations_are_rejected_but_a_claim_can_have_multiple_sources(
 def test_case_revision_rejects_invalid_or_coerced_numbers(revision):
     with pytest.raises(ValidationError):
         CaseState(case_id="case:1", case_revision=revision)
+
+
+@pytest.mark.parametrize("attempt_index", [0, 3, True, "1", 1.0])
+def test_reasoning_context_rejects_out_of_budget_and_coerced_attempt_indices(attempt_index):
+    with pytest.raises(ValidationError):
+        ReasoningContext(
+            run_id="run:1", case_id="case:1", case_revision=0, attempt_index=attempt_index
+        )
+
+
+@pytest.mark.parametrize(
+    ("field", "value"),
+    [("run_id", " "), ("case_id", " "), ("case_revision", -1), ("case_revision", True)],
+)
+def test_reasoning_context_requires_valid_case_attribution(field, value):
+    data = {"run_id": "run:1", "case_id": "case:1", "case_revision": 0, "attempt_index": 1}
+    with pytest.raises(ValidationError):
+        ReasoningContext(**(data | {field: value}))
+
+
+def test_reasoning_context_roundtrip_is_immutable_and_forbids_model_chosen_permission():
+    context = ReasoningContext(run_id="run:1", case_id="case:1", case_revision=2, attempt_index=2)
+    assert ReasoningContext.model_validate_json(context.model_dump_json()) == context
+    with pytest.raises(ValidationError, match="frozen"):
+        context.attempt_index = 1
+    with pytest.raises(ValidationError, match="Extra inputs"):
+        ReasoningContext.model_validate(context.model_dump() | {"approved": True})
+
+
+def test_reasoning_context_constructed_without_validation_must_be_revalidated_at_boundary():
+    valid = ReasoningContext(run_id="run:1", case_id="case:1", case_revision=0, attempt_index=1)
+    unsafe_contexts = (
+        valid.model_copy(update={"attempt_index": 3}),
+        ReasoningContext.model_construct(**(valid.model_dump() | {"case_revision": -1})),
+    )
+    for unsafe in unsafe_contexts:
+        with pytest.raises(ValidationError):
+            ReasoningContext.model_validate(unsafe.model_dump(warnings=False))
 
 
 @pytest.mark.parametrize("field", ["model_attempts", "retrieval_rounds", "steps"])

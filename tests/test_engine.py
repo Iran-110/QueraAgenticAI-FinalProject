@@ -12,10 +12,12 @@ from agent_app.contracts import (
     EvidenceHit,
     EvidenceLink,
     Fact,
+    ReasoningContext,
     RunLimits,
 )
 from agent_app.orchestration import SupportEngine
 from agent_app.orchestration.engine import build_initial_query
+from agent_app.orchestration.ports import ReasoningStopped
 from agent_app.testing.fakes import FakeReasoner, FakeRetriever
 
 SNAPSHOT = "fixture-snapshot"
@@ -75,11 +77,13 @@ def fact(**changes):
     return Fact(**(data | changes))
 
 
-def run_script(reasoning, retrieval=None, *, case=None, message=MESSAGE, **options):
+def run_script(reasoning, retrieval=None, *, case=None, message=MESSAGE, run_id=None, **options):
     retriever = FakeRetriever(retrieval if retrieval is not None else [evidence()])
     reasoner = FakeReasoner(reasoning)
     engine = SupportEngine(retriever, reasoner, snapshot_id=SNAPSHOT, **options)
-    result = engine.run(case or CaseState(case_id="case:1", case_revision=3), message)
+    result = engine.run(
+        case or CaseState(case_id="case:1", case_revision=3), message, run_id=run_id
+    )
     return result, retriever, reasoner
 
 
@@ -111,6 +115,96 @@ def test_refinement_passes_second_search_results_to_the_second_reasoning_call():
     assert reasoner.inputs[1][2].hits[0].chunk_id == "docs:refined"
     assert reasoner.inputs[1][2].retrieval_round == 2
     assert result.analysis.evidence_links[0].chunk_id == "docs:refined"
+
+
+@pytest.mark.parametrize("path", ["direct", "repair", "refine"])
+def test_attempt_context_uses_trusted_run_and_case_identity_across_repairs_and_refinement(path):
+    case = CaseState(case_id="case:context", case_revision=7)
+    retrieval = [evidence()]
+    reasoning = [answer()]
+    if path == "repair":
+        reasoning.insert(0, "malformed output")
+    elif path == "refine":
+        reasoning = [refine(), answer("docs:second")]
+        retrieval.append(evidence("docs:second"))
+    result, _, reasoner = run_script(
+        reasoning, retrieval, case=case, run_id="run:context-attribution"
+    )
+    assert result.status == "awaiting_approval"
+    assert result.run_id == "run:context-attribution"
+    assert reasoner.contexts == [
+        ReasoningContext(
+            run_id=result.run_id,
+            case_id=case.case_id,
+            case_revision=case.case_revision,
+            attempt_index=index,
+        )
+        for index in range(1, result.model_attempts + 1)
+    ]
+    assert result.model_attempts == (1 if path == "direct" else 2)
+
+
+@pytest.mark.parametrize(
+    ("code", "status"),
+    [
+        ("BudgetExceeded", "budget_stopped"),
+        ("CostBoundExceeded", "budget_stopped"),
+        ("UnknownPricing", "budget_stopped"),
+        ("LiveCallsDisabled", "error"),
+        ("LedgerUnavailable", "error"),
+        ("ProviderRequestFailed", "error"),
+        ("ProviderUsageUnknown", "error"),
+        ("ProviderModelMismatch", "error"),
+        ("ProviderResponseInvalid", "error"),
+        ("ContextLimitExceeded", "error"),
+        ("DuplicateModelRequest", "error"),
+    ],
+)
+def test_typed_terminal_reasoning_failure_stops_without_retry_or_preview(code, status):
+    stopped = ReasoningStopped(code, status)
+    # Provider exception detail must never become an engine trace or result field.
+    stopped.args = ("private-provider-error-marker",)
+    result, retriever, reasoner = run_script([stopped, answer()])
+    assert result.status == status
+    assert result.error_code == code
+    assert result.analysis is None
+    assert result.model_attempts == len(reasoner.inputs) == len(reasoner.contexts) == 1
+    assert reasoner.contexts[0].attempt_index == 1
+    assert result.retrieval_rounds == len(retriever.requests) == 1
+    assert len(reasoner.responses) == 1
+    assert "private-provider-error-marker" not in result.model_dump_json()
+
+
+def test_typed_stop_after_refinement_does_not_reset_the_attempt_allowance():
+    result, retriever, reasoner = run_script(
+        [refine(), ReasoningStopped("BudgetExceeded", "budget_stopped"), answer()],
+        [evidence(), evidence("docs:second")],
+    )
+    assert result.status == "budget_stopped"
+    assert result.error_code == "BudgetExceeded"
+    assert result.analysis is None
+    assert result.model_attempts == len(reasoner.contexts) == 2
+    assert [context.attempt_index for context in reasoner.contexts] == [1, 2]
+    assert result.retrieval_rounds == len(retriever.requests) == 2
+    assert len(reasoner.responses) == 1
+
+
+@pytest.mark.parametrize(
+    ("code", "status"),
+    [("private-provider-error-marker", "error"), ("BudgetExceeded", "awaiting_approval")],
+)
+def test_terminal_stop_constructor_rejects_arbitrary_error_strings_and_invalid_statuses(
+    code, status
+):
+    with pytest.raises(ValueError):
+        ReasoningStopped(code, status)
+
+
+def test_terminal_stop_defaults_to_error_status():
+    result, _, reasoner = run_script([ReasoningStopped("ProviderUsageUnknown"), answer()])
+    assert result.status == "error"
+    assert result.error_code == "ProviderUsageUnknown"
+    assert len(reasoner.contexts) == 1
 
 
 def test_invalid_output_then_refinement_cannot_purchase_a_third_model_attempt():
@@ -342,8 +436,8 @@ def test_new_case_revision_during_an_adapter_call_discards_its_result(stage):
             return response
 
     class UpdatingReasoner(FakeReasoner):
-        def analyze(self, case, user_message, bundle):
-            response = super().analyze(case, user_message, bundle)
+        def analyze(self, case, user_message, bundle, *, context):
+            response = super().analyze(case, user_message, bundle, context=context)
             if stage == "reasoning":
                 revision["value"] = 4
             return response
@@ -431,7 +525,7 @@ def test_mutating_reasoner_inputs_cannot_fabricate_a_citation_or_change_caller_s
     evidence_snapshot = original_evidence.model_dump()
 
     class MutatingReasoner:
-        def analyze(self, case, user_message, bundle):
+        def analyze(self, case, user_message, bundle, *, context):
             object.__setattr__(case, "case_revision", 900)
             object.__setattr__(case.facts[0], "value", "invented-version")
             object.__setattr__(bundle.hits[0], "chunk_id", "fabricated:chunk")

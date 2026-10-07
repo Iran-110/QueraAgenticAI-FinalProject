@@ -28,6 +28,7 @@ __all__ = [
     "EvidenceLink",
     "AnalysisResult",
     "RunLimits",
+    "ReasoningContext",
     "RunResult",
     "TraceEvent",
 ]
@@ -237,6 +238,15 @@ class RunLimits(Contract):
     max_retrieval_rounds: Annotated[int, Field(strict=True, ge=1, le=2)] = 2
     max_queries_per_round: Annotated[int, Field(strict=True, ge=1, le=2)] = 2
     max_steps: Annotated[int, Field(strict=True, ge=1, le=8)] = 8
+
+
+class ReasoningContext(Contract):
+    """Caller-owned attribution for one attempt, never supplied by model output."""
+
+    run_id: Identifier
+    case_id: Identifier
+    case_revision: NonnegativeInt
+    attempt_index: Annotated[int, Field(strict=True, ge=1, le=2)]
 
 
 class TraceEvent(Contract):

@@ -10,12 +10,13 @@ from agent_app.contracts import (
     AnalysisResult,
     CaseState,
     EvidenceBundle,
+    ReasoningContext,
     RetrievalRequest,
     RunLimits,
     RunResult,
     TraceEvent,
 )
-from agent_app.orchestration.ports import Reasoner, Retriever
+from agent_app.orchestration.ports import Reasoner, ReasoningStopped, Retriever
 
 
 def _normalize(text: str) -> str:
@@ -120,7 +121,7 @@ class SupportEngine:
             seen_queries: set[str] = set()
             while True:
                 evidence = self._retrieve(case, queries, seen_queries, progress)
-                analysis = self._analyze(case, user_message, evidence, progress)
+                analysis = self._analyze(case, user_message, evidence, progress, run_id=run_id)
                 if analysis.decision != "retrieve_more":
                     self._ensure_current(case)
                     progress.step("awaiting_approval", f"Prepared an {analysis.decision} preview.")
@@ -189,7 +190,13 @@ class SupportEngine:
         return evidence
 
     def _analyze(
-        self, case: CaseState, user_message: str, evidence: EvidenceBundle, progress: _Progress
+        self,
+        case: CaseState,
+        user_message: str,
+        evidence: EvidenceBundle,
+        progress: _Progress,
+        *,
+        run_id: str,
     ) -> AnalysisResult:
         last_error = "ModelAttemptLimitExceeded"
         while progress.model_attempts < self.limits.max_model_attempts:
@@ -198,8 +205,19 @@ class SupportEngine:
             progress.model_attempts += 1
             try:
                 raw = self.reasoner.analyze(
-                    case.model_copy(deep=True), user_message, evidence.model_copy(deep=True)
+                    case.model_copy(deep=True),
+                    user_message,
+                    evidence.model_copy(deep=True),
+                    context=ReasoningContext(
+                        run_id=run_id,
+                        case_id=case.case_id,
+                        case_revision=case.case_revision,
+                        attempt_index=progress.model_attempts,
+                    ),
                 )
+            except ReasoningStopped as stopped:
+                self._ensure_current(case)
+                raise _Stopped(stopped.code, stopped.status) from None
             except Exception:
                 self._ensure_current(case)
                 last_error = "ReasoningUnavailable"
