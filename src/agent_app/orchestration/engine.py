@@ -27,10 +27,34 @@ def _normalize(text: str) -> str:
 
 
 def build_initial_query(case: CaseState, user_message: str) -> str:
-    """Use the current message and active facts, never superseded environment values."""
-    facts = "; ".join(f"{fact.name}={fact.value}" for fact in case.facts if fact.status == "active")
+    """Pack whole confirmed facts, prioritizing environment over long descriptions."""
+    priority = {
+        name: index
+        for index, name in enumerate(
+            (
+                "streamlit_version",
+                "python_version",
+                "operating_system",
+                "browser_version",
+                "error_message",
+                "widget_definition",
+            )
+        )
+    }
+    facts = sorted(
+        (fact for fact in case.facts if fact.status == "active" and fact.provenance_kind == "user"),
+        key=lambda fact: (priority.get(fact.name.casefold(), len(priority)), fact.name.casefold()),
+    )
     message = " ".join(user_message.split())[:400]
-    return (message + (f" {facts[:99]}" if facts else ""))[:500]
+    packed = []
+    remaining = 500 - len(message) - 1
+    for fact in facts:
+        item = f"{fact.name}={fact.value}"
+        needed = len(item) + (2 if packed else 0)
+        if needed <= remaining:
+            packed.append(item)
+            remaining -= needed
+    return message + (" " + "; ".join(packed) if packed else "")
 
 
 class _Stopped(Exception):
@@ -220,6 +244,16 @@ class SupportEngine:
                         case_revision=case.case_revision,
                         attempt_index=progress.model_attempts,
                         output_feedback=feedback,
+                        query_limit=self.limits.max_queries_per_round,
+                        remaining_model_attempts=self.limits.max_model_attempts
+                        - progress.model_attempts,
+                        remaining_retrieval_rounds=self.limits.max_retrieval_rounds
+                        - progress.retrieval_rounds,
+                        can_refine=(
+                            progress.model_attempts < self.limits.max_model_attempts
+                            and progress.retrieval_rounds < self.limits.max_retrieval_rounds
+                            and self.limits.max_steps - progress.steps >= 3
+                        ),
                     ),
                 )
             except ReasoningStopped as stopped:
@@ -268,6 +302,11 @@ class SupportEngine:
             for fact in case.facts
             if fact.status == "active" and fact.provenance_kind == "user"
         }
+        confirmed_values = {
+            fact.name.casefold(): fact.value
+            for fact in case.facts
+            if fact.status == "active" and fact.provenance_kind == "user"
+        }
         for fact in analysis.facts_delta:
             if fact.status != "active":
                 raise _Stopped("UnsupportedFactUpdate")
@@ -276,7 +315,16 @@ class SupportEngine:
                     raise _Stopped("UnsupportedUserFact")
             elif fact.source_ref not in chunk_ids | source_ids:
                 raise _Stopped("UnknownFactSource")
-        active_names = {fact.name.casefold() for fact in case.facts if fact.status == "active"}
+            elif (
+                fact.name.casefold() in confirmed_values
+                and fact.value != confirmed_values[fact.name.casefold()]
+            ):
+                raise _Stopped("ConflictingEvidenceFact")
+        active_names = {
+            fact.name.casefold()
+            for fact in case.facts
+            if fact.status == "active" and fact.provenance_kind == "user"
+        }
         if any(name.casefold() in active_names for name in analysis.missing_info):
             raise _Stopped("KnownFactMarkedMissing")
         performed = {_normalize(check) for check in case.checks_performed}

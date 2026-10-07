@@ -7,6 +7,8 @@ from typing import Annotated, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, SecretStr, field_validator, model_validator
 
+from agent_app.reasoning.prompts import PromptPolicy
+
 METIS_CHAT_URL = "https://api.metisai.ir/openai/v1/chat/completions"
 
 
@@ -19,6 +21,7 @@ class MetisConfig(BaseModel):
     live_enabled: Annotated[bool, Field(strict=True)] = False
     model: str = "gpt-4o-mini"
     phase: Literal["development", "evaluation", "demo"] = "development"
+    prompt_policy: PromptPolicy = "baseline"
     max_output_tokens: Annotated[int, Field(strict=True, ge=128, le=2048)] = 1024
     input_token_reserve: Annotated[int, Field(strict=True, ge=4096, le=32768)] = 32768
     max_request_usd: Decimal = Decimal("0.02")

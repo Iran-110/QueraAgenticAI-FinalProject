@@ -48,6 +48,18 @@ Connection and usage settlement are verified for that one request. Valid live de
 
 The local ledger records six settled live requests in total, with 7,673 input and 1,072 output tokens and a public-rate estimate of **USD 0.001973565**. It has no reserved/uncertain funds and is not halted. Account deductions are still unverified. Keys and receipts remain local and ignored.
 
+## 2026-10-07 — decision guards and comparison candidates
+
+Working branch: `feat/agent-core-integration`, after sharing the tested foundation on main through PR #1.
+
+- Evidence observations can no longer propose a conflicting replacement for a confirmed user fact. Only user-provenance facts count as confirmed environment information or known answers to a missing-fact question.
+- Retrieval queries pack whole confirmed facts and prioritize version/environment fields, so a long message or descriptive fact does not cut off the installed version. Source-derived versions cannot silently become query environment facts.
+- Added three explicit prompt policies: current baseline, decision rubric, and rubric with caller-owned remaining analysis/retrieval capacity and query limit. Production still defaults to baseline pending comparison results.
+- Workflow hints do not alter request identity or the two-attempt allowance. The second attempt receives its true remaining capacity, including after repair, refinement and short step limits.
+- Verified **485 passing offline tests** and Ruff lint/format. The additional tests cover fact conflict guards, query packing, source authority, policy selection, context bypass revalidation and capacity boundaries.
+
+No paid comparison request has been made at this milestone. Candidates are implemented choices rather than a demonstrated quality improvement. Source presence alone still cannot establish claim entailment; the planned comparison needs independent source-based review.
+
 ## Next integration work
 
 | Work | Owner | Completion evidence |

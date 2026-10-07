@@ -369,11 +369,21 @@ class ReasoningContext(Contract):
     case_revision: NonnegativeInt
     attempt_index: Annotated[int, Field(strict=True, ge=1, le=2)]
     output_feedback: OutputFeedback | None = None
+    remaining_model_attempts: Annotated[int, Field(strict=True, ge=0, le=1)] = 0
+    remaining_retrieval_rounds: Annotated[int, Field(strict=True, ge=0, le=1)] = 0
+    can_refine: Annotated[bool, Field(strict=True)] = False
+    query_limit: Annotated[int, Field(strict=True, ge=1, le=2)] = 2
 
     @model_validator(mode="after")
     def feedback_is_only_for_repair(self) -> Self:
         if self.output_feedback is not None and self.attempt_index != 2:
             raise ValueError("output feedback belongs only to the second attempt")
+        if self.remaining_model_attempts > 2 - self.attempt_index:
+            raise ValueError("remaining model attempts exceed the hard allowance")
+        if self.can_refine and not (
+            self.remaining_model_attempts and self.remaining_retrieval_rounds
+        ):
+            raise ValueError("refinement requires remaining analysis and retrieval capacity")
         return self
 
 
