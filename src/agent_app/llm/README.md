@@ -1,10 +1,19 @@
-# Future model gateway
+# Metis model gateway
 
-This directory reserves the model adapter boundary. There is no paid provider
-client in the foundation. Implement `orchestration.ports.Reasoner` here after a
-small provider compatibility pilot is authorized and the team's shared remaining
-budget is known. All paid retries must consume the same attempt/cost limits.
+This module implements the reasoning port and shared local budget accounting.
+Live calls are disabled by default. The gateway demo uses HTTPx `MockTransport`,
+synthetic evidence, and simulated usage; it spends no API credit and does not
+verify compatibility or billing on the team's Metis account.
 
-Use the shared prompt and validate responses with `AnalysisResult`. Record actual
-usage separately from mock counters; keep uncertain timeout costs reserved. No
-other module should create an independent model client or store credentials.
+The adapter uses one nonstreaming chat-completion request with the shared prompt;
+the engine validates the returned decision with `AnalysisResult`. It does not assume
+native JSON-schema output support or add HTTP retries. Each attempt carries the
+core's `ReasoningContext`; model text cannot choose its ledger attribution.
+
+Use one designated runner and one SQLite ledger for the whole team's USD 5
+budget. Reserve before the request, settle known usage afterward, and retain the
+reservation on uncertain failures. Other modules must use this boundary rather
+than creating independent clients, budget files, or credentials.
+
+Operator commands, dated prices, failure handling, and integration limits are in
+[the model gateway guide](../../../docs/model-gateway.md).

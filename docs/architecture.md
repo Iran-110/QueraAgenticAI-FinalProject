@@ -25,18 +25,20 @@ Refinement analyzes only the latest `EvidenceBundle`; the engine does not implic
 
 `SupportEngine.run(case, user_message)` returns a `RunResult`; the constructor accepts an optional current-revision callback for freshness checks. The caller supplies the authoritative current `CaseState`, including new or corrected facts; this foundation does not extract facts automatically. Persistence and execution authorization need the real integrations. All returned drafts await separate human review; a draft is not proof of an executed action or a solved case.
 
-There is no paid model client, real retrieval index, durable tracker, or backend connection to Streamlit in this foundation. A scripted response only proves that the orchestration and contracts run together; it does not prove answer quality.
+A Metis client and durable cost ledger now implement the model boundary. They have only been verified with simulated HTTP responses; provider access, usage and account billing still need a live pilot. A real retrieval index, durable case tracker and backend connection to Streamlit remain pending. Scripted responses do not establish answer quality. See [model gateway and shared budget](model-gateway.md).
 
 ## Four ownership boundaries
 
 | Owner | Owns | Integration agreement |
 | --- | --- | --- |
-| Agent core | `contracts.py`, `orchestration/`, `reasoning/`, `testing/`, `cli.py`, `demo.py`; reserved `llm/` | Defines shared contracts; model port: `Reasoner.analyze(case, user_message, evidence)` → `AnalysisResult` or a JSON object/string |
+| Agent core | `contracts.py`, `orchestration/`, `reasoning/`, `testing/`, `cli.py`, `demo.py`, `llm/` | Defines shared contracts; model port: `Reasoner.analyze(case, user_message, evidence, *, context)` → `AnalysisResult` or a JSON object/string |
 | Data/RAG | `data/`, collection scripts; proposed `ingestion/`, `retrieval/` | `Retriever.search(RetrievalRequest)` → `EvidenceBundle`; preserves URL, source section, version/commit, and chronology |
 | Tracker/tools | Proposed `tracker/`, `tools/` | Persists case state; validates exact approval and current revision; prevents duplicate execution |
 | UI/evaluation | `app.py`; proposed `evaluation/` | Calls the core instead of recreating policy; exposes proposals and review; owns dev/test protocol |
 
 Python module paths are relative to `src/agent_app/`. Both ports are defined in `orchestration/ports.py`, and their returned values are validated by the engine. Tests follow the corresponding owner. `pyproject.toml`, `uv.lock`, README, and shared contracts need coordinated review. Proposed paths are reserved boundaries, not evidence that those implementations already exist.
+
+`ReasoningContext` identifies the run, case revision and attempt index. Terminal adapter failures use `ReasoningStopped`; the engine does not retry them. Ledger request IDs are derived from the trusted context, so resubmitting the same attempt cannot silently create another send. This does not implement response replay or tracker restart recovery.
 
 ## Integration requirements
 

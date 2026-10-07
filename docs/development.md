@@ -11,6 +11,7 @@ uv run agent-app demo --scenario answer
 uv run agent-app demo --scenario escalate
 uv run agent-app demo --scenario refine
 uv run agent-app demo --scenario error
+uv run agent-app gateway-demo --scenario repair
 uv run pytest
 uv run ruff check .
 uv run ruff format --check .
@@ -47,7 +48,7 @@ Commit when a coherent part works: contracts, an orchestration behavior, a verif
 
 Raw datasets, downloaded documentation, databases, caches, and credentials do not belong in code commits. Check in the collection recipe and snapshot metadata; coordinate where the team shares the actual snapshot. Existing local downloads outside the repo are working material, not automatically part of a teammate's clone.
 
-Use mocks and recorded responses for daily development. The paid adapter and the team's shared cost ledger are pending. Before its first real run, agree on the model, price basis, small pilot limit, remaining budget, and a single place to record spending. The USD 5 ceiling includes the bonus and evaluation; separate local demos from paid results in every report.
+Use mocks and recorded responses for daily development. The Metis adapter and durable cost ledger are implemented; their live pilot is pending. Keep one designated live runner and one authoritative ledger, as described in [the gateway guide](model-gateway.md). Before its first real run, agree on the model, price basis, small pilot limit, remaining budget, and a single place to record spending. The USD 5 ceiling includes the bonus and evaluation; separate local demos from paid results in every report.
 
 Evaluation owns the dev/test split before retrieval builds the index. Do not tune prompts, models, or retrieval on the test set. Each outcome should be supported by saved evidence and actual tracker state, not just the model's explanation.
 
