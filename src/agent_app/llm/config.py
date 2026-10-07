@@ -5,7 +5,15 @@ from collections.abc import Mapping
 from decimal import Decimal
 from typing import Annotated, Literal
 
-from pydantic import BaseModel, ConfigDict, Field, SecretStr, field_validator, model_validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    SecretStr,
+    StringConstraints,
+    field_validator,
+    model_validator,
+)
 
 from agent_app.reasoning.prompts import PromptPolicy
 
@@ -22,6 +30,10 @@ class MetisConfig(BaseModel):
     model: str = "gpt-4o-mini"
     phase: Literal["development", "evaluation", "demo"] = "development"
     prompt_policy: PromptPolicy = "baseline"
+    # Caller-owned accounting authorization, never selected by model output.
+    continuation_id: (
+        Annotated[str, StringConstraints(pattern=r"^[a-z0-9][a-z0-9-]{0,63}$")] | None
+    ) = None
     max_output_tokens: Annotated[int, Field(strict=True, ge=128, le=2048)] = 1024
     input_token_reserve: Annotated[int, Field(strict=True, ge=4096, le=32768)] = 32768
     max_request_usd: Decimal = Decimal("0.02")

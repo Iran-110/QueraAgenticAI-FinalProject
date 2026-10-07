@@ -101,6 +101,7 @@ class MetisReasoner:
                 model=self.config.model,
                 phase=self.config.phase,
                 amount_usd=reserve,
+                continuation_id=self.config.continuation_id,
             )
         except BudgetDenied:
             raise ReasoningStopped("BudgetExceeded", "budget_stopped") from None

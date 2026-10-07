@@ -34,10 +34,13 @@ class ExperimentPlan(Contract):
     suite_sha256: Annotated[str, StringConstraints(pattern=r"^[a-f0-9]{64}$")]
     model: Literal["gpt-4o-mini", "gpt-4.1-mini"] = "gpt-4o-mini"
     policies: tuple[PromptPolicy, ...] = ("baseline", "decision_rubric", "bounded_rubric")
-    input_token_reserve: Literal[16384] = 16384
+    input_token_reserve: Literal[16384, 32768] = 16384
     max_output_tokens: Literal[768] = 768
     cap_usd: Decimal = Decimal("0.16")
     price_verified_on: Literal["2026-10-07"] = "2026-10-07"
+    continuation_id: (
+        Annotated[str, StringConstraints(pattern=r"^[a-z0-9][a-z0-9-]{0,63}$")] | None
+    ) = None
     scope: str
 
     @model_validator(mode="after")
@@ -87,16 +90,34 @@ class ExperimentGate:
         self.ledger = ledger
         self.plan = plan
         self.opening_exposure = exposure(opening)
+        self.opening_grant_used = (
+            ledger.continuation_status(plan.continuation_id).used_usd
+            if plan.continuation_id
+            else Decimal("0")
+        )
         price = get_price(plan.model)
         assert price is not None
         self.request_reserve = price.cost(plan.input_token_reserve, plan.max_output_tokens)
 
-    def check(self) -> None:
+    def check_accounting(self) -> None:
         snapshot = self.ledger.snapshot()
-        # Unknown usage or interrupted accounting ends the entire experiment.
-        if snapshot.halted or snapshot.reserved_usd or snapshot.uncertain_usd:
+        if self.plan.continuation_id:
+            grant = self.ledger.continuation_status(self.plan.continuation_id)
+            if not grant.active or grant.allowed_model != self.plan.model or snapshot.reserved_usd:
+                raise ReasoningStopped("LedgerUnavailable", "budget_stopped")
+        elif snapshot.halted or snapshot.reserved_usd or snapshot.uncertain_usd:
             raise ReasoningStopped("LedgerUnavailable", "budget_stopped")
-        used = max(Decimal("0"), exposure(snapshot) - self.opening_exposure)
+
+    def check(self) -> None:
+        self.check_accounting()
+        snapshot = self.ledger.snapshot()
+        if self.plan.continuation_id:
+            grant = self.ledger.continuation_status(self.plan.continuation_id)
+            used = grant.used_usd - self.opening_grant_used
+            if self.request_reserve > grant.remaining_usd:
+                raise ReasoningStopped("BudgetExceeded", "budget_stopped")
+        else:
+            used = max(Decimal("0"), exposure(snapshot) - self.opening_exposure)
         if used + self.request_reserve > self.plan.cap_usd:
             raise ReasoningStopped("BudgetExceeded", "budget_stopped")
 
@@ -158,6 +179,16 @@ def run_experiment(
             "suite_content_sha256": hashlib.sha256(suite.model_dump_json().encode()).hexdigest(),
             "code_sha256": code_digest.hexdigest(),
             "opening_ledger": snapshot_json(opening),
+            "continuation": (
+                {
+                    key: str(value) if isinstance(value, Decimal) else value
+                    for key, value in asdict(
+                        ledger.continuation_status(plan.continuation_id)
+                    ).items()
+                }
+                if plan.continuation_id
+                else None
+            ),
             "price_source": PRICE_SOURCE,
             "one_request_reserve_usd": str(gate.request_reserve),
             "account_deductions_reconciled": False,
@@ -179,6 +210,7 @@ def run_experiment(
                 "input_token_reserve": plan.input_token_reserve,
                 "prompt_policy": policy,
                 "phase": "development",
+                "continuation_id": plan.continuation_id,
             }
         )
         http_attempts = []
@@ -224,8 +256,9 @@ def run_experiment(
                     ),
                 }
             )
-        after = ledger.snapshot()
-        if after.halted or after.reserved_usd or after.uncertain_usd:
+        try:
+            gate.check_accounting()
+        except ReasoningStopped:
             stop_reason = "UnreconciledLedger"
             break
         if observation["result"]["status"] == "budget_stopped":
