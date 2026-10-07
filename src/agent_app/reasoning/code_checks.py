@@ -1,6 +1,7 @@
 """Bounded syntax checks for explicitly labeled Python fences in proposed drafts.
 
-This does not execute snippets or verify callback arity, types, API usage, or
+This statically parses and compiles modules without executing their code objects.
+It does not verify callback arity, types, API usage, or
 source faithfulness. Unlabeled, inline, quoted, and other-language code is outside
 coverage. Fences use backticks or tildes with up to three opening-indent spaces.
 Each labeled block is parsed as a complete module; partial fragments can fail.
@@ -8,6 +9,7 @@ Each labeled block is parsed as a complete module; partial fragments can fail.
 
 import ast
 import re
+import warnings
 from dataclasses import dataclass, field
 
 from agent_app.contracts import AnalysisResult
@@ -48,7 +50,7 @@ class _OpenFence:
 def _python_modules(analysis: AnalysisResult) -> tuple[ast.Module, ...] | None:
     """Parse complete labeled fences within the shared resource limits.
 
-    ``None`` means invalid syntax or a bounded-parser failure. Parsed modules
+    ``None`` means invalid syntax or a bounded-parser/compiler failure. Parsed modules
     remain internal; source text and exception messages never leave the checker.
     """
     block_count = 0
@@ -76,7 +78,16 @@ def _python_modules(analysis: AnalysisResult) -> tuple[ast.Module, ...] | None:
             if opened.closes(match):
                 if opened.python:
                     try:
-                        modules.append(ast.parse("\n".join(opened.lines) + "\n", mode="exec"))
+                        # Parsing alone permits e.g. duplicate function parameters
+                        # and module-level return/break/await. Compilation checks
+                        # those rules without importing or executing the code object.
+                        # Compiler warnings can contain source text, so keep them
+                        # inside the same nonexporting diagnostic boundary.
+                        with warnings.catch_warnings():
+                            warnings.simplefilter("ignore")
+                            module = ast.parse("\n".join(opened.lines) + "\n", mode="exec")
+                            compile(module, "<proposed-python>", "exec", dont_inherit=True)
+                        modules.append(module)
                     except (SyntaxError, ValueError, TypeError, RecursionError, MemoryError):
                         return None
                 opened = None

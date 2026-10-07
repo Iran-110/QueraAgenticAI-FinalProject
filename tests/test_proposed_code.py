@@ -186,3 +186,53 @@ def test_parsing_imports_and_function_calls_never_executes_them(tmp_path):
     assert has_invalid_python_code(analysis(fenced(source))) is False
     assert not marker_path.exists()
     assert "module_that_must_never_be_imported_by_the_guard" not in sys.modules
+
+
+@pytest.mark.parametrize(
+    "source",
+    [
+        "return 1",
+        "break",
+        "continue",
+        "await helper()",
+        "def callback(value, value):\n    pass",
+        "def callback(value, **value):\n    pass",
+        "def callback():\n    nonlocal missing",
+    ],
+)
+def test_parseable_but_uncompilable_complete_modules_are_rejected(source, capsys):
+    assert has_invalid_python_code(analysis(fenced(source))) is True
+    captured = capsys.readouterr()
+    assert captured.out == captured.err == ""
+
+
+@pytest.mark.parametrize(
+    "source",
+    [
+        "def callback():\n    return 1",
+        "for value in range(2):\n    break",
+        "async def callback():\n    await helper()",
+        "def callback(value, /, **kwargs):\n    return kwargs",
+    ],
+)
+def test_valid_scoped_counterparts_survive_static_compilation(source):
+    assert has_invalid_python_code(analysis(fenced(source))) is False
+
+
+@pytest.mark.parametrize(
+    "failure", [SyntaxError, TypeError, ValueError, RecursionError, MemoryError]
+)
+def test_compiler_failures_export_no_source_or_exception_text(monkeypatch, failure, capsys):
+    def fail_compile(*_args, **_kwargs):
+        raise failure("PRIVATE_COMPILER_EXCEPTION_MARKER")
+
+    monkeypatch.setattr(code_checks, "compile", fail_compile, raising=False)
+    assert has_invalid_python_code(analysis(fenced("value = 1"))) is True
+    captured = capsys.readouterr()
+    assert captured.out == captured.err == ""
+
+
+def test_source_bearing_parser_and_compiler_warnings_are_suppressed(capsys):
+    assert has_invalid_python_code(analysis(fenced("PRIVATE_MARKER is 123456"))) is False
+    captured = capsys.readouterr()
+    assert captured.out == captured.err == ""

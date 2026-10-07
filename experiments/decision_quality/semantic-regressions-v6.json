@@ -1,0 +1,1875 @@
+{
+  "schema_version": 1,
+  "pack_id": "offline-semantic-regressions-v6",
+  "purpose": "inspectable_offline_whole_proposal_review_challenges_over_exposed_frozen_public_v4_inputs",
+  "created_on": "2026-10-07",
+  "author_label_disclaimer": "Every semantic label and expected check code is a synthetic developer expectation authored for offline regression review. These are not independent evaluation, human gold, live model outputs, before/after performance proof, or a held-out benchmark.",
+  "execution_boundary": {
+    "offline_only": true,
+    "fixed_authored_proposals_not_model_outputs": true,
+    "requires_paid_calls": false,
+    "embedded_code_is_proposed_and_not_executed": true,
+    "production_semantic_judge": false,
+    "production_default_change": false
+  },
+  "frozen_input": {
+    "path": "experiments/decision_quality/cases-guards-v4.json",
+    "sha256": "14cef1e4633d59dbc26d77cd60a175a4abcbe35b62a476823b7ed9a9e20001a1",
+    "requirements_path": "experiments/decision_quality/requirements-guards-v4.json",
+    "requirements_sha256": "22a703fe4d8fe91fa1f9958b252bd23c9fbbc11108326e5331cd4d8fa1b7bbef",
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "snapshot_id": "core-quality-guards-v4",
+    "source_snapshot_date": "2026-10-06",
+    "source_downloads": [],
+    "private_outputs_or_final_heldout_inputs_used": false
+  },
+  "review_boundaries": [
+    "Review complete user_draft, maintainer_summary, rationale and evidence_links against authoritative case state and the supplied source spans.",
+    "Schema validity, accepted decision, known chunk IDs and exact canonical question conformance are separate from semantic quality.",
+    "Expected check codes measure the documented narrow static scope only. An empty list includes deliberate semantic failures and abstention controls.",
+    "No order NLP recognizer or general source-entailment judge is introduced by this pack.",
+    "Do not score required/forbidden words, answer wording, or label matching as whole-proposal semantic quality.",
+    "The timing excerpt remains an unversioned October 2026 snapshot with empty applicable_versions; no historical applicability is inferred.",
+    "Related pairs reuse exposed contexts and sources and are not statistically independent observations.",
+    "During offline authoring, local static replay showed that the complete-app arity negative with a trailing rendering call lies outside the conservative proof subset. Its original proposal is preserved as an abstention case; a separate isolated registration negative was added as the narrow expected-finding control. This scope refinement is not live evaluation."
+  ],
+  "semantic_labels": {
+    "acceptable": "Developer-authored proposal preserves the intended behavior and supplied facts with supported, bounded claims.",
+    "needs_revision": "A material but localized source-attribution or applicability claim needs correction; the concrete supported advice can be retained.",
+    "unusable": "The authored proposal reverses source facts, breaks intended behavior, fabricates authoritative context or gives a broken callback registration."
+  },
+  "scenarios": [
+    {
+      "id": "synthetic-semantic-v6-widget-update-order",
+      "role": "paired",
+      "kind": "synthetic",
+      "origin_url": null,
+      "origin_issue_id": null,
+      "origin_created_at": null,
+      "description": "Separate automatic update order from construction-time callback argument capture.",
+      "dimensions": [
+        "explicit_order_assertion",
+        "source_entailment",
+        "captured_value_vs_current_state"
+      ],
+      "source_case_id": "synthetic-own-widget-stale-args",
+      "source_bundle_index": 0,
+      "frozen_copy": {
+        "case_state": "exact_deep_copy",
+        "evidence_bundle": "exact_deep_copy",
+        "user_message": "exact_copy",
+        "proposal_requirements": "exact_deep_copy"
+      },
+      "context_adaptation": null,
+      "synthetic_supplement": null,
+      "case_state": {
+        "case_id": "case-synthetic-own-widget-stale-args",
+        "case_revision": 0,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.64.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-stale-args",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "python_version",
+            "value": "3.13.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-stale-args",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Ubuntu 24.04",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-stale-args",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Firefox 143",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-stale-args",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_callback_argument",
+            "value": "args=(st.session_state[\"shade\"],) passes the own-widget value",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-stale-args",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_frontend_value",
+            "value": "Teal",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-stale-args",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_callback_value",
+            "value": "Amber",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-stale-args",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [
+          "User reports repeating the example in a fresh tab"
+        ],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "On Streamlit 1.64.0 with Python 3.13.0 on Ubuntu 24.04 and Firefox 143 I run this complete example. When I change Shade from Amber to Teal the selectbox shows Teal but remembered still shows Amber. I repeated that in a fresh tab. How should the callback get the new Shade value?\n\n```python\nimport streamlit as st\nst.session_state.setdefault(\"shade\", \"Amber\")\ndef remember(value):\n    st.session_state[\"remembered\"] = value\nst.selectbox(\"Shade\", [\"Amber\", \"Teal\"], key=\"shade\",\n             on_change=remember, args=(st.session_state[\"shade\"],))\nst.write(st.session_state.get(\"remembered\"))\n```",
+      "evidence_bundle": {
+        "snapshot_id": "core-quality-guards-v4",
+        "hits": [
+          {
+            "chunk_id": "selectbox-164-callback-v4",
+            "source_id": "docstring:1.64.0:streamlit.selectbox",
+            "excerpt": "A callable: Streamlit will rerun the app and execute the\ncallable as a callback function before the rest of the app.\n\nNone: This is the same as on_change=\"rerun\". This value\nexists for backwards compatibility and shouldn't be used.\n\nargs: list or tuple; default=None\nAn optional list or tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [
+              "1.64.0"
+            ],
+            "source_span": "JSON pointer /1.64.0/streamlit.selectbox; on_change callable behavior, args, kwargs parameters in normalized docstring"
+          },
+          {
+            "chunk_id": "selectbox-164-signature-v4",
+            "source_id": "docstring:1.64.0:streamlit.selectbox",
+            "excerpt": "st.selectbox(label, options, index=0, format_func=special_internal_function, key=None, help=None, on_change=\"rerun\", args=None, kwargs=None, *, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, filter_mode=\"fuzzy\", width=\"stretch\", bind=None, persist_state=None)",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [
+              "1.64.0"
+            ],
+            "source_span": "JSON pointer /1.64.0/streamlit.selectbox; complete callable signature in normalized version-specific docstring"
+          },
+          {
+            "chunk_id": "selectbox-164-key-access-v4",
+            "source_id": "docstring:1.64.0:streamlit.selectbox",
+            "excerpt": "A key lets you read or update the widget's value via\nst.session_state[key]. For more details, see Widget\nbehavior.",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [
+              "1.64.0"
+            ],
+            "source_span": "JSON pointer /1.64.0/streamlit.selectbox; key parameter, Session State access in normalized version-specific docstring"
+          },
+          {
+            "chunk_id": "widget-callback-order-snapshot-v4",
+            "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+            "excerpt": "When a user interacts with a widget, the widget is updated and triggers a rerun in the following order:\n\n1. The widget value in `st.session_state` is updated.\n2. The callback function (if any) is executed.\n3. The page reruns with the widget command returning its new value.\n\nIf the callback function displays anything on the screen, that content will appear above the rest of the page. A callback function runs as a _prefix_ to the script run. Consequently, that means anything written via a callback function will disappear as soon as the user performs their next action. Widget commands should generally not be called within a callback function.\n\n<Note>\n\nIf a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget. In particular, if you want to use a widget's value in its own callback function, you can't pass that value to the callback function via the `args` parameter; you must assign a key to the widget and look up its value using `st.session_state` _within the callback function_.",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L104",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [],
+            "source_span": "Markdown lines 104-114, Order of operations; unversioned October 2026 snapshot, not historical 1.27.2 documentation"
+          }
+        ],
+        "queries_used": [],
+        "retrieval_round": 1,
+        "warnings": []
+      },
+      "proposal_requirements": {
+        "case_id": "case-synthetic-own-widget-stale-args",
+        "case_revision": 0,
+        "question_targets": [],
+        "require_fresh_widget_value": true
+      },
+      "variants": [
+        {
+          "id": "correct-order",
+          "control": "positive",
+          "proposal": {
+            "decision": "answer",
+            "user_draft": "For the documented interaction, Streamlit updates the widget value in Session State first, executes the callback next, and then reruns the page. Your args tuple was established when the widget command ran, so it captured Amber before the later interaction. Pass the stable key and read its value during the callback instead:\n\n```python\nimport streamlit as st\ndef remember(widget_key):\n    st.session_state[\"remembered\"] = st.session_state[widget_key]\nst.selectbox(\"Shade\", [\"Amber\", \"Teal\"], key=\"shade\",\n             on_change=remember, args=(\"shade\",))\nst.write(st.session_state.get(\"remembered\"))\n```",
+            "maintainer_summary": "Synthetic reported Amber/Teal stale argument: construction-time argument capture differs from automatic widget-value update order. The proposed key/read-inside handler preserves its required argument. The supplied example was not executed by this review.",
+            "rationale": "The timing excerpt explicitly gives update, callback, then page rerun and separately explains construction-time args. The key-access excerpt supports reading st.session_state[widget_key]. No loop or closure is present in the supplied complete example.",
+            "evidence_links": [
+              {
+                "claim": "The widget value in Session State is updated before callback execution, and the page reruns after the callback.",
+                "chunk_id": "widget-callback-order-snapshot-v4"
+              },
+              {
+                "claim": "Callback args are established at widget construction; passing a key permits a current-value lookup inside the callback.",
+                "chunk_id": "widget-callback-order-snapshot-v4"
+              },
+              {
+                "claim": "A widget key supports reading its value through st.session_state[key].",
+                "chunk_id": "selectbox-164-key-access-v4"
+              }
+            ],
+            "missing_info": [],
+            "next_question": null,
+            "retrieval_queries": [],
+            "facts_delta": [],
+            "checks_suggested": []
+          },
+          "expected_check_codes": [],
+          "semantic_expectation": {
+            "label": "acceptable",
+            "label_source": "synthetic_developer_expectation",
+            "reasons": [
+              "States the documented update/callback/rerun order and diagnoses construction-time capture without reversing that order.",
+              "Proposed key/read-inside code preserves callback arity."
+            ],
+            "unsupported_claims": []
+          },
+          "static_scope_expectation": {
+            "expected_abstentions": [],
+            "meaning": "Expected codes describe only the opt-in static checker scope. Empty codes do not establish semantic correctness."
+          }
+        },
+        {
+          "id": "reversed-order",
+          "control": "negative",
+          "proposal": {
+            "decision": "answer",
+            "user_draft": "For this widget interaction, the callback executes before Streamlit updates the widget value in Session State. The callback therefore sees Amber, then Session State changes to Teal, and finally the main script reruns. Reading the key inside the callback would still read Amber. Move the remembered-value read into the main script after the selectbox instead.",
+            "maintainer_summary": "The synthetic stale value is explained by automatic Session State updates occurring after callbacks. A read during the main-script rerun is needed because callback-time state is still old.",
+            "rationale": "The documented callback runs before the automatic widget-value update. This establishes a timing cause for the reported Amber/Teal difference, regardless of whether the callback receives a key or a value.",
+            "evidence_links": [
+              {
+                "claim": "The callback executes before the widget value in Session State is updated.",
+                "chunk_id": "widget-callback-order-snapshot-v4"
+              }
+            ],
+            "missing_info": [],
+            "next_question": null,
+            "retrieval_queries": [],
+            "facts_delta": [],
+            "checks_suggested": []
+          },
+          "expected_check_codes": [],
+          "semantic_expectation": {
+            "label": "unusable",
+            "label_source": "synthetic_developer_expectation",
+            "reasons": [
+              "The explicit callback-before-automatic-update assertion contradicts the supplied timing excerpt.",
+              "It treats a fresh Session State lookup as old and bases the proposed action on that false timing cause."
+            ],
+            "unsupported_claims": [
+              "Callback execution precedes automatic widget-value Session State update."
+            ]
+          },
+          "static_scope_expectation": {
+            "expected_abstentions": [
+              "free_text_order_entailment"
+            ],
+            "meaning": "Expected codes describe only the opt-in static checker scope. Empty codes do not establish semantic correctness."
+          }
+        }
+      ]
+    },
+    {
+      "id": "synthetic-semantic-v6-stable-key-arity",
+      "role": "paired",
+      "kind": "synthetic",
+      "origin_url": null,
+      "origin_issue_id": null,
+      "origin_created_at": null,
+      "description": "Preserve correct stable-key/read-inside registration versus removing its required argument.",
+      "dimensions": [
+        "stable_key_vs_captured_value",
+        "callback_arity",
+        "prose_coverage_boundary",
+        "reported_intent"
+      ],
+      "source_case_id": "synthetic-own-widget-pass-key-control",
+      "source_bundle_index": 0,
+      "frozen_copy": {
+        "case_state": "exact_deep_copy",
+        "evidence_bundle": "exact_deep_copy",
+        "user_message": "exact_copy",
+        "proposal_requirements": "exact_deep_copy"
+      },
+      "context_adaptation": null,
+      "synthetic_supplement": null,
+      "case_state": {
+        "case_id": "case-synthetic-own-widget-pass-key-control",
+        "case_revision": 0,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.64.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-pass-key-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "python_version",
+            "value": "3.13.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-pass-key-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Ubuntu 24.04",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-pass-key-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Firefox 143",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-pass-key-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_callback_argument",
+            "value": "The stable key shade is passed as args=(\"shade\",)",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-pass-key-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_failure_status",
+            "value": "No failure is being reported",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-pass-key-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "I am checking this design on Streamlit 1.64.0 and Python 3.13.0 on Ubuntu 24.04 with Firefox 143. The callback receives the key and looks up Session State inside the callback. Is this the right way to get the newly selected value or must I pass st.session_state[\"shade\"] through args instead? No failure is being reported.\n\n```python\nimport streamlit as st\ndef remember(widget_key):\n    st.session_state[\"remembered\"] = st.session_state[widget_key]\nst.selectbox(\"Shade\", [\"Amber\", \"Teal\"], key=\"shade\",\n             on_change=remember, args=(\"shade\",))\nst.write(st.session_state.get(\"remembered\"))\n```",
+      "evidence_bundle": {
+        "snapshot_id": "core-quality-guards-v4",
+        "hits": [
+          {
+            "chunk_id": "selectbox-164-callback-v4",
+            "source_id": "docstring:1.64.0:streamlit.selectbox",
+            "excerpt": "A callable: Streamlit will rerun the app and execute the\ncallable as a callback function before the rest of the app.\n\nNone: This is the same as on_change=\"rerun\". This value\nexists for backwards compatibility and shouldn't be used.\n\nargs: list or tuple; default=None\nAn optional list or tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [
+              "1.64.0"
+            ],
+            "source_span": "JSON pointer /1.64.0/streamlit.selectbox; on_change callable behavior, args, kwargs parameters in normalized docstring"
+          },
+          {
+            "chunk_id": "selectbox-164-signature-v4",
+            "source_id": "docstring:1.64.0:streamlit.selectbox",
+            "excerpt": "st.selectbox(label, options, index=0, format_func=special_internal_function, key=None, help=None, on_change=\"rerun\", args=None, kwargs=None, *, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, filter_mode=\"fuzzy\", width=\"stretch\", bind=None, persist_state=None)",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [
+              "1.64.0"
+            ],
+            "source_span": "JSON pointer /1.64.0/streamlit.selectbox; complete callable signature in normalized version-specific docstring"
+          },
+          {
+            "chunk_id": "selectbox-164-key-access-v4",
+            "source_id": "docstring:1.64.0:streamlit.selectbox",
+            "excerpt": "A key lets you read or update the widget's value via\nst.session_state[key]. For more details, see Widget\nbehavior.",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [
+              "1.64.0"
+            ],
+            "source_span": "JSON pointer /1.64.0/streamlit.selectbox; key parameter, Session State access in normalized version-specific docstring"
+          },
+          {
+            "chunk_id": "widget-callback-order-snapshot-v4",
+            "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+            "excerpt": "When a user interacts with a widget, the widget is updated and triggers a rerun in the following order:\n\n1. The widget value in `st.session_state` is updated.\n2. The callback function (if any) is executed.\n3. The page reruns with the widget command returning its new value.\n\nIf the callback function displays anything on the screen, that content will appear above the rest of the page. A callback function runs as a _prefix_ to the script run. Consequently, that means anything written via a callback function will disappear as soon as the user performs their next action. Widget commands should generally not be called within a callback function.\n\n<Note>\n\nIf a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget. In particular, if you want to use a widget's value in its own callback function, you can't pass that value to the callback function via the `args` parameter; you must assign a key to the widget and look up its value using `st.session_state` _within the callback function_.",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L104",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [],
+            "source_span": "Markdown lines 104-114, Order of operations; unversioned October 2026 snapshot, not historical 1.27.2 documentation"
+          }
+        ],
+        "queries_used": [],
+        "retrieval_round": 1,
+        "warnings": []
+      },
+      "proposal_requirements": {
+        "case_id": "case-synthetic-own-widget-pass-key-control",
+        "case_revision": 0,
+        "question_targets": [],
+        "require_fresh_widget_value": true
+      },
+      "variants": [
+        {
+          "id": "preserve-stable-key",
+          "control": "positive",
+          "proposal": {
+            "decision": "answer",
+            "user_draft": "The supplied key/read-inside pattern is suitable for the newly selected value in the documented interaction. Keep args=(\"shade\",): it supplies the widget_key parameter; the handler then looks up the current value during invocation. Passing st.session_state[\"shade\"] instead would capture the value when the widget is constructed. No failure was reported.\n\n```python\nimport streamlit as st\ndef remember(widget_key):\n    st.session_state[\"remembered\"] = st.session_state[widget_key]\nst.selectbox(\"Shade\", [\"Amber\", \"Teal\"], key=\"shade\",\n             on_change=remember, args=(\"shade\",))\nst.write(st.session_state.get(\"remembered\"))\n```",
+            "maintainer_summary": "The synthetic user is checking an already correct stable-key callback. Preserve args=(\"shade\",) and the one-argument remember(widget_key) handler; do not invent a failing reproduction.",
+            "rationale": "A stable key is not a captured widget value. The supplied handler requires one argument, which the literal key tuple provides, and the state read occurs inside invocation. The timing excerpt supports that distinction.",
+            "evidence_links": [
+              {
+                "claim": "Using a widget key permits reading its value through Session State.",
+                "chunk_id": "selectbox-164-key-access-v4"
+              },
+              {
+                "claim": "For a widget value needed in its own callback, read Session State within the callback rather than capturing that value in args.",
+                "chunk_id": "widget-callback-order-snapshot-v4"
+              }
+            ],
+            "missing_info": [],
+            "next_question": null,
+            "retrieval_queries": [],
+            "facts_delta": [],
+            "checks_suggested": []
+          },
+          "expected_check_codes": [],
+          "semantic_expectation": {
+            "label": "acceptable",
+            "label_source": "synthetic_developer_expectation",
+            "reasons": [
+              "Preserves the valid literal-key argument and invocation-time lookup.",
+              "Does not invent a failure or remove the handler required argument."
+            ],
+            "unsupported_claims": []
+          },
+          "static_scope_expectation": {
+            "expected_abstentions": [],
+            "meaning": "Expected codes describe only the opt-in static checker scope. Empty codes do not establish semantic correctness."
+          }
+        },
+        {
+          "id": "remove-args-complete-code",
+          "control": "negative",
+          "proposal": {
+            "decision": "answer",
+            "user_draft": "Because key=\"shade\" already identifies the widget, args=(\"shade\",) is unnecessary. Remove args and keep remember(widget_key) as written; Streamlit can supply the key to that parameter automatically.\n\n```python\nimport streamlit as st\ndef remember(widget_key):\n    st.session_state[\"remembered\"] = st.session_state[widget_key]\nst.selectbox(\"Shade\", [\"Amber\", \"Teal\"], key=\"shade\",\n             on_change=remember)\nst.write(st.session_state.get(\"remembered\"))\n```",
+            "maintainer_summary": "Simplify the synthetic key/read-inside example by removing the explicit argument tuple without changing its one-argument handler.",
+            "rationale": "The widget key automatically supplies the handler parameter, so the callback registration no longer needs args. The Session State lookup remains inside the handler.",
+            "evidence_links": [
+              {
+                "claim": "The key parameter automatically supplies a positional widget_key argument to the callback.",
+                "chunk_id": "selectbox-164-key-access-v4"
+              }
+            ],
+            "missing_info": [],
+            "next_question": null,
+            "retrieval_queries": [],
+            "facts_delta": [],
+            "checks_suggested": []
+          },
+          "expected_check_codes": [],
+          "semantic_expectation": {
+            "label": "unusable",
+            "label_source": "synthetic_developer_expectation",
+            "reasons": [
+              "Complete proposed Python registers a required-one-argument handler without args.",
+              "The key API excerpt does not say key automatically supplies a callback argument."
+            ],
+            "unsupported_claims": [
+              "The widget key automatically fills the callback positional parameter."
+            ]
+          },
+          "static_scope_expectation": {
+            "expected_abstentions": [
+              "callback_arity_with_extra_top_level_rendering_call"
+            ],
+            "meaning": "The original complete-app fence retains a top-level st.write(st.session_state.get(...)) rendering call. That opaque/effectful call is outside the conservative arity proof subset, so static checking abstains; the proposal still removes a required callback argument."
+          }
+        },
+        {
+          "id": "remove-args-prose-only",
+          "control": "negative",
+          "proposal": {
+            "decision": "answer",
+            "user_draft": "Your handler already reads Session State at invocation, but the key argument is redundant. In the supplied example, remove args=(\"shade\",) from the selectbox registration and keep def remember(widget_key) and its body unchanged. Streamlit will fill widget_key from key=\"shade\" automatically.",
+            "maintainer_summary": "Prose-only recommendation: remove the callback argument tuple while retaining the required widget_key parameter in the supplied handler.",
+            "rationale": "The widget key can take the place of an explicitly supplied callback argument. There is no need to rewrite remember(widget_key) when removing args.",
+            "evidence_links": [
+              {
+                "claim": "The key parameter supplies the handler positional argument when args is absent.",
+                "chunk_id": "selectbox-164-key-access-v4"
+              }
+            ],
+            "missing_info": [],
+            "next_question": null,
+            "retrieval_queries": [],
+            "facts_delta": [],
+            "checks_suggested": []
+          },
+          "expected_check_codes": [],
+          "semantic_expectation": {
+            "label": "unusable",
+            "label_source": "synthetic_developer_expectation",
+            "reasons": [
+              "Advice applied to the supplied complete handler removes its required argument without rewriting the handler.",
+              "It makes the same unsupported automatic-key-argument claim but has no proposed fenced registration to analyze."
+            ],
+            "unsupported_claims": [
+              "Removing args while retaining remember(widget_key) preserves the callback call contract."
+            ]
+          },
+          "static_scope_expectation": {
+            "expected_abstentions": [
+              "prose_only_callback_arity_advice"
+            ],
+            "meaning": "Expected codes describe only the opt-in static checker scope. Empty codes do not establish semantic correctness."
+          }
+        },
+        {
+          "id": "remove-args-isolated-registration",
+          "control": "negative",
+          "proposal": {
+            "decision": "answer",
+            "user_draft": "Because key=\"shade\" already identifies the widget, args=(\"shade\",) is unnecessary. Remove args and keep remember(widget_key) as written; Streamlit can supply the key to that parameter automatically.\n\n```python\nimport streamlit as st\ndef remember(widget_key):\n    st.session_state[\"remembered\"] = st.session_state[widget_key]\nst.selectbox(\"Shade\", [\"Amber\", \"Teal\"], key=\"shade\",\n             on_change=remember)\n```",
+            "maintainer_summary": "Isolated callback-registration recommendation: remove the explicit argument tuple without changing the required-one-argument handler. The fence contains only the import, handler and registration; it is an authored static proof control, not an executed application.",
+            "rationale": "The widget key automatically supplies the handler parameter, so the callback registration no longer needs args. The Session State lookup remains inside the handler.",
+            "evidence_links": [
+              {
+                "claim": "The key parameter automatically supplies a positional widget_key argument to the callback.",
+                "chunk_id": "selectbox-164-key-access-v4"
+              }
+            ],
+            "missing_info": [],
+            "next_question": null,
+            "retrieval_queries": [],
+            "facts_delta": [],
+            "checks_suggested": []
+          },
+          "expected_check_codes": [
+            "callback_arity_mismatch"
+          ],
+          "semantic_expectation": {
+            "label": "unusable",
+            "label_source": "synthetic_developer_expectation",
+            "reasons": [
+              "The isolated proposed Python registers a required-one-argument handler without args.",
+              "The key API excerpt does not say key automatically supplies a callback argument.",
+              "This additional author-written variant excludes the original trailing rendering call to fit the conservative AST proof subset; it does not replace the complete-app negative control."
+            ],
+            "unsupported_claims": [
+              "The widget key automatically fills the callback positional parameter."
+            ]
+          },
+          "static_scope_expectation": {
+            "expected_abstentions": [],
+            "meaning": "This isolated import/handler/registration fence omits the original top-level rendering call and fits the current conservative arity proof subset. Expected callback_arity_mismatch is a developer-authored detector regression expectation, separate from the semantic label."
+          }
+        }
+      ]
+    },
+    {
+      "id": "synthetic-semantic-v6-intentional-old-snapshot",
+      "role": "paired",
+      "kind": "synthetic",
+      "origin_url": null,
+      "origin_issue_id": null,
+      "origin_created_at": null,
+      "description": "Keep a deliberate construction-time old snapshot versus replacing both comparison entries with fresh reads.",
+      "dimensions": [
+        "intentional_previous_value",
+        "caller_freshness_requirement",
+        "code_vs_requested_behavior"
+      ],
+      "source_case_id": "synthetic-previous-value-snapshot-control",
+      "source_bundle_index": 0,
+      "frozen_copy": {
+        "case_state": "exact_deep_copy",
+        "evidence_bundle": "exact_deep_copy",
+        "user_message": "exact_copy",
+        "proposal_requirements": "exact_deep_copy"
+      },
+      "context_adaptation": null,
+      "synthetic_supplement": null,
+      "case_state": {
+        "case_id": "case-synthetic-previous-value-snapshot-control",
+        "case_revision": 0,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.64.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-previous-value-snapshot-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "python_version",
+            "value": "3.13.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-previous-value-snapshot-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Ubuntu 24.04",
+            "source_ref": "user/synthetic-guards-v4/synthetic-previous-value-snapshot-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Firefox 143",
+            "source_ref": "user/synthetic-guards-v4/synthetic-previous-value-snapshot-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_callback_intent",
+            "value": "Capture the value at widget construction as an old-value snapshot; read the current value within the callback for old/new comparison",
+            "source_ref": "user/synthetic-guards-v4/synthetic-previous-value-snapshot-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_expected_comparison",
+            "value": "For North to South, the intended pair is (\"North\", \"South\")",
+            "source_ref": "user/synthetic-guards-v4/synthetic-previous-value-snapshot-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_failure_status",
+            "value": "No failure is being reported",
+            "source_ref": "user/synthetic-guards-v4/synthetic-previous-value-snapshot-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "On Streamlit 1.64.0 with Python 3.13.0 on Ubuntu 24.04 and Firefox 143 I deliberately want the callback argument to be the value from when this widget was constructed. The callback then reads the current value from Session State so I can compare old and new. For a change from North to South I want comparison to contain (\"North\", \"South\"). I am asking whether that construction-time snapshot design is valid and I am not reporting a failure.\n\n```python\nimport streamlit as st\nst.session_state.setdefault(\"direction\", \"North\")\ndef compare(old_value):\n    new_value = st.session_state[\"direction\"]\n    st.session_state[\"comparison\"] = (old_value, new_value)\nst.selectbox(\"Direction\", [\"North\", \"South\"], key=\"direction\",\n             on_change=compare, args=(st.session_state[\"direction\"],))\nst.write(st.session_state.get(\"comparison\"))\n```",
+      "evidence_bundle": {
+        "snapshot_id": "core-quality-guards-v4",
+        "hits": [
+          {
+            "chunk_id": "selectbox-164-callback-v4",
+            "source_id": "docstring:1.64.0:streamlit.selectbox",
+            "excerpt": "A callable: Streamlit will rerun the app and execute the\ncallable as a callback function before the rest of the app.\n\nNone: This is the same as on_change=\"rerun\". This value\nexists for backwards compatibility and shouldn't be used.\n\nargs: list or tuple; default=None\nAn optional list or tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [
+              "1.64.0"
+            ],
+            "source_span": "JSON pointer /1.64.0/streamlit.selectbox; on_change callable behavior, args, kwargs parameters in normalized docstring"
+          },
+          {
+            "chunk_id": "selectbox-164-signature-v4",
+            "source_id": "docstring:1.64.0:streamlit.selectbox",
+            "excerpt": "st.selectbox(label, options, index=0, format_func=special_internal_function, key=None, help=None, on_change=\"rerun\", args=None, kwargs=None, *, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, filter_mode=\"fuzzy\", width=\"stretch\", bind=None, persist_state=None)",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [
+              "1.64.0"
+            ],
+            "source_span": "JSON pointer /1.64.0/streamlit.selectbox; complete callable signature in normalized version-specific docstring"
+          },
+          {
+            "chunk_id": "selectbox-164-key-access-v4",
+            "source_id": "docstring:1.64.0:streamlit.selectbox",
+            "excerpt": "A key lets you read or update the widget's value via\nst.session_state[key]. For more details, see Widget\nbehavior.",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [
+              "1.64.0"
+            ],
+            "source_span": "JSON pointer /1.64.0/streamlit.selectbox; key parameter, Session State access in normalized version-specific docstring"
+          },
+          {
+            "chunk_id": "widget-callback-order-snapshot-v4",
+            "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+            "excerpt": "When a user interacts with a widget, the widget is updated and triggers a rerun in the following order:\n\n1. The widget value in `st.session_state` is updated.\n2. The callback function (if any) is executed.\n3. The page reruns with the widget command returning its new value.\n\nIf the callback function displays anything on the screen, that content will appear above the rest of the page. A callback function runs as a _prefix_ to the script run. Consequently, that means anything written via a callback function will disappear as soon as the user performs their next action. Widget commands should generally not be called within a callback function.\n\n<Note>\n\nIf a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget. In particular, if you want to use a widget's value in its own callback function, you can't pass that value to the callback function via the `args` parameter; you must assign a key to the widget and look up its value using `st.session_state` _within the callback function_.",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L104",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [],
+            "source_span": "Markdown lines 104-114, Order of operations; unversioned October 2026 snapshot, not historical 1.27.2 documentation"
+          }
+        ],
+        "queries_used": [],
+        "retrieval_round": 1,
+        "warnings": []
+      },
+      "proposal_requirements": {
+        "case_id": "case-synthetic-previous-value-snapshot-control",
+        "case_revision": 0,
+        "question_targets": [],
+        "require_fresh_widget_value": false
+      },
+      "variants": [
+        {
+          "id": "preserve-old-new-comparison",
+          "control": "positive",
+          "proposal": {
+            "decision": "answer",
+            "user_draft": "The construction-time snapshot is intentional here. The documented args timing preserves the value present when this widget command was called; compare then reads the current keyed value during the later callback. For the stated North-to-South interaction, that supports comparing the intended old North with new South. Keep the old_value argument and its supplied tuple. This source-based explanation is not an execution of the snippet or a promise about every widget lifecycle.\n\n```python\nimport streamlit as st\nst.session_state.setdefault(\"direction\", \"North\")\ndef compare(old_value):\n    new_value = st.session_state[\"direction\"]\n    st.session_state[\"comparison\"] = (old_value, new_value)\nst.selectbox(\"Direction\", [\"North\", \"South\"], key=\"direction\",\n             on_change=compare, args=(st.session_state[\"direction\"],))\nst.write(st.session_state.get(\"comparison\"))\n```",
+            "maintainer_summary": "Synthetic design check with no reported failure: preserve the deliberate old-value argument plus the fresh callback-time Session State read. The freshness requirement is false because the argument is intentionally old.",
+            "rationale": "The caller explicitly wants old/new comparison. Construction-time args and invocation-time reads serve different purposes, and the frozen timing excerpt supports both. A blanket ban on value arguments would erase the requested old snapshot.",
+            "evidence_links": [
+              {
+                "claim": "Callback args are established when the widget command is called, rather than when the user later interacts.",
+                "chunk_id": "widget-callback-order-snapshot-v4"
+              },
+              {
+                "claim": "Session State widget value is updated before callback execution.",
+                "chunk_id": "widget-callback-order-snapshot-v4"
+              }
+            ],
+            "missing_info": [],
+            "next_question": null,
+            "retrieval_queries": [],
+            "facts_delta": [],
+            "checks_suggested": []
+          },
+          "expected_check_codes": [],
+          "semantic_expectation": {
+            "label": "acceptable",
+            "label_source": "synthetic_developer_expectation",
+            "reasons": [
+              "Preserves explicit old/new intent and the false fresh-value requirement.",
+              "Uses the timing excerpt to distinguish argument capture from the callback-time state read."
+            ],
+            "unsupported_claims": []
+          },
+          "static_scope_expectation": {
+            "expected_abstentions": [],
+            "meaning": "Expected codes describe only the opt-in static checker scope. Empty codes do not establish semantic correctness."
+          }
+        },
+        {
+          "id": "rewrite-away-old-snapshot",
+          "control": "negative",
+          "proposal": {
+            "decision": "answer",
+            "user_draft": "Any Session State value in callback args is a bug, even when you want the old value. Remove the argument and read direction twice inside a zero-argument callback. This preserves the old/new comparison and should produce (\"North\", \"South\") for the stated interaction.\n\n```python\nimport streamlit as st\nst.session_state.setdefault(\"direction\", \"North\")\ndef compare():\n    old_value = st.session_state[\"direction\"]\n    new_value = st.session_state[\"direction\"]\n    st.session_state[\"comparison\"] = (old_value, new_value)\nst.selectbox(\"Direction\", [\"North\", \"South\"], key=\"direction\",\n             on_change=compare)\nst.write(st.session_state.get(\"comparison\"))\n```",
+            "maintainer_summary": "Replace the deliberate old snapshot with two invocation-time reads of the same current state. This retains the synthetic user’s requested old/new behavior.",
+            "rationale": "The timing excerpt prohibits all construction-time Session State captures. Both reads inside compare now use the correct current state, so the intended old/new values are preserved.",
+            "evidence_links": [
+              {
+                "claim": "Construction-time Session State value arguments are always invalid, including deliberate previous-value snapshots.",
+                "chunk_id": "widget-callback-order-snapshot-v4"
+              }
+            ],
+            "missing_info": [],
+            "next_question": null,
+            "retrieval_queries": [],
+            "facts_delta": [],
+            "checks_suggested": []
+          },
+          "expected_check_codes": [],
+          "semantic_expectation": {
+            "label": "unusable",
+            "label_source": "synthetic_developer_expectation",
+            "reasons": [
+              "The rewritten zero-argument code reads the same current value twice and loses the old value.",
+              "It claims every construction-time capture is wrong despite explicit old-value intent."
+            ],
+            "unsupported_claims": [
+              "Two reads of the same current state preserve the requested old/new pair.",
+              "Every construction-time state argument is invalid."
+            ]
+          },
+          "static_scope_expectation": {
+            "expected_abstentions": [
+              "general_code_behavior_and_user_intent"
+            ],
+            "meaning": "Expected codes describe only the opt-in static checker scope. Empty codes do not establish semantic correctness."
+          }
+        }
+      ]
+    },
+    {
+      "id": "synthetic-semantic-v6-working-reduction-facts",
+      "role": "paired",
+      "kind": "synthetic",
+      "origin_url": null,
+      "origin_issue_id": null,
+      "origin_created_at": null,
+      "description": "Preserve the working reduction and active corrected facts versus conflating the reduction with the failing full path.",
+      "dimensions": [
+        "multi_turn_active_facts",
+        "superseded_history",
+        "performed_checks",
+        "question_usefulness",
+        "whole_proposal_consistency"
+      ],
+      "source_case_id": "synthetic-corrected-version-working-reduction",
+      "source_bundle_index": 0,
+      "frozen_copy": {
+        "case_state": "exact_deep_copy",
+        "evidence_bundle": "exact_deep_copy",
+        "user_message": "exact_copy",
+        "proposal_requirements": "exact_deep_copy"
+      },
+      "context_adaptation": null,
+      "synthetic_supplement": null,
+      "case_state": {
+        "case_id": "case-synthetic-corrected-version-working-reduction",
+        "case_revision": 0,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.63.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-corrected-version-working-reduction",
+            "turn_id": "synthetic-prior",
+            "provenance_kind": "user",
+            "status": "superseded"
+          },
+          {
+            "name": "streamlit_version",
+            "value": "1.64.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-corrected-version-working-reduction",
+            "turn_id": "synthetic-correction",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "python_version",
+            "value": "3.13.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-corrected-version-working-reduction",
+            "turn_id": "synthetic-correction",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Ubuntu 24.04",
+            "source_ref": "user/synthetic-guards-v4/synthetic-corrected-version-working-reduction",
+            "turn_id": "synthetic-correction",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Firefox 143",
+            "source_ref": "user/synthetic-guards-v4/synthetic-corrected-version-working-reduction",
+            "turn_id": "synthetic-correction",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_reduced_example_result",
+            "value": "The isolated fragment and multiselect example works",
+            "source_ref": "user/synthetic-guards-v4/synthetic-corrected-version-working-reduction",
+            "turn_id": "synthetic-correction",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_missing_failing_context",
+            "value": "The failing complete app and options-builder are not provided",
+            "source_ref": "user/synthetic-guards-v4/synthetic-corrected-version-working-reduction",
+            "turn_id": "synthetic-correction",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [
+          "minimal_failing_reproduction",
+          "options_builder_implementation"
+        ],
+        "checks_performed": [
+          "User reports the isolated fragment with constant options and default=[\"Pear\"] works"
+        ],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "Correction to my earlier environment report: the affected app is running Streamlit 1.64.0 rather than 1.63.0. Python is 3.13.0 on Ubuntu 24.04 with Firefox 143. In the full app a multiselect inside a fragment becomes empty after the region changes. I already tried an isolated fragment with a constant options list and default=[\"Pear\"] and it works. My full app builds the options in a helper that is not included and I have not made a failing reduced example of that path. What evidence do you need next?",
+      "evidence_bundle": {
+        "snapshot_id": "core-quality-guards-v4",
+        "hits": [
+          {
+            "chunk_id": "multiselect-164-default-v4",
+            "source_id": "docstring:1.64.0:streamlit.multiselect",
+            "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [
+              "1.64.0"
+            ],
+            "source_span": "JSON pointer /1.64.0/streamlit.multiselect; default parameter in normalized version-specific docstring"
+          },
+          {
+            "chunk_id": "fragment-164-rerun-v4",
+            "source_id": "docstring:1.64.0:streamlit.fragment",
+            "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [
+              "1.64.0"
+            ],
+            "source_span": "JSON pointer /1.64.0/streamlit.fragment; fragment rerun behavior in normalized version-specific docstring"
+          }
+        ],
+        "queries_used": [],
+        "retrieval_round": 1,
+        "warnings": []
+      },
+      "proposal_requirements": {
+        "case_id": "case-synthetic-corrected-version-working-reduction",
+        "case_revision": 0,
+        "question_targets": [
+          {
+            "name": "options_builder_implementation",
+            "question": "Could you share the options-builder helper and the failing fragment path from the full app?"
+          },
+          {
+            "name": "minimal_failing_reproduction",
+            "question": "Could you share a minimal failing example that includes the options builder and the region-change path?"
+          }
+        ],
+        "require_fresh_widget_value": false
+      },
+      "variants": [
+        {
+          "id": "preserve-corrected-facts",
+          "control": "positive",
+          "proposal": {
+            "decision": "ask",
+            "user_draft": "Thanks for the correction: the active reported Streamlit version is 1.64.0; the earlier 1.63.0 report is superseded. The isolated fragment with constant options and default=[\"Pear\"] already works, while the full app still empties the multiselect after a region change. The supplied API excerpts do not establish why the omitted options-builder path fails. Could you share the options-builder helper and the failing fragment path from the full app?",
+            "maintainer_summary": "Synthetic active environment: Streamlit 1.64.0, Python 3.13.0, Ubuntu 24.04, Firefox 143. The user reports a working isolated example and a failing full application path. Options-builder implementation and a failing reduction of that path remain absent.",
+            "rationale": "Use the active corrected version and preserve the performed working-reduction check. The exact API excerpts describe accepted defaults and fragment reruns, not a diagnosed cause. The missing options-builder and failing path are useful next context.",
+            "evidence_links": [
+              {
+                "claim": "The 1.64.0 multiselect documentation accepts a list of default values.",
+                "chunk_id": "multiselect-164-default-v4"
+              },
+              {
+                "claim": "The 1.64.0 fragment documentation says a widget interaction inside the fragment reruns that fragment.",
+                "chunk_id": "fragment-164-rerun-v4"
+              }
+            ],
+            "missing_info": [
+              "options_builder_implementation"
+            ],
+            "next_question": "Could you share the options-builder helper and the failing fragment path from the full app?",
+            "retrieval_queries": [],
+            "facts_delta": [],
+            "checks_suggested": []
+          },
+          "expected_check_codes": [],
+          "semantic_expectation": {
+            "label": "acceptable",
+            "label_source": "synthetic_developer_expectation",
+            "reasons": [
+              "Uses active 1.64.0, retains prior 1.63.0 only as superseded history, and records that the isolated test works.",
+              "Asks for a genuinely missing failing path rather than repeating an already completed working test."
+            ],
+            "unsupported_claims": []
+          },
+          "static_scope_expectation": {
+            "expected_abstentions": [],
+            "meaning": "Expected codes describe only the opt-in static checker scope. Empty codes do not establish semantic correctness."
+          }
+        },
+        {
+          "id": "conflate-reduction-with-failure",
+          "control": "negative",
+          "proposal": {
+            "decision": "ask",
+            "user_draft": "Your isolated fragment with constant options also fails on Streamlit 1.63.0, so the reduction confirms the same defect as the full app. Please repeat the isolated test with default=[\"Pear\"] before investigating the options builder. Could you share the options-builder helper and the failing fragment path from the full app?",
+            "maintainer_summary": "The synthetic user is currently on 1.63.0. Both the constant-options reduction and the full application reproduce the empty multiselect; no working reduction has been reported.",
+            "rationale": "The earlier version is the applicable installed version, and the isolated reduction reproduced the failure. Repeating the constant-options reduction is needed before reviewing the omitted full application path.",
+            "evidence_links": [
+              {
+                "claim": "The 1.64.0 multiselect documentation accepts a list of default values.",
+                "chunk_id": "multiselect-164-default-v4"
+              },
+              {
+                "claim": "The 1.64.0 fragment documentation describes fragment-scoped reruns.",
+                "chunk_id": "fragment-164-rerun-v4"
+              }
+            ],
+            "missing_info": [
+              "options_builder_implementation"
+            ],
+            "next_question": "Could you share the options-builder helper and the failing fragment path from the full app?",
+            "retrieval_queries": [],
+            "facts_delta": [],
+            "checks_suggested": []
+          },
+          "expected_check_codes": [],
+          "semantic_expectation": {
+            "label": "unusable",
+            "label_source": "synthetic_developer_expectation",
+            "reasons": [
+              "Treats the superseded 1.63.0 value as active and reverses the reported working reduction into a failure.",
+              "The canonical structured question does not repair false user draft, rationale, summary or repeated-test advice."
+            ],
+            "unsupported_claims": [
+              "The user is currently running 1.63.0.",
+              "The isolated constant-options reduction also failed."
+            ]
+          },
+          "static_scope_expectation": {
+            "expected_abstentions": [
+              "free_text_fact_preservation_and_question_usefulness"
+            ],
+            "meaning": "Expected codes describe only the opt-in static checker scope. Empty codes do not establish semantic correctness."
+          }
+        }
+      ]
+    },
+    {
+      "id": "synthetic-semantic-v6-claim-specific-citation",
+      "role": "paired",
+      "kind": "synthetic",
+      "origin_url": null,
+      "origin_issue_id": null,
+      "origin_created_at": null,
+      "description": "Require construction-time citation for capture timing rather than a merely known callback API chunk.",
+      "dimensions": [
+        "claim_specific_source_support",
+        "citation_id_vs_entailment",
+        "substantive_quality_vs_attribution"
+      ],
+      "source_case_id": "synthetic-previous-value-snapshot-control",
+      "source_bundle_index": 0,
+      "frozen_copy": {
+        "case_state": "exact_deep_copy",
+        "evidence_bundle": "exact_deep_copy",
+        "user_message": "exact_copy",
+        "proposal_requirements": "exact_deep_copy"
+      },
+      "context_adaptation": null,
+      "synthetic_supplement": null,
+      "case_state": {
+        "case_id": "case-synthetic-previous-value-snapshot-control",
+        "case_revision": 0,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.64.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-previous-value-snapshot-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "python_version",
+            "value": "3.13.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-previous-value-snapshot-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Ubuntu 24.04",
+            "source_ref": "user/synthetic-guards-v4/synthetic-previous-value-snapshot-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Firefox 143",
+            "source_ref": "user/synthetic-guards-v4/synthetic-previous-value-snapshot-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_callback_intent",
+            "value": "Capture the value at widget construction as an old-value snapshot; read the current value within the callback for old/new comparison",
+            "source_ref": "user/synthetic-guards-v4/synthetic-previous-value-snapshot-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_expected_comparison",
+            "value": "For North to South, the intended pair is (\"North\", \"South\")",
+            "source_ref": "user/synthetic-guards-v4/synthetic-previous-value-snapshot-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_failure_status",
+            "value": "No failure is being reported",
+            "source_ref": "user/synthetic-guards-v4/synthetic-previous-value-snapshot-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "On Streamlit 1.64.0 with Python 3.13.0 on Ubuntu 24.04 and Firefox 143 I deliberately want the callback argument to be the value from when this widget was constructed. The callback then reads the current value from Session State so I can compare old and new. For a change from North to South I want comparison to contain (\"North\", \"South\"). I am asking whether that construction-time snapshot design is valid and I am not reporting a failure.\n\n```python\nimport streamlit as st\nst.session_state.setdefault(\"direction\", \"North\")\ndef compare(old_value):\n    new_value = st.session_state[\"direction\"]\n    st.session_state[\"comparison\"] = (old_value, new_value)\nst.selectbox(\"Direction\", [\"North\", \"South\"], key=\"direction\",\n             on_change=compare, args=(st.session_state[\"direction\"],))\nst.write(st.session_state.get(\"comparison\"))\n```",
+      "evidence_bundle": {
+        "snapshot_id": "core-quality-guards-v4",
+        "hits": [
+          {
+            "chunk_id": "selectbox-164-callback-v4",
+            "source_id": "docstring:1.64.0:streamlit.selectbox",
+            "excerpt": "A callable: Streamlit will rerun the app and execute the\ncallable as a callback function before the rest of the app.\n\nNone: This is the same as on_change=\"rerun\". This value\nexists for backwards compatibility and shouldn't be used.\n\nargs: list or tuple; default=None\nAn optional list or tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [
+              "1.64.0"
+            ],
+            "source_span": "JSON pointer /1.64.0/streamlit.selectbox; on_change callable behavior, args, kwargs parameters in normalized docstring"
+          },
+          {
+            "chunk_id": "selectbox-164-signature-v4",
+            "source_id": "docstring:1.64.0:streamlit.selectbox",
+            "excerpt": "st.selectbox(label, options, index=0, format_func=special_internal_function, key=None, help=None, on_change=\"rerun\", args=None, kwargs=None, *, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, filter_mode=\"fuzzy\", width=\"stretch\", bind=None, persist_state=None)",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [
+              "1.64.0"
+            ],
+            "source_span": "JSON pointer /1.64.0/streamlit.selectbox; complete callable signature in normalized version-specific docstring"
+          },
+          {
+            "chunk_id": "selectbox-164-key-access-v4",
+            "source_id": "docstring:1.64.0:streamlit.selectbox",
+            "excerpt": "A key lets you read or update the widget's value via\nst.session_state[key]. For more details, see Widget\nbehavior.",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [
+              "1.64.0"
+            ],
+            "source_span": "JSON pointer /1.64.0/streamlit.selectbox; key parameter, Session State access in normalized version-specific docstring"
+          },
+          {
+            "chunk_id": "widget-callback-order-snapshot-v4",
+            "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+            "excerpt": "When a user interacts with a widget, the widget is updated and triggers a rerun in the following order:\n\n1. The widget value in `st.session_state` is updated.\n2. The callback function (if any) is executed.\n3. The page reruns with the widget command returning its new value.\n\nIf the callback function displays anything on the screen, that content will appear above the rest of the page. A callback function runs as a _prefix_ to the script run. Consequently, that means anything written via a callback function will disappear as soon as the user performs their next action. Widget commands should generally not be called within a callback function.\n\n<Note>\n\nIf a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget. In particular, if you want to use a widget's value in its own callback function, you can't pass that value to the callback function via the `args` parameter; you must assign a key to the widget and look up its value using `st.session_state` _within the callback function_.",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L104",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [],
+            "source_span": "Markdown lines 104-114, Order of operations; unversioned October 2026 snapshot, not historical 1.27.2 documentation"
+          }
+        ],
+        "queries_used": [],
+        "retrieval_round": 1,
+        "warnings": []
+      },
+      "proposal_requirements": {
+        "case_id": "case-synthetic-previous-value-snapshot-control",
+        "case_revision": 0,
+        "question_targets": [],
+        "require_fresh_widget_value": false
+      },
+      "variants": [
+        {
+          "id": "timing-claim-timing-citation",
+          "control": "positive",
+          "proposal": {
+            "decision": "answer",
+            "user_draft": "Your deliberate argument snapshot can retain the value present when the widget command was constructed, while the callback separately reads the current keyed value. For the stated North-to-South change, keep the old_value argument for the old/new comparison. The supplied code was not executed in this review.",
+            "maintainer_summary": "Substantively preserve the synthetic user’s intentional old/new comparison; distinguish construction-time argument capture from callback-time current state. No failure is reported.",
+            "rationale": "The callback API describes callback-before-rest-of-app and the args parameter. The widget-behavior timing excerpt separately establishes when callback args are bound. The capture-time claim needs that timing excerpt.",
+            "evidence_links": [
+              {
+                "claim": "A callable on_change callback runs before the rest of the app during the rerun.",
+                "chunk_id": "selectbox-164-callback-v4"
+              },
+              {
+                "claim": "Callback args are established when the widget command is called, not when the user later interacts.",
+                "chunk_id": "widget-callback-order-snapshot-v4"
+              }
+            ],
+            "missing_info": [],
+            "next_question": null,
+            "retrieval_queries": [],
+            "facts_delta": [],
+            "checks_suggested": []
+          },
+          "expected_check_codes": [],
+          "semantic_expectation": {
+            "label": "acceptable",
+            "label_source": "synthetic_developer_expectation",
+            "reasons": [
+              "The generic callback claim cites the callback API and the construction-time claim cites the timing excerpt.",
+              "Preserves the intentional old/new comparison without claiming the code was executed."
+            ],
+            "unsupported_claims": []
+          },
+          "static_scope_expectation": {
+            "expected_abstentions": [],
+            "meaning": "Expected codes describe only the opt-in static checker scope. Empty codes do not establish semantic correctness."
+          }
+        },
+        {
+          "id": "timing-claim-callback-api-citation",
+          "control": "negative",
+          "proposal": {
+            "decision": "answer",
+            "user_draft": "Your deliberate argument snapshot can retain the value present when the widget command was constructed, while the callback separately reads the current keyed value. For the stated North-to-South change, keep the old_value argument for the old/new comparison. The supplied code was not executed in this review.",
+            "maintainer_summary": "Substantively preserve the synthetic user’s intentional old/new comparison; distinguish construction-time argument capture from callback-time current state. No failure is reported.",
+            "rationale": "The supplied selectbox callback API excerpt establishes both callback-before-rest-of-app and construction-time binding of args, so it supports the deliberate old-value snapshot claim.",
+            "evidence_links": [
+              {
+                "claim": "A callable on_change callback runs before the rest of the app during the rerun.",
+                "chunk_id": "selectbox-164-callback-v4"
+              },
+              {
+                "claim": "Callback args are established when the widget command is called, not when the user later interacts.",
+                "chunk_id": "selectbox-164-callback-v4"
+              }
+            ],
+            "missing_info": [],
+            "next_question": null,
+            "retrieval_queries": [],
+            "facts_delta": [],
+            "checks_suggested": []
+          },
+          "expected_check_codes": [],
+          "semantic_expectation": {
+            "label": "needs_revision",
+            "label_source": "synthetic_developer_expectation",
+            "reasons": [
+              "The advice is substantively aligned with intent, but the callback API excerpt does not establish construction-time binding.",
+              "A known chunk ID and a correct underlying claim do not prove that the cited span supports the specific claim."
+            ],
+            "unsupported_claims": [
+              "The callback API excerpt establishes construction-time argument binding."
+            ]
+          },
+          "static_scope_expectation": {
+            "expected_abstentions": [
+              "general_claim_to_span_entailment"
+            ],
+            "meaning": "Expected codes describe only the opt-in static checker scope. Empty codes do not establish semantic correctness."
+          }
+        }
+      ]
+    },
+    {
+      "id": "synthetic-semantic-v6-exact-version-coverage",
+      "role": "paired",
+      "kind": "synthetic",
+      "origin_url": null,
+      "origin_issue_id": null,
+      "origin_created_at": null,
+      "description": "Apply exact installed-version signature evidence and decline unsupported hypothetical historical certainty.",
+      "dimensions": [
+        "exact_version_source_coverage",
+        "hypothetical_historical_scope",
+        "source_metadata_vs_applicability"
+      ],
+      "source_case_id": "synthetic-form-submit-exact-parameter",
+      "source_bundle_index": 0,
+      "frozen_copy": {
+        "case_state": "exact_deep_copy",
+        "evidence_bundle": "exact_deep_copy",
+        "user_message": "frozen_message_plus_explicit_synthetic_supplement",
+        "proposal_requirements": "exact_deep_copy"
+      },
+      "context_adaptation": "The frozen V4 message is retained verbatim and followed by an explicitly synthetic hypothetical question. CaseState, EvidenceBundle and caller requirements remain exact copies; the supplement does not report an older installation or a new executed failure.",
+      "synthetic_supplement": "Does this supplied evidence also establish the same callback-parameter support for every older version, for example 1.27.2? My reported installation remains 1.64.0; the older version is only a hypothetical coverage question.",
+      "case_state": {
+        "case_id": "case-synthetic-form-submit-exact-parameter",
+        "case_revision": 0,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.64.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-form-submit-exact-parameter",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "python_version",
+            "value": "3.13.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-form-submit-exact-parameter",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Ubuntu 24.04",
+            "source_ref": "user/synthetic-guards-v4/synthetic-form-submit-exact-parameter",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Firefox 143",
+            "source_ref": "user/synthetic-guards-v4/synthetic-form-submit-exact-parameter",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_execution_status",
+            "value": "The form draft has not been run",
+            "source_ref": "user/synthetic-guards-v4/synthetic-form-submit-exact-parameter",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_desired_behavior",
+            "value": "save should read the selected destination when Save is submitted",
+            "source_ref": "user/synthetic-guards-v4/synthetic-form-submit-exact-parameter",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "I am writing this form for Streamlit 1.64.0 with Python 3.13.0 on Ubuntu 24.04 and Firefox 143. I have not run this draft. I want save to read the selected destination when Save is submitted. Is on_change the supported callback parameter for form_submit_button here and if not what should I change?\n\n```python\nimport streamlit as st\ndef save():\n    st.session_state[\"saved_destination\"] = st.session_state[\"destination\"]\nwith st.form(\"trip\"):\n    st.selectbox(\"Destination\", [\"Kyoto\", \"Porto\"], key=\"destination\")\n    st.form_submit_button(\"Save\", on_change=save)\n```\n\nAdditional synthetic development question (not an additional installed-version report):\nDoes this supplied evidence also establish the same callback-parameter support for every older version, for example 1.27.2? My reported installation remains 1.64.0; the older version is only a hypothetical coverage question.",
+      "evidence_bundle": {
+        "snapshot_id": "core-quality-guards-v4",
+        "hits": [
+          {
+            "chunk_id": "form-164-callback-v4",
+            "source_id": "docstring:1.64.0:streamlit.form",
+            "excerpt": "Within a form, the only widget that can have a callback function is\nst.form_submit_button.",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [
+              "1.64.0"
+            ],
+            "source_span": "JSON pointer /1.64.0/streamlit.form; form constraints in normalized docstring"
+          },
+          {
+            "chunk_id": "submit-button-164-signature-v4",
+            "source_id": "docstring:1.64.0:streamlit.form_submit_button",
+            "excerpt": "st.form_submit_button(label=\"Submit\", help=None, on_click=None, args=None, kwargs=None, *, key=None, type=\"secondary\", icon=None, icon_position=\"left\", disabled=False, use_container_width=None, width=\"content\", shortcut=None, wrap=None)\n\nDisplay a form submit button.\n\nWhen this button is clicked, all widget values inside the form will be\nsent from the user's browser to your Streamlit server in a batch.",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [
+              "1.64.0"
+            ],
+            "source_span": "JSON pointer /1.64.0/streamlit.form_submit_button; complete callable signature and submit batching behavior in normalized version-specific docstring"
+          },
+          {
+            "chunk_id": "submit-button-164-on-click-v4",
+            "source_id": "docstring:1.64.0:streamlit.form_submit_button",
+            "excerpt": "on_click: callable; default=None\nAn optional callback invoked when this button is clicked.\n\nargs: list or tuple; default=None\nAn optional list or tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [
+              "1.64.0"
+            ],
+            "source_span": "JSON pointer /1.64.0/streamlit.form_submit_button; on_click, args and kwargs parameters in normalized version-specific docstring"
+          }
+        ],
+        "queries_used": [],
+        "retrieval_round": 1,
+        "warnings": []
+      },
+      "proposal_requirements": {
+        "case_id": "case-synthetic-form-submit-exact-parameter",
+        "case_revision": 0,
+        "question_targets": [],
+        "require_fresh_widget_value": false
+      },
+      "variants": [
+        {
+          "id": "exact-version-with-historical-uncertainty",
+          "control": "positive",
+          "proposal": {
+            "decision": "answer",
+            "user_draft": "For your reported 1.64.0 environment, the supplied complete form_submit_button signature includes on_click and does not include on_change. Replace the submit-button keyword with on_click while keeping save() as a zero-argument handler that reads the keyed value. The draft has not been run. These exact 1.64.0 records do not establish the hypothetical 1.27.2 signature or support across every older version.\n\n```python\nimport streamlit as st\ndef save():\n    st.session_state[\"saved_destination\"] = st.session_state[\"destination\"]\nwith st.form(\"trip\"):\n    st.selectbox(\"Destination\", [\"Kyoto\", \"Porto\"], key=\"destination\")\n    st.form_submit_button(\"Save\", on_click=save)\n```",
+            "maintainer_summary": "Synthetic unexecuted 1.64.0 form draft: recommend the documented on_click callback parameter. The older 1.27.2 version is hypothetical, not an installed-version fact, and its exact callback signature is absent from the frozen source pool.",
+            "rationale": "The active user version exactly matches the complete generated 1.64.0 signature. The historical applicability question exceeds these supplied version records; do not relabel them or the unversioned timing snapshot as older-version documentation.",
+            "evidence_links": [
+              {
+                "claim": "The complete 1.64.0 form_submit_button signature has on_click and no on_change keyword.",
+                "chunk_id": "submit-button-164-signature-v4"
+              },
+              {
+                "claim": "The 1.64.0 submit-button callback documentation describes on_click as an optional invoked callback.",
+                "chunk_id": "submit-button-164-on-click-v4"
+              }
+            ],
+            "missing_info": [],
+            "next_question": null,
+            "retrieval_queries": [],
+            "facts_delta": [],
+            "checks_suggested": []
+          },
+          "expected_check_codes": [],
+          "semantic_expectation": {
+            "label": "acceptable",
+            "label_source": "synthetic_developer_expectation",
+            "reasons": [
+              "Uses the matching active 1.64.0 signature to change the unexecuted draft keyword.",
+              "Explicitly distinguishes a hypothetical older-version question from the installed environment and declines historical certainty."
+            ],
+            "unsupported_claims": []
+          },
+          "static_scope_expectation": {
+            "expected_abstentions": [],
+            "meaning": "Expected codes describe only the opt-in static checker scope. Empty codes do not establish semantic correctness."
+          }
+        },
+        {
+          "id": "unsupported-historical-certainty",
+          "control": "negative",
+          "proposal": {
+            "decision": "answer",
+            "user_draft": "For your reported 1.64.0 environment, replace on_change with on_click on form_submit_button. The supplied 1.64.0 signature also conclusively proves that 1.27.2 and every older Streamlit version reject on_change and support the same on_click behavior. No historical source is needed because callback parameters have always been identical.\n\n```python\nimport streamlit as st\ndef save():\n    st.session_state[\"saved_destination\"] = st.session_state[\"destination\"]\nwith st.form(\"trip\"):\n    st.selectbox(\"Destination\", [\"Kyoto\", \"Porto\"], key=\"destination\")\n    st.form_submit_button(\"Save\", on_click=save)\n```",
+            "maintainer_summary": "The exact 1.64.0 record verifies the proposed keyword fix and establishes unchanged callback-parameter support for hypothetical 1.27.2 and every older release.",
+            "rationale": "The retrieved complete current signature is definitive evidence for all historical versions. Therefore the historical applicability question is fully resolved without a matching older source.",
+            "evidence_links": [
+              {
+                "claim": "The complete 1.64.0 form_submit_button signature has on_click and no on_change keyword.",
+                "chunk_id": "submit-button-164-signature-v4"
+              },
+              {
+                "claim": "Streamlit 1.27.2 and every older release have the same form_submit_button callback-parameter support as 1.64.0.",
+                "chunk_id": "submit-button-164-signature-v4"
+              }
+            ],
+            "missing_info": [],
+            "next_question": null,
+            "retrieval_queries": [],
+            "facts_delta": [],
+            "checks_suggested": []
+          },
+          "expected_check_codes": [],
+          "semantic_expectation": {
+            "label": "needs_revision",
+            "label_source": "synthetic_developer_expectation",
+            "reasons": [
+              "The concrete 1.64.0 edit is supported, but the supplied record cannot establish the 1.27.2 or all-older-versions signature.",
+              "No version-specific historical source is present and current metadata must not be relabelled as historical evidence."
+            ],
+            "unsupported_claims": [
+              "The 1.64.0 signature conclusively proves identical callback parameters in 1.27.2 and every older version."
+            ]
+          },
+          "static_scope_expectation": {
+            "expected_abstentions": [
+              "free_text_historical_applicability_entailment"
+            ],
+            "meaning": "Expected codes describe only the opt-in static checker scope. Empty codes do not establish semantic correctness."
+          }
+        }
+      ]
+    },
+    {
+      "id": "synthetic-semantic-v6-unknown-version-abstention",
+      "role": "additional_control",
+      "kind": "synthetic",
+      "origin_url": null,
+      "origin_issue_id": null,
+      "origin_created_at": null,
+      "description": "Additional control: current API metadata is not an installed-version fact and cannot activate exact-version checks.",
+      "dimensions": [
+        "unknown_installed_version",
+        "source_to_user_fact_leak",
+        "static_source_applicability_abstention"
+      ],
+      "source_case_id": "synthetic-unknown-installed-version",
+      "source_bundle_index": 0,
+      "frozen_copy": {
+        "case_state": "exact_deep_copy",
+        "evidence_bundle": "exact_deep_copy",
+        "user_message": "exact_copy",
+        "proposal_requirements": "exact_deep_copy"
+      },
+      "context_adaptation": null,
+      "synthetic_supplement": null,
+      "case_state": {
+        "case_id": "case-synthetic-unknown-installed-version",
+        "case_revision": 0,
+        "facts": [
+          {
+            "name": "python_version",
+            "value": "3.13.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-unknown-installed-version",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Ubuntu 24.04",
+            "source_ref": "user/synthetic-guards-v4/synthetic-unknown-installed-version",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Firefox 143",
+            "source_ref": "user/synthetic-guards-v4/synthetic-unknown-installed-version",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_error",
+            "value": "TypeError: selectbox got an unexpected keyword argument bind",
+            "source_ref": "user/synthetic-guards-v4/synthetic-unknown-installed-version",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_version_check_status",
+            "value": "Installed Streamlit version has not been checked",
+            "source_ref": "user/synthetic-guards-v4/synthetic-unknown-installed-version",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [
+          "streamlit_version"
+        ],
+        "checks_performed": [],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "I copied a selectbox example using bind and persist_state from a documentation page. My installed app raises TypeError saying selectbox got an unexpected keyword argument bind. I use Python 3.13.0 on Ubuntu 24.04 with Firefox 143. I do not know the installed Streamlit version and have not checked it. Which selectbox signature applies to my installation?",
+      "evidence_bundle": {
+        "snapshot_id": "core-quality-guards-v4",
+        "hits": [
+          {
+            "chunk_id": "selectbox-164-callback-v4",
+            "source_id": "docstring:1.64.0:streamlit.selectbox",
+            "excerpt": "A callable: Streamlit will rerun the app and execute the\ncallable as a callback function before the rest of the app.\n\nNone: This is the same as on_change=\"rerun\". This value\nexists for backwards compatibility and shouldn't be used.\n\nargs: list or tuple; default=None\nAn optional list or tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [
+              "1.64.0"
+            ],
+            "source_span": "JSON pointer /1.64.0/streamlit.selectbox; on_change callable behavior, args, kwargs parameters in normalized docstring"
+          },
+          {
+            "chunk_id": "selectbox-164-signature-v4",
+            "source_id": "docstring:1.64.0:streamlit.selectbox",
+            "excerpt": "st.selectbox(label, options, index=0, format_func=special_internal_function, key=None, help=None, on_change=\"rerun\", args=None, kwargs=None, *, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, filter_mode=\"fuzzy\", width=\"stretch\", bind=None, persist_state=None)",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [
+              "1.64.0"
+            ],
+            "source_span": "JSON pointer /1.64.0/streamlit.selectbox; complete callable signature in normalized version-specific docstring"
+          },
+          {
+            "chunk_id": "selectbox-164-key-access-v4",
+            "source_id": "docstring:1.64.0:streamlit.selectbox",
+            "excerpt": "A key lets you read or update the widget's value via\nst.session_state[key]. For more details, see Widget\nbehavior.",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [
+              "1.64.0"
+            ],
+            "source_span": "JSON pointer /1.64.0/streamlit.selectbox; key parameter, Session State access in normalized version-specific docstring"
+          },
+          {
+            "chunk_id": "widget-callback-order-snapshot-v4",
+            "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+            "excerpt": "When a user interacts with a widget, the widget is updated and triggers a rerun in the following order:\n\n1. The widget value in `st.session_state` is updated.\n2. The callback function (if any) is executed.\n3. The page reruns with the widget command returning its new value.\n\nIf the callback function displays anything on the screen, that content will appear above the rest of the page. A callback function runs as a _prefix_ to the script run. Consequently, that means anything written via a callback function will disappear as soon as the user performs their next action. Widget commands should generally not be called within a callback function.\n\n<Note>\n\nIf a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget. In particular, if you want to use a widget's value in its own callback function, you can't pass that value to the callback function via the `args` parameter; you must assign a key to the widget and look up its value using `st.session_state` _within the callback function_.",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L104",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [],
+            "source_span": "Markdown lines 104-114, Order of operations; unversioned October 2026 snapshot, not historical 1.27.2 documentation"
+          }
+        ],
+        "queries_used": [],
+        "retrieval_round": 1,
+        "warnings": []
+      },
+      "proposal_requirements": {
+        "case_id": "case-synthetic-unknown-installed-version",
+        "case_revision": 0,
+        "question_targets": [
+          {
+            "name": "streamlit_version",
+            "question": "What Streamlit version is installed in the environment that raises this error?"
+          }
+        ],
+        "require_fresh_widget_value": false
+      },
+      "variants": [
+        {
+          "id": "source-metadata-as-installed-fact",
+          "control": "negative",
+          "proposal": {
+            "decision": "answer",
+            "user_draft": "The retrieved API record confirms that your installed Streamlit version is 1.64.0. Since its selectbox signature includes bind, the TypeError cannot reflect a version mismatch. You have already checked the installed package version, so no version question is needed.",
+            "maintainer_summary": "Synthetic installation is established as 1.64.0 by the retrieved documentation. The user completed a package-version check and bind is supported in that installed environment.",
+            "rationale": "Source metadata identifies the installed user version and overrides the reported unknown. The exact current signature proves bind is accepted by this installation.",
+            "evidence_links": [
+              {
+                "claim": "The supplied complete 1.64.0 selectbox signature includes bind.",
+                "chunk_id": "selectbox-164-signature-v4"
+              },
+              {
+                "claim": "The user has Streamlit 1.64.0 installed and has checked that version.",
+                "chunk_id": "selectbox-164-signature-v4"
+              }
+            ],
+            "missing_info": [],
+            "next_question": null,
+            "retrieval_queries": [],
+            "facts_delta": [],
+            "checks_suggested": []
+          },
+          "expected_check_codes": [],
+          "semantic_expectation": {
+            "label": "unusable",
+            "label_source": "synthetic_developer_expectation",
+            "reasons": [
+              "The authoritative user state explicitly leaves installed version unknown and states that it was not checked.",
+              "The response fabricates a completed check and turns current documentation metadata into an installed-version fact."
+            ],
+            "unsupported_claims": [
+              "The user has installed and checked Streamlit 1.64.0."
+            ]
+          },
+          "static_scope_expectation": {
+            "expected_abstentions": [
+              "exact_version_code_checks_without_active_user_version"
+            ],
+            "meaning": "Expected codes describe only the opt-in static checker scope. Empty codes do not establish semantic correctness."
+          }
+        }
+      ]
+    },
+    {
+      "id": "synthetic-semantic-v6-dynamic-kwargs-abstention",
+      "role": "additional_control",
+      "kind": "synthetic",
+      "origin_url": null,
+      "origin_issue_id": null,
+      "origin_created_at": null,
+      "description": "Additional control: a dynamic kwargs registration cannot establish its unseen callback target or argument binding.",
+      "dimensions": [
+        "dynamic_kwargs",
+        "callback_arity_abstention",
+        "uncertainty",
+        "hypothetical_vs_reported_failure"
+      ],
+      "source_case_id": "synthetic-own-widget-pass-key-control",
+      "source_bundle_index": 0,
+      "frozen_copy": {
+        "case_state": "exact_deep_copy",
+        "evidence_bundle": "exact_deep_copy",
+        "user_message": "frozen_message_plus_explicit_synthetic_supplement",
+        "proposal_requirements": "exact_deep_copy"
+      },
+      "context_adaptation": "The frozen V4 message is retained verbatim and followed by an explicitly synthetic hypothetical question. CaseState, EvidenceBundle and caller requirements remain exact copies; the supplement does not report an older installation or a new executed failure.",
+      "synthetic_supplement": "Separately from the complete working design above, I am sketching a hypothetical wrapper: register(callback_options) calls the same selectbox using **callback_options. That mapping and its construction are not included. Does this sketch establish what callback arguments the wrapper will send? I am not reporting a new failure.",
+      "case_state": {
+        "case_id": "case-synthetic-own-widget-pass-key-control",
+        "case_revision": 0,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.64.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-pass-key-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "python_version",
+            "value": "3.13.0",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-pass-key-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Ubuntu 24.04",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-pass-key-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Firefox 143",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-pass-key-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_callback_argument",
+            "value": "The stable key shade is passed as args=(\"shade\",)",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-pass-key-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_failure_status",
+            "value": "No failure is being reported",
+            "source_ref": "user/synthetic-guards-v4/synthetic-own-widget-pass-key-control",
+            "turn_id": "synthetic-initial",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "I am checking this design on Streamlit 1.64.0 and Python 3.13.0 on Ubuntu 24.04 with Firefox 143. The callback receives the key and looks up Session State inside the callback. Is this the right way to get the newly selected value or must I pass st.session_state[\"shade\"] through args instead? No failure is being reported.\n\n```python\nimport streamlit as st\ndef remember(widget_key):\n    st.session_state[\"remembered\"] = st.session_state[widget_key]\nst.selectbox(\"Shade\", [\"Amber\", \"Teal\"], key=\"shade\",\n             on_change=remember, args=(\"shade\",))\nst.write(st.session_state.get(\"remembered\"))\n```\n\nAdditional synthetic development question (not an additional installed-version report):\nSeparately from the complete working design above, I am sketching a hypothetical wrapper: register(callback_options) calls the same selectbox using **callback_options. That mapping and its construction are not included. Does this sketch establish what callback arguments the wrapper will send? I am not reporting a new failure.",
+      "evidence_bundle": {
+        "snapshot_id": "core-quality-guards-v4",
+        "hits": [
+          {
+            "chunk_id": "selectbox-164-callback-v4",
+            "source_id": "docstring:1.64.0:streamlit.selectbox",
+            "excerpt": "A callable: Streamlit will rerun the app and execute the\ncallable as a callback function before the rest of the app.\n\nNone: This is the same as on_change=\"rerun\". This value\nexists for backwards compatibility and shouldn't be used.\n\nargs: list or tuple; default=None\nAn optional list or tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [
+              "1.64.0"
+            ],
+            "source_span": "JSON pointer /1.64.0/streamlit.selectbox; on_change callable behavior, args, kwargs parameters in normalized docstring"
+          },
+          {
+            "chunk_id": "selectbox-164-signature-v4",
+            "source_id": "docstring:1.64.0:streamlit.selectbox",
+            "excerpt": "st.selectbox(label, options, index=0, format_func=special_internal_function, key=None, help=None, on_change=\"rerun\", args=None, kwargs=None, *, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, filter_mode=\"fuzzy\", width=\"stretch\", bind=None, persist_state=None)",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [
+              "1.64.0"
+            ],
+            "source_span": "JSON pointer /1.64.0/streamlit.selectbox; complete callable signature in normalized version-specific docstring"
+          },
+          {
+            "chunk_id": "selectbox-164-key-access-v4",
+            "source_id": "docstring:1.64.0:streamlit.selectbox",
+            "excerpt": "A key lets you read or update the widget's value via\nst.session_state[key]. For more details, see Widget\nbehavior.",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [
+              "1.64.0"
+            ],
+            "source_span": "JSON pointer /1.64.0/streamlit.selectbox; key parameter, Session State access in normalized version-specific docstring"
+          },
+          {
+            "chunk_id": "widget-callback-order-snapshot-v4",
+            "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+            "excerpt": "When a user interacts with a widget, the widget is updated and triggers a rerun in the following order:\n\n1. The widget value in `st.session_state` is updated.\n2. The callback function (if any) is executed.\n3. The page reruns with the widget command returning its new value.\n\nIf the callback function displays anything on the screen, that content will appear above the rest of the page. A callback function runs as a _prefix_ to the script run. Consequently, that means anything written via a callback function will disappear as soon as the user performs their next action. Widget commands should generally not be called within a callback function.\n\n<Note>\n\nIf a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget. In particular, if you want to use a widget's value in its own callback function, you can't pass that value to the callback function via the `args` parameter; you must assign a key to the widget and look up its value using `st.session_state` _within the callback function_.",
+            "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L104",
+            "source_type": "doc",
+            "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+            "applicable_versions": [],
+            "source_span": "Markdown lines 104-114, Order of operations; unversioned October 2026 snapshot, not historical 1.27.2 documentation"
+          }
+        ],
+        "queries_used": [],
+        "retrieval_round": 1,
+        "warnings": []
+      },
+      "proposal_requirements": {
+        "case_id": "case-synthetic-own-widget-pass-key-control",
+        "case_revision": 0,
+        "question_targets": [],
+        "require_fresh_widget_value": true
+      },
+      "variants": [
+        {
+          "id": "opaque-mapping-uncertainty",
+          "control": "positive",
+          "proposal": {
+            "decision": "answer",
+            "user_draft": "The original literal-key example remains suitable for a current-value read during the documented callback. The separate wrapper sketch does not show callback_options, so it does not establish the callback target or the positional arguments it will supply. Keep the concrete pattern when describing the known example; determine the actual mapping before drawing an arity conclusion about the wrapper.\n\n```python\nimport streamlit as st\ndef register(callback_options):\n    st.selectbox(\"Shade\", [\"Amber\", \"Teal\"], key=\"shade\",\n                 **callback_options)\n```",
+            "maintainer_summary": "Synthetic hypothetical dynamic registration: callback_options and its construction are absent. Do not certify callback arity or infer a captured value from an opaque ** mapping. No new failure was reported.",
+            "rationale": "The versioned signature describes accepted API parameters, but it does not reveal the unseen mapping contents. The static checker should abstain on target/argument inference for this dynamic registration; the unchanged concrete key/read-inside example is a separate known design.",
+            "evidence_links": [
+              {
+                "claim": "The complete 1.64.0 selectbox signature includes on_change, args and kwargs parameters.",
+                "chunk_id": "selectbox-164-signature-v4"
+              },
+              {
+                "claim": "The supplied timing excerpt distinguishes construction-time values in callback arguments from state reads inside invocation.",
+                "chunk_id": "widget-callback-order-snapshot-v4"
+              }
+            ],
+            "missing_info": [],
+            "next_question": null,
+            "retrieval_queries": [],
+            "facts_delta": [],
+            "checks_suggested": []
+          },
+          "expected_check_codes": [],
+          "semantic_expectation": {
+            "label": "acceptable",
+            "label_source": "synthetic_developer_expectation",
+            "reasons": [
+              "Declines to infer unseen callback target or argument values from a dynamic mapping.",
+              "Keeps the known concrete design and does not invent a new failing reproduction."
+            ],
+            "unsupported_claims": []
+          },
+          "static_scope_expectation": {
+            "expected_abstentions": [
+              "callback_target_and_arity_for_dynamic_kwargs"
+            ],
+            "meaning": "Expected codes describe only the opt-in static checker scope. Empty codes do not establish semantic correctness."
+          }
+        }
+      ]
+    }
+  ]
+}

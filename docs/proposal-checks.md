@@ -62,9 +62,10 @@ has this guarantee.
 ## Source-grounded callback checks
 
 The checker parses bounded, labeled Python fences without running them. It can
-detect an explicit keyword absent from a complete applicable callable signature
-and an own-widget Session State value passed at construction time when the caller
-explicitly requires the newly selected value.
+detect an explicit keyword absent from a complete applicable callable signature,
+an own-widget Session State value passed at construction time when the caller
+explicitly requires the newly selected value, and a narrowly provable callback
+parameter-binding mismatch.
 
 Signature checks require one active user-supplied exact Streamlit version,
 matching generated docstring identity/version/JSON pointer, a pinned official
@@ -77,8 +78,25 @@ documentation commit `695e6ce2fb1b23afc6df66b40420ab0013ad72fd`, used alongside 
 exact 1.64.0 API record. The concept excerpt is an unversioned snapshot; this
 guard does not infer historical applicability. Only recognized direct own-key
 reads in literal callback arguments are covered. Dynamic code, opaque helpers,
-other keys, inline/unlabeled snippets, arity and general runtime behavior remain
+other keys, inline/unlabeled snippets and general runtime behavior remain
 outside the guarantee.
+
+Callback arity additionally requires an exact-version signature and explicit
+callback `args`/`kwargs` documentation from the reviewed official JSON snapshot.
+Within one complete fence, a single direct module-level registration must resolve
+to a preceding unique undecorated synchronous function. Literal list/tuple
+arguments and string-keyed dictionaries are bound statically against required,
+defaulted, positional-only, keyword-only and variadic parameters. Missing/excess
+arguments and duplicate positional/keyword binding can produce
+`callback_arity_mismatch`; defaults, a valid stable-key argument and intentional
+old-value arguments remain valid. This check does not require fresh-value intent.
+
+The proof subset is conservative: opaque argument containers or eager expressions,
+aliases, mutation, nested/conditional registrations, decorators, non-name
+assignment targets and other non-inert top-level statements cause abstention.
+Even an additional `st.write(...)` call in the same fence is outside this subset.
+Separate fences are not combined. Prose-only advice to remove an argument is not
+checked. No finding is a correctness certificate for the code or the full draft.
 
 A previous-value snapshot can be intentional. Leave
 `require_fresh_widget_value=False` for that task; construction-time state capture
@@ -86,6 +104,7 @@ is not universally wrong. The core never derives this flag from retrieved
 instructions or model output.
 
 Findings use allowlisted codes: `invalid_api_keyword`, `callback_value_captured`,
+`callback_arity_mismatch`,
 `ask_target_required`, `ask_unregistered_target`, `ask_question_mismatch`. They
 consume the existing repair allowance; refinement and repair together still
 permit at most two model attempts. Authority/evidence violations remain terminal
@@ -103,3 +122,8 @@ separates schema acceptance, exact question conformance and whole-proposal
 semantic quality. These are development probes with hand-authored catalogs,
 including a deliberate previous-value control; the final held-out split stays
 excluded.
+
+The [offline whole-proposal challenges](../experiments/decision_quality/README-semantic-v6.md)
+replay authored proposals, including deliberate semantic failures that pass these
+narrow checks. They separate detector scope from developer semantic labels and
+do not measure fresh model quality.

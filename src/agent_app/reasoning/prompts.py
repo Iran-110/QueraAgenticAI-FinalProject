@@ -155,6 +155,12 @@ _PROPOSAL_REPAIR_GUIDANCE = {
         "Do not capture it while constructing a widget or its callback arguments, "
         "including either key or index access."
     ),
+    "callback_arity_mismatch": (
+        "Keep the callback handler and its registration consistent. Check required "
+        "parameters against the supplied args and kwargs; if changing either side, "
+        "show both together. A stable key argument is different from a captured "
+        "widget value. Do not claim that proposed code was executed."
+    ),
 }
 
 
