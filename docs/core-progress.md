@@ -212,6 +212,32 @@ the unresolved incident preserved. Historical report snapshots stay unchanged.
 **875 offline tests**, Ruff, seven protocol validations and installed demos pass.
 See `docs/decision-quality-v5.md` and its aggregate for exact results and limits.
 
+## 2026-10-07 — callback binding and full-proposal regression scope
+
+- Added static compilation after bounded Python parsing. Duplicate parameters
+  and invalid module-level control flow now use the existing syntax repair code,
+  without executing code objects or exporting source-bearing compiler warnings.
+- Extended optional proposal checks with `callback_arity_mismatch`, requiring
+  pinned exact-version signatures and explicit callback argument documentation.
+  Static binding preserves valid keys/defaults/variadics and abstains on ambiguous
+  bindings, mutation or evaluation effects. Independent audit's 2,560 combinations
+  agreed with Python's signature binder; no proposed snippet was executed.
+- Added eight offline synthetic scenarios with 16 authored full proposals, exact
+  frozen source/catalog copies, marked supplements and separate developer labels.
+  All 16 detector scope expectations matched; seven positive controls passed,
+  one isolated arity defect was rejected and eight deliberately negative proposals
+  remained accepted. The original larger callback fence and prose-only failure
+  are retained as explicit coverage limits. No live semantic gain is claimed.
+- CI now replays this pack through fake ports. Canonical hashed identities,
+  input hashes, copy validation and allowlisted diagnostics preserve boundaries.
+  No key, original ledger, paid request, teammate adapter or prompt default was
+  changed. See `docs/decision-quality-v6.md` for the reproducible result and limits.
+
+Verified locked dependencies, **1,027 offline tests**, Ruff lint/format, all seven
+existing protocol validations, the new authored-proposal replay and three
+installed demos. Existing policy message digests and request identities pass;
+all HTTP/ledgers in tests are simulated or temporary. No paid request was made.
+
 ## Next integration work
 
 ### Shared release — 2026-10-07

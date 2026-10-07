@@ -75,6 +75,7 @@ uv run streamlit run app.py
 - [مقایسه منابع و اطلاعات کاربر با نتایج بازبینی](docs/decision-quality-v3.md)
 - [نتیجه چک‌های callback و سؤال‌های مجاز](docs/decision-quality-v4.md)
 - [مقایسه قالب محدودتر و کیفیت معنایی پاسخ‌ها](docs/decision-quality-v5.md)
+- [بررسی آفلاین کل پاسخ و مرز چک‌های کد](docs/decision-quality-v6.md)
 - [چک‌های اختیاری callback و سؤال‌های مجاز](docs/proposal-checks.md)
 - [راهنمای مشترک ایجنت‌های کدنویسی](AGENTS.md) و [ورودی Claude Code](CLAUDE.md)
 - [پلن اولیهٔ تیم](plan/plan.md) و [نسخهٔ داخل ریپو از صورت‌مسئله](QBC13_AgenticAI_FinalProject.md)

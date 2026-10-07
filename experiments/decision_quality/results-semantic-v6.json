@@ -1,0 +1,386 @@
+{
+  "pack_id": "offline-semantic-regressions-v6",
+  "scenarios": 8,
+  "proposals": 16,
+  "real_api_calls": 0,
+  "semantic_quality_measured": false,
+  "synthetic_author_labels_only": true,
+  "scripted_repetition_is_not_model_repair": true,
+  "detector_expectations_matched": 16,
+  "observations": [
+    {
+      "scenario_id": "synthetic-semantic-v6-widget-update-order",
+      "variant_id": "correct-order",
+      "control": "positive",
+      "author_semantic_label": "acceptable",
+      "expected_check_codes": [],
+      "detector_expectation_matched": true,
+      "checks_off": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      },
+      "checks_on": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      }
+    },
+    {
+      "scenario_id": "synthetic-semantic-v6-widget-update-order",
+      "variant_id": "reversed-order",
+      "control": "negative",
+      "author_semantic_label": "unusable",
+      "expected_check_codes": [],
+      "detector_expectation_matched": true,
+      "checks_off": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      },
+      "checks_on": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      }
+    },
+    {
+      "scenario_id": "synthetic-semantic-v6-stable-key-arity",
+      "variant_id": "preserve-stable-key",
+      "control": "positive",
+      "author_semantic_label": "acceptable",
+      "expected_check_codes": [],
+      "detector_expectation_matched": true,
+      "checks_off": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      },
+      "checks_on": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      }
+    },
+    {
+      "scenario_id": "synthetic-semantic-v6-stable-key-arity",
+      "variant_id": "remove-args-complete-code",
+      "control": "negative",
+      "author_semantic_label": "unusable",
+      "expected_check_codes": [],
+      "detector_expectation_matched": true,
+      "checks_off": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      },
+      "checks_on": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      }
+    },
+    {
+      "scenario_id": "synthetic-semantic-v6-stable-key-arity",
+      "variant_id": "remove-args-prose-only",
+      "control": "negative",
+      "author_semantic_label": "unusable",
+      "expected_check_codes": [],
+      "detector_expectation_matched": true,
+      "checks_off": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      },
+      "checks_on": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      }
+    },
+    {
+      "scenario_id": "synthetic-semantic-v6-stable-key-arity",
+      "variant_id": "remove-args-isolated-registration",
+      "control": "negative",
+      "author_semantic_label": "unusable",
+      "expected_check_codes": [
+        "callback_arity_mismatch"
+      ],
+      "detector_expectation_matched": true,
+      "checks_off": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      },
+      "checks_on": {
+        "accepted": false,
+        "status": "error",
+        "error_code": "ModelOutputInvalid",
+        "scripted_attempts": 2,
+        "issue_codes": [
+          "callback_arity_mismatch"
+        ]
+      }
+    },
+    {
+      "scenario_id": "synthetic-semantic-v6-intentional-old-snapshot",
+      "variant_id": "preserve-old-new-comparison",
+      "control": "positive",
+      "author_semantic_label": "acceptable",
+      "expected_check_codes": [],
+      "detector_expectation_matched": true,
+      "checks_off": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      },
+      "checks_on": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      }
+    },
+    {
+      "scenario_id": "synthetic-semantic-v6-intentional-old-snapshot",
+      "variant_id": "rewrite-away-old-snapshot",
+      "control": "negative",
+      "author_semantic_label": "unusable",
+      "expected_check_codes": [],
+      "detector_expectation_matched": true,
+      "checks_off": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      },
+      "checks_on": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      }
+    },
+    {
+      "scenario_id": "synthetic-semantic-v6-working-reduction-facts",
+      "variant_id": "preserve-corrected-facts",
+      "control": "positive",
+      "author_semantic_label": "acceptable",
+      "expected_check_codes": [],
+      "detector_expectation_matched": true,
+      "checks_off": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      },
+      "checks_on": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      }
+    },
+    {
+      "scenario_id": "synthetic-semantic-v6-working-reduction-facts",
+      "variant_id": "conflate-reduction-with-failure",
+      "control": "negative",
+      "author_semantic_label": "unusable",
+      "expected_check_codes": [],
+      "detector_expectation_matched": true,
+      "checks_off": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      },
+      "checks_on": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      }
+    },
+    {
+      "scenario_id": "synthetic-semantic-v6-claim-specific-citation",
+      "variant_id": "timing-claim-timing-citation",
+      "control": "positive",
+      "author_semantic_label": "acceptable",
+      "expected_check_codes": [],
+      "detector_expectation_matched": true,
+      "checks_off": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      },
+      "checks_on": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      }
+    },
+    {
+      "scenario_id": "synthetic-semantic-v6-claim-specific-citation",
+      "variant_id": "timing-claim-callback-api-citation",
+      "control": "negative",
+      "author_semantic_label": "needs_revision",
+      "expected_check_codes": [],
+      "detector_expectation_matched": true,
+      "checks_off": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      },
+      "checks_on": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      }
+    },
+    {
+      "scenario_id": "synthetic-semantic-v6-exact-version-coverage",
+      "variant_id": "exact-version-with-historical-uncertainty",
+      "control": "positive",
+      "author_semantic_label": "acceptable",
+      "expected_check_codes": [],
+      "detector_expectation_matched": true,
+      "checks_off": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      },
+      "checks_on": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      }
+    },
+    {
+      "scenario_id": "synthetic-semantic-v6-exact-version-coverage",
+      "variant_id": "unsupported-historical-certainty",
+      "control": "negative",
+      "author_semantic_label": "needs_revision",
+      "expected_check_codes": [],
+      "detector_expectation_matched": true,
+      "checks_off": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      },
+      "checks_on": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      }
+    },
+    {
+      "scenario_id": "synthetic-semantic-v6-unknown-version-abstention",
+      "variant_id": "source-metadata-as-installed-fact",
+      "control": "negative",
+      "author_semantic_label": "unusable",
+      "expected_check_codes": [],
+      "detector_expectation_matched": true,
+      "checks_off": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      },
+      "checks_on": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      }
+    },
+    {
+      "scenario_id": "synthetic-semantic-v6-dynamic-kwargs-abstention",
+      "variant_id": "opaque-mapping-uncertainty",
+      "control": "positive",
+      "author_semantic_label": "acceptable",
+      "expected_check_codes": [],
+      "detector_expectation_matched": true,
+      "checks_off": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      },
+      "checks_on": {
+        "accepted": true,
+        "status": "awaiting_approval",
+        "error_code": null,
+        "scripted_attempts": 1,
+        "issue_codes": []
+      }
+    }
+  ],
+  "schema_version": 1,
+  "method": "Fixed authored full-proposal replay through fake ports; author labels do not grade a model",
+  "pack_sha256": "6c8bef253393d053b5c3fd8c6f4c4bc731e94ba5d20766d844ba86ce6405945c",
+  "frozen_input_sha256": "14cef1e4633d59dbc26d77cd60a175a4abcbe35b62a476823b7ed9a9e20001a1",
+  "frozen_requirements_sha256": "22a703fe4d8fe91fa1f9958b252bd23c9fbbc11108326e5331cd4d8fa1b7bbef",
+  "component_sha256": {
+    "src/agent_app/contracts.py": "1fe4954b38af01523e5c28d4943ddfd92f0d8de3343036c6632b1d738ea6b226",
+    "src/agent_app/reasoning/code_checks.py": "f3f1efb9962b88d3a51587dcfe73296cbdcbecedc82dacec85faf7cfa7b92ba7",
+    "src/agent_app/reasoning/proposal_checks.py": "aaa8b3bcb51992f23189a76749a747fa6b10528f3f11af806b067fe67d923464",
+    "src/agent_app/reasoning/semantic_regressions.py": "13c3ab82e66fab43bce186c086b8fea00049da7e083cbaad6c1c3393ea00c8ea",
+    "src/agent_app/orchestration/engine.py": "e94e05559797ecc2e629b8738ce823648286b56a0d5615e97dc233b4b989844d"
+  },
+  "replay_invocations": 32,
+  "scripted_reasoner_attempts": 33,
+  "checks_off_accepted": 16,
+  "checks_on_accepted": 15,
+  "author_negative_proposals_accepted_with_checks": 8,
+  "estimated_paid_cost_usd": "0"
+}
