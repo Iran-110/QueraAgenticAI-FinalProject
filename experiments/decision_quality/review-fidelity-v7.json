@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "registered_on": "2026-10-08",
+  "scope": "Fresh synthetic development inputs over exposed official source families; two correlated draws per policy; no final held-out evaluation or human gold",
+  "planned_observations": 24,
+  "review_unit": "The entire final proposal including both drafts, rationale, every evidence-link claim, questions, facts delta and suggested checks",
+  "reviewers": "Three newly assigned assistant reviewers, each assigned two whole case families with all four aliased observations; one original rating preserved per observation",
+  "blinding": {
+    "aliases": "Random unique aliases; shuffled observation order within each source case family",
+    "private_mapping": true,
+    "withheld": [
+      "policy and condition identity",
+      "replicate and schedule position",
+      "prompt instructions and fidelity index",
+      "attempt and refinement history",
+      "cost, token counts and latency",
+      "expected decision, keyword aids and reviewer notes",
+      "other reviewers' ratings",
+      "prior private model outputs and review artifacts"
+    ],
+    "provided": [
+      "identical authoritative case state with attribution and status",
+      "original synthetic user message",
+      "supplied fixed evidence pools with excerpts and version/span metadata",
+      "full final accepted proposal or explicit absence of a final proposal"
+    ]
+  },
+  "ratings": {
+    "acceptable": "Useful whole proposal with supported material technical claims, preserved report scope and no material defect found within supplied inputs",
+    "needs_revision": "A useful proposal exists but a concrete material claim, citation, summary, question or next step needs correction",
+    "unusable": "Fundamentally unsupported or broken proposal, or no final proposal after an attempted model response"
+  },
+  "dimensions": {
+    "reported_fact_fidelity": "Preserves active versus superseded context, each component/value, working versus failing paths, unexecuted versus executed drafts, and corrected intent in every field",
+    "check_attribution": "Reports performed checks without claiming assistant execution, converting not-checked into unable-to-check, or interpreting empty records as proof no checks occurred",
+    "claim_source_support": "The cited excerpt itself establishes each material claim at the stated scope; known IDs, signatures, concept snapshots and version metadata do not establish arbitrary causes or historical coverage",
+    "technical_usefulness": "Next question, explanation, escalation or proposed code is useful, coherent and preserves already-correct designs and deliberate old/new comparisons"
+  },
+  "dimension_values": ["pass", "material_defect", "not_assessable"],
+  "review_instructions": [
+    "Judge all proposal fields; a correct user draft cannot compensate for a false rationale or maintainer summary",
+    "Preserve the exact active user version and distinguish superseded versions as history",
+    "A working fixed-options reduction is not the failing helper-dependent integration; ask for genuinely absent failing-path context rather than repeating known facts or a working test",
+    "Distinguish frontend, backend Session State and callback observations without reversing values or inventing a source-proven root cause",
+    "Respect deliberate construction-time old-value capture when the user corrected the intent to an old/new comparison",
+    "Check concrete proposed handler/registration consistency and avoid breaking a correct stable-key callback",
+    "Review each evidence-link claim against its cited chunk and review technical draft claims even when omitted from links",
+    "A current exact-version signature cannot establish parameter presence in a known historical release; an unversioned concept excerpt is not blanket historical coverage",
+    "A user-reported retained saved value is not a source-backed universal persistence guarantee",
+    "Useful natural question wording and coherent alternative code are allowed; do not score answer keywords or exact expected wording",
+    "Treat reported checks as synthetic authoritative input; do not execute snippets, browse outcomes, inspect raw experiment receipts or infer arm identity",
+    "Return alias, overall rating, four dimension ratings, concrete defects with affected proposal field and supporting supplied record/chunk IDs, plus brief justification",
+    "If no final proposal exists, report not_assessable semantic dimensions and the absence; do not reconstruct an answer from sources"
+  ],
+  "budget_and_missingness": "A gate refusal before an observation begins is missing planned data, not a semantic model defect. Keep budget-stopped attempted observations distinct from format/authority failures and from accepted proposals. Report complete policy pairs and fully repeated families; never silently impute missing draws or refresh the authorization.",
+  "root_audit": "Preserve original independent ratings and dimension judgments. Record root source-audit disagreements separately with exact supplied support; do not change categories, inputs, decision expectations or policy messages after outputs.",
+  "public_output": "Aggregate acceptance, reviewed dimensions, preserved ratings, within-family variation, costs and sanitized defect categories; raw proposals, alias maps and original review files remain private ignored runtime data",
+  "inference_limits": "The candidate changes a concise instruction and an exact context index together; their individual effects are not identified. Inputs use complete caller-authored state and fixed exposed sources, not autonomous extraction or real RAG. Two draws are related stochastic development observations and cannot establish causal superiority, statistical significance, unseen accuracy or a general policy winner. Schema acceptance and plausible routing remain distinct from whole-proposal semantic quality."
+}

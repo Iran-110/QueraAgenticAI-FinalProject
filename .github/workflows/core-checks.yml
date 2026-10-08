@@ -46,6 +46,7 @@ jobs:
           uv run python -m agent_app.reasoning.ablations
           uv run python -m agent_app.reasoning.quality_experiments
           uv run python -m agent_app.reasoning.quality_experiments --plan experiments/decision_quality/protocol-guards-v5.json
+          uv run python -m agent_app.reasoning.fidelity_experiments
       - name: Replay authored semantic challenges without a model
         run: uv run python -m agent_app.reasoning.semantic_regressions
       - name: Smoke-test bounded refinement

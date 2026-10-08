@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "experiment_id": "core-decision-2026-10-08-fidelity-v7",
+  "suite_sha256": "8c64f5659cb401a434d696c217ee386ea99d1850a6ac7bfe9c11aafac9f5aff3",
+  "model": "gpt-4o-mini",
+  "policies": [
+    "structured_rules",
+    "fidelity_rules"
+  ],
+  "input_token_reserve": 32768,
+  "max_output_tokens": 768,
+  "cap_usd": "0.030",
+  "price_verified_on": "2026-10-07",
+  "continuation_id": "user-continuation-2026-10-07-v3",
+  "scope": "Fresh six-case synthetic whole-proposal fidelity development comparison; two related draws per frozen policy; fixed exposed V4 source pools and identical caller-authored state; combined concise fidelity instruction plus exact record index; no catalog or optional proposal checks; no held-out accuracy, human gold, real RAG, or causal component attribution. Sequential designated runner uses the original unresolved-incident ledger and existing unchanged continuation only, capped at USD 0.030; refusals remain missing data and partial draws are not refilled.",
+  "case_count": 6,
+  "replicates": 2,
+  "proposal_checks": false,
+  "suite_filename": "cases-fidelity-v7.json",
+  "suite_content_sha256": "1c38210a6e80dd561adde73f2ea7fcbf52a1c69b10bfe83205aaf5bbd91d3fa4",
+  "schedule": [
+    {
+      "case_id": "fresh-corrected-version-submit-api",
+      "replicate": 1,
+      "policy": "structured_rules"
+    },
+    {
+      "case_id": "fresh-corrected-version-submit-api",
+      "replicate": 1,
+      "policy": "fidelity_rules"
+    },
+    {
+      "case_id": "fresh-working-fragment-failing-options-path",
+      "replicate": 1,
+      "policy": "fidelity_rules"
+    },
+    {
+      "case_id": "fresh-working-fragment-failing-options-path",
+      "replicate": 1,
+      "policy": "structured_rules"
+    },
+    {
+      "case_id": "fresh-key-read-reported-three-way-mismatch",
+      "replicate": 1,
+      "policy": "structured_rules"
+    },
+    {
+      "case_id": "fresh-key-read-reported-three-way-mismatch",
+      "replicate": 1,
+      "policy": "fidelity_rules"
+    },
+    {
+      "case_id": "fresh-intent-correction-deliberate-old-new-pair",
+      "replicate": 1,
+      "policy": "fidelity_rules"
+    },
+    {
+      "case_id": "fresh-intent-correction-deliberate-old-new-pair",
+      "replicate": 1,
+      "policy": "structured_rules"
+    },
+    {
+      "case_id": "fresh-known-historical-signature-uncovered",
+      "replicate": 1,
+      "policy": "structured_rules"
+    },
+    {
+      "case_id": "fresh-known-historical-signature-uncovered",
+      "replicate": 1,
+      "policy": "fidelity_rules"
+    },
+    {
+      "case_id": "fresh-display-observation-claim-span-control",
+      "replicate": 1,
+      "policy": "fidelity_rules"
+    },
+    {
+      "case_id": "fresh-display-observation-claim-span-control",
+      "replicate": 1,
+      "policy": "structured_rules"
+    },
+    {
+      "case_id": "fresh-corrected-version-submit-api",
+      "replicate": 2,
+      "policy": "fidelity_rules"
+    },
+    {
+      "case_id": "fresh-corrected-version-submit-api",
+      "replicate": 2,
+      "policy": "structured_rules"
+    },
+    {
+      "case_id": "fresh-working-fragment-failing-options-path",
+      "replicate": 2,
+      "policy": "structured_rules"
+    },
+    {
+      "case_id": "fresh-working-fragment-failing-options-path",
+      "replicate": 2,
+      "policy": "fidelity_rules"
+    },
+    {
+      "case_id": "fresh-key-read-reported-three-way-mismatch",
+      "replicate": 2,
+      "policy": "fidelity_rules"
+    },
+    {
+      "case_id": "fresh-key-read-reported-three-way-mismatch",
+      "replicate": 2,
+      "policy": "structured_rules"
+    },
+    {
+      "case_id": "fresh-intent-correction-deliberate-old-new-pair",
+      "replicate": 2,
+      "policy": "structured_rules"
+    },
+    {
+      "case_id": "fresh-intent-correction-deliberate-old-new-pair",
+      "replicate": 2,
+      "policy": "fidelity_rules"
+    },
+    {
+      "case_id": "fresh-known-historical-signature-uncovered",
+      "replicate": 2,
+      "policy": "fidelity_rules"
+    },
+    {
+      "case_id": "fresh-known-historical-signature-uncovered",
+      "replicate": 2,
+      "policy": "structured_rules"
+    },
+    {
+      "case_id": "fresh-display-observation-claim-span-control",
+      "replicate": 2,
+      "policy": "structured_rules"
+    },
+    {
+      "case_id": "fresh-display-observation-claim-span-control",
+      "replicate": 2,
+      "policy": "fidelity_rules"
+    }
+  ],
+  "schedule_sha256": "7b5e100120c3fe2d94053e3c709a934208ce3652247946991e41935fc7225c5e"
+}

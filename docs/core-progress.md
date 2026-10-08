@@ -238,6 +238,67 @@ existing protocol validations, the new authored-proposal replay and three
 installed demos. Existing policy message digests and request identities pass;
 all HTTP/ledgers in tests are simulated or temporary. No paid request was made.
 
+## 2026-10-08 — registered whole-proposal fidelity comparison
+
+Added an optional `fidelity_rules` candidate over the unchanged shorter
+`structured_rules` policy. It combines a concise instruction with an exact index
+of current/superseded user facts, evidence observations, reported checks, unknowns
+and source scopes. The index infers no facts, claim support or action authority.
+All seven previous policies remain byte-identical, including repair feedback;
+production defaults and optional-check settings remain unchanged.
+
+Registered six fresh synthetic caller inputs over unchanged exposed V4 sources,
+two draws per policy and an explicit rotating 24-observation schedule. Both arms
+use the same model, sources, limits and uncatalogued user intent. Frozen suite,
+content and schedule hashes plus a blinded full-proposal review procedure precede
+HTTP requests. This evaluates the bundled candidate on related development
+inputs; it cannot separate the index/instruction effects or establish held-out
+accuracy, real RAG quality or a general winner.
+
+The new runner preserves the original ledger, unresolved USD 0.02 hold and
+unchanged continuation. Its USD 0.030 comparison ceiling is within the remaining
+authorization; conservative request reservations may stop the batch early.
+Before the new trial, settled estimates remain USD 0.096712770, pending zero,
+and continuation remaining USD 0.031960270. Partial comparisons are recorded
+without replenishing authorization or replacing receipts. No paid request
+preceded this registration. See the V7 input README, protocol and review plan in
+`experiments/decision_quality/`.
+
+Verified locked dependencies, **1,149 offline tests**, Ruff lint/format, all
+eight protocol validations, unchanged authored semantic replay and installed
+refinement, gateway-repair and turn demos. Candidate compatibility/provenance and
+runner accounting tests use fake ports, intercepted HTTP and temporary ledgers.
+An independent review also confirmed exact source copies and 63 unchanged-policy
+message comparisons. These are encoding/compatibility checks, not live fidelity
+results.
+
+## 2026-10-08 — whole-proposal fidelity results
+
+The registered V7 batch recorded 21 of 24 planned observations and 25 settled
+HTTP requests, yielding 19 accepted finals. The USD 0.030 trial cap denied the
+historical candidate's second call; three scheduled repeats never started.
+The first draw covered all six families and four families completed both draws.
+One control answer was terminally rejected for missing evidence; one candidate
+JSON repair succeeded within the existing allowance. Partial draws were not
+refilled and the original uncertainty, halt and authorization remain unchanged.
+
+Three fresh blinded assistant reviewers rated the nine pairs with both finals
+acceptable on **3/9 control versus 5/9 candidate**. Across the four fully repeated
+families this narrows to **3/8 versus 4/8**. Citation-support passes tie at 6/9;
+both pass check attribution on 9/9. The candidate helps the corrected form API
+case but still produces summary drift, unsupported release recency, a redundant
+callback question and one misattributed timing claim. Original ratings remain
+preserved; unblinded root source audit made no category changes.
+
+Keep the new bundled instruction/index experimental, the shorter policy for the
+first integrated pilot, and production defaults unchanged. No general winner,
+held-out gain, real RAG measurement or extra production agent is established.
+The fresh estimated cost is USD 0.024175635; original settled estimates are now
+USD 0.120888405 with zero pending and the old USD 0.02 uncertainty retained.
+Continuation remaining is USD 0.007784635; provider deductions are unreconciled.
+The 1,149-test preregistration build passed GitHub CI at `1ef5c35`, run
+`37746599205`. See `docs/decision-quality-v7.md` and the sanitized V7 aggregate.
+
 ## Next integration work
 
 ### Shared release — 2026-10-07
