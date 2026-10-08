@@ -92,6 +92,14 @@ see the [measured comparison and limitations](decision-quality.md). Do not treat
 validation as semantic correctness or add another model call outside the shared
 attempt allowance.
 
+`fidelity_rules` is a separate opt-in development candidate. It combines a
+whole-proposal fidelity instruction with an exact index of supplied facts,
+checks and source scopes. It does not extract user facts or establish claim
+support. The [fresh repeated comparison](decision-quality-v7.md) found a small
+usefulness advantage with remaining summary/citation defects and tied paired
+source-support scores. Keep the shorter policy for the first integrated pilot
+and review the entire proposal. No additional runtime agent is required.
+
 Explicitly labeled Python fences in proposed drafts receive bounded syntax
 checking through parsing and static compilation without executing code objects.
 This also rejects duplicate parameters and invalid module-level control flow.

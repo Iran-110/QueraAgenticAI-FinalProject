@@ -272,6 +272,33 @@ An independent review also confirmed exact source copies and 63 unchanged-policy
 message comparisons. These are encoding/compatibility checks, not live fidelity
 results.
 
+## 2026-10-08 — whole-proposal fidelity results
+
+The registered V7 batch recorded 21 of 24 planned observations and 25 settled
+HTTP requests, yielding 19 accepted finals. The USD 0.030 trial cap denied the
+historical candidate's second call; three scheduled repeats never started.
+The first draw covered all six families and four families completed both draws.
+One control answer was terminally rejected for missing evidence; one candidate
+JSON repair succeeded within the existing allowance. Partial draws were not
+refilled and the original uncertainty, halt and authorization remain unchanged.
+
+Three fresh blinded assistant reviewers rated the nine pairs with both finals
+acceptable on **3/9 control versus 5/9 candidate**. Across the four fully repeated
+families this narrows to **3/8 versus 4/8**. Citation-support passes tie at 6/9;
+both pass check attribution on 9/9. The candidate helps the corrected form API
+case but still produces summary drift, unsupported release recency, a redundant
+callback question and one misattributed timing claim. Original ratings remain
+preserved; unblinded root source audit made no category changes.
+
+Keep the new bundled instruction/index experimental, the shorter policy for the
+first integrated pilot, and production defaults unchanged. No general winner,
+held-out gain, real RAG measurement or extra production agent is established.
+The fresh estimated cost is USD 0.024175635; original settled estimates are now
+USD 0.120888405 with zero pending and the old USD 0.02 uncertainty retained.
+Continuation remaining is USD 0.007784635; provider deductions are unreconciled.
+The 1,149-test preregistration build passed GitHub CI at `1ef5c35`, run
+`37746599205`. See `docs/decision-quality-v7.md` and the sanitized V7 aggregate.
+
 ## Next integration work
 
 ### Shared release — 2026-10-07

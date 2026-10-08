@@ -1,0 +1,1434 @@
+{
+  "accounting": {
+    "account_deductions_reconciled": false,
+    "actual_http_requests": 25,
+    "batch_cap_remaining_usd": "0.005824365",
+    "batch_cap_usd": "0.030",
+    "closing_ledger": {
+      "available_usd": "4.359111595",
+      "halted": true,
+      "limit_usd": "4.5",
+      "opening_spend_usd": "0",
+      "reserved_usd": "0",
+      "settled_usd": "0.120888405",
+      "uncertain_usd": "0.02"
+    },
+    "estimated_prices_are_not_verified_account_deductions": true,
+    "estimated_settled_usd": "0.024175635",
+    "grant_refreshed_or_ledger_reset": false,
+    "input_tokens": 114715,
+    "input_usd_per_token": "0.000000165",
+    "ledger_available_is_provider_balance": false,
+    "matched_present_final_pair_accounting": {
+      "by_policy": {
+        "fidelity_rules": {
+          "estimated_usd": "0.012101760",
+          "http_requests": 11,
+          "input_tokens": 58320,
+          "output_tokens": 3756,
+          "present_final_observations": 9
+        },
+        "structured_rules": {
+          "estimated_usd": "0.008902905",
+          "http_requests": 11,
+          "input_tokens": 41841,
+          "output_tokens": 3029,
+          "present_final_observations": 9
+        }
+      },
+      "case_replicate_pairs": 9,
+      "fidelity_estimated_cost_increase_percent_rounded": "35.93",
+      "fidelity_to_structured_estimated_cost_ratio_rounded": "1.359305",
+      "scope": "Same nine families/draw pairs with both accepted finals; includes all paid repair/refinement attempts for these selected observations. This conditional subset does not replace whole-batch spending or establish general pricing or policy superiority."
+    },
+    "new_accounting_uncertainty": false,
+    "next_reservation_exceeds_batch_cap_by_usd": "0.000089235",
+    "old_incident_reconciled": false,
+    "one_request_reserve_usd": "0.005913600",
+    "opening_ledger": {
+      "available_usd": "4.38328723",
+      "halted": true,
+      "limit_usd": "4.5",
+      "opening_spend_usd": "0",
+      "reserved_usd": "0",
+      "settled_usd": "0.09671277",
+      "uncertain_usd": "0.02"
+    },
+    "original_continuation_active": true,
+    "original_continuation_cap_usd": "0.1",
+    "original_continuation_closing_used_usd": "0.092215365",
+    "original_continuation_id": "user-continuation-2026-10-07-v3",
+    "original_continuation_opening_used_usd": "0.06803973",
+    "original_continuation_remaining_usd": "0.007784635",
+    "original_global_halt_preserved": true,
+    "original_hold_preserved_usd": "0.02",
+    "output_tokens": 7951,
+    "output_usd_per_token": "0.000000660",
+    "price_source": "https://api.metisai.ir/api/v1/meta/providers/pricing",
+    "price_verified_on": "2026-10-07",
+    "stop_is_batch_reservation_cap_not_global_balance_exhaustion": true
+  },
+  "automatic_results_by_policy": {
+    "fidelity_rules": {
+      "accepted_finals": 10,
+      "attempted_observations": 11,
+      "estimated_usd": "0.014257320",
+      "expected_decision_agreements": 9,
+      "first_pass_schema_valid": 10,
+      "http_requests": 13,
+      "input_tokens": 68732,
+      "model_attempts": 14,
+      "output_tokens": 4419,
+      "planned_observations": 12,
+      "retrieval_rounds": 13,
+      "unstarted_observations": 1
+    },
+    "structured_rules": {
+      "accepted_finals": 9,
+      "attempted_observations": 10,
+      "estimated_usd": "0.009918315",
+      "expected_decision_agreements": 7,
+      "first_pass_schema_valid": 10,
+      "http_requests": 12,
+      "input_tokens": 45983,
+      "model_attempts": 12,
+      "output_tokens": 3532,
+      "planned_observations": 12,
+      "retrieval_rounds": 12,
+      "unstarted_observations": 2
+    }
+  },
+  "completion": {
+    "accepted_final_proposals": 19,
+    "actual_http_requests": 25,
+    "attempted_engine_observations": 21,
+    "authority_absent_final_observations": 1,
+    "budget_absent_final_observations": 1,
+    "complete_engine_pairs": 10,
+    "first_pass_schema_valid_observations": 20,
+    "fully_repeated_case_families": 4,
+    "fully_repeated_case_ids": [
+      "fresh-corrected-version-submit-api",
+      "fresh-working-fragment-failing-options-path",
+      "fresh-key-read-reported-three-way-mismatch",
+      "fresh-intent-correction-deliberate-old-new-pair"
+    ],
+    "model_attempts_including_pre_http_refusal": 26,
+    "no_resume_or_cap_extension": true,
+    "paid_format_repairs": 1,
+    "paid_retrieval_refinement_requests": 3,
+    "pair_completion_is_invocation_completion_not_semantic_quality": true,
+    "paired_present_final_pairs": 9,
+    "planned_observations": 24,
+    "pre_http_refinement_refusals": 1,
+    "stop_reason": "BudgetExceeded",
+    "unstarted_observations": 3
+  },
+  "design": {
+    "batch_cap_usd": "0.030",
+    "candidate_components": "Concise fidelity instructions plus an exact record/source index; this combined package does not identify either component effect",
+    "expected_decision_aids_enter_model_input": false,
+    "input_token_reserve": 32768,
+    "manual_question_catalog": false,
+    "max_output_tokens": 768,
+    "model": "gpt-4o-mini",
+    "planned_observations": 24,
+    "policies": [
+      "structured_rules",
+      "fidelity_rules"
+    ],
+    "proposal_checks": false,
+    "repeated_draws_are_independent_cases": false,
+    "replicates_per_policy_case": 2,
+    "reviewer_notes_enter_model_input": false,
+    "schedule": "Replicate-major, alternating policy order by case and reversed on the second draw",
+    "synthetic_case_families": 6
+  },
+  "executed_on": "2026-10-08",
+  "experiment_id": "core-decision-2026-10-08-fidelity-v7",
+  "interpretation": {
+    "citation_support_gain_established": false,
+    "extra_production_judge_justified": false,
+    "fully_repeated_acceptable_counts": {
+      "fidelity_rules": {
+        "acceptable": 4,
+        "present_finals": 8
+      },
+      "structured_rules": {
+        "acceptable": 3,
+        "present_finals": 8
+      }
+    },
+    "general_winner_established": false,
+    "paired_acceptable_counts": {
+      "fidelity_rules": {
+        "acceptable": 5,
+        "present_finals": 9
+      },
+      "structured_rules": {
+        "acceptable": 3,
+        "present_finals": 9
+      }
+    },
+    "paired_check_attribution_passes": {
+      "fidelity_rules": 9,
+      "present_finals_per_policy": 9,
+      "structured_rules": 9
+    },
+    "paired_claim_source_support_passes": {
+      "fidelity_rules": 6,
+      "present_finals_per_policy": 9,
+      "structured_rules": 6
+    },
+    "policy_candidate_remains_experimental": true,
+    "production_defaults_changed": false
+  },
+  "limits": [
+    "Six fresh synthetic input families reuse exposed official source families; no final held-out evaluation, unseen-case accuracy, human gold, real retrieval quality or autonomous fact extraction was measured.",
+    "Two draws from the same family are related stochastic observations. The smaller repeated-family and paired-final subsets are conditional on observed completion and accepted finals, not independent benchmark samples.",
+    "Only nine pairs have both final proposals. Nineteen-present-final totals include one additional unpaired fidelity proposal and have different denominators across policies.",
+    "The budget stop follows the registered schedule and leaves three unstarted draws plus one denied refinement. Missingness is not random and cannot be silently imputed or scored as a semantic model failure.",
+    "The combined fidelity instruction and context index changed together. Neither component effect nor general superiority, causality or statistical significance is established.",
+    "Expected decision agreement and schema acceptance are automatic development aids, separate from whole-proposal source-supported quality.",
+    "Each attempted observation has one original assistant review. Root reviewed all nineteen present finals unblinded, agreed with original categories and did not add independent ratings or rewrite judgments.",
+    "Claim-source-support passed on six of nine paired finals in each policy; improved citation support was not observed.",
+    "Known ledger usage uses pinned public prices, not verified provider deductions or a provider account balance. The original serving-model incident, retained uncertainty and global halt remain unreconciled.",
+    "The historical candidate question retains its original acceptable rating and a separate publication-audit reservation: asking the reporter for historical documentation is not evidence of optimal source-gap routing or of a real retriever closing that gap."
+  ],
+  "observations": [
+    {
+      "absence_kind": null,
+      "case_id": "fresh-corrected-version-submit-api",
+      "error_code": null,
+      "estimated_usd": "0.00069135",
+      "expected_decision_agreement": false,
+      "final_decision": "ask",
+      "final_present": true,
+      "first_pass_schema_valid": true,
+      "http_requests": 1,
+      "input_tokens": 3498,
+      "model_attempts": 1,
+      "observation_index": 0,
+      "original_dimensions": {
+        "check_attribution": "pass",
+        "claim_source_support": "pass",
+        "reported_fact_fidelity": "pass",
+        "technical_usefulness": "material_defect"
+      },
+      "original_rating": "needs_revision",
+      "output_tokens": 173,
+      "policy": "structured_rules",
+      "replicate": 1,
+      "retrieval_rounds": 1,
+      "sanitized_defect_codes": [
+        "unnecessary_clarification"
+      ],
+      "workflow_status": "awaiting_approval"
+    },
+    {
+      "absence_kind": null,
+      "case_id": "fresh-corrected-version-submit-api",
+      "error_code": null,
+      "estimated_usd": "0.001085535",
+      "expected_decision_agreement": true,
+      "final_decision": "answer",
+      "final_present": true,
+      "first_pass_schema_valid": true,
+      "http_requests": 1,
+      "input_tokens": 4695,
+      "model_attempts": 1,
+      "observation_index": 1,
+      "original_dimensions": {
+        "check_attribution": "pass",
+        "claim_source_support": "pass",
+        "reported_fact_fidelity": "pass",
+        "technical_usefulness": "pass"
+      },
+      "original_rating": "acceptable",
+      "output_tokens": 471,
+      "policy": "fidelity_rules",
+      "replicate": 1,
+      "retrieval_rounds": 1,
+      "sanitized_defect_codes": [],
+      "workflow_status": "awaiting_approval"
+    },
+    {
+      "absence_kind": null,
+      "case_id": "fresh-working-fragment-failing-options-path",
+      "error_code": null,
+      "estimated_usd": "0.001012935",
+      "expected_decision_agreement": true,
+      "final_decision": "ask",
+      "final_present": true,
+      "first_pass_schema_valid": true,
+      "http_requests": 1,
+      "input_tokens": 5175,
+      "model_attempts": 1,
+      "observation_index": 2,
+      "original_dimensions": {
+        "check_attribution": "pass",
+        "claim_source_support": "pass",
+        "reported_fact_fidelity": "pass",
+        "technical_usefulness": "pass"
+      },
+      "original_rating": "acceptable",
+      "output_tokens": 241,
+      "policy": "fidelity_rules",
+      "replicate": 1,
+      "retrieval_rounds": 1,
+      "sanitized_defect_codes": [],
+      "workflow_status": "awaiting_approval"
+    },
+    {
+      "absence_kind": null,
+      "case_id": "fresh-working-fragment-failing-options-path",
+      "error_code": null,
+      "estimated_usd": "0.000744315",
+      "expected_decision_agreement": true,
+      "final_decision": "ask",
+      "final_present": true,
+      "first_pass_schema_valid": true,
+      "http_requests": 1,
+      "input_tokens": 3675,
+      "model_attempts": 1,
+      "observation_index": 3,
+      "original_dimensions": {
+        "check_attribution": "pass",
+        "claim_source_support": "material_defect",
+        "reported_fact_fidelity": "material_defect",
+        "technical_usefulness": "pass"
+      },
+      "original_rating": "needs_revision",
+      "output_tokens": 209,
+      "policy": "structured_rules",
+      "replicate": 1,
+      "retrieval_rounds": 1,
+      "sanitized_defect_codes": [
+        "unobserved_options_result",
+        "unprovided_helpers_as_cause"
+      ],
+      "workflow_status": "awaiting_approval"
+    },
+    {
+      "absence_kind": null,
+      "case_id": "fresh-key-read-reported-three-way-mismatch",
+      "error_code": null,
+      "estimated_usd": "0.00091509",
+      "expected_decision_agreement": true,
+      "final_decision": "escalate",
+      "final_present": true,
+      "first_pass_schema_valid": true,
+      "http_requests": 1,
+      "input_tokens": 4394,
+      "model_attempts": 1,
+      "observation_index": 4,
+      "original_dimensions": {
+        "check_attribution": "pass",
+        "claim_source_support": "material_defect",
+        "reported_fact_fidelity": "pass",
+        "technical_usefulness": "pass"
+      },
+      "original_rating": "needs_revision",
+      "output_tokens": 288,
+      "policy": "structured_rules",
+      "replicate": 1,
+      "retrieval_rounds": 1,
+      "sanitized_defect_codes": [
+        "unsupported_unresolvable_prognosis"
+      ],
+      "workflow_status": "awaiting_approval"
+    },
+    {
+      "absence_kind": null,
+      "case_id": "fresh-key-read-reported-three-way-mismatch",
+      "error_code": null,
+      "estimated_usd": "0.00122628",
+      "expected_decision_agreement": false,
+      "final_decision": "ask",
+      "final_present": true,
+      "first_pass_schema_valid": true,
+      "http_requests": 1,
+      "input_tokens": 6108,
+      "model_attempts": 1,
+      "observation_index": 5,
+      "original_dimensions": {
+        "check_attribution": "pass",
+        "claim_source_support": "pass",
+        "reported_fact_fidelity": "pass",
+        "technical_usefulness": "material_defect"
+      },
+      "original_rating": "needs_revision",
+      "output_tokens": 331,
+      "policy": "fidelity_rules",
+      "replicate": 1,
+      "retrieval_rounds": 1,
+      "sanitized_defect_codes": [
+        "redundant_callback_assignment_question"
+      ],
+      "workflow_status": "awaiting_approval"
+    },
+    {
+      "absence_kind": null,
+      "case_id": "fresh-intent-correction-deliberate-old-new-pair",
+      "error_code": null,
+      "estimated_usd": "0.00112959",
+      "expected_decision_agreement": true,
+      "final_decision": "answer",
+      "final_present": true,
+      "first_pass_schema_valid": true,
+      "http_requests": 1,
+      "input_tokens": 5306,
+      "model_attempts": 1,
+      "observation_index": 6,
+      "original_dimensions": {
+        "check_attribution": "pass",
+        "claim_source_support": "material_defect",
+        "reported_fact_fidelity": "pass",
+        "technical_usefulness": "pass"
+      },
+      "original_rating": "needs_revision",
+      "output_tokens": 385,
+      "policy": "fidelity_rules",
+      "replicate": 1,
+      "retrieval_rounds": 1,
+      "sanitized_defect_codes": [
+        "citation_missing_construction_timing_support"
+      ],
+      "workflow_status": "awaiting_approval"
+    },
+    {
+      "absence_kind": null,
+      "case_id": "fresh-intent-correction-deliberate-old-new-pair",
+      "error_code": null,
+      "estimated_usd": "0.000929775",
+      "expected_decision_agreement": true,
+      "final_decision": "answer",
+      "final_present": true,
+      "first_pass_schema_valid": true,
+      "http_requests": 1,
+      "input_tokens": 3999,
+      "model_attempts": 1,
+      "observation_index": 7,
+      "original_dimensions": {
+        "check_attribution": "pass",
+        "claim_source_support": "pass",
+        "reported_fact_fidelity": "pass",
+        "technical_usefulness": "pass"
+      },
+      "original_rating": "acceptable",
+      "output_tokens": 409,
+      "policy": "structured_rules",
+      "replicate": 1,
+      "retrieval_rounds": 1,
+      "sanitized_defect_codes": [],
+      "workflow_status": "awaiting_approval"
+    },
+    {
+      "absence_kind": null,
+      "case_id": "fresh-known-historical-signature-uncovered",
+      "error_code": null,
+      "estimated_usd": "0.001550670",
+      "expected_decision_agreement": true,
+      "final_decision": "answer",
+      "final_present": true,
+      "first_pass_schema_valid": true,
+      "http_requests": 2,
+      "input_tokens": 7034,
+      "model_attempts": 2,
+      "observation_index": 8,
+      "original_dimensions": {
+        "check_attribution": "pass",
+        "claim_source_support": "material_defect",
+        "reported_fact_fidelity": "pass",
+        "technical_usefulness": "material_defect"
+      },
+      "original_rating": "needs_revision",
+      "output_tokens": 591,
+      "policy": "structured_rules",
+      "replicate": 1,
+      "retrieval_rounds": 2,
+      "sanitized_defect_codes": [
+        "unsupported_future_version_scope",
+        "missing_user_facing_historical_limitation"
+      ],
+      "workflow_status": "awaiting_approval"
+    },
+    {
+      "absence_kind": null,
+      "case_id": "fresh-known-historical-signature-uncovered",
+      "error_code": null,
+      "estimated_usd": "0.00192786",
+      "expected_decision_agreement": true,
+      "final_decision": "ask",
+      "final_present": true,
+      "first_pass_schema_valid": true,
+      "http_requests": 2,
+      "input_tokens": 9612,
+      "model_attempts": 2,
+      "observation_index": 9,
+      "original_dimensions": {
+        "check_attribution": "pass",
+        "claim_source_support": "pass",
+        "reported_fact_fidelity": "pass",
+        "technical_usefulness": "pass"
+      },
+      "original_rating": "acceptable",
+      "output_tokens": 518,
+      "policy": "fidelity_rules",
+      "replicate": 1,
+      "retrieval_rounds": 2,
+      "sanitized_defect_codes": [],
+      "workflow_status": "awaiting_approval"
+    },
+    {
+      "absence_kind": null,
+      "case_id": "fresh-display-observation-claim-span-control",
+      "error_code": null,
+      "estimated_usd": "0.00123057",
+      "expected_decision_agreement": true,
+      "final_decision": "answer",
+      "final_present": true,
+      "first_pass_schema_valid": true,
+      "http_requests": 1,
+      "input_tokens": 5606,
+      "model_attempts": 1,
+      "observation_index": 10,
+      "original_dimensions": {
+        "check_attribution": "pass",
+        "claim_source_support": "pass",
+        "reported_fact_fidelity": "pass",
+        "technical_usefulness": "pass"
+      },
+      "original_rating": "acceptable",
+      "output_tokens": 463,
+      "policy": "fidelity_rules",
+      "replicate": 1,
+      "retrieval_rounds": 1,
+      "sanitized_defect_codes": [],
+      "workflow_status": "awaiting_approval"
+    },
+    {
+      "absence_kind": "authority_failure",
+      "case_id": "fresh-display-observation-claim-span-control",
+      "error_code": "AnswerWithoutEvidence",
+      "estimated_usd": "0.00101541",
+      "expected_decision_agreement": false,
+      "final_decision": null,
+      "final_present": false,
+      "first_pass_schema_valid": true,
+      "http_requests": 1,
+      "input_tokens": 4142,
+      "model_attempts": 1,
+      "observation_index": 11,
+      "original_dimensions": {
+        "check_attribution": "not_assessable",
+        "claim_source_support": "not_assessable",
+        "reported_fact_fidelity": "not_assessable",
+        "technical_usefulness": "not_assessable"
+      },
+      "original_rating": "unusable",
+      "output_tokens": 503,
+      "policy": "structured_rules",
+      "replicate": 1,
+      "retrieval_rounds": 1,
+      "sanitized_defect_codes": [
+        "final_absent_authority"
+      ],
+      "workflow_status": "error"
+    },
+    {
+      "absence_kind": null,
+      "case_id": "fresh-corrected-version-submit-api",
+      "error_code": null,
+      "estimated_usd": "0.001086855",
+      "expected_decision_agreement": true,
+      "final_decision": "answer",
+      "final_present": true,
+      "first_pass_schema_valid": true,
+      "http_requests": 1,
+      "input_tokens": 4695,
+      "model_attempts": 1,
+      "observation_index": 12,
+      "original_dimensions": {
+        "check_attribution": "pass",
+        "claim_source_support": "pass",
+        "reported_fact_fidelity": "pass",
+        "technical_usefulness": "pass"
+      },
+      "original_rating": "acceptable",
+      "output_tokens": 473,
+      "policy": "fidelity_rules",
+      "replicate": 2,
+      "retrieval_rounds": 1,
+      "sanitized_defect_codes": [],
+      "workflow_status": "awaiting_approval"
+    },
+    {
+      "absence_kind": null,
+      "case_id": "fresh-corrected-version-submit-api",
+      "error_code": null,
+      "estimated_usd": "0.00076263",
+      "expected_decision_agreement": false,
+      "final_decision": "ask",
+      "final_present": true,
+      "first_pass_schema_valid": true,
+      "http_requests": 1,
+      "input_tokens": 3498,
+      "model_attempts": 1,
+      "observation_index": 13,
+      "original_dimensions": {
+        "check_attribution": "pass",
+        "claim_source_support": "pass",
+        "reported_fact_fidelity": "pass",
+        "technical_usefulness": "material_defect"
+      },
+      "original_rating": "needs_revision",
+      "output_tokens": 281,
+      "policy": "structured_rules",
+      "replicate": 2,
+      "retrieval_rounds": 1,
+      "sanitized_defect_codes": [
+        "redundant_permission_question"
+      ],
+      "workflow_status": "awaiting_approval"
+    },
+    {
+      "absence_kind": null,
+      "case_id": "fresh-working-fragment-failing-options-path",
+      "error_code": null,
+      "estimated_usd": "0.001433190",
+      "expected_decision_agreement": true,
+      "final_decision": "ask",
+      "final_present": true,
+      "first_pass_schema_valid": true,
+      "http_requests": 2,
+      "input_tokens": 7350,
+      "model_attempts": 2,
+      "observation_index": 14,
+      "original_dimensions": {
+        "check_attribution": "pass",
+        "claim_source_support": "pass",
+        "reported_fact_fidelity": "material_defect",
+        "technical_usefulness": "pass"
+      },
+      "original_rating": "needs_revision",
+      "output_tokens": 334,
+      "policy": "structured_rules",
+      "replicate": 2,
+      "retrieval_rounds": 2,
+      "sanitized_defect_codes": [
+        "working_failing_summary_drift",
+        "unprovided_as_unimplemented"
+      ],
+      "workflow_status": "awaiting_approval"
+    },
+    {
+      "absence_kind": null,
+      "case_id": "fresh-working-fragment-failing-options-path",
+      "error_code": null,
+      "estimated_usd": "0.001038015",
+      "expected_decision_agreement": true,
+      "final_decision": "ask",
+      "final_present": true,
+      "first_pass_schema_valid": true,
+      "http_requests": 1,
+      "input_tokens": 5175,
+      "model_attempts": 1,
+      "observation_index": 15,
+      "original_dimensions": {
+        "check_attribution": "pass",
+        "claim_source_support": "material_defect",
+        "reported_fact_fidelity": "material_defect",
+        "technical_usefulness": "pass"
+      },
+      "original_rating": "needs_revision",
+      "output_tokens": 279,
+      "policy": "fidelity_rules",
+      "replicate": 2,
+      "retrieval_rounds": 1,
+      "sanitized_defect_codes": [
+        "unprovided_helpers_as_failure_cause"
+      ],
+      "workflow_status": "awaiting_approval"
+    },
+    {
+      "absence_kind": null,
+      "case_id": "fresh-key-read-reported-three-way-mismatch",
+      "error_code": null,
+      "estimated_usd": "0.00247500",
+      "expected_decision_agreement": true,
+      "final_decision": "escalate",
+      "final_present": true,
+      "first_pass_schema_valid": false,
+      "http_requests": 2,
+      "input_tokens": 12248,
+      "model_attempts": 2,
+      "observation_index": 16,
+      "original_dimensions": {
+        "check_attribution": "pass",
+        "claim_source_support": "material_defect",
+        "reported_fact_fidelity": "pass",
+        "technical_usefulness": "pass"
+      },
+      "original_rating": "needs_revision",
+      "output_tokens": 688,
+      "policy": "fidelity_rules",
+      "replicate": 2,
+      "retrieval_rounds": 1,
+      "sanitized_defect_codes": [
+        "unsupported_latest_release"
+      ],
+      "workflow_status": "awaiting_approval"
+    },
+    {
+      "absence_kind": null,
+      "case_id": "fresh-key-read-reported-three-way-mismatch",
+      "error_code": null,
+      "estimated_usd": "0.00093687",
+      "expected_decision_agreement": true,
+      "final_decision": "escalate",
+      "final_present": true,
+      "first_pass_schema_valid": true,
+      "http_requests": 1,
+      "input_tokens": 4394,
+      "model_attempts": 1,
+      "observation_index": 17,
+      "original_dimensions": {
+        "check_attribution": "pass",
+        "claim_source_support": "pass",
+        "reported_fact_fidelity": "pass",
+        "technical_usefulness": "pass"
+      },
+      "original_rating": "acceptable",
+      "output_tokens": 321,
+      "policy": "structured_rules",
+      "replicate": 2,
+      "retrieval_rounds": 1,
+      "sanitized_defect_codes": [],
+      "workflow_status": "awaiting_approval"
+    },
+    {
+      "absence_kind": null,
+      "case_id": "fresh-intent-correction-deliberate-old-new-pair",
+      "error_code": null,
+      "estimated_usd": "0.000939015",
+      "expected_decision_agreement": true,
+      "final_decision": "answer",
+      "final_present": true,
+      "first_pass_schema_valid": true,
+      "http_requests": 1,
+      "input_tokens": 3999,
+      "model_attempts": 1,
+      "observation_index": 18,
+      "original_dimensions": {
+        "check_attribution": "pass",
+        "claim_source_support": "pass",
+        "reported_fact_fidelity": "pass",
+        "technical_usefulness": "pass"
+      },
+      "original_rating": "acceptable",
+      "output_tokens": 423,
+      "policy": "structured_rules",
+      "replicate": 2,
+      "retrieval_rounds": 1,
+      "sanitized_defect_codes": [],
+      "workflow_status": "awaiting_approval"
+    },
+    {
+      "absence_kind": null,
+      "case_id": "fresh-intent-correction-deliberate-old-new-pair",
+      "error_code": null,
+      "estimated_usd": "0.00111969",
+      "expected_decision_agreement": true,
+      "final_decision": "answer",
+      "final_present": true,
+      "first_pass_schema_valid": true,
+      "http_requests": 1,
+      "input_tokens": 5306,
+      "model_attempts": 1,
+      "observation_index": 19,
+      "original_dimensions": {
+        "check_attribution": "pass",
+        "claim_source_support": "pass",
+        "reported_fact_fidelity": "pass",
+        "technical_usefulness": "pass"
+      },
+      "original_rating": "acceptable",
+      "output_tokens": 370,
+      "policy": "fidelity_rules",
+      "replicate": 2,
+      "retrieval_rounds": 1,
+      "sanitized_defect_codes": [],
+      "workflow_status": "awaiting_approval"
+    },
+    {
+      "absence_kind": "budget_refinement_denied",
+      "case_id": "fresh-known-historical-signature-uncovered",
+      "error_code": "BudgetExceeded",
+      "estimated_usd": "0.00092499",
+      "expected_decision_agreement": false,
+      "final_decision": null,
+      "final_present": false,
+      "first_pass_schema_valid": true,
+      "http_requests": 1,
+      "input_tokens": 4806,
+      "model_attempts": 2,
+      "observation_index": 20,
+      "original_dimensions": {
+        "check_attribution": "not_assessable",
+        "claim_source_support": "not_assessable",
+        "reported_fact_fidelity": "not_assessable",
+        "technical_usefulness": "not_assessable"
+      },
+      "original_rating": "unusable",
+      "output_tokens": 200,
+      "policy": "fidelity_rules",
+      "replicate": 2,
+      "retrieval_rounds": 2,
+      "sanitized_defect_codes": [
+        "final_absent_budget"
+      ],
+      "workflow_status": "budget_stopped"
+    }
+  ],
+  "pair_outcomes": [
+    {
+      "acceptable_comparison": "fidelity_only_acceptable",
+      "both_engine_invocations_recorded": true,
+      "both_finals_present": true,
+      "case_id": "fresh-corrected-version-submit-api",
+      "policy_outcomes": {
+        "fidelity_rules": {
+          "final_present": true,
+          "observation_index": 1,
+          "original_rating": "acceptable",
+          "status": "awaiting_approval"
+        },
+        "structured_rules": {
+          "final_present": true,
+          "observation_index": 0,
+          "original_rating": "needs_revision",
+          "status": "awaiting_approval"
+        }
+      },
+      "replicate": 1
+    },
+    {
+      "acceptable_comparison": "fidelity_only_acceptable",
+      "both_engine_invocations_recorded": true,
+      "both_finals_present": true,
+      "case_id": "fresh-working-fragment-failing-options-path",
+      "policy_outcomes": {
+        "fidelity_rules": {
+          "final_present": true,
+          "observation_index": 2,
+          "original_rating": "acceptable",
+          "status": "awaiting_approval"
+        },
+        "structured_rules": {
+          "final_present": true,
+          "observation_index": 3,
+          "original_rating": "needs_revision",
+          "status": "awaiting_approval"
+        }
+      },
+      "replicate": 1
+    },
+    {
+      "acceptable_comparison": "neither_acceptable",
+      "both_engine_invocations_recorded": true,
+      "both_finals_present": true,
+      "case_id": "fresh-key-read-reported-three-way-mismatch",
+      "policy_outcomes": {
+        "fidelity_rules": {
+          "final_present": true,
+          "observation_index": 5,
+          "original_rating": "needs_revision",
+          "status": "awaiting_approval"
+        },
+        "structured_rules": {
+          "final_present": true,
+          "observation_index": 4,
+          "original_rating": "needs_revision",
+          "status": "awaiting_approval"
+        }
+      },
+      "replicate": 1
+    },
+    {
+      "acceptable_comparison": "structured_only_acceptable",
+      "both_engine_invocations_recorded": true,
+      "both_finals_present": true,
+      "case_id": "fresh-intent-correction-deliberate-old-new-pair",
+      "policy_outcomes": {
+        "fidelity_rules": {
+          "final_present": true,
+          "observation_index": 6,
+          "original_rating": "needs_revision",
+          "status": "awaiting_approval"
+        },
+        "structured_rules": {
+          "final_present": true,
+          "observation_index": 7,
+          "original_rating": "acceptable",
+          "status": "awaiting_approval"
+        }
+      },
+      "replicate": 1
+    },
+    {
+      "acceptable_comparison": "fidelity_only_acceptable",
+      "both_engine_invocations_recorded": true,
+      "both_finals_present": true,
+      "case_id": "fresh-known-historical-signature-uncovered",
+      "policy_outcomes": {
+        "fidelity_rules": {
+          "final_present": true,
+          "observation_index": 9,
+          "original_rating": "acceptable",
+          "status": "awaiting_approval"
+        },
+        "structured_rules": {
+          "final_present": true,
+          "observation_index": 8,
+          "original_rating": "needs_revision",
+          "status": "awaiting_approval"
+        }
+      },
+      "replicate": 1
+    },
+    {
+      "acceptable_comparison": "not_comparable_without_both_finals",
+      "both_engine_invocations_recorded": true,
+      "both_finals_present": false,
+      "case_id": "fresh-display-observation-claim-span-control",
+      "policy_outcomes": {
+        "fidelity_rules": {
+          "final_present": true,
+          "observation_index": 10,
+          "original_rating": "acceptable",
+          "status": "awaiting_approval"
+        },
+        "structured_rules": {
+          "final_present": false,
+          "observation_index": 11,
+          "original_rating": "unusable",
+          "status": "error"
+        }
+      },
+      "replicate": 1
+    },
+    {
+      "acceptable_comparison": "fidelity_only_acceptable",
+      "both_engine_invocations_recorded": true,
+      "both_finals_present": true,
+      "case_id": "fresh-corrected-version-submit-api",
+      "policy_outcomes": {
+        "fidelity_rules": {
+          "final_present": true,
+          "observation_index": 12,
+          "original_rating": "acceptable",
+          "status": "awaiting_approval"
+        },
+        "structured_rules": {
+          "final_present": true,
+          "observation_index": 13,
+          "original_rating": "needs_revision",
+          "status": "awaiting_approval"
+        }
+      },
+      "replicate": 2
+    },
+    {
+      "acceptable_comparison": "neither_acceptable",
+      "both_engine_invocations_recorded": true,
+      "both_finals_present": true,
+      "case_id": "fresh-working-fragment-failing-options-path",
+      "policy_outcomes": {
+        "fidelity_rules": {
+          "final_present": true,
+          "observation_index": 15,
+          "original_rating": "needs_revision",
+          "status": "awaiting_approval"
+        },
+        "structured_rules": {
+          "final_present": true,
+          "observation_index": 14,
+          "original_rating": "needs_revision",
+          "status": "awaiting_approval"
+        }
+      },
+      "replicate": 2
+    },
+    {
+      "acceptable_comparison": "structured_only_acceptable",
+      "both_engine_invocations_recorded": true,
+      "both_finals_present": true,
+      "case_id": "fresh-key-read-reported-three-way-mismatch",
+      "policy_outcomes": {
+        "fidelity_rules": {
+          "final_present": true,
+          "observation_index": 16,
+          "original_rating": "needs_revision",
+          "status": "awaiting_approval"
+        },
+        "structured_rules": {
+          "final_present": true,
+          "observation_index": 17,
+          "original_rating": "acceptable",
+          "status": "awaiting_approval"
+        }
+      },
+      "replicate": 2
+    },
+    {
+      "acceptable_comparison": "both_acceptable",
+      "both_engine_invocations_recorded": true,
+      "both_finals_present": true,
+      "case_id": "fresh-intent-correction-deliberate-old-new-pair",
+      "policy_outcomes": {
+        "fidelity_rules": {
+          "final_present": true,
+          "observation_index": 19,
+          "original_rating": "acceptable",
+          "status": "awaiting_approval"
+        },
+        "structured_rules": {
+          "final_present": true,
+          "observation_index": 18,
+          "original_rating": "acceptable",
+          "status": "awaiting_approval"
+        }
+      },
+      "replicate": 2
+    },
+    {
+      "acceptable_comparison": "not_comparable_without_both_finals",
+      "both_engine_invocations_recorded": false,
+      "both_finals_present": false,
+      "case_id": "fresh-known-historical-signature-uncovered",
+      "policy_outcomes": {
+        "fidelity_rules": {
+          "final_present": false,
+          "observation_index": 20,
+          "original_rating": "unusable",
+          "status": "budget_stopped"
+        },
+        "structured_rules": {
+          "final_present": false,
+          "observation_index": null,
+          "original_rating": null,
+          "status": "not_started"
+        }
+      },
+      "replicate": 2
+    },
+    {
+      "acceptable_comparison": "not_comparable_without_both_finals",
+      "both_engine_invocations_recorded": false,
+      "both_finals_present": false,
+      "case_id": "fresh-display-observation-claim-span-control",
+      "policy_outcomes": {
+        "fidelity_rules": {
+          "final_present": false,
+          "observation_index": null,
+          "original_rating": null,
+          "status": "not_started"
+        },
+        "structured_rules": {
+          "final_present": false,
+          "observation_index": null,
+          "original_rating": null,
+          "status": "not_started"
+        }
+      },
+      "replicate": 2
+    }
+  ],
+  "provenance": {
+    "component_sha256_at_preregistered_commit": {
+      "src/agent_app/contracts.py": "1fe4954b38af01523e5c28d4943ddfd92f0d8de3343036c6632b1d738ea6b226",
+      "src/agent_app/llm/budget.py": "2e29e3dc2a922f904e2138abef7e8e984468cbf9eb6bef8b9736cd496a723d43",
+      "src/agent_app/llm/config.py": "e22671b2dc4bc09ff91576405da0eae70034053114ec42acd76ef7c8b0e62b40",
+      "src/agent_app/llm/metis.py": "fc26eaa40dd55b1348b4d322114d0e775981c88686e2a0df73e6bd7658d558df",
+      "src/agent_app/llm/pricing.py": "39993b673465401e0926584d3007b8967a1eb4eaad4d377b32324c60d619ec07",
+      "src/agent_app/orchestration/engine.py": "e94e05559797ecc2e629b8738ce823648286b56a0d5615e97dc233b4b989844d",
+      "src/agent_app/reasoning/experiments.py": "d0fc8bf3f94b0e4c99648f5ee99e7e2ed2191eabdbbc7f5110f7e7c2a2391103",
+      "src/agent_app/reasoning/fidelity_experiments.py": "f41b6d0e2b96ad293b244ef249970a9b6d24382e4384d2dee4d5fa6d171fcdfe",
+      "src/agent_app/reasoning/probes.py": "10ddb452c81cec3a7e8b93e937e5efcd5166c81ace0f36bf1c062b4498b9f185",
+      "src/agent_app/reasoning/prompts.py": "0bc7b83422eee46f9a598415ea3921281a451da1780db080f091818e3a79329b"
+    },
+    "policy_git_commit": "39efc1669c3fda16b2efe0ce79de9b5ad90b9d45",
+    "preregistration_git_commit": "1ef5c3572ca186ee2c48abbe0acd6d51f7c0cc0b",
+    "private_original_review_sha256": [
+      "ff674f3e9bc129c5e5b700374988393237d3c6cee4cd73a43652d19696aeca2a",
+      "b9fbfd6e24bf412d09cebbc46366ac5247c99a74b140451668cc743927048dbe",
+      "eb0b7f8987ec6ed2fb9ef3e8e318977e41e151fb55bd7ee43616f07c83d2aa86"
+    ],
+    "private_packet_sha256": [
+      "1b01d569db3b0f96cf445bd2b1d7fb246d54f1e01dcae337cfe8f2383c41fe0c",
+      "73f505d8d1c4268ec439c4d731f63a0630284bf99cbaaa8ad70cfb9e5368bdd3",
+      "825c10cfc77f59f3f7932e27012635b4e35105e7a98b15a9ff14158916d4a539"
+    ],
+    "protocol_file": "experiments/decision_quality/protocol-fidelity-v7.json",
+    "protocol_file_sha256": "181d4f30d4b8cec8bdfb4e1d02a6406fc5a02d67da161a8000fd5bddad9867ca",
+    "registered_before_first_http": true,
+    "registration_ci_conclusion": "success",
+    "registration_ci_run": 37746599205,
+    "registration_receipt_created_during_running_batch": true,
+    "review_file": "experiments/decision_quality/review-fidelity-v7.json",
+    "review_file_sha256": "bce73f6331452df1b56f582cc900b0e664b7e6c09c1a0b6a9b3aab79a11c4e55",
+    "runtime_package_code_sha256": "48a16111729a1a0b1ac4d6de2467f861b430f50b8d6877745f0413a10017f3ff",
+    "runtime_package_hash_matches_preregistered_commit": true,
+    "schedule_sha256": "7b5e100120c3fe2d94053e3c709a934208ce3652247946991e41935fc7225c5e",
+    "started_at": "2026-10-08T07:56:26.115014+00:00",
+    "suite_content_sha256": "1c38210a6e80dd561adde73f2ea7fcbf52a1c69b10bfe83205aaf5bbd91d3fa4",
+    "suite_file": "experiments/decision_quality/cases-fidelity-v7.json",
+    "suite_file_sha256": "8c64f5659cb401a434d696c217ee386ea99d1850a6ac7bfe9c11aafac9f5aff3"
+  },
+  "schema_version": 1,
+  "semantic_review": {
+    "absence_handling": "Original unusable absence ratings are preserved separately: AnswerWithoutEvidence is an authority failure and the denied refinement has no final proposal because of budget. All four semantic dimensions are not_assessable for each absence. Three never-started slots have no rating and are not semantic model defects.",
+    "all_present_finals": {
+      "by_policy": {
+        "fidelity_rules": {
+          "observations": 10,
+          "original_dimension_totals": {
+            "check_attribution": {
+              "material_defect": 0,
+              "not_assessable": 0,
+              "pass": 10
+            },
+            "claim_source_support": {
+              "material_defect": 3,
+              "not_assessable": 0,
+              "pass": 7
+            },
+            "reported_fact_fidelity": {
+              "material_defect": 1,
+              "not_assessable": 0,
+              "pass": 9
+            },
+            "technical_usefulness": {
+              "material_defect": 1,
+              "not_assessable": 0,
+              "pass": 9
+            }
+          },
+          "original_ratings": {
+            "acceptable": 6,
+            "needs_revision": 4,
+            "unusable": 0
+          }
+        },
+        "structured_rules": {
+          "observations": 9,
+          "original_dimension_totals": {
+            "check_attribution": {
+              "material_defect": 0,
+              "not_assessable": 0,
+              "pass": 9
+            },
+            "claim_source_support": {
+              "material_defect": 3,
+              "not_assessable": 0,
+              "pass": 6
+            },
+            "reported_fact_fidelity": {
+              "material_defect": 2,
+              "not_assessable": 0,
+              "pass": 7
+            },
+            "technical_usefulness": {
+              "material_defect": 3,
+              "not_assessable": 0,
+              "pass": 6
+            }
+          },
+          "original_ratings": {
+            "acceptable": 3,
+            "needs_revision": 6,
+            "unusable": 0
+          }
+        }
+      },
+      "total_observations": 19
+    },
+    "dimension_definitions": {
+      "check_attribution": "Reports performed checks without claiming assistant execution, converting not-checked into unable-to-check, or interpreting empty records as proof no checks occurred",
+      "claim_source_support": "The cited excerpt itself establishes each material claim at the stated scope; known IDs, signatures, concept snapshots and version metadata do not establish arbitrary causes or historical coverage",
+      "reported_fact_fidelity": "Preserves active versus superseded context, each component/value, working versus failing paths, unexecuted versus executed drafts, and corrected intent in every field",
+      "technical_usefulness": "Next question, explanation, escalation or proposed code is useful, coherent and preserves already-correct designs and deliberate old/new comparisons"
+    },
+    "dimension_values": [
+      "pass",
+      "material_defect",
+      "not_assessable"
+    ],
+    "fully_repeated_family_present_finals": {
+      "by_policy": {
+        "fidelity_rules": {
+          "observations": 8,
+          "original_dimension_totals": {
+            "check_attribution": {
+              "material_defect": 0,
+              "not_assessable": 0,
+              "pass": 8
+            },
+            "claim_source_support": {
+              "material_defect": 3,
+              "not_assessable": 0,
+              "pass": 5
+            },
+            "reported_fact_fidelity": {
+              "material_defect": 1,
+              "not_assessable": 0,
+              "pass": 7
+            },
+            "technical_usefulness": {
+              "material_defect": 1,
+              "not_assessable": 0,
+              "pass": 7
+            }
+          },
+          "original_ratings": {
+            "acceptable": 4,
+            "needs_revision": 4,
+            "unusable": 0
+          }
+        },
+        "structured_rules": {
+          "observations": 8,
+          "original_dimension_totals": {
+            "check_attribution": {
+              "material_defect": 0,
+              "not_assessable": 0,
+              "pass": 8
+            },
+            "claim_source_support": {
+              "material_defect": 2,
+              "not_assessable": 0,
+              "pass": 6
+            },
+            "reported_fact_fidelity": {
+              "material_defect": 2,
+              "not_assessable": 0,
+              "pass": 6
+            },
+            "technical_usefulness": {
+              "material_defect": 2,
+              "not_assessable": 0,
+              "pass": 6
+            }
+          },
+          "original_ratings": {
+            "acceptable": 3,
+            "needs_revision": 5,
+            "unusable": 0
+          }
+        }
+      },
+      "total_observations": 16
+    },
+    "original_attempted_ratings_including_absence": {
+      "by_policy": {
+        "fidelity_rules": {
+          "observations": 11,
+          "original_dimension_totals": {
+            "check_attribution": {
+              "material_defect": 0,
+              "not_assessable": 1,
+              "pass": 10
+            },
+            "claim_source_support": {
+              "material_defect": 3,
+              "not_assessable": 1,
+              "pass": 7
+            },
+            "reported_fact_fidelity": {
+              "material_defect": 1,
+              "not_assessable": 1,
+              "pass": 9
+            },
+            "technical_usefulness": {
+              "material_defect": 1,
+              "not_assessable": 1,
+              "pass": 9
+            }
+          },
+          "original_ratings": {
+            "acceptable": 6,
+            "needs_revision": 4,
+            "unusable": 1
+          }
+        },
+        "structured_rules": {
+          "observations": 10,
+          "original_dimension_totals": {
+            "check_attribution": {
+              "material_defect": 0,
+              "not_assessable": 1,
+              "pass": 9
+            },
+            "claim_source_support": {
+              "material_defect": 3,
+              "not_assessable": 1,
+              "pass": 6
+            },
+            "reported_fact_fidelity": {
+              "material_defect": 2,
+              "not_assessable": 1,
+              "pass": 7
+            },
+            "technical_usefulness": {
+              "material_defect": 3,
+              "not_assessable": 1,
+              "pass": 6
+            }
+          },
+          "original_ratings": {
+            "acceptable": 3,
+            "needs_revision": 6,
+            "unusable": 1
+          }
+        }
+      },
+      "total_observations": 21
+    },
+    "original_ratings_per_attempted_observation": 1,
+    "paired_final_acceptable_outcomes": {
+      "both_acceptable": 1,
+      "fidelity_only_acceptable": 4,
+      "neither_acceptable": 2,
+      "structured_only_acceptable": 2
+    },
+    "paired_present_finals": {
+      "by_policy": {
+        "fidelity_rules": {
+          "observations": 9,
+          "original_dimension_totals": {
+            "check_attribution": {
+              "material_defect": 0,
+              "not_assessable": 0,
+              "pass": 9
+            },
+            "claim_source_support": {
+              "material_defect": 3,
+              "not_assessable": 0,
+              "pass": 6
+            },
+            "reported_fact_fidelity": {
+              "material_defect": 1,
+              "not_assessable": 0,
+              "pass": 8
+            },
+            "technical_usefulness": {
+              "material_defect": 1,
+              "not_assessable": 0,
+              "pass": 8
+            }
+          },
+          "original_ratings": {
+            "acceptable": 5,
+            "needs_revision": 4,
+            "unusable": 0
+          }
+        },
+        "structured_rules": {
+          "observations": 9,
+          "original_dimension_totals": {
+            "check_attribution": {
+              "material_defect": 0,
+              "not_assessable": 0,
+              "pass": 9
+            },
+            "claim_source_support": {
+              "material_defect": 3,
+              "not_assessable": 0,
+              "pass": 6
+            },
+            "reported_fact_fidelity": {
+              "material_defect": 2,
+              "not_assessable": 0,
+              "pass": 7
+            },
+            "technical_usefulness": {
+              "material_defect": 3,
+              "not_assessable": 0,
+              "pass": 6
+            }
+          },
+          "original_ratings": {
+            "acceptable": 3,
+            "needs_revision": 6,
+            "unusable": 0
+          }
+        }
+      },
+      "total_observations": 18
+    },
+    "publication_audit_reservations": [
+      {
+        "audit_kind": "Independent unblinded publication audit, separate from original blinded ratings",
+        "case_id": "fresh-known-historical-signature-uncovered",
+        "explanation": "Historical uncertainty was preserved, but asking the reporter to locate historical documentation does not demonstrate optimal routing of a source gap. Both policies had already used bounded refinement over identical fixed pools; the ability of a real retriever to obtain historical coverage was not measured.",
+        "observation_index": 9,
+        "original_rating": "acceptable",
+        "original_rating_changed": false,
+        "policy": "fidelity_rules",
+        "private_reservation_file_sha256": "932a6109d4bf2a5d8a2d11b713001fea92575c329fcb51b6665bcf9008b2d252",
+        "replicate": 1,
+        "reservation_codes": [
+          "historical_source_discovery_assigned_to_reporter",
+          "optimal_source_gap_routing_not_measured"
+        ],
+        "support_scope": "Available current-version evidence did not establish exact historical parameters; no historical excerpt or inspected installed signature was supplied."
+      }
+    ],
+    "rating_categories": [
+      "acceptable",
+      "needs_revision",
+      "unusable"
+    ],
+    "reviewer_kind": "Newly assigned assistants, not human gold",
+    "reviewers": 3,
+    "root_audit": {
+      "categories_agree_with_original_review": true,
+      "finals_audited": 19,
+      "independent_root_ratings_added": 0,
+      "original_dimensions_rewritten": false,
+      "original_ratings_rewritten": false,
+      "root_is_unblinded": true
+    }
+  },
+  "source": "Registered Metis gpt-4o-mini requests with private gateway receipts and source-backed blinded assistant review",
+  "unstarted_planned_observations": [
+    {
+      "case_id": "fresh-known-historical-signature-uncovered",
+      "policy": "structured_rules",
+      "rating": null,
+      "reason": "batch_cap_stopped_before_invocation",
+      "replicate": 2,
+      "schedule_index": 21,
+      "semantic_dimensions": null
+    },
+    {
+      "case_id": "fresh-display-observation-claim-span-control",
+      "policy": "structured_rules",
+      "rating": null,
+      "reason": "batch_cap_stopped_before_invocation",
+      "replicate": 2,
+      "schedule_index": 22,
+      "semantic_dimensions": null
+    },
+    {
+      "case_id": "fresh-display-observation-claim-span-control",
+      "policy": "fidelity_rules",
+      "rating": null,
+      "reason": "batch_cap_stopped_before_invocation",
+      "replicate": 2,
+      "schedule_index": 23,
+      "semantic_dimensions": null
+    }
+  ]
+}
