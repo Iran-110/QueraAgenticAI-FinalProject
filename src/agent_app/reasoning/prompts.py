@@ -19,6 +19,7 @@ type PromptPolicy = Literal[
     "diagnostic_rules",
     "grounded_rules",
     "compiled_rules",
+    "fidelity_rules",
 ]
 
 SYSTEM_INSTRUCTION = """You are a technical support assistant for Streamlit.
@@ -133,6 +134,26 @@ or evidence do not prove complete context or justify an unsupported answer.
 These are prompt constraints; runtime validation and source review still apply.
 """
 
+FIDELITY_RULES = """
+The fidelity_view indexes supplied records; it adds no observations, source
+support or action permission. Active user facts describe the current reported
+context; superseded user facts are history. Evidence observations never confirm
+user facts. Preserve each report's component, value, test outcome and scope.
+A working reduction is not the failing application, an unrun draft is not a
+reproduced failure, and "not checked" does not mean "unable to check". Recorded
+checks are reports; do not claim you executed or independently verified them.
+An empty check record means checks are unrecorded, not that none were performed.
+Keep those distinctions consistent across user_draft, maintainer_summary,
+rationale, evidence_links.claim, questions and suggested checks. Preserve an
+explicitly requested old/new comparison or an already-correct design.
+Each material technical claim needs support from its cited excerpt itself.
+Keep evidence_links claims narrow enough that their chunks establish them;
+signature, timing and version-coverage claims may need different chunks.
+Scope metadata alone does not establish support. An unversioned snapshot does
+not establish every historical release. Omit or qualify unsupported conclusions
+rather than treating a source as a proven root cause or successful fix.
+"""
+
 _PROPOSAL_REPAIR_GUIDANCE = {
     "ask_target_required": (
         "For ask, declare exactly one registered question target in missing_info. "
@@ -178,6 +199,45 @@ def _decision_requirements(context: ReasoningContext) -> dict:
             **({"available": context.can_refine} if decision == "retrieve_more" else {}),
         }
         for decision in ("answer", "ask", "escalate", "retrieve_more")
+    }
+
+
+def _fidelity_view(case: CaseState, evidence: EvidenceBundle) -> dict:
+    """Copy exact validated records without extraction or entailment labels.
+
+    The original inputs remain available. This index preserves ordering within
+    each group and uses no truncation, inferred applicability or check outcome.
+    Existing input ceilings and gateway context limits still apply.
+    """
+    return {
+        "case_id": case.case_id,
+        "case_revision": case.case_revision,
+        "active_user_facts": [
+            fact.model_dump(mode="json")
+            for fact in case.facts
+            if fact.provenance_kind == "user" and fact.status == "active"
+        ],
+        "superseded_user_facts": [
+            fact.model_dump(mode="json")
+            for fact in case.facts
+            if fact.provenance_kind == "user" and fact.status == "superseded"
+        ],
+        "evidence_observations": [
+            fact.model_dump(mode="json")
+            for fact in case.facts
+            if fact.provenance_kind == "evidence"
+        ],
+        "recorded_checks": list(case.checks_performed),
+        "unknowns": list(case.unknowns),
+        "source_scopes": [
+            {
+                "chunk_id": hit.chunk_id,
+                "applicable_versions": list(hit.applicable_versions),
+                "source_span": hit.source_span,
+                "source_commit": hit.source_commit,
+            }
+            for hit in evidence.hits
+        ],
     }
 
 
@@ -245,6 +305,18 @@ def build_messages(
     context: ReasoningContext | None = None,
 ) -> tuple[dict, ...]:
     """JSON separates data from instructions; it is not itself a security guarantee."""
+    if policy == "fidelity_rules":
+        # Only the new candidate changes direct-call validation. Serialize and
+        # revalidate nested records so constructed or mutated models cannot
+        # provide an invalid authority index; the seven prior payloads stay exact.
+        case = CaseState.model_validate(case.model_dump(warnings=False))
+        evidence = EvidenceBundle.model_validate(evidence.model_dump(warnings=False))
+        if (
+            not isinstance(user_message, str)
+            or not user_message.strip()
+            or len(user_message) > 20_000
+        ):
+            raise ValueError("Invalid user input")
     payload = {
         "case": case.model_dump(mode="json"),
         "user_message": user_message,
@@ -260,6 +332,7 @@ def build_messages(
         "diagnostic_rules",
         "grounded_rules",
         "compiled_rules",
+        "fidelity_rules",
     }:
         raise ValueError("Unknown prompt policy")
     if policy in {
@@ -269,6 +342,7 @@ def build_messages(
         "diagnostic_rules",
         "grounded_rules",
         "compiled_rules",
+        "fidelity_rules",
     }:
         instruction += DECISION_RUBRIC
     if policy in {
@@ -277,6 +351,7 @@ def build_messages(
         "diagnostic_rules",
         "grounded_rules",
         "compiled_rules",
+        "fidelity_rules",
     }:
         if context is None:
             raise ValueError("Bounded policy requires caller-owned workflow context")
@@ -292,7 +367,13 @@ def build_messages(
             }
         )
         instruction += BOUNDED_WORKFLOW
-    if policy in {"structured_rules", "diagnostic_rules", "grounded_rules", "compiled_rules"}:
+    if policy in {
+        "structured_rules",
+        "diagnostic_rules",
+        "grounded_rules",
+        "compiled_rules",
+        "fidelity_rules",
+    }:
         payload["decision_requirements"] = _decision_requirements(context)
         instruction += STRUCTURED_RULES
     if policy == "diagnostic_rules":
@@ -307,6 +388,9 @@ def build_messages(
             evidence, context, payload["decision_requirements"]
         )
         instruction += COMPILED_SCHEMA_RULES
+    if policy == "fidelity_rules":
+        payload["fidelity_view"] = _fidelity_view(case, evidence)
+        instruction += FIDELITY_RULES
     if feedback is not None:
         feedback = OutputFeedback.model_validate(feedback.model_dump(warnings=False))
         instruction += (
