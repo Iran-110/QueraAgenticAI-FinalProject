@@ -2,6 +2,7 @@
 
 from collections.abc import Callable
 from dataclasses import dataclass, field
+from typing import Literal
 from uuid import uuid4
 
 from pydantic import ValidationError
@@ -103,6 +104,7 @@ class SupportEngine:
         top_k: int = 5,
         current_revision: Callable[[str], int] | None = None,
         proposal_checks: bool = False,
+        evidence_scope: Literal["all", "exact_user_version"] = "all",
     ) -> None:
         self.retriever = retriever
         self.reasoner = reasoner
@@ -117,6 +119,9 @@ class SupportEngine:
         if type(proposal_checks) is not bool:
             raise ValueError("Proposal checks require an explicit boolean.")
         self.proposal_checks = proposal_checks
+        if type(evidence_scope) is not str or evidence_scope not in {"all", "exact_user_version"}:
+            raise ValueError("Unsupported evidence scope policy.")
+        self.evidence_scope = evidence_scope
         # Validate configuration before a port is invoked.
         RetrievalRequest(queries=("configuration-check",), snapshot_id=snapshot_id, top_k=top_k)
 
@@ -258,6 +263,31 @@ class SupportEngine:
         except (ValidationError, ValueError, TypeError):
             raise _Stopped("RetrievalResultInvalid") from None
         progress.note("evidence_received", f"Received {len(evidence.hits)} evidence chunks.")
+        if self.evidence_scope == "exact_user_version":
+            # Applicability is caller/retriever metadata, never inferred from text.
+            # This opt-in policy is for advice about the current installation;
+            # historical/comparison workflows must keep the default 'all' policy.
+            version = next(
+                (
+                    fact.value
+                    for fact in case.facts
+                    if fact.name.casefold() == "streamlit_version"
+                    and fact.status == "active"
+                    and fact.provenance_kind == "user"
+                ),
+                None,
+            )
+            hits = tuple(
+                hit
+                for hit in evidence.hits
+                if not hit.applicable_versions or version in hit.applicable_versions
+            )
+            excluded = len(evidence.hits) - len(hits)
+            if excluded:
+                progress.note(
+                    "evidence_scoped", f"Excluded {excluded} chunks outside the confirmed version."
+                )
+                evidence = evidence.model_copy(update={"hits": hits})
         return evidence
 
     def _analyze(
