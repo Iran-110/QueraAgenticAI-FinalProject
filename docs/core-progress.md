@@ -299,6 +299,72 @@ Continuation remaining is USD 0.007784635; provider deductions are unreconciled.
 The 1,149-test preregistration build passed GitHub CI at `1ef5c35`, run
 `37746599205`. See `docs/decision-quality-v7.md` and the sanitized V7 aggregate.
 
+## 2026-10-09 — controlled real-Issue source scope and reply intake
+
+Continued on the clean `feat/agent-core-integration` checkout at `dad3202` after
+reading the repository rules, original brief and mentor roadmap. The original
+**1,149 offline tests** passed before changes. No existing work was replaced and
+no merge/push to main was performed.
+
+- Registered six correlated development projections of real Issue #12782,
+  including complete mechanism evidence, ablation, unknown/mixed versions,
+  correction, synthetic same-version conflict and retired refinement citations.
+  Frozen inputs, inventories, answerable user gaps versus document gaps, full
+  authored proposals, source spans, labels and hashes were committed at
+  `8814fbb` before scenario execution. Body-workaround/comment-informed selection
+  is disclosed; no answer/outcome text enters primary evidence. Added confirmed
+  duplicate #12629 to the quarantine declaration; actual RAG index enforcement
+  remains a data/evaluation integration requirement.
+- Added opt-in exact active-user-version filtering after retrieval validation.
+  Unknown versions drop explicitly scoped chunks, while unscoped metadata stays
+  unknown and available. No patch/range equivalence is inferred. Default `all`
+  and all model prompt policies/ports/shared contracts are unchanged.
+- Added pure canonical-question reply intake. Whole release-number replies gain
+  user attribution only for the correct case/revision/authenticated pending
+  question and exact registered question/display text. Independent review found
+  and closed target/wording drift that could otherwise turn a Python answer into
+  a Streamlit fact. Ambiguous or mixed input needs explicit structured facts.
+  Tracker replay guidance now distinguishes original and prepared event hashes.
+- Replayed the same 14 authored sequences under both scopes: negative acceptance
+  **6/7 → 4/7**, positive retention **7/7 → 6/7**. The strict candidate deliberately
+  loses a safe historical comparison. Four unsupported semantic proposals remain
+  accepted. All registered outcomes match; this includes registered failures and
+  is not a semantic accuracy score. The actual old Git code was separately
+  extracted/imported without changing the checkout; all 14 baseline results and
+  reasoner source-ID pools match the current default exactly.
+- Two canonical version replies convert versus zero with bare turns. All **32
+  intake condition checks** and the version-correction transition match the
+  frozen expectations. The helper/traces perform no tracker actions. Novel
+  check-only turns do not retire every inference; results must be represented as
+  explicit facts/corrections. Source/whole-proposal review remains necessary.
+
+Codex authored the fixture proposals/labels and an independent assistant audited
+them against sources. No project model decided these proposals; no human gold,
+real RAG quality, solved Issue or held-out success is claimed. The two capability
+commits are `bb947db` and `de4d2ca`. The deterministic runner, original-code replay
+script and inspectable JSON receipts are checked in; CI adds the new offline
+validation/replay commands. The single-agent foundation remains sufficient for
+these changes; no framework or extra production agent is justified.
+
+Verified locked dependencies, **1,245 offline tests**, Ruff lint/format, all eight
+prior registered protocol validations, the existing semantic replay, new
+controlled validation/replay, original-code baseline reproduction and installed
+refinement/gateway-repair/turn demos. New source/intake/runner regressions cover
+current versus superseded provenance, latest bundles, code bypass revalidation,
+question/display binding, attribution, stale events and scorer failure handling.
+GitHub CI for these new local commits has not been run; no remote result is
+claimed.
+
+Fresh API cost is **USD 0**; the key/environment file was not loaded or printed.
+The existing ledger was read without changing it: USD 4.50 operational limit,
+USD 0.120888405 settled estimates, zero pending, USD 0.02 uncertainty,
+USD 4.359111595 available, and `halted=true`. The uncertainty is one unresolved
+`ProviderModelMismatch`; the existing continuation has USD 0.007784635 left.
+Provider identity/usage/billing evidence is still missing, so no paid run,
+unhalt, refund or new continuation was attempted. See the
+[Persian controlled-core report](controlled-core-v8.fa.md) for results, limits,
+reproduction and exact RAG/tracker/UI handoff requirements.
+
 ## Next integration work
 
 ### Shared release — 2026-10-07

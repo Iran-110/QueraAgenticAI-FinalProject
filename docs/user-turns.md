@@ -64,3 +64,57 @@ Python 3.13 remains an active user fact from `turn-1`. To represent a different 
 5. After commit, read the authoritative state and then invoke the engine with the current message. The engine's revision callback should read that same tracker.
 
 The pure helper cannot recognize an event that committed before a restart. Replays with an old revision therefore depend on the tracker's event lookup; replay handling, compare-and-swap, and approval invalidation are integration requirements, not implemented storage claims.
+
+## A narrow reply adapter for the pending version question
+
+`prepare_version_reply` handles one explicit input gap without another model or
+agent. `UserTurn.message` remains unparsed by the ordinary turn helper. When the
+tracker supplies the exact stored pending question with the single
+`streamlit_version` target, this adapter recognizes a whole final-release reply
+(`1.50.0` or `Streamlit 1.50.0`) and adds a `ReportedFact` to a detached turn.
+The message, event ID and source attribution remain unchanged. Uncertain text,
+quoted documentation, another environment, multiline answers, prereleases and
+mixed structured updates are rejected with a safe `IntakeRejected.code`.
+They need an explicit structured input or clarification, not an invented fact.
+
+The adapter checks the incoming case/revision, pending ID, question target and
+whether a user version is already known. Both `next_question` and the displayed
+`user_draft` must be exactly the exported core-owned
+`STREAMLIT_VERSION_QUESTION.question`: "Which Streamlit version is installed in
+the affected environment?" Use that `QuestionTarget` in the caller-owned question
+catalog. A model may pair the correct missing field with a question about Python
+or another environment; exact display binding prevents that attribution error.
+Other question wording uses the existing explicit structured-input path.
+Matching an ID cannot authenticate a
+caller-supplied question; the tracker must load both from its authoritative
+proposal record. For corrections or an environment switch, submit explicit
+`ReportedFact`/`context_changed` through the existing path instead.
+
+```python
+from agent_app.orchestration.intake import prepare_version_reply
+
+# All three records come from the tracker/UI ingress, not retrieved documents.
+prepared = prepare_version_reply(
+    authoritative_case,
+    incoming_user_turn,
+    proposal_id=stored_pending_proposal_id,
+    question=stored_pending_analysis,
+)
+transition = propose_user_turn(authoritative_case, prepared)
+# Commit with compare-and-swap, revoke old approval, then re-read before reasoning.
+```
+
+Preparation adds a field, so the canonical hash of the prepared turn differs
+from the original incoming turn's hash. A tracker that prepares on ingress must
+look up `(case_id, turn_id)` using the **original validated ingress hash before
+checking pending proposal or revision**. Persist that original event/hash, the
+prepared turn/hash, and the committed transition in the same transaction.
+An identical raw replay returns the stored outcome without re-running intake;
+after the first commit its question is no longer pending. A changed raw event
+with the same ID is a conflict. `CaseTransition.event_hash` remains the canonical
+hash of the prepared turn; do not compare it against a raw replay hash.
+
+Alternatively, an upstream adapter can prepare once and submit/retry the exact
+same prepared immutable `UserTurn` through the normal tracker event contract.
+Do not mix raw and prepared envelopes on that endpoint. Neither durable ingress
+deduplication nor proposal authentication is implemented by this core helper.

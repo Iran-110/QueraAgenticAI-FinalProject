@@ -4,6 +4,16 @@ Status: implemented foundation on the agent-core branch; team-wide integration c
 
 The core coordinates evidence and produces a structured proposal. Retrieval, model access, durable storage, and UI connect through shared contracts rather than importing one another's implementation.
 
+The optional `evidence_scope="exact_user_version"` engine mode filters explicitly
+versioned hits against the active user version before each reasoning attempt.
+Default `all` preserves historical comparison sources. Unknown metadata,
+same-version contradictions and semantic claim support still require review.
+The pure `prepare_version_reply` adapter recognizes a standalone release reply
+only for the registered canonical pending question; it returns a `UserTurn`,
+then the existing transition/tracker transaction boundary applies. Neither
+capability introduces another agent, changes the ports or executes an action.
+See the [controlled comparison and tradeoffs](controlled-core-v8.fa.md).
+
 ```mermaid
 flowchart LR
     U[Case input / user update] --> C[Validated case state]
