@@ -274,6 +274,71 @@ def test_performed_checks_deduplicate_prose_without_losing_original_check_histor
     assert transition.invalidated_checks == ()
 
 
+@pytest.mark.parametrize(
+    "reported_facts",
+    [
+        (),
+        (ReportedFact(name="STREAMLIT_VERSION", value="1.49"),),
+        (ReportedFact(name="browser_version", value=None),),
+    ],
+)
+def test_new_check_result_retires_inferences_without_requiring_a_changed_user_fact(reported_facts):
+    original = case()
+    before = original.model_dump_json()
+    event = turn(
+        message="The documented workaround did not fix the failure in this environment.",
+        reported_facts=reported_facts,
+        checks_performed=("Applied the documented workaround; the failure still occurs.",),
+    )
+    transition = propose_user_turn(original, event)
+    candidate = transition.candidate
+    assert set(active(candidate)) == {"streamlit_version", "python_version"}
+    assert active(candidate)["streamlit_version"] == active(original)["streamlit_version"]
+    assert active(candidate)["python_version"] == active(original)["python_version"]
+    assert candidate.facts[2] == original.facts[2].model_copy(update={"status": "superseded"})
+    assert candidate.unknowns == ("browser_version", "known_behavior")
+    assert candidate.evidence_refs == ()
+    assert candidate.checks_performed == original.checks_performed + event.checks_performed
+    assert transition.changed_fact_names == ("known_behavior",)
+    assert not transition.context_changed
+    assert transition.invalidated_checks == ()
+    assert candidate.case_revision == original.case_revision + 1
+    assert candidate.pending_proposal_id is None
+    assert original.model_dump_json() == before
+
+
+@pytest.mark.parametrize(
+    "restatement",
+    ["Reinstall did not help.", "  REINSTALL\t did   NOT help.  "],
+)
+def test_repeated_normalized_check_preserves_source_conclusions_and_check_attribution(restatement):
+    original = case()
+    transition = propose_user_turn(original, turn(checks_performed=(restatement,)))
+    candidate = transition.candidate
+    assert candidate.facts == original.facts
+    assert candidate.evidence_refs == original.evidence_refs
+    assert candidate.unknowns == original.unknowns
+    assert candidate.checks_performed == original.checks_performed
+    assert transition.changed_fact_names == ()
+    assert not transition.context_changed
+    assert transition.invalidated_checks == ()
+    assert candidate.case_revision == original.case_revision + 1
+    assert candidate.pending_proposal_id is None
+
+
+def test_novel_check_retires_source_refs_even_without_stored_evidence_facts():
+    original = case(facts=(fact(),))
+    event = turn(checks_performed=("The source's suggested workaround did not help.",))
+    transition = propose_user_turn(original, event)
+    assert transition.candidate.facts == original.facts
+    assert transition.candidate.unknowns == original.unknowns
+    assert transition.changed_fact_names == ()
+    assert transition.candidate.evidence_refs == ()
+    assert (
+        transition.candidate.checks_performed == original.checks_performed + event.checks_performed
+    )
+
+
 def test_correction_discards_old_unscoped_checks_but_preserves_checks_reported_for_new_context():
     original = case()
     event = turn(

@@ -21,11 +21,15 @@ class UserTurnRejected(Exception):
         super().__init__(code)
 
 
+def _check_key(value: str) -> str:
+    return " ".join(value.split()).casefold()
+
+
 def _distinct(values: list[str], *, checks: bool = False) -> tuple[str, ...]:
     seen: set[str] = set()
     result = []
     for value in values:
-        key = (" ".join(value.split()) if checks else value).casefold()
+        key = _check_key(value) if checks else value.casefold()
         if key not in seen:
             seen.add(key)
             result.append(value)
@@ -51,7 +55,12 @@ def propose_user_turn(case: CaseState, turn: UserTurn) -> CaseTransition:
     changed: list[str] = []
     unknowns = list(case.unknowns) + list(turn.unknowns)
     context_changed = turn.context_changed
-    evidence_invalidated = turn.context_changed
+    prior_check_keys = {_check_key(check) for check in case.checks_performed}
+    # A new check/result can contradict an existing inference without changing
+    # any environment fact. Restating a normalized check adds no new knowledge.
+    evidence_invalidated = turn.context_changed or any(
+        _check_key(check) not in prior_check_keys for check in turn.checks_performed
+    )
     reported_known = {
         fact.name.casefold() for fact in turn.reported_facts if fact.value is not None
     }

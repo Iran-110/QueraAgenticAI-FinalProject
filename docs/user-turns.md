@@ -9,13 +9,27 @@ This core utility proposes the next `CaseState` from an explicit structured user
 Use stable field names such as `streamlit_version` and `python_version`. Names are compared after trimming and casefolding; aliases such as `version` are not mapped automatically. Check descriptions are compared after collapsing whitespace and casefolding, not by semantic interpretation.
 
 - A non-null value adds a known user fact or corrects its active value. `null` withdraws a fact instead of inventing a replacement.
-- Withdrawing an already absent value only records it as unknown; it does not invalidate unrelated evidence or invent fact history.
-- Superseded facts remain in provenance history. A turn that only restates active user values preserves their original sources, turns, and evidence, unless an environment switch is explicit.
+- Withdrawing an already absent value by itself only records it as unknown; it does not invalidate unrelated evidence or invent fact history.
+- Superseded facts remain in provenance history. A turn that only restates active user values preserves their original sources, turns, and evidence, unless it also reports a new check or an environment switch is explicit.
 - New, changed, or withdrawn reported facts and evidence-to-user promotion invalidate prior evidence-derived facts and evidence references, even if `CaseTransition.context_changed=False`. Invalidated fact names become unknown unless the turn supplies an active replacement.
+- A newly reported `checks_performed` description that is distinct from the existing check history after whitespace collapse and casefolding also invalidates every active evidence-derived fact and evidence reference. This applies to check-only turns, user-fact restatements and withdrawals of already absent values. Active user facts, the original check wording and all previously reported checks remain; a check-only turn without an explicit environment switch leaves `context_changed=False` and `invalidated_checks=()`. Retired inference names become unknown unless an active replacement exists.
+- Restating only existing normalized checks preserves prior evidence conclusions and references. A distinct new user event still advances the revision and invalidates its pending proposal; check normalization is separate from tracker event deduplication.
 - An ordinary value correction derives `CaseTransition.context_changed=True`, clears old unscoped checks, and preserves other user facts. Adding new known facts or promoting an unchanged evidence value to user provenance preserves completed checks.
 - Explicit `UserTurn.context_changed=True` means a different environment: old user facts not reconfirmed in that turn also become unknown. Even an equal reconfirmed value gets attribution to the new environment's turn.
 - A new accepted turn proposes one revision increment and invalidates the pending proposal. The tracker must also invalidate approval for the old revision.
 - Wrong case binding or a stale expected revision is rejected. The helper does not silently merge competing updates.
+
+Check novelty is lexical rather than semantic: `Reinstall   did not help.` and
+`REINSTALL did NOT help.` are the same check, while rewording or changing
+punctuation may count as new information. Without inference dependencies, the
+helper conservatively retires all active evidence conclusions after a new check,
+including conclusions the check may not affect. It does not infer that a check
+passed, verify its reported result or prove a source contradiction. The UI must
+submit check/result descriptions explicitly in `checks_performed`; an observation
+only in the free-text message does not invalidate evidence. Use a structured fact
+or correction for an updated known value and `context_changed=True` for a different
+environment. Re-retrieval and whole-proposal review remain necessary before
+using evidence conclusions for the new revision.
 
 The hash is SHA-256 of the validated turn's complete JSON, using `ensure_ascii=False`, `sort_keys=True`, and `separators=(",", ":")`, encoded as UTF-8. It includes `UserTurn.message`. Reusing the same event ID with a changed validated message is a conflict, even if its fact changes are identical. Do not deduplicate solely on the facts or trust a caller-supplied hash. Capacity overflow returns `UserTurnRejected("StateLimitExceeded")`; provenance history is never silently truncated.
 

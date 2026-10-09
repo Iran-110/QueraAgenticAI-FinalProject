@@ -336,7 +336,9 @@ no merge/push to main was performed.
   intake condition checks** and the version-correction transition match the
   frozen expectations. The helper/traces perform no tracker actions. Novel
   check-only turns do not retire every inference; results must be represented as
-  explicit facts/corrections. Source/whole-proposal review remains necessary.
+  explicit facts/corrections. This is the historical V8 limitation, superseded by
+  the check-result invalidation milestone below. Source/whole-proposal review
+  remains necessary.
 
 Codex authored the fixture proposals/labels and an independent assistant audited
 them against sources. No project model decided these proposals; no human gold,
@@ -364,6 +366,31 @@ Provider identity/usage/billing evidence is still missing, so no paid run,
 unhalt, refund or new continuation was attempted. See the
 [Persian controlled-core report](controlled-core-v8.fa.md) for results, limits,
 reproduction and exact RAG/tracker/UI handoff requirements.
+
+## 2026-10-09 — retire prior inferences after new reported checks
+
+Reproduced the check-only gap before changing the helper: a newly reported failed
+cache workaround retained an active evidence diagnosis and its source reference.
+Four targeted negative regressions failed while two normalized-restatement
+positive controls passed. After the change, all six pass and the same cache
+report retires the diagnosis, marks it unknown and clears prior evidence refs.
+Active user facts and old/new check history remain; superseded inference
+attribution, revision advancement and pending-proposal invalidation are preserved.
+
+Novelty uses the existing whitespace-collapse/casefold normalization. Repeating
+an equivalent check preserves conclusions. Because there is no dependency graph,
+any new check description conservatively retires all active evidence-derived
+facts and refs, including potentially unrelated conclusions; this is not semantic
+check matching or verification that a reported result is true. Free-text-only
+observations still require explicit structured checks/facts. The tracker remains
+responsible for immutable event deduplication, atomic commit and approval removal.
+
+Verified **64 focused turn tests**, scoped Ruff lint/format and the installed
+offline turn demo. The prior V8 controlled-case measurements remain unchanged;
+these regressions demonstrate state invalidation behavior, not model quality,
+real RAG performance or held-out success. No paid request, key access or tracker
+write was made for this change. See [user turns](user-turns.md) for the current
+input rules and handoff behavior.
 
 ## Next integration work
 
