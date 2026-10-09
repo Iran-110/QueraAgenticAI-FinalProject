@@ -36,24 +36,35 @@ async def chat_endpoint(request: ChatRequest):
             proposed_action={
                 "tool": "edit_file",
                 "arguments": {"file": "app.py", "content": "st.session_state['count'] = 0"},
-                "reasoning": "The user asked for a code fix, so I'm proposing an edit to app.py"
+                "reasoning": "The user asked for a code fix, so I'm proposing an edit to app.py",
             },
         )
         return {
-            "status": "paused", 
+            "status": "paused",
             "message": "I found a potential fix, but it requires maintainer approval.",
-            "sources": [{"title": "Streamlit docs on session state", "url": "https://docs.streamlit.io/library/api-reference/session-state"}],
-            "action_type": "propose_fix"
+            "sources": [
+                {
+                    "title": "Streamlit docs on session state",
+                    "url": "https://docs.streamlit.io/library/api-reference/session-state",
+                }
+            ],
+            "action_type": "propose_fix",
         }
 
     return {
         "status": "completed",
         "message": f"Based on the documentation, here is how you can resolve the issue with '{request.message}'.",
         "sources": [
-            {"title": "Related GitHub Issue #1234", "url": "https://github.com/streamlit/streamlit/issues/1234"},
-            {"title": "Streamlit API Reference", "url": "https://docs.streamlit.io/library/api-reference"}
+            {
+                "title": "Related GitHub Issue #1234",
+                "url": "https://github.com/streamlit/streamlit/issues/1234",
+            },
+            {
+                "title": "Streamlit API Reference",
+                "url": "https://docs.streamlit.io/library/api-reference",
+            },
         ],
-        "action_type": "answer"
+        "action_type": "answer",
     }
 
 
