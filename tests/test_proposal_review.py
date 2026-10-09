@@ -16,6 +16,7 @@ from agent_app.contracts import (
     ReviewOutputSpan,
     ReviewSourceQuote,
 )
+from agent_app.reasoning import review
 from agent_app.reasoning.review import (
     REVIEW_DIMENSIONS,
     build_proposal_review_packet,
@@ -488,6 +489,50 @@ def test_public_fact_hash_helper_does_not_export_raw_validation_inputs(objects, 
     assert type(caught.value) is ValueError
     assert marker not in str(caught.value)
     assert caught.value.__cause__ is None
+
+
+def test_unicode_encoding_failure_is_sanitized_at_digest_helper():
+    marker = "private-unicode-review-probe-\ud800"
+    with pytest.raises(ValueError, match="^InvalidReviewInput$") as caught:
+        review._digest("probe", marker)
+    assert type(caught.value) is ValueError
+    assert "private-unicode" not in str(caught.value)
+    assert caught.value.__cause__ is None
+
+
+@pytest.mark.parametrize("surface", ["case_fact", "evidence_excerpt", "user_draft"])
+def test_lone_surrogate_in_constructed_public_packet_inputs_is_sanitized(objects, surface):
+    case, evidence, analysis = objects
+    marker = "private-public-review-probe-\ud800"
+    if surface == "case_fact":
+        fact = case.facts[0].model_copy(update={"value": marker})
+        case = case.model_copy(update={"facts": (fact, *case.facts[1:])})
+    elif surface == "evidence_excerpt":
+        hit = evidence.hits[0].model_copy(update={"excerpt": marker})
+        evidence = evidence.model_copy(update={"hits": (hit,)})
+    else:
+        analysis = analysis.model_copy(update={"user_draft": marker})
+    with pytest.raises(ValueError, match="^InvalidReviewInput$") as caught:
+        build_proposal_review_packet(case, evidence, analysis)
+    assert type(caught.value) is ValueError
+    assert "private-public" not in str(caught.value)
+    assert caught.value.__cause__ is None
+
+
+def test_oversized_integer_encoding_failure_in_public_packet_is_sanitized(objects):
+    import sys
+
+    prior_limit = sys.get_int_max_str_digits()
+    try:
+        sys.set_int_max_str_digits(4300)
+        case, evidence, analysis = objects
+        case = case.model_copy(update={"case_revision": 10**5000})
+        with pytest.raises(ValueError, match="^InvalidReviewInput$") as caught:
+            build_proposal_review_packet(case, evidence, analysis)
+        assert type(caught.value) is ValueError
+        assert caught.value.__cause__ is None
+    finally:
+        sys.set_int_max_str_digits(prior_limit)
 
 
 def test_review_is_for_final_proposals_only(objects):

@@ -47,9 +47,12 @@ class GroundingRejected(ValueError):
 
 
 def _sha(value: object) -> str:
-    return hashlib.sha256(
-        json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()
-    ).hexdigest()
+    try:
+        return hashlib.sha256(
+            json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()
+        ).hexdigest()
+    except (ValueError, TypeError, RecursionError):
+        raise GroundingRejected("grounded_context_mismatch") from None
 
 
 def source_content_sha256(hit: EvidenceHit) -> str:
@@ -296,7 +299,10 @@ def build_grounded_messages(
     request: GroundedRequest, context: ReasoningContext
 ) -> tuple[dict[str, str], ...]:
     request = validate_grounded_request(request)
-    context = ReasoningContext.model_validate(context.model_dump(warnings=False))
+    try:
+        context = ReasoningContext.model_validate(context.model_dump(warnings=False))
+    except (ValidationError, ValueError, TypeError, AttributeError, RecursionError):
+        raise GroundingRejected("grounded_context_mismatch") from None
     if (
         context.case_id != request.case.case_id
         or context.case_revision != request.case.case_revision

@@ -387,6 +387,16 @@ def test_hash_helper_has_allowlisted_error_for_forged_hit():
     assert str(error.value) == "grounded_source_mismatch"
 
 
+def test_unencodable_context_and_forged_message_context_do_not_expose_input_errors():
+    with pytest.raises(GroundingRejected) as error:
+        make_grounded_request(case(), "PRIVATE_MARKER\ud800", bundle())
+    assert str(error.value) == "grounded_context_mismatch"
+    bad_context = context().model_copy(update={"attempt_index": "PRIVATE_BAD_ATTEMPT"})
+    with pytest.raises(GroundingRejected) as error:
+        build_grounded_messages(request(), bad_context)
+    assert str(error.value) == "grounded_context_mismatch"
+
+
 @pytest.mark.parametrize("code", ["grounded_context_mismatch", "grounded_source_mismatch"])
 def test_integrity_failure_is_terminal_and_cannot_trigger_another_model_attempt(code):
     class BadReasoner:

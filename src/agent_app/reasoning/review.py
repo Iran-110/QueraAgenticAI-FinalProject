@@ -35,13 +35,19 @@ REVIEW_DIMENSIONS = (
 
 
 def _canonical(value: Any) -> str:
-    return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    try:
+        return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    except (ValueError, TypeError, RecursionError):
+        raise ValueError("InvalidReviewInput") from None
 
 
 def _digest(kind: str, value: Any) -> str:
-    return hashlib.sha256(
-        ("proposal-review-v1:" + kind + ":" + _canonical(value)).encode("utf-8")
-    ).hexdigest()
+    try:
+        return hashlib.sha256(
+            ("proposal-review-v1:" + kind + ":" + _canonical(value)).encode("utf-8")
+        ).hexdigest()
+    except (ValueError, TypeError, RecursionError):
+        raise ValueError("InvalidReviewInput") from None
 
 
 def review_user_fact_sha256(fact: Fact) -> str:
@@ -92,8 +98,11 @@ def build_proposal_review_packet(
     """
     try:
         case, evidence, analysis = _validated_inputs(case, evidence, analysis)
-        if analysis.decision == "retrieve_more":
-            raise ValueError("FinalProposalRequired")
+    except (ValidationError, ValueError, TypeError, AttributeError, RecursionError):
+        raise ValueError("InvalidReviewInput") from None
+    if analysis.decision == "retrieve_more":
+        raise ValueError("FinalProposalRequired")
+    try:
         surfaces = tuple(
             ReviewSurface(surface_id=name, text_sha256=_digest("surface", text), length=len(text))
             for name, text in _surface_texts(analysis).items()
@@ -108,7 +117,7 @@ def build_proposal_review_packet(
             "surfaces": [surface.model_dump(mode="json") for surface in surfaces],
         }
         return ProposalReviewPacket(**payload, packet_sha256=_digest("packet", payload))
-    except (ValidationError, TypeError, AttributeError, RecursionError):
+    except (ValidationError, ValueError, TypeError, AttributeError, RecursionError):
         raise ValueError("InvalidReviewInput") from None
 
 
