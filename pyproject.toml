@@ -8,7 +8,6 @@ dependencies = [
     "streamlit>=1.42.0",
     "pandas>=2.2.3",
     "numpy>=2.2.3",
-    "streamlit-option-menu>=0.4.0",
     "pydantic>=2.12,<3",
     "httpx>=0.28,<0.29",
     "fastapi>=0.143.0",
@@ -37,8 +36,8 @@ line-length = 100
 src = ["src"]
 # Check Python code/config, not illustrative snippets in the original Markdown brief.
 include = ["*.py", "*.pyi", "pyproject.toml"]
-# The existing UI/examples belong to other owners; checks cover the new core.
-extend-exclude = ["app.py", "streamlit_examples"]
+# Illustrative Streamlit examples are reference material, not project code.
+extend-exclude = ["streamlit_examples"]
 
 [tool.ruff.lint]
 select = ["E4", "E7", "E9", "F", "I", "UP", "B"]
