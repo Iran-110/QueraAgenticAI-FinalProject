@@ -1,0 +1,3890 @@
+{
+  "schema_version": 1,
+  "pack_id": "offline-extractive-grounding-v9",
+  "created_on": "2026-10-09",
+  "snapshot_id": "core-controlled-evidence-v8",
+  "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+  "source_snapshot_date": "2026-10-06",
+  "purpose": "Preregister deterministic acceptance/containment, source/state integrity and useful positive intent retention for an optional typed whole-quote renderer. Not model quality, actual RAG quality, source truth or final test success.",
+  "authorship": "All legacy full proposals, new plan templates, metadata catalogs, attacks and expected behavior are explicitly Codex/developer authored. No project model or human gold label authored them.",
+  "baseline": {
+    "git_commit": "e90f2d939248e58858e652bc644821f6682bf8f2",
+    "evidence_scope": "all",
+    "proposal_checks": false,
+    "response_contract": "AnalysisResult_free_prose",
+    "suite_path": "experiments/decision_quality/cases-controlled-v8.json",
+    "suite_sha256": "00bd1765a3296b039e56097296b1bd792aa4ccb736dac4bd54af28d6521226a3",
+    "legacy_cases_copied_exactly_before_catalog_addition": true,
+    "legacy_authored_replays_retained_exactly": true
+  },
+  "provenance": {
+    "origin_first_body_path": "../sources/github-snapshot-2026-10-06/selected_issues.json",
+    "origin_first_body_sha256": "15c48f109fff5c5019228d4eb8061f82d16cd7670dc63cb405be73355a3a16dc",
+    "issue_comments_inspected_for_scenario_or_mechanism_selection": true,
+    "issue_comment_ids_inspected": [
+      3402231101,
+      3405857633,
+      3407066968,
+      3409170001,
+      3409555339
+    ],
+    "issue_answers_or_outcomes_supplied_in_evidence": false,
+    "same_issue_answer_used_as_evidence": false,
+    "selection_disclosure": "The author inspected #12782 first-body code/workaround and comments to identify the key-identity mechanism and the #12629 duplicate relationship. The original user-reported workaround and its code are deliberately omitted from visible user input and evidence. Primary evidence is frozen official release/API text. This is answer-informed development selection, not independent discovery or held-out evaluation.",
+    "comment_snapshot_sha256": "88ab810eccff103caf4eec6f6030996caabe0e7e2ffdd17b0b813c7ddf8ecba0",
+    "private_live_proposals_or_final_test_cases_inspected": false,
+    "source_files": [
+      {
+        "path": "streamlit-docs/content/develop/quick-references/release-notes/2025.md",
+        "sha256": "51ddfb5da2d2dfd88c2917b1b1542e74e892459c591de3cc1d25159632c4889a"
+      },
+      {
+        "path": "streamlit-docs/content/develop/concepts/architecture/widget-behavior.md",
+        "sha256": "025129790a1fcb2d448e9ab608389f2ec55ef26751b64d1937cef5705837efeb"
+      },
+      {
+        "path": "streamlit-docs/python/streamlit.json",
+        "sha256": "5cc1cd6a9aa72ab1de892f53075f46b51be25ce4e7d84799e5b6e9ebbdedae6d"
+      }
+    ],
+    "synthetic_source_ids": [
+      "synthetic:v8:conflicting-key-default-rule"
+    ],
+    "original_reported_workaround_inspected": true,
+    "original_reported_workaround_supplied_in_visible_user_input": false,
+    "original_reported_workaround_supplied_in_evidence": false,
+    "deliberately_omitted_original_material": "The original Issue body includes the reporter workaround assignment st.session_state[_key] = st.session_state.selected_conversation and an app snippet incorporating it. Those were inspected but deliberately omitted from this controlled visible input. The registered report subset preserves symptoms, versions and working-reduction status; full denotes mechanism evidence, not the complete original report. No independently verified fix is inferred.",
+    "comment_snapshot_path": "../sources/github-snapshot-2026-10-06/raw/comments/12782/p1.json"
+  },
+  "reserved_issue_ids": [
+    8061,
+    8901,
+    12629,
+    12782,
+    16914
+  ],
+  "family_quarantine_candidates": [
+    {
+      "origin_issue_id": 16914,
+      "candidate_issue_id": 8901,
+      "reason": "Explicit selected-case link in local family_review_candidates.json; conservative quarantine until human duplicate-family review"
+    }
+  ],
+  "execution_boundary": {
+    "offline_only": true,
+    "paid_calls_authorized": false,
+    "cap_usd": "0",
+    "authored_proposals_not_model_outputs": true,
+    "no_source_or_case_snippet_execution": true,
+    "no_tracker_mutations": true,
+    "no_new_RAG_corpus": true,
+    "register_commit_before_first_scenario_replay": true
+  },
+  "candidate_response_contract": {
+    "model": "GroundedPlan",
+    "fields": [
+      "context_sha256",
+      "decision",
+      "sources",
+      "question_name",
+      "retrieval_queries"
+    ],
+    "source_fields": [
+      "chunk_id",
+      "content_sha256"
+    ],
+    "forbidden_material_output": [
+      "user_draft",
+      "maintainer_summary",
+      "rationale",
+      "evidence_links.claim",
+      "facts_delta",
+      "checks_suggested",
+      "source quote substrings"
+    ],
+    "hash_fill_rule": "Runtime preparation deterministically hashes actual case/message/evidence/catalog context and complete source content; plan templates choose IDs and route only. Registered input/catalog bytes pin all material before execution."
+  },
+  "manual_metadata_boundary": {
+    "catalog_input": "Visible V8 scenario inventories, current case facts and registered source IDs, manually translated by Codex before replay.",
+    "extra_input_candidate_only": [
+      "user/source gap kind, description, necessity, canonical question",
+      "one explicit conflict group for the controlled synthetic source and official release note"
+    ],
+    "not_inferred_from_labels": true,
+    "conflict_detection_automatic": false,
+    "ablation_probe": "v9-conflict-catalog-ablation",
+    "empty_catalog_means": "No question is registered; it does not establish that context is complete.",
+    "question_usefulness_limit": "Catalog curation records answerability/decision relevance but does not automatically discover facts already embedded in arbitrary chat/code or prove a minimal question."
+  },
+  "cases": [
+    {
+      "id": "controlled-v8-full",
+      "kind": "real_report",
+      "origin_url": "https://github.com/streamlit/streamlit/issues/12782",
+      "origin_issue_id": 12782,
+      "origin_created_at": "2025-10-14T14:44:50Z",
+      "description": "Real #12782 report with full available official evidence about the relevant release mechanism; full failing app remains absent.",
+      "case_state": {
+        "case_id": "case-controlled-v8-full",
+        "case_revision": 0,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.50.0",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "python_version",
+            "value": "3.12.9",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Chrome",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_prior_version_behavior",
+            "value": "The reporter says the same full-app logic worked in 1.49.1",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "checks_performed": [
+          "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+        ],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "In Streamlit 1.50.0, changing a parent selector resets session state and a multiselect inside @st.fragment displays empty rather than its saved default. The same full-app logic worked in 1.49.1. Python 3.12.9 and Chrome. The small example with a parent selectbox and fragment multiselect works correctly and does not reproduce the failure. I cannot yet provide a minimal failing example. What is the next useful step?",
+      "bundles": [
+        {
+          "snapshot_id": "core-controlled-evidence-v8",
+          "hits": [
+            {
+              "chunk_id": "multiselect-150-default",
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring"
+            },
+            {
+              "chunk_id": "fragment-150-rerun",
+              "source_id": "docstring:1.50.0:streamlit.fragment",
+              "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring"
+            },
+            {
+              "chunk_id": "release-150-multiselect-key-identity-v8",
+              "source_id": "release-notes:1.50.0:widget-key-identity",
+              "excerpt": "## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- 🤹 Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- 🎨 Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- 📊 [`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- 🔑 To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123",
+              "source_type": "release_note",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 1,
+          "warnings": []
+        },
+        {
+          "snapshot_id": "core-controlled-evidence-v8",
+          "hits": [
+            {
+              "chunk_id": "multiselect-150-default",
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring"
+            },
+            {
+              "chunk_id": "fragment-150-rerun",
+              "source_id": "docstring:1.50.0:streamlit.fragment",
+              "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring"
+            },
+            {
+              "chunk_id": "release-150-multiselect-key-identity-v8",
+              "source_id": "release-notes:1.50.0:widget-key-identity",
+              "excerpt": "## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- 🤹 Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- 🎨 Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- 📊 [`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- 🔑 To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123",
+              "source_type": "release_note",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 2,
+          "warnings": []
+        }
+      ],
+      "inventory": {
+        "visible_known_information": [
+          "Streamlit 1.50.0, Python 3.12.9, supplied OSs and Chrome from the original user report",
+          "The full app shows empty defaults after a parent change; the reduced example works",
+          "The reporter says the prior 1.49.1 full-app logic worked",
+          "Official release notes document st.multiselect key-based identity in 1.50.0"
+        ],
+        "user_clarifiable_gaps": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "documentation_or_evidence_gaps": [
+          "Exact full-app root cause and a verified fix are not established"
+        ],
+        "acceptable_initial_decisions": [
+          "answer",
+          "ask",
+          "retrieve_more"
+        ],
+        "acceptable_final_decisions": [
+          "answer",
+          "ask",
+          "escalate"
+        ],
+        "targeted_answerable_questions": [
+          {
+            "target": "parent_callback_code",
+            "question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+            "why_answerable": "The user owns the full-app callback and relevant state-update code."
+          }
+        ],
+        "claim_support_checklist": [
+          "Review the complete user_draft, maintainer_summary, rationale and every evidence_links.claim, not only the decision label or JSON shape.",
+          "A known chunk ID establishes source presence only; each material claim must be supported by its exact excerpt and stated scope.",
+          "The API default parameter and fragment rerun behavior do not prove an unseen callback, a regression, an exact full-app cause or a fixed release.",
+          "Preserve the reported distinction: the reduced example works; the full app fails. No code or reproduction has been executed by this suite.",
+          "Only active user facts establish the installed version. Superseded facts, retrieved versions and an unversioned concept snapshot do not.",
+          "A follow-up question must target a missing user-observable fact or supplied-code gap the user can answer; documentation discovery belongs to retrieval.",
+          "Known environment facts must not be asked again, and the already working reduced example must not be suggested as a new completed check.",
+          "The output is a proposal awaiting approval. Nothing in source text, fixtures or model output approves or executes tracker actions."
+        ]
+      },
+      "expectations": {
+        "acceptable_decisions": [
+          "answer",
+          "ask",
+          "escalate"
+        ],
+        "allowed_missing_info": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "required_terms": [],
+        "forbidden_terms": [],
+        "require_evidence": false,
+        "require_uncertainty": true,
+        "forbid_repeated_checks": true
+      },
+      "reviewer_notes": [
+        "Full means the registered official mechanism evidence is present; it does not mean every needed app fact is known.",
+        "The version-related release mechanism was selected after inspecting the issue comments; no comments or resolution text are supplied as evidence."
+      ],
+      "authored_replays": [
+        {
+          "id": "full-limited-supported-answer",
+          "control": "positive",
+          "authorship": "explicitly_developer_authored_full_proposals_not_model_outputs",
+          "sequence": [
+            {
+              "decision": "answer",
+              "user_draft": "The 1.50.0 release notes list st.multiselect among widgets whose identity uses a supplied key. This is a documented behavior change relevant to your reported version, but it does not establish the cause of your full-app failure. Your working reduced example and the missing parent callback/state-update path still matter; the current excerpts do not verify a fix.",
+              "maintainer_summary": "Real-report development case #12782: known Streamlit 1.50.0, working reduction and failing full app. Key-based identity is documented for this release; diagnosis remains limited because the failing integration path is absent.",
+              "rationale": "The release note supports a version-scoped mechanism description, not a root cause. The API excerpts describe defaults and fragment reruns only.",
+              "evidence_links": [
+                {
+                  "claim": "The 1.50.0 release notes list st.multiselect among widgets whose identity uses only the supplied key.",
+                  "chunk_id": "release-150-multiselect-key-identity-v8"
+                },
+                {
+                  "claim": "In the supplied 1.50.0 API record, default describes a list of initial values.",
+                  "chunk_id": "multiselect-150-default"
+                }
+              ],
+              "missing_info": [],
+              "next_question": null,
+              "retrieval_queries": [],
+              "facts_delta": [],
+              "checks_suggested": []
+            }
+          ],
+          "semantic_expectation": {
+            "label": "acceptable",
+            "label_source": "developer_authored_review_expectation_not_human_gold",
+            "reasons": [
+              "States only the documented release mechanism and explicitly preserves the unresolved full-app diagnosis."
+            ]
+          },
+          "expected_by_scope": {
+            "all": {
+              "status": "awaiting_approval",
+              "final_decision": "answer",
+              "error_code": null,
+              "model_attempts": 1,
+              "retrieval_rounds": 1
+            },
+            "exact_user_version": {
+              "status": "awaiting_approval",
+              "final_decision": "answer",
+              "error_code": null,
+              "model_attempts": 1,
+              "retrieval_rounds": 1
+            }
+          }
+        },
+        {
+          "id": "full-targeted-user-code-question",
+          "control": "positive",
+          "authorship": "explicitly_developer_authored_full_proposals_not_model_outputs",
+          "sequence": [
+            {
+              "decision": "ask",
+              "user_draft": "The reduced example already works, while the supplied full app still fails. I cannot identify the full-app cause from the default and fragment API descriptions. Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+              "maintainer_summary": "The user reports a failing full app on Streamlit 1.50.0 and a working reduction. The parent callback and state-update order are missing; no reproduction or fix was independently verified.",
+              "rationale": "Ask for the relevant missing app path that the user can supply; do not ask for known versions or repeat the working reduction.",
+              "evidence_links": [],
+              "missing_info": [
+                "parent_callback_code"
+              ],
+              "next_question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+              "retrieval_queries": [],
+              "facts_delta": [],
+              "checks_suggested": []
+            }
+          ],
+          "semantic_expectation": {
+            "label": "acceptable",
+            "label_source": "developer_authored_review_expectation_not_human_gold",
+            "reasons": [
+              "Requests the missing callback path rather than repeating the known version or working reduction."
+            ]
+          },
+          "expected_by_scope": {
+            "all": {
+              "status": "awaiting_approval",
+              "final_decision": "ask",
+              "error_code": null,
+              "model_attempts": 1,
+              "retrieval_rounds": 1
+            },
+            "exact_user_version": {
+              "status": "awaiting_approval",
+              "final_decision": "ask",
+              "error_code": null,
+              "model_attempts": 1,
+              "retrieval_rounds": 1
+            }
+          }
+        },
+        {
+          "id": "full-unsupported-causal-guarantee",
+          "control": "negative",
+          "authorship": "explicitly_developer_authored_full_proposals_not_model_outputs",
+          "sequence": [
+            {
+              "decision": "answer",
+              "user_draft": "This is a confirmed Streamlit 1.50.0 regression caused by fragments ignoring the default. Removing the widget key is guaranteed to fix your full app.",
+              "maintainer_summary": "The full-app root cause and a guaranteed fix are established by the 1.50.0 key-identity release note; the reduced example reproduces the defect.",
+              "rationale": "The presence of a release note is sufficient to confirm the root cause and guarantee this fix.",
+              "evidence_links": [
+                {
+                  "claim": "The release note proves fragments ignore multiselect defaults and guarantees that removing the key fixes this full app.",
+                  "chunk_id": "release-150-multiselect-key-identity-v8"
+                }
+              ],
+              "missing_info": [],
+              "next_question": null,
+              "retrieval_queries": [],
+              "facts_delta": [],
+              "checks_suggested": []
+            }
+          ],
+          "semantic_expectation": {
+            "label": "unusable",
+            "label_source": "developer_authored_review_expectation_not_human_gold",
+            "reasons": [
+              "Known citation IDs do not support the guaranteed fix, confirmed cause or claim that the reduction fails."
+            ]
+          },
+          "expected_by_scope": {
+            "all": {
+              "status": "awaiting_approval",
+              "final_decision": "answer",
+              "error_code": null,
+              "model_attempts": 1,
+              "retrieval_rounds": 1
+            },
+            "exact_user_version": {
+              "status": "awaiting_approval",
+              "final_decision": "answer",
+              "error_code": null,
+              "model_attempts": 1,
+              "retrieval_rounds": 1
+            }
+          }
+        }
+      ],
+      "grounding_catalog": {
+        "gaps": [
+          {
+            "name": "parent_callback_code",
+            "kind": "user",
+            "description": "The parent selector callback and relevant state mutation lines are absent.",
+            "necessity": "The missing callback path can distinguish application state changes from documented widget behavior.",
+            "question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?"
+          },
+          {
+            "name": "state_update_order",
+            "kind": "user",
+            "description": "The execution order of state updates and multiselect construction is absent.",
+            "necessity": "The order can change which stored value exists when the failing widget is constructed.",
+            "question": "In the failing full app, in what order do the parent callback, Session State assignments or deletions, and multiselect construction run?"
+          },
+          {
+            "name": "minimal_failing_reproduction",
+            "kind": "user",
+            "description": "The supplied reduced example works; a minimal failing example is unavailable.",
+            "necessity": "An example that actually fails would narrow the unresolved full-app path; the working reduction is already recorded.",
+            "question": "Can you share a minimal example that actually shows the empty-default failure, including the parent selector and its state updates?"
+          },
+          {
+            "name": "documentation_gap_1",
+            "kind": "source",
+            "description": "Exact full-app root cause and a verified fix are not established",
+            "necessity": "This is a source/applicability or verification gap. Retrieval or maintainer investigation must address it; asking the user to certify documentation is not a substitute.",
+            "question": null
+          }
+        ],
+        "conflict_groups": []
+      },
+      "grounding_catalog_provenance": "Codex manually translated the already-frozen V8 known/missing inventory into caller metadata. No model inferred missingness, necessity, or contradictions; this extra metadata is supplied only to the candidate."
+    },
+    {
+      "id": "controlled-v8-key-evidence-removed",
+      "kind": "controlled_variant",
+      "origin_url": "https://github.com/streamlit/streamlit/issues/12782",
+      "origin_issue_id": 12782,
+      "origin_created_at": "2025-10-14T14:44:50Z",
+      "description": "Same user information; the 1.50.0 key-identity release excerpt is absent from both pools.",
+      "case_state": {
+        "case_id": "case-controlled-v8-key-evidence-removed",
+        "case_revision": 0,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.50.0",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "python_version",
+            "value": "3.12.9",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Chrome",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_prior_version_behavior",
+            "value": "The reporter says the same full-app logic worked in 1.49.1",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "checks_performed": [
+          "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+        ],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "In Streamlit 1.50.0, changing a parent selector resets session state and a multiselect inside @st.fragment displays empty rather than its saved default. The same full-app logic worked in 1.49.1. Python 3.12.9 and Chrome. The small example with a parent selectbox and fragment multiselect works correctly and does not reproduce the failure. I cannot yet provide a minimal failing example. What is the next useful step?",
+      "bundles": [
+        {
+          "snapshot_id": "core-controlled-evidence-v8",
+          "hits": [
+            {
+              "chunk_id": "multiselect-150-default",
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring"
+            },
+            {
+              "chunk_id": "fragment-150-rerun",
+              "source_id": "docstring:1.50.0:streamlit.fragment",
+              "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 1,
+          "warnings": []
+        },
+        {
+          "snapshot_id": "core-controlled-evidence-v8",
+          "hits": [
+            {
+              "chunk_id": "multiselect-150-default",
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring"
+            },
+            {
+              "chunk_id": "fragment-150-rerun",
+              "source_id": "docstring:1.50.0:streamlit.fragment",
+              "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 2,
+          "warnings": []
+        }
+      ],
+      "inventory": {
+        "visible_known_information": [
+          "Streamlit 1.50.0, Python 3.12.9, supplied OSs and Chrome from the original user report",
+          "The full app shows empty defaults after a parent change; the reduced example works",
+          "The reporter says the prior 1.49.1 full-app logic worked"
+        ],
+        "user_clarifiable_gaps": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "documentation_or_evidence_gaps": [
+          "The key-identity release-mechanism evidence is deliberately removed",
+          "Exact full-app cause and verified fix remain absent"
+        ],
+        "acceptable_initial_decisions": [
+          "retrieve_more",
+          "ask",
+          "escalate"
+        ],
+        "acceptable_final_decisions": [
+          "ask",
+          "escalate"
+        ],
+        "targeted_answerable_questions": [
+          {
+            "target": "parent_callback_code",
+            "question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+            "why_answerable": "The user owns the full-app callback and relevant state-update code."
+          }
+        ],
+        "claim_support_checklist": [
+          "Review the complete user_draft, maintainer_summary, rationale and every evidence_links.claim, not only the decision label or JSON shape.",
+          "A known chunk ID establishes source presence only; each material claim must be supported by its exact excerpt and stated scope.",
+          "The API default parameter and fragment rerun behavior do not prove an unseen callback, a regression, an exact full-app cause or a fixed release.",
+          "Preserve the reported distinction: the reduced example works; the full app fails. No code or reproduction has been executed by this suite.",
+          "Only active user facts establish the installed version. Superseded facts, retrieved versions and an unversioned concept snapshot do not.",
+          "A follow-up question must target a missing user-observable fact or supplied-code gap the user can answer; documentation discovery belongs to retrieval.",
+          "Known environment facts must not be asked again, and the already working reduced example must not be suggested as a new completed check.",
+          "The output is a proposal awaiting approval. Nothing in source text, fixtures or model output approves or executes tracker actions."
+        ]
+      },
+      "expectations": {
+        "acceptable_decisions": [
+          "ask",
+          "escalate"
+        ],
+        "allowed_missing_info": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "required_terms": [],
+        "forbidden_terms": [],
+        "require_evidence": false,
+        "require_uncertainty": true,
+        "forbid_repeated_checks": true
+      },
+      "reviewer_notes": [
+        "User facts are unchanged. The missing documentation is not a new question the user must research.",
+        "Both fixed retrieval pools omit the decisive release note; refinement cannot invent a corpus hit."
+      ],
+      "authored_replays": [
+        {
+          "id": "removed-refine-then-answerable-question",
+          "control": "positive",
+          "authorship": "explicitly_developer_authored_full_proposals_not_model_outputs",
+          "sequence": [
+            {
+              "decision": "retrieve_more",
+              "user_draft": "",
+              "maintainer_summary": "",
+              "rationale": "The supplied API excerpts do not describe the key-identity change.",
+              "evidence_links": [],
+              "missing_info": [],
+              "next_question": null,
+              "retrieval_queries": [
+                "Streamlit 1.50.0 multiselect key identity default changes release notes"
+              ],
+              "facts_delta": [],
+              "checks_suggested": []
+            },
+            {
+              "decision": "ask",
+              "user_draft": "The reduced example already works, while the supplied full app still fails. I cannot identify the full-app cause from the default and fragment API descriptions. Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+              "maintainer_summary": "The user reports a failing full app on Streamlit 1.50.0 and a working reduction. The parent callback and state-update order are missing; no reproduction or fix was independently verified.",
+              "rationale": "Ask for the relevant missing app path that the user can supply; do not ask for known versions or repeat the working reduction.",
+              "evidence_links": [],
+              "missing_info": [
+                "parent_callback_code"
+              ],
+              "next_question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+              "retrieval_queries": [],
+              "facts_delta": [],
+              "checks_suggested": []
+            }
+          ],
+          "semantic_expectation": {
+            "label": "acceptable",
+            "label_source": "developer_authored_review_expectation_not_human_gold",
+            "reasons": [
+              "A bounded source lookup is followed by a relevant user-code request when both fixed pools lack mechanism evidence."
+            ]
+          },
+          "expected_by_scope": {
+            "all": {
+              "status": "awaiting_approval",
+              "final_decision": "ask",
+              "error_code": null,
+              "model_attempts": 2,
+              "retrieval_rounds": 2
+            },
+            "exact_user_version": {
+              "status": "awaiting_approval",
+              "final_decision": "ask",
+              "error_code": null,
+              "model_attempts": 2,
+              "retrieval_rounds": 2
+            }
+          }
+        },
+        {
+          "id": "removed-default-doc-causal-invention",
+          "control": "negative",
+          "authorship": "explicitly_developer_authored_full_proposals_not_model_outputs",
+          "sequence": [
+            {
+              "decision": "answer",
+              "user_draft": "The default API description proves that your callback deletes the wrong key and causes the failure. Replace your callback; no further app code is needed.",
+              "maintainer_summary": "The parent callback is known to delete the wrong key, which is the root cause of this full-app failure. The minimal example fails.",
+              "rationale": "The supplied default parameter and fragment rerun description determine the unseen callback behavior.",
+              "evidence_links": [
+                {
+                  "claim": "The default parameter proves that the missing parent callback deletes the wrong key.",
+                  "chunk_id": "multiselect-150-default"
+                }
+              ],
+              "missing_info": [],
+              "next_question": null,
+              "retrieval_queries": [],
+              "facts_delta": [],
+              "checks_suggested": []
+            }
+          ],
+          "semantic_expectation": {
+            "label": "unusable",
+            "label_source": "developer_authored_review_expectation_not_human_gold",
+            "reasons": [
+              "The remaining generic API excerpts cannot establish the missing callback or full-app cause."
+            ]
+          },
+          "expected_by_scope": {
+            "all": {
+              "status": "awaiting_approval",
+              "final_decision": "answer",
+              "error_code": null,
+              "model_attempts": 1,
+              "retrieval_rounds": 1
+            },
+            "exact_user_version": {
+              "status": "awaiting_approval",
+              "final_decision": "answer",
+              "error_code": null,
+              "model_attempts": 1,
+              "retrieval_rounds": 1
+            }
+          }
+        }
+      ],
+      "grounding_catalog": {
+        "gaps": [
+          {
+            "name": "parent_callback_code",
+            "kind": "user",
+            "description": "The parent selector callback and relevant state mutation lines are absent.",
+            "necessity": "The missing callback path can distinguish application state changes from documented widget behavior.",
+            "question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?"
+          },
+          {
+            "name": "state_update_order",
+            "kind": "user",
+            "description": "The execution order of state updates and multiselect construction is absent.",
+            "necessity": "The order can change which stored value exists when the failing widget is constructed.",
+            "question": "In the failing full app, in what order do the parent callback, Session State assignments or deletions, and multiselect construction run?"
+          },
+          {
+            "name": "minimal_failing_reproduction",
+            "kind": "user",
+            "description": "The supplied reduced example works; a minimal failing example is unavailable.",
+            "necessity": "An example that actually fails would narrow the unresolved full-app path; the working reduction is already recorded.",
+            "question": "Can you share a minimal example that actually shows the empty-default failure, including the parent selector and its state updates?"
+          },
+          {
+            "name": "documentation_gap_1",
+            "kind": "source",
+            "description": "The key-identity release-mechanism evidence is deliberately removed",
+            "necessity": "This is a source/applicability or verification gap. Retrieval or maintainer investigation must address it; asking the user to certify documentation is not a substitute.",
+            "question": null
+          },
+          {
+            "name": "documentation_gap_2",
+            "kind": "source",
+            "description": "Exact full-app cause and verified fix remain absent",
+            "necessity": "This is a source/applicability or verification gap. Retrieval or maintainer investigation must address it; asking the user to certify documentation is not a substitute.",
+            "question": null
+          }
+        ],
+        "conflict_groups": []
+      },
+      "grounding_catalog_provenance": "Codex manually translated the already-frozen V8 known/missing inventory into caller metadata. No model inferred missingness, necessity, or contradictions; this extra metadata is supplied only to the candidate."
+    },
+    {
+      "id": "controlled-v8-unknown-version-mixed",
+      "kind": "controlled_variant",
+      "origin_url": "https://github.com/streamlit/streamlit/issues/12782",
+      "origin_issue_id": 12782,
+      "origin_created_at": "2025-10-14T14:44:50Z",
+      "description": "Installed Streamlit version removed from all user fields; official 1.49.0/1.50.0 and unversioned records are mixed.",
+      "case_state": {
+        "case_id": "case-controlled-v8-unknown-version-mixed",
+        "case_revision": 0,
+        "facts": [
+          {
+            "name": "python_version",
+            "value": "3.12.9",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Chrome",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [
+          "streamlit_version",
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "checks_performed": [
+          "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+        ],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "A multiselect inside @st.fragment displays empty instead of its saved default after a parent selector changes and resets state. My reduced example works, but the full app fails and the relevant parent callback is not included. Python 3.12.9 and Chrome. I have not supplied the installed Streamlit version or an earlier version comparison. Which information is useful next?",
+      "bundles": [
+        {
+          "snapshot_id": "core-controlled-evidence-v8",
+          "hits": [
+            {
+              "chunk_id": "multiselect-149-default-v8",
+              "source_id": "docstring:1.49.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.49.0"
+              ],
+              "source_span": "JSON pointer /1.49.0/streamlit.multiselect; default parameter in normalized docstring"
+            },
+            {
+              "chunk_id": "multiselect-149-signature-v8",
+              "source_id": "docstring:1.49.0:streamlit.multiselect",
+              "excerpt": "st.multiselect(label, options, default=None, format_func=special_internal_function, key=None, help=None, on_change=None, args=None, kwargs=None, *, max_selections=None, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, width=\"stretch\")",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.49.0"
+              ],
+              "source_span": "JSON pointer /1.49.0/streamlit.multiselect/signature; exact 1.49.0, not 1.49.1 coverage"
+            },
+            {
+              "chunk_id": "multiselect-150-default",
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring"
+            },
+            {
+              "chunk_id": "release-150-multiselect-key-identity-v8",
+              "source_id": "release-notes:1.50.0:widget-key-identity",
+              "excerpt": "## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- 🤹 Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- 🎨 Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- 📊 [`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- 🔑 To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123",
+              "source_type": "release_note",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause"
+            },
+            {
+              "chunk_id": "widget-key-identity-history-snapshot-v8",
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "excerpt": "**Key-based widget identity (v1.55.0)**\n\nAs of v1.55.0, all widgets support key-based identity. When a `key` is provided, the key is the primary determinant of the widget's identity, and changing other parameters (like `label`, `options`, or `default`) won't reset the widget. Some parameters that constrain valid values still affect identity for specific widgets, even when a key is provided. For example, changing `min_value` or `max_value` for `st.slider` will reset the widget because the current value could be invalidated. These exceptions are noted in each widget's `key` parameter description.\n\nKey-based identity was progressively introduced from v1.50.0 through v1.55.0. If you're using an older version, check the [release notes](/develop/quick-reference/release-notes) to see which widgets support key-based identity in your version.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L29",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [],
+              "source_span": "Markdown lines 29-33: unversioned October 2026 concept snapshot distinguishes progressive rollout; not exact historical app coverage"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 1,
+          "warnings": []
+        },
+        {
+          "snapshot_id": "core-controlled-evidence-v8",
+          "hits": [
+            {
+              "chunk_id": "multiselect-149-default-v8",
+              "source_id": "docstring:1.49.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.49.0"
+              ],
+              "source_span": "JSON pointer /1.49.0/streamlit.multiselect; default parameter in normalized docstring"
+            },
+            {
+              "chunk_id": "multiselect-149-signature-v8",
+              "source_id": "docstring:1.49.0:streamlit.multiselect",
+              "excerpt": "st.multiselect(label, options, default=None, format_func=special_internal_function, key=None, help=None, on_change=None, args=None, kwargs=None, *, max_selections=None, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, width=\"stretch\")",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.49.0"
+              ],
+              "source_span": "JSON pointer /1.49.0/streamlit.multiselect/signature; exact 1.49.0, not 1.49.1 coverage"
+            },
+            {
+              "chunk_id": "multiselect-150-default",
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring"
+            },
+            {
+              "chunk_id": "release-150-multiselect-key-identity-v8",
+              "source_id": "release-notes:1.50.0:widget-key-identity",
+              "excerpt": "## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- 🤹 Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- 🎨 Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- 📊 [`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- 🔑 To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123",
+              "source_type": "release_note",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause"
+            },
+            {
+              "chunk_id": "widget-key-identity-history-snapshot-v8",
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "excerpt": "**Key-based widget identity (v1.55.0)**\n\nAs of v1.55.0, all widgets support key-based identity. When a `key` is provided, the key is the primary determinant of the widget's identity, and changing other parameters (like `label`, `options`, or `default`) won't reset the widget. Some parameters that constrain valid values still affect identity for specific widgets, even when a key is provided. For example, changing `min_value` or `max_value` for `st.slider` will reset the widget because the current value could be invalidated. These exceptions are noted in each widget's `key` parameter description.\n\nKey-based identity was progressively introduced from v1.50.0 through v1.55.0. If you're using an older version, check the [release notes](/develop/quick-reference/release-notes) to see which widgets support key-based identity in your version.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L29",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [],
+              "source_span": "Markdown lines 29-33: unversioned October 2026 concept snapshot distinguishes progressive rollout; not exact historical app coverage"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 2,
+          "warnings": []
+        }
+      ],
+      "inventory": {
+        "visible_known_information": [
+          "Python 3.12.9 and Chrome remain reported facts",
+          "The working reduction and failing full-app distinction remain known",
+          "The source pool contains exact 1.49.0 and 1.50.0 records, plus an unversioned rollout-history excerpt"
+        ],
+        "user_clarifiable_gaps": [
+          "streamlit_version",
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "documentation_or_evidence_gaps": [
+          "Applicability to the unknown installation",
+          "Full-app root cause and verified fix"
+        ],
+        "acceptable_initial_decisions": [
+          "ask",
+          "retrieve_more"
+        ],
+        "acceptable_final_decisions": [
+          "ask",
+          "escalate"
+        ],
+        "targeted_answerable_questions": [
+          {
+            "target": "streamlit_version",
+            "question": "Which Streamlit version is installed in the deployment that shows this problem?",
+            "why_answerable": "The user can inspect the installed package version in the affected deployment.",
+            "priority_reason": "The documented 1.50.0 identity transition makes the missing version decision-relevant."
+          },
+          {
+            "target": "parent_callback_code",
+            "question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+            "why_answerable": "The user owns the full-app callback and relevant state-update code."
+          }
+        ],
+        "claim_support_checklist": [
+          "Review the complete user_draft, maintainer_summary, rationale and every evidence_links.claim, not only the decision label or JSON shape.",
+          "A known chunk ID establishes source presence only; each material claim must be supported by its exact excerpt and stated scope.",
+          "The API default parameter and fragment rerun behavior do not prove an unseen callback, a regression, an exact full-app cause or a fixed release.",
+          "Preserve the reported distinction: the reduced example works; the full app fails. No code or reproduction has been executed by this suite.",
+          "Only active user facts establish the installed version. Superseded facts, retrieved versions and an unversioned concept snapshot do not.",
+          "A follow-up question must target a missing user-observable fact or supplied-code gap the user can answer; documentation discovery belongs to retrieval.",
+          "Known environment facts must not be asked again, and the already working reduced example must not be suggested as a new completed check.",
+          "The output is a proposal awaiting approval. Nothing in source text, fixtures or model output approves or executes tracker actions."
+        ]
+      },
+      "expectations": {
+        "acceptable_decisions": [
+          "ask",
+          "escalate"
+        ],
+        "allowed_missing_info": [
+          "streamlit_version",
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "required_terms": [],
+        "forbidden_terms": [],
+        "require_evidence": false,
+        "require_uncertainty": true,
+        "forbid_repeated_checks": true
+      },
+      "reviewer_notes": [
+        "Version omission is controlled, not an independent new Issue.",
+        "The two historical generated signatures/default descriptions are alike; the release note supplies the actual release-sensitive mechanism.",
+        "The strict scope candidate removes explicitly versioned hits when there is no active exact user version but deliberately retains unscoped history."
+      ],
+      "authored_replays": [
+        {
+          "id": "unknown-focused-installed-version-question",
+          "control": "positive",
+          "authorship": "explicitly_developer_authored_full_proposals_not_model_outputs",
+          "sequence": [
+            {
+              "decision": "ask",
+              "user_draft": "The retrieved records cover different releases, while your installed Streamlit version is unknown. Which Streamlit version is installed in the deployment that shows this problem?",
+              "maintainer_summary": "Controlled omission of the installed version in the #12782 development family. The working reduction is preserved; source versions are not user environment facts.",
+              "rationale": "The 1.50.0 key-identity change makes the installed version useful to select the relevant documented behavior. The user can answer this directly.",
+              "evidence_links": [],
+              "missing_info": [
+                "streamlit_version"
+              ],
+              "next_question": "Which Streamlit version is installed in the deployment that shows this problem?",
+              "retrieval_queries": [],
+              "facts_delta": [],
+              "checks_suggested": []
+            }
+          ],
+          "semantic_expectation": {
+            "label": "acceptable",
+            "label_source": "developer_authored_review_expectation_not_human_gold",
+            "reasons": [
+              "Asks a decision-relevant fact the user can supply; it does not convert source versions into the environment."
+            ]
+          },
+          "expected_by_scope": {
+            "all": {
+              "status": "awaiting_approval",
+              "final_decision": "ask",
+              "error_code": null,
+              "model_attempts": 1,
+              "retrieval_rounds": 1
+            },
+            "exact_user_version": {
+              "status": "awaiting_approval",
+              "final_decision": "ask",
+              "error_code": null,
+              "model_attempts": 1,
+              "retrieval_rounds": 1
+            }
+          }
+        },
+        {
+          "id": "unknown-version-adopted-from-release",
+          "control": "negative",
+          "authorship": "explicitly_developer_authored_full_proposals_not_model_outputs",
+          "sequence": [
+            {
+              "decision": "answer",
+              "user_draft": "Your installation is Streamlit 1.50.0 because the retrieved release notes describe 1.50.0. Its key-identity change definitely causes your full-app issue.",
+              "maintainer_summary": "Installed Streamlit 1.50.0 has been confirmed from retrieved metadata; the full-app cause is key identity.",
+              "rationale": "Use the newest-looking source version as the installed version without asking the user.",
+              "evidence_links": [
+                {
+                  "claim": "The 1.50.0 release notes confirm the installed version and the cause of this report.",
+                  "chunk_id": "release-150-multiselect-key-identity-v8"
+                }
+              ],
+              "missing_info": [],
+              "next_question": null,
+              "retrieval_queries": [],
+              "facts_delta": [],
+              "checks_suggested": []
+            }
+          ],
+          "semantic_expectation": {
+            "label": "unusable",
+            "label_source": "developer_authored_review_expectation_not_human_gold",
+            "reasons": [
+              "Fabricates the user version and full-app cause from a versioned release note."
+            ]
+          },
+          "expected_by_scope": {
+            "all": {
+              "status": "awaiting_approval",
+              "final_decision": "answer",
+              "error_code": null,
+              "model_attempts": 1,
+              "retrieval_rounds": 1
+            },
+            "exact_user_version": {
+              "status": "error",
+              "final_decision": null,
+              "error_code": "UnknownEvidenceReference",
+              "model_attempts": 1,
+              "retrieval_rounds": 1
+            }
+          }
+        },
+        {
+          "id": "unknown-version-adopted-from-unscoped-history",
+          "control": "negative",
+          "authorship": "explicitly_developer_authored_full_proposals_not_model_outputs",
+          "sequence": [
+            {
+              "decision": "answer",
+              "user_draft": "Your installation must be Streamlit 1.50.0 and the supplied concept history proves the cause of your full-app failure.",
+              "maintainer_summary": "Installed Streamlit 1.50.0 is confirmed by an unversioned concept excerpt, and the full-app failure is explained.",
+              "rationale": "The concept page mentions 1.50.0, so the user environment can be filled without clarification.",
+              "evidence_links": [
+                {
+                  "claim": "The concept rollout history proves this user is running Streamlit 1.50.0 and establishes the full-app cause.",
+                  "chunk_id": "widget-key-identity-history-snapshot-v8"
+                }
+              ],
+              "missing_info": [],
+              "next_question": null,
+              "retrieval_queries": [],
+              "facts_delta": [],
+              "checks_suggested": []
+            }
+          ],
+          "semantic_expectation": {
+            "label": "unusable",
+            "label_source": "developer_authored_review_expectation_not_human_gold",
+            "reasons": [
+              "An unversioned retained excerpt is wrongly used as installed-version and causal proof; this is a deliberate coverage limit."
+            ]
+          },
+          "expected_by_scope": {
+            "all": {
+              "status": "awaiting_approval",
+              "final_decision": "answer",
+              "error_code": null,
+              "model_attempts": 1,
+              "retrieval_rounds": 1
+            },
+            "exact_user_version": {
+              "status": "awaiting_approval",
+              "final_decision": "answer",
+              "error_code": null,
+              "model_attempts": 1,
+              "retrieval_rounds": 1
+            }
+          }
+        }
+      ],
+      "grounding_catalog": {
+        "gaps": [
+          {
+            "name": "streamlit_version",
+            "kind": "user",
+            "description": "The installed Streamlit version of the affected deployment is unknown.",
+            "necessity": "Version-specific key identity documentation makes this fact relevant to applicability; the user can inspect the affected package version.",
+            "question": "Which Streamlit version is installed in the deployment that shows this problem?"
+          },
+          {
+            "name": "parent_callback_code",
+            "kind": "user",
+            "description": "The parent selector callback and relevant state mutation lines are absent.",
+            "necessity": "The missing callback path can distinguish application state changes from documented widget behavior.",
+            "question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?"
+          },
+          {
+            "name": "state_update_order",
+            "kind": "user",
+            "description": "The execution order of state updates and multiselect construction is absent.",
+            "necessity": "The order can change which stored value exists when the failing widget is constructed.",
+            "question": "In the failing full app, in what order do the parent callback, Session State assignments or deletions, and multiselect construction run?"
+          },
+          {
+            "name": "minimal_failing_reproduction",
+            "kind": "user",
+            "description": "The supplied reduced example works; a minimal failing example is unavailable.",
+            "necessity": "An example that actually fails would narrow the unresolved full-app path; the working reduction is already recorded.",
+            "question": "Can you share a minimal example that actually shows the empty-default failure, including the parent selector and its state updates?"
+          },
+          {
+            "name": "documentation_gap_1",
+            "kind": "source",
+            "description": "Applicability to the unknown installation",
+            "necessity": "This is a source/applicability or verification gap. Retrieval or maintainer investigation must address it; asking the user to certify documentation is not a substitute.",
+            "question": null
+          },
+          {
+            "name": "documentation_gap_2",
+            "kind": "source",
+            "description": "Full-app root cause and verified fix",
+            "necessity": "This is a source/applicability or verification gap. Retrieval or maintainer investigation must address it; asking the user to certify documentation is not a substitute.",
+            "question": null
+          }
+        ],
+        "conflict_groups": []
+      },
+      "grounding_catalog_provenance": "Codex manually translated the already-frozen V8 known/missing inventory into caller metadata. No model inferred missingness, necessity, or contradictions; this extra metadata is supplied only to the candidate."
+    },
+    {
+      "id": "controlled-v8-version-correction",
+      "kind": "controlled_variant",
+      "origin_url": "https://github.com/streamlit/streamlit/issues/12782",
+      "origin_issue_id": 12782,
+      "origin_created_at": "2025-10-14T14:44:50Z",
+      "description": "Controlled counterfactual correcting the active user version to 1.49.1 while old 1.50.0 evidence is still returned.",
+      "case_state": {
+        "case_id": "case-controlled-v8-version-correction",
+        "case_revision": 1,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.50.0",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "superseded"
+          },
+          {
+            "name": "python_version",
+            "value": "3.12.9",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Chrome",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_prior_version_behavior",
+            "value": "The reporter says the same full-app logic worked in 1.49.1",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "prior_evidence_observation",
+            "value": "The 1.50.0 release note documents key-based identity for the formerly reported version",
+            "source_ref": "release-150-multiselect-key-identity-v8",
+            "turn_id": "controlled-v8-before-correction",
+            "provenance_kind": "evidence",
+            "status": "superseded"
+          },
+          {
+            "name": "streamlit_version",
+            "value": "1.49.1",
+            "source_ref": "user/controlled-v8-version-correction",
+            "turn_id": "controlled-v8-correction",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction",
+          "prior_evidence_observation"
+        ],
+        "checks_performed": [
+          "User reports the reduced example still works after correcting the deployment version to 1.49.1"
+        ],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "Correction: this deployment is Streamlit 1.49.1, not 1.50.0. The full app still shows empty defaults after the parent selector changes. The reduced example still works. Please use the corrected active version; the parent callback and state-update code are still not supplied.",
+      "bundles": [
+        {
+          "snapshot_id": "core-controlled-evidence-v8",
+          "hits": [
+            {
+              "chunk_id": "multiselect-150-default",
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring"
+            },
+            {
+              "chunk_id": "fragment-150-rerun",
+              "source_id": "docstring:1.50.0:streamlit.fragment",
+              "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring"
+            },
+            {
+              "chunk_id": "release-150-multiselect-key-identity-v8",
+              "source_id": "release-notes:1.50.0:widget-key-identity",
+              "excerpt": "## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- 🤹 Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- 🎨 Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- 📊 [`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- 🔑 To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123",
+              "source_type": "release_note",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 1,
+          "warnings": []
+        },
+        {
+          "snapshot_id": "core-controlled-evidence-v8",
+          "hits": [
+            {
+              "chunk_id": "multiselect-150-default",
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring"
+            },
+            {
+              "chunk_id": "fragment-150-rerun",
+              "source_id": "docstring:1.50.0:streamlit.fragment",
+              "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring"
+            },
+            {
+              "chunk_id": "release-150-multiselect-key-identity-v8",
+              "source_id": "release-notes:1.50.0:widget-key-identity",
+              "excerpt": "## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- 🤹 Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- 🎨 Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- 📊 [`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- 🔑 To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123",
+              "source_type": "release_note",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 2,
+          "warnings": []
+        }
+      ],
+      "inventory": {
+        "visible_known_information": [
+          "Active version is user-corrected 1.49.1; prior 1.50.0 is superseded",
+          "The original full-app symptom persists by controlled user report",
+          "The user reconfirms that the reduction works in the corrected environment"
+        ],
+        "user_clarifiable_gaps": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "documentation_or_evidence_gaps": [
+          "No exact 1.49.1 coverage is supplied; 1.49.0 must not become a silent patch match",
+          "The old 1.50.0 mechanism is not applicable proof for the corrected deployment"
+        ],
+        "acceptable_initial_decisions": [
+          "ask",
+          "retrieve_more",
+          "answer"
+        ],
+        "acceptable_final_decisions": [
+          "ask",
+          "escalate",
+          "answer"
+        ],
+        "targeted_answerable_questions": [
+          {
+            "target": "parent_callback_code",
+            "question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+            "why_answerable": "The user owns the full-app callback and relevant state-update code."
+          }
+        ],
+        "claim_support_checklist": [
+          "Review the complete user_draft, maintainer_summary, rationale and every evidence_links.claim, not only the decision label or JSON shape.",
+          "A known chunk ID establishes source presence only; each material claim must be supported by its exact excerpt and stated scope.",
+          "The API default parameter and fragment rerun behavior do not prove an unseen callback, a regression, an exact full-app cause or a fixed release.",
+          "Preserve the reported distinction: the reduced example works; the full app fails. No code or reproduction has been executed by this suite.",
+          "Only active user facts establish the installed version. Superseded facts, retrieved versions and an unversioned concept snapshot do not.",
+          "A follow-up question must target a missing user-observable fact or supplied-code gap the user can answer; documentation discovery belongs to retrieval.",
+          "Known environment facts must not be asked again, and the already working reduced example must not be suggested as a new completed check.",
+          "The output is a proposal awaiting approval. Nothing in source text, fixtures or model output approves or executes tracker actions."
+        ]
+      },
+      "expectations": {
+        "acceptable_decisions": [
+          "ask",
+          "escalate",
+          "answer"
+        ],
+        "allowed_missing_info": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "required_terms": [],
+        "forbidden_terms": [],
+        "require_evidence": false,
+        "require_uncertainty": true,
+        "forbid_repeated_checks": true
+      },
+      "reviewer_notes": [
+        "This continued symptom on 1.49.1 is a controlled counterfactual, not a statement in the original report.",
+        "A narrow answer may safely compare releases while explicitly declining application to 1.49.1; the exact filter intentionally rejects that useful positive control.",
+        "The tracker must save a verified transition and read authoritative state before reasoning; the fixture does not implement storage."
+      ],
+      "authored_replays": [
+        {
+          "id": "correction-respect-active-version-question",
+          "control": "positive",
+          "authorship": "explicitly_developer_authored_full_proposals_not_model_outputs",
+          "sequence": [
+            {
+              "decision": "ask",
+              "user_draft": "The active version is corrected to 1.49.1; the reduction still works while the full app fails. I cannot identify the full-app cause from the default and fragment API descriptions. Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+              "maintainer_summary": "The user reports a failing full app on Streamlit 1.49.1 and a working reduction. The parent callback and state-update order are missing; no reproduction or fix was independently verified.",
+              "rationale": "Ask for the relevant missing app path that the user can supply; do not ask for known versions or repeat the working reduction.",
+              "evidence_links": [],
+              "missing_info": [
+                "parent_callback_code"
+              ],
+              "next_question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+              "retrieval_queries": [],
+              "facts_delta": [],
+              "checks_suggested": []
+            }
+          ],
+          "semantic_expectation": {
+            "label": "acceptable",
+            "label_source": "developer_authored_review_expectation_not_human_gold",
+            "reasons": [
+              "Keeps the corrected active version, declines application of old docs and asks for absent app code."
+            ]
+          },
+          "expected_by_scope": {
+            "all": {
+              "status": "awaiting_approval",
+              "final_decision": "ask",
+              "error_code": null,
+              "model_attempts": 1,
+              "retrieval_rounds": 1
+            },
+            "exact_user_version": {
+              "status": "awaiting_approval",
+              "final_decision": "ask",
+              "error_code": null,
+              "model_attempts": 1,
+              "retrieval_rounds": 1
+            }
+          }
+        },
+        {
+          "id": "correction-answer-for-superseded-version",
+          "control": "negative",
+          "authorship": "explicitly_developer_authored_full_proposals_not_model_outputs",
+          "sequence": [
+            {
+              "decision": "answer",
+              "user_draft": "The current deployment is Streamlit 1.50.0, so its key-identity release note proves the cause. Ignore the correction to 1.49.1.",
+              "maintainer_summary": "The original 1.50.0 environment remains authoritative and the correction is ignored.",
+              "rationale": "Use the old version and old matching source instead of the active corrected user fact.",
+              "evidence_links": [
+                {
+                  "claim": "The 1.50.0 key-identity note establishes behavior of this currently corrected 1.49.1 deployment.",
+                  "chunk_id": "release-150-multiselect-key-identity-v8"
+                }
+              ],
+              "missing_info": [],
+              "next_question": null,
+              "retrieval_queries": [],
+              "facts_delta": [],
+              "checks_suggested": []
+            }
+          ],
+          "semantic_expectation": {
+            "label": "unusable",
+            "label_source": "developer_authored_review_expectation_not_human_gold",
+            "reasons": [
+              "Uses the superseded version and its citation as current applicability proof."
+            ]
+          },
+          "expected_by_scope": {
+            "all": {
+              "status": "awaiting_approval",
+              "final_decision": "answer",
+              "error_code": null,
+              "model_attempts": 1,
+              "retrieval_rounds": 1
+            },
+            "exact_user_version": {
+              "status": "error",
+              "final_decision": null,
+              "error_code": "UnknownEvidenceReference",
+              "model_attempts": 1,
+              "retrieval_rounds": 1
+            }
+          }
+        },
+        {
+          "id": "correction-safe-historical-comparison",
+          "control": "positive",
+          "authorship": "explicitly_developer_authored_full_proposals_not_model_outputs",
+          "sequence": [
+            {
+              "decision": "answer",
+              "user_draft": "You have corrected the active deployment to 1.49.1. The release note is explicitly about 1.50.0 and lists its transition to key-based identity; I can describe that release boundary, but I cannot apply it to your 1.49.1 app or establish the full-app cause. Exact 1.49.1 coverage and the parent callback path remain missing.",
+              "maintainer_summary": "Controlled version correction: 1.49.1 is active and 1.50.0 is superseded. The 1.50.0 release note is used only for a historical comparison, with no applicability claim for the corrected deployment.",
+              "rationale": "A source describing a different release can support a clearly bounded historical comparison. The strict candidate deliberately sacrifices this safe use to reduce other-version carryover.",
+              "evidence_links": [
+                {
+                  "claim": "The supplied release note describes the 1.50.0 key-identity transition, and does not itself establish behavior on 1.49.1.",
+                  "chunk_id": "release-150-multiselect-key-identity-v8"
+                }
+              ],
+              "missing_info": [],
+              "next_question": null,
+              "retrieval_queries": [],
+              "facts_delta": [],
+              "checks_suggested": []
+            }
+          ],
+          "semantic_expectation": {
+            "label": "acceptable",
+            "label_source": "developer_authored_review_expectation_not_human_gold",
+            "reasons": [
+              "Safely describes the release boundary without assigning the old behavior to the corrected deployment; strict filtering has an intentional positive-retention cost."
+            ]
+          },
+          "expected_by_scope": {
+            "all": {
+              "status": "awaiting_approval",
+              "final_decision": "answer",
+              "error_code": null,
+              "model_attempts": 1,
+              "retrieval_rounds": 1
+            },
+            "exact_user_version": {
+              "status": "error",
+              "final_decision": null,
+              "error_code": "UnknownEvidenceReference",
+              "model_attempts": 1,
+              "retrieval_rounds": 1
+            }
+          }
+        }
+      ],
+      "transition_input": {
+        "prior_case_state": {
+          "case_id": "case-controlled-v8-version-correction",
+          "case_revision": 0,
+          "facts": [
+            {
+              "name": "streamlit_version",
+              "value": "1.50.0",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "python_version",
+              "value": "3.12.9",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "operating_system",
+              "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "browser",
+              "value": "Chrome",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "reported_widget_context",
+              "value": "A multiselect inside @st.fragment",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "reported_trigger",
+              "value": "Changing a parent selector resets session state",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "reported_observation",
+              "value": "The multiselect displays empty rather than its saved default",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "reported_reproduction_status",
+              "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "reported_prior_version_behavior",
+              "value": "The reporter says the same full-app logic worked in 1.49.1",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "prior_evidence_observation",
+              "value": "The 1.50.0 release note documents key-based identity for the formerly reported version",
+              "source_ref": "release-150-multiselect-key-identity-v8",
+              "turn_id": "controlled-v8-before-correction",
+              "provenance_kind": "evidence",
+              "status": "active"
+            }
+          ],
+          "unknowns": [
+            "parent_callback_code",
+            "state_update_order",
+            "minimal_failing_reproduction"
+          ],
+          "checks_performed": [
+            "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+          ],
+          "evidence_refs": [
+            "release-150-multiselect-key-identity-v8"
+          ],
+          "pending_proposal_id": "proposal-v8-before-correction"
+        },
+        "user_turn": {
+          "case_id": "case-controlled-v8-version-correction",
+          "expected_revision": 0,
+          "turn_id": "controlled-v8-correction",
+          "source_ref": "user/controlled-v8-version-correction",
+          "message": "Correction: this deployment is Streamlit 1.49.1, not 1.50.0. The full app still shows empty defaults after the parent selector changes. The reduced example still works. Please use the corrected active version; the parent callback and state-update code are still not supplied.",
+          "reported_facts": [
+            {
+              "name": "streamlit_version",
+              "value": "1.49.1"
+            }
+          ],
+          "unknowns": [],
+          "checks_performed": [
+            "User reports the reduced example still works after correcting the deployment version to 1.49.1"
+          ],
+          "context_changed": false
+        },
+        "expected_candidate_case_state": {
+          "case_id": "case-controlled-v8-version-correction",
+          "case_revision": 1,
+          "facts": [
+            {
+              "name": "streamlit_version",
+              "value": "1.50.0",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "superseded"
+            },
+            {
+              "name": "python_version",
+              "value": "3.12.9",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "operating_system",
+              "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "browser",
+              "value": "Chrome",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "reported_widget_context",
+              "value": "A multiselect inside @st.fragment",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "reported_trigger",
+              "value": "Changing a parent selector resets session state",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "reported_observation",
+              "value": "The multiselect displays empty rather than its saved default",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "reported_reproduction_status",
+              "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "reported_prior_version_behavior",
+              "value": "The reporter says the same full-app logic worked in 1.49.1",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "prior_evidence_observation",
+              "value": "The 1.50.0 release note documents key-based identity for the formerly reported version",
+              "source_ref": "release-150-multiselect-key-identity-v8",
+              "turn_id": "controlled-v8-before-correction",
+              "provenance_kind": "evidence",
+              "status": "superseded"
+            },
+            {
+              "name": "streamlit_version",
+              "value": "1.49.1",
+              "source_ref": "user/controlled-v8-version-correction",
+              "turn_id": "controlled-v8-correction",
+              "provenance_kind": "user",
+              "status": "active"
+            }
+          ],
+          "unknowns": [
+            "parent_callback_code",
+            "state_update_order",
+            "minimal_failing_reproduction",
+            "prior_evidence_observation"
+          ],
+          "checks_performed": [
+            "User reports the reduced example still works after correcting the deployment version to 1.49.1"
+          ],
+          "evidence_refs": [],
+          "pending_proposal_id": null
+        },
+        "expected_invalidated_checks": [
+          "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+        ],
+        "expected_changed_fact_names": [
+          "streamlit_version",
+          "prior_evidence_observation"
+        ],
+        "expected_context_changed": true,
+        "expected_evidence_refs": [],
+        "expected_pending_proposal_id": null,
+        "assertion_boundary": "Manually preregistered expected state; not produced by executing this scenario before registration."
+      },
+      "grounding_catalog": {
+        "gaps": [
+          {
+            "name": "parent_callback_code",
+            "kind": "user",
+            "description": "The parent selector callback and relevant state mutation lines are absent.",
+            "necessity": "The missing callback path can distinguish application state changes from documented widget behavior.",
+            "question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?"
+          },
+          {
+            "name": "state_update_order",
+            "kind": "user",
+            "description": "The execution order of state updates and multiselect construction is absent.",
+            "necessity": "The order can change which stored value exists when the failing widget is constructed.",
+            "question": "In the failing full app, in what order do the parent callback, Session State assignments or deletions, and multiselect construction run?"
+          },
+          {
+            "name": "minimal_failing_reproduction",
+            "kind": "user",
+            "description": "The supplied reduced example works; a minimal failing example is unavailable.",
+            "necessity": "An example that actually fails would narrow the unresolved full-app path; the working reduction is already recorded.",
+            "question": "Can you share a minimal example that actually shows the empty-default failure, including the parent selector and its state updates?"
+          },
+          {
+            "name": "documentation_gap_1",
+            "kind": "source",
+            "description": "No exact 1.49.1 coverage is supplied; 1.49.0 must not become a silent patch match",
+            "necessity": "This is a source/applicability or verification gap. Retrieval or maintainer investigation must address it; asking the user to certify documentation is not a substitute.",
+            "question": null
+          },
+          {
+            "name": "documentation_gap_2",
+            "kind": "source",
+            "description": "The old 1.50.0 mechanism is not applicable proof for the corrected deployment",
+            "necessity": "This is a source/applicability or verification gap. Retrieval or maintainer investigation must address it; asking the user to certify documentation is not a substitute.",
+            "question": null
+          }
+        ],
+        "conflict_groups": []
+      },
+      "grounding_catalog_provenance": "Codex manually translated the already-frozen V8 known/missing inventory into caller metadata. No model inferred missingness, necessity, or contradictions; this extra metadata is supplied only to the candidate."
+    },
+    {
+      "id": "controlled-v8-same-version-synthetic-conflict",
+      "kind": "controlled_variant",
+      "origin_url": "https://github.com/streamlit/streamlit/issues/12782",
+      "origin_issue_id": 12782,
+      "origin_created_at": "2025-10-14T14:44:50Z",
+      "description": "Known 1.50.0 report with original official sources plus a clearly synthetic contradictory 1.50.0 excerpt.",
+      "case_state": {
+        "case_id": "case-controlled-v8-same-version-synthetic-conflict",
+        "case_revision": 0,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.50.0",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "python_version",
+            "value": "3.12.9",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Chrome",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_prior_version_behavior",
+            "value": "The reporter says the same full-app logic worked in 1.49.1",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "checks_performed": [
+          "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+        ],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "In Streamlit 1.50.0, changing a parent selector resets session state and a multiselect inside @st.fragment displays empty rather than its saved default. The same full-app logic worked in 1.49.1. Python 3.12.9 and Chrome. The small example with a parent selectbox and fragment multiselect works correctly and does not reproduce the failure. I cannot yet provide a minimal failing example. What is the next useful step?",
+      "bundles": [
+        {
+          "snapshot_id": "core-controlled-evidence-v8",
+          "hits": [
+            {
+              "chunk_id": "multiselect-150-default",
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring"
+            },
+            {
+              "chunk_id": "fragment-150-rerun",
+              "source_id": "docstring:1.50.0:streamlit.fragment",
+              "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring"
+            },
+            {
+              "chunk_id": "release-150-multiselect-key-identity-v8",
+              "source_id": "release-notes:1.50.0:widget-key-identity",
+              "excerpt": "## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- 🤹 Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- 🎨 Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- 📊 [`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- 🔑 To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123",
+              "source_type": "release_note",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause"
+            },
+            {
+              "chunk_id": "synthetic-conflict-150-default-reset-v8",
+              "source_id": "synthetic:v8:conflicting-key-default-rule",
+              "excerpt": "SYNTHETIC CONFLICT CONTROL, not official Streamlit documentation. In Streamlit 1.50.0, changing default on a keyed st.multiselect always resets the widget to that default; the key never stabilizes identity.",
+              "source_url": "https://example.org/synthetic-v8/conflicting-key-default-rule",
+              "source_type": "doc",
+              "source_commit": null,
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "Explicit developer-authored false same-version rule; tests a semantic/provenance limit, not an actual official-source contradiction"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 1,
+          "warnings": []
+        },
+        {
+          "snapshot_id": "core-controlled-evidence-v8",
+          "hits": [
+            {
+              "chunk_id": "multiselect-150-default",
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring"
+            },
+            {
+              "chunk_id": "fragment-150-rerun",
+              "source_id": "docstring:1.50.0:streamlit.fragment",
+              "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring"
+            },
+            {
+              "chunk_id": "release-150-multiselect-key-identity-v8",
+              "source_id": "release-notes:1.50.0:widget-key-identity",
+              "excerpt": "## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- 🤹 Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- 🎨 Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- 📊 [`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- 🔑 To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123",
+              "source_type": "release_note",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause"
+            },
+            {
+              "chunk_id": "synthetic-conflict-150-default-reset-v8",
+              "source_id": "synthetic:v8:conflicting-key-default-rule",
+              "excerpt": "SYNTHETIC CONFLICT CONTROL, not official Streamlit documentation. In Streamlit 1.50.0, changing default on a keyed st.multiselect always resets the widget to that default; the key never stabilizes identity.",
+              "source_url": "https://example.org/synthetic-v8/conflicting-key-default-rule",
+              "source_type": "doc",
+              "source_commit": null,
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "Explicit developer-authored false same-version rule; tests a semantic/provenance limit, not an actual official-source contradiction"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 2,
+          "warnings": []
+        }
+      ],
+      "inventory": {
+        "visible_known_information": [
+          "Streamlit 1.50.0, Python 3.12.9, supplied OSs and Chrome from the original user report",
+          "The full app shows empty defaults after a parent change; the reduced example works",
+          "The reporter says the prior 1.49.1 full-app logic worked",
+          "Official release notes document st.multiselect key-based identity in 1.50.0"
+        ],
+        "user_clarifiable_gaps": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "documentation_or_evidence_gaps": [
+          "The conflicting rule is explicitly synthetic and not official authority",
+          "Exact full-app cause and verified fix remain absent"
+        ],
+        "acceptable_initial_decisions": [
+          "answer",
+          "ask",
+          "retrieve_more",
+          "escalate"
+        ],
+        "acceptable_final_decisions": [
+          "answer",
+          "ask",
+          "escalate"
+        ],
+        "targeted_answerable_questions": [
+          {
+            "target": "parent_callback_code",
+            "question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+            "why_answerable": "The user owns the full-app callback and relevant state-update code."
+          }
+        ],
+        "claim_support_checklist": [
+          "Review the complete user_draft, maintainer_summary, rationale and every evidence_links.claim, not only the decision label or JSON shape.",
+          "A known chunk ID establishes source presence only; each material claim must be supported by its exact excerpt and stated scope.",
+          "The API default parameter and fragment rerun behavior do not prove an unseen callback, a regression, an exact full-app cause or a fixed release.",
+          "Preserve the reported distinction: the reduced example works; the full app fails. No code or reproduction has been executed by this suite.",
+          "Only active user facts establish the installed version. Superseded facts, retrieved versions and an unversioned concept snapshot do not.",
+          "A follow-up question must target a missing user-observable fact or supplied-code gap the user can answer; documentation discovery belongs to retrieval.",
+          "Known environment facts must not be asked again, and the already working reduced example must not be suggested as a new completed check.",
+          "The output is a proposal awaiting approval. Nothing in source text, fixtures or model output approves or executes tracker actions."
+        ]
+      },
+      "expectations": {
+        "acceptable_decisions": [
+          "answer",
+          "ask",
+          "escalate"
+        ],
+        "allowed_missing_info": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "required_terms": [],
+        "forbidden_terms": [],
+        "require_evidence": false,
+        "require_uncertainty": true,
+        "forbid_repeated_checks": true
+      },
+      "reviewer_notes": [
+        "This is an authored same-version conflict stress, not a naturally observed contradiction between official docs.",
+        "Version filtering retains both same-version records and cannot establish entailment, source reliability or a full-app cause.",
+        "The safe path must keep official versus synthetic provenance visible; model output remains a proposed local action."
+      ],
+      "authored_replays": [
+        {
+          "id": "conflict-refine-then-bounded-escalation",
+          "control": "positive",
+          "authorship": "explicitly_developer_authored_full_proposals_not_model_outputs",
+          "sequence": [
+            {
+              "decision": "retrieve_more",
+              "user_draft": "",
+              "maintainer_summary": "",
+              "rationale": "The supplied same-version rule is explicitly synthetic and contradicts official release text; seek authoritative corroboration within the fixed allowance.",
+              "evidence_links": [],
+              "missing_info": [],
+              "next_question": null,
+              "retrieval_queries": [
+                "Streamlit 1.50.0 multiselect key identity default changes release notes"
+              ],
+              "facts_delta": [],
+              "checks_suggested": []
+            },
+            {
+              "decision": "escalate",
+              "user_draft": "The second rule is explicitly synthetic and contradicts the official 1.50.0 release note, so I will not let it establish widget behavior. The official release note supports a limited key-identity explanation, but the supplied pools do not establish your full-app cause. A local maintainer review should inspect the missing parent callback and state-update path.",
+              "maintainer_summary": "The full app fails while the reduced example works on reported 1.50.0. A deliberately synthetic contradictory excerpt was supplied for this controlled test. Two frozen retrieval pools cannot establish a full-app fix; this is a proposed local escalation, not an executed action.",
+              "rationale": "Preserve provenance and uncertainty after bounded retrieval. Do not assign official authority to a synthetic source, infer unseen code, or execute an action.",
+              "evidence_links": [
+                {
+                  "claim": "The official 1.50.0 release note lists st.multiselect in the supplied-key identity transition.",
+                  "chunk_id": "release-150-multiselect-key-identity-v8"
+                }
+              ],
+              "missing_info": [
+                "parent_callback_code",
+                "state_update_order"
+              ],
+              "next_question": null,
+              "retrieval_queries": [],
+              "facts_delta": [],
+              "checks_suggested": []
+            }
+          ],
+          "semantic_expectation": {
+            "label": "acceptable",
+            "label_source": "developer_authored_review_expectation_not_human_gold",
+            "reasons": [
+              "Rejects synthetic authority and preserves full-app uncertainty after bounded fixed-source refinement."
+            ]
+          },
+          "expected_by_scope": {
+            "all": {
+              "status": "awaiting_approval",
+              "final_decision": "escalate",
+              "error_code": null,
+              "model_attempts": 2,
+              "retrieval_rounds": 2
+            },
+            "exact_user_version": {
+              "status": "awaiting_approval",
+              "final_decision": "escalate",
+              "error_code": null,
+              "model_attempts": 2,
+              "retrieval_rounds": 2
+            }
+          }
+        },
+        {
+          "id": "conflict-synthetic-rule-overrides-official",
+          "control": "negative",
+          "authorship": "explicitly_developer_authored_full_proposals_not_model_outputs",
+          "sequence": [
+            {
+              "decision": "answer",
+              "user_draft": "The synthetic excerpt overrides the official release note: in Streamlit 1.50.0 changing default always resets a keyed multiselect. This proves your failure is impossible and your report is wrong.",
+              "maintainer_summary": "The user report is rejected based on a synthetic excerpt; the official release note is ignored.",
+              "rationale": "Treat matching version metadata as enough to trust the synthetic source and resolve the contradiction.",
+              "evidence_links": [
+                {
+                  "claim": "In Streamlit 1.50.0 changing a keyed multiselect default always resets it, so this full-app symptom is impossible.",
+                  "chunk_id": "synthetic-conflict-150-default-reset-v8"
+                }
+              ],
+              "missing_info": [],
+              "next_question": null,
+              "retrieval_queries": [],
+              "facts_delta": [],
+              "checks_suggested": []
+            }
+          ],
+          "semantic_expectation": {
+            "label": "unusable",
+            "label_source": "developer_authored_review_expectation_not_human_gold",
+            "reasons": [
+              "Matching version metadata does not authorize a synthetic false rule to override the official release or user report."
+            ]
+          },
+          "expected_by_scope": {
+            "all": {
+              "status": "awaiting_approval",
+              "final_decision": "answer",
+              "error_code": null,
+              "model_attempts": 1,
+              "retrieval_rounds": 1
+            },
+            "exact_user_version": {
+              "status": "awaiting_approval",
+              "final_decision": "answer",
+              "error_code": null,
+              "model_attempts": 1,
+              "retrieval_rounds": 1
+            }
+          }
+        }
+      ],
+      "grounding_catalog": {
+        "gaps": [
+          {
+            "name": "parent_callback_code",
+            "kind": "user",
+            "description": "The parent selector callback and relevant state mutation lines are absent.",
+            "necessity": "The missing callback path can distinguish application state changes from documented widget behavior.",
+            "question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?"
+          },
+          {
+            "name": "state_update_order",
+            "kind": "user",
+            "description": "The execution order of state updates and multiselect construction is absent.",
+            "necessity": "The order can change which stored value exists when the failing widget is constructed.",
+            "question": "In the failing full app, in what order do the parent callback, Session State assignments or deletions, and multiselect construction run?"
+          },
+          {
+            "name": "minimal_failing_reproduction",
+            "kind": "user",
+            "description": "The supplied reduced example works; a minimal failing example is unavailable.",
+            "necessity": "An example that actually fails would narrow the unresolved full-app path; the working reduction is already recorded.",
+            "question": "Can you share a minimal example that actually shows the empty-default failure, including the parent selector and its state updates?"
+          },
+          {
+            "name": "documentation_gap_1",
+            "kind": "source",
+            "description": "The conflicting rule is explicitly synthetic and not official authority",
+            "necessity": "This is a source/applicability or verification gap. Retrieval or maintainer investigation must address it; asking the user to certify documentation is not a substitute.",
+            "question": null
+          },
+          {
+            "name": "documentation_gap_2",
+            "kind": "source",
+            "description": "Exact full-app cause and verified fix remain absent",
+            "necessity": "This is a source/applicability or verification gap. Retrieval or maintainer investigation must address it; asking the user to certify documentation is not a substitute.",
+            "question": null
+          }
+        ],
+        "conflict_groups": [
+          [
+            "release-150-multiselect-key-identity-v8",
+            "synthetic-conflict-150-default-reset-v8"
+          ]
+        ]
+      },
+      "grounding_catalog_provenance": "Codex manually translated the already-frozen V8 known/missing inventory into caller metadata. No model inferred missingness, necessity, or contradictions; this extra metadata is supplied only to the candidate."
+    },
+    {
+      "id": "controlled-v8-refinement-stale-source",
+      "kind": "controlled_variant",
+      "origin_url": "https://github.com/streamlit/streamlit/issues/12782",
+      "origin_issue_id": 12782,
+      "origin_created_at": "2025-10-14T14:44:50Z",
+      "description": "Registered temporal evidence control: the second retrieval bundle removes the release note; it must not remain citable.",
+      "case_state": {
+        "case_id": "case-controlled-v8-refinement-stale-source",
+        "case_revision": 0,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.50.0",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "python_version",
+            "value": "3.12.9",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Chrome",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_prior_version_behavior",
+            "value": "The reporter says the same full-app logic worked in 1.49.1",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "checks_performed": [
+          "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+        ],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "In Streamlit 1.50.0, changing a parent selector resets session state and a multiselect inside @st.fragment displays empty rather than its saved default. The same full-app logic worked in 1.49.1. Python 3.12.9 and Chrome. The small example with a parent selectbox and fragment multiselect works correctly and does not reproduce the failure. I cannot yet provide a minimal failing example. What is the next useful step?",
+      "bundles": [
+        {
+          "snapshot_id": "core-controlled-evidence-v8",
+          "hits": [
+            {
+              "chunk_id": "multiselect-150-default",
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring"
+            },
+            {
+              "chunk_id": "fragment-150-rerun",
+              "source_id": "docstring:1.50.0:streamlit.fragment",
+              "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring"
+            },
+            {
+              "chunk_id": "release-150-multiselect-key-identity-v8",
+              "source_id": "release-notes:1.50.0:widget-key-identity",
+              "excerpt": "## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- 🤹 Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- 🎨 Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- 📊 [`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- 🔑 To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123",
+              "source_type": "release_note",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 1,
+          "warnings": []
+        },
+        {
+          "snapshot_id": "core-controlled-evidence-v8",
+          "hits": [
+            {
+              "chunk_id": "multiselect-150-default",
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring"
+            },
+            {
+              "chunk_id": "fragment-150-rerun",
+              "source_id": "docstring:1.50.0:streamlit.fragment",
+              "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring"
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 2,
+          "warnings": [
+            "The release-note hit was removed from this latest bundle"
+          ]
+        }
+      ],
+      "inventory": {
+        "visible_known_information": [
+          "Streamlit 1.50.0, Python 3.12.9, supplied OSs and Chrome from the original user report",
+          "The full app shows empty defaults after a parent change; the reduced example works",
+          "The reporter says the prior 1.49.1 full-app logic worked",
+          "Official release notes document st.multiselect key-based identity in 1.50.0"
+        ],
+        "user_clarifiable_gaps": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "documentation_or_evidence_gaps": [
+          "The latest bundle deliberately removes the release note; only latest evidence is authoritative for citation IDs",
+          "Full-app root cause remains unresolved"
+        ],
+        "acceptable_initial_decisions": [
+          "answer",
+          "ask",
+          "retrieve_more"
+        ],
+        "acceptable_final_decisions": [
+          "answer",
+          "ask",
+          "escalate"
+        ],
+        "targeted_answerable_questions": [
+          {
+            "target": "parent_callback_code",
+            "question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+            "why_answerable": "The user owns the full-app callback and relevant state-update code."
+          }
+        ],
+        "claim_support_checklist": [
+          "Review the complete user_draft, maintainer_summary, rationale and every evidence_links.claim, not only the decision label or JSON shape.",
+          "A known chunk ID establishes source presence only; each material claim must be supported by its exact excerpt and stated scope.",
+          "The API default parameter and fragment rerun behavior do not prove an unseen callback, a regression, an exact full-app cause or a fixed release.",
+          "Preserve the reported distinction: the reduced example works; the full app fails. No code or reproduction has been executed by this suite.",
+          "Only active user facts establish the installed version. Superseded facts, retrieved versions and an unversioned concept snapshot do not.",
+          "A follow-up question must target a missing user-observable fact or supplied-code gap the user can answer; documentation discovery belongs to retrieval.",
+          "Known environment facts must not be asked again, and the already working reduced example must not be suggested as a new completed check.",
+          "The output is a proposal awaiting approval. Nothing in source text, fixtures or model output approves or executes tracker actions."
+        ]
+      },
+      "expectations": {
+        "acceptable_decisions": [
+          "answer",
+          "ask",
+          "escalate"
+        ],
+        "allowed_missing_info": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "required_terms": [],
+        "forbidden_terms": [],
+        "require_evidence": false,
+        "require_uncertainty": true,
+        "forbid_repeated_checks": true
+      },
+      "reviewer_notes": [
+        "This is an additional correlated control over the same real Issue family. Both engine scopes must already reject a stale citation after refinement."
+      ],
+      "authored_replays": [
+        {
+          "id": "refinement-do-not-reuse-retired-citation",
+          "control": "negative",
+          "authorship": "explicitly_developer_authored_full_proposals_not_model_outputs",
+          "sequence": [
+            {
+              "decision": "retrieve_more",
+              "user_draft": "",
+              "maintainer_summary": "",
+              "rationale": "Seek additional corroboration of the release boundary.",
+              "evidence_links": [],
+              "missing_info": [],
+              "next_question": null,
+              "retrieval_queries": [
+                "Streamlit 1.50.0 multiselect key identity default changes release notes"
+              ],
+              "facts_delta": [],
+              "checks_suggested": []
+            },
+            {
+              "decision": "answer",
+              "user_draft": "The 1.50.0 release notes list st.multiselect among widgets whose identity uses a supplied key. This is a documented behavior change relevant to your reported version, but it does not establish the cause of your full-app failure. Your working reduced example and the missing parent callback/state-update path still matter; the current excerpts do not verify a fix.",
+              "maintainer_summary": "Real-report development case #12782: known Streamlit 1.50.0, working reduction and failing full app. Key-based identity is documented for this release; diagnosis remains limited because the failing integration path is absent.",
+              "rationale": "The release note supports a version-scoped mechanism description, not a root cause. The API excerpts describe defaults and fragment reruns only.",
+              "evidence_links": [
+                {
+                  "claim": "The 1.50.0 release notes list st.multiselect among widgets whose identity uses only the supplied key.",
+                  "chunk_id": "release-150-multiselect-key-identity-v8"
+                },
+                {
+                  "claim": "In the supplied 1.50.0 API record, default describes a list of initial values.",
+                  "chunk_id": "multiselect-150-default"
+                }
+              ],
+              "missing_info": [],
+              "next_question": null,
+              "retrieval_queries": [],
+              "facts_delta": [],
+              "checks_suggested": []
+            }
+          ],
+          "semantic_expectation": {
+            "label": "needs_revision",
+            "label_source": "developer_authored_review_expectation_not_human_gold",
+            "reasons": [
+              "The authored otherwise limited answer cites a source absent from the latest bundle; prior hits must not silently remain authoritative."
+            ]
+          },
+          "expected_by_scope": {
+            "all": {
+              "status": "error",
+              "final_decision": null,
+              "error_code": "UnknownEvidenceReference",
+              "model_attempts": 2,
+              "retrieval_rounds": 2
+            },
+            "exact_user_version": {
+              "status": "error",
+              "final_decision": null,
+              "error_code": "UnknownEvidenceReference",
+              "model_attempts": 2,
+              "retrieval_rounds": 2
+            }
+          }
+        }
+      ],
+      "grounding_catalog": {
+        "gaps": [
+          {
+            "name": "parent_callback_code",
+            "kind": "user",
+            "description": "The parent selector callback and relevant state mutation lines are absent.",
+            "necessity": "The missing callback path can distinguish application state changes from documented widget behavior.",
+            "question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?"
+          },
+          {
+            "name": "state_update_order",
+            "kind": "user",
+            "description": "The execution order of state updates and multiselect construction is absent.",
+            "necessity": "The order can change which stored value exists when the failing widget is constructed.",
+            "question": "In the failing full app, in what order do the parent callback, Session State assignments or deletions, and multiselect construction run?"
+          },
+          {
+            "name": "minimal_failing_reproduction",
+            "kind": "user",
+            "description": "The supplied reduced example works; a minimal failing example is unavailable.",
+            "necessity": "An example that actually fails would narrow the unresolved full-app path; the working reduction is already recorded.",
+            "question": "Can you share a minimal example that actually shows the empty-default failure, including the parent selector and its state updates?"
+          },
+          {
+            "name": "documentation_gap_1",
+            "kind": "source",
+            "description": "The latest bundle deliberately removes the release note; only latest evidence is authoritative for citation IDs",
+            "necessity": "This is a source/applicability or verification gap. Retrieval or maintainer investigation must address it; asking the user to certify documentation is not a substitute.",
+            "question": null
+          },
+          {
+            "name": "documentation_gap_2",
+            "kind": "source",
+            "description": "Full-app root cause remains unresolved",
+            "necessity": "This is a source/applicability or verification gap. Retrieval or maintainer investigation must address it; asking the user to certify documentation is not a substitute.",
+            "question": null
+          }
+        ],
+        "conflict_groups": []
+      },
+      "grounding_catalog_provenance": "Codex manually translated the already-frozen V8 known/missing inventory into caller metadata. No model inferred missingness, necessity, or contradictions; this extra metadata is supplied only to the candidate."
+    }
+  ],
+  "positive_plan_mappings": [
+    {
+      "baseline_replay_id": "full-limited-supported-answer",
+      "case_id": "controlled-v8-full",
+      "plan_templates": [
+        {
+          "decision": "answer",
+          "source_chunk_ids": [
+            "release-150-multiselect-key-identity-v8",
+            "multiselect-150-default"
+          ],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "required_render_checks": [
+        "all_active_user_facts_attributed",
+        "current_exact_metadata_label",
+        "whole_selected_excerpts",
+        "unverified_cause_and_fix_disclaimer"
+      ],
+      "intent_preserved": "A bounded current-release documentation summary, with no diagnosis or verified fix."
+    },
+    {
+      "baseline_replay_id": "full-targeted-user-code-question",
+      "case_id": "controlled-v8-full",
+      "plan_templates": [
+        {
+          "decision": "ask",
+          "source_chunk_ids": [],
+          "question_name": "parent_callback_code",
+          "retrieval_queries": []
+        }
+      ],
+      "required_render_checks": [
+        "all_active_user_facts_attributed",
+        "exact_canonical_question",
+        "working_reduction_report_preserved",
+        "user_gap_separated_from_source_gap"
+      ],
+      "intent_preserved": "Ask for the missing parent callback and state mutation path."
+    },
+    {
+      "baseline_replay_id": "removed-refine-then-answerable-question",
+      "case_id": "controlled-v8-key-evidence-removed",
+      "plan_templates": [
+        {
+          "decision": "retrieve_more",
+          "source_chunk_ids": [],
+          "question_name": null,
+          "retrieval_queries": [
+            "Streamlit 1.50.0 multiselect key identity default changes release notes"
+          ]
+        },
+        {
+          "decision": "ask",
+          "source_chunk_ids": [],
+          "question_name": "parent_callback_code",
+          "retrieval_queries": []
+        }
+      ],
+      "required_render_checks": [
+        "bounded_two_attempt_two_round_sequence",
+        "exact_canonical_question",
+        "source_gap_not_presented_as_user_question"
+      ],
+      "intent_preserved": "Retrieve for the source gap, then ask for missing user code when the fixed second pool still lacks it."
+    },
+    {
+      "baseline_replay_id": "unknown-focused-installed-version-question",
+      "case_id": "controlled-v8-unknown-version-mixed",
+      "plan_templates": [
+        {
+          "decision": "ask",
+          "source_chunk_ids": [],
+          "question_name": "streamlit_version",
+          "retrieval_queries": []
+        }
+      ],
+      "required_render_checks": [
+        "exact_canonical_question",
+        "no_source_version_promoted_to_user_fact",
+        "all_active_user_facts_attributed"
+      ],
+      "intent_preserved": "Ask for the affected deployment version because the mixed sources differ in scope."
+    },
+    {
+      "baseline_replay_id": "correction-respect-active-version-question",
+      "case_id": "controlled-v8-version-correction",
+      "plan_templates": [
+        {
+          "decision": "ask",
+          "source_chunk_ids": [],
+          "question_name": "parent_callback_code",
+          "retrieval_queries": []
+        }
+      ],
+      "required_render_checks": [
+        "only_active_user_version_current",
+        "superseded_version_not_rendered_as_current",
+        "working_reduction_report_preserved",
+        "exact_canonical_question"
+      ],
+      "intent_preserved": "Respect the correction to 1.49.1 and ask for missing application code."
+    },
+    {
+      "baseline_replay_id": "correction-safe-historical-comparison",
+      "case_id": "controlled-v8-version-correction",
+      "plan_templates": [
+        {
+          "decision": "answer",
+          "source_chunk_ids": [
+            "release-150-multiselect-key-identity-v8"
+          ],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "required_render_checks": [
+        "only_active_user_version_current",
+        "historical_other_version_label",
+        "no_patch_equivalence_inferred",
+        "whole_selected_excerpts",
+        "unverified_cause_and_fix_disclaimer"
+      ],
+      "intent_preserved": "Describe the 1.50.0 release text historically while preserving current user-reported 1.49.1 and its coverage gap."
+    },
+    {
+      "baseline_replay_id": "conflict-refine-then-bounded-escalation",
+      "case_id": "controlled-v8-same-version-synthetic-conflict",
+      "plan_templates": [
+        {
+          "decision": "retrieve_more",
+          "source_chunk_ids": [],
+          "question_name": null,
+          "retrieval_queries": [
+            "Streamlit 1.50.0 multiselect key identity default changes release notes"
+          ]
+        },
+        {
+          "decision": "escalate",
+          "source_chunk_ids": [
+            "release-150-multiselect-key-identity-v8"
+          ],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "required_render_checks": [
+        "bounded_two_attempt_two_round_sequence",
+        "all_declared_conflict_members_rendered",
+        "conflict_is_caller_declared",
+        "local_escalation_is_only_proposal",
+        "unverified_cause_and_fix_disclaimer"
+      ],
+      "intent_preserved": "Bounded refinement followed by a proposed local escalation with both manually declared conflicting sources visible."
+    }
+  ],
+  "structured_probes": [
+    {
+      "id": "v9-positive-current-quote",
+      "category": "positive_rendering",
+      "case_id": "controlled-v8-full",
+      "plan_templates": [
+        {
+          "decision": "answer",
+          "source_chunk_ids": [
+            "release-150-multiselect-key-identity-v8"
+          ],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "none"
+      },
+      "expected": {
+        "boundary": "accept",
+        "final_decision": "answer",
+        "checks": [
+          "current_exact_metadata_label",
+          "whole_selected_excerpts",
+          "all_active_user_facts_attributed",
+          "unverified_cause_and_fix_disclaimer"
+        ]
+      },
+      "why_registered": "A correct exact-version whole quotation must survive the new boundary.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-positive-historical-quote",
+      "category": "positive_rendering",
+      "case_id": "controlled-v8-version-correction",
+      "plan_templates": [
+        {
+          "decision": "answer",
+          "source_chunk_ids": [
+            "release-150-multiselect-key-identity-v8"
+          ],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "none"
+      },
+      "expected": {
+        "boundary": "accept",
+        "final_decision": "answer",
+        "checks": [
+          "historical_other_version_label",
+          "only_active_user_version_current"
+        ]
+      },
+      "why_registered": "Do not repeat the V8 strict-filter loss of a safe historical comparison.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-positive-unknown-version-quote",
+      "category": "positive_rendering",
+      "case_id": "controlled-v8-unknown-version-mixed",
+      "plan_templates": [
+        {
+          "decision": "answer",
+          "source_chunk_ids": [
+            "release-150-multiselect-key-identity-v8"
+          ],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "none"
+      },
+      "expected": {
+        "boundary": "accept",
+        "final_decision": "answer",
+        "checks": [
+          "unconfirmed_applicability_label",
+          "no_source_version_promoted_to_user_fact"
+        ],
+        "decision_usefulness": "unclassified_partial_documentation_summary"
+      },
+      "why_registered": "Quoting scoped text with unknown user version may be representable; it is not a useful diagnosis or proof of correct routing.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-positive-unscoped-quote",
+      "category": "positive_rendering",
+      "case_id": "controlled-v8-unknown-version-mixed",
+      "plan_templates": [
+        {
+          "decision": "answer",
+          "source_chunk_ids": [
+            "widget-key-identity-history-snapshot-v8"
+          ],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "none"
+      },
+      "expected": {
+        "boundary": "accept",
+        "final_decision": "answer",
+        "checks": [
+          "unconfirmed_applicability_label",
+          "no_source_version_promoted_to_user_fact"
+        ]
+      },
+      "why_registered": "The unversioned history snapshot must stay unconfirmed and cannot establish installed user version.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-positive-canonical-user-question",
+      "category": "positive_question",
+      "case_id": "controlled-v8-full",
+      "plan_templates": [
+        {
+          "decision": "ask",
+          "source_chunk_ids": [],
+          "question_name": "parent_callback_code",
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "none"
+      },
+      "expected": {
+        "boundary": "accept",
+        "final_decision": "ask",
+        "checks": [
+          "exact_canonical_question",
+          "user_gap_separated_from_source_gap"
+        ]
+      },
+      "why_registered": "A manually registered missing user-code question must remain answerable and exact.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-context-hash-changed",
+      "category": "context_integrity",
+      "case_id": "controlled-v8-full",
+      "plan_templates": [
+        {
+          "decision": "answer",
+          "source_chunk_ids": [
+            "release-150-multiselect-key-identity-v8"
+          ],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "replace_plan_field",
+        "field": "context_sha256",
+        "value": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "expected": {
+        "boundary": "reject"
+      },
+      "why_registered": "A plan bound to a different context cannot render against this request.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-source-hash-changed",
+      "category": "source_integrity",
+      "case_id": "controlled-v8-full",
+      "plan_templates": [
+        {
+          "decision": "answer",
+          "source_chunk_ids": [
+            "release-150-multiselect-key-identity-v8"
+          ],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "replace_first_source_hash",
+        "value": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "expected": {
+        "boundary": "reject"
+      },
+      "why_registered": "The chunk identifier alone is insufficient; the complete source content digest must match.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-source-id-unknown",
+      "category": "source_integrity",
+      "case_id": "controlled-v8-full",
+      "plan_templates": [
+        {
+          "decision": "answer",
+          "source_chunk_ids": [
+            "invented-chunk-v9"
+          ],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "reference_absent_source",
+        "content_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "expected": {
+        "boundary": "reject"
+      },
+      "why_registered": "Unknown evidence must fail even with valid plan shape.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-same-id-excerpt-changed",
+      "category": "source_integrity",
+      "case_id": "controlled-v8-full",
+      "plan_templates": [
+        {
+          "decision": "answer",
+          "source_chunk_ids": [
+            "release-150-multiselect-key-identity-v8"
+          ],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "change_source_after_plan_hash",
+        "chunk_id": "release-150-multiselect-key-identity-v8",
+        "field": "excerpt",
+        "suffix": "\nControlled additional text after hashing."
+      },
+      "expected": {
+        "boundary": "reject"
+      },
+      "why_registered": "A retained chunk ID with changed excerpt must invalidate the old hash.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-same-id-version-metadata-changed",
+      "category": "source_integrity",
+      "case_id": "controlled-v8-full",
+      "plan_templates": [
+        {
+          "decision": "answer",
+          "source_chunk_ids": [
+            "release-150-multiselect-key-identity-v8"
+          ],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "change_source_after_plan_hash",
+        "chunk_id": "release-150-multiselect-key-identity-v8",
+        "field": "applicable_versions",
+        "value": [
+          "1.49.1"
+        ]
+      },
+      "expected": {
+        "boundary": "reject"
+      },
+      "why_registered": "Version metadata is part of source integrity, rather than freely changeable applicability authority.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-same-revision-user-fact-changed",
+      "category": "context_integrity",
+      "case_id": "controlled-v8-full",
+      "plan_templates": [
+        {
+          "decision": "answer",
+          "source_chunk_ids": [
+            "release-150-multiselect-key-identity-v8"
+          ],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "change_case_after_context_hash",
+        "fact_name": "streamlit_version",
+        "value": "1.49.1",
+        "advance_revision": false
+      },
+      "expected": {
+        "boundary": "reject"
+      },
+      "why_registered": "Same revision number must not bind a plan to a different state content.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-old-revision-context-after-correction",
+      "category": "context_integrity",
+      "case_id": "controlled-v8-version-correction",
+      "plan_templates": [
+        {
+          "decision": "answer",
+          "source_chunk_ids": [
+            "release-150-multiselect-key-identity-v8"
+          ],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "use_prior_state_context_hash",
+        "state_path": "transition_input.prior_case_state"
+      },
+      "expected": {
+        "boundary": "reject"
+      },
+      "why_registered": "An old context digest cannot authorize a new corrected deployment summary.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-retired-source-after-refinement",
+      "category": "source_integrity",
+      "case_id": "controlled-v8-refinement-stale-source",
+      "plan_templates": [
+        {
+          "decision": "retrieve_more",
+          "source_chunk_ids": [],
+          "question_name": null,
+          "retrieval_queries": [
+            "Streamlit 1.50.0 multiselect key identity default changes release notes"
+          ]
+        },
+        {
+          "decision": "answer",
+          "source_chunk_ids": [
+            "release-150-multiselect-key-identity-v8"
+          ],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "second_plan_source_hash_from_first_bundle",
+        "chunk_id": "release-150-multiselect-key-identity-v8"
+      },
+      "expected": {
+        "boundary": "reject",
+        "checks": [
+          "latest_bundle_only",
+          "no_retired_citation"
+        ]
+      },
+      "why_registered": "A source dropped from round two cannot be retained merely because the model saw it earlier.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-free-user-prose",
+      "category": "free_prose_containment",
+      "case_id": "controlled-v8-full",
+      "plan_templates": [
+        {
+          "decision": "answer",
+          "source_chunk_ids": [
+            "release-150-multiselect-key-identity-v8"
+          ],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "add_plan_field",
+        "field": "user_draft",
+        "value": "Removing the key guarantees a fix."
+      },
+      "expected": {
+        "boundary": "reject",
+        "interpretation": "forbidden_output_representation_not_semantic_entailment_detection"
+      },
+      "why_registered": "No unconstrained final prose, evidence claim, fact update or check advice may bypass deterministic rendering.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-free-maintainer-prose",
+      "category": "free_prose_containment",
+      "case_id": "controlled-v8-full",
+      "plan_templates": [
+        {
+          "decision": "answer",
+          "source_chunk_ids": [
+            "release-150-multiselect-key-identity-v8"
+          ],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "add_plan_field",
+        "field": "maintainer_summary",
+        "value": "The reduced example fails and the cause is proven."
+      },
+      "expected": {
+        "boundary": "reject",
+        "interpretation": "forbidden_output_representation_not_semantic_entailment_detection"
+      },
+      "why_registered": "No unconstrained final prose, evidence claim, fact update or check advice may bypass deterministic rendering.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-free-rationale",
+      "category": "free_prose_containment",
+      "case_id": "controlled-v8-full",
+      "plan_templates": [
+        {
+          "decision": "answer",
+          "source_chunk_ids": [
+            "release-150-multiselect-key-identity-v8"
+          ],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "add_plan_field",
+        "field": "rationale",
+        "value": "The cited release note proves an unseen callback root cause."
+      },
+      "expected": {
+        "boundary": "reject",
+        "interpretation": "forbidden_output_representation_not_semantic_entailment_detection"
+      },
+      "why_registered": "No unconstrained final prose, evidence claim, fact update or check advice may bypass deterministic rendering.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-free-fact-delta",
+      "category": "free_prose_containment",
+      "case_id": "controlled-v8-full",
+      "plan_templates": [
+        {
+          "decision": "answer",
+          "source_chunk_ids": [
+            "release-150-multiselect-key-identity-v8"
+          ],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "add_plan_field",
+        "field": "facts_delta",
+        "value": [
+          {
+            "name": "root_cause",
+            "value": "Callback deletes the wrong key",
+            "source_ref": "release-150-multiselect-key-identity-v8",
+            "turn_id": "model-v9",
+            "provenance_kind": "evidence",
+            "status": "active"
+          }
+        ]
+      },
+      "expected": {
+        "boundary": "reject",
+        "interpretation": "forbidden_output_representation_not_semantic_entailment_detection"
+      },
+      "why_registered": "No unconstrained final prose, evidence claim, fact update or check advice may bypass deterministic rendering.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-free-check-suggestion",
+      "category": "free_prose_containment",
+      "case_id": "controlled-v8-full",
+      "plan_templates": [
+        {
+          "decision": "answer",
+          "source_chunk_ids": [
+            "release-150-multiselect-key-identity-v8"
+          ],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "add_plan_field",
+        "field": "checks_suggested",
+        "value": [
+          "Repeat the already-working reduction using different wording."
+        ]
+      },
+      "expected": {
+        "boundary": "reject",
+        "interpretation": "forbidden_output_representation_not_semantic_entailment_detection"
+      },
+      "why_registered": "No unconstrained final prose, evidence claim, fact update or check advice may bypass deterministic rendering.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-free-citation-claim",
+      "category": "free_prose_containment",
+      "case_id": "controlled-v8-full",
+      "plan_templates": [
+        {
+          "decision": "answer",
+          "source_chunk_ids": [
+            "release-150-multiselect-key-identity-v8"
+          ],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "add_first_source_field",
+        "field": "claim",
+        "value": "The release note guarantees the full-app fix."
+      },
+      "expected": {
+        "boundary": "reject",
+        "interpretation": "forbidden_output_representation_not_semantic_entailment_detection"
+      },
+      "why_registered": "A valid source hash must not bless an arbitrary attached claim.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-selective-substring-quote",
+      "category": "free_prose_containment",
+      "case_id": "controlled-v8-full",
+      "plan_templates": [
+        {
+          "decision": "answer",
+          "source_chunk_ids": [
+            "release-150-multiselect-key-identity-v8"
+          ],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "add_first_source_field",
+        "field": "quote",
+        "value": "widgets are transitioning to an identity based only on their keys"
+      },
+      "expected": {
+        "boundary": "reject"
+      },
+      "why_registered": "The plan selects entire registered chunks; output-provided substrings and stripped qualifiers are unsupported.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-documentation-gap-as-user-question",
+      "category": "question_boundary",
+      "case_id": "controlled-v8-key-evidence-removed",
+      "plan_templates": [
+        {
+          "decision": "ask",
+          "source_chunk_ids": [],
+          "question_name": "documentation_gap_1",
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "none"
+      },
+      "expected": {
+        "boundary": "reject"
+      },
+      "why_registered": "A source gap cannot become a question asking the user to supply documentation truth.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-unregistered-user-question",
+      "category": "question_boundary",
+      "case_id": "controlled-v8-full",
+      "plan_templates": [
+        {
+          "decision": "ask",
+          "source_chunk_ids": [],
+          "question_name": "please_find_official_docs",
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "none"
+      },
+      "expected": {
+        "boundary": "reject"
+      },
+      "why_registered": "A new question target needs explicit caller metadata rather than model invention.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-known-fact-registered-as-gap",
+      "category": "question_boundary",
+      "case_id": "controlled-v8-full",
+      "plan_templates": [
+        {
+          "decision": "ask",
+          "source_chunk_ids": [],
+          "question_name": "streamlit_version",
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "append_catalog_gap",
+        "gap": {
+          "name": "streamlit_version",
+          "kind": "user",
+          "description": "Wrongly declared absent active user version.",
+          "necessity": "Controlled invalid catalog input.",
+          "question": "Which Streamlit version is installed?"
+        }
+      },
+      "expected": {
+        "boundary": "reject",
+        "stage": "request_preparation"
+      },
+      "why_registered": "Caller metadata cannot declare an active confirmed user fact missing.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-ask-without-target",
+      "category": "question_boundary",
+      "case_id": "controlled-v8-full",
+      "plan_templates": [
+        {
+          "decision": "ask",
+          "source_chunk_ids": [],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "none"
+      },
+      "expected": {
+        "boundary": "reject"
+      },
+      "why_registered": "An ask needs a single registered, user-answerable target.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-answer-with-question-target",
+      "category": "question_boundary",
+      "case_id": "controlled-v8-full",
+      "plan_templates": [
+        {
+          "decision": "answer",
+          "source_chunk_ids": [
+            "release-150-multiselect-key-identity-v8"
+          ],
+          "question_name": "parent_callback_code",
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "none"
+      },
+      "expected": {
+        "boundary": "reject"
+      },
+      "why_registered": "The renderer must not smuggle a question into an answer decision.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-conflict-answer-selects-one-side",
+      "category": "declared_conflict",
+      "case_id": "controlled-v8-same-version-synthetic-conflict",
+      "plan_templates": [
+        {
+          "decision": "answer",
+          "source_chunk_ids": [
+            "release-150-multiselect-key-identity-v8"
+          ],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "none"
+      },
+      "expected": {
+        "boundary": "reject",
+        "interpretation": "caller_declared_conflict_gate_not_automatic_contradiction_detection"
+      },
+      "why_registered": "Declared unresolved conflicts forbid an answer even when one side alone is selected.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-conflict-escalation-shows-both",
+      "category": "declared_conflict",
+      "case_id": "controlled-v8-same-version-synthetic-conflict",
+      "plan_templates": [
+        {
+          "decision": "escalate",
+          "source_chunk_ids": [
+            "release-150-multiselect-key-identity-v8"
+          ],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "none"
+      },
+      "expected": {
+        "boundary": "accept",
+        "final_decision": "escalate",
+        "checks": [
+          "all_declared_conflict_members_rendered",
+          "conflict_is_caller_declared"
+        ]
+      },
+      "why_registered": "The model cannot conceal the synthetic opposite side by omitting it from selected source IDs.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-conflict-catalog-ablation",
+      "category": "manual_metadata_ablation",
+      "case_id": "controlled-v8-same-version-synthetic-conflict",
+      "plan_templates": [
+        {
+          "decision": "answer",
+          "source_chunk_ids": [
+            "synthetic-conflict-150-default-reset-v8"
+          ],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "clear_conflict_groups"
+      },
+      "expected": {
+        "boundary": "accept",
+        "final_decision": "answer",
+        "checks": [
+          "whole_selected_excerpts",
+          "source_text_attributed_not_verified"
+        ],
+        "decision_usefulness": "unclassified",
+        "source_truth": "unclassified",
+        "automatic_conflict_detection": false
+      },
+      "why_registered": "Removing manual contradiction metadata must expose the limitation; exact quotes and matching versions do not determine source truth.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-source-authenticity-spoof-fresh-hash",
+      "category": "source_truth_limit",
+      "case_id": "controlled-v8-full",
+      "plan_templates": [
+        {
+          "decision": "answer",
+          "source_chunk_ids": [
+            "release-150-multiselect-key-identity-v8"
+          ],
+          "question_name": null,
+          "retrieval_queries": []
+        }
+      ],
+      "mutation": {
+        "operation": "replace_source_before_preparation",
+        "chunk_id": "release-150-multiselect-key-identity-v8",
+        "fields": {
+          "excerpt": "Controlled synthetic false rule: every keyed widget resets when default changes.",
+          "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md",
+          "source_type": "release_note"
+        }
+      },
+      "expected": {
+        "boundary": "accept",
+        "final_decision": "answer",
+        "checks": [
+          "whole_selected_excerpts",
+          "source_text_attributed_not_verified"
+        ],
+        "source_authenticity": "unclassified",
+        "source_truth": "unclassified"
+      },
+      "why_registered": "A fresh digest validates supplied content identity, not authenticity or entailment; spoofed provenance is an explicit coverage limit.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-three-retrieval-queries",
+      "category": "workflow_limit",
+      "case_id": "controlled-v8-key-evidence-removed",
+      "plan_templates": [
+        {
+          "decision": "retrieve_more",
+          "source_chunk_ids": [],
+          "question_name": null,
+          "retrieval_queries": [
+            "query-one-v9",
+            "query-two-v9",
+            "query-three-v9"
+          ]
+        }
+      ],
+      "mutation": {
+        "operation": "none"
+      },
+      "expected": {
+        "boundary": "reject"
+      },
+      "why_registered": "The new response contract cannot enlarge the existing maximum of two queries.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    },
+    {
+      "id": "v9-repeated-retrieval-query",
+      "category": "workflow_limit",
+      "case_id": "controlled-v8-key-evidence-removed",
+      "plan_templates": [
+        {
+          "decision": "retrieve_more",
+          "source_chunk_ids": [],
+          "question_name": null,
+          "retrieval_queries": [
+            "fixed-repeat-query-v9"
+          ]
+        },
+        {
+          "decision": "retrieve_more",
+          "source_chunk_ids": [],
+          "question_name": null,
+          "retrieval_queries": [
+            "fixed-repeat-query-v9"
+          ]
+        }
+      ],
+      "mutation": {
+        "operation": "none"
+      },
+      "expected": {
+        "boundary": "stop",
+        "checks": [
+          "maximum_two_model_attempts",
+          "maximum_two_retrieval_rounds",
+          "no_unbounded_resume"
+        ]
+      },
+      "why_registered": "Refinement consumes the shared invocation allowance; repeated requests cannot obtain extra model attempts.",
+      "authorship": "Codex authored controlled software probe; not a model output or human-gold semantic label."
+    }
+  ],
+  "legacy_negative_representation_boundary": {
+    "legacy_negative_count": 7,
+    "retain_original_full_outputs_for_baseline": true,
+    "candidate_raw_legacy_output_expected": "All fourteen legacy AnalysisResult payloads use fields outside GroundedPlan and must be rejected as representation mismatches, including seven valid positive drafts.",
+    "must_not_call_this": "automatic semantic detection of the seven legacy negative meanings",
+    "typed_semantic_limit": "A correctly hashed false or contradictory source can still be quoted with attribution unless a caller conflict declaration blocks answer. Whole quotation does not establish source truth, relevance, causality, authenticity or useful routing.",
+    "old_stale_reference_boundary": "The existing latest-bundle citation failure has a separate typed integrity probe; do not attribute it to new semantic reasoning."
+  },
+  "scoring_boundary": {
+    "reviewer_labels_are": "Developer-authored control expectations, not human gold or source-derived automatic labels.",
+    "metrics_separate": [
+      "baseline legacy negative acceptance and positive retention",
+      "legacy/raw output representation conformance (both positive and negative payloads)",
+      "seven mapped useful positive intents retained under new representation",
+      "source and context integrity attacks rejected",
+      "registered canonical user-question and documentation-gap separation",
+      "declared conflict metadata versus ablation",
+      "source authenticity/truth/usefulness left unclassified where outside contract"
+    ],
+    "human_gate": "Final rendered content still needs whole-proposal review bound to its exact hash; this experiment grants no human approval, tracker execution or solved-case status.",
+    "changes_after_registration": "A changed fixture/catalog/oracle needs a new identified registration or disclosed amendment before replay."
+  }
+}
