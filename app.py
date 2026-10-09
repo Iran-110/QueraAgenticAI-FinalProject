@@ -54,12 +54,57 @@ with st.sidebar:
     st.header("Agent Controls")
     st.info("This is where Human-in-the-Loop (HITL) approval actions will appear.")
     
-    # TODO: Check if the LangGraph agent is paused at an `interrupt_before` node
-    # TODO: Display the proposed action and provide "Approve", "Reject", and "Edit" buttons
-    # TODO: Resume the agent execution with the human's feedback
+    if "session_id" not in st.session_state:
+        st.session_state.session_id = "session_1"
+
+    # Call FastAPI to get state
+    try:
+        import requests
+        state_response = requests.get(f"http://127.0.0.1:8000/state/{st.session_state.session_id}")
+        if state_response.status_code == 200:
+            agent_state = state_response.json()
+            is_paused = agent_state.get("is_paused", False)
+            proposed_action = agent_state.get("proposed_action")
+            
+            if is_paused and proposed_action:
+                st.warning("Agent is paused and awaiting your approval.")
+                st.json(proposed_action)
+                
+                col1, col2, col3 = st.columns(3)
+                with col1:
+                    if st.button("Approve", use_container_width=True, type="primary"):
+                        requests.post("http://127.0.0.1:8000/action", json={
+                            "session_id": st.session_state.session_id,
+                            "decision": "approve"
+                        })
+                        st.rerun()
+                with col2:
+                    if st.button("Reject", use_container_width=True):
+                        requests.post("http://127.0.0.1:8000/action", json={
+                            "session_id": st.session_state.session_id,
+                            "decision": "reject"
+                        })
+                        st.rerun()
+                with col3:
+                    if st.button("Edit", use_container_width=True):
+                        # Simple edit mock for now
+                        requests.post("http://127.0.0.1:8000/action", json={
+                            "session_id": st.session_state.session_id,
+                            "decision": "edit",
+                            "edited_action": proposed_action # Mocked edit
+                        })
+                        st.rerun()
+        else:
+            st.error("Failed to fetch state from backend.")
+    except Exception as e:
+        st.error(f"Backend not running: {e}")
 
     if st.button("Reset Session"):
         st.session_state.messages = []
+        try:
+            requests.get("http://127.0.0.1:8000/state/reset") # Mock endpoint for reset if needed
+        except:
+            pass
         st.rerun()
         
     st.divider()
@@ -85,7 +130,6 @@ if view == "Support Assistant":
     st.title("Streamlit Support Assistant")
     st.markdown("Welcome to the Agentic AI Support Assistant for Streamlit issues.")
 
-    # TODO: Connect to local SQLite/JSON tracker to load existing issue state and history
     # Initialize chat history
     if "messages" not in st.session_state:
         st.session_state.messages = []
@@ -102,16 +146,34 @@ if view == "Support Assistant":
         # Add user message to chat history
         st.session_state.messages.append({"role": "user", "content": prompt})
 
-        # TODO: Invoke the LangGraph agent with the user's prompt and current state
-        # TODO: Stream the agent's intermediate steps (thought process, tool calls) to the UI
-        # Placeholder for agent response
-        response = f"Agent is processing your issue: {prompt}\n\n*Note: LangGraph integration is pending.*"
-        
-        # Display assistant response in chat message container
+        # Display an empty placeholder for the assistant response while waiting
         with st.chat_message("assistant"):
-            st.markdown(response)
+            message_placeholder = st.empty()
+            message_placeholder.markdown("Thinking...")
+            
+            try:
+                import requests
+                # Invoke FastAPI backend
+                response = requests.post("http://127.0.0.1:8000/chat", json={
+                    "session_id": st.session_state.session_id,
+                    "message": prompt
+                })
+                
+                if response.status_code == 200:
+                    data = response.json()
+                    bot_msg = data.get("message", "Error: No message returned")
+                else:
+                    bot_msg = f"Backend Error: {response.status_code}"
+            except Exception as e:
+                bot_msg = f"Failed to connect to backend: {e}"
+
+            message_placeholder.markdown(bot_msg)
+            
         # Add assistant response to chat history
-        st.session_state.messages.append({"role": "assistant", "content": response})
+        st.session_state.messages.append({"role": "assistant", "content": bot_msg})
+        
+        # Rerun to update sidebar state (if it got paused)
+        st.rerun()
 
 elif view == "Project Definition":
     st.markdown(read_md("QBC13_AgenticAI_FinalProject.md"))

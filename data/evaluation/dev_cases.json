@@ -1,0 +1,25 @@
+[
+  {
+    "case_id": "dev_01",
+    "category": "session_state",
+    "is_adversarial": false,
+    "turns": [
+      {
+        "user_message": "My Streamlit app is losing state when I click a button.",
+        "expected_agent_actions": ["search_docs", "ask_clarification"],
+        "evaluator": {
+          "type": "llm_judge",
+          "criteria": "Did the agent correctly identify that the user is likely missing st.session_state initialization, and did it ask for code to confirm?"
+        }
+      },
+      {
+        "user_message": "Here is the code: ...",
+        "expected_agent_actions": ["propose_fix"],
+        "evaluator": {
+          "type": "regex",
+          "pattern": "if\\s+['\"]count['\"]\\s+not\\s+in\\s+st\\.session_state:"
+        }
+      }
+    ]
+  }
+]
