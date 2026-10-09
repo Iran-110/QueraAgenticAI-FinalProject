@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from typing import Optional, Dict, Any, List
 import asyncio
 
-from src.agent_app.tracker.dummy_tracker import tracker
+from agent_app.tracker.dummy_tracker import tracker
 
 app = FastAPI(title="Agentic AI Backend")
 
