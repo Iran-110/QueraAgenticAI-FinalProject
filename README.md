@@ -16,6 +16,14 @@
 کد Git قبلی هم بازتولید شده است. [گزارش فارسی و راه بازبینی](docs/controlled-core-v8.fa.md)
 ورودی‌ها، نتایج، محدودیت‌ها و نیاز دقیق اتصال تیم را توضیح می‌دهد.
 
+ارتقای بعدی مسیر اختیاری `GroundedPlan` را اضافه کرد: مدل فقط تصمیم و منبع را
+انتخاب می‌کند و core نقل‌قول کامل، محدودهٔ نسخه و سؤال ثبت‌شده را می‌سازد.
+هر هفت قصد مفید تألیفی حفظ شد، از جمله مقایسهٔ تاریخی؛ کنترل‌های منبع/وضعیت و
+بازبینی کل پیشنهاد هم اضافه شدند. تشخیص حقیقت منبع و تضادِ اعلام‌نشده همچنان
+حل نشده و کیفیت انتخاب مدل زنده اندازه‌گیری نشده است. نتیجهٔ بررسی تازهٔ کاربر
+نیز شواهد استنتاج‌شدهٔ قبلی را بازنشسته می‌کند. [گزارش فارسی ارتقا](docs/controlled-core-v9.fa.md)
+و [قرارداد و مثال اتصال](docs/extractive-core.md) جزئیات را ثبت می‌کنند.
+
 ## شروع سریع
 
 نیازمندی‌ها: Git، Python 3.13 و [uv](https://docs.astral.sh/uv/). دستورها را از ریشهٔ همین ریپو اجرا کنید:
@@ -28,6 +36,7 @@ uv run agent-app demo --scenario refine
 uv run agent-app gateway-demo --scenario repair
 uv run agent-app turn-demo
 uv run python -m agent_app.reasoning.controlled_experiments
+uv run python -m agent_app.reasoning.grounding_experiments
 ```
 
 سناریوهای دیگر: `escalate` برای ارجاع و `error` برای خرابی بازیابی. خروجی JSON شامل نتیجه و ردگیری اجراست. سناریوی `error` عمداً با کد خروج ۱ تمام می‌شود. برای این دمو کلید API لازم نیست.
@@ -87,6 +96,8 @@ uv run streamlit run app.py
 - [بررسی آفلاین کل پاسخ و مرز چک‌های کد](docs/decision-quality-v6.md)
 - [مقایسه تازه دقت گزارش و پشتیبانی ادعاها از منبع](docs/decision-quality-v7.md)
 - [آزمایش کنترل‌شدهٔ Issue واقعی، ورودی نسخه و مرز شواهد](docs/controlled-core-v8.fa.md)
+- [ارتقای پاسخ مستند و بازبینی کل پیشنهاد با مقایسهٔ کنترل‌شده](docs/controlled-core-v9.fa.md)
+- [قرارداد اختیاری پاسخ مستند و مثال اجرایی اتصال](docs/extractive-core.md)
 - [چک‌های اختیاری callback و سؤال‌های مجاز](docs/proposal-checks.md)
 - [راهنمای مشترک ایجنت‌های کدنویسی](AGENTS.md) و [ورودی Claude Code](CLAUDE.md)
 - [پلن اولیهٔ تیم](plan/plan.md) و [نسخهٔ داخل ریپو از صورت‌مسئله](QBC13_AgenticAI_FinalProject.md)

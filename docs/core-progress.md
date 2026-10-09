@@ -392,6 +392,68 @@ real RAG performance or held-out success. No paid request, key access or tracker
 write was made for this change. See [user turns](user-turns.md) for the current
 input rules and handoff behavior.
 
+## 2026-10-09 — source-bound plans and complete review records
+
+Continued from `e90f2d9` on `feat/agent-core-integration`, preserving the earlier
+controlled work. Preregistered V9 at `56ec12a` before replay: six identical V8
+material cases, fourteen original proposals, seven positive plan mappings and 31
+structured probes. Extra caller-curated user/source gaps and declared conflicts
+are explicit candidate inputs, not model-discovered labels. The production
+single-agent structure/defaults remain unchanged.
+
+Added optional `GroundedPlanner`/`GroundedReasoner` with complete context/source
+hash binding and deterministic whole-quote rendering. It removes unrestricted
+model prose, citation claims, fact updates, check suggestions and quote-substring
+selection from this path. Active reports remain attributed; version scopes remain
+exact metadata/historical/unconfirmed. Source/context integrity failures stop
+terminally; malformed plans use only the existing remaining attempt. The new
+`MetisGroundedPlanner` reuses the same single-send gateway, ledger and duplicate
+request identity; all eight prior analysis prompt policies stay unchanged.
+
+Added pure whole-proposal review packets/attestations. Complete output surfaces,
+case and latest bundle are bound, with six required review dimensions and optional
+exact source/output spans or active-user-fact references. Authentication and
+action approval remain tracker-owned. Tests deliberately show that an incorrect
+authenticated semantic judgment can mechanically pass. Hashes/record completeness
+do not prove truth, entailment, claim coverage or reviewer authentication.
+
+The current-default V9 replay reproduces **6/7 negative acceptance, 7/7 positives**;
+the new representation retains **all seven mapped positive intents**, including
+the safe historical comparison lost by strict V8 filtering. All **31 registered
+probe expectations** match, including accepted unclassified false-source and
+undeclared-conflict controls. Fourteen old payloads are all rejected as schema
+mismatches, including valid positives; this is not semantic detection. The actual
+`e90f2d9` code was separately archived/imported in a temporary directory; all
+fourteen outcomes/source pools match, without checkout changes. Original V8 Git
+baseline reproduction remains byte-identical.
+
+Independent scorer review reproduced a false positive when removing the key
+release source and its citation while retaining another source. Corrected scoring
+derives mandatory sources from the final plan plus conflict groups, checks exact
+citation sets and complete quotations in both answer and summary, and binds all
+rendered fields. Unexpected adapter crashes no longer count as successful guard
+rejections. Those checks are output integrity, not a semantic judge. Initial
+receipts are preserved under ignored runtime paths; the final checked-in receipt
+exactly reproduces source fingerprint
+`1004f837a9b5dae02bc23cfd8688ea9037ffd937e394e2b07d9ce169a44094da`.
+Public hashing/packet helpers now sanitize encoding/constructed-input failures;
+review inventories retain valid long escaped fact records without truncation.
+
+Verified locked dependencies, **1,414 offline tests** (169 more than V8), Ruff
+lint/format, eight earlier protocol validations, semantic and V8 replays, V9
+validation/replay, both actual Git baselines, saved-receipt equality, all three
+required demos, runnable integration example and local documentation links.
+CI includes V9 offline commands; no remote run is claimed. New project API cost
+is **USD 0**, with no environment-key read, tracker writes or ledger mutation.
+Original ledger remains halted with USD 0.02 unresolved model mismatch and
+USD 0.120888405 settled estimates; billing/identity reconciliation is still absent.
+
+See [Persian upgrade rationale/results](controlled-core-v9.fa.md) and
+[extractive contracts and handoffs](extractive-core.md). Actual RAG provenance and
+family exclusion, authenticated tracker review/approval/replay, complete UI
+display and unexposed real-model evaluation remain integration work. No new
+production agent/framework, merge to main or push was performed.
+
 ## Next integration work
 
 ### Shared release — 2026-10-07

@@ -127,6 +127,29 @@ does not verify APIs, callback arity or correct diagnosis. Explicit development
 proposal checks cover a small source-grounded subset separately; see
 [their applicability and limits](proposal-checks.md).
 
+## Optional source-bound plans and complete review
+
+The additive `GroundedPlanner` port can replace unrestricted final prose with a
+`GroundedPlan` selecting routing, complete source references or a registered user
+question. Wrap it in `GroundedReasoner`; the engine still returns `AnalysisResult`
+and requires separate approval. The caller supplies reviewed user/source gap and
+conflict catalogs for each latest bundle. Source/context hashes enforce content
+binding; they do not detect false source text, unknown contradictions or semantic
+entailment. Keep `evidence_scope="all"` when preserving historical comparisons.
+
+`MetisGroundedPlanner` uses the existing gateway/ledger with
+`MetisConfig(response_mode="grounded_plan", ...)`; default `analysis` is unchanged.
+Malformed plans share the two-attempt allowance. Source/context binding failures
+are terminal and never buy another attempt. There is no second production agent.
+
+Pure proposal-review helpers bind the whole output, case and latest evidence to
+an authenticated caller's review record. Their `pass` validates the record's
+integrity/completeness, not semantic correctness or tracker permission. The
+tracker must separately authenticate the reviewer, bind execution approval,
+check revision and persist deduplicated outcomes atomically. See the
+[extractive contracts, runnable example and exact handoff](extractive-core.md)
+and [controlled Persian results](controlled-core-v9.fa.md).
+
 ## Tracker and UI handoff
 
 The tracker owns authoritative state. For user updates, deduplicate the event
