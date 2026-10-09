@@ -334,6 +334,26 @@ class SupportEngine:
                         ),
                     ),
                 )
+            except InvalidAnalysis as error:
+                # A structured-plan adapter may reject before an AnalysisResult
+                # exists. Its diagnostics are still untrusted port output.
+                self._ensure_current(case)
+                feedback = self._safe_output_feedback(error)
+                progress.output_issues.extend(feedback.issues)
+                last_error = "ModelOutputInvalid"
+                progress.note("reasoning_failed", last_error)
+                progress.note("output_validation", ", ".join(i.code for i in feedback.issues))
+                # Preserve the legacy terminal evidence/identity boundary. A
+                # malformed representation can be repaired; binding a plan to
+                # other case/source content cannot buy another paid attempt.
+                terminal_codes = {
+                    "grounded_context_mismatch": "GroundedContextMismatch",
+                    "grounded_source_mismatch": "GroundedSourceMismatch",
+                }
+                for issue in feedback.issues:
+                    if issue.code in terminal_codes:
+                        raise _Stopped(terminal_codes[issue.code]) from None
+                continue
             except ReasoningStopped as stopped:
                 self._ensure_current(case)
                 raise _Stopped(stopped.code, stopped.status) from None
@@ -380,10 +400,10 @@ class SupportEngine:
                     if issues:
                         raise InvalidAnalysis(tuple(issues[:8]))
             except InvalidAnalysis as error:
-                feedback = OutputFeedback(issues=error.issues)
-                progress.output_issues.extend(error.issues)
+                feedback = self._safe_output_feedback(error)
+                progress.output_issues.extend(feedback.issues)
                 last_error = "ModelOutputInvalid"
-                codes = ", ".join(issue.code for issue in error.issues)
+                codes = ", ".join(issue.code for issue in feedback.issues)
                 progress.note("reasoning_failed", last_error)
                 progress.note("output_validation", codes)
                 continue
@@ -396,6 +416,15 @@ class SupportEngine:
                 continue
             return analysis
         raise _Stopped(last_error)
+
+    @staticmethod
+    def _safe_output_feedback(error: InvalidAnalysis) -> OutputFeedback:
+        try:
+            return OutputFeedback.model_validate(
+                {"issues": [issue.model_dump(warnings=False) for issue in error.issues]}
+            )
+        except (ValidationError, ValueError, TypeError, AttributeError, RecursionError):
+            return OutputFeedback(issues=(OutputIssue(code="invalid_shape"),))
 
     @staticmethod
     def _validate_analysis(
