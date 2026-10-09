@@ -39,6 +39,18 @@ __all__ = [
     "OutputFeedback",
     "RunResult",
     "TraceEvent",
+    "GroundedGap",
+    "GroundedSourceRef",
+    "GroundedRequest",
+    "GroundedPlan",
+    "ReviewSurface",
+    "ReviewOutputSpan",
+    "ReviewSourceQuote",
+    "ReviewClaimBinding",
+    "ReviewDimension",
+    "ProposalReviewPacket",
+    "ReviewAttestation",
+    "ProposalReviewResult",
 ]
 
 
@@ -382,6 +394,12 @@ class OutputIssue(Contract):
         "final_queries_forbidden",
         "ask_question_required",
         "question_forbidden",
+        "invalid_grounded_plan",
+        "grounded_context_mismatch",
+        "grounded_source_mismatch",
+        "grounded_question_invalid",
+        "grounded_conflict_unresolved",
+        "grounded_render_too_large",
     ]
     field: (
         Literal[
@@ -471,4 +489,257 @@ class RunResult(Contract):
                 raise ValueError("awaiting_approval must not contain error_code")
         elif self.analysis is not None:
             raise ValueError("a stopped or failed run must not expose a final analysis")
+        return self
+
+
+Sha256 = Annotated[
+    str, StringConstraints(strict=True, pattern=r"^[a-f0-9]{64}$", min_length=64, max_length=64)
+]
+
+
+class GroundedGap(Contract):
+    """Caller-described missing input; it never authorizes an action."""
+
+    name: Identifier
+    kind: Literal["user", "source"]
+    description: ShortText
+    necessity: ShortText
+    question: Text | None = None
+
+    @model_validator(mode="after")
+    def question_matches_kind(self) -> Self:
+        if self.kind == "user" and self.question is None:
+            raise ValueError("a user gap requires a question")
+        if self.kind == "source" and self.question is not None:
+            raise ValueError("a source gap cannot contain a user question")
+        return self
+
+
+class GroundedSourceRef(Contract):
+    chunk_id: Identifier
+    content_sha256: Sha256
+
+
+class GroundedRequest(Contract):
+    """Bounded extractive input; cross-object freshness belongs to its helper."""
+
+    case: CaseState
+    user_message: Text
+    evidence: EvidenceBundle
+    gaps: tuple[GroundedGap, ...] = Field(default=(), max_length=8)
+    conflict_groups: tuple[tuple[Identifier, ...], ...] = Field(default=(), max_length=8)
+    context_sha256: Sha256
+
+    @field_validator("gaps")
+    @classmethod
+    def unique_gaps(cls, gaps: tuple[GroundedGap, ...]) -> tuple[GroundedGap, ...]:
+        if len({gap.name.casefold() for gap in gaps}) != len(gaps):
+            raise ValueError("gap names must be unique")
+        return gaps
+
+    @field_validator("conflict_groups")
+    @classmethod
+    def valid_conflict_groups(
+        cls, groups: tuple[tuple[str, ...], ...]
+    ) -> tuple[tuple[str, ...], ...]:
+        if any(len(group) < 2 or len(set(group)) != len(group) for group in groups):
+            raise ValueError("conflict groups require at least two distinct chunk IDs")
+        if len({frozenset(group) for group in groups}) != len(groups):
+            raise ValueError("conflict groups must be distinct")
+        return groups
+
+
+class GroundedPlan(Contract):
+    """A restricted decision plan, without generated technical prose."""
+
+    context_sha256: Sha256
+    decision: Decision
+    sources: tuple[GroundedSourceRef, ...] = Field(default=(), max_length=8)
+    question_name: Identifier | None = None
+    retrieval_queries: tuple[Query, ...] = Field(default=(), max_length=2)
+
+    @field_validator("sources")
+    @classmethod
+    def unique_source_refs(
+        cls, sources: tuple[GroundedSourceRef, ...]
+    ) -> tuple[GroundedSourceRef, ...]:
+        if len({source.chunk_id for source in sources}) != len(sources):
+            raise ValueError("grounded source IDs must be unique")
+        return sources
+
+    @field_validator("retrieval_queries")
+    @classmethod
+    def unique_queries(cls, queries: tuple[str, ...]) -> tuple[str, ...]:
+        return _unique_text(queries, "retrieval_queries")
+
+    @model_validator(mode="after")
+    def decision_matches_plan(self) -> Self:
+        if self.decision == "retrieve_more":
+            if not self.retrieval_queries or self.question_name is not None or self.sources:
+                raise ValueError("retrieve_more requires only queries")
+        else:
+            if self.retrieval_queries:
+                raise ValueError("only retrieve_more can contain queries")
+            if self.decision == "ask":
+                if self.question_name is None:
+                    raise ValueError("ask requires a question name")
+            elif self.question_name is not None:
+                raise ValueError("only ask can contain a question name")
+            if self.decision == "answer" and not self.sources:
+                raise ValueError("answer requires a source")
+        return self
+
+
+ReviewExactText = Annotated[str, StringConstraints(strict=True, min_length=1, max_length=22_000)]
+ReviewDimensionName = Literal[
+    "claim_support",
+    "version_applicability",
+    "fact_fidelity",
+    "question_utility",
+    "conflict_handling",
+    "uncertainty",
+]
+
+
+class ReviewSurface(Contract):
+    """Inventory of a complete output surface; text remains in its original object."""
+
+    surface_id: Identifier
+    text_sha256: Sha256
+    length: Annotated[int, Field(strict=True, ge=1, le=22_000)]
+
+
+class ReviewOutputSpan(Contract):
+    surface_id: Identifier
+    start: NonnegativeInt
+    end: PositiveInt
+    text: ReviewExactText
+
+    @model_validator(mode="after")
+    def span_matches_text_length(self) -> Self:
+        if self.end <= self.start or self.end - self.start != len(self.text):
+            raise ValueError("output span must match its exact text length")
+        return self
+
+
+class ReviewSourceQuote(Contract):
+    chunk_id: Identifier
+    start: NonnegativeInt
+    end: PositiveInt
+    quote: ReviewExactText
+
+    @model_validator(mode="after")
+    def span_matches_quote_length(self) -> Self:
+        if self.end <= self.start or self.end - self.start != len(self.quote):
+            raise ValueError("source span must match its exact quote length")
+        return self
+
+
+class ReviewClaimBinding(Contract):
+    """A reviewer's judgment, not machine proof of semantic entailment."""
+
+    output: ReviewOutputSpan
+    judgment: Literal["supported", "unsupported", "insufficient"]
+    applicability: Literal["current", "historical", "unknown"]
+    source_quote: ReviewSourceQuote | None = None
+    user_fact_sha256: Sha256 | None = None
+
+    @model_validator(mode="after")
+    def binding_has_one_reference(self) -> Self:
+        if self.source_quote is not None and self.user_fact_sha256 is not None:
+            raise ValueError("a claim binding selects at most one reference")
+        if (
+            self.judgment == "supported"
+            and self.source_quote is None
+            and self.user_fact_sha256 is None
+        ):
+            raise ValueError("a supported claim binding requires a reference")
+        return self
+
+
+class ReviewDimension(Contract):
+    name: ReviewDimensionName
+    passed: Annotated[bool, Field(strict=True)]
+
+
+class ProposalReviewPacket(Contract):
+    """Content binding only; this packet never grants approval or execution authority."""
+
+    schema_version: Literal[1] = 1
+    case_id: Identifier
+    case_revision: NonnegativeInt
+    case_sha256: Sha256
+    evidence_sha256: Sha256
+    analysis_sha256: Sha256
+    surfaces: tuple[ReviewSurface, ...] = Field(min_length=1, max_length=310)
+    packet_sha256: Sha256
+
+    @field_validator("surfaces")
+    @classmethod
+    def unique_surfaces(cls, surfaces: tuple[ReviewSurface, ...]) -> tuple[ReviewSurface, ...]:
+        if len({surface.surface_id for surface in surfaces}) != len(surfaces):
+            raise ValueError("review surfaces must be unique")
+        return surfaces
+
+
+class ReviewAttestation(Contract):
+    """Caller-provided review record; the caller must authenticate reviewer provenance."""
+
+    reviewer_id: Identifier
+    packet_sha256: Sha256
+    disposition: Literal["approved", "needs_revision"]
+    reviewed_surfaces: tuple[Identifier, ...] = Field(default=(), max_length=310)
+    dimensions: tuple[ReviewDimension, ...] = Field(default=(), max_length=6)
+    claim_bindings: tuple[ReviewClaimBinding, ...] = Field(default=(), max_length=310)
+
+    @field_validator("reviewed_surfaces")
+    @classmethod
+    def unique_reviewed_surfaces(cls, surfaces: tuple[str, ...]) -> tuple[str, ...]:
+        if len(set(surfaces)) != len(surfaces):
+            raise ValueError("reviewed surfaces must be unique")
+        return surfaces
+
+    @field_validator("dimensions")
+    @classmethod
+    def unique_dimensions(
+        cls, dimensions: tuple[ReviewDimension, ...]
+    ) -> tuple[ReviewDimension, ...]:
+        if len({dimension.name for dimension in dimensions}) != len(dimensions):
+            raise ValueError("review dimensions must be unique")
+        return dimensions
+
+
+class ProposalReviewResult(Contract):
+    """Review usability only; passing does not execute or approve a tracker action."""
+
+    status: Literal["pass", "needs_review"]
+    codes: tuple[
+        Literal[
+            "InvalidReviewInput",
+            "FinalProposalRequired",
+            "ReviewPacketMismatch",
+            "UnauthenticatedReviewer",
+            "ReviewerMismatch",
+            "AttestationPacketMismatch",
+            "IncompleteSurfaceReview",
+            "UnknownReviewSurface",
+            "IncompleteDimensionReview",
+            "ReviewDimensionFailed",
+            "ReviewNeedsRevision",
+            "OutputSpanMismatch",
+            "UnknownReviewSource",
+            "SourceQuoteMismatch",
+            "InactiveUserFactReference",
+            "CurrentVersionApplicabilityUnconfirmed",
+            "ClaimNeedsRevision",
+        ],
+        ...,
+    ] = Field(default=(), max_length=18)
+
+    @model_validator(mode="after")
+    def status_matches_codes(self) -> Self:
+        if (self.status == "pass") != (not self.codes):
+            raise ValueError("a pass requires no review failure codes")
+        if len(set(self.codes)) != len(self.codes):
+            raise ValueError("review failure codes must be unique")
         return self
