@@ -606,7 +606,9 @@ class ReviewSurface(Contract):
 
     surface_id: Identifier
     text_sha256: Sha256
-    length: Annotated[int, Field(strict=True, ge=1, le=22_000)]
+    # A valid 20k Fact.value plus 500-char name can expand sixfold in
+    # canonical JSON. This inventories content; it does not retain that text.
+    length: Annotated[int, Field(strict=True, ge=1, le=125_000)]
 
 
 class ReviewOutputSpan(Contract):

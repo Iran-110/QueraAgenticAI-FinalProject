@@ -549,3 +549,20 @@ def test_review_is_for_final_proposals_only(objects):
     packet = build_proposal_review_packet(*objects)
     result = validate(packet, attestation(packet), (case, evidence, intermediate))
     assert result.codes == ("FinalProposalRequired",)
+
+
+@pytest.mark.parametrize("value", ["\\" * 20_000, "a" + "\x01" * 19_999])
+def test_complete_review_inventory_supports_maximum_valid_escaped_fact_text(objects, value):
+    case, evidence, analysis = objects
+    fact = Fact(
+        name="n" + "\x01" * 499,
+        value=value,
+        source_ref="s" * 200,
+        turn_id="t" * 200,
+        provenance_kind="evidence",
+    )
+    analysis = analysis.model_copy(update={"facts_delta": (fact,)})
+    packet = build_proposal_review_packet(case, evidence, analysis)
+    surface = next(s for s in packet.surfaces if s.surface_id == "facts_delta.0")
+    assert 22_000 < surface.length <= 125_000
+    assert validate(packet, attestation(packet), (case, evidence, analysis)).status == "pass"
