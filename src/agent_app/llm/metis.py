@@ -4,12 +4,14 @@ import hashlib
 import json
 
 import httpx
+from pydantic import ValidationError
 
-from agent_app.contracts import CaseState, EvidenceBundle, ReasoningContext
+from agent_app.contracts import CaseState, EvidenceBundle, GroundedRequest, ReasoningContext
 from agent_app.llm.budget import BudgetDenied, BudgetLedger, LedgerConflict, LedgerUnavailable
 from agent_app.llm.config import METIS_CHAT_URL, MetisConfig
 from agent_app.llm.pricing import get_price, same_verified_price
 from agent_app.orchestration.ports import ReasoningStopped
+from agent_app.reasoning.grounding import build_grounded_messages, validate_grounded_request
 from agent_app.reasoning.prompts import build_messages
 
 
@@ -55,10 +57,20 @@ class MetisReasoner:
         evidence: EvidenceBundle,
         *,
         context: ReasoningContext,
+        grounded_request: GroundedRequest | None = None,
     ) -> str:
-        case = CaseState.model_validate(case.model_dump(warnings=False))
-        evidence = EvidenceBundle.model_validate(evidence.model_dump(warnings=False))
-        context = ReasoningContext.model_validate(context.model_dump(warnings=False))
+        if self.config.response_mode == "analysis" and grounded_request is not None:
+            raise ValueError("Grounded request requires grounded plan mode")
+        if self.config.response_mode == "grounded_plan" and grounded_request is None:
+            raise ValueError("Grounded plan mode requires a grounded request")
+        try:
+            case = CaseState.model_validate(case.model_dump(warnings=False))
+            evidence = EvidenceBundle.model_validate(evidence.model_dump(warnings=False))
+            context = ReasoningContext.model_validate(context.model_dump(warnings=False))
+        except (AttributeError, TypeError, ValidationError):
+            if self.config.response_mode == "grounded_plan":
+                raise ValueError("Invalid grounded input") from None
+            raise
         if context.case_id != case.case_id or context.case_revision != case.case_revision:
             raise ValueError("Reasoning context does not match case")
         if (
@@ -67,19 +79,32 @@ class MetisReasoner:
             or len(user_message) > 20_000
         ):
             raise ValueError("Invalid user input")
+        if self.config.response_mode == "grounded_plan":
+            try:
+                request = validate_grounded_request(grounded_request)
+                if (
+                    request.case != case
+                    or request.user_message != user_message
+                    or request.evidence != evidence
+                ):
+                    raise ValueError("Grounded request does not match reasoning inputs")
+                messages = build_grounded_messages(request, context)
+            except (AttributeError, TypeError, ValueError):
+                raise ValueError("Invalid grounded request or context") from None
         if not self.config.live_enabled:
             raise ReasoningStopped("LiveCallsDisabled")
         price = get_price(self.config.model)
         if price is None:
             raise ReasoningStopped("UnknownPricing", "budget_stopped")
-        messages = build_messages(
-            case,
-            user_message,
-            evidence,
-            feedback=context.output_feedback,
-            policy=self.config.prompt_policy,
-            context=context,
-        )
+        if self.config.response_mode == "analysis":
+            messages = build_messages(
+                case,
+                user_message,
+                evidence,
+                feedback=context.output_feedback,
+                policy=self.config.prompt_policy,
+                context=context,
+            )
         # UTF-8 byte count plus framing margin is a conservative operational guard,
         # not a provider billing guarantee. The live pilot must verify this assumption.
         message_bytes = len(json.dumps(messages, ensure_ascii=False).encode("utf-8"))
@@ -191,7 +216,7 @@ class MetisReasoner:
             or not message["content"].strip()
         ):
             raise ReasoningStopped("ProviderResponseInvalid")
-        # Engine owns AnalysisResult validation and the bounded repair allowance.
+        # The caller owns output validation/rendering and the bounded repair allowance.
         return message["content"]
 
     def _halt(self) -> None:
