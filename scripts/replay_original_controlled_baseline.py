@@ -1,4 +1,4 @@
-"""Replay V8 on the original registered Git code, without changing the checkout.
+"""Replay V8 on registered Git code, without changing the checkout.
 
 Only trusted repository Python is imported; evidence/proposal snippets are data.
 No gateway, environment file, model request, or tracker store is used.
@@ -17,6 +17,7 @@ from agent_app.reasoning.controlled_experiments import load_controlled_pack
 
 ROOT = Path(__file__).resolve().parents[1]
 BASELINE = "dad3202db11cff8331718c6a5d58df834c49c79c"
+V8_REFERENCE = "e90f2d939248e58858e652bc644821f6682bf8f2"
 CHILD = """
 import sys, json, importlib.machinery
 from pathlib import Path
@@ -50,11 +51,14 @@ print(json.dumps(rows))
 """
 
 
-def replay_original_baseline() -> dict:
+def replay_original_baseline(*, baseline: str = "original") -> dict:
+    if baseline not in {"original", "v8-reference"}:
+        raise ValueError("Unsupported registered baseline.")
+    revision = BASELINE if baseline == "original" else V8_REFERENCE
     pack = load_controlled_pack()
     with tempfile.TemporaryDirectory(prefix="core-original-baseline-") as target:
         archived = subprocess.run(
-            ["git", "archive", BASELINE, "src/agent_app"],
+            ["git", "archive", revision, "src/agent_app"],
             cwd=ROOT,
             capture_output=True,
             check=True,
@@ -78,9 +82,13 @@ def replay_original_baseline() -> dict:
             raise ValueError("Original baseline replay failed.")
         rows = json.loads(result.stdout)
     return {
-        "mode": "offline_authored_replay_on_original_git_code",
-        "baseline_git_commit": BASELINE,
-        "registration_git_commit": "8814fbb",
+        "mode": (
+            "offline_authored_replay_on_original_git_code"
+            if baseline == "original"
+            else "offline_authored_replay_on_v8_reference_git_code"
+        ),
+        "baseline_git_commit": revision,
+        "registration_git_commit": "8814fbb" if baseline == "original" else "56ec12a",
         "suite_sha256": pack.protocol["suite_sha256"],
         "real_api_calls": 0,
         "paid_cost_usd": "0",
@@ -92,8 +100,11 @@ def replay_original_baseline() -> dict:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--baseline", choices=("original", "v8-reference"), default="original")
     args = parser.parse_args()
-    result = replay_original_baseline()
+    if args.output and args.output.exists():
+        parser.error("OutputAlreadyExists")
+    result = replay_original_baseline(baseline=args.baseline)
     encoded = json.dumps(result, indent=2) + "\n"
     if args.output:
         with args.output.open("x", encoding="utf-8") as destination:
