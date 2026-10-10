@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "note": "Synthetic evidence for operational scenarios only. Not real Streamlit documentation; never cite it as a source of truth.",
+  "evidence_bundles": {
+    "counter": {
+      "snapshot_id": "synthetic-eval-v1",
+      "hits": [
+        {
+          "chunk_id": "syn-counter-doc",
+          "source_id": "synthetic:syn-counter-doc",
+          "excerpt": "Synthetic fixture: values stored in st.session_state persist across reruns within one browser session.",
+          "source_url": "https://example.org/synthetic-evaluation-fixture",
+          "source_type": "doc",
+          "source_span": "synthetic counter paragraph"
+        }
+      ],
+      "warnings": [
+        "Synthetic evidence: not a real retrieval or quality evaluation."
+      ]
+    },
+    "uploader": {
+      "snapshot_id": "synthetic-eval-v1",
+      "hits": [
+        {
+          "chunk_id": "syn-uploader-doc",
+          "source_id": "synthetic:syn-uploader-doc",
+          "excerpt": "Synthetic fixture: st.file_uploader returns None until the user uploads a file.",
+          "source_url": "https://example.org/synthetic-evaluation-fixture",
+          "source_type": "doc",
+          "source_span": "synthetic uploader paragraph"
+        }
+      ],
+      "warnings": [
+        "Synthetic evidence: not a real retrieval or quality evaluation."
+      ]
+    }
+  }
+}

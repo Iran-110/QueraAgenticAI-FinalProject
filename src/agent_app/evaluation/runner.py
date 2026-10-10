@@ -79,10 +79,22 @@ def load_fixture(path: Path) -> Fixture:
         name: EvidenceBundle.model_validate(json.loads(evidence)["evidence_bundles"][name])
         for name in source["bundles_used"]
     }
+    case_ids = {data["case"]["case_id"], *data["case"].get("extra_case_ids", [])}
     for turn in data["turns"]:
-        AnalysisResult.model_validate(turn["agent_script"])
+        faults = turn.get("faults", {})
+        if set(faults) - {"retrieval", "reasoning_errors"}:
+            raise ValueError(f"{turn['id']}: unknown fault.")
+        stops_early = faults.get("retrieval") or faults.get("reasoning_errors", 0) >= 2
+        if turn.get("agent_script") is not None:
+            AnalysisResult.model_validate(turn["agent_script"])
+        elif not stops_early:
+            raise ValueError(
+                f"{turn['id']}: agent_script is required unless a fault stops the run."
+            )
         if turn["evidence_bundle"] not in bundles:
             raise ValueError(f"{turn['id']}: unknown evidence bundle.")
+        if turn.get("case_id", data["case"]["case_id"]) not in case_ids:
+            raise ValueError(f"{turn['id']}: case_id is not declared in the fixture.")
     return Fixture(path, data, bundles, hashlib.sha256(raw).hexdigest())
 
 
@@ -98,9 +110,10 @@ def collect(paths: list[Path]) -> list[Fixture]:
     family_split: dict[int, str] = {}
     for fixture in fixtures:
         case = fixture.case
-        if case["case_id"] in seen:
-            raise ValueError(f"Duplicate case_id {case['case_id']}.")
-        seen[case["case_id"]] = fixture.path
+        for case_id in (case["case_id"], *case.get("extra_case_ids", [])):
+            if case_id in seen:
+                raise ValueError(f"Duplicate case_id {case_id}.")
+            seen[case_id] = fixture.path
         if case["split"] == "test" and not case["test_eligible"]:
             raise ValueError(f"{case['case_id']} is not eligible for the test split.")
         for issue in case["family_issue_ids"]:
@@ -202,17 +215,27 @@ class CaseRun:
 
     def run(self, client: TestClient) -> None:
         data = self.fixture.data
-        case_id = self.fixture.case["case_id"]
-        view = client.get(f"/cases/{case_id}").json()
-        events: list[dict[str, Any]] = []
+        primary = self.fixture.case["case_id"]
+        case_ids = [primary, *self.fixture.case.get("extra_case_ids", [])]
+        views = {cid: client.get(f"/cases/{cid}").json() for cid in case_ids}
+        events: list[tuple[str, dict[str, Any]]] = []
         for turn in data["turns"]:
-            view, event = self._turn(client, case_id, turn, view)
+            case_id = turn.get("case_id", primary)
+            others = {cid: views[cid] for cid in case_ids if cid != case_id}
+            view, event = self._turn(client, case_id, turn, views[case_id], views)
+            views[case_id] = view
+            for cid, before in others.items():
+                after = client.get(f"/cases/{cid}").json()
+                self.record.check(
+                    turn["id"], f"case {cid} untouched", after == before, after["case_revision"]
+                )
+                views[cid] = after
             if event is None:
                 return
-            events.append(event)
+            events.append((case_id, event))
         # Every accepted event must replay its original receipt without side effects.
-        before = client.get(f"/cases/{case_id}").json()
-        for event in events:
+        before = {cid: client.get(f"/cases/{cid}").json() for cid in case_ids}
+        for case_id, event in events:
             response = client.post(f"/cases/{case_id}/messages", json=event)
             body = response.json() if response.status_code == 200 else {}
             self.record.check(
@@ -224,11 +247,11 @@ class CaseRun:
             self.record.check(
                 "probe",
                 f"replay {event['turn_id']}: revision and log unchanged",
-                body.get("case_revision") == before["case_revision"]
-                and body.get("log") == before["log"],
+                body.get("case_revision") == before[case_id]["case_revision"]
+                and body.get("log") == before[case_id]["log"],
             )
 
-    def _turn(self, client, case_id, turn, view):
+    def _turn(self, client, case_id, turn, view, views):
         check = self.record.check
         step = turn["id"]
         expect = turn["expect"]
@@ -257,9 +280,34 @@ class CaseRun:
         check(
             step,
             "decision is acceptable (gold)",
-            decision in turn["gold"]["acceptable_decisions"],
+            (decision or "stopped") in turn["gold"]["acceptable_decisions"],
             decision,
         )
+        if "stop_code" in expect:
+            notes = [entry["text"] for entry in view["log"] if entry["role"] == "system"]
+            check(
+                step,
+                "stop reason logged",
+                bool(notes) and expect["stop_code"] in notes[-1],
+                notes[-1] if notes else None,
+            )
+        if "model_attempts" in expect:
+            got = pending.get("model_attempts")
+            check(step, "model attempts", got == expect["model_attempts"], got)
+        if "cross_case_approval_from" in expect:
+            foreign = views[expect["cross_case_approval_from"]]["pending"]
+            check(step, "other case has a pending proposal", foreign is not None)
+            response = _decide(
+                client, case_id, foreign or {"proposal_id": "none", "case_revision": 0}, "approve"
+            )
+            check(
+                step,
+                "other case's proposal refused here",
+                response.status_code == 409,
+                response.status_code,
+            )
+            after = client.get(f"/cases/{case_id}").json()
+            check(step, "refused approval changed nothing", after == view)
         check(
             step, "no draft released before approval", _assistant_texts(view) == previous_assistant
         )
@@ -396,12 +444,21 @@ class CaseRun:
 
 
 def _scripted(fixture: Fixture) -> Callable[[dict[str, Any]], api.RunAdapters]:
+    """Offline adapters; ``faults`` inject tool failures before scripted output."""
+
     def adapters(turn: dict[str, Any]) -> api.RunAdapters:
         bundle = fixture.bundles[turn["evidence_bundle"]]
+        faults = turn.get("faults", {})
+        retrieval = (
+            [RuntimeError("Injected retrieval failure")] if faults.get("retrieval") else [bundle]
+        )
+        reasoning: list[Any] = [RuntimeError("Injected reasoning failure")] * faults.get(
+            "reasoning_errors", 0
+        )
+        if turn.get("agent_script") is not None:
+            reasoning.append(AnalysisResult.model_validate(turn["agent_script"]))
         return api.RunAdapters(
-            FakeRetriever([bundle]),
-            FakeReasoner([AnalysisResult.model_validate(turn["agent_script"])]),
-            snapshot_id=bundle.snapshot_id,
+            FakeRetriever(retrieval), FakeReasoner(reasoning), snapshot_id=bundle.snapshot_id
         )
 
     return adapters
