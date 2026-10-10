@@ -381,14 +381,25 @@ def post_message(case_id: CaseId, request: MessageRequest) -> dict[str, Any]:
         _cases[case_id] = case
         case.log.append({"role": "user", "text": request.message})
 
-        adapters = _adapters(request.scenario)
-        capture = ReasoningCapture(adapters.reasoner)
-        engine = SupportEngine(
-            adapters.retriever,
-            capture,
-            snapshot_id=adapters.snapshot_id,
-            current_revision=lambda cid: _cases[cid].state.case_revision,
-        )
+        try:
+            adapters = _adapters(request.scenario)
+            capture = ReasoningCapture(adapters.reasoner)
+            engine = SupportEngine(
+                adapters.retriever,
+                capture,
+                snapshot_id=adapters.snapshot_id,
+                current_revision=lambda cid: _cases[cid].state.case_revision,
+            )
+        except Exception:
+            # Ingress is already committed. Record a terminal setup failure;
+            # an identical event replay must not construct or invoke ports again.
+            case.log.append(
+                {
+                    "role": "system",
+                    "text": "The run stopped (error: AdapterSetupUnavailable). Nothing was proposed.",
+                }
+            )
+            return _view(case_id)
         result = engine.run(case.state, request.message)
         if result.status == "awaiting_approval":
             try:

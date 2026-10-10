@@ -141,7 +141,9 @@ def _grounded(request: GroundedRequest | None, frame: ReasoningFrame) -> Grounde
         raise HandoffRejected("GroundedContextMismatch") from None
     if (
         request.case != frame.case
-        or request.user_message != frame.user_message
+        # GroundedRequest strips only outer whitespace, as GroundedReasoner
+        # already requires. The outer handoff still binds exact original bytes.
+        or request.user_message != frame.user_message.strip()
         or request.evidence != frame.evidence
     ):
         raise HandoffRejected("GroundedContextMismatch")

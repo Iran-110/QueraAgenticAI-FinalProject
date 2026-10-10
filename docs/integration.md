@@ -212,7 +212,10 @@ With `GroundedReasoner`, capture the request returned by its caller-owned
 `request_factory` in a per-invocation closure. Pass that final request to
 `build_handoff(..., grounded_request=request)`. Never reconstruct a catalog from
 the first bundle after refinement. `GroundedRequest` must exactly match the
-captured case/message/evidence; its user/source gaps and declared conflict groups
+captured case/evidence and the message with only outer whitespace stripped,
+matching `GroundedReasoner`'s existing normalization. The handoff preserves and
+hashes the exact original message separately; inner text is never normalized.
+Its user/source gaps and declared conflict groups
 are part of the outer handoff digest. A catalog-only change can leave final text
 and the legacy review packet unchanged while changing `handoff_sha256`.
 
@@ -224,6 +227,12 @@ a trusted per-run integration seam using the existing `Retriever`/`Reasoner`
 ports; it defaults to scripted adapters. A supplier failure exports only an
 allowlisted error, leaves no new proposal and preserves the committed ingress
 receipt. It does not automatically retry a consumed event.
+
+Adapter construction or engine-configuration failure is recorded as
+`AdapterSetupUnavailable` after the accepted event is committed. It creates no
+new proposal or model attempt. A previous proposal stays stale after a new turn;
+replaying the accepted event returns its receipt/error view without rerunning
+adapter setup. Config/constructor exception details never reach the user.
 
 Tracker T2/T3 must retain the exact handoff with its pending proposal and use
 `ensure_handoff_current(handoff, authoritative_case, proposal_id)` inside its
