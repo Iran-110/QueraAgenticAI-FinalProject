@@ -1,0 +1,334 @@
+{
+  "schema_version": 1,
+  "fixture_id": "dev-pilot-12782-v1",
+  "registered_on": "2026-10-10",
+  "registered_before_first_run": true,
+  "purpose": "P1 pilot: one dev case through the UI's HTTP API with an approved question, a bound reply, a correction, an edit, a rejection and an event replay. Operational check only; the agent is scripted, so this measures no decision quality.",
+  "case": {
+    "case_id": "dev-pilot-12782",
+    "split": "dev",
+    "family_issue_ids": [
+      12782,
+      12629
+    ],
+    "origin_url": "https://github.com/streamlit/streamlit/issues/12782",
+    "source_snapshot_date": "2026-10-06",
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "test_eligible": false,
+    "exposure": "Answer-informed: the C3 author read #12782's body, workaround and comments when designing the scenario. The family may only be used for development, never as a held-out test case."
+  },
+  "evidence_source": {
+    "path": "experiments/review_handoff/case-current-state-latest-evidence.json",
+    "sha256": "00af34231e7e4b252bdd8e88bf815d20249135f976cef7cc358ebc34d2e110d9",
+    "registration_commit": "b085f7d",
+    "bundles_used": [
+      "official-mixed",
+      "official-without-release"
+    ],
+    "note": "Frozen official excerpts reused from C3. The same issue's workaround or answer is not in the evidence."
+  },
+  "boundaries": {
+    "agent": "scripted AnalysisResult per turn (agent_script); no model, no retrieval index",
+    "real_model_calls": 0,
+    "api_cost_usd": 0,
+    "storage": "API process memory; not the durable tracker",
+    "visible_to_agent": [
+      "turns[].visible"
+    ],
+    "runner_only": [
+      "turns[].agent_script",
+      "turns[].maintainer",
+      "turns[].gold",
+      "probes"
+    ]
+  },
+  "turns": [
+    {
+      "id": "p1-turn-1",
+      "conversation_source": "developer_paraphrase_of_issue_body",
+      "conversation_source_ref": "experiments/review_handoff/case-current-state-latest-evidence.json#turns[0]",
+      "visible": {
+        "message": "A multiselect inside @st.fragment displays empty instead of its saved default after a parent selector changes and resets state. My reduced example works, but the full app fails and the relevant parent callback is not included. Python 3.12.9 and Chrome. I have not supplied the installed Streamlit version or an earlier version comparison. Which information is useful next?",
+        "reported_facts": [
+          {
+            "name": "python_version",
+            "value": "3.12.9"
+          },
+          {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9"
+          },
+          {
+            "name": "browser",
+            "value": "Chrome"
+          },
+          {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment"
+          },
+          {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state"
+          },
+          {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default"
+          },
+          {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available"
+          }
+        ],
+        "unknowns": [
+          "streamlit_version",
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "checks_performed": [
+          "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+        ],
+        "context_changed": false
+      },
+      "evidence_bundle": "official-mixed",
+      "agent_script": {
+        "decision": "ask",
+        "user_draft": "Which Streamlit version is installed in the affected environment?",
+        "next_question": "Which Streamlit version is installed in the affected environment?",
+        "missing_info": [
+          "streamlit_version"
+        ],
+        "maintainer_summary": "Multiselect default is lost in a fragment after a parent reset; the installed Streamlit version is unknown and decides which release records apply.",
+        "rationale": "Widget identity changed across 1.50.0-1.55.0, so the installed version is the most discriminating missing fact."
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "acceptable_decisions": [
+          "ask",
+          "escalate"
+        ],
+        "user_clarifiable_gaps": [
+          "streamlit_version",
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "unacceptable_claims": [
+          "The full-app root cause is proved.",
+          "The supplied working reduction reproduces the failure.",
+          "A fixed release or verified workaround has been established.",
+          "The installed version can be inferred from document metadata."
+        ]
+      },
+      "expect": {
+        "revision": 1,
+        "pending_decision": "ask",
+        "no_assistant_message_before_approval": true,
+        "after_decision": {
+          "status": "awaiting_user",
+          "awaiting_reply": true,
+          "released_draft": "agent"
+        }
+      }
+    },
+    {
+      "id": "p1-turn-2",
+      "conversation_source": "developer_authored_follow_up",
+      "visible": {
+        "message": "1.50.0",
+        "reply_to_approved_question": true
+      },
+      "evidence_bundle": "official-mixed",
+      "agent_script": {
+        "decision": "answer",
+        "user_draft": "The Streamlit 1.50.0 release notes list st.multiselect among the widgets moving to an identity based only on their key, when a key is provided. That is a release-level change, not a diagnosis of your full app. To narrow it down, please share the parent selector callback and how it updates session state before the multiselect is rendered.",
+        "maintainer_summary": "User confirmed 1.50.0. The 1.50.0 release record covers multiselect key identity; the full-app cause is still unknown.",
+        "rationale": "The confirmed version matches the cited release record exactly; the cause cannot be established without the parent callback.",
+        "evidence_links": [
+          {
+            "claim": "Streamlit 1.50.0 lists st.multiselect among widgets using key-only identity when a key is provided.",
+            "chunk_id": "release-150-multiselect-key-identity-v8"
+          }
+        ]
+      },
+      "maintainer": {
+        "decision": "none",
+        "note": "Left pending so the next turn's correction must make it stale."
+      },
+      "gold": {
+        "acceptable_decisions": [
+          "answer",
+          "ask",
+          "escalate"
+        ],
+        "unacceptable_claims": [
+          "The full-app root cause is proved.",
+          "The supplied working reduction reproduces the failure.",
+          "A fixed release or verified workaround has been established.",
+          "The installed version can be inferred from document metadata."
+        ]
+      },
+      "expect": {
+        "revision": 2,
+        "pending_decision": "answer",
+        "preparation": "canonical_version_reply",
+        "active_facts": {
+          "streamlit_version": "1.50.0"
+        },
+        "cited_chunks": [
+          "release-150-multiselect-key-identity-v8"
+        ],
+        "version_scope": {
+          "release-150-multiselect-key-identity-v8": "exact_metadata_match"
+        }
+      }
+    },
+    {
+      "id": "p1-turn-3",
+      "conversation_source": "developer_authored_follow_up",
+      "visible": {
+        "message": "Correction: the affected deployment is Streamlit 1.49.1, not 1.50.0. The reduced example still works; the parent callback is not supplied.",
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.49.1"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [],
+        "context_changed": false
+      },
+      "evidence_bundle": "official-without-release",
+      "agent_script": {
+        "decision": "escalate",
+        "user_draft": "Thanks for the correction. The sources available here do not cover Streamlit 1.49.1 exactly, so I can't link this behaviour to a documented change. I've passed the case to a maintainer.",
+        "maintainer_summary": "Corrected version 1.49.1 has no exact coverage in the latest bundle (only 1.49.0 and 1.50.0 records). Full-app cause unknown; parent callback not supplied.",
+        "rationale": "No exact-version source and no user code: neither an answer nor a further user question resolves the documentation gap."
+      },
+      "maintainer": {
+        "decision": "edit",
+        "edited_draft": "Thanks for the correction to 1.49.1. Our sources do not cover that exact release, so a maintainer will review the case. If you can share the parent selector callback, please add it here.",
+        "then": "approve"
+      },
+      "gold": {
+        "acceptable_decisions": [
+          "escalate",
+          "ask"
+        ],
+        "documentation_or_evidence_gaps": [
+          "The corrected 1.49.1 has no exact metadata coverage; 1.49.0 is not a patch match.",
+          "The final retrieval deliberately removes the pinned 1.50.0 release note; it cannot be cited from the first bundle.",
+          "Cause of the full-app failure and verified fix remain unknown."
+        ],
+        "unacceptable_claims": [
+          "The full-app root cause is proved.",
+          "The supplied working reduction reproduces the failure.",
+          "A fixed release or verified workaround has been established.",
+          "The installed version can be inferred from document metadata."
+        ]
+      },
+      "expect": {
+        "revision": 3,
+        "pending_decision": "escalate",
+        "active_facts": {
+          "streamlit_version": "1.49.1"
+        },
+        "superseded_values": {
+          "streamlit_version": [
+            "1.50.0"
+          ]
+        },
+        "changed_fact_names": [
+          "streamlit_version"
+        ],
+        "previous_proposal_now_stale": true,
+        "excluded_chunks": [
+          "release-150-multiselect-key-identity-v8"
+        ],
+        "after_decision": {
+          "status": "escalated",
+          "released_draft": "edited"
+        }
+      }
+    },
+    {
+      "id": "p1-turn-4",
+      "conversation_source": "developer_authored_follow_up",
+      "visible": {
+        "message": "I cannot confirm the installed Streamlit version. Withdraw the value I gave.",
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": null
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [],
+        "context_changed": false
+      },
+      "evidence_bundle": "official-mixed",
+      "agent_script": {
+        "decision": "ask",
+        "user_draft": "Which Streamlit version is installed in the affected environment?",
+        "next_question": "Which Streamlit version is installed in the affected environment?",
+        "missing_info": [
+          "streamlit_version"
+        ],
+        "maintainer_summary": "User withdrew the version; applicability of every release record is unresolved again.",
+        "rationale": "The withdrawn version is again the most discriminating missing fact."
+      },
+      "maintainer": {
+        "decision": "reject",
+        "note": "Rejected to check that nothing is sent."
+      },
+      "gold": {
+        "acceptable_decisions": [
+          "ask",
+          "escalate"
+        ],
+        "unacceptable_claims": [
+          "The full-app root cause is proved.",
+          "The supplied working reduction reproduces the failure.",
+          "A fixed release or verified workaround has been established.",
+          "The installed version can be inferred from document metadata."
+        ]
+      },
+      "expect": {
+        "revision": 4,
+        "pending_decision": "ask",
+        "active_facts": {},
+        "unknowns_include": [
+          "streamlit_version"
+        ],
+        "after_decision": {
+          "status": "open",
+          "released_draft": null
+        }
+      }
+    }
+  ],
+  "probes": [
+    {
+      "id": "approve_stale_turn_2_proposal",
+      "after_turn": "p1-turn-3",
+      "expect": "HTTP 409; turn 2 draft never appears in the log"
+    },
+    {
+      "id": "approve_pre_edit_proposal",
+      "after_turn": "p1-turn-3",
+      "expect": "HTTP 409 after the edit; only the edited draft can be approved"
+    },
+    {
+      "id": "replay_turn_3_event",
+      "after_turn": "p1-turn-4",
+      "expect": "Identical turn 3 event returns replayed receipt; revision and log unchanged"
+    },
+    {
+      "id": "double_approve_turn_1",
+      "after_turn": "p1-turn-1",
+      "expect": "Second approval HTTP 409; question released once"
+    }
+  ]
+}

@@ -1,0 +1,854 @@
+{
+  "fixture_id": "dev-pilot-12782-v1",
+  "fixture_sha256": "f4b9cef54c98dd875ff0e55f41aebcde19a9b02717b7cb8c5525eba9575f2855",
+  "mode": "offline_scripted_agent",
+  "real_model_calls": 0,
+  "api_cost_usd": 0,
+  "storage": "API process memory",
+  "quality_claim": false,
+  "summary": {
+    "checks": 48,
+    "passed": 48,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "step": "p1-turn-1",
+      "check": "event accepted",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "step": "p1-turn-1",
+      "check": "revision",
+      "passed": true,
+      "detail": 1
+    },
+    {
+      "step": "p1-turn-1",
+      "check": "pending decision",
+      "passed": true,
+      "detail": "ask"
+    },
+    {
+      "step": "p1-turn-1",
+      "check": "decision is acceptable (gold)",
+      "passed": true,
+      "detail": "ask"
+    },
+    {
+      "step": "p1-turn-1",
+      "check": "no draft released before approval",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "step": "p1-turn-1",
+      "check": "approve",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "step": "p1-turn-1",
+      "check": "probe double_approve: 409",
+      "passed": true,
+      "detail": 409
+    },
+    {
+      "step": "p1-turn-1",
+      "check": "status after decision",
+      "passed": true,
+      "detail": "awaiting_user"
+    },
+    {
+      "step": "p1-turn-1",
+      "check": "released drafts",
+      "passed": true,
+      "detail": [
+        "Which Streamlit version is installed in the affected environment?"
+      ]
+    },
+    {
+      "step": "p1-turn-1",
+      "check": "approved question awaits reply",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "step": "p1-turn-2",
+      "check": "event accepted",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "step": "p1-turn-2",
+      "check": "revision",
+      "passed": true,
+      "detail": 2
+    },
+    {
+      "step": "p1-turn-2",
+      "check": "pending decision",
+      "passed": true,
+      "detail": "answer"
+    },
+    {
+      "step": "p1-turn-2",
+      "check": "decision is acceptable (gold)",
+      "passed": true,
+      "detail": "answer"
+    },
+    {
+      "step": "p1-turn-2",
+      "check": "no draft released before approval",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "step": "p1-turn-2",
+      "check": "intake preparation",
+      "passed": true,
+      "detail": "canonical_version_reply"
+    },
+    {
+      "step": "p1-turn-2",
+      "check": "active fact streamlit_version",
+      "passed": true,
+      "detail": "1.50.0"
+    },
+    {
+      "step": "p1-turn-2",
+      "check": "cites release-150-multiselect-key-identity-v8",
+      "passed": true,
+      "detail": [
+        "release-150-multiselect-key-identity-v8"
+      ]
+    },
+    {
+      "step": "p1-turn-2",
+      "check": "version scope release-150-multiselect-key-identity-v8",
+      "passed": true,
+      "detail": "exact_metadata_match"
+    },
+    {
+      "step": "p1-turn-3",
+      "check": "event accepted",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "step": "p1-turn-3",
+      "check": "revision",
+      "passed": true,
+      "detail": 3
+    },
+    {
+      "step": "p1-turn-3",
+      "check": "pending decision",
+      "passed": true,
+      "detail": "escalate"
+    },
+    {
+      "step": "p1-turn-3",
+      "check": "decision is acceptable (gold)",
+      "passed": true,
+      "detail": "escalate"
+    },
+    {
+      "step": "p1-turn-3",
+      "check": "no draft released before approval",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "step": "p1-turn-3",
+      "check": "active fact streamlit_version",
+      "passed": true,
+      "detail": "1.49.1"
+    },
+    {
+      "step": "p1-turn-3",
+      "check": "superseded streamlit_version",
+      "passed": true,
+      "detail": [
+        "1.50.0"
+      ]
+    },
+    {
+      "step": "p1-turn-3",
+      "check": "changed facts",
+      "passed": true,
+      "detail": [
+        "streamlit_version"
+      ]
+    },
+    {
+      "step": "p1-turn-3",
+      "check": "latest bundle excludes release-150-multiselect-key-identity-v8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "step": "p1-turn-3",
+      "check": "probe approve_stale_turn_2_proposal: 409",
+      "passed": true,
+      "detail": 409
+    },
+    {
+      "step": "p1-turn-3",
+      "check": "stale draft never released",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "step": "p1-turn-3",
+      "check": "edit",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "step": "p1-turn-3",
+      "check": "edit creates new proposal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "step": "p1-turn-3",
+      "check": "probe approve_pre_edit_proposal: 409",
+      "passed": true,
+      "detail": 409
+    },
+    {
+      "step": "p1-turn-3",
+      "check": "approve edited",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "step": "p1-turn-3",
+      "check": "status after decision",
+      "passed": true,
+      "detail": "escalated"
+    },
+    {
+      "step": "p1-turn-3",
+      "check": "released drafts",
+      "passed": true,
+      "detail": [
+        "Thanks for the correction to 1.49.1. Our sources do not cover that exact release, so a maintainer will review the case. If you can share the parent selector callback, please add it here."
+      ]
+    },
+    {
+      "step": "p1-turn-4",
+      "check": "event accepted",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "step": "p1-turn-4",
+      "check": "revision",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "step": "p1-turn-4",
+      "check": "pending decision",
+      "passed": true,
+      "detail": "ask"
+    },
+    {
+      "step": "p1-turn-4",
+      "check": "decision is acceptable (gold)",
+      "passed": true,
+      "detail": "ask"
+    },
+    {
+      "step": "p1-turn-4",
+      "check": "no draft released before approval",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "step": "p1-turn-4",
+      "check": "version not active",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "step": "p1-turn-4",
+      "check": "unknown streamlit_version",
+      "passed": true,
+      "detail": [
+        "parent_callback_code",
+        "state_update_order",
+        "minimal_failing_reproduction",
+        "streamlit_version"
+      ]
+    },
+    {
+      "step": "p1-turn-4",
+      "check": "reject",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "step": "p1-turn-4",
+      "check": "status after decision",
+      "passed": true,
+      "detail": "open"
+    },
+    {
+      "step": "p1-turn-4",
+      "check": "released drafts",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "step": "probe",
+      "check": "replay_turn_3_event: replayed receipt",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "step": "probe",
+      "check": "replay leaves revision and log unchanged",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "steps": [
+    {
+      "turn": "p1-turn-1",
+      "conversation_source": "developer_paraphrase_of_issue_body",
+      "request": {
+        "message": "A multiselect inside @st.fragment displays empty instead of its saved default after a parent selector changes and resets state. My reduced example works, but the full app fails and the relevant parent callback is not included. Python 3.12.9 and Chrome. I have not supplied the installed Streamlit version or an earlier version comparison. Which information is useful next?",
+        "scenario": "ask",
+        "turn_id": "p1-turn-1",
+        "expected_revision": 0,
+        "reported_facts": [
+          {
+            "name": "python_version",
+            "value": "3.12.9"
+          },
+          {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9"
+          },
+          {
+            "name": "browser",
+            "value": "Chrome"
+          },
+          {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment"
+          },
+          {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state"
+          },
+          {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default"
+          },
+          {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available"
+          }
+        ],
+        "unknowns": [
+          "streamlit_version",
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "checks_performed": [
+          "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+        ],
+        "context_changed": false
+      },
+      "proposal": {
+        "proposal_id": "5fccf21e-2007-5e9d-aef8-6f0fbbf00b5a",
+        "case_revision": 1,
+        "decision": "ask",
+        "user_draft": "Which Streamlit version is installed in the affected environment?"
+      },
+      "cited_chunks": [],
+      "maintainer": "approve",
+      "view_after": {
+        "case_revision": 1,
+        "status": "awaiting_user",
+        "facts": [
+          {
+            "name": "python_version",
+            "value": "3.12.9",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "browser",
+            "value": "Chrome",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          }
+        ],
+        "unknowns": [
+          "streamlit_version",
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "intake": {
+          "turn_id": "p1-turn-1",
+          "ingress_hash": "217e308a315761790a4947d0d74bc61f77f70630bb133b4c67ff8f39f91a0af4",
+          "prepared_hash": "193ea71c3466ce92495b6c0ff62f1b7da3b06946a75333faea256552031fdbef",
+          "committed_revision": 1,
+          "changed_fact_names": [
+            "python_version",
+            "operating_system",
+            "browser",
+            "reported_widget_context",
+            "reported_trigger",
+            "reported_observation",
+            "reported_reproduction_status"
+          ],
+          "context_changed": false,
+          "invalidated_checks": [],
+          "preparation": "structured",
+          "replayed": false
+        },
+        "log": [
+          {
+            "role": "user",
+            "text": "A multiselect inside @st.fragment displays empty instead of its saved default after a parent selector changes and resets state. My reduced example works, but the full app fails and the relevant parent callback is not included. Python 3.12.9 and Chrome. I have not supplied the installed Streamlit version or an earlier version comparison. Which information is useful next?"
+          },
+          {
+            "role": "assistant",
+            "text": "Which Streamlit version is installed in the affected environment?",
+            "decision": "ask",
+            "edited": false
+          }
+        ]
+      }
+    },
+    {
+      "turn": "p1-turn-2",
+      "conversation_source": "developer_authored_follow_up",
+      "request": {
+        "message": "1.50.0",
+        "scenario": "ask",
+        "turn_id": "p1-turn-2",
+        "expected_revision": 1,
+        "reply_to_proposal_id": "5fccf21e-2007-5e9d-aef8-6f0fbbf00b5a"
+      },
+      "proposal": {
+        "proposal_id": "eeb5af2f-9787-5ffa-aa0b-80781a461089",
+        "case_revision": 2,
+        "decision": "answer",
+        "user_draft": "The Streamlit 1.50.0 release notes list st.multiselect among the widgets moving to an identity based only on their key, when a key is provided. That is a release-level change, not a diagnosis of your full app. To narrow it down, please share the parent selector callback and how it updates session state before the multiselect is rendered."
+      },
+      "cited_chunks": [
+        "release-150-multiselect-key-identity-v8"
+      ],
+      "maintainer": "none",
+      "view_after": {
+        "case_revision": 2,
+        "status": "awaiting_review",
+        "facts": [
+          {
+            "name": "python_version",
+            "value": "3.12.9",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "browser",
+            "value": "Chrome",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "streamlit_version",
+            "value": "1.50.0",
+            "status": "active",
+            "turn_id": "p1-turn-2"
+          }
+        ],
+        "unknowns": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "intake": {
+          "turn_id": "p1-turn-2",
+          "ingress_hash": "e789a78f69832c8e856684500f759567fb4cacfcbcd0aaf79ae57d31acaa3a07",
+          "prepared_hash": "28e8b6d9502ccb510c1bc988fb1e705a0bcc0b2e11b0ab045408e458d3af3683",
+          "committed_revision": 2,
+          "changed_fact_names": [
+            "streamlit_version"
+          ],
+          "context_changed": false,
+          "invalidated_checks": [],
+          "preparation": "canonical_version_reply",
+          "replayed": false
+        },
+        "log": [
+          {
+            "role": "user",
+            "text": "A multiselect inside @st.fragment displays empty instead of its saved default after a parent selector changes and resets state. My reduced example works, but the full app fails and the relevant parent callback is not included. Python 3.12.9 and Chrome. I have not supplied the installed Streamlit version or an earlier version comparison. Which information is useful next?"
+          },
+          {
+            "role": "assistant",
+            "text": "Which Streamlit version is installed in the affected environment?",
+            "decision": "ask",
+            "edited": false
+          },
+          {
+            "role": "user",
+            "text": "1.50.0"
+          }
+        ]
+      }
+    },
+    {
+      "turn": "p1-turn-3",
+      "conversation_source": "developer_authored_follow_up",
+      "request": {
+        "message": "Correction: the affected deployment is Streamlit 1.49.1, not 1.50.0. The reduced example still works; the parent callback is not supplied.",
+        "scenario": "ask",
+        "turn_id": "p1-turn-3",
+        "expected_revision": 2,
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.49.1"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [],
+        "context_changed": false
+      },
+      "proposal": {
+        "proposal_id": "e51db4b0-ebf8-5e8a-b840-991a86616591",
+        "case_revision": 3,
+        "decision": "escalate",
+        "user_draft": "Thanks for the correction. The sources available here do not cover Streamlit 1.49.1 exactly, so I can't link this behaviour to a documented change. I've passed the case to a maintainer."
+      },
+      "cited_chunks": [],
+      "maintainer": "edit",
+      "view_after": {
+        "case_revision": 3,
+        "status": "escalated",
+        "facts": [
+          {
+            "name": "python_version",
+            "value": "3.12.9",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "browser",
+            "value": "Chrome",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "streamlit_version",
+            "value": "1.50.0",
+            "status": "superseded",
+            "turn_id": "p1-turn-2"
+          },
+          {
+            "name": "streamlit_version",
+            "value": "1.49.1",
+            "status": "active",
+            "turn_id": "p1-turn-3"
+          }
+        ],
+        "unknowns": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "intake": {
+          "turn_id": "p1-turn-3",
+          "ingress_hash": "729e14b5823466f8cba29db5d1557820d6d3fbe4030c22c06930ae73fbf0f809",
+          "prepared_hash": "172287076d022adea97dfa1ab501951c83759fa3fa7fc637f96b74c7abe19274",
+          "committed_revision": 3,
+          "changed_fact_names": [
+            "streamlit_version"
+          ],
+          "context_changed": true,
+          "invalidated_checks": [
+            "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+          ],
+          "preparation": "structured",
+          "replayed": false
+        },
+        "log": [
+          {
+            "role": "user",
+            "text": "A multiselect inside @st.fragment displays empty instead of its saved default after a parent selector changes and resets state. My reduced example works, but the full app fails and the relevant parent callback is not included. Python 3.12.9 and Chrome. I have not supplied the installed Streamlit version or an earlier version comparison. Which information is useful next?"
+          },
+          {
+            "role": "assistant",
+            "text": "Which Streamlit version is installed in the affected environment?",
+            "decision": "ask",
+            "edited": false
+          },
+          {
+            "role": "user",
+            "text": "1.50.0"
+          },
+          {
+            "role": "user",
+            "text": "Correction: the affected deployment is Streamlit 1.49.1, not 1.50.0. The reduced example still works; the parent callback is not supplied."
+          },
+          {
+            "role": "system",
+            "text": "The maintainer edited the draft. It needs approval."
+          },
+          {
+            "role": "assistant",
+            "text": "Thanks for the correction to 1.49.1. Our sources do not cover that exact release, so a maintainer will review the case. If you can share the parent selector callback, please add it here.",
+            "decision": "escalate",
+            "edited": true
+          }
+        ]
+      }
+    },
+    {
+      "turn": "p1-turn-4",
+      "conversation_source": "developer_authored_follow_up",
+      "request": {
+        "message": "I cannot confirm the installed Streamlit version. Withdraw the value I gave.",
+        "scenario": "ask",
+        "turn_id": "p1-turn-4",
+        "expected_revision": 3,
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": null
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [],
+        "context_changed": false
+      },
+      "proposal": {
+        "proposal_id": "8fa2f88d-18e5-5aed-89ef-1bc1794888d5",
+        "case_revision": 4,
+        "decision": "ask",
+        "user_draft": "Which Streamlit version is installed in the affected environment?"
+      },
+      "cited_chunks": [],
+      "maintainer": "reject",
+      "view_after": {
+        "case_revision": 4,
+        "status": "open",
+        "facts": [
+          {
+            "name": "python_version",
+            "value": "3.12.9",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "browser",
+            "value": "Chrome",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+            "status": "active",
+            "turn_id": "p1-turn-1"
+          },
+          {
+            "name": "streamlit_version",
+            "value": "1.50.0",
+            "status": "superseded",
+            "turn_id": "p1-turn-2"
+          },
+          {
+            "name": "streamlit_version",
+            "value": "1.49.1",
+            "status": "superseded",
+            "turn_id": "p1-turn-3"
+          }
+        ],
+        "unknowns": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction",
+          "streamlit_version"
+        ],
+        "intake": {
+          "turn_id": "p1-turn-4",
+          "ingress_hash": "864942338d2efae2590b4dfea6fbdfe0ea411642c2c605a1ed5b5cbbec2f5e65",
+          "prepared_hash": "7fb53acc7e1823728ef3445317bee0ae848abe77b2265c14fb19119c313d3fe3",
+          "committed_revision": 4,
+          "changed_fact_names": [
+            "streamlit_version"
+          ],
+          "context_changed": true,
+          "invalidated_checks": [],
+          "preparation": "structured",
+          "replayed": false
+        },
+        "log": [
+          {
+            "role": "user",
+            "text": "A multiselect inside @st.fragment displays empty instead of its saved default after a parent selector changes and resets state. My reduced example works, but the full app fails and the relevant parent callback is not included. Python 3.12.9 and Chrome. I have not supplied the installed Streamlit version or an earlier version comparison. Which information is useful next?"
+          },
+          {
+            "role": "assistant",
+            "text": "Which Streamlit version is installed in the affected environment?",
+            "decision": "ask",
+            "edited": false
+          },
+          {
+            "role": "user",
+            "text": "1.50.0"
+          },
+          {
+            "role": "user",
+            "text": "Correction: the affected deployment is Streamlit 1.49.1, not 1.50.0. The reduced example still works; the parent callback is not supplied."
+          },
+          {
+            "role": "system",
+            "text": "The maintainer edited the draft. It needs approval."
+          },
+          {
+            "role": "assistant",
+            "text": "Thanks for the correction to 1.49.1. Our sources do not cover that exact release, so a maintainer will review the case. If you can share the parent selector callback, please add it here.",
+            "decision": "escalate",
+            "edited": true
+          },
+          {
+            "role": "user",
+            "text": "I cannot confirm the installed Streamlit version. Withdraw the value I gave."
+          },
+          {
+            "role": "system",
+            "text": "The maintainer rejected the proposal. Nothing was sent."
+          }
+        ]
+      }
+    }
+  ]
+}
