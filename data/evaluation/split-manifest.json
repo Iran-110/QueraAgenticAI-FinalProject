@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "manifest_id": "split-manifest-draft-0",
+  "updated_on": "2026-10-10",
+  "status": "draft_not_frozen",
+  "targets": {
+    "dev_cases": 15,
+    "test_cases": 15,
+    "multi_turn_min": 10,
+    "multi_turn_in_test_min": 5
+  },
+  "selected": {
+    "dev": [
+      "dev-pilot-12782"
+    ],
+    "test": []
+  },
+  "families": [
+    {
+      "family_id": "fam-12782",
+      "issue_ids": [
+        12782,
+        12629
+      ],
+      "split": "dev",
+      "reason": "Exposed during core development (V8/V9/C3) and answer-informed; never test.",
+      "exclude_from_index": "entire family, comments and outcomes, once the real index is built"
+    }
+  ],
+  "exposure_reserved_issue_ids": [
+    8061,
+    8901,
+    12629,
+    12782,
+    16914
+  ],
+  "exposure_note": "Reserved by the core experiments (experiments/review_handoff fixture provenance). None of these may be used as independent test cases.",
+  "blockers": [
+    "The seed ZIP (240 issues, 1178 comments) is not in this repository; family-level selection of the remaining 14 dev and 15 test cases needs it (R1).",
+    "Duplicate/linkage review per family is needed before freezing (R2 consumes this manifest)."
+  ]
+}
