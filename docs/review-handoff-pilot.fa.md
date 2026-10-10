@@ -95,15 +95,32 @@ catalog متناقض اعلام می‌کند. answer رد می‌شود و esca
 نمی‌نامیم. تست mutation، حفظ quote همراه اضافه‌شدن ادعای غلط را هم رد می‌کند.
 این بررسی وفاداری همین fixture است، نه داور عمومی entailment.
 
-[receipt نهایی v2](../experiments/review_handoff/results-review-handoff-v2.json)
+[receipt v2](../experiments/review_handoff/results-review-handoff-v2.json)
 با SHA `f4efa6bea0e947b758001245826a5d79dbad9829d35540aaacb788e1bee8d233`
-ثبت شده است؛ فایل، fingerprint کد اجراشده، oracle و runtime را نگه می‌دارد.
-منابع اصلی preregistered مانده‌اند و receipt اول overwrite نشده است.
+ثبت و حفظ شده است؛ فایل، fingerprint کد اجراشده، oracle و runtime را نگه می‌دارد.
+پس از اصلاح normalization و خطای ساخت adapter در `68dec4f`، همان replay روی
+کد تازه در [receipt v3](../experiments/review_handoff/results-review-handoff-v3.json)
+با SHA `915ea1d5c82039da928a5405a1c407ec933cfe3fd54340020c50a309ea3cff79`
+دوباره پاس شد. schema این receipt همچنان نسخهٔ ۲ است؛ v3 نام اجرای تازه است،
+نه fixture یا oracle تازه. منابع اصلی ثبت‌شده مانده‌اند و receiptهای قبلی
+overwrite نشده‌اند.
 
 بررسی نهایی محلی: **۱۶۲۱ تست آفلاین پاس**، یعنی ۹۲ تست اضافه نسبت به main؛
 Ruff lint/format، dependency lock و هر ۱۸ فرمان validation/replay/demo در CI هم
 پاس‌اند. بعد از اصلاح scorer، کل suite و replay نهایی دوباره اجرا شدند.
 یک warning موجود Starlette/httpx باقی است.
+
+در بازبینی بعدی دو regression دیگر قبل از اصلاح در `d14cfc4` ثبت شدند:
+پیام معتبر با فاصلهٔ ابتدا/انتها به‌خاطر normalization متفاوت به handoff نمی‌رسید؛
+خطای ساخت adapter بعد از commit رخداد، HTTP500 بدون log عملیاتی می‌داد.
+[baseline](../experiments/review_handoff/baseline-adapter-boundary-v1.json) و
+[مقایسه با همان تست‌های اولیه](../experiments/review_handoff/comparison-adapter-boundary-v1.json)
+روی کد واقعی `254e6542` دو fail و روی `68dec4f` دو pass دارند.
+handoff حالا متن اصلی را دقیق نگه می‌دارد و برای GroundedRequest فقط فاصلهٔ بیرونی
+را طبق قرارداد قبلی کنار می‌گذارد. خطای setup با کد امن ثبت می‌شود؛ replay
+دوباره adapter را نمی‌سازد و correction اجازهٔ تأیید پیشنهاد قدیمی را نمی‌دهد.
+تست سومِ stale approval بعد از ثبت baseline اضافه شد؛ جزء دو تست اولیه نیست.
+این‌ها بهبود نرم‌افزار اتصال‌اند، نه امتیاز تصمیم مدل.
 
 انتخاب Issue #12782 از workaround و commentهای همان Issue اثر گرفته و
 `answer-informed` است. پاسخ/راه‌حل همان Issue داخل evidence نیست؛ منابع رسمی
