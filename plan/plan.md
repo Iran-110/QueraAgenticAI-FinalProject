@@ -6,13 +6,13 @@
 
 | بخش | چیزی که داریم | چیزی که هنوز اثبات نشده |
 | --- | --- | --- |
-| core — ساسان | قراردادها، تصمیم‌های محدود، اصلاح اطلاعات و ledger؛ اصلاح evidence و مسیر اختیاری GroundedPlan در branch core | اتصال نسخهٔ تازه به UI/RAG/tracker و کیفیت تصمیم مدل روی کیس‌های ندیده |
+| core — ساسان | قراردادها، تصمیم‌های محدود، اصلاح اطلاعات و ledger؛ اصلاح evidence و مسیر اختیاری GroundedPlan روی main | اتصال نسخهٔ تازه به UI/RAG/tracker و کیفیت تصمیم مدل روی کیس‌های ندیده |
 | داده — آماده‌سازی اولیه ساسان؛ ادامه با حسن | ZIP اولیه: ۲۴۰ Issue، ۱۱۷۸ comment، ۵۶ متن Markdown و ۱۱۷۲ API record؛ GitHub snapshot ششم اکتبر | corpus تأییدشده، split نهایی، index و retrieval واقعی؛ ZIP هنوز corpus نیست |
 | UI/API — محمدحسن | روی `main`: Streamlit و FastAPI، فراخوانی SupportEngine با FakeRetriever/FakeReasoner و review پیشنهاد | دریافت fact و correction معتبر، نمایش review کامل، اتصال retriever/model واقعی |
 | tracker/tools — محمد بهنام | prototype حافظه‌ای DummyTracker در UI؛ بخش هزینهٔ SQLite مربوط به gateway است | ذخیرهٔ پایدار پرونده، dedup رخداد/اقدام، approval اتمیک، ادامه پس از restart |
 | evaluation — محمدحسن | تست‌های منطقی آفلاین و آزمایش‌های توسعهٔ core قابل بازپخش‌اند | ۱۵ dev و ۱۵ test مستقل، معیارهای freezeشده و نتیجهٔ سیستم نهایی |
 
-تغییرات جدید core برای review روی `feat/agent-core-integration` در [PR #7](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/7) منتشر شده‌اند؛ تا merge آن‌ها در `main` موجود نیستند. [گزارش V8](https://github.com/Iran-110/QueraAgenticAI-FinalProject/blob/8cf56d89b47f0255288ceed1262aeb439017c486/docs/controlled-core-v8.fa.md)، [گزارش V9](https://github.com/Iran-110/QueraAgenticAI-FinalProject/blob/8cf56d89b47f0255288ceed1262aeb439017c486/docs/controlled-core-v9.fa.md) و [قرارداد GroundedPlan](https://github.com/Iran-110/QueraAgenticAI-FinalProject/blob/8cf56d89b47f0255288ceed1262aeb439017c486/docs/extractive-core.md) شواهد این milestone هستند. ۱۴۱۴ تست آفلاین در milestone محلی ثبت شده؛ نتیجهٔ RAG واقعی یا test نهایی نیست. GroundedPlan اختیاری است و پیش‌فرض production تغییر نکرده.
+تغییرات جدید core از طریق [PR #7](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/7) با merge commit `85b6027` به `main` رسیدند. [گزارش V8](../docs/controlled-core-v8.fa.md)، [گزارش V9](../docs/controlled-core-v9.fa.md) و [قرارداد GroundedPlan](../docs/extractive-core.md) شواهد این milestone هستند. ۱۴۱۴ تست آفلاین در milestone محلی و ۱۴۲۸ تست همراه API/UI در CI ترکیب PR با main پاس شدند؛ نتیجهٔ RAG واقعی یا test نهایی نیست. GroundedPlan اختیاری است و پیش‌فرض production تغییر نکرده.
 
 ## قدم مشترک بعدی: یک case چندمرحله‌ای از dev
 
@@ -38,7 +38,7 @@
 
 ### ساسان — core و قرارداد اتصال
 
-- [x] **C1 — انتشار تغییرات موجود برای review.** commitهای V8/V9 و راهنمای اتصال در [PR #7](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/7) منتشر شدند؛ [CI روی commit 8cf56d8](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38033908496) پاس شد. ۱۴۱۴ تست محلی و Ruff هم پاس‌اند؛ مقایسهٔ baseline در گزارش‌های V8/V9 ثبت است. [CI ترکیب PR با main](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38033931700) هم پاس شد؛ merge به main تصمیم جداگانهٔ تیم است.
+- [x] **C1 — انتشار و اتصال نسخهٔ مشترک core.** commitهای V8/V9 و راهنمای اتصال در [PR #7](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/7) منتشر شدند؛ [CI روی commit 8cf56d8](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38033908496) پاس شد. ۱۴۱۴ تست محلی و Ruff هم پاس‌اند؛ مقایسهٔ baseline در گزارش‌های V8/V9 ثبت است. [CI ترکیب PR با main](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38033931700) هم با ۱۴۲۸ تست پاس شد؛ PR با اجازهٔ ساسان به main merge شد (`85b6027`).
 - [ ] **C2 — اتصال ورودی چندنوبتی.** همراه محمدحسن و بهنام، reported_facts، checks_performed و context_changed را به API/tracker وصل کند. جواب کوتاه نسخه فقط برای سؤال canonical ثبت‌شده، case/revision درست و proposal معتبر استخراج شود؛ متن مبهم نیاز به تأیید اطلاعات دارد. شرط پایان: P2 و تست correction/withdrawal/تغییر محیط پاس شوند.
 - [ ] **C3 — اتصال خروجی و review.** latest EvidenceBundle و کل CaseState به reasoner برسند؛ مدل فقط پیشنهاد بسازد. برای GroundedPlan، gapهای قابل پاسخ توسط کاربر از کمبود منبع جدا و catalog/conflict ورودی بازبینی شود؛ review معنایی و approval اجرا جدا بمانند. شرط پایان: مثال اتصال با fixture و reject ورودی/منبع قدیمی قابل بازپخش باشد.
 - [ ] **C4 — baseline برای pilot متصل.** بعد از آماده شدن ورودی/خروجی P2–P4، baseline و یک یا دو اصلاح مشخص روی همان سناریوها و شواهد ثابت مقایسه شوند؛ تصمیم قابل قبول، پشتیبانی ادعاها و ضرورت سؤال قبل از اجرا ثبت شوند. استفاده از جواب Issue برای ساخت شواهد صریح اعلام شود. receiptهای V8/V9 موجود، شواهد توسعهٔ انجام‌شده‌اند و حفظ شوند؛ replay آفلاین و نتایج model/RAG/test جدا گزارش شوند.
@@ -85,7 +85,15 @@
 4. baseline و بهبود روی dev مقایسه شوند؛ code، prompt، model و corpus freeze شوند.
 5. test نهایی بدون tuning اجرا و گزارش کیفیت، شکست‌ها و هزینه تهیه شود؛ bonus بعد از اصل کار است.
 
-هر checkbox زمانی بسته می‌شود که لینک commit/PR، تست، trace یا artifact شرط پایانش کنار همان task اضافه شود. تغییر owner یا قرارداد مشترک با review صاحب بخش ثبت شود. برای ساختار عمومی از [معماری](../docs/architecture.md)، [راهنمای اتصال](../docs/integration.md)، [UserTurn](../docs/user-turns.md) و [پیشرفت core](../docs/core-progress.md) استفاده کنیم؛ مستندات V8/V9 تا merge از لینک branch بالاتر خوانده شوند.
+هر checkbox زمانی بسته می‌شود که لینک commit/PR، تست، trace یا artifact شرط پایانش کنار همان task اضافه شود. تغییر owner یا قرارداد مشترک با review صاحب بخش ثبت شود. برای ساختار عمومی از [معماری](../docs/architecture.md)، [راهنمای اتصال](../docs/integration.md)، [UserTurn](../docs/user-turns.md) و [پیشرفت core](../docs/core-progress.md) استفاده کنیم؛ مستندات V8/V9 اکنون همراه core روی main هستند.
+
+## به‌روزرسانی مشترک plan
+
+- `main` مرجع مشترک تیم است. هرکس پیش از شروع کار، تغییرات محلی‌اش را حفظ کند، `git fetch origin` بزند و branch کاری خودش را از `origin/main` به‌روز کند. فایل plan با Git لحظه‌ای sync نمی‌شود؛ نسخهٔ تازه پس از fetch/merge دیده می‌شود.
+- هر نفر taskهای خودش را در همین فایل نگه دارد؛ تغییر وضعیت یا بسته شدن checkbox همراه لینک commit/PR، تست، trace یا artifact باشد. blocker و ورودی لازم از نفر دیگر کنار همان task نوشته شود.
+- تغییر کد و plan روی branch صاحب بخش ثبت و با PR به main برسد. شناسهٔ task مثل `R3` یا `U2` در توضیح PR نوشته شود؛ تغییر قرارداد مشترک با review صاحب بخش جمع شود. کار فعلی دیگران بازنویسی یا reset نشود.
+- لینک PR و taskهای تغییرکرده در گروه معرفی شوند تا هماهنگ‌کننده و صاحب وابستگی باخبر شوند. برای دنبال کردن خودکار PRها، هر عضو می‌تواند اعلان‌های GitHub همان repository را فعال کند؛ صرف push شدن فایل به معنی دیده شدن آن توسط همه نیست.
+- Codex/Claude هر نفر قبل از اجرا، AGENTS.md و همین plan را بخواند و از owner و شرط پایان task پیروی کند. پاس شدن mock یا pytest به‌تنهایی checkbox مربوط به اتصال واقعی یا کیفیت مدل را نمی‌بندد.
 
 ## محدودیت‌های اجرا
 

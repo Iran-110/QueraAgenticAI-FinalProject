@@ -1,6 +1,6 @@
 # Working instructions
 
-Build the Quera Streamlit support assistant in small, reviewable steps. The authoritative brief is linked in README; `plan/` and the annotated local brief include team suggestions, not mandatory frameworks. Read `docs/core-progress.md` before changing the core.
+Build the Quera Streamlit support assistant in small, reviewable steps. The authoritative brief is linked in README; `plan/` and the annotated local brief include team suggestions, not mandatory frameworks. Read `plan/plan.md` for current task owners, dependencies and acceptance evidence; read `docs/core-progress.md` before changing the core.
 
 ## Scope and collaboration
 
@@ -8,6 +8,7 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 - Inspect Git status first. Preserve teammates' work, the original brief, and the original plan. Do not overwrite unrelated changes.
 - Keep shared models in `src/agent_app/contracts.py` and ports in `orchestration/ports.py`; coordinate interface changes before adapting another owner's module.
 - Use feature branches and meaningful commits after coherent, verified chunks. Do not fabricate dates, activity, test results, or completed functionality.
+- Keep the owned task in `plan/plan.md` current in the same PR; use its task ID in handoffs and attach completion evidence before checking it off. Sync the feature branch from current `origin/main` without discarding local work. Shared plan changes are visible to teammates after Git sync, not instantly.
 - Keep the current foundation independent of an orchestration framework. Add a dependency only when an implemented need justifies it.
 
 ## Runtime rules

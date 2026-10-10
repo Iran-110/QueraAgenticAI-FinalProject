@@ -454,6 +454,27 @@ family exclusion, authenticated tracker review/approval/replay, complete UI
 display and unexposed real-model evaluation remain integration work. No new
 production agent/framework, merge to main or push was performed.
 
+## 2026-10-10 — shared core integration release
+
+With Sasan's explicit authorization, PR #7 was merged normally into main as
+`85b6027254bfa3f02a720101673626265817a560`. All fourteen V8/V9 feature commits
+remain reachable, with the authored receipts and original Git baseline histories
+preserved. Release review found additive contracts compatible with the current
+UI/API; GroundedPlan, evidence scope and proposal checks remain opt-in/default
+unchanged.
+
+Exact feature-head CI passed 1,414 tests at `8cf56d8` (run `38033908496`);
+the PR merge CI passed 1,428 tests including existing UI/API tests (run
+`38033931700`). Both also passed style checks, registered offline replays and
+demos. These are compatibility and controlled development evidence, not real
+retrieval or held-out quality measurements.
+
+The UI/API still uses scripted retrieval/reasoning and memory case storage.
+Structured user-fact intake, durable tracker approval/replay/restart, real
+retrieval and real-model evaluation remain the named owners' integration work.
+No paid request, environment-key read, ledger reset or uncertainty release was
+performed for this release. The ordinary live halt remains unresolved.
+
 ## Next integration work
 
 ### Shared release — 2026-10-07

@@ -18,9 +18,9 @@ uv run ruff check .
 uv run ruff format --check .
 ```
 
-All demo scenarios run offline, using synthetic evidence and scripted decisions. The `error` scenario intentionally returns exit status 1 with `RetrievalUnavailable`; this is the expected failure path. `uv run streamlit run app.py` starts the original UI placeholder. Credentials are not needed for either workflow yet. The first dependency sync needs package downloads unless cached.
+All demo scenarios run offline, using synthetic evidence and scripted decisions. The `error` scenario intentionally returns exit status 1 with `RetrievalUnavailable`; this is the expected failure path. The Streamlit UI calls the local FastAPI backend; start both with the commands in [README](../README.md). This is an offline prototype with fake retrieval/reasoning and in-memory case storage, so credentials are not needed. The first dependency sync needs package downloads unless cached.
 
-Ruff currently checks the new Python core and tests; the unchanged `app.py` and `streamlit_examples/` are excluded until their owner updates them.
+Ruff checks the Python core, API and tests; `app.py` and `streamlit_examples/` remain excluded by the current configuration. UI/API tests still run in the full pytest suite.
 
 ## Automatic checks
 
@@ -29,6 +29,8 @@ GitHub Actions runs the locked install, Ruff lint/format checks, the full test s
 The workflow must be present in a branch to check its pushes. After the foundation PR is merged, update existing feature branches from `main`; new branches then inherit the same checks. Future modules should add their behavioral tests to `tests/` so CI picks them up. Making a successful check mandatory for merging is a separate repository setting for the maintainer.
 
 ## Branches and handoff
+
+Read the shared [team checklist](../plan/plan.md) before starting. Update your feature branch from current main after preserving local work. Each owner updates their task status with evidence in the implementation PR; include the task ID and introduce the PR to the team.
 
 Suggested branch names: `feat/agent-core-foundation`, `feat/data-rag`, `feat/local-tracker`, `feat/ui-evaluation`. Create your own branch from the agreed integration branch:
 
