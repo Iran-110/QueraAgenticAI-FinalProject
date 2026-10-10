@@ -1,9 +1,13 @@
-# Member 2 Todo List (Agent Core & Contracts)
+# ساسان — core و قرارداد اتصال
 
-- [x] **Day 1**: Define contracts, Pydantic models/schemas for the data (`src/agent_app/contracts.py`).
-- [x] **Day 1**: Implement the model gateway and SQLite ledger to enforce the $5 budget limit.
-- [x] **Day 2**: Write the core LLM prompts. Output must differentiate between known facts, evidence, and missing info.
-- [x] **Day 3**: Implement decision guardrails (source authority, callback/API static checks) and parse errors with repair feedback.
-- [x] **Day 4**: Ensure terminal errors do not consume additional budget. Support teammate integration.
-- [ ] **Day 5**: Assist with running the 15 Dev cases and prompt tuning based on failures.
-- [ ] **Day 6**: Code freeze. Review code quality, ensure the README explains how to reset the local tracker and run the agent.
+وضعیت، checkboxها، وابستگی‌ها و شرط پایان هر task فقط در [plan اصلی](plan.md) نگهداری می‌شوند. این فایل راهنمای نقش است؛ فهرست موازی از وضعیت‌ها نسازیم. [نسخهٔ قبلی](archive/member_2_before_task_checklist.md) حفظ شده.
+
+- **C1:** نسخهٔ V8/V9 و مستندات از PR #7 روی main هستند؛ این milestone آفلاین است و کیفیت RAG واقعی را ثابت نمی‌کند.
+- **C2 / P2:** اتصال reported_facts، checks_performed و context_changed با محمدحسن و بهنام؛ اصلاح اطلاعات، revision و کنارگذاری استنتاج قبلی.
+- **C3:** اتصال خروجی و review کامل؛ GroundedPlan اختیاری و approval اجرا جداست.
+- **C4:** baseline قابل بازپخش برای pilot متصل و مقایسهٔ اصلاحات روی شواهد و ورودی ثابت.
+- **C5:** رفع مستند علت halt و تطبیق provider/هزینه پیش از live؛ بدون reset یا آزاد کردن uncertainty.
+
+pytest core و قراردادها با ساسان است. core فقط پیشنهاد می‌سازد؛ ذخیره و اجرای اقدام با tracker است. ساختار تک agent و پیش‌فرض‌های فعلی حفظ شده‌اند.
+
+قبل از کار branch خود را از main به‌روز کند. تغییر وضعیت task همراه evidence در همان PR ثبت و لینک PR در گروه معرفی شود.

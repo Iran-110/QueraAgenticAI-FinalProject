@@ -1,14 +1,14 @@
-# Member 4 Todo List (UI, Evaluation & Bonus)
+# محمدحسن — UI و evaluation
 
-## UI Use Cases
-- The project is a support assistant for Streamlit issues that uses documentation and issues as evidence to decide whether to answer, ask a follow-up question, or escalate to a maintainer.
-- The user writes their problem, and the system shows the answer or next question along with sources.
-- Alongside this, the case status should be visible, and the maintainer should have the ability to approve, edit, or reject the proposed actions.
+وضعیت، checkboxها، وابستگی‌ها و شرط پایان هر task فقط در [plan اصلی](plan.md) نگهداری می‌شوند. این فایل راهنمای نقش است؛ فهرست موازی از وضعیت‌ها نسازیم. [نسخهٔ قبلی](archive/member_4_before_task_checklist.md) حفظ شده.
 
-## Todo List
-- [x] **Day 1**: Review the selected domain. Add the HITL pause mechanism UI placeholders in the built scaffold.
-- [ ] **Day 2**: Use agent/scripts to curate the 15 "Development" cases from the raw dataset.
-- [x] **Day 3**: Implement the backend connection to the Streamlit UI, allowing a user to accept, reject, or edit a proposed action.
-- [ ] **Day 4**: Begin implementing the chosen **Bonus Section** (Adversarial Testing) in a separate branch.
-- [ ] **Day 5**: Analyze operational success (Did the agent update the DB correctly? Did it stop when rejected?). Draft these findings for the final report.
-- [ ] **Day 6**: Code freeze. Create the final presentation slides. Focus on the architecture, the HITL design, the evaluation metrics, and the adversarial testing results.
+- **U1:** prototype آفلاین Streamlit/FastAPI روی main موجود است؛ FakeRetriever/FakeReasoner و storage حافظه‌ای هنوز صریح‌اند.
+- **U2 / U3:** اطلاعات صریح و correction را به قرارداد core وصل کند؛ کل پیشنهاد/منابع و review را نمایش دهد و اتصال واقعی را جدا تست کند.
+- **E1 / P1:** حداقل ۱۵ dev و ۱۵ test در سطح خانواده انتخاب کند؛ حداقل ۱۰ سناریوی چندنوبتی، شامل حداقل ۵ در test. برای pilot یک case از dev تعریف کند.
+- **E2 / E3:** fixture با ورودی شروع و ادامهٔ گفتگو، rubric و runner خودکار بسازد؛ جواب/gold وارد ورودی مدل یا index نشود.
+- **E4 / E5:** baseline و تنظیم فقط روی dev، سپس freeze و test نهایی و گزارش کیفیت/شکست/هزینه.
+- **E6:** bonus و ارائه پس از مسیر اصلی؛ دامنهٔ bonus با منتور هماهنگ شود.
+
+pytest UI/API و schema/runner evaluation با محمدحسن است؛ برای قرارداد از ساسان و برای شواهد retrieval/tracker از حسن و بهنام کمک بگیرد. UI ورودی آزاد دارد و به ۳۰ case محدود نمی‌شود؛ demo دستی جای runner ارزیابی را نمی‌گیرد.
+
+قبل از کار branch خود را از main به‌روز کند. تغییر وضعیت task همراه evidence در همان PR ثبت و لینک PR در گروه معرفی شود.
