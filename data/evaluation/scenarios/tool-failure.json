@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "fixture_id": "scenario-tool-failure-v1",
+  "fixture_id": "scenario-tool-failure-v2",
   "registered_on": "2026-10-10",
   "registered_before_first_run": true,
   "purpose": "Brief scenario 'tool failure': a retrieval failure and an exhausted model retry stop safely with no proposal; a single reasoning failure is retried within the 2-attempt allowance; the case keeps working afterwards.",
@@ -139,7 +139,7 @@
       "expect": {
         "revision": 3,
         "pending_decision": null,
-        "stop_code": "ModelAttemptLimitExceeded"
+        "stop_code": "ReasoningUnavailable"
       }
     },
     {
@@ -183,5 +183,6 @@
         }
       }
     }
-  ]
+  ],
+  "revision_note": "v1 (88a3128) expected stop code ModelAttemptLimitExceeded for tool-3. The first run (receipts/offline/scenarios-v1-first-run.json) showed the engine reports the last adapter error, ReasoningUnavailable, after both attempts fail. The run still stopped with no proposal. Only that expected code changed."
 }
