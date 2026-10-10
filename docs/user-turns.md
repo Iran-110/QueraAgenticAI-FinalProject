@@ -209,9 +209,14 @@ input gives a safe `422 IntakeRejected.code`. Malformed requests return only
 
 The API records all event IDs, even legacy UUIDs, under a process lock, before
 running the engine. A stopped run cannot be restarted by replaying its event.
-Unexpected setup/tracker exceptions can still return HTTP 500 after committing
-ingress; retry retrieves that receipt without starting another run. Persistent
-tracker integration needs a recoverable run/outcome policy for this interruption.
+Adapter construction or engine-configuration failure returns the current view
+with a sanitized `AdapterSetupUnavailable` system log after committing ingress;
+it creates no new proposal or model attempt. Replaying the same event returns
+its original receipt without constructing the adapters again. Unexpected runtime
+or tracker exceptions outside these guarded boundaries can still return HTTP 500
+after committed ingress; retry retrieves that receipt without starting another
+run. Persistent tracker integration needs a recoverable run/outcome policy for
+such interruptions.
 Records vanish on restart: no durable CAS, authenticated reviewer, recovery or
 cross-worker guarantee. The API does not automatically adopt model `facts_delta`
 or citation references into case state.
