@@ -79,3 +79,13 @@ gapها و conflictهای catalog فعلاً caller-owned و دستی‌اند؛
 ساسان پس از دریافت adapterها اتصال و baseline مشترک را ادامه می‌دهد. پیش از
 آزمایش live، C5 به مدرک هویت مدل/usage/billing provider نیاز دارد؛ uncertainty
 با حدس، alias تازه یا reset برطرف نمی‌شود.
+
+## انتشار روی main
+
+[PR #11](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/11)
+پس از review نهایی با commit `edea31c6b511520ffcb78b6b5c6fc565b2266265`
+به main merge شد؛ [CI خود main](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38045540320)
+هم پاس است. تاریخچهٔ ثبت fixture و receiptها حفظ شد. دو توضیح قدیمی دربارهٔ
+خطای setup و approval محلی UI اصلاح شدند؛ ایراد قابل اقدام دیگری در بازبینی
+کد، آزمایش‌ها و handoff تیم پیدا نشد. مبنای شروع اعضا، `origin/main` است؛
+کارهای باز و شرط پایانشان در plan باقی مانده‌اند.

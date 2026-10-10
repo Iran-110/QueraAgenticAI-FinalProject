@@ -30,8 +30,10 @@
 | محمدحسن — P1/U2/E2 | ورودی fact/correction و نمایش کامل review به API وصل شود؛ همین fixture شروع pilot باشد | یک اجرای پیام/جواب سؤال/اصلاح/approve یا reject؛ برای split و caseهای ارزیابی، وضعیت واقعی و فایل manifest اولیه گزارش شود |
 
 تکمیل index نهایی، همهٔ ۳۰ case یا evaluation نهایی، شرط این تحویل کوچک نیست.
-سهم core و fixture در PR #11 منتشر شده؛ اعضا قبل از اتصال نسخهٔ قرارداد را sync
-و نتیجهٔ review/merge آن را بررسی کنند.
+سهم core و fixture با [PR #11](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/11)
+به `main` رسید (`edea31c`) و [CI انتشار](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38045540320)
+پاس شد. قبل از اتصال، تغییرات محلی را حفظ کنید، `git fetch origin` بزنید و
+branch کاری خودتان را از `origin/main` به‌روز کنید. همین نسخه مبنای pilot تیم است.
 
 fixture پایهٔ این تحویل، [case چهار‌نوبتی C3](../experiments/review_handoff/case-current-state-latest-evidence.json)
 است؛ [فرمان replay و محدودیت‌ها](../experiments/review_handoff/README.md) و
