@@ -23,6 +23,8 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          # The registered C3 replay imports the real pre-change baseline via Git archive.
+          fetch-depth: 0
       - name: Set up uv and Python
         uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
         with:
@@ -58,6 +60,8 @@ jobs:
         run: uv run agent-app demo --scenario refine
       - name: Replay registered user ingress and correction pilot without network
         run: uv run python experiments/user_intake/replay.py
+      - name: Replay complete review handoffs and freshness guards without network
+        run: uv run python experiments/review_handoff/replay.py
       - name: Smoke-test gateway accounting without network
         run: uv run agent-app gateway-demo --scenario repair
       - name: Smoke-test user facts and corrections without storage

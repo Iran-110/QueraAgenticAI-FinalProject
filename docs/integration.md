@@ -196,6 +196,61 @@ Approval must bind to the exact case, revision and proposal. The pure core does
 not save cases or enforce execution approval; process-local checks do not replace
 the tracker's durable transaction or authenticated review.
 
+### Complete proposal handoff (C3)
+
+Wrap one invocation's `Reasoner` with `ReasoningCapture`, then call
+`build_handoff(result, capture.last)`. It exports `ProposalHandoff`: the case
+before setting its pending ID, exact user message, final consumed evidence,
+complete analysis, caller-owned reasoning context, all-source inventory and
+whole-output review packet. It uses the engine's final normalized/filtered bundle;
+prepared or earlier retrieval responses cannot supply citations or warnings.
+Every source retains `source_commit`, `source_span`, `applicable_versions` and
+scores. `source_inventory.version_scope` is an exact metadata comparison, not a
+semantic applicability judgment or proof that a document is correct.
+
+With `GroundedReasoner`, capture the request returned by its caller-owned
+`request_factory` in a per-invocation closure. Pass that final request to
+`build_handoff(..., grounded_request=request)`. Never reconstruct a catalog from
+the first bundle after refinement. `GroundedRequest` must exactly match the
+captured case/message/evidence; its user/source gaps and declared conflict groups
+are part of the outer handoff digest. A catalog-only change can leave final text
+and the legacy review packet unchanged while changing `handoff_sha256`.
+
+The offline HTTP adapter exports the complete object at
+`pending.review_handoff`, with additive `pending.analysis` and legacy display
+fields. UI U2 should show every analysis surface and all supplied sources, even
+uncited sources, plus user/source gaps when present. The `RunAdapters` factory is
+a trusted per-run integration seam using the existing `Retriever`/`Reasoner`
+ports; it defaults to scripted adapters. A supplier failure exports only an
+allowlisted error, leaves no new proposal and preserves the committed ingress
+receipt. It does not automatically retry a consumed event.
+
+Tracker T2/T3 must retain the exact handoff with its pending proposal and use
+`ensure_handoff_current(handoff, authoritative_case, proposal_id)` inside its
+approval transaction. That checks full content as well as IDs/revision, removing
+only the expected pending ID before comparison. It catches same-revision case
+drift. Use `edit_handoff` with a new proposal ID for any edit and rebuild the UI
+projection; even an identical-text edit needs new approval. The original
+`reasoning_context.run_id` remains the model invocation identity, while
+`proposal_id` becomes the human edit's identity.
+
+`validate_handoff` checks integrity. `validate_proposal_review` checks an
+attestation against the exact packet and reviewer identity supplied by the caller.
+Neither authenticates a reviewer, proves entailment or grants execution approval.
+Human edits are not automatically grounded again; semantic review must inspect
+the rebuilt packet, including any newly written claims. The API still uses
+unauthenticated process-local approval and does not execute tracker tools.
+
+Run the registered current-state/refinement/correction example offline:
+
+```bash
+uv run python experiments/review_handoff/replay.py
+```
+
+The authored planner and fixed official sources exercise the same HTTP/core
+boundary without paid requests. Its receipt is software integration evidence;
+see [the C3 record and remaining owner handoffs](review-handoff-pilot.fa.md).
+
 ## Shared development and spending
 
 Use separate feature branches and coordinate shared contract changes. Before a

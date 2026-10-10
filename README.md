@@ -107,6 +107,7 @@ uv run streamlit run app.py
 - [کلاینت متیس و دفتر مشترک هزینه](docs/model-gateway.md)
 - [اطلاعات کاربر و اصلاح وضعیت در چند نوبت](docs/user-turns.md)
 - [pilot اتصال HTTP، correction و سؤال تأییدشده؛ نتیجه و handoff](docs/user-intake-pilot.fa.md)
+- [خروجی کامل core، آخرین evidence و review؛ نتیجه و قرارداد C3](docs/review-handoff-pilot.fa.md)
 - [پیشرفت واقعی هسته و کارهای بعدی](docs/core-progress.md)
 - [مقایسه روش‌های تصمیم‌گیری و محدودیت نتایج](docs/decision-quality.md)
 - [مقایسه منابع و اطلاعات کاربر با نتایج بازبینی](docs/decision-quality-v3.md)

@@ -525,6 +525,48 @@ those integrations. RAG/model/final-test quality and an actual app fix are
 unmeasured. See [the Persian result and precise owner handoff](user-intake-pilot.fa.md)
 and [wire/reply semantics](user-turns.md).
 
+## 2026-10-10 — complete review handoffs and current-state fixture (C3)
+
+Branch: `feat/core-review-handoff`, from the PR #10 merge `3f22ef9`.
+
+- Registered four HTTP review-boundary regressions before changing the API.
+  An isolated import of the actual baseline source reproduced four failures;
+  the same tests now pass. In particular, an unused prepared bundle could
+  overwrite a consumed citation sharing its chunk ID. Review now projects only
+  the engine's final consumed, normalized/filtered bundle and warnings.
+- Added `ProposalHandoff`, all-source content hashes/version scope and a
+  transparent per-invocation `ReasoningCapture`. The handoff retains the complete
+  case, message, analysis, reasoning context, sources and optional actual final
+  `GroundedRequest` catalog. Whole-case drift at the same revision, source/output
+  tampering and stale proposal IDs stop local approval. Human edits rebind a new
+  proposal and review packet without another model request.
+- Preregistered a four-turn current-state/correction/withdrawal fixture using
+  the same five pinned official V8 excerpts. Actual offline HTTP ports observe
+  five reasoning/retrieval calls, two separate approved releases and four event
+  replays without additional calls. The corrected 1.49.1 lacks exact metadata
+  coverage; authored retrieval refinement removes the prior release record and
+  ends in escalation. A separate declared-conflict control checks bounded
+  routing, not an actual contradiction between the documents.
+- Independent audit found that shared-renderer expected output could retain
+  exact quotes while appending unsupported cause/fix prose. Preserved the v1
+  receipt and its source in `2680151`; then inspected all five analyses and
+  registered a fixed output oracle in `057a4d3`. Whole-output checks now catch
+  both that mutation and wrong user facts from a shared rendering helper. This
+  oracle is explicitly post-first-replay audit hardening, not preregistered
+  semantic gold or a general entailment judge. The final v2 receipt is separate.
+- Verified locked dependencies, **1,621 passing offline tests** (92 added),
+  Ruff lint/format and all 18 CI validation/replay/demo commands. Re-ran the
+  full suite and final replay after oracle hardening. One existing
+  Starlette/httpx deprecation warning remains; independent final review found
+  no remaining actionable blocker.
+
+No paid request, key read or ledger mutation occurred. This closes the core's C3
+fixture/contract task, while C2/U2 and durable authenticated T1–T3 integration,
+real RAG/model quality, C4's connected baseline and C5 accounting reconciliation
+remain open. No teammate-owned production adapter or extra agent framework was
+implemented. See [the precise results and owner handoffs](review-handoff-pilot.fa.md)
+and the [integration contract](integration.md#complete-proposal-handoff-c3).
+
 ## Next integration work
 
 ### Shared release — 2026-10-07
