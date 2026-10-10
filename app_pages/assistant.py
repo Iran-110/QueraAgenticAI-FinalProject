@@ -3,9 +3,11 @@ from uuid import uuid4
 import streamlit as st
 
 from agent_app import ui_client
+from agent_app.orchestration.intake import STREAMLIT_VERSION_QUESTION
 
 SCENARIOS = {
     "ask": "Ask a follow-up question",
+    "ask_version": "Ask for the Streamlit version",
     "answer": "Answer with a source",
     "refine": "Search again, then answer",
     "escalate": "Escalate to a maintainer",
@@ -24,6 +26,12 @@ STATUSES = {
     "escalated": ("Escalated", "red"),
     "open": ("Open", "gray"),
 }
+VERSION_SCOPES = {
+    "exact_metadata_match": ("Version matches", "green"),
+    "historical_or_other_version": ("Other version", "orange"),
+    "unconfirmed": ("Version unconfirmed", "gray"),
+}
+FACT_ROW_COUNT = 3
 
 
 @st.cache_resource
@@ -35,18 +43,56 @@ def new_case_id() -> str:
     return f"case-{uuid4().hex[:8]}"
 
 
-if "case_id" not in st.session_state:
-    st.session_state.case_id = new_case_id()
+def reset_case_state() -> None:
     st.session_state.editing = False
     st.session_state.notice = None
+    # An unsent event belongs to the case it was built for.
+    st.session_state.unsent = None
+
+
+if "case_id" not in st.session_state:
+    st.session_state.case_id = new_case_id()
+    reset_case_state()
 
 client = get_client()
 
 
 def start_new_case() -> None:
     st.session_state.case_id = new_case_id()
+    reset_case_state()
+
+
+def deliver(event: dict) -> bool:
+    """Send once; keep the identical event for retry only if it may not have arrived."""
+    try:
+        view = client.send_event(st.session_state.case_id, event)
+    except ui_client.BackendError as error:
+        st.session_state.unsent = event if error.retryable else None
+        st.session_state.notice = ("error", str(error))
+        return False
+    st.session_state.unsent = None
     st.session_state.editing = False
-    st.session_state.notice = None
+    if view["intake"] and view["intake"]["replayed"]:
+        st.session_state.notice = ("info", "Already received. Showing the original result.")
+    return True
+
+
+def retry_unsent() -> None:
+    deliver(st.session_state.unsent)
+
+
+def submit_reply(revision: int, proposal_id: str) -> None:
+    reply = st.session_state.version_reply.strip()
+    if not reply:
+        return
+    event = ui_client.new_event(
+        reply,
+        expected_revision=revision,
+        scenario=st.session_state.scenario,
+        reply_to_proposal_id=proposal_id,
+    )
+    if deliver(event):
+        st.session_state.version_reply = ""
 
 
 def decide(proposal: dict, decision: str) -> None:
@@ -74,6 +120,110 @@ def set_editing(value: bool) -> None:
     st.session_state.editing = value
 
 
+def bullet_list(label: str, items: list[str], empty: str = "None.") -> None:
+    st.markdown(f"**{label}**")
+    if items:
+        st.markdown("\n".join(f"- {item}" for item in items))
+    else:
+        st.caption(empty)
+
+
+def render_case(view: dict) -> None:
+    with st.container(border=True):
+        status_label, status_color = STATUSES[view["status"]]
+        st.subheader("Case status")
+        with st.container(horizontal=True):
+            st.badge(status_label, color=status_color)
+            st.badge(f"Revision {view['case_revision']}", color="gray")
+        st.markdown("**Facts**")
+        if view["facts"]:
+            st.dataframe(
+                [
+                    {
+                        "Name": fact["name"],
+                        "Value": fact["value"],
+                        "Status": fact["status"],
+                        "From": fact["provenance_kind"],
+                        "Turn": fact["turn_id"],
+                    }
+                    for fact in view["facts"]
+                ],
+                hide_index=True,
+                alt="Case facts with their status and provenance",
+            )
+            st.caption("Superseded facts stay visible as history; only active ones count.")
+        else:
+            st.caption("No facts reported yet. Free text alone is not a confirmed fact.")
+        bullet_list("Unknowns", view["unknowns"], "None recorded.")
+        bullet_list("Checks performed", view["checks_performed"], "None recorded.")
+        intake = view["intake"]
+        if intake:
+            with st.expander("Last accepted update"):
+                st.markdown(
+                    f"- Event `{intake['turn_id']}` committed revision "
+                    f"{intake['committed_revision']} ({intake['preparation']})\n"
+                    f"- Changed facts: {', '.join(intake['changed_fact_names']) or 'none'}\n"
+                    f"- Context changed: {'yes' if intake['context_changed'] else 'no'}\n"
+                    f"- Invalidated checks: {', '.join(intake['invalidated_checks']) or 'none'}"
+                )
+
+
+def render_sources(proposal: dict) -> None:
+    handoff = proposal["review_handoff"]
+    bundle = handoff["evidence"]
+    cited = {link["chunk_id"]: link["claim"] for link in proposal["analysis"]["evidence_links"]}
+    scopes = {entry["chunk_id"]: entry["version_scope"] for entry in handoff["source_inventory"]}
+    st.markdown(f"**Sources ({len(bundle['hits'])} supplied, {len(cited)} cited)**")
+    if not bundle["hits"]:
+        st.caption("No sources were supplied to the agent.")
+    for hit in bundle["hits"]:
+        scope_label, scope_color = VERSION_SCOPES[scopes.get(hit["chunk_id"], "unconfirmed")]
+        with st.container(border=True):
+            title = hit["source_span"] or hit["chunk_id"]
+            st.markdown(f"[{title}]({hit['source_url']}) · {hit['source_type']}")
+            with st.container(horizontal=True):
+                if hit["chunk_id"] in cited:
+                    st.badge("Cited", color="green", icon=":material/format_quote:")
+                else:
+                    st.badge("Not cited", color="gray")
+                st.badge(scope_label, color=scope_color)
+            if hit["chunk_id"] in cited:
+                st.caption(f"Claim: {cited[hit['chunk_id']]}")
+            st.caption(f"Excerpt: {hit['excerpt']}")
+            meta = [f"Chunk `{hit['chunk_id']}`"]
+            if hit["source_commit"]:
+                meta.append(f"commit `{hit['source_commit']}`")
+            if hit["applicable_versions"]:
+                meta.append("versions " + ", ".join(hit["applicable_versions"]))
+            st.caption(" · ".join(meta))
+    for warning in proposal["warnings"]:
+        st.caption(f":material/warning: {warning}")
+    if bundle["queries_used"]:
+        st.caption(
+            f"Retrieval round {bundle['retrieval_round']}, queries: "
+            + "; ".join(bundle["queries_used"])
+        )
+
+
+def render_gaps(proposal: dict) -> None:
+    grounded = proposal["review_handoff"].get("grounded_request")
+    if not grounded:
+        return
+    if grounded["gaps"]:
+        st.markdown("**Gaps**")
+        for gap in grounded["gaps"]:
+            kind = "User information" if gap["kind"] == "user" else "Source coverage"
+            text = f"- **{kind}: {gap['name']}**: {gap['description']} ({gap['necessity']})"
+            if gap["question"]:
+                text += f"  \n  Question: {gap['question']}"
+            st.markdown(text)
+    if grounded["conflict_groups"]:
+        bullet_list(
+            "Conflicting sources",
+            [", ".join(f"`{chunk}`" for chunk in group) for group in grounded["conflict_groups"]],
+        )
+
+
 def render_proposal(proposal: dict) -> None:
     label, color, icon = DECISIONS[proposal["decision"]]
     with st.container(border=True):
@@ -95,27 +245,30 @@ def render_proposal(proposal: dict) -> None:
         st.markdown("**Draft reply to the user**")
         with st.container(border=True):
             st.markdown(proposal["user_draft"] or "_No user-facing draft._")
-        if proposal["missing_info"]:
-            st.markdown("**Missing information:** " + ", ".join(proposal["missing_info"]))
+        if proposal["next_question"] and proposal["next_question"] != proposal["user_draft"]:
+            st.markdown(f"**Next question:** {proposal['next_question']}")
+        bullet_list("Missing information", proposal["missing_info"])
         st.markdown("**Maintainer summary**")
         st.markdown(proposal["maintainer_summary"] or "_None._")
+        render_gaps(proposal)
+        render_sources(proposal)
 
-        st.markdown("**Evidence**")
-        if not proposal["evidence"]:
-            st.caption("No sources cited.")
-        for item in proposal["evidence"]:
-            title = item["source_span"] or item["chunk_id"]
-            st.markdown(f"- [{title}]({item['source_url']}) · {item['source_type']}")
-            st.caption(f"Claim: {item['claim']} — Excerpt: {item['excerpt']}")
-        for warning in proposal["warnings"]:
-            st.caption(f":material/warning: {warning}")
-
-        with st.expander("Rationale and run details"):
+        with st.expander("Rationale, suggestions and run details"):
             st.markdown(proposal["rationale"])
+            bullet_list("Suggested checks", proposal["checks_suggested"])
+            bullet_list("Requested searches", proposal["retrieval_queries"])
+            bullet_list(
+                "Facts proposed by the agent (not applied to the case)",
+                [f"{fact['name']}: {fact['value']}" for fact in proposal["facts_delta"]],
+            )
             with st.container(horizontal=True):
                 st.metric("Model attempts", proposal["model_attempts"])
                 st.metric("Retrieval rounds", proposal["retrieval_rounds"])
                 st.metric("Steps", proposal["steps"])
+            st.caption(
+                f"Proposal `{proposal['proposal_id']}` · revision {proposal['case_revision']} · "
+                f"handoff `{proposal['review_handoff']['handoff_sha256'][:12]}`"
+            )
 
         if proposal["stale"]:
             return
@@ -160,6 +313,98 @@ def render_proposal(proposal: dict) -> None:
         st.caption("Approval only updates this local case log. No external action is taken.")
 
 
+def render_reply(view: dict) -> None:
+    awaiting = view["awaiting_reply"]
+    if not awaiting:
+        return
+    question = awaiting["question"]
+    canonical = question["next_question"] == STREAMLIT_VERSION_QUESTION.question and question[
+        "missing_info"
+    ] == [STREAMLIT_VERSION_QUESTION.name]
+    if not canonical:
+        st.caption(
+            ":material/info: Answers to this question are recorded as text only. "
+            "Use **Report facts and corrections** to confirm values."
+        )
+        return
+    with st.form("reply_form", border=True):
+        st.markdown(f"**Reply to:** {question['next_question']}")
+        st.text_input("Streamlit version", placeholder="1.50.0", key="version_reply")
+        st.form_submit_button(
+            "Send reply",
+            type="primary",
+            icon=":material/reply:",
+            on_click=submit_reply,
+            args=(view["case_revision"], awaiting["proposal_id"]),
+        )
+
+
+def render_update_form(view: dict) -> None:
+    # Widgets are keyed by generation so a successful send starts a blank form,
+    # while a rejected one keeps what the user typed.
+    gen = st.session_state.setdefault("form_gen", 0)
+    with st.expander("Report facts and corrections", icon=":material/edit_note:"):
+        with st.form(f"update_form_{gen}", border=False):
+            message = st.text_area(
+                "Message",
+                placeholder="Correction: the deployed app uses Streamlit 1.49.1.",
+                key=f"update_message_{gen}",
+            )
+            st.markdown("**Facts**")
+            st.caption(
+                "Reusing a fact name replaces its value. Tick withdraw to mark it unknown again."
+            )
+            rows = []
+            for index in range(FACT_ROW_COUNT):
+                name_col, value_col, withdraw_col = st.columns(
+                    [2, 2, 1], vertical_alignment="bottom"
+                )
+                rows.append(
+                    {
+                        "name": name_col.text_input(
+                            "Name",
+                            placeholder="streamlit_version" if index == 0 else "",
+                            key=f"fact_name_{index}_{gen}",
+                            label_visibility="visible" if index == 0 else "collapsed",
+                        ),
+                        "value": value_col.text_input(
+                            "Value",
+                            placeholder="1.49.1" if index == 0 else "",
+                            key=f"fact_value_{index}_{gen}",
+                            label_visibility="visible" if index == 0 else "collapsed",
+                        ),
+                        "withdraw": withdraw_col.checkbox(
+                            "Withdraw", key=f"fact_withdraw_{index}_{gen}"
+                        ),
+                    }
+                )
+            checks = st.text_area("Checks performed (one per line)", key=f"update_checks_{gen}")
+            unknowns = st.text_area("New unknowns (one per line)", key=f"update_unknowns_{gen}")
+            context_changed = st.toggle(
+                "Different environment",
+                key=f"update_context_{gen}",
+                help="Earlier unconfirmed facts and checks no longer apply.",
+            )
+            submitted = st.form_submit_button("Send update", type="primary", icon=":material/send:")
+    if not submitted:
+        return
+    if not message.strip():
+        st.session_state.notice = ("warning", "Describe the update in the message field.")
+        st.rerun()
+    event = ui_client.new_event(
+        message.strip(),
+        expected_revision=view["case_revision"],
+        scenario=st.session_state.scenario,
+        reported_facts=ui_client.reported_facts(rows),
+        checks_performed=ui_client.lines(checks),
+        unknowns=ui_client.lines(unknowns),
+        context_changed=context_changed,
+    )
+    if deliver(event):
+        st.session_state.form_gen = gen + 1
+    st.rerun()
+
+
 with st.sidebar:
     st.subheader("Case")
     st.caption(f"Case ID: `{st.session_state.case_id}`")
@@ -184,6 +429,11 @@ if st.session_state.notice:
     getattr(st, kind)(text)
     st.session_state.notice = None
 
+if st.session_state.unsent:
+    with st.container(horizontal=True, vertical_alignment="center"):
+        st.warning("Your last message may not have arrived.", icon=":material/sync_problem:")
+        st.button("Retry sending", icon=":material/refresh:", on_click=retry_unsent)
+
 try:
     view = client.get_case(st.session_state.case_id)
 except ui_client.BackendError as error:
@@ -207,24 +457,10 @@ with chat_col:
                 if entry.get("edited"):
                     note += " (edited)"
                 st.caption(note)
+    render_reply(view)
 
 with case_col:
-    with st.container(border=True):
-        status_label, status_color = STATUSES[view["status"]]
-        st.subheader("Case status")
-        with st.container(horizontal=True):
-            st.badge(status_label, color=status_color)
-            st.badge(f"Revision {view['case_revision']}", color="gray")
-        active_facts = [fact for fact in view["facts"] if fact["status"] == "active"]
-        st.markdown("**Known facts**")
-        if active_facts:
-            for fact in active_facts:
-                st.markdown(f"- {fact['name']}: {fact['value']}")
-        else:
-            st.caption("None confirmed by the user.")
-        st.markdown("**Unknowns**")
-        st.caption(", ".join(view["unknowns"]) or "None recorded.")
-
+    render_case(view)
     if view["pending"]:
         render_proposal(view["pending"])
     else:
@@ -236,11 +472,16 @@ with case_col:
                 action = item.get("action") or {}
                 st.markdown(f"- **{item['decision']}** · {action.get('decision', '?')} proposal")
 
+# Full width so the fact editor's columns stay readable.
+render_update_form(view)
+
 if prompt := st.chat_input("Describe your Streamlit issue...", submit_mode="disable"):
     with chat_col, st.spinner("Running the agent..."):
-        try:
-            client.send_message(st.session_state.case_id, prompt, st.session_state.scenario)
-        except ui_client.BackendError as error:
-            st.session_state.notice = ("error", str(error))
-    st.session_state.editing = False
+        deliver(
+            ui_client.new_event(
+                prompt,
+                expected_revision=view["case_revision"],
+                scenario=st.session_state.scenario,
+            )
+        )
     st.rerun()

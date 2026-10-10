@@ -45,7 +45,11 @@ from agent_app.orchestration.handoff import (
     edit_handoff,
     ensure_handoff_current,
 )
-from agent_app.orchestration.intake import IntakeRejected, prepare_approved_version_reply
+from agent_app.orchestration.intake import (
+    STREAMLIT_VERSION_QUESTION,
+    IntakeRejected,
+    prepare_approved_version_reply,
+)
 from agent_app.orchestration.ports import Reasoner, Retriever
 from agent_app.orchestration.turns import UserTurnRejected, propose_user_turn
 from agent_app.testing.fakes import FakeReasoner, FakeRetriever
@@ -53,7 +57,7 @@ from agent_app.tracker.dummy_tracker import tracker
 
 app = FastAPI(title="Streamlit support assistant backend")
 
-Scenario = Literal["ask", "answer", "refine", "escalate", "error"]
+Scenario = Literal["ask", "ask_version", "answer", "refine", "escalate", "error"]
 CaseId = Annotated[
     str, Path(min_length=1, max_length=200, pattern=r"^[A-Za-z0-9][A-Za-z0-9._:/-]*$")
 ]
@@ -153,6 +157,17 @@ def _script(scenario: Scenario) -> tuple[list[EvidenceBundle | Exception], list[
     first = _evidence("demo-initial", "Synthetic background about a Streamlit user session.")
     if scenario == "ask":
         return [first], [_ask()]
+    if scenario == "ask_version":
+        # The canonical question is the only one a narrow reply can bind to.
+        question = AnalysisResult(
+            decision="ask",
+            user_draft=STREAMLIT_VERSION_QUESTION.question,
+            next_question=STREAMLIT_VERSION_QUESTION.question,
+            missing_info=(STREAMLIT_VERSION_QUESTION.name,),
+            maintainer_summary="The affected Streamlit version is unknown.",
+            rationale="The version determines which documentation applies.",
+        )
+        return [first], [question]
     if scenario == "answer":
         return [first], [_answer("demo-initial")]
     if scenario == "refine":
