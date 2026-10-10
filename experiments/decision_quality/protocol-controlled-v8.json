@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "experiment_id": "offline-controlled-core-2026-10-09-v8",
+  "created_on": "2026-10-09",
+  "mode": "offline_authored_adapter_replay_only",
+  "suite_path": "experiments/decision_quality/cases-controlled-v8.json",
+  "suite_sha256": "00bd1765a3296b039e56097296b1bd792aa4ccb736dac4bd54af28d6521226a3",
+  "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+  "source_snapshot_date": "2026-10-06",
+  "baseline_engine_scope": "all",
+  "candidate_engine_scope": "exact_user_version",
+  "paired_order": [
+    "all",
+    "exact_user_version"
+  ],
+  "same_inputs_and_authored_sequences_for_both": true,
+  "intake_conditions": [
+    "bare_turn",
+    "prepare_version_reply"
+  ],
+  "limits": {
+    "max_model_attempts": 2,
+    "max_retrieval_rounds": 2,
+    "max_queries_per_round": 2,
+    "max_steps": 8
+  },
+  "top_k": 5,
+  "paid_calls_authorized": false,
+  "cap_usd": "0",
+  "model": null,
+  "prompts_compared": false,
+  "proposal_checks": false,
+  "registered_before_scenario_execution": true,
+  "scenario_count": 6,
+  "engine_replay_count_per_scope": 14,
+  "intake_probe_count": 16,
+  "metric_definitions": {
+    "semantic_labels": "Developer-authored labels preregister narrow positive/negative controls; the runner must not derive labels from wording or keyword matching.",
+    "unsafe_acceptance": "Count authored negative replay sequences returning awaiting_approval; rejection is a safety boundary result, not proof of correct useful routing or whole-proposal quality.",
+    "positive_retention": "Count authored positive replay sequences returning their registered final decision; report the safe historical comparison loss separately.",
+    "routing_agreement": "Compare final decision/status with registered expected_by_scope for deterministic adapter replays; report accepted useful final decisions separately from rejected negatives.",
+    "intake_conversion": "Assert only structured version extraction and pure transition metadata against preregistered expectations, including rejection of ambiguous/wrong-boundary inputs.",
+    "no_claims": [
+      "No model was asked to decide these proposals.",
+      "No retrieval relevance or corpus leakage enforcement was measured.",
+      "Variants are correlated members of one exposed development family.",
+      "Same-version/unscoped unsupported semantic claims are deliberately outside the guard."
+    ]
+  },
+  "predeclared_expected_results": {
+    "all_negative_acceptance": "All authored semantic negatives except the already-protected stale refinement citation remain accepted; this exposes existing semantic limits.",
+    "candidate_negative_acceptance": "Versioned stale/unknown citation negatives are rejected; same-version and unscoped unsupported claims remain accepted.",
+    "positive_retention_loss": "The safe historical comparison for active 1.49.1 deliberately cites a 1.50.0 release event and is rejected by exact_user_version.",
+    "intake_gain": "Two canonical standalone installed-version replies gain attributed structured facts; fourteen negatives must not be converted, including displayed/target wording and other-environment display drift. Bare explicit structured facts remain authoritative input rather than an extraction baseline failure."
+  },
+  "registration_boundary": "Commit fixture/protocol before executing either candidate or baseline replays. Do not change preregistered expected outcomes to fit results. Source/hash/schema checks alone do not execute scenarios. Any later adaptation gets a separately identified pack.",
+  "claims_forbidden": [
+    "live_model_decision_quality",
+    "RAG_relevance_or_index_safety",
+    "held_out_test_success",
+    "general_semantic_entailment",
+    "automatic_tracker_approval_or_execution",
+    "general_free_text_fact_extraction"
+  ],
+  "scope": "Compare two narrowly implemented core boundaries over explicitly authored full proposals and structured state transitions. This is controlled offline software behavior, not a model-quality evaluation or architecture contest.",
+  "baseline_git_commit": "dad3202db11cff8331718c6a5d58df834c49c79c",
+  "baseline_context": {
+    "baseline_git_commit": "dad3202db11cff8331718c6a5d58df834c49c79c",
+    "recorded_offline_test_count": 1149,
+    "evidence": "Existing docs/core-progress.md and docs/decision-quality-v7.md record 1,149 offline tests before this task; this statement does not claim a new suite run or model performance.",
+    "baseline_behavior": "Current engine all evidence scope; existing pure bare UserTurn handling; authored replays must run after fixture registration."
+  },
+  "predeclared_expected_counts": {
+    "engine_negatives": 7,
+    "engine_positives": 7,
+    "all": {
+      "unsafe_accepted": 6,
+      "positive_retained": 7
+    },
+    "exact_user_version": {
+      "unsafe_accepted": 4,
+      "positive_retained": 6
+    },
+    "intake_conversion_positive": 2,
+    "intake_conversion_negative": 14,
+    "claim_boundary": "Expected deterministic authored control counts preregistered before replay; not observed results or model/RAG quality."
+  }
+}

@@ -79,6 +79,24 @@ Only active user-provenance facts establish the installed environment. Evidence
 facts cannot replace a conflicting confirmed user value. The initial query packs
 whole confirmed facts and prioritizes versions over long descriptive fields.
 
+`SupportEngine(..., evidence_scope="exact_user_version")` is an opt-in filter for
+advice about the current installation. Each returned bundle is validated first,
+then explicitly versioned chunks survive only if `applicable_versions` contains
+the active user `streamlit_version` value exactly. No patch compatibility,
+version range or applicability is inferred from prose. Unknown/evidence-only
+versions retain only unscoped chunks. The operational `evidence_scoped` trace
+records an exclusion count; the reasoner does not receive the excluded records.
+Refinement applies the same policy to the latest bundle within existing limits.
+
+RAG should enumerate verified versions as canonical values such as `1.50.0`;
+`1.50.x`, `>=1.50` and a user value such as `v1.50.0` will not match. An empty
+version list means metadata is unknown, not universally applicable. These chunks
+remain available and still need source review. Incorrect metadata and same-version
+contradictions are outside this filter. Keep the default `evidence_scope="all"`
+for deliberate historical comparisons or when mixed sources are needed to
+explain a version difference; the strict filter can reject such useful proposals.
+No retriever signature or shared contract has changed.
+
 ## Reasoning policy and output checks
 
 The engine supplies `ReasoningContext` with remaining attempts, retrieval rounds,
@@ -109,6 +127,29 @@ does not verify APIs, callback arity or correct diagnosis. Explicit development
 proposal checks cover a small source-grounded subset separately; see
 [their applicability and limits](proposal-checks.md).
 
+## Optional source-bound plans and complete review
+
+The additive `GroundedPlanner` port can replace unrestricted final prose with a
+`GroundedPlan` selecting routing, complete source references or a registered user
+question. Wrap it in `GroundedReasoner`; the engine still returns `AnalysisResult`
+and requires separate approval. The caller supplies reviewed user/source gap and
+conflict catalogs for each latest bundle. Source/context hashes enforce content
+binding; they do not detect false source text, unknown contradictions or semantic
+entailment. Keep `evidence_scope="all"` when preserving historical comparisons.
+
+`MetisGroundedPlanner` uses the existing gateway/ledger with
+`MetisConfig(response_mode="grounded_plan", ...)`; default `analysis` is unchanged.
+Malformed plans share the two-attempt allowance. Source/context binding failures
+are terminal and never buy another attempt. There is no second production agent.
+
+Pure proposal-review helpers bind the whole output, case and latest evidence to
+an authenticated caller's review record. Their `pass` validates the record's
+integrity/completeness, not semantic correctness or tracker permission. The
+tracker must separately authenticate the reviewer, bind execution approval,
+check revision and persist deduplicated outcomes atomically. See the
+[extractive contracts, runnable example and exact handoff](extractive-core.md)
+and [controlled Persian results](controlled-core-v9.fa.md).
+
 ## Tracker and UI handoff
 
 The tracker owns authoritative state. For user updates, deduplicate the event
@@ -116,6 +157,27 @@ first, prepare `propose_user_turn`, then atomically commit using the expected
 revision and invalidate old approval. Read the committed state before invoking
 the engine; its `current_revision` callback should use the same tracker. See the
 [user-turn guide](user-turns.md) for replay and compare-and-swap requirements.
+
+For a standalone reply to a stored version question, use
+`prepare_version_reply(case, turn, proposal_id=stored_id, question=stored_analysis)`
+from `agent_app.orchestration.intake`. It recognizes only an entire `1.50.0` or
+`Streamlit 1.50.0` message and returns a detached `UserTurn` with a user-attributed
+`ReportedFact`. Case, revision and pending proposal must match, the exact question
+target must be `streamlit_version`, and the incoming turn must otherwise contain
+no structured updates. Both `next_question` and the displayed `user_draft` must
+equal the core-owned `STREAMLIT_VERSION_QUESTION.question` exactly; a correct
+field name with a question about Python or another environment is insufficient.
+Use that exported `QuestionTarget` in a caller-owned `ProposalRequirements`
+catalog and display it unchanged. Other wording uses explicit structured input.
+Ambiguous text raises `IntakeRejected` with an allowlisted
+code. Keep it visible for explicit user clarification; do not silently drop the
+message or count a check as performed. Corrections, environment switches and
+prerelease versions use the existing explicit structured `UserTurn` path.
+
+The tracker must authenticate the stored question payload; `AnalysisResult`
+itself has no proposal ID/revision. Preparation is not approval or persistence.
+See the user-turn guide for the original-versus-prepared event hashes and replay
+ordering needed when this helper runs on the tracker ingress path.
 
 UI renders `RunResult.analysis` only when `status == "awaiting_approval"`. This is
 a pending proposal, not an executed action or a solved case. Show drafts,

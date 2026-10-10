@@ -4,6 +4,25 @@ Status: implemented foundation on the agent-core branch; team-wide integration c
 
 The core coordinates evidence and produces a structured proposal. Retrieval, model access, durable storage, and UI connect through shared contracts rather than importing one another's implementation.
 
+The optional `evidence_scope="exact_user_version"` engine mode filters explicitly
+versioned hits against the active user version before each reasoning attempt.
+Default `all` preserves historical comparison sources. Unknown metadata,
+same-version contradictions and semantic claim support still require review.
+The pure `prepare_version_reply` adapter recognizes a standalone release reply
+only for the registered canonical pending question; it returns a `UserTurn`,
+then the existing transition/tracker transaction boundary applies. Neither
+capability introduces another agent, changes the ports or executes an action.
+See the [controlled comparison and tradeoffs](controlled-core-v8.fa.md).
+
+The optional `GroundedReasoner` implements the same reasoning port through an
+additive `GroundedPlanner` port. The planner selects references/routes; the core
+renders full attributed quotations, active user reports and registered questions.
+Gap/conflict metadata is caller-curated, with no automatic semantic detector.
+`MetisGroundedPlanner` reuses the existing single gateway and accounting path.
+Whole-proposal review packets bind the exact case, latest sources and complete
+proposal but grant no approval or execution. See [contracts and handoffs](extractive-core.md)
+and [controlled V9 results](controlled-core-v9.fa.md). Default behavior stays unchanged.
+
 ```mermaid
 flowchart LR
     U[Case input / user update] --> C[Validated case state]
@@ -23,7 +42,7 @@ The normal path retrieves evidence and requests a structured decision. A request
 
 Refinement analyzes only the latest `EvidenceBundle`; the engine does not implicitly accumulate earlier hits. The retriever may carry forward relevant initial hits into that bundle. The core validates referenced evidence and stops safely on adapter errors or exhausted limits. Citation ID validation proves that the referenced locator is present; it does not prove semantic faithfulness. Demo adapters are deterministic and have no network access.
 
-`SupportEngine.run(case, user_message)` returns a `RunResult`; the constructor accepts an optional current-revision callback for freshness checks. The caller supplies the authoritative current `CaseState`. `propose_user_turn(case, turn)` prepares explicit user facts and corrections as an uncommitted next-state candidate. It preserves attribution history, invalidates prior evidence conclusions when knowledge changes, and clears unscoped checks on actual corrections or environment switches. It does not extract facts automatically or persist state. The tracker must deduplicate the event and atomically commit the revision before the engine runs. See [user-turn handoff](user-turns.md).
+`SupportEngine.run(case, user_message)` returns a `RunResult`; the constructor accepts an optional current-revision callback for freshness checks. The caller supplies the authoritative current `CaseState`. `propose_user_turn(case, turn)` prepares explicit user facts and corrections as an uncommitted next-state candidate. It preserves attribution history, invalidates prior evidence conclusions when knowledge changes or a novel normalized check is reported, and clears unscoped checks on actual corrections or environment switches. New check-only reports preserve user facts/check history while retiring prior evidence conclusions; equivalent repeated checks preserve those conclusions. This conservative lexical rule is not semantic dependency analysis. It does not extract facts automatically or persist state. The tracker must deduplicate the event and atomically commit the revision before the engine runs. See [user-turn handoff](user-turns.md).
 
 Persistence and execution authorization need the real integrations. All returned drafts await separate human review; a draft is not proof of an executed action or a solved case.
 

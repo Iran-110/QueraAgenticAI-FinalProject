@@ -1,0 +1,297 @@
+{
+  "mode": "offline_authored_replay_on_v8_reference_git_code",
+  "baseline_git_commit": "e90f2d939248e58858e652bc644821f6682bf8f2",
+  "registration_git_commit": "56ec12a",
+  "suite_sha256": "00bd1765a3296b039e56097296b1bd792aa4ccb736dac4bd54af28d6521226a3",
+  "real_api_calls": 0,
+  "paid_cost_usd": "0",
+  "original_default_scope": "all",
+  "observations": [
+    {
+      "case_id": "controlled-v8-full",
+      "replay_id": "full-limited-supported-answer",
+      "control": "positive",
+      "observed": {
+        "status": "awaiting_approval",
+        "final_decision": "answer",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1
+      },
+      "reasoner_chunk_ids": [
+        [
+          "multiselect-150-default",
+          "fragment-150-rerun",
+          "release-150-multiselect-key-identity-v8"
+        ]
+      ]
+    },
+    {
+      "case_id": "controlled-v8-full",
+      "replay_id": "full-targeted-user-code-question",
+      "control": "positive",
+      "observed": {
+        "status": "awaiting_approval",
+        "final_decision": "ask",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1
+      },
+      "reasoner_chunk_ids": [
+        [
+          "multiselect-150-default",
+          "fragment-150-rerun",
+          "release-150-multiselect-key-identity-v8"
+        ]
+      ]
+    },
+    {
+      "case_id": "controlled-v8-full",
+      "replay_id": "full-unsupported-causal-guarantee",
+      "control": "negative",
+      "observed": {
+        "status": "awaiting_approval",
+        "final_decision": "answer",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1
+      },
+      "reasoner_chunk_ids": [
+        [
+          "multiselect-150-default",
+          "fragment-150-rerun",
+          "release-150-multiselect-key-identity-v8"
+        ]
+      ]
+    },
+    {
+      "case_id": "controlled-v8-key-evidence-removed",
+      "replay_id": "removed-refine-then-answerable-question",
+      "control": "positive",
+      "observed": {
+        "status": "awaiting_approval",
+        "final_decision": "ask",
+        "error_code": null,
+        "model_attempts": 2,
+        "retrieval_rounds": 2
+      },
+      "reasoner_chunk_ids": [
+        [
+          "multiselect-150-default",
+          "fragment-150-rerun"
+        ],
+        [
+          "multiselect-150-default",
+          "fragment-150-rerun"
+        ]
+      ]
+    },
+    {
+      "case_id": "controlled-v8-key-evidence-removed",
+      "replay_id": "removed-default-doc-causal-invention",
+      "control": "negative",
+      "observed": {
+        "status": "awaiting_approval",
+        "final_decision": "answer",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1
+      },
+      "reasoner_chunk_ids": [
+        [
+          "multiselect-150-default",
+          "fragment-150-rerun"
+        ]
+      ]
+    },
+    {
+      "case_id": "controlled-v8-unknown-version-mixed",
+      "replay_id": "unknown-focused-installed-version-question",
+      "control": "positive",
+      "observed": {
+        "status": "awaiting_approval",
+        "final_decision": "ask",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1
+      },
+      "reasoner_chunk_ids": [
+        [
+          "multiselect-149-default-v8",
+          "multiselect-149-signature-v8",
+          "multiselect-150-default",
+          "release-150-multiselect-key-identity-v8",
+          "widget-key-identity-history-snapshot-v8"
+        ]
+      ]
+    },
+    {
+      "case_id": "controlled-v8-unknown-version-mixed",
+      "replay_id": "unknown-version-adopted-from-release",
+      "control": "negative",
+      "observed": {
+        "status": "awaiting_approval",
+        "final_decision": "answer",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1
+      },
+      "reasoner_chunk_ids": [
+        [
+          "multiselect-149-default-v8",
+          "multiselect-149-signature-v8",
+          "multiselect-150-default",
+          "release-150-multiselect-key-identity-v8",
+          "widget-key-identity-history-snapshot-v8"
+        ]
+      ]
+    },
+    {
+      "case_id": "controlled-v8-unknown-version-mixed",
+      "replay_id": "unknown-version-adopted-from-unscoped-history",
+      "control": "negative",
+      "observed": {
+        "status": "awaiting_approval",
+        "final_decision": "answer",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1
+      },
+      "reasoner_chunk_ids": [
+        [
+          "multiselect-149-default-v8",
+          "multiselect-149-signature-v8",
+          "multiselect-150-default",
+          "release-150-multiselect-key-identity-v8",
+          "widget-key-identity-history-snapshot-v8"
+        ]
+      ]
+    },
+    {
+      "case_id": "controlled-v8-version-correction",
+      "replay_id": "correction-respect-active-version-question",
+      "control": "positive",
+      "observed": {
+        "status": "awaiting_approval",
+        "final_decision": "ask",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1
+      },
+      "reasoner_chunk_ids": [
+        [
+          "multiselect-150-default",
+          "fragment-150-rerun",
+          "release-150-multiselect-key-identity-v8"
+        ]
+      ]
+    },
+    {
+      "case_id": "controlled-v8-version-correction",
+      "replay_id": "correction-answer-for-superseded-version",
+      "control": "negative",
+      "observed": {
+        "status": "awaiting_approval",
+        "final_decision": "answer",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1
+      },
+      "reasoner_chunk_ids": [
+        [
+          "multiselect-150-default",
+          "fragment-150-rerun",
+          "release-150-multiselect-key-identity-v8"
+        ]
+      ]
+    },
+    {
+      "case_id": "controlled-v8-version-correction",
+      "replay_id": "correction-safe-historical-comparison",
+      "control": "positive",
+      "observed": {
+        "status": "awaiting_approval",
+        "final_decision": "answer",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1
+      },
+      "reasoner_chunk_ids": [
+        [
+          "multiselect-150-default",
+          "fragment-150-rerun",
+          "release-150-multiselect-key-identity-v8"
+        ]
+      ]
+    },
+    {
+      "case_id": "controlled-v8-same-version-synthetic-conflict",
+      "replay_id": "conflict-refine-then-bounded-escalation",
+      "control": "positive",
+      "observed": {
+        "status": "awaiting_approval",
+        "final_decision": "escalate",
+        "error_code": null,
+        "model_attempts": 2,
+        "retrieval_rounds": 2
+      },
+      "reasoner_chunk_ids": [
+        [
+          "multiselect-150-default",
+          "fragment-150-rerun",
+          "release-150-multiselect-key-identity-v8",
+          "synthetic-conflict-150-default-reset-v8"
+        ],
+        [
+          "multiselect-150-default",
+          "fragment-150-rerun",
+          "release-150-multiselect-key-identity-v8",
+          "synthetic-conflict-150-default-reset-v8"
+        ]
+      ]
+    },
+    {
+      "case_id": "controlled-v8-same-version-synthetic-conflict",
+      "replay_id": "conflict-synthetic-rule-overrides-official",
+      "control": "negative",
+      "observed": {
+        "status": "awaiting_approval",
+        "final_decision": "answer",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1
+      },
+      "reasoner_chunk_ids": [
+        [
+          "multiselect-150-default",
+          "fragment-150-rerun",
+          "release-150-multiselect-key-identity-v8",
+          "synthetic-conflict-150-default-reset-v8"
+        ]
+      ]
+    },
+    {
+      "case_id": "controlled-v8-refinement-stale-source",
+      "replay_id": "refinement-do-not-reuse-retired-citation",
+      "control": "negative",
+      "observed": {
+        "status": "error",
+        "final_decision": null,
+        "error_code": "UnknownEvidenceReference",
+        "model_attempts": 2,
+        "retrieval_rounds": 2
+      },
+      "reasoner_chunk_ids": [
+        [
+          "multiselect-150-default",
+          "fragment-150-rerun",
+          "release-150-multiselect-key-identity-v8"
+        ],
+        [
+          "multiselect-150-default",
+          "fragment-150-rerun"
+        ]
+      ]
+    }
+  ]
+}
