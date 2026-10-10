@@ -568,6 +568,48 @@ remain open. No teammate-owned production adapter or extra agent framework was
 implemented. See [the precise results and owner handoffs](review-handoff-pilot.fa.md)
 and the [integration contract](integration.md#complete-proposal-handoff-c3).
 
+## 2026-10-10 — readiness audit and intercepted gateway composition
+
+Follow-up on C3 in the same [PR #11](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/11).
+
+- Preregistered two additional regressions in `d14cfc4`: valid outer whitespace
+  broke the frozen handoff; adapter construction failure returned HTTP500 after
+  accepting the event. Identical initial test bytes fail twice against archived
+  `254e6542` and pass twice after `68dec4f`. The handoff keeps the exact raw
+  message while matching existing GroundedRequest normalization. Setup failures
+  export a sanitized terminal code, retain the event receipt and cannot release
+  a stale proposal after correction. A third, post-baseline test covers that
+  correction/approval path. Independent review found no actionable issue.
+- Preregistered the gateway composition protocol in `d9c8e82`. The existing
+  MetisGroundedPlanner/MetisReasoner now joins the same C3 HTTP/core/review replay
+  through mandatory MockTransport, synthetic credentials and temporary ledgers.
+  Seven primary sends settle mocked usage; four event replays add none. Separate
+  controls check two-attempt malformed-plan repair and single-send terminal
+  mismatch/timeout with retained uncertainty. Oracle/labels/auth headers do not
+  enter provider messages or recorded bodies. All clients close, state restores,
+  and wire mutations/code drift/disabled assertions/receipt overwrite fail.
+- Preserved C3 v1/v2 receipts and wrote v3 after the production fixes; the
+  fixture and posthoc C3 oracle are unchanged. The gateway has its own v1
+  receipt with full wire/context/accounting fingerprints. A first harness run
+  failed on string versus Decimal config; runner conversion was corrected,
+  not the protocol. This is reported, not hidden as a successful first run.
+- Verified locked dependencies, **1,634 passing offline tests** (105 over main;
+  13 added in this audit), Ruff lint/format and all 19 offline CI commands.
+  Independent gateway review passed its 10 focused tests with no actionable
+  issue. One existing Starlette/httpx warning remains.
+- Updated the plan with explicit 2026-10-10 requested pilot deliveries for RAG,
+  tracker and UI/evaluation, including branch/PR, runnable evidence and a
+  blocker/delegation fallback. This is the coordinator's request, not a claim
+  teammates agreed or completed their tasks.
+
+Actual paid requests and spending remain zero; mocked primary settlement of
+USD 0.000490875 is not provider billing. The real key/ledger were not accessed or
+modified. Core is ready for the fixture handoff; this does not prove production
+RAG/model quality, durable authenticated approval, connected UI or held-out
+evaluation. C4 requires teammates' actual adapters; C5 still needs external
+identity/usage/billing evidence, not a guessed alias or cleared uncertainty.
+See [the readiness evidence and remaining handoff](core-readiness-audit.fa.md).
+
 ## Next integration work
 
 ### Shared release — 2026-10-07

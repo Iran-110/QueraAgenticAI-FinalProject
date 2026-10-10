@@ -30,6 +30,12 @@ pilot جدید **C2/P2**، اطلاعات صریح کاربر و correction را
 کنترل‌های UI و tracker پایدار هنوز کار اتصال تیم‌اند.
 [نتیجه و ورودی/خروجی لازم برای هر نفر](docs/user-intake-pilot.fa.md) را ببینید.
 
+خروجی **C3** حالا کل case، آخرین evidence مصرف‌شده، analysis و catalog تصمیم
+را برای review نگه می‌دارد. مسیر gateway تا همین review با HTTP شبیه‌سازی‌شده
+و ledger موقت هم قابل بازپخش است؛ اجرا و هزینهٔ واقعی مدل ندارد.
+[نتیجهٔ C3](docs/review-handoff-pilot.fa.md) و
+[بازبینی آمادگی اتصال](docs/core-readiness-audit.fa.md) محدودیت‌ها و شواهد را ثبت می‌کنند.
+
 ## شروع سریع
 
 نیازمندی‌ها: Git، Python 3.13 و [uv](https://docs.astral.sh/uv/). دستورها را از ریشهٔ همین ریپو اجرا کنید:
@@ -44,6 +50,8 @@ uv run agent-app turn-demo
 uv run python -m agent_app.reasoning.controlled_experiments
 uv run python -m agent_app.reasoning.grounding_experiments
 uv run python experiments/user_intake/replay.py
+uv run python experiments/review_handoff/replay.py
+uv run python experiments/gateway_handoff/replay.py
 ```
 
 سناریوهای دیگر: `escalate` برای ارجاع و `error` برای خرابی بازیابی. خروجی JSON شامل نتیجه و ردگیری اجراست. سناریوی `error` عمداً با کد خروج ۱ تمام می‌شود. برای این دمو کلید API لازم نیست.
@@ -108,6 +116,7 @@ uv run streamlit run app.py
 - [اطلاعات کاربر و اصلاح وضعیت در چند نوبت](docs/user-turns.md)
 - [pilot اتصال HTTP، correction و سؤال تأییدشده؛ نتیجه و handoff](docs/user-intake-pilot.fa.md)
 - [خروجی کامل core، آخرین evidence و review؛ نتیجه و قرارداد C3](docs/review-handoff-pilot.fa.md)
+- [بازبینی آمادگی core و اتصال gateway تا review با HTTP شبیه‌سازی‌شده](docs/core-readiness-audit.fa.md)
 - [پیشرفت واقعی هسته و کارهای بعدی](docs/core-progress.md)
 - [مقایسه روش‌های تصمیم‌گیری و محدودیت نتایج](docs/decision-quality.md)
 - [مقایسه منابع و اطلاعات کاربر با نتایج بازبینی](docs/decision-quality-v3.md)

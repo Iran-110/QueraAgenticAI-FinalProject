@@ -105,7 +105,7 @@ catalog متناقض اعلام می‌کند. answer رد می‌شود و esca
 نه fixture یا oracle تازه. منابع اصلی ثبت‌شده مانده‌اند و receiptهای قبلی
 overwrite نشده‌اند.
 
-بررسی نهایی محلی: **۱۶۲۱ تست آفلاین پاس**، یعنی ۹۲ تست اضافه نسبت به main؛
+بررسی milestone اولیهٔ C3: **۱۶۲۱ تست آفلاین پاس**، یعنی ۹۲ تست اضافه نسبت به main؛
 Ruff lint/format، dependency lock و هر ۱۸ فرمان validation/replay/demo در CI هم
 پاس‌اند. بعد از اصلاح scorer، کل suite و replay نهایی دوباره اجرا شدند.
 یک warning موجود Starlette/httpx باقی است.
@@ -121,6 +121,8 @@ handoff حالا متن اصلی را دقیق نگه می‌دارد و برا�
 دوباره adapter را نمی‌سازد و correction اجازهٔ تأیید پیشنهاد قدیمی را نمی‌دهد.
 تست سومِ stale approval بعد از ثبت baseline اضافه شد؛ جزء دو تست اولیه نیست.
 این‌ها بهبود نرم‌افزار اتصال‌اند، نه امتیاز تصمیم مدل.
+suite نهایی پس از این اصلاحات و pilot gateway، **۱۶۳۴ تست** دارد؛
+[گزارش بازبینی آمادگی](core-readiness-audit.fa.md) نتیجه و receipt اتصال را ثبت می‌کند.
 
 انتخاب Issue #12782 از workaround و commentهای همان Issue اثر گرفته و
 `answer-informed` است. پاسخ/راه‌حل همان Issue داخل evidence نیست؛ منابع رسمی

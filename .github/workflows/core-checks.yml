@@ -62,6 +62,8 @@ jobs:
         run: uv run python experiments/user_intake/replay.py
       - name: Replay complete review handoffs and freshness guards without network
         run: uv run python experiments/review_handoff/replay.py
+      - name: Replay gateway to complete review with intercepted HTTP and temporary ledgers
+        run: uv run python experiments/gateway_handoff/replay.py
       - name: Smoke-test gateway accounting without network
         run: uv run agent-app gateway-demo --scenario repair
       - name: Smoke-test user facts and corrections without storage
