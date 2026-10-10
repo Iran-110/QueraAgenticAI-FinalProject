@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "5af98e6e84cb040085ca1eec50cbee17c9dc12f5",
+  "test_file_sha256": "42d52bbee54f03c97c247bcd543c070e5f8d97cca24b8ac7454a909255a0a702",
+  "test_nodes": [
+    "test_explicit_report_reaches_core_with_user_attribution",
+    "test_stale_structured_event_cannot_mutate_case",
+    "test_same_original_event_replays_without_another_run",
+    "test_unknown_authority_fields_are_rejected_before_case_creation"
+  ],
+  "result": {
+    "passed": 0,
+    "failed": 4
+  },
+  "api_cost_usd": 0,
+  "method": "git archive baseline; current four regression tests copied into isolated temporary tree; installed Python dependencies shared, baseline source imported via PYTHONPATH",
+  "test_adjustment": "Replay now checks equality of pending and log, allowing the core to stop a compound version question after structured version input; the original ignored-input baseline still fails the same revision assertion. Additional regression cases are excluded from this baseline comparison.",
+  "scope": "offline HTTP/core regression; no RAG/model/final-test quality claim"
+}

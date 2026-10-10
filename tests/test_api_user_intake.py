@@ -1,5 +1,7 @@
 """Ingress regressions: explicit reports must reach the existing pure core."""
 
+import json
+
 import pytest
 from fastapi.testclient import TestClient
 
@@ -37,7 +39,9 @@ def test_explicit_report_reaches_core_with_user_attribution(client):
 def test_stale_structured_event_cannot_mutate_case(client):
     client.post("/cases/case-1/messages", json=event())
     before = client.get("/cases/case-1").json()
-    stale = event(turn_id="event-2", reported_facts=[{"name": "streamlit_version", "value": "1.42.0"}])
+    stale = event(
+        turn_id="event-2", reported_facts=[{"name": "streamlit_version", "value": "1.42.0"}]
+    )
     response = client.post("/cases/case-1/messages", json=stale)
     assert response.status_code == 409
     assert client.get("/cases/case-1").json() == before
@@ -55,7 +59,10 @@ def test_same_original_event_replays_without_another_run(client, monkeypatch):
     first = client.post("/cases/case-1/messages", json=event()).json()
     replay = client.post("/cases/case-1/messages", json=event()).json()
     assert replay["case_revision"] == first["case_revision"] == 1
-    assert replay["pending"]["proposal_id"] == first["pending"]["proposal_id"]
+    # Reporting a known version may make the demo's compound version ask
+    # invalid. A stopped run must be replayed just as safely as a proposal.
+    assert replay["pending"] == first["pending"]
+    assert replay["log"] == first["log"]
     assert calls == ["ask"]
 
 
@@ -63,3 +70,45 @@ def test_unknown_authority_fields_are_rejected_before_case_creation(client):
     response = client.post("/cases/case-1/messages", json=event(approved=True, source_ref="fake"))
     assert response.status_code == 422
     assert "case-1" not in api._cases
+
+
+def test_legacy_event_identity_cannot_be_reused_for_different_content(client):
+    one = client.post(
+        "/cases/case-1/messages", json={"message": "Version unknown.", "scenario": "ask"}
+    ).json()
+    response = client.post(
+        "/cases/case-1/messages",
+        json=event(turn_id=one["intake"]["turn_id"], expected_revision=1),
+    )
+    assert response.status_code == 409
+    assert response.json() == {"detail": "EventConflict"}
+    assert client.get("/cases/case-1").json() == one
+
+
+@pytest.mark.parametrize(
+    "extra",
+    [
+        {"case_revision": True},
+        {"approved": True},
+        {"decision": "edit", "edited_draft": "\ud800private-marker"},
+    ],
+)
+def test_invalid_review_input_is_rejected_without_consuming_proposal(client, extra):
+    before = client.post(
+        "/cases/case-1/messages", json={"message": "Version unknown.", "scenario": "ask"}
+    ).json()
+    pending = before["pending"]
+    body = {
+        "proposal_id": pending["proposal_id"],
+        "case_revision": pending["case_revision"],
+        "decision": "approve",
+        **extra,
+    }
+    response = client.post(
+        "/cases/case-1/decision",
+        content=json.dumps(body, ensure_ascii=True),
+        headers={"Content-Type": "application/json"},
+    )
+    assert response.status_code == 422
+    assert response.json() == {"detail": "RequestInvalid"}
+    assert client.get("/cases/case-1").json() == before
