@@ -42,3 +42,16 @@ checkout باید history مربوط به `3f22ef9` را داشته باشد؛ �
 لازم است. shallow clone بدون این commit، baseline را اجرا نمی‌کند و موفقیت ثبت
 نمی‌شود. نقل‌قول کامل، علاوه بر rerender، با excerpt ثابت و decoded quote مقایسه
 می‌شود تا کوتاه‌شدن متن در خود renderer هم از آزمایش عبور نکند.
+
+در audit بعدی، یک ضعف واقعی در scorer نسخهٔ اول پیدا شد: renderer می‌توانست در
+کنار quote کامل، ادعای unsupported دربارهٔ علت و fix اضافه کند و rerender مشترک
+هم همان خروجی را تأیید کند. receipt و کد v1 در `2680151` حفظ شده‌اند؛ این ضعف را
+نباید با موفقیت تشخیص پشتیبانی ادعا اشتباه گرفت.
+
+برای v2، پنج analysis کامل نسخهٔ سالم با source inspection مستقل assistant بررسی
+و در `expected-analysis-v1.json`، commit `057a4d3` ثبت شدند. این oracle **بعد از
+اولین replay** ساخته شده است؛ فقط inventory و تصمیم‌های قابل قبول از ابتدا در
+`b085f7d` ثبت شده بودند. بررسی کامل خروجی ثابت، علاوه بر quote، اضافه‌شدن ادعای
+بدون شاهد و تغییر گزارش fact را تشخیص می‌دهد. این hardening، human gold یا scorer
+عمومی entailment و اندازه‌گیری کیفیت مدل نیست. receipt جدید v2، v1 را overwrite
+نمی‌کند.

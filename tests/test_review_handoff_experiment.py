@@ -247,3 +247,42 @@ def test_shared_renderer_bug_cannot_hide_a_shortened_quote(monkeypatch):
     monkeypatch.setattr(grounding, "_source_block", broken_source_block)
     with pytest.raises(AssertionError, match="Whole registered source excerpt missing"):
         replay.replay_handoff()
+
+
+def test_shared_renderer_cannot_append_unsupported_prose_while_retaining_wholequotes(monkeypatch):
+    original = grounding._source_block
+
+    def unsupported_source_block(case, hit):
+        return original(case, hit) + (
+            "\nThis proves the exact full-app root cause and the verified fix."
+        )
+
+    monkeypatch.setattr(grounding, "_source_block", unsupported_source_block)
+    with pytest.raises(AssertionError, match="Reviewed complete analysis mismatch"):
+        replay.replay_handoff()
+
+
+def test_shared_renderer_cannot_misstate_user_facts_while_retaining_source_quotes(monkeypatch):
+    original = grounding._display
+
+    def wrong_reported_version(value):
+        if value == "streamlit_version: 1.50.0":
+            value = "streamlit_version: 1.49.1"
+        return original(value)
+
+    monkeypatch.setattr(grounding, "_display", wrong_reported_version)
+    with pytest.raises(AssertionError, match="Reviewed complete analysis mismatch"):
+        replay.replay_handoff()
+
+
+def test_exact_output_oracle_is_posthoc_and_cannot_be_relabelled_or_changed(tmp_path, receipt):
+    expected = json.loads(replay.EXPECTED_PATH.read_text())
+    assert expected["introduced_after_first_replay"]
+    assert receipt["reviewed_output_oracle"]["introduced_after_first_replay"]
+    assert receipt["reviewed_output_oracle"]["registration_commit"] == "057a4d3"
+    assert receipt["reviewed_output_oracle"]["sha256"] == replay.EXPECTED_SHA256
+    expected["analyses"]["handoff-2"]["user_draft"] += " This proves the app fix."
+    path = tmp_path / "changed-expectations.json"
+    path.write_text(json.dumps(expected))
+    with pytest.raises(ValueError, match="ReviewedAnalysisFixtureMismatch"):
+        replay.load_expected_analyses(path)

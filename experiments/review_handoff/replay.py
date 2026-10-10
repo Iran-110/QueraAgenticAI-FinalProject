@@ -21,6 +21,7 @@ from fastapi.testclient import TestClient
 
 from agent_app import api
 from agent_app.contracts import (
+    AnalysisResult,
     CaseState,
     EvidenceBundle,
     GroundedGap,
@@ -56,8 +57,13 @@ ROOT = Path(__file__).resolve().parents[2]
 FIXTURE_PATH = Path(__file__).with_name("case-current-state-latest-evidence.json")
 FIXTURE_SHA256 = "00af34231e7e4b252bdd8e88bf815d20249135f976cef7cc358ebc34d2e110d9"
 REGISTRATION_COMMIT = "b085f7d"
+EXPECTED_PATH = Path(__file__).with_name("expected-analysis-v1.json")
+EXPECTED_SHA256 = "81e45b0212cd5f9f27a88b0bced255d74dcdc6da9fb7bdf6bdc3ce63bf0cdadc"
+EXPECTED_REGISTRATION_COMMIT = "057a4d3"
 CODE_PATHS = (
     "experiments/review_handoff/replay.py",
+    "experiments/review_handoff/expected-analysis-v1.json",
+    "experiments/review_handoff/results-review-handoff-v1.json",
     "src/agent_app/api.py",
     "src/agent_app/contracts.py",
     "src/agent_app/orchestration/engine.py",
@@ -135,6 +141,33 @@ def _active(case: CaseState) -> dict[str, str]:
         fact.name: fact.value
         for fact in case.facts
         if fact.status == "active" and fact.provenance_kind == "user"
+    }
+
+
+def load_expected_analyses(path: Path = EXPECTED_PATH) -> dict[str, AnalysisResult]:
+    """Posthoc source-inspected exact outputs, independently frozen before v2.
+
+    This catches shared-renderer additions for these five controlled outputs.
+    It is not a semantic judge, human gold or a pre-first-replay output oracle.
+    """
+    payload = path.read_bytes()
+    if hashlib.sha256(payload).hexdigest() != EXPECTED_SHA256:
+        raise ValueError("ReviewedAnalysisFixtureMismatch")
+    oracle = json.loads(payload)
+    assert oracle["introduced_after_first_replay"] is True
+    assert oracle["scenario_preregistration_commit"] == REGISTRATION_COMMIT
+    source_receipt = (ROOT / oracle["source_receipt"]).read_bytes()
+    assert hashlib.sha256(source_receipt).hexdigest() == oracle["source_receipt_file_sha256"]
+    assert json.loads(source_receipt)["receipt_sha256"] == oracle["source_receipt_sha256"]
+    assert set(oracle["analyses"]) == {
+        "handoff-1",
+        "handoff-2",
+        "handoff-3",
+        "handoff-4",
+        "conflict-control",
+    }
+    return {
+        name: AnalysisResult.model_validate(value) for name, value in oracle["analyses"].items()
     }
 
 
@@ -332,7 +365,9 @@ print(json.dumps({'api_source_sha256':hashlib.sha256(Path(api.__file__).read_byt
     return {"git_commit": revision, "actual_git_archive_import": True, **observation}
 
 
-def _conflict_control(fixture: dict[str, Any]) -> dict[str, Any]:
+def _conflict_control(
+    fixture: dict[str, Any], expected_analyses: dict[str, AnalysisResult]
+) -> dict[str, Any]:
     probe = next(
         p for p in fixture["registered_probes"] if p["id"] == "caller_declared_conflict_control"
     )
@@ -374,6 +409,9 @@ def _conflict_control(fixture: dict[str, Any]) -> dict[str, Any]:
     handoff = build_handoff(result, capture.last, grounded_request=prepared[-1])
     validate_handoff(handoff)
     _assert_whole_quotes(handoff, set(probe["group"]))
+    assert handoff.analysis == expected_analyses["conflict-control"], (
+        "Reviewed complete analysis mismatch"
+    )
     return {
         "control_type": probe["type"],
         "model_attempts": result.model_attempts,
@@ -387,6 +425,7 @@ def replay_handoff(path: Path = FIXTURE_PATH) -> dict[str, Any]:
     if not __debug__:
         raise RuntimeError("AssertionChecksDisabled")
     fixture = load_fixture(path)
+    expected_analyses = load_expected_analyses()
     code_at_start = code_manifest()
     baseline = baseline_probe(fixture)
     case_id = fixture["initial_case"]["case_id"]
@@ -457,6 +496,9 @@ def replay_handoff(path: Path = FIXTURE_PATH) -> dict[str, Any]:
             assert handoff.analysis == expected_analysis, "Registered rendered output changed"
             _assert_whole_quotes(
                 handoff, set(turn["authored_plan_sequence"][-1].get("source_ids", ()))
+            )
+            assert handoff.analysis == expected_analyses[turn["id"]], (
+                "Reviewed complete analysis mismatch"
             )
             for name in ("user_draft", "maintainer_summary", "rationale", "next_question"):
                 assert view["pending"][name] == getattr(handoff.analysis, name)
@@ -653,14 +695,23 @@ def replay_handoff(path: Path = FIXTURE_PATH) -> dict[str, Any]:
         total_reasoning = sum(len(run["planner"].calls) for run in runs)
         total_retrieval = sum(len(run["retriever"].requests) for run in runs)
 
-    conflict = _conflict_control(fixture)
+    conflict = _conflict_control(fixture, expected_analyses)
     if code_manifest() != code_at_start:
         raise RuntimeError("CodeChangedDuringReplay")
     receipt = {
-        "receipt_version": 1,
+        "receipt_version": 2,
         "fixture_id": fixture["fixture_id"],
         "fixture_sha256": FIXTURE_SHA256,
         "fixture_registration_commit": REGISTRATION_COMMIT,
+        "reviewed_output_oracle": {
+            "path": "experiments/review_handoff/expected-analysis-v1.json",
+            "sha256": EXPECTED_SHA256,
+            "registration_commit": EXPECTED_REGISTRATION_COMMIT,
+            "introduced_after_first_replay": True,
+            "reviewer_kind": "assistant source inspection; no human evaluation claim",
+            "scope": "Exact complete-output fidelity for the five controlled authored outputs; not general semantic entailment.",
+            "historical_v1_receipt_preserved": True,
+        },
         "executed_code_sha256": code_at_start,
         "code_sha256": _digest(code_at_start),
         "runtime": {
@@ -721,10 +772,12 @@ def main() -> int:
             raise RuntimeError("AssertionChecksDisabled")
         if args.validate:
             fixture = load_fixture()
+            load_expected_analyses()
             print(
                 json.dumps(
                     {
                         "fixture_sha256": FIXTURE_SHA256,
+                        "reviewed_output_oracle_sha256": EXPECTED_SHA256,
                         "primary_turns": len(fixture["turns"]),
                         "scenario_execution": False,
                         "paid_requests": 0,
