@@ -59,11 +59,20 @@ Ledger identity excludes `output_feedback` and preserves the original run/case/r
 
 HTTPx sends a plain nonstreaming `POST` to `https://api.metisai.ir/openai/v1/chat/completions` with the shared messages and `max_tokens`. Live calls require explicit configuration and a secret key; `live_enabled` defaults to `False`, and the key uses `SecretStr`. HTTP retries, redirects, and environment proxies are disabled. The adapter requests structured text through the prompt; the engine validates it with Pydantic. Native `response_format` and tool calling are not assumed. The endpoint and `max_tokens` follow [Metis's official OpenAI wrapper example](https://docs.metisai.ir/api/wrapper/openai/), which also warns that feature coverage is incomplete.
 
-`MetisConfig.from_env()` reads `METIS_API_KEY`, `METIS_MODEL`, `METIS_PROMPT_POLICY`
-and `METIS_LIVE_ENABLED`; only the exact value `true` enables live requests. It
+`MetisConfig.from_env()` reads `METIS_API_KEY`, `METIS_MODEL`, `METIS_PROMPT_POLICY`,
+`METIS_RESPONSE_MODE` and `METIS_LIVE_ENABLED`; only the exact value `true` enables live requests. It
 does not load a `.env` file automatically. The main `agent-app` CLI has no
 live-call flag; the separately registered experiment runners require explicit
 `--live`. Normal development does not need a real key.
+
+`response_mode="grounded_plan"` is an optional additive path for
+`MetisGroundedPlanner` wrapped by `GroundedReasoner`. It uses the same HTTP client,
+serving-model/usage checks, ledger and request identity, with typed-plan messages
+instead of an unrestricted `AnalysisResult` prompt. Mode, repair feedback and
+catalog changes do not alter the run/case/revision/attempt request key. Switching
+mode cannot resend a used attempt. Request/context mismatches fail before reserve
+or send; parsing/rendering stay in the core. The default remains `analysis`, with
+all eight existing prompt policies unchanged. See [extractive integration](extractive-core.md).
 
 The engine still returns drafts for human review. Source-locator validation does not prove semantic faithfulness, and this gateway does not provide a tracker or permission to execute an action.
 

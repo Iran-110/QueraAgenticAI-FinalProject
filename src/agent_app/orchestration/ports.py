@@ -7,6 +7,8 @@ from agent_app.contracts import (
     AnalysisResult,
     CaseState,
     EvidenceBundle,
+    GroundedPlan,
+    GroundedRequest,
     ReasoningContext,
     RetrievalRequest,
 )
@@ -59,4 +61,12 @@ class Reasoner(Protocol):
         context: ReasoningContext,
     ) -> ReasoningOutput:
         """Return a structured decision; permission to mutate a case is never model output."""
+        ...
+
+
+class GroundedPlanner(Protocol):
+    def plan(
+        self, request: GroundedRequest, *, context: ReasoningContext
+    ) -> GroundedPlan | Mapping[str, object] | str:
+        """Select references and routing only, within the caller's same attempt allowance."""
         ...

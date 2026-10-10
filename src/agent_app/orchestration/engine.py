@@ -2,6 +2,7 @@
 
 from collections.abc import Callable
 from dataclasses import dataclass, field
+from typing import Literal
 from uuid import uuid4
 
 from pydantic import ValidationError
@@ -103,6 +104,7 @@ class SupportEngine:
         top_k: int = 5,
         current_revision: Callable[[str], int] | None = None,
         proposal_checks: bool = False,
+        evidence_scope: Literal["all", "exact_user_version"] = "all",
     ) -> None:
         self.retriever = retriever
         self.reasoner = reasoner
@@ -117,6 +119,9 @@ class SupportEngine:
         if type(proposal_checks) is not bool:
             raise ValueError("Proposal checks require an explicit boolean.")
         self.proposal_checks = proposal_checks
+        if type(evidence_scope) is not str or evidence_scope not in {"all", "exact_user_version"}:
+            raise ValueError("Unsupported evidence scope policy.")
+        self.evidence_scope = evidence_scope
         # Validate configuration before a port is invoked.
         RetrievalRequest(queries=("configuration-check",), snapshot_id=snapshot_id, top_k=top_k)
 
@@ -258,6 +263,31 @@ class SupportEngine:
         except (ValidationError, ValueError, TypeError):
             raise _Stopped("RetrievalResultInvalid") from None
         progress.note("evidence_received", f"Received {len(evidence.hits)} evidence chunks.")
+        if self.evidence_scope == "exact_user_version":
+            # Applicability is caller/retriever metadata, never inferred from text.
+            # This opt-in policy is for advice about the current installation;
+            # historical/comparison workflows must keep the default 'all' policy.
+            version = next(
+                (
+                    fact.value
+                    for fact in case.facts
+                    if fact.name.casefold() == "streamlit_version"
+                    and fact.status == "active"
+                    and fact.provenance_kind == "user"
+                ),
+                None,
+            )
+            hits = tuple(
+                hit
+                for hit in evidence.hits
+                if not hit.applicable_versions or version in hit.applicable_versions
+            )
+            excluded = len(evidence.hits) - len(hits)
+            if excluded:
+                progress.note(
+                    "evidence_scoped", f"Excluded {excluded} chunks outside the confirmed version."
+                )
+                evidence = evidence.model_copy(update={"hits": hits})
         return evidence
 
     def _analyze(
@@ -304,6 +334,26 @@ class SupportEngine:
                         ),
                     ),
                 )
+            except InvalidAnalysis as error:
+                # A structured-plan adapter may reject before an AnalysisResult
+                # exists. Its diagnostics are still untrusted port output.
+                self._ensure_current(case)
+                feedback = self._safe_output_feedback(error)
+                progress.output_issues.extend(feedback.issues)
+                last_error = "ModelOutputInvalid"
+                progress.note("reasoning_failed", last_error)
+                progress.note("output_validation", ", ".join(i.code for i in feedback.issues))
+                # Preserve the legacy terminal evidence/identity boundary. A
+                # malformed representation can be repaired; binding a plan to
+                # other case/source content cannot buy another paid attempt.
+                terminal_codes = {
+                    "grounded_context_mismatch": "GroundedContextMismatch",
+                    "grounded_source_mismatch": "GroundedSourceMismatch",
+                }
+                for issue in feedback.issues:
+                    if issue.code in terminal_codes:
+                        raise _Stopped(terminal_codes[issue.code]) from None
+                continue
             except ReasoningStopped as stopped:
                 self._ensure_current(case)
                 raise _Stopped(stopped.code, stopped.status) from None
@@ -350,10 +400,10 @@ class SupportEngine:
                     if issues:
                         raise InvalidAnalysis(tuple(issues[:8]))
             except InvalidAnalysis as error:
-                feedback = OutputFeedback(issues=error.issues)
-                progress.output_issues.extend(error.issues)
+                feedback = self._safe_output_feedback(error)
+                progress.output_issues.extend(feedback.issues)
                 last_error = "ModelOutputInvalid"
-                codes = ", ".join(issue.code for issue in error.issues)
+                codes = ", ".join(issue.code for issue in feedback.issues)
                 progress.note("reasoning_failed", last_error)
                 progress.note("output_validation", codes)
                 continue
@@ -366,6 +416,15 @@ class SupportEngine:
                 continue
             return analysis
         raise _Stopped(last_error)
+
+    @staticmethod
+    def _safe_output_feedback(error: InvalidAnalysis) -> OutputFeedback:
+        try:
+            return OutputFeedback.model_validate(
+                {"issues": [issue.model_dump(warnings=False) for issue in error.issues]}
+            )
+        except (ValidationError, ValueError, TypeError, AttributeError, RecursionError):
+            return OutputFeedback(issues=(OutputIssue(code="invalid_shape"),))
 
     @staticmethod
     def _validate_analysis(

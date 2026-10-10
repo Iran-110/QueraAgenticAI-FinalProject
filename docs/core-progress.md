@@ -299,6 +299,161 @@ Continuation remaining is USD 0.007784635; provider deductions are unreconciled.
 The 1,149-test preregistration build passed GitHub CI at `1ef5c35`, run
 `37746599205`. See `docs/decision-quality-v7.md` and the sanitized V7 aggregate.
 
+## 2026-10-09 — controlled real-Issue source scope and reply intake
+
+Continued on the clean `feat/agent-core-integration` checkout at `dad3202` after
+reading the repository rules, original brief and mentor roadmap. The original
+**1,149 offline tests** passed before changes. No existing work was replaced and
+no merge/push to main was performed.
+
+- Registered six correlated development projections of real Issue #12782,
+  including complete mechanism evidence, ablation, unknown/mixed versions,
+  correction, synthetic same-version conflict and retired refinement citations.
+  Frozen inputs, inventories, answerable user gaps versus document gaps, full
+  authored proposals, source spans, labels and hashes were committed at
+  `8814fbb` before scenario execution. Body-workaround/comment-informed selection
+  is disclosed; no answer/outcome text enters primary evidence. Added confirmed
+  duplicate #12629 to the quarantine declaration; actual RAG index enforcement
+  remains a data/evaluation integration requirement.
+- Added opt-in exact active-user-version filtering after retrieval validation.
+  Unknown versions drop explicitly scoped chunks, while unscoped metadata stays
+  unknown and available. No patch/range equivalence is inferred. Default `all`
+  and all model prompt policies/ports/shared contracts are unchanged.
+- Added pure canonical-question reply intake. Whole release-number replies gain
+  user attribution only for the correct case/revision/authenticated pending
+  question and exact registered question/display text. Independent review found
+  and closed target/wording drift that could otherwise turn a Python answer into
+  a Streamlit fact. Ambiguous or mixed input needs explicit structured facts.
+  Tracker replay guidance now distinguishes original and prepared event hashes.
+- Replayed the same 14 authored sequences under both scopes: negative acceptance
+  **6/7 → 4/7**, positive retention **7/7 → 6/7**. The strict candidate deliberately
+  loses a safe historical comparison. Four unsupported semantic proposals remain
+  accepted. All registered outcomes match; this includes registered failures and
+  is not a semantic accuracy score. The actual old Git code was separately
+  extracted/imported without changing the checkout; all 14 baseline results and
+  reasoner source-ID pools match the current default exactly.
+- Two canonical version replies convert versus zero with bare turns. All **32
+  intake condition checks** and the version-correction transition match the
+  frozen expectations. The helper/traces perform no tracker actions. Novel
+  check-only turns do not retire every inference; results must be represented as
+  explicit facts/corrections. This is the historical V8 limitation, superseded by
+  the check-result invalidation milestone below. Source/whole-proposal review
+  remains necessary.
+
+Codex authored the fixture proposals/labels and an independent assistant audited
+them against sources. No project model decided these proposals; no human gold,
+real RAG quality, solved Issue or held-out success is claimed. The two capability
+commits are `bb947db` and `de4d2ca`. The deterministic runner, original-code replay
+script and inspectable JSON receipts are checked in; CI adds the new offline
+validation/replay commands. The single-agent foundation remains sufficient for
+these changes; no framework or extra production agent is justified.
+
+Verified locked dependencies, **1,245 offline tests**, Ruff lint/format, all eight
+prior registered protocol validations, the existing semantic replay, new
+controlled validation/replay, original-code baseline reproduction and installed
+refinement/gateway-repair/turn demos. New source/intake/runner regressions cover
+current versus superseded provenance, latest bundles, code bypass revalidation,
+question/display binding, attribution, stale events and scorer failure handling.
+GitHub CI for these new local commits has not been run; no remote result is
+claimed.
+
+Fresh API cost is **USD 0**; the key/environment file was not loaded or printed.
+The existing ledger was read without changing it: USD 4.50 operational limit,
+USD 0.120888405 settled estimates, zero pending, USD 0.02 uncertainty,
+USD 4.359111595 available, and `halted=true`. The uncertainty is one unresolved
+`ProviderModelMismatch`; the existing continuation has USD 0.007784635 left.
+Provider identity/usage/billing evidence is still missing, so no paid run,
+unhalt, refund or new continuation was attempted. See the
+[Persian controlled-core report](controlled-core-v8.fa.md) for results, limits,
+reproduction and exact RAG/tracker/UI handoff requirements.
+
+## 2026-10-09 — retire prior inferences after new reported checks
+
+Reproduced the check-only gap before changing the helper: a newly reported failed
+cache workaround retained an active evidence diagnosis and its source reference.
+Four targeted negative regressions failed while two normalized-restatement
+positive controls passed. After the change, all six pass and the same cache
+report retires the diagnosis, marks it unknown and clears prior evidence refs.
+Active user facts and old/new check history remain; superseded inference
+attribution, revision advancement and pending-proposal invalidation are preserved.
+
+Novelty uses the existing whitespace-collapse/casefold normalization. Repeating
+an equivalent check preserves conclusions. Because there is no dependency graph,
+any new check description conservatively retires all active evidence-derived
+facts and refs, including potentially unrelated conclusions; this is not semantic
+check matching or verification that a reported result is true. Free-text-only
+observations still require explicit structured checks/facts. The tracker remains
+responsible for immutable event deduplication, atomic commit and approval removal.
+
+Verified **64 focused turn tests**, scoped Ruff lint/format and the installed
+offline turn demo. The prior V8 controlled-case measurements remain unchanged;
+these regressions demonstrate state invalidation behavior, not model quality,
+real RAG performance or held-out success. No paid request, key access or tracker
+write was made for this change. See [user turns](user-turns.md) for the current
+input rules and handoff behavior.
+
+## 2026-10-09 — source-bound plans and complete review records
+
+Continued from `e90f2d9` on `feat/agent-core-integration`, preserving the earlier
+controlled work. Preregistered V9 at `56ec12a` before replay: six identical V8
+material cases, fourteen original proposals, seven positive plan mappings and 31
+structured probes. Extra caller-curated user/source gaps and declared conflicts
+are explicit candidate inputs, not model-discovered labels. The production
+single-agent structure/defaults remain unchanged.
+
+Added optional `GroundedPlanner`/`GroundedReasoner` with complete context/source
+hash binding and deterministic whole-quote rendering. It removes unrestricted
+model prose, citation claims, fact updates, check suggestions and quote-substring
+selection from this path. Active reports remain attributed; version scopes remain
+exact metadata/historical/unconfirmed. Source/context integrity failures stop
+terminally; malformed plans use only the existing remaining attempt. The new
+`MetisGroundedPlanner` reuses the same single-send gateway, ledger and duplicate
+request identity; all eight prior analysis prompt policies stay unchanged.
+
+Added pure whole-proposal review packets/attestations. Complete output surfaces,
+case and latest bundle are bound, with six required review dimensions and optional
+exact source/output spans or active-user-fact references. Authentication and
+action approval remain tracker-owned. Tests deliberately show that an incorrect
+authenticated semantic judgment can mechanically pass. Hashes/record completeness
+do not prove truth, entailment, claim coverage or reviewer authentication.
+
+The current-default V9 replay reproduces **6/7 negative acceptance, 7/7 positives**;
+the new representation retains **all seven mapped positive intents**, including
+the safe historical comparison lost by strict V8 filtering. All **31 registered
+probe expectations** match, including accepted unclassified false-source and
+undeclared-conflict controls. Fourteen old payloads are all rejected as schema
+mismatches, including valid positives; this is not semantic detection. The actual
+`e90f2d9` code was separately archived/imported in a temporary directory; all
+fourteen outcomes/source pools match, without checkout changes. Original V8 Git
+baseline reproduction remains byte-identical.
+
+Independent scorer review reproduced a false positive when removing the key
+release source and its citation while retaining another source. Corrected scoring
+derives mandatory sources from the final plan plus conflict groups, checks exact
+citation sets and complete quotations in both answer and summary, and binds all
+rendered fields. Unexpected adapter crashes no longer count as successful guard
+rejections. Those checks are output integrity, not a semantic judge. Initial
+receipts are preserved under ignored runtime paths; the final checked-in receipt
+exactly reproduces source fingerprint
+`1004f837a9b5dae02bc23cfd8688ea9037ffd937e394e2b07d9ce169a44094da`.
+Public hashing/packet helpers now sanitize encoding/constructed-input failures;
+review inventories retain valid long escaped fact records without truncation.
+
+Verified locked dependencies, **1,414 offline tests** (169 more than V8), Ruff
+lint/format, eight earlier protocol validations, semantic and V8 replays, V9
+validation/replay, both actual Git baselines, saved-receipt equality, all three
+required demos, runnable integration example and local documentation links.
+CI includes V9 offline commands; no remote run is claimed. New project API cost
+is **USD 0**, with no environment-key read, tracker writes or ledger mutation.
+Original ledger remains halted with USD 0.02 unresolved model mismatch and
+USD 0.120888405 settled estimates; billing/identity reconciliation is still absent.
+
+See [Persian upgrade rationale/results](controlled-core-v9.fa.md) and
+[extractive contracts and handoffs](extractive-core.md). Actual RAG provenance and
+family exclusion, authenticated tracker review/approval/replay, complete UI
+display and unexposed real-model evaluation remain integration work. No new
+production agent/framework, merge to main or push was performed.
+
 ## Next integration work
 
 ### Shared release — 2026-10-07

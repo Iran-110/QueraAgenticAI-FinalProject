@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "experiment_id": "offline-extractive-grounding-2026-10-09-v9",
+  "created_on": "2026-10-09",
+  "mode": "offline_codex_authored_adapter_replay_only",
+  "suite_path": "experiments/decision_quality/cases-grounding-v9.json",
+  "suite_sha256": "66e132abb1be158ab162fa2a7551f67d2000e44d65627fe8b4e5c9e7b3442d70",
+  "baseline_git_commit": "e90f2d939248e58858e652bc644821f6682bf8f2",
+  "baseline_scope": "all",
+  "candidate": "optional_GroundedPlan_whole_quote_renderer",
+  "registered_before_scenario_execution": true,
+  "registration_boundary": "Commit these fixtures before executing baseline or candidate replay. Source/hash/schema inspection is allowed. Do not adapt labels to results.",
+  "limits": {
+    "max_model_attempts": 2,
+    "max_retrieval_rounds": 2,
+    "max_queries_per_round": 2,
+    "max_steps": 8
+  },
+  "top_k": 5,
+  "scenario_count": 6,
+  "legacy_baseline_replay_count": 14,
+  "positive_plan_mapping_count": 7,
+  "structured_probe_count": 31,
+  "paid_calls_authorized": false,
+  "cap_usd": "0",
+  "model": null,
+  "prompts_compared": false,
+  "condition_order": [
+    "legacy_all_baseline",
+    "candidate_mapped_positive_intents",
+    "candidate_structured_attacks_and_limits"
+  ],
+  "same_material_inputs_for_legacy_vs_mapping": true,
+  "extra_candidate_metadata_disclosed": true,
+  "conflict_metadata_ablation_required": true,
+  "metric_definitions": {
+    "baseline_replay": "Same six V8 cases and all fourteen original authored sequences; baseline expected counts are six of seven negatives accepted and seven of seven positives retained. This is known historical boundary behavior, to be reproduced.",
+    "positive_intent_retention": "Seven explicitly mapped positive intents must return their registered useful final decision; report each separately, especially the historical comparison and bounded two-round routes. Rendered wording differs by design.",
+    "free_prose_containment": "Rejection of unauthorized model prose/claims/updates/checks is schema/representation enforcement. Raw old positive and negative drafts alike cannot enter the new contract. No semantic entailment detection score may be inferred.",
+    "hash_integrity": "Reject wrong context/source hashes, changed same-ID source text/scope, changed same-revision case facts, old-revision context and stale latest-bundle references. This establishes content binding rather than truth.",
+    "question_boundary": "Accept canonical registered user gaps; reject absent/known/documentation targets and invalid decision/question combinations. Curation quality remains manual.",
+    "declared_conflict": "Declared conflicts must prevent answer and render all members on escalation; the ablation must disclose that no automatic semantic conflict detection exists.",
+    "unclassified_source_truth": "The ablated contradictory-source and freshly hashed spoofed-source probes remain accepted attributed quotations with source truth/authenticity/usefulness unclassified. They are not counted as semantically solved cases.",
+    "limits": "Preserve maximum attempts/retrieval rounds/queries/steps; new schema must not introduce retries or implicit workflow resumes."
+  },
+  "predeclared_expectations": {
+    "legacy_baseline_negative_acceptance": 6,
+    "legacy_baseline_positive_retention": 7,
+    "candidate_mapped_positive_retention": 7,
+    "candidate_raw_legacy_payloads_rejected_including_positive_payloads": 14,
+    "interpretation": "These are preregistered deterministic control expectations, not observed results or model accuracy. Structured probe expectations are per-probe; report unclassified coverage controls separately."
+  },
+  "claims_forbidden": [
+    "live_model_decision_quality",
+    "real_RAG_relevance_or_corpus_safety",
+    "held_out_test_success",
+    "general_semantic_entailment",
+    "automatic_contradiction_detection",
+    "source_authenticity_or_truth_from_hashes",
+    "tracker_approval_or_execution",
+    "general_free_text_user_fact_extraction",
+    "new_agent_or_framework_quality_advantage"
+  ],
+  "reporting_requirements": [
+    "Show baseline and mapped candidate as different authored representations with identical material cases and disclosed extra caller metadata.",
+    "Report renderer containment, integrity, useful retention, question gate and manual conflict gate as separate metrics.",
+    "Show all failed expectations and coverage controls; never aggregate them into a single semantic-quality percentage.",
+    "Retain complete rendered drafts/citation claims/summaries/rationale and the input/catalog/source hashes for whole-proposal review.",
+    "Preserve answer-informed Issue selection and full-family quarantine disclosures.",
+    "Do not call a limited documentation summary a verified full-app cause, fix, reproduced failure or solved real Issue."
+  ]
+}

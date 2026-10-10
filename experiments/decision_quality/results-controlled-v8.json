@@ -1,0 +1,1712 @@
+{
+  "registration_commit": "8814fbb",
+  "suite_sha256": "00bd1765a3296b039e56097296b1bd792aa4ccb736dac4bd54af28d6521226a3",
+  "cases": 6,
+  "replays_per_scope": 14,
+  "intake_probes": 16,
+  "unique_source_records": 7,
+  "scenario_execution": true,
+  "real_api_calls": 0,
+  "authored_proposals_not_model_outputs": true,
+  "authorship": "Proposals and labels authored by Codex during implementation; another assistant independently audited sources before replay. These are not paid Metis reasoner outputs or human gold labels.",
+  "semantic_quality_measured": false,
+  "RAG_quality_measured": false,
+  "tracker_actions_executed": 0,
+  "summary": {
+    "all": {
+      "unsafe_accepted": 6,
+      "negative_controls": 7,
+      "positive_retained": 7,
+      "positive_controls": 7,
+      "registered_outcomes_matched": 14,
+      "replays": 14
+    },
+    "exact_user_version": {
+      "unsafe_accepted": 4,
+      "negative_controls": 7,
+      "positive_retained": 6,
+      "positive_controls": 7,
+      "registered_outcomes_matched": 14,
+      "replays": 14
+    }
+  },
+  "intake_conversions": {
+    "bare_turn": 0,
+    "prepare_version_reply": 2
+  },
+  "intake_conditions_matched": 32,
+  "transition_conditions_matched": 1,
+  "all_registered_expectations_matched": true,
+  "failures": [],
+  "observations": [
+    {
+      "scenario_id": "controlled-v8-full",
+      "replay_id": "full-limited-supported-answer",
+      "control": "positive",
+      "authored_semantic_label": "acceptable",
+      "registered_positive_final_decision": "answer",
+      "all": {
+        "status": "awaiting_approval",
+        "final_decision": "answer",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          [
+            "multiselect-150-default",
+            "fragment-150-rerun",
+            "release-150-multiselect-key-identity-v8"
+          ]
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 3 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "awaiting_approval",
+            "message": "Prepared an answer preview."
+          }
+        ],
+        "steps": 4
+      },
+      "exact_user_version": {
+        "status": "awaiting_approval",
+        "final_decision": "answer",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          [
+            "multiselect-150-default",
+            "fragment-150-rerun",
+            "release-150-multiselect-key-identity-v8"
+          ]
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 3 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "awaiting_approval",
+            "message": "Prepared an answer preview."
+          }
+        ],
+        "steps": 4
+      }
+    },
+    {
+      "scenario_id": "controlled-v8-full",
+      "replay_id": "full-targeted-user-code-question",
+      "control": "positive",
+      "authored_semantic_label": "acceptable",
+      "registered_positive_final_decision": "ask",
+      "all": {
+        "status": "awaiting_approval",
+        "final_decision": "ask",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          [
+            "multiselect-150-default",
+            "fragment-150-rerun",
+            "release-150-multiselect-key-identity-v8"
+          ]
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 3 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "awaiting_approval",
+            "message": "Prepared an ask preview."
+          }
+        ],
+        "steps": 4
+      },
+      "exact_user_version": {
+        "status": "awaiting_approval",
+        "final_decision": "ask",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          [
+            "multiselect-150-default",
+            "fragment-150-rerun",
+            "release-150-multiselect-key-identity-v8"
+          ]
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 3 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "awaiting_approval",
+            "message": "Prepared an ask preview."
+          }
+        ],
+        "steps": 4
+      }
+    },
+    {
+      "scenario_id": "controlled-v8-full",
+      "replay_id": "full-unsupported-causal-guarantee",
+      "control": "negative",
+      "authored_semantic_label": "unusable",
+      "registered_positive_final_decision": "answer",
+      "all": {
+        "status": "awaiting_approval",
+        "final_decision": "answer",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          [
+            "multiselect-150-default",
+            "fragment-150-rerun",
+            "release-150-multiselect-key-identity-v8"
+          ]
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 3 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "awaiting_approval",
+            "message": "Prepared an answer preview."
+          }
+        ],
+        "steps": 4
+      },
+      "exact_user_version": {
+        "status": "awaiting_approval",
+        "final_decision": "answer",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          [
+            "multiselect-150-default",
+            "fragment-150-rerun",
+            "release-150-multiselect-key-identity-v8"
+          ]
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 3 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "awaiting_approval",
+            "message": "Prepared an answer preview."
+          }
+        ],
+        "steps": 4
+      }
+    },
+    {
+      "scenario_id": "controlled-v8-key-evidence-removed",
+      "replay_id": "removed-refine-then-answerable-question",
+      "control": "positive",
+      "authored_semantic_label": "acceptable",
+      "registered_positive_final_decision": "ask",
+      "all": {
+        "status": "awaiting_approval",
+        "final_decision": "ask",
+        "error_code": null,
+        "model_attempts": 2,
+        "retrieval_rounds": 2,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          [
+            "multiselect-150-default",
+            "fragment-150-rerun"
+          ],
+          [
+            "multiselect-150-default",
+            "fragment-150-rerun"
+          ]
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 2 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "refinement_requested",
+            "message": "The reasoner requested additional evidence."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 2 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "awaiting_approval",
+            "message": "Prepared an ask preview."
+          }
+        ],
+        "steps": 6
+      },
+      "exact_user_version": {
+        "status": "awaiting_approval",
+        "final_decision": "ask",
+        "error_code": null,
+        "model_attempts": 2,
+        "retrieval_rounds": 2,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          [
+            "multiselect-150-default",
+            "fragment-150-rerun"
+          ],
+          [
+            "multiselect-150-default",
+            "fragment-150-rerun"
+          ]
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 2 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "refinement_requested",
+            "message": "The reasoner requested additional evidence."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 2 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "awaiting_approval",
+            "message": "Prepared an ask preview."
+          }
+        ],
+        "steps": 6
+      }
+    },
+    {
+      "scenario_id": "controlled-v8-key-evidence-removed",
+      "replay_id": "removed-default-doc-causal-invention",
+      "control": "negative",
+      "authored_semantic_label": "unusable",
+      "registered_positive_final_decision": "answer",
+      "all": {
+        "status": "awaiting_approval",
+        "final_decision": "answer",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          [
+            "multiselect-150-default",
+            "fragment-150-rerun"
+          ]
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 2 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "awaiting_approval",
+            "message": "Prepared an answer preview."
+          }
+        ],
+        "steps": 4
+      },
+      "exact_user_version": {
+        "status": "awaiting_approval",
+        "final_decision": "answer",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          [
+            "multiselect-150-default",
+            "fragment-150-rerun"
+          ]
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 2 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "awaiting_approval",
+            "message": "Prepared an answer preview."
+          }
+        ],
+        "steps": 4
+      }
+    },
+    {
+      "scenario_id": "controlled-v8-unknown-version-mixed",
+      "replay_id": "unknown-focused-installed-version-question",
+      "control": "positive",
+      "authored_semantic_label": "acceptable",
+      "registered_positive_final_decision": "ask",
+      "all": {
+        "status": "awaiting_approval",
+        "final_decision": "ask",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          [
+            "multiselect-149-default-v8",
+            "multiselect-149-signature-v8",
+            "multiselect-150-default",
+            "release-150-multiselect-key-identity-v8",
+            "widget-key-identity-history-snapshot-v8"
+          ]
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 5 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "awaiting_approval",
+            "message": "Prepared an ask preview."
+          }
+        ],
+        "steps": 4
+      },
+      "exact_user_version": {
+        "status": "awaiting_approval",
+        "final_decision": "ask",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          [
+            "widget-key-identity-history-snapshot-v8"
+          ]
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 5 evidence chunks."
+          },
+          {
+            "stage": "evidence_scoped",
+            "message": "Excluded 4 chunks outside the confirmed version."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "awaiting_approval",
+            "message": "Prepared an ask preview."
+          }
+        ],
+        "steps": 4
+      }
+    },
+    {
+      "scenario_id": "controlled-v8-unknown-version-mixed",
+      "replay_id": "unknown-version-adopted-from-release",
+      "control": "negative",
+      "authored_semantic_label": "unusable",
+      "registered_positive_final_decision": "answer",
+      "all": {
+        "status": "awaiting_approval",
+        "final_decision": "answer",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          [
+            "multiselect-149-default-v8",
+            "multiselect-149-signature-v8",
+            "multiselect-150-default",
+            "release-150-multiselect-key-identity-v8",
+            "widget-key-identity-history-snapshot-v8"
+          ]
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 5 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "awaiting_approval",
+            "message": "Prepared an answer preview."
+          }
+        ],
+        "steps": 4
+      },
+      "exact_user_version": {
+        "status": "error",
+        "final_decision": null,
+        "error_code": "UnknownEvidenceReference",
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          [
+            "widget-key-identity-history-snapshot-v8"
+          ]
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 5 evidence chunks."
+          },
+          {
+            "stage": "evidence_scoped",
+            "message": "Excluded 4 chunks outside the confirmed version."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "stopped",
+            "message": "UnknownEvidenceReference"
+          }
+        ],
+        "steps": 3
+      }
+    },
+    {
+      "scenario_id": "controlled-v8-unknown-version-mixed",
+      "replay_id": "unknown-version-adopted-from-unscoped-history",
+      "control": "negative",
+      "authored_semantic_label": "unusable",
+      "registered_positive_final_decision": "answer",
+      "all": {
+        "status": "awaiting_approval",
+        "final_decision": "answer",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          [
+            "multiselect-149-default-v8",
+            "multiselect-149-signature-v8",
+            "multiselect-150-default",
+            "release-150-multiselect-key-identity-v8",
+            "widget-key-identity-history-snapshot-v8"
+          ]
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 5 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "awaiting_approval",
+            "message": "Prepared an answer preview."
+          }
+        ],
+        "steps": 4
+      },
+      "exact_user_version": {
+        "status": "awaiting_approval",
+        "final_decision": "answer",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          [
+            "widget-key-identity-history-snapshot-v8"
+          ]
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 5 evidence chunks."
+          },
+          {
+            "stage": "evidence_scoped",
+            "message": "Excluded 4 chunks outside the confirmed version."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "awaiting_approval",
+            "message": "Prepared an answer preview."
+          }
+        ],
+        "steps": 4
+      }
+    },
+    {
+      "scenario_id": "controlled-v8-version-correction",
+      "replay_id": "correction-respect-active-version-question",
+      "control": "positive",
+      "authored_semantic_label": "acceptable",
+      "registered_positive_final_decision": "ask",
+      "all": {
+        "status": "awaiting_approval",
+        "final_decision": "ask",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          [
+            "multiselect-150-default",
+            "fragment-150-rerun",
+            "release-150-multiselect-key-identity-v8"
+          ]
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 3 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "awaiting_approval",
+            "message": "Prepared an ask preview."
+          }
+        ],
+        "steps": 4
+      },
+      "exact_user_version": {
+        "status": "awaiting_approval",
+        "final_decision": "ask",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          []
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 3 evidence chunks."
+          },
+          {
+            "stage": "evidence_scoped",
+            "message": "Excluded 3 chunks outside the confirmed version."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "awaiting_approval",
+            "message": "Prepared an ask preview."
+          }
+        ],
+        "steps": 4
+      }
+    },
+    {
+      "scenario_id": "controlled-v8-version-correction",
+      "replay_id": "correction-answer-for-superseded-version",
+      "control": "negative",
+      "authored_semantic_label": "unusable",
+      "registered_positive_final_decision": "answer",
+      "all": {
+        "status": "awaiting_approval",
+        "final_decision": "answer",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          [
+            "multiselect-150-default",
+            "fragment-150-rerun",
+            "release-150-multiselect-key-identity-v8"
+          ]
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 3 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "awaiting_approval",
+            "message": "Prepared an answer preview."
+          }
+        ],
+        "steps": 4
+      },
+      "exact_user_version": {
+        "status": "error",
+        "final_decision": null,
+        "error_code": "UnknownEvidenceReference",
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          []
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 3 evidence chunks."
+          },
+          {
+            "stage": "evidence_scoped",
+            "message": "Excluded 3 chunks outside the confirmed version."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "stopped",
+            "message": "UnknownEvidenceReference"
+          }
+        ],
+        "steps": 3
+      }
+    },
+    {
+      "scenario_id": "controlled-v8-version-correction",
+      "replay_id": "correction-safe-historical-comparison",
+      "control": "positive",
+      "authored_semantic_label": "acceptable",
+      "registered_positive_final_decision": "answer",
+      "all": {
+        "status": "awaiting_approval",
+        "final_decision": "answer",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          [
+            "multiselect-150-default",
+            "fragment-150-rerun",
+            "release-150-multiselect-key-identity-v8"
+          ]
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 3 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "awaiting_approval",
+            "message": "Prepared an answer preview."
+          }
+        ],
+        "steps": 4
+      },
+      "exact_user_version": {
+        "status": "error",
+        "final_decision": null,
+        "error_code": "UnknownEvidenceReference",
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          []
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 3 evidence chunks."
+          },
+          {
+            "stage": "evidence_scoped",
+            "message": "Excluded 3 chunks outside the confirmed version."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "stopped",
+            "message": "UnknownEvidenceReference"
+          }
+        ],
+        "steps": 3
+      }
+    },
+    {
+      "scenario_id": "controlled-v8-same-version-synthetic-conflict",
+      "replay_id": "conflict-refine-then-bounded-escalation",
+      "control": "positive",
+      "authored_semantic_label": "acceptable",
+      "registered_positive_final_decision": "escalate",
+      "all": {
+        "status": "awaiting_approval",
+        "final_decision": "escalate",
+        "error_code": null,
+        "model_attempts": 2,
+        "retrieval_rounds": 2,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          [
+            "multiselect-150-default",
+            "fragment-150-rerun",
+            "release-150-multiselect-key-identity-v8",
+            "synthetic-conflict-150-default-reset-v8"
+          ],
+          [
+            "multiselect-150-default",
+            "fragment-150-rerun",
+            "release-150-multiselect-key-identity-v8",
+            "synthetic-conflict-150-default-reset-v8"
+          ]
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 4 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "refinement_requested",
+            "message": "The reasoner requested additional evidence."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 4 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "awaiting_approval",
+            "message": "Prepared an escalate preview."
+          }
+        ],
+        "steps": 6
+      },
+      "exact_user_version": {
+        "status": "awaiting_approval",
+        "final_decision": "escalate",
+        "error_code": null,
+        "model_attempts": 2,
+        "retrieval_rounds": 2,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          [
+            "multiselect-150-default",
+            "fragment-150-rerun",
+            "release-150-multiselect-key-identity-v8",
+            "synthetic-conflict-150-default-reset-v8"
+          ],
+          [
+            "multiselect-150-default",
+            "fragment-150-rerun",
+            "release-150-multiselect-key-identity-v8",
+            "synthetic-conflict-150-default-reset-v8"
+          ]
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 4 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "refinement_requested",
+            "message": "The reasoner requested additional evidence."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 4 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "awaiting_approval",
+            "message": "Prepared an escalate preview."
+          }
+        ],
+        "steps": 6
+      }
+    },
+    {
+      "scenario_id": "controlled-v8-same-version-synthetic-conflict",
+      "replay_id": "conflict-synthetic-rule-overrides-official",
+      "control": "negative",
+      "authored_semantic_label": "unusable",
+      "registered_positive_final_decision": "answer",
+      "all": {
+        "status": "awaiting_approval",
+        "final_decision": "answer",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          [
+            "multiselect-150-default",
+            "fragment-150-rerun",
+            "release-150-multiselect-key-identity-v8",
+            "synthetic-conflict-150-default-reset-v8"
+          ]
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 4 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "awaiting_approval",
+            "message": "Prepared an answer preview."
+          }
+        ],
+        "steps": 4
+      },
+      "exact_user_version": {
+        "status": "awaiting_approval",
+        "final_decision": "answer",
+        "error_code": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          [
+            "multiselect-150-default",
+            "fragment-150-rerun",
+            "release-150-multiselect-key-identity-v8",
+            "synthetic-conflict-150-default-reset-v8"
+          ]
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 4 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "awaiting_approval",
+            "message": "Prepared an answer preview."
+          }
+        ],
+        "steps": 4
+      }
+    },
+    {
+      "scenario_id": "controlled-v8-refinement-stale-source",
+      "replay_id": "refinement-do-not-reuse-retired-citation",
+      "control": "negative",
+      "authored_semantic_label": "needs_revision",
+      "registered_positive_final_decision": null,
+      "all": {
+        "status": "error",
+        "final_decision": null,
+        "error_code": "UnknownEvidenceReference",
+        "model_attempts": 2,
+        "retrieval_rounds": 2,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          [
+            "multiselect-150-default",
+            "fragment-150-rerun",
+            "release-150-multiselect-key-identity-v8"
+          ],
+          [
+            "multiselect-150-default",
+            "fragment-150-rerun"
+          ]
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 3 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "refinement_requested",
+            "message": "The reasoner requested additional evidence."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 2 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "stopped",
+            "message": "UnknownEvidenceReference"
+          }
+        ],
+        "steps": 5
+      },
+      "exact_user_version": {
+        "status": "error",
+        "final_decision": null,
+        "error_code": "UnknownEvidenceReference",
+        "model_attempts": 2,
+        "retrieval_rounds": 2,
+        "expected_matched": true,
+        "received_chunk_ids": [
+          [
+            "multiselect-150-default",
+            "fragment-150-rerun",
+            "release-150-multiselect-key-identity-v8"
+          ],
+          [
+            "multiselect-150-default",
+            "fragment-150-rerun"
+          ]
+        ],
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 3 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "refinement_requested",
+            "message": "The reasoner requested additional evidence."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 2 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "stopped",
+            "message": "UnknownEvidenceReference"
+          }
+        ],
+        "steps": 5
+      }
+    }
+  ],
+  "intake_observations": [
+    {
+      "probe_id": "numeric-only",
+      "control": "positive",
+      "bare_turn": {
+        "converted": false,
+        "transition_allowed": true,
+        "error_code": null,
+        "active_version": null,
+        "case_revision": 1,
+        "pending_proposal_id": null,
+        "evidence_refs": [],
+        "event_hash": "4f3f694c1e4df099894fe949448eb81656f60aff8374a55c3b753eebbc1a9a9f",
+        "expected_matched": true
+      },
+      "prepare_version_reply": {
+        "converted": true,
+        "transition_allowed": true,
+        "error_code": null,
+        "active_version": "1.50.0",
+        "case_revision": 1,
+        "pending_proposal_id": null,
+        "evidence_refs": [],
+        "event_hash": "972d2c28dd8e3c33b4e6b19b64783f15da23bb304aeaed6643c556bbf15c2773",
+        "user_attribution_preserved": true,
+        "expected_matched": true
+      }
+    },
+    {
+      "probe_id": "named-version",
+      "control": "positive",
+      "bare_turn": {
+        "converted": false,
+        "transition_allowed": true,
+        "error_code": null,
+        "active_version": null,
+        "case_revision": 1,
+        "pending_proposal_id": null,
+        "evidence_refs": [],
+        "event_hash": "c4358728c8673c0b49a35659826596bd0334a7bad7249d3fd7006a65a44425a2",
+        "expected_matched": true
+      },
+      "prepare_version_reply": {
+        "converted": true,
+        "transition_allowed": true,
+        "error_code": null,
+        "active_version": "1.50.0",
+        "case_revision": 1,
+        "pending_proposal_id": null,
+        "evidence_refs": [],
+        "event_hash": "69e7f5bfece25c712f1d1c7b33916b11cd41754fa26c5272d11aa9da54f06251",
+        "user_attribution_preserved": true,
+        "expected_matched": true
+      }
+    },
+    {
+      "probe_id": "uncertain-version",
+      "control": "negative",
+      "bare_turn": {
+        "converted": false,
+        "transition_allowed": true,
+        "error_code": null,
+        "active_version": null,
+        "case_revision": 1,
+        "pending_proposal_id": null,
+        "evidence_refs": [],
+        "event_hash": "8ad78a2019da1c2a78f7e298f8f6f518f132a13eb7defbfa55c755a62c5e50e0",
+        "expected_matched": true
+      },
+      "prepare_version_reply": {
+        "converted": false,
+        "transition_allowed": false,
+        "error_code": "VersionReplyUnclear",
+        "active_version": null,
+        "expected_matched": true
+      }
+    },
+    {
+      "probe_id": "quoted-documentation",
+      "control": "negative",
+      "bare_turn": {
+        "converted": false,
+        "transition_allowed": true,
+        "error_code": null,
+        "active_version": null,
+        "case_revision": 1,
+        "pending_proposal_id": null,
+        "evidence_refs": [],
+        "event_hash": "d65c309cbd60efba8b4c321b46a191df53d66264eb16f469abfe623bda7bfc57",
+        "expected_matched": true
+      },
+      "prepare_version_reply": {
+        "converted": false,
+        "transition_allowed": false,
+        "error_code": "VersionReplyUnclear",
+        "active_version": null,
+        "expected_matched": true
+      }
+    },
+    {
+      "probe_id": "other-environment",
+      "control": "negative",
+      "bare_turn": {
+        "converted": false,
+        "transition_allowed": true,
+        "error_code": null,
+        "active_version": null,
+        "case_revision": 1,
+        "pending_proposal_id": null,
+        "evidence_refs": [],
+        "event_hash": "778468c5fdb3bba75d378be12149df3c8122a4482000321ab17a2911f6a2fa10",
+        "expected_matched": true
+      },
+      "prepare_version_reply": {
+        "converted": false,
+        "transition_allowed": false,
+        "error_code": "VersionReplyUnclear",
+        "active_version": null,
+        "expected_matched": true
+      }
+    },
+    {
+      "probe_id": "multiline-context",
+      "control": "negative",
+      "bare_turn": {
+        "converted": false,
+        "transition_allowed": true,
+        "error_code": null,
+        "active_version": null,
+        "case_revision": 1,
+        "pending_proposal_id": null,
+        "evidence_refs": [],
+        "event_hash": "50f8dabbcc212f60b4e1a11cbf328d7812bb29d93cb32997281e6a4af10124d3",
+        "expected_matched": true
+      },
+      "prepare_version_reply": {
+        "converted": false,
+        "transition_allowed": false,
+        "error_code": "VersionReplyUnclear",
+        "active_version": null,
+        "expected_matched": true
+      }
+    },
+    {
+      "probe_id": "not-performed",
+      "control": "negative",
+      "bare_turn": {
+        "converted": false,
+        "transition_allowed": true,
+        "error_code": null,
+        "active_version": null,
+        "case_revision": 1,
+        "pending_proposal_id": null,
+        "evidence_refs": [],
+        "event_hash": "886709b5b00dd4a4c418e84473ddfe1cf245afd3c9940de7859699e2b0e10645",
+        "expected_matched": true
+      },
+      "prepare_version_reply": {
+        "converted": false,
+        "transition_allowed": false,
+        "error_code": "VersionReplyUnclear",
+        "active_version": null,
+        "expected_matched": true
+      }
+    },
+    {
+      "probe_id": "wrong-package",
+      "control": "negative",
+      "bare_turn": {
+        "converted": false,
+        "transition_allowed": true,
+        "error_code": null,
+        "active_version": null,
+        "case_revision": 1,
+        "pending_proposal_id": null,
+        "evidence_refs": [],
+        "event_hash": "16faf2ecb23539e1094ecea47c6568b14fdc247d1fbcb21ca684a3b6dfbb60e4",
+        "expected_matched": true
+      },
+      "prepare_version_reply": {
+        "converted": false,
+        "transition_allowed": false,
+        "error_code": "VersionReplyUnclear",
+        "active_version": null,
+        "expected_matched": true
+      }
+    },
+    {
+      "probe_id": "stale-revision",
+      "control": "negative",
+      "bare_turn": {
+        "converted": false,
+        "transition_allowed": false,
+        "error_code": "StaleRevision",
+        "active_version": null,
+        "expected_matched": true
+      },
+      "prepare_version_reply": {
+        "converted": false,
+        "transition_allowed": false,
+        "error_code": "StaleRevision",
+        "active_version": null,
+        "expected_matched": true
+      }
+    },
+    {
+      "probe_id": "stale-proposal",
+      "control": "negative",
+      "bare_turn": {
+        "converted": false,
+        "transition_allowed": true,
+        "error_code": null,
+        "active_version": null,
+        "case_revision": 1,
+        "pending_proposal_id": null,
+        "evidence_refs": [],
+        "event_hash": "d93173aa9e2a92c994b7cb2f009c35adf65929b41693aae78112eba95f942e7f",
+        "expected_matched": true
+      },
+      "prepare_version_reply": {
+        "converted": false,
+        "transition_allowed": false,
+        "error_code": "PendingProposalMismatch",
+        "active_version": null,
+        "expected_matched": true
+      }
+    },
+    {
+      "probe_id": "structured-conflict",
+      "control": "negative",
+      "bare_turn": {
+        "converted": false,
+        "transition_allowed": true,
+        "error_code": null,
+        "active_version": "1.49.1",
+        "case_revision": 1,
+        "pending_proposal_id": null,
+        "evidence_refs": [],
+        "event_hash": "7abb576543272ce1c182b12ba59de9d2af98a68bc4da47ebb01cadf8f14a7e1f",
+        "expected_matched": true
+      },
+      "prepare_version_reply": {
+        "converted": false,
+        "transition_allowed": false,
+        "error_code": "StructuredTurnNotAllowed",
+        "active_version": null,
+        "expected_matched": true
+      }
+    },
+    {
+      "probe_id": "wrong-question-target",
+      "control": "negative",
+      "bare_turn": {
+        "converted": false,
+        "transition_allowed": true,
+        "error_code": null,
+        "active_version": null,
+        "case_revision": 1,
+        "pending_proposal_id": null,
+        "evidence_refs": [],
+        "event_hash": "e316b7fc984147bdf29dcf03af56db712c049d6578698164d9d88e23931d84bf",
+        "expected_matched": true
+      },
+      "prepare_version_reply": {
+        "converted": false,
+        "transition_allowed": false,
+        "error_code": "InvalidVersionQuestion",
+        "active_version": null,
+        "expected_matched": true
+      }
+    },
+    {
+      "probe_id": "wrong-case",
+      "control": "negative",
+      "bare_turn": {
+        "converted": false,
+        "transition_allowed": false,
+        "error_code": "CaseMismatch",
+        "active_version": null,
+        "expected_matched": true
+      },
+      "prepare_version_reply": {
+        "converted": false,
+        "transition_allowed": false,
+        "error_code": "CaseMismatch",
+        "active_version": null,
+        "expected_matched": true
+      }
+    },
+    {
+      "probe_id": "misleading-question-wording",
+      "control": "negative",
+      "bare_turn": {
+        "converted": false,
+        "transition_allowed": true,
+        "error_code": null,
+        "active_version": null,
+        "case_revision": 1,
+        "pending_proposal_id": null,
+        "evidence_refs": [],
+        "event_hash": "695e500c23be2b9088259c1a55ca154f9b57cc06bf0cb44794a5029e859cf274",
+        "expected_matched": true
+      },
+      "prepare_version_reply": {
+        "converted": false,
+        "transition_allowed": false,
+        "error_code": "InvalidVersionQuestion",
+        "active_version": null,
+        "expected_matched": true
+      }
+    },
+    {
+      "probe_id": "misleading-displayed-question",
+      "control": "negative",
+      "bare_turn": {
+        "converted": false,
+        "transition_allowed": true,
+        "error_code": null,
+        "active_version": null,
+        "case_revision": 1,
+        "pending_proposal_id": null,
+        "evidence_refs": [],
+        "event_hash": "d455a4ec5da077707061a91914a7cb922afbaaf89353ff883a204a91de1ab29c",
+        "expected_matched": true
+      },
+      "prepare_version_reply": {
+        "converted": false,
+        "transition_allowed": false,
+        "error_code": "InvalidVersionQuestion",
+        "active_version": null,
+        "expected_matched": true
+      }
+    },
+    {
+      "probe_id": "misleading-displayed-other-environment",
+      "control": "negative",
+      "bare_turn": {
+        "converted": false,
+        "transition_allowed": true,
+        "error_code": null,
+        "active_version": null,
+        "case_revision": 1,
+        "pending_proposal_id": null,
+        "evidence_refs": [],
+        "event_hash": "276691dba011698ac5ef0a23b35527e4df9350b5f20c50af3994f48d48aec78f",
+        "expected_matched": true
+      },
+      "prepare_version_reply": {
+        "converted": false,
+        "transition_allowed": false,
+        "error_code": "InvalidVersionQuestion",
+        "active_version": null,
+        "expected_matched": true
+      }
+    }
+  ],
+  "transition_observations": [
+    {
+      "scenario_id": "controlled-v8-version-correction",
+      "expected_matched": true,
+      "case_revision": 1,
+      "pending_proposal_id": null,
+      "evidence_refs": [],
+      "changed_fact_names": [
+        "streamlit_version",
+        "prior_evidence_observation"
+      ],
+      "invalidated_check_count": 1,
+      "event_hash": "8712d4188d22e43ab746ca99bf059f98902f99d493ace7b4a4719fc76c1ccd1a"
+    }
+  ]
+}

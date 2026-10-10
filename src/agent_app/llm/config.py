@@ -30,6 +30,7 @@ class MetisConfig(BaseModel):
     model: str = "gpt-4o-mini"
     phase: Literal["development", "evaluation", "demo"] = "development"
     prompt_policy: PromptPolicy = "baseline"
+    response_mode: Literal["analysis", "grounded_plan"] = "analysis"
     # Caller-owned accounting authorization, never selected by model output.
     continuation_id: (
         Annotated[str, StringConstraints(pattern=r"^[a-z0-9][a-z0-9-]{0,63}$")] | None
@@ -88,4 +89,5 @@ class MetisConfig(BaseModel):
             live_enabled=os.environ.get("METIS_LIVE_ENABLED") == "true",
             model=os.environ.get("METIS_MODEL", "gpt-4o-mini"),
             prompt_policy=os.environ.get("METIS_PROMPT_POLICY", "baseline"),
+            response_mode=os.environ.get("METIS_RESPONSE_MODE", "analysis"),
         )
