@@ -528,6 +528,7 @@ and [wire/reply semantics](user-turns.md).
 ## 2026-10-10 — complete review handoffs and current-state fixture (C3)
 
 Branch: `feat/core-review-handoff`, from the PR #10 merge `3f22ef9`.
+Published for review in [PR #11](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/11).
 
 - Registered four HTTP review-boundary regressions before changing the API.
   An isolated import of the actual baseline source reproduced four failures;
