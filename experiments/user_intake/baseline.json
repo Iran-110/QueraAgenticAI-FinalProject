@@ -1,0 +1,20 @@
+{
+  "baseline_commit": "5af98e6e84cb040085ca1eec50cbee17c9dc12f5",
+  "api_sha256": "8036813ac752862fc0f648961c564dfd9775ceabd130a40a41f8809659cb145e",
+  "scope": "Offline ingress/state integration regressions; not model or RAG quality.",
+  "existing_focused_tests": {
+    "command": "uv run pytest -q tests/test_api.py tests/test_intake.py tests/test_turns.py",
+    "passed": 139
+  },
+  "new_regressions": {
+    "command": "uv run pytest -q tests/test_api_user_intake.py --tb=line",
+    "failed": 4,
+    "observed": [
+      "Explicit reported_facts ignored: zero attributed facts.",
+      "Stale expected_revision ignored: HTTP 200 instead of 409.",
+      "Repeated original event invokes another run and advances revision to 2.",
+      "Unknown authority fields accepted: HTTP 200 instead of 422."
+    ]
+  },
+  "api_cost_usd": 0
+}
