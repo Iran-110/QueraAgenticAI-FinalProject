@@ -7,6 +7,9 @@ in this format.
 - `split-manifest.json` lists selected cases and whole issue families per split,
   the issue IDs already exposed during development, and open blockers. Hassan's
   index exclusion (R2) reads it. It is a draft until `status` says frozen.
+- `scenarios/` holds synthetic operational scenarios the brief requires
+  (tool failure, switching between two cases). They use synthetic evidence from
+  `evidence/` and do not count toward the 30 evaluation cases.
 - `dev/` and `test/` hold one JSON fixture per case. A fixture is committed
   before its first run; later edits get a new `fixture_id`.
 
@@ -20,6 +23,8 @@ in this format.
 | `turns[].evidence_bundle` + `evidence_source` | offline retriever only |
 | `turns[].agent_script` | offline stand-in for the model; absent in real-model runs |
 | `turns[].maintainer` (approve, reject, edit then approve, or none) | runner |
+| `turns[].faults` (`retrieval: true`, or `reasoning_errors: N` before the scripted output; offline only) | runner |
+| `turns[].case_id` and `case.extra_case_ids` (several cases in one fixture) | runner |
 | `turns[].gold` (acceptable decisions, gaps, unacceptable claims) | reviewer/scorer only, never model input or index |
 | `turns[].expect` and `probes` (operational checks on stored state) | runner |
 
@@ -34,8 +39,10 @@ The runner drives the FastAPI app the UI uses, in process. Each turn sends only
 that turn's `visible` input, so later turns, gold and expectations never reach
 the agent early. Checks read stored state: revisions, fact history, the bound
 reply, cited sources and version scope, stale and pre-edit approvals refused,
-double approval refused, rejection releasing nothing, and replay of every
-accepted event without side effects. Before running it refuses duplicate case
+double approval refused, rejection releasing nothing, stop reasons after
+injected failures, proposals refused through another case, every other case
+unchanged on each turn, and replay of every accepted event without side
+effects. Before running it refuses duplicate case
 IDs, a changed evidence hash, a test case marked ineligible, and any issue
 family that appears in both dev and test.
 

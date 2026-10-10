@@ -184,3 +184,68 @@ def test_cli_keeps_modes_apart_and_never_overwrites(tmp_path):
 
 def test_pilot_command_still_runs():
     assert pilot.main([str(FIXTURE)]) == 0
+
+
+SCENARIOS = DEV.parent / "scenarios"
+
+
+def scenario_data(name):
+    return json.loads((SCENARIOS / f"{name}.json").read_text(encoding="utf-8"))
+
+
+def test_registered_scenarios_pass():
+    receipt = runner.run([SCENARIOS])
+    assert failed(receipt) == []
+    assert receipt["summary"]["decisions"]["stopped"] == 2
+
+
+def test_failed_tool_stops_without_proposal_and_retry_stays_within_limit():
+    case = next(c for c in runner.run([SCENARIOS])["cases"] if c["case_id"] == "syn-tool-failure")
+    steps = {step["turn"]: step for step in case["steps"]}
+    assert steps["tool-1"]["proposal"]["proposal_id"] is None
+    assert steps["tool-2"]["usage"]["model_attempts"] == 2
+    assert steps["tool-3"]["proposal"]["proposal_id"] is None
+
+    def assistant(step):
+        return [e for e in steps[step]["view_after"]["log"] if e["role"] == "assistant"]
+
+    assert assistant("tool-3") == assistant("tool-2")  # The stopped run released nothing.
+
+
+def test_case_switching_checks_isolation_and_cross_case_refusal():
+    case = next(c for c in runner.run([SCENARIOS])["cases"] if c["case_id"] == "syn-switch-a")
+    names = {(check["step"], check["check"]) for check in case["checks"]}
+    assert ("switch-2", "case syn-switch-a untouched") in names
+    assert ("switch-3", "case syn-switch-b untouched") in names
+    assert ("switch-2", "other case's proposal refused here") in names
+
+
+def test_wrong_stop_code_is_reported(tmp_path):
+    data = scenario_data("tool-failure")
+    data["turns"][0]["expect"]["stop_code"] = "SomethingElse"
+    assert ("tool-1", "stop reason logged") in failed(runner.run([write(tmp_path, data)]))
+
+
+@pytest.mark.parametrize(
+    ("change", "message"),
+    [
+        (lambda d: d["turns"][0].update(faults={"network": True}), "unknown fault"),
+        (lambda d: d["turns"][0].update(faults={}), "agent_script is required"),
+        (lambda d: d["turns"][0].update(case_id="undeclared"), "not declared"),
+    ],
+)
+def test_invalid_scenario_fixtures_are_refused(tmp_path, change, message):
+    data = scenario_data("tool-failure")
+    change(data)
+    with pytest.raises(ValueError, match=message):
+        runner.collect([write(tmp_path, data)])
+
+
+def test_extra_case_ids_must_be_unique_across_fixtures(tmp_path):
+    first = scenario_data("case-switching")
+    second = scenario_data("tool-failure")
+    second["case"]["case_id"] = "syn-switch-b"
+    for turn in second["turns"]:
+        turn.pop("case_id", None)
+    with pytest.raises(ValueError, match="Duplicate case_id syn-switch-b"):
+        runner.collect([write(tmp_path, first, "a.json"), write(tmp_path, second, "b.json")])
