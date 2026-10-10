@@ -1,9 +1,13 @@
-# Member 3 Todo List (System & Tracker Lead)
+# محمد بهنام — tracker و ابزارها
 
-- [ ] **Day 1**: Review the selected domain.
-- [ ] **Day 1**: Set up the local database structure (`sqlite` or JSON) to track ticket states (the "local tracker").
-- [ ] **Day 2**: Implement durable event deduplication and atomic approval handling in the local tracker.
-- [ ] **Day 3**: Connect the core agent to the local SQLite/JSON tracker. Ensure state persists if the script is restarted.
-- [ ] **Day 4**: Curate the 15 "Test" cases. Make some of these *adversarial* (e.g., the user gives a wrong version and later corrects it, or the required info is missing).
-- [ ] **Day 5**: Execute the evaluation on the 15 unseen Test cases. Ensure no data leakage occurred between Dev and Test sets.
-- [ ] **Day 6**: Code freeze. Finalize the evaluation report. Include trace examples, cost logs (proving <$5 spent), and failure analyses.
+وضعیت، checkboxها، وابستگی‌ها و شرط پایان هر task فقط در [plan اصلی](plan.md) نگهداری می‌شوند. این فایل راهنمای نقش است؛ فهرست موازی از وضعیت‌ها نسازیم. [نسخهٔ قبلی](archive/member_3_before_task_checklist.md) حفظ شده.
+
+- **T1:** CaseState، revision، history، pending proposal و نتیجهٔ ابزار را پایدار نگه دارد؛ restart و جداسازی دو پرونده.
+- **T2:** dedup رخداد، hash ورودی، compare-and-swap و invalidation approval را اتمیک پیاده کند.
+- **T3:** reviewer و همان case/revision/proposal را کنترل کند؛ reject، edit، approval قدیمی و retry امن.
+- **T4:** pytest tracker/tools، trace عملیاتی و reset واقعی را آماده کند؛ شواهد را برای evaluation به محمدحسن بدهد.
+- **P3:** پروندهٔ pilot را پس از approval فقط یک بار ثبت کند؛ state ذخیره‌شده و ادامه پس از restart قابل بررسی باشد.
+
+انتخاب caseهای dev/test، اجرای evaluation و گزارش نهایی با محمدحسن است. prototype حافظه‌ای UI جای tracker پایدار را نمی‌گیرد.
+
+قبل از کار branch خود را از main به‌روز کند. تغییر وضعیت task همراه evidence در همان PR ثبت و لینک PR در گروه معرفی شود.
