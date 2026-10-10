@@ -49,7 +49,7 @@ def test_review_exports_full_source_metadata_and_not_just_a_url(client):
     pending = send(client)
     source = pending["evidence"][0]
     assert source["source_id"]
-    assert "commit" in source and "applicable_versions" in source and "score" in source
+    assert "source_commit" in source and "applicable_versions" in source and "score" in source
     assert len(source["content_sha256"]) == 64
     assert source["version_scope"] == "unconfirmed"
 
