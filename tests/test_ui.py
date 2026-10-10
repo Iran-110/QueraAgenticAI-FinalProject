@@ -74,7 +74,7 @@ def test_chat_messages_use_stable_event_ids(backend, monkeypatch):
     at.chat_input[0].set_value("My widget loses its value.").run()
     assert sent[0]["turn_id"].startswith("ui-")
     assert sent[0]["expected_revision"] == 0
-    assert at.session_state.unsent is None
+    assert at.session_state.unsent == {}
 
 
 def test_proposal_shows_all_sources_and_version_scope(backend):
@@ -122,7 +122,7 @@ def test_unclear_version_reply_is_explained(backend):
     at.text_input(key="version_reply").set_value("the latest one")
     at.button[[b.label for b in at.button].index("Send reply")].click().run()
     assert "release number only" in at.error[0].value
-    assert at.session_state.unsent is None
+    assert at.session_state.unsent == {}
 
 
 def test_lost_message_retries_with_identical_event(backend, monkeypatch):
@@ -139,10 +139,10 @@ def test_lost_message_retries_with_identical_event(backend, monkeypatch):
     monkeypatch.setattr(ui_client.BackendClient, "send_event", flaky)
     at = AppTest.from_file(PAGE).run()
     at.chat_input[0].set_value("My widget loses its value.").run()
-    assert at.session_state.unsent == sent[0]
+    assert at.session_state.unsent == {at.session_state.case_id: sent[0]}
     at.button[[b.label for b in at.button].index("Retry sending")].click().run()
     assert sent[1] == sent[0]
-    assert at.session_state.unsent is None
+    assert at.session_state.unsent == {}
     assert "Already received" in at.info[0].value
     assert len(at.chat_message) == 1  # Replay did not duplicate the message.
 
@@ -192,3 +192,47 @@ def test_rejected_update_keeps_typed_input(backend):
     assert at.error  # Duplicate fact names are rejected by the API.
     assert at.session_state.form_gen == 0
     assert at.text_area(key="update_message_0").value == "Two values."
+
+
+def new_case(at):
+    at.button[[b.label for b in at.button].index("New case")].click().run()
+
+
+def test_switching_cases_keeps_each_case_state(backend):
+    at = AppTest.from_file(PAGE).run()
+    first = at.session_state.case_id
+    at.chat_input[0].set_value("My widget loses its value.").run()
+    assert at.button(key="approve")  # Case 1 now has a proposal awaiting review.
+    new_case(at)
+    second = at.session_state.case_id
+    assert second != first
+    assert at.session_state.cases == [first, second]
+    assert not at.chat_message  # The new case starts empty.
+    assert any("1 case(s) awaiting review" in caption.value for caption in at.sidebar.caption)
+    at.sidebar.selectbox(key="case_id").set_value(first).run()
+    assert not at.exception
+    assert at.button(key="approve")  # The pending proposal is still there.
+    assert at.chat_message[0].markdown[0].value == "My widget loses its value."
+
+
+def test_switcher_labels_show_case_status(backend):
+    at = AppTest.from_file(PAGE).run()
+    at.chat_input[0].set_value("My widget loses its value.").run()
+    options = at.sidebar.selectbox(key="case_id").options
+    assert options == [f"{at.session_state.case_id} · Needs review"]
+
+
+def test_unsent_message_stays_with_its_case(backend, monkeypatch):
+    def lost(self, case_id, event):
+        raise ui_client.BackendError("Cannot reach the backend.", retryable=True)
+
+    monkeypatch.setattr(ui_client.BackendClient, "send_event", lost)
+    at = AppTest.from_file(PAGE).run()
+    first = at.session_state.case_id
+    at.chat_input[0].set_value("My widget loses its value.").run()
+    assert "Retry sending" in [b.label for b in at.button]
+    new_case(at)
+    assert "Retry sending" not in [b.label for b in at.button]
+    at.sidebar.selectbox(key="case_id").set_value(first).run()
+    assert "Retry sending" in [b.label for b in at.button]
+    assert list(at.session_state.unsent) == [first]
