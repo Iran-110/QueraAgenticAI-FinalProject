@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "fixture_id": "scenario-tool-failure-v1",
+  "registered_on": "2026-10-10",
+  "registered_before_first_run": true,
+  "purpose": "Brief scenario 'tool failure': a retrieval failure and an exhausted model retry stop safely with no proposal; a single reasoning failure is retried within the 2-attempt allowance; the case keeps working afterwards.",
+  "case": {
+    "case_id": "syn-tool-failure",
+    "split": "scenario",
+    "family_issue_ids": [],
+    "origin_url": null,
+    "source_snapshot_date": null,
+    "test_eligible": false,
+    "synthetic": true,
+    "exposure": "Synthetic operational scenario; not one of the 30 evaluation cases."
+  },
+  "evidence_source": {
+    "path": "data/evaluation/evidence/synthetic-v1.json",
+    "sha256": "9daf055ce44f7a4e09639643f1ed28ddbfc7e9c760d022158901b85ebdcb1e3e",
+    "registration_commit": "same commit that adds this fixture",
+    "bundles_used": [
+      "counter"
+    ],
+    "note": "Synthetic excerpts; operational scenario only."
+  },
+  "boundaries": {
+    "agent": "scripted AnalysisResult per turn, with injected adapter faults",
+    "real_model_calls": 0,
+    "api_cost_usd": 0,
+    "storage": "API process memory; not the durable tracker",
+    "visible_to_agent": [
+      "turns[].visible"
+    ],
+    "runner_only": [
+      "turns[].agent_script",
+      "turns[].faults",
+      "turns[].maintainer",
+      "turns[].gold",
+      "turns[].expect"
+    ]
+  },
+  "turns": [
+    {
+      "id": "tool-1",
+      "conversation_source": "synthetic",
+      "visible": {
+        "message": "My counter resets every time I click the button."
+      },
+      "evidence_bundle": "counter",
+      "faults": {
+        "retrieval": true
+      },
+      "maintainer": {
+        "decision": "none"
+      },
+      "gold": {
+        "acceptable_decisions": [
+          "stopped"
+        ],
+        "note": "Synthetic scenario: decisions are scripted, so gold only labels the expected operational path."
+      },
+      "expect": {
+        "revision": 1,
+        "pending_decision": null,
+        "stop_code": "RetrievalUnavailable"
+      }
+    },
+    {
+      "id": "tool-2",
+      "conversation_source": "synthetic",
+      "visible": {
+        "message": "Trying again: the counter resets on every click. I use Streamlit 1.50.0.",
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.50.0"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [],
+        "context_changed": false
+      },
+      "evidence_bundle": "counter",
+      "faults": {
+        "reasoning_errors": 1
+      },
+      "agent_script": {
+        "decision": "ask",
+        "user_draft": "Can you share the code that creates and increments the counter?",
+        "next_question": "Can you share the code that creates and increments the counter?",
+        "missing_info": [
+          "counter_code"
+        ],
+        "maintainer_summary": "Counter resets on click; the code that stores the counter is unknown.",
+        "rationale": "Whether the counter lives in session state decides the explanation."
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "acceptable_decisions": [
+          "ask"
+        ],
+        "note": "Synthetic scenario: decisions are scripted, so gold only labels the expected operational path."
+      },
+      "expect": {
+        "revision": 2,
+        "pending_decision": "ask",
+        "model_attempts": 2,
+        "active_facts": {
+          "streamlit_version": "1.50.0"
+        },
+        "after_decision": {
+          "status": "awaiting_user",
+          "awaiting_reply": true,
+          "released_draft": "agent"
+        }
+      }
+    },
+    {
+      "id": "tool-3",
+      "conversation_source": "synthetic",
+      "visible": {
+        "message": "Here is my code: count = 0, and a button that adds one to count."
+      },
+      "evidence_bundle": "counter",
+      "faults": {
+        "reasoning_errors": 2
+      },
+      "maintainer": {
+        "decision": "none"
+      },
+      "gold": {
+        "acceptable_decisions": [
+          "stopped"
+        ],
+        "note": "Synthetic scenario: decisions are scripted, so gold only labels the expected operational path."
+      },
+      "expect": {
+        "revision": 3,
+        "pending_decision": null,
+        "stop_code": "ModelAttemptLimitExceeded"
+      }
+    },
+    {
+      "id": "tool-4",
+      "conversation_source": "synthetic",
+      "visible": {
+        "message": "Could you look at it again?"
+      },
+      "evidence_bundle": "counter",
+      "agent_script": {
+        "decision": "answer",
+        "user_draft": "Synthetic demo answer: keep the counter in st.session_state so it survives reruns.",
+        "maintainer_summary": "Synthetic scripted answer citing a synthetic source.",
+        "rationale": "The synthetic source covers this scripted scenario.",
+        "evidence_links": [
+          {
+            "claim": "Session State values persist across reruns.",
+            "chunk_id": "syn-counter-doc"
+          }
+        ]
+      },
+      "maintainer": {
+        "decision": "reject"
+      },
+      "gold": {
+        "acceptable_decisions": [
+          "answer"
+        ],
+        "note": "Synthetic scenario: decisions are scripted, so gold only labels the expected operational path."
+      },
+      "expect": {
+        "revision": 4,
+        "pending_decision": "answer",
+        "model_attempts": 1,
+        "cited_chunks": [
+          "syn-counter-doc"
+        ],
+        "after_decision": {
+          "status": "open",
+          "released_draft": null
+        }
+      }
+    }
+  ]
+}
