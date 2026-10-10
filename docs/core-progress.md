@@ -610,6 +610,28 @@ evaluation. C4 requires teammates' actual adapters; C5 still needs external
 identity/usage/billing evidence, not a guessed alias or cleared uncertainty.
 See [the readiness evidence and remaining handoff](core-readiness-audit.fa.md).
 
+## 2026-10-10 — C3 shared release on main
+
+With the user's explicit authorization, completed final production, experiment
+integrity and owner-handoff review of PR #11. Fixed stale setup-error and local
+UI approval guidance, and added the exact shared fixture/replay/contract links to
+the plan. No remaining actionable release blocker was found.
+
+Merged with a normal merge commit
+`edea31c6b511520ffcb78b6b5c6fc565b2266265`, preserving preregistration history.
+Both final-head checks passed at `c96720c`; the
+[main release CI](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38045540320)
+also passed at the merge commit. Final verification includes 1,634 offline tests,
+Ruff, locked dependencies, all 19 CI commands and unchanged receipt/source
+fingerprints. Production code did not change during the final documentation fixes.
+
+The plan now directs teammates to sync their feature branches from origin/main
+and identifies the four-turn C3 fixture for today's requested pilot deliveries.
+P3/P4/U2, durable authenticated tracker behavior, real RAG/model quality, C4/C5
+and held-out evaluation remain open. No team message, paid call or real key/ledger
+access occurred. This is a shared fixture integration release, not a final quality
+or end-to-end production success claim.
+
 ## Next integration work
 
 ### Shared release — 2026-10-07
