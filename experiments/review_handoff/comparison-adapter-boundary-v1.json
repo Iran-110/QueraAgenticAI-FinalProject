@@ -1,0 +1,29 @@
+{
+  "actual_API_cost_USD": "0",
+  "baseline_commit": "254e6542f96b2b666de0c1c26d6664bb230186b8",
+  "baseline_failed": 2,
+  "candidate_passed": 2,
+  "executed_code_sha256": {
+    "src/agent_app/api.py": "3834e6f5f9627d6096b4996647667c33381912bbc58468eab40feb17e659ede6",
+    "src/agent_app/orchestration/handoff.py": "da3bda63f440b52a0d2b48dba3d9ed58497efc7a3ca36aa8c8bab5a1ef753ba4",
+    "uv.lock": "c0cb91c366d641b87c0919f49ff47a17a44c4afc62eead128ebe043adc1ea51b"
+  },
+  "fix_commit": "68dec4fe35a072fb45c07c3a86fc2cbbe2a479b0",
+  "method": "Identical initial test bytes from registration commit; real baseline source isolated with git archive and PYTHONPATH. No checkout reset.",
+  "paid_requests": 0,
+  "receipt_sha256": "5af9dd18eb34b397599842517f25e481135d0b62f51420ec418a2b2d2c1c0601",
+  "registration_commit": "d14cfc484d75e1357e498bbaf622e7f68bc52aae",
+  "results": {
+    "baseline": {
+      "exit_code": 1,
+      "summary": "2 failed, 1 warning in 0.22s"
+    },
+    "candidate": {
+      "exit_code": 0,
+      "summary": "2 passed, 1 warning in 0.18s"
+    }
+  },
+  "schema_version": 1,
+  "scope": "Two preregistered software regressions; no model/RAG quality claim.",
+  "tests_sha256": "b0d4002cee5f1c99212b7f782d19dc9184e6116464e8a100ef04995801a020b9"
+}

@@ -6,7 +6,7 @@
 
 | بخش | چیزی که داریم | چیزی که هنوز اثبات نشده |
 | --- | --- | --- |
-| core — ساسان | قراردادها، اصلاح evidence و GroundedPlan؛ pilot جدید C2/P2، ورودی HTTP ساخت‌یافته و سؤال تأییدشده را با fixture وصل می‌کند | کنترل‌های واقعی UI، tracker پایدار، RAG و کیفیت تصمیم مدل روی کیس‌های ندیده |
+| core — ساسان | قراردادها، correction و GroundedPlan؛ ورودی C2/P2 و خروجی کامل C3 با fixture، و مسیر gateway تا review با HTTP شبیه‌سازی‌شده | کنترل‌های واقعی UI، tracker پایدار، RAG و کیفیت تصمیم مدل روی کیس‌های ندیده |
 | داده — آماده‌سازی اولیه ساسان؛ ادامه با حسن | ZIP اولیه: ۲۴۰ Issue، ۱۱۷۸ comment، ۵۶ متن Markdown و ۱۱۷۲ API record؛ GitHub snapshot ششم اکتبر | corpus تأییدشده، split نهایی، index و retrieval واقعی؛ ZIP هنوز corpus نیست |
 | UI/API — محمدحسن | Streamlit/FastAPI با FakeRetriever/FakeReasoner؛ adapter جدید API، fact/correction/check و reply binding را می‌پذیرد | کنترل structured input در UI، نمایش review کامل، اتصال retriever/model واقعی |
 | tracker/tools — محمد بهنام | prototype حافظه‌ای DummyTracker در UI؛ بخش هزینهٔ SQLite مربوط به gateway است | ذخیرهٔ پایدار پرونده، dedup رخداد/اقدام، approval اتمیک، ادامه پس از restart |
@@ -15,6 +15,28 @@
 تغییرات جدید core از طریق [PR #7](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/7) با merge commit `85b6027` به `main` رسیدند. [گزارش V8](../docs/controlled-core-v8.fa.md)، [گزارش V9](../docs/controlled-core-v9.fa.md) و [قرارداد GroundedPlan](../docs/extractive-core.md) شواهد این milestone هستند. ۱۴۱۴ تست آفلاین در milestone محلی و ۱۴۲۸ تست همراه API/UI در CI ترکیب PR با main پاس شدند؛ نتیجهٔ RAG واقعی یا test نهایی نیست. GroundedPlan اختیاری است و پیش‌فرض production تغییر نکرده.
 
 ## قدم مشترک بعدی: یک case چندمرحله‌ای از dev
+
+### تحویل مورد انتظار امروز — ۲۰۲۶-۱۰-۱۰
+
+این‌ها درخواست هماهنگ‌کننده برای یک برش کوچک از pilot هستند؛ به معنی تأیید
+زمان‌بندی توسط اعضا یا بسته‌شدن taskهای اصلی نیستند. اگر خروجی امروز نمی‌رسد،
+همان روز blocker و قسمت قابل واگذاری اعلام شود تا تقسیم کنیم یا ساسان آن قسمت
+را بردارد. تحویل هر نفر یک branch/PR و دستور اجرای نمونه یا تست مربوط است.
+
+| نفر | خروجی قابل تحویل امروز | شاهد حداقلی |
+| --- | --- | --- |
+| حسن — P4/R3 | adapter `search(RetrievalRequest)` برای همین case با EvidenceBundle و metadata کامل؛ فعلاً fixture کافی است | snapshot/ID/URL/span/commit/نسخهٔ منابع؛ آخرین bundle پس از refinement |
+| محمد بهنام — P3/T1–T3 | برش state/revision و pending approval برای همین case، با محل persistence مشخص | correction مجوز قبلی را باطل کند؛ retry event/action تکراری نسازد؛ هر کنترل هنوز ناقص، صریح ثبت شود |
+| محمدحسن — P1/U2/E2 | ورودی fact/correction و نمایش کامل review به API وصل شود؛ همین fixture شروع pilot باشد | یک اجرای پیام/جواب سؤال/اصلاح/approve یا reject؛ برای split و caseهای ارزیابی، وضعیت واقعی و فایل manifest اولیه گزارش شود |
+
+تکمیل index نهایی، همهٔ ۳۰ case یا evaluation نهایی، شرط این تحویل کوچک نیست.
+سهم core و fixture در PR #11 منتشر شده؛ اعضا قبل از اتصال نسخهٔ قرارداد را sync
+و نتیجهٔ review/merge آن را بررسی کنند.
+
+fixture پایهٔ این تحویل، [case چهار‌نوبتی C3](../experiments/review_handoff/case-current-state-latest-evidence.json)
+است؛ [فرمان replay و محدودیت‌ها](../experiments/review_handoff/README.md) و
+[قرارداد ورودی/خروجی اتصال](../docs/integration.md#complete-proposal-handoff-c3)
+کنار آن‌اند. label و oracle فقط برای بررسی‌اند؛ وارد ورودی مدل یا index نشوند.
 
 - [ ] **P1 — محمدحسن:** یک case از dev معرفی کند؛ ورودی شروع، follow-upها، اصلاح اطلاعات و تصمیم‌های قابل قبول را قبل از اجرا در fixture ثبت کند. اگر ادامهٔ گفتگو ساخته شده، آن را از گفتگوی واقعی جدا علامت بزند.
 - [x] **P2 — ساسان؛ مسیر آفلاین core/API:** اطلاعات صریح HTTP به UserTurn معتبر وصل شد؛ correction/withdrawal/تغییر محیط، factهای قدیمی و inference/ref را کنار می‌گذارند. reply فقط به سؤال canonical تأییدشده و همان case/revision/proposal متصل است. [fixture هفت‌نوبتی و receipt](../docs/user-intake-pilot.fa.md)، replay/old approval و baseline چهار regression قابل بررسی‌اند. این تیک adapter با storage حافظه‌ای را پوشش می‌دهد؛ UI واقعی و transaction پایدار با U2 و T2/T3 تکمیل می‌شوند. متن آزاد به‌تنهایی fact تأییدشده نیست.
@@ -42,11 +64,17 @@
 
 - [x] **C1 — انتشار و اتصال نسخهٔ مشترک core.** commitهای V8/V9 و راهنمای اتصال در [PR #7](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/7) منتشر شدند؛ [CI روی commit 8cf56d8](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38033908496) پاس شد. ۱۴۱۴ تست محلی و Ruff هم پاس‌اند؛ مقایسهٔ baseline در گزارش‌های V8/V9 ثبت است. [CI ترکیب PR با main](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38033931700) هم با ۱۴۲۸ تست پاس شد؛ PR با اجازهٔ ساسان به main merge شد (`85b6027`).
 - [ ] **C2 — اتصال ورودی چندنوبتی.** سهم core/API آفلاین در P2 انجام و [ثبت شد](../docs/user-intake-pilot.fa.md): reported_facts، checks_performed، context_changed، reply ثبت‌شده و original-event replay؛ تست correction/withdrawal/تغییر محیط پاس‌اند. برای بستن کامل، محمدحسن کنترل‌های U2 را به همین wire وصل کند و بهنام event/question/transition را با T2/T3 پایدار و اتمیک کند. سؤال مبهم یا ویرایش‌شده fact فرضی نمی‌سازد؛ retry همان event باید پیش از stale/reply check شناسایی شود.
-- [ ] **C3 — اتصال خروجی و review.** latest EvidenceBundle و کل CaseState به reasoner برسند؛ مدل فقط پیشنهاد بسازد. برای GroundedPlan، gapهای قابل پاسخ توسط کاربر از کمبود منبع جدا و catalog/conflict ورودی بازبینی شود؛ review معنایی و approval اجرا جدا بمانند. شرط پایان: مثال اتصال با fixture و reject ورودی/منبع قدیمی قابل بازپخش باشد.
-- [ ] **C4 — baseline برای pilot متصل.** baseline اتصال HTTP روی `5af98e6` بازپخش شد: ۴ regression fail، روی adapter جدید هر ۴ پاس؛ [ثبت و محدودیت](../docs/user-intake-pilot.fa.md). fixture هفت‌نوبتی با inventory/انتظارهای پیش از اجرا و شواهد ثابت ثبت است. بعد از اتصال P3/P4، مقایسهٔ تصمیم واقعی ادامه یابد؛ baseline نرم‌افزار جای کیفیت مدل/RAG/test نیست. receiptهای V8/V9 حفظ شده‌اند؛ انتخاب Issue فعلی answer-informed و exposed است.
+- [x] **C3 — قرارداد خروجی و review با fixture.** `ProposalHandoff` کل case، آخرین bundle واقعاً مصرف‌شده، تمام analysis و catalog واقعی GroundedPlan را نگه می‌دارد؛ gap کاربر/منبع، همهٔ منابع و scope نسخه قابل review هستند. منبع قبلی، تغییر case با revision یکسان، packet/متن دست‌کاری‌شده و approval پیش از edit رد می‌شوند. [PR #11](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/11)، [نتیجه و handoff](../docs/review-handoff-pilot.fa.md)، fixture ثبت‌شده `b085f7d`، helper `74e353b` و API `44d70a2` شاهدند. C3 فقط سهم core و مثال آفلاین را می‌بندد؛ نمایش UI با U2 و persistence/authentication/اجرای مجاز با T2/T3 باز می‌مانند. review معنایی و approval جدا هستند.
+- [ ] **C4 — baseline برای pilot متصل.** baseline ورودی HTTP روی `5af98e6` چهار fail و روی adapter جدید چهار pass دارد؛ [ثبت C2](../docs/user-intake-pilot.fa.md). baseline خروجی C3 روی کد واقعی `3f22ef9` با همان چهار regression بازپخش شد؛ چهار fail و روی نسخهٔ جدید چهار pass، همراه [case چهار‌نوبتی و محدودیت](../docs/review-handoff-pilot.fa.md). پس از اتصال P3/P4، مقایسهٔ تصمیم واقعی ادامه یابد؛ baseline نرم‌افزار جای کیفیت مدل/RAG/test نیست. receiptهای تاریخی حفظ شده‌اند؛ انتخاب Issue فعلی answer-informed و exposed است.
 - [ ] **C5 — رفع علت halt پیش از live.** هویت مدل، usage و هزینهٔ مورد اختلاف با مدرک provider تطبیق داده شود؛ uncertainty و ledger پاک یا reset نشوند. شرط پایان: علت توقف مستند، وضعیت ledger و مجوز/سقف باقی‌مانده روشن باشند؛ فقط آن‌وقت pilot کوچک ثبت‌شده اجرا شود.
 
-وابستگی: C1 و fixtureهای اتصال اکنون قابل انجام‌اند؛ persistence با T1–T3 و UI با U2 هماهنگ می‌شود. تک agent مبناست؛ اضافه کردن agent/framework نیاز به شکست واقعی و مقایسهٔ مستند دارد.
+وابستگی: سهم مستقل ورودی P2 و خروجی C3 با fixture انجام شده است. قدم بعد اتصال retriever حسن (P4/R3)، state/approval پایدار بهنام (P3/T1–T3) و کنترل‌های UI و split/runner محمدحسن (U2/E1–E3) است. تک agent مبناست؛ اضافه کردن agent/framework نیاز به شکست واقعی و مقایسهٔ مستند دارد.
+
+[بازبینی آمادگی core](../docs/core-readiness-audit.fa.md) دو regression تازه را
+روی `254e6542` با دو fail و بعد از `68dec4f` با دو pass ثبت می‌کند. مسیر gateway
+موجود تا review نیز با MockTransport و ledger موقت بررسی شده؛ این شاهد اتصال
+آفلاین است و C4/C5 یا کیفیت مدل را نمی‌بندد. تحویل امروزِ بالا ورودی ادامهٔ
+pilot مشترک است، نه درخواست بازسازی بخش‌های دیگر توسط core.
 
 ### محمد بهنام — tracker و ابزارها
 

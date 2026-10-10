@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "fixture_id": "offline-real-gateway-handoff-v1",
+  "created_on": "2026-10-10",
+  "purpose": "Compose the existing HTTP/core/GroundedReasoner/MetisGroundedPlanner/MetisReasoner/ledger and complete review handoff without any real provider request.",
+  "inherited_fixture": {
+    "path": "experiments/review_handoff/case-current-state-latest-evidence.json",
+    "sha256": "00af34231e7e4b252bdd8e88bf815d20249135f976cef7cc358ebc34d2e110d9",
+    "scenario_registration_commit": "b085f7d",
+    "unchanged_primary_turn_ids": [
+      "handoff-1",
+      "handoff-2",
+      "handoff-3",
+      "handoff-4"
+    ],
+    "same_five_official_sources": true,
+    "same_issue_answer_used_as_evidence": false,
+    "answer_informed_exposed_development_selection": true,
+    "issue_family": [
+      12782,
+      12629
+    ],
+    "actual_RAG_quarantine_enforced_here": false
+  },
+  "inherited_exact_output_oracle": {
+    "path": "experiments/review_handoff/expected-analysis-v1.json",
+    "sha256": "81e45b0212cd5f9f27a88b0bced255d74dcdc6da9fb7bdf6bdc3ce63bf0cdadc",
+    "registration_commit": "057a4d3",
+    "introduced_after_original_C3_first_replay": true,
+    "reviewer_kind": "assistant source inspection; no human gold",
+    "quality_claim": false
+  },
+  "execution_boundary": {
+    "http_transport": "httpx.MockTransport mandatory; no real HTTP transport",
+    "credential": "public synthetic fixture string, never environment",
+    "ledger": "new TemporaryDirectory SQLite only; original ledger is never opened",
+    "provider_response": "developer-authored GroundedPlan over the actual emitted provider JSON request",
+    "real_model_calls": 0,
+    "actual_paid_requests": 0,
+    "actual_API_cost_USD": "0",
+    "simulated_provider_usage_is_not_measured_token_usage": true,
+    "corpus_or_model_quality_claim": false,
+    "source_snippets_executed": false
+  },
+  "gateway_config": {
+    "model": "gpt-4o-mini",
+    "returned_model": "gpt-4o-mini-2024-07-18",
+    "phase": "development",
+    "response_mode": "grounded_plan",
+    "input_token_reserve": 32768,
+    "max_output_tokens": 1024,
+    "max_request_usd": "0.02",
+    "temporary_ledger_limit_usd": "1"
+  },
+  "mock_usage": {
+    "prompt_tokens": 125,
+    "completion_tokens": 75,
+    "total_tokens": 200
+  },
+  "expected_primary_accounting": {
+    "primary_turns": 4,
+    "primary_reasoning_calls": 5,
+    "primary_retrieval_calls": 5,
+    "conflict_control_reasoning_calls": 2,
+    "conflict_control_retrieval_calls": 1,
+    "transport_calls": 7,
+    "settled_reservations": 7,
+    "reserved_reservations": 0,
+    "uncertain_reservations": 0,
+    "simulated_settled_USD": "0.000490875",
+    "halted": false,
+    "event_replays_without_additional_gateway_calls": 4,
+    "all_clients_closed": true
+  },
+  "registered_controls": [
+    {
+      "id": "malformed_plan_repair",
+      "known_inputs": "The same first-turn reported facts, unknown version, complete fixed five-hit pool and canonical question catalog.",
+      "missing_information": "Installed version is user-clarifiable; full-app cause/fix requires further source/application investigation.",
+      "provider_behavior": "First paid mock completion contains malformed plan JSON despite known usage; second completion chooses the registered version question.",
+      "acceptable_decision": "ask after exactly one repair, retaining the entire independently reviewed first-turn analysis",
+      "expected_status": "awaiting_approval",
+      "expected_error": null,
+      "expected_model_attempts": 2,
+      "expected_transport_calls": 2,
+      "expected_settled": 2,
+      "expected_uncertain": 0,
+      "expected_halted": false,
+      "expected_simulated_settled_USD": "0.000140250"
+    },
+    {
+      "id": "model_mismatch",
+      "known_inputs": "Same first-turn case and supplied sources; valid raw plan and fake known usage but unverified serving model identity.",
+      "missing_information": "Provider identity/pricing is unverified; the user cannot clarify this with an application version reply.",
+      "provider_behavior": "Return gpt-4.1-mini for a gpt-4o-mini request.",
+      "acceptable_decision": "terminal ProviderModelMismatch, no proposal, no second HTTP request; uncertainty retained and temporary ledger halted",
+      "expected_status": "error",
+      "expected_error": "ProviderModelMismatch",
+      "expected_model_attempts": 1,
+      "expected_transport_calls": 1,
+      "expected_settled": 0,
+      "expected_uncertain": 1,
+      "expected_halted": true,
+      "expected_simulated_settled_USD": "0"
+    },
+    {
+      "id": "timeout",
+      "known_inputs": "Same first-turn case and supplied sources; reservation succeeds but mock transport times out.",
+      "missing_information": "Whether the provider processed the request and what usage occurred remain unknown.",
+      "provider_behavior": "Raise httpx.ReadTimeout once; no automatic resend.",
+      "acceptable_decision": "terminal ProviderRequestFailed, no proposal, uncertain reservation retained; no second HTTP request",
+      "expected_status": "error",
+      "expected_error": "ProviderRequestFailed",
+      "expected_model_attempts": 1,
+      "expected_transport_calls": 1,
+      "expected_settled": 0,
+      "expected_uncertain": 1,
+      "expected_halted": false,
+      "expected_simulated_settled_USD": "0"
+    }
+  ],
+  "recording_rules": [
+    "Record provider JSON payloads and caller-owned contexts, never HTTP headers or Authorization.",
+    "Verify an actual reservation exists before MockTransport receives the request.",
+    "Request IDs are real request_id_for(context) values; mode/repair/catalog do not bypass duplicate protection.",
+    "Record simulated usage/settlement separately from actual paid requests/cost, both zero.",
+    "Whole final outputs match the inherited frozen posthoc C3 oracle; source metadata/catalog freshness and event replay use the unchanged C3 assertions.",
+    "Any source/code change during execution or disabled assertions prevents a success receipt.",
+    "Existing receipts must not be overwritten."
+  ],
+  "limitations": [
+    "Provider responses are authored; no actual model choice or provider compatibility is measured.",
+    "Fake retrieval uses exposed answer-informed development evidence, not real RAG or final-test data.",
+    "Temporary ledger bookkeeping is not team-account billing reconciliation.",
+    "C3 memory tracker remains unauthenticated and cannot establish durable restart/action behavior.",
+    "Conflict routing remains an explicit synthetic caller-declared control, not a discovered contradiction."
+  ]
+}

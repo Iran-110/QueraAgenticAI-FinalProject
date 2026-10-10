@@ -52,6 +52,8 @@ __all__ = [
     "ProposalReviewPacket",
     "ReviewAttestation",
     "ProposalReviewResult",
+    "SourceReviewEntry",
+    "ProposalHandoff",
 ]
 
 
@@ -760,3 +762,43 @@ class ProposalReviewResult(Contract):
         if len(set(self.codes)) != len(self.codes):
             raise ValueError("review failure codes must be unique")
         return self
+
+
+class SourceReviewEntry(Contract):
+    """Inventory of supplied source bytes and version metadata, never source truth."""
+
+    chunk_id: Identifier
+    content_sha256: Sha256
+    version_scope: Literal["unconfirmed", "exact_metadata_match", "historical_or_other_version"]
+
+
+class ProposalHandoff(Contract):
+    """Complete content for review; integrity grants no action or approval authority."""
+
+    schema_version: Literal[1] = 1
+    proposal_id: Identifier
+    case: CaseState
+    user_message: Annotated[str, StringConstraints(strict=True, min_length=1, max_length=20_000)]
+    evidence: EvidenceBundle
+    analysis: AnalysisResult
+    reasoning_context: ReasoningContext
+    grounded_request: GroundedRequest | None = None
+    source_inventory: tuple[SourceReviewEntry, ...] = Field(default=(), max_length=100)
+    packet: ProposalReviewPacket
+    handoff_sha256: Sha256
+
+    @field_validator("user_message")
+    @classmethod
+    def user_message_is_nonblank(cls, value: str) -> str:
+        if not value.strip():
+            raise ValueError("user message must be nonblank")
+        return value
+
+    @field_validator("source_inventory")
+    @classmethod
+    def unique_sources(
+        cls, entries: tuple[SourceReviewEntry, ...]
+    ) -> tuple[SourceReviewEntry, ...]:
+        if len({entry.chunk_id for entry in entries}) != len(entries):
+            raise ValueError("source inventory must have unique chunk IDs")
+        return entries

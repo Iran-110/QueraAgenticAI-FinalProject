@@ -1,0 +1,12 @@
+{
+  "baseline_commit": "254e6542f96b2b666de0c1c26d6664bb230186b8",
+  "command": "uv run pytest tests/test_core_adapter_boundaries.py -q --tb=short",
+  "tests_sha256": "b0d4002cee5f1c99212b7f782d19dc9184e6116464e8a100ef04995801a020b9",
+  "failed": 2,
+  "observations": {
+    "outer_whitespace": "Engine awaits approval, GroundedRequest canonicalizes outer whitespace, frozen exact-message handoff rejects GroundedContextMismatch.",
+    "adapter_setup": "HTTP500 after committed event; replay retains event but first failure lacks operational log."
+  },
+  "scope": "Offline software regressions; no model/RAG quality score",
+  "paid_requests": 0
+}

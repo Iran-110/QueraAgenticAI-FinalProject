@@ -1,0 +1,103 @@
+{
+  "analyses": {
+    "conflict-control": {
+      "checks_suggested": [],
+      "decision": "escalate",
+      "evidence_links": [
+        {
+          "chunk_id": "multiselect-149-signature-v8",
+          "claim": "Attributed complete excerpt from supplied chunk multiselect-149-signature-v8; scope=unconfirmed; not a verified cause or fix."
+        },
+        {
+          "chunk_id": "release-150-multiselect-key-identity-v8",
+          "claim": "Attributed complete excerpt from supplied chunk release-150-multiselect-key-identity-v8; scope=unconfirmed; not a verified cause or fix."
+        }
+      ],
+      "facts_delta": [],
+      "maintainer_summary": "User-reported active facts:\nNo structured user facts recorded.\n\nUser-reported checks:\nNo structured checks recorded; execution is unknown.\n\nRecorded unknowns: not enumerated\n\nA caller-declared source conflict remains unresolved; no winning source is established.\n\nThese are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal.\n\nSupplied source multiselect-149-signature-v8 (doc); Applicability to the installed environment is unconfirmed.\nVersions in metadata: 1.49.0. Span: JSON pointer /1.49.0/streamlit.multiselect/signature; exact 1.49.0, not 1.49.1 coverage.\n[Provided source](https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json)\n> st.multiselect\\(label, options, default=None, format\\_func=special\\_internal\\_function, key=None, help=None, on\\_change=None, args=None, kwargs=None, \\*, max\\_selections=None, placeholder=None, disabled=False, label\\_visibility=\"visible\", accept\\_new\\_options=False, width=\"stretch\"\\)\n\nSupplied source release-150-multiselect-key-identity-v8 (release_note); Applicability to the installed environment is unconfirmed.\nVersions in metadata: 1.50.0. Span: Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause.\n[Provided source](https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123)\n> \\#\\# \\*\\*Version 1.50.0\\*\\*\n> \n> \\_Release date: September 23, 2025\\_\n> \n> \\*\\*Highlights\\*\\*\n> \n> - 🤹 Introducing \\[\\`MultiselectColumn\\`\\]\\(/develop/api-reference/data/st.column\\_config/st.column\\_config.multiselectcolumn\\) to configure colorful, editable lists in your dataframes.\n> - 🎨 Announcing \\[color palette\\]\\(/develop/concepts/configuration/theming-customize-colors-and-borders\\#basic-color-palette\\) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, \\`st.metric\\`, and \\`st.badge\\`.\n> - 📊 \\[\\`st.bar\\_chart\\`\\]\\(/develop/api-reference/charts/st.bar\\_chart\\) has a new \\`sort\\` parameter for conveniently sorting your bars.\n> \n> \\*\\*Notable Changes\\*\\*\n> \n> - 🔑 To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys \\(if provided\\). The following widgets use only their key for their identity:\n>   - \\`st.button\\`\n>   - \\`st.download\\_button\\`\n>   - \\`st.form\\_submit\\_button\\`\n>   - \\`st.checkbox\\`\n>   - \\`st.toggle\\`\n>   - \\`st.text\\_area\\`\n>   - \\`st.text\\_input\\`\n>   - \\`st.number\\_input\\`\n>   - \\`st.time\\_input\\`\n>   - \\`st.date\\_input\\`\n>   - \\`st.selectbox\\`\n>   - \\`st.multiselect\\`",
+      "missing_info": [],
+      "next_question": null,
+      "rationale": "Routing and quotations are rendered from supplied references. These are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal. A caller-declared source conflict remains unresolved; no winning source is established.",
+      "retrieval_queries": [],
+      "user_draft": "Further maintainer investigation is proposed. These are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal. A caller-declared source conflict remains unresolved; no winning source is established."
+    },
+    "handoff-1": {
+      "checks_suggested": [],
+      "decision": "ask",
+      "evidence_links": [],
+      "facts_delta": [],
+      "maintainer_summary": "User-reported active facts:\n- python\\_version: 3.12.9\n- operating\\_system: Windows 11 / WSL2 Ubuntu / AlmaLinux 9\n- browser: Chrome\n- reported\\_widget\\_context: A multiselect inside @st.fragment\n- reported\\_trigger: Changing a parent selector resets session state\n- reported\\_observation: The multiselect displays empty rather than its saved default\n- reported\\_reproduction\\_status: The small example works correctly and does not reproduce the failure; no minimal failing example is available\n\nUser-reported checks:\n- Tried minimal fragment and multiselect examples but they did not reproduce the failure\n\nRecorded unknowns: streamlit\\_version, parent\\_callback\\_code, state\\_update\\_order, minimal\\_failing\\_reproduction\n\nNo conflict has been declared by the caller; this does not prove consistency.\n\nThese are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal.",
+      "missing_info": [
+        "streamlit_version"
+      ],
+      "next_question": "Which Streamlit version is installed in the affected environment?",
+      "rationale": "Routing and quotations are rendered from supplied references. These are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal. Caller-registered question necessity: The user can inspect the affected package version to select applicable records.",
+      "retrieval_queries": [],
+      "user_draft": "Which Streamlit version is installed in the affected environment?"
+    },
+    "handoff-2": {
+      "checks_suggested": [],
+      "decision": "answer",
+      "evidence_links": [
+        {
+          "chunk_id": "release-150-multiselect-key-identity-v8",
+          "claim": "Attributed complete excerpt from supplied chunk release-150-multiselect-key-identity-v8; scope=exact_metadata_match; not a verified cause or fix."
+        }
+      ],
+      "facts_delta": [],
+      "maintainer_summary": "User-reported active facts:\n- python\\_version: 3.12.9\n- operating\\_system: Windows 11 / WSL2 Ubuntu / AlmaLinux 9\n- browser: Chrome\n- reported\\_widget\\_context: A multiselect inside @st.fragment\n- reported\\_trigger: Changing a parent selector resets session state\n- reported\\_observation: The multiselect displays empty rather than its saved default\n- reported\\_reproduction\\_status: The small example works correctly and does not reproduce the failure; no minimal failing example is available\n- streamlit\\_version: 1.50.0\n\nUser-reported checks:\n- Tried minimal fragment and multiselect examples but they did not reproduce the failure\n\nRecorded unknowns: parent\\_callback\\_code, state\\_update\\_order, minimal\\_failing\\_reproduction\n\nNo conflict has been declared by the caller; this does not prove consistency.\n\nThese are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal.\n\nSupplied source release-150-multiselect-key-identity-v8 (release_note); Supplied version metadata exactly matches the user-reported version; this does not verify source authenticity or a cause/fix.\nVersions in metadata: 1.50.0. Span: Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause.\n[Provided source](https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123)\n> \\#\\# \\*\\*Version 1.50.0\\*\\*\n> \n> \\_Release date: September 23, 2025\\_\n> \n> \\*\\*Highlights\\*\\*\n> \n> - 🤹 Introducing \\[\\`MultiselectColumn\\`\\]\\(/develop/api-reference/data/st.column\\_config/st.column\\_config.multiselectcolumn\\) to configure colorful, editable lists in your dataframes.\n> - 🎨 Announcing \\[color palette\\]\\(/develop/concepts/configuration/theming-customize-colors-and-borders\\#basic-color-palette\\) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, \\`st.metric\\`, and \\`st.badge\\`.\n> - 📊 \\[\\`st.bar\\_chart\\`\\]\\(/develop/api-reference/charts/st.bar\\_chart\\) has a new \\`sort\\` parameter for conveniently sorting your bars.\n> \n> \\*\\*Notable Changes\\*\\*\n> \n> - 🔑 To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys \\(if provided\\). The following widgets use only their key for their identity:\n>   - \\`st.button\\`\n>   - \\`st.download\\_button\\`\n>   - \\`st.form\\_submit\\_button\\`\n>   - \\`st.checkbox\\`\n>   - \\`st.toggle\\`\n>   - \\`st.text\\_area\\`\n>   - \\`st.text\\_input\\`\n>   - \\`st.number\\_input\\`\n>   - \\`st.time\\_input\\`\n>   - \\`st.date\\_input\\`\n>   - \\`st.selectbox\\`\n>   - \\`st.multiselect\\`",
+      "missing_info": [],
+      "next_question": null,
+      "rationale": "Routing and quotations are rendered from supplied references. These are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal.",
+      "retrieval_queries": [],
+      "user_draft": "These are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal.\n\nSupplied source release-150-multiselect-key-identity-v8 (release_note); Supplied version metadata exactly matches the user-reported version; this does not verify source authenticity or a cause/fix.\nVersions in metadata: 1.50.0. Span: Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause.\n[Provided source](https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123)\n> \\#\\# \\*\\*Version 1.50.0\\*\\*\n> \n> \\_Release date: September 23, 2025\\_\n> \n> \\*\\*Highlights\\*\\*\n> \n> - 🤹 Introducing \\[\\`MultiselectColumn\\`\\]\\(/develop/api-reference/data/st.column\\_config/st.column\\_config.multiselectcolumn\\) to configure colorful, editable lists in your dataframes.\n> - 🎨 Announcing \\[color palette\\]\\(/develop/concepts/configuration/theming-customize-colors-and-borders\\#basic-color-palette\\) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, \\`st.metric\\`, and \\`st.badge\\`.\n> - 📊 \\[\\`st.bar\\_chart\\`\\]\\(/develop/api-reference/charts/st.bar\\_chart\\) has a new \\`sort\\` parameter for conveniently sorting your bars.\n> \n> \\*\\*Notable Changes\\*\\*\n> \n> - 🔑 To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys \\(if provided\\). The following widgets use only their key for their identity:\n>   - \\`st.button\\`\n>   - \\`st.download\\_button\\`\n>   - \\`st.form\\_submit\\_button\\`\n>   - \\`st.checkbox\\`\n>   - \\`st.toggle\\`\n>   - \\`st.text\\_area\\`\n>   - \\`st.text\\_input\\`\n>   - \\`st.number\\_input\\`\n>   - \\`st.time\\_input\\`\n>   - \\`st.date\\_input\\`\n>   - \\`st.selectbox\\`\n>   - \\`st.multiselect\\`"
+    },
+    "handoff-3": {
+      "checks_suggested": [],
+      "decision": "escalate",
+      "evidence_links": [
+        {
+          "chunk_id": "multiselect-149-signature-v8",
+          "claim": "Attributed complete excerpt from supplied chunk multiselect-149-signature-v8; scope=historical_or_other_version; not a verified cause or fix."
+        }
+      ],
+      "facts_delta": [],
+      "maintainer_summary": "User-reported active facts:\n- python\\_version: 3.12.9\n- operating\\_system: Windows 11 / WSL2 Ubuntu / AlmaLinux 9\n- browser: Chrome\n- reported\\_widget\\_context: A multiselect inside @st.fragment\n- reported\\_trigger: Changing a parent selector resets session state\n- reported\\_observation: The multiselect displays empty rather than its saved default\n- reported\\_reproduction\\_status: The small example works correctly and does not reproduce the failure; no minimal failing example is available\n- streamlit\\_version: 1.49.1\n\nUser-reported checks:\nNo structured checks recorded; execution is unknown.\n\nRecorded unknowns: parent\\_callback\\_code, state\\_update\\_order, minimal\\_failing\\_reproduction\n\nNo conflict has been declared by the caller; this does not prove consistency.\n\nThese are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal.\n\nSupplied source multiselect-149-signature-v8 (doc); Historical/comparison source for a different version; not evidence of applicability to the current installation.\nVersions in metadata: 1.49.0. Span: JSON pointer /1.49.0/streamlit.multiselect/signature; exact 1.49.0, not 1.49.1 coverage.\n[Provided source](https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json)\n> st.multiselect\\(label, options, default=None, format\\_func=special\\_internal\\_function, key=None, help=None, on\\_change=None, args=None, kwargs=None, \\*, max\\_selections=None, placeholder=None, disabled=False, label\\_visibility=\"visible\", accept\\_new\\_options=False, width=\"stretch\"\\)",
+      "missing_info": [],
+      "next_question": null,
+      "rationale": "Routing and quotations are rendered from supplied references. These are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal.",
+      "retrieval_queries": [],
+      "user_draft": "Further maintainer investigation is proposed. These are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal. No conflict has been declared by the caller; this does not prove consistency."
+    },
+    "handoff-4": {
+      "checks_suggested": [],
+      "decision": "ask",
+      "evidence_links": [],
+      "facts_delta": [],
+      "maintainer_summary": "User-reported active facts:\n- python\\_version: 3.12.9\n- operating\\_system: Windows 11 / WSL2 Ubuntu / AlmaLinux 9\n- browser: Chrome\n- reported\\_widget\\_context: A multiselect inside @st.fragment\n- reported\\_trigger: Changing a parent selector resets session state\n- reported\\_observation: The multiselect displays empty rather than its saved default\n- reported\\_reproduction\\_status: The small example works correctly and does not reproduce the failure; no minimal failing example is available\n\nUser-reported checks:\nNo structured checks recorded; execution is unknown.\n\nRecorded unknowns: parent\\_callback\\_code, state\\_update\\_order, minimal\\_failing\\_reproduction, streamlit\\_version\n\nNo conflict has been declared by the caller; this does not prove consistency.\n\nThese are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal.",
+      "missing_info": [
+        "streamlit_version"
+      ],
+      "next_question": "Which Streamlit version is installed in the affected environment?",
+      "rationale": "Routing and quotations are rendered from supplied references. These are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal. Caller-registered question necessity: The user can inspect the affected package version to select applicable records.",
+      "retrieval_queries": [],
+      "user_draft": "Which Streamlit version is installed in the affected environment?"
+    }
+  },
+  "introduced_after_first_replay": true,
+  "known_v1_blindspot": "Shared source renderer can append unsupported full-app cause/fix prose while preserving wholequotes; v1 rerender and quote-presence checks accept it. This oracle fixes exact controlled-output fidelity; it does not prove general entailment.",
+  "purpose": "Fixed whole-analysis fidelity oracle for this exposed authored controlled fixture; not arbitrary semantic judging or human gold.",
+  "review_notes": {
+    "conflict-control": "Caller-declared conflict is explicitly unresolved; both complete excerpts retained with unconfirmed applicability; no winning source or actual document contradiction claim.",
+    "handoff-1": "Canonical version question is necessary and user-answerable; all displayed facts/checks match authored ingress; no application diagnosis.",
+    "handoff-2": "Complete pinned 1.50.0 release excerpt remains an attributed release event with exact metadata comparison and explicit no-cause/no-fix limitation; no advice for1.49.1.",
+    "handoff-3": "Corrected1.49.1 is active;1.49.0 signature is historical/comparison only; unavailable release is not quoted; checks are retired by correction; escalation retains uncertainty.",
+    "handoff-4": "Withdrawn version is absent from active facts and listed unknown; canonical version question is useful again; no inferred version."
+  },
+  "reviewer_kind": "assistant source inspection; no human evaluation claim",
+  "scenario_preregistration_commit": "b085f7d",
+  "schema_version": 1,
+  "source_receipt": "experiments/review_handoff/results-review-handoff-v1.json",
+  "source_receipt_file_sha256": "f18bf6cbb5b00bdfb6eb90559ad34adf5f0ca48b66316e6adb7379a72acf6650",
+  "source_receipt_sha256": "d169876f5b9fd5cef7da5bb142c7232267be863ca7c4350d428c6ebd4256a071"
+}

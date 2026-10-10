@@ -9,8 +9,9 @@ approval checks. Until then a restart or reload clears every case.
 import hashlib
 import json
 import threading
+from collections.abc import Callable
 from dataclasses import dataclass, field
-from typing import Annotated, Any, Literal
+from typing import Annotated, Any, Literal, get_args
 from uuid import uuid4
 
 from fastapi import FastAPI, HTTPException, Path
@@ -24,8 +25,10 @@ from agent_app.contracts import (
     CaseState,
     Contract,
     EvidenceBundle,
+    GroundedRequest,
     Identifier,
     NonnegativeInt,
+    ProposalHandoff,
     ReportedFact,
     RunResult,
     ShortText,
@@ -34,7 +37,16 @@ from agent_app.contracts import (
 )
 from agent_app.demo import SNAPSHOT_ID, _answer, _ask, _evidence
 from agent_app.orchestration import SupportEngine
+from agent_app.orchestration.handoff import (
+    HandoffCode,
+    HandoffRejected,
+    ReasoningCapture,
+    build_handoff,
+    edit_handoff,
+    ensure_handoff_current,
+)
 from agent_app.orchestration.intake import IntakeRejected, prepare_approved_version_reply
+from agent_app.orchestration.ports import Reasoner, Retriever
 from agent_app.orchestration.turns import UserTurnRejected, propose_user_turn
 from agent_app.testing.fakes import FakeReasoner, FakeRetriever
 from agent_app.tracker.dummy_tracker import tracker
@@ -125,6 +137,9 @@ class _Case:
     log: list[dict[str, Any]] = field(default_factory=list)
     awaiting_reply: ApprovedReplyQuestion | None = None
     pending_analysis: AnalysisResult | None = None
+    pending_handoff: ProposalHandoff | None = None
+    pending_result: RunResult | None = None
+    pending_edited_from: str | None = None
     ingress: dict[str, dict[str, Any]] = field(default_factory=dict)
     last_intake: dict[str, Any] | None = None
 
@@ -161,46 +176,91 @@ def _script(scenario: Scenario) -> tuple[list[EvidenceBundle | Exception], list[
     return [RuntimeError("Synthetic retrieval failure")], []
 
 
-def _proposal(result: RunResult, bundles: list[EvidenceBundle]) -> dict[str, Any]:
-    analysis = result.analysis
-    assert analysis is not None
-    hits = {hit.chunk_id: hit for bundle in bundles for hit in bundle.hits}
+@dataclass(frozen=True)
+class RunAdapters:
+    """Caller-owned per-run adapters; the HTTP demo still defaults to offline scripts.
+
+    A GroundedReasoner factory can capture its actual request in a closure and
+    supply it here. The supplier must never reconstruct a catalog after the run
+    or accept a request supplied by model output.
+    """
+
+    retriever: Retriever
+    reasoner: Reasoner
+    snapshot_id: str = SNAPSHOT_ID
+    grounded_request_supplier: Callable[[], GroundedRequest | None] | None = None
+
+
+def _adapters(scenario: Scenario) -> RunAdapters:
+    retrieval, reasoning = _script(scenario)
+    return RunAdapters(FakeRetriever(retrieval), FakeReasoner(reasoning), snapshot_id=SNAPSHOT_ID)
+
+
+def _proposal(
+    handoff: ProposalHandoff, result: RunResult, *, edited_from: str | None = None
+) -> dict[str, Any]:
+    """Project only the final consumed, frozen input for the legacy review UI."""
+    analysis = handoff.analysis
+    hits = {hit.chunk_id: hit for hit in handoff.evidence.hits}
+    inventory = {entry.chunk_id: entry for entry in handoff.source_inventory}
     evidence = []
     for link in analysis.evidence_links:
         hit = hits[link.chunk_id]  # The engine already rejected unknown citations.
         evidence.append(
             {
                 "claim": link.claim,
-                "chunk_id": hit.chunk_id,
-                "source_url": hit.source_url,
-                "source_type": hit.source_type,
-                "source_span": hit.source_span,
-                "excerpt": hit.excerpt,
+                **hit.model_dump(mode="json"),
+                "content_sha256": inventory[hit.chunk_id].content_sha256,
+                "version_scope": inventory[hit.chunk_id].version_scope,
             }
         )
-    return {
-        "proposal_id": result.run_id,
-        "case_id": result.case_id,
-        "case_revision": result.case_revision,
+    proposal = {
+        "proposal_id": handoff.proposal_id,
+        "case_id": handoff.case.case_id,
+        "case_revision": handoff.case.case_revision,
         "decision": analysis.decision,
         "user_draft": analysis.user_draft,
         "next_question": analysis.next_question,
         "maintainer_summary": analysis.maintainer_summary,
         "rationale": analysis.rationale,
         "missing_info": list(analysis.missing_info),
+        "facts_delta": [fact.model_dump(mode="json") for fact in analysis.facts_delta],
+        "checks_suggested": list(analysis.checks_suggested),
+        "retrieval_queries": list(analysis.retrieval_queries),
+        "analysis": analysis.model_dump(mode="json"),
+        "review_handoff": handoff.model_dump(mode="json"),
         "evidence": evidence,
-        "warnings": sorted({warning for bundle in bundles for warning in bundle.warnings}),
+        "warnings": sorted(set(handoff.evidence.warnings)),
         "model_attempts": result.model_attempts,
         "retrieval_rounds": result.retrieval_rounds,
         "steps": result.steps,
-        "edited": False,
+        "edited": edited_from is not None,
         "synthetic": True,
     }
+    if edited_from is not None:
+        proposal["edited_from"] = edited_from
+    return proposal
 
 
 def _pending(case_id: str) -> dict[str, Any] | None:
     session = tracker.get_session_state(case_id)
-    return session.get("proposed_action") if session.get("is_paused") else None
+    pending = session.get("proposed_action") if session.get("is_paused") else None
+    if pending is not None and (
+        not isinstance(pending, dict) or not {"proposal_id", "case_revision"} <= pending.keys()
+    ):
+        raise HTTPException(status_code=409, detail="PendingProposalMismatch")
+    return pending
+
+
+def _handoff_error_code(error: Exception) -> str:
+    code = getattr(error, "code", None) if isinstance(error, HandoffRejected) else None
+    # Exception objects are mutable; a constructor's allowlist is insufficient
+    # when an adapter can change .code before raising it.
+    return (
+        code
+        if type(code) is str and code in get_args(HandoffCode.__value__)
+        else "InvalidHandoffInput"
+    )
 
 
 def _view(case_id: str) -> dict[str, Any]:
@@ -299,6 +359,9 @@ def post_message(case_id: CaseId, request: MessageRequest) -> dict[str, Any]:
         case.state = transition.candidate
         case.awaiting_reply = None
         case.pending_analysis = None
+        case.pending_handoff = None
+        case.pending_result = None
+        case.pending_edited_from = None
         case.status = "open"
         receipt = {
             "turn_id": turn.turn_id,
@@ -318,20 +381,47 @@ def post_message(case_id: CaseId, request: MessageRequest) -> dict[str, Any]:
         _cases[case_id] = case
         case.log.append({"role": "user", "text": request.message})
 
-        retrieval, reasoning = _script(request.scenario)
-        bundles = [bundle for bundle in retrieval if isinstance(bundle, EvidenceBundle)]
-        engine = SupportEngine(
-            FakeRetriever(retrieval),
-            FakeReasoner(reasoning),
-            snapshot_id=SNAPSHOT_ID,
-            current_revision=lambda cid: _cases[cid].state.case_revision,
-        )
+        try:
+            adapters = _adapters(request.scenario)
+            capture = ReasoningCapture(adapters.reasoner)
+            engine = SupportEngine(
+                adapters.retriever,
+                capture,
+                snapshot_id=adapters.snapshot_id,
+                current_revision=lambda cid: _cases[cid].state.case_revision,
+            )
+        except Exception:
+            # Ingress is already committed. Record a terminal setup failure;
+            # an identical event replay must not construct or invoke ports again.
+            case.log.append(
+                {
+                    "role": "system",
+                    "text": "The run stopped (error: AdapterSetupUnavailable). Nothing was proposed.",
+                }
+            )
+            return _view(case_id)
         result = engine.run(case.state, request.message)
         if result.status == "awaiting_approval":
-            proposal = _proposal(result, bundles)
+            try:
+                handoff = build_handoff(
+                    result,
+                    capture.last,
+                    grounded_request=(
+                        adapters.grounded_request_supplier()
+                        if adapters.grounded_request_supplier is not None
+                        else None
+                    ),
+                )
+            except Exception as error:
+                code = _handoff_error_code(error)
+                case.log.append({"role": "system", "text": f"Review handoff stopped ({code})."})
+                return _view(case_id)
+            proposal = _proposal(handoff, result)
             tracker.pause_for_approval(case_id, proposal)
             case.state = case.state.model_copy(update={"pending_proposal_id": result.run_id})
             case.pending_analysis = result.analysis
+            case.pending_handoff = handoff
+            case.pending_result = result.model_copy(deep=True)
             case.status = "awaiting_review"
         else:
             case.status = "open"
@@ -365,6 +455,19 @@ def post_decision(case_id: CaseId, request: DecisionRequest) -> dict[str, Any]:
                 detail="The case changed after this proposal was made. It cannot be approved.",
             )
 
+        if case.pending_handoff is None or case.pending_result is None:
+            raise HTTPException(status_code=409, detail="PendingProposalMismatch")
+        try:
+            ensure_handoff_current(case.pending_handoff, case.state, request.proposal_id)
+        except HandoffRejected as error:
+            raise HTTPException(status_code=409, detail=_handoff_error_code(error)) from None
+        # Never approve a mutable tracker projection that differs from the
+        # authoritative frozen handoff, even if its IDs/revision still match.
+        if case.pending_analysis != case.pending_handoff.analysis or pending != _proposal(
+            case.pending_handoff, case.pending_result, edited_from=case.pending_edited_from
+        ):
+            raise HTTPException(status_code=409, detail="PendingProposalMismatch")
+
         if request.decision == "approve":
             if case.pending_analysis is None:
                 raise HTTPException(status_code=409, detail="PendingProposalMismatch")
@@ -382,6 +485,9 @@ def post_decision(case_id: CaseId, request: DecisionRequest) -> dict[str, Any]:
             case.state = case.state.model_copy(update={"pending_proposal_id": None})
             case.awaiting_reply = reply
             case.pending_analysis = None
+            case.pending_handoff = None
+            case.pending_result = None
+            case.pending_edited_from = None
             case.status = {
                 "ask": "awaiting_user",
                 "answer": "answer_sent",
@@ -400,6 +506,9 @@ def post_decision(case_id: CaseId, request: DecisionRequest) -> dict[str, Any]:
             case.state = case.state.model_copy(update={"pending_proposal_id": None})
             case.awaiting_reply = None
             case.pending_analysis = None
+            case.pending_handoff = None
+            case.pending_result = None
+            case.pending_edited_from = None
             case.status = "open"
             case.log.append(
                 {
@@ -409,22 +518,21 @@ def post_decision(case_id: CaseId, request: DecisionRequest) -> dict[str, Any]:
             )
         else:
             draft = request.edited_draft.strip()
-            revised = {
-                **pending,
-                "proposal_id": str(uuid4()),
-                "user_draft": draft,
-                "next_question": draft if pending["decision"] == "ask" else None,
-                "edited": True,
-                "edited_from": pending["proposal_id"],
-            }
             if case.pending_analysis is None:
                 raise HTTPException(status_code=409, detail="PendingProposalMismatch")
-            edited_analysis = AnalysisResult.model_validate(
-                {
-                    **case.pending_analysis.model_dump(mode="json"),
-                    "user_draft": draft,
-                    "next_question": draft if pending["decision"] == "ask" else None,
-                }
+            try:
+                edited_analysis = AnalysisResult.model_validate(
+                    {
+                        **case.pending_analysis.model_dump(mode="json"),
+                        "user_draft": draft,
+                        "next_question": draft if pending["decision"] == "ask" else None,
+                    }
+                )
+                revised_handoff = edit_handoff(case.pending_handoff, str(uuid4()), edited_analysis)
+            except (ValidationError, HandoffRejected):
+                raise HTTPException(status_code=422, detail="EditedProposalInvalid") from None
+            revised = _proposal(
+                revised_handoff, case.pending_result, edited_from=pending["proposal_id"]
             )
             # An edit is a new proposal: it must be approved on its own.
             tracker.submit_decision(case_id, "edit", revised)
@@ -434,6 +542,8 @@ def post_decision(case_id: CaseId, request: DecisionRequest) -> dict[str, Any]:
             )
             case.awaiting_reply = None
             case.pending_analysis = edited_analysis
+            case.pending_handoff = revised_handoff
+            case.pending_edited_from = pending["proposal_id"]
             case.log.append(
                 {"role": "system", "text": "The maintainer edited the draft. It needs approval."}
             )

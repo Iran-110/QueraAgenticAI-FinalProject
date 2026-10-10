@@ -525,6 +525,91 @@ those integrations. RAG/model/final-test quality and an actual app fix are
 unmeasured. See [the Persian result and precise owner handoff](user-intake-pilot.fa.md)
 and [wire/reply semantics](user-turns.md).
 
+## 2026-10-10 — complete review handoffs and current-state fixture (C3)
+
+Branch: `feat/core-review-handoff`, from the PR #10 merge `3f22ef9`.
+Published for review in [PR #11](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/11).
+
+- Registered four HTTP review-boundary regressions before changing the API.
+  An isolated import of the actual baseline source reproduced four failures;
+  the same tests now pass. In particular, an unused prepared bundle could
+  overwrite a consumed citation sharing its chunk ID. Review now projects only
+  the engine's final consumed, normalized/filtered bundle and warnings.
+- Added `ProposalHandoff`, all-source content hashes/version scope and a
+  transparent per-invocation `ReasoningCapture`. The handoff retains the complete
+  case, message, analysis, reasoning context, sources and optional actual final
+  `GroundedRequest` catalog. Whole-case drift at the same revision, source/output
+  tampering and stale proposal IDs stop local approval. Human edits rebind a new
+  proposal and review packet without another model request.
+- Preregistered a four-turn current-state/correction/withdrawal fixture using
+  the same five pinned official V8 excerpts. Actual offline HTTP ports observe
+  five reasoning/retrieval calls, two separate approved releases and four event
+  replays without additional calls. The corrected 1.49.1 lacks exact metadata
+  coverage; authored retrieval refinement removes the prior release record and
+  ends in escalation. A separate declared-conflict control checks bounded
+  routing, not an actual contradiction between the documents.
+- Independent audit found that shared-renderer expected output could retain
+  exact quotes while appending unsupported cause/fix prose. Preserved the v1
+  receipt and its source in `2680151`; then inspected all five analyses and
+  registered a fixed output oracle in `057a4d3`. Whole-output checks now catch
+  both that mutation and wrong user facts from a shared rendering helper. This
+  oracle is explicitly post-first-replay audit hardening, not preregistered
+  semantic gold or a general entailment judge. The final v2 receipt is separate.
+- Verified locked dependencies, **1,621 passing offline tests** (92 added),
+  Ruff lint/format and all 18 CI validation/replay/demo commands. Re-ran the
+  full suite and final replay after oracle hardening. One existing
+  Starlette/httpx deprecation warning remains; independent final review found
+  no remaining actionable blocker.
+
+No paid request, key read or ledger mutation occurred. This closes the core's C3
+fixture/contract task, while C2/U2 and durable authenticated T1–T3 integration,
+real RAG/model quality, C4's connected baseline and C5 accounting reconciliation
+remain open. No teammate-owned production adapter or extra agent framework was
+implemented. See [the precise results and owner handoffs](review-handoff-pilot.fa.md)
+and the [integration contract](integration.md#complete-proposal-handoff-c3).
+
+## 2026-10-10 — readiness audit and intercepted gateway composition
+
+Follow-up on C3 in the same [PR #11](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/11).
+
+- Preregistered two additional regressions in `d14cfc4`: valid outer whitespace
+  broke the frozen handoff; adapter construction failure returned HTTP500 after
+  accepting the event. Identical initial test bytes fail twice against archived
+  `254e6542` and pass twice after `68dec4f`. The handoff keeps the exact raw
+  message while matching existing GroundedRequest normalization. Setup failures
+  export a sanitized terminal code, retain the event receipt and cannot release
+  a stale proposal after correction. A third, post-baseline test covers that
+  correction/approval path. Independent review found no actionable issue.
+- Preregistered the gateway composition protocol in `d9c8e82`. The existing
+  MetisGroundedPlanner/MetisReasoner now joins the same C3 HTTP/core/review replay
+  through mandatory MockTransport, synthetic credentials and temporary ledgers.
+  Seven primary sends settle mocked usage; four event replays add none. Separate
+  controls check two-attempt malformed-plan repair and single-send terminal
+  mismatch/timeout with retained uncertainty. Oracle/labels/auth headers do not
+  enter provider messages or recorded bodies. All clients close, state restores,
+  and wire mutations/code drift/disabled assertions/receipt overwrite fail.
+- Preserved C3 v1/v2 receipts and wrote v3 after the production fixes; the
+  fixture and posthoc C3 oracle are unchanged. The gateway has its own v1
+  receipt with full wire/context/accounting fingerprints. A first harness run
+  failed on string versus Decimal config; runner conversion was corrected,
+  not the protocol. This is reported, not hidden as a successful first run.
+- Verified locked dependencies, **1,634 passing offline tests** (105 over main;
+  13 added in this audit), Ruff lint/format and all 19 offline CI commands.
+  Independent gateway review passed its 10 focused tests with no actionable
+  issue. One existing Starlette/httpx warning remains.
+- Updated the plan with explicit 2026-10-10 requested pilot deliveries for RAG,
+  tracker and UI/evaluation, including branch/PR, runnable evidence and a
+  blocker/delegation fallback. This is the coordinator's request, not a claim
+  teammates agreed or completed their tasks.
+
+Actual paid requests and spending remain zero; mocked primary settlement of
+USD 0.000490875 is not provider billing. The real key/ledger were not accessed or
+modified. Core is ready for the fixture handoff; this does not prove production
+RAG/model quality, durable authenticated approval, connected UI or held-out
+evaluation. C4 requires teammates' actual adapters; C5 still needs external
+identity/usage/billing evidence, not a guessed alias or cleared uncertainty.
+See [the readiness evidence and remaining handoff](core-readiness-audit.fa.md).
+
 ## Next integration work
 
 ### Shared release — 2026-10-07
