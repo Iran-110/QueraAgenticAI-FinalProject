@@ -90,6 +90,6 @@ uv run streamlit run app.py
 - [مقایسه تازه دقت گزارش و پشتیبانی ادعاها از منبع](docs/decision-quality-v7.md)
 - [چک‌های اختیاری callback و سؤال‌های مجاز](docs/proposal-checks.md)
 - [راهنمای مشترک ایجنت‌های کدنویسی](AGENTS.md) و [ورودی Claude Code](CLAUDE.md)
-- [پلن اولیهٔ تیم](plan/plan.md) و [نسخهٔ داخل ریپو از صورت‌مسئله](QBC13_AgenticAI_FinalProject.md)
+- [plan و checklist کار تیم](plan/plan.md) و [نسخهٔ داخل ریپو از صورت‌مسئله](QBC13_AgenticAI_FinalProject.md)
 
 پلن و صورت‌مسئلهٔ داخل ریپو با پیشنهادهای فنی تکمیل شده‌اند. الزام نهایی را از [سند اصلی پروژه](https://docs.google.com/document/d/1N13vE1IoqTDlEFndNOULGgXYIU2SER6pVkwEG8iPLYM/edit) می‌گیریم؛ این branch انتخاب‌های فنی کل تیم را نهایی نمی‌کند.
