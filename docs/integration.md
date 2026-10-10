@@ -1,8 +1,10 @@
 # Connect your module to the core
 
-The foundation can be shared without changing `app.py`. Retrieval, tracker and UI
-owners can develop against the same contracts while the existing UI remains a
-placeholder. No API key is needed for this example or the automated checks.
+Owners can develop against the same contracts. The Streamlit/FastAPI prototype
+uses scripted retrieval/reasoning and memory storage. Its additive HTTP ingress
+now accepts explicit facts, checks, corrections and approved version replies;
+UI controls and durable storage still need their owners' adapters. No API key is
+needed for this example or the automated checks.
 
 ## A runnable offline adapter example
 
@@ -179,11 +181,20 @@ itself has no proposal ID/revision. Preparation is not approval or persistence.
 See the user-turn guide for the original-versus-prepared event hashes and replay
 ordering needed when this helper runs on the tracker ingress path.
 
+After a question is approved and displayed, its pending ID is cleared. Load the
+tracker-owned `ApprovedReplyQuestion` and use `prepare_approved_version_reply`;
+never restore pending state to impersonate approval. The offline API creates a
+memory record on local approval and accepts an explicit `reply_to_proposal_id`
+with a stable event. This is not reviewer authentication. The
+[HTTP examples and receipt semantics](user-turns.md#additive-offline-http-ingress)
+and [C2/P2 handoff](user-intake-pilot.fa.md) specify the remaining UI/tracker work.
+
 UI renders `RunResult.analysis` only when `status == "awaiting_approval"`. This is
 a pending proposal, not an executed action or a solved case. Show drafts,
 evidence, unknowns and next question; display stopped/error status separately.
-Approval must bind to the exact case, revision and proposal. The current core
-does not save a case or enforce execution approval.
+Approval must bind to the exact case, revision and proposal. The pure core does
+not save cases or enforce execution approval; process-local checks do not replace
+the tracker's durable transaction or authenticated review.
 
 ## Shared development and spending
 

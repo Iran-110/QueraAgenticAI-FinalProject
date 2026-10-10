@@ -24,6 +24,12 @@
 نیز شواهد استنتاج‌شدهٔ قبلی را بازنشسته می‌کند. [گزارش فارسی ارتقا](docs/controlled-core-v9.fa.md)
 و [قرارداد و مثال اتصال](docs/extractive-core.md) جزئیات را ثبت می‌کنند.
 
+pilot جدید **C2/P2**، اطلاعات صریح کاربر و correction را از HTTP به core وصل
+می‌کند؛ پاسخ کوتاه نسخه به سؤال تأییدشده متصل و retry همان event بدون run تازه
+شناخته می‌شود. case هفت‌نوبتی با fixture و storage حافظه‌ای قابل بازپخش است.
+کنترل‌های UI و tracker پایدار هنوز کار اتصال تیم‌اند.
+[نتیجه و ورودی/خروجی لازم برای هر نفر](docs/user-intake-pilot.fa.md) را ببینید.
+
 ## شروع سریع
 
 نیازمندی‌ها: Git، Python 3.13 و [uv](https://docs.astral.sh/uv/). دستورها را از ریشهٔ همین ریپو اجرا کنید:
@@ -37,6 +43,7 @@ uv run agent-app gateway-demo --scenario repair
 uv run agent-app turn-demo
 uv run python -m agent_app.reasoning.controlled_experiments
 uv run python -m agent_app.reasoning.grounding_experiments
+uv run python experiments/user_intake/replay.py
 ```
 
 سناریوهای دیگر: `escalate` برای ارجاع و `error` برای خرابی بازیابی. خروجی JSON شامل نتیجه و ردگیری اجراست. سناریوی `error` عمداً با کد خروج ۱ تمام می‌شود. برای این دمو کلید API لازم نیست.
@@ -99,6 +106,7 @@ uv run streamlit run app.py
 - [توسعه، branch و commit](docs/development.md)
 - [کلاینت متیس و دفتر مشترک هزینه](docs/model-gateway.md)
 - [اطلاعات کاربر و اصلاح وضعیت در چند نوبت](docs/user-turns.md)
+- [pilot اتصال HTTP، correction و سؤال تأییدشده؛ نتیجه و handoff](docs/user-intake-pilot.fa.md)
 - [پیشرفت واقعی هسته و کارهای بعدی](docs/core-progress.md)
 - [مقایسه روش‌های تصمیم‌گیری و محدودیت نتایج](docs/decision-quality.md)
 - [مقایسه منابع و اطلاعات کاربر با نتایج بازبینی](docs/decision-quality-v3.md)

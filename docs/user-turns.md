@@ -1,6 +1,6 @@
 # User turns and case corrections
 
-This core utility proposes the next `CaseState` from an explicit structured user turn. It is a pure transformation: no database write, model call, or tool action. Durable tracker and UI integration remain the other owners' work. No API key or credit is needed for this path.
+This core utility proposes the next `CaseState` from an explicit structured user turn. It is a pure transformation: no database write, model call, or tool action. The offline HTTP adapter now uses it; UI controls and durable tracker integration remain the other owners' work. No API key or credit is needed for this path.
 
 ## Input and behavior
 
@@ -132,3 +132,89 @@ Alternatively, an upstream adapter can prepare once and submit/retry the exact
 same prepared immutable `UserTurn` through the normal tracker event contract.
 Do not mix raw and prepared envelopes on that endpoint. Neither durable ingress
 deduplication nor proposal authentication is implemented by this core helper.
+
+## Replies after question approval
+
+Approval clears `CaseState.pending_proposal_id`. Do not restore that ID to parse
+a reply. The additive `ApprovedReplyQuestion` holds `case_id`, `case_revision`,
+`proposal_id` and the exact displayed `AnalysisResult`. The tracker creates this
+record after separate approval; a client record or `approved: true` is no proof.
+
+```python
+from agent_app.orchestration.intake import prepare_approved_version_reply
+
+prepared = prepare_approved_version_reply(
+    authoritative_case, incoming_user_turn,
+    reply=stored_approved_question,
+    proposal_id=incoming_reply_to_proposal_id,
+)
+transition = propose_user_turn(authoritative_case, prepared)
+```
+
+Case/revision and reply ID must match, with no pending proposal. The same exact
+single canonical version question and release-number restrictions apply.
+Edits require approval under their new ID; noncanonical wording cannot authorize
+extraction. New accepted events expire the question, even when only restating
+information. Ambiguous input leaves the question and event ID unconsumed.
+Corrections, withdrawals and environment switches use explicit structured fields.
+Deduplicate original ingress, including its reply binding, before preparation or
+stale checks; save original/prepared hashes and expire the question atomically.
+These pure helpers do not authenticate a reviewer, store data or execute actions.
+
+## Additive offline HTTP ingress
+
+`POST /cases/{case_id}/messages` still accepts legacy `message` and `scenario`.
+Each legacy submission gets a server-generated UUID and is a new event. New UI
+clients should submit a stable ID and expected revision:
+
+```json
+{
+  "message": "Correction: this deployment uses Streamlit 1.49.1.",
+  "scenario": "ask",
+  "turn_id": "client-event-3",
+  "expected_revision": 2,
+  "reported_facts": [{"name": "streamlit_version", "value": "1.49.1"}],
+  "checks_performed": [],
+  "unknowns": [],
+  "context_changed": false
+}
+```
+
+`turn_id`/`expected_revision` must appear together, and are required for structured
+updates or bound replies. The server derives case identity and `source_ref=user:<ID>`;
+the client ID is limited to 195 characters. Unknown fields are rejected.
+`value: null` withdraws a fact; `context_changed: true` declares a new environment.
+Free text alone is not a confirmed fact or check.
+
+After separate approval, GET/decision exposes `awaiting_reply`. A narrow reply
+sends `message: "1.50.0"`, a fresh ID, current revision and
+`reply_to_proposal_id: <awaiting_reply.proposal_id>`, without structured updates.
+Without that binding it stays unparsed. The default demo asks several questions,
+so it is deliberately ineligible; the pilot uses the canonical version question.
+
+`intake` contains `ingress_hash`, `prepared_hash`, `committed_revision`,
+`changed_fact_names`, `context_changed`, `invalidated_checks`, `preparation`,
+`turn_id` and `replayed`. The ingress hash is SHA-256 over canonical JSON
+`{"turn": <original validated UserTurn>, "scenario": ..., "reply_to_proposal_id": ...}`
+using UTF-8, sorted keys, `ensure_ascii=False` and separators `(',', ':')`.
+`prepared_hash` is the existing `CaseTransition.event_hash`.
+A replay sends the identical validated envelope including scenario/reply ID. It
+returns the **current view plus the original receipt**, possibly from an older
+revision; it never rewinds state or repeats logs/reasoning. GET returns the latest
+accepted receipt. Changed content under a recorded ID returns `409 EventConflict`;
+stale new input returns `409 StaleRevision`. Missing/wrong question binding gives
+`409 PendingReplyMissing`/`PendingProposalMismatch`; ambiguous or noncanonical
+input gives a safe `422 IntakeRejected.code`. Malformed requests return only
+`422 RequestInvalid`, without echoing inputs or unknown fields.
+
+The API records all event IDs, even legacy UUIDs, under a process lock, before
+running the engine. A stopped run cannot be restarted by replaying its event.
+Unexpected setup/tracker exceptions can still return HTTP 500 after committing
+ingress; retry retrieves that receipt without starting another run. Persistent
+tracker integration needs a recoverable run/outcome policy for this interruption.
+Records vanish on restart: no durable CAS, authenticated reviewer, recovery or
+cross-worker guarantee. The API does not automatically adopt model `facts_delta`
+or citation references into case state.
+
+See the [registered seven-turn pilot](../experiments/user_intake/README.md) and
+[result/ownership handoff](user-intake-pilot.fa.md).
