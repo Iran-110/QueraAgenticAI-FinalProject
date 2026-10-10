@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "3f22ef98b7d0f4541b76aa9d91bb0dd732044637",
+  "command": "uv run pytest tests/test_api_review_handoff.py -q --tb=short",
+  "scope": "Offline HTTP/core boundary regressions; authored sources and reasoning, not RAG/model quality or held-out evaluation.",
+  "api_sha256": "d008885efd2554681487e1585f15013f213731ff7f3f0a4de82006399563ce5e",
+  "tests_sha256": "05826ff0e2e74f985ce35cbf38d2365808a5066db02b00d6f933ff1514d91195",
+  "cases": [
+    {
+      "test": "test_unused_bundle_cannot_shadow_the_source_actually_consumed",
+      "baseline": "fail",
+      "observed": "An unused second bundle with a repeated chunk_id replaces the consumed citation."
+    },
+    {
+      "test": "test_review_exports_full_source_metadata_and_not_just_a_url",
+      "baseline": "fail",
+      "observed": "source_id absent; source commit/version metadata not exported."
+    },
+    {
+      "test": "test_review_handoff_contains_full_analysis_case_and_consumed_bundle",
+      "baseline": "fail",
+      "observed": "review_handoff absent."
+    },
+    {
+      "test": "test_identical_text_edit_gets_new_bound_handoff_and_requires_approval",
+      "baseline": "fail",
+      "observed": "review_handoff absent; no digest binds an edit proposal ID."
+    }
+  ]
+}
