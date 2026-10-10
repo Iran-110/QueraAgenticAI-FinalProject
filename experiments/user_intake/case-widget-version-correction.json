@@ -1,0 +1,1046 @@
+{
+  "schema_version": 1,
+  "fixture_id": "user-intake-widget-version-correction-v1",
+  "created_on": "2026-10-10",
+  "purpose": "C2/P2 reproducible offline user-intake and correction development pilot; one exposed Issue anchor with authored multi-turn continuations, no independent model/RAG/final-test evaluation.",
+  "provenance": {
+    "origin_issue_id": 12782,
+    "origin_url": "https://github.com/streamlit/streamlit/issues/12782",
+    "confirmed_duplicate_issue_id": 12629,
+    "reserved_issue_ids": [
+      8061,
+      8901,
+      12629,
+      12782,
+      16914
+    ],
+    "full_family_must_be_excluded_from_real_RAG_and_final_test": true,
+    "actual_corpus_exclusion_enforced_here": false,
+    "source_fixture": "experiments/decision_quality/cases-controlled-v8.json",
+    "source_fixture_sha256": "00bd1765a3296b039e56097296b1bd792aa4ccb736dac4bd54af28d6521226a3",
+    "source_fixture_registration_commit": "8814fbba5666040500ae9bb2bfe214f4297af404",
+    "source_scenario_id": "controlled-v8-unknown-version-mixed",
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "source_snapshot_date": "2026-10-06",
+    "same_issue_answer_used_as_evidence": false,
+    "issue_comments_and_original_workaround_inspected_for_scenario_selection": true,
+    "original_workaround_in_visible_input_or_evidence": false,
+    "selection_disclosure": "The author inspected #12782 first-body code/workaround and comments to identify the key-identity mechanism and the #12629 duplicate relationship. The original user-reported workaround and its code are deliberately omitted from visible user input and evidence. Primary evidence is frozen official release/API text. This is answer-informed development selection, not independent discovery or held-out evaluation.",
+    "continuations_are_developer_authored_not_actual_issue_conversation": true,
+    "official_evidence_hits_are_exact_V8_copies": true
+  },
+  "execution_boundary": {
+    "offline_only": true,
+    "paid_calls": 0,
+    "retrieval_is_fixed_fixture": true,
+    "analysis_is_developer_authored": true,
+    "user_or_source_code_executed": false,
+    "storage_is_process_local_fixture": true,
+    "durable_tracker_or_restart_claim": false,
+    "model_RAG_or_final_test_quality_claim": false,
+    "proposals_require_separate_human_approval": true
+  },
+  "limits": {
+    "max_model_attempts": 2,
+    "max_retrieval_rounds": 2,
+    "max_queries_per_round": 2,
+    "max_steps": 8
+  },
+  "initial_case": {
+    "case_id": "case-user-intake-widget-version",
+    "case_revision": 0
+  },
+  "question_catalog": [
+    {
+      "name": "streamlit_version",
+      "question": "Which Streamlit version is installed in the affected environment?"
+    },
+    {
+      "name": "parent_callback_code",
+      "question": "Can you share the parent selector callback and the state-update path before the failing multiselect is rendered?"
+    }
+  ],
+  "evidence_bundles": {
+    "official-mixed-v8": {
+      "snapshot_id": "core-controlled-evidence-v8",
+      "hits": [
+        {
+          "chunk_id": "multiselect-149-default-v8",
+          "source_id": "docstring:1.49.0:streamlit.multiselect",
+          "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+          "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+          "source_type": "doc",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.49.0"
+          ],
+          "source_span": "JSON pointer /1.49.0/streamlit.multiselect; default parameter in normalized docstring"
+        },
+        {
+          "chunk_id": "multiselect-149-signature-v8",
+          "source_id": "docstring:1.49.0:streamlit.multiselect",
+          "excerpt": "st.multiselect(label, options, default=None, format_func=special_internal_function, key=None, help=None, on_change=None, args=None, kwargs=None, *, max_selections=None, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, width=\"stretch\")",
+          "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+          "source_type": "doc",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.49.0"
+          ],
+          "source_span": "JSON pointer /1.49.0/streamlit.multiselect/signature; exact 1.49.0, not 1.49.1 coverage"
+        },
+        {
+          "chunk_id": "multiselect-150-default",
+          "source_id": "docstring:1.50.0:streamlit.multiselect",
+          "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+          "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+          "source_type": "doc",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.50.0"
+          ],
+          "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring"
+        },
+        {
+          "chunk_id": "release-150-multiselect-key-identity-v8",
+          "source_id": "release-notes:1.50.0:widget-key-identity",
+          "excerpt": "## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- 🤹 Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- 🎨 Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- 📊 [`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- 🔑 To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+          "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123",
+          "source_type": "release_note",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.50.0"
+          ],
+          "source_span": "Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause"
+        },
+        {
+          "chunk_id": "widget-key-identity-history-snapshot-v8",
+          "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+          "excerpt": "**Key-based widget identity (v1.55.0)**\n\nAs of v1.55.0, all widgets support key-based identity. When a `key` is provided, the key is the primary determinant of the widget's identity, and changing other parameters (like `label`, `options`, or `default`) won't reset the widget. Some parameters that constrain valid values still affect identity for specific widgets, even when a key is provided. For example, changing `min_value` or `max_value` for `st.slider` will reset the widget because the current value could be invalidated. These exceptions are noted in each widget's `key` parameter description.\n\nKey-based identity was progressively introduced from v1.50.0 through v1.55.0. If you're using an older version, check the [release notes](/develop/quick-reference/release-notes) to see which widgets support key-based identity in your version.",
+          "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L29",
+          "source_type": "doc",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [],
+          "source_span": "Markdown lines 29-33: unversioned October 2026 concept snapshot distinguishes progressive rollout; not exact historical app coverage"
+        }
+      ],
+      "queries_used": [],
+      "retrieval_round": 1,
+      "warnings": []
+    }
+  },
+  "turns": [
+    {
+      "id": "intake-1",
+      "kind": "real_report_controlled_omission",
+      "input_mode": "explicit_user_turn",
+      "user_turn": {
+        "case_id": "case-user-intake-widget-version",
+        "expected_revision": 0,
+        "turn_id": "intake-1",
+        "source_ref": "user:intake-1",
+        "message": "A multiselect inside @st.fragment displays empty instead of its saved default after a parent selector changes and resets state. My reduced example works, but the full app fails and the relevant parent callback is not included. Python 3.12.9 and Chrome. I have not supplied the installed Streamlit version or an earlier version comparison. Which information is useful next?",
+        "reported_facts": [
+          {
+            "name": "python_version",
+            "value": "3.12.9"
+          },
+          {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9"
+          },
+          {
+            "name": "browser",
+            "value": "Chrome"
+          },
+          {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment"
+          },
+          {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state"
+          },
+          {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default"
+          },
+          {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available"
+          }
+        ],
+        "unknowns": [
+          "streamlit_version",
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "checks_performed": [
+          "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+        ],
+        "context_changed": false
+      },
+      "inventory": {
+        "known_information_after_user_input": [
+          "Active user Streamlit version: unknown.",
+          "Active user Python version: 3.12.9.",
+          "The initial report says the reduced example works while the full app fails; no source/user code has been executed."
+        ],
+        "user_clarifiable_gaps": [
+          "streamlit_version",
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "documentation_or_evidence_gaps": [
+          "No full-app root cause or verified fix is established by any frozen source."
+        ],
+        "acceptable_decisions": [
+          "ask",
+          "escalate"
+        ],
+        "unacceptable_claims": [
+          "The full-app root cause is proved.",
+          "The supplied working reduction reproduces the failure.",
+          "A fixed release or verified workaround has been established.",
+          "The installed version can be inferred from document metadata."
+        ],
+        "question_acceptance": [
+          "A follow-up targets a still-missing user fact or the affected callback/state-update code.",
+          "The user can supply the requested environment fact or their own code; asking the user to find project documentation is not acceptable.",
+          "Do not ask again for active confirmed version/Python facts, or suggest the already reported check as if unperformed."
+        ],
+        "claim_acceptance": [
+          "Every material documentation claim is tied to its exact frozen excerpt and scope, across all proposal fields.",
+          "The 1.50.0 release-event observation is not a diagnosis or general guarantee for 1.49.1 or every later release.",
+          "Source presence and valid JSON alone do not establish claim entailment."
+        ]
+      },
+      "port_fixture": {
+        "bundle": "official-mixed-v8",
+        "authored_analysis": {
+          "decision": "ask",
+          "user_draft": "Which Streamlit version is installed in the affected environment?",
+          "maintainer_summary": "Developer-authored offline proposal over the exposed #12782 development family. The working reduction is distinct from the failing full app; no confirmed diagnosis or verified fix is supplied.",
+          "rationale": "Ask for a missing user-observable fact or route the unresolved full-app evidence gap to a maintainer; document versions cannot become installed user facts.",
+          "evidence_links": [],
+          "missing_info": [
+            "streamlit_version"
+          ],
+          "next_question": "Which Streamlit version is installed in the affected environment?",
+          "retrieval_queries": [],
+          "facts_delta": [],
+          "checks_suggested": []
+        }
+      },
+      "human_review_fixture": {
+        "approve": true,
+        "purpose": "Expose the canonical version question before the bound reply; leave intermediate proposals unapproved so later accepted turns invalidate them; approve the final escalation once."
+      },
+      "expected": {
+        "case_revision": 1,
+        "active_user_version": null,
+        "active_user_python": "3.12.9",
+        "transition_context_changed": false,
+        "checks_performed": [
+          "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+        ],
+        "pending_proposal_cleared_before_new_run": true,
+        "proposal_decision": "ask",
+        "proposal_releases_no_draft_before_approval": true
+      },
+      "wire_request_template": {
+        "message": "A multiselect inside @st.fragment displays empty instead of its saved default after a parent selector changes and resets state. My reduced example works, but the full app fails and the relevant parent callback is not included. Python 3.12.9 and Chrome. I have not supplied the installed Streamlit version or an earlier version comparison. Which information is useful next?",
+        "turn_id": "intake-1",
+        "expected_revision": 0,
+        "reported_facts": [
+          {
+            "name": "python_version",
+            "value": "3.12.9"
+          },
+          {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9"
+          },
+          {
+            "name": "browser",
+            "value": "Chrome"
+          },
+          {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment"
+          },
+          {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state"
+          },
+          {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default"
+          },
+          {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available"
+          }
+        ],
+        "unknowns": [
+          "streamlit_version",
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "checks_performed": [
+          "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+        ],
+        "context_changed": false,
+        "scenario": "ask"
+      }
+    },
+    {
+      "id": "intake-2",
+      "kind": "developer_authored_continuation",
+      "input_mode": "approved_version_reply",
+      "user_turn": {
+        "case_id": "case-user-intake-widget-version",
+        "expected_revision": 1,
+        "turn_id": "intake-2",
+        "source_ref": "user:intake-2",
+        "message": "1.50.0",
+        "reported_facts": [],
+        "unknowns": [],
+        "checks_performed": [],
+        "context_changed": false
+      },
+      "inventory": {
+        "known_information_after_user_input": [
+          "Active user Streamlit version: 1.50.0.",
+          "Active user Python version: 3.12.9.",
+          "The initial report says the reduced example works while the full app fails; no source/user code has been executed."
+        ],
+        "user_clarifiable_gaps": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "documentation_or_evidence_gaps": [
+          "No full-app root cause or verified fix is established by any frozen source."
+        ],
+        "acceptable_decisions": [
+          "answer",
+          "ask",
+          "escalate"
+        ],
+        "unacceptable_claims": [
+          "The full-app root cause is proved.",
+          "The supplied working reduction reproduces the failure.",
+          "A fixed release or verified workaround has been established.",
+          "The installed version can be inferred from document metadata."
+        ],
+        "question_acceptance": [
+          "A follow-up targets a still-missing user fact or the affected callback/state-update code.",
+          "The user can supply the requested environment fact or their own code; asking the user to find project documentation is not acceptable.",
+          "Do not ask again for active confirmed version/Python facts, or suggest the already reported check as if unperformed."
+        ],
+        "claim_acceptance": [
+          "Every material documentation claim is tied to its exact frozen excerpt and scope, across all proposal fields.",
+          "The 1.50.0 release-event observation is not a diagnosis or general guarantee for 1.49.1 or every later release.",
+          "Source presence and valid JSON alone do not establish claim entailment.",
+          "The scripted answer reproduces the complete registered release excerpt exactly and explicitly limits it to the 1.50.0 release event, not a full-app fix."
+        ]
+      },
+      "port_fixture": {
+        "bundle": "official-mixed-v8",
+        "authored_analysis": {
+          "decision": "answer",
+          "user_draft": "The following is the pinned official 1.50.0 release-note excerpt. It documents that release event; it does not establish a cause or a verified fix for the unseen full app.\n\n## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- 🤹 Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- 🎨 Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- 📊 [`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- 🔑 To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+          "maintainer_summary": "Developer-authored offline proposal over the exposed #12782 development family. The working reduction is distinct from the failing full app; no confirmed diagnosis or verified fix is supplied.",
+          "rationale": "The installed 1.50.0 value is user-attributed; this limited answer quotes the frozen release evidence completely and does not infer a full-app diagnosis.",
+          "evidence_links": [
+            {
+              "claim": "## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- 🤹 Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- 🎨 Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- 📊 [`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- 🔑 To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+              "chunk_id": "release-150-multiselect-key-identity-v8"
+            }
+          ],
+          "missing_info": [
+            "parent_callback_code",
+            "state_update_order",
+            "minimal_failing_reproduction"
+          ],
+          "next_question": null,
+          "retrieval_queries": [],
+          "facts_delta": [],
+          "checks_suggested": []
+        }
+      },
+      "human_review_fixture": {
+        "approve": false,
+        "purpose": "Expose the canonical version question before the bound reply; leave intermediate proposals unapproved so later accepted turns invalidate them; approve the final escalation once."
+      },
+      "expected": {
+        "case_revision": 2,
+        "active_user_version": "1.50.0",
+        "active_user_python": "3.12.9",
+        "transition_context_changed": false,
+        "checks_performed": [
+          "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+        ],
+        "pending_proposal_cleared_before_new_run": true,
+        "proposal_decision": "answer",
+        "proposal_releases_no_draft_before_approval": true,
+        "cited_chunks": [
+          "release-150-multiselect-key-identity-v8"
+        ]
+      },
+      "wire_request_template": {
+        "message": "1.50.0",
+        "turn_id": "intake-2",
+        "expected_revision": 1,
+        "reported_facts": [],
+        "unknowns": [],
+        "checks_performed": [],
+        "context_changed": false,
+        "scenario": "answer",
+        "reply_to_proposal_id": "$approved_proposal_id"
+      }
+    },
+    {
+      "id": "intake-3",
+      "kind": "developer_authored_continuation",
+      "input_mode": "explicit_user_turn",
+      "user_turn": {
+        "case_id": "case-user-intake-widget-version",
+        "expected_revision": 2,
+        "turn_id": "intake-3",
+        "source_ref": "user:intake-3",
+        "message": "Correction: the affected deployment is Streamlit 1.49.1, not 1.50.0. The reduced example still works; the parent callback is not supplied.",
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.49.1"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [],
+        "context_changed": false
+      },
+      "inventory": {
+        "known_information_after_user_input": [
+          "Active user Streamlit version: 1.49.1.",
+          "Active user Python version: 3.12.9.",
+          "The initial report says the reduced example works while the full app fails; no source/user code has been executed."
+        ],
+        "user_clarifiable_gaps": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "documentation_or_evidence_gaps": [
+          "No full-app root cause or verified fix is established by any frozen source.",
+          "The pool has exact 1.49.0 and 1.50.0 records, not exact 1.49.1 coverage; no patch inference is allowed."
+        ],
+        "acceptable_decisions": [
+          "ask",
+          "escalate"
+        ],
+        "unacceptable_claims": [
+          "The full-app root cause is proved.",
+          "The supplied working reduction reproduces the failure.",
+          "A fixed release or verified workaround has been established.",
+          "The installed version can be inferred from document metadata."
+        ],
+        "question_acceptance": [
+          "A follow-up targets a still-missing user fact or the affected callback/state-update code.",
+          "The user can supply the requested environment fact or their own code; asking the user to find project documentation is not acceptable.",
+          "Do not ask again for active confirmed version/Python facts, or suggest the already reported check as if unperformed."
+        ],
+        "claim_acceptance": [
+          "Every material documentation claim is tied to its exact frozen excerpt and scope, across all proposal fields.",
+          "The 1.50.0 release-event observation is not a diagnosis or general guarantee for 1.49.1 or every later release.",
+          "Source presence and valid JSON alone do not establish claim entailment."
+        ]
+      },
+      "port_fixture": {
+        "bundle": "official-mixed-v8",
+        "authored_analysis": {
+          "decision": "ask",
+          "user_draft": "Can you share the parent selector callback and the state-update path before the failing multiselect is rendered?",
+          "maintainer_summary": "Developer-authored offline proposal over the exposed #12782 development family. The working reduction is distinct from the failing full app; no confirmed diagnosis or verified fix is supplied.",
+          "rationale": "Ask for a missing user-observable fact or route the unresolved full-app evidence gap to a maintainer; document versions cannot become installed user facts.",
+          "evidence_links": [],
+          "missing_info": [
+            "parent_callback_code"
+          ],
+          "next_question": "Can you share the parent selector callback and the state-update path before the failing multiselect is rendered?",
+          "retrieval_queries": [],
+          "facts_delta": [],
+          "checks_suggested": []
+        }
+      },
+      "human_review_fixture": {
+        "approve": false,
+        "purpose": "Expose the canonical version question before the bound reply; leave intermediate proposals unapproved so later accepted turns invalidate them; approve the final escalation once."
+      },
+      "expected": {
+        "case_revision": 3,
+        "active_user_version": "1.49.1",
+        "active_user_python": "3.12.9",
+        "transition_context_changed": true,
+        "checks_performed": [],
+        "pending_proposal_cleared_before_new_run": true,
+        "proposal_decision": "ask",
+        "proposal_releases_no_draft_before_approval": true
+      },
+      "wire_request_template": {
+        "message": "Correction: the affected deployment is Streamlit 1.49.1, not 1.50.0. The reduced example still works; the parent callback is not supplied.",
+        "turn_id": "intake-3",
+        "expected_revision": 2,
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.49.1"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [],
+        "context_changed": false,
+        "scenario": "ask"
+      }
+    },
+    {
+      "id": "intake-4",
+      "kind": "developer_authored_continuation",
+      "input_mode": "explicit_user_turn",
+      "user_turn": {
+        "case_id": "case-user-intake-widget-version",
+        "expected_revision": 3,
+        "turn_id": "intake-4",
+        "source_ref": "user:intake-4",
+        "message": "I cannot confirm the installed Streamlit version. Withdraw the value I gave.",
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": null
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [],
+        "context_changed": false
+      },
+      "inventory": {
+        "known_information_after_user_input": [
+          "Active user Streamlit version: unknown.",
+          "Active user Python version: 3.12.9.",
+          "The initial report says the reduced example works while the full app fails; no source/user code has been executed."
+        ],
+        "user_clarifiable_gaps": [
+          "streamlit_version",
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "documentation_or_evidence_gaps": [
+          "No full-app root cause or verified fix is established by any frozen source.",
+          "Installation applicability is unresolved after the user withdrew the version."
+        ],
+        "acceptable_decisions": [
+          "ask",
+          "escalate"
+        ],
+        "unacceptable_claims": [
+          "The full-app root cause is proved.",
+          "The supplied working reduction reproduces the failure.",
+          "A fixed release or verified workaround has been established.",
+          "The installed version can be inferred from document metadata."
+        ],
+        "question_acceptance": [
+          "A follow-up targets a still-missing user fact or the affected callback/state-update code.",
+          "The user can supply the requested environment fact or their own code; asking the user to find project documentation is not acceptable.",
+          "Do not ask again for active confirmed version/Python facts, or suggest the already reported check as if unperformed."
+        ],
+        "claim_acceptance": [
+          "Every material documentation claim is tied to its exact frozen excerpt and scope, across all proposal fields.",
+          "The 1.50.0 release-event observation is not a diagnosis or general guarantee for 1.49.1 or every later release.",
+          "Source presence and valid JSON alone do not establish claim entailment."
+        ]
+      },
+      "port_fixture": {
+        "bundle": "official-mixed-v8",
+        "authored_analysis": {
+          "decision": "ask",
+          "user_draft": "Which Streamlit version is installed in the affected environment?",
+          "maintainer_summary": "Developer-authored offline proposal over the exposed #12782 development family. The working reduction is distinct from the failing full app; no confirmed diagnosis or verified fix is supplied.",
+          "rationale": "Ask for a missing user-observable fact or route the unresolved full-app evidence gap to a maintainer; document versions cannot become installed user facts.",
+          "evidence_links": [],
+          "missing_info": [
+            "streamlit_version"
+          ],
+          "next_question": "Which Streamlit version is installed in the affected environment?",
+          "retrieval_queries": [],
+          "facts_delta": [],
+          "checks_suggested": []
+        }
+      },
+      "human_review_fixture": {
+        "approve": true,
+        "purpose": "Expose the canonical version question before the bound reply; leave intermediate proposals unapproved so later accepted turns invalidate them; approve the final escalation once."
+      },
+      "expected": {
+        "case_revision": 4,
+        "active_user_version": null,
+        "active_user_python": "3.12.9",
+        "transition_context_changed": true,
+        "checks_performed": [],
+        "pending_proposal_cleared_before_new_run": true,
+        "proposal_decision": "ask",
+        "proposal_releases_no_draft_before_approval": true
+      },
+      "wire_request_template": {
+        "message": "I cannot confirm the installed Streamlit version. Withdraw the value I gave.",
+        "turn_id": "intake-4",
+        "expected_revision": 3,
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": null
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [],
+        "context_changed": false,
+        "scenario": "ask"
+      }
+    },
+    {
+      "id": "intake-5",
+      "kind": "developer_authored_continuation",
+      "input_mode": "explicit_user_turn",
+      "user_turn": {
+        "case_id": "case-user-intake-widget-version",
+        "expected_revision": 4,
+        "turn_id": "intake-5",
+        "source_ref": "user:intake-5",
+        "message": "This is a different environment. I confirm Streamlit 1.50.0 and Python 3.13 here; do not reuse the other environment facts.",
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.50.0"
+          },
+          {
+            "name": "python_version",
+            "value": "3.13"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [],
+        "context_changed": true
+      },
+      "inventory": {
+        "known_information_after_user_input": [
+          "Active user Streamlit version: 1.50.0.",
+          "Active user Python version: 3.13."
+        ],
+        "user_clarifiable_gaps": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "documentation_or_evidence_gaps": [
+          "No full-app root cause or verified fix is established by any frozen source.",
+          "Only Streamlit and Python are reconfirmed in the new environment; old OS/browser/widget observations cannot be reused as confirmed user facts."
+        ],
+        "acceptable_decisions": [
+          "answer",
+          "ask",
+          "escalate"
+        ],
+        "unacceptable_claims": [
+          "The full-app root cause is proved.",
+          "The supplied working reduction reproduces the failure.",
+          "A fixed release or verified workaround has been established.",
+          "The installed version can be inferred from document metadata."
+        ],
+        "question_acceptance": [
+          "A follow-up targets a still-missing user fact or the affected callback/state-update code.",
+          "The user can supply the requested environment fact or their own code; asking the user to find project documentation is not acceptable.",
+          "Do not ask again for active confirmed version/Python facts, or suggest the already reported check as if unperformed."
+        ],
+        "claim_acceptance": [
+          "Every material documentation claim is tied to its exact frozen excerpt and scope, across all proposal fields.",
+          "The 1.50.0 release-event observation is not a diagnosis or general guarantee for 1.49.1 or every later release.",
+          "Source presence and valid JSON alone do not establish claim entailment.",
+          "The scripted answer reproduces the complete registered release excerpt exactly and explicitly limits it to the 1.50.0 release event, not a full-app fix."
+        ]
+      },
+      "port_fixture": {
+        "bundle": "official-mixed-v8",
+        "authored_analysis": {
+          "decision": "answer",
+          "user_draft": "The following is the pinned official 1.50.0 release-note excerpt. It documents that release event; it does not establish a cause or a verified fix for the unseen full app.\n\n## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- 🤹 Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- 🎨 Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- 📊 [`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- 🔑 To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+          "maintainer_summary": "Developer-authored offline proposal. Streamlit 1.50.0 and Python 3.13 are the reconfirmed user facts in the new environment. Earlier environment observations are historical; no full-app cause or verified fix is established.",
+          "rationale": "The installed 1.50.0 value is user-attributed; this limited answer quotes the frozen release evidence completely and does not infer a full-app diagnosis.",
+          "evidence_links": [
+            {
+              "claim": "## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- 🤹 Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- 🎨 Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- 📊 [`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- 🔑 To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+              "chunk_id": "release-150-multiselect-key-identity-v8"
+            }
+          ],
+          "missing_info": [
+            "parent_callback_code",
+            "state_update_order",
+            "minimal_failing_reproduction"
+          ],
+          "next_question": null,
+          "retrieval_queries": [],
+          "facts_delta": [],
+          "checks_suggested": []
+        }
+      },
+      "human_review_fixture": {
+        "approve": false,
+        "purpose": "Expose the canonical version question before the bound reply; leave intermediate proposals unapproved so later accepted turns invalidate them; approve the final escalation once."
+      },
+      "expected": {
+        "case_revision": 5,
+        "active_user_version": "1.50.0",
+        "active_user_python": "3.13",
+        "transition_context_changed": true,
+        "checks_performed": [],
+        "pending_proposal_cleared_before_new_run": true,
+        "proposal_decision": "answer",
+        "proposal_releases_no_draft_before_approval": true,
+        "old_environment_user_facts_are_superseded": true,
+        "cited_chunks": [
+          "release-150-multiselect-key-identity-v8"
+        ]
+      },
+      "wire_request_template": {
+        "message": "This is a different environment. I confirm Streamlit 1.50.0 and Python 3.13 here; do not reuse the other environment facts.",
+        "turn_id": "intake-5",
+        "expected_revision": 4,
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.50.0"
+          },
+          {
+            "name": "python_version",
+            "value": "3.13"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [],
+        "context_changed": true,
+        "scenario": "answer"
+      }
+    },
+    {
+      "id": "intake-6",
+      "kind": "developer_authored_continuation",
+      "input_mode": "explicit_user_turn",
+      "user_turn": {
+        "case_id": "case-user-intake-widget-version",
+        "expected_revision": 5,
+        "turn_id": "intake-6",
+        "source_ref": "user:intake-6",
+        "message": "I restarted this app and still observed an empty multiselect. The affected parent callback is still not supplied.",
+        "reported_facts": [],
+        "unknowns": [],
+        "checks_performed": [
+          "In this affected environment, restarting the app did not change the empty multiselect observation."
+        ],
+        "context_changed": false
+      },
+      "inventory": {
+        "known_information_after_user_input": [
+          "Active user Streamlit version: 1.50.0.",
+          "Active user Python version: 3.13.",
+          "The user reports the restart check result in the new affected environment; its truth has not been independently verified."
+        ],
+        "user_clarifiable_gaps": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "documentation_or_evidence_gaps": [
+          "No full-app root cause or verified fix is established by any frozen source.",
+          "Only Streamlit and Python are reconfirmed in the new environment; old OS/browser/widget observations cannot be reused as confirmed user facts."
+        ],
+        "acceptable_decisions": [
+          "ask",
+          "escalate"
+        ],
+        "unacceptable_claims": [
+          "The full-app root cause is proved.",
+          "The supplied working reduction reproduces the failure.",
+          "A fixed release or verified workaround has been established.",
+          "The installed version can be inferred from document metadata."
+        ],
+        "question_acceptance": [
+          "A follow-up targets a still-missing user fact or the affected callback/state-update code.",
+          "The user can supply the requested environment fact or their own code; asking the user to find project documentation is not acceptable.",
+          "Do not ask again for active confirmed version/Python facts, or suggest the already reported check as if unperformed."
+        ],
+        "claim_acceptance": [
+          "Every material documentation claim is tied to its exact frozen excerpt and scope, across all proposal fields.",
+          "The 1.50.0 release-event observation is not a diagnosis or general guarantee for 1.49.1 or every later release.",
+          "Source presence and valid JSON alone do not establish claim entailment."
+        ]
+      },
+      "port_fixture": {
+        "bundle": "official-mixed-v8",
+        "authored_analysis": {
+          "decision": "ask",
+          "user_draft": "Can you share the parent selector callback and the state-update path before the failing multiselect is rendered?",
+          "maintainer_summary": "Developer-authored offline proposal. Streamlit 1.50.0 and Python 3.13 are the reconfirmed user facts in the new environment. Earlier environment observations are historical; no full-app cause or verified fix is established.",
+          "rationale": "Ask for a missing user-observable fact or route the unresolved full-app evidence gap to a maintainer; document versions cannot become installed user facts.",
+          "evidence_links": [],
+          "missing_info": [
+            "parent_callback_code"
+          ],
+          "next_question": "Can you share the parent selector callback and the state-update path before the failing multiselect is rendered?",
+          "retrieval_queries": [],
+          "facts_delta": [],
+          "checks_suggested": []
+        }
+      },
+      "human_review_fixture": {
+        "approve": false,
+        "purpose": "Expose the canonical version question before the bound reply; leave intermediate proposals unapproved so later accepted turns invalidate them; approve the final escalation once."
+      },
+      "expected": {
+        "case_revision": 6,
+        "active_user_version": "1.50.0",
+        "active_user_python": "3.13",
+        "transition_context_changed": false,
+        "checks_performed": [
+          "In this affected environment, restarting the app did not change the empty multiselect observation."
+        ],
+        "pending_proposal_cleared_before_new_run": true,
+        "proposal_decision": "ask",
+        "proposal_releases_no_draft_before_approval": true,
+        "old_environment_user_facts_are_superseded": true
+      },
+      "wire_request_template": {
+        "message": "I restarted this app and still observed an empty multiselect. The affected parent callback is still not supplied.",
+        "turn_id": "intake-6",
+        "expected_revision": 5,
+        "reported_facts": [],
+        "unknowns": [],
+        "checks_performed": [
+          "In this affected environment, restarting the app did not change the empty multiselect observation."
+        ],
+        "context_changed": false,
+        "scenario": "ask"
+      }
+    },
+    {
+      "id": "intake-7",
+      "kind": "developer_authored_continuation",
+      "input_mode": "explicit_user_turn",
+      "user_turn": {
+        "case_id": "case-user-intake-widget-version",
+        "expected_revision": 6,
+        "turn_id": "intake-7",
+        "source_ref": "user:intake-7",
+        "message": "Same restart result. I still cannot provide the affected callback path; please have a maintainer review the unresolved case.",
+        "reported_facts": [],
+        "unknowns": [],
+        "checks_performed": [
+          "  IN THIS AFFECTED ENVIRONMENT, restarting the app did not change the empty multiselect observation.  "
+        ],
+        "context_changed": false
+      },
+      "inventory": {
+        "known_information_after_user_input": [
+          "Active user Streamlit version: 1.50.0.",
+          "Active user Python version: 3.13.",
+          "The user reports the restart check result in the new affected environment; its truth has not been independently verified."
+        ],
+        "user_clarifiable_gaps": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "documentation_or_evidence_gaps": [
+          "No full-app root cause or verified fix is established by any frozen source.",
+          "Only Streamlit and Python are reconfirmed in the new environment; old OS/browser/widget observations cannot be reused as confirmed user facts."
+        ],
+        "acceptable_decisions": [
+          "ask",
+          "escalate"
+        ],
+        "unacceptable_claims": [
+          "The full-app root cause is proved.",
+          "The supplied working reduction reproduces the failure.",
+          "A fixed release or verified workaround has been established.",
+          "The installed version can be inferred from document metadata."
+        ],
+        "question_acceptance": [
+          "A follow-up targets a still-missing user fact or the affected callback/state-update code.",
+          "The user can supply the requested environment fact or their own code; asking the user to find project documentation is not acceptable.",
+          "Do not ask again for active confirmed version/Python facts, or suggest the already reported check as if unperformed."
+        ],
+        "claim_acceptance": [
+          "Every material documentation claim is tied to its exact frozen excerpt and scope, across all proposal fields.",
+          "The 1.50.0 release-event observation is not a diagnosis or general guarantee for 1.49.1 or every later release.",
+          "Source presence and valid JSON alone do not establish claim entailment."
+        ]
+      },
+      "port_fixture": {
+        "bundle": "official-mixed-v8",
+        "authored_analysis": {
+          "decision": "escalate",
+          "user_draft": "The affected callback and state-update path are still missing, so I cannot establish a full-app cause or a verified fix from these documents. A maintainer should review the unresolved case.",
+          "maintainer_summary": "Developer-authored offline proposal. Streamlit 1.50.0 and Python 3.13 are the reconfirmed user facts in the new environment. Earlier environment observations are historical; no full-app cause or verified fix is established.",
+          "rationale": "Ask for a missing user-observable fact or route the unresolved full-app evidence gap to a maintainer; document versions cannot become installed user facts.",
+          "evidence_links": [],
+          "missing_info": [
+            "parent_callback_code",
+            "state_update_order",
+            "minimal_failing_reproduction"
+          ],
+          "next_question": null,
+          "retrieval_queries": [],
+          "facts_delta": [],
+          "checks_suggested": []
+        }
+      },
+      "human_review_fixture": {
+        "approve": true,
+        "purpose": "Expose the canonical version question before the bound reply; leave intermediate proposals unapproved so later accepted turns invalidate them; approve the final escalation once."
+      },
+      "expected": {
+        "case_revision": 7,
+        "active_user_version": "1.50.0",
+        "active_user_python": "3.13",
+        "transition_context_changed": false,
+        "checks_performed": [
+          "In this affected environment, restarting the app did not change the empty multiselect observation."
+        ],
+        "pending_proposal_cleared_before_new_run": true,
+        "proposal_decision": "escalate",
+        "proposal_releases_no_draft_before_approval": true,
+        "old_environment_user_facts_are_superseded": true
+      },
+      "wire_request_template": {
+        "message": "Same restart result. I still cannot provide the affected callback path; please have a maintainer review the unresolved case.",
+        "turn_id": "intake-7",
+        "expected_revision": 6,
+        "reported_facts": [],
+        "unknowns": [],
+        "checks_performed": [
+          "  IN THIS AFFECTED ENVIRONMENT, restarting the app did not change the empty multiselect observation.  "
+        ],
+        "context_changed": false,
+        "scenario": "escalate"
+      }
+    }
+  ],
+  "controlled_transition_checkpoints": [
+    {
+      "before_turn": "intake-3",
+      "purpose": "Separate controlled pure-transition precondition: seed a supported historical observation, not a diagnosis. This is NOT claimed to be persisted by the API or returned by live RAG/model.",
+      "seed_active_evidence_facts": [
+        {
+          "name": "prior_evidence_observation",
+          "value": "The 1.50.0 release note documents key-based identity for the formerly reported version",
+          "source_ref": "release-150-multiselect-key-identity-v8",
+          "turn_id": "controlled-prior-evidence",
+          "provenance_kind": "evidence",
+          "status": "active"
+        }
+      ],
+      "seed_evidence_refs": [
+        "release-150-multiselect-key-identity-v8"
+      ],
+      "expected_after_transition": {
+        "evidence_fact_status": "superseded",
+        "evidence_refs": [],
+        "retired_inference_becomes_unknown": true,
+        "context_changed": true,
+        "check_novelty": "not_a_check"
+      },
+      "seed_after_turn": "intake-2",
+      "seed_at_revision": 2
+    },
+    {
+      "before_turn": "intake-6",
+      "purpose": "Separate controlled pure-transition precondition: seed a supported historical observation, not a diagnosis. This is NOT claimed to be persisted by the API or returned by live RAG/model.",
+      "seed_active_evidence_facts": [
+        {
+          "name": "prior_evidence_observation",
+          "value": "The 1.50.0 release note documents key-based identity for the formerly reported version",
+          "source_ref": "release-150-multiselect-key-identity-v8",
+          "turn_id": "controlled-prior-evidence",
+          "provenance_kind": "evidence",
+          "status": "active"
+        }
+      ],
+      "seed_evidence_refs": [
+        "release-150-multiselect-key-identity-v8"
+      ],
+      "expected_after_transition": {
+        "evidence_fact_status": "superseded",
+        "evidence_refs": [],
+        "retired_inference_becomes_unknown": true,
+        "context_changed": false,
+        "check_novelty": "new"
+      },
+      "seed_after_turn": "intake-5",
+      "seed_at_revision": 5
+    },
+    {
+      "before_turn": "intake-7",
+      "purpose": "Separate controlled pure-transition precondition: seed a supported historical observation, not a diagnosis. This is NOT claimed to be persisted by the API or returned by live RAG/model.",
+      "seed_active_evidence_facts": [
+        {
+          "name": "prior_evidence_observation",
+          "value": "The 1.50.0 release note documents key-based identity for the formerly reported version",
+          "source_ref": "release-150-multiselect-key-identity-v8",
+          "turn_id": "controlled-prior-evidence",
+          "provenance_kind": "evidence",
+          "status": "active"
+        }
+      ],
+      "seed_evidence_refs": [
+        "release-150-multiselect-key-identity-v8"
+      ],
+      "expected_after_transition": {
+        "evidence_fact_status": "active",
+        "evidence_refs": [
+          "release-150-multiselect-key-identity-v8"
+        ],
+        "retired_inference_becomes_unknown": false,
+        "context_changed": false,
+        "check_novelty": "normalized_repeat"
+      },
+      "seed_after_turn": "intake-6",
+      "seed_at_revision": 6
+    }
+  ],
+  "required_negative_checks": [
+    "A bare version before the canonical question is approved must not become a reported fact.",
+    "An edited/noncanonical/other-target question must not authorize bare version conversion.",
+    "A reply bound to a different/stale question or revision must be rejected.",
+    "An old proposal cannot be approved after the next accepted user turn.",
+    "Replaying an identical immutable user event does not advance revision, release another draft or rerun reasoning; changed content under that ID conflicts.",
+    "Withdrawal, explicit environment switch and novel reported check cannot retain an active prior evidence inference/reference.",
+    "A normalized repeat check preserves supported prior inference/reference while a new user event still advances revision.",
+    "A maintainer approval is bound to exact case/revision/proposal and cannot be executed twice."
+  ],
+  "reporting_boundary": {
+    "pass_means": "The authored scenario conforms to the registered software/user-intake boundary and correction assertions under fixed ports.",
+    "does_not_mean": "The real model found the right decision, retrieval is good, a fix works, durable approval survives restart, or held-out test passed.",
+    "manual_claim_support_review_required": true,
+    "expectations_are_developer_judgments_not_independent_human_gold": true,
+    "known_limit": "The fixture returns selected authored proposals, so agreement with acceptable decisions is expected and must not be reported as a semantic model-quality score."
+  },
+  "wire_contract": {
+    "endpoint_template": "POST /cases/{case_id}/messages",
+    "state_identity": "case_id and source_ref are server-derived; turn_id and expected_revision bind the immutable incoming user event.",
+    "placeholder_rule": "Resolve $approved_proposal_id once to the exact current approved canonical question ID. Reuse that identical resolved wire request on retries.",
+    "wire_requests_are_not_user_turn_objects": true,
+    "reasoning_fixture_injection": "Replace api._script with these fixed bundle/analysis responses in offline tests; no new production scenario, model, index or tracker module.",
+    "separation": "inventory, expected state and fixture-only seeded evidence checkpoints are reviewer/test inputs. They must not be forwarded to reasoning/retrieval ports."
+  }
+}

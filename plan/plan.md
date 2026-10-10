@@ -6,9 +6,9 @@
 
 | بخش | چیزی که داریم | چیزی که هنوز اثبات نشده |
 | --- | --- | --- |
-| core — ساسان | قراردادها، تصمیم‌های محدود، اصلاح اطلاعات و ledger؛ اصلاح evidence و مسیر اختیاری GroundedPlan روی main | اتصال نسخهٔ تازه به UI/RAG/tracker و کیفیت تصمیم مدل روی کیس‌های ندیده |
+| core — ساسان | قراردادها، اصلاح evidence و GroundedPlan؛ pilot جدید C2/P2، ورودی HTTP ساخت‌یافته و سؤال تأییدشده را با fixture وصل می‌کند | کنترل‌های واقعی UI، tracker پایدار، RAG و کیفیت تصمیم مدل روی کیس‌های ندیده |
 | داده — آماده‌سازی اولیه ساسان؛ ادامه با حسن | ZIP اولیه: ۲۴۰ Issue، ۱۱۷۸ comment، ۵۶ متن Markdown و ۱۱۷۲ API record؛ GitHub snapshot ششم اکتبر | corpus تأییدشده، split نهایی، index و retrieval واقعی؛ ZIP هنوز corpus نیست |
-| UI/API — محمدحسن | روی `main`: Streamlit و FastAPI، فراخوانی SupportEngine با FakeRetriever/FakeReasoner و review پیشنهاد | دریافت fact و correction معتبر، نمایش review کامل، اتصال retriever/model واقعی |
+| UI/API — محمدحسن | Streamlit/FastAPI با FakeRetriever/FakeReasoner؛ adapter جدید API، fact/correction/check و reply binding را می‌پذیرد | کنترل structured input در UI، نمایش review کامل، اتصال retriever/model واقعی |
 | tracker/tools — محمد بهنام | prototype حافظه‌ای DummyTracker در UI؛ بخش هزینهٔ SQLite مربوط به gateway است | ذخیرهٔ پایدار پرونده، dedup رخداد/اقدام، approval اتمیک، ادامه پس از restart |
 | evaluation — محمدحسن | تست‌های منطقی آفلاین و آزمایش‌های توسعهٔ core قابل بازپخش‌اند | ۱۵ dev و ۱۵ test مستقل، معیارهای freezeشده و نتیجهٔ سیستم نهایی |
 
@@ -17,7 +17,7 @@
 ## قدم مشترک بعدی: یک case چندمرحله‌ای از dev
 
 - [ ] **P1 — محمدحسن:** یک case از dev معرفی کند؛ ورودی شروع، follow-upها، اصلاح اطلاعات و تصمیم‌های قابل قبول را قبل از اجرا در fixture ثبت کند. اگر ادامهٔ گفتگو ساخته شده، آن را از گفتگوی واقعی جدا علامت بزند.
-- [ ] **P2 — ساسان با محمدحسن:** در مسیر API، اطلاعات صریح کاربر به UserTurn معتبر تبدیل شود؛ پس از اصلاح نسخه، fact قبلی superseded و ارجاع‌ها و استنتاج‌های قبلی از state فعال کنار گذاشته شوند. متن آزاد به‌تنهایی fact تأییدشده نیست.
+- [x] **P2 — ساسان؛ مسیر آفلاین core/API:** اطلاعات صریح HTTP به UserTurn معتبر وصل شد؛ correction/withdrawal/تغییر محیط، factهای قدیمی و inference/ref را کنار می‌گذارند. reply فقط به سؤال canonical تأییدشده و همان case/revision/proposal متصل است. [fixture هفت‌نوبتی و receipt](../docs/user-intake-pilot.fa.md)، replay/old approval و baseline چهار regression قابل بررسی‌اند. این تیک adapter با storage حافظه‌ای را پوشش می‌دهد؛ UI واقعی و transaction پایدار با U2 و T2/T3 تکمیل می‌شوند. متن آزاد به‌تنهایی fact تأییدشده نیست.
 - [ ] **P3 — محمد بهنام:** همان پرونده و proposal را با revision معتبر نگه دارد؛ approval قبلی بعد از تغییر پرونده قابل اجرا نباشد و اقدام جدید پس از approval فقط یک بار ثبت شود.
 - [ ] **P4 — حسن:** برای همان case ابتدا EvidenceBundle ثابت بدهد؛ بعد از آماده شدن corpus مجاز، retriever واقعی را با همان قرارداد وصل کند.
 
@@ -41,9 +41,9 @@
 ### ساسان — core و قرارداد اتصال
 
 - [x] **C1 — انتشار و اتصال نسخهٔ مشترک core.** commitهای V8/V9 و راهنمای اتصال در [PR #7](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/7) منتشر شدند؛ [CI روی commit 8cf56d8](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38033908496) پاس شد. ۱۴۱۴ تست محلی و Ruff هم پاس‌اند؛ مقایسهٔ baseline در گزارش‌های V8/V9 ثبت است. [CI ترکیب PR با main](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38033931700) هم با ۱۴۲۸ تست پاس شد؛ PR با اجازهٔ ساسان به main merge شد (`85b6027`).
-- [ ] **C2 — اتصال ورودی چندنوبتی.** همراه محمدحسن و بهنام، reported_facts، checks_performed و context_changed را به API/tracker وصل کند. جواب کوتاه نسخه فقط برای سؤال canonical ثبت‌شده، case/revision درست و proposal معتبر استخراج شود؛ متن مبهم نیاز به تأیید اطلاعات دارد. شرط پایان: P2 و تست correction/withdrawal/تغییر محیط پاس شوند.
+- [ ] **C2 — اتصال ورودی چندنوبتی.** سهم core/API آفلاین در P2 انجام و [ثبت شد](../docs/user-intake-pilot.fa.md): reported_facts، checks_performed، context_changed، reply ثبت‌شده و original-event replay؛ تست correction/withdrawal/تغییر محیط پاس‌اند. برای بستن کامل، محمدحسن کنترل‌های U2 را به همین wire وصل کند و بهنام event/question/transition را با T2/T3 پایدار و اتمیک کند. سؤال مبهم یا ویرایش‌شده fact فرضی نمی‌سازد؛ retry همان event باید پیش از stale/reply check شناسایی شود.
 - [ ] **C3 — اتصال خروجی و review.** latest EvidenceBundle و کل CaseState به reasoner برسند؛ مدل فقط پیشنهاد بسازد. برای GroundedPlan، gapهای قابل پاسخ توسط کاربر از کمبود منبع جدا و catalog/conflict ورودی بازبینی شود؛ review معنایی و approval اجرا جدا بمانند. شرط پایان: مثال اتصال با fixture و reject ورودی/منبع قدیمی قابل بازپخش باشد.
-- [ ] **C4 — baseline برای pilot متصل.** بعد از آماده شدن ورودی/خروجی P2–P4، baseline و یک یا دو اصلاح مشخص روی همان سناریوها و شواهد ثابت مقایسه شوند؛ تصمیم قابل قبول، پشتیبانی ادعاها و ضرورت سؤال قبل از اجرا ثبت شوند. استفاده از جواب Issue برای ساخت شواهد صریح اعلام شود. receiptهای V8/V9 موجود، شواهد توسعهٔ انجام‌شده‌اند و حفظ شوند؛ replay آفلاین و نتایج model/RAG/test جدا گزارش شوند.
+- [ ] **C4 — baseline برای pilot متصل.** baseline اتصال HTTP روی `5af98e6` بازپخش شد: ۴ regression fail، روی adapter جدید هر ۴ پاس؛ [ثبت و محدودیت](../docs/user-intake-pilot.fa.md). fixture هفت‌نوبتی با inventory/انتظارهای پیش از اجرا و شواهد ثابت ثبت است. بعد از اتصال P3/P4، مقایسهٔ تصمیم واقعی ادامه یابد؛ baseline نرم‌افزار جای کیفیت مدل/RAG/test نیست. receiptهای V8/V9 حفظ شده‌اند؛ انتخاب Issue فعلی answer-informed و exposed است.
 - [ ] **C5 — رفع علت halt پیش از live.** هویت مدل، usage و هزینهٔ مورد اختلاف با مدرک provider تطبیق داده شود؛ uncertainty و ledger پاک یا reset نشوند. شرط پایان: علت توقف مستند، وضعیت ledger و مجوز/سقف باقی‌مانده روشن باشند؛ فقط آن‌وقت pilot کوچک ثبت‌شده اجرا شود.
 
 وابستگی: C1 و fixtureهای اتصال اکنون قابل انجام‌اند؛ persistence با T1–T3 و UI با U2 هماهنگ می‌شود. تک agent مبناست؛ اضافه کردن agent/framework نیاز به شکست واقعی و مقایسهٔ مستند دارد.

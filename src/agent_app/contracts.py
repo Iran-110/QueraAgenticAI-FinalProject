@@ -31,6 +31,7 @@ __all__ = [
     "RetrievalRequest",
     "EvidenceLink",
     "AnalysisResult",
+    "ApprovedReplyQuestion",
     "RunLimits",
     "QuestionTarget",
     "ProposalRequirements",
@@ -327,6 +328,20 @@ class AnalysisResult(Contract):
         if self.decision != "ask" and self.next_question is not None:
             raise PydanticCustomError("question_forbidden", "only ask may contain next_question")
         return self
+
+
+class ApprovedReplyQuestion(Contract):
+    """Caller-loaded approved question, bound to one exact case revision.
+
+    This immutable payload is not proof of approval or authentication. The
+    tracker must supply its authoritative approved record and invalidate it
+    when a new turn or proposal replaces the question.
+    """
+
+    case_id: Identifier
+    case_revision: NonnegativeInt
+    proposal_id: Identifier
+    question: AnalysisResult
 
 
 class RunLimits(Contract):

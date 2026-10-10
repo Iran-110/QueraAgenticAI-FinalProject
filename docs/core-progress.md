@@ -475,6 +475,56 @@ retrieval and real-model evaluation remain the named owners' integration work.
 No paid request, environment-key read, ledger reset or uncertainty release was
 performed for this release. The ordinary live halt remains unresolved.
 
+## 2026-10-10 — structured HTTP ingress and approved-question pilot (C2 / P2)
+
+Branch: `feat/user-intake-pilot`, starting from shared `main` at `5af98e6`.
+
+- Recorded four HTTP ingress regressions before implementation at `cf2281e`.
+  They all failed on the baseline, which silently ignored fact/revision/event
+  fields. A separate isolated Git-archive recheck also failed the same four
+  regressions; the new adapter passes all four. The replay assertion adjustment
+  is disclosed in `experiments/user_intake/baseline-recheck.json`.
+- Registered a seven-turn exposed development fixture at `a3d5eeb` before replay.
+  Its #12782 anchor is answer-informed; continuations/reasoner decisions are
+  authored, with five unchanged official V8 source hits. #12782/#12629 remain
+  excluded from independent test/RAG usage; this runner does not modify an index.
+- API ingress now maps explicit facts/checks/unknowns/environment changes into
+  the existing pure transition. Stable client IDs and strict expected revisions
+  are required for structured updates. Original envelope hashes include the
+  reply binding/scenario and are looked up before stale/preparation checks.
+  Replay returns current state plus the original receipt without another run.
+- Added `ApprovedReplyQuestion` and a pure helper for a canonical version reply
+  after local question approval clears the pending ID. No fabricated pending
+  state, client approval flag or arbitrary question wording can authorize it.
+  Edited/noncanonical/ambiguous/stale/other-case replies are guarded. All legacy
+  event IDs are UUIDs and reserved against later reuse; review input is strict
+  and validation diagnostics never echo raw values.
+- The actual HTTP replay captured current CaseState and exact source bundle at
+  each port: seven accepted turns, seven reasoning/retrieval calls, three explicit
+  evidence-history seeds, two whole-source quote checks and three separately
+  approved releases. Correction, withdrawal, environment changes, novel/repeated
+  checks, stale approval and event/action retries matched registered assertions.
+  Mutation tests detect retained stale inference and unsupported claims even
+  when the citation ID exists. Agreement is not a semantic model quality score.
+- The receipt fingerprints 14 source/dependency-lock files, runtime versions,
+  fixture and inputs. It refuses success if code changes during execution or
+  Python disables assertions. Existing V9 receipt bytes/code identity remain
+  frozen; all current behavioral observations match it, with only current code
+  fingerprint differing after the additive contract.
+
+Verified locked dependencies, **1,529 passing offline tests** (101 added), Ruff
+lint/format and all 16 prior CI validation/replay/demo commands. The new pilot is
+also in CI. One existing Starlette/httpx deprecation warning remains. Independent
+reviews found no remaining API/helper/runner blocker.
+
+No paid call, key read or ledger mutation occurred; cost is zero. The API still
+uses process memory, scripted ports and unauthenticated local review. Durable
+CAS/event outcomes, reviewer authentication, restart recovery and real UI input
+controls remain T1–T3/U2. P2's offline adapter is complete; C2 remains open for
+those integrations. RAG/model/final-test quality and an actual app fix are
+unmeasured. See [the Persian result and precise owner handoff](user-intake-pilot.fa.md)
+and [wire/reply semantics](user-turns.md).
+
 ## Next integration work
 
 ### Shared release — 2026-10-07

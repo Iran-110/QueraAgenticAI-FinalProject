@@ -1,8 +1,8 @@
-"""Recognize a narrow version reply to a tracker-bound pending question.
+"""Recognize narrow version replies to tracker-bound question records.
 
-This helper neither reads storage nor authenticates a proposal. The caller must
-load the exact pending proposal and its ID from the tracker, then commit the
-returned user turn through the usual event-deduplication/revision transaction.
+These helpers neither read storage nor authenticate a proposal. The caller must
+load the exact pending or approved question record from the tracker, then commit
+the returned user turn through the event-deduplication/revision transaction.
 No source text, model response, or free-text instruction grants action authority.
 """
 
@@ -11,7 +11,14 @@ from typing import Literal, get_args
 
 from pydantic import ValidationError
 
-from agent_app.contracts import AnalysisResult, CaseState, QuestionTarget, ReportedFact, UserTurn
+from agent_app.contracts import (
+    AnalysisResult,
+    ApprovedReplyQuestion,
+    CaseState,
+    QuestionTarget,
+    ReportedFact,
+    UserTurn,
+)
 
 type IntakeRejectionCode = Literal[
     "InvalidInput",
@@ -87,6 +94,52 @@ def prepare_version_reply(
         or case.pending_proposal_id != proposal_id
     ):
         raise IntakeRejected("PendingProposalMismatch")
+    return _prepare_canonical_version_reply(case, turn, question)
+
+
+def prepare_approved_version_reply(
+    case: CaseState,
+    turn: UserTurn,
+    *,
+    reply: ApprovedReplyQuestion,
+    proposal_id: str,
+) -> UserTurn:
+    """Prepare a reply to an exact question already approved and displayed.
+
+    The caller loads ``reply`` from its authoritative approved-question record;
+    a client-supplied record cannot authenticate approval. Case, revision and
+    requested proposal identity must still match, and no proposal may be pending.
+    This does not fabricate pending state or grant permission for an action.
+
+    Before calling, deduplicate the original ingress event, including its reply
+    binding. Persist the original event/hash, prepared turn/hash and transition
+    atomically. Invalidate the approved-question record when accepting a new
+    event; replay must return its recorded outcome without preparing again.
+    """
+    try:
+        case = CaseState.model_validate(case.model_dump(warnings=False))
+        turn = UserTurn.model_validate(turn.model_dump(warnings=False))
+        reply = ApprovedReplyQuestion.model_validate(reply.model_dump(warnings=False))
+    except (ValidationError, ValueError, TypeError, AttributeError, RecursionError):
+        raise IntakeRejected("InvalidInput") from None
+
+    if turn.case_id != case.case_id or reply.case_id != case.case_id:
+        raise IntakeRejected("CaseMismatch")
+    if turn.expected_revision != case.case_revision or reply.case_revision != case.case_revision:
+        raise IntakeRejected("StaleRevision")
+    if (
+        not isinstance(proposal_id, str)
+        or proposal_id != reply.proposal_id
+        or case.pending_proposal_id is not None
+    ):
+        raise IntakeRejected("PendingProposalMismatch")
+    return _prepare_canonical_version_reply(case, turn, reply.question)
+
+
+def _prepare_canonical_version_reply(
+    case: CaseState, turn: UserTurn, question: AnalysisResult
+) -> UserTurn:
+    """Shared extraction only after the caller-specific identity checks pass."""
     if (
         question.decision != "ask"
         or question.missing_info != (_VERSION_TARGET_NAME,)

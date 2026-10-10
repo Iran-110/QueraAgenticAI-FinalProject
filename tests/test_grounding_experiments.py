@@ -58,9 +58,15 @@ def test_report_is_repeatable_without_timestamps_or_random_run_identifiers():
     pack = experiments.load_grounding_pack()
     current = experiments.replay_grounding_pack(pack)
     assert current == experiments.replay_grounding_pack(pack)
-    saved = json.loads((experiments._FIXTURES / "results-grounding-v9.json").read_text())
-    assert saved["code_sha256"] == experiments._code_fingerprint()
-    assert saved == current
+    receipt = experiments._FIXTURES / "results-grounding-v9.json"
+    # Preserve the historical receipt and its original code identity. Additive
+    # contracts change the current fingerprint without changing these outcomes.
+    assert hashlib.sha256(receipt.read_bytes()).hexdigest() == (
+        "9340efb8dcf24b39adb7d1b41b099cf02c794d264753c3a7ee5ce0a850db1ad3"
+    )
+    saved = json.loads(receipt.read_text())
+    assert current["code_sha256"] == experiments._code_fingerprint()
+    assert {**saved, "code_sha256": current["code_sha256"]} == current
 
 
 def test_current_default_replay_is_labeled_and_matches_separate_git_receipt(replay):
