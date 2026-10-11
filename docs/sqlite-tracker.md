@@ -44,6 +44,23 @@ Use a fresh database for each pilot run; the script intentionally refuses to ove
 
 At the time of this handoff, all 14 tracker tests and the offline pilot passed on the supplied repository snapshot. These checks do not measure retrieval or model-answer quality.
 
+### Core contract review — 2026-10-11
+
+`read_case` now holds a deferred read transaction across state, proposal, reply
+and conversation queries. Without it, a correction committed by another
+connection could mix revision-1 state with revision-2 history. The deterministic
+WAL regression fails against PR #19's original `faedfc14` and passes with the
+snapshot fix; write CAS and review authentication are unchanged.
+
+The existing answer-informed `data/evaluation/dev/pilot-12782.json` is also
+composed with `SupportEngine` and actual SQLite storage in a test. It covers the
+approved canonical reply, correction from 1.50.0 to 1.49.1, two retrieval rounds
+with the old source removed from the final handoff, stale approval, edit/new
+approval, restart/review replay, withdrawal and rejection. Gold and expectations
+are not passed to the core ports; the reasoner and evidence remain scripted.
+All 16 tracker tests and the original pilot pass locally. This is core/tracker
+contract evidence, not API/UI integration or model/RAG quality.
+
 ## Integration work
 
 - Replace FastAPI's in-memory `_cases` and dummy tracking path with authoritative reads and writes through `SQLiteCaseTracker`.

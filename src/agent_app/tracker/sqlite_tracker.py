@@ -198,6 +198,10 @@ class SQLiteCaseTracker:
         # Read must not create a case. Input validation also protects read paths.
         CaseState(case_id=case_id)
         with self._connect() as connection:
+            # Keep state, proposal, reply and conversation on one read snapshot.
+            # Without BEGIN, concurrent commits can mix different revisions
+            # across these SELECTs even though every writer is transactional.
+            connection.execute("BEGIN")
             state, status, reply = self._load(connection, case_id)
             pending = None
             if state.pending_proposal_id:
@@ -221,13 +225,15 @@ class SQLiteCaseTracker:
                     (case_id,),
                 )
             ]
-            return {
+            result = {
                 "state": state.model_dump(mode="json"),
                 "history": history,
                 "status": status,
                 "pending_handoff": pending,
                 "awaiting_reply": json.loads(reply) if reply else None,
             }
+            connection.commit()
+            return result
 
     def apply_turn(
         self,
