@@ -1,0 +1,352 @@
+{
+  "schema_version": 1,
+  "audit_id": "rag-pure-data-audit-2026-10-11-v1",
+  "captured_at_utc": "2026-10-11T17:07:57.727683+00:00",
+  "quality_claim": false,
+  "scope": {
+    "reviewed_loader_chunker_executed": true,
+    "retriever_chroma_embedding_index_executed": false,
+    "corpus_build": false,
+    "provider_calls": 0,
+    "ledger_access": false,
+    "env_or_key_access": false,
+    "executed_source_paths": [
+      "data_scripts/data_loader.py",
+      "data_scripts/chunking.py"
+    ],
+    "retriever_ast_only": true
+  },
+  "pinned_sources": {
+    "rag_commit": "c0d450a57769b4513b6b99f2e75ed506c483363d",
+    "source_sha256": {
+      "data_scripts/data_loader.py": "787b38720c003fb24a7859576ba648d3775bfe9a6f68f29403ff68f0c4d97689",
+      "data_scripts/chunking.py": "ada7c5d1a12833a8d6a5617572c128773d9e04cbe887388c9944dd5e1c0dcf28",
+      "src/agent_app/retrieval/retriever.py": "ac2c184852c2175e63475fb20ffb6680f02ef2e36fd957fcdcf7cdbf51ea1575"
+    },
+    "script_sha256": "07ec915402e10be3cb0d4beb2304998132338b9eb7b81dec41f3bafd552c995d"
+  },
+  "seed_provenance": {
+    "package": "streamlit-data-for-dev-test",
+    "packaged_on": "2026-10-10",
+    "github_snapshot_date": "2026-10-06",
+    "source_repository": "https://github.com/streamlit/streamlit",
+    "docs_repository": "https://github.com/streamlit/docs",
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "purpose": "Seed pool for team evaluation curation and RAG preparation; not a frozen dev/test split, approved RAG corpus, or gold dataset.",
+    "counts": {
+      "issues": 240,
+      "comments": 1178,
+      "documentation_catalog_metadata_records": 403,
+      "full_markdown_records": 56,
+      "full_api_records": 1172,
+      "api_versions": 43,
+      "api_function_names": 34
+    },
+    "api_versions": [
+      "1.22.0",
+      "1.23.0",
+      "1.24.0",
+      "1.25.0",
+      "1.26.0",
+      "1.27.0",
+      "1.28.0",
+      "1.29.0",
+      "1.30.0",
+      "1.31.0",
+      "1.32.0",
+      "1.33.0",
+      "1.34.0",
+      "1.35.0",
+      "1.36.0",
+      "1.37.0",
+      "1.38.0",
+      "1.39.0",
+      "1.40.0",
+      "1.41.0",
+      "1.42.0",
+      "1.43.0",
+      "1.44.0",
+      "1.45.0",
+      "1.46.0",
+      "1.47.0",
+      "1.48.0",
+      "1.49.0",
+      "1.50.0",
+      "1.51.0",
+      "1.52.0",
+      "1.53.0",
+      "1.54.0",
+      "1.55.0",
+      "1.56.0",
+      "1.57.0",
+      "1.58.0",
+      "1.59.0",
+      "1.60.0",
+      "1.61.0",
+      "1.62.0",
+      "1.63.0",
+      "1.64.0"
+    ],
+    "checksum_scope": "Bytes of the included files listed below; manifest.json itself is excluded. Source-level hashes retain their original meaning."
+  },
+  "integrity": {
+    "zip_filename": "streamlit-data-for-dev-test.zip",
+    "zip_sha256": "02408667f34d9d0ff4adc9c055685d8ba7fd6fbd3f45ea8b4bf4d88b2ef42d80",
+    "zip_regular_members": 15,
+    "manifest_file_hashes_and_bytes_verified": true,
+    "extracted_members_match_zip": true,
+    "seed_unchanged_during_audit": true,
+    "zip_unchanged_during_audit": true,
+    "seed_file_sha256": {
+      "START_HERE.fa.txt": "dbcaec1685311700f4ae6fd726972dfc044fdedcf00bfb8adcd84eccb841a417",
+      "development_exposure.json": "c3c838788952a002c3a65c20528f94cce2e1c363d4cb99101086c0a436dfb028",
+      "schemas.json": "0dc21fb3d4a88d64d3c1f3ea3dca69be73ad0bef153eaf6c3a5071a11e5ad6d6",
+      "sources/data_inventory.md": "687e04b6c58905b0b6910f53213c953c5aadada6eba2f5840db0a83cceef158c",
+      "sources/docs_catalog.jsonl": "1de8f084bfde6a69975e5d7e1623dcda9a04363de76b9d0b4f5cb8a50b912b40",
+      "sources/docs_issue_links.json": "543d24e22df44d9a2a3c15f0199069cb7de6a9c0eeaf0ceba527b10cf026fe78",
+      "sources/docs_manifest.json": "3ee83ed7f9c989e144bd3a565057a91528d8edd22d827ae71544ba20aba87f7f",
+      "sources/docs_scope_candidates.jsonl": "0759c7893481a4da8a11ae1b53f3f932ec60a2358c91422d723c3a2cb38c791d",
+      "sources/docstrings_scope_candidates.jsonl": "d3c4213f613738656a0bd366f05cfa7d0562c7a78bac8afaeef395f262b13fe9",
+      "sources/github-snapshot-2026-10-06/catalog/comment_records.jsonl": "a342db46e2d384285ef91e8950364376b3994f7f768fb40cd74dadfd34d54174",
+      "sources/github-snapshot-2026-10-06/catalog/family_review_candidates.json": "b4d74b0d15516e3c8cc3052e068730642389ac46c4fa244a2d5b7226f2eccfb6",
+      "sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl": "0410c294a110e79f075d99f2516fa6f8dc4ddddcf6243eb55e6e4b9f5bf45a5e",
+      "sources/github-snapshot-2026-10-06/profile.json": "95a0956d0eea1c1671b4e23efa4d8ecdf9f5cfa23fb63f18e2868e3b0c7d310b",
+      "sources/github-snapshot-2026-10-06/selection.json": "f2605cfef026d30c7af427e7c9729f799eb3c546fc14519d3d86740ce484b863",
+      "manifest.json": "0dd2b0118cc936b8a423793dbdc45b80a7b10f3aa4f0bfbc7002f5fde3d8e37b"
+    }
+  },
+  "issues": {
+    "records": 240,
+    "source_field_names": [
+      "author_association",
+      "body",
+      "closed_at",
+      "comments",
+      "created_at",
+      "html_url",
+      "id",
+      "labels",
+      "number",
+      "state",
+      "state_reason",
+      "title",
+      "updated_at"
+    ],
+    "loader_contexts_after_exposure_filter": 236,
+    "exposure_list_ids": [
+      8061,
+      8901,
+      12629,
+      12782,
+      16914
+    ],
+    "excluded_ids_present_in_seed": [
+      8061,
+      8901,
+      12782,
+      16914
+    ],
+    "exposure_ids_absent_from_seed": [
+      12629
+    ],
+    "original_exposure_purpose": "Manual development exposure declarations for evaluation curation; not an enforced corpus filter or frozen split.",
+    "family_split_filter_implemented": false
+  },
+  "comments": {
+    "records": 1178,
+    "source_field_names": [
+      "author_association",
+      "author_type",
+      "body",
+      "created_at",
+      "html_url",
+      "id",
+      "is_bot",
+      "issue_number",
+      "issue_url",
+      "updated_at"
+    ],
+    "comments_returned_inside_allowed_issue_contexts": 984,
+    "filtered_nonbot_comments_for_exposed_issues": 21,
+    "index_source_issue_fields_referenced": [
+      "body",
+      "html_url",
+      "issue_number",
+      "state",
+      "title"
+    ],
+    "index_source_consumes_issue_comments": false,
+    "observation_kind": "loader_executed_and_indexer_AST_reviewed_no_actual_index_run",
+    "actual_indexed_comment_count": null
+  },
+  "api_docstrings": {
+    "records": 1172,
+    "source_field_names": [
+      "docs_commit",
+      "function",
+      "function_source_url",
+      "json_pointer",
+      "pinned_source_url",
+      "source_id",
+      "source_url",
+      "text",
+      "text_sha256",
+      "type",
+      "version"
+    ],
+    "chunks_produced_by_reviewed_code": 1172,
+    "output_metadata_keys": [
+      "function_name",
+      "keywords",
+      "source_url",
+      "type",
+      "version"
+    ],
+    "duplicate_chunk_ids": 0,
+    "minimum_chunk_chars": 274,
+    "maximum_chunk_chars": 13496,
+    "oversized_for_core_20k": [],
+    "source_metadata_present": {
+      "source_id": 1172,
+      "pinned_source_url": 1172,
+      "docs_commit": 1172,
+      "file": 0,
+      "json_pointer": 1172,
+      "version": 1172
+    },
+    "output_metadata_present": {
+      "source_url": 1172,
+      "source_commit": 0,
+      "source_span": 0,
+      "applicable_versions": 0,
+      "version": 1172
+    }
+  },
+  "markdown": {
+    "records": 56,
+    "source_field_names": [
+      "autofunctions",
+      "bytes",
+      "docs_commit",
+      "file",
+      "headings",
+      "pinned_source_url",
+      "sha256",
+      "source_id",
+      "source_url",
+      "suggested_scope",
+      "text",
+      "title",
+      "type"
+    ],
+    "chunks_produced_by_reviewed_code": 56,
+    "output_metadata_keys": [
+      "keywords",
+      "source_url",
+      "title",
+      "type"
+    ],
+    "duplicate_chunk_ids": 0,
+    "minimum_chunk_chars": 366,
+    "maximum_chunk_chars": 111252,
+    "oversized_for_core_20k": [
+      {
+        "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+        "chars": 21449
+      },
+      {
+        "source_id": "docs:content/develop/quick-references/release-notes/2023.md",
+        "chars": 52088
+      },
+      {
+        "source_id": "docs:content/develop/quick-references/release-notes/2024.md",
+        "chars": 70898
+      },
+      {
+        "source_id": "docs:content/develop/quick-references/release-notes/2025.md",
+        "chars": 94581
+      },
+      {
+        "source_id": "docs:content/develop/quick-references/release-notes/2026.md",
+        "chars": 111252
+      }
+    ],
+    "source_metadata_present": {
+      "source_id": 56,
+      "pinned_source_url": 56,
+      "docs_commit": 56,
+      "file": 56,
+      "json_pointer": 0,
+      "version": 0
+    },
+    "output_metadata_present": {
+      "source_url": 56,
+      "source_commit": 0,
+      "source_span": 0,
+      "applicable_versions": 0,
+      "version": 0
+    }
+  },
+  "api_versions_observed": {
+    "1.22.0": 20,
+    "1.23.0": 20,
+    "1.24.0": 20,
+    "1.25.0": 20,
+    "1.26.0": 21,
+    "1.27.0": 23,
+    "1.28.0": 23,
+    "1.29.0": 23,
+    "1.30.0": 23,
+    "1.31.0": 24,
+    "1.32.0": 24,
+    "1.33.0": 24,
+    "1.34.0": 24,
+    "1.35.0": 24,
+    "1.36.0": 24,
+    "1.37.0": 26,
+    "1.38.0": 26,
+    "1.39.0": 26,
+    "1.40.0": 29,
+    "1.41.0": 29,
+    "1.42.0": 29,
+    "1.43.0": 29,
+    "1.44.0": 29,
+    "1.45.0": 29,
+    "1.46.0": 29,
+    "1.47.0": 29,
+    "1.48.0": 29,
+    "1.49.0": 29,
+    "1.50.0": 29,
+    "1.51.0": 29,
+    "1.52.0": 30,
+    "1.53.0": 30,
+    "1.54.0": 30,
+    "1.55.0": 30,
+    "1.56.0": 31,
+    "1.57.0": 31,
+    "1.58.0": 32,
+    "1.59.0": 32,
+    "1.60.0": 32,
+    "1.61.0": 32,
+    "1.62.0": 33,
+    "1.63.0": 33,
+    "1.64.0": 33
+  },
+  "docs_linkage_review_candidates": [
+    {
+      "source_id": "docs:content/develop/quick-references/release-notes/2026.md",
+      "file": "content/develop/quick-references/release-notes/2026.md",
+      "issue_ids": [
+        8901
+      ],
+      "classification": "linkage_review_candidate_not_proven_duplicate_or_answer_leakage"
+    }
+  ],
+  "acceptance_boundaries": {
+    "R1_seed_provenance_and_pure_loader_preview_recorded": true,
+    "R2_frozen_split_allowlist_exclusion_not_implemented": true,
+    "R3_typed_core_adapter_not_implemented": true,
+    "pilot_possible_after_bounded_adapter_and_pilot_family_exclusion": true,
+    "held_out_model_or_RAG_evaluation": false
+  }
+}
