@@ -2,6 +2,12 @@
 
 This core utility proposes the next `CaseState` from an explicit structured user turn. It is a pure transformation: no database write, model call, or tool action. The offline HTTP adapter and UI controls use it. The standalone [SQLite tracker](sqlite-tracker.md), including consistent reads, is available on main; replacing the API's memory state and implementing durable HTTP recovery remain UI/tracker integration work. See the [core recovery handoff](persistent-core-handoff.md). No API key or credit is needed for this path.
 
+For reusable persistent composition, use [CoreTurnService](core-turn-service.fa.md).
+It binds the original ingress receipt to the post-commit snapshot before constructing
+ports, retains historical user context for short replies, and verifies the exact
+stored handoff before exposing a review candidate. It performs no approval and
+does not implement automatic interrupted-run resumption or change the current API.
+
 ## Input and behavior
 
 `orchestration.turns.propose_user_turn(case, turn)` returns a `CaseTransition` with an uncommitted `candidate`, `event_hash`, changed fact names, and invalidated checks. It receives the authoritative current case and a validated `UserTurn`, bound to that case and its expected revision. Facts come from explicit `ReportedFact(name, value)` entries; the helper does not parse `UserTurn.message` or guess missing values.

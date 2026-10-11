@@ -705,6 +705,65 @@ synced with released main passes **1,721 tests**, Ruff and locked dependencies.
 All 19 offline workflow commands pass. No production core or API recovery
 implementation, paid call, real key read or ledger change was added.
 
+## 2026-10-11 — reusable receipt-bound core composition (C2a)
+
+The prior shared release includes #19 at `464e55e` and #21 at `94b60e1`;
+main CI `38151154794` passed all 1,721 tests. New baselines use `94b60e1`.
+
+- Added `CoreTurnService` over the existing tracker ingress/read/stage port.
+  A fresh receipt must match the original event and post-commit revision before
+  constructing adapters. Replay never resumes reasoning. Complete pending
+  content is read and compared after staging, including ambiguous ACK recovery.
+- Preserved original and intermediate user messages when a short version reply
+  arrives. Historical text cannot set active facts or supply retrieved evidence;
+  old assistant answers are excluded. Canonical approved-question binding and
+  total context limits remain explicit. The original event remains unchanged.
+- Added full `current_case` freshness and an initial pending guard, alongside
+  the compatible revision callback. Mutable typed terminal errors are revalidated
+  at consumption; invalid codes cannot escape or buy a second model attempt.
+  Constructed nested extra attributes fail before serialization can scrub them.
+- Actual pre-change SQLite composition reproduced old-message/new-revision
+  staging, missing complaint after a short reply, and same-revision pending
+  drift. Same-input tests now prevent those observable failures; this measures
+  input preservation and operational guards, not real model/RAG quality.
+- **75 new focused cases pass; 1,796 full tests pass**, with one upstream
+  Starlette/httpx deprecation warning. Locked dependencies, Ruff (107 files),
+  20 offline CI workflow commands and the existing standalone tracker pilot pass.
+  The new registered dev pilot records **4 turns / 49 operational checks** with
+  actual temporary SQLite, complete original/edited/released handoffs, distinct
+  run IDs and restart/replay. It is scripted, answer-informed and not held-out.
+- Prepared a read-only C5 reconciliation packet; source fingerprints and primary
+  ledger DB/WAL/SHM are preserved. Halt remains true and the USD 0.02 uncertain
+  request remains unresolved. No key read, provider call or real cost was added.
+
+See [service and baseline results](core-turn-service.fa.md) and
+[C5 evidence needed](live-reconciliation-2026-10-11.fa.md). API still uses memory;
+HTTP/auth integration, durable outcome/resumption and atomic lifecycle staging
+are U3/T4 dependencies. Full reads cannot close the final same-revision ABA
+between the last observation and the write. R3/E1/E2/C4/C5 remain open.
+
+## 2026-10-11 — bounded readiness review and first RAG handoff
+
+Released core `37ce74a` remains green: exact-head main CI `38157117534`
+passed the existing 1,796 tests and registered four-turn / 49-check scripted
+SQLite pilot. A bounded independent review found no new reproducible defect
+in the core-owned C2a scope; no new runtime guard or architecture was added.
+
+RAG owner pushed `c0d450a` and opened PR #23. Its first Chroma backend does
+not yet implement `RetrievalRequest -> EvidenceBundle`. A probe using the
+actual candidate search method with injected collections, without importing
+Chroma or creating an index, reproduced `RetrievalResultInvalid` and zero
+model calls. The pinned-head CI stops at Ruff with 31 findings. Seed review
+also identifies missing preserved commit/location metadata and five Markdown
+chunks above the core excerpt limit. These are R3 integration requirements,
+not a measured regression in core or real retrieval quality.
+
+See the [pinned review and owner acceptance checklist](rag-handoff-review-2026-10-11.fa.md).
+R1/R2/R3/P4, API lifecycle/journal integration, evaluation split/rubric and C5
+remain open. No embedding, model download, paid request, key read or ledger
+change was performed. Continue with a small offline RAG adapter and the
+existing service/pilot; no additional framework is justified by this review.
+
 ## Next integration work
 
 ### Shared release — 2026-10-07
@@ -727,7 +786,7 @@ branch and accounting state rather than the current release.
 | --- | --- | --- |
 | Real retrieval adapter and frozen corpus | Data/RAG | Inspectable sources, metadata, and dev retrieval measurements |
 | Live billing reconciliation and real-case evaluation | Agent core + evaluation | Synthetic question/answer/repair compatibility now verified; still need account deduction comparison and held-out quality/cost measurements |
-| Connect the released SQLite tracker to API/UI | Tracker/tools + UI, core contract support | One authoritative state; authenticated review, interrupted-run status and HTTP restart/retry receipts |
+| Connect the released SQLite tracker to API/UI | Tracker/tools + UI, [CoreTurnService](core-turn-service.fa.md) for core composition | One authoritative state; authenticated review, interrupted-run status and HTTP restart/retry receipts |
 | Backend connection and evaluation cases | UI/evaluation | Live local flow and 15 dev + 15 test with required multi-turn cases |
 | Baseline versus final measurements | Whole team | Same cases, quality/cost/latency results, and failure analysis |
 | Systematic Adversarial Testing | Proposed core bonus, mentor agreement | Defined challenge set plus measured before/after improvement |

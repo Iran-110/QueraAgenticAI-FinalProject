@@ -7,6 +7,11 @@ The UI controls and standalone SQLite tracker are implemented; connecting the
 API to durable storage remains U3/T4 work. No API key is
 needed for this example or the automated checks.
 
+The core-owned [CoreTurnService](core-turn-service.fa.md) now composes the existing
+tracker port with lazy per-run adapters and full handoffs. Use it for persistent
+ingress rather than copying test-harness policy into the API; HTTP authentication,
+durable run status and atomic lifecycle staging still need their owners' work.
+
 ## A runnable offline adapter example
 
 Run `uv sync --locked --group dev` from the repository root, then copy this block
@@ -66,6 +71,10 @@ scripted until your module's behavior is verified. The public ports live in
 `src/agent_app/orchestration/ports.py`; models live in `src/agent_app/contracts.py`.
 
 ## Retrieval handoff
+
+The first Chroma backend is under review in PR #23. Its pinned-head
+[handoff review and R3 acceptance checklist](rag-handoff-review-2026-10-11.fa.md)
+describe the adapter work still needed; it is not connected by this guide.
 
 `search(RetrievalRequest)` returns an `EvidenceBundle` from exactly the requested
 `snapshot_id`, with at most `top_k` hits total across its queries. Preserve stable,
@@ -158,7 +167,8 @@ and [controlled Persian results](controlled-core-v9.fa.md).
 The tracker owns authoritative state. For user updates, deduplicate the event
 first, prepare `propose_user_turn`, then atomically commit using the expected
 revision and invalidate old approval. Read the committed state before invoking
-the engine; its `current_revision` callback should use the same tracker. See the
+the engine; its `current_case` callback should read the full state from the same
+tracker (`current_revision` alone checks only its number). See the
 [user-turn guide](user-turns.md) for replay and compare-and-swap requirements.
 
 The [persistent core handoff](persistent-core-handoff.md) specifies how the

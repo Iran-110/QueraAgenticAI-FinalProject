@@ -2,7 +2,7 @@
 
 from collections.abc import Callable
 from dataclasses import dataclass, field
-from typing import Literal
+from typing import Literal, get_args
 from uuid import uuid4
 
 from pydantic import ValidationError
@@ -20,7 +20,8 @@ from agent_app.contracts import (
     RunResult,
     TraceEvent,
 )
-from agent_app.orchestration.ports import Reasoner, ReasoningStopped, Retriever
+from agent_app.orchestration.ports import Reasoner, ReasoningStopCode, ReasoningStopped, Retriever
+from agent_app.orchestration.validation import detached_contract
 from agent_app.reasoning.code_checks import has_invalid_python_code
 from agent_app.reasoning.output import InvalidAnalysis, parse_analysis
 from agent_app.reasoning.proposal_checks import callback_code_issues
@@ -90,6 +91,10 @@ class _Progress:
 class SupportEngine:
     """Bound a single invocation; a future tracker must persist progress across resumes.
 
+    ``current_case`` checks observable full-state drift in addition to the legacy
+    revision callback. These reads are not a lock or lifecycle/run journal; the
+    tracker must still check the final handoff atomically when staging it.
+
     Valid citation IDs establish source presence, not semantic correctness. A real
     quality evaluation still needs human review and source-backed case labels.
     """
@@ -103,6 +108,7 @@ class SupportEngine:
         limits: RunLimits | None = None,
         top_k: int = 5,
         current_revision: Callable[[str], int] | None = None,
+        current_case: Callable[[str], CaseState] | None = None,
         proposal_checks: bool = False,
         evidence_scope: Literal["all", "exact_user_version"] = "all",
     ) -> None:
@@ -116,6 +122,7 @@ class SupportEngine:
         )
         self.top_k = top_k
         self.current_revision = current_revision
+        self.current_case = current_case
         if type(proposal_checks) is not bool:
             raise ValueError("Proposal checks require an explicit boolean.")
         self.proposal_checks = proposal_checks
@@ -133,11 +140,11 @@ class SupportEngine:
         run_id: str | None = None,
         proposal_requirements: ProposalRequirements | None = None,
     ) -> RunResult:
-        case = CaseState.model_validate(case.model_dump(warnings=False))
+        case = detached_contract(CaseState, case)
         if proposal_requirements is not None:
             try:
-                proposal_requirements = ProposalRequirements.model_validate(
-                    proposal_requirements.model_dump(warnings=False)
+                proposal_requirements = detached_contract(
+                    ProposalRequirements, proposal_requirements
                 )
                 known = {
                     fact.name.casefold()
@@ -211,16 +218,34 @@ class SupportEngine:
             return result(stopped.status, code=stopped.code)
 
     def _ensure_current(self, case: CaseState) -> None:
-        if self.current_revision is None:
+        # Reasoning cannot replace an outstanding proposal. Check supplied state
+        # even without a storage callback, before retrieval or model attempts.
+        if case.pending_proposal_id is not None:
+            raise _Stopped("PendingProposalMismatch", "stale")
+        if self.current_revision is not None:
+            try:
+                revision = self.current_revision(case.case_id)
+            except Exception:
+                raise _Stopped("CaseReadFailed") from None
+            if type(revision) is not int or revision < 0:
+                raise _Stopped("CaseReadFailed")
+            if revision != case.case_revision:
+                raise _Stopped("StaleRevision", "stale")
+        if self.current_case is None:
             return
         try:
-            revision = self.current_revision(case.case_id)
+            raw = self.current_case(case.case_id)
+            current = detached_contract(CaseState, raw)
         except Exception:
             raise _Stopped("CaseReadFailed") from None
-        if type(revision) is not int or revision < 0:
+        if current.case_id != case.case_id:
             raise _Stopped("CaseReadFailed")
-        if revision != case.case_revision:
+        if current.case_revision != case.case_revision:
             raise _Stopped("StaleRevision", "stale")
+        if current.pending_proposal_id != case.pending_proposal_id:
+            raise _Stopped("PendingProposalMismatch", "stale")
+        if current != case:
+            raise _Stopped("CaseContentMismatch", "stale")
 
     def _retrieve(
         self,
@@ -356,7 +381,21 @@ class SupportEngine:
                 continue
             except ReasoningStopped as stopped:
                 self._ensure_current(case)
-                raise _Stopped(stopped.code, stopped.status) from None
+                try:
+                    # Exception fields can change after their constructor's
+                    # checks. Invalid typed stops remain terminal and must keep
+                    # the consumed attempt without exporting adapter diagnostics.
+                    code, status = stopped.code, stopped.status
+                    if (
+                        type(code) is not str
+                        or code not in get_args(ReasoningStopCode.__value__)
+                        or type(status) is not str
+                        or status not in {"error", "budget_stopped"}
+                    ):
+                        raise ValueError
+                except Exception:
+                    raise _Stopped("ReasoningUnavailable") from None
+                raise _Stopped(code, status) from None
             except Exception:
                 self._ensure_current(case)
                 last_error = "ReasoningUnavailable"

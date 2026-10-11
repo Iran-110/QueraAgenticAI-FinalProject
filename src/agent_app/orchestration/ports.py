@@ -9,8 +9,10 @@ from agent_app.contracts import (
     EvidenceBundle,
     GroundedPlan,
     GroundedRequest,
+    ProposalHandoff,
     ReasoningContext,
     RetrievalRequest,
+    UserTurn,
 )
 
 type ReasoningOutput = AnalysisResult | Mapping[str, object] | str
@@ -70,3 +72,24 @@ class GroundedPlanner(Protocol):
     ) -> GroundedPlan | Mapping[str, object] | str:
         """Select references and routing only, within the caller's same attempt allowance."""
         ...
+
+
+class CaseTracker(Protocol):
+    """Existing persistent ingress/read/stage contract; review remains separate.
+
+    Reads must be consistent snapshots. Writes must enforce atomic event
+    deduplication and case/revision/proposal checks. The core revalidates these
+    mappings and never assumes that an ingress receipt means reasoning finished.
+    """
+
+    def apply_turn(
+        self,
+        turn: UserTurn,
+        *,
+        reply_to_proposal_id: str | None = None,
+        event_context: Mapping[str, str] | None = None,
+    ) -> Mapping[str, object]: ...
+
+    def read_case(self, case_id: str) -> Mapping[str, object]: ...
+
+    def stage_proposal(self, handoff: ProposalHandoff) -> Mapping[str, object]: ...
