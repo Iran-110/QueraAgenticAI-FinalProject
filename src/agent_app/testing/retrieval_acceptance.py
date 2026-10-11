@@ -301,6 +301,7 @@ def run_acceptance(
                     and h.source_url == expected[h.chunk_id].source_url
                     and h.source_id == expected[h.chunk_id].source_id
                     and h.source_type == expected[h.chunk_id].source_type
+                    and h.chunk_id in candidates
                     for h in bundle.hits
                 ),
             )
@@ -318,7 +319,12 @@ def run_acceptance(
                 bundle.hits == (boundary_hit,),
             )
         else:
-            check(f"{name}:metadata", all(h == expected.get(h.chunk_id) for h in bundle.hits))
+            check(
+                f"{name}:metadata",
+                all(
+                    h == expected.get(h.chunk_id) and h.chunk_id in candidates for h in bundle.hits
+                ),
+            )
         if name == "empty":
             check("empty:hits", bundle.hits == ())
 

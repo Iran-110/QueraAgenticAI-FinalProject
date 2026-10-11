@@ -115,6 +115,34 @@ def test_alternative_hit_ranking_and_query_order_are_accepted():
     assert receipt["quality_claim"] is False
 
 
+def test_valid_source_from_another_query_is_rejected_without_prescribing_ranking():
+    fixture = acceptance.load_fixture()
+    extra = next(
+        hit for hit in fixture["hits"] if hit["chunk_id"] == "multiselect-149-signature-v8"
+    )
+    known_query = next(
+        s["request"]["queries"]
+        for s in fixture["scenarios"]
+        if s["id"] == "known-version-release-source"
+    )
+
+    class CrossQuerySource:
+        def __init__(self, probe):
+            self.delegate = acceptance.fixture_factory(probe)
+
+        def search(self, request):
+            bundle = self.delegate.search(request)
+            if request.queries == tuple(known_query):
+                return bundle.model_copy(
+                    update={
+                        "hits": (acceptance.EvidenceHit.model_validate(extra),) + bundle.hits[1:]
+                    }
+                )
+            return bundle
+
+    rejected(CrossQuerySource, "known_version:metadata")
+
+
 def test_dropping_existing_commit_and_locator_is_rejected():
     def drop_metadata(bundle):
         return bundle.model_copy(
