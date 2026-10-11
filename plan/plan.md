@@ -101,6 +101,10 @@ pilot مشترک است، نه درخواست بازسازی بخش‌های د�
 pass شدند؛ شناسه و پروندهٔ درست، accounting درخواست، حفظ review، جداسازی فرم
 و نمایش همهٔ claimهای یک chunk. [شواهد و محدودیت‌ها](../docs/team-integration-review-2026-10-11.fa.md).
 این baseline منطق اتصال است؛ C4 برای تصمیم مدل همچنان باز می‌ماند.
+receipt تازهٔ [runner v3](../data/evaluation/receipts/offline/core-boundary-review-2026-10-11-v3.json)
+روی `37ab853`: ۱۳۶ check در ۱۱ turn، یک dev و دو scenario، صفر fail؛ همهٔ
+handoffها و متن released محفوظ‌اند. ترکیب اصلاحات با SQLite در checkout
+آزمایشی ۱۷۱۰ تست پاس کرد؛ API هنوز memory است و E2/C4/C5 باز می‌مانند.
 
 ### محمد بهنام — tracker و ابزارها
 

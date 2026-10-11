@@ -88,8 +88,8 @@ pass شدند؛ شکست import نبود. هشت تست اول با همان byt
 workflow نیز پاس شدند؛ آخرین تغییر نمایش claim با تست UI و full suite دوباره
 بررسی شد. baseline main بدون تغییر بود و هیچ regression نادیده گرفته نشد.
 در یک checkout آزمایشی، ترکیب PR #20 با این branch نیز ۱۷۱۰ تست و Ruff را
-پاس کرد؛ main و branch هم‌تیمی تغییر نکردند. شمارش caseهای پاس‌شده پس از آن
-با شرط coverage کامل دقیق‌تر شد و ۳۹ تست runner دوباره پاس شدند.
+پاس کرد؛ main و branch هم‌تیمی تغییر نکردند. شمارش caseهای پاس‌شده با شرط
+coverage کامل دقیق‌تر شد؛ ۳۹ تست runner و سپس دوباره ۱۷۱۰ تست ترکیب نهایی پاس شدند.
 
 برای بررسی اصلاحات:
 
@@ -115,3 +115,12 @@ metric پوشش داده نمی‌شود و همچنان بخشی از سقف م
 فرض نمی‌شود. CLI برای coverage ناقص بدون check ناموفق کد 2 می‌دهد. این محافظ
 جای اجرای branchهای شرطی E2 را نمی‌گیرد.
 case ناقص در `cases_all_passed` هم شمرده نمی‌شود؛ صفر fail تنها شرط پایان نیست.
+
+[receipt نهایی v3](../data/evaluation/receipts/offline/core-boundary-review-2026-10-11-v3.json)
+روی source commit `37ab853` ثبت شد: یک dev و دو scenario ساختگی، ۱۱ turn،
+۱۳۶ check و صفر fail؛ coverage کامل و هزینهٔ واقعی صفر. source hashها قبل و
+بعد یکسان بودند و fixtureهای ثبت‌شده تغییر نکردند. SHA-256 receipt:
+`f90e2d8c98b05a53b473c7e3d6b33cb2fb25c22b84aa04e03b7e05142f07fae1`.
+نسخهٔ میانی v2 روی `85f5dc8` نیز ۱۳۶ check پاس داشت؛ پیش از دقیق‌کردن شمارش
+coverage ساخته شد و بدون تغییر در output محلی حفظ شد. هیچ‌کدام نتیجهٔ مدل،
+RAG واقعی یا final test نیستند؛ approved/edit در runner از fixture می‌آیند.
