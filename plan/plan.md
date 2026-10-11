@@ -7,7 +7,7 @@
 | بخش | چیزی که داریم | چیزی که هنوز اثبات نشده |
 | --- | --- | --- |
 | core — ساسان | قراردادها، correction و GroundedPlan؛ C2a سرویس receipt/state/context و stage با SQLite، ورودی C2/P2 و خروجی C3، gateway تا review با HTTP شبیه‌سازی‌شده | اتصال API، journal/CAS lifecycle، RAG و کیفیت تصمیم مدل روی کیس‌های ندیده |
-| داده — آماده‌سازی اولیه ساسان؛ ادامه با حسن | ZIP اولیه: ۲۴۰ Issue، ۱۱۷۸ comment، ۵۶ متن Markdown و ۱۱۷۲ API record؛ GitHub snapshot ششم اکتبر | corpus تأییدشده، split نهایی، index و retrieval واقعی؛ ZIP هنوز corpus نیست |
+| داده — آماده‌سازی اولیه ساسان؛ ادامه با حسن | ZIP اولیه: ۲۴۰ Issue، ۱۱۷۸ comment، ۵۶ متن Markdown و ۱۱۷۲ API record؛ backend Chroma در PR #23 با head `c0d450a` | PR هنوز روی main نیست؛ CI lint قرمز، adapter قرارداد core و metadata/exclusion کامل لازم‌اند؛ ZIP هنوز corpus نیست |
 | UI/API — محمدحسن | structured input و review کامل در #13، انتخاب پرونده در #17؛ اصلاح جداسازی فرم و نمایش همهٔ claimها در #21؛ API همچنان scripted و حافظه‌ای | اتصال retriever/model و tracker واقعی، recovery و review معتبر در مرز server |
 | tracker/tools — محمد بهنام | SQLite مستقل با read سازگار در #19/#20 روی main؛ state/revision، correction، authenticated review، restart و dedup؛ ۱۶ تست مستقل پاس | اتصال API/UI با SQLite به‌عنوان تنها مرجع state، recovery و پذیرش pilot مشترک |
 | evaluation — محمدحسن | یک dev چهار‌نوبتی، manifest پیش‌نویس، runner #15 و scenarioهای عملیاتی #18 | ۱۵ dev و ۱۵ test، rubric و split freezeشده، اجرای واقعی و داوری کیفیت؛ سناریوهای synthetic جزو ۳۰ case نیستند |
@@ -55,7 +55,16 @@ PRهای #13، #14، #15، #17 و #18 روی main هستند؛ runner هنوز �
 | ساسان — C2a/C3 | [CoreTurnService و pilot مستقل](../docs/core-turn-service.fa.md) آماده‌اند؛ اتصال API را با محمدحسن و بهنام بررسی کند | receipt/replay، context چندنوبتی، full-state guard و ACK دقیق؛ ۴ turn و ۴۹ check عملیاتی | تا adapter API آماده شود، همین سرویس با SQLite و fixture اجرا شود؛ journal/CAS lifecycle هنوز بازند |
 | محمد بهنام — T4/P3 با U3 | با محمدحسن مسیر API را به تنها مرجع state یعنی SQLite وصل کند | replay پیش از مدل، review_id ثابت و hash دقیق؛ restart/retry/rollback و دو پرونده مستقل | اگر مرز API/auth آماده نیست، عملیات و کدهای خطای لازم را با fixture مشترک تحویل دهد |
 | محمدحسن — E1/E2/U3 | دریافت ZIP را تأیید و انتخاب خانواده‌ها را شروع کند؛ schema/rubric و branch سؤال‌ها را با core هماهنگ کند | manifest پیش‌نویس خانواده‌ها برای حسن؛ یک dev با مسیرهای معتبر؛ review جدا برای original و edited/released | اگر ZIP نرسیده، blocker تحویل را ثبت و schema/branchها را روی dev موجود جلو ببرد؛ منتظر index نماند |
-| حسن — R1–R3/P4 | provenance بسته و adapter fixture همان pilot را تحویل دهد | EvidenceBundle با snapshot/نسخه/span؛ پس از E1، exclusion و allowlist پیش از index | تا انتخاب خانواده‌ها کامل شود، adapter ثابت و metadata نامعلومِ صریح را مستقل تست کند |
+| حسن — R1–R3/P4 | backend موجود PR #23 را با main sync و CI را سبز کند؛ adapter قرارداد core را روی همان backend اضافه کند | EvidenceBundle با snapshot/نسخه/span، سقف کلی top_k و dedup؛ allowlist کوچک و exclusion dev پیش از index | تا E1 نهایی، collection/embedding ساختگی و docs مجاز pilot را تست کند؛ corpus نهایی هنوز باز بماند |
+
+بازبینی تازهٔ [PR #23 و شرط تحویل R3](../docs/rag-handoff-review-2026-10-11.fa.md)
+روی `c0d450a`: backend اولیه push شده، ولی port هنوز خروجی خام Chroma می‌دهد؛
+probe آفلاین با collection ساختگی در core به `RetrievalResultInvalid` و صفر
+فراخوانی مدل رسید. metadata commit/location و chunkهای بزرگ باید پیش از اتصال
+اصلاح شوند؛ [CI همان head](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38157755729)
+با ۳۱ finding در Ruff متوقف شد. R1/R2/R3/P4 بازند. بازبینی محدود core در
+`37ce74a` ایراد تازهٔ قابل بازتولیدی پیدا نکرد؛ ۱۷۹۶ تست و pilot چهار‌نوبتی
+با ۴۹ check، شاهد آمادگی آفلاین C2a هستند. این milestone کیفیت RAG/مدل نیست.
 
 انتخاب caseها لازم نیست منتظر index بماند. ZIP محلی اولیه دوباره با manifest
 بررسی شده؛ داشتن فایل در workspace ساسان به معنی رسیدن آن به هم‌تیمی یا وجودش

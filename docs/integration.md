@@ -72,6 +72,10 @@ scripted until your module's behavior is verified. The public ports live in
 
 ## Retrieval handoff
 
+The first Chroma backend is under review in PR #23. Its pinned-head
+[handoff review and R3 acceptance checklist](rag-handoff-review-2026-10-11.fa.md)
+describe the adapter work still needed; it is not connected by this guide.
+
 `search(RetrievalRequest)` returns an `EvidenceBundle` from exactly the requested
 `snapshot_id`, with at most `top_k` hits total across its queries. Preserve stable,
 unique chunk IDs and source IDs plus inspectable URLs and source sections. Carry
