@@ -79,6 +79,16 @@ metadata، query، سقف نتیجه، snapshot، quote و evidence قدیمی �
 شود؛ نتیجهٔ fixture کیفیت RAG یا test نهایی نیست. API/persistence، index و
 exclusion نهایی همچنان taskهای مستقل تیم‌اند.
 
+healthcheck پیش از push بعدی RAG — ۲۰۲۶-۱۰-۱۲: main در `febaefa` تمیز و
+با remote یکسان بود؛ [CI همان main](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38182028171)
+۱۸۲۸ تست و replayهای ثبت‌شده را پاس کرد. ۱۱۸ تست مرتبط core/SQLite/acceptance
+دوباره پاس شدند؛ fixture و هر ۴۷ fingerprint کد با receipt نهایی برابرند و
+لینک‌های اتصال سالم‌اند. review مستقل core blocker تازه‌ای پیدا نکرد.
+سقف query درخواست core با تعداد خواندن‌های داخلی backend فرق دارد؛ راهنمای
+C2b این مرز را روشن می‌کند و هزینه/کارایی RAG همچنان R4 است. تغییر production
+لازم نشد. قدم بعد، کد قابل اجرای R3/P4، اتصال API/SQLite با U3/T4 و freeze
+caseها/exclusion با E1/R2 است؛ C5 نیز به مدرک provider وابسته است.
+
 انتخاب caseها لازم نیست منتظر index بماند. ZIP محلی اولیه دوباره با manifest
 بررسی شده؛ داشتن فایل در workspace ساسان به معنی رسیدن آن به هم‌تیمی یا وجودش
 در repo نیست. schema و [rubric پیشنهادی core](../docs/evaluation-rubric.md) هنوز
