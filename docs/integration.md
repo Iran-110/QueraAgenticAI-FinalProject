@@ -76,6 +76,11 @@ The first Chroma backend is under review in PR #23. Its pinned-head
 [handoff review and R3 acceptance checklist](rag-handoff-review-2026-10-11.fa.md)
 describe the adapter work still needed; it is not connected by this guide.
 
+The [reusable RAG/core acceptance kit](rag-core-acceptance.fa.md) runs the same
+factory protocol against fixed evidence and a four-turn SQLite pilot. Inject
+only the actual adapter's read backend; retain its production search/mapping.
+The default factory tests fixtures only, not the production index or RAG quality.
+
 `search(RetrievalRequest)` returns an `EvidenceBundle` from exactly the requested
 `snapshot_id`, with at most `top_k` hits total across its queries. Preserve stable,
 unique chunk IDs and source IDs plus inspectable URLs and source sections. Carry
