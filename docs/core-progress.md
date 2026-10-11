@@ -2,6 +2,41 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-12 — reusable RAG/core acceptance kit (C2b)
+
+- Registered fixed evidence in `db9c2c0` before first execution. Five exact C3
+  source hits and P1 are hash-bound; the #12782/#12629 family is exposed dev,
+  answer-informed, with authored follow-ups. Labels/gold stay outside ports.
+- The same reviewed factory can inject a fixed read backend into an actual
+  adapter, preserving its production search/mapping. The default is explicitly
+  the reference fixture adapter, with no index, embedding or provider request.
+- The complete protocol passes **132/132 checks across 14 cases**. Four turns
+  run through CoreTurnService and actual temporary SQLite, using five retrieval
+  rounds and five scripted reasoning calls. Correction/refinement clears old
+  evidence, stale approval fails, edit has a fresh approval, retry after restart
+  returns one action, and old-event replay constructs no new adapters.
+- Negative controls reject metadata/quote/query/cap/snapshot defects, silent
+  oversize clipping, swallowed retrieval errors and stale refinement output.
+  Alternative hit/query ordering remains accepted. Review of the kit itself
+  fixed a false acceptance of forged synthetic-boundary metadata and a raw
+  inspection error for factories without a real source file.
+- CLI receipts are exclusive, bind source hashes and commit/dirty status, and
+  use safe error codes. Static candidate preflight never imports Chroma and
+  rejects an empty entrypoint. CI also runs the fixture kit; its default success
+  does not mean a production RAG adapter was accepted.
+
+Verified locally: locked sync, **1826 passing tests** (30 new acceptance/CLI
+tests), Ruff lint/format and the complete offline acceptance run. The first
+110/110, ten-case receipt is preserved; the final protocol activates additional
+already-registered version, URL and response-snapshot probes. More checks are
+coverage, not measured model/retrieval quality improvement. API cost is zero.
+
+PR #23 is still pinned to `bdb7c53`: existing CI is green but all four Python RAG
+files are zero bytes. Actual adapter acceptance R3/P4 remains open pending its
+push and reviewed binding. Nonempty request filters, HTTP/UI, CAS/journal
+lifecycle, actual index/ingestion, corpus exclusion and held-out quality remain
+outside this kit. [Protocol and handoff](rag-core-acceptance.fa.md).
+
 ## 2026-10-06 — first foundation
 
 Branch: `feat/agent-core-foundation`. Scope: the owner's contracts and orchestration, with deterministic offline adapters.

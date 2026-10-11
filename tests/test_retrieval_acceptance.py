@@ -64,6 +64,7 @@ def test_dynamic_factory_without_source_file_returns_inspectable_receipt():
     receipt = acceptance.run_acceptance(namespace["factory"], include_pilot=False)
     assert receipt["accepted"] is True
     assert receipt["factory"]["source_sha256"] is None
+    assert receipt["factory"]["source_available"] is False
     assert receipt["factory"]["name"] == "factory"
     assert all(receipt["checks"].values())
 
@@ -77,6 +78,7 @@ def test_callable_factory_instance_is_supported_without_raw_inspection_errors():
     assert receipt["accepted"] is True
     assert receipt["factory"]["name"] == "CallableFactory"
     assert receipt["factory"]["source_sha256"] is not None
+    assert receipt["factory"]["source_available"] is True
     assert all(receipt["checks"].values())
 
 

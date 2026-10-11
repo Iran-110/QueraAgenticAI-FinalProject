@@ -1,13 +1,13 @@
 # plan و checklist تیم — Streamlit Support Assistant
 
-به‌روزرسانی: ۲۰۲۶-۱۰-۱۱. این نسخه ادامهٔ plan محمدحسن روی `main` در commit `2ead870` است؛ [نسخهٔ قبلی](archive/plan-before-task-checklist.md) حفظ شده. مبنای regressionهای بازبینی `6131091` بود؛ انتشار tracker با `464e55e` و سپس #21 با `94b60e1` و [CI موفق](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38151154794) ثبت شده‌اند. مبنای baseline تازهٔ C2a همین `94b60e1` است. این فایل برای تقسیم کار و شرط پایان taskهاست؛ روزهای sprint قبلی را تاریخ تحویل حساب نمی‌کنیم. الزام‌ها از صورت اصلی پروژه می‌آیند، نه از ابزارها و frameworkهای پیشنهادی plan.
+به‌روزرسانی: ۲۰۲۶-۱۰-۱۲. این نسخه ادامهٔ plan محمدحسن روی `main` در commit `2ead870` است؛ [نسخهٔ قبلی](archive/plan-before-task-checklist.md) حفظ شده. مبنای regressionهای بازبینی `6131091` بود؛ انتشار tracker با `464e55e` و سپس #21 با `94b60e1` و [CI موفق](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38151154794) ثبت شده‌اند. مبنای baseline تازهٔ C2a همین `94b60e1` است. این فایل برای تقسیم کار و شرط پایان taskهاست؛ روزهای sprint قبلی را تاریخ تحویل حساب نمی‌کنیم. الزام‌ها از صورت اصلی پروژه می‌آیند، نه از ابزارها و frameworkهای پیشنهادی plan.
 
 ## وضعیت فعلی
 
 | بخش | چیزی که داریم | چیزی که هنوز اثبات نشده |
 | --- | --- | --- |
 | core — ساسان | قراردادها، correction و GroundedPlan؛ C2a سرویس receipt/state/context و stage با SQLite، ورودی C2/P2 و خروجی C3، gateway تا review با HTTP شبیه‌سازی‌شده | اتصال API، journal/CAS lifecycle، RAG و کیفیت تصمیم مدل روی کیس‌های ندیده |
-| داده — آماده‌سازی اولیه ساسان؛ ادامه با حسن | ZIP اولیه: ۲۴۰ Issue، ۱۱۷۸ comment، ۵۶ متن Markdown و ۱۱۷۲ API record؛ backend Chroma در PR #23 با head `c0d450a` | PR هنوز روی main نیست؛ CI lint قرمز، adapter قرارداد core و metadata/exclusion کامل لازم‌اند؛ ZIP هنوز corpus نیست |
+| داده — آماده‌سازی اولیه ساسان؛ ادامه با حسن | ZIP اولیه: ۲۴۰ Issue، ۱۱۷۸ comment، ۵۶ متن Markdown و ۱۱۷۲ API record؛ seed پایلوت در PR #23 با head `bdb7c53`؛ CI سبز | چهار فایل Python RAG صفر بایت؛ adapter هنوز قابل اجرا نیست، metadata/exclusion و corpus نهایی اثبات نشده‌اند |
 | UI/API — محمدحسن | structured input و review کامل در #13، انتخاب پرونده در #17؛ اصلاح جداسازی فرم و نمایش همهٔ claimها در #21؛ API همچنان scripted و حافظه‌ای | اتصال retriever/model و tracker واقعی، recovery و review معتبر در مرز server |
 | tracker/tools — محمد بهنام | SQLite مستقل با read سازگار در #19/#20 روی main؛ state/revision، correction، authenticated review، restart و dedup؛ ۱۶ تست مستقل پاس | اتصال API/UI با SQLite به‌عنوان تنها مرجع state، recovery و پذیرش pilot مشترک |
 | evaluation — محمدحسن | یک dev چهار‌نوبتی، manifest پیش‌نویس، runner #15 و scenarioهای عملیاتی #18 | ۱۵ dev و ۱۵ test، rubric و split freezeشده، اجرای واقعی و داوری کیفیت؛ سناریوهای synthetic جزو ۳۰ case نیستند |
@@ -66,6 +66,19 @@ probe آفلاین با collection ساختگی در core به `RetrievalResultI
 `37ce74a` ایراد تازهٔ قابل بازتولیدی پیدا نکرد؛ ۱۷۹۶ تست و pilot چهار‌نوبتی
 با ۴۹ check، شاهد آمادگی آفلاین C2a هستند. این milestone کیفیت RAG/مدل نیست.
 
+بازبینی جاری — ۲۰۲۶-۱۰-۱۲: head #23 هنوز `bdb7c53` است. CI قبلی سبز شده،
+ولی `adapter.py`، `retriever.py`، `data_scripts/chunking.py` و `data_scripts/data_loader.py` صفر بایت‌اند؛ پس
+ادعای پذیرش adapter از CI نمی‌کنیم. seed کوچک و README در branch حسن موجودند.
+کدها باید دوباره push شوند؛ R1/R2/R3/P4 بازند. [ثبت pinned head](../experiments/retrieval_acceptance/candidate-bdb7c53.json).
+
+سهم مستقل تازهٔ core، **C2b**، [kit پذیرش اتصال](../docs/rag-core-acceptance.fa.md)
+است: fixture پیش از اجرا ثبت شد؛ همان factory با تست port و چهار turn
+`CoreTurnService`/SQLite اجرا می‌شود. ۱۳۲/۱۳۲ check مرجع پاس؛ mutationهای
+metadata، query، سقف نتیجه، snapshot، quote و evidence قدیمی رد شدند.
+بعد از push، backend ثابت به seam کد واقعی حسن تزریق و همین protocol اجرا
+شود؛ نتیجهٔ fixture کیفیت RAG یا test نهایی نیست. API/persistence، index و
+exclusion نهایی همچنان taskهای مستقل تیم‌اند.
+
 انتخاب caseها لازم نیست منتظر index بماند. ZIP محلی اولیه دوباره با manifest
 بررسی شده؛ داشتن فایل در workspace ساسان به معنی رسیدن آن به هم‌تیمی یا وجودش
 در repo نیست. schema و [rubric پیشنهادی core](../docs/evaluation-rubric.md) هنوز
@@ -107,6 +120,7 @@ fixture پایهٔ این تحویل، [case چهار‌نوبتی C3](../experi
 
 - [x] **C1 — انتشار و اتصال نسخهٔ مشترک core.** commitهای V8/V9 و راهنمای اتصال در [PR #7](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/7) منتشر شدند؛ [CI روی commit 8cf56d8](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38033908496) پاس شد. ۱۴۱۴ تست محلی و Ruff هم پاس‌اند؛ مقایسهٔ baseline در گزارش‌های V8/V9 ثبت است. [CI ترکیب PR با main](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38033931700) هم با ۱۴۲۸ تست پاس شد؛ PR با اجازهٔ ساسان به main merge شد (`85b6027`).
 - [x] **C2a — coordinator مستقل core با tracker موجود.** [CoreTurnService و دستور اجرا](../docs/core-turn-service.fa.md): original-event replay و receipt عقب‌افتاده پیش از factory متوقف؛ پیام‌های کاربر برای reply کوتاه حفظ؛ facts فعال مرجع؛ full-state freshness؛ handoff کامل و read دقیق ACK. [تست سرویس](../tests/test_core_turn_service.py)، [context](../tests/test_core_conversation.py) و [freshness](../tests/test_engine_freshness.py) با SQLite واقعی و portهای تألیفی شاهدند؛ pilot موجود چهار turn و ۴۹ check عملیاتی دارد. این تیک سهم مستقل core را می‌بندد، نه API، journal/resume، CAS lifecycle یا کیفیت مدل.
+- [x] **C2b — kit پذیرش RAG/core با fixture.** [protocol و دستور اجرا](../docs/rag-core-acceptance.fa.md)، [fixture پیش‌ثبت‌شده `db9c2c0`](../experiments/retrieval_acceptance/fixture-v1.json) و [receipt](../experiments/retrieval_acceptance/results-fixture-v1.json): ۱۴ case، ۱۳۲ check با adapter مرجع؛ ۴ turn، ۵ retrieval و ۵ reasoning اسکریپتی با SQLite واقعی. mutation controls نقص‌های port و evidence قدیمی را رد می‌کنند؛ ترتیب ranking/query آزاد است. هزینهٔ API صفر؛ این تیک فقط ابزار پذیرش آفلاین را می‌بندد. اجرای همان kit روی adapter واقعی R3/P4 بعد از push باز است.
 - [ ] **C2 — اتصال ورودی چندنوبتی.** سهم core/API آفلاین در P2 انجام و [ثبت شد](../docs/user-intake-pilot.fa.md): reported_facts، checks_performed، context_changed، reply ثبت‌شده و original-event replay؛ تست correction/withdrawal/تغییر محیط پاس‌اند. U2 در #13 وصل شد و جداسازی فرم در #21 اصلاح شد؛ اتصال API به قراردادهای موجود T1–T3، همراه P3/T4 و recovery هنوز باز است. [قرارداد recovery](../docs/persistent-core-handoff.md) بین commit event و stage proposal، replay بدون اجرای مدل و read پس از ACK نامعلوم را مشخص می‌کند؛ coordinator core در C2a پیاده شده؛ اتصال HTTP/journal واقعی هنوز انجام نشده است. سؤال مبهم یا ویرایش‌شده fact فرضی نمی‌سازد؛ retry همان event باید پیش از stale/reply check و ساخت adapter شناسایی شود. [بازبینی مرز اتصال](../docs/team-integration-review-2026-10-11.fa.md).
 - [x] **C3 — قرارداد خروجی و review با fixture.** `ProposalHandoff` کل case، آخرین bundle واقعاً مصرف‌شده، تمام analysis و catalog واقعی GroundedPlan را نگه می‌دارد؛ gap کاربر/منبع، همهٔ منابع و scope نسخه قابل review هستند. منبع قبلی، تغییر case با revision یکسان، packet/متن دست‌کاری‌شده و approval پیش از edit رد می‌شوند. [PR #11](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/11)، [نتیجه و handoff](../docs/review-handoff-pilot.fa.md)، fixture ثبت‌شده `b085f7d`، helper `74e353b` و API `44d70a2` شاهدند. C3 فقط سهم core و مثال آفلاین را می‌بندد؛ نمایش U2 انجام شده و #21 تمام claimهای هر chunk را حفظ می‌کند. اتصال persistence/authentication/اجرای مجاز به API با T2/T3 باز می‌ماند؛ review معنایی و approval جدا هستند.
 - [ ] **C4 — baseline برای pilot متصل.** baseline ورودی HTTP روی `5af98e6` چهار fail و روی adapter جدید چهار pass دارد؛ [ثبت C2](../docs/user-intake-pilot.fa.md). baseline خروجی C3 روی کد واقعی `3f22ef9` با همان چهار regression بازپخش شد؛ چهار fail و روی نسخهٔ جدید چهار pass، همراه [case چهار‌نوبتی و محدودیت](../docs/review-handoff-pilot.fa.md). پس از اتصال P3/P4، مقایسهٔ تصمیم واقعی ادامه یابد؛ baseline نرم‌افزار جای کیفیت مدل/RAG/test نیست. receiptهای تاریخی حفظ شده‌اند؛ انتخاب Issue فعلی answer-informed و exposed است.

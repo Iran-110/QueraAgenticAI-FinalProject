@@ -325,10 +325,24 @@ def run_acceptance(
     def stopped(name, fault=None, *, snapshot=None):
         probe = build_probe(fixture, fault=fault)
         port = adapter(probe)
+        if name == "response_snapshot":
+
+            class WrongResponseSnapshot:
+                def search(self, request):
+                    output = port.search(request)
+                    return (
+                        output.model_copy(update={"snapshot_id": "authored-wrong-snapshot"})
+                        if isinstance(output, EvidenceBundle)
+                        else output
+                    )
+
+            engine_port = WrongResponseSnapshot()
+        else:
+            engine_port = port
         reasoner = FakeReasoner([_question()])
-        result = SupportEngine(port, reasoner, snapshot_id=snapshot or probe.snapshot_id).run(
-            CaseState(case_id=f"acceptance-{name}"), queries["single"]
-        )
+        result = SupportEngine(
+            engine_port, reasoner, snapshot_id=snapshot or probe.snapshot_id
+        ).run(CaseState(case_id=f"acceptance-{name}"), queries["single"])
         check(
             f"{name}:stop_before_model",
             result.status == "error"
@@ -361,6 +375,7 @@ def run_acceptance(
     scenario("malformed_url", lambda: stopped("malformed_url", "malformed_url"))
     scenario("failure", lambda: stopped("failure", "failure"))
     scenario("snapshot", lambda: stopped("snapshot", snapshot="wrong-configured-snapshot"))
+    scenario("response_snapshot", lambda: stopped("response_snapshot"))
 
     pilot = None
     if include_pilot:
@@ -402,5 +417,6 @@ def run_acceptance(
             "Fixed evidence and authored backend ordering; no retrieval relevance or model quality measurement.",
             "A candidate binding must retain the actual adapter mapping and inject only its read backend.",
             "HTTP, persistence lifecycle CAS/journal, ingestion segmentation, and final corpus exclusion are not covered.",
+            "Nonempty request filters are not covered by this protocol.",
         ],
     }
