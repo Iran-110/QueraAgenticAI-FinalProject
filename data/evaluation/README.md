@@ -120,6 +120,8 @@ a completed run. With no failed checks but incomplete coverage, the CLI exits
 2; failed checks exit 1, and a complete passing run exits 0. A coverage gap is
 not a semantic failure of the model. Conditional follow-up branches remain E2/E3
 owner work.
+Only cases with complete coverage and no failed checks count in
+`cases_all_passed`; every case also records its own coverage status.
 
 `quality_claim` remains false in both modes; neither a live adapter nor a passing
 operational receipt is a quality result. External, versioned semantic reviews

@@ -697,6 +697,8 @@ def run(
                 "summary": {
                     "checks": len(checks),
                     "failed": sum(not check["passed"] for check in checks),
+                    "coverage_complete": sum("usage" in step for step in case_run.steps)
+                    == len(fixture.data["turns"]),
                 },
                 "checks": checks,
                 "steps": case_run.steps,
@@ -737,7 +739,10 @@ def run(
             == sum(len(fixture.data["turns"]) for fixture in fixtures),
             "checks": checks_total,
             "failed": failed,
-            "cases_all_passed": sum(case["summary"]["failed"] == 0 for case in cases),
+            "cases_all_passed": sum(
+                case["summary"]["failed"] == 0 and case["summary"]["coverage_complete"]
+                for case in cases
+            ),
             "decisions": decisions,
             "latency_ms_total": round(sum(step["usage"]["latency_ms"] for step in turns), 1),
             "cost_usd_total": (

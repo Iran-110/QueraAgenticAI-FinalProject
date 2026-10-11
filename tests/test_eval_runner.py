@@ -557,6 +557,8 @@ def test_live_fixed_follow_up_branch_stops_as_coverage_before_incompatible_reply
     assert len(live.case_ids) == 1
     assert receipt["summary"]["fixture_branches_unavailable"] == 1
     assert not receipt["summary"]["coverage_complete"]
+    assert receipt["summary"]["cases_all_passed"] == 0
+    assert not receipt["cases"][0]["summary"]["coverage_complete"]
     assert receipt["cases"][0]["steps"][1]["runner_stop"] == "FixtureBranchUnavailable"
     assert receipt["quality_claim"] is False
 
