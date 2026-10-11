@@ -26,6 +26,15 @@ STATUSES = {
     "escalated": ("Escalated", "red"),
     "open": ("Open", "gray"),
 }
+# Fits the sidebar switcher; the case panel shows the full wording.
+SHORT_STATUSES = {
+    "new": "New",
+    "awaiting_review": "Needs review",
+    "awaiting_user": "Waiting for user",
+    "answer_sent": "Answered",
+    "escalated": "Escalated",
+    "open": "Open",
+}
 VERSION_SCOPES = {
     "exact_metadata_match": ("Version matches", "green"),
     "historical_or_other_version": ("Other version", "orange"),
@@ -43,34 +52,52 @@ def new_case_id() -> str:
     return f"case-{uuid4().hex[:8]}"
 
 
-def reset_case_state() -> None:
+def reset_view_state() -> None:
     st.session_state.editing = False
     st.session_state.notice = None
-    # An unsent event belongs to the case it was built for.
-    st.session_state.unsent = None
 
 
 if "case_id" not in st.session_state:
-    st.session_state.case_id = new_case_id()
-    reset_case_state()
+    first = new_case_id()
+    # Only cases opened in this browser session are listed; the API holds others too.
+    st.session_state.cases = [first]
+    st.session_state.case_id = first
+    # An unsent event stays with the case it was built for, so switching is safe.
+    st.session_state.unsent = {}
+    reset_view_state()
 
 client = get_client()
 
 
 def start_new_case() -> None:
-    st.session_state.case_id = new_case_id()
-    reset_case_state()
+    case_id = new_case_id()
+    st.session_state.cases.append(case_id)
+    st.session_state.case_id = case_id
+    reset_view_state()
+
+
+def unsent_event() -> dict | None:
+    return st.session_state.unsent.get(st.session_state.case_id)
+
+
+def case_label(case_id: str, statuses: dict[str, str]) -> str:
+    status = statuses.get(case_id)
+    return f"{case_id} · {SHORT_STATUSES[status]}" if status else case_id
 
 
 def deliver(event: dict) -> bool:
     """Send once; keep the identical event for retry only if it may not have arrived."""
+    case_id = st.session_state.case_id
     try:
-        view = client.send_event(st.session_state.case_id, event)
+        view = client.send_event(case_id, event)
     except ui_client.BackendError as error:
-        st.session_state.unsent = event if error.retryable else None
+        if error.retryable:
+            st.session_state.unsent[case_id] = event
+        else:
+            st.session_state.unsent.pop(case_id, None)
         st.session_state.notice = ("error", str(error))
         return False
-    st.session_state.unsent = None
+    st.session_state.unsent.pop(case_id, None)
     st.session_state.editing = False
     if view["intake"] and view["intake"]["replayed"]:
         st.session_state.notice = ("info", "Already received. Showing the original result.")
@@ -78,7 +105,7 @@ def deliver(event: dict) -> bool:
 
 
 def retry_unsent() -> None:
-    deliver(st.session_state.unsent)
+    deliver(unsent_event())
 
 
 def submit_reply(revision: int, proposal_id: str) -> None:
@@ -406,8 +433,24 @@ def render_update_form(view: dict) -> None:
 
 
 with st.sidebar:
-    st.subheader("Case")
-    st.caption(f"Case ID: `{st.session_state.case_id}`")
+    st.subheader("Cases")
+    statuses = {}
+    for case_id in st.session_state.cases:
+        try:
+            statuses[case_id] = client.get_case(case_id)["status"]
+        except ui_client.BackendError:
+            pass  # The main area explains a missing backend.
+    st.selectbox(
+        "Active case",
+        st.session_state.cases,
+        format_func=lambda case_id: case_label(case_id, statuses),
+        key="case_id",
+        on_change=reset_view_state,
+        help="Cases opened in this browser session. Each keeps its own state and proposals.",
+    )
+    waiting = sum(status == "awaiting_review" for status in statuses.values())
+    if waiting:
+        st.caption(f":material/pending_actions: {waiting} case(s) awaiting review")
     st.button("New case", icon=":material/add:", on_click=start_new_case, width="stretch")
     st.subheader("Offline scenario")
     st.selectbox(
@@ -429,7 +472,7 @@ if st.session_state.notice:
     getattr(st, kind)(text)
     st.session_state.notice = None
 
-if st.session_state.unsent:
+if unsent_event():
     with st.container(horizontal=True, vertical_alignment="center"):
         st.warning("Your last message may not have arrived.", icon=":material/sync_problem:")
         st.button("Retry sending", icon=":material/refresh:", on_click=retry_unsent)

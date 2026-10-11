@@ -1,0 +1,1039 @@
+{
+  "schema_version": 1,
+  "mode": "offline",
+  "quality_claim": false,
+  "git_commit": "a3012a3c9afc81f737e4dfab8d9e7c4ab8b4cd63",
+  "config": {
+    "agent": "scripted agent_script",
+    "model": null
+  },
+  "snapshots": [
+    "synthetic-eval-v1"
+  ],
+  "summary": {
+    "cases": 2,
+    "turns": 7,
+    "checks": 82,
+    "failed": 0,
+    "cases_all_passed": 2,
+    "decisions": {
+      "ask": 2,
+      "answer": 3,
+      "stopped": 2
+    },
+    "latency_ms_total": 68.1,
+    "cost_usd_total": "0"
+  },
+  "cases": [
+    {
+      "case_id": "syn-switch-a",
+      "split": "scenario",
+      "fixture_id": "scenario-case-switching-v1",
+      "fixture_path": "data/evaluation/scenarios/case-switching.json",
+      "fixture_sha256": "cef1f46a20ee1e149109088b484459ce0156ce3b6ad8baaddb471fb123591e4d",
+      "summary": {
+        "checks": 40,
+        "failed": 0
+      },
+      "checks": [
+        {
+          "step": "switch-1",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "switch-1",
+          "check": "revision",
+          "passed": true,
+          "detail": 1
+        },
+        {
+          "step": "switch-1",
+          "check": "pending decision",
+          "passed": true,
+          "detail": "ask"
+        },
+        {
+          "step": "switch-1",
+          "check": "decision is acceptable (gold)",
+          "passed": true,
+          "detail": "ask"
+        },
+        {
+          "step": "switch-1",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "switch-1",
+          "check": "case syn-switch-b untouched",
+          "passed": true,
+          "detail": 0
+        },
+        {
+          "step": "switch-2",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "switch-2",
+          "check": "revision",
+          "passed": true,
+          "detail": 1
+        },
+        {
+          "step": "switch-2",
+          "check": "pending decision",
+          "passed": true,
+          "detail": "answer"
+        },
+        {
+          "step": "switch-2",
+          "check": "decision is acceptable (gold)",
+          "passed": true,
+          "detail": "answer"
+        },
+        {
+          "step": "switch-2",
+          "check": "other case has a pending proposal",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "switch-2",
+          "check": "other case's proposal refused here",
+          "passed": true,
+          "detail": 409
+        },
+        {
+          "step": "switch-2",
+          "check": "refused approval changed nothing",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "switch-2",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "switch-2",
+          "check": "cites syn-uploader-doc",
+          "passed": true,
+          "detail": [
+            "syn-uploader-doc"
+          ]
+        },
+        {
+          "step": "switch-2",
+          "check": "approve",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "switch-2",
+          "check": "double approval refused",
+          "passed": true,
+          "detail": 409
+        },
+        {
+          "step": "switch-2",
+          "check": "status after decision",
+          "passed": true,
+          "detail": "answer_sent"
+        },
+        {
+          "step": "switch-2",
+          "check": "released drafts",
+          "passed": true,
+          "detail": [
+            "Synthetic demo answer: st.file_uploader returns None until a file is uploaded, so check for None before reading it."
+          ]
+        },
+        {
+          "step": "switch-2",
+          "check": "case syn-switch-a untouched",
+          "passed": true,
+          "detail": 1
+        },
+        {
+          "step": "switch-3",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "switch-3",
+          "check": "revision",
+          "passed": true,
+          "detail": 2
+        },
+        {
+          "step": "switch-3",
+          "check": "pending decision",
+          "passed": true,
+          "detail": "answer"
+        },
+        {
+          "step": "switch-3",
+          "check": "decision is acceptable (gold)",
+          "passed": true,
+          "detail": "answer"
+        },
+        {
+          "step": "switch-3",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "switch-3",
+          "check": "stale proposal approval refused",
+          "passed": true,
+          "detail": 409
+        },
+        {
+          "step": "switch-3",
+          "check": "stale draft never released",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "switch-3",
+          "check": "edit",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "switch-3",
+          "check": "edit creates new proposal",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "switch-3",
+          "check": "pre-edit approval refused",
+          "passed": true,
+          "detail": 409
+        },
+        {
+          "step": "switch-3",
+          "check": "approve edited",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "switch-3",
+          "check": "status after decision",
+          "passed": true,
+          "detail": "answer_sent"
+        },
+        {
+          "step": "switch-3",
+          "check": "released drafts",
+          "passed": true,
+          "detail": [
+            "Keep the counter in st.session_state so it is not reset on every rerun."
+          ]
+        },
+        {
+          "step": "switch-3",
+          "check": "case syn-switch-b untouched",
+          "passed": true,
+          "detail": 1
+        },
+        {
+          "step": "probe",
+          "check": "replay switch-1: replayed receipt",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "probe",
+          "check": "replay switch-1: revision and log unchanged",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "probe",
+          "check": "replay switch-2: replayed receipt",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "probe",
+          "check": "replay switch-2: revision and log unchanged",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "probe",
+          "check": "replay switch-3: replayed receipt",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "probe",
+          "check": "replay switch-3: revision and log unchanged",
+          "passed": true,
+          "detail": null
+        }
+      ],
+      "steps": [
+        {
+          "turn": "switch-1",
+          "conversation_source": "synthetic",
+          "request": {
+            "message": "My counter resets every time I click the button.",
+            "scenario": "ask",
+            "turn_id": "switch-1",
+            "expected_revision": 0
+          },
+          "proposal": {
+            "proposal_id": "b7d2619f-9842-5f16-bef7-6854680a67bc",
+            "case_revision": 1,
+            "decision": "ask",
+            "user_draft": "Can you share the code that creates and increments the counter?"
+          },
+          "cited_chunks": [],
+          "maintainer": "none",
+          "usage": {
+            "latency_ms": 10.8,
+            "model_attempts": 1,
+            "retrieval_rounds": 1,
+            "steps": 4,
+            "cost_usd": "0",
+            "input_tokens": 0,
+            "output_tokens": 0
+          },
+          "view_after": {
+            "case_revision": 1,
+            "status": "awaiting_review",
+            "facts": [],
+            "unknowns": [],
+            "intake": {
+              "turn_id": "switch-1",
+              "ingress_hash": "73f81f55fab00cf810c855c8f9441964b755708697b088906e26e20f50b9b935",
+              "prepared_hash": "79704475a1a613a05ef504263de60333e4c6e017248287313d832bd7b3c337b9",
+              "committed_revision": 1,
+              "changed_fact_names": [],
+              "context_changed": false,
+              "invalidated_checks": [],
+              "preparation": "unstructured",
+              "replayed": false
+            },
+            "log": [
+              {
+                "role": "user",
+                "text": "My counter resets every time I click the button."
+              }
+            ]
+          }
+        },
+        {
+          "turn": "switch-2",
+          "conversation_source": "synthetic",
+          "request": {
+            "message": "st.file_uploader gives me None.",
+            "scenario": "ask",
+            "turn_id": "switch-2",
+            "expected_revision": 0
+          },
+          "proposal": {
+            "proposal_id": "08bf0b2a-057b-5d10-9234-a217985abed2",
+            "case_revision": 1,
+            "decision": "answer",
+            "user_draft": "Synthetic demo answer: st.file_uploader returns None until a file is uploaded, so check for None before reading it."
+          },
+          "cited_chunks": [
+            "syn-uploader-doc"
+          ],
+          "maintainer": "approve",
+          "usage": {
+            "latency_ms": 7.4,
+            "model_attempts": 1,
+            "retrieval_rounds": 1,
+            "steps": 4,
+            "cost_usd": "0",
+            "input_tokens": 0,
+            "output_tokens": 0
+          },
+          "view_after": {
+            "case_revision": 1,
+            "status": "answer_sent",
+            "facts": [],
+            "unknowns": [],
+            "intake": {
+              "turn_id": "switch-2",
+              "ingress_hash": "fb52fd72bc5fbe848285b54350a50ccb0cdaa8789b12383d245599111bc01c13",
+              "prepared_hash": "951547cfe9a80214c2c1f256b67ed8fe4a4ddc7bdbe5caf3f818b0cd5841feb4",
+              "committed_revision": 1,
+              "changed_fact_names": [],
+              "context_changed": false,
+              "invalidated_checks": [],
+              "preparation": "unstructured",
+              "replayed": false
+            },
+            "log": [
+              {
+                "role": "user",
+                "text": "st.file_uploader gives me None."
+              },
+              {
+                "role": "assistant",
+                "text": "Synthetic demo answer: st.file_uploader returns None until a file is uploaded, so check for None before reading it.",
+                "decision": "answer",
+                "edited": false
+              }
+            ]
+          }
+        },
+        {
+          "turn": "switch-3",
+          "conversation_source": "synthetic",
+          "request": {
+            "message": "Back to the counter: count = 0, and a button adds one to it.",
+            "scenario": "ask",
+            "turn_id": "switch-3",
+            "expected_revision": 1
+          },
+          "proposal": {
+            "proposal_id": "4d64d002-836a-5076-96d8-e54329bce9dd",
+            "case_revision": 2,
+            "decision": "answer",
+            "user_draft": "Synthetic demo answer: keep the counter in st.session_state so it survives reruns."
+          },
+          "cited_chunks": [
+            "syn-counter-doc"
+          ],
+          "maintainer": "edit",
+          "usage": {
+            "latency_ms": 11.1,
+            "model_attempts": 1,
+            "retrieval_rounds": 1,
+            "steps": 4,
+            "cost_usd": "0",
+            "input_tokens": 0,
+            "output_tokens": 0
+          },
+          "view_after": {
+            "case_revision": 2,
+            "status": "answer_sent",
+            "facts": [],
+            "unknowns": [],
+            "intake": {
+              "turn_id": "switch-3",
+              "ingress_hash": "c44603972c06b44bd2abb6c8a72de16bfff14fd6a749201dd744fcd20924315b",
+              "prepared_hash": "4583b80b0c6e61021691892772723860ee51d480bf64aedd15bc56d4d1550cfc",
+              "committed_revision": 2,
+              "changed_fact_names": [],
+              "context_changed": false,
+              "invalidated_checks": [],
+              "preparation": "unstructured",
+              "replayed": false
+            },
+            "log": [
+              {
+                "role": "user",
+                "text": "My counter resets every time I click the button."
+              },
+              {
+                "role": "user",
+                "text": "Back to the counter: count = 0, and a button adds one to it."
+              },
+              {
+                "role": "system",
+                "text": "The maintainer edited the draft. It needs approval."
+              },
+              {
+                "role": "assistant",
+                "text": "Keep the counter in st.session_state so it is not reset on every rerun.",
+                "decision": "answer",
+                "edited": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "syn-tool-failure",
+      "split": "scenario",
+      "fixture_id": "scenario-tool-failure-v2",
+      "fixture_path": "data/evaluation/scenarios/tool-failure.json",
+      "fixture_sha256": "b1ac9a4b26027b6e17dda90d50750b4a663024bf1e2568f181f88c811f295865",
+      "summary": {
+        "checks": 42,
+        "failed": 0
+      },
+      "checks": [
+        {
+          "step": "tool-1",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "tool-1",
+          "check": "revision",
+          "passed": true,
+          "detail": 1
+        },
+        {
+          "step": "tool-1",
+          "check": "pending decision",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "tool-1",
+          "check": "decision is acceptable (gold)",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "tool-1",
+          "check": "stop reason logged",
+          "passed": true,
+          "detail": "The run stopped (error: RetrievalUnavailable). Nothing was proposed."
+        },
+        {
+          "step": "tool-1",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "tool-2",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "tool-2",
+          "check": "revision",
+          "passed": true,
+          "detail": 2
+        },
+        {
+          "step": "tool-2",
+          "check": "pending decision",
+          "passed": true,
+          "detail": "ask"
+        },
+        {
+          "step": "tool-2",
+          "check": "decision is acceptable (gold)",
+          "passed": true,
+          "detail": "ask"
+        },
+        {
+          "step": "tool-2",
+          "check": "model attempts",
+          "passed": true,
+          "detail": 2
+        },
+        {
+          "step": "tool-2",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "tool-2",
+          "check": "active fact streamlit_version",
+          "passed": true,
+          "detail": "1.50.0"
+        },
+        {
+          "step": "tool-2",
+          "check": "approve",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "tool-2",
+          "check": "double approval refused",
+          "passed": true,
+          "detail": 409
+        },
+        {
+          "step": "tool-2",
+          "check": "status after decision",
+          "passed": true,
+          "detail": "awaiting_user"
+        },
+        {
+          "step": "tool-2",
+          "check": "released drafts",
+          "passed": true,
+          "detail": [
+            "Can you share the code that creates and increments the counter?"
+          ]
+        },
+        {
+          "step": "tool-2",
+          "check": "approved question awaits reply",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "tool-3",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "tool-3",
+          "check": "revision",
+          "passed": true,
+          "detail": 3
+        },
+        {
+          "step": "tool-3",
+          "check": "pending decision",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "tool-3",
+          "check": "decision is acceptable (gold)",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "tool-3",
+          "check": "stop reason logged",
+          "passed": true,
+          "detail": "The run stopped (error: ReasoningUnavailable). Nothing was proposed."
+        },
+        {
+          "step": "tool-3",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "tool-4",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "tool-4",
+          "check": "revision",
+          "passed": true,
+          "detail": 4
+        },
+        {
+          "step": "tool-4",
+          "check": "pending decision",
+          "passed": true,
+          "detail": "answer"
+        },
+        {
+          "step": "tool-4",
+          "check": "decision is acceptable (gold)",
+          "passed": true,
+          "detail": "answer"
+        },
+        {
+          "step": "tool-4",
+          "check": "model attempts",
+          "passed": true,
+          "detail": 1
+        },
+        {
+          "step": "tool-4",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "tool-4",
+          "check": "cites syn-counter-doc",
+          "passed": true,
+          "detail": [
+            "syn-counter-doc"
+          ]
+        },
+        {
+          "step": "tool-4",
+          "check": "reject",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "tool-4",
+          "check": "status after decision",
+          "passed": true,
+          "detail": "open"
+        },
+        {
+          "step": "tool-4",
+          "check": "released drafts",
+          "passed": true,
+          "detail": []
+        },
+        {
+          "step": "probe",
+          "check": "replay tool-1: replayed receipt",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "probe",
+          "check": "replay tool-1: revision and log unchanged",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "probe",
+          "check": "replay tool-2: replayed receipt",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "probe",
+          "check": "replay tool-2: revision and log unchanged",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "probe",
+          "check": "replay tool-3: replayed receipt",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "probe",
+          "check": "replay tool-3: revision and log unchanged",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "probe",
+          "check": "replay tool-4: replayed receipt",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "probe",
+          "check": "replay tool-4: revision and log unchanged",
+          "passed": true,
+          "detail": null
+        }
+      ],
+      "steps": [
+        {
+          "turn": "tool-1",
+          "conversation_source": "synthetic",
+          "request": {
+            "message": "My counter resets every time I click the button.",
+            "scenario": "ask",
+            "turn_id": "tool-1",
+            "expected_revision": 0
+          },
+          "proposal": {
+            "proposal_id": null,
+            "case_revision": null,
+            "decision": null,
+            "user_draft": null
+          },
+          "cited_chunks": [],
+          "maintainer": "none",
+          "usage": {
+            "latency_ms": 5.0,
+            "model_attempts": null,
+            "retrieval_rounds": null,
+            "steps": null,
+            "cost_usd": "0",
+            "input_tokens": 0,
+            "output_tokens": 0
+          },
+          "view_after": {
+            "case_revision": 1,
+            "status": "open",
+            "facts": [],
+            "unknowns": [],
+            "intake": {
+              "turn_id": "tool-1",
+              "ingress_hash": "c836cef9305d3f9269228d3626f15754a37e937c09eae7b54ef0acfc1ead003f",
+              "prepared_hash": "f9d305452deb7b24fc8a9b911449966ed20701224e659c825c93cb8a9f0160f8",
+              "committed_revision": 1,
+              "changed_fact_names": [],
+              "context_changed": false,
+              "invalidated_checks": [],
+              "preparation": "unstructured",
+              "replayed": false
+            },
+            "log": [
+              {
+                "role": "user",
+                "text": "My counter resets every time I click the button."
+              },
+              {
+                "role": "system",
+                "text": "The run stopped (error: RetrievalUnavailable). Nothing was proposed."
+              }
+            ]
+          }
+        },
+        {
+          "turn": "tool-2",
+          "conversation_source": "synthetic",
+          "request": {
+            "message": "Trying again: the counter resets on every click. I use Streamlit 1.50.0.",
+            "scenario": "ask",
+            "turn_id": "tool-2",
+            "expected_revision": 1,
+            "reported_facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.50.0"
+              }
+            ],
+            "unknowns": [],
+            "checks_performed": [],
+            "context_changed": false
+          },
+          "proposal": {
+            "proposal_id": "71a423fb-9d91-5d47-ba02-942ee18dc369",
+            "case_revision": 2,
+            "decision": "ask",
+            "user_draft": "Can you share the code that creates and increments the counter?"
+          },
+          "cited_chunks": [],
+          "maintainer": "approve",
+          "usage": {
+            "latency_ms": 11.2,
+            "model_attempts": 2,
+            "retrieval_rounds": 1,
+            "steps": 5,
+            "cost_usd": "0",
+            "input_tokens": 0,
+            "output_tokens": 0
+          },
+          "view_after": {
+            "case_revision": 2,
+            "status": "awaiting_user",
+            "facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.50.0",
+                "status": "active",
+                "turn_id": "tool-2"
+              }
+            ],
+            "unknowns": [],
+            "intake": {
+              "turn_id": "tool-2",
+              "ingress_hash": "7ffafff82651bad891b39ed40bf7725949ff74a377b931ca802f92b86015d6ac",
+              "prepared_hash": "9839f0982dfd8b35906140ea758411fad0abe46cf5ae0bc0e550c98e9a8ed6ef",
+              "committed_revision": 2,
+              "changed_fact_names": [
+                "streamlit_version"
+              ],
+              "context_changed": false,
+              "invalidated_checks": [],
+              "preparation": "structured",
+              "replayed": false
+            },
+            "log": [
+              {
+                "role": "user",
+                "text": "My counter resets every time I click the button."
+              },
+              {
+                "role": "system",
+                "text": "The run stopped (error: RetrievalUnavailable). Nothing was proposed."
+              },
+              {
+                "role": "user",
+                "text": "Trying again: the counter resets on every click. I use Streamlit 1.50.0."
+              },
+              {
+                "role": "assistant",
+                "text": "Can you share the code that creates and increments the counter?",
+                "decision": "ask",
+                "edited": false
+              }
+            ]
+          }
+        },
+        {
+          "turn": "tool-3",
+          "conversation_source": "synthetic",
+          "request": {
+            "message": "Here is my code: count = 0, and a button that adds one to count.",
+            "scenario": "ask",
+            "turn_id": "tool-3",
+            "expected_revision": 2
+          },
+          "proposal": {
+            "proposal_id": null,
+            "case_revision": null,
+            "decision": null,
+            "user_draft": null
+          },
+          "cited_chunks": [],
+          "maintainer": "none",
+          "usage": {
+            "latency_ms": 5.4,
+            "model_attempts": null,
+            "retrieval_rounds": null,
+            "steps": null,
+            "cost_usd": "0",
+            "input_tokens": 0,
+            "output_tokens": 0
+          },
+          "view_after": {
+            "case_revision": 3,
+            "status": "open",
+            "facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.50.0",
+                "status": "active",
+                "turn_id": "tool-2"
+              }
+            ],
+            "unknowns": [],
+            "intake": {
+              "turn_id": "tool-3",
+              "ingress_hash": "e025e5a60bdd07007f14045d86349f3cb6968b6a980ebfd8bcd1af83c79294c9",
+              "prepared_hash": "03aa4e73cc6fd6208752588b3b13bc09abe9b1ca4d874e9f65def4f3a2cd09c4",
+              "committed_revision": 3,
+              "changed_fact_names": [],
+              "context_changed": false,
+              "invalidated_checks": [],
+              "preparation": "unstructured",
+              "replayed": false
+            },
+            "log": [
+              {
+                "role": "user",
+                "text": "My counter resets every time I click the button."
+              },
+              {
+                "role": "system",
+                "text": "The run stopped (error: RetrievalUnavailable). Nothing was proposed."
+              },
+              {
+                "role": "user",
+                "text": "Trying again: the counter resets on every click. I use Streamlit 1.50.0."
+              },
+              {
+                "role": "assistant",
+                "text": "Can you share the code that creates and increments the counter?",
+                "decision": "ask",
+                "edited": false
+              },
+              {
+                "role": "user",
+                "text": "Here is my code: count = 0, and a button that adds one to count."
+              },
+              {
+                "role": "system",
+                "text": "The run stopped (error: ReasoningUnavailable). Nothing was proposed."
+              }
+            ]
+          }
+        },
+        {
+          "turn": "tool-4",
+          "conversation_source": "synthetic",
+          "request": {
+            "message": "Could you look at it again?",
+            "scenario": "ask",
+            "turn_id": "tool-4",
+            "expected_revision": 3
+          },
+          "proposal": {
+            "proposal_id": "c4ccfaf7-301f-54c3-b613-5010e201b76a",
+            "case_revision": 4,
+            "decision": "answer",
+            "user_draft": "Synthetic demo answer: keep the counter in st.session_state so it survives reruns."
+          },
+          "cited_chunks": [
+            "syn-counter-doc"
+          ],
+          "maintainer": "reject",
+          "usage": {
+            "latency_ms": 17.2,
+            "model_attempts": 1,
+            "retrieval_rounds": 1,
+            "steps": 4,
+            "cost_usd": "0",
+            "input_tokens": 0,
+            "output_tokens": 0
+          },
+          "view_after": {
+            "case_revision": 4,
+            "status": "open",
+            "facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.50.0",
+                "status": "active",
+                "turn_id": "tool-2"
+              }
+            ],
+            "unknowns": [],
+            "intake": {
+              "turn_id": "tool-4",
+              "ingress_hash": "b858d747d5c1d81bd8cfa6a9b19e3bc3011cda63ed604f4cd51b7b6e89706d63",
+              "prepared_hash": "a91fa5cd297c474cac2183b931b3e60ab1c04b469589528c7f07bffd9191b4fd",
+              "committed_revision": 4,
+              "changed_fact_names": [],
+              "context_changed": false,
+              "invalidated_checks": [],
+              "preparation": "unstructured",
+              "replayed": false
+            },
+            "log": [
+              {
+                "role": "user",
+                "text": "My counter resets every time I click the button."
+              },
+              {
+                "role": "system",
+                "text": "The run stopped (error: RetrievalUnavailable). Nothing was proposed."
+              },
+              {
+                "role": "user",
+                "text": "Trying again: the counter resets on every click. I use Streamlit 1.50.0."
+              },
+              {
+                "role": "assistant",
+                "text": "Can you share the code that creates and increments the counter?",
+                "decision": "ask",
+                "edited": false
+              },
+              {
+                "role": "user",
+                "text": "Here is my code: count = 0, and a button that adds one to count."
+              },
+              {
+                "role": "system",
+                "text": "The run stopped (error: ReasoningUnavailable). Nothing was proposed."
+              },
+              {
+                "role": "user",
+                "text": "Could you look at it again?"
+              },
+              {
+                "role": "system",
+                "text": "The maintainer rejected the proposal. Nothing was sent."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
