@@ -54,6 +54,11 @@ __all__ = [
     "ProposalReviewResult",
     "SourceReviewEntry",
     "ProposalHandoff",
+    "ConversationEntry",
+    "TurnConversation",
+    "TrackerTurnReceipt",
+    "TrackerCaseView",
+    "TrackerStageReceipt",
 ]
 
 
@@ -802,3 +807,73 @@ class ProposalHandoff(Contract):
         if len({entry.chunk_id for entry in entries}) != len(entries):
             raise ValueError("source inventory must have unique chunk IDs")
         return entries
+
+
+class ConversationEntry(Contract):
+    """One caller-loaded persisted message; its text is untrusted context."""
+
+    actor: Literal["user", "assistant"]
+    reference_id: Identifier
+    revision: NonnegativeInt
+    text: Text
+
+
+class TurnConversation(Contract):
+    """Bind a committed user message to its authoritative conversation snapshot."""
+
+    entries: tuple[ConversationEntry, ...] = Field(min_length=1, max_length=1000)
+    latest_turn_id: Identifier
+    committed_revision: PositiveInt
+    latest_message: Text
+    reply_to_proposal_id: Identifier | None = None
+
+
+class TrackerTurnReceipt(Contract):
+    """Existing tracker ingress acknowledgement, never proof of completed reasoning."""
+
+    case_id: Identifier
+    turn_id: Identifier
+    ingress_hash: Sha256
+    prepared_hash: Sha256
+    committed_revision: PositiveInt
+    changed_fact_names: tuple[ShortText, ...] = Field(default=(), max_length=250)
+    context_changed: Annotated[bool, Field(strict=True)]
+    invalidated_checks: tuple[Text, ...] = Field(default=(), max_length=100)
+    preparation: Literal["structured", "unstructured", "canonical_version_reply"]
+    replayed: Annotated[bool, Field(strict=True)]
+
+
+class TrackerCaseView(Contract):
+    """One consistent tracker read, including same-revision proposal lifecycle."""
+
+    state: CaseState
+    history: tuple[ConversationEntry, ...] = Field(default=(), max_length=1000)
+    status: Literal["new", "open", "awaiting_review", "awaiting_user", "answer_sent", "escalated"]
+    pending_handoff: ProposalHandoff | None = None
+    awaiting_reply: ApprovedReplyQuestion | None = None
+
+    @model_validator(mode="after")
+    def consistent_view(self) -> Self:
+        if (self.state.pending_proposal_id is not None) != (self.pending_handoff is not None):
+            raise ValueError("pending state and content must agree")
+        if (self.status == "awaiting_review") != (self.pending_handoff is not None):
+            raise ValueError("pending lifecycle must agree")
+        if (self.status == "awaiting_user") != (self.awaiting_reply is not None):
+            raise ValueError("reply lifecycle must agree")
+        if self.awaiting_reply is not None and (
+            self.awaiting_reply.case_id != self.state.case_id
+            or self.awaiting_reply.case_revision != self.state.case_revision
+        ):
+            raise ValueError("reply must refer to the current case revision")
+        previous = 0
+        for entry in self.history:
+            if entry.revision < previous or entry.revision > self.state.case_revision:
+                raise ValueError("history must be ordered within the current revision")
+            previous = entry.revision
+        return self
+
+
+class TrackerStageReceipt(Contract):
+    case_id: Identifier
+    proposal_id: Identifier
+    revision: NonnegativeInt
