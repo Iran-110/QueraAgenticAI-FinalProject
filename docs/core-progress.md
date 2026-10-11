@@ -632,6 +632,41 @@ and held-out evaluation remain open. No team message, paid call or real key/ledg
 access occurred. This is a shared fixture integration release, not a final quality
 or end-to-end production success claim.
 
+## 2026-10-11 — team adapter and evaluation review
+
+Reviewed current main `6131091` (1,674 passing tests) and the standalone SQLite
+tracker PR #19 at `faedfc14`. UI/runner PRs #13–#18 were already merged, while
+retrieval/reasoning remain scripted and FastAPI still uses process memory.
+
+The runner now selects the actual case's adapter, gives new live experiments
+fresh model request identities, preserves full original/edited handoffs and
+released responses, and joins observed reasoning attempts to their exact
+ledger records, including stopped attempts. Settlement, reserved/uncertain
+amounts and unknown usage are distinct. A mandatory ledger preflight respects
+halt/availability and the USD 5 cap; public config is allowlisted. Live mode
+alone no longer claims quality. Fixed-path follow-ups stop as fixture coverage
+when they do not match the approved question. Rejected UI form inputs are
+cleared on case switching. Existing fixtures and receipts are unchanged.
+
+The tracker read snapshot fix is published separately in
+[PR #20](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/20), targeting
+the tracker branch. Its deterministic concurrency regression fails on the
+original tracker and passes after the fix. The existing four-turn #12782 dev
+fixture also passes when core handoffs are composed with actual SQLite across
+correction, refinement, edit/approval, restart/replay and withdrawal/rejection.
+All 16 tracker tests and the synced branch's 1,690-test suite pass. This does not
+connect API/UI to SQLite.
+
+On the runner/UI review branch, all 1,694 tests and Ruff pass, including 20 new
+tests. Nine targeted regressions fail on actual archived main `6131091` and pass
+after the fixes; the last UI fix preserves all claims linked to the same chunk.
+[Review evidence and remaining boundaries](team-integration-review-2026-10-11.fa.md)
+and the [E2 rubric recommendation](evaluation-rubric.md) explain the handoff.
+E2 scoring/conditional branches, frozen split/corpus checks, tracker/API recovery,
+real RAG and C5 remain open. Reasoner-only usage attribution excludes retrieval,
+embedding and adapter setup; provider billing is not reconciled by these tests.
+No paid requests, real key/ledger access or team messages occurred.
+
 ## Next integration work
 
 ### Shared release — 2026-10-07

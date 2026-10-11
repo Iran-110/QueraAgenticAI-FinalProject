@@ -1,22 +1,22 @@
 # plan و checklist تیم — Streamlit Support Assistant
 
-به‌روزرسانی: ۲۰۲۶-۱۰-۱۰. این نسخه ادامهٔ plan محمدحسن روی `main` در commit `2ead870` است؛ [نسخهٔ قبلی](archive/plan-before-task-checklist.md) حفظ شده. این فایل برای تقسیم کار و شرط پایان taskهاست؛ روزهای sprint قبلی را تاریخ تحویل حساب نمی‌کنیم. الزام‌ها از صورت اصلی پروژه می‌آیند، نه از ابزارها و frameworkهای پیشنهادی plan.
+به‌روزرسانی: ۲۰۲۶-۱۰-۱۱. این نسخه ادامهٔ plan محمدحسن روی `main` در commit `2ead870` است؛ [نسخهٔ قبلی](archive/plan-before-task-checklist.md) حفظ شده. آخرین مبنای بازبینی `main` در `6131091` است. این فایل برای تقسیم کار و شرط پایان taskهاست؛ روزهای sprint قبلی را تاریخ تحویل حساب نمی‌کنیم. الزام‌ها از صورت اصلی پروژه می‌آیند، نه از ابزارها و frameworkهای پیشنهادی plan.
 
 ## وضعیت فعلی
 
 | بخش | چیزی که داریم | چیزی که هنوز اثبات نشده |
 | --- | --- | --- |
-| core — ساسان | قراردادها، correction و GroundedPlan؛ ورودی C2/P2 و خروجی کامل C3 با fixture، و مسیر gateway تا review با HTTP شبیه‌سازی‌شده | کنترل‌های واقعی UI، tracker پایدار، RAG و کیفیت تصمیم مدل روی کیس‌های ندیده |
+| core — ساسان | قراردادها، correction و GroundedPlan؛ ورودی C2/P2 و خروجی کامل C3 با fixture، و مسیر gateway تا review با HTTP شبیه‌سازی‌شده | اتصال API به tracker پایدار، RAG و کیفیت تصمیم مدل روی کیس‌های ندیده |
 | داده — آماده‌سازی اولیه ساسان؛ ادامه با حسن | ZIP اولیه: ۲۴۰ Issue، ۱۱۷۸ comment، ۵۶ متن Markdown و ۱۱۷۲ API record؛ GitHub snapshot ششم اکتبر | corpus تأییدشده، split نهایی، index و retrieval واقعی؛ ZIP هنوز corpus نیست |
-| UI/API — محمدحسن | Streamlit/FastAPI با FakeRetriever/FakeReasoner؛ adapter جدید API، fact/correction/check و reply binding را می‌پذیرد | کنترل structured input در UI، نمایش review کامل، اتصال retriever/model واقعی |
-| tracker/tools — محمد بهنام | prototype حافظه‌ای DummyTracker در UI؛ بخش هزینهٔ SQLite مربوط به gateway است | ذخیرهٔ پایدار پرونده، dedup رخداد/اقدام، approval اتمیک، ادامه پس از restart |
-| evaluation — محمدحسن | تست‌های منطقی آفلاین و آزمایش‌های توسعهٔ core قابل بازپخش‌اند | ۱۵ dev و ۱۵ test مستقل، معیارهای freezeشده و نتیجهٔ سیستم نهایی |
+| UI/API — محمدحسن | structured input و review کامل در PR #13، انتخاب پرونده در #17؛ API هنوز با adapter اسکریپتی و storage حافظه‌ای | جداسازی کامل ورودی فرم بین پرونده‌ها، اتصال retriever/model و tracker واقعی |
+| tracker/tools — محمد بهنام | SQLite مستقل در PR #19: state/revision، correction، authenticated review، restart و dedup؛ ۱۴ تست اختصاصی و CI سبز | بازبینی خواندن سازگار state/history؛ اتصال API/UI و pilot مشترک پایدار؛ PR هنوز باز است |
+| evaluation — محمدحسن | یک dev چهار‌نوبتی، manifest پیش‌نویس، runner #15 و scenarioهای عملیاتی #18 | ۱۵ dev و ۱۵ test، rubric و split freezeشده، اجرای واقعی و داوری کیفیت؛ سناریوهای synthetic جزو ۳۰ case نیستند |
 
 تغییرات جدید core از طریق [PR #7](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/7) با merge commit `85b6027` به `main` رسیدند. [گزارش V8](../docs/controlled-core-v8.fa.md)، [گزارش V9](../docs/controlled-core-v9.fa.md) و [قرارداد GroundedPlan](../docs/extractive-core.md) شواهد این milestone هستند. ۱۴۱۴ تست آفلاین در milestone محلی و ۱۴۲۸ تست همراه API/UI در CI ترکیب PR با main پاس شدند؛ نتیجهٔ RAG واقعی یا test نهایی نیست. GroundedPlan اختیاری است و پیش‌فرض production تغییر نکرده.
 
 ## قدم مشترک بعدی: یک case چندمرحله‌ای از dev
 
-### تحویل مورد انتظار امروز — ۲۰۲۶-۱۰-۱۰
+### درخواست تحویل قبلی — ۲۰۲۶-۱۰-۱۰
 
 این‌ها درخواست هماهنگ‌کننده برای یک برش کوچک از pilot هستند؛ به معنی تأیید
 زمان‌بندی توسط اعضا یا بسته‌شدن taskهای اصلی نیستند. اگر خروجی امروز نمی‌رسد،
@@ -30,6 +30,25 @@
 | محمدحسن — P1/U2/E2 | ورودی fact/correction و نمایش کامل review به API وصل شود؛ همین fixture شروع pilot باشد | یک اجرای پیام/جواب سؤال/اصلاح/approve یا reject؛ برای split و caseهای ارزیابی، وضعیت واقعی و فایل manifest اولیه گزارش شود |
 
 تکمیل index نهایی، همهٔ ۳۰ case یا evaluation نهایی، شرط این تحویل کوچک نیست.
+
+### قدم جاری پس از بازبینی — ۲۰۲۶-۱۰-۱۱
+
+PRهای #13، #14، #15، #17 و #18 روی main هستند؛ runner هنوز کیفیت مدل را
+امتیاز نمی‌دهد و API از DummyTracker استفاده می‌کند. [بازبینی اتصال](../docs/team-integration-review-2026-10-11.fa.md)
+نتیجهٔ تست‌ها و اصلاحات مرزی را ثبت می‌کند؛ ادامهٔ کار هر نفر:
+
+| نفر | قدم بعد | خروجی قابل بررسی |
+| --- | --- | --- |
+| ساسان — C2/C3 | بررسی اتصال core/tracker و اصلاح مرز شناسه، receipt و جداسازی پرونده | regressionهای قبل/بعد، handoff کامل برای E2 و تست fixture مشترک با SQLite |
+| محمد بهنام — T1–T4/P3 | بازبینی fix در [PR #20](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/20) روی branch #19 و تعیین tracker به‌عنوان تنها مرجع state و review در API | read سازگار، review ID و hash دقیق، restart/retry و rollback در همان pilot |
+| محمدحسن — E1/E2/U3 | از ZIP اولیه انتخاب dev/test را شروع کند؛ rubric را نهایی و اتصال UI/API به tracker را با بهنام انجام دهد | manifest خانواده‌ها برای حسن؛ branchهای follow-up معتبر؛ rubric و review جدا برای draft و متن edited/released |
+| حسن — R1–R3/P4 | provenance بسته را بررسی و adapter همان pilot را بدهد؛ پس از manifest، corpus مجاز را بسازد | EvidenceBundle با snapshot/نسخه/span؛ exclusion و allowlist قابل بررسی پیش از index |
+
+انتخاب caseها لازم نیست منتظر index بماند. ZIP محلی اولیه دوباره با manifest
+بررسی شده؛ داشتن فایل در workspace ساسان به معنی رسیدن آن به هم‌تیمی یا وجودش
+در repo نیست. schema و [rubric پیشنهادی core](../docs/evaluation-rubric.md) هنوز
+نیاز به پیاده‌سازی و freeze توسط مالک evaluation دارند؛ checkbox کیفیت باز است.
+
 سهم core و fixture با [PR #11](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/11)
 به `main` رسید (`edea31c`) و [CI انتشار](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38045540320)
 پاس شد. قبل از اتصال، تغییرات محلی را حفظ کنید، `git fetch origin` بزنید و
@@ -65,18 +84,23 @@ fixture پایهٔ این تحویل، [case چهار‌نوبتی C3](../experi
 ### ساسان — core و قرارداد اتصال
 
 - [x] **C1 — انتشار و اتصال نسخهٔ مشترک core.** commitهای V8/V9 و راهنمای اتصال در [PR #7](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/7) منتشر شدند؛ [CI روی commit 8cf56d8](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38033908496) پاس شد. ۱۴۱۴ تست محلی و Ruff هم پاس‌اند؛ مقایسهٔ baseline در گزارش‌های V8/V9 ثبت است. [CI ترکیب PR با main](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38033931700) هم با ۱۴۲۸ تست پاس شد؛ PR با اجازهٔ ساسان به main merge شد (`85b6027`).
-- [ ] **C2 — اتصال ورودی چندنوبتی.** سهم core/API آفلاین در P2 انجام و [ثبت شد](../docs/user-intake-pilot.fa.md): reported_facts، checks_performed، context_changed، reply ثبت‌شده و original-event replay؛ تست correction/withdrawal/تغییر محیط پاس‌اند. برای بستن کامل، محمدحسن کنترل‌های U2 را به همین wire وصل کند و بهنام event/question/transition را با T2/T3 پایدار و اتمیک کند. سؤال مبهم یا ویرایش‌شده fact فرضی نمی‌سازد؛ retry همان event باید پیش از stale/reply check شناسایی شود.
+- [ ] **C2 — اتصال ورودی چندنوبتی.** سهم core/API آفلاین در P2 انجام و [ثبت شد](../docs/user-intake-pilot.fa.md): reported_facts، checks_performed، context_changed، reply ثبت‌شده و original-event replay؛ تست correction/withdrawal/تغییر محیط پاس‌اند. کنترل‌های U2 در #13 وصل شده‌اند؛ مرز فرم هنگام جابه‌جایی پرونده و اتصال پایدار T2/T3 در [بازبینی جدید](../docs/team-integration-review-2026-10-11.fa.md) دنبال می‌شود. سؤال مبهم یا ویرایش‌شده fact فرضی نمی‌سازد؛ retry همان event باید پیش از stale/reply check شناسایی شود.
 - [x] **C3 — قرارداد خروجی و review با fixture.** `ProposalHandoff` کل case، آخرین bundle واقعاً مصرف‌شده، تمام analysis و catalog واقعی GroundedPlan را نگه می‌دارد؛ gap کاربر/منبع، همهٔ منابع و scope نسخه قابل review هستند. منبع قبلی، تغییر case با revision یکسان، packet/متن دست‌کاری‌شده و approval پیش از edit رد می‌شوند. [PR #11](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/11)، [نتیجه و handoff](../docs/review-handoff-pilot.fa.md)، fixture ثبت‌شده `b085f7d`، helper `74e353b` و API `44d70a2` شاهدند. C3 فقط سهم core و مثال آفلاین را می‌بندد؛ نمایش UI با U2 و persistence/authentication/اجرای مجاز با T2/T3 باز می‌مانند. review معنایی و approval جدا هستند.
 - [ ] **C4 — baseline برای pilot متصل.** baseline ورودی HTTP روی `5af98e6` چهار fail و روی adapter جدید چهار pass دارد؛ [ثبت C2](../docs/user-intake-pilot.fa.md). baseline خروجی C3 روی کد واقعی `3f22ef9` با همان چهار regression بازپخش شد؛ چهار fail و روی نسخهٔ جدید چهار pass، همراه [case چهار‌نوبتی و محدودیت](../docs/review-handoff-pilot.fa.md). پس از اتصال P3/P4، مقایسهٔ تصمیم واقعی ادامه یابد؛ baseline نرم‌افزار جای کیفیت مدل/RAG/test نیست. receiptهای تاریخی حفظ شده‌اند؛ انتخاب Issue فعلی answer-informed و exposed است.
 - [ ] **C5 — رفع علت halt پیش از live.** هویت مدل، usage و هزینهٔ مورد اختلاف با مدرک provider تطبیق داده شود؛ uncertainty و ledger پاک یا reset نشوند. شرط پایان: علت توقف مستند، وضعیت ledger و مجوز/سقف باقی‌مانده روشن باشند؛ فقط آن‌وقت pilot کوچک ثبت‌شده اجرا شود.
 
-وابستگی: سهم مستقل ورودی P2 و خروجی C3 با fixture انجام شده است. قدم بعد اتصال retriever حسن (P4/R3)، state/approval پایدار بهنام (P3/T1–T3) و کنترل‌های UI و split/runner محمدحسن (U2/E1–E3) است. تک agent مبناست؛ اضافه کردن agent/framework نیاز به شکست واقعی و مقایسهٔ مستند دارد.
+وابستگی: سهم مستقل ورودی P2 و خروجی C3 با fixture انجام شده و U2 به API وصل است. قدم بعد اتصال retriever حسن (P4/R3)، state/approval پایدار بهنام (P3/T1–T3) و split/rubric/runner محمدحسن (E1–E3) است. تک agent مبناست؛ اضافه کردن agent/framework نیاز به شکست واقعی و مقایسهٔ مستند دارد.
 
 [بازبینی آمادگی core](../docs/core-readiness-audit.fa.md) دو regression تازه را
 روی `254e6542` با دو fail و بعد از `68dec4f` با دو pass ثبت می‌کند. مسیر gateway
 موجود تا review نیز با MockTransport و ledger موقت بررسی شده؛ این شاهد اتصال
-آفلاین است و C4/C5 یا کیفیت مدل را نمی‌بندد. تحویل امروزِ بالا ورودی ادامهٔ
+آفلاین است و C4/C5 یا کیفیت مدل را نمی‌بندد. تحویل کوچک بالا ورودی ادامهٔ
 pilot مشترک است، نه درخواست بازسازی بخش‌های دیگر توسط core.
+
+بازبینی ۱۱ اکتبر C2/C3/E3: نه regression روی `6131091` fail و پس از اصلاح
+pass شدند؛ شناسه و پروندهٔ درست، accounting درخواست، حفظ review، جداسازی فرم
+و نمایش همهٔ claimهای یک chunk. [شواهد و محدودیت‌ها](../docs/team-integration-review-2026-10-11.fa.md).
+این baseline منطق اتصال است؛ C4 برای تصمیم مدل همچنان باز می‌ماند.
 
 ### محمد بهنام — tracker و ابزارها
 
@@ -84,6 +108,8 @@ pilot مشترک است، نه درخواست بازسازی بخش‌های د�
 - [ ] **T2 — رخداد و revision.** event ID ثابت و hash محتوای ورودی قبل از stale-revision check بررسی شود؛ replay همان رخداد نتیجهٔ ذخیره‌شده بدهد، محتوای متفاوت با همان ID رد شود. commit state/event و invalidation approval اتمیک و با compare-and-swap باشد؛ بعد از commit state معتبر دوباره خوانده شود.
 - [ ] **T3 — approval و اجرای اقدام.** reviewer معتبر و همان case/revision/proposal ملاک باشند؛ reject هیچ اقدام نکند، edit پیشنهاد جدید و approval جدید بخواهد، correction مجوز قبلی را باطل کند. retry یا قطع ارتباط پس از اجرا نتیجهٔ قبلی را برگرداند و اقدام تکراری نسازد؛ review معنایی به‌تنهایی مجوز اجرا نیست.
 - [ ] **T4 — شواهد عملیاتی pilot و evaluation.** برای retry/restart/stale/reject/edit/خرابی ابزار receipt بدهد، نتیجهٔ ابزار در وضعیت و تصمیم بعدی مصرف شود و دستور reset واقعی tracker را مستند کند. تست pytest این بخش و log امن با خودش؛ محمدحسن این شواهد را در گزارش evaluation استفاده کند.
+
+وضعیت بازبینی: [PR #19](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/19) پیاده‌سازی مستقل T1–T3 را دارد؛ ۱۴ تست و pilot آن محلی پاس شدند. [PR #20](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/20)، روی branch همان PR، read یک‌دست و تست fixture مشترک core/SQLite را اضافه می‌کند: ۱۶ تست tracker و پس از sync main، ۱۶۹۰ تست کل branch پاس. هنوز merge نشده؛ اتصال به API با یک مرجع state لازم است و CI مستقل شرط پایان P3 یا U3 نیست. [گزارش بازبینی](../docs/team-integration-review-2026-10-11.fa.md).
 
 وابستگی: T1–T3 با قراردادهای فعلی و fixture مستقل قابل انجام‌اند؛ برای اتصال، ورودی UserTurn و proposal دقیق از core/API لازم است. اقدامات فقط روی tracker محلی‌اند.
 
@@ -100,6 +126,8 @@ pilot مشترک است، نه درخواست بازسازی بخش‌های د�
 - [ ] **E6 — bonus و ارائه.** فقط پس از مسیر اصلی، Adversarial Testing با دامنهٔ توافق‌شدهٔ منتور و مقایسهٔ منصفانه اجرا شود؛ اسلاید و README با رفتار و هزینهٔ واقعی هماهنگ شوند.
 
 وابستگی: E1/E2 و U2 با fixture اکنون قابل انجام‌اند؛ E1 قبل از R2، E4 قبل از E5، و U3 به R3/T1–T3/C2–C3 وابسته است. test برای انتخاب مدل، prompt، retrieval یا architecture استفاده نشود.
+
+یادداشت بازبینی E2/E3: [rubric پیشنهادی](../docs/evaluation-rubric.md) با `AnalysisResult` و `ProposalHandoff` سازگار است؛ evidence_links به‌تنهایی اثبات پشتیبانی تمام ادعاها نیست. تا داوری مستقل، `live` فقط نوع اجراست و quality_claim باید false بماند. gold/expected مسیر offline را با مسیرهای معتبر live یکی نکنیم؛ manifest/corpus frozen و پاسخ‌های شرطی چندنوبتی هنوز کار E1–E3 هستند. receiptهای قبلی حفظ شوند.
 
 ## نسبت case، corpus، UI و pytest
 
