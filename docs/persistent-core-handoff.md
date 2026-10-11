@@ -3,7 +3,8 @@
 The standalone `SQLiteCaseTracker` is available after PR #19, including PR #20's
 consistent read snapshot. FastAPI still uses process memory. This document is
 the core owner's handoff for U3/T4, not an implemented durable HTTP coordinator
-or a run-resumption journal.
+or a run-resumption journal. The reusable core composition is now implemented
+as [CoreTurnService](core-turn-service.fa.md); HTTP integration still remains U3/T4.
 
 ## One authoritative state
 
@@ -15,7 +16,8 @@ the original event before reply preparation or stale-revision checks.
 For a **fresh** event, read state from that tracker after the commit. Its revision
 must equal the receipt's `committed_revision`; otherwise a newer turn has already
 won and this old message must not be run against the newer facts. Give the same
-tracker to `SupportEngine.current_revision`. Keep model/retrieval work outside
+tracker to `SupportEngine.current_case` for full state freshness; the older
+`current_revision` callback checks only its number. Keep model/retrieval work outside
 SQLite write transactions, then use `stage_proposal` to check the full case and
 revision atomically. Every new accepted turn needs its own caller-owned run ID;
 the test fixture's constant run ID is only for its isolated single-run database.
@@ -55,8 +57,10 @@ neither retries nor integration tests may clear uncertainty or reset the budget.
 
 ## What the core supplies and what is still needed
 
-Core supplies the pure user transition, approved-question reply preparation,
-bounded engine, current-revision callback, complete `ProposalHandoff`, and stale
+Core supplies `CoreTurnService` with receipt-bound lazy adapters, historical user
+context, read-only exact pending recovery, the pure user transition,
+approved-question reply preparation, bounded engine, full-current-case callback,
+complete `ProposalHandoff`, and stale
 handoff checks. The existing #12782 dev fixture tests canonical follow-up,
 correction, refinement/final evidence, authenticated edit/approval, restart and
 withdrawal against actual SQLite. It remains answer-informed, scripted and dev
@@ -66,6 +70,10 @@ The [failure-boundary tests](../tests/test_core_tracker_failure_boundaries.py)
 exercise the races and interruption policy above with actual SQLite and scripted
 ports. Their small coordinator is a test harness, not a production API adapter.
 They do not persist a reasoning outcome or prove HTTP/UI restart behavior.
+The newer [service tests](../tests/test_core_turn_service.py) invoke the actual
+core coordinator rather than those historical harness helpers. Full snapshot
+reads stop observed lifecycle changes; they cannot close the final ABA race
+after the last read. Atomic run/lifecycle identity at staging remains T4 work.
 All 11 failure-boundary cases and the 16 tracker tests pass together. They
 include a fresh event superseded before the post-commit read, interruption both
 before reasoning and after reasoning/before staging, exact lost-ack recovery,
@@ -87,4 +95,5 @@ support scoring and conditional conversational branches remain E2 work.
 ```bash
 uv run pytest -q tests/test_sqlite_tracker.py tests/test_core_tracker_failure_boundaries.py
 uv run python scripts/tracker_pilot.py
+uv run python scripts/core_tracker_pilot.py --output /tmp/core-tracker-pilot-new.json
 ```

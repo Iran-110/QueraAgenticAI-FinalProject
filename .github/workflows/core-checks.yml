@@ -68,3 +68,5 @@ jobs:
         run: uv run agent-app gateway-demo --scenario repair
       - name: Smoke-test user facts and corrections without storage
         run: uv run agent-app turn-demo
+      - name: Replay registered dev through persistent core service without network
+        run: uv run python scripts/core_tracker_pilot.py --output "$RUNNER_TEMP/core-tracker-pilot.json"

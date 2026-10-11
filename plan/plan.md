@@ -1,12 +1,12 @@
 # plan و checklist تیم — Streamlit Support Assistant
 
-به‌روزرسانی: ۲۰۲۶-۱۰-۱۱. این نسخه ادامهٔ plan محمدحسن روی `main` در commit `2ead870` است؛ [نسخهٔ قبلی](archive/plan-before-task-checklist.md) حفظ شده. مبنای regressionهای بازبینی `6131091` بود؛ پس از merge tracker، `main` در `464e55e` است. این فایل برای تقسیم کار و شرط پایان taskهاست؛ روزهای sprint قبلی را تاریخ تحویل حساب نمی‌کنیم. الزام‌ها از صورت اصلی پروژه می‌آیند، نه از ابزارها و frameworkهای پیشنهادی plan.
+به‌روزرسانی: ۲۰۲۶-۱۰-۱۱. این نسخه ادامهٔ plan محمدحسن روی `main` در commit `2ead870` است؛ [نسخهٔ قبلی](archive/plan-before-task-checklist.md) حفظ شده. مبنای regressionهای بازبینی `6131091` بود؛ انتشار tracker با `464e55e` و سپس #21 با `94b60e1` و [CI موفق](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38151154794) ثبت شده‌اند. مبنای baseline تازهٔ C2a همین `94b60e1` است. این فایل برای تقسیم کار و شرط پایان taskهاست؛ روزهای sprint قبلی را تاریخ تحویل حساب نمی‌کنیم. الزام‌ها از صورت اصلی پروژه می‌آیند، نه از ابزارها و frameworkهای پیشنهادی plan.
 
 ## وضعیت فعلی
 
 | بخش | چیزی که داریم | چیزی که هنوز اثبات نشده |
 | --- | --- | --- |
-| core — ساسان | قراردادها، correction و GroundedPlan؛ ورودی C2/P2 و خروجی کامل C3 با fixture، و مسیر gateway تا review با HTTP شبیه‌سازی‌شده | اتصال API به tracker پایدار، RAG و کیفیت تصمیم مدل روی کیس‌های ندیده |
+| core — ساسان | قراردادها، correction و GroundedPlan؛ C2a سرویس receipt/state/context و stage با SQLite، ورودی C2/P2 و خروجی C3، gateway تا review با HTTP شبیه‌سازی‌شده | اتصال API، journal/CAS lifecycle، RAG و کیفیت تصمیم مدل روی کیس‌های ندیده |
 | داده — آماده‌سازی اولیه ساسان؛ ادامه با حسن | ZIP اولیه: ۲۴۰ Issue، ۱۱۷۸ comment، ۵۶ متن Markdown و ۱۱۷۲ API record؛ GitHub snapshot ششم اکتبر | corpus تأییدشده، split نهایی، index و retrieval واقعی؛ ZIP هنوز corpus نیست |
 | UI/API — محمدحسن | structured input و review کامل در #13، انتخاب پرونده در #17؛ اصلاح جداسازی فرم و نمایش همهٔ claimها در #21؛ API همچنان scripted و حافظه‌ای | اتصال retriever/model و tracker واقعی، recovery و review معتبر در مرز server |
 | tracker/tools — محمد بهنام | SQLite مستقل با read سازگار در #19/#20 روی main؛ state/revision، correction، authenticated review، restart و dedup؛ ۱۶ تست مستقل پاس | اتصال API/UI با SQLite به‌عنوان تنها مرجع state، recovery و پذیرش pilot مشترک |
@@ -52,7 +52,7 @@ PRهای #13، #14، #15، #17 و #18 روی main هستند؛ runner هنوز �
 
 | نفر | قدم امروز | خروجی قابل بررسی | اگر وابستگی مانع بود |
 | --- | --- | --- | --- |
-| ساسان — C2/C3 | [قرارداد recovery و ۱۱ تست مرزی](../docs/persistent-core-handoff.md) آماده‌اند؛ همان checkها را هنگام اتصال API با محمدحسن و بهنام بررسی کند | replay بدون مدل تازه، correction حین run/قبل stage، ACK دقیق و rollback؛ کل نسخه ۱۷۲۱ تست پاس | تا adapter API آماده شود، شواهد همین SQLite و fake ports مبنا باشند؛ journal/اتصال واقعی هنوز بازند |
+| ساسان — C2a/C3 | [CoreTurnService و pilot مستقل](../docs/core-turn-service.fa.md) آماده‌اند؛ اتصال API را با محمدحسن و بهنام بررسی کند | receipt/replay، context چندنوبتی، full-state guard و ACK دقیق؛ ۴ turn و ۴۹ check عملیاتی | تا adapter API آماده شود، همین سرویس با SQLite و fixture اجرا شود؛ journal/CAS lifecycle هنوز بازند |
 | محمد بهنام — T4/P3 با U3 | با محمدحسن مسیر API را به تنها مرجع state یعنی SQLite وصل کند | replay پیش از مدل، review_id ثابت و hash دقیق؛ restart/retry/rollback و دو پرونده مستقل | اگر مرز API/auth آماده نیست، عملیات و کدهای خطای لازم را با fixture مشترک تحویل دهد |
 | محمدحسن — E1/E2/U3 | دریافت ZIP را تأیید و انتخاب خانواده‌ها را شروع کند؛ schema/rubric و branch سؤال‌ها را با core هماهنگ کند | manifest پیش‌نویس خانواده‌ها برای حسن؛ یک dev با مسیرهای معتبر؛ review جدا برای original و edited/released | اگر ZIP نرسیده، blocker تحویل را ثبت و schema/branchها را روی dev موجود جلو ببرد؛ منتظر index نماند |
 | حسن — R1–R3/P4 | provenance بسته و adapter fixture همان pilot را تحویل دهد | EvidenceBundle با snapshot/نسخه/span؛ پس از E1، exclusion و allowlist پیش از index | تا انتخاب خانواده‌ها کامل شود، adapter ثابت و metadata نامعلومِ صریح را مستقل تست کند |
@@ -97,12 +97,15 @@ fixture پایهٔ این تحویل، [case چهار‌نوبتی C3](../experi
 ### ساسان — core و قرارداد اتصال
 
 - [x] **C1 — انتشار و اتصال نسخهٔ مشترک core.** commitهای V8/V9 و راهنمای اتصال در [PR #7](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/7) منتشر شدند؛ [CI روی commit 8cf56d8](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38033908496) پاس شد. ۱۴۱۴ تست محلی و Ruff هم پاس‌اند؛ مقایسهٔ baseline در گزارش‌های V8/V9 ثبت است. [CI ترکیب PR با main](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38033931700) هم با ۱۴۲۸ تست پاس شد؛ PR با اجازهٔ ساسان به main merge شد (`85b6027`).
-- [ ] **C2 — اتصال ورودی چندنوبتی.** سهم core/API آفلاین در P2 انجام و [ثبت شد](../docs/user-intake-pilot.fa.md): reported_facts، checks_performed، context_changed، reply ثبت‌شده و original-event replay؛ تست correction/withdrawal/تغییر محیط پاس‌اند. U2 در #13 وصل شد و جداسازی فرم در #21 اصلاح شد؛ اتصال پایدار با T2/T3 هنوز باز است. [قرارداد recovery](../docs/persistent-core-handoff.md) بین commit event و stage proposal، replay بدون اجرای مدل و read پس از ACK نامعلوم را مشخص می‌کند؛ coordinator HTTP/journal واقعی پیاده‌سازی نشده است. سؤال مبهم یا ویرایش‌شده fact فرضی نمی‌سازد؛ retry همان event باید پیش از stale/reply check و ساخت adapter شناسایی شود. [بازبینی مرز اتصال](../docs/team-integration-review-2026-10-11.fa.md).
+- [x] **C2a — coordinator مستقل core با tracker موجود.** [CoreTurnService و دستور اجرا](../docs/core-turn-service.fa.md): original-event replay و receipt عقب‌افتاده پیش از factory متوقف؛ پیام‌های کاربر برای reply کوتاه حفظ؛ facts فعال مرجع؛ full-state freshness؛ handoff کامل و read دقیق ACK. [تست سرویس](../tests/test_core_turn_service.py)، [context](../tests/test_core_conversation.py) و [freshness](../tests/test_engine_freshness.py) با SQLite واقعی و portهای تألیفی شاهدند؛ pilot موجود چهار turn و ۴۹ check عملیاتی دارد. این تیک سهم مستقل core را می‌بندد، نه API، journal/resume، CAS lifecycle یا کیفیت مدل.
+- [ ] **C2 — اتصال ورودی چندنوبتی.** سهم core/API آفلاین در P2 انجام و [ثبت شد](../docs/user-intake-pilot.fa.md): reported_facts، checks_performed، context_changed، reply ثبت‌شده و original-event replay؛ تست correction/withdrawal/تغییر محیط پاس‌اند. U2 در #13 وصل شد و جداسازی فرم در #21 اصلاح شد؛ اتصال API به قراردادهای موجود T1–T3، همراه P3/T4 و recovery هنوز باز است. [قرارداد recovery](../docs/persistent-core-handoff.md) بین commit event و stage proposal، replay بدون اجرای مدل و read پس از ACK نامعلوم را مشخص می‌کند؛ coordinator core در C2a پیاده شده؛ اتصال HTTP/journal واقعی هنوز انجام نشده است. سؤال مبهم یا ویرایش‌شده fact فرضی نمی‌سازد؛ retry همان event باید پیش از stale/reply check و ساخت adapter شناسایی شود. [بازبینی مرز اتصال](../docs/team-integration-review-2026-10-11.fa.md).
 - [x] **C3 — قرارداد خروجی و review با fixture.** `ProposalHandoff` کل case، آخرین bundle واقعاً مصرف‌شده، تمام analysis و catalog واقعی GroundedPlan را نگه می‌دارد؛ gap کاربر/منبع، همهٔ منابع و scope نسخه قابل review هستند. منبع قبلی، تغییر case با revision یکسان، packet/متن دست‌کاری‌شده و approval پیش از edit رد می‌شوند. [PR #11](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/11)، [نتیجه و handoff](../docs/review-handoff-pilot.fa.md)، fixture ثبت‌شده `b085f7d`، helper `74e353b` و API `44d70a2` شاهدند. C3 فقط سهم core و مثال آفلاین را می‌بندد؛ نمایش U2 انجام شده و #21 تمام claimهای هر chunk را حفظ می‌کند. اتصال persistence/authentication/اجرای مجاز به API با T2/T3 باز می‌ماند؛ review معنایی و approval جدا هستند.
 - [ ] **C4 — baseline برای pilot متصل.** baseline ورودی HTTP روی `5af98e6` چهار fail و روی adapter جدید چهار pass دارد؛ [ثبت C2](../docs/user-intake-pilot.fa.md). baseline خروجی C3 روی کد واقعی `3f22ef9` با همان چهار regression بازپخش شد؛ چهار fail و روی نسخهٔ جدید چهار pass، همراه [case چهار‌نوبتی و محدودیت](../docs/review-handoff-pilot.fa.md). پس از اتصال P3/P4، مقایسهٔ تصمیم واقعی ادامه یابد؛ baseline نرم‌افزار جای کیفیت مدل/RAG/test نیست. receiptهای تاریخی حفظ شده‌اند؛ انتخاب Issue فعلی answer-informed و exposed است.
 - [ ] **C5 — رفع علت halt پیش از live.** هویت مدل، usage و هزینهٔ مورد اختلاف با مدرک provider تطبیق داده شود؛ uncertainty و ledger پاک یا reset نشوند. شرط پایان: علت توقف مستند، وضعیت ledger و مجوز/سقف باقی‌مانده روشن باشند؛ فقط آن‌وقت pilot کوچک ثبت‌شده اجرا شود.
 
-وابستگی: سهم مستقل ورودی P2 و خروجی C3 با fixture انجام شده و U2 به API وصل است. قدم بعد اتصال retriever حسن (P4/R3)، state/approval پایدار بهنام (P3/T1–T3) و split/rubric/runner محمدحسن (E1–E3) است. تک agent مبناست؛ اضافه کردن agent/framework نیاز به شکست واقعی و مقایسهٔ مستند دارد.
+برای C2/U3 از سرویس C2a استفاده شود؛ coordinator core دیگر فقط helper تستی نیست. اتصال HTTP/auth و journal اجرای نیمه‌تمام با محمدحسن/بهنام است. readهای سرویس CAS lifecycle نیستند؛ race نهایی stage/approve رقیب پس از آخرین read هنوز T4/P3 را باز نگه می‌دارد. [packet تازهٔ C5](../docs/live-reconciliation-2026-10-11.fa.md) با خواندن read-only و hash ثابت ledger ثبت شد؛ مدرک provider همچنان کم است.
+
+وابستگی: سهم مستقل ورودی P2 و خروجی C3 با fixture انجام شده و U2 به API وصل است. قدم بعد اتصال retriever حسن (P4/R3)، اتصال state/approval پایدار موجود (P3/T4) و split/rubric/runner محمدحسن (E1–E3) است. تک agent مبناست؛ اضافه کردن agent/framework نیاز به شکست واقعی و مقایسهٔ مستند دارد.
 
 [بازبینی آمادگی core](../docs/core-readiness-audit.fa.md) دو regression تازه را
 روی `254e6542` با دو fail و بعد از `68dec4f` با دو pass ثبت می‌کند. مسیر gateway
@@ -118,8 +121,9 @@ pass شدند؛ شناسه و پروندهٔ درست، accounting درخواس�
 ثبت شد: ورودی superseded پیش از read، correction حین reasoning/قبل stage،
 قطع اجرا قبل مدل و بعد مدل/قبل stage، بازیابی دقیق ACK، rollback پس از INSERT
 و event/review همزمان. همراه ۱۶ تست tracker، ۲۷ تست هدفمند پاس‌اند؛ full suite
-نسخهٔ syncشده با main نیز ۱۷۲۱ تست و Ruff پاس دارد. helperهای recovery در این
-فایل فقط harness تست‌اند؛ coordinator/journal واقعی API هنوز با C2/U3/T4 باز است.
+انتشار #21 روی `94b60e1` نیز ۱۷۲۱ تست و Ruff پاس داشت. helperهای recovery در این
+فایل تاریخی فقط harness تست‌اند؛ نسخهٔ قابل استفادهٔ core اکنون C2a است و
+اتصال coordinator/journal واقعی API هنوز با C2/U3/T4 باز است.
 receipt تازهٔ [runner v3](../data/evaluation/receipts/offline/core-boundary-review-2026-10-11-v3.json)
 روی `37ab853`: ۱۳۶ check در ۱۱ turn، یک dev و دو scenario، صفر fail؛ همهٔ
 handoffها و متن released محفوظ‌اند. ترکیب اصلاحات با SQLite در checkout
@@ -148,7 +152,7 @@ handoffها و متن released محفوظ‌اند. ترکیب اصلاحات ب
 - [ ] **E5 — test و گزارش نهایی.** بعد از E1–E4 و اتصال واقعی، test بدون tuning اجرا شود؛ شکست‌ها، موارد حل‌نشده و اطلاعات ناقص همراه trace گزارش شوند. شواهد RAG از حسن، tracker از بهنام و core از ساسان جمع شود؛ مالک اجرای evaluation و گزارش محمدحسن است.
 - [ ] **E6 — bonus و ارائه.** فقط پس از مسیر اصلی، Adversarial Testing با دامنهٔ توافق‌شدهٔ منتور و مقایسهٔ منصفانه اجرا شود؛ اسلاید و README با رفتار و هزینهٔ واقعی هماهنگ شوند.
 
-وابستگی: E1/E2 و U2 با fixture اکنون قابل انجام‌اند؛ E1 قبل از R2، E4 قبل از E5، و U3 به R3/T1–T3/C2–C3 وابسته است. test برای انتخاب مدل، prompt، retrieval یا architecture استفاده نشود.
+وابستگی: E1/E2 با fixture اکنون قابل انجام‌اند؛ U2 انجام شده. E1 قبل از R2، E4 قبل از E5، و U3 به R3، اتصال P3/T4 و C2 وابسته است. test برای انتخاب مدل، prompt، retrieval یا architecture استفاده نشود.
 
 یادداشت بازبینی E2/E3: [rubric پیشنهادی](../docs/evaluation-rubric.md) با `AnalysisResult` و `ProposalHandoff` سازگار است؛ evidence_links به‌تنهایی اثبات پشتیبانی تمام ادعاها نیست. تا داوری مستقل، `live` فقط نوع اجراست و quality_claim باید false بماند. gold/expected مسیر offline را با مسیرهای معتبر live یکی نکنیم؛ manifest/corpus frozen و پاسخ‌های شرطی چندنوبتی هنوز کار E1–E3 هستند. receiptهای قبلی حفظ شوند.
 
