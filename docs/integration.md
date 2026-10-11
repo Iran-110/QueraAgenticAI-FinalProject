@@ -2,8 +2,9 @@
 
 Owners can develop against the same contracts. The Streamlit/FastAPI prototype
 uses scripted retrieval/reasoning and memory storage. Its additive HTTP ingress
-now accepts explicit facts, checks, corrections and approved version replies;
-UI controls and durable storage still need their owners' adapters. No API key is
+now accepts explicit facts, checks, corrections and approved version replies.
+The UI controls and standalone SQLite tracker are implemented; connecting the
+API to durable storage remains U3/T4 work. No API key is
 needed for this example or the automated checks.
 
 ## A runnable offline adapter example
@@ -159,6 +160,12 @@ first, prepare `propose_user_turn`, then atomically commit using the expected
 revision and invalidate old approval. Read the committed state before invoking
 the engine; its `current_revision` callback should use the same tracker. See the
 [user-turn guide](user-turns.md) for replay and compare-and-swap requirements.
+
+The [persistent core handoff](persistent-core-handoff.md) specifies how the
+existing SQLite tracker joins this flow: fresh-event ownership, interruption
+after ingress, correction during reasoning, staging acknowledgement recovery
+and review rollback. Its conformance fixtures are offline contract evidence;
+they do not switch the API backend or implement a durable run journal.
 
 For a standalone reply to a stored version question, use
 `prepare_version_reply(case, turn, proposal_id=stored_id, question=stored_analysis)`

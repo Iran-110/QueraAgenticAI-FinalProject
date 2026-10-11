@@ -1,6 +1,6 @@
 # User turns and case corrections
 
-This core utility proposes the next `CaseState` from an explicit structured user turn. It is a pure transformation: no database write, model call, or tool action. The offline HTTP adapter now uses it; UI controls and durable tracker integration remain the other owners' work. No API key or credit is needed for this path.
+This core utility proposes the next `CaseState` from an explicit structured user turn. It is a pure transformation: no database write, model call, or tool action. The offline HTTP adapter and UI controls use it. The standalone [SQLite tracker](sqlite-tracker.md), including consistent reads, is available on main; replacing the API's memory state and implementing durable HTTP recovery remain UI/tracker integration work. See the [core recovery handoff](persistent-core-handoff.md). No API key or credit is needed for this path.
 
 ## Input and behavior
 

@@ -55,6 +55,13 @@ def new_case_id() -> str:
 def reset_view_state() -> None:
     st.session_state.editing = False
     st.session_state.notice = None
+    # Rejected forms retain their widgets. Their values belong to the old case,
+    # so switching starts a fresh generation instead of sending those corrections
+    # under the newly selected case ID.
+    if "form_gen" in st.session_state:
+        st.session_state.form_gen += 1
+    st.session_state.pop("version_reply", None)
+    st.session_state.pop("edited_draft", None)
 
 
 if "case_id" not in st.session_state:
@@ -198,7 +205,9 @@ def render_case(view: dict) -> None:
 def render_sources(proposal: dict) -> None:
     handoff = proposal["review_handoff"]
     bundle = handoff["evidence"]
-    cited = {link["chunk_id"]: link["claim"] for link in proposal["analysis"]["evidence_links"]}
+    cited: dict[str, list[str]] = {}
+    for link in proposal["analysis"]["evidence_links"]:
+        cited.setdefault(link["chunk_id"], []).append(link["claim"])
     scopes = {entry["chunk_id"]: entry["version_scope"] for entry in handoff["source_inventory"]}
     st.markdown(f"**Sources ({len(bundle['hits'])} supplied, {len(cited)} cited)**")
     if not bundle["hits"]:
@@ -215,7 +224,8 @@ def render_sources(proposal: dict) -> None:
                     st.badge("Not cited", color="gray")
                 st.badge(scope_label, color=scope_color)
             if hit["chunk_id"] in cited:
-                st.caption(f"Claim: {cited[hit['chunk_id']]}")
+                for claim in cited[hit["chunk_id"]]:
+                    st.caption(f"Claim: {claim}")
             st.caption(f"Excerpt: {hit['excerpt']}")
             meta = [f"Chunk `{hit['chunk_id']}`"]
             if hit["source_commit"]:
