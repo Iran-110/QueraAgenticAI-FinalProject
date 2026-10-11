@@ -663,12 +663,47 @@ after the fixes; the last UI fix preserves all claims linked to the same chunk.
 [Review evidence and remaining boundaries](team-integration-review-2026-10-11.fa.md)
 and the [E2 rubric recommendation](evaluation-rubric.md) explain the handoff.
 Runner/UI changes and the updated plan are published in
-[PR #21](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/21); main has
-not been merged during this review.
+[PR #21](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/21).
+The initial review above made no merge; release status is recorded separately
+below rather than changing that historical baseline.
 E2 scoring/conditional branches, frozen split/corpus checks, tracker/API recovery,
 real RAG and C5 remain open. Reasoner-only usage attribution excludes retrieval,
 embedding and adapter setup; provider billing is not reconciled by these tests.
 No paid requests, real key/ledger access or team messages occurred.
+
+## 2026-10-11 — standalone tracker release and recovery handoff
+
+With the user's authorization, [PR #20](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/20)
+merged into Behnam's branch at `662875839ce86c3db288e5b767be42ad0685f167`;
+then [PR #19](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/19)
+merged into main at `464e55e5855665029d5b730607f3875baf82320c`.
+[Tracker branch CI](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38150131745)
+and [fix review CI](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38150134843)
+passed at `6628758`; these are not main-release checks at `464e55e`.
+[Main release CI](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38150252419)
+also passed at `464e55e`.
+The standalone tracker has 16 passing tests; its synced branch suite had 1,690.
+T1–T3 are accepted for the standalone SQLite module, with source, tests and pilot
+linked in the plan. API/UI still use memory state; this does not close P3/U3/T4.
+
+The [persistent-core handoff](persistent-core-handoff.md) specifies one
+authoritative tracker state, replay before adapters, stale reasoning/staging,
+exact stored-handoff reads after an ambiguous stage acknowledgement, and an
+interrupted event with no automatic new model run. It is an integration policy,
+not a production HTTP coordinator or durable reasoning journal. C2/P3/U3/T4,
+real retrieval and semantic evaluation remain open. Follow the task table in the
+team plan for the next small offline pilot; no new live use is authorized by
+this release and C5 remains unresolved.
+
+Added 11 authored offline core/SQLite failure-boundary cases: a receipt
+superseded before the authoritative read, correction during reasoning or before
+staging, interruption before reasoning and after reasoning/before staging,
+exact lost-ack recovery, rollback after a comment INSERT, and concurrent
+identical events/reviews. Recovery helpers live only in the test harness.
+All 27 targeted tests (11 new plus 16 tracker tests) pass; the current branch
+synced with released main passes **1,721 tests**, Ruff and locked dependencies.
+All 19 offline workflow commands pass. No production core or API recovery
+implementation, paid call, real key read or ledger change was added.
 
 ## Next integration work
 
@@ -692,9 +727,11 @@ branch and accounting state rather than the current release.
 | --- | --- | --- |
 | Real retrieval adapter and frozen corpus | Data/RAG | Inspectable sources, metadata, and dev retrieval measurements |
 | Live billing reconciliation and real-case evaluation | Agent core + evaluation | Synthetic question/answer/repair compatibility now verified; still need account deduction comparison and held-out quality/cost measurements |
-| Durable tracker and safe execution | Tracker/tools | Persisted state, restart, reject/edit/stale approval, and retry tests |
+| Connect the released SQLite tracker to API/UI | Tracker/tools + UI, core contract support | One authoritative state; authenticated review, interrupted-run status and HTTP restart/retry receipts |
 | Backend connection and evaluation cases | UI/evaluation | Live local flow and 15 dev + 15 test with required multi-turn cases |
 | Baseline versus final measurements | Whole team | Same cases, quality/cost/latency results, and failure analysis |
 | Systematic Adversarial Testing | Proposed core bonus, mentor agreement | Defined challenge set plus measured before/after improvement |
 
-Local tracker reset instructions will be added with its actual implementation. There is no persistent tracker to reset in the current core demo.
+The standalone tracker's operations and explicit reset boundary are documented
+in [SQLite tracker](sqlite-tracker.md). The existing memory API/core demo does
+not use that database; restarting it is not a persistence/recovery test.

@@ -39,7 +39,28 @@ PR #19 در `faedfc14cabfc78803f08e0ab7226cd9037cf2c3`. تغییرات محلی 
 روی branch #19 منتشر شد. regression snapshot روی کد اصلی `faedfc14` یک fail
 و بعد از اصلاح یک pass دارد. ۱۴ تست قبلی همراه دو تست تازه، ۱۶ pass؛ بعد از
 sync با `6131091`، کل suite آن branch ۱۶۹۰ pass و Ruff lint/format هم پاس شدند.
-sync تغییرات هم‌تیمی‌ها را حفظ می‌کند؛ این PR، branch بهنام یا main را تغییر نداده است.
+در زمان بازبینی اولیه، sync تغییرات هم‌تیمی‌ها را حفظ کرد و هنوز merge به branch
+بهنام یا main انجام نشده بود؛ وضعیت انتشار بعدی در ادامه ثبت شده است.
+
+پس از تأیید ساسان، #20 با `6628758` به branch بهنام merge شد و سپس #19 با
+`464e55e` به main رسید. [CI branch tracker](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38150131745)
+و [CI بازبینی fix](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38150134843)
+روی `6628758` پاس‌اند؛ [CI انتشار main](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38150252419)
+روی `464e55e` نیز پاس شد. ماژول مستقل T1–T3 با source، ۱۶ تست و pilot پذیرفته
+شده است؛ API/UI هنوز به SQLite وصل نیستند و P3/U3/T4 بازند.
+
+پس از sync #21 با main منتشرشده، ۱۱ تست مرزی core/SQLite هم اضافه و مستقل
+review شدند: correction وسط reasoning و قبل stage، تغییر revision پیش از read
+پس از commit، قطع اجرا قبل مدل و بعد مدل/قبل stage، read دقیق handoff پس از ACK
+نامعلوم، rollback بعد از INSERT comment، و event/review یکسانِ همزمان.
+۲۷ تست هدفمند و کل suite با ۱۷۲۱ تست، Ruff و locked dependencies پاس‌اند؛
+تمام ۱۹ فرمان آفلاین workflow هم پاس شدند. helperها در harness تست‌اند؛
+coordinator/journal واقعی API پیاده‌سازی نشده است.
+
+یک اجرای محلی همزمانِ branch tracker، در تست UI به timeout سه‌ثانیه‌ای خورد؛
+۱۶۸۹ تست دیگر پاس بودند. اجرای کامل دوباره روی همان source، ۱۶۹۰ pass داشت؛
+CI همان head و سپس full suite ترکیب تازه با ۱۷۲۱ تست نیز پاس‌اند. این توقف
+در شمارش نتایج مخفی یا موفق ثبت نشده است.
 
 ## rubric و راه اتصال
 
@@ -56,8 +77,11 @@ material claim در draft، summary، rationale، question و fact/checkها ب�
 review_id/revision/proposal/hash دقیق به `review` برسند. replay event باید قبل
 از ساخت adapter/اجرای مدل تشخیص داده شود. بعد از قطع ارتباط یا restart ابتدا
 receipt و pending را بخوانید؛ ledger یا مدل را برای جبران دوباره اجرا نکنید.
-بازیابی امن اجرای نیمه‌تمام بین commit event و stage proposal، و نمایش توقف/خطای
-ابزار در API، نیاز به قرارداد و تست اتصال دارند؛ تست مستقل tracker آن را حل نمی‌کند.
+[قرارداد recovery سمت core](persistent-core-handoff.md)، توقف پس از commit ورودی،
+correction حین reasoning یا پیش از stage، و read دقیق handoff پس از ACK نامعلوم
+را مشخص می‌کند. این راهنمای اتصال است؛ journal اجرای پایدار و اتصال HTTP هنوز
+پیاده‌سازی نشده‌اند. نمایش توقف/خطای ابزار و پذیرش pilot متصل همچنان با U3/T4
+باز می‌ماند؛ تست مستقل tracker جای آن را نمی‌گیرد.
 
 ## داده و کار باقی‌مانده
 
