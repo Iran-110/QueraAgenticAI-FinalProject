@@ -662,6 +662,9 @@ tests. Nine targeted regressions fail on actual archived main `6131091` and pass
 after the fixes; the last UI fix preserves all claims linked to the same chunk.
 [Review evidence and remaining boundaries](team-integration-review-2026-10-11.fa.md)
 and the [E2 rubric recommendation](evaluation-rubric.md) explain the handoff.
+Runner/UI changes and the updated plan are published in
+[PR #21](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/21); main has
+not been merged during this review.
 E2 scoring/conditional branches, frozen split/corpus checks, tracker/API recovery,
 real RAG and C5 remain open. Reasoner-only usage attribution excludes retrieval,
 embedding and adapter setup; provider billing is not reconciled by these tests.
