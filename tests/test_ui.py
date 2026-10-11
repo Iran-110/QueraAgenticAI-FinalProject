@@ -6,6 +6,7 @@ from fastapi.testclient import TestClient
 from streamlit.testing.v1 import AppTest
 
 from agent_app import api, ui_client
+from agent_app.contracts import EvidenceLink
 from agent_app.tracker.dummy_tracker import DummyTracker
 
 PAGE = str(Path(__file__).resolve().parent.parent / "app_pages" / "assistant.py")
@@ -236,3 +237,53 @@ def test_unsent_message_stays_with_its_case(backend, monkeypatch):
     at.sidebar.selectbox(key="case_id").set_value(first).run()
     assert "Retry sending" in [b.label for b in at.button]
     assert list(at.session_state.unsent) == [first]
+
+
+def test_rejected_correction_form_does_not_move_into_another_case(backend):
+    at = AppTest.from_file(PAGE).run()
+    first = at.session_state.case_id
+    send_update(
+        at, "Case A correction", [("streamlit_version", "1.49.1"), ("streamlit_version", "1.50.0")]
+    )
+    assert at.error
+    assert at.text_area(key="update_message_0").value == "Case A correction"
+    new_case(at)
+    second = at.session_state.case_id
+    assert second != first
+    assert at.session_state.form_gen == 1
+    assert at.text_area(key="update_message_1").value == ""
+    assert at.text_input(key="fact_name_0_1").value == ""
+    assert at.text_input(key="fact_value_0_1").value == ""
+    send_update(at, "Case B has Python 3.12", [("python_version", "3.12")], gen=1)
+    assert list(facts_table(at)["Name"]) == ["python_version"]
+    assert all("Case A" not in msg.markdown[0].value for msg in at.chat_message)
+    at.sidebar.selectbox(key="case_id").set_value(first).run()
+    assert at.session_state.form_gen == 3  # Send and case switch each use fresh widgets.
+    assert at.text_area(key="update_message_3").value == ""
+    assert not at.dataframe
+
+
+def test_source_review_preserves_every_declared_claim_for_the_same_chunk(backend, monkeypatch):
+    bundles, outputs = api._script("answer")
+    chunk_id = outputs[0].evidence_links[0].chunk_id
+    outputs[0] = outputs[0].model_copy(
+        update={
+            "evidence_links": (
+                EvidenceLink(
+                    claim="First declaration to inspect against this source.", chunk_id=chunk_id
+                ),
+                EvidenceLink(
+                    claim="Second declaration to inspect against this source.", chunk_id=chunk_id
+                ),
+            )
+        }
+    )
+    monkeypatch.setattr(api, "_script", lambda _scenario: (bundles, outputs))
+    at = AppTest.from_file(PAGE).run()
+    select_scenario(at, "answer")
+    at.chat_input[0].set_value("Review both source declarations.").run()
+    assert not at.exception
+    assert [caption.value for caption in at.caption if caption.value.startswith("Claim:")] == [
+        "Claim: First declaration to inspect against this source.",
+        "Claim: Second declaration to inspect against this source.",
+    ]

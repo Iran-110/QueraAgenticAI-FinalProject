@@ -1,13 +1,16 @@
 import json
 from decimal import Decimal
 from pathlib import Path
-from types import SimpleNamespace
 
+import httpx
 import pytest
 
 from agent_app import api
 from agent_app.contracts import AnalysisResult, EvidenceBundle
 from agent_app.evaluation import pilot, runner
+from agent_app.llm.budget import BudgetLedger
+from agent_app.llm.config import MetisConfig
+from agent_app.llm.metis import MetisReasoner, request_id_for
 from agent_app.testing.fakes import FakeReasoner, FakeRetriever
 
 DEV = Path(__file__).resolve().parent.parent / "data/evaluation/dev"
@@ -108,32 +111,18 @@ def test_exposed_case_cannot_be_test(tmp_path):
         runner.collect([write(tmp_path, data)])
 
 
-class FakeLedger:
-    """Charges a fixed amount per run; records tokens under the real request IDs."""
-
-    def __init__(self):
-        self.spent = Decimal(0)
-
-    def charge(self, amount):
-        self.spent += amount
-
-    def snapshot(self):
-        return SimpleNamespace(
-            settled_usd=self.spent, reserved_usd=Decimal(0), uncertain_usd=Decimal(0)
-        )
-
-    def get(self, _request_id):
-        return SimpleNamespace(input_tokens=100, output_tokens=20)
-
-
 class FakeLive:
-    """Stands in for real adapters; it only ever sees case IDs."""
+    """Synthetic adapters with an actual temporary ledger, not real model quality."""
 
-    def __init__(self):
-        self.ledger = FakeLedger()
+    def __init__(self, tmp_path, data=None, *, metered=True):
+        self.ledger = BudgetLedger.create(
+            tmp_path / "synthetic.sqlite", limit_usd=Decimal("5"), opening_spend_usd=Decimal("0")
+        )
         self.config = {"model": "fake-model", "snapshot_id": "fake-snapshot"}
         self.case_ids = []
-        data = fixture_data()
+        self.contexts = []
+        self.metered = metered
+        data = data or fixture_data()
         source = json.loads((runner.ROOT / data["evidence_source"]["path"]).read_text())
         self.bundles = [
             EvidenceBundle.model_validate(source["evidence_bundles"][turn["evidence_bundle"]])
@@ -143,31 +132,56 @@ class FakeLive:
 
     def for_case(self, case_id):
         self.case_ids.append(case_id)
-        self.ledger.charge(Decimal("0.001"))
         bundle = self.bundles.pop(0)
+        delegate = FakeReasoner([self.scripts.pop(0)])
+        owner = self
+
+        class Metered:
+            def analyze(self, case, user_message, evidence, *, context):
+                owner.contexts.append(context.model_copy(deep=True))
+                if owner.metered:
+                    request_id = request_id_for(context)
+                    owner.ledger.reserve(
+                        request_id=request_id,
+                        run_id=context.run_id,
+                        case_id=case.case_id,
+                        case_revision=case.case_revision,
+                        attempt=context.attempt_index,
+                        model="fake-model",
+                        phase="evaluation",
+                        amount_usd=Decimal("0.001"),
+                    )
+                    owner.ledger.settle(
+                        request_id, cost_usd=Decimal("0.001"), input_tokens=100, output_tokens=20
+                    )
+                return delegate.analyze(case, user_message, evidence, context=context)
+
         return api.RunAdapters(
             FakeRetriever([bundle]),
-            FakeReasoner([self.scripts.pop(0)]),
+            Metered(),
             snapshot_id=bundle.snapshot_id,
         )
 
 
-def test_live_mode_records_cost_tokens_and_config():
-    live = FakeLive()
+def test_live_mode_records_cost_tokens_and_config(tmp_path):
+    live = FakeLive(tmp_path)
     receipt = runner.run([FIXTURE], mode="live", live=live)
     assert live.case_ids == ["dev-pilot-12782"] * 4
     assert receipt["mode"] == "live"
     assert receipt["config"]["model"] == "fake-model"
-    assert receipt["snapshots"] == ["fake-snapshot"]
+    assert receipt["snapshots"] == [
+        receipt["cases"][0]["steps"][0]["proposal"]["review_handoff"]["evidence"]["snapshot_id"]
+    ]
+    assert receipt["config"]["snapshot_id"] == "fake-snapshot"
     assert receipt["summary"]["cost_usd_total"] == "0.004"
     assert receipt["cases"][0]["steps"][0]["usage"]["input_tokens"] == 100
 
 
-def test_mode_and_adapters_must_agree():
+def test_mode_and_adapters_must_agree(tmp_path):
     with pytest.raises(ValueError):
         runner.run([FIXTURE], mode="live")
     with pytest.raises(ValueError):
-        runner.run([FIXTURE], live=FakeLive())
+        runner.run([FIXTURE], live=FakeLive(tmp_path))
 
 
 def test_cli_keeps_modes_apart_and_never_overwrites(tmp_path):
@@ -249,3 +263,353 @@ def test_extra_case_ids_must_be_unique_across_fixtures(tmp_path):
         turn.pop("case_id", None)
     with pytest.raises(ValueError, match="Duplicate case_id syn-switch-b"):
         runner.collect([write(tmp_path, first, "a.json"), write(tmp_path, second, "b.json")])
+
+
+def test_live_routes_each_actual_case_without_passing_turn_data(tmp_path):
+    data = scenario_data("case-switching")
+    live = FakeLive(tmp_path, data)
+    receipt = runner.run([SCENARIOS / "case-switching.json"], mode="live", live=live)
+    assert live.case_ids == ["syn-switch-a", "syn-switch-b", "syn-switch-a"]
+    assert failed(receipt) == []
+
+
+def test_live_requires_a_real_ledger_and_a_valid_mode(tmp_path):
+    live = FakeLive(tmp_path)
+    live.ledger = None
+    with pytest.raises(ValueError, match="LiveLedgerRequired"):
+        runner.run([FIXTURE], mode="live", live=live)
+    with pytest.raises(ValueError, match="Invalid evaluation mode"):
+        runner.run([FIXTURE], mode="not-offline")
+    assert live.case_ids == []
+
+
+@pytest.mark.parametrize("stop", ["halted", "exhausted"])
+def test_live_budget_gate_precedes_adapter_and_user_state(tmp_path, stop):
+    live = FakeLive(tmp_path)
+    if stop == "halted":
+        live.ledger.halt()
+    else:
+        live.ledger.reserve(
+            request_id="prior-request",
+            run_id="prior-run",
+            case_id="prior-case",
+            case_revision=1,
+            attempt=1,
+            model="fake-model",
+            phase="evaluation",
+            amount_usd=Decimal("5"),
+        )
+    before = live.ledger.snapshot()
+    existing = dict(api._cases)
+    with pytest.raises(ValueError, match="LiveLedgerHalted|LiveBudgetUnavailable"):
+        runner.run([FIXTURE], mode="live", live=live)
+    assert live.case_ids == []
+    assert api._cases == existing
+    assert live.ledger.snapshot() == before
+
+
+def test_live_does_not_convert_script_checks_into_semantic_quality(tmp_path):
+    data = fixture_data()
+    data["turns"][1]["agent_script"]["user_draft"] += " The full-app root cause is proved."
+    live = FakeLive(tmp_path, data)
+    receipt = runner.run([write(tmp_path, data)], mode="live", live=live)
+    assert failed(receipt) == []  # Operational behaviour passed; the claim was not scored.
+    assert receipt["quality_claim"] is False
+    assert receipt["scoring"]["claim_grounding"] == "unmeasured"
+    assert (
+        "The full-app root cause is proved."
+        in receipt["cases"][0]["steps"][1]["proposal"]["analysis"]["user_draft"]
+    )
+
+
+def test_live_accepts_unscripted_fixture_and_ignores_exact_script_expectations(tmp_path):
+    data = fixture_data()
+    live = FakeLive(tmp_path, data)
+    for turn in data["turns"]:
+        turn.pop("agent_script")
+        turn["expect"]["pending_decision"] = "intentionally-wrong-script-label"
+    path = write(tmp_path, data)
+    receipt = runner.run([path], mode="live", live=live)
+    assert failed(receipt) == []
+    with pytest.raises(ValueError, match="agent_script is required"):
+        runner.run([path])
+
+
+def test_receipt_retains_full_review_and_human_edited_and_released_outputs():
+    receipt = runner.run([FIXTURE])
+    step = receipt["cases"][0]["steps"][2]
+    original = step["proposal"]
+    edited = step["edited_proposal"]
+    assert original["review_handoff"]["analysis"] == original["analysis"]
+    assert edited["review_handoff"]["analysis"] == edited["analysis"]
+    assert original["proposal_id"] != edited["proposal_id"]
+    assert step["released_outputs"][0]["text"] == edited["analysis"]["user_draft"]
+    assert edited["analysis"]["user_draft"] != original["analysis"]["user_draft"]
+    assert receipt["schema_version"] == 2
+    assert receipt["tracker_backend"] == "process_memory_dummy_tracker"
+    assert receipt["maintainer"] == "fixture_scripted"
+    assert receipt["source_sha256"]["src/agent_app/evaluation/runner.py"]
+    assert receipt["source_unchanged_during_run"] is True
+
+
+def test_multiple_edits_have_distinct_bound_proposal_ids(tmp_path):
+    data = scenario_data("case-switching")
+    data["turns"][1]["maintainer"] = {
+        "decision": "edit",
+        "edited_draft": "Uploader example reviewed by a human.",
+        "then": "approve",
+    }
+    data["turns"][1]["expect"]["after_decision"]["released_draft"] = "edited"
+    steps = runner.run([write(tmp_path, data)])["cases"][0]["steps"]
+    edits = [step["edited_proposal"] for step in steps if step["edited_proposal"]]
+    assert len(edits) == 2
+    assert len({edit["proposal_id"] for edit in edits}) == 2
+    assert all(edit["review_handoff"]["proposal_id"] == edit["proposal_id"] for edit in edits)
+
+
+def test_unrecorded_attempts_are_unknown_not_zero_cost(tmp_path):
+    live = FakeLive(tmp_path, metered=False)
+    receipt = runner.run([FIXTURE], mode="live", live=live)
+    usage = receipt["cases"][0]["steps"][0]["usage"]
+    assert usage["cost_usd"] is None
+    assert usage["input_tokens"] is None
+    assert usage["requests"][0]["status"] == "unrecorded"
+    assert receipt["summary"]["cost_usd_total"] is None
+    assert receipt["summary"]["settled_usd_total"] == "0"
+    assert receipt["summary"]["unaccounted_requests"] == 4
+    assert not receipt["summary"]["accounting_complete"]
+
+
+class InterceptedLive:
+    """Real gateway and ledger, mandatory intercepted HTTP, zero real spend."""
+
+    def __init__(self, tmp_path, data, *, ledger=None, failure=None):
+        self.ledger = ledger or BudgetLedger.create(
+            tmp_path / "intercepted.sqlite", limit_usd=Decimal("5"), opening_spend_usd=Decimal("0")
+        )
+        self.config = {"model": "gpt-4o-mini", "snapshot_id": "intercepted-snapshot"}
+        self.data = data
+        source = json.loads((runner.ROOT / data["evidence_source"]["path"]).read_text())
+        self.bundle = EvidenceBundle.model_validate(
+            source["evidence_bundles"][data["turns"][0]["evidence_bundle"]]
+        )
+        self.failure = failure
+        self.clients = []
+        self.wire = []
+        self.case_ids = []
+
+    def for_case(self, case_id):
+        self.case_ids.append(case_id)
+
+        def respond(request):
+            self.wire.append(json.loads(request.content))
+            if self.failure == "timeout":
+                raise httpx.ReadTimeout("synthetic timeout")
+            content = (
+                "{invalid"
+                if self.failure == "malformed"
+                else json.dumps(self.data["turns"][0]["agent_script"])
+            )
+            return httpx.Response(
+                200,
+                json={
+                    "model": "gpt-4o-mini",
+                    "usage": {"prompt_tokens": 100, "completion_tokens": 20, "total_tokens": 120},
+                    "choices": [
+                        {
+                            "finish_reason": "stop",
+                            "message": {"role": "assistant", "content": content},
+                        }
+                    ],
+                },
+            )
+
+        port = MetisReasoner(
+            MetisConfig(api_key="synthetic-offline-audit", live_enabled=True, phase="evaluation"),
+            self.ledger,
+            transport=httpx.MockTransport(respond),
+        )
+        self.clients.append(port)
+        return api.RunAdapters(
+            FakeRetriever([self.bundle]), port, snapshot_id=self.bundle.snapshot_id
+        )
+
+    def close(self):
+        for port in self.clients:
+            port.close()
+
+
+def one_turn():
+    data = fixture_data()
+    data["turns"] = data["turns"][:1]
+    return data
+
+
+def test_new_live_evaluations_have_unique_billable_ids_but_event_replay_is_stable(tmp_path):
+    data = one_turn()
+    path = write(tmp_path, data)
+    first = InterceptedLive(tmp_path, data)
+    second = InterceptedLive(tmp_path, data, ledger=first.ledger)
+    try:
+        a = runner.run([path], mode="live", live=first)
+        b = runner.run([path], mode="live", live=second)
+        assert failed(a) == failed(b) == []
+        assert len(first.wire) == len(second.wire) == 1
+        assert a["evaluation_run_id"] != b["evaluation_run_id"]
+        aid = a["cases"][0]["steps"][0]["usage"]["requests"][0]["request_id"]
+        bid = b["cases"][0]["steps"][0]["usage"]["requests"][0]["request_id"]
+        assert aid != bid
+        payload = json.loads(first.wire[0]["messages"][-1]["content"])
+        assert payload["user_message"] == data["turns"][0]["visible"]["message"]
+        assert not any(fact["name"] == "streamlit_version" for fact in payload["case"]["facts"])
+        assert "gold" not in payload and "agent_script" not in payload and "expect" not in payload
+        assert "unacceptable_claims" not in json.dumps(first.wire[0])
+        for receipt in (a, b):
+            usage = receipt["cases"][0]["steps"][0]["usage"]
+            assert usage["requests"][0]["status"] == "settled"
+            assert usage["requests"][0]["request_id"] == request_id_for(
+                runner.ReasoningContext.model_validate(usage["requests"][0]["context"])
+            )
+    finally:
+        first.close()
+        second.close()
+
+
+@pytest.mark.parametrize("failure,attempts", [("malformed", 2), ("timeout", 1)])
+def test_stopped_gateway_attempts_keep_cost_identity_and_unknown_reservations(
+    tmp_path, failure, attempts
+):
+    data = one_turn()
+    live = InterceptedLive(tmp_path, data, failure=failure)
+    try:
+        receipt = runner.run([write(tmp_path, data)], mode="live", live=live)
+        usage = receipt["cases"][0]["steps"][0]["usage"]
+        assert len(live.wire) == usage["model_attempts"] == attempts
+        assert len(usage["requests"]) == attempts
+        assert receipt["cases"][0]["steps"][0]["proposal"]["proposal_id"] is None
+        if failure == "timeout":
+            assert usage["cost_usd"] is None and usage["input_tokens"] is None
+            assert usage["settled_usd"] == "0"
+            assert Decimal(usage["uncertain_usd"]) == live.ledger.snapshot().uncertain_usd > 0
+            assert usage["requests"][0]["status"] == "uncertain"
+        else:
+            assert usage["input_tokens"] == 200
+            assert Decimal(usage["cost_usd"]) == live.ledger.snapshot().settled_usd > 0
+            assert all(entry["status"] == "settled" for entry in usage["requests"])
+    finally:
+        live.close()
+
+
+def test_unrelated_ledger_activity_is_not_charged_to_the_current_turn(tmp_path):
+    data = one_turn()
+    live = InterceptedLive(tmp_path, data)
+    original = live.for_case
+
+    def unrelated(case_id):
+        live.ledger.reserve(
+            request_id="unrelated",
+            run_id="unrelated",
+            case_id="other-case",
+            case_revision=1,
+            attempt=1,
+            model="fake-model",
+            phase="evaluation",
+            amount_usd=Decimal("0.01"),
+        )
+        live.ledger.settle(
+            "unrelated", cost_usd=Decimal("0.01"), input_tokens=1000, output_tokens=500
+        )
+        return original(case_id)
+
+    live.for_case = unrelated
+    try:
+        receipt = runner.run([write(tmp_path, data)], mode="live", live=live)
+        usage = receipt["cases"][0]["steps"][0]["usage"]
+        assert Decimal(usage["cost_usd"]) == live.ledger.snapshot().settled_usd - Decimal("0.01")
+        assert usage["input_tokens"] == 100
+        assert "retrieval" in receipt["usage_scope"]
+    finally:
+        live.close()
+
+
+@pytest.mark.parametrize("question", ["parent callback", "escalate"])
+def test_live_fixed_follow_up_branch_stops_as_coverage_before_incompatible_reply(
+    tmp_path, question
+):
+    data = fixture_data()
+    if question == "escalate":
+        data["turns"][0]["agent_script"] = {
+            "decision": "escalate",
+            "user_draft": "Please have a maintainer inspect the missing callback.",
+            "maintainer_summary": "Root cause unconfirmed.",
+            "rationale": "The full app cannot be diagnosed from these inputs.",
+        }
+    else:
+        script = data["turns"][0]["agent_script"]
+        script.update(
+            user_draft="Can you share the parent callback?",
+            next_question="Can you share the parent callback?",
+            missing_info=["parent_callback_code"],
+        )
+    live = FakeLive(tmp_path, data)
+    receipt = runner.run([write(tmp_path, data)], mode="live", live=live)
+    assert failed(receipt) == []  # Both routes are allowed by this turn's gold.
+    assert len(live.case_ids) == 1
+    assert receipt["summary"]["fixture_branches_unavailable"] == 1
+    assert not receipt["summary"]["coverage_complete"]
+    assert receipt["cases"][0]["steps"][1]["runner_stop"] == "FixtureBranchUnavailable"
+    assert receipt["quality_claim"] is False
+
+
+def test_live_config_cannot_write_credentials_into_a_receipt(tmp_path):
+    live = FakeLive(tmp_path)
+    live.config["api_key"] = "synthetic-credential-that-must-not-be-exported"
+    with pytest.raises(ValueError, match="^LiveConfigInvalid$"):
+        runner.run([FIXTURE], mode="live", live=live)
+    assert live.case_ids == []
+
+
+def test_incomplete_live_fixture_branch_has_a_distinct_cli_exit(tmp_path, monkeypatch):
+    data = fixture_data()
+    script = data["turns"][0]["agent_script"]
+    script.update(
+        user_draft="Can you share the parent callback?",
+        next_question="Can you share the parent callback?",
+        missing_info=["parent_callback_code"],
+    )
+    live = FakeLive(tmp_path, data)
+    monkeypatch.setattr(runner, "_load_live", lambda _spec: live)
+    output = tmp_path / "live" / "receipt.json"
+    assert (
+        runner.main(
+            [
+                str(write(tmp_path, data)),
+                "--mode",
+                "live",
+                "--adapters",
+                "synthetic:only",
+                "--output",
+                str(output),
+            ]
+        )
+        == 2
+    )
+    receipt = json.loads(output.read_text())
+    assert receipt["summary"]["failed"] == 0
+    assert receipt["summary"]["coverage_complete"] is False
+
+
+def test_exclusive_receipt_write_preserves_a_file_created_during_execution(tmp_path, monkeypatch):
+    output = tmp_path / "offline" / "receipt.json"
+    original = runner.run
+
+    def race(paths, **kwargs):
+        receipt = original(paths, **kwargs)
+        output.parent.mkdir()
+        output.write_text("existing receipt remains intact\n")
+        return receipt
+
+    monkeypatch.setattr(runner, "run", race)
+    with pytest.raises(FileExistsError):
+        runner.main([str(FIXTURE), "--output", str(output)])
+    assert output.read_text() == "existing receipt remains intact\n"
