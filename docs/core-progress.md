@@ -742,6 +742,28 @@ HTTP/auth integration, durable outcome/resumption and atomic lifecycle staging
 are U3/T4 dependencies. Full reads cannot close the final same-revision ABA
 between the last observation and the write. R3/E1/E2/C4/C5 remain open.
 
+## 2026-10-11 — bounded readiness review and first RAG handoff
+
+Released core `37ce74a` remains green: exact-head main CI `38157117534`
+passed the existing 1,796 tests and registered four-turn / 49-check scripted
+SQLite pilot. A bounded independent review found no new reproducible defect
+in the core-owned C2a scope; no new runtime guard or architecture was added.
+
+RAG owner pushed `c0d450a` and opened PR #23. Its first Chroma backend does
+not yet implement `RetrievalRequest -> EvidenceBundle`. A probe using the
+actual candidate search method with injected collections, without importing
+Chroma or creating an index, reproduced `RetrievalResultInvalid` and zero
+model calls. The pinned-head CI stops at Ruff with 31 findings. Seed review
+also identifies missing preserved commit/location metadata and five Markdown
+chunks above the core excerpt limit. These are R3 integration requirements,
+not a measured regression in core or real retrieval quality.
+
+See the [pinned review and owner acceptance checklist](rag-handoff-review-2026-10-11.fa.md).
+R1/R2/R3/P4, API lifecycle/journal integration, evaluation split/rubric and C5
+remain open. No embedding, model download, paid request, key read or ledger
+change was performed. Continue with a small offline RAG adapter and the
+existing service/pilot; no additional framework is justified by this review.
+
 ## Next integration work
 
 ### Shared release — 2026-10-07
