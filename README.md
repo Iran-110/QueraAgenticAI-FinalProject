@@ -37,6 +37,13 @@ API/UI به آن و recovery اجرای نیمه‌تمام هنوز کار تی
 [نتیجهٔ C3](docs/review-handoff-pilot.fa.md) و
 [بازبینی آمادگی اتصال](docs/core-readiness-audit.fa.md) محدودیت‌ها و شواهد را ثبت می‌کنند.
 
+سهم مستقل **C2a**، [CoreTurnService](docs/core-turn-service.fa.md) است: اتصال
+receipt/state به core، حفظ مسئله و پیام‌های کاربر در reply کوتاه، توقف روی
+تغییر state و بازیابی دقیق ACK پیشنهاد. pilot چهار‌نوبتی با SQLite واقعی و
+portهای آفلاین قابل اجراست؛ API هنوز به این storage وصل نشده و journal/CAS
+lifecycle کار مشترک باقی مانده. [وضعیت C5](docs/live-reconciliation-2026-10-11.fa.md)
+ابهام مدل/usage/billing لازم برای ادامهٔ live را ثبت می‌کند؛ توقف برقرار است.
+
 ## شروع سریع
 
 نیازمندی‌ها: Git، Python 3.13 و [uv](https://docs.astral.sh/uv/). دستورها را از ریشهٔ همین ریپو اجرا کنید:

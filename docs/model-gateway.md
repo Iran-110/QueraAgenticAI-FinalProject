@@ -14,12 +14,14 @@ are recorded in that report.
 
 The [fresh guard comparison](decision-quality-v4.md) and
 [compiled-schema follow-up](decision-quality-v5.md) made 57 further settled
-requests at USD 0.048125550. Current local ledger snapshot after V5: USD
+requests at USD 0.048125550. Historical local ledger snapshot after V5: USD
 0.096712770 settled, zero pending, USD 0.02 retained uncertainty and USD
 4.383287230 available. The same immutable continuation has USD 0.031960270
 remaining; ordinary live calls remain halted. No billing reconciliation, hold
 release or grant refresh is claimed. Schema acceptance improved in the repeat,
 but semantic quality did not establish a benefit for the stronger candidate.
+
+The latest read-only [C5 snapshot and reconciliation handoff](live-reconciliation-2026-10-11.fa.md) records 2026-10-11 accounting; it does not authorize new live calls.
 
 Status, 2026-10-07: offline tests and controlled live checks cover the gateway. After reproducing the original decision-field failure, corrected prompts returned valid questions, a referenced answer and a repaired decision on synthetic inputs. Usage was settled in the ledger. This verifies those compatibility paths, not real support quality or RAG relevance. Account deductions have not been reconciled; no real key is required for offline demos.
 
