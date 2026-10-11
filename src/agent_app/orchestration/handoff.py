@@ -25,6 +25,7 @@ from agent_app.contracts import (
     SourceReviewEntry,
 )
 from agent_app.orchestration.ports import Reasoner, ReasoningOutput
+from agent_app.orchestration.validation import detached_contract
 from agent_app.reasoning.grounding import (
     source_content_sha256,
     source_scope,
@@ -68,9 +69,7 @@ class ReasoningFrame:
 def _detached[T: Contract](model: type[T], value: T) -> T:
     # model_copy can bypass extra="forbid" and model_dump can silently omit
     # injected attributes. Reject them before trusting the serialized snapshot.
-    if set(value.__dict__) - set(model.model_fields):
-        raise ValueError
-    return model.model_validate(value.model_dump(warnings=False))
+    return detached_contract(model, value)
 
 
 def _frame(frame: ReasoningFrame | None) -> ReasoningFrame:
