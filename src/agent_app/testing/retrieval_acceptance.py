@@ -100,6 +100,7 @@ class FixtureReadBackend:
                     "applicable_versions": [],
                 }
             ]
+        self.calls[-1]["returned_chunk_ids"] = tuple(row["chunk_id"] for row in rows)
         return rows
 
 
@@ -285,6 +286,9 @@ def run_acceptance(
         candidates = {
             chunk for query in selected_queries for chunk in fixture["query_results"].get(query, ())
         }
+        actually_read = {
+            chunk for call in probe.backend.calls for chunk in call.get("returned_chunk_ids", ())
+        }
         expected_count = 1 if fault == "boundary" else min(top_k, len(candidates))
         check(f"{name}:result_count", len(bundle.hits) == expected_count)
         if fault == "unknown_metadata":
@@ -301,7 +305,7 @@ def run_acceptance(
                     and h.source_url == expected[h.chunk_id].source_url
                     and h.source_id == expected[h.chunk_id].source_id
                     and h.source_type == expected[h.chunk_id].source_type
-                    and h.chunk_id in candidates
+                    and h.chunk_id in actually_read
                     for h in bundle.hits
                 ),
             )
@@ -322,7 +326,8 @@ def run_acceptance(
             check(
                 f"{name}:metadata",
                 all(
-                    h == expected.get(h.chunk_id) and h.chunk_id in candidates for h in bundle.hits
+                    h == expected.get(h.chunk_id) and h.chunk_id in actually_read
+                    for h in bundle.hits
                 ),
             )
         if name == "empty":

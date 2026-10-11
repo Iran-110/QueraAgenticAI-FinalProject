@@ -143,6 +143,30 @@ def test_valid_source_from_another_query_is_rejected_without_prescribing_ranking
     rejected(CrossQuerySource, "known_version:metadata")
 
 
+def test_valid_query_source_that_backend_never_returned_is_rejected():
+    fixture = acceptance.load_fixture()
+    # A member of both query inventories, outside each actual top_k=1 read.
+    extra = next(
+        hit
+        for hit in fixture["hits"]
+        if hit["chunk_id"] == "release-150-multiselect-key-identity-v8"
+    )
+
+    class CachedUnseenSource:
+        def __init__(self, probe):
+            self.delegate = acceptance.fixture_factory(probe)
+
+        def search(self, request):
+            bundle = self.delegate.search(request)
+            if request.top_k == 1:
+                return bundle.model_copy(
+                    update={"hits": (acceptance.EvidenceHit.model_validate(extra),)}
+                )
+            return bundle
+
+    rejected(CachedUnseenSource, "cap:metadata")
+
+
 def test_dropping_existing_commit_and_locator_is_rejected():
     def drop_metadata(bundle):
         return bundle.model_copy(

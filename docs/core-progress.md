@@ -20,13 +20,14 @@ This is a factual milestone log, not a daily activity schedule. Update it after 
   Alternative hit/query ordering remains accepted. Review of the kit itself
   fixed a false acceptance of forged synthetic-boundary metadata and a raw
   inspection error for factories without a real source file. A later review
-  added source membership checks: valid hits from another query must fail.
+  added source membership checks: returned hits must come from actual backend
+  reads, not another query or an unread cached inventory.
 - CLI receipts are exclusive, bind source hashes and commit/dirty status, and
   use safe error codes. Static candidate preflight never imports Chroma and
   rejects an empty entrypoint. CI also runs the fixture kit; its default success
   does not mean a production RAG adapter was accepted.
 
-Verified locally: locked sync, **1827 passing tests** (31 new acceptance/CLI
+Verified locally: locked sync, **1828 passing tests** (32 new acceptance/CLI
 tests), Ruff lint/format and the complete offline acceptance run. The first
 110/110, ten-case receipt is preserved; the final protocol activates additional
 already-registered version, URL and response-snapshot probes. More checks are

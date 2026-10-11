@@ -50,7 +50,7 @@ fingerprint کد را همراه نتیجه ثبت می‌کند. خروجی پ�
   یا مدل تازه نمی‌سازد.
 
 تعداد checkها اندازهٔ کیفیت نیست. mutationهای مستقل نشان می‌دهند که تست فقط
-مسیر happy path را بررسی نمی‌کند: حذف metadata، منبع معتبر خارج پاسخ query، حذف query، duplicate، افزایش
+مسیر happy path را بررسی نمی‌کند: حذف metadata، منبع معتبر خارج خواندن واقعی backend، حذف query، duplicate، افزایش
 سقف خروجی، snapshot غلط، نسخهٔ ساختگی، تغییر quote، clipping بی‌صدا، پنهان کردن
 خطای retrieval و برگرداندن bundle قدیمی رد می‌شوند. تغییر ترتیب مجاز پاس می‌شود.
 
@@ -108,7 +108,7 @@ CI، fixture را اجرا می‌کند و در صورت حضور entrypoint، 
 کد اجرای اول هنوز commit نشده بود؛ hash فایل factory در receipt ثبت است.
 receipt نهایی به commit و fingerprint کل کد bind می‌شود.
 
-[receipt نهایی](../experiments/retrieval_acceptance/results-fixture-v2.json) و
+[receipt نهایی](../experiments/retrieval_acceptance/results-fixture-v3.json) و
 [وضعیت pinned PR #23](../experiments/retrieval_acceptance/candidate-bdb7c53.json)
 مبنای handoff هستند. در head `bdb7c5369319b9b0a47f330cf89193eab6398072`
 چهار فایل Python RAG صفر بایت‌اند؛ CI سبز آن head کد adapter را آزمایش نمی‌کند.
@@ -118,9 +118,11 @@ R3/P4 هنوز بازند. بعد از push کد، همان factory/protocol ر�
 [preflight همان blob](../experiments/retrieval_acceptance/results-preflight-bdb7c53.json)
 پیش از ساخت adapter با `CandidateEmpty` متوقف شد. اجرای کامل پیش از کنترل membership روی
 checkout تمیز `6f8ba04` بود؛ [receipt آن](../experiments/retrieval_acceptance/results-fixture-v1.json)
-حفظ است. review بعدی منبع معتبر خارج پاسخ query را هم رد کرد؛ receipt v2
-نتیجهٔ نهایی همان protocol است و sourceها حین اجرا تغییر نکردند. regression قدیمی
-`core_tracker_pilot.py` هم دوباره ۴۹/۴۹ check پاس کرد؛ locked sync، ۱۸۲۷ تست
+حفظ است. review بعدی منبع معتبر خارج پاسخ query را هم رد کرد؛
+[receipt v2](../experiments/retrieval_acceptance/results-fixture-v2.json) هم حفظ است.
+نسخهٔ v3 این کنترل را به خواندن واقعی backend، از جمله سقف یک hit، متصل می‌کند.
+receipt v3 نتیجهٔ نهایی همان protocol است؛ sourceها حین اجرا تغییر نکردند. regression قدیمی
+`core_tracker_pilot.py` هم دوباره ۴۹/۴۹ check پاس کرد؛ locked sync، ۱۸۲۸ تست
 و Ruff پاس‌اند. هیچ ledger، index، embedding یا API واقعی در این کار استفاده نشد.
 
 این kit filterهای غیرخالی، HTTP/UI، CAS/journal lifecycle، index واقعی، embedding، segmentation
