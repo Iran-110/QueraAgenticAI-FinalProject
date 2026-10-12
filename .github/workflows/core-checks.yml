@@ -85,3 +85,9 @@ jobs:
         run: |
           uv run python scripts/rag_acceptance.py --factory agent_app.testing.chroma_binding:factory --check-candidate src/agent_app/retrieval/adapter.py --output "$RUNNER_TEMP/rag-adapter-acceptance.json"
           uv run python -m agent_app.retrieval.adapter --smoke
+      - name: Reproduce UI review baseline and accept immutable retry
+        run: |
+          uv run python scripts/ui_review_acceptance.py --baseline --output "$RUNNER_TEMP/ui-review-baseline.json"
+          uv run python scripts/ui_review_acceptance.py --output "$RUNNER_TEMP/ui-review-current.json"
+      - name: Build only registered docs into an offline Chroma pilot
+        run: uv run python scripts/build_pilot_index.py --destination "$RUNNER_TEMP/approved-docs-pilot"

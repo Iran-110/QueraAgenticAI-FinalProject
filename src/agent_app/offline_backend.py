@@ -66,16 +66,24 @@ def configured_app(config: Mapping[str, str]) -> FastAPI:
 
         TypeAdapter(Identifier).validate_python(reviewer)
         index = config.get("AGENT_PILOT_INDEX")
+        expected_snapshot = config.get("AGENT_PILOT_SNAPSHOT")
         adapters = None
         label = "scripted"
         if index is not None:
-            if type(index) is not str or not index.strip():
+            if (
+                type(index) is not str
+                or not index.strip()
+                or type(expected_snapshot) is not str
+                or re.fullmatch(r"docs-pilot-[0-9a-f]{64}", expected_snapshot) is None
+            ):
                 raise ValueError
             from agent_app.retrieval.adapter import ChromaRetrieverAdapter
             from agent_app.retrieval.offline_index import open_verified_index
             from agent_app.retrieval.retriever import StreamlitRetriever
 
             client, snapshot = open_verified_index(Path(index))
+            if snapshot != expected_snapshot:
+                raise ValueError
             retriever = ChromaRetrieverAdapter(
                 "",
                 snapshot_id=snapshot,
@@ -87,6 +95,8 @@ def configured_app(config: Mapping[str, str]) -> FastAPI:
 
             adapters = indexed_adapters
             label = "local_chroma_hash"
+        elif expected_snapshot is not None:
+            raise ValueError
         tokens = {reviewer: token}
         tracker = SQLiteCaseTracker(Path(database), reviewer_tokens=tokens)
         return create_app(tracker, reviewer_tokens=tokens, adapters=adapters, retrieval_label=label)

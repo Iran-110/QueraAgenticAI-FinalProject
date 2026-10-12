@@ -25,6 +25,7 @@ def configuration(tmp_path):
         {"AGENT_REVIEWER_ID": "not valid"},
         {"AGENT_PILOT_INDEX": ""},
         {"AGENT_PILOT_INDEX": "/missing-index"},
+        {"AGENT_PILOT_SNAPSHOT": "docs-pilot-" + "a" * 64},
     ],
 )
 def test_invalid_explicit_config_fails_before_creating_tracker(tmp_path, change):
