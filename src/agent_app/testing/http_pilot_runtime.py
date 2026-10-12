@@ -9,7 +9,7 @@ import io
 import re
 import socket
 import sys
-from collections.abc import Iterator
+from collections.abc import Callable, Iterator
 from contextlib import contextmanager, redirect_stderr, redirect_stdout
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -40,6 +40,9 @@ class HTTPRuntimeRejected(ValueError):
 class HTTPRuntime:
     app: FastAPI
     tracker_backend: str
+    durable_review: bool = False
+    review_headers: dict[str, str] = field(default_factory=dict, repr=False)
+    local_actions_supplier: Callable[[str], list[dict]] | None = field(default=None, repr=False)
 
 
 @contextmanager
@@ -81,6 +84,16 @@ def load_runtime(spec: str, state_dir: Path) -> Iterator[HTTPRuntime]:
                 or runtime.app is not api.app
                 or type(runtime.tracker_backend) is not str
                 or not _BACKEND.fullmatch(runtime.tracker_backend)
+                or type(runtime.durable_review) is not bool
+                or type(runtime.review_headers) is not dict
+                or any(
+                    type(k) is not str or type(v) is not str
+                    for k, v in runtime.review_headers.items()
+                )
+                or (
+                    runtime.local_actions_supplier is not None
+                    and not callable(runtime.local_actions_supplier)
+                )
             ):
                 raise HTTPRuntimeRejected("HTTPRuntimeInvalid")
             yield runtime
