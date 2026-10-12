@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "source_commit": "89a0aec420f2596765d2b580632fdfc71dfb3d24",
+  "source_clean_at_test_start": true,
+  "quality_claim": false,
+  "checks": [
+    {
+      "command": "uv run pytest",
+      "passed": 2283,
+      "duration_seconds": 62.01
+    },
+    {
+      "command": "uv run ruff check . && uv run ruff format --check .",
+      "result": "pass;163 files formatted"
+    },
+    {
+      "command": "uv sync --locked --group dev",
+      "source_commit": "3e4617f",
+      "result": "pass"
+    },
+    {
+      "command": "three required CLI demos",
+      "source_commit": "3e4617f",
+      "result": "pass"
+    },
+    {
+      "command": "core_tracker_pilot",
+      "source_commit": "3e4617f",
+      "checks_passed": 49,
+      "checks_total": 49
+    },
+    {
+      "command": "http_pilot_acceptance SQLite protocol-v2",
+      "source_commit": "3e4617f",
+      "checks_passed": 457,
+      "checks_total": 457
+    },
+    {
+      "command": "rag_acceptance actual adapter injected collections",
+      "source_commit": "3e4617f",
+      "checks_passed": 132,
+      "checks_total": 132
+    }
+  ],
+  "offline_comparison": {
+    "baseline": "results-baseline-3e4617f.json",
+    "baseline_sha256": "79a57b3f914ff11af02ed189f0cc174d6f5a1d0ed7eea4f5c06082e1daab33a1",
+    "baseline_passed": 10,
+    "current": "results-current-3e4617f.json",
+    "current_sha256": "f2664289969b557076a9909d4c744257dfc16496e2f77de70b09e4e93bc963a1",
+    "current_passed": 12,
+    "checks_total": 12,
+    "source_commit": "3e4617f",
+    "changes_measured": [
+      "truthful reasoning label",
+      "per-run cleanup"
+    ]
+  },
+  "native_browser_receipt": "browser-receipt-89a0aec.json",
+  "live_receipt": "live-result-0b962de.json",
+  "live_source_commit": "0b962de",
+  "live_estimated_cost_usd": "0.000650430",
+  "live_actual_account_charge": "unknown",
+  "baseline_supporting_modules": "Current supporting modules recorded by hash; only historical persistent API and coordinator loaded from baseline3c92b12",
+  "limits": [
+    "Authored/exposed operational tests, not final RAG or model quality",
+    "Historical real API receipt has unknown exact serving model ID; later decoded identity fix tested offline only",
+    "Old quarantine, USD0.02 hold and public live halt preserved"
+  ]
+}

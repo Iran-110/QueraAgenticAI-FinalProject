@@ -43,6 +43,23 @@ $0.02 hold are preserved; actual account charges remain unknown. One exposed
 development turn with fixed excerpts does not establish RAG/model quality,
 comparative decision improvement, held-out evaluation or C5 reconciliation.
 
+Clean `3e4617f` reproduced the 10/12 versus 12/12 comparison, core/SQLite
+49/49, HTTP/SQLite 457/457 and actual adapter 132/132. Full tests at final runtime
+`89a0aec` pass **2,283/2,283**; Ruff passes. [Pinned verification and receipts](../experiments/grounded_http_acceptance/verification-89a0aec.json)
+separate each source revision and test scope.
+
+The native browser smoke found a real UI defect missed by earlier page-only
+tests: changing a case status changed its formatted selectbox label. Streamlit
+could deserialize the former label as a case value, reset form state and fail
+approval/version reply. The widget ID itself stayed stable. Stable serialized
+case IDs fix this without weakening review validation. A regression runs actual
+`app.py` navigation. The repeated browser flow approves on the first click,
+accepts a short version reply and correction, and ends at revision3 in the same
+case with one local action. [Browser receipt and screenshot](../experiments/grounded_http_acceptance/browser-receipt-89a0aec.json)
+record this assistant-operated local smoke. Complete UI-session recovery,
+production authentication, final corpus/split and independent quality scoring
+remain open.
+
 ## 2026-10-13 — connected offline UI/index pilot (U3a/P4a/C2e)
 
 PR30 is published on main at `6e719e9`; PR31's exact reviewed Windows worker

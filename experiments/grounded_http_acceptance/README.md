@@ -1,5 +1,10 @@
 # C2f — GroundedPlan در HTTP پایدار، با gateway جعلی
 
+[baseline ثبت‌شده](results-baseline-3e4617f.json)، [نسخهٔ جدید](results-current-3e4617f.json)،
+[verification نهایی](verification-89a0aec.json) و [smoke مرورگر](browser-receipt-89a0aec.json)
+با source/hash قابل بررسی‌اند. ۱۰/۱۲ به ۱۲/۱۲ بهبود عملیاتی label و cleanup است؛
+سنجش کیفیت مدل یا RAG نیست. probe واقعی و review جدا در همین پوشه باقی‌اند.
+
 این [protocol](protocol-v1.json) **قبل از اجرای جدید** ثبت می‌شود. همان fixture
 چهارمرحله‌ای C3 و oracle کامل قبلی را نگه می‌داریم؛ برای هر مرحله اطلاعات موجود،
 کمبود قابل سؤال از کاربر، کمبود source و تصمیم قابل قبول از پیش مشخص‌اند.

@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-10-12T23:33:00Z",
+  "scope": "native in-app browser smoke against private localhost Streamlit, persistent HTTP and existing SQLite, actual approved-docs Chroma, mandatory fake model gateway",
+  "source_commit": "89a0aec420f2596765d2b580632fdfc71dfb3d24",
+  "source_page_sha256": "28a8d5def09fb785b037d2a0832e400c1dc2a49e37713fd0142a239b5a5dcde1",
+  "quality_claim": false,
+  "real_provider_calls": 0,
+  "case_id": "case-24b7acd6",
+  "case_revision": 3,
+  "status": "awaiting_review",
+  "facts": [
+    {
+      "name": "streamlit_version",
+      "value": "1.50.0",
+      "source_ref": "user:ui-54bfe9ab7d2e48d0aa0f78ea5f746908",
+      "turn_id": "ui-54bfe9ab7d2e48d0aa0f78ea5f746908",
+      "provenance_kind": "user",
+      "status": "superseded"
+    },
+    {
+      "name": "streamlit_version",
+      "value": "1.49.0",
+      "source_ref": "user:ui-3f92683008af47429b726b7ab5351411",
+      "turn_id": "ui-3f92683008af47429b726b7ab5351411",
+      "provenance_kind": "user",
+      "status": "active"
+    }
+  ],
+  "actions_count": 1,
+  "reasoning_label": "grounded_fake_gateway",
+  "retrieval_label": "local_chroma_hash",
+  "steps": [
+    {
+      "step": "initial issue with unknown version",
+      "observed": "version question staged for maintainer review"
+    },
+    {
+      "step": "first approval click",
+      "observed": "approved version question delivered; one local action"
+    },
+    {
+      "step": "short version reply 1.50.0",
+      "observed": "same case, revision2, escalation staged"
+    },
+    {
+      "step": "structured correction to 1.49.0",
+      "observed": "same case, revision3, earlier version superseded, fresh escalation; still one local action"
+    },
+    {
+      "step": "page rerun",
+      "observed": "active case survives, no response-readability or missing form-state error"
+    }
+  ],
+  "before_fix": {
+    "source_commit": "3e4617f",
+    "observed": "first approval reset case state and showed UIResponseUnreadable; version form later raised AttributeError after dynamic case label changed",
+    "cause": "Streamlit selectbox deserializes formatted option text. An old status label absent from new formatted options was returned as case value and triggered case-change form reset; widget ID stayed the same."
+  },
+  "fix": "Keep serialized selectbox options as stable case IDs; status remains in Case status panel and review counter; approval validator unchanged.",
+  "regression_test": "tests/test_grounded_browser_callback.py with actual app.py navigation, stable formatted options and widget ID, approval/reply/correction; former implementation fails option-stability assertion",
+  "screenshot": {
+    "path": "browser-correction-2026-10-13.jpg",
+    "sha256": "a9efb2badfc6a052609da582099be6ddb7fd947d17e2325f6ebc10f1a05679f1"
+  },
+  "final_http_view_sha256": "77cc6071465e42c98c601a6f1b9480f651c4a65dac51c285d11ff069f32ed8c0",
+  "limitations": [
+    "Assistant-operated smoke, not independent user acceptance or held-out model evaluation",
+    "No complete UI-session recovery or product authentication/configuration acceptance",
+    "Local lexical index and authored conservative ask/escalate model policy; retrieved relevance is not scored",
+    "Restart and lost-ACK retry verified separately by TCP and AppTest tests; this browser screenshot proves correction state only"
+  ]
+}

@@ -57,7 +57,15 @@ exposed و انتخاب fixture، answer-informed بوده؛ پاسخ همان I
 AppTest صفحهٔ واقعی و Chroma واقعی را با gateway جعلی اجرا می‌کند. تست TCP از
 دو interpreter تازه و همان SQLite/index استفاده می‌کند. retry همان approval
 موفق بعد از correction، receipt اصلی را برمی‌گرداند؛ approval قدیمی با ID تازه
-رد می‌شود. آزمون کامل مرورگر و recovery پس از پایان session جداست.
+رد می‌شود. [smoke مرورگر واقعی](../experiments/grounded_http_acceptance/browser-receipt-89a0aec.json)
+هم سؤال، اولین approval، جواب کوتاه و correction را روی همین index و gateway
+جعلی اجرا کرد؛ revision به ۳ رسید و فقط یک action ثبت شد. label انتخاب case
+حالا ID ثابت دارد؛ تغییر status دیگر فرم را reset نمی‌کند. recovery پس از پایان
+session و تنظیم auth محصول همچنان جداست.
+
+[receiptهای مقایسه و بررسی نهایی](../experiments/grounded_http_acceptance/verification-89a0aec.json)
+با commit/hash ثبت شده‌اند؛ ۲۲۸۳ تست نسخهٔ نهایی پاس‌اند. نتیجهٔ هر آزمون به
+source خودش نسبت داده شده؛ بهبود ۱۰/۱۲ به ۱۲/۱۲ فقط دو کنترل عملیاتی بالاست.
 
 ## API واقعی؛ فقط probe ثبت‌شده
 
