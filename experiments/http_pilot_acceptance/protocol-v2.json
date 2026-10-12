@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "protocol_id": "http-pilot-acceptance-v2",
+  "task_ids": [
+    "C2d",
+    "C2c",
+    "C2",
+    "U3",
+    "T4"
+  ],
+  "registered_on": "2026-10-12",
+  "baseline_source_commit": "cddef782726e7d92c8f3d85eeae5933f563e4246",
+  "fixture": "data/evaluation/dev/pilot-12782.json",
+  "fixture_sha256": "f4b9cef54c98dd875ff0e55f41aebcde19a9b02717b7cb8c5525eba9575f2855",
+  "fixture_modified": false,
+  "case_family": [
+    12782,
+    12629
+  ],
+  "exposure": "Existing exposed, answer-informed dev case; authored follow-ups. Not held-out.",
+  "mode": "offline_http_scripted_ports_existing_sqlite",
+  "quality_claim": false,
+  "requirements": [
+    {
+      "id": "existing_pilot",
+      "given": "Four registered turns and frozen evidence; current event and previously committed user history only. Future turns/gold excluded from reasoner input.",
+      "missing": "No real model or index; semantic quality is unmeasured.",
+      "acceptable": "All existing CaseRun checks pass through actual HTTP routes."
+    },
+    {
+      "id": "correction",
+      "given": "User explicitly corrects1.50.0 to1.49.1; latest bundle excludes1.50 release.",
+      "missing": "No exact1.49.1 source or parent callback.",
+      "acceptable": "Only1.49.1 active;1.50 superseded; retired checks/evidence absent; old proposal cannot release any action."
+    },
+    {
+      "id": "refused_review",
+      "given": "Old revision, replaced proposal or pre-edit proposal ID.",
+      "missing": "No current authorization for that proposal.",
+      "acceptable": "HTTP409; entire current case projection and action history unchanged; no new ports."
+    },
+    {
+      "id": "event_retry",
+      "given": "Identical original event and reply binding with stable turn_id and original expected revision.",
+      "missing": "The client may not know the prior response.",
+      "acceptable": "HTTP200 with original intake hashes/committed revision and replayed=true; current state unchanged; zero factory/retrieval/reasoning calls."
+    },
+    {
+      "id": "event_conflict",
+      "given": "Existing event identity reused with a different validated message.",
+      "missing": "No authorization to replace the committed event.",
+      "acceptable": "HTTP409 EventConflict; entire current view unchanged; zero ports."
+    },
+    {
+      "id": "short_reply_context",
+      "given": "Initial multiselect/fragment issue plus approved canonical question and bare1.50.0 reply.",
+      "missing": "Parent callback and full-app cause remain unknown.",
+      "acceptable": "Observed reasoning input still contains the original issue message and current reply; no future turn/gold."
+    },
+    {
+      "id": "review_retry",
+      "given": "Same successfully approved proposal and original review payload; its HTTP response may have been lost.",
+      "missing": "Client does not know whether approval committed.",
+      "acceptable": "Return same durable receipt or reject safely without changing state/actions; exactly one release. Current API lacks authenticated stable review_id/hash."
+    },
+    {
+      "id": "client_reconnect",
+      "given": "Same application process; only HTTP client is recreated.",
+      "missing": "No application restart has occurred.",
+      "acceptable": "State remains identical; result explicitly labelled reconnect, never restart."
+    },
+    {
+      "id": "hard_restart",
+      "given": "New interpreter/process with the same temporary storage path after registered checkpoint.",
+      "missing": "Old process globals are gone.",
+      "acceptable": "Revision, active/superseded facts, question, pending full handoff, ingress receipt, log and action history preserved; old event/review retry performs no new work."
+    },
+    {
+      "id": "interrupted_setup",
+      "given": "Input committed, then adapter construction fails before reasoning.",
+      "missing": "No completed proposal/outcome.",
+      "acceptable": "Same-process and after-restart original event replay never retries setup/retrieval/reasoning; stored stopped state remains, no proposal is invented."
+    }
+  ],
+  "restart_checkpoints": [
+    "approved_question_turn1",
+    "pending_answer_turn2",
+    "edited_approval_turn3",
+    "withdrawal_rejection_turn4",
+    "committed_input_before_adapter"
+  ],
+  "decision_policy": "Existing fixture scripts/gold unchanged; this protocol measures operations, not decision or RAG quality.",
+  "network_policy": "No real socket connections, providers, embedding, index, .env, or production ledger. TestClient invokes ASGI routes in memory.",
+  "acceptance_policy": "A missing case after restart is failure, even if old approval gets404. Fresh TestClient alone is not restart. Never reset or copy memory into an artificial durable backend to pass. Persistent candidate must have accepted=true; expected-memory-gap never applies to it.",
+  "negative_controls": [
+    "ports invoked silently on event replay",
+    "refused approval mutates the case",
+    "hard restart omitted",
+    "restart state lost but retry refused",
+    "stale evidence or facts retained",
+    "same review releases twice"
+  ],
+  "parent_protocol_sha256": "ad7457d2738abf57501d4070e88c77e2b4478d8d31b22564daa9db1ec2100176",
+  "additional_requirements": [
+    {
+      "id": "durable_review_envelope",
+      "given": "Exact captured proposal/revision/hash; stable review_id; trusted server configured reviewer credential.",
+      "missing": "JSON/user/model cannot grant authority.",
+      "acceptable": "Missing/wrong credentials refused without mutation; original authenticated review retry returns original receipt and exactly one actual local comment."
+    },
+    {
+      "id": "review_conflict",
+      "given": "Existing review_id reused with altered validated payload.",
+      "missing": "No permission to change completed review.",
+      "acceptable": "ReviewConflict; full state/actions unchanged; no ports."
+    },
+    {
+      "id": "stale_new_review_vs_completed_review_retry",
+      "given": "Old/pre-edit proposal after correction; distinguish a new review from retry of an already committed review.",
+      "missing": "No permission for a new action on stale proposal.",
+      "acceptable": "New review rejected409; exact completed review retry may return prior receipt with no new action and current view."
+    },
+    {
+      "id": "single_snapshot_projection",
+      "given": "Persisted state/history/intake/review/outcome/pending metrics/actions.",
+      "missing": "Process caches gone after restart.",
+      "acceptable": "Read all under one SQLite snapshot; measured counters persist, absent old metrics stay unknown, never fabricated."
+    },
+    {
+      "id": "atomic_outcome_stage",
+      "given": "Actual completed RunResult and exact handoff for the fresh event.",
+      "missing": "Acknowledgment may be lost.",
+      "acceptable": "Stage handoff and measured result in same existing DB transaction; lost ACK recovers exact content without ports."
+    },
+    {
+      "id": "interrupted_no_resume",
+      "given": "Process terminates after committed ingress but before reasoning/outcome.",
+      "missing": "No completed run is established.",
+      "acceptable": "Explicit persisted interrupted outcome; event replay performs zero ports; no automatic paid or offline resume."
+    },
+    {
+      "id": "local_action_rollback",
+      "given": "Failure after local comment INSERT before review commit.",
+      "missing": "No successful review receipt.",
+      "acceptable": "Entire review transaction rolls back; identical authenticated retry writes one action."
+    },
+    {
+      "id": "same_revision_lifecycle",
+      "given": "Competing proposal staged and reviewed at same revision during final staging.",
+      "missing": "Old candidate has no fresh lifecycle authority.",
+      "acceptable": "Atomic one-stage-per-event/revision gate refuses stale candidate; no second pending/action."
+    }
+  ],
+  "envelope_boundary": "Trusted harness adds authenticated HTTP review identity/hash captured from the original displayed proposal; fixture/gold/agent inputs unchanged. New independent review probes get new IDs; exact retry reuses original envelope."
+}
