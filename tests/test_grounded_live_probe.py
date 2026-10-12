@@ -1,9 +1,11 @@
 """Bounded paid-probe controls with a disposable ledger and mock wire only."""
 
+import gzip
 import importlib.util
 import json
 import sqlite3
 import sys
+import zlib
 from decimal import Decimal
 from pathlib import Path
 
@@ -142,6 +144,52 @@ def test_repair_consumes_second_send_and_same_original_run(tmp_path, ledger):
     assert len({item["run_id"] for item in receipt["reasoning_attempts"]}) == 1
     assert Decimal(receipt["new_cost_estimated_usd"]) == Decimal("0.000140250")
     assert len(seen) == 2
+
+
+@pytest.mark.parametrize("encoding,compress", [("gzip", gzip.compress), ("deflate", zlib.compress)])
+def test_compressed_envelope_retains_verified_id_without_double_decoding_or_headers(
+    tmp_path, ledger, encoding, compress
+):
+    response_streams = []
+
+    class ChunkedStream(httpx.SyncByteStream):
+        def __init__(self, body):
+            self.body, self.closed = body, False
+
+        def __iter__(self):
+            for index in range(0, len(self.body), 17):
+                yield self.body[index : index + 17]
+
+        def close(self):
+            self.closed = True
+
+    def respond(request):
+        raw = response(request).content
+        wire = compress(raw)
+        stream = ChunkedStream(wire)
+        response_streams.append(stream)
+        return httpx.Response(
+            200,
+            headers={
+                "Content-Encoding": encoding,
+                "Content-Length": str(len(wire)),
+                "Private-Provider-Header": "private-response-header-must-not-escape",
+            },
+            stream=stream,
+            request=request,
+        )
+
+    receipt = execute(tmp_path, ledger, respond)
+    assert receipt["accepted_operations"] is True and receipt["actual_sends"] == 1
+    assert (
+        receipt["provider_observations"][0]["verified_returned_model"] == "gpt-4o-mini-2024-07-18"
+    )
+    assert receipt["provider_observations"][0]["reservation"]["status"] == "settled"
+    assert receipt["canonical_pending_handoff"]["analysis"]["decision"] == "ask"
+    assert all(stream.closed for stream in response_streams)
+    serialized = json.dumps(receipt)
+    assert "private-response-header-must-not-escape" not in serialized
+    assert "Private-Provider-Header" not in serialized
 
 
 def test_model_mismatch_stops_and_retains_both_uncertain_records(tmp_path, ledger):

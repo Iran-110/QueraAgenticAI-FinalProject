@@ -214,12 +214,15 @@ def first_turn_catalog(fixture, case, message, evidence):
 
 
 class _ObservedStream(httpx.SyncByteStream):
-    def __init__(self, stream, record):
-        self.stream, self.record = stream, record
+    def __init__(self, response, record):
+        self.response, self.record = response, record
 
     def __iter__(self) -> Iterator[bytes]:
         bounded = bytearray()
-        for chunk in self.stream:
+        # The underlying transport yields compressed wire bytes. Observe the
+        # decoded envelope, exactly as the gateway parses it; the outer response
+        # deliberately has no Content-Encoding so these bytes decode only once.
+        for chunk in self.response.iter_bytes():
             if len(bounded) + len(chunk) <= 262_144:
                 bounded.extend(chunk)
             else:
@@ -235,7 +238,7 @@ class _ObservedStream(httpx.SyncByteStream):
                 pass
 
     def close(self):
-        self.stream.close()
+        self.response.close()
 
 
 class CountedTransport(httpx.BaseTransport):
@@ -292,10 +295,13 @@ class CountedTransport(httpx.BaseTransport):
         self.records.append(record)
         response = self.underlying.handle_request(request)
         record["http_status"] = response.status_code
+        headers = dict(response.headers)
+        headers.pop("content-encoding", None)
+        headers.pop("content-length", None)
         return httpx.Response(
             response.status_code,
-            headers=response.headers,
-            stream=_ObservedStream(response.stream, record),
+            headers=headers,
+            stream=_ObservedStream(response, record),
             extensions=response.extensions,
             request=request,
         )
