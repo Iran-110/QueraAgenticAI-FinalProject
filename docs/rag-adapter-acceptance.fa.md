@@ -5,6 +5,22 @@
 `fix/rag-core-acceptance` انجام شد؛ branch اصلی حسن و receiptهای قبلی حفظ شدند.
 core/contract مشترک و ساختار تک agent تغییر نکردند.
 
+## وضعیت انتشار — ۲۰۲۶-۱۰-۱۲
+
+[PR #27](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/27) با
+`4162079` به branch حسن و بعد [PR #23](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/23)
+با `ec1a1f0` به main merge شدند؛ tree هر دو با نسخهٔ بازبینی‌شدهٔ `65addbb`
+یکسان است. هر دو CI head تازهٔ #23 پیش از merge پاس شدند؛
+[CI main](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38225492349)
+هم ۱۸۹۱ تست، Ruff و تمام replayهای آفلاین را پاس کرد.
+
+[receipt تازهٔ main](../experiments/retrieval_acceptance/results-main-ec1a1f0.json)
+در checkout تمیز ثبت شد: ۱۴ case و ۱۳۲ check پاس. fixture و fingerprint تمام
+کد runtime با receipt `326480d` یکسان‌اند و حین اجرا تغییر نکردند.
+۹۵ تست مرتبط، smoke و regression مستقل core/SQLite با ۴۹ check نیز دوباره
+پاس شدند؛ [ثبت انتشار و checkها](../experiments/retrieval_acceptance/release-main-ec1a1f0.json).
+R3 آفلاین اکنون روی main است؛ index/corpus و کیفیت واقعی RAG همچنان بازند.
+
 ## رفتار اصلاح‌شده
 
 - import فقط از `agent_app` است؛ خروجی همان کلاس‌های قرارداد core را دارد.
@@ -35,6 +51,7 @@ fixture همان SHA
 | [b571080 با import اصلی](../experiments/retrieval_acceptance/baseline-b571080-current-kit.json) | ۴/۱۴ | ۱۰/۲۸ | اتصال رد؛ توقف زودهنگام namespace |
 | [b571080 با alias فقط برای تشخیص](../experiments/retrieval_acceptance/diagnostic-b571080-current-kit.json) | ۴/۱۴ | ۷۴/۸۵ | provenance، boundary و snapshot نیز رد شدند |
 | [adapter اصلاح‌شده، بدون alias](../experiments/retrieval_acceptance/results-fixed-326480d.json) | ۱۴/۱۴ | ۱۳۲/۱۳۲ | پذیرش قرارداد با backend ثابت |
+| [همان adapter روی main `ec1a1f0`](../experiments/retrieval_acceptance/results-main-ec1a1f0.json) | ۱۴/۱۴ | ۱۳۲/۱۳۲ | تکرار پذیرش بعد از انتشار؛ backend ثابت |
 
 مخرج کوچک baseline ناشی از توقف زودهنگام است؛ درصدها نمرهٔ کیفیت نیستند.
 بعضی stopهای baseline به‌علت namespace پاس می‌شوند و کنترل درست snapshot یا
