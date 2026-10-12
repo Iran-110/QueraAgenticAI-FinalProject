@@ -11,7 +11,8 @@ The reported Windows counts and durations below belong to the PR31 source
 `877601c83b3f8eeb4ad032fd23d54f0e1cb1a0bf`. They are owner-reported execution
 results, not a receipt produced by the documentation commit. This documentation
 branch has been synchronized with that released main, including the two new
-Windows runtime regressions. The independent [main CI](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38314737701)+is a separate Linux run and does not establish Windows acceptance.
+Windows runtime regressions. The independent [main CI](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38314737701)
+is a separate Linux run and does not establish Windows acceptance.
 
 ## Commands and observed results
 
