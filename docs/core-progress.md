@@ -36,6 +36,11 @@ and [commands, scopes and limitations](offline-ui-index-pilot.fa.md) are public.
 CI now includes a Windows connected-pilot job; only its actual green result can
 establish that platform's acceptance.
 
+The first PR Windows page run reached AppTest's default three-second completion
+timeout, while the same branch run passed. The real-index page test now has a
+bounded 15-second test-run allowance; assertions, network block, application
+timeouts and all acceptance inputs are unchanged. This is not a latency result.
+
 This is a private local maintainer console and a scripted ask/escalate pilot,
 not real model/RAG quality. Browser authentication and recovery after complete
 UI-session loss remain product work. E1/E2 split/rubric, R2/R4 final corpus/dev

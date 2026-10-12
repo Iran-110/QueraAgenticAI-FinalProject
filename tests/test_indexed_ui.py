@@ -39,7 +39,12 @@ def test_page_reads_index_then_approves_question_and_corrects_version(tmp_path, 
                     "make_client",
                     lambda: ui_client.BackendClient(backend, reviewer_token=TOKEN),
                 )
-                at = AppTest.from_file(str(ROOT / "app_pages/assistant.py")).run()
+                # The real index verifies source hashes on each retrieval. AppTest's
+                # three-second default is too tight on a busy Windows runner; this
+                # bounds test completion, not application latency or HTTP timeouts.
+                at = AppTest.from_file(
+                    str(ROOT / "app_pages/assistant.py"), default_timeout=15
+                ).run()
                 assert not at.exception
                 assert "scenario" not in [item.key for item in at.sidebar.selectbox]
                 fixture = json.loads((ROOT / "data/evaluation/dev/pilot-12782.json").read_text())
