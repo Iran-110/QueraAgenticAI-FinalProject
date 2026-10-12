@@ -17,26 +17,79 @@ import sqlite3
 from collections.abc import Iterator, Mapping
 from contextlib import contextmanager
 from pathlib import Path
-from typing import Any, Literal
+from typing import Any, Literal, get_args
 from uuid import uuid4
 
-from pydantic import ValidationError
+from pydantic import TypeAdapter, ValidationError
 
 from agent_app.contracts import (
     AnalysisResult,
     ApprovedReplyQuestion,
     CaseState,
+    Identifier,
     ProposalHandoff,
+    RunResult,
     UserTurn,
 )
+from agent_app.orchestration.conversation import ConversationCode
 from agent_app.orchestration.handoff import (
+    HandoffCode,
     HandoffRejected,
     edit_handoff,
     ensure_handoff_current,
     validate_handoff,
 )
 from agent_app.orchestration.intake import IntakeRejected, prepare_approved_version_reply
+from agent_app.orchestration.ports import ReasoningStopCode
 from agent_app.orchestration.turns import UserTurnRejected, propose_user_turn
+from agent_app.orchestration.validation import detached_contract
+
+_TERMINAL_RUN_STATUSES = frozenset(
+    {"core_stopped", "proposal_not_pending", "superseded_before_run", "staging_unknown"}
+)
+_RUN_ERROR_CODES = frozenset(
+    {
+        "RunInterrupted",
+        "RunOutcomeUnavailable",
+        "AdapterSetupFailed",
+        "AdapterSetupUnavailable",
+        "CoreRunFailed",
+        "InvalidTrackerReceipt",
+        "TrackerLifecycleChanged",
+        "TrackerStagingUnknown",
+        "CaseReadFailed",
+        "ProposalConflict",
+        "StepLimitExceeded",
+        "InvalidInput",
+        "ModelAttemptLimitExceeded",
+        "RetrievalRoundLimitExceeded",
+        "QueryLimitExceeded",
+        "RepeatedQuery",
+        "InvalidRetrievalQuery",
+        "RetrievalUnavailable",
+        "RetrievalResultInvalid",
+        "ModelOutputInvalid",
+        "GroundedSourceMismatch",
+        "ReasoningUnavailable",
+        "UnknownEvidenceReference",
+        "AnswerWithoutEvidence",
+        "UnsupportedFactUpdate",
+        "UnsupportedUserFact",
+        "UnknownFactSource",
+        "ConflictingEvidenceFact",
+        "KnownFactMarkedMissing",
+        "RepeatedCheck",
+        *get_args(HandoffCode.__value__),
+        *get_args(ConversationCode.__value__),
+        *get_args(ReasoningStopCode.__value__),
+    }
+)
+
+
+def _safe_run_code(value: Any) -> str | None:
+    if value is None:
+        return None
+    return value if type(value) is str and value in _RUN_ERROR_CODES else "RunOutcomeUnavailable"
 
 
 class TrackerRejected(ValueError):
@@ -139,6 +192,17 @@ class SQLiteCaseTracker:
                     event_type TEXT NOT NULL,
                     details_json TEXT NOT NULL
                 );
+                CREATE TABLE IF NOT EXISTS run_outcomes (
+                    case_id TEXT NOT NULL,
+                    turn_id TEXT NOT NULL,
+                    revision INTEGER NOT NULL,
+                    status TEXT NOT NULL,
+                    error_code TEXT,
+                    run_result_json TEXT,
+                    proposal_id TEXT,
+                    PRIMARY KEY (case_id, turn_id),
+                    UNIQUE (case_id, revision)
+                );
                 """
             )
 
@@ -194,45 +258,212 @@ class SQLiteCaseTracker:
             (state.case_id, _model_json(state), status, awaiting_reply_json),
         )
 
+    def _read_case(self, connection: sqlite3.Connection, case_id: str) -> dict[str, Any]:
+        """Canonical payload on the caller's existing transaction/snapshot."""
+        state, status, reply = self._load(connection, case_id)
+        pending = None
+        if state.pending_proposal_id:
+            row = connection.execute(
+                "SELECT handoff_json FROM proposals WHERE case_id=? AND proposal_id=?",
+                (case_id, state.pending_proposal_id),
+            ).fetchone()
+            if row is None:
+                raise TrackerRejected("PendingProposalMissing")
+            pending = json.loads(row["handoff_json"])
+        history = [
+            {
+                "actor": row["actor"],
+                "reference_id": row["reference_id"],
+                "revision": row["revision"],
+                "text": row["body"],
+            }
+            for row in connection.execute(
+                "SELECT actor,reference_id,revision,body FROM conversation "
+                "WHERE case_id=? ORDER BY sequence",
+                (case_id,),
+            )
+        ]
+        return {
+            "state": state.model_dump(mode="json"),
+            "history": history,
+            "status": status,
+            "pending_handoff": pending,
+            "awaiting_reply": json.loads(reply) if reply else None,
+        }
+
     def read_case(self, case_id: str) -> dict[str, Any]:
-        # Read must not create a case. Input validation also protects read paths.
+        # Keep the original port shape; HTTP metadata must not add unknown keys
+        # to the strict shared TrackerCaseView contract.
         CaseState(case_id=case_id)
         with self._connect() as connection:
-            # Keep state, proposal, reply and conversation on one read snapshot.
-            # Without BEGIN, concurrent commits can mix different revisions
-            # across these SELECTs even though every writer is transactional.
             connection.execute("BEGIN")
-            state, status, reply = self._load(connection, case_id)
-            pending = None
-            if state.pending_proposal_id:
-                row = connection.execute(
-                    "SELECT handoff_json FROM proposals WHERE case_id=? AND proposal_id=?",
-                    (case_id, state.pending_proposal_id),
-                ).fetchone()
-                if row is None:
-                    raise TrackerRejected("PendingProposalMissing")
-                pending = json.loads(row["handoff_json"])
-            history = [
-                {
-                    "actor": row["actor"],
-                    "reference_id": row["reference_id"],
-                    "revision": row["revision"],
-                    "text": row["body"],
-                }
-                for row in connection.execute(
-                    "SELECT actor,reference_id,revision,body FROM conversation "
-                    "WHERE case_id=? ORDER BY sequence",
+            result = self._read_case(connection, case_id)
+            connection.commit()
+            return result
+
+    @staticmethod
+    def _outcome(row: sqlite3.Row | None) -> dict[str, Any] | None:
+        if row is None:
+            return None
+        if row["status"] not in {*_TERMINAL_RUN_STATUSES, "interrupted", "proposal_staged"}:
+            raise TrackerRejected("RunOutcomeUnavailable")
+        result = None
+        if row["run_result_json"] is not None:
+            try:
+                parsed = RunResult.model_validate_json(row["run_result_json"])
+                result = parsed.model_copy(
+                    update={"error_code": _safe_run_code(parsed.error_code)}
+                ).model_dump(mode="json")
+            except (ValidationError, ValueError, TypeError):
+                raise TrackerRejected("RunResultInvalid") from None
+        return {
+            "status": row["status"],
+            "error_code": _safe_run_code(row["error_code"]),
+            "result": result,
+        }
+
+    def read_runtime_view(self, case_id: str) -> dict[str, Any]:
+        """HTTP projection, receipts and actual actions from one read snapshot.
+
+        The old shared read_case shape remains unchanged. No display state is
+        cached in the application process, and no missing metrics are invented.
+        """
+        CaseState(case_id=case_id)
+        with self._connect() as db:
+            db.execute("BEGIN")
+            view = self._read_case(db, case_id)
+            events = list(
+                db.execute(
+                    "SELECT receipt_json FROM events WHERE case_id=? ORDER BY rowid", (case_id,)
+                )
+            )
+            intake = json.loads(events[-1]["receipt_json"]) if events else None
+            outcomes = {
+                row["turn_id"]: row
+                for row in db.execute("SELECT * FROM run_outcomes WHERE case_id=?", (case_id,))
+            }
+            proposals = {
+                row["proposal_id"]: row
+                for row in db.execute("SELECT * FROM proposals WHERE case_id=?", (case_id,))
+            }
+            reviews = [
+                json.loads(row["receipt_json"])
+                for row in db.execute(
+                    "SELECT receipt_json FROM reviews WHERE case_id=? ORDER BY rowid", (case_id,)
+                )
+            ]
+            review_map = {receipt["review_id"]: receipt for receipt in reviews}
+            actions = [
+                dict(row)
+                for row in db.execute(
+                    "SELECT proposal_id,action_id,reviewer_id,body FROM local_comments "
+                    "WHERE case_id=? ORDER BY rowid",
                     (case_id,),
                 )
             ]
+            history = {(entry["actor"], entry["reference_id"]): entry for entry in view["history"]}
+            log = []
+            for event in db.execute(
+                "SELECT event_type,details_json FROM audit WHERE case_id=? ORDER BY sequence",
+                (case_id,),
+            ):
+                details = json.loads(event["details_json"])
+                if event["event_type"] == "turn_committed":
+                    message = history.get(("user", details["turn_id"]))
+                    if message is not None:
+                        log.append({"role": "user", "text": message["text"]})
+                    outcome = self._outcome(outcomes.get(details["turn_id"]))
+                    if outcome is not None and outcome["status"] == "interrupted":
+                        log.append(
+                            {
+                                "role": "system",
+                                "text": "The input was committed, but no run outcome is recorded. "
+                                "Replay will not resume it automatically.",
+                            }
+                        )
+                elif event["event_type"] == "run_finished":
+                    outcome = self._outcome(outcomes.get(details["turn_id"]))
+                    if outcome is not None:
+                        result_status = (
+                            outcome["result"]["status"] if outcome["result"] else "error"
+                        )
+                        log.append(
+                            {
+                                "role": "system",
+                                "text": f"The run stopped ({result_status}: "
+                                f"{outcome['error_code']}). Nothing was proposed.",
+                            }
+                        )
+                elif event["event_type"] == "review_committed":
+                    receipt = review_map[details["review_id"]]
+                    if receipt["decision"] == "approve":
+                        message = history.get(("assistant", receipt["proposal_id"]))
+                        proposal = proposals.get(receipt["proposal_id"])
+                        if message is None or proposal is None:
+                            raise TrackerRejected("PendingProposalMissing")
+                        handoff = json.loads(proposal["handoff_json"])
+                        log.append(
+                            {
+                                "role": "assistant",
+                                "text": message["text"],
+                                "decision": handoff["analysis"]["decision"],
+                                "edited": proposal["parent_proposal_id"] is not None,
+                            }
+                        )
+                    elif receipt["decision"] == "edit":
+                        log.append(
+                            {
+                                "role": "system",
+                                "text": "The maintainer edited the draft. It needs approval.",
+                            }
+                        )
+                    else:
+                        log.append(
+                            {
+                                "role": "system",
+                                "text": "The maintainer rejected the proposal. Nothing was sent.",
+                            }
+                        )
+            decisions = []
+            for receipt in reviews:
+                selected = receipt["new_proposal_id"] or receipt["proposal_id"]
+                proposal = proposals[selected]
+                handoff = json.loads(proposal["handoff_json"])
+                action = {
+                    "case_id": case_id,
+                    "proposal_id": selected,
+                    "case_revision": proposal["revision"],
+                    "review_handoff": handoff,
+                    "user_draft": handoff["analysis"]["user_draft"],
+                    "decision": handoff["analysis"]["decision"],
+                    "edited": proposal["parent_proposal_id"] is not None,
+                }
+                decisions.append(
+                    {"action": action, "decision": receipt["decision"], "receipt": receipt}
+                )
+            pending = view["pending_handoff"]
+            pending_result = None
+            pending_parent = None
+            if pending is not None:
+                pending_parent = proposals[pending["proposal_id"]]["parent_proposal_id"]
+                run = db.execute(
+                    "SELECT * FROM run_outcomes WHERE case_id=? AND proposal_id=?",
+                    (case_id, pending["reasoning_context"]["run_id"]),
+                ).fetchone()
+                pending_outcome = self._outcome(run)
+                pending_result = pending_outcome["result"] if pending_outcome else None
             result = {
-                "state": state.model_dump(mode="json"),
-                "history": history,
-                "status": status,
-                "pending_handoff": pending,
-                "awaiting_reply": json.loads(reply) if reply else None,
+                "view": view,
+                "intake": intake,
+                "review": reviews[-1] if reviews else None,
+                "log": log,
+                "decisions": decisions,
+                "pending_result": pending_result,
+                "pending_edited_from": pending_parent,
+                "run_outcome": self._outcome(outcomes.get(intake["turn_id"])) if intake else None,
+                "actions": actions,
             }
-            connection.commit()
+            db.commit()
             return result
 
     def apply_turn(
@@ -332,6 +563,11 @@ class SQLiteCaseTracker:
                 "INSERT INTO events(case_id,event_id,payload_sha256,receipt_json) VALUES(?,?,?,?)",
                 (turn.case_id, turn.turn_id, identity, _json(receipt)),
             )
+            db.execute(
+                "INSERT INTO run_outcomes(case_id,turn_id,revision,status,error_code) "
+                "VALUES(?,?,?,'interrupted','RunInterrupted')",
+                (turn.case_id, turn.turn_id, candidate.case_revision),
+            )
             self._audit(
                 db,
                 turn.case_id,
@@ -348,40 +584,190 @@ class SQLiteCaseTracker:
             raise TrackerRejected(error.code) from None
         with self._connect() as db:
             self._begin(db)
-            state, _status, reply = self._load(db, handoff.case.case_id)
-            if state.case_revision != handoff.case.case_revision:
-                raise TrackerRejected("StaleRevision")
-            if state.pending_proposal_id is not None:
-                raise TrackerRejected("PendingProposalMismatch")
-            if state != handoff.case:
-                raise TrackerRejected("CaseContentMismatch")
-            if db.execute(
-                "SELECT 1 FROM proposals WHERE case_id=? AND proposal_id=?",
-                (state.case_id, handoff.proposal_id),
-            ).fetchone():
-                raise TrackerRejected("ProposalConflict")
+            receipt = self._stage_proposal(db, handoff)
+            # Legacy callers still stage real handoffs, but supply no measured
+            # RunResult. Record completion honestly without inventing metrics.
             db.execute(
-                """INSERT INTO proposals(case_id,proposal_id,revision,handoff_json,lifecycle)
-                VALUES(?,?,?,?, 'pending')""",
-                (state.case_id, handoff.proposal_id, state.case_revision, _model_json(handoff)),
+                "UPDATE run_outcomes SET status='proposal_staged',error_code=NULL,proposal_id=? "
+                "WHERE case_id=? AND revision=? AND status='interrupted'",
+                (handoff.proposal_id, handoff.case.case_id, handoff.case.case_revision),
             )
-            self._save(
+            db.commit()
+            return receipt
+
+    def _stage_proposal(self, db: sqlite3.Connection, handoff: ProposalHandoff) -> dict[str, Any]:
+        state, status, reply = self._load(db, handoff.case.case_id)
+        if state.case_revision != handoff.case.case_revision:
+            raise TrackerRejected("StaleRevision")
+        if state.pending_proposal_id is not None or status != "open":
+            raise TrackerRejected("PendingProposalMismatch")
+        if state != handoff.case:
+            raise TrackerRejected("CaseContentMismatch")
+        # An approve/reject/edit cycle can restore pending=None without changing
+        # revision. A second root proposal must not revive that closed lifecycle.
+        if db.execute(
+            "SELECT 1 FROM proposals WHERE case_id=? AND (proposal_id=? OR revision=?)",
+            (state.case_id, handoff.proposal_id, state.case_revision),
+        ).fetchone():
+            raise TrackerRejected("ProposalConflict")
+        db.execute(
+            """INSERT INTO proposals(case_id,proposal_id,revision,handoff_json,lifecycle)
+            VALUES(?,?,?,?, 'pending')""",
+            (state.case_id, handoff.proposal_id, state.case_revision, _model_json(handoff)),
+        )
+        self._save(
+            db,
+            state.model_copy(update={"pending_proposal_id": handoff.proposal_id}),
+            "awaiting_review",
+            reply,
+        )
+        self._audit(
+            db,
+            state.case_id,
+            "proposal_staged",
+            {"proposal_id": handoff.proposal_id, "revision": state.case_revision},
+        )
+        return {
+            "case_id": state.case_id,
+            "proposal_id": handoff.proposal_id,
+            "revision": state.case_revision,
+        }
+
+    @staticmethod
+    def _run_result(result: RunResult, case_id: str, revision: int) -> RunResult:
+        try:
+            validated = detached_contract(RunResult, result)
+            if validated.case_id != case_id or validated.case_revision != revision:
+                raise ValueError
+            if (
+                validated.model_attempts > 2
+                or validated.retrieval_rounds > 2
+                or validated.steps > 8
+            ):
+                raise ValueError
+            return validated.model_copy(update={"error_code": _safe_run_code(validated.error_code)})
+        except Exception:
+            raise TrackerRejected("RunResultInvalid") from None
+
+    @staticmethod
+    def _write_run_outcome(
+        db: sqlite3.Connection,
+        case_id: str,
+        turn_id: str,
+        *,
+        status: str,
+        error_code: str | None,
+        result_json: str | None,
+        proposal_id: str | None,
+    ) -> None:
+        db.execute(
+            "UPDATE run_outcomes SET status=?,error_code=?,run_result_json=?,proposal_id=? "
+            "WHERE case_id=? AND turn_id=?",
+            (status, error_code, result_json, proposal_id, case_id, turn_id),
+        )
+
+    def stage_run_proposal(
+        self, handoff: ProposalHandoff, result: RunResult, turn_id: str
+    ) -> dict[str, Any]:
+        """Atomically stage the exact handoff and its measured original run result."""
+        try:
+            handoff = validate_handoff(handoff)
+            turn_id = TypeAdapter(Identifier).validate_python(turn_id)
+        except Exception:
+            raise TrackerRejected("RunResultInvalid") from None
+        result = self._run_result(result, handoff.case.case_id, handoff.case.case_revision)
+        if (
+            result.status != "awaiting_approval"
+            or result.run_id != handoff.proposal_id
+            or result.run_id != handoff.reasoning_context.run_id
+            or result.analysis != handoff.analysis
+            or result.model_attempts != handoff.reasoning_context.attempt_index
+            or result.retrieval_rounds != handoff.evidence.retrieval_round
+        ):
+            raise TrackerRejected("RunResultInvalid")
+        with self._connect() as db:
+            self._begin(db)
+            outcome = db.execute(
+                "SELECT * FROM run_outcomes WHERE case_id=? AND turn_id=?",
+                (handoff.case.case_id, turn_id),
+            ).fetchone()
+            if outcome is None or outcome["revision"] != handoff.case.case_revision:
+                raise TrackerRejected("RunOutcomeMissing")
+            if outcome["status"] != "interrupted":
+                raise TrackerRejected("RunOutcomeConflict")
+            receipt = self._stage_proposal(db, handoff)
+            self._write_run_outcome(
                 db,
-                state.model_copy(update={"pending_proposal_id": handoff.proposal_id}),
-                "awaiting_review",
-                reply,
+                handoff.case.case_id,
+                turn_id,
+                status="proposal_staged",
+                error_code=None,
+                result_json=_model_json(result),
+                proposal_id=handoff.proposal_id,
+            )
+            db.commit()
+            return receipt
+
+    def finish_run(
+        self,
+        case_id: str,
+        turn_id: str,
+        *,
+        status: str,
+        error_code: str | None,
+        run_result: RunResult | None = None,
+    ) -> dict[str, Any]:
+        """Record a safe terminal outcome once; never resume or change a proposal."""
+        try:
+            CaseState(case_id=case_id)
+            TypeAdapter(Identifier).validate_python(turn_id)
+        except Exception:
+            raise TrackerRejected("RunOutcomeUnavailable") from None
+        if type(status) is not str or status not in _TERMINAL_RUN_STATUSES:
+            raise TrackerRejected("RunOutcomeUnavailable")
+        error_code = _safe_run_code(error_code)
+        with self._connect() as db:
+            self._begin(db)
+            row = db.execute(
+                "SELECT * FROM run_outcomes WHERE case_id=? AND turn_id=?", (case_id, turn_id)
+            ).fetchone()
+            if row is None:
+                raise TrackerRejected("RunOutcomeMissing")
+            result = (
+                self._run_result(run_result, case_id, row["revision"])
+                if run_result is not None
+                else None
+            )
+            result_json = _model_json(result) if result is not None else None
+            if row["status"] != "interrupted":
+                if (
+                    row["status"] == status
+                    and row["error_code"] == error_code
+                    and row["run_result_json"] == result_json
+                ):
+                    db.commit()
+                    return self._outcome(row)
+                raise TrackerRejected("RunOutcomeConflict")
+            self._write_run_outcome(
+                db,
+                case_id,
+                turn_id,
+                status=status,
+                error_code=error_code,
+                result_json=result_json,
+                proposal_id=None,
             )
             self._audit(
                 db,
-                state.case_id,
-                "proposal_staged",
-                {"proposal_id": handoff.proposal_id, "revision": state.case_revision},
+                case_id,
+                "run_finished",
+                {"turn_id": turn_id, "revision": row["revision"], "status": status},
             )
             db.commit()
             return {
-                "case_id": state.case_id,
-                "proposal_id": handoff.proposal_id,
-                "revision": state.case_revision,
+                "status": status,
+                "error_code": error_code,
+                "result": result.model_dump(mode="json") if result else None,
             }
 
     def _require_reviewer(self, reviewer_id: str, reviewer_token: str) -> None:
@@ -640,6 +1026,7 @@ class SQLiteCaseTracker:
             self._begin(db)
             for table in (
                 "audit",
+                "run_outcomes",
                 "conversation",
                 "local_comments",
                 "reviews",
