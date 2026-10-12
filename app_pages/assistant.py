@@ -43,7 +43,7 @@ VERSION_SCOPES = {
 FACT_ROW_COUNT = 3
 
 
-@st.cache_resource
+@st.cache_resource(scope="session")
 def get_client() -> ui_client.BackendClient:
     return ui_client.make_client()
 
@@ -53,6 +53,7 @@ def new_case_id() -> str:
 
 
 def reset_view_state() -> None:
+    st.session_state.active_case_id = st.session_state.case_id
     st.session_state.editing = False
     st.session_state.notice = None
     # Rejected forms retain their widgets. Their values belong to the old case,
@@ -64,7 +65,7 @@ def reset_view_state() -> None:
     st.session_state.pop("edited_draft", None)
 
 
-if "case_id" not in st.session_state:
+if "cases" not in st.session_state:
     first = new_case_id()
     # Only cases opened in this browser session are listed; the API holds others too.
     st.session_state.cases = [first]
@@ -73,7 +74,24 @@ if "case_id" not in st.session_state:
     st.session_state.unsent = {}
     reset_view_state()
 
+if "case_id" not in st.session_state:
+    # Widget state is removed when health failure stops before the switcher is
+    # rendered. Its disappearance must not reset the browser's cases or retries.
+    st.session_state.case_id = st.session_state.get("active_case_id", st.session_state.cases[0])
+st.session_state.setdefault("active_case_id", st.session_state.case_id)
+
+# Old browser sessions may predate durable review support. Requests are public
+# immutable operations; credentials remain only in the session-scoped client.
+st.session_state.setdefault("unsent_reviews", {})
+
 client = get_client()
+try:
+    capabilities = client.discover_capabilities()
+except ui_client.BackendError as error:
+    st.error(str(error), icon=":material/cloud_off:")
+    st.caption("Start a supported backend in a separate terminal.")
+    st.code("uv run uvicorn agent_app.api:app --host 127.0.0.1 --port 8000", language="bash")
+    st.stop()
 
 
 def start_new_case() -> None:
@@ -87,13 +105,17 @@ def unsent_event() -> dict | None:
     return st.session_state.unsent.get(st.session_state.case_id)
 
 
+def unsent_review() -> ui_client.ReviewOperation | None:
+    return st.session_state.unsent_reviews.get(st.session_state.case_id)
+
+
 def case_label(case_id: str, statuses: dict[str, str]) -> str:
     status = statuses.get(case_id)
     return f"{case_id} · {SHORT_STATUSES[status]}" if status else case_id
 
 
 def deliver(event: dict) -> bool:
-    """Send once; keep the identical event for retry only if it may not have arrived."""
+    """Keep the identical event when its delivery or acknowledgment is uncertain."""
     case_id = st.session_state.case_id
     try:
         view = client.send_event(case_id, event)
@@ -107,7 +129,10 @@ def deliver(event: dict) -> bool:
     st.session_state.unsent.pop(case_id, None)
     st.session_state.editing = False
     if view["intake"] and view["intake"]["replayed"]:
-        st.session_state.notice = ("info", "Already received. Showing the original result.")
+        st.session_state.notice = (
+            "info",
+            "Already received. The original message receipt is confirmed; showing the current case.",
+        )
     return True
 
 
@@ -130,24 +155,58 @@ def submit_reply(revision: int, proposal_id: str) -> None:
 
 
 def decide(proposal: dict, decision: str) -> None:
+    if unsent_review():
+        return  # An uncertain operation must be resolved before a fresh review.
     edited = st.session_state.get("edited_draft") if decision == "edit" else None
     try:
-        client.decide(
+        operation = client.prepare_review(
             st.session_state.case_id,
-            proposal_id=proposal["proposal_id"],
-            case_revision=proposal["case_revision"],
-            decision=decision,
+            proposal,
+            decision,
             edited_draft=edited,
         )
     except ui_client.BackendError as error:
         st.session_state.notice = ("error", str(error))
         return
+    if operation.durable:
+        # Save before submitting: the action may commit while its reply is lost.
+        st.session_state.unsent_reviews[operation.case_id] = operation
+    deliver_review(operation)
+
+
+def deliver_review(operation: ui_client.ReviewOperation) -> None:
+    try:
+        view = client.send_review(operation)
+    except ui_client.BackendError as error:
+        if operation.durable:
+            st.session_state.editing = False
+        if not error.retryable and error.code not in {
+            "ReviewerUnauthorized",
+            "BackendCapabilityMismatch",
+            "BackendCapabilitiesInvalid",
+        }:
+            st.session_state.unsent_reviews.pop(operation.case_id, None)
+        st.session_state.notice = ("error", str(error))
+        return
+    st.session_state.unsent_reviews.pop(operation.case_id, None)
     st.session_state.editing = False
+    if operation.durable and view["review"]["replayed"]:
+        st.session_state.notice = (
+            "info",
+            "The original review is confirmed. Showing the current case; no new action was created.",
+        )
+        return
     st.session_state.notice = {
         "approve": ("success", "Approved. The draft was released to the local case log."),
         "reject": ("info", "Rejected. Nothing was sent."),
         "edit": ("info", "Edited draft saved as a new proposal. It still needs approval."),
-    }[decision]
+    }[operation.payload()["decision"]]
+
+
+def retry_review() -> None:
+    operation = unsent_review()
+    if operation is not None:
+        deliver_review(operation)
 
 
 def set_editing(value: bool) -> None:
@@ -169,6 +228,21 @@ def render_case(view: dict) -> None:
         with st.container(horizontal=True):
             st.badge(status_label, color=status_color)
             st.badge(f"Revision {view['case_revision']}", color="gray")
+            if capabilities.durable_reviews:
+                st.badge("SQLite · durable", color="gray")
+        outcome = view.get("run_outcome")
+        if outcome and outcome.get("status") != "proposal_staged":
+            status = outcome.get("status")
+            if status == "interrupted":
+                st.warning(
+                    "This update is recorded without a completed outcome; a run may still be "
+                    "in progress. Retrying confirms its receipt and does not resume the agent. "
+                    "After checking the current run, a new update can start another run."
+                )
+            else:
+                st.caption(
+                    f"Recorded run outcome: {status} · {outcome.get('error_code') or 'none'}"
+                )
         st.markdown("**Facts**")
         if view["facts"]:
             st.dataframe(
@@ -309,6 +383,16 @@ def render_proposal(proposal: dict) -> None:
 
         if proposal["stale"]:
             return
+        review_blocked = bool(unsent_review()) or (
+            capabilities.durable_reviews and not client.reviewer_configured
+        )
+        if review_blocked:
+            if unsent_review():
+                st.caption("Confirm the pending review receipt before making a new review.")
+            else:
+                st.warning(
+                    "Maintainer authorization is not configured. Chat and corrections remain available."
+                )
         if st.session_state.editing:
             with st.form("edit_form", border=False):
                 st.text_area(
@@ -321,6 +405,7 @@ def render_proposal(proposal: dict) -> None:
                         icon=":material/save:",
                         on_click=decide,
                         args=(proposal, "edit"),
+                        disabled=review_blocked,
                     )
                     st.form_submit_button("Cancel", on_click=set_editing, args=(False,))
         else:
@@ -332,6 +417,7 @@ def render_proposal(proposal: dict) -> None:
                     key="approve",
                     on_click=decide,
                     args=(proposal, "approve"),
+                    disabled=review_blocked,
                 )
                 st.button(
                     "Edit",
@@ -339,6 +425,7 @@ def render_proposal(proposal: dict) -> None:
                     key="edit",
                     on_click=set_editing,
                     args=(True,),
+                    disabled=review_blocked,
                 )
                 st.button(
                     "Reject",
@@ -346,6 +433,7 @@ def render_proposal(proposal: dict) -> None:
                     key="reject",
                     on_click=decide,
                     args=(proposal, "reject"),
+                    disabled=review_blocked,
                 )
         st.caption("Approval only updates this local case log. No external action is taken.")
 
@@ -462,14 +550,26 @@ with st.sidebar:
     if waiting:
         st.caption(f":material/pending_actions: {waiting} case(s) awaiting review")
     st.button("New case", icon=":material/add:", on_click=start_new_case, width="stretch")
-    st.subheader("Offline scenario")
-    st.selectbox(
-        "Scripted agent behavior",
-        list(SCENARIOS),
-        format_func=SCENARIOS.get,
-        key="scenario",
-    )
-    st.caption("Synthetic adapters: no retrieval index, no model calls, no cost.")
+    if capabilities.retrieval_label == "local_chroma_hash":
+        st.subheader("Offline indexed pilot")
+        st.session_state.scenario = "ask"
+        st.caption(
+            "Local indexed docs · scripted ask-then-escalate policy · offline · no model quality result."
+        )
+    else:
+        st.subheader("Offline scenario")
+        st.selectbox(
+            "Scripted agent behavior",
+            list(SCENARIOS),
+            format_func=SCENARIOS.get,
+            key="scenario",
+        )
+        st.caption("Synthetic adapters: no retrieval index, no model calls, no cost.")
+    if capabilities.durable_reviews:
+        st.caption(
+            "SQLite tracker · maintainer authorization "
+            + ("configured" if client.reviewer_configured else "missing")
+        )
 
 st.title("Streamlit support assistant")
 st.caption(
@@ -484,8 +584,27 @@ if st.session_state.notice:
 
 if unsent_event():
     with st.container(horizontal=True, vertical_alignment="center"):
-        st.warning("Your last message may not have arrived.", icon=":material/sync_problem:")
+        st.warning(
+            "Your last message is unconfirmed; it may already be recorded.",
+            icon=":material/sync_problem:",
+        )
         st.button("Retry sending", icon=":material/refresh:", on_click=retry_unsent)
+
+if operation := unsent_review():
+    payload = operation.payload()
+    st.warning(
+        "This review is unconfirmed; it may already be recorded.", icon=":material/sync_problem:"
+    )
+    st.caption(
+        f"Original {payload['decision']} · proposal `{payload['proposal_id']}` · "
+        f"revision {payload['case_revision']}. Retry confirms this operation, not a newer proposal."
+    )
+    st.button(
+        "Retry review",
+        icon=":material/refresh:",
+        on_click=retry_review,
+        disabled=not capabilities.durable_reviews or not client.reviewer_configured,
+    )
 
 try:
     view = client.get_case(st.session_state.case_id)
@@ -522,8 +641,16 @@ with case_col:
     if view["decisions"]:
         with st.expander(f"Review history ({len(view['decisions'])})"):
             for item in view["decisions"]:
-                action = item.get("action") or {}
-                st.markdown(f"- **{item['decision']}** · {action.get('decision', '?')} proposal")
+                if capabilities.durable_reviews:
+                    receipt = item["receipt"]
+                    st.markdown(
+                        f"- **{item['decision']}** · proposal `{receipt['proposal_id']}` · revision {receipt['revision']}"
+                    )
+                else:
+                    action = item.get("action") or {}
+                    st.markdown(
+                        f"- **{item['decision']}** · {action.get('decision', '?')} proposal"
+                    )
 
 # Full width so the fact editor's columns stay readable.
 render_update_form(view)
