@@ -6,6 +6,13 @@
 
 This report records local test results supplied by the tracker owner. It is not a new tracker or API implementation. The authoritative backend is the existing [`SQLiteCaseTracker`](../src/agent_app/tracker/sqlite_tracker.py) connected through opt-in [`persistent_api.py`](../src/agent_app/persistent_api.py). The default `agent_app.api:app` demo still uses in-memory state. All runs below use synthetic, offline ports; they do not exercise a real model, production search index, external tool, or shared budget ledger.
 
+The reported Windows counts and durations below belong to the PR31 source
+`a550bf169b274647783fb9c3c7ab5898df1c6504`, subsequently published on main as
+`877601c83b3f8eeb4ad032fd23d54f0e1cb1a0bf`. They are owner-reported execution
+results, not a receipt produced by the documentation commit. This documentation
+branch has been synchronized with that released main, including the two new
+Windows runtime regressions. The independent [main CI](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38314737701)+is a separate Linux run and does not establish Windows acceptance.
+
 ## Commands and observed results
 
 Run from the repository root:
@@ -53,4 +60,16 @@ uv run python -c "from pathlib import Path; from agent_app.tracker.sqlite_tracke
 
 For the three files in PR #31, local `ruff check` and `ruff format --check` passed, and `git diff --check` found no whitespace errors. The PR's GitHub Actions checks were green when reviewed; the PR was submitted to Sasan for review, **not merged by this evidence**.
 
-**Still open (T4/U3/E5):** Mohammad-Hassan must wire Streamlit to the opt-in persistent HTTP backend, supply a configured maintainer credential, send the stable original `review_id` and exact handoff hash, preserve review retry payloads per case, and smoke-test case switching and error/503 behavior. The team must then verify that persisted tool outcome is used correctly in the next actual decision and hand these backend-labelled receipts to evaluation. The dev fixture is exposed and scripted; do not treat these passes as held-out retrieval or model-quality results. Keep T4 unchecked in the team plan until those operational acceptance conditions are demonstrated.
+The bounded UI binding, private credential configuration, stable original
+`review_id`/handoff hash, uncertain-ACK retry and case switching are implemented
+and tested separately in [PR #32](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/32).
+That PR's status is authoritative for publication; it is not part of the
+owner-reported Windows backend run above.
+
+**Still open (T4/U3/E5):** product configuration, real-browser smoke,
+authentication for browser users and recovery after complete UI-session loss.
+The team must verify consumption of persisted tool outcome in the next actual
+decision/evaluation, and hand the scoped backend receipts to evaluation. The
+dev fixture is exposed and scripted; these passes are not held-out retrieval or
+model-quality results. Keep T4 unchecked until its remaining conditions are
+demonstrated.
