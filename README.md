@@ -81,16 +81,18 @@ uv run uvicorn agent_app.api:app --host 127.0.0.1 --port 8000
 
 ترمینال دوم (فرانت‌اند Streamlit):
 ```bash
-uv run streamlit run app.py
+uv run streamlit run app.py --server.address 127.0.0.1
 ```
 
 دستور آخر رابط اولیهٔ پروژه را باز می‌کند و به سرور FastAPI که در ترمینال اول اجرا کرده‌اید متصل می‌شود. اگر بک‌اند روی آدرس دیگری است، متغیر `AGENT_API_URL` را تنظیم کنید. سناریوی ساختگی هر پیام از نوار کناری انتخاب می‌شود و هر پیش‌نویس تا تأیید نگه‌دارنده به کاربر نشان داده نمی‌شود. وضعیت پرونده‌ها فعلاً فقط در حافظهٔ همین فرایند است؛ با راه‌اندازی دوبارهٔ بک‌اند (از جمله `--reload`) پاک می‌شود. برای پروندهٔ تازه دکمهٔ «New case» را بزنید.
 
-[backend مستقل SQLite برای HTTP](docs/persistent-http.fa.md) با `persistent_api.create_app`
-موجود است؛ pilot آفلاین و restart/retry آن ۴۵۷/۴۵۷ check پاس دارد. دستور بالا همچنان
-demo حافظه‌ای است. برای اتصال UI به backend پایدار، تنظیم credential maintainer،
-`review_id` ثابت، hash دقیق proposal و حفظ payload در retry review لازم است؛ client
-فعلی هنوز این اتصال را ندارد. مدل و index واقعی نیز جدا باقی‌اند.
+[backend SQLite برای HTTP](docs/persistent-http.fa.md) با #30 روی main منتشر شد؛
+pilot آفلاین و restart/retry آن ۴۵۷/۴۵۷ check پاس دارد. client اکنون health را
+بررسی و review_id، hash دقیق، credential خصوصی و payload ثابت retry را می‌فرستد.
+دستور بالا همچنان demo حافظه‌ای است؛ برای SQLite و Chroma محلی از
+[دستور اجرای pilot پایدار UI/index](docs/offline-ui-index-pilot.fa.md) استفاده کنید.
+این pilot ۱۴ source مجاز و ۳۰ chunk دارد؛ embedding محلی lexical و reasoning
+scripted است. corpus/split نهایی و کیفیت مدل/RAG هنوز باقی‌اند.
 
 پایپلاین GitHub Actions برای پوش همهٔ branchها و PRها، تست‌ها و بررسی سبک کد را بدون مصرف API اجرا می‌کند. پیش از ادامه کار، branch خودتان را از `main` به‌روز کنید تا پایه مشترک و پایپلاین را داشته باشید.
 

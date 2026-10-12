@@ -4,7 +4,10 @@
 می‌کند. state در `_cases` کپی نمی‌شود. case، history، آخرین intake، proposal،
 نتیجهٔ run، review و action همگی از همان database خوانده می‌شوند.
 این اتصال **opt-in** است؛ `agent_app.api:app` همچنان demo حافظه‌ای قبلی است.
-client و صفحهٔ UI فعلی هنوز قرارداد approval این backend را نمی‌فرستند.
+client و صفحهٔ UI اکنون قرارداد approval پایدار را می‌فرستند؛
+[اجرای محلی UI/index و recovery](offline-ui-index-pilot.fa.md) مسیر opt-in دارد.
+#30 در `6e719e9` merge و [CI همان main](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38254465683)
+با ۲۰۳۵ تست پاس شد.
 
 ## نتیجهٔ ثبت‌شده
 
