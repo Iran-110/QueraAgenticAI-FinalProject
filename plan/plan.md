@@ -6,7 +6,7 @@
 
 | بخش | چیزی که داریم | چیزی که هنوز اثبات نشده |
 | --- | --- | --- |
-| core — ساسان | قراردادها، correction و GroundedPlan؛ C2a سرویس core و C2d اتصال HTTP به SQLite موجود با outcome اتمیک و approval دقیق؛ HTTP پایدار #30 روی main؛ UI و index محلی در U3a/P4a آمادهٔ انتشار با تست‌های مستقل | corpus/index نهایی، اتصال مدل و کیفیت تصمیم روی caseهای ندیده؛ C5 halt |
+| core — ساسان | قراردادها، correction و GroundedPlan؛ C2a سرویس core و C2d اتصال HTTP به SQLite موجود با outcome اتمیک و approval دقیق؛ HTTP پایدار #30 روی main؛ UI و index محلی در [U3a/P4a، PR #32](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/32) پیاده و با تست‌های مستقل پذیرفته شده‌اند | corpus/index نهایی، اتصال مدل و کیفیت تصمیم روی caseهای ندیده؛ C5 halt |
 | داده — آماده‌سازی اولیه ساسان؛ ادامه با حسن | seed اولیه در `streamlit-data-for-dev-test/`: ۲۴۰ Issue، ۱۱۷۸ comment، ۵۶ متن Markdown و ۱۱۷۲ API record؛ adapter حسن و اصلاح اتصال ساسان با #27 و #23 روی main در `ec1a1f0`؛ پذیرش mapper واقعی ۱۳۲/۱۳۲ | provenance از seed تا index، segmentation، exclusion و corpus نهایی؛ کیفیت retrieval واقعی |
 | UI/API — محمدحسن | structured input و review کامل در #13/#21، case switching؛ UI پیش‌فرض memory/scripted؛ مسیر opt-in SQLite/index، auth و retry دقیق در U3a وصل شده | تنظیم نهایی index/model و auth محصول؛ recovery بعد پایان کامل session مرورگر |
 | tracker/tools — محمد بهنام | SQLite #19/#20 روی main؛ state/revision/correction/authenticated review؛ اتصال C2d با ساسان outcome/snapshot/ABA و HTTP restart/retry را پاس کرده | شواهد evaluation نهایی T4 و تنظیم محصول؛ binding UI آفلاین پاس شده، action comment محلی است |
@@ -33,7 +33,9 @@ core/SQLite دوباره پاس شدند. کد و fixture با اجرای تمی
 | حسن — R1/R2/R4 و بخش index در P4 | از profile و builder موجود شروع کند؛ با محمدحسن exclusion خانواده‌ها را از manifest E1 بگیرد، corpus/index نهایی نسخه‌دار بسازد و retrieval را روی dev بررسی کند | PR با provenance، segmentation و coverage؛ exclusion خود case، جواب، comment و duplicateها؛ snapshot/hash و دستور build تازه؛ sourceهای لازم/مفقود و version scope روی dev، بدون tuning روی test؛ `index_data` قدیمی هنوز مسدود است |
 | محمدحسن — E1/E2/U3 | خانواده‌ها و rubric را پیش ببرد؛ مسیر runnable U3a را برای تنظیم/evaluation نهایی به کار بگیرد | manifest dev/test برای حسن؛ smoke مرورگر واقعی؛ source support و سؤال ضروری با داوری مستقل؛ AppTest و payload retry در U3a پاس‌اند |
 | محمد بهنام — T4، مشترک با U3 | اتصال C2d را review و تنظیم database/credential را با محمدحسن جمع کند | همان receipt restart/retry/rollback؛ وضعیت ابزار در evaluation و پیکربندی نهایی؛ tracker دوم یا reset نساختن |
-| ساسان — C2e/C4/C5، مشترک با P4 | review و انتشار U3a/P4a؛ سپس پذیرش snapshot نهایی حسن و baseline تصمیم مدل پس از رفع مستند halt | حفظ receiptها/fixture؛ تست همان قرارداد روی index نهایی؛ source support و سؤال ضروری با معیار E2؛ reconciliation هزینه پیش از live |
+| ساسان — C2e/C4/C5، مشترک با P4 | پذیرش snapshot نهایی حسن روی همین اتصال U3a/P4a؛ baseline تصمیم مدل پس از رفع مستند halt | حفظ receiptها/fixture؛ تست همان قرارداد روی index نهایی؛ source support و سؤال ضروری با معیار E2؛ reconciliation هزینه پیش از live |
+
+کد و checklist اتصال محدود در [PR #32](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/32) ثبت‌اند؛ وضعیت CI و انتشار همان PR مرجع است. هیچ‌کدام از تیک‌های U3a/P4a، R2/R4 یا E1–E5 را نمی‌بندد. هر نفر branch خود را با `origin/main` sync کند؛ تغییر checklist با PR و شاهد انجام کار منتقل شود.
 
 انتخاب caseها و کار API می‌توانند هم‌زمان جلو بروند. برای E1، seed در repo
 موجود است؛ منتظر ZIP یا index نمانیم. caseها، جواب‌ها و duplicateهای خانوادهٔ

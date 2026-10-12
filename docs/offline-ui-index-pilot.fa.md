@@ -6,6 +6,9 @@
 می‌گیرد؛ نسخهٔ معلوم برای بررسی مستندات ارجاع می‌گیرد. این policy عامدانه
 تشخیص یا پاسخ نهایی تولید نمی‌کند و معیار کیفیت agent/RAG نیست.
 
+کد و plan این milestone در [PR #32](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/32)
+ثبت‌اند؛ وضعیت انتشار و CI همان PR مرجع است.
+
 ## اجرای قابل بازتولید
 
 از root پروژه، با dependencyهای lockشده:
