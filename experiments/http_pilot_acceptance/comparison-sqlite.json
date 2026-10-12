@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "runtime_commit": "b7107c03f75dc988574ad74c07a1cee09ba07f8b",
+  "fixture_sha256": "f4b9cef54c98dd875ff0e55f41aebcde19a9b02717b7cb8c5525eba9575f2855",
+  "source_same_between_backends": true,
+  "memory": {
+    "path": "results-memory-b7107c0.json",
+    "sha256": "e5cd7f4fa41c14db07dc9cf18b81e7811eee8a3ffc58325dc42d3dfc084f21ba",
+    "protocol": "http-pilot-acceptance-v1",
+    "accepted": false,
+    "checks": [
+      367,
+      404
+    ]
+  },
+  "sqlite": {
+    "path": "results-sqlite-b7107c0.json",
+    "sha256": "2be83686e752692785244aacd76b0c4d4e9dcf7ba0b92fe537703383592c6dda",
+    "protocol": "http-pilot-acceptance-v2",
+    "accepted": true,
+    "checks": [
+      457,
+      457
+    ]
+  },
+  "named_operational_probes": [
+    {
+      "id": "restart1:whole_state_preserved",
+      "memory": false,
+      "sqlite": true
+    },
+    {
+      "id": "restart2:whole_state_preserved",
+      "memory": false,
+      "sqlite": true
+    },
+    {
+      "id": "restart3:whole_state_preserved",
+      "memory": false,
+      "sqlite": true
+    },
+    {
+      "id": "restart4:whole_state_preserved",
+      "memory": false,
+      "sqlite": true
+    },
+    {
+      "id": "interrupted:restart_preserves_stopped_ingress",
+      "memory": false,
+      "sqlite": true
+    },
+    {
+      "id": "restart4:retry5:accepted_as_replay",
+      "memory": false,
+      "sqlite": true
+    },
+    {
+      "id": "restart4:retry5:no_new_ports",
+      "memory": false,
+      "sqlite": true
+    },
+    {
+      "id": "interrupted:restart_retry:no_new_ports",
+      "memory": false,
+      "sqlite": true
+    }
+  ],
+  "scope": "Same source and dev fixture. V2 adds authenticated review envelopes and database action inspection; denominators differ, no quality percentage comparison.",
+  "quality_claim": false,
+  "api_cost_usd": 0
+}

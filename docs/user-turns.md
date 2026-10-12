@@ -169,6 +169,12 @@ These pure helpers do not authenticate a reviewer, store data or execute actions
 
 ## Additive offline HTTP ingress
 
+This section describes the legacy memory demo. The opt-in
+[C2d persistent HTTP factory](persistent-http.fa.md) uses the same MessageRequest,
+requires stable event identity/revision and delegates ingress/review to SQLite.
+It adds authenticated stable review IDs/hashes and survives fresh-process restart.
+The current UI client still needs that new review envelope binding.
+
 `POST /cases/{case_id}/messages` still accepts legacy `message` and `scenario`.
 Each legacy submission gets a server-generated UUID and is a new event. New UI
 clients should submit a stable ID and expected revision:

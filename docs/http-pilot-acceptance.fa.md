@@ -1,5 +1,9 @@
 # پذیرش pilot از مسیر HTTP — C2c
 
+به‌روزرسانی: [اتصال opt-in به SQLite در C2d](persistent-http.fa.md) اکنون همان
+pilot را با protocol v2 و **۴۵۷/۴۵۷** check، از جمله restart، پاس می‌کند. این فایل
+receipt و محدودیت‌های تاریخی v1 برای **API حافظه‌ای پیش‌فرض** را حفظ می‌کند.
+
 kit آماده و اجرا شده؛ **پذیرش کامل HTTP هنوز رد است**. همان pilot چهار‌نوبتی
 #12782 از `CaseRun` موجود عبور می‌کند. در process فعلی correction، approval قدیمی
 و retry درست کار می‌کنند؛ با restart واقعی، API حافظه‌ای پرونده و receipt را از

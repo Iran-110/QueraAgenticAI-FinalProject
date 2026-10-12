@@ -1,10 +1,11 @@
 # Core ↔ SQLite: interrupted runs and safe retries
 
 The standalone `SQLiteCaseTracker` is available after PR #19, including PR #20's
-consistent read snapshot. FastAPI still uses process memory. This document is
-the core owner's handoff for U3/T4, not an implemented durable HTTP coordinator
-or a run-resumption journal. The reusable core composition is now implemented
-as [CoreTurnService](core-turn-service.fa.md); HTTP integration still remains U3/T4.
+consistent read snapshot. The default FastAPI demo still uses process memory.
+The opt-in [C2d HTTP factory](persistent-http.fa.md) now composes this tracker
+with [CoreTurnService](core-turn-service.fa.md), stores explicit outcomes and
+passes authenticated review envelopes. UI binding remains U3; automatic
+run resumption is not implemented. The policies below also apply to that path.
 
 ## One authoritative state
 
@@ -72,25 +73,28 @@ ports. Their small coordinator is a test harness, not a production API adapter.
 They do not persist a reasoning outcome or prove HTTP/UI restart behavior.
 The newer [service tests](../tests/test_core_turn_service.py) invoke the actual
 core coordinator rather than those historical harness helpers. Full snapshot
-reads stop observed lifecycle changes; they cannot close the final ABA race
-after the last read. Atomic run/lifecycle identity at staging remains T4 work.
+reads alone stop only observed lifecycle changes. C2d now additionally checks
+open status and the absence of any previous root proposal at the same revision
+inside the stage transaction; measured staging transitions its persisted event
+outcome once. This conservatively closes the final same-revision ABA route.
 All 11 failure-boundary cases and the 16 tracker tests pass together. They
 include a fresh event superseded before the post-commit read, interruption both
 before reasoning and after reasoning/before staging, exact lost-ack recovery,
 correction races, rollback after a comment INSERT and concurrent identical
 event/review requests. No provider request or production ledger was used.
 
-For U3/T4, MuhammadHasan and Behnam still need to connect the existing API to this
-single state source, persist an explicit run/outcome status, and pass stable
-review IDs, expected revision, exact proposal ID and handoff hash. Reviewer
-credentials must come from trusted server configuration, not model/source/user
-content. Only the tracker review transaction may release a local action.
+The C2d HTTP path now uses this single state source, explicit run/outcome status,
+stable review IDs, expected revision, exact proposal ID and handoff hash.
+Reviewer credentials come from trusted server configuration, not model/source/user
+content. Only the tracker transaction releases a local action. U3 still needs
+the current UI/client to supply the new stable review envelope and authenticate
+the maintainer; index/model configuration and evaluation remain separate work.
 
-Before closing P3/U3/C2, replay the registered dev fixture through HTTP/UI on the
-SQLite backend. Check restart at both commit boundaries, correction, edit,
-reject, tool failure and event/review retries. Store backend-labelled receipts
-separately from the existing process-memory receipts. Meaningful model/source
-support scoring and conditional conversational branches remain E2 work.
+The registered dev HTTP fixture now passes on actual SQLite, including restart,
+correction, edit/reject and original event/review retries; actual process crashes
+at both commit boundaries and local tool rollback are tested separately.
+Backend-labelled receipts remain separate from memory receipts. UI integration,
+meaningful model/source support scoring and conditional branches remain U3/E2.
 
 ```bash
 uv run pytest -q tests/test_sqlite_tracker.py tests/test_core_tracker_failure_boundaries.py

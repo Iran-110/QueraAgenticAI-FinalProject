@@ -3,7 +3,9 @@
 `CoreTurnService` در [service.py](../src/agent_app/orchestration/service.py)،
 coordinator قابل استفادهٔ core است. از همان `apply_turn`، `read_case` و
 `stage_proposal` ماژول SQLite استفاده می‌کند؛ storage، HTTP، review و احراز
-هویت را پیاده‌سازی نمی‌کند. مسیر فعلی FastAPI همچنان memory/scripted است.
+هویت را پیاده‌سازی نمی‌کند. demo پیش‌فرض FastAPI همچنان memory/scripted است؛
+[factory مستقل HTTP/SQLite در C2d](persistent-http.fa.md) اکنون از همین سرویس
+و callback مورد اعتماد `stage_with_result` برای stage و نتیجهٔ اتمیک استفاده می‌کند.
 
 ## مسئله و رفتار جدید
 
@@ -90,15 +92,16 @@ saved = service.recover_exact_pending(expected_handoff)
 
 این فقط read است؛ نه stage، approval یا اجرای دوباره. receipt ورود اثبات
 تمام‌شدن reasoning نیست. اگر بعد از commit و پیش از stage اجرا قطع شود،
-resumption خودکار نداریم؛ journal اجرای نیمه‌تمام هنوز با U3/T4 است.
+resumption خودکار نداریم. مسیر C2d اکنون outcome/marker ثبت‌نشده را در tracker
+حفظ می‌کند؛ این قابلیت مجوز یا feature resume نیست.
 
-readهای کامل، تغییر lifecycle مشاهده‌شده را هم متوقف می‌کنند، اما lock یا
-CAS اتمیک lifecycle نیستند. رقیب می‌تواند بعد از آخرین read، proposal خود را
-stage و approve کند و state به همان revision/pending قبلی برگردد؛ stage
-فعلی SQLite این ABA را از run جدید تشخیص نمی‌دهد. برای بستن این race، بهنام
-و محمدحسن باید run/lifecycle identity را در transaction stage و HTTP recovery
-هماهنگ کنند. approval دقیق و جلوگیری از action تکراری فعلی سر جایشان هستند؛
-این محدودیت دربارهٔ دو run متفاوت در همان lifecycle است.
+readهای کامل به‌تنهایی lock یا CAS اتمیک lifecycle نیستند. نسخهٔ پیش از C2d
+می‌توانست stage/approve/reject رقیب بعد از آخرین read و برگشت به همان state را
+از run تازه تشخیص ندهد. tracker اکنون داخل transaction، وضعیت `open` و نبود
+هر root proposal قبلی در همان revision را کنترل می‌کند؛ marker outcome هم برای
+stage اندازه‌گیری‌شده فقط یک بار از interrupted عبور می‌کند. این سیاست ABA را
+می‌بندد؛ reasoning تازه پس از بسته شدن revision به UserTurn جدید نیاز دارد.
+edit و retry review همچنان از transaction موجود استفاده می‌کنند.
 
 history فعلاً حداکثر ۱۰۰۰ entry و context مجموعاً ۲۰هزار کاراکتر دارد؛ داده
 بیشتر بدون truncation رد می‌شود. این توقف ممکن است بعد از commit ورود باشد

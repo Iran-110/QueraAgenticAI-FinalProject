@@ -2,6 +2,44 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-12 — PR29 release and persistent HTTP composition (C2d)
+
+After final exact-head review and 63 focused checks, PR29 merged to main at
+`cddef782726e7d92c8f3d85eeae5933f563e4246`. Its merge tree exactly equals reviewed
+`8befb3f`; [main CI](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38238938038)
+passed. No external/team message was sent.
+
+The separate `feat/http-sqlite-integration` branch now provides an opt-in
+`persistent_api.create_app` using the existing SQLite tracker and CoreTurnService.
+One SQLite read snapshot supplies the HTTP view. Ingress and an explicit unknown
+outcome marker commit together; stage and measured RunResult commit together;
+review authenticates configured bearer credentials and binds a stable client
+review ID to exact proposal/revision/hash. Only the existing transaction writes
+local actions. The one-root-proposal-per-revision gate closes the former final
+same-revision ABA path; fresh reasoning after a closed revision needs a new turn.
+No automatic resume or second storage backend was added.
+
+Protocol v2 was registered at `6f0e8b5` before execution. Clean `b7107c0` passes
+**457/457 checks** (342 same-process,115 restart), with all five fresh-interpreter
+checkpoints preserving state and original event/review receipts. Actual database
+comments match exported action history. Memory v1 on the same clean source still
+fails persistence (**367/404**, accepted=false), reproducing the negative control.
+Fixture/gold/evidence are unchanged. Different protocol denominators are not a
+quality comparison. [Receipts and wiring](persistent-http.fa.md) identify the exact
+envelope adaptation and expose no authentication headers.
+
+**2,035 full tests**, locked sync and Ruff pass, including 41 HTTP,32 tracker,
+4 actual crash/ACK and12 binding tests. Actual `os._exit` after ingress/stage,
+post-INSERT rollback, lost staging ACK, concurrent requests, migration and
+snapshot reads are covered. The three demos, 49-check core/SQLite pilot and
+actual RAG adapter with fixed collections (132/132) pass again.
+
+This closes the bounded offline HTTP/core/tracker acceptance. Legacy `api:app`
+remains memory; existing UI client still needs the new configured backend,
+authenticated stable review payload/retry binding. Real index/model configuration,
+corpus/exclusion and evaluation remain open. API cost is zero; no .env, provider,
+embedding, real index or production ledger was accessed. C5 remains halted.
+
 ## 2026-10-12 — HTTP pilot acceptance and short-reply context (C2c)
 
 The registered existing dev pilot now has a reusable HTTP kit with actual fresh
