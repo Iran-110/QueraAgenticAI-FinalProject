@@ -77,3 +77,7 @@ jobs:
           else
             uv run python scripts/rag_acceptance.py --output "$RUNNER_TEMP/rag-fixture-acceptance.json"
           fi
+      - name: Accept actual RAG adapter with injected collections and no embeddings
+        run: |
+          uv run python scripts/rag_acceptance.py --factory agent_app.testing.chroma_binding:factory --check-candidate src/agent_app/retrieval/adapter.py --output "$RUNNER_TEMP/rag-adapter-acceptance.json"
+          uv run python -m agent_app.retrieval.adapter --smoke

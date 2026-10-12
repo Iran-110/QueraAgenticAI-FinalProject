@@ -801,6 +801,33 @@ remain open. No embedding, model download, paid request, key read or ledger
 change was performed. Continue with a small offline RAG adapter and the
 existing service/pilot; no additional framework is justified by this review.
 
+## 2026-10-12 — R3 connection repair over the restored candidate
+
+PR #23 head `b571080` restored all four files, but fixed-backend acceptance
+reproduced incompatible contract namespaces, lost provenance, clipped valid
+quotes and unchecked request snapshots. With Sasan's explicit authorization,
+`fix/rag-core-acceptance` preserves that branch and merges released main before
+repairing the existing adapter/backend. No shared contract changed.
+
+The actual adapter now uses canonical imports, preserves supplied source
+metadata and 20,000-character text, rejects malformed/oversized data, checks
+configured snapshots, and forwards explicit filters. Existing collections are
+read through freshly checked snapshot metadata; same-ID mutable contents still
+require a frozen corpus/index. Unsafe prototype index construction is blocked.
+`chroma_binding` injects native fixed collections into both real constructors;
+search and mapper remain production code. Smoke passes 132/132 checks with the
+registered four-turn SQLite/scripted-reasoner pilot. This is preliminary local
+verification; clean-source receipts and publication follow separately.
+
+The harness's `calls[-2:]` assumed one physical read per query despite the
+existing multi-collection allowance. Observation now selects the current round;
+independent controls accept repeated reads but reject omitted refinement queries,
+including a false `queries_used` echo or a read only in a previous round. No
+fixture, gold, decision criteria or logical resource limit changed.
+
+No real index, embedding, provider, credentials or production ledger was used.
+R1/R2/R4, actual index-backed P4, HTTP/persistent API and C5 remain open.
+
 ## Next integration work
 
 ### Shared release — 2026-10-07

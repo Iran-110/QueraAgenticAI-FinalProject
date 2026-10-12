@@ -229,14 +229,16 @@ def run_pilot(factory: AdapterFactory, fixture: dict, database: Path) -> dict:
                 == [("1.50.0", "superseded"), ("1.49.1", "active")],
             )
             calls = captured.probe.backend.calls
+            current_round_calls = [
+                call for call in calls if call["round"] == len(captured.requests) - 1
+            ]
             check(
                 "refinement_consumes_two_queries_within_budget",
                 outcome.run_result.model_attempts == outcome.run_result.retrieval_rounds == 2
                 and len(captured.requests) == len(captured.outputs) == 2
                 and captured.requests[-1].queries == refinement_queries
                 and set(captured.outputs[-1].queries_used) == set(refinement_queries)
-                and {call["query"] for call in calls[-2:]} == set(refinement_queries)
-                and calls[-1]["round"] == calls[-2]["round"],
+                and {call["query"] for call in current_round_calls} == set(refinement_queries),
             )
             removed = {hit.chunk_id for hit in previous.evidence.hits} - {
                 hit.chunk_id for hit in latest.hits

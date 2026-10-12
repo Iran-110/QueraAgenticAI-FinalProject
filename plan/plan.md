@@ -7,7 +7,7 @@
 | بخش | چیزی که داریم | چیزی که هنوز اثبات نشده |
 | --- | --- | --- |
 | core — ساسان | قراردادها، correction و GroundedPlan؛ C2a سرویس receipt/state/context و stage با SQLite، ورودی C2/P2 و خروجی C3، gateway تا review با HTTP شبیه‌سازی‌شده | اتصال API، journal/CAS lifecycle، RAG و کیفیت تصمیم مدل روی کیس‌های ندیده |
-| داده — آماده‌سازی اولیه ساسان؛ ادامه با حسن | ZIP اولیه: ۲۴۰ Issue، ۱۱۷۸ comment، ۵۶ متن Markdown و ۱۱۷۲ API record؛ seed پایلوت در PR #23 با head `bdb7c53`؛ CI سبز | چهار فایل Python RAG صفر بایت؛ adapter هنوز قابل اجرا نیست، metadata/exclusion و corpus نهایی اثبات نشده‌اند |
+| داده — آماده‌سازی اولیه ساسان؛ ادامه با حسن | ZIP اولیه: ۲۴۰ Issue، ۱۱۷۸ comment، ۵۶ متن Markdown و ۱۱۷۲ API record؛ چهار فایل در head `b571080` #23 برگشتند؛ اصلاح R3 با ساسان در `fix/rag-core-acceptance` و پذیرش اولیهٔ mapper واقعی ۱۳۲/۱۳۲ | receipt نهایی/انتشار اصلاح R3؛ provenance از seed تا index، segmentation، exclusion و corpus نهایی؛ کیفیت retrieval واقعی |
 | UI/API — محمدحسن | structured input و review کامل در #13، انتخاب پرونده در #17؛ اصلاح جداسازی فرم و نمایش همهٔ claimها در #21؛ API همچنان scripted و حافظه‌ای | اتصال retriever/model و tracker واقعی، recovery و review معتبر در مرز server |
 | tracker/tools — محمد بهنام | SQLite مستقل با read سازگار در #19/#20 روی main؛ state/revision، correction، authenticated review، restart و dedup؛ ۱۶ تست مستقل پاس | اتصال API/UI با SQLite به‌عنوان تنها مرجع state، recovery و پذیرش pilot مشترک |
 | evaluation — محمدحسن | یک dev چهار‌نوبتی، manifest پیش‌نویس، runner #15 و scenarioهای عملیاتی #18 | ۱۵ dev و ۱۵ test، rubric و split freezeشده، اجرای واقعی و داوری کیفیت؛ سناریوهای synthetic جزو ۳۰ case نیستند |
@@ -66,10 +66,20 @@ probe آفلاین با collection ساختگی در core به `RetrievalResultI
 `37ce74a` ایراد تازهٔ قابل بازتولیدی پیدا نکرد؛ ۱۷۹۶ تست و pilot چهار‌نوبتی
 با ۴۹ check، شاهد آمادگی آفلاین C2a هستند. این milestone کیفیت RAG/مدل نیست.
 
-بازبینی جاری — ۲۰۲۶-۱۰-۱۲: head #23 هنوز `bdb7c53` است. CI قبلی سبز شده،
+بازبینی پیشین، پیش از push اصلاحی — ۲۰۲۶-۱۰-۱۲: head #23 در `bdb7c53` بود. CI قبلی سبز شده،
 ولی `adapter.py`، `retriever.py`، `data_scripts/chunking.py` و `data_scripts/data_loader.py` صفر بایت‌اند؛ پس
 ادعای پذیرش adapter از CI نمی‌کنیم. seed کوچک و README در branch حسن موجودند.
 کدها باید دوباره push شوند؛ R1/R2/R3/P4 بازند. [ثبت pinned head](../experiments/retrieval_acceptance/candidate-bdb7c53.json).
+
+push تازهٔ حسن در `b571080` چهار فایل را برگرداند؛ پذیرش روی همان کد مشکل
+namespace، حذف commit/span، clipping متن و snapshot را بازتولید کرد. ساسان با
+اجازهٔ کاربر اصلاح محدود R3 را در branch جدا انجام داد؛ import استاندارد، حفظ
+metadata/text، snapshot تنظیم‌شده و checkهای collection، filters و خطای امن اضافه
+شدند. [binding و دستور واقعی](../docs/rag-core-acceptance.fa.md) اکنون mapper خود
+adapter را آزمایش می‌کند؛ smoke اولیه ۱۳۲/۱۳۲ پاس است. fixture و تصمیم‌های
+ثبت‌شده تغییر نکرده‌اند؛ مشاهدهٔ queryهای refinement از فرض یک read به بررسی
+round فعلی اصلاح شد و mutation مستقل دارد. receipt تمیز و انتشار هنوز قدم
+باقی‌ماندهٔ همین branch هستند؛ R1/R2/R4 و retrieval از index واقعی بازند.
 
 سهم مستقل تازهٔ core، **C2b**، [kit پذیرش اتصال](../docs/rag-core-acceptance.fa.md)
 است: fixture پیش از اجرا ثبت شد؛ همان factory با تست port و چهار turn
@@ -107,7 +117,7 @@ fixture پایهٔ این تحویل، [case چهار‌نوبتی C3](../experi
 - [x] **P1 — محمدحسن:** یک case از dev معرفی کند؛ ورودی شروع، follow-upها، اصلاح اطلاعات و تصمیم‌های قابل قبول را قبل از اجرا در fixture ثبت کند. اگر ادامهٔ گفتگو ساخته شده، آن را از گفتگوی واقعی جدا علامت بزند. case `dev-pilot-12782` (خانوادهٔ #12782/#12629، فقط dev) در [`data/evaluation/dev/pilot-12782.json`](../data/evaluation/dev/pilot-12782.json) با commit `3e0a86a` پیش از اولین اجرا ثبت شد ([PR #14](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/14))؛ follow-upها developer-authored علامت خورده‌اند و شواهد همان excerptهای رسمی C3 با SHA ثبت‌شده‌اند. runner `uv run python -m agent_app.evaluation.pilot data/evaluation/dev/pilot-12782.json` همان API رابط را آفلاین اجرا می‌کند: پیام، approve سؤال نسخه، پاسخ bind‌شدهٔ `1.50.0`، correction به `1.49.1` که proposal قبلی را stale می‌کند (approve قدیمی 409)، edit و approve نسخهٔ ویرایش‌شده، withdrawal و reject بدون ارسال، و replay همان event. [receipt](../data/evaluation/receipts/pilot-12782-v1.json): ۴۸ از ۴۸ check پاس. agent اسکریپتی است و storage حافظه‌ای؛ این receipt کیفیت تصمیم، RAG یا tracker پایدار را نشان نمی‌دهد.
 - [x] **P2 — ساسان؛ مسیر آفلاین core/API:** اطلاعات صریح HTTP به UserTurn معتبر وصل شد؛ correction/withdrawal/تغییر محیط، factهای قدیمی و inference/ref را کنار می‌گذارند. reply فقط به سؤال canonical تأییدشده و همان case/revision/proposal متصل است. [fixture هفت‌نوبتی و receipt](../docs/user-intake-pilot.fa.md)، replay/old approval و baseline چهار regression قابل بررسی‌اند. این تیک adapter با storage حافظه‌ای را پوشش می‌دهد؛ UI واقعی و transaction پایدار با U2 و T2/T3 تکمیل می‌شوند. متن آزاد به‌تنهایی fact تأییدشده نیست.
 - [ ] **P3 — محمد بهنام:** همان پرونده و proposal را با revision معتبر نگه دارد؛ approval قبلی بعد از تغییر پرونده قابل اجرا نباشد و اقدام جدید پس از approval فقط یک بار ثبت شود.
-- [ ] **P4 — حسن:** برای همان case ابتدا EvidenceBundle ثابت بدهد؛ بعد از آماده شدن corpus مجاز، retriever واقعی را با همان قرارداد وصل کند.
+- [ ] **P4 — حسن؛ اصلاح اتصال با ساسان:** mapper واقعی اکنون با collection ثابت از همان case عبور می‌کند؛ receipt تمیز و انتشار اصلاح در حال تکمیل است. بعد از آماده شدن corpus مجاز، همان قرارداد روی index واقعی اجرا شود؛ این قسمت هنوز باز است.
 
 **شرط پایان pilot آفلاین:** ورودی، سؤال تأییدشده، پاسخ کاربر، correction، revisionها، evidence فعال/کنارگذاشته‌شده و proposal در trace قابل بازبینی باشند. ماژول tracker مستقل آماده است؛ تا مسیر API/UI با persistence و recovery تأیید نشده، receipt رابط فقط «pilot با fixture و storage حافظه‌ای» است.
 
