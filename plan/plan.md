@@ -35,7 +35,7 @@ core/SQLite دوباره پاس شدند. کد و fixture با اجرای تمی
 | محمد بهنام — T4، مشترک با U3 | اتصال C2d را review و تنظیم database/credential را با محمدحسن جمع کند | همان receipt restart/retry/rollback؛ وضعیت ابزار در evaluation و پیکربندی نهایی؛ tracker دوم یا reset نساختن |
 | ساسان — C2e/C4/C5، مشترک با P4 | پذیرش snapshot نهایی حسن روی همین اتصال U3a/P4a؛ baseline تصمیم مدل پس از رفع مستند halt | حفظ receiptها/fixture؛ تست همان قرارداد روی index نهایی؛ source support و سؤال ضروری با معیار E2؛ reconciliation هزینه پیش از live |
 
-کد و checklist اتصال محدود در [PR #32](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/32) ثبت‌اند؛ وضعیت CI و انتشار همان PR مرجع است. هیچ‌کدام از تیک‌های U3a/P4a، R2/R4 یا E1–E5 را نمی‌بندد. هر نفر branch خود را با `origin/main` sync کند؛ تغییر checklist با PR و شاهد انجام کار منتقل شود.
+اتصال محدود [PR #32](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/32) روی main با `2ce25ab` منتشر شد؛ CI لینوکس و Windows روی [head شاخه](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38316532488) و [ترکیب PR](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38316540401) سبز است. کد و checklist همین نسخه مبنای اتصال تیم است. هیچ‌کدام از تیک‌های U3a/P4a، R2/R4 یا E1–E5 را نمی‌بندد. هر نفر branch خود را با `origin/main` sync کند؛ تغییر checklist با PR و شاهد انجام کار منتقل شود.
 
 انتخاب caseها و کار API می‌توانند هم‌زمان جلو بروند. برای E1، seed در repo
 موجود است؛ منتظر ZIP یا index نمانیم. caseها، جواب‌ها و duplicateهای خانوادهٔ

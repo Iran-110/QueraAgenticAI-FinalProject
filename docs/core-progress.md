@@ -10,6 +10,13 @@ fix (`a550bf1`) is published at `877601c`. Its
 passed. The current integration contains both releases and preserves the
 existing core contracts, RAG adapter and sole SQLite tracker.
 
+After independent exact-head review, PR32 published this integration on main at
+`2ce25ab004a8381f59cabb5b64b99a93472f768e`. Its tree equals reviewed `6a063a1`.
+Both Linux and Windows jobs passed in the [branch run](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38316532488)
+and [combined PR run](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38316540401).
+Windows accepted 37 connected-pilot tests and the separate 457-check HTTP run.
+These are operational checks, not model-quality or browser evaluation.
+
 On clean `c14314f`, **2,218 pytest tests** pass. The preregistered UI review
 comparison improves the same six operational checks from **2/6 to 6/6**:
 stable authenticated approval, immutable lost-ACK retry, original receipt after
