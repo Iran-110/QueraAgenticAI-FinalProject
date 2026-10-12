@@ -52,6 +52,7 @@ _RUN_ERROR_CODES = frozenset(
         "RunInterrupted",
         "RunOutcomeUnavailable",
         "AdapterSetupFailed",
+        "AdapterCleanupFailed",
         "AdapterSetupUnavailable",
         "CoreRunFailed",
         "InvalidTrackerReceipt",

@@ -91,6 +91,10 @@ jobs:
           uv run python scripts/ui_review_acceptance.py --output "$RUNNER_TEMP/ui-review-current.json"
       - name: Build only registered docs into an offline Chroma pilot
         run: uv run python scripts/build_pilot_index.py --destination "$RUNNER_TEMP/approved-docs-pilot"
+      - name: Compare GroundedPlan persistent HTTP controls with a mocked provider
+        run: |
+          uv run python scripts/grounded_http_acceptance.py --baseline --output "$RUNNER_TEMP/grounded-http-baseline.json"
+          uv run python scripts/grounded_http_acceptance.py --output "$RUNNER_TEMP/grounded-http-current.json"
 
   windows-pilot:
     runs-on: windows-latest
@@ -114,6 +118,6 @@ jobs:
       - name: Install locked dependencies
         run: uv sync --locked --group dev
       - name: Check Windows worker and connected local pilot
-        run: uv run pytest tests/test_http_pilot_runtime.py tests/test_indexed_backend.py tests/test_indexed_ui.py tests/test_persistent_tcp.py
+        run: uv run pytest tests/test_http_pilot_runtime.py tests/test_indexed_backend.py tests/test_indexed_ui.py tests/test_persistent_tcp.py tests/test_grounded_connected_ui.py tests/test_grounded_persistent_tcp.py tests/test_grounded_http_acceptance.py tests/test_grounded_http_binding.py tests/test_adapter_cleanup.py tests/test_grounded_backend_configuration.py tests/test_grounded_live_probe.py tests/test_grounded_browser_callback.py
       - name: Accept SQLite HTTP across fresh Windows processes
         run: uv run python scripts/http_pilot_acceptance.py --factory agent_app.testing.sqlite_http_binding:sqlite_factory --protocol experiments/http_pilot_acceptance/protocol-v2.json --output "$env:RUNNER_TEMP/http-pilot-sqlite-windows.json"

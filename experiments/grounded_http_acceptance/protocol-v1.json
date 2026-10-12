@@ -1,0 +1,576 @@
+{
+  "schema_version": 1,
+  "protocol_id": "grounded-persistent-http-acceptance-v1",
+  "created_on": "2026-10-13",
+  "task_id": "C2f",
+  "purpose": "Verify existing GroundedPlan/gateway/core/SQLite/UI HTTP composition offline; compare exact released HTTP composition labels and resource lifecycle, not model or retrieval quality.",
+  "baseline": {
+    "git_commit": "3c92b12bdea34208bc7015e7177c05cba74a4d1e",
+    "load": "git archive exact service and persistent API source modules; imports supporting current checkout code disclosed in code manifest",
+    "ports": "Same GroundedHttpBinding, authored plan sequences, frozen excerpts and tracker for both arms",
+    "expected_checks_passed": 10,
+    "expected_checks_total": 12,
+    "expected_failures": [
+      "truthful_reasoning_label",
+      "per_run_gateway_clients_closed_before_failsafe_cleanup"
+    ],
+    "functional_failure_fabricated": false,
+    "modules": [
+      "src/agent_app/orchestration/service.py",
+      "src/agent_app/persistent_api.py"
+    ]
+  },
+  "inherited_fixture": {
+    "path": "experiments/review_handoff/case-current-state-latest-evidence.json",
+    "sha256": "00af34231e7e4b252bdd8e88bf815d20249135f976cef7cc358ebc34d2e110d9",
+    "original_registration_commit": "b085f7d",
+    "unchanged": true
+  },
+  "inherited_exact_analysis_oracle": {
+    "path": "experiments/review_handoff/expected-analysis-v1.json",
+    "sha256": "81e45b0212cd5f9f27a88b0bced255d74dcdc6da9fb7bdf6bdc3ce63bf0cdadc",
+    "original_registration_commit": "057a4d3",
+    "introduced_after_original_C3_first_replay": true,
+    "reviewer": "assistant source inspection; no independent human gold",
+    "use": "Complete deterministic rendered analyses and complete attributed excerpts; new history-aware GroundedRequest digests are not expected to equal old memory-tracker digests."
+  },
+  "provenance": {
+    "issue_family": [
+      12782,
+      12629
+    ],
+    "answer_informed_exposed_development_selection": true,
+    "same_issue_answer_used_as_evidence": false,
+    "continuations_and_gateway_responses_authored": true,
+    "sources": "Unchanged five official excerpt pool from frozen C3 development fixture",
+    "actual_RAG_quarantine_enforced_here": false,
+    "evaluation_quality_claim": false
+  },
+  "execution_boundary": {
+    "provider_transport": "httpx.MockTransport mandatory; real HTTP/DNS/outbound sockets blocked",
+    "frontend_transport": "real BackendClient over in-process FastAPI TestClient bridge; AppTest optional separate regression",
+    "restart": "fresh SQLite tracker and FastAPI application, same interpreter; separate existing TCP pilot covers process restart",
+    "ledger": "new TemporaryDirectory SQLite only; production ledger and .env forbidden",
+    "credential": "public synthetic constants only; headers never recorded",
+    "actual_model_calls": 0,
+    "actual_paid_requests": 0,
+    "actual_API_cost_USD": "0",
+    "simulated_usage_not_actual_billing": true,
+    "source_snippets_executed": false,
+    "corpus_quality_claim": false,
+    "model_quality_claim": false
+  },
+  "limits": {
+    "max_model_attempts": 2,
+    "max_retrieval_rounds": 2,
+    "max_queries_per_round": 2,
+    "max_steps": 8
+  },
+  "gateway": {
+    "requested_model": "gpt-4o-mini",
+    "normal_returned_model": "gpt-4o-mini-2024-07-18",
+    "phase": "development",
+    "response_mode": "grounded_plan",
+    "input_token_reserve": 32768,
+    "max_output_tokens": 1024,
+    "max_request_usd": "0.02",
+    "temporary_ledger_limit_usd": "1",
+    "fake_prompt_tokens": 125,
+    "fake_completion_tokens": 75,
+    "fake_total_tokens": 200
+  },
+  "primary_scenarios": [
+    {
+      "id": "handoff-1",
+      "wire_request": {
+        "message": "A multiselect inside @st.fragment displays empty instead of its saved default after a parent selector changes and resets state. My reduced example works, but the full app fails and the relevant parent callback is not included. Python 3.12.9 and Chrome. I have not supplied the installed Streamlit version or an earlier version comparison. Which information is useful next?",
+        "turn_id": "handoff-1",
+        "expected_revision": 0,
+        "reported_facts": [
+          {
+            "name": "python_version",
+            "value": "3.12.9"
+          },
+          {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9"
+          },
+          {
+            "name": "browser",
+            "value": "Chrome"
+          },
+          {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment"
+          },
+          {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state"
+          },
+          {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default"
+          },
+          {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available"
+          }
+        ],
+        "unknowns": [
+          "streamlit_version",
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "checks_performed": [
+          "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+        ],
+        "context_changed": false,
+        "scenario": "ask"
+      },
+      "inventory": {
+        "known_information_after_user_input": [
+          "Active user Streamlit version: unknown.",
+          "Active user Python version: 3.12.9.",
+          "The initial report says the reduced example works while the full app fails; no source/user code has been executed."
+        ],
+        "user_clarifiable_gaps": [
+          "streamlit_version",
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "documentation_or_evidence_gaps": [
+          "No full-app root cause or verified fix is established by any frozen source."
+        ],
+        "acceptable_decisions": [
+          "ask",
+          "escalate"
+        ],
+        "unacceptable_claims": [
+          "The full-app root cause is proved.",
+          "The supplied working reduction reproduces the failure.",
+          "A fixed release or verified workaround has been established.",
+          "The installed version can be inferred from document metadata."
+        ],
+        "question_acceptance": [
+          "A follow-up targets a still-missing user fact or the affected callback/state-update code.",
+          "The user can supply the requested environment fact or their own code; asking the user to find project documentation is not acceptable.",
+          "Do not ask again for active confirmed version/Python facts, or suggest the already reported check as if unperformed."
+        ],
+        "claim_acceptance": [
+          "Every material documentation claim is tied to its exact frozen excerpt and scope, across all proposal fields.",
+          "The 1.50.0 release-event observation is not a diagnosis or general guarantee for 1.49.1 or every later release.",
+          "Source presence and valid JSON alone do not establish claim entailment."
+        ]
+      },
+      "bundles": [
+        "official-mixed"
+      ],
+      "authored_plan_sequence": [
+        {
+          "decision": "ask",
+          "question_name": "streamlit_version"
+        }
+      ],
+      "expected": {
+        "case_revision": 1,
+        "active_user_version": null,
+        "decision": "ask",
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "approved": true,
+        "exact_version_source_count": 0,
+        "source_gaps": [
+          "exact_version_documentation",
+          "full_app_cause_and_fix"
+        ]
+      }
+    },
+    {
+      "id": "handoff-2",
+      "wire_request": {
+        "message": "1.50.0",
+        "turn_id": "handoff-2",
+        "expected_revision": 1,
+        "reported_facts": [],
+        "unknowns": [],
+        "checks_performed": [],
+        "context_changed": false,
+        "scenario": "answer",
+        "reply_to_proposal_id": "$approved_proposal_id"
+      },
+      "inventory": {
+        "known_information_after_user_input": [
+          "Active user Streamlit version: 1.50.0.",
+          "Active user Python version: 3.12.9.",
+          "The initial report says the reduced example works while the full app fails; no source/user code has been executed."
+        ],
+        "user_clarifiable_gaps": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "documentation_or_evidence_gaps": [
+          "No full-app root cause or verified fix is established by any frozen source."
+        ],
+        "acceptable_decisions": [
+          "answer",
+          "ask",
+          "escalate"
+        ],
+        "unacceptable_claims": [
+          "The full-app root cause is proved.",
+          "The supplied working reduction reproduces the failure.",
+          "A fixed release or verified workaround has been established.",
+          "The installed version can be inferred from document metadata."
+        ],
+        "question_acceptance": [
+          "A follow-up targets a still-missing user fact or the affected callback/state-update code.",
+          "The user can supply the requested environment fact or their own code; asking the user to find project documentation is not acceptable.",
+          "Do not ask again for active confirmed version/Python facts, or suggest the already reported check as if unperformed."
+        ],
+        "claim_acceptance": [
+          "Every material documentation claim is tied to its exact frozen excerpt and scope, across all proposal fields.",
+          "The 1.50.0 release-event observation is not a diagnosis or general guarantee for 1.49.1 or every later release.",
+          "Source presence and valid JSON alone do not establish claim entailment.",
+          "The scripted answer reproduces the complete registered release excerpt exactly and explicitly limits it to the 1.50.0 release event, not a full-app fix."
+        ]
+      },
+      "bundles": [
+        "official-mixed"
+      ],
+      "authored_plan_sequence": [
+        {
+          "decision": "answer",
+          "source_ids": [
+            "release-150-multiselect-key-identity-v8"
+          ]
+        }
+      ],
+      "expected": {
+        "case_revision": 2,
+        "active_user_version": "1.50.0",
+        "decision": "answer",
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "approved": true,
+        "exact_version_source_count": 2,
+        "source_gaps": [
+          "full_app_cause_and_fix"
+        ]
+      }
+    },
+    {
+      "id": "handoff-3",
+      "wire_request": {
+        "message": "Correction: the affected deployment is Streamlit 1.49.1, not 1.50.0. The reduced example still works; the parent callback is not supplied.",
+        "turn_id": "handoff-3",
+        "expected_revision": 2,
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.49.1"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [],
+        "context_changed": false,
+        "scenario": "refine"
+      },
+      "inventory": {
+        "known_information_after_user_input": [
+          "Active user Streamlit version: 1.49.1.",
+          "Active user Python version: 3.12.9.",
+          "The initial report says the reduced example works while the full app fails; no source/user code has been executed."
+        ],
+        "user_clarifiable_gaps": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "documentation_or_evidence_gaps": [
+          "The corrected 1.49.1 has no exact metadata coverage; 1.49.0 is not a patch match.",
+          "The final retrieval deliberately removes the pinned 1.50.0 release note; it cannot be cited from the first bundle.",
+          "Cause of the full-app failure and verified fix remain unknown."
+        ],
+        "acceptable_decisions": [
+          "retrieve_more then escalation with latest evidence",
+          "retrieve_more then a useful remaining user question"
+        ],
+        "unacceptable_claims": [
+          "The full-app root cause is proved.",
+          "The supplied working reduction reproduces the failure.",
+          "A fixed release or verified workaround has been established.",
+          "The installed version can be inferred from document metadata."
+        ],
+        "question_acceptance": [
+          "A follow-up targets a still-missing user fact or the affected callback/state-update code.",
+          "The user can supply the requested environment fact or their own code; asking the user to find project documentation is not acceptable.",
+          "Do not ask again for active confirmed version/Python facts, or suggest the already reported check as if unperformed."
+        ],
+        "claim_acceptance": [
+          "Every material documentation claim is tied to its exact frozen excerpt and scope, across all proposal fields.",
+          "The 1.50.0 release-event observation is not a diagnosis or general guarantee for 1.49.1 or every later release.",
+          "Source presence and valid JSON alone do not establish claim entailment."
+        ]
+      },
+      "bundles": [
+        "official-mixed",
+        "official-without-release"
+      ],
+      "authored_plan_sequence": [
+        {
+          "decision": "retrieve_more",
+          "retrieval_queries": [
+            "Streamlit 1.49.1 multiselect key default reset exact version documentation"
+          ]
+        },
+        {
+          "decision": "escalate",
+          "source_ids": [
+            "multiselect-149-signature-v8"
+          ]
+        }
+      ],
+      "expected": {
+        "case_revision": 3,
+        "active_user_version": "1.49.1",
+        "decision": "escalate",
+        "model_attempts": 2,
+        "retrieval_rounds": 2,
+        "approved": false,
+        "exact_version_source_count": 0,
+        "source_gaps": [
+          "exact_version_documentation",
+          "full_app_cause_and_fix",
+          "pinned_release_record"
+        ]
+      }
+    },
+    {
+      "id": "handoff-4",
+      "wire_request": {
+        "message": "I cannot confirm the installed Streamlit version. Withdraw the value I gave.",
+        "turn_id": "handoff-4",
+        "expected_revision": 3,
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": null
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [],
+        "context_changed": false,
+        "scenario": "ask"
+      },
+      "inventory": {
+        "known_information_after_user_input": [
+          "Active user Streamlit version: unknown.",
+          "Active user Python version: 3.12.9.",
+          "The initial report says the reduced example works while the full app fails; no source/user code has been executed."
+        ],
+        "user_clarifiable_gaps": [
+          "streamlit_version",
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "documentation_or_evidence_gaps": [
+          "No full-app root cause or verified fix is established by any frozen source.",
+          "Installation applicability is unresolved after the user withdrew the version."
+        ],
+        "acceptable_decisions": [
+          "ask",
+          "escalate"
+        ],
+        "unacceptable_claims": [
+          "The full-app root cause is proved.",
+          "The supplied working reduction reproduces the failure.",
+          "A fixed release or verified workaround has been established.",
+          "The installed version can be inferred from document metadata."
+        ],
+        "question_acceptance": [
+          "A follow-up targets a still-missing user fact or the affected callback/state-update code.",
+          "The user can supply the requested environment fact or their own code; asking the user to find project documentation is not acceptable.",
+          "Do not ask again for active confirmed version/Python facts, or suggest the already reported check as if unperformed."
+        ],
+        "claim_acceptance": [
+          "Every material documentation claim is tied to its exact frozen excerpt and scope, across all proposal fields.",
+          "The 1.50.0 release-event observation is not a diagnosis or general guarantee for 1.49.1 or every later release.",
+          "Source presence and valid JSON alone do not establish claim entailment."
+        ]
+      },
+      "bundles": [
+        "official-mixed"
+      ],
+      "authored_plan_sequence": [
+        {
+          "decision": "ask",
+          "question_name": "streamlit_version"
+        }
+      ],
+      "expected": {
+        "case_revision": 4,
+        "active_user_version": null,
+        "decision": "ask",
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "approved": false,
+        "exact_version_source_count": 0,
+        "source_gaps": [
+          "exact_version_documentation",
+          "full_app_cause_and_fix"
+        ]
+      }
+    }
+  ],
+  "controls": [
+    {
+      "id": "malformed_first",
+      "known_information": "Unchanged first-turn user facts, unknown Streamlit version, mixed five-source pool and current reviewed gaps.",
+      "user_gaps": [
+        "streamlit_version",
+        "parent_callback_code"
+      ],
+      "source_gaps": [
+        "exact_version_documentation",
+        "full_app_cause_and_fix"
+      ],
+      "acceptable_decisions": [
+        "ask after exactly one accounted repair"
+      ],
+      "expected_transport_calls": 2,
+      "expected_model_attempts": 2,
+      "expected_error": null,
+      "expected_settled": 2,
+      "expected_uncertain": 0,
+      "expected_halted": false
+    },
+    {
+      "id": "model_mismatch",
+      "known_information": "Same first-turn input and valid authored plan, but serving identity is gpt-4.1-mini instead of requested gpt-4o-mini.",
+      "user_gaps": [
+        "streamlit_version",
+        "parent_callback_code"
+      ],
+      "source_gaps": [
+        "provider_identity_and_pricing_unverified"
+      ],
+      "acceptable_decisions": [
+        "terminal ProviderModelMismatch, no proposal or retry"
+      ],
+      "expected_transport_calls": 1,
+      "expected_model_attempts": 1,
+      "expected_error": "ProviderModelMismatch",
+      "expected_settled": 0,
+      "expected_uncertain": 1,
+      "expected_halted": true
+    },
+    {
+      "id": "timeout",
+      "known_information": "Same first-turn input, but transport times out after a ledger reservation. Processing and usage remain unknown.",
+      "user_gaps": [
+        "streamlit_version",
+        "parent_callback_code"
+      ],
+      "source_gaps": [
+        "provider_delivery_and_usage_unknown"
+      ],
+      "acceptable_decisions": [
+        "terminal ProviderRequestFailed, no proposal or retry"
+      ],
+      "expected_transport_calls": 1,
+      "expected_model_attempts": 1,
+      "expected_error": "ProviderRequestFailed",
+      "expected_settled": 0,
+      "expected_uncertain": 1,
+      "expected_halted": false
+    },
+    {
+      "id": "caller_declared_conflict",
+      "known_information": "Same first-turn input and two unchanged source excerpts, caller explicitly declares a conflict group. This is authored routing, not discovered source contradiction.",
+      "user_gaps": [
+        "streamlit_version",
+        "parent_callback_code"
+      ],
+      "source_gaps": [
+        "caller_declared_source_conflict",
+        "full_app_cause_and_fix"
+      ],
+      "conflict_group": [
+        "multiselect-149-signature-v8",
+        "release-150-multiselect-key-identity-v8"
+      ],
+      "authored_plan_sequence": [
+        {
+          "decision": "answer",
+          "source_ids": [
+            "multiselect-149-signature-v8"
+          ]
+        },
+        {
+          "decision": "escalate",
+          "source_ids": [
+            "multiselect-149-signature-v8"
+          ]
+        }
+      ],
+      "acceptable_decisions": [
+        "first answer rejected as grounded_conflict_unresolved; escalation contains both complete excerpts"
+      ],
+      "expected_transport_calls": 2,
+      "expected_model_attempts": 2,
+      "expected_error": null,
+      "expected_settled": 2,
+      "expected_uncertain": 0,
+      "expected_halted": false
+    }
+  ],
+  "checks": [
+    "truthful_reasoning_label",
+    "per_run_gateway_clients_closed_before_failsafe_cleanup",
+    "actual_provider_payload_equals_captured_handoff_request",
+    "complete_analysis_and_source_quote_oracle",
+    "necessary_answerable_question_and_user_source_gap_separation",
+    "history_and_active_correction_scope",
+    "final_retrieval_only_no_retired_evidence",
+    "fresh_stale_approval_rejected",
+    "original_review_retry_after_recreation_is_same_receipt_action",
+    "event_replays_do_not_repeat_gateway",
+    "no_credentials_or_expected_labels_in_wire_or_receipt",
+    "bounded_gateway_attempts_and_simulated_accounting"
+  ],
+  "expected_current": {
+    "checks_passed": 12,
+    "checks_total": 12,
+    "primary_gateway_calls": 5,
+    "control_gateway_calls": 6,
+    "total_gateway_calls": 11,
+    "primary_retrieval_calls": 5,
+    "primary_user_revisions": 4,
+    "approved_local_actions": 2,
+    "edits_require_separate_approval": true,
+    "rejection_local_actions": 0,
+    "all_gateway_clients_closed": true
+  },
+  "comparison_rules": [
+    "Run both arms only after this protocol is committed.",
+    "Primary fixture, oracle, same bridge ports, fault schedule and acceptance assertions are immutable.",
+    "Baseline changes released persistent_api and CoreTurnService/CoreAdapters source modules; currently supported imports remain identified by their byte hashes.",
+    "Correct baseline functional behavior remains passing: it already composes GroundedPlan when explicit ports are injected.",
+    "Record lifecycle result before emergency fixture cleanup; close all clients in finally in either arm.",
+    "Fail CLI on unregistered protocol/fixture/oracle drift, changed runtime source during run, disabled assertions, unexpected baseline result or failing current checks.",
+    "Write receipts exclusively to a new path; never overwrite existing evidence."
+  ],
+  "limitations": [
+    "Fake choices do not establish model intelligence, prompt effectiveness or arbitrary-claim entailment.",
+    "Complete quoted-source and frozen-analysis checks cover the authored outputs only; no semantic judge or real model is run.",
+    "The inherited fixture is exposed answer-informed development data with a posthoc deterministic output oracle, not held-out test gold.",
+    "Retrieval is a fixed exact excerpt sequence; no real RAG relevance, coverage or semantic embedding quality is measured.",
+    "The explicit conflict control does not discover a real document contradiction.",
+    "Backend recreation is not interpreter restart or full browser/session recovery; existing TCP and UI pilots remain separate evidence.",
+    "Temporary simulated ledger bookkeeping does not reconcile team billing or lift C5 halt."
+  ]
+}

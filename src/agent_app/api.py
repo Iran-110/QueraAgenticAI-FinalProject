@@ -204,12 +204,15 @@ class RunAdapters:
     A GroundedReasoner factory can capture its actual request in a closure and
     supply it here. The supplier must never reconstruct a catalog after the run
     or accept a request supplied by model output.
+    Cleanup runs once after capture and before staging, on success or failure.
+    The factory owns cleanup of resources when allocation itself raises.
     """
 
     retriever: Retriever
     reasoner: Reasoner
     snapshot_id: str = SNAPSHOT_ID
     grounded_request_supplier: Callable[[], GroundedRequest | None] | None = None
+    cleanup: Callable[[], None] | None = None
 
 
 def _adapters(scenario: Scenario) -> RunAdapters:
@@ -438,41 +441,66 @@ def post_message(case_id: CaseId, request: MessageRequest) -> dict[str, Any]:
             )
             return _view(case_id)
 
+        adapters = None
+        result = None
+        handoff = None
+        run_error = None
+        handoff_error = None
         try:
-            adapters = _adapters(request.scenario)
-            capture = ReasoningCapture(adapters.reasoner)
-            engine = SupportEngine(
-                adapters.retriever,
-                capture,
-                snapshot_id=adapters.snapshot_id,
-                current_revision=lambda cid: _cases[cid].state.case_revision,
-            )
-        except Exception:
-            # Ingress is already committed. Record a terminal setup failure;
-            # an identical event replay must not construct or invoke ports again.
-            case.log.append(
-                {
-                    "role": "system",
-                    "text": "The run stopped (error: AdapterSetupUnavailable). Nothing was proposed.",
-                }
-            )
-            return _view(case_id)
-        result = engine.run(case.state, reasoning_message)
-        if result.status == "awaiting_approval":
             try:
-                handoff = build_handoff(
-                    result,
-                    capture.last,
-                    grounded_request=(
-                        adapters.grounded_request_supplier()
-                        if adapters.grounded_request_supplier is not None
-                        else None
-                    ),
+                adapters = _adapters(request.scenario)
+                if not isinstance(adapters, RunAdapters):
+                    raise ValueError
+                if adapters.cleanup is not None and not callable(adapters.cleanup):
+                    raise ValueError
+                capture = ReasoningCapture(adapters.reasoner)
+                engine = SupportEngine(
+                    adapters.retriever,
+                    capture,
+                    snapshot_id=adapters.snapshot_id,
+                    current_revision=lambda cid: _cases[cid].state.case_revision,
                 )
-            except Exception as error:
-                code = _handoff_error_code(error)
-                case.log.append({"role": "system", "text": f"Review handoff stopped ({code})."})
-                return _view(case_id)
+            except Exception:
+                run_error = "AdapterSetupUnavailable"
+            if run_error is None:
+                try:
+                    result = engine.run(case.state, reasoning_message)
+                except Exception:
+                    run_error = "CoreRunFailed"
+                else:
+                    if result.status == "awaiting_approval":
+                        try:
+                            handoff = build_handoff(
+                                result,
+                                capture.last,
+                                grounded_request=(
+                                    adapters.grounded_request_supplier()
+                                    if adapters.grounded_request_supplier is not None
+                                    else None
+                                ),
+                            )
+                        except Exception as error:
+                            handoff_error = _handoff_error_code(error)
+        finally:
+            # The callback has the same custody boundary as persistent HTTP:
+            # consume the actual final catalog, then close before proposing.
+            # Cancellation still propagates after cleanup; no stage can occur.
+            if isinstance(adapters, RunAdapters) and adapters.cleanup is not None:
+                try:
+                    adapters.cleanup()
+                except Exception:
+                    run_error = "AdapterCleanupFailed"
+        if run_error is not None or handoff_error is not None:
+            # Ingress is already committed. Replay cannot allocate ports again.
+            case.status = "open"
+            notice = (
+                f"The run stopped (error: {run_error}). Nothing was proposed."
+                if run_error is not None
+                else f"Review handoff stopped ({handoff_error})."
+            )
+            case.log.append({"role": "system", "text": notice})
+            return _view(case_id)
+        if result.status == "awaiting_approval":
             proposal = _proposal(handoff, result)
             tracker.pause_for_approval(case_id, proposal)
             case.state = case.state.model_copy(update={"pending_proposal_id": result.run_id})

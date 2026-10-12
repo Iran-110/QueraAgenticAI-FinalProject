@@ -47,12 +47,17 @@ from agent_app.orchestration.validation import detached_contract
 
 @dataclass(frozen=True)
 class CoreAdapters:
-    """Fresh ports for one trusted run ID; live reasoning must still use llm/ledger."""
+    """Fresh ports for one trusted run ID; live reasoning still uses llm/ledger.
+
+    The service consumes the final grounded request, then invokes cleanup once
+    before staging. Factories must clean up resources if allocation itself fails.
+    """
 
     retriever: Retriever
     reasoner: Reasoner
     snapshot_id: str
     grounded_request_supplier: Callable[[], GroundedRequest | None] | None = None
+    cleanup: Callable[[], None] | None = None
 
 
 type CoreAdapterFactory = Callable[[CaseState, str, str], CoreAdapters]
@@ -356,55 +361,73 @@ class CoreTurnService:
             return current.state
 
         trusted_run_id = run_id if run_id is not None else str(uuid4())
+        ports = None
+        result = None
+        candidate = None
+        run_error = None
         try:
-            # No factory for replay/superseded/invalid input. Its detached arguments
-            # cannot mutate the authoritative message or snapshot retained here.
-            ports = self.adapters(view.state.model_copy(deep=True), message, trusted_run_id)
-            if not isinstance(ports, CoreAdapters):
-                raise ValueError
-            capture = ReasoningCapture(ports.reasoner)
-            engine = SupportEngine(
-                ports.retriever,
-                capture,
-                snapshot_id=ports.snapshot_id,
-                limits=self.limits,
-                top_k=self.top_k,
-                current_case=current_case,
-                proposal_checks=self.proposal_checks,
-                evidence_scope=self.evidence_scope,
-            )
-        except Exception:
-            return CoreTurnOutcome(
-                "core_stopped", receipt=receipt, snapshot=view, error_code="AdapterSetupFailed"
-            )
-        try:
-            result = engine.run(
-                view.state,
-                message,
-                run_id=trusted_run_id,
-                proposal_requirements=proposal_requirements,
-            )
-        except Exception:
-            return CoreTurnOutcome(
-                "core_stopped", receipt=receipt, snapshot=view, error_code="CoreRunFailed"
-            )
-        if result.status != "awaiting_approval":
+            try:
+                # No factory for replay/superseded/invalid input. Its detached arguments
+                # cannot mutate the authoritative message or snapshot retained here.
+                ports = self.adapters(view.state.model_copy(deep=True), message, trusted_run_id)
+                if not isinstance(ports, CoreAdapters):
+                    raise ValueError
+                if ports.cleanup is not None and not callable(ports.cleanup):
+                    raise ValueError
+                capture = ReasoningCapture(ports.reasoner)
+                engine = SupportEngine(
+                    ports.retriever,
+                    capture,
+                    snapshot_id=ports.snapshot_id,
+                    limits=self.limits,
+                    top_k=self.top_k,
+                    current_case=current_case,
+                    proposal_checks=self.proposal_checks,
+                    evidence_scope=self.evidence_scope,
+                )
+            except Exception:
+                run_error = "AdapterSetupFailed"
+            if run_error is None:
+                try:
+                    result = engine.run(
+                        view.state,
+                        message,
+                        run_id=trusted_run_id,
+                        proposal_requirements=proposal_requirements,
+                    )
+                except Exception:
+                    run_error = "CoreRunFailed"
+                else:
+                    if result.status != "awaiting_approval":
+                        run_error = result.error_code or "CoreRunFailed"
+                    else:
+                        try:
+                            grounded = (
+                                ports.grounded_request_supplier()
+                                if ports.grounded_request_supplier
+                                else None
+                            )
+                            candidate = build_handoff(
+                                result, capture.last, grounded_request=grounded
+                            )
+                        except Exception as error:
+                            run_error = _code(error, _HANDOFF_CODES, "InvalidHandoffInput")
+        finally:
+            # Ports belong to this invocation. Consume the captured final request
+            # before closing, and close before any tracker write. Cleanup failure
+            # fails closed; it never creates a proposal or exposes raw error text.
+            if isinstance(ports, CoreAdapters) and ports.cleanup is not None:
+                try:
+                    ports.cleanup()
+                except Exception:
+                    run_error = "AdapterCleanupFailed"
+        if run_error is not None:
             return CoreTurnOutcome(
                 "core_stopped",
                 receipt=receipt,
                 snapshot=view,
                 run_result=result,
-                error_code=result.error_code,
-            )
-        try:
-            grounded = (
-                ports.grounded_request_supplier() if ports.grounded_request_supplier else None
-            )
-            candidate = build_handoff(result, capture.last, grounded_request=grounded)
-        except Exception as error:
-            code = _code(error, _HANDOFF_CODES, "InvalidHandoffInput")
-            return CoreTurnOutcome(
-                "core_stopped", receipt=receipt, snapshot=view, run_result=result, error_code=code
+                error_code=run_error,
             )
         try:
             if self._read(turn.case_id) != view:

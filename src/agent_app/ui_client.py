@@ -70,6 +70,7 @@ OUTCOME_CODES = frozenset(
         "RunInterrupted",
         "RunOutcomeUnavailable",
         "AdapterSetupFailed",
+        "AdapterCleanupFailed",
         "AdapterSetupUnavailable",
         "CoreRunFailed",
         "InvalidTrackerReceipt",
@@ -209,7 +210,12 @@ class BackendClient:
             capabilities = BackendCapabilities(durable_reviews=False)
         elif (
             health.get("status") == "ok"
-            and health.get("mode") == "synthetic_offline_sqlite"
+            and health.get("mode")
+            == (
+                "development_live_sqlite"
+                if health.get("reasoning_label") == "metis_grounded_live"
+                else "synthetic_offline_sqlite"
+            )
             and health.get("tracker_backend") == "sqlite_case_tracker"
             and health.get("capabilities")
             == {"stable_event_ids": True, "durable_reviews": True, "reviewer_auth": "bearer"}
@@ -217,11 +223,15 @@ class BackendClient:
             and type(health["capabilities"]["durable_reviews"]) is bool
             and isinstance(health.get("retrieval_label"), str)
             and health.get("retrieval_label") in {"scripted", "local_chroma_hash"}
-            and health.get("reasoning_label") == "scripted"
+            and isinstance(health.get("reasoning_label"), str)
+            and health.get("reasoning_label")
+            in {"scripted", "grounded_fake_gateway", "metis_grounded_live"}
             and health.get("quality_claim") is False
         ):
             capabilities = BackendCapabilities(
-                durable_reviews=True, retrieval_label=health["retrieval_label"]
+                durable_reviews=True,
+                retrieval_label=health["retrieval_label"],
+                reasoning_label=health["reasoning_label"],
             )
         else:
             self._capabilities = None

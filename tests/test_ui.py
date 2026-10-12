@@ -216,11 +216,16 @@ def test_switching_cases_keeps_each_case_state(backend):
     assert at.chat_message[0].markdown[0].value == "My widget loses its value."
 
 
-def test_switcher_labels_show_case_status(backend):
+def test_switcher_keeps_case_identity_while_panel_reports_status(backend):
     at = AppTest.from_file(PAGE).run()
     at.chat_input[0].set_value("My widget loses its value.").run()
     options = at.sidebar.selectbox(key="case_id").options
-    assert options == [f"{at.session_state.case_id} · Needs review"]
+    assert options == [at.session_state.case_id]
+    assert any("Awaiting maintainer review" in item.value for item in at.markdown)
+    at.button(key="approve").click().run()
+    assert not at.exception
+    assert at.sidebar.selectbox(key="case_id").options == options
+    assert any("Waiting for the user" in item.value for item in at.markdown)
 
 
 def test_unsent_message_stays_with_its_case(backend, monkeypatch):

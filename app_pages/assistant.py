@@ -26,15 +26,6 @@ STATUSES = {
     "escalated": ("Escalated", "red"),
     "open": ("Open", "gray"),
 }
-# Fits the sidebar switcher; the case panel shows the full wording.
-SHORT_STATUSES = {
-    "new": "New",
-    "awaiting_review": "Needs review",
-    "awaiting_user": "Waiting for user",
-    "answer_sent": "Answered",
-    "escalated": "Escalated",
-    "open": "Open",
-}
 VERSION_SCOPES = {
     "exact_metadata_match": ("Version matches", "green"),
     "historical_or_other_version": ("Other version", "orange"),
@@ -107,11 +98,6 @@ def unsent_event() -> dict | None:
 
 def unsent_review() -> ui_client.ReviewOperation | None:
     return st.session_state.unsent_reviews.get(st.session_state.case_id)
-
-
-def case_label(case_id: str, statuses: dict[str, str]) -> str:
-    status = statuses.get(case_id)
-    return f"{case_id} · {SHORT_STATUSES[status]}" if status else case_id
 
 
 def deliver(event: dict) -> bool:
@@ -541,7 +527,9 @@ with st.sidebar:
     st.selectbox(
         "Active case",
         st.session_state.cases,
-        format_func=lambda case_id: case_label(case_id, statuses),
+        # Streamlit deserializes formatted option text. A status change must not
+        # turn an old label into a case ID and reset another form's callback.
+        # Status belongs in the case panel and review counter.
         key="case_id",
         on_change=reset_view_state,
         help="Cases opened in this browser session. Each keeps its own state and proposals.",
@@ -550,7 +538,27 @@ with st.sidebar:
     if waiting:
         st.caption(f":material/pending_actions: {waiting} case(s) awaiting review")
     st.button("New case", icon=":material/add:", on_click=start_new_case, width="stretch")
-    if capabilities.retrieval_label == "local_chroma_hash":
+    if capabilities.reasoning_label != "scripted":
+        st.subheader("GroundedPlan pilot")
+        st.session_state.scenario = "ask"
+        if capabilities.reasoning_label == "grounded_fake_gateway":
+            st.caption(
+                "GroundedPlan · mocked provider · offline · zero API cost · no model quality result."
+            )
+        else:
+            st.caption(
+                "GroundedPlan · bounded live development probe · human approval required · "
+                "not final evaluation."
+            )
+        st.caption(
+            "Retrieval: "
+            + (
+                "local indexed docs"
+                if capabilities.retrieval_label == "local_chroma_hash"
+                else "fixture"
+            )
+        )
+    elif capabilities.retrieval_label == "local_chroma_hash":
         st.subheader("Offline indexed pilot")
         st.session_state.scenario = "ask"
         st.caption(

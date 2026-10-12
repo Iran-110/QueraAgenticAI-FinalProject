@@ -1,20 +1,30 @@
 """Explicit local persistent composition; never loads .env or a model provider.
 
-The optional docs index uses local lexical hashing. Routing is scripted and
-conservative: this launcher cannot establish retrieval or decision quality.
+The optional docs index uses local lexical hashing. Reasoning is scripted or an
+explicitly mocked GroundedPlan gateway; neither establishes decision quality.
 """
 
 import os
 import re
 from collections.abc import Mapping
+from contextlib import asynccontextmanager
+from decimal import Decimal
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
 from fastapi import FastAPI
 
 from agent_app import api
-from agent_app.contracts import AnalysisResult, Identifier, ReasoningContext
+from agent_app.contracts import (
+    AnalysisResult,
+    GroundedPlan,
+    GroundedSourceRef,
+    Identifier,
+    ReasoningContext,
+)
 from agent_app.orchestration.intake import STREAMLIT_VERSION_QUESTION
 from agent_app.persistent_api import create_app
+from agent_app.reasoning.grounding import source_content_sha256
 from agent_app.tracker.sqlite_tracker import SQLiteCaseTracker
 
 
@@ -46,8 +56,28 @@ class PilotReasoner:
         )
 
 
+class PilotGroundedPlanner:
+    """Authored transport response for wiring; never model decision quality."""
+
+    def plan(self, request, *, context):
+        question = next((gap for gap in request.gaps if gap.kind == "user"), None)
+        return GroundedPlan(
+            context_sha256=request.context_sha256,
+            decision="ask" if question else "escalate",
+            question_name=question.name if question else None,
+            sources=tuple(
+                GroundedSourceRef(chunk_id=hit.chunk_id, content_sha256=source_content_sha256(hit))
+                for hit in request.evidence.hits[:1]
+            )
+            if not question
+            else (),
+        )
+
+
 def configured_app(config: Mapping[str, str]) -> FastAPI:
     """Resolve only explicit local config. No credentials in responses or errors."""
+    temporary = None
+    binding = None
     try:
         database = config["AGENT_TRACKER_DB"]
         token = config["AGENT_REVIEWER_TOKEN"]
@@ -66,6 +96,9 @@ def configured_app(config: Mapping[str, str]) -> FastAPI:
 
         TypeAdapter(Identifier).validate_python(reviewer)
         index = config.get("AGENT_PILOT_INDEX")
+        reasoning_label = config.get("AGENT_PILOT_REASONING", "scripted")
+        if reasoning_label not in {"scripted", "grounded_fake_gateway"}:
+            raise ValueError
         expected_snapshot = config.get("AGENT_PILOT_SNAPSHOT")
         adapters = None
         label = "scripted"
@@ -84,23 +117,74 @@ def configured_app(config: Mapping[str, str]) -> FastAPI:
             client, snapshot = open_verified_index(Path(index))
             if snapshot != expected_snapshot:
                 raise ValueError
-            retriever = ChromaRetrieverAdapter(
-                "",
-                snapshot_id=snapshot,
-                core_retriever=StreamlitRetriever("", snapshot_id=snapshot, client=client),
-            )
+
+            def retriever_factory():
+                return ChromaRetrieverAdapter(
+                    "",
+                    snapshot_id=snapshot,
+                    core_retriever=StreamlitRetriever("", snapshot_id=snapshot, client=client),
+                )
 
             def indexed_adapters(_scenario):
-                return api.RunAdapters(retriever, PilotReasoner(), snapshot_id=snapshot)
+                return api.RunAdapters(retriever_factory(), PilotReasoner(), snapshot_id=snapshot)
 
             adapters = indexed_adapters
             label = "local_chroma_hash"
         elif expected_snapshot is not None:
             raise ValueError
+        if reasoning_label == "grounded_fake_gateway":
+            from agent_app.llm.budget import BudgetLedger
+            from agent_app.testing.grounded_http_binding import GroundedHttpBinding
+
+            temporary = TemporaryDirectory(prefix="agent-grounded-fake-")
+            ledger = BudgetLedger.create(
+                Path(temporary.name) / "mock-ledger.sqlite3",
+                limit_usd=Decimal("1"),
+                opening_spend_usd=Decimal("0"),
+            )
+            binding = GroundedHttpBinding(
+                ledger,
+                retriever_factory=(
+                    retriever_factory
+                    if index is not None
+                    else lambda: api._adapters("ask").retriever
+                ),
+                snapshot_id=snapshot if index is not None else api.SNAPSHOT_ID,
+                planner_factory=PilotGroundedPlanner,
+                retain_records=False,
+            )
+            adapters = binding.adapters
         tokens = {reviewer: token}
         tracker = SQLiteCaseTracker(Path(database), reviewer_tokens=tokens)
-        return create_app(tracker, reviewer_tokens=tokens, adapters=adapters, retrieval_label=label)
+        application = create_app(
+            tracker,
+            reviewer_tokens=tokens,
+            adapters=adapters,
+            retrieval_label=label,
+            reasoning_label=reasoning_label,
+        )
+        if binding is not None:
+
+            @asynccontextmanager
+            async def lifespan(_app):
+                try:
+                    yield
+                finally:
+                    try:
+                        binding.close()
+                    finally:
+                        temporary.cleanup()
+
+            application.router.lifespan_context = lifespan
+        return application
     except Exception:
+        if binding is not None:
+            try:
+                binding.close()
+            except Exception:
+                pass
+        if temporary is not None:
+            temporary.cleanup()
         raise ValueError("OfflineBackendConfigurationInvalid") from None
 
 
