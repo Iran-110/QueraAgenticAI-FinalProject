@@ -5,14 +5,20 @@ defaults to scripted retrieval/reasoning and memory storage. Its additive HTTP i
 now accepts explicit facts, checks, corrections and approved version replies.
 The UI controls and SQLite tracker are implemented. The opt-in
 [persistent HTTP factory](persistent-http.fa.md) connects core and existing SQLite;
-the current UI/client still needs its authenticated review binding. No API key is
-needed for this example or the automated checks.
+the UI/client now captures authenticated exact review operations and preserves
+uncertain retries per case. [U3a/P4a launch instructions](offline-ui-index-pilot.fa.md)
+also connect a registered docs-only Chroma index with local lexical vectors.
+No model API key is needed; the private local maintainer console uses a separately
+configured reviewer credential. Reasoning remains scripted, with no quality claim.
 
 The core-owned [CoreTurnService](core-turn-service.fa.md) now composes the existing
 tracker port with lazy per-run adapters and full handoffs. Use it for persistent
 ingress rather than copying test-harness policy into the API. C2d now supplies
 configured HTTP authentication, durable outcomes and atomic measured staging;
-it keeps resume disabled and the real index/model configuration separate.
+it keeps resume disabled. `offline_backend:application_factory` configures the
+existing tracker and optional bounded local index; a separately supplied expected
+snapshot is required before opening case storage. Final corpus and model setup
+remain separate from that operational pilot.
 
 The [HTTP pilot acceptance kit](http-pilot-acceptance.fa.md) reuses the registered
 dev fixture and CaseRun. Same-process correction, review and replay pass; fresh

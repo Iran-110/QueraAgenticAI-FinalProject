@@ -1,0 +1,35 @@
+{
+  "protocol": "durable-ui-review-v1",
+  "protocol_sha256": "7b4d8ccb761f03f3419716082b2dc7b44882588869a723a47e12e1f7ce74ba4b",
+  "fixture_sha256": "f4b9cef54c98dd875ff0e55f41aebcde19a9b02717b7cb8c5525eba9575f2855",
+  "variant": "baseline",
+  "baseline_commit": "6e719e9aaba21ed31a72d374acbc4332863974c5",
+  "runtime_sha256": {
+    "src/agent_app/ui_client.py": "fedccdf43a6eb99f24b0ff2d8ab78bf6523fbc98b3b7e88903547027348a9c22",
+    "src/agent_app/persistent_api.py": "2ec108037fe7d4252568c0843385145edfc4ea09d10808dc1df0af42ccb64eaf"
+  },
+  "supporting_runtime_sha256": {
+    "src/agent_app/contracts.py": "1dcf0de657f3442dfb5e787e6243a9a279501305033e592cbcd060dd808d0a91",
+    "src/agent_app/api.py": "cc02e5d7e24aa66dfe05aadd0afac75c16a49dc620da70ce2e5d8aacf1f0a519",
+    "src/agent_app/tracker/sqlite_tracker.py": "4847b6bf5d7b9b43f837d617b708efaec434d8d8b31ee26cc49316199f010505",
+    "src/agent_app/orchestration/service.py": "0a37b64c02d2b5da5895dbe52334d1b11d91f43c17c9e753eac81ec774410fd1",
+    "src/agent_app/orchestration/engine.py": "b64867241b336ade1a8c36f8747edf4604313bda4e108bc079ce48929381c0dc",
+    "src/agent_app/testing/ui_review_acceptance.py": "308bd2d8f9ea525a226a0557e7d2e6e7c3f8ae5fc4586666db2b7ac49be98f92"
+  },
+  "checks": {
+    "stable_event_committed": true,
+    "durable_review_capabilities": false,
+    "uncertain_ack_keeps_original_review": false,
+    "original_receipt_after_backend_recreation": false,
+    "corrected_current_state_preserved": true,
+    "exactly_one_local_action": false
+  },
+  "passed": 2,
+  "total": 6,
+  "accepted": false,
+  "paid_cost_usd": 0,
+  "provider_calls": 0,
+  "quality_claim": false,
+  "transport": "ASGI TestClient",
+  "restart": "same-interpreter backend recreation"
+}

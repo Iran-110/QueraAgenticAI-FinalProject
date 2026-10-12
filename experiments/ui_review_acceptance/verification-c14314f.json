@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "source_commit": "c14314f048d21bba6d599fb2ce86dc7d66ac7c7c",
+  "source_tree": "fb49e7c9faeb97bd743a5f95169a355eb0825fee",
+  "source_clean_at_execution": true,
+  "scope": "Operational offline integration, not model/RAG quality or held-out evaluation",
+  "protocol_registration_commits": {
+    "docs_allowlist": "b162785",
+    "ui_review": "2005819"
+  },
+  "checks": {
+    "pytest": {
+      "passed": 2218,
+      "log_sha256": "bb3a91a541305493c7c239028cda304a325811d3927607a6b54ae5fe8b4f5b9e"
+    },
+    "ui_baseline": {
+      "passed": 2,
+      "total": 6,
+      "accepted": false
+    },
+    "ui_current": {
+      "passed": 6,
+      "total": 6,
+      "accepted": true
+    },
+    "real_chroma": {
+      "passed": 7,
+      "total": 7,
+      "sources": 14,
+      "chunks": 30
+    },
+    "controls": {
+      "http-sqlite": {
+        "path": "experiments/ui_review_acceptance/http-sqlite-c14314f.json",
+        "sha256": "20ff60e84c22e9e87b4e993248623ed407407180c21a96632e8c1dd45e699307",
+        "checks_passed": 457,
+        "checks_total": 457
+      },
+      "core-tracker": {
+        "path": "experiments/ui_review_acceptance/core-tracker-c14314f.json",
+        "sha256": "b3ab9fa41beb5020f665c87e776288ccf77517d3c00e294974dd069233094f24",
+        "checks_passed": 49,
+        "checks_total": 49
+      },
+      "rag-adapter": {
+        "path": "experiments/ui_review_acceptance/rag-adapter-c14314f.json",
+        "sha256": "88e9917f75a6a373b77d9661100aa809a1dc74ce610a11239f49ea2633c2d8b9",
+        "checks_passed": 132,
+        "checks_total": 132
+      }
+    }
+  },
+  "demos": {
+    "demo-refine.json": {
+      "exit_code": 0,
+      "output_sha256": "c9833ce774499b8a93e714fcfc34e870f94aeb538eb4e2653797ed3fd0a579c7"
+    },
+    "gateway-repair.json": {
+      "exit_code": 0,
+      "output_sha256": "ab882a1d44fee36ea57a35ca73abf3cded82da9e967ed784e091179e3e9b62fe"
+    },
+    "turn-demo.json": {
+      "exit_code": 0,
+      "output_sha256": "fb344c4c9eea530dfb756c93966c00292620db8df9dc67ebd2c207948da189d5"
+    }
+  },
+  "published_receipts": {
+    "experiments/ui_review_acceptance/results-baseline-c14314f.json": "cb77e0d1cf21bca15bb6ca8f369b02f03d38a808d8dc53cd20651b1f154fb366",
+    "experiments/ui_review_acceptance/results-current-c14314f.json": "63405659a163ef78dd6ae0143da32c585fb181b276acf0f32519983876f77453",
+    "experiments/corpus/local-index-c14314f.json": "1641dd656e52c0d251795f284e053747ba649f76729503653e73948175064b27"
+  },
+  "transport_scopes": {
+    "ui_comparison": "ASGI TestClient; same-interpreter backend recreation",
+    "tcp_test": "actual TCP; two fresh server interpreters; actual index and same SQLite",
+    "page_test": "Streamlit AppTest; actual ASGI backend/index, no real browser",
+    "http_v2": "fixed evidence/scripted ports; five fresh-interpreter restart checkpoints"
+  },
+  "provider_calls": 0,
+  "api_cost_usd": 0,
+  "production_ledger_used": false,
+  "c5_halt_preserved": true,
+  "quality_claim": false,
+  "remaining": [
+    "E1/E2 final family-reviewed split and rubric",
+    "R2/R4 final corpus and dev retrieval measurements",
+    "C4/E4/E5 real decision evaluation",
+    "C5 documented model/billing reconciliation",
+    "Product browser authentication and full-session recovery"
+  ]
+}
