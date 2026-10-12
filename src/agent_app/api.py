@@ -218,7 +218,7 @@ def _adapters(scenario: Scenario) -> RunAdapters:
 
 
 def _proposal(
-    handoff: ProposalHandoff, result: RunResult, *, edited_from: str | None = None
+    handoff: ProposalHandoff, result: RunResult | None, *, edited_from: str | None = None
 ) -> dict[str, Any]:
     """Project only the final consumed, frozen input for the legacy review UI."""
     analysis = handoff.analysis
@@ -252,9 +252,9 @@ def _proposal(
         "review_handoff": handoff.model_dump(mode="json"),
         "evidence": evidence,
         "warnings": sorted(set(handoff.evidence.warnings)),
-        "model_attempts": result.model_attempts,
-        "retrieval_rounds": result.retrieval_rounds,
-        "steps": result.steps,
+        "model_attempts": result.model_attempts if result is not None else None,
+        "retrieval_rounds": result.retrieval_rounds if result is not None else None,
+        "steps": result.steps if result is not None else None,
         "edited": edited_from is not None,
         "synthetic": True,
     }
