@@ -1,7 +1,6 @@
 {
   "schema_version": 1,
   "source_commit": "89a0aec420f2596765d2b580632fdfc71dfb3d24",
-  "source_clean_at_test_start": true,
   "quality_claim": false,
   "checks": [
     {
@@ -66,5 +65,11 @@
     "Authored/exposed operational tests, not final RAG or model quality",
     "Historical real API receipt has unknown exact serving model ID; later decoded identity fix tested offline only",
     "Old quarantine, USD0.02 hold and public live halt preserved"
-  ]
+  ],
+  "tracked_source_clean_at_test_start": true,
+  "untracked_at_test_start": [
+    "experiments/grounded_http_acceptance/results-baseline-3e4617f.json",
+    "experiments/grounded_http_acceptance/results-current-3e4617f.json"
+  ],
+  "untracked_files_scope": "Acceptance output artifacts only; tracked runtime and tests match source_commit. Separate comparison receipts record their own clean3e4617f run."
 }
