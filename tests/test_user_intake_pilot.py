@@ -98,6 +98,7 @@ def test_receipt_is_reproducible_and_replay_restores_existing_api_globals(receip
     assert receipt["receipt_sha256"] == replay._digest(unsigned)
     manifest = receipt["executed_code_sha256"]
     assert set(manifest) == set(replay.CODE_PATHS)
+
     assert (
         manifest["src/agent_app/api.py"]
         == hashlib.sha256((replay.ROOT / "src/agent_app/api.py").read_bytes()).hexdigest()
@@ -110,6 +111,14 @@ def test_receipt_is_reproducible_and_replay_restores_existing_api_globals(receip
         == {"original_ingress_verified": True, "prepared_turn_verified": True}
         for turn in receipt["turns"]
     )
+
+
+def test_replay_rejects_latest_only_context_even_when_decisions_are_scripted(monkeypatch):
+    monkeypatch.setattr(
+        api, "build_reasoning_message", lambda conversation: conversation.latest_message
+    )
+    with pytest.raises(AssertionError, match="Original problem lost"):
+        replay.replay_pilot()
 
 
 def test_changed_registered_expectations_are_rejected_before_replay(tmp_path):

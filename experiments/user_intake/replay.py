@@ -36,6 +36,7 @@ CODE_PATHS = (
     "src/agent_app/contracts.py",
     "src/agent_app/demo.py",
     "src/agent_app/orchestration/engine.py",
+    "src/agent_app/orchestration/conversation.py",
     "src/agent_app/orchestration/handoff.py",
     "src/agent_app/orchestration/intake.py",
     "src/agent_app/orchestration/turns.py",
@@ -345,7 +346,26 @@ def replay_pilot(fixture_path: Path = FIXTURE_PATH) -> dict[str, Any]:
             state = api._cases[case_id].state
             _assert_turn(fixture, turn, view, state, reasoning_case, checkpoint)
             assert sum(entry["role"] == "assistant" for entry in view["log"]) == assistants_before
-            assert message == turn["user_turn"]["message"]
+            # HTTP now retains committed user history. Independently verify
+            # exact original/latest messages instead of demanding latest-only
+            # input (the short-reply regression exposed by C2c).
+            prior_turns = fixture["turns"][: view["case_revision"]]
+            latest_message = turn["user_turn"]["message"]
+            if len(prior_turns) == 1:
+                assert message == latest_message
+            else:
+                assert message.startswith(
+                    "Original user problem (historical context; not current facts):\n"
+                    + prior_turns[0]["user_turn"]["message"]
+                ), "Original problem lost"
+                assert message.endswith(
+                    "Latest user message (exact committed input):\n" + latest_message
+                ), "Exact current message lost"
+                for earlier in prior_turns[1:-1]:
+                    assert earlier["user_turn"]["message"] in message, "Prior user context lost"
+                if turn["input_mode"] == "approved_version_reply":
+                    assert prior["awaiting_reply"]["question"]["next_question"] in message
+                assert "Current facts and unknowns come from the supplied CaseState." in message
             assert evidence == EvidenceBundle.model_validate(
                 fixture["evidence_bundles"][turn["port_fixture"]["bundle"]]
             )
@@ -508,6 +528,7 @@ def replay_pilot(fixture_path: Path = FIXTURE_PATH) -> dict[str, Any]:
                         "prepared_turn_verified": True,
                     },
                     "reasoner_input_case": reasoning_case.model_dump(mode="json"),
+                    "reasoner_input_message": message,
                     "reasoner_context": context.model_dump(mode="json"),
                     "received_evidence_chunk_ids": [hit.chunk_id for hit in evidence.hits],
                     "retrieval_request": retrieval.model_dump(mode="json"),
