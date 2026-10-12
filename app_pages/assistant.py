@@ -26,15 +26,6 @@ STATUSES = {
     "escalated": ("Escalated", "red"),
     "open": ("Open", "gray"),
 }
-# Fits the sidebar switcher; the case panel shows the full wording.
-SHORT_STATUSES = {
-    "new": "New",
-    "awaiting_review": "Needs review",
-    "awaiting_user": "Waiting for user",
-    "answer_sent": "Answered",
-    "escalated": "Escalated",
-    "open": "Open",
-}
 VERSION_SCOPES = {
     "exact_metadata_match": ("Version matches", "green"),
     "historical_or_other_version": ("Other version", "orange"),
@@ -107,11 +98,6 @@ def unsent_event() -> dict | None:
 
 def unsent_review() -> ui_client.ReviewOperation | None:
     return st.session_state.unsent_reviews.get(st.session_state.case_id)
-
-
-def case_label(case_id: str, statuses: dict[str, str]) -> str:
-    status = statuses.get(case_id)
-    return f"{case_id} · {SHORT_STATUSES[status]}" if status else case_id
 
 
 def deliver(event: dict) -> bool:
@@ -541,7 +527,9 @@ with st.sidebar:
     st.selectbox(
         "Active case",
         st.session_state.cases,
-        format_func=lambda case_id: case_label(case_id, statuses),
+        # Streamlit deserializes formatted option text. A status change must not
+        # turn an old label into a case ID and reset another form's callback.
+        # Status belongs in the case panel and review counter.
         key="case_id",
         on_change=reset_view_state,
         help="Cases opened in this browser session. Each keeps its own state and proposals.",
