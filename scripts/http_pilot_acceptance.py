@@ -30,6 +30,9 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument(
+        "--protocol", type=Path, help="Registered protocol-v1.json or protocol-v2.json."
+    )
+    parser.add_argument(
         "--factory",
         help="Reviewed offline module:factory; actual app, same temporary storage after restart.",
     )
@@ -39,7 +42,7 @@ def main(argv=None):
         help="CI negative control: requires same-process success and rejected memory persistence, never acceptance.",
     )
     options = parser.parse_args(argv)
-    if options.expect_memory_gap and options.factory:
+    if options.expect_memory_gap and (options.factory or options.protocol):
         parser.error("The expected gap applies only to the default memory binding.")
     try:
         destination = options.output.open("x", encoding="utf-8")
@@ -63,7 +66,13 @@ def main(argv=None):
                 receipt["release_before"] = release_identity()
                 from agent_app.testing.http_pilot_acceptance import MEMORY_FACTORY, run_acceptance
 
-                receipt.update(run_acceptance(options.factory or MEMORY_FACTORY))
+                receipt.update(
+                    run_acceptance(
+                        options.factory or MEMORY_FACTORY, protocol_path=options.protocol
+                    )
+                    if options.protocol is not None
+                    else run_acceptance(options.factory or MEMORY_FACTORY)
+                )
                 receipt["release_after"] = release_identity()
                 unchanged = (
                     receipt["release_before"]["source_sha256"]

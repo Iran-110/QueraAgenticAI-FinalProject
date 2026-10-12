@@ -13,7 +13,10 @@ from uuid import NAMESPACE_URL, uuid5
 
 ROOT = Path(__file__).resolve().parents[3]
 PROTOCOL = ROOT / "experiments/http_pilot_acceptance/protocol-v1.json"
-_PAYLOAD_FIELDS = frozenset({"factory", "fixture", "state_dir", "requests", "setup_failure"})
+PROTOCOL_V2 = ROOT / "experiments/http_pilot_acceptance/protocol-v2.json"
+_PAYLOAD_FIELDS = frozenset(
+    {"factory", "fixture", "state_dir", "requests", "setup_failure", "protocol", "protocol_sha256"}
+)
 _REQUEST_FIELDS = frozenset({"method", "path", "json", "headers"})
 
 
@@ -28,7 +31,23 @@ def _validate_payload(payload: Any) -> tuple[Path, Path, list[dict[str, Any]]]:
         or not 1 <= len(payload["requests"]) <= 20
     ):
         raise ValueError("WorkerPayloadInvalid")
-    protocol = json.loads(PROTOCOL.read_text(encoding="utf-8"))
+    protocol_path = Path(payload.get("protocol", str(PROTOCOL))).resolve()
+    if protocol_path not in {PROTOCOL.resolve(), PROTOCOL_V2.resolve()}:
+        raise ValueError("WorkerProtocolInvalid")
+    protocol_raw = protocol_path.read_bytes()
+    if ("protocol" in payload) != ("protocol_sha256" in payload) or (
+        "protocol_sha256" in payload
+        and payload["protocol_sha256"] != hashlib.sha256(protocol_raw).hexdigest()
+    ):
+        raise ValueError("WorkerProtocolInvalid")
+    protocol = json.loads(protocol_raw)
+    # Both registered protocols reuse the unchanged exposed development fixture.
+    original = json.loads(PROTOCOL.read_text(encoding="utf-8"))
+    if (protocol["fixture"], protocol["fixture_sha256"]) != (
+        original["fixture"],
+        original["fixture_sha256"],
+    ):
+        raise ValueError("WorkerProtocolInvalid")
     fixture_path = Path(payload["fixture"]).resolve()
     if (
         fixture_path != (ROOT / protocol["fixture"]).resolve()
@@ -129,6 +148,8 @@ def run(payload: Any) -> dict[str, Any]:
                             before = observations.snapshot()
                             method, path = request["method"], request["path"]
                             body, headers = request.get("json"), request.get("headers", {})
+                            if method == "POST" and path.endswith("/decision"):
+                                headers = {**runtime.review_headers, **headers}
                             if method == "POST" and path.endswith("/messages"):
                                 turn = turns[body["turn_id"]]
                                 case_id = turn.get("case_id", fixture.case["case_id"])
@@ -157,6 +178,12 @@ def run(payload: Any) -> dict[str, Any]:
                                     "counts_before": before,
                                     "counts_after": observations.snapshot(),
                                 }
+                            )
+                        if runtime.durable_review:
+                            response["local_actions"] = (
+                                runtime.local_actions_supplier(fixture.case["case_id"])
+                                if runtime.local_actions_supplier is not None
+                                else None
                             )
         except Exception:
             response["error_code"] = "WorkerFailed"

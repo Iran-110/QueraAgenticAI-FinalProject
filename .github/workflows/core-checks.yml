@@ -72,6 +72,8 @@ jobs:
         run: uv run python scripts/core_tracker_pilot.py --output "$RUNNER_TEMP/core-tracker-pilot.json"
       - name: Verify HTTP same-process pilot and reproduce memory restart rejection
         run: uv run python scripts/http_pilot_acceptance.py --expect-memory-gap --output "$RUNNER_TEMP/http-pilot-memory-gap.json"
+      - name: Accept authenticated SQLite HTTP pilot across fresh processes
+        run: uv run python scripts/http_pilot_acceptance.py --factory agent_app.testing.sqlite_http_binding:sqlite_factory --protocol experiments/http_pilot_acceptance/protocol-v2.json --output "$RUNNER_TEMP/http-pilot-sqlite.json"
       - name: Accept retrieval fixture and core SQLite composition without an index
         run: |
           if [ -f src/agent_app/retrieval/adapter.py ]; then

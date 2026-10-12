@@ -2,7 +2,9 @@
 
 The tracker persists case state and review actions in a local SQLite database. It uses the existing `CaseState`, `UserTurn`, and `ProposalHandoff` contracts without changing the core decision logic.
 
-**Status:** The tracker is implemented and tested as an offline module. FastAPI and Streamlit still use their existing in-memory state; this module is not yet connected to that path.
+**Status:** The existing tracker now backs an opt-in [persistent HTTP factory](persistent-http.fa.md).
+The default `api:app` and current Streamlit client remain on the legacy path; UI
+configuration and stable authenticated review payloads still need their binding.
 
 ## Implementation
 
@@ -13,11 +15,20 @@ Source: [`sqlite_tracker.py`](../src/agent_app/tracker/sqlite_tracker.py)
 | `read_case(case_id)` | Reads current state, history, pending proposal, and approved question without creating a record. |
 | `apply_turn(turn, ...)` | Commits structured user updates and corrections with a revision check. Repeated events return their stored receipt. |
 | `stage_proposal(handoff)` | Stores the full core handoff only if its case content and revision still match. |
+| `stage_run_proposal(handoff,result,turn_id)` | Stores the exact handoff and measured result in the same transaction, bound to the committed event. |
+| `finish_run(...)` | Records a safe terminal outcome once; never resumes reasoning or overwrites a completed outcome. |
+| `read_runtime_view(case_id)` | Reads state, history, original receipts, pending metrics, reviews and actual local actions under one SQLite snapshot. |
 | `review(case_id, ...)` | Authenticates the reviewer and checks the exact case, revision, proposal, and handoff hash before approve, reject, or edit. |
 | `comments(case_id)` / `audit_trace(case_id)` | Returns local action records and a bounded operational trace. |
 | `reset_all(confirmation=...)` | Clears local tracker tables only with an explicit confirmation string. |
 
 Case updates, proposal invalidation, review receipts, and local comment writes use SQLite transactions. Reusing an event or review ID with different content is rejected. A correction invalidates the pending proposal; editing creates a new proposal that requires another approval. Rejected proposals do not write comments.
+
+Ingress now commits an explicit unrecorded-outcome marker in the same existing
+database. Older records migrate without reset; missing historic metrics remain
+unknown. Staging permits one root proposal per accepted revision while open;
+after approve/reject a new user turn is required for new reasoning. This closes
+the former same-revision ABA route without automatically resuming an old event.
 
 Reviewer credentials must come from trusted application configuration. Retrieved text and model output cannot authorize an action. Approved comments are written only to the local tracker, not to GitHub or real users.
 
@@ -63,9 +74,11 @@ contract evidence, not API/UI integration or model/RAG quality.
 
 ## Integration work
 
-- Replace FastAPI's in-memory `_cases` and dummy tracking path with authoritative reads and writes through `SQLiteCaseTracker`.
-- Supply validated `UserTurn` events and full `ProposalHandoff` objects from the existing core. Do not build handoffs from arbitrary client input.
-- Bind reviewer identity and credentials at the server boundary. The UI must submit stable event/review IDs and show the exact proposal being approved.
-- Run the shared multi-turn fixture through API and UI, including restart, correction, reject/edit, retries, and tool failure. Store receipts for the evaluation owner.
+- Configure the opt-in C2d backend and connect the current UI client to it; the default memory app remains a separate demo/negative control.
+- Preserve C2d's original event/review IDs, exact displayed handoff hash and configured reviewer credentials; UI retry must resend its stored payload.
+- Smoke-test the actual browser flow and share the backend-labelled operational receipts with the evaluation owner.
+- Real retrieval/index/model configuration and quality evaluation remain separate tasks.
 
-The integration above remains open; the standalone tests do not establish completion of P3. Task status and ownership are tracked in the [team plan](../plan/plan.md).
+P3's offline HTTP/core/SQLite operations now pass the registered C2d gates.
+UI U3 and final T4/evaluation remain open. Task ownership is tracked in the
+[team plan](../plan/plan.md).

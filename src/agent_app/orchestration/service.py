@@ -56,6 +56,7 @@ class CoreAdapters:
 
 
 type CoreAdapterFactory = Callable[[CaseState, str, str], CoreAdapters]
+type StageWithResult = Callable[[ProposalHandoff, RunResult, str], Mapping[str, object]]
 type TurnStatus = Literal[
     "ingress_rejected",
     "ingress_unknown",
@@ -143,6 +144,7 @@ class CoreTurnService:
         top_k: int = 5,
         proposal_checks: bool = False,
         evidence_scope: Literal["all", "exact_user_version"] = "all",
+        stage_with_result: StageWithResult | None = None,
     ) -> None:
         self.tracker = tracker
         self.adapters = adapters
@@ -163,6 +165,11 @@ class CoreTurnService:
         self.top_k = top_k
         self.proposal_checks = proposal_checks
         self.evidence_scope = evidence_scope
+        if stage_with_result is not None and not callable(stage_with_result):
+            raise ValueError("Invalid core service configuration.")
+        # Trusted integration hook into the SAME tracker transaction. The
+        # model cannot select the event identity or persist its own counters.
+        self.stage_with_result = stage_with_result
 
     def _read(self, case_id: str) -> TrackerCaseView:
         view = _mapping(TrackerCaseView, self.tracker.read_case(case_id))
@@ -419,7 +426,16 @@ class CoreTurnService:
         stage_error = None
         try:
             stage_receipt = _mapping(
-                TrackerStageReceipt, self.tracker.stage_proposal(candidate.model_copy(deep=True))
+                TrackerStageReceipt,
+                (
+                    self.stage_with_result(
+                        candidate.model_copy(deep=True),
+                        result.model_copy(deep=True),
+                        receipt.turn_id,
+                    )
+                    if self.stage_with_result is not None
+                    else self.tracker.stage_proposal(candidate.model_copy(deep=True))
+                ),
             )
             if (
                 stage_receipt.case_id != candidate.case.case_id

@@ -1,21 +1,24 @@
 # Connect your module to the core
 
 Owners can develop against the same contracts. The Streamlit/FastAPI prototype
-uses scripted retrieval/reasoning and memory storage. Its additive HTTP ingress
+defaults to scripted retrieval/reasoning and memory storage. Its additive HTTP ingress
 now accepts explicit facts, checks, corrections and approved version replies.
-The UI controls and standalone SQLite tracker are implemented; connecting the
-API to durable storage remains U3/T4 work. No API key is
+The UI controls and SQLite tracker are implemented. The opt-in
+[persistent HTTP factory](persistent-http.fa.md) connects core and existing SQLite;
+the current UI/client still needs its authenticated review binding. No API key is
 needed for this example or the automated checks.
 
 The core-owned [CoreTurnService](core-turn-service.fa.md) now composes the existing
 tracker port with lazy per-run adapters and full handoffs. Use it for persistent
-ingress rather than copying test-harness policy into the API; HTTP authentication,
-durable run status and atomic lifecycle staging still need their owners' work.
+ingress rather than copying test-harness policy into the API. C2d now supplies
+configured HTTP authentication, durable outcomes and atomic measured staging;
+it keeps resume disabled and the real index/model configuration separate.
 
 The [HTTP pilot acceptance kit](http-pilot-acceptance.fa.md) reuses the registered
 dev fixture and CaseRun. Same-process correction, review and replay pass; fresh
 process restart rejects the memory API. Its CI expected-gap flag is a negative
-control, never acceptance of persistence. Run the same gates after U3/T4 wiring.
+control, never acceptance of persistence. Protocol v2 passes all457 checks on
+the actual SQLite HTTP path, including the fresh-process restart checkpoints.
 
 ## A runnable offline adapter example
 
@@ -184,8 +187,9 @@ tracker (`current_revision` alone checks only its number). See the
 The [persistent core handoff](persistent-core-handoff.md) specifies how the
 existing SQLite tracker joins this flow: fresh-event ownership, interruption
 after ingress, correction during reasoning, staging acknowledgement recovery
-and review rollback. Its conformance fixtures are offline contract evidence;
-they do not switch the API backend or implement a durable run journal.
+and review rollback. Its historical conformance fixtures remain offline contract
+evidence. The new C2d factory is opt-in and stores event outcomes in the existing
+database; automatic run resumption is not implemented.
 
 For a standalone reply to a stored version question, use
 `prepare_version_reply(case, turn, proposal_id=stored_id, question=stored_analysis)`
@@ -283,8 +287,10 @@ projection; even an identical-text edit needs new approval. The original
 attestation against the exact packet and reviewer identity supplied by the caller.
 Neither authenticates a reviewer, proves entailment or grants execution approval.
 Human edits are not automatically grounded again; semantic review must inspect
-the rebuilt packet, including any newly written claims. The API still uses
-unauthenticated process-local approval and does not execute tracker tools.
+the rebuilt packet, including any newly written claims. The legacy memory API
+uses process-local approval. The C2d HTTP path authenticates the configured
+maintainer, requires exact review identity/hash and delegates local comments to
+the existing SQLite review transaction; external tools are not executed.
 
 Run the registered current-state/refinement/correction example offline:
 
