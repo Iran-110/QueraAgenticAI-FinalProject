@@ -67,7 +67,12 @@ and tested separately in [PR #32](https://github.com/Iran-110/QueraAgenticAI-Fin
 That PR's status is authoritative for publication; it is not part of the
 owner-reported Windows backend run above.
 
-**Still open (T4/U3/E5):** product configuration, real-browser smoke,
+Later C2f work adds a [scoped native-browser smoke](../experiments/grounded_http_acceptance/browser-receipt-89a0aec.json)
+for first approval, version reply and correction in the same case, with one
+local action. It is separate from the owner-reported Windows run above and
+does not establish product authentication or complete session recovery.
+
+**Still open (T4/U3/E5):** product configuration, broader browser acceptance,
 authentication for browser users and recovery after complete UI-session loss.
 The team must verify consumption of persisted tool outcome in the next actual
 decision/evaluation, and hand the scoped backend receipts to evaluation. The

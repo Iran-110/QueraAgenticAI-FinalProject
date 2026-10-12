@@ -94,7 +94,10 @@ pilot آفلاین و restart/retry آن ۴۵۷/۴۵۷ check پاس دارد. cl
 دستور بالا همچنان demo حافظه‌ای است؛ برای SQLite و Chroma محلی از
 [دستور اجرای pilot پایدار UI/index](docs/offline-ui-index-pilot.fa.md) استفاده کنید.
 این pilot ۱۴ source مجاز و ۳۰ chunk دارد؛ embedding محلی lexical و reasoning
-scripted است. corpus/split نهایی و کیفیت مدل/RAG هنوز باقی‌اند.
+پیش‌فرض scripted است. برای اتصال همان GroundedPlan/gateway با provider جعلی،
+از [دستور C2f](docs/grounded-persistent-pilot.fa.md) و `AGENT_PILOT_REASONING=grounded_fake_gateway`
+استفاده کنید؛ UI mode واقعی backend را نشان می‌دهد. launcher آفلاین هزینهٔ API
+ندارد. corpus/split نهایی و کیفیت مدل/RAG هنوز باقی‌اند.
 
 پایپلاین GitHub Actions برای پوش همهٔ branchها و PRها، تست‌ها و بررسی سبک کد را بدون مصرف API اجرا می‌کند. پیش از ادامه کار، branch خودتان را از `main` به‌روز کنید تا پایه مشترک و پایپلاین را داشته باشید.
 

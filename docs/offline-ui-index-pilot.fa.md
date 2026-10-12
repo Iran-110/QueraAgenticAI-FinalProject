@@ -2,12 +2,19 @@
 
 این مسیر قابل اجراست: صفحهٔ Streamlit از client واقعی به backend پایدار وصل
 می‌شود؛ retrieval از Chroma واقعی می‌آید و اقدام فقط در transaction tracker
-موجود ثبت می‌شود. reasoning همچنان scripted است: نسخهٔ نامعلوم سؤال canonical
+موجود ثبت می‌شود. reasoning پیش‌فرض scripted است: نسخهٔ نامعلوم سؤال canonical
 می‌گیرد؛ نسخهٔ معلوم برای بررسی مستندات ارجاع می‌گیرد. این policy عامدانه
 تشخیص یا پاسخ نهایی تولید نمی‌کند و معیار کیفیت agent/RAG نیست.
 
 کد و plan این milestone در [PR #32](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/32)
 ثبت‌اند؛ وضعیت انتشار و CI همان PR مرجع است.
+
+اتصال افزودهٔ [C2f](grounded-persistent-pilot.fa.md) همان backend را با
+`AGENT_PILOT_REASONING=grounded_fake_gateway` از مسیر GroundedPlan/gateway جعلی
+اجرا می‌کند. [smoke مرورگر](../experiments/grounded_http_acceptance/browser-receipt-89a0aec.json)
+اولین approval، جواب نسخه و correction همان case را تأیید کرده است؛ product
+auth و recovery کامل session همچنان جدا باقی‌اند. probe واقعی C2f جدا از این
+launcher صفرهزینه ثبت شده و halt عمومی را برنمی‌دارد.
 
 ## اجرای قابل بازتولید
 
