@@ -11,7 +11,8 @@ caseهای #12782/#12629 exposed و انتخابشان answer-informed بوده�
 provider، embedding یا source snippet اجرا نمی‌شود. هزینهٔ واقعی API صفر است؛
 token usage و settlement داخل ledger موقت فقط شبیه‌سازی‌اند.
 
-baseline از فایل `persistent_api.py` منتشرشده در `3c92b12` بارگذاری می‌شود؛
+baseline از فایل‌های `persistent_api.py` و `orchestration/service.py` منتشرشده
+در `3c92b12` بارگذاری می‌شود؛
 بقیهٔ ماژول‌های پشتیبان همان checkout فعلی‌اند و hashشان ثبت می‌شود. baseline
 با همین ports، GroundedPlan را اجرا می‌کند؛ شکست عملکردی ساختگی به آن نسبت
 نمی‌دهیم. دو تفاوت کنترل‌شده، label اشتباه `scripted` و بسته‌نشدن خودکار client

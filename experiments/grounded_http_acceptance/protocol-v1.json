@@ -6,8 +6,7 @@
   "purpose": "Verify existing GroundedPlan/gateway/core/SQLite/UI HTTP composition offline; compare exact released HTTP composition labels and resource lifecycle, not model or retrieval quality.",
   "baseline": {
     "git_commit": "3c92b12bdea34208bc7015e7177c05cba74a4d1e",
-    "module": "src/agent_app/persistent_api.py",
-    "load": "git archive exact source module, imports supporting current checkout code disclosed in code manifest",
+    "load": "git archive exact service and persistent API source modules; imports supporting current checkout code disclosed in code manifest",
     "ports": "Same GroundedHttpBinding, authored plan sequences, frozen excerpts and tracker for both arms",
     "expected_checks_passed": 10,
     "expected_checks_total": 12,
@@ -15,7 +14,11 @@
       "truthful_reasoning_label",
       "per_run_gateway_clients_closed_before_failsafe_cleanup"
     ],
-    "functional_failure_fabricated": false
+    "functional_failure_fabricated": false,
+    "modules": [
+      "src/agent_app/orchestration/service.py",
+      "src/agent_app/persistent_api.py"
+    ]
   },
   "inherited_fixture": {
     "path": "experiments/review_handoff/case-current-state-latest-evidence.json",
@@ -555,7 +558,7 @@
   "comparison_rules": [
     "Run both arms only after this protocol is committed.",
     "Primary fixture, oracle, same bridge ports, fault schedule and acceptance assertions are immutable.",
-    "Baseline only changes released persistent_api module; currently supported imports remain identified by their byte hashes.",
+    "Baseline changes released persistent_api and CoreTurnService/CoreAdapters source modules; currently supported imports remain identified by their byte hashes.",
     "Correct baseline functional behavior remains passing: it already composes GroundedPlan when explicit ports are injected.",
     "Record lifecycle result before emergency fixture cleanup; close all clients in finally in either arm.",
     "Fail CLI on unregistered protocol/fixture/oracle drift, changed runtime source during run, disabled assertions, unexpected baseline result or failing current checks.",
