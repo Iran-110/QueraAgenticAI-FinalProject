@@ -89,6 +89,9 @@ def create_app(
     reviewer_tokens: Mapping[str, str],
     adapters: Callable[[api.Scenario], api.RunAdapters] | None = None,
     retrieval_label: Literal["scripted", "local_chroma_hash"] = "scripted",
+    reasoning_label: Literal[
+        "scripted", "grounded_fake_gateway", "metis_grounded_live"
+    ] = "scripted",
 ) -> FastAPI:
     """Caller explicitly supplies storage/config; no .env or default DB is read.
 
@@ -100,6 +103,8 @@ def create_app(
         not isinstance(tracker, SQLiteCaseTracker)
         or (adapters is not None and not callable(adapters))
         or retrieval_label not in {"scripted", "local_chroma_hash"}
+        or reasoning_label not in {"scripted", "grounded_fake_gateway", "metis_grounded_live"}
+        or (reasoning_label != "scripted" and adapters is None)
     ):
         raise ValueError("Invalid persistent HTTP configuration.")
     reviewers = dict(reviewer_tokens)
@@ -107,7 +112,12 @@ def create_app(
         type(k) is not str or type(v) is not str or not k or not v for k, v in reviewers.items()
     ) or len(set(reviewers.values())) != len(reviewers):
         raise ValueError("Invalid persistent HTTP configuration.")
-    app = FastAPI(title="Streamlit support assistant — SQLite offline backend")
+    mode = (
+        "development_live_sqlite"
+        if reasoning_label == "metis_grounded_live"
+        else "synthetic_offline_sqlite"
+    )
+    app = FastAPI(title="Streamlit support assistant — SQLite backend")
     app.add_exception_handler(RequestValidationError, api.request_invalid)
 
     def view(case_id: str) -> dict[str, Any]:
@@ -145,10 +155,10 @@ def create_app(
                 "review": stored["review"],
                 "actions": stored["actions"],
                 "run_outcome": stored["run_outcome"],
-                "mode": "synthetic_offline_sqlite",
+                "mode": mode,
                 "tracker_backend": BACKEND,
                 "retrieval_label": retrieval_label,
-                "reasoning_label": "scripted",
+                "reasoning_label": reasoning_label,
                 "quality_claim": False,
             }
         except Exception:
@@ -158,7 +168,7 @@ def create_app(
     def health():
         return {
             "status": "ok",
-            "mode": "synthetic_offline_sqlite",
+            "mode": mode,
             "tracker_backend": BACKEND,
             "capabilities": {
                 "stable_event_ids": True,
@@ -166,7 +176,7 @@ def create_app(
                 "reviewer_auth": "bearer",
             },
             "retrieval_label": retrieval_label,
-            "reasoning_label": "scripted",
+            "reasoning_label": reasoning_label,
             "quality_claim": False,
         }
 
@@ -182,7 +192,11 @@ def create_app(
         def factory(_case, _message, _run_id):
             ports = (adapters or api._adapters)(request.scenario)
             return CoreAdapters(
-                ports.retriever, ports.reasoner, ports.snapshot_id, ports.grounded_request_supplier
+                ports.retriever,
+                ports.reasoner,
+                ports.snapshot_id,
+                ports.grounded_request_supplier,
+                ports.cleanup,
             )
 
         service = CoreTurnService(tracker, factory, stage_with_result=tracker.stage_run_proposal)

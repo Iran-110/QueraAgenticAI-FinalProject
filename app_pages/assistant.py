@@ -550,7 +550,27 @@ with st.sidebar:
     if waiting:
         st.caption(f":material/pending_actions: {waiting} case(s) awaiting review")
     st.button("New case", icon=":material/add:", on_click=start_new_case, width="stretch")
-    if capabilities.retrieval_label == "local_chroma_hash":
+    if capabilities.reasoning_label != "scripted":
+        st.subheader("GroundedPlan pilot")
+        st.session_state.scenario = "ask"
+        if capabilities.reasoning_label == "grounded_fake_gateway":
+            st.caption(
+                "GroundedPlan · mocked provider · offline · zero API cost · no model quality result."
+            )
+        else:
+            st.caption(
+                "GroundedPlan · bounded live development probe · human approval required · "
+                "not final evaluation."
+            )
+        st.caption(
+            "Retrieval: "
+            + (
+                "local indexed docs"
+                if capabilities.retrieval_label == "local_chroma_hash"
+                else "fixture"
+            )
+        )
+    elif capabilities.retrieval_label == "local_chroma_hash":
         st.subheader("Offline indexed pilot")
         st.session_state.scenario = "ask"
         st.caption(
