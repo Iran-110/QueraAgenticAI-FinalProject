@@ -124,8 +124,12 @@ read به‌ازای هر query فرض می‌کرد. backend واقعی برا�
 mutation مستقل، چند read برای هر query را می‌پذیرد؛ حذف query دوم حتی با evidence
 درست و echo جعلی `queries_used`، یا خواندن آن فقط در round قبلی، همچنان رد می‌شود.
 fixture، gold، تصمیم‌ها و ۱۳۲ check ثابت‌اند. baseline کد pinned `b571080` با
-همین مشاهدهٔ اصلاح‌شده دوباره اجرا می‌شود؛ این تغییر روش مشاهده است و بهبود
+همین مشاهدهٔ اصلاح‌شده دوباره اجرا شد؛ این تغییر روش مشاهده است و بهبود
 اندازه‌گیری‌شدهٔ کیفیت تصمیم مدل نیست.
+
+[نتیجهٔ adapter واقعی و baseline بازپخش‌شده](rag-adapter-acceptance.fa.md) در
+source تمیز `326480d` ثبت شد: ۱۴ case / ۱۳۲ check پاس؛ namespace alias فقط در
+receipt تشخیصی قدیمی استفاده شد. وضعیت index و corpus نهایی همچنان باز است.
 
 ## نتیجه و محدودیت
 
@@ -138,12 +142,12 @@ fixture، gold، تصمیم‌ها و ۱۳۲ check ثابت‌اند. baseline �
 کد اجرای اول هنوز commit نشده بود؛ hash فایل factory در receipt ثبت است.
 receipt نهایی به commit و fingerprint کل کد bind می‌شود.
 
-[receipt نهایی](../experiments/retrieval_acceptance/results-fixture-v3.json) و
+[receipt نهایی مرجع پیش از اتصال](../experiments/retrieval_acceptance/results-fixture-v3.json) و
 [وضعیت pinned PR #23](../experiments/retrieval_acceptance/candidate-bdb7c53.json)
 مبنای handoff هستند. در head `bdb7c5369319b9b0a47f330cf89193eab6398072`
 چهار فایل Python RAG صفر بایت‌اند؛ CI سبز آن head کد adapter را آزمایش نمی‌کند.
-R3/P4 هنوز بازند. بعد از push کد، همان factory/protocol روی adapter واقعی اجرا
-می‌شود، بدون تغییر معیارها برای پاس شدن آن.
+این وضعیت تاریخی پیش از push `b571080` است؛ اجرای اصلاح‌شدهٔ R3 و قسمت باز P4
+در [گزارش تازه](rag-adapter-acceptance.fa.md) ثبت‌اند.
 
 [preflight همان blob](../experiments/retrieval_acceptance/results-preflight-bdb7c53.json)
 پیش از ساخت adapter با `CandidateEmpty` متوقف شد. اجرای کامل پیش از کنترل membership روی

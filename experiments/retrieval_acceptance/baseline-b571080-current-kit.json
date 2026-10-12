@@ -1,0 +1,283 @@
+{
+  "schema_version": 1,
+  "protocol": "retrieval-core-acceptance-v1",
+  "accepted": false,
+  "checks": {
+    "single:typed_bundle": false,
+    "single:completed": false,
+    "multi:typed_bundle": false,
+    "multi:completed": false,
+    "cap:typed_bundle": false,
+    "cap:completed": false,
+    "known_version:typed_bundle": false,
+    "known_version:completed": false,
+    "corrected_version:typed_bundle": false,
+    "corrected_version:completed": false,
+    "unknown:typed_bundle": false,
+    "unknown:completed": false,
+    "empty:typed_bundle": false,
+    "empty:completed": false,
+    "boundary:typed_bundle": false,
+    "boundary:completed": false,
+    "oversize:stop_before_model": true,
+    "oversize:safe_diagnostics": true,
+    "malformed_url:stop_before_model": true,
+    "malformed_url:safe_diagnostics": true,
+    "failure:stop_before_model": true,
+    "failure:safe_diagnostics": true,
+    "snapshot:stop_before_model": true,
+    "snapshot:safe_diagnostics": true,
+    "snapshot:no_backend_calls": false,
+    "response_snapshot:stop_before_model": true,
+    "response_snapshot:safe_diagnostics": true,
+    "core_pilot:completed": false
+  },
+  "checks_passed": 10,
+  "checks_total": 28,
+  "cases": [
+    {
+      "id": "single",
+      "status": "failed",
+      "error_code": "AdapterAcceptanceFailed"
+    },
+    {
+      "id": "multi",
+      "status": "failed",
+      "error_code": "AdapterAcceptanceFailed"
+    },
+    {
+      "id": "cap",
+      "status": "failed",
+      "error_code": "AdapterAcceptanceFailed"
+    },
+    {
+      "id": "known_version",
+      "status": "failed",
+      "error_code": "AdapterAcceptanceFailed"
+    },
+    {
+      "id": "corrected_version",
+      "status": "failed",
+      "error_code": "AdapterAcceptanceFailed"
+    },
+    {
+      "id": "unknown",
+      "status": "failed",
+      "error_code": "AdapterAcceptanceFailed"
+    },
+    {
+      "id": "empty",
+      "status": "failed",
+      "error_code": "AdapterAcceptanceFailed"
+    },
+    {
+      "id": "boundary",
+      "status": "failed",
+      "error_code": "AdapterAcceptanceFailed"
+    },
+    {
+      "id": "oversize",
+      "status": "passed",
+      "error_code": null
+    },
+    {
+      "id": "malformed_url",
+      "status": "passed",
+      "error_code": null
+    },
+    {
+      "id": "failure",
+      "status": "passed",
+      "error_code": null
+    },
+    {
+      "id": "snapshot",
+      "status": "failed",
+      "error_code": null
+    },
+    {
+      "id": "response_snapshot",
+      "status": "passed",
+      "error_code": null
+    },
+    {
+      "id": "core_pilot",
+      "status": "failed",
+      "error_code": "AdapterAcceptanceFailed"
+    }
+  ],
+  "factory": {
+    "module": "__main__",
+    "name": "factory",
+    "source_sha256": "085f9353e76a40f60cb123efc00fcf0202a5a523066ac77e12622df417587b2a",
+    "source_available": true
+  },
+  "delegate_sources": [
+    {
+      "module": "src.agent_app.retrieval.adapter",
+      "name": "ChromaRetrieverAdapter",
+      "source_sha256": "30229ca0ecb87e881fd104d232e3bba73908db6c8d67ac7f4408068fe1966edd",
+      "source_available": true
+    },
+    {
+      "module": "src.agent_app.retrieval.adapter",
+      "name": "ChromaRetrieverAdapter",
+      "source_sha256": "30229ca0ecb87e881fd104d232e3bba73908db6c8d67ac7f4408068fe1966edd",
+      "source_available": true
+    },
+    {
+      "module": "src.agent_app.retrieval.adapter",
+      "name": "ChromaRetrieverAdapter",
+      "source_sha256": "30229ca0ecb87e881fd104d232e3bba73908db6c8d67ac7f4408068fe1966edd",
+      "source_available": true
+    },
+    {
+      "module": "src.agent_app.retrieval.adapter",
+      "name": "ChromaRetrieverAdapter",
+      "source_sha256": "30229ca0ecb87e881fd104d232e3bba73908db6c8d67ac7f4408068fe1966edd",
+      "source_available": true
+    },
+    {
+      "module": "src.agent_app.retrieval.adapter",
+      "name": "ChromaRetrieverAdapter",
+      "source_sha256": "30229ca0ecb87e881fd104d232e3bba73908db6c8d67ac7f4408068fe1966edd",
+      "source_available": true
+    },
+    {
+      "module": "src.agent_app.retrieval.adapter",
+      "name": "ChromaRetrieverAdapter",
+      "source_sha256": "30229ca0ecb87e881fd104d232e3bba73908db6c8d67ac7f4408068fe1966edd",
+      "source_available": true
+    },
+    {
+      "module": "src.agent_app.retrieval.adapter",
+      "name": "ChromaRetrieverAdapter",
+      "source_sha256": "30229ca0ecb87e881fd104d232e3bba73908db6c8d67ac7f4408068fe1966edd",
+      "source_available": true
+    },
+    {
+      "module": "src.agent_app.retrieval.adapter",
+      "name": "ChromaRetrieverAdapter",
+      "source_sha256": "30229ca0ecb87e881fd104d232e3bba73908db6c8d67ac7f4408068fe1966edd",
+      "source_available": true
+    },
+    {
+      "module": "src.agent_app.retrieval.adapter",
+      "name": "ChromaRetrieverAdapter",
+      "source_sha256": "30229ca0ecb87e881fd104d232e3bba73908db6c8d67ac7f4408068fe1966edd",
+      "source_available": true
+    },
+    {
+      "module": "src.agent_app.retrieval.adapter",
+      "name": "ChromaRetrieverAdapter",
+      "source_sha256": "30229ca0ecb87e881fd104d232e3bba73908db6c8d67ac7f4408068fe1966edd",
+      "source_available": true
+    },
+    {
+      "module": "src.agent_app.retrieval.adapter",
+      "name": "ChromaRetrieverAdapter",
+      "source_sha256": "30229ca0ecb87e881fd104d232e3bba73908db6c8d67ac7f4408068fe1966edd",
+      "source_available": true
+    },
+    {
+      "module": "src.agent_app.retrieval.adapter",
+      "name": "ChromaRetrieverAdapter",
+      "source_sha256": "30229ca0ecb87e881fd104d232e3bba73908db6c8d67ac7f4408068fe1966edd",
+      "source_available": true
+    },
+    {
+      "module": "src.agent_app.retrieval.adapter",
+      "name": "ChromaRetrieverAdapter",
+      "source_sha256": "30229ca0ecb87e881fd104d232e3bba73908db6c8d67ac7f4408068fe1966edd",
+      "source_available": true
+    }
+  ],
+  "fixture_sha256": "de36c80081af1f6ec9e1e420523a1df51ddbc72a6fc59550a409e734c554f470",
+  "source_provenance": {
+    "source_refs": [
+      {
+        "path": "experiments/review_handoff/case-current-state-latest-evidence.json",
+        "sha256": "00af34231e7e4b252bdd8e88bf815d20249135f976cef7cc358ebc34d2e110d9"
+      },
+      {
+        "path": "data/evaluation/dev/pilot-12782.json",
+        "sha256": "f4b9cef54c98dd875ff0e55f41aebcde19a9b02717b7cb8c5525eba9575f2855"
+      }
+    ],
+    "origin_issue_id": 12782,
+    "origin_url": "https://github.com/streamlit/streamlit/issues/12782",
+    "confirmed_duplicate_issue_id": 12629,
+    "reserved_issue_ids": [
+      8061,
+      8901,
+      12629,
+      12782,
+      16914
+    ],
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "source_snapshot_date": "2026-10-06",
+    "same_issue_answer_used_as_evidence": false,
+    "issue_answer_and_comments_inspected_for_selection": true,
+    "answer_informed_development_selection": true,
+    "independent_held_out_test": false,
+    "selection_disclosure": "The author inspected #12782 first-body code/workaround and comments to identify the key-identity mechanism and the #12629 duplicate relationship. The original user-reported workaround and its code are deliberately omitted from visible user input and evidence. Primary evidence is frozen official release/API text. This is answer-informed development selection, not independent discovery or held-out evaluation.",
+    "source_hits_copied_without_field_or_text_changes": true,
+    "hit_sha256_algorithm": "SHA-256 of each original copied hit JSON; UTF-8, ensure_ascii=false, sorted keys, compact comma/colon separators.",
+    "hit_sha256": {
+      "multiselect-149-default-v8": "283243573e5696cd34b6d9b1d519b3b3cf1d1a2a70e72179f98feff1b3ebb7a9",
+      "multiselect-149-signature-v8": "7c35de4fcabc85ef8610fc3c587cba0fc7805b8a39b8ff56c128bc42565d99fb",
+      "multiselect-150-default": "c5517e1f407f7128bd2cf521719d79a039523ce44796d5f7da4241fd10fdc544",
+      "release-150-multiselect-key-identity-v8": "e2723f5c8faa14ecd1b5b214a79cfdf05a2733b98a3d8336b5962c6b91790ee7",
+      "widget-key-identity-history-snapshot-v8": "e6a217c8b45b1bf0bbb8e6f6761e789e27f08fa3de05efd54291af1d56ccf36b"
+    }
+  },
+  "fixture_backend_calls": 29,
+  "pilot": null,
+  "mode": "candidate_adapter_with_fixture_backend",
+  "quality_claim": false,
+  "fixture_backend": true,
+  "production_index_or_embedding_tested": false,
+  "real_model_tested": false,
+  "actual_cost_usd": 0,
+  "limitations": [
+    "Fixed evidence and authored backend ordering; no retrieval relevance or model quality measurement.",
+    "A candidate binding must retain the actual adapter mapping and inject only its read backend.",
+    "HTTP, persistence lifecycle CAS/journal, ingestion segmentation, and final corpus exclusion are not covered.",
+    "Nonempty request filters are not covered by this protocol."
+  ],
+  "candidate_commit": "b571080d93830b88a045ab9374860859e92baec3",
+  "source_identity": {
+    "src/agent_app/retrieval/adapter.py": {
+      "sha256": "30229ca0ecb87e881fd104d232e3bba73908db6c8d67ac7f4408068fe1966edd",
+      "bytes": 3325
+    },
+    "src/agent_app/retrieval/retriever.py": {
+      "sha256": "69da4e21cab1225ac673d9c13e6adcdc0f771f149ded0a17dc6fd8b58c0a019b",
+      "bytes": 1957
+    },
+    "data_scripts/chunking.py": {
+      "sha256": "4824af87ec0e1dead3120486c71aefff5e7df06e2a3d666ab57c0be7493f732d",
+      "bytes": 2380
+    },
+    "data_scripts/data_loader.py": {
+      "sha256": "86eaa016efaa39535e9a999ffa5f73c88f8cf871f626c5ab6934ff90dac17ca6",
+      "bytes": 2779
+    },
+    "src/agent_app/contracts.py": {
+      "sha256": "1dcf0de657f3442dfb5e787e6243a9a279501305033e592cbcd060dd808d0a91",
+      "bytes": 32430
+    },
+    "src/agent_app/__init__.py": {
+      "sha256": "651500e6469bef4ff31cda0ac90dd20cfebd2d9d9fe4bf99025c2b385598f86f",
+      "bytes": 245
+    }
+  },
+  "core_commit": "326480d305cf8a837087bfc23a3e100a049a27a2",
+  "core_dirty": false,
+  "binding_sha256": "085f9353e76a40f60cb123efc00fcf0202a5a523066ac77e12622df417587b2a",
+  "contract_namespace_alias_applied": false,
+  "baseline_interpretation": "literal_candidate_imports",
+  "real_chroma_imported": false,
+  "production_ledger_access": false,
+  "real_credential_access": false
+}

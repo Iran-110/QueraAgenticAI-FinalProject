@@ -815,9 +815,16 @@ configured snapshots, and forwards explicit filters. Existing collections are
 read through freshly checked snapshot metadata; same-ID mutable contents still
 require a frozen corpus/index. Unsafe prototype index construction is blocked.
 `chroma_binding` injects native fixed collections into both real constructors;
-search and mapper remain production code. Smoke passes 132/132 checks with the
-registered four-turn SQLite/scripted-reasoner pilot. This is preliminary local
-verification; clean-source receipts and publication follow separately.
+search and mapper remain production code. On clean source commit `326480d`,
+the registered four-turn SQLite/scripted-reasoner pilot passes 132/132 checks.
+[Pinned baseline replay and final receipt](rag-adapter-acceptance.fa.md) use the
+same fixed inputs and corrected observation code: literal `b571080` fails at
+10/28 executed checks; namespace-only diagnostic fails at 74/85. Early exits
+change denominators; no quality percentages are inferred. **1,891 full tests**,
+95 targeted tests, locked sync, Ruff, the three required demos and standalone
+49-check core/tracker regression pass. Production source fingerprints remain
+unchanged across the clean receipt run. Publication is on the separate repair
+branch; merging remains a distinct step.
 
 The harness's `calls[-2:]` assumed one physical read per query despite the
 existing multi-collection allowance. Observation now selects the current round;
