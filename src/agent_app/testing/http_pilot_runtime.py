@@ -11,6 +11,7 @@ import socket
 import sys
 from collections.abc import Callable, Iterator
 from contextlib import contextmanager, redirect_stderr, redirect_stdout
+from contextvars import ContextVar
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
@@ -118,10 +119,37 @@ def _network_disabled(*_args: Any, **_kwargs: Any) -> Any:
 
 @contextmanager
 def offline_network() -> Iterator[None]:
-    """Reject actual connections and name resolution; keep ASGI/socketpair usable."""
+    """Reject external connections and DNS while allowing internal socketpair setup.
+
+    On Windows, ``socket.socketpair`` uses a short-lived TCP loopback connection.
+    Only that synchronous, context-local setup may call the original connect.
+    """
+    original_connect = socket.socket.connect
+    original_socketpair = socket.socketpair
+    creating_pair = ContextVar("offline_socketpair_setup", default=False)
+
+    def guarded_connect(sock: socket.socket, address: Any) -> Any:
+        if (
+            creating_pair.get()
+            and sock.family in (socket.AF_INET, socket.AF_INET6)
+            and isinstance(address, tuple)
+            and len(address) >= 2
+            and address[0] in ("127.0.0.1", "::1")
+        ):
+            return original_connect(sock, address)
+        return _network_disabled()
+
+    def guarded_socketpair(*args: Any, **kwargs: Any) -> Any:
+        token = creating_pair.set(True)
+        try:
+            return original_socketpair(*args, **kwargs)
+        finally:
+            creating_pair.reset(token)
+
     with (
-        patch.object(socket.socket, "connect", _network_disabled),
+        patch.object(socket.socket, "connect", guarded_connect),
         patch.object(socket.socket, "connect_ex", _network_disabled),
+        patch.object(socket, "socketpair", guarded_socketpair),
         patch.object(socket, "create_connection", _network_disabled),
         patch.object(socket, "getaddrinfo", _network_disabled),
     ):
