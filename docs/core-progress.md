@@ -2,6 +2,43 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-12 — reusable RAG/core acceptance kit (C2b)
+
+- Registered fixed evidence in `db9c2c0` before first execution. Five exact C3
+  source hits and P1 are hash-bound; the #12782/#12629 family is exposed dev,
+  answer-informed, with authored follow-ups. Labels/gold stay outside ports.
+- The same reviewed factory can inject a fixed read backend into an actual
+  adapter, preserving its production search/mapping. The default is explicitly
+  the reference fixture adapter, with no index, embedding or provider request.
+- The complete protocol passes **132/132 checks across 14 cases**. Four turns
+  run through CoreTurnService and actual temporary SQLite, using five retrieval
+  rounds and five scripted reasoning calls. Correction/refinement clears old
+  evidence, stale approval fails, edit has a fresh approval, retry after restart
+  returns one action, and old-event replay constructs no new adapters.
+- Negative controls reject metadata/quote/query/cap/snapshot defects, silent
+  oversize clipping, swallowed retrieval errors and stale refinement output.
+  Alternative hit/query ordering remains accepted. Review of the kit itself
+  fixed a false acceptance of forged synthetic-boundary metadata and a raw
+  inspection error for factories without a real source file. A later review
+  added source membership checks: returned hits must come from actual backend
+  reads, not another query or an unread cached inventory.
+- CLI receipts are exclusive, bind source hashes and commit/dirty status, and
+  use safe error codes. Static candidate preflight never imports Chroma and
+  rejects an empty entrypoint. CI also runs the fixture kit; its default success
+  does not mean a production RAG adapter was accepted.
+
+Verified locally: locked sync, **1828 passing tests** (32 new acceptance/CLI
+tests), Ruff lint/format and the complete offline acceptance run. The first
+110/110, ten-case receipt is preserved; the final protocol activates additional
+already-registered version, URL and response-snapshot probes. More checks are
+coverage, not measured model/retrieval quality improvement. API cost is zero.
+
+PR #23 is still pinned to `bdb7c53`: existing CI is green but all four Python RAG
+files are zero bytes. Actual adapter acceptance R3/P4 remains open pending its
+push and reviewed binding. Nonempty request filters, HTTP/UI, CAS/journal
+lifecycle, actual index/ingestion, corpus exclusion and held-out quality remain
+outside this kit. [Protocol and handoff](rag-core-acceptance.fa.md).
+
 ## 2026-10-06 — first foundation
 
 Branch: `feat/agent-core-foundation`. Scope: the owner's contracts and orchestration, with deterministic offline adapters.
@@ -763,6 +800,40 @@ R1/R2/R3/P4, API lifecycle/journal integration, evaluation split/rubric and C5
 remain open. No embedding, model download, paid request, key read or ledger
 change was performed. Continue with a small offline RAG adapter and the
 existing service/pilot; no additional framework is justified by this review.
+
+## 2026-10-12 — R3 connection repair over the restored candidate
+
+PR #23 head `b571080` restored all four files, but fixed-backend acceptance
+reproduced incompatible contract namespaces, lost provenance, clipped valid
+quotes and unchecked request snapshots. With Sasan's explicit authorization,
+`fix/rag-core-acceptance` preserves that branch and merges released main before
+repairing the existing adapter/backend. No shared contract changed.
+
+The actual adapter now uses canonical imports, preserves supplied source
+metadata and 20,000-character text, rejects malformed/oversized data, checks
+configured snapshots, and forwards explicit filters. Existing collections are
+read through freshly checked snapshot metadata; same-ID mutable contents still
+require a frozen corpus/index. Unsafe prototype index construction is blocked.
+`chroma_binding` injects native fixed collections into both real constructors;
+search and mapper remain production code. On clean source commit `326480d`,
+the registered four-turn SQLite/scripted-reasoner pilot passes 132/132 checks.
+[Pinned baseline replay and final receipt](rag-adapter-acceptance.fa.md) use the
+same fixed inputs and corrected observation code: literal `b571080` fails at
+10/28 executed checks; namespace-only diagnostic fails at 74/85. Early exits
+change denominators; no quality percentages are inferred. **1,891 full tests**,
+95 targeted tests, locked sync, Ruff, the three required demos and standalone
+49-check core/tracker regression pass. Production source fingerprints remain
+unchanged across the clean receipt run. Publication is on the separate repair
+branch; merging remains a distinct step.
+
+The harness's `calls[-2:]` assumed one physical read per query despite the
+existing multi-collection allowance. Observation now selects the current round;
+independent controls accept repeated reads but reject omitted refinement queries,
+including a false `queries_used` echo or a read only in a previous round. No
+fixture, gold, decision criteria or logical resource limit changed.
+
+No real index, embedding, provider, credentials or production ledger was used.
+R1/R2/R4, actual index-backed P4, HTTP/persistent API and C5 remain open.
 
 ## Next integration work
 

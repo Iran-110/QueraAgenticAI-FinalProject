@@ -1,44 +1,100 @@
-import os
-import sys
+"""Read existing, snapshot-bound Chroma collections without building an index."""
 
-import chromadb
+from copy import deepcopy
+from typing import Any
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
-from data_scripts.chunking import StreamlitDocChunker
-from data_scripts.data_loader import StreamlitDataLoader
+from pydantic import ValidationError
+
+from agent_app.contracts import EvidenceBundle, RetrievalRequest
 
 
 class StreamlitRetriever:
-    def __init__(self, base_path: str, db_path: str = "./.chroma_db"):
+    def __init__(
+        self,
+        base_path: str,
+        db_path: str = "./.chroma_db",
+        *,
+        snapshot_id: str,
+        client: Any = None,
+    ):
+        try:
+            self.snapshot_id = EvidenceBundle(snapshot_id=snapshot_id).snapshot_id
+        except (ValidationError, TypeError, ValueError):
+            raise ValueError("InvalidRetrievalConfiguration") from None
         self.base_path = base_path
-        self.client = chromadb.PersistentClient(path=db_path)
-        self.docs_collection = self.client.get_or_create_collection(name="streamlit_docs")
-        self.issues_collection = self.client.get_or_create_collection(name="streamlit_issues")
+        if client is None:
+            try:
+                from chromadb import PersistentClient
+
+                client = PersistentClient(path=db_path)
+            except Exception:
+                raise RuntimeError("RetrievalUnavailable") from None
+        self.client = client
+        self._collections()
+
+    def _collections(self):
+        # Obtain fresh handles: cached metadata would miss a replaced collection.
+        try:
+            docs = self.client.get_collection(name="streamlit_docs")
+            issues = self.client.get_collection(name="streamlit_issues")
+            metadata = (docs.metadata, issues.metadata)
+        except Exception:
+            raise RuntimeError("RetrievalUnavailable") from None
+        if any(
+            not isinstance(item, dict) or item.get("snapshot_id") != self.snapshot_id
+            for item in metadata
+        ):
+            raise RuntimeError("RetrievalSnapshotMismatch")
+        self.docs_collection = docs
+        self.issues_collection = issues
+        return docs, issues
 
     def index_data(self):
-        chunker = StreamlitDocChunker(self.base_path)
-        all_docs = chunker.extract_docstring_chunks() + chunker.extract_markdown_chunks()
-        if all_docs:
-            self.docs_collection.add(
-                ids=[str(doc["id"]) for doc in all_docs],
-                documents=[doc["text"] for doc in all_docs],
-                metadatas=[doc["metadata"] for doc in all_docs],
-            )
-        issues = StreamlitDataLoader(self.base_path).build_full_issue_context()
-        if issues:
-            issue_ids, issue_texts, issue_metas = [], [], []
-            for issue in issues:
-                issue_ids.append(str(issue["issue_number"]))
-                issue_texts.append(
-                    f"Issue #{issue['issue_number']}: {issue['title']}\n{issue['body']}"
-                )
-                issue_metas.append(
-                    {"type": "issue", "state": issue["state"], "html_url": issue["html_url"]}
-                )
-            self.issues_collection.add(ids=issue_ids, documents=issue_texts, metadatas=issue_metas)
+        # Ingestion needs a frozen exclusion manifest and a separate index builder.
+        # This read adapter must never create or relabel an unverified corpus.
+        raise RuntimeError("UnsupportedIndexBuild")
 
-    def search(self, query: str, n_results: int = 3):
-        return {
-            "docs": self.docs_collection.query(query_texts=[query], n_results=n_results),
-            "issues": self.issues_collection.query(query_texts=[query], n_results=n_results),
-        }
+    @staticmethod
+    def _where(filters: dict[str, str | tuple[str, ...]]) -> dict | None:
+        clauses = []
+        for key, value in filters.items():
+            if key.startswith("$") or (isinstance(value, tuple) and not value):
+                raise ValueError("InvalidRetrievalFilter")
+            clauses.append(
+                {key: {"$in": list(value)}} if isinstance(value, tuple) else {key: value}
+            )
+        if len(clauses) > 1:
+            return {"$and": clauses}
+        return clauses[0] if clauses else None
+
+    def search(
+        self,
+        query: str,
+        n_results: int = 3,
+        *,
+        filters: dict[str, str | tuple[str, ...]] | None = None,
+    ):
+        try:
+            request = RetrievalRequest(
+                queries=(query,),
+                snapshot_id=self.snapshot_id,
+                top_k=n_results,
+                filters={} if filters is None else filters,
+            )
+        except (ValidationError, TypeError, ValueError):
+            raise ValueError("InvalidRetrievalRequest") from None
+        where = self._where(request.filters)
+        docs, issues = self._collections()
+        results = {}
+        for name, collection in (("docs", docs), ("issues", issues)):
+            arguments = {"query_texts": list(request.queries), "n_results": request.top_k}
+            if where is not None:
+                arguments["where"] = deepcopy(where)
+            try:
+                results[name] = collection.query(**arguments)
+            except Exception:
+                raise RuntimeError("RetrievalUnavailable") from None
+        # A metadata update/replacement during either read invalidates this result.
+        # This cannot certify immutable content when a writer reuses the same ID.
+        self._collections()
+        return results

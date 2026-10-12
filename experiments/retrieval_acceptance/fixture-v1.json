@@ -1,0 +1,684 @@
+{
+  "schema_version": 1,
+  "fixture_id": "core-rag-acceptance-exposed-dev12782-v1",
+  "created_on": "2026-10-12",
+  "first_acceptance_execution_not_performed_at_creation": true,
+  "snapshot_id": "core-controlled-evidence-v8",
+  "purpose": "Core-owned adapter contract acceptance with frozen existing development evidence; no corpus build or retrieval/model-quality score.",
+  "pilot_reference": {
+    "path": "data/evaluation/dev/pilot-12782.json",
+    "sha256": "f4b9cef54c98dd875ff0e55f41aebcde19a9b02717b7cb8c5525eba9575f2855"
+  },
+  "provenance": {
+    "source_refs": [
+      {
+        "path": "experiments/review_handoff/case-current-state-latest-evidence.json",
+        "sha256": "00af34231e7e4b252bdd8e88bf815d20249135f976cef7cc358ebc34d2e110d9"
+      },
+      {
+        "path": "data/evaluation/dev/pilot-12782.json",
+        "sha256": "f4b9cef54c98dd875ff0e55f41aebcde19a9b02717b7cb8c5525eba9575f2855"
+      }
+    ],
+    "origin_issue_id": 12782,
+    "origin_url": "https://github.com/streamlit/streamlit/issues/12782",
+    "confirmed_duplicate_issue_id": 12629,
+    "reserved_issue_ids": [
+      8061,
+      8901,
+      12629,
+      12782,
+      16914
+    ],
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "source_snapshot_date": "2026-10-06",
+    "same_issue_answer_used_as_evidence": false,
+    "issue_answer_and_comments_inspected_for_selection": true,
+    "answer_informed_development_selection": true,
+    "independent_held_out_test": false,
+    "selection_disclosure": "The author inspected #12782 first-body code/workaround and comments to identify the key-identity mechanism and the #12629 duplicate relationship. The original user-reported workaround and its code are deliberately omitted from visible user input and evidence. Primary evidence is frozen official release/API text. This is answer-informed development selection, not independent discovery or held-out evaluation.",
+    "source_hits_copied_without_field_or_text_changes": true,
+    "hit_sha256_algorithm": "SHA-256 of each original copied hit JSON; UTF-8, ensure_ascii=false, sorted keys, compact comma/colon separators.",
+    "hit_sha256": {
+      "multiselect-149-default-v8": "283243573e5696cd34b6d9b1d519b3b3cf1d1a2a70e72179f98feff1b3ebb7a9",
+      "multiselect-149-signature-v8": "7c35de4fcabc85ef8610fc3c587cba0fc7805b8a39b8ff56c128bc42565d99fb",
+      "multiselect-150-default": "c5517e1f407f7128bd2cf521719d79a039523ce44796d5f7da4241fd10fdc544",
+      "release-150-multiselect-key-identity-v8": "e2723f5c8faa14ecd1b5b214a79cfdf05a2733b98a3d8336b5962c6b91790ee7",
+      "widget-key-identity-history-snapshot-v8": "e6a217c8b45b1bf0bbb8e6f6761e789e27f08fa3de05efd54291af1d56ccf36b"
+    }
+  },
+  "boundaries": {
+    "source_evidence": "Only hits are frozen official source excerpts; exact original IDs/URLs/commits/spans/versions remain unchanged.",
+    "authored_controls": [
+      "query_results",
+      "probe_queries",
+      "bundle_views",
+      "scenarios",
+      "synthetic_boundary_controls",
+      "pilot_round_views"
+    ],
+    "visible_conversation": "Load registered pilot one turn at a time; use only information revealed by that turn. Do not duplicate or rewrite registered body, scripts or gold.",
+    "backend_visible": [
+      "hits",
+      "snapshot_id",
+      "query_results",
+      "selected_bundle_view"
+    ],
+    "runner_only": [
+      "scenarios.expected",
+      "fault_directive",
+      "synthetic_boundary_controls",
+      "pilot scripts/maintainer/gold"
+    ],
+    "source_excerpts_are_untrusted_data_never_executed": true,
+    "actual_corpus_exclusion_enforced_here": false,
+    "exclude_issue_family_comments_outcomes_duplicates_from_real_rag_and_final_test": true,
+    "no_gold_or_expected_outcome_in_model_or_real_corpus": true,
+    "real_model_calls": 0,
+    "index_built": false,
+    "quality_claim": false,
+    "not_real_rag_quality": true,
+    "not_final_test_success": true
+  },
+  "hits": [
+    {
+      "chunk_id": "multiselect-149-default-v8",
+      "source_id": "docstring:1.49.0:streamlit.multiselect",
+      "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+      "source_type": "doc",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "applicable_versions": [
+        "1.49.0"
+      ],
+      "source_span": "JSON pointer /1.49.0/streamlit.multiselect; default parameter in normalized docstring"
+    },
+    {
+      "chunk_id": "multiselect-149-signature-v8",
+      "source_id": "docstring:1.49.0:streamlit.multiselect",
+      "excerpt": "st.multiselect(label, options, default=None, format_func=special_internal_function, key=None, help=None, on_change=None, args=None, kwargs=None, *, max_selections=None, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, width=\"stretch\")",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+      "source_type": "doc",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "applicable_versions": [
+        "1.49.0"
+      ],
+      "source_span": "JSON pointer /1.49.0/streamlit.multiselect/signature; exact 1.49.0, not 1.49.1 coverage"
+    },
+    {
+      "chunk_id": "multiselect-150-default",
+      "source_id": "docstring:1.50.0:streamlit.multiselect",
+      "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+      "source_type": "doc",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "applicable_versions": [
+        "1.50.0"
+      ],
+      "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring"
+    },
+    {
+      "chunk_id": "release-150-multiselect-key-identity-v8",
+      "source_id": "release-notes:1.50.0:widget-key-identity",
+      "excerpt": "## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- 🤹 Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- 🎨 Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- 📊 [`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- 🔑 To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123",
+      "source_type": "release_note",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "applicable_versions": [
+        "1.50.0"
+      ],
+      "source_span": "Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause"
+    },
+    {
+      "chunk_id": "widget-key-identity-history-snapshot-v8",
+      "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+      "excerpt": "**Key-based widget identity (v1.55.0)**\n\nAs of v1.55.0, all widgets support key-based identity. When a `key` is provided, the key is the primary determinant of the widget's identity, and changing other parameters (like `label`, `options`, or `default`) won't reset the widget. Some parameters that constrain valid values still affect identity for specific widgets, even when a key is provided. For example, changing `min_value` or `max_value` for `st.slider` will reset the widget because the current value could be invalidated. These exceptions are noted in each widget's `key` parameter description.\n\nKey-based identity was progressively introduced from v1.50.0 through v1.55.0. If you're using an older version, check the [release notes](/develop/quick-reference/release-notes) to see which widgets support key-based identity in your version.",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L29",
+      "source_type": "doc",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "applicable_versions": [],
+      "source_span": "Markdown lines 29-33: unversioned October 2026 concept snapshot distinguishes progressive rollout; not exact historical app coverage"
+    }
+  ],
+  "query_results": {
+    "Streamlit multiselect fragment default and key identity": [
+      "multiselect-149-default-v8",
+      "multiselect-149-signature-v8",
+      "multiselect-150-default",
+      "release-150-multiselect-key-identity-v8",
+      "widget-key-identity-history-snapshot-v8"
+    ],
+    "Streamlit multiselect default key identity": [
+      "multiselect-149-default-v8",
+      "multiselect-150-default",
+      "release-150-multiselect-key-identity-v8",
+      "widget-key-identity-history-snapshot-v8"
+    ],
+    "Streamlit multiselect signature callback": [
+      "multiselect-149-signature-v8",
+      "multiselect-150-default",
+      "release-150-multiselect-key-identity-v8",
+      "widget-key-identity-history-snapshot-v8"
+    ],
+    "Streamlit 1.50.0 multiselect key default release notes": [
+      "release-150-multiselect-key-identity-v8",
+      "multiselect-150-default",
+      "widget-key-identity-history-snapshot-v8"
+    ],
+    "Streamlit 1.49.1 multiselect key default reset exact version documentation": [
+      "multiselect-149-default-v8",
+      "multiselect-149-signature-v8",
+      "multiselect-150-default",
+      "widget-key-identity-history-snapshot-v8"
+    ],
+    "Streamlit multiselect absent fixture record": []
+  },
+  "probe_queries": {
+    "single": "Streamlit multiselect fragment default and key identity",
+    "multi": [
+      "Streamlit multiselect default key identity",
+      "Streamlit multiselect signature callback"
+    ],
+    "empty": "Streamlit multiselect absent fixture record"
+  },
+  "merge_policy": {
+    "ordering": "first occurrence across requested queries in request order",
+    "dedup_key": "chunk_id",
+    "top_k_scope": "combined global result, never per collection or per query",
+    "unmapped_query": "empty result",
+    "ordering_scope": "Reference fixture only; candidate acceptance does not prescribe hit ordering or the winning hit under top_k."
+  },
+  "bundle_views": {
+    "official-mixed": [
+      "multiselect-149-default-v8",
+      "multiselect-149-signature-v8",
+      "multiselect-150-default",
+      "release-150-multiselect-key-identity-v8",
+      "widget-key-identity-history-snapshot-v8"
+    ],
+    "official-without-release": [
+      "multiselect-149-default-v8",
+      "multiselect-149-signature-v8",
+      "multiselect-150-default",
+      "widget-key-identity-history-snapshot-v8"
+    ]
+  },
+  "pilot_round_views": {
+    "p1-turn-1": [
+      "official-mixed"
+    ],
+    "p1-turn-2": [
+      "official-mixed"
+    ],
+    "p1-turn-3": [
+      "official-without-release"
+    ],
+    "p1-turn-4": [
+      "official-mixed"
+    ]
+  },
+  "refinement_round_views": [
+    "official-mixed",
+    "official-without-release"
+  ],
+  "scenarios": [
+    {
+      "id": "single-query-all-five",
+      "authored_control": true,
+      "visible_input_ref": "data/evaluation/dev/pilot-12782.json#turns[0].visible",
+      "known_information": {
+        "active_user_streamlit_version": null,
+        "reduced_example_reproduces_failure": false,
+        "full_app_callback_supplied": false,
+        "source_or_user_code_executed": false
+      },
+      "user_clarifiable_gaps": [
+        "streamlit_version",
+        "parent_callback_code",
+        "state_update_order",
+        "minimal_failing_reproduction"
+      ],
+      "documentation_or_evidence_gaps": [
+        "installed_version_applicability_unknown",
+        "full_app_cause_and_verified_fix_not_established"
+      ],
+      "request": {
+        "queries": [
+          "Streamlit multiselect fragment default and key identity"
+        ],
+        "snapshot_id": "core-controlled-evidence-v8",
+        "top_k": 5,
+        "filters": {}
+      },
+      "expected": {
+        "unique_chunk_count": 5,
+        "snapshot_id": "core-controlled-evidence-v8",
+        "queries_used": [
+          "Streamlit multiselect fragment default and key identity"
+        ],
+        "acceptable_final_decisions": [
+          "ask",
+          "escalate"
+        ],
+        "decision_quality_score": null,
+        "reference_ordered_chunk_ids": [
+          "multiselect-149-default-v8",
+          "multiselect-149-signature-v8",
+          "multiselect-150-default",
+          "release-150-multiselect-key-identity-v8",
+          "widget-key-identity-history-snapshot-v8"
+        ]
+      }
+    },
+    {
+      "id": "multi-query-overlap-global-top-k-five",
+      "authored_control": true,
+      "visible_input_ref": "data/evaluation/dev/pilot-12782.json#turns[0].visible",
+      "known_information": {
+        "active_user_streamlit_version": null,
+        "reduced_example_reproduces_failure": false,
+        "full_app_callback_supplied": false,
+        "source_or_user_code_executed": false
+      },
+      "user_clarifiable_gaps": [
+        "streamlit_version",
+        "parent_callback_code",
+        "state_update_order",
+        "minimal_failing_reproduction"
+      ],
+      "documentation_or_evidence_gaps": [
+        "installed_version_applicability_unknown",
+        "full_app_cause_and_verified_fix_not_established"
+      ],
+      "request": {
+        "queries": [
+          "Streamlit multiselect default key identity",
+          "Streamlit multiselect signature callback"
+        ],
+        "snapshot_id": "core-controlled-evidence-v8",
+        "top_k": 5,
+        "filters": {}
+      },
+      "expected": {
+        "unique_chunk_count": 5,
+        "snapshot_id": "core-controlled-evidence-v8",
+        "queries_used": [
+          "Streamlit multiselect default key identity",
+          "Streamlit multiselect signature callback"
+        ],
+        "acceptable_final_decisions": [
+          "ask",
+          "escalate"
+        ],
+        "decision_quality_score": null,
+        "reference_ordered_chunk_ids": [
+          "multiselect-149-default-v8",
+          "multiselect-150-default",
+          "release-150-multiselect-key-identity-v8",
+          "widget-key-identity-history-snapshot-v8",
+          "multiselect-149-signature-v8"
+        ]
+      }
+    },
+    {
+      "id": "multi-query-overlap-global-top-k-one",
+      "authored_control": true,
+      "visible_input_ref": "data/evaluation/dev/pilot-12782.json#turns[0].visible",
+      "known_information": {
+        "active_user_streamlit_version": null,
+        "reduced_example_reproduces_failure": false,
+        "full_app_callback_supplied": false,
+        "source_or_user_code_executed": false
+      },
+      "user_clarifiable_gaps": [
+        "streamlit_version",
+        "parent_callback_code",
+        "state_update_order",
+        "minimal_failing_reproduction"
+      ],
+      "documentation_or_evidence_gaps": [
+        "top_k_restricts_available_evidence",
+        "installed_version_applicability_unknown",
+        "full_app_cause_and_verified_fix_not_established"
+      ],
+      "request": {
+        "queries": [
+          "Streamlit multiselect default key identity",
+          "Streamlit multiselect signature callback"
+        ],
+        "snapshot_id": "core-controlled-evidence-v8",
+        "top_k": 1,
+        "filters": {}
+      },
+      "expected": {
+        "unique_chunk_count": 1,
+        "snapshot_id": "core-controlled-evidence-v8",
+        "queries_used": [
+          "Streamlit multiselect default key identity",
+          "Streamlit multiselect signature callback"
+        ],
+        "acceptable_final_decisions": [
+          "ask",
+          "escalate"
+        ],
+        "decision_quality_score": null,
+        "reference_ordered_chunk_ids": [
+          "multiselect-149-default-v8"
+        ]
+      }
+    },
+    {
+      "id": "known-version-release-source",
+      "authored_control": true,
+      "visible_input_ref": "data/evaluation/dev/pilot-12782.json#turns[1].visible",
+      "known_information": {
+        "active_user_streamlit_version": "1.50.0",
+        "reduced_example_reproduces_failure": false,
+        "full_app_callback_supplied": false,
+        "source_or_user_code_executed": false
+      },
+      "user_clarifiable_gaps": [
+        "parent_callback_code",
+        "state_update_order",
+        "minimal_failing_reproduction"
+      ],
+      "documentation_or_evidence_gaps": [
+        "full_app_cause_and_verified_fix_not_established"
+      ],
+      "request": {
+        "queries": [
+          "Streamlit 1.50.0 multiselect key default release notes"
+        ],
+        "snapshot_id": "core-controlled-evidence-v8",
+        "top_k": 5,
+        "filters": {}
+      },
+      "expected": {
+        "unique_chunk_count": 3,
+        "snapshot_id": "core-controlled-evidence-v8",
+        "queries_used": [
+          "Streamlit 1.50.0 multiselect key default release notes"
+        ],
+        "acceptable_final_decisions": [
+          "answer",
+          "ask",
+          "escalate"
+        ],
+        "decision_quality_score": null,
+        "reference_ordered_chunk_ids": [
+          "release-150-multiselect-key-identity-v8",
+          "multiselect-150-default",
+          "widget-key-identity-history-snapshot-v8"
+        ]
+      },
+      "claim_scope": "Only the pinned 1.50.0 release event is supported; no app diagnosis or verified fix.",
+      "question_scope": "Do not ask again for the confirmed version; a missing parent callback is user-answerable."
+    },
+    {
+      "id": "corrected-version-latest-bundle",
+      "authored_control": true,
+      "visible_input_ref": "data/evaluation/dev/pilot-12782.json#turns[2].visible",
+      "known_information": {
+        "active_user_streamlit_version": "1.49.1",
+        "reduced_example_reproduces_failure": false,
+        "full_app_callback_supplied": false,
+        "source_or_user_code_executed": false
+      },
+      "user_clarifiable_gaps": [
+        "parent_callback_code",
+        "state_update_order",
+        "minimal_failing_reproduction"
+      ],
+      "documentation_or_evidence_gaps": [
+        "no_exact_1.49.1_metadata_coverage",
+        "prior_1.50.0_release_hit_absent",
+        "full_app_cause_and_verified_fix_not_established"
+      ],
+      "request": {
+        "queries": [
+          "Streamlit 1.49.1 multiselect key default reset exact version documentation"
+        ],
+        "snapshot_id": "core-controlled-evidence-v8",
+        "top_k": 5,
+        "filters": {}
+      },
+      "expected": {
+        "unique_chunk_count": 4,
+        "snapshot_id": "core-controlled-evidence-v8",
+        "queries_used": [
+          "Streamlit 1.49.1 multiselect key default reset exact version documentation"
+        ],
+        "acceptable_final_decisions": [
+          "ask",
+          "escalate"
+        ],
+        "decision_quality_score": null,
+        "reference_ordered_chunk_ids": [
+          "multiselect-149-default-v8",
+          "multiselect-149-signature-v8",
+          "multiselect-150-default",
+          "widget-key-identity-history-snapshot-v8"
+        ]
+      },
+      "superseded_user_versions": [
+        "1.50.0"
+      ],
+      "excluded_chunk_ids": [
+        "release-150-multiselect-key-identity-v8"
+      ],
+      "acceptable_intermediate_decisions": [
+        "retrieve_more"
+      ],
+      "refinement_bundle_views": [
+        "official-mixed",
+        "official-without-release"
+      ]
+    },
+    {
+      "id": "known-version-empty-evidence",
+      "authored_control": true,
+      "visible_input_ref": "data/evaluation/dev/pilot-12782.json#turns[1].visible",
+      "known_information": {
+        "active_user_streamlit_version": "1.50.0",
+        "reduced_example_reproduces_failure": false,
+        "full_app_callback_supplied": false,
+        "source_or_user_code_executed": false
+      },
+      "user_clarifiable_gaps": [
+        "parent_callback_code",
+        "state_update_order",
+        "minimal_failing_reproduction"
+      ],
+      "documentation_or_evidence_gaps": [
+        "no_fixture_results_for_query",
+        "full_app_cause_and_verified_fix_not_established"
+      ],
+      "request": {
+        "queries": [
+          "Streamlit multiselect absent fixture record"
+        ],
+        "snapshot_id": "core-controlled-evidence-v8",
+        "top_k": 5,
+        "filters": {}
+      },
+      "expected": {
+        "unique_chunk_count": 0,
+        "snapshot_id": "core-controlled-evidence-v8",
+        "queries_used": [
+          "Streamlit multiselect absent fixture record"
+        ],
+        "acceptable_final_decisions": [
+          "ask",
+          "escalate"
+        ],
+        "decision_quality_score": null,
+        "reference_ordered_chunk_ids": []
+      },
+      "acceptable_intermediate_decisions": [
+        "retrieve_more"
+      ],
+      "question_scope": "The source gap is not solved by repeating the known version or asking the user to find project documentation."
+    },
+    {
+      "id": "unknown-snapshot-request",
+      "authored_control": true,
+      "request": {
+        "queries": [
+          "Streamlit multiselect fragment default and key identity"
+        ],
+        "snapshot_id": "authored-unknown-snapshot",
+        "top_k": 5,
+        "filters": {}
+      },
+      "known_information": {
+        "fixture_snapshot_id": "core-controlled-evidence-v8"
+      },
+      "missing_information": [
+        "No registered backend snapshot exists for the requested ID."
+      ],
+      "expected": {
+        "port_rejects_request": true,
+        "backend_calls": 0,
+        "model_calls": 0,
+        "no_reviewable_proposal": true
+      }
+    },
+    {
+      "id": "backend-failure",
+      "authored_control": true,
+      "request": {
+        "queries": [
+          "Streamlit multiselect fragment default and key identity"
+        ],
+        "snapshot_id": "core-controlled-evidence-v8",
+        "top_k": 5,
+        "filters": {}
+      },
+      "known_information": {
+        "fixture_sources_are_unchanged": true
+      },
+      "missing_information": [
+        "Retrieval is unavailable."
+      ],
+      "fault_directive": {
+        "kind": "backend_exception",
+        "runner_only": true
+      },
+      "expected": {
+        "engine_status": "error",
+        "engine_error_code": "RetrievalUnavailable",
+        "model_calls": 0,
+        "no_reviewable_proposal": true
+      }
+    },
+    {
+      "id": "returned-snapshot-mismatch",
+      "authored_control": true,
+      "request": {
+        "queries": [
+          "Streamlit multiselect fragment default and key identity"
+        ],
+        "snapshot_id": "core-controlled-evidence-v8",
+        "top_k": 5,
+        "filters": {}
+      },
+      "known_information": {
+        "request_snapshot_matches_fixture": true
+      },
+      "missing_information": [
+        "Returned evidence cannot be trusted as the requested snapshot."
+      ],
+      "fault_directive": {
+        "kind": "response_snapshot_mismatch",
+        "snapshot_id": "authored-wrong-snapshot",
+        "runner_only": true
+      },
+      "expected": {
+        "engine_status": "error",
+        "allowed_engine_error_codes": [
+          "RetrievalUnavailable",
+          "RetrievalResultInvalid"
+        ],
+        "model_calls": 0,
+        "no_reviewable_proposal": true
+      }
+    },
+    {
+      "id": "malformed-hit-url",
+      "authored_control": true,
+      "request": {
+        "queries": [
+          "Streamlit multiselect fragment default and key identity"
+        ],
+        "snapshot_id": "core-controlled-evidence-v8",
+        "top_k": 5,
+        "filters": {}
+      },
+      "known_information": {
+        "canonical_source_record_is_valid": true
+      },
+      "missing_information": [
+        "Transport-mutated evidence lacks a valid source URL."
+      ],
+      "fault_directive": {
+        "kind": "replace_hit_field",
+        "chunk_id": "multiselect-149-default-v8",
+        "field": "source_url",
+        "value": "not-a-url",
+        "runner_only": true
+      },
+      "expected": {
+        "port_or_engine_rejects_mutation": true,
+        "allowed_engine_error_codes": [
+          "RetrievalUnavailable",
+          "RetrievalResultInvalid"
+        ],
+        "model_calls": 0,
+        "no_reviewable_proposal": true
+      }
+    }
+  ],
+  "synthetic_boundary_controls": [
+    {
+      "id": "unmodified-excerpt-20000",
+      "authored_control": true,
+      "source_url": "https://example.org/offline-rag-boundary",
+      "source_origin": "synthetic contract boundary text, not an actual document",
+      "excerpt_characters": 20000,
+      "expected": {
+        "unmodified_EvidenceHit_text_valid": true,
+        "source_quality_claim": false
+      }
+    },
+    {
+      "id": "unmodified-excerpt-20001",
+      "authored_control": true,
+      "source_url": "https://example.org/offline-rag-boundary",
+      "source_origin": "synthetic contract boundary text, not an actual document",
+      "excerpt_characters": 20001,
+      "expected": {
+        "unmodified_EvidenceHit_text_valid": false,
+        "silent_clipping_preserving_full_source_claim_not_acceptable": true,
+        "source_quality_claim": false
+      }
+    },
+    {
+      "id": "unknown-source-metadata",
+      "authored_control": true,
+      "source_url": "https://example.org/offline-rag-boundary",
+      "source_origin": "synthetic unknown-metadata transport record, not an actual document",
+      "metadata_overrides": {
+        "source_commit": null,
+        "source_span": null,
+        "applicable_versions": []
+      },
+      "expected": {
+        "commit_remains_null": true,
+        "span_remains_null": true,
+        "versions_remain_empty": true,
+        "installed_user_version_not_inferred": true,
+        "source_quality_claim": false
+      }
+    }
+  ]
+}
