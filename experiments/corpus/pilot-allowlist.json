@@ -1,0 +1,27 @@
+{
+  "protocol": "docs-only-local-pilot-v1",
+  "scope": "offline operational integration; no retrieval/model quality claim",
+  "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+  "markdown_source_ids": [
+    "docs:content/develop/concepts/architecture/session-state.md",
+    "docs:content/develop/concepts/architecture/widget-behavior.md",
+    "docs:content/develop/api-reference/caching-and-state/session_state.md",
+    "docs:content/develop/api-reference/widgets/button.md",
+    "docs:content/develop/api-reference/widgets/text_input.md"
+  ],
+  "api_versions": ["1.49.0", "1.50.0", "1.64.0"],
+  "api_functions": ["streamlit.button", "streamlit.rerun", "streamlit.text_input"],
+  "excluded_source_types": ["issue", "comment", "release_note", "evaluation", "fixture"],
+  "chunk_characters": 4000,
+  "embedding": {"kind": "lexical_hash_v1", "dimensions": 256, "quality_claim": false},
+  "collection_names": ["streamlit_docs", "streamlit_issues"],
+  "acceptance": [
+    "exact source text spans and versioned identities survive chunking",
+    "no Issue, comment, release note, evaluation case or answer is indexed",
+    "packaged checksums and draft exclusion manifest are pinned",
+    "content and metadata mutation under the same snapshot ID fails closed",
+    "actual Chroma search runs without network, download or provider",
+    "correction invalidates previous evidence and approval",
+    "stable approval retry after restart creates exactly one local action"
+  ]
+}
