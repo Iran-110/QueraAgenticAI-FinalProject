@@ -1,7 +1,7 @@
 """Local TCP UI client across fresh backend interpreters; no outgoing connections."""
 
+import json
 import os
-import socket
 import subprocess
 import sys
 import time
@@ -20,32 +20,48 @@ ROOT = Path(__file__).resolve().parents[1]
 TOKEN = "synthetic-loopback-review-credential-for-tests"
 WORKER = """
 import sys
+import json
+import socket
+from pathlib import Path
 import uvicorn
+from agent_app.offline_backend import application_factory
 from agent_app.testing.http_pilot_runtime import offline_network
 with offline_network():
-    uvicorn.run('agent_app.offline_backend:application_factory', factory=True,
-                fd=int(sys.argv[1]), log_level='critical', access_log=False)
+    application = application_factory()
+    with socket.socket() as listener:
+        listener.bind(('127.0.0.1', 0))
+        listener.listen()
+        with Path(sys.argv[1]).open('x', encoding='ascii') as output:
+            json.dump({'port': listener.getsockname()[1]}, output)
+        config = uvicorn.Config(application, log_level='critical', access_log=False)
+        uvicorn.Server(config).run(sockets=[listener])
 """
 
 
 @contextmanager
-def server(listener, config):
+def server(ready_path, config):
     process = subprocess.Popen(
-        [sys.executable, "-c", WORKER, str(listener.fileno())],
+        [sys.executable, "-c", WORKER, str(ready_path)],
         cwd=ROOT,
         env={**os.environ, **config},
-        pass_fds=(listener.fileno(),),
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
     )
-    http = httpx.Client(
-        base_url=f"http://127.0.0.1:{listener.getsockname()[1]}", timeout=2, trust_env=False
-    )
+    http = None
     try:
         deadline = time.monotonic() + 15
         while time.monotonic() < deadline:
             if process.poll() is not None:
                 raise AssertionError("Offline worker failed before readiness")
+            if http is None:
+                try:
+                    port = json.loads(ready_path.read_text(encoding="ascii"))["port"]
+                    http = httpx.Client(
+                        base_url=f"http://127.0.0.1:{port}", timeout=2, trust_env=False
+                    )
+                except (OSError, ValueError, KeyError):
+                    time.sleep(0.02)
+                    continue
             try:
                 if http.get("/health").status_code == 200:
                     break
@@ -56,7 +72,8 @@ def server(listener, config):
             raise AssertionError("Offline worker readiness timed out")
         yield http
     finally:
-        http.close()
+        if http is not None:
+            http.close()
         process.terminate()
         try:
             process.wait(timeout=5)
@@ -79,39 +96,36 @@ def test_actual_index_and_ui_client_retry_over_tcp_after_fresh_process_restart(t
         "AGENT_PILOT_INDEX": str(tmp_path / "index"),
         "AGENT_PILOT_SNAPSHOT": snapshot,
     }
-    with socket.socket() as listener:
-        listener.bind(("127.0.0.1", 0))
-        listener.listen()
-        with server(listener, config) as http:
-            client = ui_client.BackendClient(http, reviewer_token=TOKEN)
-            assert client.discover_capabilities().retrieval_label == "local_chroma_hash"
-            view = client.send_event(
-                "tcp-pilot",
-                {
-                    "message": "My widget resets on rerun; version unknown.",
-                    "turn_id": "tcp-original",
-                    "expected_revision": 0,
-                },
-            )
-            operation = client.prepare_review("tcp-pilot", view["pending"], "approve")
-            committed = client.send_review(operation)
-            assert len(committed["actions"]) == 1
-        with server(listener, config) as fresh:
-            client = ui_client.BackendClient(fresh, reviewer_token=TOKEN)
-            corrected = client.send_event(
-                "tcp-pilot",
-                {
-                    "message": "Correction: installed version is 1.49.0.",
-                    "turn_id": "tcp-correction",
-                    "expected_revision": 1,
-                    "reported_facts": [{"name": "streamlit_version", "value": "1.49.0"}],
-                    "context_changed": True,
-                },
-            )
-            assert corrected["pending"]["decision"] == "escalate"
-            replay = client.send_review(operation)
-            assert replay["review"] == {**committed["review"], "replayed": True}
-            assert replay["case_revision"] == 2
-            assert len(replay["actions"]) == 1
-            assert TOKEN not in str(replay)
+    with server(tmp_path / "ready-first.json", config) as http:
+        client = ui_client.BackendClient(http, reviewer_token=TOKEN)
+        assert client.discover_capabilities().retrieval_label == "local_chroma_hash"
+        view = client.send_event(
+            "tcp-pilot",
+            {
+                "message": "My widget resets on rerun; version unknown.",
+                "turn_id": "tcp-original",
+                "expected_revision": 0,
+            },
+        )
+        operation = client.prepare_review("tcp-pilot", view["pending"], "approve")
+        committed = client.send_review(operation)
+        assert len(committed["actions"]) == 1
+    with server(tmp_path / "ready-restart.json", config) as fresh:
+        client = ui_client.BackendClient(fresh, reviewer_token=TOKEN)
+        corrected = client.send_event(
+            "tcp-pilot",
+            {
+                "message": "Correction: installed version is 1.49.0.",
+                "turn_id": "tcp-correction",
+                "expected_revision": 1,
+                "reported_facts": [{"name": "streamlit_version", "value": "1.49.0"}],
+                "context_changed": True,
+            },
+        )
+        assert corrected["pending"]["decision"] == "escalate"
+        replay = client.send_review(operation)
+        assert replay["review"] == {**committed["review"], "replayed": True}
+        assert replay["case_revision"] == 2
+        assert len(replay["actions"]) == 1
+        assert TOKEN not in str(replay)
     assert len(SQLiteCaseTracker(config["AGENT_TRACKER_DB"]).comments("tcp-pilot")) == 1

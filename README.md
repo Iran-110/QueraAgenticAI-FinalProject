@@ -28,8 +28,9 @@ pilot جدید **C2/P2**، اطلاعات صریح کاربر و correction را
 می‌کند؛ پاسخ کوتاه نسخه به سؤال تأییدشده متصل و retry همان event بدون run تازه
 شناخته می‌شود. case هفت‌نوبتی با fixture و storage حافظه‌ای قابل بازپخش است.
 کنترل‌های UI متصل‌اند و ماژول SQLite با read سازگار روی main است؛ مسیر opt-in
-HTTP و outcome پایدار در [C2d](docs/persistent-http.fa.md) آمادهٔ review است.
-اتصال client/UI به قرارداد approval جدید هنوز کار تیم است.
+HTTP و outcome پایدار در [C2d](docs/persistent-http.fa.md) با #30 منتشر شد.
+client/UI در [U3a](docs/offline-ui-index-pilot.fa.md) به approval پایدار وصل است؛
+دستور opt-in و محدودیت کنسول محلی در همان راهنما آمده.
 [نتیجه و ورودی/خروجی لازم برای هر نفر](docs/user-intake-pilot.fa.md) را ببینید.
 
 خروجی **C3** حالا کل case، آخرین evidence مصرف‌شده، analysis و catalog تصمیم
@@ -42,7 +43,8 @@ HTTP و outcome پایدار در [C2d](docs/persistent-http.fa.md) آمادهٔ
 receipt/state به core، حفظ مسئله و پیام‌های کاربر در reply کوتاه، توقف روی
 تغییر state و بازیابی دقیق ACK پیشنهاد. pilot چهار‌نوبتی با SQLite واقعی و
 portهای آفلاین قابل اجراست. C2d همین سرویس را به HTTP/SQLite و outcome اتمیک
-وصل کرده و gate staging را اضافه کرده؛ demo پیش‌فرض و UI هنوز مسیر قدیمی‌اند.
+وصل کرده و gate staging را اضافه کرده؛ demo پیش‌فرض حافظه‌ای است و UI با config
+جدید به SQLite و index محلی وصل می‌شود.
 [وضعیت C5](docs/live-reconciliation-2026-10-11.fa.md)
 ابهام مدل/usage/billing لازم برای ادامهٔ live را ثبت می‌کند؛ توقف برقرار است.
 
@@ -111,10 +113,10 @@ scripted است. corpus/split نهایی و کیفیت مدل/RAG هنوز با�
 
 - قراردادهای معتبرشده و جریان تصمیم‌گیری محدود، با mock قابل اجرا هستند.
 - سقف هر اجرا: ۲ تلاش مدل، ۲ دور بازیابی، ۲ کوئری در هر دور و ۸ مرحله؛ تلاش ناموفق هم از همین سقف مصرف می‌شود.
-- کلاینت متیس و ledger هزینه با SQLite ساخته شده‌اند؛ رابط فعلی approve/reject/edit محلی دارد. [tracker SQLite](docs/sqlite-tracker.md) با approval اتمیک روی main است؛ factory پایدار HTTP در C2d نیز restart/retry را پاس کرده. demo پیش‌فرض و UI هنوز حافظه‌ای‌اند؛ binding UI، RAG واقعی و ارزیابی کیفیت بازند.
+- کلاینت متیس و ledger هزینه با SQLite ساخته شده‌اند؛ رابط فعلی approve/reject/edit محلی دارد. [tracker SQLite](docs/sqlite-tracker.md) با approval اتمیک روی main است؛ factory پایدار HTTP در C2d نیز restart/retry را پاس کرده. demo پیش‌فرض حافظه‌ای است؛ UI opt-in و index واقعی کوچک در U3a/P4a وصل‌اند. corpus/model و ارزیابی کیفیت نهایی بازند.
 - خروجی نامعتبر با کد و نام فیلد مشخص گزارش می‌شود و یک تلاش باقی‌مانده با بازخورد محدود می‌تواند آن را اصلاح کند؛ اعتبارسنجی شاهد و مجوزها پابرجاست.
 - اطلاعات صریح و اصلاح‌شدهٔ کاربر به یک وضعیت پیشنهادی تبدیل می‌شوند؛ تاریخچه حفظ و شواهد قدیمی بی‌اعتبار می‌شوند. ذخیره و اعمال این وضعیت با رهگیر است.
-- هسته فقط پیشنهاد می‌سازد؛ اجرای اقدام با tracker است. مسیر HTTP/SQLite در C2d action/review محلی را پس از restart بدون ثبت تکراری نگه می‌دارد؛ UI هنوز به آن وصل نیست. [قرارداد recovery و retry](docs/persistent-core-handoff.md) و receiptها مرز نتیجه را مشخص می‌کنند.
+- هسته فقط پیشنهاد می‌سازد؛ اجرای اقدام با tracker است. مسیر HTTP/SQLite در C2d action/review محلی را پس از restart بدون ثبت تکراری نگه می‌دارد؛ UI در U3a با همان envelope/hash و retry وصل است. [قرارداد recovery و retry](docs/persistent-core-handoff.md) و receiptها مرز نتیجه را مشخص می‌کنند.
 - پاسخ بدون citation رد می‌شود؛ citation معتبر، پشتیبانی معنایی ادعا یا جلوگیری کلی از حدس‌زدن محیط/حل مسئله را تضمین نمی‌کند. بازبینی کل پیشنهاد همچنان لازم است.
 
 ## بودجه و ارزیابی
