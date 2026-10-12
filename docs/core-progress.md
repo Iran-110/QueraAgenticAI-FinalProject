@@ -2,6 +2,47 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-13 — connected offline UI/index pilot (U3a/P4a/C2e)
+
+PR30 is published on main at `6e719e9`; PR31's exact reviewed Windows worker
+fix (`a550bf1`) is published at `877601c`. Its
+[main CI](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38314737701)
+passed. The current integration contains both releases and preserves the
+existing core contracts, RAG adapter and sole SQLite tracker.
+
+On clean `c14314f`, **2,218 pytest tests** pass. The preregistered UI review
+comparison improves the same six operational checks from **2/6 to 6/6**:
+stable authenticated approval, immutable lost-ACK retry, original receipt after
+backend recreation, correction and one local action. Draft/source display is
+bound to the canonical approved handoff. Backend protocol is rediscovered before
+POST; an unavailable or incompatible backend cannot change the pending request.
+The active business case survives Streamlit widget cleanup on failed health.
+
+The bounded builder opens actual Chroma with explicit local lexical vectors:
+**14 approved docs/API sources, 30 lossless raw chunks**, no Issues/comments or
+release notes. Content, version identities, spans, source hashes and manifest
+are verified, including returned query rows. The actual unchanged adapter passes
+seven membership/version/limit probes. Raw index text is lossless; the existing
+EvidenceHit contract trims boundary whitespace in 14 of 30 excerpts. The seed
+profile validates 14 packaged file hashes and reports candidate family links;
+it does not establish semantic extraction quality or final duplicate exclusions.
+
+Actual TCP tests use two fresh server interpreters with the same database and
+index; Streamlit AppTest runs the page against the connected ASGI backend. The
+separate fixed-evidence HTTP protocol remains **457/457**, core/SQLite **49/49**,
+and real adapter with injected collections **132/132**. All three demos pass.
+[Pinned receipts](../experiments/ui_review_acceptance/verification-c14314f.json)
+and [commands, scopes and limitations](offline-ui-index-pilot.fa.md) are public.
+CI now includes a Windows connected-pilot job; only its actual green result can
+establish that platform's acceptance.
+
+This is a private local maintainer console and a scripted ask/escalate pilot,
+not real model/RAG quality. Browser authentication and recovery after complete
+UI-session loss remain product work. E1/E2 split/rubric, R2/R4 final corpus/dev
+retrieval, C4/E4/E5 model evaluation and C5 billing reconciliation remain open.
+No provider, paid embedding, .env key or production ledger was used; API cost
+is zero and the existing halt is preserved. No team message was sent.
+
 ## 2026-10-12 — PR29 release and persistent HTTP composition (C2d)
 
 After final exact-head review and 63 focused checks, PR29 merged to main at

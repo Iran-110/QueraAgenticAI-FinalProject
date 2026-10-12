@@ -1,6 +1,6 @@
 # plan و checklist تیم — Streamlit Support Assistant
 
-به‌روزرسانی: ۲۰۲۶-۱۰-۱۲. این نسخه ادامهٔ plan محمدحسن روی `main` در commit `2ead870` است؛ [نسخهٔ قبلی](archive/plan-before-task-checklist.md) حفظ شده. مبنای regressionهای بازبینی `6131091` بود؛ انتشار tracker با `464e55e` و سپس #21 با `94b60e1` و [CI موفق](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38151154794) ثبت شده‌اند. مبنای baseline تازهٔ C2a همین `94b60e1` است. این فایل برای تقسیم کار و شرط پایان taskهاست؛ روزهای sprint قبلی را تاریخ تحویل حساب نمی‌کنیم. الزام‌ها از صورت اصلی پروژه می‌آیند، نه از ابزارها و frameworkهای پیشنهادی plan.
+به‌روزرسانی: ۲۰۲۶-۱۰-۱۳. این نسخه ادامهٔ plan محمدحسن روی `main` در commit `2ead870` است؛ [نسخهٔ قبلی](archive/plan-before-task-checklist.md) حفظ شده. مبنای regressionهای بازبینی `6131091` بود؛ انتشار tracker با `464e55e` و سپس #21 با `94b60e1` و [CI موفق](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38151154794) ثبت شده‌اند. مبنای baseline تازهٔ C2a همین `94b60e1` است. این فایل برای تقسیم کار و شرط پایان taskهاست؛ روزهای sprint قبلی را تاریخ تحویل حساب نمی‌کنیم. الزام‌ها از صورت اصلی پروژه می‌آیند، نه از ابزارها و frameworkهای پیشنهادی plan.
 
 ## وضعیت فعلی
 
@@ -14,7 +14,7 @@
 
 تغییرات جدید core از طریق [PR #7](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/7) با merge commit `85b6027` به `main` رسیدند. [گزارش V8](../docs/controlled-core-v8.fa.md)، [گزارش V9](../docs/controlled-core-v9.fa.md) و [قرارداد GroundedPlan](../docs/extractive-core.md) شواهد این milestone هستند. ۱۴۱۴ تست آفلاین در milestone محلی و ۱۴۲۸ تست همراه API/UI در CI ترکیب PR با main پاس شدند؛ نتیجهٔ RAG واقعی یا test نهایی نیست. GroundedPlan اختیاری است و پیش‌فرض production تغییر نکرده.
 
-### قدم جاری پس از پذیرش HTTP/SQLite — ۲۰۲۶-۱۰-۱۲
+### قدم جاری پس از پذیرش HTTP/SQLite — ۲۰۲۶-۱۰-۱۳
 
 [PR #27](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/27) با `4162079`
 به `feat/rag-module` و بعد [PR #23](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/23)
@@ -26,14 +26,14 @@
 core/SQLite دوباره پاس شدند. کد و fixture با اجرای تمیز `326480d` یکسان‌اند؛
 [شواهد انتشار](../experiments/retrieval_acceptance/release-main-ec1a1f0.json)
 و [حدود پذیرش](../docs/rag-adapter-acceptance.fa.md) ثبت‌اند.
-انتشار R3 فقط port آفلاین را بست. پس از آن #29 روی main `cddef782` منتشر شد؛ مسیر پایدار HTTP/SQLite در #30 روی main `6e719e9` منتشر شد؛ [receipt ۴۵۷/۴۵۷](../docs/persistent-http.fa.md). اتصال UI/index محدود در [U3a/P4a](../docs/offline-ui-index-pilot.fa.md) آزمایش شده؛ corpus/index نهایی و کیفیت مدل همچنان بازند.
+انتشار R3 فقط port آفلاین را بست. پس از آن #29 روی main `cddef782` منتشر شد؛ مسیر پایدار HTTP/SQLite در #30 روی main `6e719e9` منتشر شد؛ [receipt ۴۵۷/۴۵۷](../docs/persistent-http.fa.md). اصلاح Windows بهنام در [PR #31](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/31) با `877601c` روی main است و [CI آن](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38314737701) پاس شد. اتصال UI/index محدود در [U3a/P4a](../docs/offline-ui-index-pilot.fa.md) آزمایش شده؛ [receipt روی source تمیز `c14314f`](../experiments/ui_review_acceptance/verification-c14314f.json): ۲۲۱۸ pytest، UI baseline ۲/۶ و نسخهٔ جدید ۶/۶، Chroma واقعی ۱۴ source / ۳۰ chunk، HTTP پایدار ۴۵۷/۴۵۷. این اعداد پذیرش عملیاتی‌اند؛ corpus/index نهایی و کیفیت مدل همچنان بازند.
 
 | نفر / task | قدم بعدی | خروجی لازم برای پذیرش |
 | --- | --- | --- |
-| حسن — R1/R2/R4 و بخش index در P4 | profile و builder کوچک U3a/P4a را بازبینی کند؛ پس از E1 خانواده‌ها/linkage را بررسی و corpus/index نهایی نسخه‌دار بسازد | provenance و segmentation، allowlist/exclusion، hash و snapshot index، دستور بازتولید و receipt retrieval روی dev؛ `index_data` قدیمی تا builder مجاز مسدود است |
+| حسن — R1/R2/R4 و بخش index در P4 | از profile و builder موجود شروع کند؛ با محمدحسن exclusion خانواده‌ها را از manifest E1 بگیرد، corpus/index نهایی نسخه‌دار بسازد و retrieval را روی dev بررسی کند | PR با provenance، segmentation و coverage؛ exclusion خود case، جواب، comment و duplicateها؛ snapshot/hash و دستور build تازه؛ sourceهای لازم/مفقود و version scope روی dev، بدون tuning روی test؛ `index_data` قدیمی هنوز مسدود است |
 | محمدحسن — E1/E2/U3 | خانواده‌ها و rubric را پیش ببرد؛ مسیر runnable U3a را برای تنظیم/evaluation نهایی به کار بگیرد | manifest dev/test برای حسن؛ smoke مرورگر واقعی؛ source support و سؤال ضروری با داوری مستقل؛ AppTest و payload retry در U3a پاس‌اند |
 | محمد بهنام — T4، مشترک با U3 | اتصال C2d را review و تنظیم database/credential را با محمدحسن جمع کند | همان receipt restart/retry/rollback؛ وضعیت ابزار در evaluation و پیکربندی نهایی؛ tracker دوم یا reset نساختن |
-| ساسان — C2d/C4/C5، مشترک با P4 | انتشار U3a/P4a و review اتصال نهایی تیم؛ baseline تصمیم مدل پس از رفع مستند halt | حفظ receiptها/fixture؛ نتیجهٔ HTTP عملیاتی از کیفیت RAG/مدل جدا؛ reconciliation هزینه پیش از live |
+| ساسان — C2e/C4/C5، مشترک با P4 | review و انتشار U3a/P4a؛ سپس پذیرش snapshot نهایی حسن و baseline تصمیم مدل پس از رفع مستند halt | حفظ receiptها/fixture؛ تست همان قرارداد روی index نهایی؛ source support و سؤال ضروری با معیار E2؛ reconciliation هزینه پیش از live |
 
 انتخاب caseها و کار API می‌توانند هم‌زمان جلو بروند. برای E1، seed در repo
 موجود است؛ منتظر ZIP یا index نمانیم. caseها، جواب‌ها و duplicateهای خانوادهٔ

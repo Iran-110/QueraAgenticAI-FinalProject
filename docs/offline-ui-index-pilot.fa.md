@@ -111,6 +111,13 @@ cross-browser recovery به flow محصول جدا نیاز داریم. کنسو
 baseline **۲/۶** و نسخهٔ اصلاح‌شده **۶/۶** است. baseline ورودی و correction را
 ثبت می‌کرد، اما envelope approval پایدار را نداشت؛ این نسبت نمرهٔ کیفیت نیست.
 
+[receipt baseline](../experiments/ui_review_acceptance/results-baseline-c14314f.json)،
+[receipt نسخهٔ جدید](../experiments/ui_review_acceptance/results-current-c14314f.json)،
+[receipt index واقعی](../experiments/corpus/local-index-c14314f.json) و
+[تأیید اجرا روی checkout تمیز `c14314f`](../experiments/ui_review_acceptance/verification-c14314f.json)
+همراه hash کد، fixture و protocol ثبت‌اند. ۲۲۱۸ pytest، Ruff و سه demo پاس‌اند؛
+کنترل‌های HTTP/SQLite، core/tracker و adapter ثابت به‌ترتیب ۴۵۷، ۴۹ و ۱۳۲ هستند.
+
 ```bash
 uv run python scripts/ui_review_acceptance.py --baseline --output /tmp/ui-baseline-new.json
 uv run python scripts/ui_review_acceptance.py --output /tmp/ui-current-new.json
