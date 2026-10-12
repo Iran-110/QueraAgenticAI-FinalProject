@@ -12,6 +12,11 @@ tracker port with lazy per-run adapters and full handoffs. Use it for persistent
 ingress rather than copying test-harness policy into the API; HTTP authentication,
 durable run status and atomic lifecycle staging still need their owners' work.
 
+The [HTTP pilot acceptance kit](http-pilot-acceptance.fa.md) reuses the registered
+dev fixture and CaseRun. Same-process correction, review and replay pass; fresh
+process restart rejects the memory API. Its CI expected-gap flag is a negative
+control, never acceptance of persistence. Run the same gates after U3/T4 wiring.
+
 ## A runnable offline adapter example
 
 Run `uv sync --locked --group dev` from the repository root, then copy this block
@@ -72,9 +77,9 @@ scripted until your module's behavior is verified. The public ports live in
 
 ## Retrieval handoff
 
-The first Chroma backend is under review in PR #23. Its pinned-head
-[handoff review and R3 acceptance checklist](rag-handoff-review-2026-10-11.fa.md)
-describe the adapter work still needed; it is not connected by this guide.
+PR #23 and its repair PR #27 are merged. The actual Chroma adapter/backend with
+injected fixed collections passes the [R3 port acceptance](rag-adapter-acceptance.fa.md).
+Frozen corpus/index construction and real retrieval measurements remain R1/R2/R4/P4.
 
 The [reusable RAG/core acceptance kit](rag-core-acceptance.fa.md) runs the same
 factory protocol against fixed evidence and a four-turn SQLite pilot. Inject
@@ -210,6 +215,15 @@ memory record on local approval and accepts an explicit `reply_to_proposal_id`
 with a stable event. This is not reviewer authentication. The
 [HTTP examples and receipt semantics](user-turns.md#additive-offline-http-ingress)
 and [C2/P2 handoff](user-intake-pilot.fa.md) specify the remaining UI/tracker work.
+
+HTTP now composes server-owned committed user history with the same bounded
+`build_reasoning_message` helper as CoreTurnService. The original problem,
+intermediate code and exact latest message reach the engine; active facts come
+only from CaseState. Historical versions are not current facts or source evidence.
+Only the immediately preceding canonical approved/bound question enters assistant
+context. Drafts, rejected edits and unrelated approved text are excluded. Overflow
+stops before adapter construction with committed ingress and safe event replay.
+GroundedRequest suppliers must capture the actual composed invocation message.
 
 UI renders `RunResult.analysis` only when `status == "awaiting_approval"`. This is
 a pending proposal, not an executed action or a solved case. Show drafts,

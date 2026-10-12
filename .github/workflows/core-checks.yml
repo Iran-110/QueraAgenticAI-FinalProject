@@ -70,6 +70,8 @@ jobs:
         run: uv run agent-app turn-demo
       - name: Replay registered dev through persistent core service without network
         run: uv run python scripts/core_tracker_pilot.py --output "$RUNNER_TEMP/core-tracker-pilot.json"
+      - name: Verify HTTP same-process pilot and reproduce memory restart rejection
+        run: uv run python scripts/http_pilot_acceptance.py --expect-memory-gap --output "$RUNNER_TEMP/http-pilot-memory-gap.json"
       - name: Accept retrieval fixture and core SQLite composition without an index
         run: |
           if [ -f src/agent_app/retrieval/adapter.py ]; then

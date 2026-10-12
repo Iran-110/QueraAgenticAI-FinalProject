@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "protocol_id": "http-pilot-acceptance-v1",
+  "task_ids": [
+    "C2c",
+    "C2",
+    "U3",
+    "T4"
+  ],
+  "registered_on": "2026-10-12",
+  "baseline_source_commit": "4f576d67dfa08822b9250139c15b0e339b98c381",
+  "fixture": "data/evaluation/dev/pilot-12782.json",
+  "fixture_sha256": "f4b9cef54c98dd875ff0e55f41aebcde19a9b02717b7cb8c5525eba9575f2855",
+  "fixture_modified": false,
+  "case_family": [
+    12782,
+    12629
+  ],
+  "exposure": "Existing exposed, answer-informed dev case; authored follow-ups. Not held-out.",
+  "mode": "offline_http_with_scripted_ports",
+  "quality_claim": false,
+  "requirements": [
+    {
+      "id": "existing_pilot",
+      "given": "Four registered turns and frozen official evidence; current turn only is visible to the agent.",
+      "missing": "No real model or index; semantic quality is unmeasured.",
+      "acceptable": "All existing CaseRun checks pass through actual HTTP routes."
+    },
+    {
+      "id": "correction",
+      "given": "User explicitly corrects1.50.0 to1.49.1; latest bundle excludes1.50 release.",
+      "missing": "No exact1.49.1 source or parent callback.",
+      "acceptable": "Only1.49.1 active;1.50 superseded; retired checks/evidence absent; old proposal cannot release any action."
+    },
+    {
+      "id": "refused_review",
+      "given": "Old revision, replaced proposal or pre-edit proposal ID.",
+      "missing": "No current authorization for that proposal.",
+      "acceptable": "HTTP409; entire current case projection and action history unchanged; no new ports."
+    },
+    {
+      "id": "event_retry",
+      "given": "Identical original event and reply binding with stable turn_id and original expected revision.",
+      "missing": "The client may not know the prior response.",
+      "acceptable": "HTTP200 with original intake hashes/committed revision and replayed=true; current state unchanged; zero factory/retrieval/reasoning calls."
+    },
+    {
+      "id": "event_conflict",
+      "given": "Existing event identity reused with a different validated message.",
+      "missing": "No authorization to replace the committed event.",
+      "acceptable": "HTTP409 EventConflict; entire current view unchanged; zero ports."
+    },
+    {
+      "id": "short_reply_context",
+      "given": "Initial multiselect/fragment issue plus approved canonical question and bare1.50.0 reply.",
+      "missing": "Parent callback and full-app cause remain unknown.",
+      "acceptable": "Observed reasoning input still contains the original issue message and current reply; no future turn/gold."
+    },
+    {
+      "id": "review_retry",
+      "given": "Same successfully approved proposal and original review payload; its HTTP response may have been lost.",
+      "missing": "Client does not know whether approval committed.",
+      "acceptable": "Return same durable receipt or reject safely without changing state/actions; exactly one release. Current API lacks authenticated stable review_id/hash."
+    },
+    {
+      "id": "client_reconnect",
+      "given": "Same application process; only HTTP client is recreated.",
+      "missing": "No application restart has occurred.",
+      "acceptable": "State remains identical; result explicitly labelled reconnect, never restart."
+    },
+    {
+      "id": "hard_restart",
+      "given": "New interpreter/process with the same temporary storage path after registered checkpoint.",
+      "missing": "Old process globals are gone.",
+      "acceptable": "Revision, active/superseded facts, question, pending full handoff, ingress receipt, log and action history preserved; old event/review retry performs no new work."
+    },
+    {
+      "id": "interrupted_setup",
+      "given": "Input committed, then adapter construction fails before reasoning.",
+      "missing": "No completed proposal/outcome.",
+      "acceptable": "Same-process and after-restart original event replay never retries setup/retrieval/reasoning; stored stopped state remains, no proposal is invented."
+    }
+  ],
+  "restart_checkpoints": [
+    "approved_question_turn1",
+    "pending_answer_turn2",
+    "edited_approval_turn3",
+    "withdrawal_rejection_turn4",
+    "committed_input_before_adapter"
+  ],
+  "decision_policy": "Existing fixture scripts/gold unchanged; this protocol measures operations, not decision or RAG quality.",
+  "network_policy": "No real socket connections, providers, embedding, index, .env, or production ledger. TestClient invokes ASGI routes in memory.",
+  "acceptance_policy": "A missing case after restart is failure, even if old approval gets404. Fresh TestClient alone is not restart. Never reset or copy memory into an artificial durable backend to pass.",
+  "negative_controls": [
+    "ports invoked silently on event replay",
+    "refused approval mutates the case",
+    "hard restart omitted",
+    "restart state lost but retry refused",
+    "stale evidence or facts retained",
+    "same review releases twice"
+  ]
+}

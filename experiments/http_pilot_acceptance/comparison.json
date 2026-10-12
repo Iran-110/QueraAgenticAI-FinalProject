@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "protocol_sha256": "ad7457d2738abf57501d4070e88c77e2b4478d8d31b22564daa9db1ec2100176",
+  "fixture_sha256": "f4b9cef54c98dd875ff0e55f41aebcde19a9b02717b7cb8c5525eba9575f2855",
+  "baseline": {
+    "path": "baseline-89eab33.json",
+    "sha256": "17450ad37b35faa0cceb2edfee30e34f252cf192dd0428b4cadc207115806296",
+    "commit": "89eab33dcaa077b1444e97d5df7f87170460f237",
+    "same_process_checks": [
+      301,
+      302
+    ],
+    "restart_checks": [
+      65,
+      102
+    ],
+    "accepted": false
+  },
+  "after": {
+    "path": "results-60c0712.json",
+    "sha256": "c8edf7a6378ac9ef83247322d5ea8880bb1a17d33d0dbbe26b1c03cf03a7f77c",
+    "commit": "60c0712210a16af7d23cf8232269aff9e2311f9b",
+    "same_process_checks": [
+      302,
+      302
+    ],
+    "restart_checks": [
+      65,
+      102
+    ],
+    "accepted": false
+  },
+  "changed_runtime_files": [
+    "src/agent_app/api.py"
+  ],
+  "changed_checks": [
+    {
+      "id": "context:short_reply_retains_original_problem",
+      "before": false,
+      "after": true
+    }
+  ],
+  "scope": "Operational regression comparison on an exposed scripted dev fixture; no quality score. All five restart checkpoints still fail persistence.",
+  "quality_claim": false,
+  "api_cost_usd": 0
+}

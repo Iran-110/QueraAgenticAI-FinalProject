@@ -24,6 +24,7 @@ from agent_app.contracts import (
     ApprovedReplyQuestion,
     CaseState,
     Contract,
+    ConversationEntry,
     EvidenceBundle,
     GroundedRequest,
     Identifier,
@@ -33,10 +34,12 @@ from agent_app.contracts import (
     RunResult,
     ShortText,
     Text,
+    TurnConversation,
     UserTurn,
 )
 from agent_app.demo import SNAPSHOT_ID, _answer, _ask, _evidence
 from agent_app.orchestration import SupportEngine
+from agent_app.orchestration.conversation import ConversationRejected, build_reasoning_message
 from agent_app.orchestration.handoff import (
     HandoffCode,
     HandoffRejected,
@@ -146,6 +149,9 @@ class _Case:
     pending_edited_from: str | None = None
     ingress: dict[str, dict[str, Any]] = field(default_factory=dict)
     last_intake: dict[str, Any] | None = None
+    # Server-owned committed messages. Drafts and rejected edits never enter
+    # this context; historical text never supplies active facts or evidence.
+    history: list[ConversationEntry] = field(default_factory=list)
 
 
 _cases: dict[str, _Case] = {}
@@ -395,6 +401,42 @@ def post_message(case_id: CaseId, request: MessageRequest) -> dict[str, Any]:
         # accept the same event twice. This is process-local, not durable CAS.
         _cases[case_id] = case
         case.log.append({"role": "user", "text": request.message})
+        case.history.append(
+            ConversationEntry(
+                actor="user",
+                reference_id=turn.turn_id,
+                revision=case.state.case_revision,
+                text=request.message,
+            )
+        )
+
+        try:
+            reasoning_message = build_reasoning_message(
+                TurnConversation(
+                    entries=tuple(case.history),
+                    latest_turn_id=turn.turn_id,
+                    committed_revision=case.state.case_revision,
+                    latest_message=request.message,
+                    reply_to_proposal_id=(
+                        request.reply_to_proposal_id
+                        if preparation == "canonical_version_reply"
+                        else None
+                    ),
+                )
+            )
+        except (ConversationRejected, ValidationError) as error:
+            code = (
+                error.code
+                if isinstance(error, ConversationRejected)
+                else "InvalidConversationInput"
+            )
+            case.log.append(
+                {
+                    "role": "system",
+                    "text": f"The run stopped (error: {code}). Nothing was proposed.",
+                }
+            )
+            return _view(case_id)
 
         try:
             adapters = _adapters(request.scenario)
@@ -415,7 +457,7 @@ def post_message(case_id: CaseId, request: MessageRequest) -> dict[str, Any]:
                 }
             )
             return _view(case_id)
-        result = engine.run(case.state, request.message)
+        result = engine.run(case.state, reasoning_message)
         if result.status == "awaiting_approval":
             try:
                 handoff = build_handoff(
@@ -515,6 +557,14 @@ def post_decision(case_id: CaseId, request: DecisionRequest) -> dict[str, Any]:
                     "decision": pending["decision"],
                     "edited": pending["edited"],
                 }
+            )
+            case.history.append(
+                ConversationEntry(
+                    actor="assistant",
+                    reference_id=pending["proposal_id"],
+                    revision=current,
+                    text=pending["user_draft"],
+                )
             )
         elif request.decision == "reject":
             tracker.submit_decision(case_id, "reject")
