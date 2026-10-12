@@ -1,0 +1,1185 @@
+{
+  "method": "Deterministic SHA-256 round-robin across four scope queries, newest/oldest first 100 each; no outcome filtering",
+  "requested": 240,
+  "selected": 240,
+  "candidate_unique": 535,
+  "queries": [
+    {
+      "category": "session_state",
+      "order": "desc",
+      "query": "repo:streamlit/streamlit is:issue label:\"feature:st.session_state\" created:<=2026-10-06",
+      "total_matching": 62,
+      "returned": 62,
+      "incomplete_results": false,
+      "page": 1
+    },
+    {
+      "category": "session_state",
+      "order": "asc",
+      "query": "repo:streamlit/streamlit is:issue label:\"feature:st.session_state\" created:<=2026-10-06",
+      "total_matching": 62,
+      "returned": 62,
+      "incomplete_results": false,
+      "page": 1
+    },
+    {
+      "category": "widgets",
+      "order": "desc",
+      "query": "repo:streamlit/streamlit is:issue label:\"area:widgets\" created:<=2026-10-06",
+      "total_matching": 156,
+      "returned": 100,
+      "incomplete_results": false,
+      "page": 1
+    },
+    {
+      "category": "widgets",
+      "order": "asc",
+      "query": "repo:streamlit/streamlit is:issue label:\"area:widgets\" created:<=2026-10-06",
+      "total_matching": 156,
+      "returned": 100,
+      "incomplete_results": false,
+      "page": 1
+    },
+    {
+      "category": "rerun",
+      "order": "desc",
+      "query": "repo:streamlit/streamlit is:issue rerun in:title,body created:<=2026-10-06",
+      "total_matching": 436,
+      "returned": 100,
+      "incomplete_results": false,
+      "page": 1
+    },
+    {
+      "category": "rerun",
+      "order": "asc",
+      "query": "repo:streamlit/streamlit is:issue rerun in:title,body created:<=2026-10-06",
+      "total_matching": 436,
+      "returned": 100,
+      "incomplete_results": false,
+      "page": 1
+    },
+    {
+      "category": "callbacks",
+      "order": "desc",
+      "query": "repo:streamlit/streamlit is:issue callback in:title,body created:<=2026-10-06",
+      "total_matching": 170,
+      "returned": 100,
+      "incomplete_results": false,
+      "page": 1
+    },
+    {
+      "category": "callbacks",
+      "order": "asc",
+      "query": "repo:streamlit/streamlit is:issue callback in:title,body created:<=2026-10-06",
+      "total_matching": 170,
+      "returned": 100,
+      "incomplete_results": false,
+      "page": 1
+    }
+  ],
+  "issue_numbers": [
+    64,
+    74,
+    77,
+    156,
+    219,
+    243,
+    268,
+    303,
+    306,
+    354,
+    402,
+    424,
+    511,
+    588,
+    678,
+    863,
+    894,
+    898,
+    974,
+    1063,
+    1085,
+    1155,
+    1185,
+    1428,
+    1644,
+    1781,
+    1799,
+    1857,
+    1924,
+    2017,
+    2069,
+    2147,
+    2181,
+    2213,
+    2235,
+    2253,
+    2290,
+    2323,
+    2379,
+    2429,
+    2584,
+    2607,
+    2701,
+    2722,
+    2995,
+    3000,
+    3054,
+    3157,
+    3355,
+    3379,
+    3533,
+    3586,
+    3601,
+    3732,
+    3736,
+    3854,
+    3873,
+    3899,
+    3907,
+    4113,
+    4164,
+    4256,
+    4331,
+    4458,
+    4538,
+    4540,
+    4553,
+    4595,
+    4713,
+    4873,
+    4877,
+    4884,
+    5018,
+    5044,
+    5171,
+    5268,
+    5305,
+    5368,
+    5369,
+    5498,
+    5567,
+    5584,
+    5591,
+    5604,
+    5618,
+    5620,
+    5678,
+    5689,
+    5690,
+    5715,
+    5813,
+    5815,
+    5827,
+    5872,
+    5880,
+    5936,
+    6074,
+    6079,
+    6166,
+    6320,
+    6350,
+    6370,
+    6415,
+    6508,
+    6571,
+    6718,
+    6818,
+    6867,
+    6969,
+    6970,
+    7015,
+    7037,
+    7054,
+    7084,
+    7087,
+    7089,
+    7127,
+    7144,
+    7165,
+    7176,
+    7206,
+    7216,
+    7299,
+    7338,
+    7359,
+    7420,
+    7534,
+    7538,
+    7548,
+    7710,
+    7862,
+    7947,
+    8058,
+    8061,
+    8108,
+    8129,
+    8136,
+    8285,
+    8426,
+    8518,
+    8608,
+    8674,
+    8700,
+    8715,
+    8899,
+    8901,
+    9002,
+    9031,
+    9055,
+    9082,
+    9180,
+    9259,
+    9342,
+    9370,
+    9415,
+    9455,
+    9487,
+    9621,
+    9770,
+    9786,
+    9871,
+    9934,
+    10089,
+    10102,
+    10496,
+    10514,
+    10906,
+    10928,
+    11012,
+    11086,
+    11115,
+    11158,
+    11660,
+    11679,
+    11950,
+    12022,
+    12051,
+    12165,
+    12322,
+    12342,
+    12395,
+    12396,
+    12506,
+    12607,
+    12633,
+    12740,
+    12782,
+    12980,
+    13112,
+    13147,
+    13337,
+    13435,
+    13773,
+    13953,
+    13963,
+    14350,
+    14523,
+    14528,
+    14607,
+    14670,
+    14717,
+    14876,
+    14931,
+    14943,
+    14968,
+    14989,
+    15042,
+    15378,
+    15544,
+    15568,
+    15863,
+    15893,
+    16027,
+    16085,
+    16242,
+    16247,
+    16281,
+    16312,
+    16375,
+    16388,
+    16474,
+    16480,
+    16537,
+    16608,
+    16661,
+    16721,
+    16727,
+    16730,
+    16732,
+    16801,
+    16803,
+    16841,
+    16914,
+    17026,
+    17030,
+    17093,
+    17112,
+    17119,
+    17215,
+    17249
+  ],
+  "matches": {
+    "64": [
+      "rerun-asc"
+    ],
+    "74": [
+      "widgets-asc"
+    ],
+    "77": [
+      "rerun-asc"
+    ],
+    "156": [
+      "widgets-asc",
+      "rerun-asc"
+    ],
+    "219": [
+      "widgets-asc"
+    ],
+    "243": [
+      "callbacks-asc"
+    ],
+    "268": [
+      "widgets-asc"
+    ],
+    "303": [
+      "rerun-asc"
+    ],
+    "306": [
+      "rerun-asc"
+    ],
+    "354": [
+      "rerun-asc"
+    ],
+    "402": [
+      "callbacks-asc"
+    ],
+    "424": [
+      "widgets-asc"
+    ],
+    "511": [
+      "rerun-asc"
+    ],
+    "588": [
+      "callbacks-asc"
+    ],
+    "678": [
+      "widgets-asc"
+    ],
+    "863": [
+      "widgets-asc"
+    ],
+    "894": [
+      "widgets-asc"
+    ],
+    "898": [
+      "rerun-asc"
+    ],
+    "974": [
+      "rerun-asc"
+    ],
+    "1063": [
+      "callbacks-asc"
+    ],
+    "1085": [
+      "callbacks-asc"
+    ],
+    "1155": [
+      "rerun-asc"
+    ],
+    "1185": [
+      "rerun-asc"
+    ],
+    "1428": [
+      "rerun-asc"
+    ],
+    "1644": [
+      "rerun-asc"
+    ],
+    "1781": [
+      "widgets-asc"
+    ],
+    "1799": [
+      "widgets-asc"
+    ],
+    "1857": [
+      "rerun-asc"
+    ],
+    "1924": [
+      "widgets-asc"
+    ],
+    "2017": [
+      "rerun-asc"
+    ],
+    "2069": [
+      "rerun-asc"
+    ],
+    "2147": [
+      "widgets-asc"
+    ],
+    "2181": [
+      "callbacks-asc"
+    ],
+    "2213": [
+      "rerun-asc"
+    ],
+    "2235": [
+      "rerun-asc"
+    ],
+    "2253": [
+      "widgets-asc"
+    ],
+    "2290": [
+      "widgets-asc"
+    ],
+    "2323": [
+      "rerun-asc"
+    ],
+    "2379": [
+      "rerun-asc"
+    ],
+    "2429": [
+      "widgets-asc",
+      "rerun-asc"
+    ],
+    "2584": [
+      "widgets-asc"
+    ],
+    "2607": [
+      "rerun-asc"
+    ],
+    "2701": [
+      "widgets-asc",
+      "rerun-asc"
+    ],
+    "2722": [
+      "rerun-asc"
+    ],
+    "2995": [
+      "rerun-asc"
+    ],
+    "3000": [
+      "rerun-asc"
+    ],
+    "3054": [
+      "rerun-asc"
+    ],
+    "3157": [
+      "widgets-asc"
+    ],
+    "3355": [
+      "rerun-asc"
+    ],
+    "3379": [
+      "widgets-asc"
+    ],
+    "3533": [
+      "rerun-asc"
+    ],
+    "3586": [
+      "widgets-asc",
+      "rerun-asc"
+    ],
+    "3601": [
+      "session_state-desc",
+      "session_state-asc",
+      "callbacks-asc"
+    ],
+    "3732": [
+      "rerun-asc"
+    ],
+    "3736": [
+      "rerun-asc"
+    ],
+    "3854": [
+      "callbacks-asc"
+    ],
+    "3873": [
+      "widgets-asc"
+    ],
+    "3899": [
+      "widgets-asc",
+      "callbacks-asc"
+    ],
+    "3907": [
+      "callbacks-asc"
+    ],
+    "4113": [
+      "callbacks-asc"
+    ],
+    "4164": [
+      "callbacks-asc"
+    ],
+    "4256": [
+      "callbacks-asc"
+    ],
+    "4331": [
+      "callbacks-asc"
+    ],
+    "4458": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "4538": [
+      "session_state-desc",
+      "session_state-asc",
+      "callbacks-asc"
+    ],
+    "4540": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "4553": [
+      "callbacks-asc"
+    ],
+    "4595": [
+      "callbacks-asc"
+    ],
+    "4713": [
+      "callbacks-asc"
+    ],
+    "4873": [
+      "widgets-desc",
+      "widgets-asc"
+    ],
+    "4877": [
+      "callbacks-asc"
+    ],
+    "4884": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "5018": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "5044": [
+      "widgets-desc",
+      "widgets-asc"
+    ],
+    "5171": [
+      "widgets-desc",
+      "widgets-asc"
+    ],
+    "5268": [
+      "widgets-desc",
+      "widgets-asc"
+    ],
+    "5305": [
+      "session_state-desc",
+      "session_state-asc",
+      "callbacks-asc"
+    ],
+    "5368": [
+      "widgets-desc",
+      "widgets-asc"
+    ],
+    "5369": [
+      "widgets-desc",
+      "widgets-asc"
+    ],
+    "5498": [
+      "session_state-desc",
+      "session_state-asc",
+      "callbacks-asc"
+    ],
+    "5567": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "5584": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "5591": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "5604": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "5618": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "5620": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "5678": [
+      "widgets-desc",
+      "widgets-asc"
+    ],
+    "5689": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "5690": [
+      "widgets-desc",
+      "widgets-asc",
+      "callbacks-asc"
+    ],
+    "5715": [
+      "widgets-desc",
+      "widgets-asc"
+    ],
+    "5813": [
+      "session_state-desc",
+      "session_state-asc",
+      "widgets-desc",
+      "widgets-asc"
+    ],
+    "5815": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "5827": [
+      "widgets-desc",
+      "widgets-asc"
+    ],
+    "5872": [
+      "widgets-desc",
+      "widgets-asc"
+    ],
+    "5880": [
+      "session_state-desc",
+      "session_state-asc",
+      "callbacks-asc"
+    ],
+    "5936": [
+      "widgets-desc",
+      "widgets-asc"
+    ],
+    "6074": [
+      "session_state-desc",
+      "session_state-asc",
+      "widgets-desc",
+      "widgets-asc"
+    ],
+    "6079": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "6166": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "6320": [
+      "widgets-desc",
+      "widgets-asc"
+    ],
+    "6350": [
+      "session_state-desc",
+      "session_state-asc",
+      "widgets-desc",
+      "widgets-asc"
+    ],
+    "6370": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "6415": [
+      "callbacks-asc"
+    ],
+    "6508": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "6571": [
+      "widgets-desc",
+      "widgets-asc"
+    ],
+    "6718": [
+      "widgets-desc",
+      "widgets-asc"
+    ],
+    "6818": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "6867": [
+      "widgets-desc",
+      "widgets-asc"
+    ],
+    "6969": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "6970": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "7015": [
+      "callbacks-asc"
+    ],
+    "7037": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "7054": [
+      "callbacks-asc"
+    ],
+    "7084": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "7087": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "7089": [
+      "callbacks-asc"
+    ],
+    "7127": [
+      "widgets-desc",
+      "widgets-asc"
+    ],
+    "7144": [
+      "callbacks-asc"
+    ],
+    "7165": [
+      "widgets-desc",
+      "widgets-asc"
+    ],
+    "7176": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "7206": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "7216": [
+      "callbacks-asc"
+    ],
+    "7299": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "7338": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "7359": [
+      "widgets-desc",
+      "widgets-asc"
+    ],
+    "7420": [
+      "widgets-desc",
+      "widgets-asc"
+    ],
+    "7534": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "7538": [
+      "widgets-desc",
+      "widgets-asc"
+    ],
+    "7548": [
+      "callbacks-asc"
+    ],
+    "7710": [
+      "callbacks-desc",
+      "callbacks-asc"
+    ],
+    "7862": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "7947": [
+      "widgets-desc",
+      "widgets-asc"
+    ],
+    "8058": [
+      "callbacks-desc",
+      "callbacks-asc"
+    ],
+    "8061": [
+      "callbacks-desc",
+      "callbacks-asc"
+    ],
+    "8108": [
+      "callbacks-desc",
+      "callbacks-asc"
+    ],
+    "8129": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "8136": [
+      "callbacks-desc",
+      "callbacks-asc"
+    ],
+    "8285": [
+      "callbacks-desc",
+      "callbacks-asc"
+    ],
+    "8426": [
+      "callbacks-desc",
+      "callbacks-asc"
+    ],
+    "8518": [
+      "callbacks-desc",
+      "callbacks-asc"
+    ],
+    "8608": [
+      "session_state-desc",
+      "session_state-asc",
+      "callbacks-desc",
+      "callbacks-asc"
+    ],
+    "8674": [
+      "callbacks-desc",
+      "callbacks-asc"
+    ],
+    "8700": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "8715": [
+      "session_state-desc",
+      "session_state-asc",
+      "widgets-desc"
+    ],
+    "8899": [
+      "widgets-desc"
+    ],
+    "8901": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "9002": [
+      "callbacks-desc",
+      "callbacks-asc"
+    ],
+    "9031": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "9055": [
+      "callbacks-desc",
+      "callbacks-asc"
+    ],
+    "9082": [
+      "session_state-desc",
+      "session_state-asc",
+      "widgets-desc"
+    ],
+    "9180": [
+      "callbacks-desc",
+      "callbacks-asc"
+    ],
+    "9259": [
+      "callbacks-desc",
+      "callbacks-asc"
+    ],
+    "9342": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "9370": [
+      "callbacks-desc"
+    ],
+    "9415": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "9455": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "9487": [
+      "widgets-desc"
+    ],
+    "9621": [
+      "callbacks-desc"
+    ],
+    "9770": [
+      "widgets-desc"
+    ],
+    "9786": [
+      "callbacks-desc"
+    ],
+    "9871": [
+      "callbacks-desc"
+    ],
+    "9934": [
+      "widgets-desc"
+    ],
+    "10089": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "10102": [
+      "callbacks-desc"
+    ],
+    "10496": [
+      "callbacks-desc"
+    ],
+    "10514": [
+      "callbacks-desc"
+    ],
+    "10906": [
+      "widgets-desc"
+    ],
+    "10928": [
+      "callbacks-desc"
+    ],
+    "11012": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "11086": [
+      "callbacks-desc"
+    ],
+    "11115": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "11158": [
+      "callbacks-desc"
+    ],
+    "11660": [
+      "rerun-desc"
+    ],
+    "11679": [
+      "callbacks-desc"
+    ],
+    "11950": [
+      "rerun-desc"
+    ],
+    "12022": [
+      "session_state-desc",
+      "session_state-asc",
+      "rerun-desc"
+    ],
+    "12051": [
+      "callbacks-desc"
+    ],
+    "12165": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "12322": [
+      "callbacks-desc"
+    ],
+    "12342": [
+      "rerun-desc"
+    ],
+    "12395": [
+      "rerun-desc"
+    ],
+    "12396": [
+      "widgets-desc"
+    ],
+    "12506": [
+      "session_state-desc",
+      "session_state-asc",
+      "rerun-desc"
+    ],
+    "12607": [
+      "rerun-desc"
+    ],
+    "12633": [
+      "rerun-desc"
+    ],
+    "12740": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "12782": [
+      "callbacks-desc"
+    ],
+    "12980": [
+      "rerun-desc"
+    ],
+    "13112": [
+      "callbacks-desc"
+    ],
+    "13147": [
+      "widgets-desc"
+    ],
+    "13337": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "13435": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "13773": [
+      "rerun-desc",
+      "callbacks-desc"
+    ],
+    "13953": [
+      "widgets-desc"
+    ],
+    "13963": [
+      "rerun-desc"
+    ],
+    "14350": [
+      "rerun-desc"
+    ],
+    "14523": [
+      "rerun-desc"
+    ],
+    "14528": [
+      "rerun-desc",
+      "callbacks-desc"
+    ],
+    "14607": [
+      "callbacks-desc"
+    ],
+    "14670": [
+      "widgets-desc"
+    ],
+    "14717": [
+      "session_state-desc",
+      "session_state-asc",
+      "widgets-desc",
+      "callbacks-desc"
+    ],
+    "14876": [
+      "rerun-desc"
+    ],
+    "14931": [
+      "rerun-desc"
+    ],
+    "14943": [
+      "rerun-desc"
+    ],
+    "14968": [
+      "rerun-desc"
+    ],
+    "14989": [
+      "widgets-desc"
+    ],
+    "15042": [
+      "rerun-desc"
+    ],
+    "15378": [
+      "callbacks-desc"
+    ],
+    "15544": [
+      "widgets-desc"
+    ],
+    "15568": [
+      "callbacks-desc"
+    ],
+    "15863": [
+      "rerun-desc"
+    ],
+    "15893": [
+      "rerun-desc"
+    ],
+    "16027": [
+      "rerun-desc",
+      "callbacks-desc"
+    ],
+    "16085": [
+      "rerun-desc"
+    ],
+    "16242": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "16247": [
+      "rerun-desc"
+    ],
+    "16281": [
+      "rerun-desc"
+    ],
+    "16312": [
+      "widgets-desc",
+      "rerun-desc"
+    ],
+    "16375": [
+      "rerun-desc"
+    ],
+    "16388": [
+      "session_state-desc",
+      "session_state-asc",
+      "widgets-desc",
+      "rerun-desc",
+      "callbacks-desc"
+    ],
+    "16474": [
+      "widgets-desc"
+    ],
+    "16480": [
+      "rerun-desc"
+    ],
+    "16537": [
+      "widgets-desc"
+    ],
+    "16608": [
+      "rerun-desc"
+    ],
+    "16661": [
+      "rerun-desc",
+      "callbacks-desc"
+    ],
+    "16721": [
+      "widgets-desc",
+      "rerun-desc"
+    ],
+    "16727": [
+      "widgets-desc",
+      "callbacks-desc"
+    ],
+    "16730": [
+      "session_state-desc",
+      "session_state-asc"
+    ],
+    "16732": [
+      "rerun-desc",
+      "callbacks-desc"
+    ],
+    "16801": [
+      "rerun-desc",
+      "callbacks-desc"
+    ],
+    "16803": [
+      "callbacks-desc"
+    ],
+    "16841": [
+      "widgets-desc"
+    ],
+    "16914": [
+      "rerun-desc"
+    ],
+    "17026": [
+      "widgets-desc",
+      "rerun-desc"
+    ],
+    "17030": [
+      "rerun-desc"
+    ],
+    "17093": [
+      "session_state-desc",
+      "session_state-asc",
+      "widgets-desc"
+    ],
+    "17112": [
+      "rerun-desc",
+      "callbacks-desc"
+    ],
+    "17119": [
+      "session_state-desc",
+      "session_state-asc",
+      "widgets-desc",
+      "rerun-desc"
+    ],
+    "17215": [
+      "rerun-desc",
+      "callbacks-desc"
+    ],
+    "17249": [
+      "session_state-desc",
+      "session_state-asc",
+      "rerun-desc"
+    ]
+  }
+}

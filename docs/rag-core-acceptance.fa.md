@@ -87,22 +87,49 @@ collection برگردانده می‌شوند؛ mapper تولید باید خو�
 
 ```bash
 uv run python scripts/rag_acceptance.py \
-  --factory reviewed_binding:factory \
+  --factory agent_app.testing.chroma_binding:factory \
   --check-candidate src/agent_app/retrieval/adapter.py \
   --output /tmp/rag-candidate-new.json
 ```
 
-`reviewed_binding` placeholder است؛ هنوز binding واقعی ثبت نشده. قبل از import،
-constructor و importهای آن بررسی شوند تا client واقعی، embedding، دانلود مدل
-یا index اجرا نشود. CLI sandbox شبکه نیست؛ فقط binding بررسی‌شده و آفلاین
-مجاز است. این آزمایش نیازی به `.env` یا API ندارد و هزینهٔ API آن صفر است.
+binding در `agent_app.testing.chroma_binding` ثبت شده؛ client و دو collection
+ثابت به constructor واقعی `StreamlitRetriever` تزریق می‌شوند. constructor و
+search/mapper واقعی `ChromaRetrieverAdapter` اجرا می‌شوند. canonical IDها و
+metadata در rowهای native هستند؛ Bundle بیرون adapter ساخته یا اصلاح نمی‌شود.
+metadata نسخه به JSON scalar تبدیل می‌شود تا شکل metadata Chroma را نگه دارد.
+import Chroma lazy است و در این مسیر اصلاً اجرا نمی‌شود. برای smoke:
+
+```bash
+uv run python -m agent_app.retrieval.adapter --smoke
+```
+
+پیش از استفاده از factory دیگر، constructor و importهای آن بررسی شوند تا client
+واقعی، embedding، دانلود مدل یا index اجرا نشود. CLI sandbox شبکه نیست؛ فقط
+binding بررسی‌شده و آفلاین مجاز است. این آزمایش نیازی به `.env` یا API ندارد و هزینهٔ API آن صفر است.
 ادعای هزینه برای factory دلخواه و بررسی‌نشده معتبر نیست.
 
 `--check-candidate` فقط AST فایل را می‌خواند: فایل خالی، syntax نامعتبر یا نبودن
 `ChromaRetrieverAdapter.search` رد می‌شود. این check هیچ import/indexی نمی‌کند
 و به‌تنهایی شاهد پذیرش adapter نیست؛ receipt آن را از اجرای factory جدا می‌کند.
-CI، fixture را اجرا می‌کند و در صورت حضور entrypoint، همین preflight را هم
-می‌گیرد؛ نتیجهٔ CI پیش‌فرض فقط پذیرش fixture و سلامت entrypoint است.
+CI علاوه بر fixture/preflight، همین factory واقعی و smoke را جدا اجرا می‌کند.
+pytest نیز اجرای ۱۴ case / ۱۳۲ check روی factory واقعی را با جلوگیری از import
+Chroma بررسی می‌کند. هیچ‌کدام index یا کیفیت retrieval واقعی را نمی‌سنجند.
+
+## اصلاح مشاهدهٔ refinement — ۲۰۲۶-۱۰-۱۲
+
+پایلوت قبلی برای بررسی دو query از `calls[-2:]` استفاده می‌کرد و ناخواسته یک
+read به‌ازای هر query فرض می‌کرد. backend واقعی برای docs و issues دو read دارد؛
+پس `A,A,B,B` به‌اشتباه fail می‌شد. اکنون مجموعهٔ queryهای خوانده‌شده در round
+فعلی بررسی می‌شود؛ سقف query/round/attempt و کنترل آخرین bundle تغییر نکردند.
+mutation مستقل، چند read برای هر query را می‌پذیرد؛ حذف query دوم حتی با evidence
+درست و echo جعلی `queries_used`، یا خواندن آن فقط در round قبلی، همچنان رد می‌شود.
+fixture، gold، تصمیم‌ها و ۱۳۲ check ثابت‌اند. baseline کد pinned `b571080` با
+همین مشاهدهٔ اصلاح‌شده دوباره اجرا شد؛ این تغییر روش مشاهده است و بهبود
+اندازه‌گیری‌شدهٔ کیفیت تصمیم مدل نیست.
+
+[نتیجهٔ adapter واقعی و baseline بازپخش‌شده](rag-adapter-acceptance.fa.md) در
+source تمیز `326480d` ثبت شد: ۱۴ case / ۱۳۲ check پاس؛ namespace alias فقط در
+receipt تشخیصی قدیمی استفاده شد. وضعیت index و corpus نهایی همچنان باز است.
 
 ## نتیجه و محدودیت
 
@@ -115,12 +142,12 @@ CI، fixture را اجرا می‌کند و در صورت حضور entrypoint، 
 کد اجرای اول هنوز commit نشده بود؛ hash فایل factory در receipt ثبت است.
 receipt نهایی به commit و fingerprint کل کد bind می‌شود.
 
-[receipt نهایی](../experiments/retrieval_acceptance/results-fixture-v3.json) و
+[receipt نهایی مرجع پیش از اتصال](../experiments/retrieval_acceptance/results-fixture-v3.json) و
 [وضعیت pinned PR #23](../experiments/retrieval_acceptance/candidate-bdb7c53.json)
 مبنای handoff هستند. در head `bdb7c5369319b9b0a47f330cf89193eab6398072`
 چهار فایل Python RAG صفر بایت‌اند؛ CI سبز آن head کد adapter را آزمایش نمی‌کند.
-R3/P4 هنوز بازند. بعد از push کد، همان factory/protocol روی adapter واقعی اجرا
-می‌شود، بدون تغییر معیارها برای پاس شدن آن.
+این وضعیت تاریخی پیش از push `b571080` است؛ اجرای اصلاح‌شدهٔ R3 و قسمت باز P4
+در [گزارش تازه](rag-adapter-acceptance.fa.md) ثبت‌اند.
 
 [preflight همان blob](../experiments/retrieval_acceptance/results-preflight-bdb7c53.json)
 پیش از ساخت adapter با `CandidateEmpty` متوقف شد. اجرای کامل پیش از کنترل membership روی

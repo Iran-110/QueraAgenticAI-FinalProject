@@ -801,6 +801,40 @@ remain open. No embedding, model download, paid request, key read or ledger
 change was performed. Continue with a small offline RAG adapter and the
 existing service/pilot; no additional framework is justified by this review.
 
+## 2026-10-12 — R3 connection repair over the restored candidate
+
+PR #23 head `b571080` restored all four files, but fixed-backend acceptance
+reproduced incompatible contract namespaces, lost provenance, clipped valid
+quotes and unchecked request snapshots. With Sasan's explicit authorization,
+`fix/rag-core-acceptance` preserves that branch and merges released main before
+repairing the existing adapter/backend. No shared contract changed.
+
+The actual adapter now uses canonical imports, preserves supplied source
+metadata and 20,000-character text, rejects malformed/oversized data, checks
+configured snapshots, and forwards explicit filters. Existing collections are
+read through freshly checked snapshot metadata; same-ID mutable contents still
+require a frozen corpus/index. Unsafe prototype index construction is blocked.
+`chroma_binding` injects native fixed collections into both real constructors;
+search and mapper remain production code. On clean source commit `326480d`,
+the registered four-turn SQLite/scripted-reasoner pilot passes 132/132 checks.
+[Pinned baseline replay and final receipt](rag-adapter-acceptance.fa.md) use the
+same fixed inputs and corrected observation code: literal `b571080` fails at
+10/28 executed checks; namespace-only diagnostic fails at 74/85. Early exits
+change denominators; no quality percentages are inferred. **1,891 full tests**,
+95 targeted tests, locked sync, Ruff, the three required demos and standalone
+49-check core/tracker regression pass. Production source fingerprints remain
+unchanged across the clean receipt run. Publication is on the separate repair
+branch; merging remains a distinct step.
+
+The harness's `calls[-2:]` assumed one physical read per query despite the
+existing multi-collection allowance. Observation now selects the current round;
+independent controls accept repeated reads but reject omitted refinement queries,
+including a false `queries_used` echo or a read only in a previous round. No
+fixture, gold, decision criteria or logical resource limit changed.
+
+No real index, embedding, provider, credentials or production ledger was used.
+R1/R2/R4, actual index-backed P4, HTTP/persistent API and C5 remain open.
+
 ## Next integration work
 
 ### Shared release — 2026-10-07

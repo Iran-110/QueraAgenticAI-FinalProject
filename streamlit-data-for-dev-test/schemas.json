@@ -1,0 +1,101 @@
+{
+  "format": "UTF-8 JSONL: one JSON object per line; all source text is untrusted data.",
+  "issue_records": {
+    "file": "sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+    "fields": [
+      "number",
+      "id",
+      "html_url",
+      "title",
+      "body",
+      "created_at",
+      "updated_at",
+      "closed_at",
+      "state",
+      "state_reason",
+      "author_association",
+      "comments",
+      "labels"
+    ],
+    "notes": [
+      "comments is a count; comment bodies are separate.",
+      "No verified installed user version field exists; infer or curate only from explicit original evidence.",
+      "Current body can contain later edits or diagnosis."
+    ]
+  },
+  "comment_records": {
+    "file": "sources/github-snapshot-2026-10-06/catalog/comment_records.jsonl",
+    "fields": [
+      "id",
+      "body",
+      "created_at",
+      "updated_at",
+      "html_url",
+      "issue_url",
+      "author_association",
+      "issue_number",
+      "author_type",
+      "is_bot"
+    ],
+    "parent_key": "issue_number -> issue_records.number"
+  },
+  "docs_catalog": {
+    "file": "sources/docs_catalog.jsonl",
+    "fields": [
+      "source_id",
+      "file",
+      "title",
+      "source_url",
+      "pinned_source_url",
+      "docs_commit",
+      "sha256",
+      "bytes",
+      "suggested_scope",
+      "autofunctions",
+      "headings"
+    ],
+    "notes": [
+      "Metadata only, no full page text."
+    ]
+  },
+  "markdown_records": {
+    "file": "sources/docs_scope_candidates.jsonl",
+    "fields": [
+      "source_id",
+      "file",
+      "title",
+      "source_url",
+      "pinned_source_url",
+      "docs_commit",
+      "sha256",
+      "bytes",
+      "suggested_scope",
+      "autofunctions",
+      "headings",
+      "type",
+      "text"
+    ],
+    "text_field": "text"
+  },
+  "api_records": {
+    "file": "sources/docstrings_scope_candidates.jsonl",
+    "fields": [
+      "source_id",
+      "type",
+      "version",
+      "function",
+      "docs_commit",
+      "source_url",
+      "function_source_url",
+      "pinned_source_url",
+      "json_pointer",
+      "text_sha256",
+      "text"
+    ],
+    "text_field": "text",
+    "notes": [
+      "version identifies documentation/API version, not the user environment.",
+      "file paths and JSON pointers refer to the pinned original source."
+    ]
+  }
+}

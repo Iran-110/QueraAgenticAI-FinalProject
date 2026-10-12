@@ -1,0 +1,20 @@
+محمدحسن، این هم دیتای اولیه‌ای که گفتم.
+
+این ZIP روز ۱۰ اکتبر آماده شده؛ خود snapshot مربوط به ۶ اکتبر ۲۰۲۶ است. هنوز corpus نهایی RAG، gold evaluation یا split نهایی نیست.
+
+چی داخلشه؟
+• ۲۴۰ Issue از streamlit/streamlit و ۱۱۷۸ comment، در دو فایل JSONL جدا داخل sources/github-snapshot-2026-10-06/catalog/.
+• ۵۶ صفحه Markdown با متن کامل و ۱۱۷۲ API record، در docs_scope_candidates.jsonl و docstrings_scope_candidates.jsonl.
+• docs_catalog.jsonl فقط metadata مربوط به ۴۰۳ صفحه را دارد؛ متن همهٔ آن صفحات داخل بسته نیست.
+• inventory، روش انتخاب داده، لینک docs به Issueها و candidateهای مرتبط برای بررسی duplicateها.
+• schemas.json توضیح فیلدهاست و manifest.json تعدادها و checksum فایل‌های همین بسته را دارد.
+
+دامنهٔ اولیه: Session State، widgets، callback و rerun در Streamlit. این یک انتخاب هدفمند از آن حوزه است، نه نمونهٔ نمایندهٔ همهٔ Issueهای Streamlit. نسخه‌های API recordها از 1.22.0 تا 1.64.0 هستند؛ این metadata نسخهٔ سند است، نه نسخهٔ نصب کاربر.
+
+برای تقسیم کار: من این snapshot اولیه را آماده کرده‌ام. آماده‌سازی corpus و RAG با حسن است؛ انتخاب و ارزیابی dev/test با تو. پیشنهاد قدم بعدی این است که ۱۵ dev و ۱۵ test را در سطح خانوادهٔ Issue مشخص کنیم و بعد حسن corpus را با exclude آن خانواده‌ها آماده کند.
+
+نکته برای انتخاب کیس: body فعلی Issue ممکن است بعداً ویرایش شده باشد و commentها پاسخ یا تشخیص نهایی داشته باشند. برای ورودی کاربر فقط اطلاعات قابل مشاهده در شروع مسئله را بردار؛ پاسخ‌ها را جدا برای ارزیابی نگه دار. Issue.comments تعداد نظرهاست، نه متنشان. family_review_candidates فقط لینک‌های نیازمند بررسی است، نه فهرست duplicate قطعی.
+
+development_exposure.json کیس‌های قبلاً دیده‌شده در توسعهٔ core را مشخص می‌کند؛ آن‌ها را final test مستقل حساب نکن. خانوادهٔ همهٔ کیس‌های dev/test، پاسخ‌ها، duplicateها و بندهای docs که مستقیم جواب آن کیس را لو می‌دهند باید پیش از index بررسی و کنار گذاشته شوند. هنوز split یا index اجرا نشده؛ این فایل‌ها به‌تنهایی جلوی leakage را نمی‌گیرند.
+
+مسیرهای file، JSON pointer و ارجاع‌های inventory مثل ../data-prep مربوط به workspace و منبع اصلی‌اند؛ همهٔ آن فایل‌ها همراه ZIP نیستند. hash منبع و text_sha256 با checksum فایل بسته فرق دارند. برای بررسی فایل‌های تحویلی از manifest.json استفاده کن.

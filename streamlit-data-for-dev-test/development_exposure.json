@@ -1,0 +1,20 @@
+{
+  "purpose": "Manual development exposure declarations for evaluation curation; not an enforced corpus filter or frozen split.",
+  "repository": "streamlit/streamlit",
+  "issue_numbers": [
+    8061,
+    8901,
+    12629,
+    12782,
+    16914
+  ],
+  "independent_final_test_eligible": false,
+  "exclude_from_rag_corpus_with_reviewed_family": true,
+  "notes": [
+    "These issues or references have already been inspected during core development.",
+    "Issue 12782 controlled evidence used material from its published discussion/answer; authored core fixtures and labels are not included in this package.",
+    "Issues 12782 and 12629 are a confirmed duplicate family; 12629 is not one of the 240 snapshot issues but must be considered during family exclusion.",
+    "The relationship involving 8901 is provisional and requires manual family review.",
+    "This is a known exposure list, not a comprehensive duplicate map; curate and freeze all evaluation families before creating the RAG index."
+  ]
+}

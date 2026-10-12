@@ -2,6 +2,8 @@
 
 from decimal import Decimal
 
+import pytest
+
 from agent_app.contracts import EvidenceBundle
 from agent_app.testing import retrieval_acceptance as acceptance
 
@@ -113,6 +115,64 @@ def test_alternative_hit_ranking_and_query_order_are_accepted():
     assert all(receipt["checks"].values())
     assert receipt["pilot"]["checks"]["refinement_consumes_two_queries_within_budget"] is True
     assert receipt["quality_claim"] is False
+
+
+def test_multiple_backend_reads_for_each_logical_query_are_accepted():
+    def repeated_reads_factory(probe):
+        read = probe.backend.search
+
+        def repeated_read(query, *, top_k, filters=None):
+            read(query, top_k=top_k, filters=filters)
+            return read(query, top_k=top_k, filters=filters)
+
+        probe.backend.search = repeated_read
+        return acceptance.fixture_factory(probe)
+
+    receipt = acceptance.run_acceptance(repeated_reads_factory)
+    assert receipt["accepted"] is True
+    assert receipt["checks_passed"] == receipt["checks_total"] == 132
+    assert len(receipt["cases"]) == 14
+    assert all(case["status"] == "passed" for case in receipt["cases"])
+    pilot = receipt["pilot"]
+    assert pilot["checks"]["refinement_consumes_two_queries_within_budget"] is True
+    correction = pilot["turns"][2]
+    assert correction["query_counts"] == [1, 2]
+    assert correction["backend_query_count"] == 6
+
+
+@pytest.mark.parametrize("read_missing_in_prior_round", [False, True])
+def test_refinement_query_must_actually_be_read_in_its_current_round(
+    read_missing_in_prior_round,
+):
+    # This is an authored fault control, not input provided to a production
+    # adapter. A prior-round read must never excuse skipping a current query.
+    missing_query = "Streamlit 1.49.1 multiselect key identity documentation coverage"
+
+    class OmittingRefinementQuery:
+        def __init__(self, probe):
+            self.probe = probe
+            self.delegate = acceptance.fixture_factory(probe)
+
+        def search(self, request):
+            backend = self.probe.backend
+            if backend.round_ids is not None and backend.round == 0:
+                if read_missing_in_prior_round:
+                    backend.search(missing_query, top_k=request.top_k, filters=request.filters)
+            if backend.round == 1:
+                # The fixed round provides the correct evidence even after a
+                # skipped query. Echoing queries_used must not fool the oracle.
+                output = self.delegate.search(
+                    request.model_copy(update={"queries": request.queries[:1]})
+                )
+                backend.search(request.queries[0], top_k=request.top_k, filters=request.filters)
+                return output.model_copy(update={"queries_used": request.queries})
+            return self.delegate.search(request)
+
+    receipt = rejected(OmittingRefinementQuery, "core_pilot:completed", include_pilot=True)
+    assert all(
+        case["status"] == "passed" for case in receipt["cases"] if case["id"] != "core_pilot"
+    )
+    assert receipt["cases"][-1]["status"] == "failed"
 
 
 def test_valid_source_from_another_query_is_rejected_without_prescribing_ranking():
