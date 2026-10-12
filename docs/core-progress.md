@@ -2,6 +2,47 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-13 — GroundedPlan through the durable pilot (C2f)
+
+The existing restricted plan and gateway now compose explicitly with persistent
+HTTP, the real Streamlit page and the existing SQLite tracker. Shared contracts,
+ports and Hassan's RAG adapter are unchanged. Default routing remains scripted;
+`AGENT_PILOT_REASONING=grounded_fake_gateway` opts into a mandatory mock provider
+with an independent temporary ledger. The ordinary launcher rejects live mode.
+
+Preregistration `2830ba4`, amended before execution at `c6c7573`, pins the original
+HTTP and service at `3c92b12`. Same authored plans, source excerpts and four turns:
+baseline **10/12**, new **12/12**. Only truthful reasoning labels and per-run client
+cleanup improve these operational controls; baseline already supported injection.
+Complete prior analysis/quote oracles reject fabricated prose and altered wire
+messages, but are exposed assistant-authored controls, not independent human gold.
+
+Cleanup executes after final request capture and before staging, including setup,
+run, handoff and cancellation failures. A cleanup error persists the safe
+`AdapterCleanupFailed` code and creates no new proposal. The legacy memory seam
+also respects the callback. The runnable binding releases closed resources;
+selecting one complete excerpt keeps the authored mock policy within renderer
+limits. Actual AppTest and two fresh TCP interpreters verify correction, original
+approval retry, old approval refusal and no duplicate action with actual Chroma.
+
+Clean source `0b962de` passed **2,280 tests**, locked sync and Ruff. Its separate
+[registered live probe](../experiments/grounded_http_acceptance/live-protocol-v1.json)
+used the original immutable development continuation: **one actual API request**,
+3,654 input and 72 output tokens, **$0.000650430 estimated cost**, **14/14 operational
+checks**. The model selected the necessary installed-version question without
+reasking known facts or claiming an established cause/fix. The proposal remains
+pending; no local action was authorized. [Unmodified receipt](../experiments/grounded_http_acceptance/live-result-0b962de.json)
+and [separate whole-proposal review](../experiments/grounded_http_acceptance/live-review-0b962de.json)
+record both scope and limitations.
+
+The original receipt failed to retain the exact serving model ID. An offline
+compressed-envelope test reproduced the observer limitation; the existing gateway
+still validated decoded identity before settlement. Do not reconstruct that ID
+or retroactively upgrade the receipt. The original halt/quarantined request and
+$0.02 hold are preserved; actual account charges remain unknown. One exposed
+development turn with fixed excerpts does not establish RAG/model quality,
+comparative decision improvement, held-out evaluation or C5 reconciliation.
+
 ## 2026-10-13 — connected offline UI/index pilot (U3a/P4a/C2e)
 
 PR30 is published on main at `6e719e9`; PR31's exact reviewed Windows worker

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "source_receipt": "live-result-0b962de.json",
+  "source_receipt_sha256": "872a25e9e34557f15997629531425182dea84c48cd415cf0cf462bbe9843ecc1",
+  "source_commit": "0b962dea42e87da69e4811c1498f472f831fc5f6",
+  "reviewers": [
+    "root assistant",
+    "live_gate_audit assistant"
+  ],
+  "independent_human_gold": false,
+  "decision": "ask",
+  "checks": {
+    "decision_preregistered": true,
+    "question_needed_for_version_applicability": true,
+    "question_user_answerable": true,
+    "confirmed_facts_not_reasked": true,
+    "no_unestablished_diagnosis_or_fix_claim": true,
+    "all_summary_facts_attributed_to_user": true,
+    "documentation_claims_requiring_citations_present": false,
+    "source_gap_not_assigned_to_user": true,
+    "proposal_pending_not_approved": true,
+    "same_issue_answer_used_as_evidence": false
+  },
+  "interpretation": "One previously exposed answer-informed development turn with fixed official excerpts; acceptable question, not held-out model/RAG quality or comparative decision score.",
+  "limits": [
+    "Exact served model ID absent in original receipt; gateway validated identity before settlement, but the exact ID cannot be reconstructed.",
+    "Raw-compressed observer failure reproduced offline; actual response encoding was not retained, so that explanation for this call is an inference.",
+    "No live continuation/correction/retrieval/refusal corpus quality evaluated.",
+    "Provider account charge and prior quarantined call remain unknown; C5 remains open."
+  ],
+  "actual_sends": 1,
+  "settled_estimated_cost_usd": "0.000650430",
+  "actual_account_charge_usd": null,
+  "quality_claim": false,
+  "heldout_claim": false
+}
