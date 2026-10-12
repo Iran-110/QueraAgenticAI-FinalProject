@@ -70,3 +70,10 @@ jobs:
         run: uv run agent-app turn-demo
       - name: Replay registered dev through persistent core service without network
         run: uv run python scripts/core_tracker_pilot.py --output "$RUNNER_TEMP/core-tracker-pilot.json"
+      - name: Accept retrieval fixture and core SQLite composition without an index
+        run: |
+          if [ -f src/agent_app/retrieval/adapter.py ]; then
+            uv run python scripts/rag_acceptance.py --check-candidate src/agent_app/retrieval/adapter.py --output "$RUNNER_TEMP/rag-fixture-acceptance.json"
+          else
+            uv run python scripts/rag_acceptance.py --output "$RUNNER_TEMP/rag-fixture-acceptance.json"
+          fi
