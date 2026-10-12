@@ -107,6 +107,27 @@ def test_actual_fresh_interpreters_start_empty_and_count_exact_retry(tmp_path, f
     assert not second["responses"][1]["body"]["intake"]["replayed"]
 
 
+def test_worker_json_receipt_survives_legacy_windows_encoding(tmp_path, fixture):
+    """A redirected Windows worker may default to cp1252, not UTF-8."""
+    control = payload(tmp_path, fixture)
+    result = subprocess.run(
+        [sys.executable, "-m", "agent_app.testing.http_pilot_worker"],
+        input=json.dumps(control),
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+        timeout=20,
+        env={**os.environ, "PYTHONIOENCODING": "cp1252"},
+    )
+    assert result.returncode == 0
+    assert result.stderr == ""
+    receipt = json.loads(result.stdout)
+    assert receipt["error_code"] is None
+    assert receipt["responses"][1]["status_code"] == 200
+    assert result.stdout.isascii()
+
+
 def test_new_testclient_is_only_reconnect_and_keeps_same_process_state(tmp_path, fixture):
     observations = Observations()
     scripted = runner._scripted(fixture)
@@ -233,6 +254,21 @@ def test_socket_guard_blocks_connections_and_dns_but_preserves_socketpair():
             left.sendall(b"offline")
             assert right.recv(7) == b"offline"
     assert original == (socket.socket.connect, socket.socket.connect_ex, socket.create_connection)
+
+
+def test_socket_guard_preserves_tcp_fallback_socketpair():
+    """Exercise the loopback fallback used by Windows, also on Unix CI."""
+    fallback = getattr(socket, "_fallback_socketpair", None)
+    if fallback is None:
+        pytest.skip("Python socketpair fallback is unavailable")
+    with patch.object(socket, "socketpair", fallback), offline_network():
+        left, right = socket.socketpair()
+        with left, right:
+            left.sendall(b"offline")
+            assert right.recv(7) == b"offline"
+        with socket.socket() as candidate:
+            with pytest.raises(RuntimeError, match="^OfflineNetworkBlocked$"):
+                candidate.connect(("127.0.0.1", 9))
 
 
 def plugin(tmp_path, monkeypatch, source):
