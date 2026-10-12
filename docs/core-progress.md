@@ -1018,11 +1018,13 @@ branch and accounting state rather than the current release.
 | --- | --- | --- |
 | Real retrieval adapter and frozen corpus | Data/RAG | Inspectable sources, metadata, and dev retrieval measurements |
 | Live billing reconciliation and real-case evaluation | Agent core + evaluation | Synthetic question/answer/repair compatibility now verified; still need account deduction comparison and held-out quality/cost measurements |
-| Connect the released SQLite tracker to API/UI | Tracker/tools + UI, [CoreTurnService](core-turn-service.fa.md) for core composition | One authoritative state; authenticated review, interrupted-run status and HTTP restart/retry receipts |
-| Backend connection and evaluation cases | UI/evaluation | Live local flow and 15 dev + 15 test with required multi-turn cases |
+| Product configuration and real-browser acceptance | Tracker/tools + UI | Bounded SQLite/API/UI binding is published in PR32; still need browser authentication/configuration, browser smoke and full-session recovery |
+| Evaluation cases and labelled real-model runs | UI/evaluation | Frozen 15 dev + 15 test families, rubric and operational outcome consumed in evaluation; connected offline runs are separate from model quality |
 | Baseline versus final measurements | Whole team | Same cases, quality/cost/latency results, and failure analysis |
 | Systematic Adversarial Testing | Proposed core bonus, mentor agreement | Defined challenge set plus measured before/after improvement |
 
-The standalone tracker's operations and explicit reset boundary are documented
-in [SQLite tracker](sqlite-tracker.md). The existing memory API/core demo does
-not use that database; restarting it is not a persistence/recovery test.
+The tracker's operations and explicit reset boundary are documented in
+[SQLite tracker](sqlite-tracker.md). The opt-in
+[connected offline backend](offline-ui-index-pilot.fa.md) uses that same tracker.
+The legacy memory API/core demo does not use its database; restarting the memory
+demo is not a persistence/recovery test.
