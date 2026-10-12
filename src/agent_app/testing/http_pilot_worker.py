@@ -205,7 +205,8 @@ def main() -> int:
     except Exception:
         payload = None
     result = run(payload)
-    print(json.dumps(result, ensure_ascii=False, allow_nan=False))
+    # JSON transport must work with Windows legacy console encodings (e.g. cp1252).
+    print(json.dumps(result, ensure_ascii=True, allow_nan=False))
     return 1 if result["error_code"] else 0
 
 
