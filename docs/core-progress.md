@@ -40,6 +40,10 @@ The first PR Windows page run reached AppTest's default three-second completion
 timeout, while the same branch run passed. The real-index page test now has a
 bounded 15-second test-run allowance; assertions, network block, application
 timeouts and all acceptance inputs are unchanged. This is not a latency result.
+The next Windows PR run passed the page but reported an unconfirmed TCP delivery
+during correction. That test client allowed only two seconds per request; its
+read budget now matches the actual UI's ten seconds (connection remains two).
+No automatic retry or weaker state/action assertion was introduced.
 
 This is a private local maintainer console and a scripted ask/escalate pilot,
 not real model/RAG quality. Browser authentication and recovery after complete

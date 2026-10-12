@@ -57,7 +57,11 @@ def server(ready_path, config):
                 try:
                     port = json.loads(ready_path.read_text(encoding="ascii"))["port"]
                     http = httpx.Client(
-                        base_url=f"http://127.0.0.1:{port}", timeout=2, trust_env=False
+                        base_url=f"http://127.0.0.1:{port}",
+                        # Match the actual UI's ten-second read allowance; keep
+                        # readiness connections short and every wait bounded.
+                        timeout=httpx.Timeout(10.0, connect=2.0),
+                        trust_env=False,
                     )
                 except (OSError, ValueError, KeyError):
                     time.sleep(0.02)
