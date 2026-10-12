@@ -131,6 +131,14 @@ fixture، gold، تصمیم‌ها و ۱۳۲ check ثابت‌اند. baseline �
 source تمیز `326480d` ثبت شد: ۱۴ case / ۱۳۲ check پاس؛ namespace alias فقط در
 receipt تشخیصی قدیمی استفاده شد. وضعیت index و corpus نهایی همچنان باز است.
 
+پس از merge #27 به branch حسن و #23 به main، همان factory روی checkout تمیز
+`ec1a1f0` دوباره ۱۴ case / ۱۳۲ check پاس کرد؛
+[receipt main](../experiments/retrieval_acceptance/results-main-ec1a1f0.json)
+به commit و تمام fingerprintهای runtime bind است. fixture و sourceها با اجرای
+تمیز `326480d` یکسان‌اند؛ [CI همان main](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38225492349)
+نیز همین factory را اجرا کرد. این انتشار پذیرش port آفلاین است؛ index واقعی
+و کیفیت retrieval/مدل را اثبات نمی‌کند.
+
 ## نتیجه و محدودیت
 
 [اجرای اول مرجع](../experiments/retrieval_acceptance/results-fixture-first-v1.json)

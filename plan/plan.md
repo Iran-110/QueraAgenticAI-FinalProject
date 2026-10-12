@@ -7,12 +7,37 @@
 | بخش | چیزی که داریم | چیزی که هنوز اثبات نشده |
 | --- | --- | --- |
 | core — ساسان | قراردادها، correction و GroundedPlan؛ C2a سرویس receipt/state/context و stage با SQLite، ورودی C2/P2 و خروجی C3، gateway تا review با HTTP شبیه‌سازی‌شده | اتصال API، journal/CAS lifecycle، RAG و کیفیت تصمیم مدل روی کیس‌های ندیده |
-| داده — آماده‌سازی اولیه ساسان؛ ادامه با حسن | ZIP اولیه: ۲۴۰ Issue، ۱۱۷۸ comment، ۵۶ متن Markdown و ۱۱۷۲ API record؛ چهار فایل در head `b571080` #23 برگشتند؛ اصلاح R3 با ساسان در `fix/rag-core-acceptance`، receipt تمیز `326480d` و پذیرش mapper واقعی ۱۳۲/۱۳۲ | merge اصلاح R3؛ provenance از seed تا index، segmentation، exclusion و corpus نهایی؛ کیفیت retrieval واقعی |
+| داده — آماده‌سازی اولیه ساسان؛ ادامه با حسن | seed اولیه در `streamlit-data-for-dev-test/`: ۲۴۰ Issue، ۱۱۷۸ comment، ۵۶ متن Markdown و ۱۱۷۲ API record؛ adapter حسن و اصلاح اتصال ساسان با #27 و #23 روی main در `ec1a1f0`؛ پذیرش mapper واقعی ۱۳۲/۱۳۲ | provenance از seed تا index، segmentation، exclusion و corpus نهایی؛ کیفیت retrieval واقعی |
 | UI/API — محمدحسن | structured input و review کامل در #13، انتخاب پرونده در #17؛ اصلاح جداسازی فرم و نمایش همهٔ claimها در #21؛ API همچنان scripted و حافظه‌ای | اتصال retriever/model و tracker واقعی، recovery و review معتبر در مرز server |
 | tracker/tools — محمد بهنام | SQLite مستقل با read سازگار در #19/#20 روی main؛ state/revision، correction، authenticated review، restart و dedup؛ ۱۶ تست مستقل پاس | اتصال API/UI با SQLite به‌عنوان تنها مرجع state، recovery و پذیرش pilot مشترک |
 | evaluation — محمدحسن | یک dev چهار‌نوبتی، manifest پیش‌نویس، runner #15 و scenarioهای عملیاتی #18 | ۱۵ dev و ۱۵ test، rubric و split freezeشده، اجرای واقعی و داوری کیفیت؛ سناریوهای synthetic جزو ۳۰ case نیستند |
 
 تغییرات جدید core از طریق [PR #7](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/7) با merge commit `85b6027` به `main` رسیدند. [گزارش V8](../docs/controlled-core-v8.fa.md)، [گزارش V9](../docs/controlled-core-v9.fa.md) و [قرارداد GroundedPlan](../docs/extractive-core.md) شواهد این milestone هستند. ۱۴۱۴ تست آفلاین در milestone محلی و ۱۴۲۸ تست همراه API/UI در CI ترکیب PR با main پاس شدند؛ نتیجهٔ RAG واقعی یا test نهایی نیست. GroundedPlan اختیاری است و پیش‌فرض production تغییر نکرده.
+
+### قدم جاری پس از انتشار R3 — ۲۰۲۶-۱۰-۱۲
+
+[PR #27](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/27) با `4162079`
+به `feat/rag-module` و بعد [PR #23](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/23)
+با `ec1a1f0` به main merge شدند. هر دو CI روی head تازهٔ #23 پاس شدند؛
+[CI انتشار main](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38225492349)
+نیز ۱۸۹۱ تست، Ruff و replayهای آفلاین را پاس کرد.
+[receipt تازهٔ main](../experiments/retrieval_acceptance/results-main-ec1a1f0.json)
+در checkout تمیز: ۱۴ case / ۱۳۲ check؛ ۹۵ تست مرتبط و ۴۹ check مستقل
+core/SQLite دوباره پاس شدند. کد و fixture با اجرای تمیز `326480d` یکسان‌اند؛
+[شواهد انتشار](../experiments/retrieval_acceptance/release-main-ec1a1f0.json)
+و [حدود پذیرش](../docs/rag-adapter-acceptance.fa.md) ثبت‌اند.
+این تحویل port آفلاین را می‌بندد؛ corpus/index، API پایدار و کیفیت مدل همچنان بازند.
+
+| نفر / task | قدم بعدی | خروجی لازم برای پذیرش |
+| --- | --- | --- |
+| حسن — R1/R2/R4 و بخش index در P4 | seed موجود در repo را بازبینی کند؛ exclusion را با manifest محمدحسن هماهنگ و corpus/index ثابت را بسازد | provenance و segmentation، allowlist/exclusion، hash و snapshot index، دستور بازتولید و receipt retrieval روی dev؛ `index_data` قدیمی تا builder مجاز مسدود است |
+| محمدحسن — E1/E2/U3 | انتخاب خانواده‌ها و rubric را پیش ببرد؛ API را با coordinator موجود و tracker واقعی وصل کند | manifest خانواده‌های dev/test برای حسن؛ fixtureهای چندنوبتی؛ نمایش error/halt، case switching و review معتبر در server |
+| محمد بهنام — P3/T4، مشترک با U3 | SQLite را تنها مرجع state در مسیر API کند و recovery را با محمدحسن جمع کند | retry/restart، approval/reject/edit، stale revision و جلوگیری از اجرای تکراری؛ journal/CAS و authentication مرز API |
+| ساسان — C2/C4/C5، مشترک با P4 | همین kit را روی index ثابتِ تحویل‌شده اجرا و اتصال API را بازبینی کند؛ baseline تصمیم مدل پس از رفع مستند halt | receipt اتصال جدید؛ مقایسهٔ dev با منابع و نسخهٔ ثابت؛ reconciliation هزینه پیش از هر live |
+
+انتخاب caseها و کار API می‌توانند هم‌زمان جلو بروند. برای E1، seed در repo
+موجود است؛ منتظر ZIP یا index نمانیم. caseها، جواب‌ها و duplicateهای خانوادهٔ
+ارزیابی وارد corpus مجاز نشوند؛ #12782/#12629 همچنان exposed dev هستند.
 
 ## قدم مشترک بعدی: یک case چندمرحله‌ای از dev
 
@@ -31,7 +56,7 @@
 
 تکمیل index نهایی، همهٔ ۳۰ case یا evaluation نهایی، شرط این تحویل کوچک نیست.
 
-### قدم جاری پس از بازبینی — ۲۰۲۶-۱۰-۱۱
+### قدم قبلی پس از بازبینی — ۲۰۲۶-۱۰-۱۱
 
 اصلاحات runner/UI و نسخهٔ تازهٔ همین plan در
 [PR #21](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/21) ثبت شده‌اند؛
@@ -57,7 +82,7 @@ PRهای #13، #14، #15، #17 و #18 روی main هستند؛ runner هنوز �
 | محمدحسن — E1/E2/U3 | دریافت ZIP را تأیید و انتخاب خانواده‌ها را شروع کند؛ schema/rubric و branch سؤال‌ها را با core هماهنگ کند | manifest پیش‌نویس خانواده‌ها برای حسن؛ یک dev با مسیرهای معتبر؛ review جدا برای original و edited/released | اگر ZIP نرسیده، blocker تحویل را ثبت و schema/branchها را روی dev موجود جلو ببرد؛ منتظر index نماند |
 | حسن — R1–R3/P4 | backend موجود PR #23 را با main sync و CI را سبز کند؛ adapter قرارداد core را روی همان backend اضافه کند | EvidenceBundle با snapshot/نسخه/span، سقف کلی top_k و dedup؛ allowlist کوچک و exclusion dev پیش از index | تا E1 نهایی، collection/embedding ساختگی و docs مجاز pilot را تست کند؛ corpus نهایی هنوز باز بماند |
 
-بازبینی تازهٔ [PR #23 و شرط تحویل R3](../docs/rag-handoff-review-2026-10-11.fa.md)
+بازبینی اولیهٔ [PR #23 و شرط تحویل R3](../docs/rag-handoff-review-2026-10-11.fa.md)
 روی `c0d450a`: backend اولیه push شده، ولی port هنوز خروجی خام Chroma می‌دهد؛
 probe آفلاین با collection ساختگی در core به `RetrievalResultInvalid` و صفر
 فراخوانی مدل رسید. metadata commit/location و chunkهای بزرگ باید پیش از اتصال
@@ -67,9 +92,9 @@ probe آفلاین با collection ساختگی در core به `RetrievalResultI
 با ۴۹ check، شاهد آمادگی آفلاین C2a هستند. این milestone کیفیت RAG/مدل نیست.
 
 بازبینی پیشین، پیش از push اصلاحی — ۲۰۲۶-۱۰-۱۲: head #23 در `bdb7c53` بود. CI قبلی سبز شده،
-ولی `adapter.py`، `retriever.py`، `data_scripts/chunking.py` و `data_scripts/data_loader.py` صفر بایت‌اند؛ پس
-ادعای پذیرش adapter از CI نمی‌کنیم. seed کوچک و README در branch حسن موجودند.
-کدها باید دوباره push شوند؛ R1/R2/R3/P4 بازند. [ثبت pinned head](../experiments/retrieval_acceptance/candidate-bdb7c53.json).
+ولی `adapter.py`، `retriever.py`، `data_scripts/chunking.py` و `data_scripts/data_loader.py` صفر بایت بودند؛ پس
+آن CI شاهد پذیرش adapter نبود. seed کوچک و README در branch حسن موجود بودند.
+در آن milestone کدها به push دوباره نیاز داشتند؛ R1/R2/R3/P4 باز بودند. [ثبت pinned head](../experiments/retrieval_acceptance/candidate-bdb7c53.json).
 
 push تازهٔ حسن در `b571080` چهار فایل را برگرداند؛ پذیرش روی همان کد مشکل
 namespace، حذف commit/span، clipping متن و snapshot را بازتولید کرد. ساسان با
@@ -79,15 +104,15 @@ metadata/text، snapshot تنظیم‌شده و checkهای collection، filters
 adapter را آزمایش می‌کند؛ smoke اولیه ۱۳۲/۱۳۲ پاس است. fixture و تصمیم‌های
 ثبت‌شده تغییر نکرده‌اند؛ مشاهدهٔ queryهای refinement از فرض یک read به بررسی
 round فعلی اصلاح شد و mutation مستقل دارد. [receipt تمیز و مقایسهٔ pinned baseline](../docs/rag-adapter-acceptance.fa.md)
-روی `326480d` ثبت شد؛ ۱۸۹۱ تست کامل و Ruff پاس‌اند. merge اصلاح هنوز باقی است؛
-R1/R2/R4 و retrieval از index واقعی بازند.
+روی `326480d` ثبت شد؛ ۱۸۹۱ تست کامل و Ruff پاس‌اند. اصلاح با #27 و #23 منتشر شد؛
+receipt تازهٔ main در بخش جاری بالاست. R1/R2/R4 و retrieval از index واقعی بازند.
 
 سهم مستقل تازهٔ core، **C2b**، [kit پذیرش اتصال](../docs/rag-core-acceptance.fa.md)
 است: fixture پیش از اجرا ثبت شد؛ همان factory با تست port و چهار turn
 `CoreTurnService`/SQLite اجرا می‌شود. ۱۳۲/۱۳۲ check مرجع پاس؛ mutationهای
 metadata، query، سقف نتیجه، snapshot، quote و evidence قدیمی رد شدند.
-بعد از push، backend ثابت به seam کد واقعی حسن تزریق و همین protocol اجرا
-شود؛ نتیجهٔ fixture کیفیت RAG یا test نهایی نیست. API/persistence، index و
+backend ثابت اکنون به seam کد واقعی حسن تزریق و همین protocol روی main اجرا
+شده؛ نتیجهٔ fixture کیفیت RAG یا test نهایی نیست. API/persistence، index و
 exclusion نهایی همچنان taskهای مستقل تیم‌اند.
 
 healthcheck پیش از push بعدی RAG — ۲۰۲۶-۱۰-۱۲: main در `febaefa` تمیز و
@@ -100,9 +125,9 @@ C2b این مرز را روشن می‌کند و هزینه/کارایی RAG ه�
 لازم نشد. قدم بعد، کد قابل اجرای R3/P4، اتصال API/SQLite با U3/T4 و freeze
 caseها/exclusion با E1/R2 است؛ C5 نیز به مدرک provider وابسته است.
 
-انتخاب caseها لازم نیست منتظر index بماند. ZIP محلی اولیه دوباره با manifest
-بررسی شده؛ داشتن فایل در workspace ساسان به معنی رسیدن آن به هم‌تیمی یا وجودش
-در repo نیست. schema و [rubric پیشنهادی core](../docs/evaluation-rubric.md) هنوز
+انتخاب caseها لازم نیست منتظر index بماند. seed اولیه همراه manifest با #23
+در `streamlit-data-for-dev-test/` به main رسید؛ انتخاب E1 از همین فایل‌ها ممکن است.
+این انتشار، تأیید دریافت ZIP در پی‌وی نیست. schema و [rubric پیشنهادی core](../docs/evaluation-rubric.md) هنوز
 نیاز به پیاده‌سازی و freeze توسط مالک evaluation دارند؛ checkbox کیفیت باز است.
 
 سهم core و fixture با [PR #11](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/11)
@@ -130,9 +155,9 @@ fixture پایهٔ این تحویل، [case چهار‌نوبتی C3](../experi
 
 ### حسن — داده و RAG
 
-- [ ] **R1 — بازبینی seed و provenance.** ZIP `streamlit-data-for-dev-test.zip` را از ساسان بگیرد؛ تعدادها، روش انتخاب، URL/تاریخ، commit و نسخهٔ اسناد را ثبت کند. دامنهٔ اولیه Session State، widgets، callback/rerun است؛ همهٔ Streamlit را نمایندگی نمی‌کند. body فعلی Issue ممکن است بعداً ویرایش شده باشد.
+- [ ] **R1 — بازبینی seed و provenance.** seed و manifest در `streamlit-data-for-dev-test/` روی main موجودند؛ تعدادها، روش انتخاب، URL/تاریخ، commit و نسخهٔ اسناد را تا corpus/index بازبینی و ثبت کند. دامنهٔ اولیه Session State، widgets، callback/rerun است؛ همهٔ Streamlit را نمایندگی نمی‌کند. body فعلی Issue ممکن است بعداً ویرایش شده باشد.
 - [ ] **R2 — کنارگذاری خانواده‌های ارزیابی، قبل از index نهایی.** فهرست dev/test از E1 را بگیرد؛ خود Issue، commentها، outcomeها، duplicateها و docs حاوی جواب مستقیم همان case را بررسی کند. خروجی: corpus allowlist، exclusion manifest و گزارش بررسی linkage/duplicate؛ candidate مرتبط به معنی duplicate قطعی نیست.
-- [x] **R3 — adapter بازیابی؛ کد پایه حسن، اصلاح اتصال ساسان.** `search(RetrievalRequest)` با snapshot تنظیم‌شده، سقف کلی top_k و metadata صریح/unknown پیاده است؛ mapper واقعی همراه constructor/backend واقعی با collection ثابت، [۱۴ case و ۱۳۲ check](../docs/rag-adapter-acceptance.fa.md) را پاس کرد. پس از refinement آخرین bundle در handoff است؛ alias یا اصلاح خروجی در binding نداریم. این تیک فقط port آفلاین روی `326480d` را می‌بندد؛ انتشار هنوز به merge branch اصلاحی نیاز دارد و index/corpus/کیفیت RAG در R1/R2/R4/P4 بازند.
+- [x] **R3 — adapter بازیابی؛ کد پایه حسن، اصلاح اتصال ساسان.** `search(RetrievalRequest)` با snapshot تنظیم‌شده، سقف کلی top_k و metadata صریح/unknown پیاده است؛ mapper واقعی همراه constructor/backend واقعی با collection ثابت، [۱۴ case و ۱۳۲ check](../docs/rag-adapter-acceptance.fa.md) را پاس کرد. پس از refinement آخرین bundle در handoff است؛ alias یا اصلاح خروجی در binding نداریم. با #27 و #23 منتشر شد و [receipt تمیز main `ec1a1f0`](../experiments/retrieval_acceptance/results-main-ec1a1f0.json) پاس است. این تیک فقط port آفلاین را می‌بندد؛ index/corpus/کیفیت RAG در R1/R2/R4/P4 بازند.
 - [ ] **R4 — آزمون بازیابی روی dev.** سند کامل/ناقص، نسخهٔ نامعلوم/متفاوت، conflict و خطای retrieval را بررسی کند؛ relevance و پوشش منابع را جدا از کیفیت متن مدل ثبت کند. خروجی: تست adapter و receipt بازیابی با snapshot/config مشخص.
 
 وابستگی: R1 و fixture مربوط به P4 اکنون مستقل قابل انجام‌اند؛ R2 و index نهایی به E1 وابسته‌اند. مدل یا embedding پولی از ledger و سقف مشترک عبور می‌کند.
@@ -149,7 +174,7 @@ fixture پایهٔ این تحویل، [case چهار‌نوبتی C3](../experi
 
 برای C2/U3 از سرویس C2a استفاده شود؛ coordinator core دیگر فقط helper تستی نیست. اتصال HTTP/auth و journal اجرای نیمه‌تمام با محمدحسن/بهنام است. readهای سرویس CAS lifecycle نیستند؛ race نهایی stage/approve رقیب پس از آخرین read هنوز T4/P3 را باز نگه می‌دارد. [packet تازهٔ C5](../docs/live-reconciliation-2026-10-11.fa.md) با خواندن read-only و hash ثابت ledger ثبت شد؛ مدرک provider همچنان کم است.
 
-وابستگی: سهم مستقل ورودی P2 و خروجی C3 با fixture انجام شده و U2 به API وصل است. قدم بعد اتصال retriever حسن (P4/R3)، اتصال state/approval پایدار موجود (P3/T4) و split/rubric/runner محمدحسن (E1–E3) است. تک agent مبناست؛ اضافه کردن agent/framework نیاز به شکست واقعی و مقایسهٔ مستند دارد.
+وابستگی: سهم مستقل ورودی P2 و خروجی C3 با fixture انجام شده و U2 به API وصل است؛ port آفلاین R3 نیز روی main پذیرفته شد. قدم بعد retrieval از index ثابت (P4/R1/R2/R4)، اتصال state/approval پایدار موجود (P3/T4) و split/rubric/runner محمدحسن (E1–E3) است. تک agent مبناست؛ اضافه کردن agent/framework نیاز به شکست واقعی و مقایسهٔ مستند دارد.
 
 [بازبینی آمادگی core](../docs/core-readiness-audit.fa.md) دو regression تازه را
 روی `254e6542` با دو fail و بعد از `68dec4f` با دو pass ثبت می‌کند. مسیر gateway
@@ -189,7 +214,7 @@ handoffها و متن released محفوظ‌اند. ترکیب اصلاحات ب
 - [x] **U1 — prototype آفلاین.** Streamlit و FastAPI روی main، انتخاب scenario ساختگی و review پیشنهاد موجودند. این checkbox فقط همین prototype را پوشش می‌دهد؛ storage حافظه‌ای و فیک بودن retriever/reasoner همچنان صریح نمایش داده شوند.
 - [x] **U2 — ورودی و نمایش کامل.** پیام، اطلاعات صریح/اصلاح‌شده و نتیجهٔ check به قرارداد C2 وصل شوند؛ facts فعال و superseded، unknownها و کل پیشنهاد، summary، منابع و scope نسخه به reviewer نمایش داده شوند. تغییر پرونده pending قبلی را stale کند؛ edit دوباره review/approval بخواهد. انجام‌شده در [PR #13](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/13): هر پیام event با `turn_id` پایدار و `expected_revision` می‌فرستد و retry همان payload را دوباره می‌فرستد؛ فرم fact/correction/withdraw، check، unknown و تغییر محیط؛ پاسخ کوتاه نسخه فقط به سؤال canonical تأییدشده (`awaiting_reply`) با سناریوی آفلاین `ask_version`؛ جدول facts فعال/superseded، receipt آخرین ورودی، و برای reviewer همهٔ سطوح analysis، همهٔ منابع (cited و uncited) با version scope، gapها و conflict groupها وقتی موجودند. شاهد: `tests/test_ui.py` و `tests/test_ui_client.py`. محدودیت: storage حافظه‌ای و adapterهای ساختگی؛ اتصال واقعی U3 است.
 - [ ] **U3 — اتصال واقعی UI/API.** انتخاب mock از تنظیم retriever/model/tracker واقعی جدا باشد؛ error و توقف قابل فهم نمایش داده شوند. تست API و smoke test UI، case switching و approval/reject/edit با خودش؛ persistence و مجوز اجرا به tracker سپرده شود. وضعیت: انتخاب‌گر پرونده در نوار کناری اضافه شد (فهرست پرونده‌های همین session با وضعیت هر کدام، تعداد پرونده‌های منتظر review، پیام ارسال‌نشده متصل به پرونده خودش)؛ تست در `tests/test_ui.py`. ماژول T1–T3 روی main موجود است؛ بقیهٔ U3 به R3، P3/T4 و قرارداد recovery سمت core وابسته است.
-- [ ] **E1 — انتخاب و freeze caseها.** حداقل ۱۵ dev و ۱۵ test در سطح خانوادهٔ Issue؛ حداقل ۱۰ سناریوی چندنوبتی که حداقل ۵ تای آن‌ها در test باشند. manifest خانواده‌ها و شناسهٔ نسخهٔ split به حسن داده شود. کیس‌های توسعهٔ قبلاً دیده‌شده مثل 12782 و duplicate آن 12629، test مستقل نیستند؛ فهرست exposure بسته هم بازبینی شود. وضعیت: [manifest پیش‌نویس](../data/evaluation/split-manifest.json) با ۱ از ۱۵ dev و ۰ از ۱۵ test؛ خانوادهٔ #12782/#12629 و شناسه‌های رزرو exposure فقط dev. ZIP در repo نیست؛ دریافت بسته از ساسان تأیید و انتخاب خانواده‌ها از همان seed شروع شود. انتخاب اولیه منتظر R1 یا index نمی‌ماند؛ provenance و linkage با حسن پیش از freeze بررسی می‌شوند.
+- [ ] **E1 — انتخاب و freeze caseها.** حداقل ۱۵ dev و ۱۵ test در سطح خانوادهٔ Issue؛ حداقل ۱۰ سناریوی چندنوبتی که حداقل ۵ تای آن‌ها در test باشند. manifest خانواده‌ها و شناسهٔ نسخهٔ split به حسن داده شود. کیس‌های توسعهٔ قبلاً دیده‌شده مثل 12782 و duplicate آن 12629، test مستقل نیستند؛ فهرست exposure بسته هم بازبینی شود. وضعیت: [manifest پیش‌نویس](../data/evaluation/split-manifest.json) با ۱ از ۱۵ dev و ۰ از ۱۵ test؛ خانوادهٔ #12782/#12629 و شناسه‌های رزرو exposure فقط dev. seed اولیه در `streamlit-data-for-dev-test/` با #23 روی main موجود است؛ انتخاب خانواده‌ها از همان فایل‌ها شروع شود. انتخاب اولیه منتظر R1 یا index نمی‌ماند؛ provenance و linkage با حسن پیش از freeze بررسی می‌شوند.
 - [ ] **E2 — fixture و rubric پیش از اجرا.** case_id، منبع/زمان، ورودی قابل مشاهده در شروع، پاسخ‌های بعدی به‌ترتیب، factهای معلوم، gap کاربر/منبع، منابع مجاز، تصمیم‌های قابل قبول و انتظار عملیاتی ثبت شوند. جواب/label/gold برای runner/reviewer است و وارد پیام مدل یا index نمی‌شود. schema با ساسان هماهنگ شود؛ مسیر موجود `data/evaluation/` مبنا باشد. placeholder قبلی `dev_cases.json` حذف شد؛ پیش‌نویس schema در [`data/evaluation/README.md`](../data/evaluation/README.md) و نخستین fixture آن (P1) ثبت شده‌اند. هماهنگی schema با ساسان هنوز باز است.
 - [ ] **E3 — runner قابل تکرار.** caseها از fixture اجرا شوند؛ turn بعدی در زمان درست آشکار شود و case/revision/proposal و config/snapshot، latency و هزینه ثبت شوند. replay منطقی بدون API و اجرای کیفیت با مدل واقعی خروجی جدا داشته باشند. schema/runner و API/UI pytest با خودش؛ برای قراردادها از ساسان کمک بگیرد. وضعیت: runner آفلاین `agent_app.evaluation.runner` آماده است: caseهای یک split را turn به turn اجرا می‌کند، case/revision/proposal، git commit، hash fixture، config/snapshot، latency، تلاش مدل، دور retrieval، step، هزینه و token را ثبت می‌کند و receipt حالت offline و live را در مسیرهای جدا نگه می‌دارد. [receipt آفلاین dev](../data/evaluation/receipts/offline/dev-2026-10-10.json). ([PR #15](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/15)) مسیر live با HTTP intercepted و BudgetLedger موقت آفلاین تست شده؛ provider و ledger اصلی استفاده نشده‌اند. #21 receipt کامل، accounting درخواست و محافظ branch نامتناسب را اضافه می‌کند؛ تکمیل E3 هنوز به adapter U3، branchهای گفتگو و validation ثبت‌شده نیاز دارد. سناریوهای عملیاتی ساختگی برای خرابی ابزار (retrieval، یک خطای مدل با retry در سقف دو تلاش، دو خطا و توقف) و جابه‌جایی میان دو پرونده در `data/evaluation/scenarios/` پیش از اجرا ثبت شدند؛ اجرای اول ۸۱ از ۸۲ پاس شد چون انتظار ثبت‌شده کد توقف را اشتباه پیش‌بینی کرده بود (engine آخرین خطای adapter یعنی `ReasoningUnavailable` را گزارش می‌کند)؛ receipt آن حفظ و نسخهٔ v2 با همان یک تغییر ثبت شد. این سناریوها جزو ۳۰ case ارزیابی نیستند.
 - [ ] **E4 — baseline و تنظیم فقط روی dev.** کیفیت تصمیم/پشتیبانی ادعاها/ضرورت و پاسخ‌پذیری سؤال، retrieval، صحت عملیات و هزینه/latency جدا سنجیده شوند. تغییرات روی ورودی یکسان مقایسه و نسخهٔ code/prompt/corpus/model freeze شود. نمونهٔ قضاوت انسانی ثبت شود؛ JSON معتبر یا نظر همان مدل تنها شاهد کیفیت نیست.

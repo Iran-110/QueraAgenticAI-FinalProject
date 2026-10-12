@@ -2,6 +2,33 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-12 — R3 release to main and clean-main replay
+
+Final review found no release blocker in the bounded offline port. With Sasan's
+authorization, [PR #27](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/27)
+merged into Hassan's `feat/rag-module` at `4162079d9b8fd809f6c600626719358a6d5763d2`;
+then [PR #23](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/23)
+merged into main at `ec1a1f05d28c59e5aee271bcad48c41fb22cf2f6`.
+Both updated-head PR checks passed before the main merge. Both merge trees
+exactly match the reviewed `65addbb` tree; no unreviewed runtime change entered.
+
+On clean main, the actual adapter/backend with injected native collections
+again passed **14 cases / 132 checks**. All runtime fingerprints and the fixed
+fixture match the clean `326480d` receipt; source stayed unchanged during the
+run. **95 targeted tests**, the adapter smoke and the independent **49-check**
+core/SQLite pilot passed again. [Exact-main CI](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38225492349)
+passed **1,891 tests**, Ruff and all registered offline replays.
+See the [clean-main receipt](../experiments/retrieval_acceptance/results-main-ec1a1f0.json),
+[release verification](../experiments/retrieval_acceptance/release-main-ec1a1f0.json)
+and [R3 scope](rag-adapter-acceptance.fa.md). Seed catalogs and metadata are now
+on main under `streamlit-data-for-dev-test/`; E1 can start from those files.
+
+R3 port acceptance is published. Real index/exclusion/segmentation and retrieval
+quality remain R1/R2/R4/P4; HTTP/UI persistent lifecycle, authentication and
+journal/CAS remain U3/T4/C2. Split/rubric and real decision evaluation remain
+E1–E5/C4. C5's halt is preserved. No real index, embedding, model, credentials
+or production ledger was used; API cost was zero.
+
 ## 2026-10-12 — reusable RAG/core acceptance kit (C2b)
 
 - Registered fixed evidence in `db9c2c0` before first execution. Five exact C3
@@ -33,9 +60,10 @@ tests), Ruff lint/format and the complete offline acceptance run. The first
 already-registered version, URL and response-snapshot probes. More checks are
 coverage, not measured model/retrieval quality improvement. API cost is zero.
 
-PR #23 is still pinned to `bdb7c53`: existing CI is green but all four Python RAG
-files are zero bytes. Actual adapter acceptance R3/P4 remains open pending its
-push and reviewed binding. Nonempty request filters, HTTP/UI, CAS/journal
+At this pre-push milestone, PR #23 was pinned to `bdb7c53`: existing CI was green
+but all four Python RAG files were zero bytes. Actual adapter acceptance R3/P4
+was still pending. The release and clean-main replay above supersede that status.
+Nonempty request filters, HTTP/UI, CAS/journal
 lifecycle, actual index/ingestion, corpus exclusion and held-out quality remain
 outside this kit. [Protocol and handoff](rag-core-acceptance.fa.md).
 
@@ -823,8 +851,9 @@ same fixed inputs and corrected observation code: literal `b571080` fails at
 change denominators; no quality percentages are inferred. **1,891 full tests**,
 95 targeted tests, locked sync, Ruff, the three required demos and standalone
 49-check core/tracker regression pass. Production source fingerprints remain
-unchanged across the clean receipt run. Publication is on the separate repair
-branch; merging remains a distinct step.
+unchanged across the clean receipt run. That pre-release receipt came from the
+separate repair branch; publication and the clean-main receipt are recorded
+in the release milestone above.
 
 The harness's `calls[-2:]` assumed one physical read per query despite the
 existing multi-collection allowance. Observation now selects the current round;
