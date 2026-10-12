@@ -1,0 +1,21 @@
+{
+  "protocol": "durable-ui-review-v1",
+  "kind": "offline operational control; not model or retrieval evaluation",
+  "fixture": "data/evaluation/dev/pilot-12782.json",
+  "fixture_sha256": "f4b9cef54c98dd875ff0e55f41aebcde19a9b02717b7cb8c5525eba9575f2855",
+  "baseline_commit": "6e719e9aaba21ed31a72d374acbc4332863974c5",
+  "baseline_modules": ["src/agent_app/ui_client.py", "src/agent_app/persistent_api.py"],
+  "known": "Initial issue text; no confirmed version. After correction, user explicitly reports 1.49.0.",
+  "missing": "Widget code and any model-derived diagnosis; scripted ports do not establish an answer.",
+  "acceptable": "A canonical version question before correction; approval only binds the displayed proposal; retries recover the original committed review.",
+  "fault": "Drop the HTTP acknowledgement after review commits, then correct the case and recreate the backend over the same SQLite database.",
+  "checks": [
+    "stable_event_committed",
+    "durable_review_capabilities",
+    "uncertain_ack_keeps_original_review",
+    "original_receipt_after_backend_recreation",
+    "corrected_current_state_preserved",
+    "exactly_one_local_action"
+  ],
+  "scope_note": "Backend recreation here is same-interpreter; fresh-process persistence remains covered by the separate HTTP protocol v2. Page/session behavior is covered by actual Streamlit AppTest."
+}

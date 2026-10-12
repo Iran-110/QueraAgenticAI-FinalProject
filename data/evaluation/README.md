@@ -16,9 +16,12 @@ completion claim. Registered fixtures and receipts are preserved unchanged.
 - `dev/` and `test/` hold one JSON fixture per case. A fixture is committed
   before its first run; later edits get a new `fixture_id`.
 
-The seed ZIP mentioned in the plan is not tracked here; its filename/counts do
-not prove delivery to a teammate. Family selection, linkage review and actual
-corpus exclusion remain E1/R1/R2 work. The complete project targets remain 15 dev,
+The seed pool is tracked under `streamlit-data-for-dev-test/`: 240 Issues,
+1178 comments, 56 Markdown documents and 1172 versioned API records. Its packaged
+checksums can be verified with `uv run python data_scripts/seed_profile.py`.
+Presence in Git does not freeze the split or approve a RAG corpus. Family
+selection, linkage review and final corpus exclusion remain E1/R1/R2 work.
+The complete project targets remain 15 dev,
 15 test and at least 10 multi-turn scenarios, at least five of them in test.
 
 ## Case fixture fields

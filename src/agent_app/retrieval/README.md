@@ -1,5 +1,12 @@
 # اتصال RAG به core
 
+برای ساخت index کوچک مجاز و اتصال UI به آن،
+[pilot محلی U3a/P4a](../../../docs/offline-ui-index-pilot.fa.md) اکنون builder مستقل
+دارد. ۱۴ source و ۳۰ chunk با pin، version/span و embedding lexical محلی؛
+reasoning اسکریپتی است و کیفیت RAG/مدل را ادعا نمی‌کند. `index_data` قدیمی همچنان
+برای corpus نهایی مسدود است. دستورهای smoke پایین، آزمایش جدا با collection
+ثابت‌اند؛ receipt ۱۳۲/۱۳۲ آن‌ها شاهد اجرای index تازه نیست.
+
 `ChromaRetrieverAdapter` درخواست `RetrievalRequest` را می‌گیرد و
 `EvidenceBundle` می‌سازد. مسیر پذیرش آفلاین، search و تبدیل hitهای همین adapter
 را با collectionهای ثابت بررسی می‌کند. این مسیر index یا embedding واقعی
@@ -62,7 +69,8 @@ snapshot نامعلوم یا ناسازگار باید retrieval را متوقف
 source، URL، span، commit و نسخه‌های قابل اعمال. binding این شناسه‌ها را در
 metadata native collection نگه می‌دارد؛ fallback شناسهٔ قدیمی، قرارداد legacy
 مانند `doc:<native_id>` است. نتیجهٔ چند query باید dedup شود و سقف کلی `top_k`
-را رعایت کند. excerpt معتبر تا ۲۰۰۰۰ کاراکتر کامل حفظ می‌شود؛ ورودی بزرگ‌تر
+را رعایت کند. excerpt معتبر تا ۲۰۰۰۰ کاراکتر بدون clipping داخلی منتقل می‌شود؛
+قرارداد core فاصلهٔ ابتدا/انتهای excerpt را trim می‌کند و span/hash خام جداست. ورودی بزرگ‌تر
 یا metadata نامعتبر، خطاست و نباید با clipping یا منبع ساختگی پنهان شود.
 
 ## وضعیت ingestion و corpus

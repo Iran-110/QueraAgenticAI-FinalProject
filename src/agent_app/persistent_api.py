@@ -7,7 +7,7 @@ comment itself. Default ports remain scripted and offline.
 
 import secrets
 from collections.abc import Callable, Mapping
-from typing import Annotated, Any
+from typing import Annotated, Any, Literal
 
 from fastapi import FastAPI, Header, HTTPException
 from fastapi.exceptions import RequestValidationError
@@ -88,6 +88,7 @@ def create_app(
     *,
     reviewer_tokens: Mapping[str, str],
     adapters: Callable[[api.Scenario], api.RunAdapters] | None = None,
+    retrieval_label: Literal["scripted", "local_chroma_hash"] = "scripted",
 ) -> FastAPI:
     """Caller explicitly supplies storage/config; no .env or default DB is read.
 
@@ -95,8 +96,10 @@ def create_app(
     existing tracker authenticates it again. Empty configuration fails closed.
     Applications should bind this local prototype to loopback.
     """
-    if not isinstance(tracker, SQLiteCaseTracker) or (
-        adapters is not None and not callable(adapters)
+    if (
+        not isinstance(tracker, SQLiteCaseTracker)
+        or (adapters is not None and not callable(adapters))
+        or retrieval_label not in {"scripted", "local_chroma_hash"}
     ):
         raise ValueError("Invalid persistent HTTP configuration.")
     reviewers = dict(reviewer_tokens)
@@ -144,13 +147,28 @@ def create_app(
                 "run_outcome": stored["run_outcome"],
                 "mode": "synthetic_offline_sqlite",
                 "tracker_backend": BACKEND,
+                "retrieval_label": retrieval_label,
+                "reasoning_label": "scripted",
+                "quality_claim": False,
             }
         except Exception:
             raise HTTPException(status_code=503, detail="TrackerUnavailable") from None
 
     @app.get("/health")
     def health():
-        return {"status": "ok", "mode": "synthetic_offline_sqlite", "tracker_backend": BACKEND}
+        return {
+            "status": "ok",
+            "mode": "synthetic_offline_sqlite",
+            "tracker_backend": BACKEND,
+            "capabilities": {
+                "stable_event_ids": True,
+                "durable_reviews": True,
+                "reviewer_auth": "bearer",
+            },
+            "retrieval_label": retrieval_label,
+            "reasoning_label": "scripted",
+            "quality_claim": False,
+        }
 
     @app.get("/cases/{case_id}")
     def get_case(case_id: api.CaseId):
