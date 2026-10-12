@@ -2,6 +2,43 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-12 — HTTP pilot acceptance and short-reply context (C2c)
+
+The registered existing dev pilot now has a reusable HTTP kit with actual fresh
+child interpreters at five restart checkpoints. Protocol `7a8d230` precedes
+baseline execution; fixture, evidence and gold are unchanged. On clean source
+`89eab33` (API identical to main `4f576d6`), the sole same-process failure was
+loss of the initial issue when the user replied with only a version. The API
+now reuses the existing bounded conversation builder with server-owned committed
+history; active CaseState remains authoritative and only a validated bound
+canonical assistant question enters reasoning context.
+
+Clean `60c0712` improves same-process checks from **301/302 to 302/302** on the
+same protocol and fixture. Restart checks remain **65/102** and all five state
+preservation checkpoints fail: the actual API remains process-memory. Overall
+`accepted=false`; a missing state or404 approval after restart is not dedup.
+Retry verifies the entire original intake receipt, whole current view and zero
+factory/retrieval/reasoning calls. Read/review requests cannot hide model work.
+Edited/rejected drafts never enter context; overflow stops before ports with
+committed ingress and safe replay. A latest-only GroundedRequest supplier fails
+handoff matching safely. See [receipts, comparison and wiring requirements](http-pilot-acceptance.fa.md).
+
+The legacy user-intake replay now independently checks retained original/prior
+messages and exact latest input; its registered fixture/gold and historical
+receipts are preserved. A mutation restoring latest-only input fails that replay.
+**1,946 full tests**, locked sync, Ruff lint/format, all three required demos,
+the legacy seven-turn replay, the **49-check core/SQLite pilot**, and actual RAG
+adapter with fixed injected collections (**132/132**) pass. The CI expected-gap
+flag is a negative control that keeps persistence acceptance false.
+
+C2c's kit/execution is complete; its acceptance checkbox, U3/T4/C2 remain open
+until real persistent HTTP wiring, authenticated review, lifecycle CAS and
+interrupted-run journal are verified. Transport is ASGI, not an external TCP
+server or browser test. The exposed answer-informed scripted dev family provides
+no model, semantic claim support, real RAG or held-out evaluation result.
+API cost is zero; no provider, embedding, index, .env or production ledger was
+used. C5 halt stays unchanged.
+
 ## 2026-10-12 — R3 release to main and clean-main replay
 
 Final review found no release blocker in the bounded offline port. With Sasan's
