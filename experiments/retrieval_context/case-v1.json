@@ -1,0 +1,75 @@
+{
+  "case": {
+    "case_id": "query-context-environment-switch",
+    "case_revision": 2,
+    "facts": [
+      {
+        "name": "streamlit_version",
+        "value": "1.50.0",
+        "source_ref": "user:turn-1",
+        "turn_id": "turn-1",
+        "provenance_kind": "user",
+        "status": "superseded"
+      },
+      {
+        "name": "python_version",
+        "value": "3.12.9",
+        "source_ref": "user:turn-1",
+        "turn_id": "turn-1",
+        "provenance_kind": "user",
+        "status": "superseded"
+      },
+      {
+        "name": "streamlit_version",
+        "value": "1.49.0",
+        "source_ref": "user:turn-2",
+        "turn_id": "turn-2",
+        "provenance_kind": "user",
+        "status": "active"
+      }
+    ],
+    "unknowns": [
+      "parent_callback_code",
+      "minimal_failing_reproduction",
+      "python_version"
+    ],
+    "checks_performed": [],
+    "evidence_refs": [],
+    "pending_proposal_id": null
+  },
+  "conversation": {
+    "entries": [
+      {
+        "actor": "user",
+        "reference_id": "turn-1",
+        "revision": 1,
+        "text": "My multiselect in a fragment loses its default after the parent selector resets session state. My reduced example works and the parent callback is not provided. Streamlit 1.50.0, Python 3.12.9."
+      },
+      {
+        "actor": "user",
+        "reference_id": "turn-2",
+        "revision": 2,
+        "text": "Correction: Streamlit is 1.49.0. The reduced example still works; I have not provided the parent callback."
+      }
+    ],
+    "latest_turn_id": "turn-2",
+    "committed_revision": 2,
+    "latest_message": "Correction: Streamlit is 1.49.0. The reduced example still works; I have not provided the parent callback.",
+    "reply_to_proposal_id": null
+  },
+  "user_message": "Original user problem (historical context; not current facts):\nMy multiselect in a fragment loses its default after the parent selector resets session state. My reduced example works and the parent callback is not provided. Streamlit 1.50.0, Python 3.12.9.\n\nCurrent facts and unknowns come from the supplied CaseState. Historical context may contain superseded values; it does not update facts or provide source evidence.\n\nLatest user message (exact committed input):\nCorrection: Streamlit is 1.49.0. The reduced example still works; I have not provided the parent callback.",
+  "provenance": {
+    "issue_family": [
+      12629,
+      12782
+    ],
+    "exposed_development_only": true,
+    "initial_problem": "Reused authored integration problem from connected-live-protocol-v1; informed by original Issue answer. No original Issue answer used as source evidence.",
+    "other_turns": "developer-authored query composition variations; environment versions are scenario facts, not verified original Issue versions",
+    "quality_claim": false,
+    "final_evaluation_case_count": 0,
+    "corpus_policy": "Do not index these cases/gold/outcomes.",
+    "explicit_structured_environment_switch": true,
+    "environment_assumption": "The original current turn explicitly sets context_changed=True, representing a different environment even though its raw message only says correction. Python is superseded/unknown; ordinary correction is a separate offline control."
+  }
+}

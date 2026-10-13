@@ -1,0 +1,103 @@
+{
+  "protocol_id": "retrieval-context-live-comparison-v1",
+  "experiment_id": "query-context-dev-2026-10-13-v1",
+  "continuation_id": "user-continuation-2026-10-07-v3",
+  "fixture": {
+    "path": "experiments/retrieval_context/case-v1.json",
+    "sha256": "243eec0950ae0f5fb67b580baec9c6fa64a3cb7df176a5ea8f688c1e693066e7"
+  },
+  "ledger": {
+    "path": "runtime/budget.sqlite3",
+    "sha256_before": "6e9ea79ff5cd1f761f3623e2a58b07c6091aa601f7847ecdcbf0cc1d8841248b",
+    "unknown_records_sha256": "e3272b56ca6485511590fb2453befc5839fa066e5f668d86bba5ee0510761a20"
+  },
+  "index": {
+    "path": "/Users/sasan/Desktop/Agentic AI/output/rag-pr35-e37a57a-2026-10-13/index-a",
+    "snapshot_id": "docs-pilot-87bdaf9a3dadcefff48a6775ef616f3d3dd5bf1c8cb23a9521b0e11ccaae160c",
+    "manifest_sha256": "7e464fe8dcdea125c144a19f3113ff2d87793d09c427fdeabb43255b49246927",
+    "top_k": 1
+  },
+  "gateway": {
+    "model": "gpt-4o-mini",
+    "phase": "development",
+    "input_token_reserve": 16384,
+    "max_output_tokens": 384,
+    "max_request_usd": "0.002956800",
+    "batch_max_reserved_usd": "0.005913600",
+    "max_actual_sends_including_repair": 2
+  },
+  "user_gap_definitions": [
+    {
+      "name": "parent_callback_code",
+      "kind": "user",
+      "description": "The parent selector callback was not supplied.",
+      "necessity": "User-supplied callback code is needed to inspect the app's actual state-update order; documentation cannot establish its cause or fix.",
+      "question": "Can you share the parent selector callback that resets Session State?"
+    },
+    {
+      "name": "minimal_failing_reproduction",
+      "kind": "user",
+      "description": "The reduction works; no failing parent-selector example was supplied.",
+      "necessity": "The user can supply a failing parent/callback example; repeating the working reduction cannot reproduce the reported failure.",
+      "question": "Can you share a minimal failing example that keeps the parent selector/callback interaction? The supplied reduced example works."
+    }
+  ],
+  "provenance": {
+    "issue_family": [
+      12629,
+      12782
+    ],
+    "exposed_development_only": true,
+    "initial_problem": "Reused authored integration problem from connected-live-protocol-v1; informed by original Issue answer. No original Issue answer used as source evidence.",
+    "other_turns": "developer-authored query composition variations; environment versions are scenario facts, not verified original Issue versions",
+    "quality_claim": false,
+    "final_evaluation_case_count": 0,
+    "corpus_policy": "Do not index these cases/gold/outcomes.",
+    "explicit_structured_environment_switch": true,
+    "environment_assumption": "The original current turn explicitly sets context_changed=True, representing a different environment even though its raw message only says correction. Python is superseded/unknown; ordinary correction is a separate offline control."
+  },
+  "review_before_run": {
+    "known": [
+      "active current Streamlit1.49.0",
+      "same reported multiselect/fragment parent-selector complaint retained as labelled history; no new verified cause"
+    ],
+    "user_can_clarify": [
+      "parent callback",
+      "minimal failing reproduction",
+      "Python of newly declared environment"
+    ],
+    "source_gap": "Docs describe behavior but cannot establish missing callback code or exact app cause/fix; index lacks multiselect/fragment API sources and versioned texts may tie.",
+    "acceptable": [
+      "ask current necessary callback/failing reproduction gap",
+      "limited applicable directly quoted docs without claiming app cause/fix",
+      "honest escalation if sources cannot resolve"
+    ],
+    "unacceptable": [
+      "treatsuperseded1.50/Python3.12 ascurrentenvironment",
+      "assertunsupportedfix/cause",
+      "askknowncurrentversion",
+      "claimsemanticRAG/modelqualityfromrankfliporvalidJSON"
+    ],
+    "operational": [
+      "samefrozenCaseState/fullreasoningmessagebotharms",
+      "atmost1sendperarm,2total;providerterminalstopsremaining",
+      "noautoapproval/staging/action",
+      "originalhalt/hold/uncertaintyhashpreserved"
+    ]
+  },
+  "measurement": "Initialqueryonly: legacyprefix vs currentfacts/latesttopic; actualindexqueries/sourceIDs/scopes/distances/evidence and fullproviderhand-offs recorded. Pairedmodelchoices are descriptive development observations, not controlledsemanticquality proof.",
+  "budget": "Explicituserauthorizednecessaryonlinecomparison usesexistingimmutabledevelopmentgrant; unchangedteam$5 ceiling, originalC5halt/$0.02 hold. No extra grant/resets/unhalt. Old largerrequestboundwouldexceedremainingallowance; narroweroutputcap384 retainsinputreserve16384.",
+  "limits": "oneattemptandoneRAGroundperarm; atmost2actualsendsforwholecomparison; noautomaticrepair/refinement/retry or action. An incomplete result is preserved; this protocol is one-shot and cannot be repeated after ledger/source changes.",
+  "quality_claim": false,
+  "heldout_claim": false,
+  "c5_reconciled": false,
+  "expected_queries": {
+    "legacy": "Original user problem (historical context; not current facts): My multiselect in a fragment loses its default after the parent selector resets session state. My reduced example works and the parent callback is not provided. Streamlit 1.50.0, Python 3.12.9. Current facts and unknowns come from the supplied CaseState. Historical context may contain superseded values; it does not update facts or prov streamlit_version=1.49.0",
+    "current": "streamlit_version=1.49.0 | Correction: Streamlit is 1.49.0. The reduced example still works; I have not provided the parent callback. | topic: My multiselect in a fragment loses its default after the parent selector resets session state reduced example works and"
+  },
+  "registered_code_sha256": {
+    "scripts/retrieval_context_live_probe.py": "48e1e987904f53139c7287f0b1d02b9d8d1668e662558d5c83b469974abaab04",
+    "src/agent_app/testing/retrieval_context_live_probe.py": "e510b338a87a0fe4a3ddd2b7e3d8504e9894f929918ec9f40c9c993ec126b467",
+    "src/agent_app/orchestration/retrieval_context.py": "b5133c15368e3383a42da4a401dd6f39461d4f3040f64f35965304806c8dc5fb"
+  }
+}
