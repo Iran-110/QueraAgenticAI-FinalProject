@@ -2,6 +2,33 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-13 — C4a actual prefix, import boundary and registered resource follow-up
+
+The clean pushed `8b16f2c` baseline passed Linux/Windows CI before its three
+actual provider sends. Full/removed evidence each produced a current-source
+parent-callback question; unknown-version stopped with ProviderResponseInvalid,
+and three later conditions were terminal-skipped. New settled estimateUSD0.002005245,
+no new holds; originalUSD0.02 uncertainty/halt intact. Raw registration/receipt
+and a separate whole-output assistant review are preserved in the
+[packet](../experiments/controlled_model_baseline/README.md). Output384 equals the
+failed request's cap; the old finish reason was not recorded, so truncation is
+possible rather than established. No decision is scored for missing output.
+
+A new separately preregistered single-send output-cap follow-up preserves the
+unknown condition's first prompt/material/model and original reviewer. Output512,
+inputreserve15360, priced reserveUSD0.002872320 within old continuationremaining
+USD0.002909545; no new grant/reset/unhalt. Its result remains pending. Engine
+limits stay2/2/2/8; a requested second send is stopped rather than silently funded.
+
+Independent integration review also reproduced a grounding-first import cycle
+in a fresh interpreter. Lazy public orchestration exports preserve classes/API
+while avoiding eager service/handoff imports through leaf ports. Twelve cold
+subprocess regressions include a complete offline core-to-handoff turn. This
+import fault is unrelated to the recorded provider response error. The new
+complete local suite has2797passes, Ruff199files and three demos pass. Original
+fixtures/protocol/reviewer/prompt and teammate modules are unchanged; C4 on
+independent dev, final evaluation/RAG and C5 stay open.
+
 ## 2026-10-13 — C4a controlled model baseline, before provider execution
 
 The actual model has not yet selected outputs for the six frozen V8/V9 scenarios;

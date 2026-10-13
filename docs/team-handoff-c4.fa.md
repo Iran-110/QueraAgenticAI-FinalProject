@@ -8,6 +8,15 @@ V8/V9 با شواهد ثابت و core فعلی. این بسته تا قبل ا�
 و ورودی قابل مشاهده نیست. این خانواده و case/answer/outcome/duplicateها وارد
 corpus واقعی یا test مستقل نشوند.
 
+وضعیت جاری در [PR #39](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/39):
+baseline واقعی سه send داشت؛ دو سؤال callback با منابع جاری، یک خطای provider
+و سه condition اجرا‌نشده. [رسید و review جدا](../experiments/controlled_model_baseline/README.md)
+حفظ‌اند. [follow-up یک‌درخواستی](controlled-output-cap-followup.fa.md) با همان
+prompt برای نسخهٔ نامشخص قبل از اجرای تازه ثبت شده؛ نتیجه هنوز باقی است.
+مشکل import مستقیم core در process تازه هم با همان API عمومی اصلاح شده؛
+این تغییر ربطی به علت خطای provider ندارد. نتیجهٔ مدل را با تعداد pytest یا
+mock موفق یکی نگیریم؛ C4 مستقل و کارهای evaluation/corpus هنوز بازند.
+
 ## فایل‌هایی که تغییر کرده‌اند
 
 - `testing/controlled_decision_inputs.py`: projection فقط state/message/bundle/
@@ -15,7 +24,9 @@ corpus واقعی یا test مستقل نشوند.
 - `testing/controlled_model_baseline.py` و wrapper: dry/preflight، core/gateway
   واقعی با منابع fixture، ledger و ثبت خروجی/هزینه؛ tracker/action صفر است.
 - `experiments/controlled_model_baseline/`: protocol تازه، inventory reviewer،
-  و بعد از اجرا receipt و review جدا. فایل‌های قدیمی بازنویسی نمی‌شوند.
+  receipt و review جدا و پروتکل محدود follow-up. فایل‌های قدیمی بازنویسی نمی‌شوند.
+- `orchestration/__init__.py`: public exportها lazy هستند؛ `GroundedReasoner`
+  را می‌شود اول import کرد. اسم، قرارداد و هویت کلاس‌ها حفظ شده‌اند.
 - plan و مستندات core: task مالک‌ها، محدوده و معنی نتایج تازه.
 
 این تحویل shared contract یا port را عوض نمی‌کند و adapter جدید RAG/tracker/UI

@@ -6,27 +6,29 @@
 
 ### تقسیم کار جاری — درخواست جمع‌بندی تا امشب ۱۳ اکتبر
 
-گام جاری ساسان **C4a — baseline انتخاب واقعی مدل با شواهد ثابت** است؛
-از main منتشرشدهٔ `80f9913` / [PR #38](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/38)
-با [CI Linux/Windows](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38429631146)
-شروع شد. شش variation موجود V8/V9 از همان خانوادهٔ exposed، تا حالا
-authored/offline بوده‌اند. پروتکل تازه و reviewer inventory قبل از درخواست
-مدل ثبت می‌شوند؛ fixture/protocol قدیمی و جواب‌های آن‌ها تغییر نمی‌کنند.
-این شش Issue مستقل، corpus واقعی یا test نهایی نیستند. catalog و conflictها
-دستی‌اند و انتخاب سؤال/منبع مدل تحت همین اطلاعات اضافه سنجیده می‌شود.
+تحویل جاری ساسان **C4a — انتخاب واقعی مدل روی شواهد ثابت** در
+[PR #39](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/39) است؛
+از main `80f9913` شروع شد. [بستهٔ شواهد و محدودیت‌ها](../experiments/controlled_model_baseline/README.md)
+اصل preregistration، receipt و review جدا دارد. baseline روی `8b16f2c` پس از
+CI لینوکس/ویندوز اجرا شد: ۳ send واقعی، ۲ سؤال callback قابل بررسی، یک
+`ProviderResponseInvalid` و ۳ condition اجرا‌نشده از ۶ مورد. هزینهٔ تخمینی
+$0.002005245 و hold تازه صفر؛ هزینهٔ حساب واقعی unknown است.
 
-محدودهٔ مستقل این تحویل `testing/controlled_decision_inputs.py`،
-`testing/controlled_model_baseline.py`، wrapper و
-`experiments/controlled_model_baseline/` است. قراردادهای core، RAG، tracker،
-UI و dataset مالک‌های دیگر تغییر نمی‌کنند. runtime ورودی جدا از reviewer/gold
-دارد؛ همهٔ sourceها و دو bundle ثبت‌شده حفظ می‌شوند. آفلاین plumbing را با
-gateway mock می‌سنجیم؛ online فقط prefix مجاز با همان ledger/grant، سقف واقعی
-$0.00491479، guard هر attempt و حفظ halt/hold قدیمی اجرا می‌شود. اجرا‌نشده‌ها و
-شکست‌ها حذف یا success شمرده نمی‌شوند. هزینهٔ واقعی حساب unknown می‌ماند.
+[follow-up تازهٔ سقف خروجی](../docs/controlled-output-cap-followup.fa.md) فقط
+همان نسخهٔ نامشخص را با همان ورودی/prompt/model و یک send مجاز ثبت می‌کند؛
+خروجی ۳۸۴ به ۵۱۲، reserve ورودی ۱۵۳۶۰ و رزرو $0.002872320 در باقی‌ماندهٔ
+grant قبلی $0.002909545 جا می‌شود. نتیجهٔ این اجرای تازه هنوز باقی است؛
+baseline و reviewer قبلی دست‌نخورده‌اند و retry خودکار نداریم.
 
-[راهنمای تحویل C4 به تیم](../docs/team-handoff-c4.fa.md) نحوهٔ گرفتن تغییرات و
-مرز کارها را روشن می‌کند؛ نتیجه و review کامل پس از اجرای ثبت‌شده اضافه شود.
-E1/E2/R4/E4/E5/C5 همچنان بازند و وظایف سه dev case/corpus اعضا پابرجاست.
+این‌ها variationهای exposed یک خانواده‌اند، نه شش Issue مستقل، RAG واقعی
+یا test نهایی؛ catalog و conflictها دستی‌اند. مشکل import مستقیم core در
+process تازه جدا اصلاح شد و API عمومی حفظ است؛ این علت خطای provider نبود.
+تست کامل محلی ۲۷۹۷ مورد، Ruff و سه demo پاس‌اند. CI و انتشار نهایی در PR
+مرجع ثبت شوند؛ branchها پس از merge با `origin/main` sync شوند.
+
+[راهنمای C4 به تیم و agentهای کاری](../docs/team-handoff-c4.fa.md) محدودهٔ
+فایل‌ها و adopt کردن را مشخص می‌کند. قراردادهای مشترک و ماژول‌های اعضا تغییر
+نکرده‌اند. وظایف سه dev case/corpus/smoke تیم پابرجاست؛ E1/E2/R4/E4/E5/C5 بازند.
 
 انتشار #37 روی main `109f59e` و [CI Linux/Windows](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38406080389)
 پاس شد. تحویل مستقل ساسان **C2g** در [PR #38](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/38)،
