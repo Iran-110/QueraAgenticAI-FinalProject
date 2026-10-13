@@ -4,14 +4,19 @@ import json
 import os
 from copy import deepcopy
 from dataclasses import replace
+from pathlib import Path
+from types import SimpleNamespace
 
+import httpx
 import pytest
+import streamlit as st
 from fastapi.testclient import TestClient
+from streamlit.testing.v1 import AppTest
 from test_evaluation_live import CALLBACK, KEY, adapters, provider_response
 from test_evaluation_live import index as index
 from test_evaluation_live import ledger as ledger
 
-from agent_app import api, live_backend
+from agent_app import api, live_backend, ui_client
 from agent_app.persistent_api import create_app
 from agent_app.retrieval.pilot_corpus import MANIFEST_NAME
 from agent_app.testing.http_pilot_runtime import offline_network
@@ -290,3 +295,96 @@ def test_case_ports_cleanup_failure_persists_safe_outcome_without_proposal(tmp_p
     assert view["pending"] is None
     assert view["run_outcome"]["error_code"] == "AdapterCleanupFailed"
     assert "private-case-adapter-secret" not in json.dumps(view)
+
+
+def test_real_page_uses_case_bound_backend_and_retries_original_review_after_recreation(
+    tmp_path, monkeypatch, index, ledger
+):
+    """The actual page with an explicitly injected mock provider, never paid UI."""
+    state = SimpleNamespace(backend=None, loss=False, reviews=[], transports=[])
+    configuration = {
+        "AGENT_TRACKER_DB": str(tmp_path / "page.sqlite3"),
+        "AGENT_REVIEWER_TOKEN": TOKEN,
+    }
+    st.cache_resource.clear()
+
+    def backend():
+        factory, transports = adapters(index, ledger)
+        state.transports.append(transports)
+        return TestClient(
+            live_backend.configured_app(configuration, adapters_factory=lambda _values: factory)
+        )
+
+    class Transport:
+        def request(self, method, path, **arguments):
+            response = state.backend.request(method, path, **arguments)
+            if method == "POST" and path.endswith("/decision"):
+                state.reviews.append(deepcopy(arguments["json"]))
+                if state.loss and response.status_code == 200:
+                    state.loss = False
+                    raise httpx.ReadTimeout("Synthetic committed acknowledgment lost")
+            return response
+
+    try:
+        with offline_network():
+            monkeypatch.setattr(
+                ui_client,
+                "make_client",
+                lambda: ui_client.BackendClient(Transport(), reviewer_token=TOKEN),
+            )
+            state.backend = backend().__enter__()
+            page = AppTest.from_file(
+                str(Path(__file__).resolve().parents[1] / "app_pages/assistant.py"),
+                default_timeout=15,
+            ).run()
+            assert not page.exception
+            assert "scenario" not in [item.key for item in page.sidebar.selectbox]
+            page.chat_input[0].set_value(
+                "My widget resets; the Streamlit version is unknown."
+            ).run()
+            assert not page.exception
+            case_id = page.session_state.case_id
+            initial = state.backend.get(f"/cases/{case_id}").json()
+            assert initial["pending"]["missing_info"] == ["streamlit_version"]
+            assert initial["pending"]["review_handoff"]["case"]["case_id"] == case_id
+            page.button(key="approve").click().run()
+            page.text_input(key="version_reply").set_value("1.50.0")
+            next(item for item in page.button if item.label == "Send reply").click().run()
+            assert not page.exception
+            known = state.backend.get(f"/cases/{case_id}").json()
+            assert known["pending"]["decision"] == "escalate" and known["case_revision"] == 2
+            state.loss = True
+            page.button(key="approve").click().run()
+            assert not page.exception
+            original = page.session_state.unsent_reviews[case_id].payload()
+            receipt = state.backend.get(f"/cases/{case_id}").json()["review"]
+            generation = page.session_state.form_gen
+            page.text_area(key=f"update_message_{generation}").set_value(
+                "Correction: Streamlit is 1.49.0 in the same environment."
+            )
+            page.text_input(key=f"fact_name_0_{generation}").set_value("streamlit_version")
+            page.text_input(key=f"fact_value_0_{generation}").set_value("1.49.0")
+            next(item for item in page.button if item.label == "Send update").click().run()
+            assert not page.exception and page.button(key="approve").disabled
+            corrected = state.backend.get(f"/cases/{case_id}").json()
+            assert corrected["case_revision"] == 3
+            assert corrected["pending"]["proposal_id"] != known["pending"]["proposal_id"]
+            assert page.session_state.unsent_reviews[case_id].payload() == original
+            state.backend.__exit__(None, None, None)
+            state.backend = backend().__enter__()
+            allocated = sum(len(items) for items in state.transports)
+            next(item for item in page.button if item.label == "Retry review").click().run()
+            assert not page.exception and page.session_state.unsent_reviews == {}
+            assert state.reviews[-1] == original
+            after = state.backend.get(f"/cases/{case_id}").json()
+            assert after["review"] == receipt and after["pending"] == corrected["pending"]
+            assert len(after["actions"]) == 2 and after["case_revision"] == 3
+            assert sum(len(items) for items in state.transports) == allocated
+            assert not page.button(key="approve").disabled
+            assert len(SQLiteCaseTracker(configuration["AGENT_TRACKER_DB"]).comments(case_id)) == 2
+            assert TOKEN not in repr(page.session_state) and KEY not in repr(page.session_state)
+    finally:
+        if state.backend is not None:
+            state.backend.__exit__(None, None, None)
+        st.cache_resource.clear()
+    assert all(transport.close_calls == 1 for items in state.transports for transport in items)

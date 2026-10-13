@@ -12,9 +12,14 @@
 - UI و HTTP پایدار، مرورگر pilot، adapter حسن و build تکرارپذیر docs-only:
   ۱۴ source / ۳۰ chunk با Chroma واقعی و vector lexical محلی.
 - runner آفلاین و ثبت proposal، config، زمان، تلاش و هزینه؛ passing receipt
-  به معنی کیفیت پاسخ نیست. حالت عمومی live هنوز factory نهایی ندارد.
+  به معنی کیفیت پاسخ نیست. factory مدل/index در تحویل تازه پیاده است، ولی
+  ordinary live در C5 halt مسدود و تنظیم/corpus نهایی هنوز باز است.
 
-مبنای انتشار این بررسی `main@1c9985a` است. شواهد اصلی در
+مبنای اولیهٔ این بررسی `main@1c9985a` بود؛ آن مرحله با #36 روی `a087770`
+منتشر شد. [تحویل بعدی و taskهای امروز](evaluation-live-routes.fa.md)
+runner شاخه‌ای، factory مشترک، case binding پایدار و helper judgment را
+اضافه می‌کند. تعداد مستقل caseها هنوز یک dev/صفر test است؛ این helperها
+کیفیت را نمی‌بندند. شواهد اصلی در
 [PR35](../experiments/retrieval_acceptance/pr35/README.md) و
 [pilot پایدار](grounded-persistent-pilot.fa.md) حفظ شده‌اند.
 
@@ -34,7 +39,8 @@
    corpus بررسی می‌کند. runner با flagهای final، کل بسته و evidenceهای آن را
    **پیش از ساخت live factory** بررسی می‌کند و فقط subset ثبت‌شده را اجرا می‌کند.
    این تأیید مکانیکی، اصالت بازبینی انسانی، کیفیت پاسخ یا index واقعی را ثابت
-   نمی‌کند. runner هنوز مسیر شرطی سؤال‌ها را به‌صورت adaptive اجرا نمی‌کند.
+   نمی‌کند. runner اکنون routeهای شرطیِ ثبت‌شده را اجرا می‌کند؛ بررسی دقیق
+   سؤال released و شمارش مسیرهای چندنوبتی واقعی جدا از graph ثبت‌شده است.
 4. [protocol اتصال واقعی](../experiments/grounded_http_acceptance/connected-live-protocol-v1.json)
    پیش از API ثبت می‌شود: همان index واقعی، مدل، HTTP پایدار و SQLite؛ ابتدا
    نسخهٔ معلوم 1.50.0 و سپس correction به 1.49.0. متن‌ها authored و خانواده
@@ -52,7 +58,7 @@
 | --- | --- | --- |
 | E1/E2: تبدیل candidateها به case | بازبینی خانواده و exposure تمام اعضا؛ ۱۵ dev / ۱۵ test، حداقل ۱۰ مسیر چندنوبتی و ۵ test؛ ورودی/نسخه/gap/تصمیم‌های قابل قبول قبل از اجرا | محمدحسن؛ ساسان قرارداد و runner، حسن duplicate و منابع |
 | R1/R2: corpus نهایی | منابع مجاز docs/Issueهای دیگر، provenance، حذف خود case/comment/outcome/duplicate و docs جواب مستقیم؛ manifest و index freezeشده | حسن با manifest محمدحسن؛ builder pilot مبناست |
-| E3: مسیر live قابل تکرار | factory عمومی مدل/index با همان ledger، branchهای پاسخ شرطی، pin واقعی config/index/code/prompt/model | ساسان و محمدحسن؛ بودجه و توقف‌ها حفظ شوند |
+| E3: تنظیم نهایی مسیر live | factory و branchها پیاده‌اند؛ corpus/index نهایی، adoption rubric/route و pin config/code/prompt/model قبل از baseline باقی است؛ ordinary live هنوز halted | ساسان و محمدحسن؛ بودجه و توقف‌ها حفظ شوند |
 | C4/E4/R4: dev baseline و یک بهبود | همان caseها/منابع؛ تصمیم در هر stratum، پشتیبانی ادعا، سؤال ضروری/قابل پاسخ، usefulness انسانی، retrieval و هزینه جدا | ساسان و حسن؛ بازبینی مستقل محمدحسن |
 | E5: test مستقل | freeze پس از dev، اجرای test بدون tuning، trace و داوری کیفیت/شکست/هزینه؛ تطبیق بخشی از داوری‌ها توسط انسان | محمدحسن؛ کمک اجرای ساسان |
 | گزارش و demo | دستور بازتولید، حدود و شکست‌ها، pilot قابل نمایش؛ ارائه پس از این‌ها | مشترک |

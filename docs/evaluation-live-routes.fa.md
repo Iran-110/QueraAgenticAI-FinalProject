@@ -103,6 +103,11 @@ uv run pytest tests/test_persistent_live_factory.py tests/test_evaluation_live.p
 ساخته شده؛ restart با process تازه در پذیرش HTTP/SQLite قدیمی بررسی می‌شود،
 ولی restart مدل واقعی یا smoke واقعی مرورگرِ این launcher اثبات نشده است.
 
+AppTest خود صفحهٔ Streamlit هم با همین factory و provider اجباری mock پاس
+شده: سؤال نسخه و پاسخ، correction، گم‌شدن ACK بعد از commit review، ساخت
+دوبارهٔ backend و retry همان payload بدون model/action اضافه. این شاهد اجرای
+خود صفحه است؛ کاربر واقعی در مرورگر یا ارسال پولی از UI نیست.
+
 ## امتیازدهی از review مستقل
 
 `evaluation.semantic_review.score_review(handoff, sidecar, scope=...)` به
