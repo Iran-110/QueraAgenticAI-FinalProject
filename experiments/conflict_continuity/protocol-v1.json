@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "protocol_id": "core-conflict-continuity-offline-v1",
+  "created_on": "2026-10-13",
+  "baseline_source_commit": "03225e2b513d059ffbe7e0ad82ecf323757187a7",
+  "scope": "authored_orchestration_regression_no_model_quality",
+  "fixture_origin": "Existing exposed V9 declared-synthetic-conflict condition in memory; no original fixture edits",
+  "prior_issue_family": [
+    12629,
+    12782
+  ],
+  "independent_evaluation_cases_added": 0,
+  "tests_before_implementation": {
+    "path": "tests/test_conflict_continuity.py",
+    "sha256": "51ea7362e9a3f2fd3a87df824d939ef7018472305fe46113698b93d39c46a236",
+    "registered_controls": 14,
+    "observed_baseline_passed": 7,
+    "observed_baseline_failed": 7
+  },
+  "original_fixture_pins": {
+    "suite_path": "experiments/decision_quality/cases-grounding-v9.json",
+    "suite_sha256": "66e132abb1be158ab162fa2a7551f67d2000e44d65627fe8b4e5c9e7b3442d70",
+    "protocol_path": "experiments/decision_quality/protocol-grounding-v9.json",
+    "protocol_sha256": "1038621f87eb3646bde8ed1cab350ab43ac8df884bbb58257b9748b953a87cef",
+    "material_sha256_by_condition": {
+      "controlled-v8-full": "22ee5c7464ddc98e4e8123a78b5bdc9502efe2199c1e8186c05b3459c19e8b74",
+      "controlled-v8-key-evidence-removed": "1751e203d66420512f3fc959e5ffdbc29e62842d925dcaba3eb12dc9d3622c00",
+      "controlled-v8-unknown-version-mixed": "bcdbfddf6edddd728679ed7ffe14c97f4346c0a293fd99d4f6c1bb999a583c0f",
+      "controlled-v8-version-correction": "323b09972bd81860164ae71381f13cc4bf76591ec88624cb3856724d3e001751",
+      "controlled-v8-same-version-synthetic-conflict": "795c4153bddabfbc658c9657ca5a79d5470b36efe548fab827f6cceee1987fba",
+      "controlled-v8-refinement-stale-source": "b2727505817176bf40317b43f6335e91e4f95ddeb18aa1d9a0370127ac537b39"
+    },
+    "runtime_case_aliases": {
+      "case-controlled-v8-full": "c4-condition-01",
+      "case-controlled-v8-key-evidence-removed": "c4-condition-02",
+      "case-controlled-v8-unknown-version-mixed": "c4-condition-03",
+      "case-controlled-v8-version-correction": "c4-condition-04",
+      "case-controlled-v8-same-version-synthetic-conflict": "c4-condition-05",
+      "case-controlled-v8-refinement-stale-source": "c4-condition-06"
+    },
+    "current_catalog_sha256_by_condition": {
+      "controlled-v8-full": {
+        "1": "991344d6262f503ffed249cc25960b5ad6c697d24471e95bab63bc8446f0e64d",
+        "2": "991344d6262f503ffed249cc25960b5ad6c697d24471e95bab63bc8446f0e64d"
+      },
+      "controlled-v8-key-evidence-removed": {
+        "1": "08e6356c400dca6a0217ed2e9a71e72d59823c7267da8174542d6624367ecfd6",
+        "2": "08e6356c400dca6a0217ed2e9a71e72d59823c7267da8174542d6624367ecfd6"
+      },
+      "controlled-v8-unknown-version-mixed": {
+        "1": "c4241417a1609147b66876279ed980701ee2ad27e830d00d9a81e159ac8acc37",
+        "2": "c4241417a1609147b66876279ed980701ee2ad27e830d00d9a81e159ac8acc37"
+      },
+      "controlled-v8-version-correction": {
+        "1": "706e08e1780c146bbebdd671ffb41d002d758857948a723ee2cb8d333b2b841d",
+        "2": "706e08e1780c146bbebdd671ffb41d002d758857948a723ee2cb8d333b2b841d"
+      },
+      "controlled-v8-same-version-synthetic-conflict": {
+        "1": "f8a9d362281aec7c2d7e852f08ad2ed9745336abbdbee892dcd25cb0fbe8314f",
+        "2": "f8a9d362281aec7c2d7e852f08ad2ed9745336abbdbee892dcd25cb0fbe8314f"
+      },
+      "controlled-v8-refinement-stale-source": {
+        "1": "991344d6262f503ffed249cc25960b5ad6c697d24471e95bab63bc8446f0e64d",
+        "2": "49ab0819a9467cad6f3c4f678d94fa0623c7caf2ff259891c87dcc7d544792df"
+      }
+    },
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "source_snapshot_date": "2026-10-06",
+    "source_files": [
+      {
+        "path": "streamlit-docs/content/develop/quick-references/release-notes/2025.md",
+        "sha256": "51ddfb5da2d2dfd88c2917b1b1542e74e892459c591de3cc1d25159632c4889a"
+      },
+      {
+        "path": "streamlit-docs/content/develop/concepts/architecture/widget-behavior.md",
+        "sha256": "025129790a1fcb2d448e9ab608389f2ec55ef26751b64d1937cef5705837efeb"
+      },
+      {
+        "path": "streamlit-docs/python/streamlit.json",
+        "sha256": "5cc1cd6a9aa72ab1de892f53075f46b51be25ce4e7d84799e5b6e9ebbdedae6d"
+      }
+    ],
+    "source_files_are_registered_pins": true,
+    "provenance_sha256": "8d9964951405d3875e4a025a9f3fd1a6f68ed8543ea7b795723c46230f20ca84",
+    "manual_metadata_sha256": "0cfdf0d56e67b5ca1f152406e0f59c4d39581281c25506a5f95a14cd395e5767",
+    "reserved_issue_ids": [
+      8061,
+      8901,
+      12629,
+      12782,
+      16914
+    ],
+    "retained_label_bearing_fact_attributions": [
+      {
+        "condition_id": "controlled-v8-version-correction",
+        "fact_index": 9,
+        "source_ref": "release-150-multiselect-key-identity-v8",
+        "turn_id": "controlled-v8-before-correction",
+        "reason": "Existing attribution describes an explicit past/current correction; preserved, not future outcome metadata."
+      },
+      {
+        "condition_id": "controlled-v8-version-correction",
+        "fact_index": 10,
+        "source_ref": "user/controlled-v8-version-correction",
+        "turn_id": "controlled-v8-correction",
+        "reason": "Existing attribution describes an explicit past/current correction; preserved, not future outcome metadata."
+      }
+    ],
+    "disclosures": {
+      "answer_informed_development_selection": true,
+      "same_issue_answer_used_as_evidence": false,
+      "manually_curated_gaps_and_conflicts": true,
+      "opaque_runtime_case_ids": true,
+      "source_catalog_normalized_per_current_round": true,
+      "original_catalog_retained_exactly": false,
+      "normalization_is_prepaid_baseline_amendment": true,
+      "automatic_gap_or_conflict_detection": false,
+      "exposed_development_only": true,
+      "independent_issue_families": 1,
+      "final_evaluation_case_count": 0,
+      "original_protocol_authorizes_paid_work": false,
+      "quarantine_applied_to_real_RAG_claim": false,
+      "quality_claim": false
+    }
+  },
+  "known_before_model": "Caller already declared unresolved conflict in this invocation. Missing/current hash-changed member or warnings do not authorize resolution. First retrieve_more and later plans are authored, not model choices.",
+  "acceptable_behavior": {
+    "same_invocation_answer_after_pool_omission_or_content_change": "reject grounded_conflict_unresolved; no proposal/action",
+    "safe_ask_or_escalation": "disclose unresolved conflict; current-pool sources/excerpts only; exact actual request in handoff",
+    "new_run_case_revision": "derive only from fresh caller-supplied current request; no conflict leak",
+    "no_declared_conflict": "normal bounded documentary answer remains allowed"
+  },
+  "constraints": {
+    "shared_contracts_or_tracker_ui_rag_rebuilt": false,
+    "automatic_conflict_discovery": false,
+    "trusted_resolution_protocol_added": false,
+    "model_attempts_per_invocation": 2,
+    "retrieval_rounds_per_invocation": 2,
+    "query_limit_per_round": 2,
+    "paid_provider_requests": 0,
+    "real_index_reads": 0,
+    "production_ledger_writes": 0,
+    "human_score": null,
+    "heldout_claim": false,
+    "rag_quality_claim": false,
+    "model_quality_claim": false
+  },
+  "comparison": "Execute the same frozen fourteen controls against Git-archived old source and current source; preserve complete target outputs and hash both inputs. Do not retune original C4 reviewer or replace historical paid receipts."
+}
