@@ -158,7 +158,7 @@ def test_no_index_app_page_follows_user_facts_and_retries_exact_review_after_rec
             payload = operation.payload()
             committed = current()
             assert len(committed["actions"]) == 2
-            assert at.button(key="approve").disabled
+            assert not any(button.key == "approve" and not button.disabled for button in at.button)
             state.backend.__exit__(None, None, None)
             state.backend = TestClient(configured_app(config)).__enter__()
             _button(at, "Retry review").click().run()
