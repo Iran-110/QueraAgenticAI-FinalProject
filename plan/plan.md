@@ -9,15 +9,20 @@
 انتشار #37 روی main `109f59e` و [CI Linux/Windows](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38406080389)
 پاس شد. سهم جاری مستقل ساسان **C2g**، [query بعد از correction](../docs/current-retrieval-context.fa.md)،
 است: reasoning/history حفظ می‌شود و context اولیهٔ retrieval از factهای فعلی،
-پیام اخیر و hint موضوعی جدا می‌آید. baseline/variantها و probe آنلاین دو-send
-جدا ثبت شده‌اند؛ نتیجه بعد از اجرا اضافه شود. این کار scope retrieval را
-بازنویسی یا R4 را بسته فرض نمی‌کند؛ وظایف سه dev case و corpus تیم همان‌اند.
+پیام اخیر و hint موضوعی جدا می‌آید. [نتیجه و اصل receiptها](../experiments/retrieval_context/README.md):
+روی ده variation تألیفی، کنترل لفظی ۷۲/۹۶ به ۹۶/۹۶ و همهٔ کنترل‌های هر سناریو
+۲/۱۰ به ۱۰/۱۰ رسید؛ این کیفیت مدل نیست. index واقعی ۶۰ collection read داشت.
+دو send آنلاین با $0.001115400 تخمینی همان سؤال ضروری callback را انتخاب کردند؛
+منبع arm جدید نسخهٔ 1.64.0 برای کاربر 1.49.0 بود. کیفیت RAG/تصمیم بهتر اثبات نشد.
+سیاست موجود `exact_user_version` به backend توصیهٔ نسخهٔ فعلی، **پس از probe و
+با تست آفلاین** وصل شد؛ comparison با `all` محفوظ است. این فیلتر ranking/backfill
+و coverage حسن در R4 را نمی‌بندد؛ وظایف سه dev case و corpus تیم همان‌اند.
 
-دو send ثبت‌شده انجام شد؛ نتیجهٔ آنلاین و کنترل‌های query جدا منتشر شوند.
-منبع arm جدید نسخهٔ 1.64.0 برای کاربر 1.49.0 بود و مدل fix ادعا نکرد.
-اتصال سیاست موجود `exact_user_version` به backend توصیهٔ نسخهٔ فعلی، پس از
-probe و با تست آفلاین انجام می‌شود؛ مسیر comparison با `all` محفوظ است.
-این فیلتر جای ranking/backfill و coverage حسن در R4 را نمی‌گیرد.
+تحویل محلی C2g: ۲۷۱۴ pytest، Ruff و HTTP/SQLite با process تازه ۴۵۷/۴۵۷ پاس؛
+۲۱ تست مستقل scope روی هر دو seam اتصال اجرا شد. source receipt آنلاین همان
+`0b3f1cc` است و binding بعدی آفلاین در `a06925f`؛ CI انتشار نهایی در PR مرجع
+است. [verification و اصل receiptها](../experiments/retrieval_context/README.md)
+بهبود query را از کیفیت مدل و source جدا نگه می‌دارند.
 
 نسخهٔ قبلی با [PR #36](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/36)
 روی main `a087770` است؛ [CI انتشار Linux/Windows](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38387712898)
@@ -46,7 +51,7 @@ fixture و portهای mock: تکمیل مسیر قبلی ۰/۳ و مسیر شا�
 | --- | --- | --- |
 | ساسان — core، `evaluation/runner.py`، `routes.py`، `live.py`، `semantic_review.py`، `live_backend.py` | اتصال مسیرها، receipt معتبر، case/revision/retry و helper review؛ review/انتشار این تحویل؛ بعد baseline واقعی dev | تست‌های آفلاین و CI؛ baseline با config ثابت و protocol قبلی؛ خرج فقط ضروری/ثبت‌شده با همان ledger و علت C5 محفوظ. هم‌زمان این فایل‌ها توسط اعضا ویرایش نشوند |
 | محمدحسن — `data/evaluation/dev/`، `test/`، manifest، rubric و UI | ابتدا سه dev case قابل اجرا با gap کاربر/منبع، routeهای سؤال معتبر و rubric؛ خانواده‌ها/exposure را با حسن review کند | fixture قبل از run، ادامهٔ واقعی/ساخته‌شده مشخص؛ review مستقل original و edit جدا. سپس ۱۵ dev/۱۵ test و حداقل ۱۰ multi-turn، پنج test؛ runner/helper آماده نیاز به adopt دارد، E1/E2 بسته نشده |
-| حسن — retrieval، corpus و exclusion | برای همان سه dev case، شاهد مرتبط و نسخه‌دار یا unknown صریح معرفی کند؛ linkage/exclusion خانواده‌ها را با محمدحسن ببندد | URL/revision/hash/span/نسخه و coverage لازم/مفقود؛ خود case/comment/outcome/duplicate و جواب مستقیم از index خارج؛ build نهایی نسخه‌دار و receipt retrieval روی dev. docs pilot فعلی برای ادعای کیفیت کافی نیست |
+| حسن — retrieval، corpus و exclusion | برای همان سه dev case، شاهد مرتبط و نسخه‌دار یا unknown صریح معرفی کند؛ linkage/exclusion خانواده‌ها را با محمدحسن ببندد؛ top hit نسخهٔ 1.64 برای کاربر 1.49 را با ranking/filter/backfill و coverage منابع dev بررسی کند | URL/revision/hash/span/نسخه و coverage لازم/مفقود؛ خود case/comment/outcome/duplicate و جواب مستقیم از index خارج؛ build نهایی نسخه‌دار و receipt retrieval روی dev. فیلتر core منبع جایگزین نمی‌آورد؛ docs pilot فعلی برای ادعای کیفیت کافی نیست |
 | بهنام — tracker/tools و شاهد T4 | یک receipt دو-case از UI موجود تا API/SQLite: approve/edit/reject، correction، approval قدیمی، restart/retry و جابه‌جایی case | action تکراری صفر و revision درست؛ PR با command/receipt روی main تازه. tracker موجود را استفاده کند؛ startup مدل عمومی در C5 halt مسدود است، smoke آفلاین مستقل انجام شود |
 
 پس از این برش، ساسان baseline/model comparison ثبت‌شده را اجرا می‌کند؛
@@ -242,7 +247,7 @@ fixture پایهٔ این تحویل، [case چهار‌نوبتی C3](../experi
 - [ ] **R1 — بازبینی seed و provenance.** seed و manifest در `streamlit-data-for-dev-test/` روی main موجودند؛ تعدادها، روش انتخاب، URL/تاریخ، commit و نسخهٔ اسناد را تا corpus/index بازبینی و ثبت کند. دامنهٔ اولیه Session State، widgets، callback/rerun است؛ همهٔ Streamlit را نمایندگی نمی‌کند. body فعلی Issue ممکن است بعداً ویرایش شده باشد.
 - [ ] **R2 — کنارگذاری خانواده‌های ارزیابی، قبل از index نهایی.** فهرست dev/test از E1 را بگیرد؛ خود Issue، commentها، outcomeها، duplicateها و docs حاوی جواب مستقیم همان case را بررسی کند. خروجی: corpus allowlist، exclusion manifest و گزارش بررسی linkage/duplicate؛ candidate مرتبط به معنی duplicate قطعی نیست.
 - [x] **R3 — adapter بازیابی؛ کد پایه حسن، اصلاح اتصال ساسان.** `search(RetrievalRequest)` با snapshot تنظیم‌شده، سقف کلی top_k و metadata صریح/unknown پیاده است؛ mapper واقعی همراه constructor/backend واقعی با collection ثابت، [۱۴ case و ۱۳۲ check](../docs/rag-adapter-acceptance.fa.md) را پاس کرد. پس از refinement آخرین bundle در handoff است؛ alias یا اصلاح خروجی در binding نداریم. با #27 و #23 منتشر شد و [receipt تمیز main `ec1a1f0`](../experiments/retrieval_acceptance/results-main-ec1a1f0.json) پاس است. این تیک فقط port آفلاین را می‌بندد؛ index/corpus/کیفیت RAG در R1/R2/R4/P4 بازند.
-- [ ] **R4 — آزمون بازیابی روی dev.** سند کامل/ناقص، نسخهٔ نامعلوم/متفاوت، conflict و خطای retrieval را بررسی کند؛ relevance و پوشش منابع را جدا از کیفیت متن مدل ثبت کند. خروجی: تست adapter و receipt بازیابی با snapshot/config مشخص.
+- [ ] **R4 — آزمون بازیابی روی dev.** سند کامل/ناقص، نسخهٔ نامعلوم/متفاوت، conflict و خطای retrieval را بررسی کند؛ relevance و پوشش منابع را جدا از کیفیت متن مدل ثبت کند. [مشاهدهٔ واقعی C2g](../experiments/retrieval_context/README.md): query تمیز هم `text_input` نسخهٔ 1.64.0 برای مسئلهٔ multiselect کاربر 1.49.0 آورد؛ gate core ranking/backfill ندارد. خروجی: تست adapter و receipt بازیابی با snapshot/config مشخص، منابع مرتبط multiselect/fragment و رفتار پس از رد نسخهٔ نامرتبط.
 
 وابستگی: R1 و fixture مربوط به P4 اکنون مستقل قابل انجام‌اند؛ R2 و index نهایی به E1 وابسته‌اند. مدل یا embedding پولی از ledger و سقف مشترک عبور می‌کند.
 
@@ -320,6 +325,7 @@ handoffها و متن released محفوظ‌اند. ترکیب اصلاحات ب
 - [x] **U3a — UI به backend پایدار و retry review.** [راهنمای اجرا](../docs/offline-ui-index-pilot.fa.md)، ۱۰۰ تست UI/client شامل ۲۴ regression قبلی؛ operation ثابت قبل POST، همان hash و متن نمایشی معتبر، credential خصوصی session، correction/case switching و ACK نامعلوم. baseline کنترل‌شده client/API قبلی ۲/۶، نسخهٔ جدید ۶/۶؛ نمرهٔ کیفیت نیست.
 - [x] **C2e — اتصال U3a/P4a به core/SQLite.** client واقعی از TCP و دو interpreter تازه، index واقعی و همان DB؛ retry فقط receipt/action اصلی. AppTest واقعی صفحه نیز سرچ docs، question/approval، reply و correction را اجرا کرده. این scope مرورگر واقعی یا recovery بعد پایان session UI نیست.
 - [x] **C2f — GroundedPlan در HTTP پایدار، پذیرش محدود.** کد و شواهد در [PR #34](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/34)؛ وضعیت انتشار و CI همان PR مرجع است. [protocol ثبت‌شده پیش از اجرا](../experiments/grounded_http_acceptance/protocol-v1.json) و [دستور اتصال/حدود](../docs/grounded-persistent-pilot.fa.md): همان fixture exposed چهارمرحله‌ای، gateway جعلی و ledger موقت؛ baseline `3c92b12` ده کنترل از دوازده و نسخهٔ جدید دوازده از دوازده. بهبودها label درست و cleanup هر run هستند؛ baseline از قبل injection را اجرا می‌کرد. اصلاح نسخه، شاهد آخرین round، approval قدیمی، restart/retry و edit/reject پاس‌اند؛ AppTest و TCP با index واقعی نیز پاس شدند. [probe واقعی ثبت‌شده](../experiments/grounded_http_acceptance/live-result-0b962de.json) فقط یک درخواست توسعه و سؤال نسخه بود، هزینهٔ تخمینی $0.000650430؛ [review جدا](../experiments/grounded_http_acceptance/live-review-0b962de.json). این کیفیت مدل/RAG یا test نهایی نیست؛ ID دقیق serving model در receipt اول نامشخص است و C5 halt/hold قبلی حفظ شده است.
+- [x] **C2g — context فعلی retrieval و binding کنترل نسخه.** [protocol، receipt و حدود](../experiments/retrieval_context/README.md): تاریخچهٔ reasoning خام حفظ، query اولیه از facts فعال/پیام اخیر/topic جدا؛ ده variation تألیفی با همان baseline، همهٔ کنترل‌های query ۲/۱۰ به ۱۰/۱۰. دو send آنلاین همان سؤال callback را انتخاب کردند و منبع نامرتبط نسخهٔ 1.64 برای کاربر1.49 را آشکار کردند؛ افزایش کیفیت تصمیم/RAG ادعا نمی‌شود. forwarding سیاست موجود `exact_user_version` به HTTP و انتخاب آن در backend توصیهٔ نسخهٔ فعلی، پس از probe با ۲۱ تست آفلاین پذیرفته شد؛ default `all` برای comparison باقی است. فیلتر ranking/backfill نیست و corpus/داوری/test نهایی را نمی‌بندد.
 
 مسیر تک agent است؛ پیش‌فرض pilot هنوز scripted است و `grounded_fake_gateway` اتصال gateway جعلی را فعال می‌کند. policy آفلاین محافظه‌کار است: نسخهٔ نامعلوم سؤال، نسخهٔ معلوم ارجاع؛ هزینهٔ API این launcher صفر است. probe واقعی جداگانهٔ C2f یک درخواست با هزینهٔ تخمینی $0.000650430 داشت؛ C5 halt حفظ شده. [بررسی نهایی](../experiments/grounded_http_acceptance/verification-89a0aec.json) و [smoke مرورگر](../experiments/grounded_http_acceptance/browser-receipt-89a0aec.json): ۲۲۸۳ تست پاس، correction در همان case و یک action. defect label متغیر case اصلاح شد؛ auth محصول و recovery کامل session هنوز بازند. معیار claim/source و کیفیت retrieval با داوری مستقل روی dev و سپس test سنجیده می‌شوند. [حدود دقیق و دستورها](../docs/grounded-persistent-pilot.fa.md).
 

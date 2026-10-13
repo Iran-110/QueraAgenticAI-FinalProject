@@ -1,0 +1,1599 @@
+{
+  "schema_version": 1,
+  "protocol_id": "retrieval-context-comparison-v1",
+  "fixture_id": "current-retrieval-context-v1",
+  "initial_input_sha256": {
+    "protocol": "88d1434a3c3256ed4ad1f9b4049321338e91923df97c0388cd4b993af9437a24",
+    "fixture": "4cc818817da7c0fd2b959e291a922ac9507e1345c59ac4409967ca7fbdbdb051",
+    "comparison_script": "1a5253ab4f945ea89b18a15530e69b592666eb648a2ac9b9b36b8eb2aa5f79e9"
+  },
+  "baseline_commit": "109f59e1e55c9e24efb3a92612c5d95026f7dbe7",
+  "baseline_engine_sha256": "b64867241b336ade1a8c36f8747edf4604313bda4e108bc079ce48929381c0dc",
+  "current_source_sha256": {
+    "src/agent_app/__init__.py": "651500e6469bef4ff31cda0ac90dd20cfebd2d9d9fe4bf99025c2b385598f86f",
+    "src/agent_app/api.py": "e1a89d3d35b59059a80bb960031604a4c8aa86fd3690351cb13be02251e7c183",
+    "src/agent_app/cli.py": "b66386e6b4ba288211cecf8c6aa5957599132a97150126eb1ed815f37c2ddae4",
+    "src/agent_app/contracts.py": "1dcf0de657f3442dfb5e787e6243a9a279501305033e592cbcd060dd808d0a91",
+    "src/agent_app/demo.py": "3128a85ca44809ff75234ebe982beafcd1d6c35d6f3bf3a37b093b67c33092b4",
+    "src/agent_app/evaluation/__init__.py": "b8f1e93a3c5528cd48abc8e4690b6d67c3838c9ad1e595c7990bc11c2a763793",
+    "src/agent_app/evaluation/live.py": "f5513a71987fcfebdff5b09315e3b8fb027fcd0d33805db2e59e55d256c01432",
+    "src/agent_app/evaluation/pilot.py": "426e95b286e63ca082bf04ddc69fe783bfbb98dfd3e3c9c919b74bba21927d9f",
+    "src/agent_app/evaluation/preflight.py": "ba9cd68d710bfd235333f27186d516e8d135e63ad1c96cfe5609a6e77e257052",
+    "src/agent_app/evaluation/routes.py": "25f664dd22d8dbaca70250db3830c7e994d6b9ee12c7b6443ae82d2098ba8e40",
+    "src/agent_app/evaluation/runner.py": "83c6b2a93329a9ae030d9321e57072669e548272cd87075034a8cfde3821d1f2",
+    "src/agent_app/evaluation/semantic_review.py": "d83b8e33605cbdd3494b681a1eedb8b4dd348341ff32355b46c817b09b72935b",
+    "src/agent_app/live_backend.py": "2a14879d792ff939fdf755124c5f77c76b6523b38a41c9e753761c013cadabea",
+    "src/agent_app/llm/budget.py": "2e29e3dc2a922f904e2138abef7e8e984468cbf9eb6bef8b9736cd496a723d43",
+    "src/agent_app/llm/config.py": "8ecafef7f2d6f8f2b5e88184e57f84737461b66600b56874c0ea8e8c107e187e",
+    "src/agent_app/llm/demo.py": "4b5463e03078ff8c19e758ed8282de146538018721d6e5e9f902727c3c71908e",
+    "src/agent_app/llm/grounded.py": "24baef8e95ee2795ac83436eb6ef6046b2781a225330689a2f5c3ffafe4cdaa6",
+    "src/agent_app/llm/metis.py": "9950a4e36b7a04fd74e4decb110cd58c3d3acba45af073ce30c53983a8fd6076",
+    "src/agent_app/llm/pricing.py": "39993b673465401e0926584d3007b8967a1eb4eaad4d377b32324c60d619ec07",
+    "src/agent_app/offline_backend.py": "3fc5f56ea1eee99f0b81400cfa5634868f12dbea523ecde28db6ded1a14582f7",
+    "src/agent_app/orchestration/__init__.py": "344e71f3e4393d9f0cb0193c0c7d2ff02fef7d0c36abba502ba4eeb428caf1a0",
+    "src/agent_app/orchestration/conversation.py": "a9d3954ab2fdbbd083329e59e8c5511f5cc005375e4fc39747a61756aa51e3f1",
+    "src/agent_app/orchestration/engine.py": "d5161e93a1b5996c2a6c3595558271884e898cc4e7ad9030d2d39ee45c1e5c6a",
+    "src/agent_app/orchestration/handoff.py": "615ac692e9bbed21fee47cfb435c3dbbf054b91aedd727699d88118378222833",
+    "src/agent_app/orchestration/intake.py": "a1208ec535fd022d3d20f6847a0a6f21af0d3c42fc75a078e925301397c970b4",
+    "src/agent_app/orchestration/ports.py": "2ef106155234f762832aff658602a5177bf946908b24fde3bc69129076bbbeb2",
+    "src/agent_app/orchestration/retrieval_context.py": "b5133c15368e3383a42da4a401dd6f39461d4f3040f64f35965304806c8dc5fb",
+    "src/agent_app/orchestration/service.py": "c3a53561a48c3c703b88163e902ddc5870e2a246b8563f38cc7e2b9cae09eee6",
+    "src/agent_app/orchestration/turns.py": "17970a95710dc8351d14f36cc6dfbdf3308231a627fd710b64dee119908eace7",
+    "src/agent_app/orchestration/validation.py": "2debe663263680238268d5034c7e80fe5533b4f66c535d5bf0b4e072835d7f6e",
+    "src/agent_app/persistent_api.py": "fa95ecd1685524200259f40e0f7b2eceb3a8f5f5f55ae9fe53b303d7fdfe956e",
+    "src/agent_app/reasoning/__init__.py": "12233e742809b1a2fffedccf658feca51ab510795da80d210fb8328c009f031f",
+    "src/agent_app/reasoning/ablations.py": "72436d983fcde9668583a07662aa5b04952fee0b60d0c908b911e439d4ac5d5f",
+    "src/agent_app/reasoning/catalog.py": "549d35a763b004766186bf6cbc4b4b0713b3414aa95716786fc9f23bd1f249f8",
+    "src/agent_app/reasoning/code_checks.py": "f3f1efb9962b88d3a51587dcfe73296cbdcbecedc82dacec85faf7cfa7b92ba7",
+    "src/agent_app/reasoning/controlled_experiments.py": "161dc621520fc619c93755138d7c1187d3b09393da2face8caea3a6f5e2e13b9",
+    "src/agent_app/reasoning/experiments.py": "d0fc8bf3f94b0e4c99648f5ee99e7e2ed2191eabdbbc7f5110f7e7c2a2391103",
+    "src/agent_app/reasoning/fidelity_experiments.py": "f41b6d0e2b96ad293b244ef249970a9b6d24382e4384d2dee4d5fa6d171fcdfe",
+    "src/agent_app/reasoning/grounding.py": "327e219158d234b32297b890c727031d17cc2ea02ad32347a6f60cbb1b9c1e44",
+    "src/agent_app/reasoning/grounding_experiments.py": "ff7a217e12182d04470339bb9f793e0194fa05bf53fa2babdb9cce809c44d9d3",
+    "src/agent_app/reasoning/output.py": "81d7c60c1dc09f0ab7d9badd6d4dbaf405439a399506333a3e6b7dec9ca6874c",
+    "src/agent_app/reasoning/probes.py": "10ddb452c81cec3a7e8b93e937e5efcd5166c81ace0f36bf1c062b4498b9f185",
+    "src/agent_app/reasoning/prompts.py": "0bc7b83422eee46f9a598415ea3921281a451da1780db080f091818e3a79329b",
+    "src/agent_app/reasoning/proposal_checks.py": "aaa8b3bcb51992f23189a76749a747fa6b10528f3f11af806b067fe67d923464",
+    "src/agent_app/reasoning/quality_experiments.py": "4eecf613b71981b4aeb2c35efc81c5f1520edb304a106b60561b166e1e067269",
+    "src/agent_app/reasoning/review.py": "77e34b93445faf1dc6e6e7a2252971305a5d1ea3f4b7dc6713e44daf32804e14",
+    "src/agent_app/reasoning/semantic_regressions.py": "13c3ab82e66fab43bce186c086b8fea00049da7e083cbaad6c1c3393ea00c8ea",
+    "src/agent_app/retrieval/adapter.py": "3752fe760c9fb71a6cd05014a6ab870d53a652a56e2c972425e71c7d9c417c2f",
+    "src/agent_app/retrieval/offline_index.py": "def8f56afdeadd714c8891779e627da5d89ea276086bf232c135e64ff8967414",
+    "src/agent_app/retrieval/pilot_corpus.py": "dd9317632c2ccdd387aa3fb13e4cdcab8567def697e958f3d60affa7e35a8693",
+    "src/agent_app/retrieval/retriever.py": "7791e66896296ff0d85ed319ee7eba6238db9516ea04ad2a9f1af6b5f2caebe1",
+    "src/agent_app/testing/__init__.py": "bea37ce669658c22e7d916983693ed47c42a9e35806f4d726643bd1a1f14d8ed",
+    "src/agent_app/testing/chroma_binding.py": "ae23fb6e5ece3c4b198519afa371b581b60d69844d904e89d047c910e5d6e4ba",
+    "src/agent_app/testing/fakes.py": "1e44387ddcbe091f91657ce1236c36f648eb6941d4582fe42a4a37c60f6a80a0",
+    "src/agent_app/testing/grounded_http_acceptance.py": "f145dd71055e93c5b03561b46e7dd048103cf43cc7b7c1c74520347ebd055a3d",
+    "src/agent_app/testing/grounded_http_binding.py": "fda2af5d25ba23b5be33d84cc25243ca5bda6eedc388232c83da7c2638baef5f",
+    "src/agent_app/testing/http_pilot_acceptance.py": "ea5ff92fd319db247a346ff3dd90c417dccd9b0efb324550c72eaf9f078f97bf",
+    "src/agent_app/testing/http_pilot_runtime.py": "df685c1aa4dc4b666ccc680ba6e5ad552cc48f10f89400d73d9cc11108848464",
+    "src/agent_app/testing/http_pilot_worker.py": "05c73602a500f770ca3f9bddbf568032b44bd46787a8fbc623d44cdd1f42239e",
+    "src/agent_app/testing/retrieval_acceptance.py": "f6b3dfeb894b20341e9483dfd8e644165fa8944cc0329c13126545eba1db7df4",
+    "src/agent_app/testing/retrieval_acceptance_pilot.py": "6bd2a5523bfe299937fe1746df035fcb23adf13362fa80c4cb8d82e524273aa3",
+    "src/agent_app/testing/retrieval_context_live_probe.py": "e510b338a87a0fe4a3ddd2b7e3d8504e9894f929918ec9f40c9c993ec126b467",
+    "src/agent_app/testing/sqlite_http_binding.py": "b933322aeb9db68bc8243b1b47c3e947ada6ad474873e88739adfd6320fda3e6",
+    "src/agent_app/testing/ui_review_acceptance.py": "308bd2d8f9ea525a226a0557e7d2e6e7c3f8ae5fc4586666db2b7ac49be98f92",
+    "src/agent_app/tracker/dummy_tracker.py": "c214d49fcd9033565b19f1d11cef605b7654c6103a64d2bdbfc71a876c6e2e3d",
+    "src/agent_app/tracker/sqlite_tracker.py": "c8d9e75bac2152df68559d85d3ef0c52386cb0d10562b8cb4aae9d987be257e8",
+    "src/agent_app/turn_demo.py": "0985daf2ca881eefc52b4a9694cd5fa91becfa61cd722ef8fb470c865791cad8",
+    "src/agent_app/ui_client.py": "5b4564f4e8b93af7775b2c2fb3fa254f25b5dfae406ac65d3f48fd9de325037e"
+  },
+  "scope": "Same authoritative case/conversation; only initial-query composition compared. Lexical topic hints are not current facts; no source snippets executed.",
+  "scenarios": 10,
+  "variants": [
+    "legacy_history_prefix",
+    "latest_only",
+    "current_state_topics"
+  ],
+  "quality_claim": false,
+  "real_api_calls": 0,
+  "paid_cost_usd": "0",
+  "final_evaluation_cases": 0,
+  "model_decisions_compared": false,
+  "initial_query_only": true,
+  "expectations": "Predeclared author literal controls; no human gold, semantic relevance, entailment, or decision-quality score.",
+  "comparison_executed": true,
+  "registered_inputs_and_sources_unchanged": true,
+  "index_queried": false,
+  "index": null,
+  "verified_collection_reads": 0,
+  "index_quality_measured": false,
+  "summaries": {
+    "legacy_history_prefix": {
+      "controls_passed": 72,
+      "controls_failed": 24,
+      "scenarios_all_controls": 2,
+      "latest_coverage": 4,
+      "topic_coverage": 9
+    },
+    "latest_only": {
+      "controls_passed": 74,
+      "controls_failed": 22,
+      "scenarios_all_controls": 2,
+      "latest_coverage": 10,
+      "topic_coverage": 2
+    },
+    "current_state_topics": {
+      "controls_passed": 96,
+      "controls_failed": 0,
+      "scenarios_all_controls": 10,
+      "latest_coverage": 10,
+      "topic_coverage": 10
+    }
+  },
+  "observations": [
+    {
+      "scenario_id": "environment-switch",
+      "variants": {
+        "legacy_history_prefix": {
+          "query": "Original user problem (historical context; not current facts): My multiselect in a fragment loses its default after the parent selector resets session state. My reduced example works and the parent callback is not provided. Streamlit 1.50.0, Python 3.12.9. Current facts and unknowns come from the supplied CaseState. Historical context may contain superseded values; it does not update facts or prov streamlit_version=1.49.0",
+          "query_characters": 425,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": false
+            },
+            {
+              "control": "must_contain/3",
+              "passed": true
+            },
+            {
+              "control": "must_contain/4",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/1",
+              "passed": false
+            },
+            {
+              "control": "must_not_contain/2",
+              "passed": false
+            },
+            {
+              "control": "must_not_contain/3",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": false
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/2",
+              "passed": true
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "e04db69d2bd1bb5f84eb0089824927bc71707c03274dc2e6df01bc5d3da99e47",
+          "latest_raw_input_sha256": "a97d54f2bd49751a066b2078029311a2961b86489770053d344e828d9fc32175"
+        },
+        "latest_only": {
+          "query": "Correction: Streamlit is 1.49.0. The reduced example still works; I have not provided the parent callback. streamlit_version=1.49.0",
+          "query_characters": 131,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_contain/3",
+              "passed": false
+            },
+            {
+              "control": "must_contain/4",
+              "passed": false
+            },
+            {
+              "control": "must_not_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/3",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": false
+            },
+            {
+              "control": "topic_needles/2",
+              "passed": false
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "e04db69d2bd1bb5f84eb0089824927bc71707c03274dc2e6df01bc5d3da99e47",
+          "latest_raw_input_sha256": "a97d54f2bd49751a066b2078029311a2961b86489770053d344e828d9fc32175"
+        },
+        "current_state_topics": {
+          "query": "streamlit_version=1.49.0 | Correction: Streamlit is 1.49.0. The reduced example still works; I have not provided the parent callback. | topic: My multiselect in a fragment loses its default after the parent selector resets session state reduced example works and",
+          "query_characters": 262,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_contain/3",
+              "passed": true
+            },
+            {
+              "control": "must_contain/4",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/3",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/2",
+              "passed": true
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "e04db69d2bd1bb5f84eb0089824927bc71707c03274dc2e6df01bc5d3da99e47",
+          "latest_raw_input_sha256": "a97d54f2bd49751a066b2078029311a2961b86489770053d344e828d9fc32175"
+        }
+      }
+    },
+    {
+      "scenario_id": "ordinary-correction",
+      "variants": {
+        "legacy_history_prefix": {
+          "query": "Original user problem (historical context; not current facts): My multiselect in a fragment loses its default after the parent selector resets session state. My reduced example works and the parent callback is not provided. Streamlit 1.50.0, Python 3.12.9. Current facts and unknowns come from the supplied CaseState. Historical context may contain superseded values; it does not update facts or prov streamlit_version=1.49.0; python_version=3.12.9",
+          "query_characters": 448,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_contain/3",
+              "passed": false
+            },
+            {
+              "control": "must_contain/4",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/1",
+              "passed": false
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": false
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": true
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "1a21c41c087b7d1854b6e6c416f36d91596b31532869904eaec3abc1ab7ca97c",
+          "latest_raw_input_sha256": "aa8a467e553bb00d2b4597c97fa0d4890ac9eb9c17cbe06a1d100f4147ab8aee"
+        },
+        "latest_only": {
+          "query": "Correction: Streamlit is 1.49.0 in the same environment. streamlit_version=1.49.0; python_version=3.12.9",
+          "query_characters": 104,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_contain/3",
+              "passed": true
+            },
+            {
+              "control": "must_contain/4",
+              "passed": false
+            },
+            {
+              "control": "must_not_contain/1",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": false
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "1a21c41c087b7d1854b6e6c416f36d91596b31532869904eaec3abc1ab7ca97c",
+          "latest_raw_input_sha256": "aa8a467e553bb00d2b4597c97fa0d4890ac9eb9c17cbe06a1d100f4147ab8aee"
+        },
+        "current_state_topics": {
+          "query": "streamlit_version=1.49.0; python_version=3.12.9 | Correction: Streamlit is 1.49.0 in the same environment. | topic: My multiselect in a fragment loses its default after the parent selector resets session state reduced example works and",
+          "query_characters": 235,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_contain/3",
+              "passed": true
+            },
+            {
+              "control": "must_contain/4",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/1",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": true
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "1a21c41c087b7d1854b6e6c416f36d91596b31532869904eaec3abc1ab7ca97c",
+          "latest_raw_input_sha256": "aa8a467e553bb00d2b4597c97fa0d4890ac9eb9c17cbe06a1d100f4147ab8aee"
+        }
+      }
+    },
+    {
+      "scenario_id": "withdraw-version",
+      "variants": {
+        "legacy_history_prefix": {
+          "query": "Original user problem (historical context; not current facts): My multiselect in a fragment loses its default after the parent selector resets session state. My reduced example works and the parent callback is not provided. Streamlit 1.50.0, Python 3.12.9. Current facts and unknowns come from the supplied CaseState. Historical context may contain superseded values; it does not update facts or prov python_version=3.12.9",
+          "query_characters": 422,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/1",
+              "passed": false
+            },
+            {
+              "control": "must_not_contain/2",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": false
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": true
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "d4ed34b4703bb20e050d1573789ec5264d35304b4960f28aeb53e236727e0443",
+          "latest_raw_input_sha256": "5e3bd724d4496a63f0e5e0d4624ecada612aa82b31ef666157f2ce8ac02bc595"
+        },
+        "latest_only": {
+          "query": "I cannot confirm the installed version; the multiselect still resets. python_version=3.12.9",
+          "query_characters": 91,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/2",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": true
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "d4ed34b4703bb20e050d1573789ec5264d35304b4960f28aeb53e236727e0443",
+          "latest_raw_input_sha256": "5e3bd724d4496a63f0e5e0d4624ecada612aa82b31ef666157f2ce8ac02bc595"
+        },
+        "current_state_topics": {
+          "query": "python_version=3.12.9 | I cannot confirm the installed version; the multiselect still resets. | topic: My multiselect in a fragment loses its default after the parent selector resets session state reduced example works and",
+          "query_characters": 222,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/2",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": true
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "d4ed34b4703bb20e050d1573789ec5264d35304b4960f28aeb53e236727e0443",
+          "latest_raw_input_sha256": "5e3bd724d4496a63f0e5e0d4624ecada612aa82b31ef666157f2ce8ac02bc595"
+        }
+      }
+    },
+    {
+      "scenario_id": "short-version-reply",
+      "variants": {
+        "legacy_history_prefix": {
+          "query": "Original user problem (historical context; not current facts): My fragment multiselect loses its saved default after the parent selector reruns. Current facts and unknowns come from the supplied CaseState. Historical context may contain superseded values; it does not update facts or provide source evidence. Latest approved follow-up question: Which Streamlit version is installed in the affected en streamlit_version=1.50.0",
+          "query_characters": 425,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_contain/3",
+              "passed": true
+            },
+            {
+              "control": "must_contain/4",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/2",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/3",
+              "passed": true
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "4d47abd168f2b8cdd7f62e895d26984df910b2b7199dd60ea542387fe34a7b58",
+          "latest_raw_input_sha256": "e553b0e1b38df3d4faa631906bb61335868bf33deabcf80c3f5e5114fbd75931"
+        },
+        "latest_only": {
+          "query": "1.50.0 streamlit_version=1.50.0",
+          "query_characters": 31,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": false
+            },
+            {
+              "control": "must_contain/3",
+              "passed": false
+            },
+            {
+              "control": "must_contain/4",
+              "passed": false
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": false
+            },
+            {
+              "control": "topic_needles/2",
+              "passed": false
+            },
+            {
+              "control": "topic_needles/3",
+              "passed": false
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "4d47abd168f2b8cdd7f62e895d26984df910b2b7199dd60ea542387fe34a7b58",
+          "latest_raw_input_sha256": "e553b0e1b38df3d4faa631906bb61335868bf33deabcf80c3f5e5114fbd75931"
+        },
+        "current_state_topics": {
+          "query": "streamlit_version=1.50.0 | 1.50.0 | topic: My fragment multiselect loses its saved default after the parent selector reruns",
+          "query_characters": 123,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_contain/3",
+              "passed": true
+            },
+            {
+              "control": "must_contain/4",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/2",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/3",
+              "passed": true
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "4d47abd168f2b8cdd7f62e895d26984df910b2b7199dd60ea542387fe34a7b58",
+          "latest_raw_input_sha256": "e553b0e1b38df3d4faa631906bb61335868bf33deabcf80c3f5e5114fbd75931"
+        }
+      }
+    },
+    {
+      "scenario_id": "revert-version",
+      "variants": {
+        "legacy_history_prefix": {
+          "query": "Original user problem (historical context; not current facts): My multiselect in a fragment loses its default after the parent selector resets session state. My reduced example works and the parent callback is not provided. Streamlit 1.50.0, Python 3.12.9. Current facts and unknowns come from the supplied CaseState. Historical context may contain superseded values; it does not update facts or prov streamlit_version=1.50.0; python_version=3.12.9",
+          "query_characters": 448,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_contain/3",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/1",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": false
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": true
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "5481c8437c87b0754c3a2f8c2f07cae4a18773acb7233dbf231a477c4e7a5505",
+          "latest_raw_input_sha256": "5fa061590778bc260198f7e7755586094a16549b56e7c239141d04587dad9f15"
+        },
+        "latest_only": {
+          "query": "Final correction: Streamlit is 1.50.0 in the same environment. streamlit_version=1.50.0; python_version=3.12.9",
+          "query_characters": 110,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_contain/3",
+              "passed": false
+            },
+            {
+              "control": "must_not_contain/1",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": false
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "5481c8437c87b0754c3a2f8c2f07cae4a18773acb7233dbf231a477c4e7a5505",
+          "latest_raw_input_sha256": "5fa061590778bc260198f7e7755586094a16549b56e7c239141d04587dad9f15"
+        },
+        "current_state_topics": {
+          "query": "streamlit_version=1.50.0; python_version=3.12.9 | Final correction: Streamlit is 1.50.0 in the same environment. | topic: My multiselect in a fragment loses its default after the parent selector resets session state reduced example works and",
+          "query_characters": 241,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_contain/3",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/1",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": true
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "5481c8437c87b0754c3a2f8c2f07cae4a18773acb7233dbf231a477c4e7a5505",
+          "latest_raw_input_sha256": "5fa061590778bc260198f7e7755586094a16549b56e7c239141d04587dad9f15"
+        }
+      }
+    },
+    {
+      "scenario_id": "current-code-comparison",
+      "variants": {
+        "legacy_history_prefix": {
+          "query": "Original user problem (historical context; not current facts): My multiselect in a fragment loses its default after the parent selector resets session state. My reduced example works and the parent callback is not provided. Streamlit 1.50.0, Python 3.12.9. Current facts and unknowns come from the supplied CaseState. Historical context may contain superseded values; it does not update facts or prov streamlit_version=1.49.0; python_version=3.12.9",
+          "query_characters": 448,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_contain/3",
+              "passed": true
+            },
+            {
+              "control": "must_contain/4",
+              "passed": false
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": false
+            },
+            {
+              "control": "latest_needles/2",
+              "passed": false
+            },
+            {
+              "control": "latest_needles/3",
+              "passed": false
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": true
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "5a2704f1a8153b2c29162e430bb2b7b8c74c2b592e5871736eb7cbe130b33224",
+          "latest_raw_input_sha256": "f00c0e9529eb7e91a5921af6f6eb14c9f001d4eb8225a54511e7cd31f87bae73"
+        },
+        "latest_only": {
+          "query": "Compare 1.50.0 and 1.49.0 for this multiselect. ```python old = \"1.50.0\" new = \"1.49.0\" st.multiselect(\"v\", [old, new], key=\"k\") ``` streamlit_version=1.49.0; python_version=3.12.9",
+          "query_characters": 180,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_contain/3",
+              "passed": true
+            },
+            {
+              "control": "must_contain/4",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/2",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/3",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": true
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "5a2704f1a8153b2c29162e430bb2b7b8c74c2b592e5871736eb7cbe130b33224",
+          "latest_raw_input_sha256": "f00c0e9529eb7e91a5921af6f6eb14c9f001d4eb8225a54511e7cd31f87bae73"
+        },
+        "current_state_topics": {
+          "query": "streamlit_version=1.49.0; python_version=3.12.9 | Compare 1.50.0 and 1.49.0 for this multiselect. ```python old = \"1.50.0\" new = \"1.49.0\" st.multiselect(\"v\", [old, new], key=\"k\") ``` | topic: My multiselect in a fragment loses its default after the parent selector resets session state reduced example works and",
+          "query_characters": 311,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_contain/3",
+              "passed": true
+            },
+            {
+              "control": "must_contain/4",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/2",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/3",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": true
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "5a2704f1a8153b2c29162e430bb2b7b8c74c2b592e5871736eb7cbe130b33224",
+          "latest_raw_input_sha256": "f00c0e9529eb7e91a5921af6f6eb14c9f001d4eb8225a54511e7cd31f87bae73"
+        }
+      }
+    },
+    {
+      "scenario_id": "retired-operating-system",
+      "variants": {
+        "legacy_history_prefix": {
+          "query": "Original user problem (historical context; not current facts): My multiselect resets on Windows using Streamlit 1.50.0 and Python 3.12.9. Current facts and unknowns come from the supplied CaseState. Historical context may contain superseded values; it does not update facts or provide source evidence. Latest user message (exact committed input): Same widget issue in a different environment: Linux,  streamlit_version=1.49.0; operating_system=Linux",
+          "query_characters": 449,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_contain/3",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/1",
+              "passed": false
+            },
+            {
+              "control": "must_not_contain/2",
+              "passed": false
+            },
+            {
+              "control": "must_not_contain/3",
+              "passed": false
+            },
+            {
+              "control": "must_not_contain/4",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": true
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "078bd263913ce9fbcce396ad7a89bb132ac5554e2a56f715e0b6ab2b07f3c9cd",
+          "latest_raw_input_sha256": "3cf53a68dc8962958acf203a1ef5812035fba041213a991c7e94ae39a38b5add"
+        },
+        "latest_only": {
+          "query": "Same widget issue in a different environment: Linux, Streamlit 1.49.0. streamlit_version=1.49.0; operating_system=Linux",
+          "query_characters": 119,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_contain/3",
+              "passed": false
+            },
+            {
+              "control": "must_not_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/3",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/4",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": false
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "078bd263913ce9fbcce396ad7a89bb132ac5554e2a56f715e0b6ab2b07f3c9cd",
+          "latest_raw_input_sha256": "3cf53a68dc8962958acf203a1ef5812035fba041213a991c7e94ae39a38b5add"
+        },
+        "current_state_topics": {
+          "query": "streamlit_version=1.49.0; operating_system=Linux | Same widget issue in a different environment: Linux, Streamlit 1.49.0. | topic: My multiselect resets on using Streamlit and Python",
+          "query_characters": 182,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_contain/3",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/3",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/4",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": true
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "078bd263913ce9fbcce396ad7a89bb132ac5554e2a56f715e0b6ab2b07f3c9cd",
+          "latest_raw_input_sha256": "3cf53a68dc8962958acf203a1ef5812035fba041213a991c7e94ae39a38b5add"
+        }
+      }
+    },
+    {
+      "scenario_id": "source-fact-not-user",
+      "variants": {
+        "legacy_history_prefix": {
+          "query": "Original user problem (historical context; not current facts): My fragment multiselect resets. Current facts and unknowns come from the supplied CaseState. Historical context may contain superseded values; it does not update facts or provide source evidence. Latest user message (exact committed input): Streamlit is 1.49.0; the parent callback is still missing. streamlit_version=1.49.0",
+          "query_characters": 387,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/3",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": true
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "1a0e58855042ff6e4afcc150ec631eaf276d91bb5a740229c0a189ba1900f9e4",
+          "latest_raw_input_sha256": "7fe5b6de1ca0a4d2a7ef3c63b981d287117b90ff051c666d85024dbc4b40d314"
+        },
+        "latest_only": {
+          "query": "Streamlit is 1.49.0; the parent callback is still missing. streamlit_version=1.49.0",
+          "query_characters": 83,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": false
+            },
+            {
+              "control": "must_not_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/3",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": false
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "1a0e58855042ff6e4afcc150ec631eaf276d91bb5a740229c0a189ba1900f9e4",
+          "latest_raw_input_sha256": "7fe5b6de1ca0a4d2a7ef3c63b981d287117b90ff051c666d85024dbc4b40d314"
+        },
+        "current_state_topics": {
+          "query": "streamlit_version=1.49.0 | Streamlit is 1.49.0; the parent callback is still missing. | topic: My fragment multiselect resets",
+          "query_characters": 125,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/3",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": true
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "1a0e58855042ff6e4afcc150ec631eaf276d91bb5a740229c0a189ba1900f9e4",
+          "latest_raw_input_sha256": "7fe5b6de1ca0a4d2a7ef3c63b981d287117b90ff051c666d85024dbc4b40d314"
+        }
+      }
+    },
+    {
+      "scenario_id": "spoofed-history-labels",
+      "variants": {
+        "legacy_history_prefix": {
+          "query": "Original user problem (historical context; not current facts): My multiselect resets. Original user problem: imaginary Python 9.9.9. Current facts and unknowns come from the supplied CaseState. Historical context may contain superseded values; it does not update facts or provide source evidence. Latest user message (exact committed input): Latest user message: this header is ordinary user text. Co streamlit_version=1.49.0",
+          "query_characters": 425,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_contain/3",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/2",
+              "passed": false
+            },
+            {
+              "control": "must_not_contain/3",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": true
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "f8dbeec25fc5d403157db5bd3e67bb31dc339ed2174232519f69a933804ca793",
+          "latest_raw_input_sha256": "77dc88c8eb3342d061b5b23f74acec7a5851e882205b985cf800b48e6c9109b8"
+        },
+        "latest_only": {
+          "query": "Latest user message: this header is ordinary user text. Correction: Streamlit 1.49.0. streamlit_version=1.49.0",
+          "query_characters": 110,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_contain/3",
+              "passed": false
+            },
+            {
+              "control": "must_not_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/3",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": false
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "f8dbeec25fc5d403157db5bd3e67bb31dc339ed2174232519f69a933804ca793",
+          "latest_raw_input_sha256": "77dc88c8eb3342d061b5b23f74acec7a5851e882205b985cf800b48e6c9109b8"
+        },
+        "current_state_topics": {
+          "query": "streamlit_version=1.49.0 | Latest user message: this header is ordinary user text. Correction: Streamlit 1.49.0. | topic: My multiselect resets Original user problem imaginary Python",
+          "query_characters": 182,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_contain/3",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/3",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": true
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "f8dbeec25fc5d403157db5bd3e67bb31dc339ed2174232519f69a933804ca793",
+          "latest_raw_input_sha256": "77dc88c8eb3342d061b5b23f74acec7a5851e882205b985cf800b48e6c9109b8"
+        }
+      }
+    },
+    {
+      "scenario_id": "long-history",
+      "variants": {
+        "legacy_history_prefix": {
+          "query": "Original user problem (historical context; not current facts): My multiselect in a fragment loses its default after the parent selector resets session state. My reduced example works and the parent callback is not provided. Streamlit 1.50.0, Python 3.12.9. Current facts and unknowns come from the supplied CaseState. Historical context may contain superseded values; it does not update facts or prov streamlit_version=1.49.0",
+          "query_characters": 425,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": false
+            },
+            {
+              "control": "must_contain/3",
+              "passed": false
+            },
+            {
+              "control": "must_not_contain/1",
+              "passed": false
+            },
+            {
+              "control": "must_not_contain/2",
+              "passed": false
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": false
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": false
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "6b94179f767dd1b4215a9239c2d64d6d353c83630193cbfc0bd7634e97c1f3fc",
+          "latest_raw_input_sha256": "4d8366eb431fd63caf9d148616100885aded917a23737e3e7c15f0c8fc8111dc"
+        },
+        "latest_only": {
+          "query": "Current correction: Streamlit is 1.49.0; the parent callback remains missing. streamlit_version=1.49.0",
+          "query_characters": 102,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_contain/3",
+              "passed": false
+            },
+            {
+              "control": "must_not_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/2",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": false
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "6b94179f767dd1b4215a9239c2d64d6d353c83630193cbfc0bd7634e97c1f3fc",
+          "latest_raw_input_sha256": "4d8366eb431fd63caf9d148616100885aded917a23737e3e7c15f0c8fc8111dc"
+        },
+        "current_state_topics": {
+          "query": "streamlit_version=1.49.0 | Current correction: Streamlit is 1.49.0; the parent callback remains missing. | topic: st.multiselect My multiselect in a fragment loses its default after the parent selector resets session state reduced and",
+          "query_characters": 234,
+          "literal_controls": [
+            {
+              "control": "query_shape_and_limit",
+              "passed": true
+            },
+            {
+              "control": "must_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_contain/2",
+              "passed": true
+            },
+            {
+              "control": "must_contain/3",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/1",
+              "passed": true
+            },
+            {
+              "control": "must_not_contain/2",
+              "passed": true
+            },
+            {
+              "control": "latest_needles/1",
+              "passed": true
+            },
+            {
+              "control": "topic_needles/1",
+              "passed": true
+            },
+            {
+              "control": "exact_reasoning_and_inputs_preserved",
+              "passed": true
+            }
+          ],
+          "exact_reasoning_preserved": true,
+          "reasoning_sha256": "6b94179f767dd1b4215a9239c2d64d6d353c83630193cbfc0bd7634e97c1f3fc",
+          "latest_raw_input_sha256": "4d8366eb431fd63caf9d148616100885aded917a23737e3e7c15f0c8fc8111dc"
+        }
+      }
+    }
+  ]
+}

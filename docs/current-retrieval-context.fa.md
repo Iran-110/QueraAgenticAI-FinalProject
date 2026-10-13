@@ -95,6 +95,34 @@ fingerprint پس از مصرف مجوز این protocol را غیرقابل تک
 ثبت می‌شود و مجوز اجرای دوباره نیست. پیشنهادها stage یا approve نمی‌شوند و
 action صفر است. ordinary live factory همچنان در C5 halt مسدود است.
 
-نتیجه و review هر دو arm پس از اجرا جدا ثبت شوند؛ این probe exposed dev است،
-نه held-out، billing provider یا proof کیفیت نهایی RAG/model. حذف آلودگی
-query، تغییر منابع و کیفیت سؤال/ادعا سه موضوع جدا برای گزارش‌اند.
+## نتیجهٔ ثبت‌شده و کنترل بعدی
+
+[packet کامل](../experiments/retrieval_context/README.md) اصل receiptها، registration
+و review جدا از خروجی را حفظ می‌کند. source تمیز/pushشده `0b3f1cc` قبل از مدل
+و [CI Linux/Windows](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38419633473)
+پاس بود. کنترل‌های لفظی ده variation: baseline ۷۲/۹۶، latest-only ۷۴/۹۶ و روش
+جدید ۹۶/۹۶؛ همهٔ کنترل‌های هر سناریو ۲/۱۰، ۲/۱۰ و ۱۰/۱۰. روی همان index موجود
+۶۰ collection read واقعی ثبت شد؛ این‌ها case مستقل یا امتیاز relevance نیستند.
+
+دو send واقعی، هر arm یک attempt، با مدل تأییدشده `gpt-4o-mini-2024-07-18`
+انجام شد. هر دو سؤال callback غایب را از catalog caller انتخاب کردند؛ کاربر
+می‌تواند این کد را بدهد و docs نمی‌تواند علت برنامهٔ او را روشن کند. fix،
+علت، اجرا، حل Issue، approval یا action ادعا/انجام نشد. source روش جدید
+`text_input` نسخهٔ 1.64.0 برای کاربر 1.49.0 بود؛ core آن را صریحاً تاریخی/
+نسخهٔ دیگر نمایش داد. source baseline بدون نسخه و دربارهٔ serialization/caveat
+بود. **این مقایسه افزایش کیفیت RAG یا تصمیم مدل را نشان نمی‌دهد.**
+
+هزینهٔ تخمینی تازه $0.001115400 است؛ مبلغ واقعی حساب unknown. hold قبلی $0.02
+و halt حفظ شده‌اند؛ pending/uncertain تازه صفر، settled کل $0.12375825 و remaining
+همان grant برابر $0.00491479 است. fingerprint پیشین مصرف شد؛ protocol آنلاین
+تمام شده و قابل تکرار/بازنویسی نیست. C5 همچنان باز است.
+
+پس از این مشاهده، factory پایدار HTTP سیاست موجود `evidence_scope` را به
+core منتقل می‌کند. default برابر `all` برای comparison باقی است؛ backend live
+توصیهٔ نسخهٔ فعلی `exact_user_version` را انتخاب می‌کند. قبل از reasoning و
+در هر دور retrieval، metadata نسخهٔ نامرتبط حذف می‌شود؛ اگر نسخهٔ کاربر
+unknown باشد، همهٔ hitهای نسخه‌دار حذف می‌شوند. hit بدون نسخه unconfirmed
+می‌ماند؛ تطابق literal است، نه استنتاج range یا نسخه از متن. ranking/backfill
+نمی‌کنیم و ممکن است شاهدی نماند. این binding با ۲۱ تست HTTP/SQLite آفلاین
+پذیرفته شد و **در دو arm آنلاین وجود نداشت**. case/rubric مستقل، منابع نهایی
+و ارزیابی RAG/model هنوز باقی‌اند؛ review فعلی assistant است، نه نمرهٔ انسانی.

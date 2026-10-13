@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "review_kind": "assistant_whole_output_and_pinned_source_inspection",
+  "human_reviewed": false,
+  "rubric_score": null,
+  "independent_quality_claim": false,
+  "heldout_claim": false,
+  "preregistered_source_commit": "0b3f1cc05f83913eaad41a03d6e454d95b1928c1",
+  "receipt_sha256": "9888fce583399234078563dfa4e3845e92a8948eabf1aad4971da74a29f6c64f",
+  "original_receipt_unchanged": true,
+  "evidence": [
+    {
+      "arm": "legacy",
+      "handoff_sha256": "e020407dea19e1f7788099b9aeeca68c09555accc100a1890d588b2cc2f00b5f",
+      "decision": "ask",
+      "user_question": "Can you share the parent selector callback that resets Session State?",
+      "chunk_ids": [
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295"
+      ],
+      "observations": {
+        "declared_user_gap": "parent_callback_code",
+        "necessary_and_user_answerable": "Missing app callback is user-supplied code. The provided working reduction cannot establish the failing parent state-update order.",
+        "known_version_not_reasked": true,
+        "user_draft_unsupported_cause_or_fix": false,
+        "maintainer_summary": "Full summary inspected: active user1.49, Python unknown after explicit environment change, recorded checks not claimed executed, quotes attributed, no cause/fix/resolution established.",
+        "source_applicability": "unknown; explicitly rendered unconfirmed",
+        "source_root_cause_or_fix_supported": false,
+        "source_relevance": "Session State serialization/caveats; does not establish multiselect/fragment reset cause",
+        "question_selected_from_caller_curated_catalog": true
+      }
+    },
+    {
+      "arm": "current",
+      "handoff_sha256": "30ca5f4cb7f5038ddb759288abee6ea0a4e24b10dc8667b473709cc83c73bf86",
+      "decision": "ask",
+      "user_question": "Can you share the parent selector callback that resets Session State?",
+      "chunk_ids": [
+        "doc:1.64.0:ddfbb59d31684c36f2a2a871:8000:12000:2fd02ea2045b6d75"
+      ],
+      "observations": {
+        "declared_user_gap": "parent_callback_code",
+        "necessary_and_user_answerable": "Missing app callback is user-supplied code. The provided working reduction cannot establish the failing parent state-update order.",
+        "known_version_not_reasked": true,
+        "user_draft_unsupported_cause_or_fix": false,
+        "maintainer_summary": "Full summary inspected: active user1.49, Python unknown after explicit environment change, recorded checks not claimed executed, quotes attributed, no cause/fix/resolution established.",
+        "source_applicability": "metadata1.64.0 differs from activeuser1.49.0; explicitly rendered historical_or_other_version",
+        "source_root_cause_or_fix_supported": false,
+        "source_relevance": "text_input validation/live/query-parameters; wrong version and weak relevance for multiselect/fragment reset",
+        "question_selected_from_caller_curated_catalog": true
+      }
+    }
+  ],
+  "paired_conclusion": "Current-query literal controls improved. Both paid arms ask the same acceptable callback question. Neither RAG ranking/semantic relevance nor model decision-quality gain is demonstrated.",
+  "operational_boundary": {
+    "actual_sends": 2,
+    "tracker_actions": 0,
+    "tracker_staging": false,
+    "proposal_auto_approved": false,
+    "new_settled_estimated_usd": "0.001115400",
+    "actual_account_charge_usd": null,
+    "c5_reconciled": false
+  },
+  "post_probe_change": "Persistent HTTP evidence_scope forwarding and current-installation live backend exact_user_version configuration were added afterward and tested offline; not present in paid arms.",
+  "next_dependencies": [
+    "Hassan: version-aware retrieval/ranking/backfill and multiselect/fragment source coverage on dev; exclusion families with MohammadHasan.",
+    "MohammadHasan: independent fixture/rubric and original/edit human scoring; frozen test remains unopened.",
+    "C5: external provider accounting evidence for preserved old uncertain record; no ledger reset."
+  ]
+}
