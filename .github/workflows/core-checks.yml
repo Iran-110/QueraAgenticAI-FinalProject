@@ -112,6 +112,11 @@ jobs:
           uv run python scripts/controlled_model_baseline.py --output-cap-followup --mock --output-dir "$RUNNER_TEMP/controlled-output-cap-mock"
           uv run python -c "import json,os,pathlib; r=json.loads((pathlib.Path(os.environ['RUNNER_TEMP'])/'controlled-output-cap-mock/receipt.json').read_text(encoding='utf-8')); assert r['complete'] and r['accepted_operations'] and r['real_provider_requests']==0 and r['paid_api_cost_usd']=='0' and r['intercepted_mock_sends']==1 and not r['source_guard_installed']"
 
+      - name: Compare frozen conflict continuity controls on actual old and current code
+        run: |
+          uv run python scripts/conflict_continuity_comparison.py --output "$RUNNER_TEMP/conflict-continuity.json" > "$RUNNER_TEMP/conflict-continuity-console.json"
+          uv run python -c "import json,os,pathlib; r=json.loads((pathlib.Path(os.environ['RUNNER_TEMP'])/'conflict-continuity.json').read_text(encoding='utf-8')); assert r['arms']['baseline']['counts']==dict(passed=7,failed=7,error=0,skipped=0,not_run=0) and r['arms']['current']['counts']==dict(passed=14,failed=0,error=0,skipped=0,not_run=0) and all(a['source_matches_git_commit'] and a['imports_bound_to_snapshot'] and a['network_disabled'] for a in r['arms'].values()) and r['real_provider_requests']==0 and r['paid_api_cost_usd']=='0' and not r['quality_claim']"
+
   windows-pilot:
     runs-on: windows-latest
     timeout-minutes: 10
@@ -157,3 +162,9 @@ jobs:
           uv run python -c "import json,os,pathlib; r=json.loads((pathlib.Path(os.environ['RUNNER_TEMP'])/'controlled-model-mock/receipt.json').read_text(encoding='utf-8')); assert r['complete'] and r['accepted_operations'] and r['real_provider_requests']==0 and r['paid_api_cost_usd']=='0' and r['intercepted_mock_sends']==6"
           uv run python scripts/controlled_model_baseline.py --output-cap-followup --mock --output-dir "$env:RUNNER_TEMP/controlled-output-cap-mock"
           uv run python -c "import json,os,pathlib; r=json.loads((pathlib.Path(os.environ['RUNNER_TEMP'])/'controlled-output-cap-mock/receipt.json').read_text(encoding='utf-8')); assert r['complete'] and r['accepted_operations'] and r['real_provider_requests']==0 and r['paid_api_cost_usd']=='0' and r['intercepted_mock_sends']==1 and not r['source_guard_installed']"
+      - name: Check conflict lifecycle and canonical persistent HTTP handoffs
+        run: uv run pytest tests/test_conflict_continuity.py tests/test_conflict_continuity_boundaries.py tests/test_conflict_continuity_http.py
+      - name: Compare frozen conflict controls on Windows without network
+        run: |
+          uv run python scripts/conflict_continuity_comparison.py --output "$env:RUNNER_TEMP/conflict-continuity.json" > "$env:RUNNER_TEMP/conflict-continuity-console.json"
+          uv run python -c "import json,os,pathlib; r=json.loads((pathlib.Path(os.environ['RUNNER_TEMP'])/'conflict-continuity.json').read_text(encoding='utf-8')); assert r['arms']['baseline']['counts']==dict(passed=7,failed=7,error=0,skipped=0,not_run=0) and r['arms']['current']['counts']==dict(passed=14,failed=0,error=0,skipped=0,not_run=0) and all(a['source_matches_git_commit'] and a['imports_bound_to_snapshot'] and a['network_disabled'] for a in r['arms'].values()) and r['real_provider_requests']==0 and r['paid_api_cost_usd']=='0' and not r['quality_claim']"
