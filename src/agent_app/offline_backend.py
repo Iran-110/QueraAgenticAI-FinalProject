@@ -20,12 +20,71 @@ from agent_app.contracts import (
     GroundedPlan,
     GroundedSourceRef,
     Identifier,
+    QuestionTarget,
     ReasoningContext,
 )
 from agent_app.orchestration.intake import STREAMLIT_VERSION_QUESTION
 from agent_app.persistent_api import create_app
 from agent_app.reasoning.grounding import source_content_sha256
 from agent_app.tracker.sqlite_tracker import SQLiteCaseTracker
+
+WIDGET_DEFINITION_QUESTION = QuestionTarget(
+    name="widget_definition", question="Can you share the widget's key and code?"
+)
+
+
+class ScriptedQuestionReasoner:
+    """Select the next authored user gap from the current committed case.
+
+    The two gaps belong to this offline widget scenario. This is neither gap
+    discovery nor a claim that synthetic evidence can answer a real issue.
+    """
+
+    def __init__(self, *, include_widget: bool) -> None:
+        self.include_widget = include_widget
+
+    def analyze(self, case, user_message, evidence, *, context: ReasoningContext):
+        known = {
+            fact.name.casefold()
+            for fact in case.facts
+            if fact.status == "active" and fact.provenance_kind == "user"
+        }
+        targets = (STREAMLIT_VERSION_QUESTION,)
+        if self.include_widget:
+            targets += (WIDGET_DEFINITION_QUESTION,)
+        target = next((item for item in targets if item.name not in known), None)
+        if target is not None:
+            return AnalysisResult(
+                decision="ask",
+                user_draft=target.question,
+                next_question=target.question,
+                missing_info=(target.name,),
+                maintainer_summary=(f"Scripted pilot: the user has not confirmed {target.name}."),
+                rationale=(
+                    "This authored scenario needs the user's current information. "
+                    "Source text and retired facts cannot confirm it."
+                ),
+            )
+        return AnalysisResult(
+            decision="escalate",
+            user_draft="A maintainer should review this case with relevant documentation.",
+            maintainer_summary=(
+                "Scripted pilot: its required user facts are confirmed, but the "
+                "supplied synthetic records do not establish a supported answer."
+            ),
+            rationale="Insufficient source support requires investigation rather than another user question.",
+        )
+
+
+def _scripted_adapters(scenario: api.Scenario) -> api.RunAdapters:
+    scripted = api._adapters(scenario)
+    if scenario not in {"ask", "ask_version"}:
+        return scripted
+    return api.RunAdapters(
+        scripted.retriever,
+        ScriptedQuestionReasoner(include_widget=scenario == "ask"),
+        snapshot_id=scripted.snapshot_id,
+    )
 
 
 class PilotReasoner:
@@ -100,7 +159,7 @@ def configured_app(config: Mapping[str, str]) -> FastAPI:
         if reasoning_label not in {"scripted", "grounded_fake_gateway"}:
             raise ValueError
         expected_snapshot = config.get("AGENT_PILOT_SNAPSHOT")
-        adapters = None
+        adapters = _scripted_adapters
         label = "scripted"
         if index is not None:
             if (
