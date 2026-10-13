@@ -7,6 +7,11 @@ reasoning اسکریپتی است و کیفیت RAG/مدل را ادعا نمی�
 برای corpus نهایی مسدود است. دستورهای smoke پایین، آزمایش جدا با collection
 ثابت‌اند؛ receipt ۱۳۲/۱۳۲ آن‌ها شاهد اجرای index تازه نیست.
 
+[بازبینی PR #35 و دستور تست روی index موجود](../../../experiments/retrieval_acceptance/pr35/README.md)
+سه شاهد را جدا نگه می‌دارد: fixture مرجع، mapper واقعی با collection ثابت، و
+دو build مستقل Chroma که از HTTP/core/SQLite عبور می‌کنند. دستور default
+`scripts/rag_acceptance.py`، index ساخته‌شده را مصرف نمی‌کند.
+
 `ChromaRetrieverAdapter` درخواست `RetrievalRequest` را می‌گیرد و
 `EvidenceBundle` می‌سازد. مسیر پذیرش آفلاین، search و تبدیل hitهای همین adapter
 را با collectionهای ثابت بررسی می‌کند. این مسیر index یا embedding واقعی
