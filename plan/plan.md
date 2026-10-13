@@ -7,7 +7,8 @@
 ### تقسیم کار جاری — درخواست جمع‌بندی تا امشب ۱۳ اکتبر
 
 انتشار #37 روی main `109f59e` و [CI Linux/Windows](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38406080389)
-پاس شد. سهم جاری مستقل ساسان **C2g**، [query بعد از correction](../docs/current-retrieval-context.fa.md)،
+پاس شد. تحویل مستقل ساسان **C2g** در [PR #38](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/38)،
+[query بعد از correction](../docs/current-retrieval-context.fa.md)،
 است: reasoning/history حفظ می‌شود و context اولیهٔ retrieval از factهای فعلی،
 پیام اخیر و hint موضوعی جدا می‌آید. [نتیجه و اصل receiptها](../experiments/retrieval_context/README.md):
 روی ده variation تألیفی، کنترل لفظی ۷۲/۹۶ به ۹۶/۹۶ و همهٔ کنترل‌های هر سناریو
