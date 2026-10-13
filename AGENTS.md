@@ -9,6 +9,7 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 - Keep shared models in `src/agent_app/contracts.py` and ports in `orchestration/ports.py`; coordinate interface changes before adapting another owner's module.
 - Use feature branches and meaningful commits after coherent, verified chunks. Do not fabricate dates, activity, test results, or completed functionality.
 - Keep the owned task in `plan/plan.md` current in the same PR; use its task ID in handoffs and attach completion evidence before checking it off. Sync the feature branch from current `origin/main` without discarding local work. Shared plan changes are visible to teammates after Git sync, not instantly.
+- After syncing the C4 delivery, read `docs/team-handoff-c4.fa.md` for its file boundaries and receipt interpretation. The controlled packet is exposed development data, not new held-out cases. Reviewer labels, later bundles and authored plans must stay outside the current model payload and real RAG corpus.
 - Keep the current foundation independent of an orchestration framework. Add a dependency only when an implemented need justifies it.
 
 ## Runtime rules

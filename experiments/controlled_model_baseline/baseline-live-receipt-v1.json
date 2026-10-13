@@ -1,0 +1,2800 @@
+{
+  "schema_version": 1,
+  "protocol_id": "controlled-model-baseline-v1",
+  "experiment_id": "controlled-model-baseline-2026-10-13-v1",
+  "evidence_scope": "all",
+  "top_k": 5,
+  "limits": {
+    "max_model_attempts": 2,
+    "max_retrieval_rounds": 2,
+    "max_queries_per_round": 2,
+    "max_steps": 8
+  },
+  "registered_conditions": 6,
+  "attempted_conditions": 3,
+  "final_proposals": 2,
+  "recorded_condition_results": 3,
+  "skipped_conditions": [
+    {
+      "condition_id": "controlled-v8-version-correction",
+      "reason": "ProviderResponseInvalid",
+      "guard_stop_reason": null
+    },
+    {
+      "condition_id": "controlled-v8-same-version-synthetic-conflict",
+      "reason": "ProviderResponseInvalid",
+      "guard_stop_reason": null
+    },
+    {
+      "condition_id": "controlled-v8-refinement-stale-source",
+      "reason": "ProviderResponseInvalid",
+      "guard_stop_reason": null
+    }
+  ],
+  "unfunded_condition_count": 0,
+  "unfunded_skipped_condition_count": 0,
+  "complete": false,
+  "stop_code": "ProviderResponseInvalid",
+  "checks": {
+    "at_most_six_actual_sends": true,
+    "at_most_two_attempts_per_condition": true,
+    "clients_closed": true,
+    "immutable_grant_and_global_budget_preserved": true,
+    "original_halt_preserved": true,
+    "only_original_uncertainty": true,
+    "no_pending_requests": true,
+    "batch_actual_estimate_bound": true,
+    "new_request_accounting_complete": true,
+    "registered_source_unchanged": true
+  },
+  "accepted_operations": true,
+  "actual_sends": 3,
+  "execution_mode": "live_model_fixed_evidence",
+  "real_provider_requests": 3,
+  "intercepted_mock_sends": 0,
+  "paid_api_cost_usd": null,
+  "accounting_scope": "designated_shared_ledger",
+  "cost_kind": "validated_provider_usage_estimate",
+  "condition_results": [
+    {
+      "condition_id": "controlled-v8-full",
+      "result": {
+        "run_id": "controlled-controlled-model-baseline-2026-10-13-v1-1-c4a8bc42",
+        "case_id": "c4-condition-01",
+        "case_revision": 0,
+        "status": "awaiting_approval",
+        "analysis": {
+          "decision": "ask",
+          "user_draft": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+          "maintainer_summary": "User-reported active facts:\n- streamlit\\_version: 1.50.0\n- python\\_version: 3.12.9\n- operating\\_system: Windows 11 / WSL2 Ubuntu / AlmaLinux 9\n- browser: Chrome\n- reported\\_widget\\_context: A multiselect inside @st.fragment\n- reported\\_trigger: Changing a parent selector resets session state\n- reported\\_observation: The multiselect displays empty rather than its saved default\n- reported\\_reproduction\\_status: The small example works correctly and does not reproduce the failure; no minimal failing example is available\n- reported\\_prior\\_version\\_behavior: The reporter says the same full-app logic worked in 1.49.1\n\nUser-reported checks:\n- Tried minimal fragment and multiselect examples but they did not reproduce the failure\n\nRecorded unknowns: parent\\_callback\\_code, state\\_update\\_order, minimal\\_failing\\_reproduction\n\nNo conflict has been declared by the caller; this does not prove consistency.\n\nThese are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal.\n\nSupplied source multiselect-150-default (doc); Supplied version metadata exactly matches the user-reported version; this does not verify source authenticity or a cause/fix.\nVersions in metadata: 1.50.0. Span: JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring.\n[Provided source](https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json)\n> default: Iterable of V, V, or None; default=values\n> List of default values. Can also be a single value.\n\nSupplied source fragment-150-rerun (doc); Supplied version metadata exactly matches the user-reported version; this does not verify source authenticity or a cause/fix.\nVersions in metadata: 1.50.0. Span: JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring.\n[Provided source](https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json)\n> When a user interacts with an input widget created inside a fragment,\n> Streamlit only reruns the fragment instead of the full app.\n\nSupplied source release-150-multiselect-key-identity-v8 (release_note); Supplied version metadata exactly matches the user-reported version; this does not verify source authenticity or a cause/fix.\nVersions in metadata: 1.50.0. Span: Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause.\n[Provided source](https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123)\n> \\#\\# \\*\\*Version 1.50.0\\*\\*\n> \n> \\_Release date: September 23, 2025\\_\n> \n> \\*\\*Highlights\\*\\*\n> \n> - \ud83e\udd39\u00a0Introducing \\[\\`MultiselectColumn\\`\\]\\(/develop/api-reference/data/st.column\\_config/st.column\\_config.multiselectcolumn\\) to configure colorful, editable lists in your dataframes.\n> - \ud83c\udfa8\u00a0Announcing \\[color palette\\]\\(/develop/concepts/configuration/theming-customize-colors-and-borders\\#basic-color-palette\\) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, \\`st.metric\\`, and \\`st.badge\\`.\n> - \ud83d\udcca\u00a0\\[\\`st.bar\\_chart\\`\\]\\(/develop/api-reference/charts/st.bar\\_chart\\) has a new \\`sort\\` parameter for conveniently sorting your bars.\n> \n> \\*\\*Notable Changes\\*\\*\n> \n> - \ud83d\udd11\u00a0To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys \\(if provided\\). The following widgets use only their key for their identity:\n>   - \\`st.button\\`\n>   - \\`st.download\\_button\\`\n>   - \\`st.form\\_submit\\_button\\`\n>   - \\`st.checkbox\\`\n>   - \\`st.toggle\\`\n>   - \\`st.text\\_area\\`\n>   - \\`st.text\\_input\\`\n>   - \\`st.number\\_input\\`\n>   - \\`st.time\\_input\\`\n>   - \\`st.date\\_input\\`\n>   - \\`st.selectbox\\`\n>   - \\`st.multiselect\\`",
+          "rationale": "Routing and quotations are rendered from supplied references. These are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal. Caller-registered question necessity: The missing callback path can distinguish application state changes from documented widget behavior.",
+          "evidence_links": [
+            {
+              "claim": "Attributed complete excerpt from supplied chunk multiselect-150-default; scope=exact_metadata_match; not a verified cause or fix.",
+              "chunk_id": "multiselect-150-default"
+            },
+            {
+              "claim": "Attributed complete excerpt from supplied chunk fragment-150-rerun; scope=exact_metadata_match; not a verified cause or fix.",
+              "chunk_id": "fragment-150-rerun"
+            },
+            {
+              "claim": "Attributed complete excerpt from supplied chunk release-150-multiselect-key-identity-v8; scope=exact_metadata_match; not a verified cause or fix.",
+              "chunk_id": "release-150-multiselect-key-identity-v8"
+            }
+          ],
+          "missing_info": [
+            "parent_callback_code"
+          ],
+          "next_question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+          "retrieval_queries": [],
+          "facts_delta": [],
+          "checks_suggested": []
+        },
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "steps": 4,
+        "error_code": null,
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 3 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "awaiting_approval",
+            "message": "Prepared an ask preview."
+          }
+        ],
+        "output_issues": []
+      },
+      "canonical_handoff": {
+        "schema_version": 1,
+        "proposal_id": "controlled-controlled-model-baseline-2026-10-13-v1-1-c4a8bc42",
+        "case": {
+          "case_id": "c4-condition-01",
+          "case_revision": 0,
+          "facts": [
+            {
+              "name": "streamlit_version",
+              "value": "1.50.0",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "python_version",
+              "value": "3.12.9",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "operating_system",
+              "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "browser",
+              "value": "Chrome",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "reported_widget_context",
+              "value": "A multiselect inside @st.fragment",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "reported_trigger",
+              "value": "Changing a parent selector resets session state",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "reported_observation",
+              "value": "The multiselect displays empty rather than its saved default",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "reported_reproduction_status",
+              "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "reported_prior_version_behavior",
+              "value": "The reporter says the same full-app logic worked in 1.49.1",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            }
+          ],
+          "unknowns": [
+            "parent_callback_code",
+            "state_update_order",
+            "minimal_failing_reproduction"
+          ],
+          "checks_performed": [
+            "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+          ],
+          "evidence_refs": [],
+          "pending_proposal_id": null
+        },
+        "user_message": "In Streamlit 1.50.0, changing a parent selector resets session state and a multiselect inside @st.fragment displays empty rather than its saved default. The same full-app logic worked in 1.49.1. Python 3.12.9 and Chrome. The small example with a parent selectbox and fragment multiselect works correctly and does not reproduce the failure. I cannot yet provide a minimal failing example. What is the next useful step?",
+        "evidence": {
+          "snapshot_id": "core-controlled-evidence-v8",
+          "hits": [
+            {
+              "chunk_id": "multiselect-150-default",
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "fragment-150-rerun",
+              "source_id": "docstring:1.50.0:streamlit.fragment",
+              "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "release-150-multiselect-key-identity-v8",
+              "source_id": "release-notes:1.50.0:widget-key-identity",
+              "excerpt": "## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- \ud83e\udd39\u00a0Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- \ud83c\udfa8\u00a0Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- \ud83d\udcca\u00a0[`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- \ud83d\udd11\u00a0To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123",
+              "source_type": "release_note",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause",
+              "score": null,
+              "score_kind": null
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 1,
+          "warnings": []
+        },
+        "analysis": {
+          "decision": "ask",
+          "user_draft": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+          "maintainer_summary": "User-reported active facts:\n- streamlit\\_version: 1.50.0\n- python\\_version: 3.12.9\n- operating\\_system: Windows 11 / WSL2 Ubuntu / AlmaLinux 9\n- browser: Chrome\n- reported\\_widget\\_context: A multiselect inside @st.fragment\n- reported\\_trigger: Changing a parent selector resets session state\n- reported\\_observation: The multiselect displays empty rather than its saved default\n- reported\\_reproduction\\_status: The small example works correctly and does not reproduce the failure; no minimal failing example is available\n- reported\\_prior\\_version\\_behavior: The reporter says the same full-app logic worked in 1.49.1\n\nUser-reported checks:\n- Tried minimal fragment and multiselect examples but they did not reproduce the failure\n\nRecorded unknowns: parent\\_callback\\_code, state\\_update\\_order, minimal\\_failing\\_reproduction\n\nNo conflict has been declared by the caller; this does not prove consistency.\n\nThese are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal.\n\nSupplied source multiselect-150-default (doc); Supplied version metadata exactly matches the user-reported version; this does not verify source authenticity or a cause/fix.\nVersions in metadata: 1.50.0. Span: JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring.\n[Provided source](https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json)\n> default: Iterable of V, V, or None; default=values\n> List of default values. Can also be a single value.\n\nSupplied source fragment-150-rerun (doc); Supplied version metadata exactly matches the user-reported version; this does not verify source authenticity or a cause/fix.\nVersions in metadata: 1.50.0. Span: JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring.\n[Provided source](https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json)\n> When a user interacts with an input widget created inside a fragment,\n> Streamlit only reruns the fragment instead of the full app.\n\nSupplied source release-150-multiselect-key-identity-v8 (release_note); Supplied version metadata exactly matches the user-reported version; this does not verify source authenticity or a cause/fix.\nVersions in metadata: 1.50.0. Span: Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause.\n[Provided source](https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123)\n> \\#\\# \\*\\*Version 1.50.0\\*\\*\n> \n> \\_Release date: September 23, 2025\\_\n> \n> \\*\\*Highlights\\*\\*\n> \n> - \ud83e\udd39\u00a0Introducing \\[\\`MultiselectColumn\\`\\]\\(/develop/api-reference/data/st.column\\_config/st.column\\_config.multiselectcolumn\\) to configure colorful, editable lists in your dataframes.\n> - \ud83c\udfa8\u00a0Announcing \\[color palette\\]\\(/develop/concepts/configuration/theming-customize-colors-and-borders\\#basic-color-palette\\) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, \\`st.metric\\`, and \\`st.badge\\`.\n> - \ud83d\udcca\u00a0\\[\\`st.bar\\_chart\\`\\]\\(/develop/api-reference/charts/st.bar\\_chart\\) has a new \\`sort\\` parameter for conveniently sorting your bars.\n> \n> \\*\\*Notable Changes\\*\\*\n> \n> - \ud83d\udd11\u00a0To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys \\(if provided\\). The following widgets use only their key for their identity:\n>   - \\`st.button\\`\n>   - \\`st.download\\_button\\`\n>   - \\`st.form\\_submit\\_button\\`\n>   - \\`st.checkbox\\`\n>   - \\`st.toggle\\`\n>   - \\`st.text\\_area\\`\n>   - \\`st.text\\_input\\`\n>   - \\`st.number\\_input\\`\n>   - \\`st.time\\_input\\`\n>   - \\`st.date\\_input\\`\n>   - \\`st.selectbox\\`\n>   - \\`st.multiselect\\`",
+          "rationale": "Routing and quotations are rendered from supplied references. These are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal. Caller-registered question necessity: The missing callback path can distinguish application state changes from documented widget behavior.",
+          "evidence_links": [
+            {
+              "claim": "Attributed complete excerpt from supplied chunk multiselect-150-default; scope=exact_metadata_match; not a verified cause or fix.",
+              "chunk_id": "multiselect-150-default"
+            },
+            {
+              "claim": "Attributed complete excerpt from supplied chunk fragment-150-rerun; scope=exact_metadata_match; not a verified cause or fix.",
+              "chunk_id": "fragment-150-rerun"
+            },
+            {
+              "claim": "Attributed complete excerpt from supplied chunk release-150-multiselect-key-identity-v8; scope=exact_metadata_match; not a verified cause or fix.",
+              "chunk_id": "release-150-multiselect-key-identity-v8"
+            }
+          ],
+          "missing_info": [
+            "parent_callback_code"
+          ],
+          "next_question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+          "retrieval_queries": [],
+          "facts_delta": [],
+          "checks_suggested": []
+        },
+        "reasoning_context": {
+          "run_id": "controlled-controlled-model-baseline-2026-10-13-v1-1-c4a8bc42",
+          "case_id": "c4-condition-01",
+          "case_revision": 0,
+          "attempt_index": 1,
+          "output_feedback": null,
+          "remaining_model_attempts": 1,
+          "remaining_retrieval_rounds": 1,
+          "can_refine": true,
+          "query_limit": 2,
+          "proposal_requirements": null
+        },
+        "grounded_request": {
+          "case": {
+            "case_id": "c4-condition-01",
+            "case_revision": 0,
+            "facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.50.0",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "python_version",
+                "value": "3.12.9",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "operating_system",
+                "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "browser",
+                "value": "Chrome",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "reported_widget_context",
+                "value": "A multiselect inside @st.fragment",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "reported_trigger",
+                "value": "Changing a parent selector resets session state",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "reported_observation",
+                "value": "The multiselect displays empty rather than its saved default",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "reported_reproduction_status",
+                "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "reported_prior_version_behavior",
+                "value": "The reporter says the same full-app logic worked in 1.49.1",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [
+              "parent_callback_code",
+              "state_update_order",
+              "minimal_failing_reproduction"
+            ],
+            "checks_performed": [
+              "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+            ],
+            "evidence_refs": [],
+            "pending_proposal_id": null
+          },
+          "user_message": "In Streamlit 1.50.0, changing a parent selector resets session state and a multiselect inside @st.fragment displays empty rather than its saved default. The same full-app logic worked in 1.49.1. Python 3.12.9 and Chrome. The small example with a parent selectbox and fragment multiselect works correctly and does not reproduce the failure. I cannot yet provide a minimal failing example. What is the next useful step?",
+          "evidence": {
+            "snapshot_id": "core-controlled-evidence-v8",
+            "hits": [
+              {
+                "chunk_id": "multiselect-150-default",
+                "source_id": "docstring:1.50.0:streamlit.multiselect",
+                "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+                "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+                "source_type": "doc",
+                "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                "applicable_versions": [
+                  "1.50.0"
+                ],
+                "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring",
+                "score": null,
+                "score_kind": null
+              },
+              {
+                "chunk_id": "fragment-150-rerun",
+                "source_id": "docstring:1.50.0:streamlit.fragment",
+                "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+                "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+                "source_type": "doc",
+                "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                "applicable_versions": [
+                  "1.50.0"
+                ],
+                "source_span": "JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring",
+                "score": null,
+                "score_kind": null
+              },
+              {
+                "chunk_id": "release-150-multiselect-key-identity-v8",
+                "source_id": "release-notes:1.50.0:widget-key-identity",
+                "excerpt": "## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- \ud83e\udd39\u00a0Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- \ud83c\udfa8\u00a0Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- \ud83d\udcca\u00a0[`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- \ud83d\udd11\u00a0To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+                "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123",
+                "source_type": "release_note",
+                "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                "applicable_versions": [
+                  "1.50.0"
+                ],
+                "source_span": "Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause",
+                "score": null,
+                "score_kind": null
+              }
+            ],
+            "queries_used": [],
+            "retrieval_round": 1,
+            "warnings": []
+          },
+          "gaps": [
+            {
+              "name": "parent_callback_code",
+              "kind": "user",
+              "description": "The parent selector callback and relevant state mutation lines are absent.",
+              "necessity": "The missing callback path can distinguish application state changes from documented widget behavior.",
+              "question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?"
+            },
+            {
+              "name": "state_update_order",
+              "kind": "user",
+              "description": "The execution order of state updates and multiselect construction is absent.",
+              "necessity": "The order can change which stored value exists when the failing widget is constructed.",
+              "question": "In the failing full app, in what order do the parent callback, Session State assignments or deletions, and multiselect construction run?"
+            },
+            {
+              "name": "minimal_failing_reproduction",
+              "kind": "user",
+              "description": "The supplied reduced example works; a minimal failing example is unavailable.",
+              "necessity": "An example that actually fails would narrow the unresolved full-app path; the working reduction is already recorded.",
+              "question": "Can you share a minimal example that actually shows the empty-default failure, including the parent selector and its state updates?"
+            },
+            {
+              "name": "documentation_gap_1",
+              "kind": "source",
+              "description": "Exact full-app root cause and a verified fix are not established",
+              "necessity": "This is a source/applicability or verification gap. Retrieval or maintainer investigation must address it; asking the user to certify documentation is not a substitute.",
+              "question": null
+            }
+          ],
+          "conflict_groups": [],
+          "context_sha256": "201618edc4d7063233466caea2d9d5aa02965ac51fa9255ddb46851dfa2cb209"
+        },
+        "source_inventory": [
+          {
+            "chunk_id": "multiselect-150-default",
+            "content_sha256": "df43b75982ac76d26297eaf80bb07cfcf282cc75c1c34f04fa9490b9c312c5ba",
+            "version_scope": "exact_metadata_match"
+          },
+          {
+            "chunk_id": "fragment-150-rerun",
+            "content_sha256": "e8cff24d3ee04b7cf5f27362c8d3ea39096f5bb7c36e73f2f2ed54a26dc7eb1c",
+            "version_scope": "exact_metadata_match"
+          },
+          {
+            "chunk_id": "release-150-multiselect-key-identity-v8",
+            "content_sha256": "d9defe132d5ac3dbedfa4c76ca763e882a71025d388b772bd816fb4081928f3d",
+            "version_scope": "exact_metadata_match"
+          }
+        ],
+        "packet": {
+          "schema_version": 1,
+          "case_id": "c4-condition-01",
+          "case_revision": 0,
+          "case_sha256": "574c616646fcbbc74feabe839380efe199f5f38307887054c8813c7c9ec48ba2",
+          "evidence_sha256": "6122bda184f01707d7d45fe82531146900f3db9cc30c07fc729fe9890bea5e6b",
+          "analysis_sha256": "540db65ab8a55940e63232cebcc257cb4ce47df7246ca953b1e6c9b4a0ca7db9",
+          "surfaces": [
+            {
+              "surface_id": "decision",
+              "text_sha256": "e3115a6b58a16bd1f4aceb9056eb8fdd0922bbdba31a92d0cb80a4a25cb63c9c",
+              "length": 3
+            },
+            {
+              "surface_id": "user_draft",
+              "text_sha256": "f17cdc34bf583b22cb0d55b3b7ff947ba2893cddc5ec6ea9f13a903e2d06e78a",
+              "length": 173
+            },
+            {
+              "surface_id": "maintainer_summary",
+              "text_sha256": "cee8fbd55c604cc47d994ed04c0a7a277782eae9608e74f9bd38a1d4560566ab",
+              "length": 3937
+            },
+            {
+              "surface_id": "rationale",
+              "text_sha256": "1b6dad6cdfaed4fe6e3393e24cc74ed1a5ae7b25a2a3f05188c36b23544feb35",
+              "length": 354
+            },
+            {
+              "surface_id": "next_question",
+              "text_sha256": "f17cdc34bf583b22cb0d55b3b7ff947ba2893cddc5ec6ea9f13a903e2d06e78a",
+              "length": 173
+            },
+            {
+              "surface_id": "evidence_links.0.claim",
+              "text_sha256": "5680885a1ea58317085a61976626474e81c7f5ccc55afe5ceced2935c68908ed",
+              "length": 129
+            },
+            {
+              "surface_id": "evidence_links.1.claim",
+              "text_sha256": "dbf8c45b305e3c484512d1379dc1bd61160ece422357a60b97cd42f6c0405d6d",
+              "length": 124
+            },
+            {
+              "surface_id": "evidence_links.2.claim",
+              "text_sha256": "cbf22acaba9a269cea1a3803c1dd8b6533531115f83e63ffcd711a423059b5b3",
+              "length": 145
+            },
+            {
+              "surface_id": "missing_info.0",
+              "text_sha256": "12df8afc186ebab045f93c2bd5f42d728984501db3a594597fa5173b3d2b827a",
+              "length": 20
+            }
+          ],
+          "packet_sha256": "e65e66228e7f6dd0cb4a363b1b105edb3dae21f1cacdbba92ca00521f3d75b72"
+        },
+        "handoff_sha256": "95ab5a652a4acbe823c3393a321f262bfdb1f70e5c207844c2850bbc4f5d55ad"
+      },
+      "handoff_error": null,
+      "guard_stop_reason": null,
+      "grounded_requests": [
+        {
+          "case": {
+            "case_id": "c4-condition-01",
+            "case_revision": 0,
+            "facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.50.0",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "python_version",
+                "value": "3.12.9",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "operating_system",
+                "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "browser",
+                "value": "Chrome",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "reported_widget_context",
+                "value": "A multiselect inside @st.fragment",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "reported_trigger",
+                "value": "Changing a parent selector resets session state",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "reported_observation",
+                "value": "The multiselect displays empty rather than its saved default",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "reported_reproduction_status",
+                "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "reported_prior_version_behavior",
+                "value": "The reporter says the same full-app logic worked in 1.49.1",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [
+              "parent_callback_code",
+              "state_update_order",
+              "minimal_failing_reproduction"
+            ],
+            "checks_performed": [
+              "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+            ],
+            "evidence_refs": [],
+            "pending_proposal_id": null
+          },
+          "user_message": "In Streamlit 1.50.0, changing a parent selector resets session state and a multiselect inside @st.fragment displays empty rather than its saved default. The same full-app logic worked in 1.49.1. Python 3.12.9 and Chrome. The small example with a parent selectbox and fragment multiselect works correctly and does not reproduce the failure. I cannot yet provide a minimal failing example. What is the next useful step?",
+          "evidence": {
+            "snapshot_id": "core-controlled-evidence-v8",
+            "hits": [
+              {
+                "chunk_id": "multiselect-150-default",
+                "source_id": "docstring:1.50.0:streamlit.multiselect",
+                "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+                "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+                "source_type": "doc",
+                "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                "applicable_versions": [
+                  "1.50.0"
+                ],
+                "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring",
+                "score": null,
+                "score_kind": null
+              },
+              {
+                "chunk_id": "fragment-150-rerun",
+                "source_id": "docstring:1.50.0:streamlit.fragment",
+                "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+                "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+                "source_type": "doc",
+                "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                "applicable_versions": [
+                  "1.50.0"
+                ],
+                "source_span": "JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring",
+                "score": null,
+                "score_kind": null
+              },
+              {
+                "chunk_id": "release-150-multiselect-key-identity-v8",
+                "source_id": "release-notes:1.50.0:widget-key-identity",
+                "excerpt": "## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- \ud83e\udd39\u00a0Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- \ud83c\udfa8\u00a0Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- \ud83d\udcca\u00a0[`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- \ud83d\udd11\u00a0To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+                "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123",
+                "source_type": "release_note",
+                "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                "applicable_versions": [
+                  "1.50.0"
+                ],
+                "source_span": "Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause",
+                "score": null,
+                "score_kind": null
+              }
+            ],
+            "queries_used": [],
+            "retrieval_round": 1,
+            "warnings": []
+          },
+          "gaps": [
+            {
+              "name": "parent_callback_code",
+              "kind": "user",
+              "description": "The parent selector callback and relevant state mutation lines are absent.",
+              "necessity": "The missing callback path can distinguish application state changes from documented widget behavior.",
+              "question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?"
+            },
+            {
+              "name": "state_update_order",
+              "kind": "user",
+              "description": "The execution order of state updates and multiselect construction is absent.",
+              "necessity": "The order can change which stored value exists when the failing widget is constructed.",
+              "question": "In the failing full app, in what order do the parent callback, Session State assignments or deletions, and multiselect construction run?"
+            },
+            {
+              "name": "minimal_failing_reproduction",
+              "kind": "user",
+              "description": "The supplied reduced example works; a minimal failing example is unavailable.",
+              "necessity": "An example that actually fails would narrow the unresolved full-app path; the working reduction is already recorded.",
+              "question": "Can you share a minimal example that actually shows the empty-default failure, including the parent selector and its state updates?"
+            },
+            {
+              "name": "documentation_gap_1",
+              "kind": "source",
+              "description": "Exact full-app root cause and a verified fix are not established",
+              "necessity": "This is a source/applicability or verification gap. Retrieval or maintainer investigation must address it; asking the user to certify documentation is not a substitute.",
+              "question": null
+            }
+          ],
+          "conflict_groups": [],
+          "context_sha256": "201618edc4d7063233466caea2d9d5aa02965ac51fa9255ddb46851dfa2cb209"
+        }
+      ],
+      "reasoning_attempts": [
+        {
+          "condition_id": "controlled-v8-full",
+          "request_id": "call:cfcf5c991e68af1fd3cc8e006d8318597287d3638bd8214a3662625ea5fda818",
+          "run_id": "controlled-controlled-model-baseline-2026-10-13-v1-1-c4a8bc42",
+          "case_id": "c4-condition-01",
+          "case_revision": 0,
+          "attempt_index": 1,
+          "retrieval_round": 1,
+          "prompt_bytes_plus_margin": 11842,
+          "prompt_sha256": "cb626b35c08c47ce1b096423be29aebbc2e626f813455545d354a24163994dce",
+          "verified_returned_model": "gpt-4o-mini-2024-07-18",
+          "http_send_started": true,
+          "model_selection": {
+            "status": "valid_plan_shape",
+            "decision": "ask",
+            "context_matches": true,
+            "known_selected_sources": [
+              {
+                "chunk_id": "multiselect-150-default",
+                "content_sha256_matches": true
+              },
+              {
+                "chunk_id": "fragment-150-rerun",
+                "content_sha256_matches": true
+              },
+              {
+                "chunk_id": "release-150-multiselect-key-identity-v8",
+                "content_sha256_matches": true
+              }
+            ],
+            "unknown_source_count": 0,
+            "known_question_name": "parent_callback_code",
+            "question_registered_as_user": true,
+            "unknown_question_present": false,
+            "retrieval_query_count": 0,
+            "declared_conflict_present": false,
+            "semantic_validity_claim": false
+          },
+          "http_status": 200,
+          "reservation": {
+            "request_id": "call:cfcf5c991e68af1fd3cc8e006d8318597287d3638bd8214a3662625ea5fda818",
+            "run_id": "controlled-controlled-model-baseline-2026-10-13-v1-1-c4a8bc42",
+            "case_id": "c4-condition-01",
+            "case_revision": 0,
+            "attempt": 1,
+            "model": "gpt-4o-mini",
+            "phase": "development",
+            "amount_usd": "0.0029568",
+            "status": "settled",
+            "cost_usd": "0.000643005",
+            "input_tokens": 2829,
+            "output_tokens": 267,
+            "error_code": null
+          }
+        }
+      ],
+      "reasoning_outputs": [
+        {
+          "request_id": "call:cfcf5c991e68af1fd3cc8e006d8318597287d3638bd8214a3662625ea5fda818",
+          "run_id": "controlled-controlled-model-baseline-2026-10-13-v1-1-c4a8bc42",
+          "case_id": "c4-condition-01",
+          "case_revision": 0,
+          "attempt_index": 1,
+          "retrieval_round": 1,
+          "grounded_context_sha256": "201618edc4d7063233466caea2d9d5aa02965ac51fa9255ddb46851dfa2cb209",
+          "status": "valid_rendered_analysis",
+          "analysis": {
+            "decision": "ask",
+            "user_draft": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+            "maintainer_summary": "User-reported active facts:\n- streamlit\\_version: 1.50.0\n- python\\_version: 3.12.9\n- operating\\_system: Windows 11 / WSL2 Ubuntu / AlmaLinux 9\n- browser: Chrome\n- reported\\_widget\\_context: A multiselect inside @st.fragment\n- reported\\_trigger: Changing a parent selector resets session state\n- reported\\_observation: The multiselect displays empty rather than its saved default\n- reported\\_reproduction\\_status: The small example works correctly and does not reproduce the failure; no minimal failing example is available\n- reported\\_prior\\_version\\_behavior: The reporter says the same full-app logic worked in 1.49.1\n\nUser-reported checks:\n- Tried minimal fragment and multiselect examples but they did not reproduce the failure\n\nRecorded unknowns: parent\\_callback\\_code, state\\_update\\_order, minimal\\_failing\\_reproduction\n\nNo conflict has been declared by the caller; this does not prove consistency.\n\nThese are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal.\n\nSupplied source multiselect-150-default (doc); Supplied version metadata exactly matches the user-reported version; this does not verify source authenticity or a cause/fix.\nVersions in metadata: 1.50.0. Span: JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring.\n[Provided source](https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json)\n> default: Iterable of V, V, or None; default=values\n> List of default values. Can also be a single value.\n\nSupplied source fragment-150-rerun (doc); Supplied version metadata exactly matches the user-reported version; this does not verify source authenticity or a cause/fix.\nVersions in metadata: 1.50.0. Span: JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring.\n[Provided source](https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json)\n> When a user interacts with an input widget created inside a fragment,\n> Streamlit only reruns the fragment instead of the full app.\n\nSupplied source release-150-multiselect-key-identity-v8 (release_note); Supplied version metadata exactly matches the user-reported version; this does not verify source authenticity or a cause/fix.\nVersions in metadata: 1.50.0. Span: Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause.\n[Provided source](https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123)\n> \\#\\# \\*\\*Version 1.50.0\\*\\*\n> \n> \\_Release date: September 23, 2025\\_\n> \n> \\*\\*Highlights\\*\\*\n> \n> - \ud83e\udd39\u00a0Introducing \\[\\`MultiselectColumn\\`\\]\\(/develop/api-reference/data/st.column\\_config/st.column\\_config.multiselectcolumn\\) to configure colorful, editable lists in your dataframes.\n> - \ud83c\udfa8\u00a0Announcing \\[color palette\\]\\(/develop/concepts/configuration/theming-customize-colors-and-borders\\#basic-color-palette\\) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, \\`st.metric\\`, and \\`st.badge\\`.\n> - \ud83d\udcca\u00a0\\[\\`st.bar\\_chart\\`\\]\\(/develop/api-reference/charts/st.bar\\_chart\\) has a new \\`sort\\` parameter for conveniently sorting your bars.\n> \n> \\*\\*Notable Changes\\*\\*\n> \n> - \ud83d\udd11\u00a0To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys \\(if provided\\). The following widgets use only their key for their identity:\n>   - \\`st.button\\`\n>   - \\`st.download\\_button\\`\n>   - \\`st.form\\_submit\\_button\\`\n>   - \\`st.checkbox\\`\n>   - \\`st.toggle\\`\n>   - \\`st.text\\_area\\`\n>   - \\`st.text\\_input\\`\n>   - \\`st.number\\_input\\`\n>   - \\`st.time\\_input\\`\n>   - \\`st.date\\_input\\`\n>   - \\`st.selectbox\\`\n>   - \\`st.multiselect\\`",
+            "rationale": "Routing and quotations are rendered from supplied references. These are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal. Caller-registered question necessity: The missing callback path can distinguish application state changes from documented widget behavior.",
+            "evidence_links": [
+              {
+                "claim": "Attributed complete excerpt from supplied chunk multiselect-150-default; scope=exact_metadata_match; not a verified cause or fix.",
+                "chunk_id": "multiselect-150-default"
+              },
+              {
+                "claim": "Attributed complete excerpt from supplied chunk fragment-150-rerun; scope=exact_metadata_match; not a verified cause or fix.",
+                "chunk_id": "fragment-150-rerun"
+              },
+              {
+                "claim": "Attributed complete excerpt from supplied chunk release-150-multiselect-key-identity-v8; scope=exact_metadata_match; not a verified cause or fix.",
+                "chunk_id": "release-150-multiselect-key-identity-v8"
+              }
+            ],
+            "missing_info": [
+              "parent_callback_code"
+            ],
+            "next_question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+            "retrieval_queries": [],
+            "facts_delta": [],
+            "checks_suggested": []
+          },
+          "issue_codes": [],
+          "error_code": null
+        }
+      ],
+      "retrieval_requests": [
+        {
+          "queries": [
+            "In Streamlit 1.50.0, changing a parent selector resets session state and a multiselect inside @st.fragment displays empty rather than its saved default. The same full-app logic worked in 1.49.1. Python 3.12.9 and Chrome. The small example with a parent selectbox and fragment multiselect works correctly and does not reproduce the failure. I cannot yet provide a minimal failing example. What is the  streamlit_version=1.50.0; python_version=3.12.9; browser=Chrome"
+          ],
+          "snapshot_id": "core-controlled-evidence-v8",
+          "top_k": 5,
+          "filters": {}
+        }
+      ],
+      "returned_evidence": [
+        {
+          "snapshot_id": "core-controlled-evidence-v8",
+          "hits": [
+            {
+              "chunk_id": "multiselect-150-default",
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "fragment-150-rerun",
+              "source_id": "docstring:1.50.0:streamlit.fragment",
+              "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "release-150-multiselect-key-identity-v8",
+              "source_id": "release-notes:1.50.0:widget-key-identity",
+              "excerpt": "## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- \ud83e\udd39\u00a0Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- \ud83c\udfa8\u00a0Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- \ud83d\udcca\u00a0[`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- \ud83d\udd11\u00a0To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123",
+              "source_type": "release_note",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause",
+              "score": null,
+              "score_kind": null
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 1,
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "condition_id": "controlled-v8-key-evidence-removed",
+      "result": {
+        "run_id": "controlled-controlled-model-baseline-2026-10-13-v1-2-e3a2294f",
+        "case_id": "c4-condition-02",
+        "case_revision": 0,
+        "status": "awaiting_approval",
+        "analysis": {
+          "decision": "ask",
+          "user_draft": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+          "maintainer_summary": "User-reported active facts:\n- streamlit\\_version: 1.50.0\n- python\\_version: 3.12.9\n- operating\\_system: Windows 11 / WSL2 Ubuntu / AlmaLinux 9\n- browser: Chrome\n- reported\\_widget\\_context: A multiselect inside @st.fragment\n- reported\\_trigger: Changing a parent selector resets session state\n- reported\\_observation: The multiselect displays empty rather than its saved default\n- reported\\_reproduction\\_status: The small example works correctly and does not reproduce the failure; no minimal failing example is available\n- reported\\_prior\\_version\\_behavior: The reporter says the same full-app logic worked in 1.49.1\n\nUser-reported checks:\n- Tried minimal fragment and multiselect examples but they did not reproduce the failure\n\nRecorded unknowns: parent\\_callback\\_code, state\\_update\\_order, minimal\\_failing\\_reproduction\n\nNo conflict has been declared by the caller; this does not prove consistency.\n\nThese are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal.\n\nSupplied source multiselect-150-default (doc); Supplied version metadata exactly matches the user-reported version; this does not verify source authenticity or a cause/fix.\nVersions in metadata: 1.50.0. Span: JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring.\n[Provided source](https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json)\n> default: Iterable of V, V, or None; default=values\n> List of default values. Can also be a single value.\n\nSupplied source fragment-150-rerun (doc); Supplied version metadata exactly matches the user-reported version; this does not verify source authenticity or a cause/fix.\nVersions in metadata: 1.50.0. Span: JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring.\n[Provided source](https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json)\n> When a user interacts with an input widget created inside a fragment,\n> Streamlit only reruns the fragment instead of the full app.",
+          "rationale": "Routing and quotations are rendered from supplied references. These are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal. Caller-registered question necessity: The missing callback path can distinguish application state changes from documented widget behavior.",
+          "evidence_links": [
+            {
+              "claim": "Attributed complete excerpt from supplied chunk multiselect-150-default; scope=exact_metadata_match; not a verified cause or fix.",
+              "chunk_id": "multiselect-150-default"
+            },
+            {
+              "claim": "Attributed complete excerpt from supplied chunk fragment-150-rerun; scope=exact_metadata_match; not a verified cause or fix.",
+              "chunk_id": "fragment-150-rerun"
+            }
+          ],
+          "missing_info": [
+            "parent_callback_code"
+          ],
+          "next_question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+          "retrieval_queries": [],
+          "facts_delta": [],
+          "checks_suggested": []
+        },
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "steps": 4,
+        "error_code": null,
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 2 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "awaiting_approval",
+            "message": "Prepared an ask preview."
+          }
+        ],
+        "output_issues": []
+      },
+      "canonical_handoff": {
+        "schema_version": 1,
+        "proposal_id": "controlled-controlled-model-baseline-2026-10-13-v1-2-e3a2294f",
+        "case": {
+          "case_id": "c4-condition-02",
+          "case_revision": 0,
+          "facts": [
+            {
+              "name": "streamlit_version",
+              "value": "1.50.0",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "python_version",
+              "value": "3.12.9",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "operating_system",
+              "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "browser",
+              "value": "Chrome",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "reported_widget_context",
+              "value": "A multiselect inside @st.fragment",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "reported_trigger",
+              "value": "Changing a parent selector resets session state",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "reported_observation",
+              "value": "The multiselect displays empty rather than its saved default",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "reported_reproduction_status",
+              "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            },
+            {
+              "name": "reported_prior_version_behavior",
+              "value": "The reporter says the same full-app logic worked in 1.49.1",
+              "source_ref": "user/issue-12782",
+              "turn_id": "initial",
+              "provenance_kind": "user",
+              "status": "active"
+            }
+          ],
+          "unknowns": [
+            "parent_callback_code",
+            "state_update_order",
+            "minimal_failing_reproduction"
+          ],
+          "checks_performed": [
+            "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+          ],
+          "evidence_refs": [],
+          "pending_proposal_id": null
+        },
+        "user_message": "In Streamlit 1.50.0, changing a parent selector resets session state and a multiselect inside @st.fragment displays empty rather than its saved default. The same full-app logic worked in 1.49.1. Python 3.12.9 and Chrome. The small example with a parent selectbox and fragment multiselect works correctly and does not reproduce the failure. I cannot yet provide a minimal failing example. What is the next useful step?",
+        "evidence": {
+          "snapshot_id": "core-controlled-evidence-v8",
+          "hits": [
+            {
+              "chunk_id": "multiselect-150-default",
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "fragment-150-rerun",
+              "source_id": "docstring:1.50.0:streamlit.fragment",
+              "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring",
+              "score": null,
+              "score_kind": null
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 1,
+          "warnings": []
+        },
+        "analysis": {
+          "decision": "ask",
+          "user_draft": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+          "maintainer_summary": "User-reported active facts:\n- streamlit\\_version: 1.50.0\n- python\\_version: 3.12.9\n- operating\\_system: Windows 11 / WSL2 Ubuntu / AlmaLinux 9\n- browser: Chrome\n- reported\\_widget\\_context: A multiselect inside @st.fragment\n- reported\\_trigger: Changing a parent selector resets session state\n- reported\\_observation: The multiselect displays empty rather than its saved default\n- reported\\_reproduction\\_status: The small example works correctly and does not reproduce the failure; no minimal failing example is available\n- reported\\_prior\\_version\\_behavior: The reporter says the same full-app logic worked in 1.49.1\n\nUser-reported checks:\n- Tried minimal fragment and multiselect examples but they did not reproduce the failure\n\nRecorded unknowns: parent\\_callback\\_code, state\\_update\\_order, minimal\\_failing\\_reproduction\n\nNo conflict has been declared by the caller; this does not prove consistency.\n\nThese are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal.\n\nSupplied source multiselect-150-default (doc); Supplied version metadata exactly matches the user-reported version; this does not verify source authenticity or a cause/fix.\nVersions in metadata: 1.50.0. Span: JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring.\n[Provided source](https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json)\n> default: Iterable of V, V, or None; default=values\n> List of default values. Can also be a single value.\n\nSupplied source fragment-150-rerun (doc); Supplied version metadata exactly matches the user-reported version; this does not verify source authenticity or a cause/fix.\nVersions in metadata: 1.50.0. Span: JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring.\n[Provided source](https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json)\n> When a user interacts with an input widget created inside a fragment,\n> Streamlit only reruns the fragment instead of the full app.",
+          "rationale": "Routing and quotations are rendered from supplied references. These are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal. Caller-registered question necessity: The missing callback path can distinguish application state changes from documented widget behavior.",
+          "evidence_links": [
+            {
+              "claim": "Attributed complete excerpt from supplied chunk multiselect-150-default; scope=exact_metadata_match; not a verified cause or fix.",
+              "chunk_id": "multiselect-150-default"
+            },
+            {
+              "claim": "Attributed complete excerpt from supplied chunk fragment-150-rerun; scope=exact_metadata_match; not a verified cause or fix.",
+              "chunk_id": "fragment-150-rerun"
+            }
+          ],
+          "missing_info": [
+            "parent_callback_code"
+          ],
+          "next_question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+          "retrieval_queries": [],
+          "facts_delta": [],
+          "checks_suggested": []
+        },
+        "reasoning_context": {
+          "run_id": "controlled-controlled-model-baseline-2026-10-13-v1-2-e3a2294f",
+          "case_id": "c4-condition-02",
+          "case_revision": 0,
+          "attempt_index": 1,
+          "output_feedback": null,
+          "remaining_model_attempts": 1,
+          "remaining_retrieval_rounds": 1,
+          "can_refine": true,
+          "query_limit": 2,
+          "proposal_requirements": null
+        },
+        "grounded_request": {
+          "case": {
+            "case_id": "c4-condition-02",
+            "case_revision": 0,
+            "facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.50.0",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "python_version",
+                "value": "3.12.9",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "operating_system",
+                "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "browser",
+                "value": "Chrome",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "reported_widget_context",
+                "value": "A multiselect inside @st.fragment",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "reported_trigger",
+                "value": "Changing a parent selector resets session state",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "reported_observation",
+                "value": "The multiselect displays empty rather than its saved default",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "reported_reproduction_status",
+                "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "reported_prior_version_behavior",
+                "value": "The reporter says the same full-app logic worked in 1.49.1",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [
+              "parent_callback_code",
+              "state_update_order",
+              "minimal_failing_reproduction"
+            ],
+            "checks_performed": [
+              "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+            ],
+            "evidence_refs": [],
+            "pending_proposal_id": null
+          },
+          "user_message": "In Streamlit 1.50.0, changing a parent selector resets session state and a multiselect inside @st.fragment displays empty rather than its saved default. The same full-app logic worked in 1.49.1. Python 3.12.9 and Chrome. The small example with a parent selectbox and fragment multiselect works correctly and does not reproduce the failure. I cannot yet provide a minimal failing example. What is the next useful step?",
+          "evidence": {
+            "snapshot_id": "core-controlled-evidence-v8",
+            "hits": [
+              {
+                "chunk_id": "multiselect-150-default",
+                "source_id": "docstring:1.50.0:streamlit.multiselect",
+                "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+                "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+                "source_type": "doc",
+                "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                "applicable_versions": [
+                  "1.50.0"
+                ],
+                "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring",
+                "score": null,
+                "score_kind": null
+              },
+              {
+                "chunk_id": "fragment-150-rerun",
+                "source_id": "docstring:1.50.0:streamlit.fragment",
+                "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+                "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+                "source_type": "doc",
+                "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                "applicable_versions": [
+                  "1.50.0"
+                ],
+                "source_span": "JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring",
+                "score": null,
+                "score_kind": null
+              }
+            ],
+            "queries_used": [],
+            "retrieval_round": 1,
+            "warnings": []
+          },
+          "gaps": [
+            {
+              "name": "parent_callback_code",
+              "kind": "user",
+              "description": "The parent selector callback and relevant state mutation lines are absent.",
+              "necessity": "The missing callback path can distinguish application state changes from documented widget behavior.",
+              "question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?"
+            },
+            {
+              "name": "state_update_order",
+              "kind": "user",
+              "description": "The execution order of state updates and multiselect construction is absent.",
+              "necessity": "The order can change which stored value exists when the failing widget is constructed.",
+              "question": "In the failing full app, in what order do the parent callback, Session State assignments or deletions, and multiselect construction run?"
+            },
+            {
+              "name": "minimal_failing_reproduction",
+              "kind": "user",
+              "description": "The supplied reduced example works; a minimal failing example is unavailable.",
+              "necessity": "An example that actually fails would narrow the unresolved full-app path; the working reduction is already recorded.",
+              "question": "Can you share a minimal example that actually shows the empty-default failure, including the parent selector and its state updates?"
+            },
+            {
+              "name": "documentation_gap_1",
+              "kind": "source",
+              "description": "The currently supplied evidence lacks the key-identity release-mechanism excerpt.",
+              "necessity": "This is a source/applicability or verification gap. Retrieval or maintainer investigation must address it; asking the user to certify documentation is not a substitute.",
+              "question": null
+            },
+            {
+              "name": "documentation_gap_2",
+              "kind": "source",
+              "description": "Exact full-app cause and verified fix remain absent",
+              "necessity": "This is a source/applicability or verification gap. Retrieval or maintainer investigation must address it; asking the user to certify documentation is not a substitute.",
+              "question": null
+            }
+          ],
+          "conflict_groups": [],
+          "context_sha256": "c5e0b0e2b02f2e27f26ee5955d1c5dff7fd1aefa309216ac661e045441888ca0"
+        },
+        "source_inventory": [
+          {
+            "chunk_id": "multiselect-150-default",
+            "content_sha256": "df43b75982ac76d26297eaf80bb07cfcf282cc75c1c34f04fa9490b9c312c5ba",
+            "version_scope": "exact_metadata_match"
+          },
+          {
+            "chunk_id": "fragment-150-rerun",
+            "content_sha256": "e8cff24d3ee04b7cf5f27362c8d3ea39096f5bb7c36e73f2f2ed54a26dc7eb1c",
+            "version_scope": "exact_metadata_match"
+          }
+        ],
+        "packet": {
+          "schema_version": 1,
+          "case_id": "c4-condition-02",
+          "case_revision": 0,
+          "case_sha256": "ebb25679eac53f8107fe1d1f5e4940986b4f8ceb60476a873ac9cbf80ef46bc7",
+          "evidence_sha256": "33825e9b6142590d539e19c3300a6b05da3c926a46441a35949606592f95414d",
+          "analysis_sha256": "aeda27134bf1e54a908c8685dbdbb6f5fffb9765d0d8e06790f6f2153ac87471",
+          "surfaces": [
+            {
+              "surface_id": "decision",
+              "text_sha256": "e3115a6b58a16bd1f4aceb9056eb8fdd0922bbdba31a92d0cb80a4a25cb63c9c",
+              "length": 3
+            },
+            {
+              "surface_id": "user_draft",
+              "text_sha256": "f17cdc34bf583b22cb0d55b3b7ff947ba2893cddc5ec6ea9f13a903e2d06e78a",
+              "length": 173
+            },
+            {
+              "surface_id": "maintainer_summary",
+              "text_sha256": "1a37b7cdcc70d37778e00865b824b4f3cc582e54cd10d0a67890a362721db903",
+              "length": 2137
+            },
+            {
+              "surface_id": "rationale",
+              "text_sha256": "1b6dad6cdfaed4fe6e3393e24cc74ed1a5ae7b25a2a3f05188c36b23544feb35",
+              "length": 354
+            },
+            {
+              "surface_id": "next_question",
+              "text_sha256": "f17cdc34bf583b22cb0d55b3b7ff947ba2893cddc5ec6ea9f13a903e2d06e78a",
+              "length": 173
+            },
+            {
+              "surface_id": "evidence_links.0.claim",
+              "text_sha256": "5680885a1ea58317085a61976626474e81c7f5ccc55afe5ceced2935c68908ed",
+              "length": 129
+            },
+            {
+              "surface_id": "evidence_links.1.claim",
+              "text_sha256": "dbf8c45b305e3c484512d1379dc1bd61160ece422357a60b97cd42f6c0405d6d",
+              "length": 124
+            },
+            {
+              "surface_id": "missing_info.0",
+              "text_sha256": "12df8afc186ebab045f93c2bd5f42d728984501db3a594597fa5173b3d2b827a",
+              "length": 20
+            }
+          ],
+          "packet_sha256": "2447954f8826a40b7a213c368c300303f6349b4db711c0327dc6606a94d30fc0"
+        },
+        "handoff_sha256": "c5374597d92f302826fad00eab7b3fab08b7913eeac52d3fb2201b0d3d3f8ba4"
+      },
+      "handoff_error": null,
+      "guard_stop_reason": null,
+      "grounded_requests": [
+        {
+          "case": {
+            "case_id": "c4-condition-02",
+            "case_revision": 0,
+            "facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.50.0",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "python_version",
+                "value": "3.12.9",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "operating_system",
+                "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "browser",
+                "value": "Chrome",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "reported_widget_context",
+                "value": "A multiselect inside @st.fragment",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "reported_trigger",
+                "value": "Changing a parent selector resets session state",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "reported_observation",
+                "value": "The multiselect displays empty rather than its saved default",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "reported_reproduction_status",
+                "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "reported_prior_version_behavior",
+                "value": "The reporter says the same full-app logic worked in 1.49.1",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [
+              "parent_callback_code",
+              "state_update_order",
+              "minimal_failing_reproduction"
+            ],
+            "checks_performed": [
+              "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+            ],
+            "evidence_refs": [],
+            "pending_proposal_id": null
+          },
+          "user_message": "In Streamlit 1.50.0, changing a parent selector resets session state and a multiselect inside @st.fragment displays empty rather than its saved default. The same full-app logic worked in 1.49.1. Python 3.12.9 and Chrome. The small example with a parent selectbox and fragment multiselect works correctly and does not reproduce the failure. I cannot yet provide a minimal failing example. What is the next useful step?",
+          "evidence": {
+            "snapshot_id": "core-controlled-evidence-v8",
+            "hits": [
+              {
+                "chunk_id": "multiselect-150-default",
+                "source_id": "docstring:1.50.0:streamlit.multiselect",
+                "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+                "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+                "source_type": "doc",
+                "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                "applicable_versions": [
+                  "1.50.0"
+                ],
+                "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring",
+                "score": null,
+                "score_kind": null
+              },
+              {
+                "chunk_id": "fragment-150-rerun",
+                "source_id": "docstring:1.50.0:streamlit.fragment",
+                "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+                "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+                "source_type": "doc",
+                "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                "applicable_versions": [
+                  "1.50.0"
+                ],
+                "source_span": "JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring",
+                "score": null,
+                "score_kind": null
+              }
+            ],
+            "queries_used": [],
+            "retrieval_round": 1,
+            "warnings": []
+          },
+          "gaps": [
+            {
+              "name": "parent_callback_code",
+              "kind": "user",
+              "description": "The parent selector callback and relevant state mutation lines are absent.",
+              "necessity": "The missing callback path can distinguish application state changes from documented widget behavior.",
+              "question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?"
+            },
+            {
+              "name": "state_update_order",
+              "kind": "user",
+              "description": "The execution order of state updates and multiselect construction is absent.",
+              "necessity": "The order can change which stored value exists when the failing widget is constructed.",
+              "question": "In the failing full app, in what order do the parent callback, Session State assignments or deletions, and multiselect construction run?"
+            },
+            {
+              "name": "minimal_failing_reproduction",
+              "kind": "user",
+              "description": "The supplied reduced example works; a minimal failing example is unavailable.",
+              "necessity": "An example that actually fails would narrow the unresolved full-app path; the working reduction is already recorded.",
+              "question": "Can you share a minimal example that actually shows the empty-default failure, including the parent selector and its state updates?"
+            },
+            {
+              "name": "documentation_gap_1",
+              "kind": "source",
+              "description": "The currently supplied evidence lacks the key-identity release-mechanism excerpt.",
+              "necessity": "This is a source/applicability or verification gap. Retrieval or maintainer investigation must address it; asking the user to certify documentation is not a substitute.",
+              "question": null
+            },
+            {
+              "name": "documentation_gap_2",
+              "kind": "source",
+              "description": "Exact full-app cause and verified fix remain absent",
+              "necessity": "This is a source/applicability or verification gap. Retrieval or maintainer investigation must address it; asking the user to certify documentation is not a substitute.",
+              "question": null
+            }
+          ],
+          "conflict_groups": [],
+          "context_sha256": "c5e0b0e2b02f2e27f26ee5955d1c5dff7fd1aefa309216ac661e045441888ca0"
+        }
+      ],
+      "reasoning_attempts": [
+        {
+          "condition_id": "controlled-v8-key-evidence-removed",
+          "request_id": "call:141f385ada10b59df6d504f5525f8b9146119b233b878800b731f3ff63d79e76",
+          "run_id": "controlled-controlled-model-baseline-2026-10-13-v1-2-e3a2294f",
+          "case_id": "c4-condition-02",
+          "case_revision": 0,
+          "attempt_index": 1,
+          "retrieval_round": 1,
+          "prompt_bytes_plus_margin": 10207,
+          "prompt_sha256": "5ccde871a1bb8d77564a67405bf36d9f49389a7e482bbc53a7f9fb8146ee5d4f",
+          "verified_returned_model": "gpt-4o-mini-2024-07-18",
+          "http_send_started": true,
+          "model_selection": {
+            "status": "valid_plan_shape",
+            "decision": "ask",
+            "context_matches": true,
+            "known_selected_sources": [
+              {
+                "chunk_id": "multiselect-150-default",
+                "content_sha256_matches": true
+              },
+              {
+                "chunk_id": "fragment-150-rerun",
+                "content_sha256_matches": true
+              }
+            ],
+            "unknown_source_count": 0,
+            "known_question_name": "parent_callback_code",
+            "question_registered_as_user": true,
+            "unknown_question_present": false,
+            "retrieval_query_count": 0,
+            "declared_conflict_present": false,
+            "semantic_validity_claim": false
+          },
+          "http_status": 200,
+          "reservation": {
+            "request_id": "call:141f385ada10b59df6d504f5525f8b9146119b233b878800b731f3ff63d79e76",
+            "run_id": "controlled-controlled-model-baseline-2026-10-13-v1-2-e3a2294f",
+            "case_id": "c4-condition-02",
+            "case_revision": 0,
+            "attempt": 1,
+            "model": "gpt-4o-mini",
+            "phase": "development",
+            "amount_usd": "0.0029568",
+            "status": "settled",
+            "cost_usd": "0.000522885",
+            "input_tokens": 2329,
+            "output_tokens": 210,
+            "error_code": null
+          }
+        }
+      ],
+      "reasoning_outputs": [
+        {
+          "request_id": "call:141f385ada10b59df6d504f5525f8b9146119b233b878800b731f3ff63d79e76",
+          "run_id": "controlled-controlled-model-baseline-2026-10-13-v1-2-e3a2294f",
+          "case_id": "c4-condition-02",
+          "case_revision": 0,
+          "attempt_index": 1,
+          "retrieval_round": 1,
+          "grounded_context_sha256": "c5e0b0e2b02f2e27f26ee5955d1c5dff7fd1aefa309216ac661e045441888ca0",
+          "status": "valid_rendered_analysis",
+          "analysis": {
+            "decision": "ask",
+            "user_draft": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+            "maintainer_summary": "User-reported active facts:\n- streamlit\\_version: 1.50.0\n- python\\_version: 3.12.9\n- operating\\_system: Windows 11 / WSL2 Ubuntu / AlmaLinux 9\n- browser: Chrome\n- reported\\_widget\\_context: A multiselect inside @st.fragment\n- reported\\_trigger: Changing a parent selector resets session state\n- reported\\_observation: The multiselect displays empty rather than its saved default\n- reported\\_reproduction\\_status: The small example works correctly and does not reproduce the failure; no minimal failing example is available\n- reported\\_prior\\_version\\_behavior: The reporter says the same full-app logic worked in 1.49.1\n\nUser-reported checks:\n- Tried minimal fragment and multiselect examples but they did not reproduce the failure\n\nRecorded unknowns: parent\\_callback\\_code, state\\_update\\_order, minimal\\_failing\\_reproduction\n\nNo conflict has been declared by the caller; this does not prove consistency.\n\nThese are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal.\n\nSupplied source multiselect-150-default (doc); Supplied version metadata exactly matches the user-reported version; this does not verify source authenticity or a cause/fix.\nVersions in metadata: 1.50.0. Span: JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring.\n[Provided source](https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json)\n> default: Iterable of V, V, or None; default=values\n> List of default values. Can also be a single value.\n\nSupplied source fragment-150-rerun (doc); Supplied version metadata exactly matches the user-reported version; this does not verify source authenticity or a cause/fix.\nVersions in metadata: 1.50.0. Span: JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring.\n[Provided source](https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json)\n> When a user interacts with an input widget created inside a fragment,\n> Streamlit only reruns the fragment instead of the full app.",
+            "rationale": "Routing and quotations are rendered from supplied references. These are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal. Caller-registered question necessity: The missing callback path can distinguish application state changes from documented widget behavior.",
+            "evidence_links": [
+              {
+                "claim": "Attributed complete excerpt from supplied chunk multiselect-150-default; scope=exact_metadata_match; not a verified cause or fix.",
+                "chunk_id": "multiselect-150-default"
+              },
+              {
+                "claim": "Attributed complete excerpt from supplied chunk fragment-150-rerun; scope=exact_metadata_match; not a verified cause or fix.",
+                "chunk_id": "fragment-150-rerun"
+              }
+            ],
+            "missing_info": [
+              "parent_callback_code"
+            ],
+            "next_question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+            "retrieval_queries": [],
+            "facts_delta": [],
+            "checks_suggested": []
+          },
+          "issue_codes": [],
+          "error_code": null
+        }
+      ],
+      "retrieval_requests": [
+        {
+          "queries": [
+            "In Streamlit 1.50.0, changing a parent selector resets session state and a multiselect inside @st.fragment displays empty rather than its saved default. The same full-app logic worked in 1.49.1. Python 3.12.9 and Chrome. The small example with a parent selectbox and fragment multiselect works correctly and does not reproduce the failure. I cannot yet provide a minimal failing example. What is the  streamlit_version=1.50.0; python_version=3.12.9; browser=Chrome"
+          ],
+          "snapshot_id": "core-controlled-evidence-v8",
+          "top_k": 5,
+          "filters": {}
+        }
+      ],
+      "returned_evidence": [
+        {
+          "snapshot_id": "core-controlled-evidence-v8",
+          "hits": [
+            {
+              "chunk_id": "multiselect-150-default",
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "fragment-150-rerun",
+              "source_id": "docstring:1.50.0:streamlit.fragment",
+              "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring",
+              "score": null,
+              "score_kind": null
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 1,
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "condition_id": "controlled-v8-unknown-version-mixed",
+      "result": {
+        "run_id": "controlled-controlled-model-baseline-2026-10-13-v1-3-d6c95095",
+        "case_id": "c4-condition-03",
+        "case_revision": 0,
+        "status": "error",
+        "analysis": null,
+        "model_attempts": 1,
+        "retrieval_rounds": 1,
+        "steps": 3,
+        "error_code": "ProviderResponseInvalid",
+        "trace": [
+          {
+            "stage": "started",
+            "message": "Loaded the supplied case snapshot."
+          },
+          {
+            "stage": "retrieval",
+            "message": "Searching 1 query or queries."
+          },
+          {
+            "stage": "evidence_received",
+            "message": "Received 5 evidence chunks."
+          },
+          {
+            "stage": "reasoning",
+            "message": "Requesting a structured decision."
+          },
+          {
+            "stage": "stopped",
+            "message": "ProviderResponseInvalid"
+          }
+        ],
+        "output_issues": []
+      },
+      "canonical_handoff": null,
+      "handoff_error": null,
+      "guard_stop_reason": null,
+      "grounded_requests": [
+        {
+          "case": {
+            "case_id": "c4-condition-03",
+            "case_revision": 0,
+            "facts": [
+              {
+                "name": "python_version",
+                "value": "3.12.9",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "operating_system",
+                "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "browser",
+                "value": "Chrome",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "reported_widget_context",
+                "value": "A multiselect inside @st.fragment",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "reported_trigger",
+                "value": "Changing a parent selector resets session state",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "reported_observation",
+                "value": "The multiselect displays empty rather than its saved default",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "reported_reproduction_status",
+                "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+                "source_ref": "user/issue-12782",
+                "turn_id": "initial",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [
+              "streamlit_version",
+              "parent_callback_code",
+              "state_update_order",
+              "minimal_failing_reproduction"
+            ],
+            "checks_performed": [
+              "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+            ],
+            "evidence_refs": [],
+            "pending_proposal_id": null
+          },
+          "user_message": "A multiselect inside @st.fragment displays empty instead of its saved default after a parent selector changes and resets state. My reduced example works, but the full app fails and the relevant parent callback is not included. Python 3.12.9 and Chrome. I have not supplied the installed Streamlit version or an earlier version comparison. Which information is useful next?",
+          "evidence": {
+            "snapshot_id": "core-controlled-evidence-v8",
+            "hits": [
+              {
+                "chunk_id": "multiselect-149-default-v8",
+                "source_id": "docstring:1.49.0:streamlit.multiselect",
+                "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+                "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+                "source_type": "doc",
+                "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                "applicable_versions": [
+                  "1.49.0"
+                ],
+                "source_span": "JSON pointer /1.49.0/streamlit.multiselect; default parameter in normalized docstring",
+                "score": null,
+                "score_kind": null
+              },
+              {
+                "chunk_id": "multiselect-149-signature-v8",
+                "source_id": "docstring:1.49.0:streamlit.multiselect",
+                "excerpt": "st.multiselect(label, options, default=None, format_func=special_internal_function, key=None, help=None, on_change=None, args=None, kwargs=None, *, max_selections=None, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, width=\"stretch\")",
+                "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+                "source_type": "doc",
+                "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                "applicable_versions": [
+                  "1.49.0"
+                ],
+                "source_span": "JSON pointer /1.49.0/streamlit.multiselect/signature; exact 1.49.0, not 1.49.1 coverage",
+                "score": null,
+                "score_kind": null
+              },
+              {
+                "chunk_id": "multiselect-150-default",
+                "source_id": "docstring:1.50.0:streamlit.multiselect",
+                "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+                "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+                "source_type": "doc",
+                "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                "applicable_versions": [
+                  "1.50.0"
+                ],
+                "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring",
+                "score": null,
+                "score_kind": null
+              },
+              {
+                "chunk_id": "release-150-multiselect-key-identity-v8",
+                "source_id": "release-notes:1.50.0:widget-key-identity",
+                "excerpt": "## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- \ud83e\udd39\u00a0Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- \ud83c\udfa8\u00a0Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- \ud83d\udcca\u00a0[`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- \ud83d\udd11\u00a0To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+                "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123",
+                "source_type": "release_note",
+                "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                "applicable_versions": [
+                  "1.50.0"
+                ],
+                "source_span": "Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause",
+                "score": null,
+                "score_kind": null
+              },
+              {
+                "chunk_id": "widget-key-identity-history-snapshot-v8",
+                "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+                "excerpt": "**Key-based widget identity (v1.55.0)**\n\nAs of v1.55.0, all widgets support key-based identity. When a `key` is provided, the key is the primary determinant of the widget's identity, and changing other parameters (like `label`, `options`, or `default`) won't reset the widget. Some parameters that constrain valid values still affect identity for specific widgets, even when a key is provided. For example, changing `min_value` or `max_value` for `st.slider` will reset the widget because the current value could be invalidated. These exceptions are noted in each widget's `key` parameter description.\n\nKey-based identity was progressively introduced from v1.50.0 through v1.55.0. If you're using an older version, check the [release notes](/develop/quick-reference/release-notes) to see which widgets support key-based identity in your version.",
+                "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L29",
+                "source_type": "doc",
+                "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                "applicable_versions": [],
+                "source_span": "Markdown lines 29-33: unversioned October 2026 concept snapshot distinguishes progressive rollout; not exact historical app coverage",
+                "score": null,
+                "score_kind": null
+              }
+            ],
+            "queries_used": [],
+            "retrieval_round": 1,
+            "warnings": []
+          },
+          "gaps": [
+            {
+              "name": "streamlit_version",
+              "kind": "user",
+              "description": "The installed Streamlit version of the affected deployment is unknown.",
+              "necessity": "Version-specific key identity documentation makes this fact relevant to applicability; the user can inspect the affected package version.",
+              "question": "Which Streamlit version is installed in the deployment that shows this problem?"
+            },
+            {
+              "name": "parent_callback_code",
+              "kind": "user",
+              "description": "The parent selector callback and relevant state mutation lines are absent.",
+              "necessity": "The missing callback path can distinguish application state changes from documented widget behavior.",
+              "question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?"
+            },
+            {
+              "name": "state_update_order",
+              "kind": "user",
+              "description": "The execution order of state updates and multiselect construction is absent.",
+              "necessity": "The order can change which stored value exists when the failing widget is constructed.",
+              "question": "In the failing full app, in what order do the parent callback, Session State assignments or deletions, and multiselect construction run?"
+            },
+            {
+              "name": "minimal_failing_reproduction",
+              "kind": "user",
+              "description": "The supplied reduced example works; a minimal failing example is unavailable.",
+              "necessity": "An example that actually fails would narrow the unresolved full-app path; the working reduction is already recorded.",
+              "question": "Can you share a minimal example that actually shows the empty-default failure, including the parent selector and its state updates?"
+            },
+            {
+              "name": "documentation_gap_1",
+              "kind": "source",
+              "description": "Applicability to the unknown installation",
+              "necessity": "This is a source/applicability or verification gap. Retrieval or maintainer investigation must address it; asking the user to certify documentation is not a substitute.",
+              "question": null
+            },
+            {
+              "name": "documentation_gap_2",
+              "kind": "source",
+              "description": "Full-app root cause and verified fix",
+              "necessity": "This is a source/applicability or verification gap. Retrieval or maintainer investigation must address it; asking the user to certify documentation is not a substitute.",
+              "question": null
+            }
+          ],
+          "conflict_groups": [],
+          "context_sha256": "25e170543ef24be78da3e9777505520d41adc233631378ed3dc68aa3e41f96ec"
+        }
+      ],
+      "reasoning_attempts": [
+        {
+          "condition_id": "controlled-v8-unknown-version-mixed",
+          "request_id": "call:ef1b038c169249d7e37954ec1b75aadfe45943362df37ca90d254ec92828eef3",
+          "run_id": "controlled-controlled-model-baseline-2026-10-13-v1-3-d6c95095",
+          "case_id": "c4-condition-03",
+          "case_revision": 0,
+          "attempt_index": 1,
+          "retrieval_round": 1,
+          "prompt_bytes_plus_margin": 14695,
+          "prompt_sha256": "706520610e1eea395765bcf306d36f1558d130304309b91856c9a549eea4117c",
+          "verified_returned_model": "gpt-4o-mini-2024-07-18",
+          "http_send_started": true,
+          "model_selection": null,
+          "http_status": 200,
+          "reservation": {
+            "request_id": "call:ef1b038c169249d7e37954ec1b75aadfe45943362df37ca90d254ec92828eef3",
+            "run_id": "controlled-controlled-model-baseline-2026-10-13-v1-3-d6c95095",
+            "case_id": "c4-condition-03",
+            "case_revision": 0,
+            "attempt": 1,
+            "model": "gpt-4o-mini",
+            "phase": "development",
+            "amount_usd": "0.0029568",
+            "status": "settled",
+            "cost_usd": "0.000839355",
+            "input_tokens": 3551,
+            "output_tokens": 384,
+            "error_code": null
+          }
+        }
+      ],
+      "reasoning_outputs": [
+        {
+          "request_id": "call:ef1b038c169249d7e37954ec1b75aadfe45943362df37ca90d254ec92828eef3",
+          "run_id": "controlled-controlled-model-baseline-2026-10-13-v1-3-d6c95095",
+          "case_id": "c4-condition-03",
+          "case_revision": 0,
+          "attempt_index": 1,
+          "retrieval_round": 1,
+          "grounded_context_sha256": "25e170543ef24be78da3e9777505520d41adc233631378ed3dc68aa3e41f96ec",
+          "status": "stopped",
+          "analysis": null,
+          "issue_codes": [],
+          "error_code": "ProviderResponseInvalid"
+        }
+      ],
+      "retrieval_requests": [
+        {
+          "queries": [
+            "A multiselect inside @st.fragment displays empty instead of its saved default after a parent selector changes and resets state. My reduced example works, but the full app fails and the relevant parent callback is not included. Python 3.12.9 and Chrome. I have not supplied the installed Streamlit version or an earlier version comparison. Which information is useful next? python_version=3.12.9; operating_system=Windows 11 / WSL2 Ubuntu / AlmaLinux 9; browser=Chrome"
+          ],
+          "snapshot_id": "core-controlled-evidence-v8",
+          "top_k": 5,
+          "filters": {}
+        }
+      ],
+      "returned_evidence": [
+        {
+          "snapshot_id": "core-controlled-evidence-v8",
+          "hits": [
+            {
+              "chunk_id": "multiselect-149-default-v8",
+              "source_id": "docstring:1.49.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.49.0"
+              ],
+              "source_span": "JSON pointer /1.49.0/streamlit.multiselect; default parameter in normalized docstring",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "multiselect-149-signature-v8",
+              "source_id": "docstring:1.49.0:streamlit.multiselect",
+              "excerpt": "st.multiselect(label, options, default=None, format_func=special_internal_function, key=None, help=None, on_change=None, args=None, kwargs=None, *, max_selections=None, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, width=\"stretch\")",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.49.0"
+              ],
+              "source_span": "JSON pointer /1.49.0/streamlit.multiselect/signature; exact 1.49.0, not 1.49.1 coverage",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "multiselect-150-default",
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "release-150-multiselect-key-identity-v8",
+              "source_id": "release-notes:1.50.0:widget-key-identity",
+              "excerpt": "## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- \ud83e\udd39\u00a0Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- \ud83c\udfa8\u00a0Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- \ud83d\udcca\u00a0[`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- \ud83d\udd11\u00a0To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123",
+              "source_type": "release_note",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "widget-key-identity-history-snapshot-v8",
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "excerpt": "**Key-based widget identity (v1.55.0)**\n\nAs of v1.55.0, all widgets support key-based identity. When a `key` is provided, the key is the primary determinant of the widget's identity, and changing other parameters (like `label`, `options`, or `default`) won't reset the widget. Some parameters that constrain valid values still affect identity for specific widgets, even when a key is provided. For example, changing `min_value` or `max_value` for `st.slider` will reset the widget because the current value could be invalidated. These exceptions are noted in each widget's `key` parameter description.\n\nKey-based identity was progressively introduced from v1.50.0 through v1.55.0. If you're using an older version, check the [release notes](/develop/quick-reference/release-notes) to see which widgets support key-based identity in your version.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L29",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [],
+              "source_span": "Markdown lines 29-33: unversioned October 2026 concept snapshot distinguishes progressive rollout; not exact historical app coverage",
+              "score": null,
+              "score_kind": null
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 1,
+          "warnings": []
+        }
+      ]
+    }
+  ],
+  "provider_observations": [
+    {
+      "condition_id": "controlled-v8-full",
+      "request_id": "call:cfcf5c991e68af1fd3cc8e006d8318597287d3638bd8214a3662625ea5fda818",
+      "run_id": "controlled-controlled-model-baseline-2026-10-13-v1-1-c4a8bc42",
+      "case_id": "c4-condition-01",
+      "case_revision": 0,
+      "attempt_index": 1,
+      "retrieval_round": 1,
+      "prompt_bytes_plus_margin": 11842,
+      "prompt_sha256": "cb626b35c08c47ce1b096423be29aebbc2e626f813455545d354a24163994dce",
+      "verified_returned_model": "gpt-4o-mini-2024-07-18",
+      "http_send_started": true,
+      "model_selection": {
+        "status": "valid_plan_shape",
+        "decision": "ask",
+        "context_matches": true,
+        "known_selected_sources": [
+          {
+            "chunk_id": "multiselect-150-default",
+            "content_sha256_matches": true
+          },
+          {
+            "chunk_id": "fragment-150-rerun",
+            "content_sha256_matches": true
+          },
+          {
+            "chunk_id": "release-150-multiselect-key-identity-v8",
+            "content_sha256_matches": true
+          }
+        ],
+        "unknown_source_count": 0,
+        "known_question_name": "parent_callback_code",
+        "question_registered_as_user": true,
+        "unknown_question_present": false,
+        "retrieval_query_count": 0,
+        "declared_conflict_present": false,
+        "semantic_validity_claim": false
+      },
+      "http_status": 200,
+      "reservation": {
+        "request_id": "call:cfcf5c991e68af1fd3cc8e006d8318597287d3638bd8214a3662625ea5fda818",
+        "run_id": "controlled-controlled-model-baseline-2026-10-13-v1-1-c4a8bc42",
+        "case_id": "c4-condition-01",
+        "case_revision": 0,
+        "attempt": 1,
+        "model": "gpt-4o-mini",
+        "phase": "development",
+        "amount_usd": "0.0029568",
+        "status": "settled",
+        "cost_usd": "0.000643005",
+        "input_tokens": 2829,
+        "output_tokens": 267,
+        "error_code": null
+      }
+    },
+    {
+      "condition_id": "controlled-v8-key-evidence-removed",
+      "request_id": "call:141f385ada10b59df6d504f5525f8b9146119b233b878800b731f3ff63d79e76",
+      "run_id": "controlled-controlled-model-baseline-2026-10-13-v1-2-e3a2294f",
+      "case_id": "c4-condition-02",
+      "case_revision": 0,
+      "attempt_index": 1,
+      "retrieval_round": 1,
+      "prompt_bytes_plus_margin": 10207,
+      "prompt_sha256": "5ccde871a1bb8d77564a67405bf36d9f49389a7e482bbc53a7f9fb8146ee5d4f",
+      "verified_returned_model": "gpt-4o-mini-2024-07-18",
+      "http_send_started": true,
+      "model_selection": {
+        "status": "valid_plan_shape",
+        "decision": "ask",
+        "context_matches": true,
+        "known_selected_sources": [
+          {
+            "chunk_id": "multiselect-150-default",
+            "content_sha256_matches": true
+          },
+          {
+            "chunk_id": "fragment-150-rerun",
+            "content_sha256_matches": true
+          }
+        ],
+        "unknown_source_count": 0,
+        "known_question_name": "parent_callback_code",
+        "question_registered_as_user": true,
+        "unknown_question_present": false,
+        "retrieval_query_count": 0,
+        "declared_conflict_present": false,
+        "semantic_validity_claim": false
+      },
+      "http_status": 200,
+      "reservation": {
+        "request_id": "call:141f385ada10b59df6d504f5525f8b9146119b233b878800b731f3ff63d79e76",
+        "run_id": "controlled-controlled-model-baseline-2026-10-13-v1-2-e3a2294f",
+        "case_id": "c4-condition-02",
+        "case_revision": 0,
+        "attempt": 1,
+        "model": "gpt-4o-mini",
+        "phase": "development",
+        "amount_usd": "0.0029568",
+        "status": "settled",
+        "cost_usd": "0.000522885",
+        "input_tokens": 2329,
+        "output_tokens": 210,
+        "error_code": null
+      }
+    },
+    {
+      "condition_id": "controlled-v8-unknown-version-mixed",
+      "request_id": "call:ef1b038c169249d7e37954ec1b75aadfe45943362df37ca90d254ec92828eef3",
+      "run_id": "controlled-controlled-model-baseline-2026-10-13-v1-3-d6c95095",
+      "case_id": "c4-condition-03",
+      "case_revision": 0,
+      "attempt_index": 1,
+      "retrieval_round": 1,
+      "prompt_bytes_plus_margin": 14695,
+      "prompt_sha256": "706520610e1eea395765bcf306d36f1558d130304309b91856c9a549eea4117c",
+      "verified_returned_model": "gpt-4o-mini-2024-07-18",
+      "http_send_started": true,
+      "model_selection": null,
+      "http_status": 200,
+      "reservation": {
+        "request_id": "call:ef1b038c169249d7e37954ec1b75aadfe45943362df37ca90d254ec92828eef3",
+        "run_id": "controlled-controlled-model-baseline-2026-10-13-v1-3-d6c95095",
+        "case_id": "c4-condition-03",
+        "case_revision": 0,
+        "attempt": 1,
+        "model": "gpt-4o-mini",
+        "phase": "development",
+        "amount_usd": "0.0029568",
+        "status": "settled",
+        "cost_usd": "0.000839355",
+        "input_tokens": 3551,
+        "output_tokens": 384,
+        "error_code": null
+      }
+    }
+  ],
+  "model_request_observations": [
+    {
+      "condition_id": "controlled-v8-full",
+      "request_id": "call:cfcf5c991e68af1fd3cc8e006d8318597287d3638bd8214a3662625ea5fda818",
+      "run_id": "controlled-controlled-model-baseline-2026-10-13-v1-1-c4a8bc42",
+      "case_id": "c4-condition-01",
+      "case_revision": 0,
+      "attempt_index": 1,
+      "retrieval_round": 1,
+      "prompt_bytes_plus_margin": 11842,
+      "prompt_sha256": "cb626b35c08c47ce1b096423be29aebbc2e626f813455545d354a24163994dce",
+      "verified_returned_model": "gpt-4o-mini-2024-07-18",
+      "http_send_started": true,
+      "model_selection": {
+        "status": "valid_plan_shape",
+        "decision": "ask",
+        "context_matches": true,
+        "known_selected_sources": [
+          {
+            "chunk_id": "multiselect-150-default",
+            "content_sha256_matches": true
+          },
+          {
+            "chunk_id": "fragment-150-rerun",
+            "content_sha256_matches": true
+          },
+          {
+            "chunk_id": "release-150-multiselect-key-identity-v8",
+            "content_sha256_matches": true
+          }
+        ],
+        "unknown_source_count": 0,
+        "known_question_name": "parent_callback_code",
+        "question_registered_as_user": true,
+        "unknown_question_present": false,
+        "retrieval_query_count": 0,
+        "declared_conflict_present": false,
+        "semantic_validity_claim": false
+      },
+      "http_status": 200,
+      "reservation": {
+        "request_id": "call:cfcf5c991e68af1fd3cc8e006d8318597287d3638bd8214a3662625ea5fda818",
+        "run_id": "controlled-controlled-model-baseline-2026-10-13-v1-1-c4a8bc42",
+        "case_id": "c4-condition-01",
+        "case_revision": 0,
+        "attempt": 1,
+        "model": "gpt-4o-mini",
+        "phase": "development",
+        "amount_usd": "0.0029568",
+        "status": "settled",
+        "cost_usd": "0.000643005",
+        "input_tokens": 2829,
+        "output_tokens": 267,
+        "error_code": null
+      }
+    },
+    {
+      "condition_id": "controlled-v8-key-evidence-removed",
+      "request_id": "call:141f385ada10b59df6d504f5525f8b9146119b233b878800b731f3ff63d79e76",
+      "run_id": "controlled-controlled-model-baseline-2026-10-13-v1-2-e3a2294f",
+      "case_id": "c4-condition-02",
+      "case_revision": 0,
+      "attempt_index": 1,
+      "retrieval_round": 1,
+      "prompt_bytes_plus_margin": 10207,
+      "prompt_sha256": "5ccde871a1bb8d77564a67405bf36d9f49389a7e482bbc53a7f9fb8146ee5d4f",
+      "verified_returned_model": "gpt-4o-mini-2024-07-18",
+      "http_send_started": true,
+      "model_selection": {
+        "status": "valid_plan_shape",
+        "decision": "ask",
+        "context_matches": true,
+        "known_selected_sources": [
+          {
+            "chunk_id": "multiselect-150-default",
+            "content_sha256_matches": true
+          },
+          {
+            "chunk_id": "fragment-150-rerun",
+            "content_sha256_matches": true
+          }
+        ],
+        "unknown_source_count": 0,
+        "known_question_name": "parent_callback_code",
+        "question_registered_as_user": true,
+        "unknown_question_present": false,
+        "retrieval_query_count": 0,
+        "declared_conflict_present": false,
+        "semantic_validity_claim": false
+      },
+      "http_status": 200,
+      "reservation": {
+        "request_id": "call:141f385ada10b59df6d504f5525f8b9146119b233b878800b731f3ff63d79e76",
+        "run_id": "controlled-controlled-model-baseline-2026-10-13-v1-2-e3a2294f",
+        "case_id": "c4-condition-02",
+        "case_revision": 0,
+        "attempt": 1,
+        "model": "gpt-4o-mini",
+        "phase": "development",
+        "amount_usd": "0.0029568",
+        "status": "settled",
+        "cost_usd": "0.000522885",
+        "input_tokens": 2329,
+        "output_tokens": 210,
+        "error_code": null
+      }
+    },
+    {
+      "condition_id": "controlled-v8-unknown-version-mixed",
+      "request_id": "call:ef1b038c169249d7e37954ec1b75aadfe45943362df37ca90d254ec92828eef3",
+      "run_id": "controlled-controlled-model-baseline-2026-10-13-v1-3-d6c95095",
+      "case_id": "c4-condition-03",
+      "case_revision": 0,
+      "attempt_index": 1,
+      "retrieval_round": 1,
+      "prompt_bytes_plus_margin": 14695,
+      "prompt_sha256": "706520610e1eea395765bcf306d36f1558d130304309b91856c9a549eea4117c",
+      "verified_returned_model": "gpt-4o-mini-2024-07-18",
+      "http_send_started": true,
+      "model_selection": null,
+      "http_status": 200,
+      "reservation": {
+        "request_id": "call:ef1b038c169249d7e37954ec1b75aadfe45943362df37ca90d254ec92828eef3",
+        "run_id": "controlled-controlled-model-baseline-2026-10-13-v1-3-d6c95095",
+        "case_id": "c4-condition-03",
+        "case_revision": 0,
+        "attempt": 1,
+        "model": "gpt-4o-mini",
+        "phase": "development",
+        "amount_usd": "0.0029568",
+        "status": "settled",
+        "cost_usd": "0.000839355",
+        "input_tokens": 3551,
+        "output_tokens": 384,
+        "error_code": null
+      }
+    }
+  ],
+  "new_settled_estimated_usd": "0.002005245",
+  "new_reserved_usd": "0",
+  "new_uncertain_usd": "0",
+  "new_cost_estimated_usd": "0.002005245",
+  "new_request_accounting_complete": true,
+  "unaccounted_request_ids": [],
+  "ledger_before": {
+    "fingerprints": {
+      "db": "2335c7721f3dcc12bbc34aa4b2c8f80e273030bd15bbeeff1b6849468ce14e31",
+      "-wal": null,
+      "-shm": null
+    },
+    "halted": true,
+    "limit_usd": "4.5",
+    "opening_usd": "0",
+    "settled_estimated_usd": "0.12375825",
+    "reserved_usd": "0",
+    "uncertain_usd": "0.02",
+    "counts": {
+      "settled": 180,
+      "uncertain": 1
+    },
+    "unknown_records_sha256": "e3272b56ca6485511590fb2453befc5839fa066e5f668d86bba5ee0510761a20",
+    "original_quarantine_sha256": "b0fc8ef5f8b8f29fa2df15d9dce1fc5f8d8cbc6fdaf3ae6dfd399c7082b79e54",
+    "unknown_models": [
+      "gpt-4.1-mini"
+    ],
+    "unknown_error_codes": [
+      "ProviderModelMismatch"
+    ],
+    "continuation": {
+      "authorization_id": "user-continuation-2026-10-07-v3",
+      "authorization_ref": "user:2026-10-07:continue-quality-experiments",
+      "expected_request_id": "call:00d470ec94177a11f66c6cb3dbbb6c83069dd1385ddd6ac7b1e3df96fa50f7fa",
+      "allowed_model": "gpt-4o-mini",
+      "additional_cap_usd": "0.1",
+      "held_usd": "0.02",
+      "used_usd": "0.09508521",
+      "remaining_usd": "0.00491479",
+      "active": true,
+      "block_reason": null
+    },
+    "actual_account_charge_usd": null,
+    "provider_balance_usd": null
+  },
+  "ledger_after": {
+    "fingerprints": {
+      "db": "9f4083d1eec6e3170caa2397975d53bb562c9e79fbe8c279c91f2c369a8caffc",
+      "-wal": null,
+      "-shm": null
+    },
+    "halted": true,
+    "limit_usd": "4.5",
+    "opening_usd": "0",
+    "settled_estimated_usd": "0.125763495",
+    "reserved_usd": "0",
+    "uncertain_usd": "0.02",
+    "counts": {
+      "settled": 183,
+      "uncertain": 1
+    },
+    "unknown_records_sha256": "e3272b56ca6485511590fb2453befc5839fa066e5f668d86bba5ee0510761a20",
+    "original_quarantine_sha256": "b0fc8ef5f8b8f29fa2df15d9dce1fc5f8d8cbc6fdaf3ae6dfd399c7082b79e54",
+    "unknown_models": [
+      "gpt-4.1-mini"
+    ],
+    "unknown_error_codes": [
+      "ProviderModelMismatch"
+    ],
+    "continuation": {
+      "authorization_id": "user-continuation-2026-10-07-v3",
+      "authorization_ref": "user:2026-10-07:continue-quality-experiments",
+      "expected_request_id": "call:00d470ec94177a11f66c6cb3dbbb6c83069dd1385ddd6ac7b1e3df96fa50f7fa",
+      "allowed_model": "gpt-4o-mini",
+      "additional_cap_usd": "0.1",
+      "held_usd": "0.02",
+      "used_usd": "0.097090455",
+      "remaining_usd": "0.002909545",
+      "active": true,
+      "block_reason": null
+    },
+    "actual_account_charge_usd": null,
+    "provider_balance_usd": null
+  },
+  "ledger_settled_delta_estimated_usd": "0.002005245",
+  "ledger_delta_scope": "Whole shared ledger; request-attributed costs and holds are separate.",
+  "actual_account_charge_usd": null,
+  "tracker_actions": 0,
+  "tracker_staging": false,
+  "proposal_auto_approved": false,
+  "model_choice_quality_review": "pending separate preregistered whole-output review",
+  "reasoning_output_boundary": "Valid rendered analyses are observed before engine validation. Plan shape/match flags establish neither acceptance nor semantic quality; invalid model payloads and unknown identifiers are omitted.",
+  "fixed_evidence_only": true,
+  "exposed_development_only": true,
+  "rag_quality_claim": false,
+  "heldout_claim": false,
+  "quality_claim": false,
+  "c5_reconciled": false,
+  "registration": {
+    "source_commit": "8b16f2c009d984dfbb224efcff34bf18156ec22d",
+    "upstream_commit": "8b16f2c009d984dfbb224efcff34bf18156ec22d",
+    "source_clean": true,
+    "source_pushed": true,
+    "source_hashes": {
+      "experiments/controlled_model_baseline/protocol-v1.json": "deb5a39fb27c68f3104e2c9249c3417925741ebf30ec377bcfffe2ecd68d18f0",
+      "experiments/controlled_model_baseline/scenario-review-v1.json": "a49ef39f0c7e5de0ce1cb427dca2074e4976c35cbb2163414c9e38c17a2b9d7e",
+      "experiments/decision_quality/cases-grounding-v9.json": "66e132abb1be158ab162fa2a7551f67d2000e44d65627fe8b4e5c9e7b3442d70",
+      "experiments/decision_quality/protocol-grounding-v9.json": "1038621f87eb3646bde8ed1cab350ab43ac8df884bbb58257b9748b953a87cef",
+      "pyproject.toml": "db235862d1a8c30f7f3eed2aa00f4c68646fe701d3367b02be1a82a6262c2c27",
+      "scripts/controlled_model_baseline.py": "7032afe6ab0e7e87df20ca7793f6363f0ac98e10d02b8ac150d0f10697d44742",
+      "src/agent_app/__init__.py": "651500e6469bef4ff31cda0ac90dd20cfebd2d9d9fe4bf99025c2b385598f86f",
+      "src/agent_app/api.py": "e1a89d3d35b59059a80bb960031604a4c8aa86fd3690351cb13be02251e7c183",
+      "src/agent_app/cli.py": "b66386e6b4ba288211cecf8c6aa5957599132a97150126eb1ed815f37c2ddae4",
+      "src/agent_app/contracts.py": "1dcf0de657f3442dfb5e787e6243a9a279501305033e592cbcd060dd808d0a91",
+      "src/agent_app/demo.py": "3128a85ca44809ff75234ebe982beafcd1d6c35d6f3bf3a37b093b67c33092b4",
+      "src/agent_app/evaluation/__init__.py": "b8f1e93a3c5528cd48abc8e4690b6d67c3838c9ad1e595c7990bc11c2a763793",
+      "src/agent_app/evaluation/live.py": "f5513a71987fcfebdff5b09315e3b8fb027fcd0d33805db2e59e55d256c01432",
+      "src/agent_app/evaluation/pilot.py": "426e95b286e63ca082bf04ddc69fe783bfbb98dfd3e3c9c919b74bba21927d9f",
+      "src/agent_app/evaluation/preflight.py": "ba9cd68d710bfd235333f27186d516e8d135e63ad1c96cfe5609a6e77e257052",
+      "src/agent_app/evaluation/routes.py": "25f664dd22d8dbaca70250db3830c7e994d6b9ee12c7b6443ae82d2098ba8e40",
+      "src/agent_app/evaluation/runner.py": "83c6b2a93329a9ae030d9321e57072669e548272cd87075034a8cfde3821d1f2",
+      "src/agent_app/evaluation/semantic_review.py": "d83b8e33605cbdd3494b681a1eedb8b4dd348341ff32355b46c817b09b72935b",
+      "src/agent_app/live_backend.py": "276f8b8574e0bb3d78497e2b7b880eac84eacbe3ccd527c1a5fbfa1e99e07c4e",
+      "src/agent_app/llm/budget.py": "2e29e3dc2a922f904e2138abef7e8e984468cbf9eb6bef8b9736cd496a723d43",
+      "src/agent_app/llm/config.py": "8ecafef7f2d6f8f2b5e88184e57f84737461b66600b56874c0ea8e8c107e187e",
+      "src/agent_app/llm/demo.py": "4b5463e03078ff8c19e758ed8282de146538018721d6e5e9f902727c3c71908e",
+      "src/agent_app/llm/grounded.py": "24baef8e95ee2795ac83436eb6ef6046b2781a225330689a2f5c3ffafe4cdaa6",
+      "src/agent_app/llm/metis.py": "9950a4e36b7a04fd74e4decb110cd58c3d3acba45af073ce30c53983a8fd6076",
+      "src/agent_app/llm/pricing.py": "39993b673465401e0926584d3007b8967a1eb4eaad4d377b32324c60d619ec07",
+      "src/agent_app/offline_backend.py": "3fc5f56ea1eee99f0b81400cfa5634868f12dbea523ecde28db6ded1a14582f7",
+      "src/agent_app/orchestration/__init__.py": "344e71f3e4393d9f0cb0193c0c7d2ff02fef7d0c36abba502ba4eeb428caf1a0",
+      "src/agent_app/orchestration/conversation.py": "a9d3954ab2fdbbd083329e59e8c5511f5cc005375e4fc39747a61756aa51e3f1",
+      "src/agent_app/orchestration/engine.py": "d5161e93a1b5996c2a6c3595558271884e898cc4e7ad9030d2d39ee45c1e5c6a",
+      "src/agent_app/orchestration/handoff.py": "615ac692e9bbed21fee47cfb435c3dbbf054b91aedd727699d88118378222833",
+      "src/agent_app/orchestration/intake.py": "a1208ec535fd022d3d20f6847a0a6f21af0d3c42fc75a078e925301397c970b4",
+      "src/agent_app/orchestration/ports.py": "2ef106155234f762832aff658602a5177bf946908b24fde3bc69129076bbbeb2",
+      "src/agent_app/orchestration/retrieval_context.py": "b5133c15368e3383a42da4a401dd6f39461d4f3040f64f35965304806c8dc5fb",
+      "src/agent_app/orchestration/service.py": "c3a53561a48c3c703b88163e902ddc5870e2a246b8563f38cc7e2b9cae09eee6",
+      "src/agent_app/orchestration/turns.py": "17970a95710dc8351d14f36cc6dfbdf3308231a627fd710b64dee119908eace7",
+      "src/agent_app/orchestration/validation.py": "2debe663263680238268d5034c7e80fe5533b4f66c535d5bf0b4e072835d7f6e",
+      "src/agent_app/persistent_api.py": "1eab2d60a28f4543c0752092502b37d905a66b6f00ca5aa4828ed60b5d8c5c56",
+      "src/agent_app/reasoning/__init__.py": "12233e742809b1a2fffedccf658feca51ab510795da80d210fb8328c009f031f",
+      "src/agent_app/reasoning/ablations.py": "72436d983fcde9668583a07662aa5b04952fee0b60d0c908b911e439d4ac5d5f",
+      "src/agent_app/reasoning/catalog.py": "549d35a763b004766186bf6cbc4b4b0713b3414aa95716786fc9f23bd1f249f8",
+      "src/agent_app/reasoning/code_checks.py": "f3f1efb9962b88d3a51587dcfe73296cbdcbecedc82dacec85faf7cfa7b92ba7",
+      "src/agent_app/reasoning/controlled_experiments.py": "161dc621520fc619c93755138d7c1187d3b09393da2face8caea3a6f5e2e13b9",
+      "src/agent_app/reasoning/experiments.py": "d0fc8bf3f94b0e4c99648f5ee99e7e2ed2191eabdbbc7f5110f7e7c2a2391103",
+      "src/agent_app/reasoning/fidelity_experiments.py": "f41b6d0e2b96ad293b244ef249970a9b6d24382e4384d2dee4d5fa6d171fcdfe",
+      "src/agent_app/reasoning/grounding.py": "327e219158d234b32297b890c727031d17cc2ea02ad32347a6f60cbb1b9c1e44",
+      "src/agent_app/reasoning/grounding_experiments.py": "ff7a217e12182d04470339bb9f793e0194fa05bf53fa2babdb9cce809c44d9d3",
+      "src/agent_app/reasoning/output.py": "81d7c60c1dc09f0ab7d9badd6d4dbaf405439a399506333a3e6b7dec9ca6874c",
+      "src/agent_app/reasoning/probes.py": "10ddb452c81cec3a7e8b93e937e5efcd5166c81ace0f36bf1c062b4498b9f185",
+      "src/agent_app/reasoning/prompts.py": "0bc7b83422eee46f9a598415ea3921281a451da1780db080f091818e3a79329b",
+      "src/agent_app/reasoning/proposal_checks.py": "aaa8b3bcb51992f23189a76749a747fa6b10528f3f11af806b067fe67d923464",
+      "src/agent_app/reasoning/quality_experiments.py": "4eecf613b71981b4aeb2c35efc81c5f1520edb304a106b60561b166e1e067269",
+      "src/agent_app/reasoning/review.py": "77e34b93445faf1dc6e6e7a2252971305a5d1ea3f4b7dc6713e44daf32804e14",
+      "src/agent_app/reasoning/semantic_regressions.py": "13c3ab82e66fab43bce186c086b8fea00049da7e083cbaad6c1c3393ea00c8ea",
+      "src/agent_app/retrieval/adapter.py": "3752fe760c9fb71a6cd05014a6ab870d53a652a56e2c972425e71c7d9c417c2f",
+      "src/agent_app/retrieval/offline_index.py": "def8f56afdeadd714c8891779e627da5d89ea276086bf232c135e64ff8967414",
+      "src/agent_app/retrieval/pilot_corpus.py": "dd9317632c2ccdd387aa3fb13e4cdcab8567def697e958f3d60affa7e35a8693",
+      "src/agent_app/retrieval/retriever.py": "7791e66896296ff0d85ed319ee7eba6238db9516ea04ad2a9f1af6b5f2caebe1",
+      "src/agent_app/testing/__init__.py": "bea37ce669658c22e7d916983693ed47c42a9e35806f4d726643bd1a1f14d8ed",
+      "src/agent_app/testing/chroma_binding.py": "ae23fb6e5ece3c4b198519afa371b581b60d69844d904e89d047c910e5d6e4ba",
+      "src/agent_app/testing/controlled_decision_inputs.py": "5c25b0d02a919da1f482dcfbeee759274a9a879b23ee99e9523e761ffc1ae0eb",
+      "src/agent_app/testing/controlled_model_baseline.py": "8334e3b59419f010ed1ad725a2de0ca0d2aa22cf21155090ceb175ab140a11e5",
+      "src/agent_app/testing/fakes.py": "1e44387ddcbe091f91657ce1236c36f648eb6941d4582fe42a4a37c60f6a80a0",
+      "src/agent_app/testing/grounded_http_acceptance.py": "f145dd71055e93c5b03561b46e7dd048103cf43cc7b7c1c74520347ebd055a3d",
+      "src/agent_app/testing/grounded_http_binding.py": "fda2af5d25ba23b5be33d84cc25243ca5bda6eedc388232c83da7c2638baef5f",
+      "src/agent_app/testing/http_pilot_acceptance.py": "ea5ff92fd319db247a346ff3dd90c417dccd9b0efb324550c72eaf9f078f97bf",
+      "src/agent_app/testing/http_pilot_runtime.py": "df685c1aa4dc4b666ccc680ba6e5ad552cc48f10f89400d73d9cc11108848464",
+      "src/agent_app/testing/http_pilot_worker.py": "05c73602a500f770ca3f9bddbf568032b44bd46787a8fbc623d44cdd1f42239e",
+      "src/agent_app/testing/retrieval_acceptance.py": "f6b3dfeb894b20341e9483dfd8e644165fa8944cc0329c13126545eba1db7df4",
+      "src/agent_app/testing/retrieval_acceptance_pilot.py": "6bd2a5523bfe299937fe1746df035fcb23adf13362fa80c4cb8d82e524273aa3",
+      "src/agent_app/testing/retrieval_context_live_probe.py": "e510b338a87a0fe4a3ddd2b7e3d8504e9894f929918ec9f40c9c993ec126b467",
+      "src/agent_app/testing/sqlite_http_binding.py": "b933322aeb9db68bc8243b1b47c3e947ada6ad474873e88739adfd6320fda3e6",
+      "src/agent_app/testing/ui_review_acceptance.py": "308bd2d8f9ea525a226a0557e7d2e6e7c3f8ae5fc4586666db2b7ac49be98f92",
+      "src/agent_app/tracker/dummy_tracker.py": "c214d49fcd9033565b19f1d11cef605b7654c6103a64d2bdbfc71a876c6e2e3d",
+      "src/agent_app/tracker/sqlite_tracker.py": "c8d9e75bac2152df68559d85d3ef0c52386cb0d10562b8cb4aae9d987be257e8",
+      "src/agent_app/turn_demo.py": "0985daf2ca881eefc52b4a9694cd5fa91becfa61cd722ef8fb470c865791cad8",
+      "src/agent_app/ui_client.py": "5b4564f4e8b93af7775b2c2fb3fa254f25b5dfae406ac65d3f48fd9de325037e",
+      "uv.lock": "b9af45c8221da0eb3154634869b90e809796a3183d1363020ffa467d07635057"
+    },
+    "protocol_sha256": "deb5a39fb27c68f3104e2c9249c3417925741ebf30ec377bcfffe2ecd68d18f0",
+    "fixture_pins": {
+      "suite_path": "experiments/decision_quality/cases-grounding-v9.json",
+      "suite_sha256": "66e132abb1be158ab162fa2a7551f67d2000e44d65627fe8b4e5c9e7b3442d70",
+      "protocol_path": "experiments/decision_quality/protocol-grounding-v9.json",
+      "protocol_sha256": "1038621f87eb3646bde8ed1cab350ab43ac8df884bbb58257b9748b953a87cef",
+      "material_sha256_by_condition": {
+        "controlled-v8-full": "22ee5c7464ddc98e4e8123a78b5bdc9502efe2199c1e8186c05b3459c19e8b74",
+        "controlled-v8-key-evidence-removed": "1751e203d66420512f3fc959e5ffdbc29e62842d925dcaba3eb12dc9d3622c00",
+        "controlled-v8-unknown-version-mixed": "bcdbfddf6edddd728679ed7ffe14c97f4346c0a293fd99d4f6c1bb999a583c0f",
+        "controlled-v8-version-correction": "323b09972bd81860164ae71381f13cc4bf76591ec88624cb3856724d3e001751",
+        "controlled-v8-same-version-synthetic-conflict": "795c4153bddabfbc658c9657ca5a79d5470b36efe548fab827f6cceee1987fba",
+        "controlled-v8-refinement-stale-source": "b2727505817176bf40317b43f6335e91e4f95ddeb18aa1d9a0370127ac537b39"
+      },
+      "runtime_case_aliases": {
+        "case-controlled-v8-full": "c4-condition-01",
+        "case-controlled-v8-key-evidence-removed": "c4-condition-02",
+        "case-controlled-v8-unknown-version-mixed": "c4-condition-03",
+        "case-controlled-v8-version-correction": "c4-condition-04",
+        "case-controlled-v8-same-version-synthetic-conflict": "c4-condition-05",
+        "case-controlled-v8-refinement-stale-source": "c4-condition-06"
+      },
+      "current_catalog_sha256_by_condition": {
+        "controlled-v8-full": {
+          "1": "991344d6262f503ffed249cc25960b5ad6c697d24471e95bab63bc8446f0e64d",
+          "2": "991344d6262f503ffed249cc25960b5ad6c697d24471e95bab63bc8446f0e64d"
+        },
+        "controlled-v8-key-evidence-removed": {
+          "1": "08e6356c400dca6a0217ed2e9a71e72d59823c7267da8174542d6624367ecfd6",
+          "2": "08e6356c400dca6a0217ed2e9a71e72d59823c7267da8174542d6624367ecfd6"
+        },
+        "controlled-v8-unknown-version-mixed": {
+          "1": "c4241417a1609147b66876279ed980701ee2ad27e830d00d9a81e159ac8acc37",
+          "2": "c4241417a1609147b66876279ed980701ee2ad27e830d00d9a81e159ac8acc37"
+        },
+        "controlled-v8-version-correction": {
+          "1": "706e08e1780c146bbebdd671ffb41d002d758857948a723ee2cb8d333b2b841d",
+          "2": "706e08e1780c146bbebdd671ffb41d002d758857948a723ee2cb8d333b2b841d"
+        },
+        "controlled-v8-same-version-synthetic-conflict": {
+          "1": "f8a9d362281aec7c2d7e852f08ad2ed9745336abbdbee892dcd25cb0fbe8314f",
+          "2": "f8a9d362281aec7c2d7e852f08ad2ed9745336abbdbee892dcd25cb0fbe8314f"
+        },
+        "controlled-v8-refinement-stale-source": {
+          "1": "991344d6262f503ffed249cc25960b5ad6c697d24471e95bab63bc8446f0e64d",
+          "2": "49ab0819a9467cad6f3c4f678d94fa0623c7caf2ff259891c87dcc7d544792df"
+        }
+      },
+      "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "source_snapshot_date": "2026-10-06",
+      "source_files": [
+        {
+          "path": "streamlit-docs/content/develop/quick-references/release-notes/2025.md",
+          "sha256": "51ddfb5da2d2dfd88c2917b1b1542e74e892459c591de3cc1d25159632c4889a"
+        },
+        {
+          "path": "streamlit-docs/content/develop/concepts/architecture/widget-behavior.md",
+          "sha256": "025129790a1fcb2d448e9ab608389f2ec55ef26751b64d1937cef5705837efeb"
+        },
+        {
+          "path": "streamlit-docs/python/streamlit.json",
+          "sha256": "5cc1cd6a9aa72ab1de892f53075f46b51be25ce4e7d84799e5b6e9ebbdedae6d"
+        }
+      ],
+      "source_files_are_registered_pins": true,
+      "provenance_sha256": "8d9964951405d3875e4a025a9f3fd1a6f68ed8543ea7b795723c46230f20ca84",
+      "manual_metadata_sha256": "0cfdf0d56e67b5ca1f152406e0f59c4d39581281c25506a5f95a14cd395e5767",
+      "reserved_issue_ids": [
+        8061,
+        8901,
+        12629,
+        12782,
+        16914
+      ],
+      "retained_label_bearing_fact_attributions": [
+        {
+          "condition_id": "controlled-v8-version-correction",
+          "fact_index": 9,
+          "source_ref": "release-150-multiselect-key-identity-v8",
+          "turn_id": "controlled-v8-before-correction",
+          "reason": "Existing attribution describes an explicit past/current correction; preserved, not future outcome metadata."
+        },
+        {
+          "condition_id": "controlled-v8-version-correction",
+          "fact_index": 10,
+          "source_ref": "user/controlled-v8-version-correction",
+          "turn_id": "controlled-v8-correction",
+          "reason": "Existing attribution describes an explicit past/current correction; preserved, not future outcome metadata."
+        }
+      ],
+      "disclosures": {
+        "answer_informed_development_selection": true,
+        "same_issue_answer_used_as_evidence": false,
+        "manually_curated_gaps_and_conflicts": true,
+        "opaque_runtime_case_ids": true,
+        "source_catalog_normalized_per_current_round": true,
+        "original_catalog_retained_exactly": false,
+        "normalization_is_prepaid_baseline_amendment": true,
+        "automatic_gap_or_conflict_detection": false,
+        "exposed_development_only": true,
+        "independent_issue_families": 1,
+        "final_evaluation_case_count": 0,
+        "original_protocol_authorizes_paid_work": false,
+        "quarantine_applied_to_real_RAG_claim": false,
+        "quality_claim": false
+      }
+    },
+    "review_pins": {
+      "path": "experiments/controlled_model_baseline/scenario-review-v1.json",
+      "sha256": "a49ef39f0c7e5de0ce1cb427dca2074e4976c35cbb2163414c9e38c17a2b9d7e"
+    },
+    "ordered_condition_ids": [
+      "controlled-v8-full",
+      "controlled-v8-key-evidence-removed",
+      "controlled-v8-unknown-version-mixed",
+      "controlled-v8-version-correction",
+      "controlled-v8-same-version-synthetic-conflict",
+      "controlled-v8-refinement-stale-source"
+    ],
+    "ledger_before": {
+      "fingerprints": {
+        "db": "2335c7721f3dcc12bbc34aa4b2c8f80e273030bd15bbeeff1b6849468ce14e31",
+        "-wal": null,
+        "-shm": null
+      },
+      "halted": true,
+      "limit_usd": "4.5",
+      "opening_usd": "0",
+      "settled_estimated_usd": "0.12375825",
+      "reserved_usd": "0",
+      "uncertain_usd": "0.02",
+      "counts": {
+        "settled": 180,
+        "uncertain": 1
+      },
+      "unknown_records_sha256": "e3272b56ca6485511590fb2453befc5839fa066e5f668d86bba5ee0510761a20",
+      "original_quarantine_sha256": "b0fc8ef5f8b8f29fa2df15d9dce1fc5f8d8cbc6fdaf3ae6dfd399c7082b79e54",
+      "unknown_models": [
+        "gpt-4.1-mini"
+      ],
+      "unknown_error_codes": [
+        "ProviderModelMismatch"
+      ],
+      "continuation": {
+        "authorization_id": "user-continuation-2026-10-07-v3",
+        "authorization_ref": "user:2026-10-07:continue-quality-experiments",
+        "expected_request_id": "call:00d470ec94177a11f66c6cb3dbbb6c83069dd1385ddd6ac7b1e3df96fa50f7fa",
+        "allowed_model": "gpt-4o-mini",
+        "additional_cap_usd": "0.1",
+        "held_usd": "0.02",
+        "used_usd": "0.09508521",
+        "remaining_usd": "0.00491479",
+        "active": true,
+        "block_reason": null
+      },
+      "actual_account_charge_usd": null,
+      "provider_balance_usd": null
+    },
+    "preflight": {
+      "controlled-v8-full": [
+        {
+          "retrieval_round": 1,
+          "attempt_index": 1,
+          "repair_frame": false,
+          "prompt_bytes_plus_margin": 11842,
+          "prompt_sha256": "cb626b35c08c47ce1b096423be29aebbc2e626f813455545d354a24163994dce",
+          "grounded_context_sha256": "201618edc4d7063233466caea2d9d5aa02965ac51fa9255ddb46851dfa2cb209"
+        },
+        {
+          "retrieval_round": 1,
+          "attempt_index": 2,
+          "repair_frame": true,
+          "prompt_bytes_plus_margin": 12185,
+          "prompt_sha256": "8ad6c61720e0986ab3b562e2cae87c8546be182047e189e1f6b618b90438a96d",
+          "grounded_context_sha256": "201618edc4d7063233466caea2d9d5aa02965ac51fa9255ddb46851dfa2cb209"
+        },
+        {
+          "retrieval_round": 2,
+          "attempt_index": 2,
+          "repair_frame": false,
+          "prompt_bytes_plus_margin": 11843,
+          "prompt_sha256": "4d27369165cb192c9909d84c506aa53cb31f3f3ad6233c21e8c80a0b4c57d627",
+          "grounded_context_sha256": "2c50e4168912ee5e5f39f5101764ad6d9bd690dfc850f73e2f172479b742b666"
+        }
+      ],
+      "controlled-v8-key-evidence-removed": [
+        {
+          "retrieval_round": 1,
+          "attempt_index": 1,
+          "repair_frame": false,
+          "prompt_bytes_plus_margin": 10207,
+          "prompt_sha256": "5ccde871a1bb8d77564a67405bf36d9f49389a7e482bbc53a7f9fb8146ee5d4f",
+          "grounded_context_sha256": "c5e0b0e2b02f2e27f26ee5955d1c5dff7fd1aefa309216ac661e045441888ca0"
+        },
+        {
+          "retrieval_round": 1,
+          "attempt_index": 2,
+          "repair_frame": true,
+          "prompt_bytes_plus_margin": 10550,
+          "prompt_sha256": "95b53a40635e428a7917c961afe6d44a038475b0e85077ab35b2906302832014",
+          "grounded_context_sha256": "c5e0b0e2b02f2e27f26ee5955d1c5dff7fd1aefa309216ac661e045441888ca0"
+        },
+        {
+          "retrieval_round": 2,
+          "attempt_index": 2,
+          "repair_frame": false,
+          "prompt_bytes_plus_margin": 10208,
+          "prompt_sha256": "12ffa1286536d8ba45528a4fbf7e3caa1f19c881d93c96a360f84ddd35712f2f",
+          "grounded_context_sha256": "45b5d1fd515359e3c0dcdbc9bab33377d9fca9598abbe8e706b584bf297556a2"
+        }
+      ],
+      "controlled-v8-unknown-version-mixed": [
+        {
+          "retrieval_round": 1,
+          "attempt_index": 1,
+          "repair_frame": false,
+          "prompt_bytes_plus_margin": 14695,
+          "prompt_sha256": "706520610e1eea395765bcf306d36f1558d130304309b91856c9a549eea4117c",
+          "grounded_context_sha256": "25e170543ef24be78da3e9777505520d41adc233631378ed3dc68aa3e41f96ec"
+        },
+        {
+          "retrieval_round": 1,
+          "attempt_index": 2,
+          "repair_frame": true,
+          "prompt_bytes_plus_margin": 15038,
+          "prompt_sha256": "418795aec168b28ddeb72b10fb26310af58281158fea261643acfd8d094af08e",
+          "grounded_context_sha256": "25e170543ef24be78da3e9777505520d41adc233631378ed3dc68aa3e41f96ec"
+        },
+        {
+          "retrieval_round": 2,
+          "attempt_index": 2,
+          "repair_frame": false,
+          "prompt_bytes_plus_margin": 14696,
+          "prompt_sha256": "7c43bc78278bc5d9c7d802740f89c417151d8bfebd568a24dadee6069fe88a84",
+          "grounded_context_sha256": "97b9100529200c9f5edad7b07b3957ceae7d8afd24bce3f3ef768d6273068ddc"
+        }
+      ],
+      "controlled-v8-version-correction": [
+        {
+          "retrieval_round": 1,
+          "attempt_index": 1,
+          "repair_frame": false,
+          "prompt_bytes_plus_margin": 12665,
+          "prompt_sha256": "693360b8064ca6de9815145d75f9b0abd75cd6b797c0c114dd6bc891331b171d",
+          "grounded_context_sha256": "336fa67ca9a5161b64608126dc890b7cfcb705584924647f8496e7b27850c0bb"
+        },
+        {
+          "retrieval_round": 1,
+          "attempt_index": 2,
+          "repair_frame": true,
+          "prompt_bytes_plus_margin": 13008,
+          "prompt_sha256": "d0ebb4ec0bb69356d25528658feb03ca76c6863e14593c57f224a6c824a2adf6",
+          "grounded_context_sha256": "336fa67ca9a5161b64608126dc890b7cfcb705584924647f8496e7b27850c0bb"
+        },
+        {
+          "retrieval_round": 2,
+          "attempt_index": 2,
+          "repair_frame": false,
+          "prompt_bytes_plus_margin": 12666,
+          "prompt_sha256": "821c6b2a6d3781fe59973eff30ac739689cac3afa42c041fc9359da36a9cc30c",
+          "grounded_context_sha256": "b8d38ec14cc6ca44e82ab44b1dcb76d751ed8373a30bfd382536189095c8acfc"
+        }
+      ],
+      "controlled-v8-same-version-synthetic-conflict": [
+        {
+          "retrieval_round": 1,
+          "attempt_index": 1,
+          "repair_frame": false,
+          "prompt_bytes_plus_margin": 13146,
+          "prompt_sha256": "a278f97d586a0e350a3d86ea5bbbaee36a640575ebaf1912a2681a12e9aa8c43",
+          "grounded_context_sha256": "fc9750a5f00e15d1f77ac855c4957e184fb254e5969379cbd131905de020b1e7"
+        },
+        {
+          "retrieval_round": 1,
+          "attempt_index": 2,
+          "repair_frame": true,
+          "prompt_bytes_plus_margin": 13489,
+          "prompt_sha256": "2310dbeebdf6e05741a2aa64cde1f404d9a50d48d863cb1453a19c3e064fb786",
+          "grounded_context_sha256": "fc9750a5f00e15d1f77ac855c4957e184fb254e5969379cbd131905de020b1e7"
+        },
+        {
+          "retrieval_round": 2,
+          "attempt_index": 2,
+          "repair_frame": false,
+          "prompt_bytes_plus_margin": 13147,
+          "prompt_sha256": "e9e02dbbe06dafd4852e635a9aebec8fe6968b3b6babe57a5767b98ac1957e94",
+          "grounded_context_sha256": "f64f445078647fa7e297039a45170fed3de80a307226294f27a4e855e7cf2781"
+        }
+      ],
+      "controlled-v8-refinement-stale-source": [
+        {
+          "retrieval_round": 1,
+          "attempt_index": 1,
+          "repair_frame": false,
+          "prompt_bytes_plus_margin": 11842,
+          "prompt_sha256": "0b178d85cf2b0cf84491572c0455ab117881ca4ca055e0add0e5bba76bc8a2ba",
+          "grounded_context_sha256": "84f034c73f01514e64817124088463ccfc4f41f5f023762e1b7641851610800a"
+        },
+        {
+          "retrieval_round": 1,
+          "attempt_index": 2,
+          "repair_frame": true,
+          "prompt_bytes_plus_margin": 12185,
+          "prompt_sha256": "07acd2ba24b42fbf28ff7565e01290523034cb7fb48091270c9dbb8cb869fe2f",
+          "grounded_context_sha256": "84f034c73f01514e64817124088463ccfc4f41f5f023762e1b7641851610800a"
+        },
+        {
+          "retrieval_round": 2,
+          "attempt_index": 2,
+          "repair_frame": false,
+          "prompt_bytes_plus_margin": 10255,
+          "prompt_sha256": "37d90e9df04352925cb08e7fc1fd3b80cd9d10de73c2a9318a8e497e04970538",
+          "grounded_context_sha256": "5c7a757cbf86a7807e8d559da175182a25fbf97d62847efdbe93811aa4715f63"
+        }
+      ]
+    }
+  }
+}

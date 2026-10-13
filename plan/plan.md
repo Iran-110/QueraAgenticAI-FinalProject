@@ -6,6 +6,37 @@
 
 ### تقسیم کار جاری — درخواست جمع‌بندی تا امشب ۱۳ اکتبر
 
+تحویل جاری ساسان **C4a — انتخاب واقعی مدل روی شواهد ثابت** در
+[PR #39](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/39) است؛
+از main `80f9913` شروع شد. [بستهٔ شواهد و محدودیت‌ها](../experiments/controlled_model_baseline/README.md)
+اصل preregistration، receipt و review جدا دارد. baseline روی `8b16f2c` پس از
+CI لینوکس/ویندوز اجرا شد: ۳ send واقعی، ۲ سؤال callback قابل بررسی، یک
+`ProviderResponseInvalid` و ۳ condition اجرا‌نشده از ۶ مورد. هزینهٔ تخمینی
+$0.002005245 و hold تازه صفر؛ هزینهٔ حساب واقعی unknown است.
+
+[follow-up تازهٔ سقف خروجی](../docs/controlled-output-cap-followup.fa.md) فقط
+همان نسخهٔ نامشخص را با همان ورودی/prompt/model و یک send مجاز ثبت می‌کند؛
+خروجی ۳۸۴ به ۵۱۲، reserve ورودی ۱۵۳۶۰ و رزرو $0.002872320 در باقی‌ماندهٔ
+grant قبلی $0.002909545 جا شد. روی `07d759f` پس از
+[CI Linux/Windows](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38445395851)
+یک send، یک سؤال ضروری نسخه، `finish_reason=stop` و ۳۸۵ token خروجی داشت؛
+کاربرد هر پنج source تأییدنشده ماند. مقایسهٔ همان ورودی فقط تکمیل عملیاتی
+۰ به ۱ است؛ علت خطای قبلی و افزایش کیفیت ثابت نشده. baseline اصلی همچنان
+۲ proposal از ۶ condition و سه کنترل آخر در live اجرا نشده‌اند.
+جمع دو epoch چهار send با $0.002845260 تخمینی، hold تازه صفر؛ grant قدیمی
+$0.00206953 باقی دارد و رزرو کامل اجرای دیگر در آن جا نمی‌شود. halt/hold
+قبلی حفظ‌اند؛ baseline و reviewer تغییر نکرده‌اند و retry خودکار نداریم.
+
+این‌ها variationهای exposed یک خانواده‌اند، نه شش Issue مستقل، RAG واقعی
+یا test نهایی؛ catalog و conflictها دستی‌اند. مشکل import مستقیم core در
+process تازه جدا اصلاح شد و API عمومی حفظ است؛ این علت خطای provider نبود.
+تست کامل محلی ۲۷۹۷ مورد، Ruff و سه demo پاس‌اند. CI و انتشار نهایی در PR
+مرجع ثبت شوند؛ branchها پس از merge با `origin/main` sync شوند.
+
+[راهنمای C4 به تیم و agentهای کاری](../docs/team-handoff-c4.fa.md) محدودهٔ
+فایل‌ها و adopt کردن را مشخص می‌کند. قراردادهای مشترک و ماژول‌های اعضا تغییر
+نکرده‌اند. وظایف سه dev case/corpus/smoke تیم پابرجاست؛ E1/E2/R4/E4/E5/C5 بازند.
+
 انتشار #37 روی main `109f59e` و [CI Linux/Windows](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38406080389)
 پاس شد. تحویل مستقل ساسان **C2g** در [PR #38](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/38)،
 [query بعد از correction](../docs/current-retrieval-context.fa.md)،
@@ -262,6 +293,7 @@ fixture پایهٔ این تحویل، [case چهار‌نوبتی C3](../experi
 - [ ] **C2 — اتصال ورودی چندنوبتی.** سهم core/API آفلاین در P2 انجام و [ثبت شد](../docs/user-intake-pilot.fa.md): reported_facts، checks_performed، context_changed، reply ثبت‌شده و original-event replay؛ تست correction/withdrawal/تغییر محیط پاس‌اند. U2 در #13 وصل شد و جداسازی فرم در #21 اصلاح شد؛ API/state/review آفلاین در C2d به قراردادهای T1–T3 وصل و P3 پذیرفته شد؛ binding UI و index محدود در U3a/P4a پاس شده‌اند؛ تنظیم index/model نهایی باقی است. [قرارداد recovery](../docs/persistent-core-handoff.md) بین commit event و stage proposal، replay بدون اجرای مدل و read پس از ACK نامعلوم را مشخص می‌کند؛ coordinator core در C2a پیاده شده؛ factory HTTP و outcome واقعی اکنون در C2d آمده؛ resume خودکار ساخته نشده است. سؤال مبهم یا ویرایش‌شده fact فرضی نمی‌سازد؛ retry همان event باید پیش از stale/reply check و ساخت adapter شناسایی شود. [بازبینی مرز اتصال](../docs/team-integration-review-2026-10-11.fa.md).
 - [x] **C3 — قرارداد خروجی و review با fixture.** `ProposalHandoff` کل case، آخرین bundle واقعاً مصرف‌شده، تمام analysis و catalog واقعی GroundedPlan را نگه می‌دارد؛ gap کاربر/منبع، همهٔ منابع و scope نسخه قابل review هستند. منبع قبلی، تغییر case با revision یکسان، packet/متن دست‌کاری‌شده و approval پیش از edit رد می‌شوند. [PR #11](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/11)، [نتیجه و handoff](../docs/review-handoff-pilot.fa.md)، fixture ثبت‌شده `b085f7d`، helper `74e353b` و API `44d70a2` شاهدند. C3 فقط سهم core و مثال آفلاین را می‌بندد؛ نمایش U2 انجام شده و #21 تمام claimهای هر chunk را حفظ می‌کند. مسیر opt-in persistence/authentication/اجرای محلی در C2d پیاده است؛ اتصال UI به همان envelope باقی می‌ماند؛ review معنایی و approval جدا هستند.
 - [ ] **C4 — baseline برای pilot متصل.** baseline ورودی HTTP روی `5af98e6` چهار fail و روی adapter جدید چهار pass دارد؛ [ثبت C2](../docs/user-intake-pilot.fa.md). baseline خروجی C3 روی کد واقعی `3f22ef9` با همان چهار regression بازپخش شد؛ چهار fail و روی نسخهٔ جدید چهار pass، همراه [case چهار‌نوبتی و محدودیت](../docs/review-handoff-pilot.fa.md). پس از اتصال P3/P4، مقایسهٔ تصمیم واقعی ادامه یابد؛ baseline نرم‌افزار جای کیفیت مدل/RAG/test نیست. receiptهای تاریخی حفظ شده‌اند؛ انتخاب Issue فعلی answer-informed و exposed است.
+- [x] **C4a — harness و prefix محدود انتخاب واقعی مدل؛ ساسان.** [بستهٔ نتیجه و review](../experiments/controlled_model_baseline/README.md) runtime/reviewer جدا، ID خنثی و catalog مربوط به bundle فعلی دارد. شش variation یک خانوادهٔ exposed، mock شش‌مسیره و baseline واقعی prefix ثبت شد: ۳ send، ۲ proposal، یک خطا و سه terminal skip؛ follow-up جدا با همان prompt فقط یک سؤال نسخهٔ کامل داد. کل چهار send $0.002845260 تخمینی؛ منابع/کل پاسخ/سؤال، هزینه و محدودیت‌ها review شده‌اند، نمرهٔ انسانی null است. این تیک تحویل محدود را می‌بندد؛ baseline شش‌حالته کامل نشده و C4 مستقل/RAG/test نهایی بازند؛ correction/conflict/stale در live این packet اجرا نشدند.
 - [ ] **C5 — رفع علت halt پیش از live.** هویت مدل، usage و هزینهٔ مورد اختلاف با مدرک provider تطبیق داده شود؛ uncertainty و ledger پاک یا reset نشوند. شرط پایان: علت توقف مستند، وضعیت ledger و مجوز/سقف باقی‌مانده روشن باشند؛ فقط آن‌وقت pilot کوچک ثبت‌شده اجرا شود.
 
 برای C2/U3 از سرویس C2a استفاده شود؛ coordinator core دیگر فقط helper تستی نیست. factory HTTP/auth و outcome پایدار C2d روی main است؛ binding frontend آفلاین U3a و index محدود P4a آماده‌اند؛ محمدحسن/بهنام تنظیم محصول و smoke مرورگر را نهایی کنند. readهای سرویس به‌تنهایی CAS lifecycle نیستند؛ C2d اکنون در transaction اولین root proposal هر revision و outcome را کنترل می‌کند و مسیر ABA قبلی را می‌بندد. resume خودکار وجود ندارد. [packet تازهٔ C5](../docs/live-reconciliation-2026-10-11.fa.md) با خواندن read-only و hash ثابت ledger ثبت شد؛ مدرک provider همچنان کم است.

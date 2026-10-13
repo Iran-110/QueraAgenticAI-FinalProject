@@ -1,0 +1,419 @@
+{
+  "schema_version": 1,
+  "review_id": "controlled-model-baseline-result-review-v1",
+  "created_on": "2026-10-13",
+  "phase": "post_execution_sidecar",
+  "experiment_id": "controlled-model-baseline-2026-10-13-v1",
+  "reviewer_kind": "assistant_inspection_of_saved_complete_outputs",
+  "human_reviewed": false,
+  "human_usefulness_score": null,
+  "historical_artifacts_modified": false,
+  "artifact_pins": {
+    "raw_live_receipt": {
+      "path": "experiments/controlled_model_baseline/baseline-live-receipt-v1.json",
+      "sha256": "4131077ce70bd53195dadf7bda055aa9554700e39579a6a7afa4989ac4adde4b"
+    },
+    "raw_live_registration": {
+      "path": "experiments/controlled_model_baseline/baseline-live-registration-v1.json",
+      "sha256": "d591011cc17da48a0398e8d5a5467f1cbcc0d9860767222885089cd08155d104"
+    },
+    "raw_mock_receipt": {
+      "path": "experiments/controlled_model_baseline/baseline-mock-receipt-v1.json",
+      "sha256": "b05f2df53565c760a51cefe68878037c400dd2dced8d79d422c9601bdf3010d9"
+    },
+    "baseline_protocol": {
+      "path": "experiments/controlled_model_baseline/protocol-v1.json",
+      "sha256": "deb5a39fb27c68f3104e2c9249c3417925741ebf30ec377bcfffe2ecd68d18f0"
+    },
+    "preregistered_reviewer": {
+      "path": "experiments/controlled_model_baseline/scenario-review-v1.json",
+      "sha256": "a49ef39f0c7e5de0ce1cb427dca2074e4976c35cbb2163414c9e38c17a2b9d7e"
+    }
+  },
+  "execution_source": {
+    "commit": "8b16f2c009d984dfbb224efcff34bf18156ec22d",
+    "upstream_commit_at_execution": "8b16f2c009d984dfbb224efcff34bf18156ec22d",
+    "source_clean_at_registration": true,
+    "source_pushed_at_registration": true,
+    "source_unchanged_during_execution_recorded": true,
+    "source_guard_installed_field_in_original_receipt": null,
+    "default_original_live_cli_source_guard": "Original source8b passed the per-condition/per-attempt/per-send registered Git/source guard; the later explicit source_guard_installed field was not retroactively added to this receipt."
+  },
+  "provenance": {
+    "issue_family": [
+      12629,
+      12782
+    ],
+    "distinct_issue_families": 1,
+    "correlated_exposed_development_only": true,
+    "six_conditions_are_not_six_independent_issues": true,
+    "answer_informed_source_and_scenario_selection": true,
+    "manual_question_and_conflict_catalog": true,
+    "automatic_gap_or_conflict_discovery_measured": false,
+    "real_rag_index_searched": false,
+    "same_issue_answer_or_workaround_supplied_as_evidence": false,
+    "corpus_exclusion": "Exclude conditions, original family issues/comments/answers/outcomes/duplicates, authored plans, reviewer labels and generated receipts/reviews from real RAG and independent held-out test."
+  },
+  "denominators": {
+    "registered_conditions": 6,
+    "started_conditions": 3,
+    "real_provider_sends": 3,
+    "validated_serving_id_and_usage_observations": 3,
+    "observed_valid_plan_selections": 2,
+    "observed_valid_rendered_first_decisions": 2,
+    "observed_final_proposals": 2,
+    "started_without_proposal": 1,
+    "terminal_skipped_conditions": 3,
+    "budget_unfunded_skips_in_this_batch": 0,
+    "first_route_admissible_within_observed_two": {
+      "matches": 2,
+      "observed_denominator": 2,
+      "registered_denominator": 6
+    },
+    "final_route_admissible_within_observed_two": {
+      "matches": 2,
+      "observed_denominator": 2,
+      "registered_denominator": 6
+    },
+    "source_quote_binding_checks": {
+      "proposals_checked": 2,
+      "quote_records_checked": 5
+    },
+    "distinct_issue_families": 1,
+    "human_usefulness_scored_proposals": 0,
+    "independent_final_evaluation_cases": 0,
+    "complete_six_condition_baseline": false,
+    "aggregate_success_rate": null,
+    "interpretation": "Do not count the unrendered third call or three unvisited controls as semantic passes/failures.2/2 admissible observed asks is not6/6 completion or a model/RAG quality rate."
+  },
+  "configuration": {
+    "model": "gpt-4o-mini",
+    "verified_serving_ids": [
+      "gpt-4o-mini-2024-07-18"
+    ],
+    "evidence_scope": "all",
+    "top_k": 5,
+    "limits": {
+      "max_model_attempts": 2,
+      "max_retrieval_rounds": 2,
+      "max_queries_per_round": 2,
+      "max_steps": 8
+    },
+    "input_token_reserve": 16384,
+    "output_token_cap": 384,
+    "registered_send_cap": 6,
+    "no_staging_approval_or_actions": true
+  },
+  "public_safe_artifact_audit": {
+    "three_raw_copies_byte_equal_original_external_artifacts": true,
+    "raw_receipt_sha256_matches_expected4131077": true,
+    "embedded_registration_matches_separate_registration": true,
+    "protocol_and_reviewer_bytes_match_registration_pins": true,
+    "canonical_handoffs_validated": 2,
+    "complete_rendered_outputs_reconstructed_exactly": 2,
+    "request_identity_model_phase_usage_price_join_checked": 3,
+    "credential_or_raw_header_body_field_count": 0,
+    "bearer_credential_marker_present": false,
+    "audit_scope": "Structural artifact scan and supplied-content binding; no .env/keys/provider/account portal or production-ledger access. Absence checks do not claim a general secret detector or source authenticity."
+  },
+  "accounting": {
+    "accounting_scope": "saved_snapshots_and_exact_new_request_reservations_in_designated_shared_ledger",
+    "price_recipe": "Registered local gpt-4o-mini prices applied to validated provider token usage; actual account charge remains unknown.",
+    "new_settled_estimated_usd": "0.002005245",
+    "new_request_attributed_cost_estimated_usd": "0.002005245",
+    "shared_ledger_settled_delta_estimated_usd": "0.002005245",
+    "new_reserved_usd": "0",
+    "new_uncertain_usd": "0",
+    "new_request_accounting_complete": true,
+    "original_uncertain_held_usd": "0.02",
+    "original_quarantine_sha256": "b0fc8ef5f8b8f29fa2df15d9dce1fc5f8d8cbc6fdaf3ae6dfd399c7082b79e54",
+    "original_quarantine_and_unknown_records_preserved": true,
+    "original_global_halt_preserved": true,
+    "global_operational_limit_usd": "4.5",
+    "old_immutable_continuation_id": "user-continuation-2026-10-07-v3",
+    "continuation_cap_usd": "0.1",
+    "continuation_remaining_before_usd": "0.00491479",
+    "continuation_remaining_after_usd": "0.002909545",
+    "ledger_fingerprint_before": {
+      "db": "2335c7721f3dcc12bbc34aa4b2c8f80e273030bd15bbeeff1b6849468ce14e31",
+      "-wal": null,
+      "-shm": null
+    },
+    "ledger_fingerprint_after_this_batch": {
+      "db": "9f4083d1eec6e3170caa2397975d53bb562c9e79fbe8c279c91f2c369a8caffc",
+      "-wal": null,
+      "-shm": null
+    },
+    "actual_account_charge_usd": null,
+    "provider_balance_usd": null,
+    "c5_reconciled": false
+  },
+  "mock_receipt_interpretation": {
+    "raw_bytes_preserved": true,
+    "source_sha256": "b05f2df53565c760a51cefe68878037c400dd2dced8d79d422c9601bdf3010d9",
+    "execution_mode": "mocked_model_fixed_evidence",
+    "intercepted_mock_sends": 6,
+    "real_provider_requests": 0,
+    "paid_api_cost_usd": "0",
+    "synthetic_usage_estimate_usd": "0.000420750",
+    "temporary_mock_ledger_only": true,
+    "registered_source_unchanged_flag_is_not_pinned_git_proof": true,
+    "source_guard_installed_field_in_original_receipt": null,
+    "explanation": "The original mock CLI used a no-op source guard and a disposable ledger. Its6 mock sends and synthetic token-price estimates are plumbing observations, not real provider spend, source-pinned live execution or model quality. The raw mock receipt is not rewritten."
+  },
+  "condition_reviews": [
+    {
+      "condition_id": "controlled-v8-full",
+      "status": "final_proposal_observed",
+      "request_id": "call:cfcf5c991e68af1fd3cc8e006d8318597287d3638bd8214a3662625ea5fda818",
+      "proposal_id": "controlled-controlled-model-baseline-2026-10-13-v1-1-c4a8bc42",
+      "handoff_sha256": "95ab5a652a4acbe823c3393a321f262bfdb1f70e5c207844c2850bbc4f5d55ad",
+      "packet_sha256": "e65e66228e7f6dd0cb4a363b1b105edb3dae21f1cacdbba92ca00521f3d75b72",
+      "analysis_sha256": "540db65ab8a55940e63232cebcc257cb4ce47df7246ca953b1e6c9b4a0ca7db9",
+      "receipt_analysis_pointer": "/condition_results/0/canonical_handoff/analysis",
+      "first_decision": "ask",
+      "final_decision": "ask",
+      "actual_final_retrieval_round": 1,
+      "first_route_admissible_under_preregistered_inventory": true,
+      "final_route_admissible_for_actual_reached_round": true,
+      "question": {
+        "selected_name": "parent_callback_code",
+        "text": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+        "manual_catalog_description": "The parent selector callback and relevant state mutation lines are absent.",
+        "manual_catalog_necessity": "The missing callback path can distinguish application state changes from documented widget behavior.",
+        "registered_kind": "user",
+        "currently_unknown_user_fact": true,
+        "already_known_fact_reasked": false,
+        "asks_user_to_locate_documentation": false,
+        "assistant_review": "The missing parent callback/state mutation code can be supplied by the user and can distinguish the full-app state-update path. Known versions/Python/browser/OS are not reasked; the recorded working reduction is not requested again.",
+        "independent_gap_discovery_demonstrated": false
+      },
+      "current_quoted_sources": [
+        {
+          "chunk_id": "multiselect-150-default",
+          "source_id": "docstring:1.50.0:streamlit.multiselect",
+          "excerpt_sha256": "70e2fbaabda5a1236ab1ea09748746048895ab621d4c234be141be7561581c92",
+          "content_sha256": "df43b75982ac76d26297eaf80bb07cfcf282cc75c1c34f04fa9490b9c312c5ba",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.50.0"
+          ],
+          "version_scope": "exact_metadata_match",
+          "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+          "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring",
+          "receipt_source_pointer": "/condition_results/0/canonical_handoff/evidence/hits/0",
+          "full_quote_binding_to_supplied_source": true,
+          "source_truth_verified": false
+        },
+        {
+          "chunk_id": "fragment-150-rerun",
+          "source_id": "docstring:1.50.0:streamlit.fragment",
+          "excerpt_sha256": "994dce7d068792be284cd1ffd5421490bb8553725b42fc60e25243f982846670",
+          "content_sha256": "e8cff24d3ee04b7cf5f27362c8d3ea39096f5bb7c36e73f2f2ed54a26dc7eb1c",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.50.0"
+          ],
+          "version_scope": "exact_metadata_match",
+          "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+          "source_span": "JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring",
+          "receipt_source_pointer": "/condition_results/0/canonical_handoff/evidence/hits/1",
+          "full_quote_binding_to_supplied_source": true,
+          "source_truth_verified": false
+        },
+        {
+          "chunk_id": "release-150-multiselect-key-identity-v8",
+          "source_id": "release-notes:1.50.0:widget-key-identity",
+          "excerpt_sha256": "c734fa9f0259ab2528ad15bdfb99fda5e1372d79aa829919a3023f9d7e5a8154",
+          "content_sha256": "d9defe132d5ac3dbedfa4c76ca763e882a71025d388b772bd816fb4081928f3d",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.50.0"
+          ],
+          "version_scope": "exact_metadata_match",
+          "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123",
+          "source_span": "Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause",
+          "receipt_source_pointer": "/condition_results/0/canonical_handoff/evidence/hits/2",
+          "full_quote_binding_to_supplied_source": true,
+          "source_truth_verified": false
+        }
+      ],
+      "whole_output_review": {
+        "method": "Assistant inspected the complete user draft, maintainer summary, rationale, every evidence-link claim, current source inventory and exact quoted excerpts. Deterministic reconstruction from the observed selection equals the full saved AnalysisResult; canonical handoff validation passed.",
+        "reviewer_kind": "assistant",
+        "human_reviewed": false,
+        "surfaces_reviewed": [
+          "user_draft",
+          "maintainer_summary",
+          "rationale",
+          "evidence_links.claim",
+          "quoted_excerpts_and_scope"
+        ],
+        "all_saved_rendered_surfaces_equal_reconstruction": true,
+        "question_and_missing_info_bound_to_current_manual_catalog": true,
+        "active_user_installation_version": "1.50.0",
+        "version_scope_basis": "Exact literal metadata match to the user-reported 1.50.0; no verified environment/source truth is inferred.",
+        "unsupported_app_cause_fix_regression_execution_or_resolution_claim_observed": false,
+        "state_mutation_or_tracker_execution_proposed_by_model": false,
+        "source_authenticity_independently_verified": false,
+        "source_truth_verified": false,
+        "semantic_quality_score": null,
+        "human_usefulness_score": null,
+        "limitation": "These are bounded exposed-development observations against an answer-informed, caller-curated catalog. Useful resolution, minimal question choice and independent source truth remain unscored."
+      },
+      "human_usefulness_score": null,
+      "count_as_general_quality_success": false
+    },
+    {
+      "condition_id": "controlled-v8-key-evidence-removed",
+      "status": "final_proposal_observed",
+      "request_id": "call:141f385ada10b59df6d504f5525f8b9146119b233b878800b731f3ff63d79e76",
+      "proposal_id": "controlled-controlled-model-baseline-2026-10-13-v1-2-e3a2294f",
+      "handoff_sha256": "c5374597d92f302826fad00eab7b3fab08b7913eeac52d3fb2201b0d3d3f8ba4",
+      "packet_sha256": "2447954f8826a40b7a213c368c300303f6349b4db711c0327dc6606a94d30fc0",
+      "analysis_sha256": "aeda27134bf1e54a908c8685dbdbb6f5fffb9765d0d8e06790f6f2153ac87471",
+      "receipt_analysis_pointer": "/condition_results/1/canonical_handoff/analysis",
+      "first_decision": "ask",
+      "final_decision": "ask",
+      "actual_final_retrieval_round": 1,
+      "first_route_admissible_under_preregistered_inventory": true,
+      "final_route_admissible_for_actual_reached_round": true,
+      "question": {
+        "selected_name": "parent_callback_code",
+        "text": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+        "manual_catalog_description": "The parent selector callback and relevant state mutation lines are absent.",
+        "manual_catalog_necessity": "The missing callback path can distinguish application state changes from documented widget behavior.",
+        "registered_kind": "user",
+        "currently_unknown_user_fact": true,
+        "already_known_fact_reasked": false,
+        "asks_user_to_locate_documentation": false,
+        "assistant_review": "The missing parent callback/state mutation code can be supplied by the user and can distinguish the full-app state-update path. Known versions/Python/browser/OS are not reasked; the recorded working reduction is not requested again.",
+        "independent_gap_discovery_demonstrated": false
+      },
+      "current_quoted_sources": [
+        {
+          "chunk_id": "multiselect-150-default",
+          "source_id": "docstring:1.50.0:streamlit.multiselect",
+          "excerpt_sha256": "70e2fbaabda5a1236ab1ea09748746048895ab621d4c234be141be7561581c92",
+          "content_sha256": "df43b75982ac76d26297eaf80bb07cfcf282cc75c1c34f04fa9490b9c312c5ba",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.50.0"
+          ],
+          "version_scope": "exact_metadata_match",
+          "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+          "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring",
+          "receipt_source_pointer": "/condition_results/1/canonical_handoff/evidence/hits/0",
+          "full_quote_binding_to_supplied_source": true,
+          "source_truth_verified": false
+        },
+        {
+          "chunk_id": "fragment-150-rerun",
+          "source_id": "docstring:1.50.0:streamlit.fragment",
+          "excerpt_sha256": "994dce7d068792be284cd1ffd5421490bb8553725b42fc60e25243f982846670",
+          "content_sha256": "e8cff24d3ee04b7cf5f27362c8d3ea39096f5bb7c36e73f2f2ed54a26dc7eb1c",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.50.0"
+          ],
+          "version_scope": "exact_metadata_match",
+          "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+          "source_span": "JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring",
+          "receipt_source_pointer": "/condition_results/1/canonical_handoff/evidence/hits/1",
+          "full_quote_binding_to_supplied_source": true,
+          "source_truth_verified": false
+        }
+      ],
+      "whole_output_review": {
+        "method": "Assistant inspected the complete user draft, maintainer summary, rationale, every evidence-link claim, current source inventory and exact quoted excerpts. Deterministic reconstruction from the observed selection equals the full saved AnalysisResult; canonical handoff validation passed.",
+        "reviewer_kind": "assistant",
+        "human_reviewed": false,
+        "surfaces_reviewed": [
+          "user_draft",
+          "maintainer_summary",
+          "rationale",
+          "evidence_links.claim",
+          "quoted_excerpts_and_scope"
+        ],
+        "all_saved_rendered_surfaces_equal_reconstruction": true,
+        "question_and_missing_info_bound_to_current_manual_catalog": true,
+        "active_user_installation_version": "1.50.0",
+        "version_scope_basis": "Exact literal metadata match to the user-reported 1.50.0; no verified environment/source truth is inferred.",
+        "unsupported_app_cause_fix_regression_execution_or_resolution_claim_observed": false,
+        "state_mutation_or_tracker_execution_proposed_by_model": false,
+        "source_authenticity_independently_verified": false,
+        "source_truth_verified": false,
+        "semantic_quality_score": null,
+        "human_usefulness_score": null,
+        "limitation": "These are bounded exposed-development observations against an answer-informed, caller-curated catalog. Useful resolution, minimal question choice and independent source truth remain unscored."
+      },
+      "human_usefulness_score": null,
+      "count_as_general_quality_success": false
+    },
+    {
+      "condition_id": "controlled-v8-unknown-version-mixed",
+      "status": "started_without_rendered_proposal",
+      "request_id": "call:ef1b038c169249d7e37954ec1b75aadfe45943362df37ca90d254ec92828eef3",
+      "observed_error_code": "ProviderResponseInvalid",
+      "first_decision": null,
+      "final_decision": null,
+      "model_selection_observed": false,
+      "valid_rendered_analysis_observed": false,
+      "input_tokens": 3551,
+      "completion_tokens": 384,
+      "configured_output_cap": 384,
+      "completion_reached_configured_cap": true,
+      "finish_reason": {
+        "recorded": false,
+        "value": null
+      },
+      "truncation_hypothesis": {
+        "possible": true,
+        "confirmed": false
+      },
+      "invalid_grounded_plan_demonstrated": false,
+      "diagnostic_limit": "The gateway stopped before exposing a parsed plan or rendered decision. The original response/finish reason was not retained. ProviderResponseInvalid and 384 completion tokens do not establish malformed GroundedPlan JSON or confirm truncation.",
+      "whole_output_review": null,
+      "human_usefulness_score": null,
+      "count_as_semantic_success": false
+    },
+    {
+      "condition_id": "controlled-v8-version-correction",
+      "status": "not_observed_terminal_skip",
+      "skip_reason": "ProviderResponseInvalid",
+      "first_decision": null,
+      "final_decision": null,
+      "whole_output_review": null,
+      "human_usefulness_score": null,
+      "count_as_semantic_success": false
+    },
+    {
+      "condition_id": "controlled-v8-same-version-synthetic-conflict",
+      "status": "not_observed_terminal_skip",
+      "skip_reason": "ProviderResponseInvalid",
+      "first_decision": null,
+      "final_decision": null,
+      "whole_output_review": null,
+      "human_usefulness_score": null,
+      "count_as_semantic_success": false
+    },
+    {
+      "condition_id": "controlled-v8-refinement-stale-source",
+      "status": "not_observed_terminal_skip",
+      "skip_reason": "ProviderResponseInvalid",
+      "first_decision": null,
+      "final_decision": null,
+      "whole_output_review": null,
+      "human_usefulness_score": null,
+      "count_as_semantic_success": false
+    }
+  ],
+  "summary_observation": "With both the full and removed-mechanism pools, the model selected the same necessary caller-curated parent callback question. Exact quotes/source scopes were preserved; neither response diagnosed or fixed the unseen app. This does not show routing sensitivity to ablation, causal model improvement, independent gap discovery or general quality.",
+  "followup_boundary": "This closed baseline batch is not resumed/retried. Any output-cap configuration followup has its own preregistered source/protocol/ledger pins and receipt; its observation must not replace the unavailable original third decision or retroactively complete the six-condition baseline.",
+  "quality_claim": false,
+  "causal_improvement_claim": false,
+  "rag_quality_claim": false,
+  "heldout_claim": false,
+  "final_evaluation_case_count": 0,
+  "c5_reconciled": false
+}

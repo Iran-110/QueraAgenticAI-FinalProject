@@ -2,6 +2,68 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-13 — C4a actual prefix, import boundary and registered resource follow-up
+
+The clean pushed `8b16f2c` baseline passed Linux/Windows CI before its three
+actual provider sends. Full/removed evidence each produced a current-source
+parent-callback question; unknown-version stopped with ProviderResponseInvalid,
+and three later conditions were terminal-skipped. New settled estimate USD0.002005245,
+no new holds; original USD0.02 uncertainty/halt intact. Raw registration/receipt
+and a separate whole-output assistant review are preserved in the
+[packet](../experiments/controlled_model_baseline/README.md). Output 384 equals the
+failed request's cap; the old finish reason was not recorded, so truncation is
+possible rather than established. No decision is scored for missing output.
+
+A new separately preregistered single-send output-cap follow-up preserves the
+unknown condition's first prompt/material/model and original reviewer. Output 512,
+input reserve 15360, priced reserve USD0.002872320 within old continuation remaining
+USD0.002909545; no new grant/reset/unhalt. After exact-head Linux/Windows CI,
+clean pushed `07d759f` produced one complete version question with all five source
+scopes unconfirmed, 3551 input / 385 output tokens and observed stop finish reason.
+The first messages/material exactly match the original. New estimate USD0.000840015,
+combined 4 sends USD0.002845260; old continuation remaining USD0.00206953. This is
+single-input operational completion 0→1, not causal quality/truncation proof;
+the original baseline remains incomplete with three later controls unobserved.
+Engine limits stay 2/2/2/8; a requested second send is stopped rather than funded.
+
+Independent integration review also reproduced a grounding-first import cycle
+in a fresh interpreter. Lazy public orchestration exports preserve classes/API
+while avoiding eager service/handoff imports through leaf ports. Twelve cold
+subprocess regressions include a complete offline core-to-handoff turn. This
+import fault is unrelated to the recorded provider response error. The new
+complete local suite has 2797 passes, Ruff (199 files) and three demos pass. Original
+fixtures/protocol/reviewer/prompt and teammate modules are unchanged; C4 on
+independent dev, final evaluation/RAG and C5 stay open.
+
+## 2026-10-13 — C4a controlled model baseline, before provider execution
+
+The actual model has not yet selected outputs for the six frozen V8/V9 scenarios;
+those earlier receipts are authored software-boundary tests. This delivery adds
+a separate runtime-only material projection and the actual engine/gateway
+baseline harness. Existing fixtures/protocols remain byte-identical. All six
+scenarios belong to the same answer-informed exposed #12782/#12629 family and
+add zero independent final cases. Fixed bundles are not real RAG retrieval.
+
+Before any new provider execution, the reviewer inventory defines known facts,
+user/source gaps, admissible first/final decisions and complete output/source/
+question review. Catalogs/conflicts remain manually curated extra inputs.
+Descriptive case labels are replaced by stable opaque IDs; fact attribution
+remains intact, including explicit correction references. A pre-registration
+audit found future-removal wording in the old stale-source catalog at round1.
+The new compiler normalizes the catalog against the actually supplied current
+bundle. Reviewer decisions likewise depend on the reached round; a legitimate
+round1 documentary answer is not judged using unseen round2 omissions.
+
+All eighteen first/repair/refinement prompt paths fit the conservative 16384-byte
+plus-margin token reserve without shortening excerpts. The new paid protocol
+will pin input/source/reviewer hashes on a clean pushed commit before keys/send.
+At most six sends, sharing the existing grant's USD0.00491479 remaining actual
+cost cap, are guarded independently; partial/unfunded conditions remain explicit.
+The original USD0.02 uncertainty/halt and immutable authorization stay intact;
+ordinary live startup remains blocked. No staging/approval/actions are part of
+this decision baseline. Offline mock plumbing and future paid model choices
+will be recorded separately. Human usefulness/rubric is still null.
+
 ## 2026-10-13 — C2g registered comparison and subsequent version-policy binding
 
 Clean pushed preregistration `0b3f1cc` passed Linux/Windows CI before execution.
