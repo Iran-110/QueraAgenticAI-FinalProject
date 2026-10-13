@@ -15,7 +15,10 @@ import tarfile
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
+from agent_app.contracts import ConversationEntry, TurnConversation
 from agent_app.evaluation import runner
+from agent_app.orchestration.conversation import build_reasoning_message
+from agent_app.orchestration.intake import STREAMLIT_VERSION_QUESTION
 from agent_app.testing.http_pilot_runtime import offline_network
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -34,8 +37,8 @@ def digest(path):
 
 
 def registration(protocol_path=None):
-    """Capture the exact bytes parsed and require the V2 script registration."""
-    protocol_path = protocol_path or REGISTERED / "protocol-v2.json"
+    """Capture the exact bytes parsed and require the registered script pin."""
+    protocol_path = protocol_path or REGISTERED / "protocol-v3.json"
     raw = protocol_path.read_bytes()
     protocol = json.loads(raw)
     fixture = REGISTERED / "fixture-v1.json"
@@ -76,6 +79,69 @@ def check_registration(state):
         raise ValueError("RouteComparisonSourceChanged")
 
 
+def registered_message(submitted, position, turns, selected_path):
+    """Compose only the registered user inputs actually submitted by this step.
+
+    This uses the same current conversation contract as the API. The input is
+    reconstructed from registered visible turns, not copied from the prompt or
+    handoff. Only a released, bound canonical question can supply an assistant
+    entry. The exact current message and complete prior user text are preserved.
+    """
+    entries = []
+    for prior, contexts in submitted[: position + 1]:
+        identifier = prior["turn"]
+        if identifier not in selected_path:
+            raise ValueError("UnselectedSubmittedTurn")
+        visible = turns[identifier]["visible"]
+        request = prior["request"]
+        identities = {(context["case_id"], context["case_revision"]) for context in contexts}
+        if (
+            len(identities) != 1
+            or request["message"] != visible["message"]
+            or request.get("turn_id", identifier) != identifier
+            or bool(request.get("reply_to_proposal_id"))
+            != bool(visible.get("reply_to_approved_question"))
+        ):
+            raise ValueError("SubmittedTurnMismatch")
+        _, revision = next(iter(identities))
+        # Earlier approved questions are omitted because the composer does not
+        # include them unless the latest committed input is their bound reply.
+        if prior is submitted[position][0] and request.get("reply_to_proposal_id"):
+            previous = submitted[position - 1][0] if position else {}
+            proposal_id = request["reply_to_proposal_id"]
+            if not (
+                previous.get("proposal", {}).get("proposal_id") == proposal_id
+                and any(
+                    released.get("text") == STREAMLIT_VERSION_QUESTION.question
+                    for released in previous.get("released_outputs", [])
+                )
+            ):
+                raise ValueError("UnboundApprovedQuestion")
+            entries.append(
+                ConversationEntry(
+                    actor="assistant",
+                    reference_id=proposal_id,
+                    revision=revision - 1,
+                    text=STREAMLIT_VERSION_QUESTION.question,
+                )
+            )
+        entries.append(
+            ConversationEntry(
+                actor="user", reference_id=identifier, revision=revision, text=visible["message"]
+            )
+        )
+    latest = entries[-1]
+    return build_reasoning_message(
+        TurnConversation(
+            entries=tuple(entries),
+            latest_turn_id=latest.reference_id,
+            committed_revision=latest.revision,
+            latest_message=latest.text,
+            reply_to_proposal_id=submitted[position][0]["request"].get("reply_to_proposal_id"),
+        )
+    )
+
+
 def wire_audit(wires, steps, fixture, selected_path):
     """Audit each captured prompt against inputs actually submitted by then.
 
@@ -85,14 +151,29 @@ def wire_audit(wires, steps, fixture, selected_path):
     """
     turns = {turn["id"]: turn for turn in fixture["turns"]}
     submitted = []
+    expected_send_positions = []
     for step in steps:
         if "usage" in step:
             contexts = [row["context"] for row in step["usage"]["requests"]]
+            # In this registered MockLive helper each settled request is one
+            # captured MockTransport send, including malformed-output repairs.
+            # This is not a general claim about live/uncertain HTTP accounting.
+            expected_send_positions.extend(
+                len(submitted)
+                for row in step["usage"]["requests"]
+                if row.get("status") == "settled"
+            )
             submitted.append((step, contexts))
     checks = []
     for index, wire in enumerate(wires):
         serialized = json.dumps(wire, ensure_ascii=False)
-        matched, metadata_absent, forbidden = False, False, []
+        matched, handoff_matched, registered_matched, send_order_matched = (
+            False,
+            False,
+            False,
+            False,
+        )
+        metadata_absent, forbidden = False, []
         try:
             payload = json.loads(wire["messages"][-1]["content"])
             prompt_case = payload["case"]
@@ -125,12 +206,25 @@ def wire_audit(wires, steps, fixture, selected_path):
             ]
             if len(identities) == 1:
                 position = identities[0]
+                send_order_matched = (
+                    index < len(expected_send_positions)
+                    and expected_send_positions[index] == position
+                )
                 step = submitted[position][0]
                 identifier = step["turn"]
+                handoff = step.get("proposal", {}).get("review_handoff", {})
+                handoff_matched = payload["user_message"] == handoff.get(
+                    "user_message"
+                ) and prompt_case == handoff.get("case")
+                if identifier in selected_path:
+                    registered_matched = payload["user_message"] == registered_message(
+                        submitted, position, turns, selected_path
+                    )
                 matched = (
                     identifier in selected_path
-                    and payload["user_message"] == step["request"]["message"]
-                    and payload["user_message"] == turns[identifier]["visible"]["message"]
+                    and handoff_matched
+                    and registered_matched
+                    and send_order_matched
                 )
                 available = json.dumps(
                     [
@@ -158,23 +252,34 @@ def wire_audit(wires, steps, fixture, selected_path):
             {
                 "prompt_index": index + 1,
                 "matches_submitted_selected_turn": matched,
+                "matches_same_step_handoff": handoff_matched,
+                "matches_registered_accumulated_message": registered_matched,
+                "matches_captured_send_order": send_order_matched,
                 "private_gold_absent": PRIVATE_GOLD not in serialized,
                 "fixture_metadata_absent": metadata_absent,
                 "unavailable_markers_absent": not forbidden,
                 "unavailable_marker_names": forbidden,
             }
         )
-    passed = bool(checks) and all(
-        row["matches_submitted_selected_turn"]
-        and row["private_gold_absent"]
-        and row["fixture_metadata_absent"]
-        and row["unavailable_markers_absent"]
-        for row in checks
+    count_matched = len(wires) == len(expected_send_positions)
+    passed = (
+        bool(checks)
+        and count_matched
+        and all(
+            row["matches_submitted_selected_turn"]
+            and row["private_gold_absent"]
+            and row["fixture_metadata_absent"]
+            and row["unavailable_markers_absent"]
+            for row in checks
+        )
     )
     return {
         "scope": "Gold marker in entire wire; future markers in case/user message/history only, "
-        "excluding retrieved evidence/version metadata. Not general semantic leakage detection.",
+        "excluding retrieved evidence/version metadata. Prompt case/message must match its "
+        "same-step handoff and conversation composed only from already-submitted registered "
+        "selected inputs. Not general semantic leakage detection.",
         "captured_prompts": len(checks),
+        "settled_mock_requests_match_capture_count": count_matched,
         "all_passed": passed,
         "checks": checks,
     }
@@ -294,7 +399,7 @@ def compare(protocol_path=None):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
-    parser.add_argument("--protocol", type=Path, default=REGISTERED / "protocol-v2.json")
+    parser.add_argument("--protocol", type=Path, default=REGISTERED / "protocol-v3.json")
     args = parser.parse_args(argv)
     if args.output.exists():
         raise ValueError("RouteComparisonOutputExists")

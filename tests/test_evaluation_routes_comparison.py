@@ -25,7 +25,7 @@ def pinned_inputs(tmp_path, monkeypatch):
     script.write_text("# Temporary unit-test comparison script\n")
     fixture = registered / "fixture-v1.json"
     fixture.write_text(json.dumps({"turns": []}))
-    protocol = registered / "protocol-v2.json"
+    protocol = registered / "protocol-v3.json"
     protocol.write_text(
         json.dumps(
             {
@@ -94,22 +94,42 @@ def submitted_step(fixture, identifier, revision):
     return {
         "turn": identifier,
         "request": {"message": visible["message"]},
-        "usage": {"requests": [{"context": {"case_id": "dev-routes", "case_revision": revision}}]},
+        "usage": {
+            "requests": [
+                {
+                    "status": "settled",
+                    "context": {"case_id": "dev-routes", "case_revision": revision},
+                }
+            ]
+        },
     }
 
 
-def prompt(step, *, extra_case=None, extra_payload=None, evidence=None):
+def prompt(step, *, extra_case=None, extra_payload=None, evidence=None, message=None):
     payload = {
         "case": {
             "case_id": "dev-routes",
             "case_revision": step["usage"]["requests"][0]["context"]["case_revision"],
             **(extra_case or {}),
         },
-        "user_message": step["request"]["message"],
+        "user_message": message if message is not None else step["request"]["message"],
         "evidence": evidence or {},
         **(extra_payload or {}),
     }
+    step.setdefault("proposal", {})["review_handoff"] = {
+        "case": deepcopy(payload["case"]),
+        "user_message": payload["user_message"],
+    }
     return {"messages": [{"role": "user", "content": json.dumps(payload)}]}
+
+
+def accumulated_messages(steps, fixture, selected):
+    submitted = [(step, [row["context"] for row in step["usage"]["requests"]]) for step in steps]
+    turns = {turn["id"]: turn for turn in fixture["turns"]}
+    return [
+        comparison.registered_message(submitted, index, turns, selected)
+        for index in range(len(steps))
+    ]
 
 
 @pytest.mark.parametrize(
@@ -143,11 +163,14 @@ def test_future_marker_is_permitted_only_after_its_selected_input_was_submitted(
         submitted_step(wire_fixture, "version", 2),
         submitted_step(wire_fixture, "correction", 3),
     ]
-    wires = [prompt(step) for step in steps]
-    wires[-1] = prompt(
-        steps[-1], extra_case={"facts": [{"name": "old_version", "value": "1.50.0"}]}
-    )
     selected = ["initial", "version", "correction"]
+    messages = accumulated_messages(steps, wire_fixture, selected)
+    wires = [prompt(step, message=message) for step, message in zip(steps, messages, strict=True)]
+    wires[-1] = prompt(
+        steps[-1],
+        extra_case={"facts": [{"name": "old_version", "value": "1.50.0"}]},
+        message=messages[-1],
+    )
     assert comparison.wire_audit(wires, steps, wire_fixture, selected)["all_passed"] is True
     wires[0] = prompt(steps[0], extra_payload={"conversation": ["1.50.0"]})
     audit = comparison.wire_audit(wires, steps, wire_fixture, selected)
@@ -157,6 +180,7 @@ def test_future_marker_is_permitted_only_after_its_selected_input_was_submitted(
 
 def test_repair_repeats_same_submitted_turn_without_authorizing_future_inputs(wire_fixture):
     step = submitted_step(wire_fixture, "initial", 1)
+    step["usage"]["requests"].append(deepcopy(step["usage"]["requests"][0]))
     wire = prompt(step)
     audit = comparison.wire_audit([wire, deepcopy(wire)], [step], wire_fixture, ["initial"])
     assert audit["all_passed"] is True
@@ -197,7 +221,7 @@ def test_unattributed_or_empty_capture_is_not_a_wire_audit_pass(wire_fixture):
     assert not comparison.wire_audit([], [step], wire_fixture, ["initial"])["all_passed"]
 
 
-def test_cli_defaults_to_v2_and_preserves_existing_output_without_comparing(tmp_path, monkeypatch):
+def test_cli_defaults_to_v3_and_preserves_existing_output_without_comparing(tmp_path, monkeypatch):
     output = tmp_path / "result.json"
     output.write_text("existing receipt")
     monkeypatch.setattr(comparison, "compare", lambda *_: pytest.fail("No overwrite comparison"))
@@ -219,4 +243,90 @@ def test_cli_defaults_to_v2_and_preserves_existing_output_without_comparing(tmp_
 
     monkeypatch.setattr(comparison, "compare", fake_compare)
     comparison.main(["--output", str(output)])
-    assert selected == [comparison.REGISTERED / "protocol-v2.json"]
+    assert selected == [comparison.REGISTERED / "protocol-v3.json"]
+
+
+def test_same_step_handoff_match_does_not_authorize_injected_history(wire_fixture):
+    steps = [
+        submitted_step(wire_fixture, "initial", 1),
+        submitted_step(wire_fixture, "callback", 2),
+    ]
+    selected = ["initial", "callback"]
+    messages = accumulated_messages(steps, wire_fixture, selected)
+    wires = [prompt(step, message=message) for step, message in zip(steps, messages, strict=True)]
+    wires[1] = prompt(steps[1], message="Unregistered extra history.\n\n" + messages[1])
+    audit = comparison.wire_audit(wires, steps, wire_fixture, selected)
+    assert audit["checks"][1]["matches_same_step_handoff"] is True
+    assert audit["checks"][1]["matches_registered_accumulated_message"] is False
+    assert audit["all_passed"] is False
+
+
+def test_prompt_drift_from_current_handoff_is_rejected(wire_fixture):
+    step = submitted_step(wire_fixture, "initial", 1)
+    wire = prompt(step)
+    step["proposal"]["review_handoff"]["user_message"] = "Different unobserved frame."
+    audit = comparison.wire_audit([wire], [step], wire_fixture, ["initial"])
+    assert audit["checks"][0]["matches_registered_accumulated_message"] is True
+    assert audit["checks"][0]["matches_same_step_handoff"] is False
+    assert audit["all_passed"] is False
+
+
+def test_future_frame_cannot_use_a_later_handoff_to_pass_an_earlier_capture(wire_fixture):
+    steps = [
+        submitted_step(wire_fixture, "initial", 1),
+        submitted_step(wire_fixture, "callback", 2),
+    ]
+    selected = ["initial", "callback"]
+    messages = accumulated_messages(steps, wire_fixture, selected)
+    wires = [prompt(step, message=message) for step, message in zip(steps, messages, strict=True)]
+    wires.reverse()
+    audit = comparison.wire_audit(wires, steps, wire_fixture, selected)
+    assert audit["checks"][0]["matches_same_step_handoff"] is True
+    assert audit["checks"][0]["matches_registered_accumulated_message"] is True
+    assert audit["checks"][0]["matches_captured_send_order"] is False
+    assert audit["all_passed"] is False
+
+
+@pytest.mark.parametrize(
+    "target,selected",
+    [
+        ("parent_callback_code", ["initial", "callback"]),
+        ("streamlit_version", ["initial", "version", "correction"]),
+        ("escalate", ["initial"]),
+    ],
+)
+def test_actual_runner_mock_transport_accumulated_message_is_audited_before_new_registration(
+    tmp_path, target, selected
+):
+    # Integration regression only: one current runner with the exposed test
+    # fixture. No archive/baseline or registered full comparison is run here.
+    from test_eval_conditional_routes import MockLive, fixture, write
+
+    data = fixture()
+    adapters = MockLive(tmp_path, target)
+    try:
+        with comparison.offline_network():
+            receipt = comparison.runner.run(
+                [write(tmp_path, data)], mode="live", live=adapters, conditional_routes=True
+            )
+        steps = receipt["cases"][0]["steps"]
+        assert [step["turn"] for step in steps if "usage" in step] == selected
+        assert receipt["summary"]["coverage_complete"] is True
+        audit = comparison.wire_audit(adapters.wire, steps, data, selected)
+        assert audit["all_passed"] is True
+        assert all(row["matches_same_step_handoff"] for row in audit["checks"])
+        assert all(row["matches_registered_accumulated_message"] for row in audit["checks"])
+        if len(selected) > 1:
+            second = json.loads(adapters.wire[1]["messages"][-1]["content"])
+            latest_visible = next(
+                turn["visible"]["message"] for turn in data["turns"] if turn["id"] == selected[1]
+            )
+            assert second["user_message"] != latest_visible
+            assert (
+                "Original user problem (historical context; not current facts):"
+                in second["user_message"]
+            )
+        assert all(port.client.is_closed for port in adapters.ports)
+    finally:
+        for port in adapters.ports:
+            port.close()
