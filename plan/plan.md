@@ -13,6 +13,12 @@
 جدا ثبت شده‌اند؛ نتیجه بعد از اجرا اضافه شود. این کار scope retrieval را
 بازنویسی یا R4 را بسته فرض نمی‌کند؛ وظایف سه dev case و corpus تیم همان‌اند.
 
+دو send ثبت‌شده انجام شد؛ نتیجهٔ آنلاین و کنترل‌های query جدا منتشر شوند.
+منبع arm جدید نسخهٔ 1.64.0 برای کاربر 1.49.0 بود و مدل fix ادعا نکرد.
+اتصال سیاست موجود `exact_user_version` به backend توصیهٔ نسخهٔ فعلی، پس از
+probe و با تست آفلاین انجام می‌شود؛ مسیر comparison با `all` محفوظ است.
+این فیلتر جای ranking/backfill و coverage حسن در R4 را نمی‌گیرد.
+
 نسخهٔ قبلی با [PR #36](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/36)
 روی main `a087770` است؛ [CI انتشار Linux/Windows](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38387712898)
 پاس شد. [تحویل تازهٔ مستقل](../docs/evaluation-live-routes.fa.md): runner فقط

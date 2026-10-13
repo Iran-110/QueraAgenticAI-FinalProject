@@ -89,6 +89,7 @@ def create_app(
     reviewer_tokens: Mapping[str, str],
     adapters: Callable[[api.Scenario], api.RunAdapters] | None = None,
     case_adapters: Callable[[CaseState, api.Scenario], api.RunAdapters] | None = None,
+    evidence_scope: Literal["all", "exact_user_version"] = "all",
     retrieval_label: Literal["scripted", "local_chroma_hash"] = "scripted",
     reasoning_label: Literal[
         "scripted", "grounded_fake_gateway", "metis_grounded_live"
@@ -102,12 +103,16 @@ def create_app(
     ``case_adapters`` receives a detached authoritative committed case after
     ingress. It is mutually exclusive with legacy scenario-only ``adapters``;
     exact event replay allocates neither. It never receives review gold.
+    ``evidence_scope`` is trusted application configuration. Current-installation
+    advice may select ``exact_user_version``; comparison workflows retain ``all``.
     """
     if (
         not isinstance(tracker, SQLiteCaseTracker)
         or (adapters is not None and not callable(adapters))
         or (case_adapters is not None and not callable(case_adapters))
         or (adapters is not None and case_adapters is not None)
+        or type(evidence_scope) is not str
+        or evidence_scope not in {"all", "exact_user_version"}
         or retrieval_label not in {"scripted", "local_chroma_hash"}
         or reasoning_label not in {"scripted", "grounded_fake_gateway", "metis_grounded_live"}
         or (reasoning_label != "scripted" and adapters is None and case_adapters is None)
@@ -209,7 +214,12 @@ def create_app(
                 ports.cleanup,
             )
 
-        service = CoreTurnService(tracker, factory, stage_with_result=tracker.stage_run_proposal)
+        service = CoreTurnService(
+            tracker,
+            factory,
+            stage_with_result=tracker.stage_run_proposal,
+            evidence_scope=evidence_scope,
+        )
         outcome = service.submit(
             request.user_turn(case_id, request.expected_revision),
             reply_to_proposal_id=request.reply_to_proposal_id,

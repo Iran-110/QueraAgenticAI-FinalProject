@@ -31,6 +31,15 @@ Raw model input, handoffs, events, approvals and model-authored refinement remai
 unchanged. Registered comparison controls and the smaller-output bounded online
 probe retain their own fixtures/protocols; no shared-port or RAG adapter change.
 
+The persistent factory now forwards caller-owned
+`evidence_scope="exact_user_version"` to the existing engine policy. The default
+`"all"` supports historical/comparison workflows. `live_backend.configured_app`
+selects exact scope for current-installation advice: versioned mismatches and
+versioned hits without a confirmed user version are excluded before reasoning;
+unversioned hits remain explicitly unconfirmed. This filters returned evidence,
+does not rerank/backfill the index, and can leave no useful source. This binding
+was verified offline after the paired paid probe, which used `"all"` scope.
+
 The core-owned [CoreTurnService](core-turn-service.fa.md) now composes the existing
 tracker port with lazy per-run adapters and full handoffs. Use it for persistent
 ingress rather than copying test-harness policy into the API. C2d now supplies
