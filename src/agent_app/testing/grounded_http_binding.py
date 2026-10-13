@@ -149,6 +149,9 @@ class _GatewayBridge:
             if self.gateway.reasoner.client.is_closed:
                 raise ValueError("MockGatewayClosed")
             self.request = request.model_copy(deep=True)
+            # Capture the exact request sent after core continuity enrichment,
+            # rather than the earlier caller-factory input.
+            self.latest_request = self.request.model_copy(deep=True)
             self.context = context.model_copy(deep=True)
             record = {
                 "request_id": request_id_for(context),

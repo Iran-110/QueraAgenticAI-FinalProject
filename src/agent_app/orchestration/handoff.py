@@ -111,6 +111,12 @@ class ReasoningCapture:
         self.last = _frame(ReasoningFrame(case, user_message, evidence, context))
         return self.reasoner.analyze(case, user_message, evidence, context=context)
 
+    def _release_core_scope(self, run_id: str, case_id: str, case_revision: int) -> None:
+        """Forward optional core state cleanup without discarding the final frame."""
+        release = getattr(self.reasoner, "_release_core_scope", None)
+        if callable(release):
+            release(run_id, case_id, case_revision)
+
 
 def _inventory(case: CaseState, evidence: EvidenceBundle) -> tuple[SourceReviewEntry, ...]:
     return tuple(
