@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "protocol_id": "configured-user-gap-capability-v1",
+  "date": "2026-10-14",
+  "baseline_source_commit": "43ee9fb0a9b22e2596990551e437946d08c204b5",
+  "registered_before_production_change": true,
+  "registered_controls": 21,
+  "registered_pins": {
+    "tests/test_configured_user_gap_catalog.py": "6b894d8ba785ad6ece6c3167a2d69a132e9e503916e6192511042d505c3079a0",
+    "tests/test_user_gap_configuration_http.py": "833d0087e15c8055d71485d380ce40e4b97ad25a9ba3a1ad038d08aad3293ccb",
+    "experiments/user_gap_configuration/inputs-v1.json": "8af45f3a1fe91cd931dd4e8ee5bfa90c4093f3e36d66951200681e8898a9bd9c",
+    "experiments/user_gap_configuration/scenario-review-v1.json": "177c2382ef1919fb22461e95adcabeba46fa5bfb94ad4bdb50464fe2c86012f9"
+  },
+  "production_change": {
+    "opt_in_environment_key": "AGENT_USER_GAP_CATALOG",
+    "config_format": {
+      "schema_version": 1,
+      "user_gaps": "list of at most six existing GroundedGap user definitions"
+    },
+    "max_file_bytes": 32768,
+    "load_once_before_credential_lookup": true,
+    "no_default_vocabulary": true,
+    "existing_ledger_and_index_preflight_remain": true,
+    "no_contract_UI_RAG_tracker_changes": true
+  },
+  "arms": {
+    "baseline": "Actual Git-archived baseline configured_factory ignores optional catalog; its existing runtime source catalog stays unchanged.",
+    "candidate": "Actual configured_factory reads reviewed vocabulary and passes immutable definitions to existing caller_catalog; same explicit unknown/current USER facts filter."
+  },
+  "comparison": {
+    "identical_registered_test_bytes_and_node_ids": true,
+    "same_case_message_evidence_and_runtime_source_gaps": true,
+    "complete_requests_and_prompt_hashes_differ_with_question_catalog": true,
+    "whole_output_handoff_validation": true,
+    "authored_mock_selection_is_not_model_quality": true,
+    "historical_protocols_and_receipts_unchanged": true
+  },
+  "scope": {
+    "exposed_issue_family_ids": [
+      12782,
+      12629
+    ],
+    "independent_issue_families": 1,
+    "independent_final_evaluation_cases": 0,
+    "answer_informed_development": true,
+    "same_issue_answers_used_as_supplied_evidence": false,
+    "new_automatic_gap_or_conflict_detection": false,
+    "model_source_gold_cannot_select_configuration": true,
+    "user_and_source_gaps_separate": true,
+    "claims_source_authenticity_or_cause_fix": false,
+    "quality_claim": false,
+    "real_model_requests": 0,
+    "paid_api_cost_usd": "0",
+    "human_usefulness_score": null
+  },
+  "offline_execution": {
+    "temporary_ledgers_and_SQLite_only": true,
+    "HTTP_test_uses_real_offline_Chroma_index_and_mock_provider": true,
+    "other_config_tests_mock_ledger_and_index_construction": true,
+    "external_network_and_real_credentials_disabled": true,
+    "production_ledger_sha256": "3886163b9acfb118b41caf145141bdfd434a3e949a4ed37a67ee917d287a2909",
+    "production_ledger_changes_forbidden": true
+  },
+  "live_preflight": {
+    "old_grant_remaining_usd": "0.00206953",
+    "proposed_small_pair_reserve_per_request_usd": "0.001689600",
+    "two_request_worst_case_usd": "0.003379200",
+    "fully_funded_pair": false,
+    "paid_execution_registered": false,
+    "new_grant_refill_reset_unhalt": false,
+    "c5_resolved": false,
+    "decision": "Do not spend on an unfunded pair; do the independent core capability change offline."
+  },
+  "stop_reporting": {
+    "freeze_oracle_before_baseline": true,
+    "nonzero_collection_errors_or_skips_invalidate_comparison": true,
+    "all_control_outcomes_and_denominators_preserved": true,
+    "errors_in_harness_are_not_product_scores": true,
+    "no_retuning_after_outcomes": true
+  }
+}

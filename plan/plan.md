@@ -1,8 +1,18 @@
 # plan و checklist تیم — Streamlit Support Assistant
 
-به‌روزرسانی: ۲۰۲۶-۱۰-۱۳. این نسخه ادامهٔ plan محمدحسن روی `main` در commit `2ead870` است؛ [نسخهٔ قبلی](archive/plan-before-task-checklist.md) حفظ شده. مبنای regressionهای بازبینی `6131091` بود؛ انتشار tracker با `464e55e` و سپس #21 با `94b60e1` و [CI موفق](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38151154794) ثبت شده‌اند. مبنای baseline تازهٔ C2a همین `94b60e1` است. این فایل برای تقسیم کار و شرط پایان taskهاست؛ روزهای sprint قبلی را تاریخ تحویل حساب نمی‌کنیم. الزام‌ها از صورت اصلی پروژه می‌آیند، نه از ابزارها و frameworkهای پیشنهادی plan.
+به‌روزرسانی: ۲۰۲۶-۱۰-۱۴. این نسخه ادامهٔ plan محمدحسن روی `main` در commit `2ead870` است؛ [نسخهٔ قبلی](archive/plan-before-task-checklist.md) حفظ شده. مبنای regressionهای بازبینی `6131091` بود؛ انتشار tracker با `464e55e` و سپس #21 با `94b60e1` و [CI موفق](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38151154794) ثبت شده‌اند. مبنای baseline تازهٔ C2a همین `94b60e1` است. این فایل برای تقسیم کار و شرط پایان taskهاست؛ روزهای sprint قبلی را تاریخ تحویل حساب نمی‌کنیم. الزام‌ها از صورت اصلی پروژه می‌آیند، نه از ابزارها و frameworkهای پیشنهادی plan.
 
 ## وضعیت فعلی
+
+- [ ] **C4c — vocabulary سؤال‌های caller در factory معمول؛ ساسان.**
+  [ثبت قبل از اصلاح](../experiments/user_gap_configuration/protocol-v1.json):
+  ۲۱ کنترل، چهار state از همان خانوادهٔ exposed و سه سؤال بازبینی‌شده.
+  مسیر معمول فقط gap نسخه را داشت؛ تنظیم اختیاری `AGENT_USER_GAP_CATALOG`
+  باید vocabulary موجود را به factory برساند، فقط برای unknown صریح و بدون
+  تکرار fact فعال USER. source catalog، قراردادها و فایل‌های اعضا ثابت‌اند.
+  baseline سپس تغییر و مقایسهٔ همان کنترل‌ها اجرا شوند؛ mock کیفیت مدل نیست.
+  ledger/halt/grant قبلی محفوظ‌اند؛ pair مدل با remaining grant کامل تأمین
+  نمی‌شود، پس برای این اصلاح اجرای paid انجام نمی‌دهیم.
 
 - [x] **C2h — سؤال‌های mock مطابق facts فعلی؛ ساسان، تحویل محدود آفلاین.**
   انتشار و CI نهایی در [PR #42](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/42) است.

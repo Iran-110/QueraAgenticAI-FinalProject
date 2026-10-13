@@ -1,0 +1,969 @@
+{
+  "schema_version": 1,
+  "fixture_id": "user-gap-configuration-inputs-v1",
+  "baseline_source_commit": "43ee9fb0a9b22e2596990551e437946d08c204b5",
+  "user_gap_catalog": {
+    "schema_version": 1,
+    "user_gaps": [
+      {
+        "name": "parent_callback_code",
+        "kind": "user",
+        "description": "The parent selector callback and relevant state mutation lines are absent.",
+        "necessity": "The missing callback path can distinguish application state changes from documented widget behavior.",
+        "question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?"
+      },
+      {
+        "name": "state_update_order",
+        "kind": "user",
+        "description": "The execution order of state updates and multiselect construction is absent.",
+        "necessity": "The order can change which stored value exists when the failing widget is constructed.",
+        "question": "In the failing full app, in what order do the parent callback, Session State assignments or deletions, and multiselect construction run?"
+      },
+      {
+        "name": "minimal_failing_reproduction",
+        "kind": "user",
+        "description": "The supplied reduced example works; a minimal failing example is unavailable.",
+        "necessity": "An example that actually fails would narrow the unresolved full-app path; the working reduction is already recorded.",
+        "question": "Can you share a minimal example that actually shows the empty-default failure, including the parent selector and its state updates?"
+      }
+    ]
+  },
+  "provenance": {
+    "source_suite": "experiments/decision_quality/cases-grounding-v9.json",
+    "source_suite_sha256": "66e132abb1be158ab162fa2a7551f67d2000e44d65627fe8b4e5c9e7b3442d70",
+    "source_review": "experiments/controlled_model_baseline/scenario-review-v1.json",
+    "source_review_sha256": "a49ef39f0c7e5de0ce1cb427dca2074e4976c35cbb2163414c9e38c17a2b9d7e",
+    "issue_family": [
+      12782,
+      12629
+    ],
+    "answer_informed_selection": true,
+    "same_issue_answer_in_model_evidence": false,
+    "exposed_development_only": true,
+    "independent_final_case_count": 0,
+    "reviewer_and_source_condition_ids_never_model_payload": true,
+    "opaque_runtime_case_ids": true,
+    "question_definition_text": "exact existing V9 user-gap definitions; no new question wording",
+    "no_automatic_gap_discovery": true,
+    "no_conflict_detection": true,
+    "no_real_RAG_quality_claim": true
+  },
+  "arm_definition": {
+    "baseline": "caller_catalog(..., definitions=())",
+    "configured": "caller_catalog(..., definitions=three caller-owned user-gap definitions)",
+    "held_constant": [
+      "case",
+      "user_message",
+      "current evidence bundle",
+      "base runtime source catalog",
+      "model/config/limits except registered arm identity"
+    ],
+    "changed": [
+      "available caller question definitions",
+      "derived complete request/context hashes"
+    ],
+    "no_claim_of_identical_complete_model_prompts": true
+  },
+  "conditions": [
+    {
+      "condition_id": "gap-condition-01",
+      "source_condition_id": "controlled-v8-full",
+      "case": {
+        "case_id": "c4-gap-condition-01",
+        "case_revision": 0,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.50.0",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "python_version",
+            "value": "3.12.9",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Chrome",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_prior_version_behavior",
+            "value": "The reporter says the same full-app logic worked in 1.49.1",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "checks_performed": [
+          "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+        ],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "In Streamlit 1.50.0, changing a parent selector resets session state and a multiselect inside @st.fragment displays empty rather than its saved default. The same full-app logic worked in 1.49.1. Python 3.12.9 and Chrome. The small example with a parent selectbox and fragment multiselect works correctly and does not reproduce the failure. I cannot yet provide a minimal failing example. What is the next useful step?",
+      "bundles": [
+        {
+          "snapshot_id": "core-controlled-evidence-v8",
+          "hits": [
+            {
+              "chunk_id": "multiselect-150-default",
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "fragment-150-rerun",
+              "source_id": "docstring:1.50.0:streamlit.fragment",
+              "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "release-150-multiselect-key-identity-v8",
+              "source_id": "release-notes:1.50.0:widget-key-identity",
+              "excerpt": "## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- 🤹 Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- 🎨 Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- 📊 [`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- 🔑 To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123",
+              "source_type": "release_note",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause",
+              "score": null,
+              "score_kind": null
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 1,
+          "warnings": []
+        },
+        {
+          "snapshot_id": "core-controlled-evidence-v8",
+          "hits": [
+            {
+              "chunk_id": "multiselect-150-default",
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "fragment-150-rerun",
+              "source_id": "docstring:1.50.0:streamlit.fragment",
+              "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "release-150-multiselect-key-identity-v8",
+              "source_id": "release-notes:1.50.0:widget-key-identity",
+              "excerpt": "## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- 🤹 Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- 🎨 Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- 📊 [`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- 🔑 To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123",
+              "source_type": "release_note",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause",
+              "score": null,
+              "score_kind": null
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 2,
+          "warnings": []
+        }
+      ],
+      "base_catalog_by_round": [
+        {
+          "retrieval_round": 1,
+          "gaps": [],
+          "conflict_groups": []
+        },
+        {
+          "retrieval_round": 2,
+          "gaps": [],
+          "conflict_groups": []
+        }
+      ]
+    },
+    {
+      "condition_id": "gap-condition-02",
+      "source_condition_id": "controlled-v8-key-evidence-removed",
+      "case": {
+        "case_id": "c4-gap-condition-02",
+        "case_revision": 0,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.50.0",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "python_version",
+            "value": "3.12.9",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Chrome",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_prior_version_behavior",
+            "value": "The reporter says the same full-app logic worked in 1.49.1",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "checks_performed": [
+          "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+        ],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "In Streamlit 1.50.0, changing a parent selector resets session state and a multiselect inside @st.fragment displays empty rather than its saved default. The same full-app logic worked in 1.49.1. Python 3.12.9 and Chrome. The small example with a parent selectbox and fragment multiselect works correctly and does not reproduce the failure. I cannot yet provide a minimal failing example. What is the next useful step?",
+      "bundles": [
+        {
+          "snapshot_id": "core-controlled-evidence-v8",
+          "hits": [
+            {
+              "chunk_id": "multiselect-150-default",
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "fragment-150-rerun",
+              "source_id": "docstring:1.50.0:streamlit.fragment",
+              "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring",
+              "score": null,
+              "score_kind": null
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 1,
+          "warnings": []
+        },
+        {
+          "snapshot_id": "core-controlled-evidence-v8",
+          "hits": [
+            {
+              "chunk_id": "multiselect-150-default",
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "fragment-150-rerun",
+              "source_id": "docstring:1.50.0:streamlit.fragment",
+              "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring",
+              "score": null,
+              "score_kind": null
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 2,
+          "warnings": []
+        }
+      ],
+      "base_catalog_by_round": [
+        {
+          "retrieval_round": 1,
+          "gaps": [],
+          "conflict_groups": []
+        },
+        {
+          "retrieval_round": 2,
+          "gaps": [],
+          "conflict_groups": []
+        }
+      ]
+    },
+    {
+      "condition_id": "gap-condition-03",
+      "source_condition_id": "controlled-v8-unknown-version-mixed",
+      "case": {
+        "case_id": "c4-gap-condition-03",
+        "case_revision": 0,
+        "facts": [
+          {
+            "name": "python_version",
+            "value": "3.12.9",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Chrome",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [
+          "streamlit_version",
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "checks_performed": [
+          "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+        ],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "A multiselect inside @st.fragment displays empty instead of its saved default after a parent selector changes and resets state. My reduced example works, but the full app fails and the relevant parent callback is not included. Python 3.12.9 and Chrome. I have not supplied the installed Streamlit version or an earlier version comparison. Which information is useful next?",
+      "bundles": [
+        {
+          "snapshot_id": "core-controlled-evidence-v8",
+          "hits": [
+            {
+              "chunk_id": "multiselect-149-default-v8",
+              "source_id": "docstring:1.49.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.49.0"
+              ],
+              "source_span": "JSON pointer /1.49.0/streamlit.multiselect; default parameter in normalized docstring",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "multiselect-149-signature-v8",
+              "source_id": "docstring:1.49.0:streamlit.multiselect",
+              "excerpt": "st.multiselect(label, options, default=None, format_func=special_internal_function, key=None, help=None, on_change=None, args=None, kwargs=None, *, max_selections=None, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, width=\"stretch\")",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.49.0"
+              ],
+              "source_span": "JSON pointer /1.49.0/streamlit.multiselect/signature; exact 1.49.0, not 1.49.1 coverage",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "multiselect-150-default",
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "release-150-multiselect-key-identity-v8",
+              "source_id": "release-notes:1.50.0:widget-key-identity",
+              "excerpt": "## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- 🤹 Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- 🎨 Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- 📊 [`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- 🔑 To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123",
+              "source_type": "release_note",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "widget-key-identity-history-snapshot-v8",
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "excerpt": "**Key-based widget identity (v1.55.0)**\n\nAs of v1.55.0, all widgets support key-based identity. When a `key` is provided, the key is the primary determinant of the widget's identity, and changing other parameters (like `label`, `options`, or `default`) won't reset the widget. Some parameters that constrain valid values still affect identity for specific widgets, even when a key is provided. For example, changing `min_value` or `max_value` for `st.slider` will reset the widget because the current value could be invalidated. These exceptions are noted in each widget's `key` parameter description.\n\nKey-based identity was progressively introduced from v1.50.0 through v1.55.0. If you're using an older version, check the [release notes](/develop/quick-reference/release-notes) to see which widgets support key-based identity in your version.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L29",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [],
+              "source_span": "Markdown lines 29-33: unversioned October 2026 concept snapshot distinguishes progressive rollout; not exact historical app coverage",
+              "score": null,
+              "score_kind": null
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 1,
+          "warnings": []
+        },
+        {
+          "snapshot_id": "core-controlled-evidence-v8",
+          "hits": [
+            {
+              "chunk_id": "multiselect-149-default-v8",
+              "source_id": "docstring:1.49.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.49.0"
+              ],
+              "source_span": "JSON pointer /1.49.0/streamlit.multiselect; default parameter in normalized docstring",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "multiselect-149-signature-v8",
+              "source_id": "docstring:1.49.0:streamlit.multiselect",
+              "excerpt": "st.multiselect(label, options, default=None, format_func=special_internal_function, key=None, help=None, on_change=None, args=None, kwargs=None, *, max_selections=None, placeholder=None, disabled=False, label_visibility=\"visible\", accept_new_options=False, width=\"stretch\")",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.49.0"
+              ],
+              "source_span": "JSON pointer /1.49.0/streamlit.multiselect/signature; exact 1.49.0, not 1.49.1 coverage",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "multiselect-150-default",
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "release-150-multiselect-key-identity-v8",
+              "source_id": "release-notes:1.50.0:widget-key-identity",
+              "excerpt": "## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- 🤹 Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- 🎨 Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- 📊 [`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- 🔑 To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123",
+              "source_type": "release_note",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "widget-key-identity-history-snapshot-v8",
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "excerpt": "**Key-based widget identity (v1.55.0)**\n\nAs of v1.55.0, all widgets support key-based identity. When a `key` is provided, the key is the primary determinant of the widget's identity, and changing other parameters (like `label`, `options`, or `default`) won't reset the widget. Some parameters that constrain valid values still affect identity for specific widgets, even when a key is provided. For example, changing `min_value` or `max_value` for `st.slider` will reset the widget because the current value could be invalidated. These exceptions are noted in each widget's `key` parameter description.\n\nKey-based identity was progressively introduced from v1.50.0 through v1.55.0. If you're using an older version, check the [release notes](/develop/quick-reference/release-notes) to see which widgets support key-based identity in your version.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L29",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [],
+              "source_span": "Markdown lines 29-33: unversioned October 2026 concept snapshot distinguishes progressive rollout; not exact historical app coverage",
+              "score": null,
+              "score_kind": null
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 2,
+          "warnings": []
+        }
+      ],
+      "base_catalog_by_round": [
+        {
+          "retrieval_round": 1,
+          "gaps": [
+            {
+              "name": "streamlit_version",
+              "kind": "user",
+              "description": "The affected application's Streamlit version is unknown.",
+              "necessity": "The user can report the installed release to check source applicability.",
+              "question": "Which Streamlit version is installed in the affected environment?"
+            },
+            {
+              "name": "exact_version_documentation",
+              "kind": "source",
+              "description": "No supplied record has exact metadata for the confirmed version.",
+              "necessity": "Further documentation retrieval or maintainer review may be needed.",
+              "question": null
+            }
+          ],
+          "conflict_groups": []
+        },
+        {
+          "retrieval_round": 2,
+          "gaps": [
+            {
+              "name": "streamlit_version",
+              "kind": "user",
+              "description": "The affected application's Streamlit version is unknown.",
+              "necessity": "The user can report the installed release to check source applicability.",
+              "question": "Which Streamlit version is installed in the affected environment?"
+            },
+            {
+              "name": "exact_version_documentation",
+              "kind": "source",
+              "description": "No supplied record has exact metadata for the confirmed version.",
+              "necessity": "Further documentation retrieval or maintainer review may be needed.",
+              "question": null
+            }
+          ],
+          "conflict_groups": []
+        }
+      ]
+    },
+    {
+      "condition_id": "gap-condition-04",
+      "source_condition_id": "controlled-v8-version-correction",
+      "case": {
+        "case_id": "c4-gap-condition-04",
+        "case_revision": 1,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.50.0",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "superseded"
+          },
+          {
+            "name": "python_version",
+            "value": "3.12.9",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "browser",
+            "value": "Chrome",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "reported_prior_version_behavior",
+            "value": "The reporter says the same full-app logic worked in 1.49.1",
+            "source_ref": "user/issue-12782",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "prior_evidence_observation",
+            "value": "The 1.50.0 release note documents key-based identity for the formerly reported version",
+            "source_ref": "release-150-multiselect-key-identity-v8",
+            "turn_id": "controlled-v8-before-correction",
+            "provenance_kind": "evidence",
+            "status": "superseded"
+          },
+          {
+            "name": "streamlit_version",
+            "value": "1.49.1",
+            "source_ref": "user/controlled-v8-version-correction",
+            "turn_id": "controlled-v8-correction",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction",
+          "prior_evidence_observation"
+        ],
+        "checks_performed": [
+          "User reports the reduced example still works after correcting the deployment version to 1.49.1"
+        ],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "user_message": "Correction: this deployment is Streamlit 1.49.1, not 1.50.0. The full app still shows empty defaults after the parent selector changes. The reduced example still works. Please use the corrected active version; the parent callback and state-update code are still not supplied.",
+      "bundles": [
+        {
+          "snapshot_id": "core-controlled-evidence-v8",
+          "hits": [
+            {
+              "chunk_id": "multiselect-150-default",
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "fragment-150-rerun",
+              "source_id": "docstring:1.50.0:streamlit.fragment",
+              "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "release-150-multiselect-key-identity-v8",
+              "source_id": "release-notes:1.50.0:widget-key-identity",
+              "excerpt": "## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- 🤹 Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- 🎨 Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- 📊 [`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- 🔑 To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123",
+              "source_type": "release_note",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause",
+              "score": null,
+              "score_kind": null
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 1,
+          "warnings": []
+        },
+        {
+          "snapshot_id": "core-controlled-evidence-v8",
+          "hits": [
+            {
+              "chunk_id": "multiselect-150-default",
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "fragment-150-rerun",
+              "source_id": "docstring:1.50.0:streamlit.fragment",
+              "excerpt": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app.",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_type": "doc",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "JSON pointer /1.50.0/streamlit.fragment; fragment rerun behavior in normalized docstring",
+              "score": null,
+              "score_kind": null
+            },
+            {
+              "chunk_id": "release-150-multiselect-key-identity-v8",
+              "source_id": "release-notes:1.50.0:widget-key-identity",
+              "excerpt": "## **Version 1.50.0**\n\n_Release date: September 23, 2025_\n\n**Highlights**\n\n- 🤹 Introducing [`MultiselectColumn`](/develop/api-reference/data/st.column_config/st.column_config.multiselectcolumn) to configure colorful, editable lists in your dataframes.\n- 🎨 Announcing [color palette](/develop/concepts/configuration/theming-customize-colors-and-borders#basic-color-palette) configuration options to set the exact shade of red, orange, yellow, green, blue, violet, and grey to use in Markdown, status elements, sparklines, `st.metric`, and `st.badge`.\n- 📊 [`st.bar_chart`](/develop/api-reference/charts/st.bar_chart) has a new `sort` parameter for conveniently sorting your bars.\n\n**Notable Changes**\n\n- 🔑 To prevent widgets from resetting when you change a parameter, widgets are transitioning to an identity based only on their keys (if provided). The following widgets use only their key for their identity:\n  - `st.button`\n  - `st.download_button`\n  - `st.form_submit_button`\n  - `st.checkbox`\n  - `st.toggle`\n  - `st.text_area`\n  - `st.text_input`\n  - `st.number_input`\n  - `st.time_input`\n  - `st.date_input`\n  - `st.selectbox`\n  - `st.multiselect`",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123",
+              "source_type": "release_note",
+              "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+              "applicable_versions": [
+                "1.50.0"
+              ],
+              "source_span": "Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause",
+              "score": null,
+              "score_kind": null
+            }
+          ],
+          "queries_used": [],
+          "retrieval_round": 2,
+          "warnings": []
+        }
+      ],
+      "base_catalog_by_round": [
+        {
+          "retrieval_round": 1,
+          "gaps": [
+            {
+              "name": "exact_version_documentation",
+              "kind": "source",
+              "description": "No supplied record has exact metadata for the confirmed version.",
+              "necessity": "Further documentation retrieval or maintainer review may be needed.",
+              "question": null
+            }
+          ],
+          "conflict_groups": []
+        },
+        {
+          "retrieval_round": 2,
+          "gaps": [
+            {
+              "name": "exact_version_documentation",
+              "kind": "source",
+              "description": "No supplied record has exact metadata for the confirmed version.",
+              "necessity": "Further documentation retrieval or maintainer review may be needed.",
+              "question": null
+            }
+          ],
+          "conflict_groups": []
+        }
+      ]
+    }
+  ]
+}
