@@ -19,7 +19,6 @@ from agent_app import api
 from agent_app.contracts import (
     CaseState,
     EvidenceBundle,
-    GroundedGap,
     GroundedPlan,
     GroundedRequest,
 )
@@ -27,12 +26,10 @@ from agent_app.llm.budget import BudgetLedger
 from agent_app.llm.config import MetisConfig
 from agent_app.llm.grounded import MetisGroundedPlanner
 from agent_app.llm.metis import request_id_for
-from agent_app.orchestration.intake import STREAMLIT_VERSION_QUESTION
 from agent_app.orchestration.ports import GroundedPlanner, Retriever
+from agent_app.reasoning.catalog import runtime_catalog as runtime_catalog
 from agent_app.reasoning.grounding import (
     GroundedReasoner,
-    make_grounded_request,
-    source_scope,
     validate_grounded_request,
 )
 
@@ -40,41 +37,6 @@ type GatewayFault = Literal[
     "normal", "malformed_first", "malformed_all", "model_mismatch", "timeout"
 ]
 type RequestFactory = Callable[[CaseState, str, EvidenceBundle], GroundedRequest]
-
-
-def runtime_catalog(case: CaseState, message: str, evidence: EvidenceBundle) -> GroundedRequest:
-    """Register only a user-supplied version gap and a documentary coverage gap.
-
-    The latest authoritative facts and actual bundle are the complete input.
-    No fixture expectations, inferred cause, gold labels or future turns are used.
-    This small catalog does not claim to discover every necessary question.
-    """
-    known = {
-        fact.name.casefold()
-        for fact in case.facts
-        if fact.status == "active" and fact.provenance_kind == "user" and fact.value
-    }
-    gaps = []
-    if "streamlit_version" not in known:
-        gaps.append(
-            GroundedGap(
-                name=STREAMLIT_VERSION_QUESTION.name,
-                kind="user",
-                description="The affected application's Streamlit version is unknown.",
-                necessity="The user can report the installed release to check source applicability.",
-                question=STREAMLIT_VERSION_QUESTION.question,
-            )
-        )
-    if not any(source_scope(case, hit) == "exact_metadata_match" for hit in evidence.hits):
-        gaps.append(
-            GroundedGap(
-                name="exact_version_documentation",
-                kind="source",
-                description="No supplied record has exact metadata for the confirmed version.",
-                necessity="Further documentation retrieval or maintainer review may be needed.",
-            )
-        )
-    return make_grounded_request(case, message, evidence, gaps=tuple(gaps))
 
 
 def _plain(value):
