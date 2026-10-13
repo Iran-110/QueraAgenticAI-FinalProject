@@ -4,6 +4,20 @@
 
 ## وضعیت فعلی
 
+بازبینی بخش الزامی، بدون bonus: **حدود ۷۰٪، برآورد مهندسی و نه نمرهٔ کیفیت**.
+[مسیر کوتاه تکمیل و حدود شواهد](../docs/delivery-readiness-2026-10-13.fa.md):
+اولویت با caseهای مستقل، corpus/exclusion نهایی، baseline واقعی dev و test
+بدون tuning است. infra آماده‌تر است؛ تست‌های آفلاین این کارها را نمی‌بندند.
+
+گام مستقل تازه: cleanup runner اصلاح شده؛ [۱۵/۱۵ candidate metadata](../data/evaluation/candidates/reservations-v1.json)
+و gate مکانیکی `frozen_final_v1` آمادهٔ بازبینی‌اند. candidateها هنوز case نهایی
+نیستند، partial exclusion هنوز به corpus نهایی اعمال نشده و E1–E5 بازند.
+runner در حالت final کل bundle و evidenceهایش را قبل از live factory بررسی
+می‌کند؛ branchهای adaptive و scoring معنایی باقی‌اند. [protocol اتصال واقعی دو turn](../experiments/grounded_http_acceptance/connected-live-protocol-v1.json)
+با index موجود، correction و ledger اصلی ثبت می‌شود؛ اجرا و نتیجه جدا گزارش
+می‌شوند. مجوز API جدید کاربر شامل آزمایش ضروری است؛ سقف تیم و halt/hold قبلی
+حفظ می‌شوند. هیچ پیام تیمی از این مرحله ارسال نشده است.
+
 | بخش | چیزی که داریم | چیزی که هنوز اثبات نشده |
 | --- | --- | --- |
 | core — ساسان | قراردادها، correction و GroundedPlan؛ C2a سرویس core و C2d اتصال HTTP به SQLite موجود با outcome اتمیک و approval دقیق؛ HTTP پایدار #30 روی main؛ UI و index محلی در [U3a/P4a، PR #32](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/32) پیاده و با تست‌های مستقل پذیرفته شده‌اند | corpus/index نهایی، اتصال مدل و کیفیت تصمیم روی caseهای ندیده؛ C5 halt |

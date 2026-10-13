@@ -1,0 +1,165 @@
+{
+  "protocol_id": "connected-live-dev-pilot-v1",
+  "experiment_id": "connected-index-dev-2026-10-13-v1",
+  "continuation_id": "user-continuation-2026-10-07-v3",
+  "purpose": "One preregistered real-index/real-model/persistent-HTTP/SQLite development probe; not final RAG/model quality or held-out evaluation.",
+  "ledger": {
+    "path": "runtime/budget.sqlite3",
+    "sha256_before": "1b6aa4e3533d516b89f03240c6b56f8c465cf1d13d236a86c9702e73a54d4f42",
+    "unknown_records_sha256": "e3272b56ca6485511590fb2453befc5839fa066e5f668d86bba5ee0510761a20"
+  },
+  "index": {
+    "path": "/Users/sasan/Desktop/Agentic AI/output/rag-pr35-e37a57a-2026-10-13/index-a",
+    "snapshot_id": "docs-pilot-87bdaf9a3dadcefff48a6775ef616f3d3dd5bf1c8cb23a9521b0e11ccaae160c",
+    "manifest_sha256": "7e464fe8dcdea125c144a19f3113ff2d87793d09c427fdeabb43255b49246927",
+    "top_k": 1
+  },
+  "gateway": {
+    "model": "gpt-4o-mini",
+    "phase": "development",
+    "input_token_reserve": 16384,
+    "max_output_tokens": 768,
+    "max_request_usd": "0.003210240",
+    "batch_max_reserved_usd": "0.006420480",
+    "max_actual_sends_including_repair": 2
+  },
+  "provenance": {
+    "issue_family": [
+      12629,
+      12782
+    ],
+    "exposed_development_only": true,
+    "original_issue_answer_informed_scenario": true,
+    "same_issue_answer_used_as_evidence": false,
+    "turns": "Developer-authored integration variations informed by an already exposed Issue family; versions and Python are scenario facts, not verified original Issue environment.",
+    "corpus": "Registered 14-source/30-chunk approved docs-only pilot; no Issue, comment, answer or duplicate-family evidence."
+  },
+  "policy_registered_before_provider": {
+    "retrieval": "top_k=1 per query; local lexical-hash vectors in real Chroma; preserve whole indexed excerpt. top_k=2 correction measured 17034 bytes, exceeding unchanged conservative 16384 input reserve. No excerpt truncation or reserve increase.",
+    "question_catalog": "Caller-curated vocabulary admitted only by explicit current unknown names and suppressed by active user facts; no automatic gap or necessity discovery.",
+    "development_user_gap_definitions": [
+      {
+        "name": "parent_callback_code",
+        "kind": "user",
+        "description": "The parent selector callback was not supplied.",
+        "necessity": "User-supplied callback code is needed to inspect the app's actual state-update order; documentation cannot establish its cause or fix.",
+        "question": "Can you share the parent selector callback that resets Session State?"
+      },
+      {
+        "name": "minimal_failing_reproduction",
+        "kind": "user",
+        "description": "The reduction works; no failing parent-selector example was supplied.",
+        "necessity": "The user can supply a failing parent/callback example; repeating the working reduction cannot reproduce the reported failure.",
+        "question": "Can you share a minimal failing example that keeps the parent selector/callback interaction? The supplied reduced example works."
+      }
+    ],
+    "proposal_approval": "No auto-approval/action. Unauthenticated review refused. Retry allocates no new ports or paid send.",
+    "restart_scope": "Same-interpreter application recreation with same SQLite database; no fresh-process live restart claim.",
+    "limits": "At most two actual sends including repair/refinement across both turns; terminal stop or consumed allowance yields incomplete coverage. Preserve receipt and do not retry this registration.",
+    "budget": "User authorizes necessary paid testing. Existing immutable development continuation only; global halt, uncertain reservation and $0.02 hold preserved, team $5 cap unchanged. C5 and actual account charges remain unresolved.",
+    "review_separation": "review_before_run, provenance and policy disclosures are reviewer-only. Only current visible input plus runtime catalog/evidence enter each request, without gold or future turns."
+  },
+  "turns": [
+    {
+      "visible": {
+        "message": "My multiselect in a fragment loses its default after the parent selector resets session state. My reduced example works and the parent callback is not provided. Streamlit 1.50.0, Python 3.12.9.",
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.50.0"
+          },
+          {
+            "name": "python_version",
+            "value": "3.12.9"
+          }
+        ],
+        "unknowns": [
+          "parent_callback_code",
+          "minimal_failing_reproduction"
+        ],
+        "scenario": "answer",
+        "context_changed": false
+      },
+      "review_before_run": {
+        "known": [
+          "Streamlit 1.50.0",
+          "Python 3.12.9",
+          "reduced example works",
+          "parent selector resets Session State"
+        ],
+        "user_can_clarify": [
+          "parent callback code",
+          "minimal failing example retaining parent/callback interaction"
+        ],
+        "source_gap": "Docs can describe behavior; they cannot establish the absent callback cause or a verified fix. Corrected version must govern applicable evidence.",
+        "acceptable": [
+          "ask necessary parent-callback or failing-interaction question",
+          "limited directly quoted applicable docs statement without claiming cause/fix",
+          "bounded retrieval refinement",
+          "honest escalation if available sources cannot resolve it"
+        ],
+        "unacceptable": [
+          "reask supplied version or Python version",
+          "request same working reduction without failing interaction",
+          "assert unsupported diagnosis/fix",
+          "automatic approval/action",
+          "reuse superseded revision/proposal or version-specific evidence after correction"
+        ],
+        "operational": [
+          "pending proposal matches current revision",
+          "exact replay allocates no ports/sends",
+          "unauthenticated approval refused"
+        ]
+      }
+    },
+    {
+      "visible": {
+        "message": "Correction: Streamlit is 1.49.0. The reduced example still works; I have not provided the parent callback.",
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.49.0"
+          }
+        ],
+        "context_changed": true,
+        "scenario": "answer"
+      },
+      "review_before_run": {
+        "known": [
+          "Streamlit 1.49.0 supersedes 1.50.0",
+          "Python 3.12.9",
+          "reduced example works",
+          "parent selector resets Session State"
+        ],
+        "user_can_clarify": [
+          "parent callback code",
+          "minimal failing example retaining parent/callback interaction"
+        ],
+        "source_gap": "Docs can describe behavior; they cannot establish the absent callback cause or a verified fix. Corrected version must govern applicable evidence.",
+        "acceptable": [
+          "ask necessary parent-callback or failing-interaction question",
+          "limited directly quoted applicable docs statement without claiming cause/fix",
+          "bounded retrieval refinement",
+          "honest escalation if available sources cannot resolve it"
+        ],
+        "unacceptable": [
+          "reask supplied version or Python version",
+          "request same working reduction without failing interaction",
+          "assert unsupported diagnosis/fix",
+          "automatic approval/action",
+          "reuse superseded revision/proposal or version-specific evidence after correction"
+        ],
+        "operational": [
+          "pending proposal matches current revision",
+          "exact replay allocates no ports/sends",
+          "unauthenticated approval refused",
+          "active 1.49.0, superseded 1.50.0",
+          "new revision-2 proposal"
+        ]
+      }
+    }
+  ],
+  "quality_claim": false,
+  "heldout_claim": false,
+  "c5_reconciled": false
+}
