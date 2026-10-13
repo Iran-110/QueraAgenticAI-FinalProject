@@ -4,3 +4,7 @@ experiments/gateway_handoff/results-gateway-handoff-v*.json linguist-generated=t
 
 # The seed manifest pins exact bytes; checkout must not rewrite their line endings.
 streamlit-data-for-dev-test/** -text
+
+# Candidate reservations pin generator/output bytes on every team's checkout.
+/scripts/propose_evaluation_families.py -text
+/data/evaluation/candidates/*.json -text
