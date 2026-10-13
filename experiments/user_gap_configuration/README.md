@@ -91,3 +91,18 @@ uv run python scripts/user_gap_configuration_comparison.py --output /tmp/user-ga
 Use a fresh output path. Preserve original protocol/reviewer/receipts. Any actual
 model comparison needs separate pre-registration and funded authorization;
 incomplete outputs and human/assistant reviews must remain separate.
+
+## Portable publication follow-up
+
+First publication CI at `95c7d98` passed Linux and all21 native Windows controls,
+then the comparison harness rejected a Git path containing Windows backslashes.
+No archived Windows receipt was emitted; the failure is not a core/model result.
+The original [comparison](comparison-v1.json), verification and failed CI remain
+preserved. Repo-relative Git/receipt paths now use POSIX separators on all hosts.
+
+The new [portable comparison](comparison-portable-v1.json) on `2c8b44a` still gives
+9pass/12fail versus21pass/0fail with identical frozen controls. [Portable verification](verification-portable-v1.json)
+records the original CI failure and actual Git-blob check for a normalized
+Windows-style path. Product/test/oracle bytes stay unchanged; only the harness
+paths change. Full pytest/HTTP/demos from the prior source epochs still apply.
+Final publication CI must pass the matching head in [PR #44](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/44).

@@ -50,6 +50,13 @@ or new framework/agent was added. Actual model quality, human usefulness, C5,
 independent dev/test, corpus/exclusion and T4/U3/E5 remain open; the engineering
 completion estimate is unchanged.
 
+C4c publication follow-up: first CI `95c7d98` passed Linux and21 native Windows
+controls, but the archive harness used backslashes in a Git tree path and emitted
+no Windows receipt. POSIX repo path normalization fixes only the harness; frozen
+controls/oracle and product source remain unchanged. The portable comparison on
+`2c8b44a` reproduces9/12 versus21/0; [additive verification](../experiments/user_gap_configuration/verification-portable-v1.json)
+preserves the failure and source epochs. Final matching-head CI is [PR #44](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/44).
+
 ## 2026-10-13 — C2h current-user gaps in the no-index scripted UI
 
 The immutable manual PR40 report showed `KnownFactMarkedMissing` after version
