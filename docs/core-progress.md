@@ -41,6 +41,11 @@ describes exact settings and limits. A reused synthetic fixture and operational
 old-runner/current-runner protocol are registered in `experiments/evaluation_routes/`
 before their controlled comparison; current core/ports are deliberately held
 fixed in both variants. This registration alone is not an executed result.
+The [committed comparison](../experiments/evaluation_routes/README.md) then ran
+on clean `65f1c31`: old-runner path completion 0/3, conditional completion 3/3,
+with zero failed mechanical checks in the baseline. Only the runner module is
+replaced; this is operational coverage, not semantic quality or full old-release
+behavior. All allocated mock clients close; real sends/spend stay zero.
 Windows CI and publication still need verification at the final PR head.
 
 No shared contract, old receipt, seed or original paid-probe protocol changes.
