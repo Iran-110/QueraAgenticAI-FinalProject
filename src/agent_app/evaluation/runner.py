@@ -293,6 +293,7 @@ class CaseRun:
             AttemptRecorder(ports.reasoner, contexts, self.observed_snapshots),
             snapshot_id=ports.snapshot_id,
             grounded_request_supplier=ports.grounded_request_supplier,
+            cleanup=ports.cleanup,
         )
 
     def run(self, client: TestClient) -> None:
