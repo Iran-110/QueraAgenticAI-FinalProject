@@ -9,7 +9,7 @@ PR اولیه فقط [`rag_acceptance_results.json`](../../../rag_acceptance_res
 ۱۴ source و ۳۰ chunk، Chroma واقعی و vector lexical محلی. receipt mapper واقعی
 با `chroma_binding` نیز ۱۳۲/۱۳۲ است؛ backend آن هنوز collection ثابت است و از
 index تازه نمی‌خواند. replay جداگانهٔ زیر **همان indexهای ساخته‌شده** را می‌خواند،
-queryهای واقعی و metadata را کنترل می‌کند و آن‌ها را به HTTP/core/SQLite می‌برد.
+فراخوانی مستقیم Chroma، hash بردار query، filter و metadata را کنترل می‌کند و آن‌ها را به HTTP/core/SQLite می‌برد.
 [protocol و محدودیت‌ها](protocol-v1.json) تفکیک شواهد را ثبت می‌کند.
 
 از root پروژه؛ هر مسیر destination و output باید تازه باشد. `runtime/` در Git

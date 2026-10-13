@@ -13,11 +13,12 @@ fixed collections. [Layered evidence and commands](../experiments/retrieval_acce
 keep these scopes distinct.
 
 The companion replay explicitly consumes two supplied existing indexes, checks
-actual query/filter forwarding and exact returned material, and exercises the
-existing GroundedPlan mock gateway, HTTP and SQLite. Eleven tests reject corrupted
+actual native Chroma query/filter execution and exact returned material, and exercises the
+existing GroundedPlan mock gateway, HTTP and SQLite. Twelve tests reject corrupted
 URLs, substituted physical queries hidden by echoes, ignored filters, missing
 indexes and reused output. Matching but unregistered rebuilt snapshots are rejected
 before querying or HTTP; protocol bytes are pinned in both release identities.
+A backend returning valid approved rows without a native query is also rejected.
 Source contracts, RAG implementation and tracker
 are unchanged. Another three Git tests preserve actual seed bytes across
 autocrlf settings. The no-attributes control reproduces 56 converted newlines

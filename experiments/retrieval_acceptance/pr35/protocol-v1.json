@@ -14,7 +14,7 @@
     "Two independently invoked fresh builds have identical canonical manifest bytes and snapshot, not necessarily identical database binary bytes or search ranking",
     "All chunks match approved source text, URL, commit, Unicode span and version metadata; API versions are exact and Markdown applicability remains unknown",
     "All Issues, comments, outcomes, release notes and evaluation fixtures are excluded by the docs-only allowlist; final family review remains incomplete",
-    "Actual native queries and filters consume both queries; output obeys global top_k and dedup and material membership",
+    "Actual Chroma Collection.query calls delegate to the original implementation; collection names, lexical query-embedding hashes, native filters and n_results match both queries. Logical retriever calls are recorded separately; manifest-only fake responses cannot pass.",
     "Exact-version filters for 1.49.0, 1.50.0 and 1.64.0 return matching supplied metadata; absent version returns no hit; wrong snapshot is rejected before querying",
     "Supplied index is used by existing persistent HTTP, mocked GroundedPlan gateway and temporary SQLite",
     "Unknown version asks canonical answerable question, approval creates one local action, short 1.50 reply and 1.49 correction follow the authored escalation policy",

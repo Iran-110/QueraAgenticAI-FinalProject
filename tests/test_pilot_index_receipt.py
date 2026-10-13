@@ -61,6 +61,12 @@ def test_actual_existing_indexes_http_replay_and_scope_are_inspectable(
         "ask",
     ]
     assert len(receipt["native_backend_queries"]) == 10
+    assert receipt["direct_collection_query_count"] == 20
+    assert len(receipt["native_collection_queries"]) > 20
+    assert {call["collection"] for call in receipt["native_collection_queries"]} == {
+        "streamlit_docs",
+        "streamlit_issues",
+    }
     assert receipt["checks"]["wrong_snapshot_before_backend_query"] is True
     assert receipt["checks"]["review_retry_after_backend_recreation"] is True
     assert receipt["source_unchanged_during_run"] is True
@@ -201,6 +207,35 @@ def test_native_backend_ignoring_version_filter_is_rejected(runner, indexes, mon
     monkeypatch.setattr(runner.StreamlitRetriever, "search", ignoring_filter)
     with pytest.raises(ValueError, match="^PilotIndexAcceptanceRejected$"):
         runner.verify(indexes[0], indexes[1])
+
+
+def test_approved_manifest_rows_without_any_native_collection_io_are_rejected(
+    runner, indexes, monkeypatch
+):
+    """Valid approved material and query echo alone do not attest index query execution."""
+    logical_calls = []
+
+    def manifest_only(self, query, n_results=3, *, filters=None):
+        logical_calls.append(query)
+        chunks = self.client.manifest["corpus"]["chunks"]
+        if filters:
+            chunks = [
+                chunk for chunk in chunks if chunk["metadata"].get("version") == filters["version"]
+            ]
+        chunks = chunks[:n_results]
+        return {
+            "docs": {
+                "ids": [[chunk["chunk_id"] for chunk in chunks]],
+                "documents": [[chunk["document"] for chunk in chunks]],
+                "metadatas": [[chunk["metadata"] for chunk in chunks]],
+            },
+            "issues": {"ids": [[]], "documents": [[]], "metadatas": [[]]},
+        }
+
+    monkeypatch.setattr(runner.StreamlitRetriever, "search", manifest_only)
+    with pytest.raises(ValueError, match="^PilotIndexAcceptanceRejected$"):
+        runner.verify(indexes[0], indexes[1])
+    assert logical_calls == ["session state widget rerun", "button click reset"]
 
 
 def test_existing_output_is_preserved_before_any_identity_or_index_read(

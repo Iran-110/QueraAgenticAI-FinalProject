@@ -11,8 +11,10 @@ import io
 import json
 import re
 import subprocess
+from copy import deepcopy
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from unittest.mock import patch
 
 from fastapi.testclient import TestClient
 
@@ -22,7 +24,13 @@ from agent_app.orchestration.handoff import validate_handoff
 from agent_app.orchestration.intake import STREAMLIT_VERSION_QUESTION
 from agent_app.retrieval.adapter import ChromaRetrieverAdapter, RetrievalAdapterRejected
 from agent_app.retrieval.offline_index import open_verified_index
-from agent_app.retrieval.pilot_corpus import MANIFEST_NAME, canonical_json
+from agent_app.retrieval.pilot_corpus import (
+    COLLECTION_NAMES,
+    MANIFEST_NAME,
+    canonical_json,
+    embedding_sha256,
+    lexical_embedding,
+)
 from agent_app.retrieval.retriever import StreamlitRetriever
 from agent_app.testing.http_pilot_runtime import offline_network
 from agent_app.tracker.sqlite_tracker import SQLiteCaseTracker
@@ -73,6 +81,30 @@ def registered_protocol():
     return protocol, hashlib.sha256(raw).hexdigest()
 
 
+@contextlib.contextmanager
+def observe_native_collections():
+    """Observe actual Chroma query calls while always delegating to its original method."""
+    from chromadb.api.models.Collection import Collection
+
+    original, calls = Collection.query, []
+
+    def observed(collection, *args, **kwargs):
+        calls.append(
+            {
+                "collection": collection.name,
+                "query_embedding_sha256": [
+                    embedding_sha256(vector) for vector in kwargs["query_embeddings"]
+                ],
+                "n_results": kwargs["n_results"],
+                "where": deepcopy(kwargs.get("where")),
+            }
+        )
+        return original(collection, *args, **kwargs)
+
+    with patch.object(Collection, "query", observed):
+        yield calls
+
+
 def verify(index: Path, rebuild_index: Path) -> dict:
     checks, searches, handoffs = {}, [], []
 
@@ -81,7 +113,11 @@ def verify(index: Path, rebuild_index: Path) -> dict:
         if not condition:
             raise ValueError("PilotIndexAcceptanceRejected")
 
-    with offline_network(), TemporaryDirectory(prefix="rag-existing-index-replay-") as temporary:
+    with (
+        offline_network(),
+        observe_native_collections() as collection_queries,
+        TemporaryDirectory(prefix="rag-existing-index-replay-") as temporary,
+    ):
         protocol, protocol_sha256 = registered_protocol()
         check("distinct_build_paths", index.resolve() != rebuild_index.resolve())
         client, snapshot = open_verified_index(index)
@@ -156,7 +192,22 @@ def verify(index: Path, rebuild_index: Path) -> dict:
             )
             before = request.model_dump(mode="json")
             prior_queries = len(backend_queries)
+            prior_collection_queries = len(collection_queries)
             bundle = adapter.search(request)
+            check(
+                f"{label}:native_collection_io",
+                collection_queries[prior_collection_queries:]
+                == [
+                    {
+                        "collection": name,
+                        "query_embedding_sha256": [embedding_sha256(lexical_embedding(query))],
+                        "n_results": request.top_k,
+                        "where": {"version": label} if filters else None,
+                    }
+                    for query in request.queries
+                    for name in COLLECTION_NAMES
+                ],
+            )
             check(
                 f"{label}:both_native_queries",
                 backend_queries[prior_queries:]
@@ -191,6 +242,7 @@ def verify(index: Path, rebuild_index: Path) -> dict:
             searches.append(
                 {"id": label, "request": before, "bundle": bundle.model_dump(mode="json")}
             )
+        direct_collection_query_count = prior_collection_queries = len(collection_queries)
         prior_queries = len(backend_queries)
         try:
             adapter.search(RetrievalRequest(snapshot_id="wrong-snapshot", queries=("widget",)))
@@ -199,6 +251,10 @@ def verify(index: Path, rebuild_index: Path) -> dict:
         else:
             check("wrong_snapshot_rejected", False)
         check("wrong_snapshot_before_backend_query", len(backend_queries) == prior_queries)
+        check(
+            "wrong_snapshot_before_native_collection_query",
+            len(collection_queries) == prior_collection_queries,
+        )
 
         config = {
             "AGENT_TRACKER_DB": str(Path(temporary) / "cases.sqlite3"),
@@ -369,6 +425,9 @@ def verify(index: Path, rebuild_index: Path) -> dict:
         "checks_total": len(checks),
         "searches": searches,
         "native_backend_queries": backend_queries,
+        "native_backend_observation_point": "StreamlitRetriever.search",
+        "native_collection_queries": collection_queries,
+        "direct_collection_query_count": direct_collection_query_count,
         "public_handoffs": handoffs,
         "actual_index_tested": True,
         "reasoning_label": "grounded_fake_gateway",
