@@ -1,5 +1,10 @@
 # pilot محلی UI، core، SQLite و Chroma — U3a / P4a
 
+اصلاح تازهٔ مسیر **بدون index و با reasoning scripted** در
+[C2h](offline-scripted-corrections.fa.md) ثبت است: سؤال‌ها از facts فعلی کاربر
+انتخاب می‌شوند و correction نسخه دیگر سؤال تکراری نسخه نمی‌سازد. این تغییر
+profile دارای Chroma را عوض نمی‌کند. نتیجهٔ تاریخی این راهنما حفظ می‌شود.
+
 این مسیر قابل اجراست: صفحهٔ Streamlit از client واقعی به backend پایدار وصل
 می‌شود؛ retrieval از Chroma واقعی می‌آید و اقدام فقط در transaction tracker
 موجود ثبت می‌شود. reasoning پیش‌فرض scripted است: نسخهٔ نامعلوم سؤال canonical

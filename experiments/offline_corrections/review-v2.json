@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-13",
+  "review_kind": "independent_assistant_source_complete_output_and_method_audit",
+  "reviewers": [
+    "experiment_audit",
+    "delivery_requirements_audit"
+  ],
+  "human_reviewer": false,
+  "human_usefulness_score": null,
+  "reviewed_source_commit": "090c1e5126920c1d3885c62e0fd5b0142eb9d1e2",
+  "reviewed_receipt_sha256": "3273ae74df1bed6c746be97ea80db11d3a6704ab179c8b7d8dc60328ceacff7c",
+  "reviewed_runner_sha256": "f39fa65720d9e4ca465da076713f153b299cfe1fd2ebdc6352f9d0739d337f21",
+  "material_blockers": [],
+  "fair_comparison": {
+    "actual_git_archives_verified": true,
+    "baseline_preimplementation_commit": "a6ec28d9c19a68152778028e0aae936d7716b7e1",
+    "baseline_source_equivalent_to": "ab6ed0498c079365658d4741bc8e9df37537a075",
+    "identical_amended_19_test_bytes_and_node_ids": true,
+    "identical_three_sample_original_events": true,
+    "counts": {
+      "baseline": {
+        "passed": 5,
+        "failed": 14,
+        "error": 0,
+        "skipped": 0,
+        "not_run": 0
+      },
+      "current": {
+        "passed": 19,
+        "failed": 0,
+        "error": 0,
+        "skipped": 0,
+        "not_run": 0
+      }
+    },
+    "child_and_fresh_worker_origin_guards_verified": true,
+    "corrected_namespace_paths_remain_inside_snapshot": true
+  },
+  "whole_sample_review": {
+    "before": "Three KnownFactMarkedMissing stops without a pending proposal",
+    "after": "Widget-only ask, widget-only ask, source-shortage escalation; revisions1/2/3",
+    "current_user_version_history": "1.50.0 superseded by user-attributed1.49.1",
+    "complete_current_handoffs_revalidated": 3,
+    "analysis_case_request_frame_matches": true,
+    "source_claims_or_new_evidence_facts_or_checks": false,
+    "sample_actions": 0,
+    "synthetic_evidence_label": "Explicit snapshot/id/span/warnings/projected synthetic flag; legacy source_type remains doc."
+  },
+  "test_amendment_review": {
+    "V1_test_protocol_and_results_preserved": true,
+    "V1_candidate_counts": {
+      "passed": 18,
+      "failed": 1
+    },
+    "one_mechanical_predicate_only": "No enabled Approve means absent or disabled; all saved-operation/payload/action-count/revision/question/route checks remain."
+  },
+  "production_scope": [
+    "Only offline_backend.py changed",
+    "Only no-index scripted ask/ask_version reasoner selection changed",
+    "Current active USER facts only; no source/prose or retired-fact confirmation",
+    "Original guard/legacy scenarios/intake/contracts/indexed/grounded/live and tracker remain compatible",
+    "Recorded failed ingress replays without rerun; new turn needed for continuation"
+  ],
+  "secret_pattern_scan": "Original comparison receipt contains no credential/auth-header/email/private-local-path values. Trusted synthetic test material; not a general security certification.",
+  "real_provider_requests": 0,
+  "paid_api_cost_usd": "0",
+  "quality_claim": false,
+  "held_out_claim": false,
+  "remaining": "Original operator browser smoke plus Edit/Reject, T4/U3/E5, final corpus/exclusion and independent dev/test/model/RAG evaluation remain open."
+}

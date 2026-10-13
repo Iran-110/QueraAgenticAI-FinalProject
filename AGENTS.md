@@ -12,6 +12,7 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 - After syncing the C4 delivery, read `docs/team-handoff-c4.fa.md` for its file boundaries and receipt interpretation. The controlled packet is exposed development data, not new held-out cases. Reviewer labels, later bundles and authored plans must stay outside the current model payload and real RAG corpus.
 - After syncing C4b, read `docs/conflict-continuity.fa.md`: already-declared unresolved conflict status survives same-run refinement/repair without old quotes. Capture the actual enriched planner request for a handoff; a pre-enrichment factory request can have a different context hash. Default catalog still does not discover conflicts automatically.
 - Keep the current foundation independent of an orchestration framework. Add a dependency only when an implemented need justifies it.
+- After syncing C2h, read `docs/offline-scripted-corrections.fa.md` before repeating the no-index SQLite smoke. `ask/ask_version` use current active user facts; indexed/live and legacy scripts retain their own behavior. Replay an old failed event as recorded; continue with a fresh turn, preserving IDs for genuine retries. Original V1 test/receipts and the mechanical V2 amendment are retained.
 
 ## Runtime rules
 

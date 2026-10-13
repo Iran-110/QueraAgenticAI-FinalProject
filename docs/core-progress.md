@@ -2,6 +2,47 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-13 — C2h current-user gaps in the no-index scripted UI
+
+The immutable manual PR40 report showed `KnownFactMarkedMissing` after version
+correction: the core guard rejected a scripted question that still requested a
+known user fact. Only no-index `offline_backend.configured_app` with scripted
+`ask`/`ask_version` now chooses its next authored gap from ACTIVE USER facts.
+Unknown version uses the canonical question; known version under `ask` asks
+only for `widget_definition`; both known escalate for missing source support.
+`ask_version` escalates once version is known. Source facts, superseded values
+and raw prose do not confirm user information. Legacy API/scripts, other
+explicit scenarios, indexed/GroundedPlan/live paths and shared contracts are
+unchanged; the core guard stays strict.
+
+The nineteen controls were registered before the source fix. Original V1
+baseline (5 pass/14 fail), initial candidate (18 pass/1 fail), and the original
+UI test remain preserved. A separately registered mechanical V2 amendment
+accepts an absent or disabled Approve button after a committed review clears
+pending; all exact payload, revision, receipt and action checks remain. The
+same V2 tests loaded from Git-archived old `a6ec28d` (source equivalent to
+`ab6ed04`) pass 5/fail 14; new `090c1e5` passes all 19. A real AppTest and three
+fresh TCP backend interpreters cover canonical approval/reply, correction,
+stale approval rejection and exact durable review retry with one action per
+review. Three separate HTTP samples formerly all stopped; now they stage
+widget/widget/escalate proposals at revisions 1/2/3 with zero sample actions.
+An initial comparison-harness import guard rejected a legitimate RAG namespace
+before execution; its corrected guard still binds imports to each archived
+snapshot. This was a harness failure, not a product outcome.
+
+The [packet](../experiments/offline_corrections/README.md) preserves original
+registration, both test epochs, exact comparison, review and verification.
+The complete local suite passes **2,860 tests** in111.83s, Ruff (207 files),
+three locked demos and separate fresh-process HTTP/SQLite457/457 including
+restart pass. Runtime/test bytes equal `090c1e5`; the runs had an untracked
+comparison harness, so no whole-Git-clean claim is made. Publication CI is
+separate. No real provider/index/production ledger use or paid spend occurred.
+Failed historical ingress replays its original failure; a fresh turn continues
+with the new profile. The PR40 report remains immutable. Manual two-case UI
+repeat plus Edit/Reject is still needed; T4/U3/E5 and final model/RAG evaluation
+remain open. See the [usage and handoff guide](offline-scripted-corrections.fa.md)
+and current plan. No framework or independent evaluation case was added.
+
 ## 2026-10-13 — C4b unresolved conflict continuity and invocation cleanup
 
 A current-pool catalog could lose its declared conflict after refinement removed

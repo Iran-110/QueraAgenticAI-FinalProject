@@ -117,6 +117,11 @@ jobs:
           uv run python scripts/conflict_continuity_comparison.py --output "$RUNNER_TEMP/conflict-continuity.json" > "$RUNNER_TEMP/conflict-continuity-console.json"
           uv run python -c "import json,os,pathlib; r=json.loads((pathlib.Path(os.environ['RUNNER_TEMP'])/'conflict-continuity.json').read_text(encoding='utf-8')); assert r['arms']['baseline']['counts']==dict(passed=7,failed=7,error=0,skipped=0,not_run=0) and r['arms']['current']['counts']==dict(passed=14,failed=0,error=0,skipped=0,not_run=0) and all(a['source_matches_git_commit'] and a['imports_bound_to_snapshot'] and a['network_disabled'] for a in r['arms'].values()) and r['real_provider_requests']==0 and r['paid_api_cost_usd']=='0' and not r['quality_claim']"
 
+      - name: Compare registered current-fact offline questions on archived source
+        run: |
+          uv run python scripts/offline_correction_comparison.py --output "$RUNNER_TEMP/offline-corrections.json"
+          uv run python -c "import json,os,pathlib; r=json.loads((pathlib.Path(os.environ['RUNNER_TEMP'])/'offline-corrections.json').read_text(encoding='utf-8')); assert r['registered_controls']==19 and r['arms']['baseline']['counts']==dict(passed=5,failed=14,error=0,skipped=0,not_run=0) and r['arms']['current']['counts']==dict(passed=19,failed=0,error=0,skipped=0,not_run=0) and all(a['source_matches_git_commit'] and a['imports_bound_to_snapshot'] and a['fresh_worker_origin_guard_installed'] for a in r['arms'].values()) and r['real_provider_requests']==0 and r['paid_api_cost_usd']=='0' and not r['quality_claim']"
+
   windows-pilot:
     runs-on: windows-latest
     timeout-minutes: 10
@@ -168,3 +173,9 @@ jobs:
         run: |
           uv run python scripts/conflict_continuity_comparison.py --output "$env:RUNNER_TEMP/conflict-continuity.json" > "$env:RUNNER_TEMP/conflict-continuity-console.json"
           uv run python -c "import json,os,pathlib; r=json.loads((pathlib.Path(os.environ['RUNNER_TEMP'])/'conflict-continuity.json').read_text(encoding='utf-8')); assert r['arms']['baseline']['counts']==dict(passed=7,failed=7,error=0,skipped=0,not_run=0) and r['arms']['current']['counts']==dict(passed=14,failed=0,error=0,skipped=0,not_run=0) and all(a['source_matches_git_commit'] and a['imports_bound_to_snapshot'] and a['network_disabled'] for a in r['arms'].values()) and r['real_provider_requests']==0 and r['paid_api_cost_usd']=='0' and not r['quality_claim']"
+      - name: Check no-index current-fact conversation and immutable upgrade replay
+        run: uv run pytest tests/test_offline_scripted_corrections.py tests/test_offline_correction_upgrade.py tests/test_offline_scripted_ui.py
+      - name: Compare no-index archived question policies on Windows
+        run: |
+          uv run python scripts/offline_correction_comparison.py --output "$env:RUNNER_TEMP/offline-corrections.json"
+          uv run python -c "import json,os,pathlib; r=json.loads((pathlib.Path(os.environ['RUNNER_TEMP'])/'offline-corrections.json').read_text(encoding='utf-8')); assert r['registered_controls']==19 and r['arms']['baseline']['counts']==dict(passed=5,failed=14,error=0,skipped=0,not_run=0) and r['arms']['current']['counts']==dict(passed=19,failed=0,error=0,skipped=0,not_run=0) and all(a['source_matches_git_commit'] and a['imports_bound_to_snapshot'] and a['fresh_worker_origin_guard_installed'] for a in r['arms'].values()) and r['real_provider_requests']==0 and r['paid_api_cost_usd']=='0' and not r['quality_claim']"
