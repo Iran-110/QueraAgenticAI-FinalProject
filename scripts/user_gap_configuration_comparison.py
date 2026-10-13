@@ -64,7 +64,14 @@ with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.St
     code = pytest.main(['-q', '-p', 'no:cacheprovider', *json.loads(sys.argv[3])], plugins=[outcomes])
     import agent_app.evaluation.live, agent_app.reasoning.catalog, test_evaluation_live
     assert Path(test_evaluation_live.__file__).resolve() == root / 'tests/test_evaluation_live.py'
-    assert all(Path(module.__file__).resolve().is_relative_to(root / 'src') for module in (agent_app.evaluation.live, agent_app.reasoning.catalog))
+    for name, module in tuple(sys.modules.items()):
+        if name == 'agent_app' or name.startswith('agent_app.'):
+            filename = getattr(module, '__file__', None)
+            if filename is not None:
+                assert Path(filename).resolve().is_relative_to(root / 'src')
+            else:
+                locations = tuple(getattr(module, '__path__', ()))
+                assert locations and all(Path(location).resolve().is_relative_to(root / 'src') for location in locations)
 print(json.dumps({'pytest_exit_code':code,'outcomes':outcomes.items,'imports_bound_to_snapshot':True,'external_network_disabled':True}))
 """
 
@@ -106,10 +113,22 @@ def ledger_pins():
     }
 
 
+def archive_pins(commit, destination):
+    files = git("ls-tree", "-rz", "--name-only", commit, "--", *ARCHIVE).decode().split("\0")
+    captured = {}
+    for relative in filter(None, files):
+        raw = (destination / relative).read_bytes()
+        if git("show", f"{commit}:{relative}") != raw:
+            raise ValueError
+        captured[relative] = sha(raw)
+    return captured
+
+
 def arm(commit, destination, registered):
     destination.mkdir()
     with tarfile.open(fileobj=io.BytesIO(git("archive", commit, "--", *ARCHIVE))) as archive:
         archive.extractall(destination, filter="data")
+    archived = archive_pins(commit, destination)
     for relative, expected in registered.items():
         raw = (ROOT / relative).read_bytes()
         if sha(raw) != expected:
@@ -120,7 +139,16 @@ def arm(commit, destination, registered):
     environment = {key: value for key, value in os.environ.items() if key in SAFE_ENV}
     environment.update(PYTEST_DISABLE_PLUGIN_AUTOLOAD="1", PYTHONIOENCODING="utf-8", PYTHONUTF8="1")
     result = subprocess.run(
-        [sys.executable, "-c", CHILD, str(destination), ORIGIN_GUARD, json.dumps(TESTS)],
+        [
+            sys.executable,
+            "-I",
+            "-B",
+            "-c",
+            CHILD,
+            str(destination),
+            ORIGIN_GUARD,
+            json.dumps(TESTS),
+        ],
         cwd=destination,
         env=environment,
         capture_output=True,
@@ -134,7 +162,14 @@ def arm(commit, destination, registered):
         outcome: sum(value == outcome for value in report["outcomes"].values())
         for outcome in ("passed", "failed", "error", "skipped", "not_run")
     }
-    if any(counts[name] for name in ("error", "skipped", "not_run")):
+    exit_code = report["pytest_exit_code"]
+    if (
+        type(exit_code) is not int
+        or exit_code not in (0, 1)
+        or (exit_code == 0) != (counts["failed"] == 0)
+        or any(counts[name] for name in ("error", "skipped", "not_run"))
+        or archive_pins(commit, destination) != archived
+    ):
         raise ValueError
     source = {
         str(path.relative_to(destination)): sha(path.read_bytes())
@@ -146,6 +181,7 @@ def arm(commit, destination, registered):
         "source_commit": commit,
         "source_matches_git_commit": True,
         "source_sha256": source,
+        "archived_source_and_seed_pins": archived,
         "registered_pins": registered,
         "counts": counts,
         **report,
@@ -178,6 +214,16 @@ def main():
             or git("rev-parse", "HEAD").decode().strip() != head
             or set(baseline["outcomes"]) != set(candidate["outcomes"])
             or len(candidate["outcomes"]) != protocol["registered_controls"]
+            or {
+                key: value
+                for key, value in baseline["archived_source_and_seed_pins"].items()
+                if not key.startswith("src/")
+            }
+            != {
+                key: value
+                for key, value in candidate["archived_source_and_seed_pins"].items()
+                if not key.startswith("src/")
+            }
         ):
             raise ValueError
         receipt = {
