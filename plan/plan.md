@@ -5,6 +5,7 @@
 ## وضعیت فعلی
 
 - [x] **C2h — سؤال‌های mock مطابق facts فعلی؛ ساسان، تحویل محدود آفلاین.**
+  انتشار و CI نهایی در [PR #42](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/42) است.
   [ثبت، نتیجه و review](../experiments/offline_corrections/README.md): همان ۱۹
   کنترل V2 روی source قدیم پنج pass/چهارده fail و روی `090c1e5` نوزده pass
   دارند. V1 و شکست assertion ظاهری UI حفظ‌اند؛ V2 فقط «Approve فعال نباشد» را

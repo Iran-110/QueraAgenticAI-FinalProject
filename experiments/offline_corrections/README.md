@@ -1,5 +1,8 @@
 # C2h: current user facts in the offline SQLite pilot
 
+Delivery and final Linux/Windows publication checks:
+[PR #42](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/42).
+
 The no-index scripted backend reused a fixed version/widget question after the
 user supplied a version. The core correctly rejected that output with
 `KnownFactMarkedMissing`: correction was persisted, but the next run stopped.
