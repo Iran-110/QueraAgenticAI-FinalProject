@@ -1,6 +1,8 @@
 """Caller-owned question vocabulary, independent of fixtures and model outputs."""
 
+import json
 from collections.abc import Iterable
+from pathlib import Path
 
 from agent_app.contracts import CaseState, EvidenceBundle, GroundedGap, GroundedRequest
 from agent_app.orchestration.intake import STREAMLIT_VERSION_QUESTION
@@ -69,6 +71,50 @@ def validate_user_gaps(definitions: Iterable[GroundedGap]) -> tuple[GroundedGap,
         ):
             raise ValueError
         return gaps
+    except Exception:
+        raise ValueError("UserGapVocabularyInvalid") from None
+
+
+def load_user_gap_vocabulary(config_path: str) -> tuple[GroundedGap, ...]:
+    """Read bounded caller configuration once; never infer questions from sources.
+
+    This validates shape, not the relevance or neutrality of a question. The
+    operator must review the vocabulary; current case unknowns still select it.
+    """
+
+    def unique_object(pairs):
+        result = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError
+            result[key] = value
+        return result
+
+    def reject_constant(_value):
+        raise ValueError
+
+    try:
+        if type(config_path) is not str or not config_path.strip():
+            raise ValueError
+        path = Path(config_path)
+        if not path.is_file():
+            raise ValueError
+        with path.open("rb") as source:
+            raw = source.read(32769)
+        if len(raw) > 32768:
+            raise ValueError
+        payload = json.loads(
+            raw.decode("utf-8"), object_pairs_hook=unique_object, parse_constant=reject_constant
+        )
+        if (
+            type(payload) is not dict
+            or set(payload) != {"schema_version", "user_gaps"}
+            or type(payload["schema_version"]) is not int
+            or payload["schema_version"] != 1
+            or type(payload["user_gaps"]) is not list
+        ):
+            raise ValueError
+        return validate_user_gaps(payload["user_gaps"])
     except Exception:
         raise ValueError("UserGapVocabularyInvalid") from None
 
