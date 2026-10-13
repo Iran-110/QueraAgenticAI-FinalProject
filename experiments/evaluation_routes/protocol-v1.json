@@ -1,0 +1,38 @@
+{
+  "protocol_id": "runner-route-comparison-v1",
+  "quality_claim": false,
+  "scope": "old runner module vs current runner; all other core/ports/shared test helper held current and identical",
+  "baseline_commit": "a0877705abdb54882f7d478f8801931f28d2ccca",
+  "baseline_runner_sha256": "f224a4cd5aad3b7c597395b63877707b77bbd233ca3ec8ff559d793c75ac7904",
+  "fixture_sha256": "b76a8ca960806a5ac576ad921ff8b1d7905fcfdc4349857a959be5709857ea29",
+  "test_helper_sha256": "d796af6f7d3b03a7f2353afb64cbd904f4f0427aa66b82bd87bd9bbb07f1ef03",
+  "targets": [
+    "parent_callback_code",
+    "streamlit_version",
+    "escalate"
+  ],
+  "acceptable_selected_paths": {
+    "parent_callback_code": [
+      "initial",
+      "callback"
+    ],
+    "streamlit_version": [
+      "initial",
+      "version",
+      "correction"
+    ],
+    "escalate": [
+      "initial"
+    ]
+  },
+  "measurement": "selected registered path complete, actual visited turns, checks, no unselected response supplied, zero real sends",
+  "old_linear_expectation": "Alternative continuation nodes are walked in file order; canonical reply guard may stop before end. This is a coverage failure, not a model-quality failure.",
+  "provider": "mandatory MockTransport test helper with temporary ledgers",
+  "real_api_calls": 0,
+  "paid_cost_usd": "0",
+  "maintainer": "fixture scripted",
+  "tracker": "process_memory_dummy_tracker",
+  "case_count_for_final_evaluation": 0,
+  "exposure": "synthetic and already exercised during development; never held-out",
+  "corpus_policy": "fixture/gold/outcomes must not be indexed"
+}

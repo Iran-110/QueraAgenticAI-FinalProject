@@ -127,3 +127,5 @@ jobs:
         run: uv run python scripts/http_pilot_acceptance.py --factory agent_app.testing.sqlite_http_binding:sqlite_factory --protocol experiments/http_pilot_acceptance/protocol-v2.json --output "$env:RUNNER_TEMP/http-pilot-sqlite-windows.json"
       - name: Check final artifact gate and connected live probe with mocked provider
         run: uv run pytest tests/test_eval_runner_cleanup.py tests/test_evaluation_preflight.py tests/test_eval_runner_final_preflight.py tests/test_evaluation_family_candidates.py tests/test_connected_live_dev_probe.py
+      - name: Check conditional routes, declared review scores and live composition without network
+        run: uv run pytest tests/test_eval_conditional_routes.py tests/test_evaluation_live.py tests/test_evaluation_semantic_review.py tests/test_persistent_live_factory.py
