@@ -99,6 +99,8 @@ jobs:
         run: |
           uv run python scripts/build_pilot_index.py --destination "$RUNNER_TEMP/approved-docs-pilot-rebuilt"
           uv run python experiments/retrieval_acceptance/verify_pilot_index.py --index "$RUNNER_TEMP/approved-docs-pilot" --rebuild-index "$RUNNER_TEMP/approved-docs-pilot-rebuilt" --output "$RUNNER_TEMP/existing-index-receipt.json"
+      - name: Compare only the registered runner routes with intercepted provider requests
+        run: uv run python scripts/evaluation_routes_comparison.py --output "$RUNNER_TEMP/evaluation-routes-current.json"
 
   windows-pilot:
     runs-on: windows-latest
@@ -128,4 +130,6 @@ jobs:
       - name: Check final artifact gate and connected live probe with mocked provider
         run: uv run pytest tests/test_eval_runner_cleanup.py tests/test_evaluation_preflight.py tests/test_eval_runner_final_preflight.py tests/test_evaluation_family_candidates.py tests/test_connected_live_dev_probe.py
       - name: Check conditional routes, declared review scores and live composition without network
-        run: uv run pytest tests/test_eval_conditional_routes.py tests/test_evaluation_live.py tests/test_evaluation_semantic_review.py tests/test_persistent_live_factory.py
+        run: uv run pytest tests/test_eval_conditional_routes.py tests/test_evaluation_live.py tests/test_evaluation_semantic_review.py tests/test_persistent_live_factory.py tests/test_evaluation_routes_comparison.py
+      - name: Compare registered runner routes with mocked provider on Windows
+        run: uv run python scripts/evaluation_routes_comparison.py --output "$env:RUNNER_TEMP/evaluation-routes-current.json"
