@@ -46,7 +46,17 @@ on clean `65f1c31`: old-runner path completion 0/3, conditional completion 3/3,
 with zero failed mechanical checks in the baseline. Only the runner module is
 replaced; this is operational coverage, not semantic quality or full old-release
 behavior. All allocated mock clients close; real sends/spend stay zero.
-Windows CI and publication still need verification at the final PR head.
+Final local suite after the actual-page and comparison-audit additions passes
+**2,616 tests**. V2 conservatively flags accumulated conversation because its
+audit wrongly compares the wire with raw latest text; this measurement error
+and unchanged receipt remain documented. Preregistered V3 on clean `c26e9ce`
+correctly binds full current conversation/handoff and capture chronology: all
+three conditional paths and their actual mock-wire controls pass. Registered
+input bytes stay unchanged; fresh-process HTTP/SQLite again passes 457/457.
+The production ledger retains the same fingerprint and hold/halt.
+[Local verification](../experiments/evaluation_routes/verification-v3.json) records
+commands, scope and hashes. Windows CI and publication still need verification
+at the final PR head.
 
 No shared contract, old receipt, seed or original paid-probe protocol changes.
 Ordinary factory/startup retains the C5 halt; existing continuation is not a

@@ -32,17 +32,37 @@ Maintainer approval is fixture-scripted and tracker storage is process memory.
 Persistent SQLite behavior is tested independently; these paths add **zero**
 cases to the final 15/15 evaluation set.
 
-Reproduce without overwriting the original receipt:
+V1 measured path completion, but did not independently audit actual wire privacy
+or require protocol/fixture/helper stability between pairs. Its original result
+above remains unchanged. New registration `e4925df` added those checks in V2;
+[V2 result](results-e4925df.json) conservatively reports 1/3 because its audit
+incorrectly equates the model's accumulated conversation with only the latest
+raw user message. This is a measurement bug, not a product/model regression.
+
+V3 was committed at `c26e9ce` before its comparison. The
+[V3 result](results-v3.json) reports **0/3 baseline, 3/3 conditional**, with every
+current prompt passing actual wire audit, original input hashes retained and
+registered protocol/fixture/helper/script/source unchanged throughout.
+Prompt case/message matches the same-step handoff and conversation rebuilt
+from only already-submitted selected user inputs, with exact capture chronology
+and count checked. Retrieved source version metadata is permitted; private gold
+and future/unselected user markers are refused. These finite synthetic markers
+do not prove absence of all possible semantic leakage. Actual HTTP is still mock,
+paid cost zero, and all the scope/quality limitations above still apply.
+
+Reproduce V3 without overwriting any original receipt:
 
 ```bash
 uv run python scripts/evaluation_routes_comparison.py --output /tmp/routes-comparison-new.json
 ```
 
-Git history must contain the pinned baseline commit. Protocol, fixture and
-shared test-helper bytes are verified before execution; changing any requires
+Git history must contain the pinned baseline commit. Protocol, fixture, script and
+shared test-helper bytes are verified before execution and between pairs; changing any requires
 new preregistration. The result pins current Python source hashes and verifies
 they stay unchanged during the run. Core-source changes legitimately require
-a new comparison rather than rewriting this historical result.
+a new comparison rather than rewriting a historical result. To reproduce older
+V1/V2 exactly, use the archived registered script/source from their corresponding
+commits; the current script deliberately requires V3 registration.
 
 This fixed control complements the broader tests for unreleased/rejected/edited
 questions, source gaps, unmatched paraphrases, graph eligibility and final gating:

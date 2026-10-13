@@ -100,7 +100,9 @@ jobs:
           uv run python scripts/build_pilot_index.py --destination "$RUNNER_TEMP/approved-docs-pilot-rebuilt"
           uv run python experiments/retrieval_acceptance/verify_pilot_index.py --index "$RUNNER_TEMP/approved-docs-pilot" --rebuild-index "$RUNNER_TEMP/approved-docs-pilot-rebuilt" --output "$RUNNER_TEMP/existing-index-receipt.json"
       - name: Compare only the registered runner routes with intercepted provider requests
-        run: uv run python scripts/evaluation_routes_comparison.py --output "$RUNNER_TEMP/evaluation-routes-current.json"
+        run: |
+          uv run python scripts/evaluation_routes_comparison.py --output "$RUNNER_TEMP/evaluation-routes-current.json"
+          uv run python -c "import json,os,pathlib; r=json.loads((pathlib.Path(os.environ['RUNNER_TEMP'])/'evaluation-routes-current.json').read_text(encoding='utf-8')); assert r['conditional_path_passes']==3 and r['registered_inputs_unchanged_during_run'] and all(x['conditional_runner']['all_allocated_clients_closed'] for x in r['comparisons'])"
 
   windows-pilot:
     runs-on: windows-latest
@@ -132,4 +134,6 @@ jobs:
       - name: Check conditional routes, declared review scores and live composition without network
         run: uv run pytest tests/test_eval_conditional_routes.py tests/test_evaluation_live.py tests/test_evaluation_semantic_review.py tests/test_persistent_live_factory.py tests/test_evaluation_routes_comparison.py
       - name: Compare registered runner routes with mocked provider on Windows
-        run: uv run python scripts/evaluation_routes_comparison.py --output "$env:RUNNER_TEMP/evaluation-routes-current.json"
+        run: |
+          uv run python scripts/evaluation_routes_comparison.py --output "$env:RUNNER_TEMP/evaluation-routes-current.json"
+          uv run python -c "import json,os,pathlib; r=json.loads((pathlib.Path(os.environ['RUNNER_TEMP'])/'evaluation-routes-current.json').read_text(encoding='utf-8')); assert r['conditional_path_passes']==3 and r['registered_inputs_unchanged_during_run'] and all(x['conditional_runner']['all_allocated_clients_closed'] for x in r['comparisons'])"

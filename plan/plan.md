@@ -13,12 +13,14 @@
 case binding پایدار و helper امتیازهای review اضافه شده‌اند. این‌ها پذیرش
 عملیاتی با mock هستند؛ rubric/fixture نهایی، کیفیت و C5 هنوز بازند.
 
-بررسی محلی این تحویل: ۲۵۹۳ pytest، Ruff و سه demo پاس.
+بررسی نهایی محلی این تحویل: ۲۶۱۶ pytest، Ruff و سه demo پاس؛ AppTest صفحهٔ
+واقعی با همین factory و provider mock و HTTP/SQLite تازه ۴۵۷/۴۵۷ پاس‌اند.
 [مقایسهٔ ثبت‌شدهٔ runner](../experiments/evaluation_routes/README.md) روی همان
 fixture و portهای mock: تکمیل مسیر قبلی ۰/۳ و مسیر شاخه‌ای ۳/۳؛ baseline
 هیچ check مکانیکیِ fail نداشت، اما ادامهٔ درست گفتگو را کامل نمی‌کرد.
 این بهبود عملیاتی است؛ کیفیت مدل/RAG یا سه case مستقل نیست. CI و publication
-نسخهٔ نهایی در PR ثبت شوند؛ اصل receiptها بازنویسی نشوند.
+نسخهٔ نهایی در PR ثبت شوند؛ [verification محلی](../experiments/evaluation_routes/verification-v3.json)
+و اصلاحات audit نسخه‌های V1/V2/V3 حفظ‌اند؛ اصل receiptها بازنویسی نشوند.
 
 هدف امشب درخواست ساسان است، نه تأیید زمان اعضا. اول یک برش dev قابل بررسی
 بسازیم، سپس تمام الزام‌ها را ببندیم؛ سه case جای ۳۰ case را نمی‌گیرد.
