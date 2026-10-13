@@ -59,7 +59,13 @@ class SnapshotOrigin:
     def find_spec(self, fullname, path=None, target=None):
         if fullname == "agent_app" or fullname.startswith("agent_app."):
             spec = importlib.machinery.PathFinder.find_spec(fullname, path)
-            if spec is None or spec.origin is None or not Path(spec.origin).resolve().is_relative_to(snapshot_root / "src"):
+            if spec is None:
+                raise RuntimeError("SnapshotOriginInvalid")
+            if spec.origin is None:
+                locations = tuple(spec.submodule_search_locations or ())
+                if not locations or any(not Path(location).resolve().is_relative_to(snapshot_root / "src") for location in locations):
+                    raise RuntimeError("SnapshotOriginInvalid")
+            elif not Path(spec.origin).resolve().is_relative_to(snapshot_root / "src"):
                 raise RuntimeError("SnapshotOriginInvalid")
             return spec
         return None
