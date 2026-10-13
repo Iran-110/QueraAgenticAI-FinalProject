@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-14",
+  "kind": "independent_assistant_source_method_and_configuration_text_review",
+  "human_reviewer": false,
+  "human_usefulness_score": null,
+  "reviewers": [
+    "experiment_audit",
+    "live_readiness_audit"
+  ],
+  "reviewed_runtime_commit": "f0145c977ffe5c67210148cd8eb1c3035e84bcec",
+  "reviewed_runner_sha256": "fa9efd0577319824432e09b3d8a4d470a5a532ce05c629d1c720accf740bc259",
+  "reviewed_receipt_sha256": "a33899fe44454b7ceb85572b78795e102b77eefa889ba5de111d3354c2632de3",
+  "material_blockers": [],
+  "frozen_oracle_pins_verified": true,
+  "two_production_files_only": [
+    "src/agent_app/reasoning/catalog.py",
+    "src/agent_app/evaluation/live.py"
+  ],
+  "source_review": [
+    "Caller-owned opt-in file; no case/source/model file selection.",
+    "Strict bounded UTF-8 JSON/user vocabulary before key/provider allocation; original budget/index checks remain.",
+    "Vocabulary loaded once; explicit current unknown and activeUSER facts remain selection gates.",
+    "Neutral three V9 question definitions reviewed; semantic utility depends on actual caller input.",
+    "No shared contract/approval/RAG/UI/teammate fixture changes."
+  ],
+  "harness_fault_injections": {
+    "fake_child_responses": 7,
+    "real_pytest_children": 0,
+    "invalid_pytest_exit2_rejected": true,
+    "success_exit_with_failed_outcome_rejected": true,
+    "failure_exit_with_all_passed_rejected": true,
+    "archived_helper_mutation_rejected": true,
+    "archived_seed_mutation_rejected": true,
+    "positive_success_and_failure_controls_accepted": true
+  },
+  "scope": [
+    "12 repaired controls are configuration/HTTP capability, not model decisions.",
+    "Same case/message/evidence/source catalog; question catalog and complete request hashes differ.",
+    "One exposed answer-informed family, zero independent final cases.",
+    "Direct caller_catalog injection already worked; configuredfactory bridge is the improvement.",
+    "Real HTTP+offlineChroma+SQLite uses four fully intercepted provider requests.",
+    "Current C5/hold/halt and old immutable grant remain; no paid pair executed."
+  ]
+}

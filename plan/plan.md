@@ -4,15 +4,27 @@
 
 ## وضعیت فعلی
 
-- [ ] **C4c — vocabulary سؤال‌های caller در factory معمول؛ ساسان.**
+- [x] **C4c — vocabulary سؤال‌های caller در factory معمول؛ ساسان، محدود آفلاین.**
   [ثبت قبل از اصلاح](../experiments/user_gap_configuration/protocol-v1.json):
   ۲۱ کنترل، چهار state از همان خانوادهٔ exposed و سه سؤال بازبینی‌شده.
   مسیر معمول فقط gap نسخه را داشت؛ تنظیم اختیاری `AGENT_USER_GAP_CATALOG`
   باید vocabulary موجود را به factory برساند، فقط برای unknown صریح و بدون
   تکرار fact فعال USER. source catalog، قراردادها و فایل‌های اعضا ثابت‌اند.
-  baseline سپس تغییر و مقایسهٔ همان کنترل‌ها اجرا شوند؛ mock کیفیت مدل نیست.
+  [مقایسهٔ واقعی Git و review](../experiments/user_gap_configuration/README.md):
+  همان ۲۱ کنترل از ۹ pass/۱۲ fail به ۲۱ pass رسیدند؛ دوازده مورد مربوط به
+  configuration و اتصال HTTP هستند، نه دوازده تصمیم مدل. تست کامل ۲۸۸۱، Ruff
+  روی ۲۱۰ فایل، سه demo و پذیرش HTTP/SQLite ۴۵۷/۴۵۷ همراه restart پاس‌اند.
+  [راهنمای اتصال](../docs/user-gap-configuration.fa.md): unknownها باید صریح در
+  UI/API ثبت شوند؛ vocabulary خودکار کمبود را کشف نمی‌کند. factory بدون تنظیم
+  اضافی همان رفتار قبلی را دارد. source catalog و قراردادها تغییر نکرده‌اند.
   ledger/halt/grant قبلی محفوظ‌اند؛ pair مدل با remaining grant کامل تأمین
   نمی‌شود، پس برای این اصلاح اجرای paid انجام نمی‌دهیم.
+
+قدم اتصال محمدحسن: برای dev caseها نام gapهای لازم را در unknowns و جواب‌ها را
+با همان نام در reported_facts ثبت کند؛ vocabulary سؤال‌ها را قبل از اجرای
+مدل review و در config خصوصی freeze کند. فرم UI موجود این ورودی را دارد؛
+نسخهٔ معلوم یا callback دریافت‌شده دوباره پرسیده نشود. این کار جای E1/E2 یا
+rubric و داوری usefulness نیست. task بهنام برای smoke دستی C2h همچنان پابرجاست.
 
 - [x] **C2h — سؤال‌های mock مطابق facts فعلی؛ ساسان، تحویل محدود آفلاین.**
   انتشار و CI نهایی در [PR #42](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/42) است.

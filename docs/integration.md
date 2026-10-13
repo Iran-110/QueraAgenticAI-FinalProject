@@ -1,5 +1,13 @@
 # Connect your module to the core
 
+The opt-in [C4c vocabulary configuration](user-gap-configuration.fa.md) connects
+reviewed user questions to the ordinary `evaluation.live`/`live_backend` factory.
+Set `AGENT_USER_GAP_CATALOG` in operator configuration, register the applicable
+names in current `unknowns`, and record answers through `reported_facts`. The
+existing UI form supports these fields. Definitions are read once; active USER
+facts suppress stale questions. This is not automatic gap discovery, and the
+ordinary live accounting halt remains enforced before vocabulary/key lookup.
+
 Owners can develop against the same contracts. The Streamlit/FastAPI prototype
 defaults to scripted retrieval/reasoning and memory storage. Its additive HTTP ingress
 now accepts explicit facts, checks, corrections and approved version replies.

@@ -2,6 +2,54 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-14 — C4c reviewed caller vocabulary on configured factory
+
+Ordinary configured composition previously supplied no user vocabulary, while
+direct Python `caller_catalog` injection already worked. With a known version,
+explicit callback/reproduction unknowns therefore had no corresponding model
+question. Optional `AGENT_USER_GAP_CATALOG` now reads one caller-reviewed bounded
+UTF-8 JSON snapshot and passes existing user definitions to the case-bound
+factory. Without this setting the extra vocabulary stays empty. Budget/index preflight stay
+first; malformed/duplicate/source/reserved/oversized config fails before keys or
+provider allocation. Current explicit unknowns and active USER facts select
+questions; sources/prose/model output cannot choose a config file or infer gaps.
+
+Twenty-one controls, four runtime state/message/bundle variations and reviewer
+criteria were committed at `999a9d6` before production changed; source matched
+`43ee9fb`. Original baseline9pass/12fail and first uncommitted-source candidate
+21pass are retained. Actual Git-archived `43ee9fb` versus `f0145c9` with identical
+frozen controls gives9pass/12fail versus21pass/0fail. Twelve repaired controls are
+configuration/HTTP adoption, not twelve measured model decisions. Nine retained
+controls include direct catalog injection that already worked. The registered
+neutral V9 vocabulary remains exposed, answer-informed one-family development;
+no independent dev/test case was added. Source gaps/state/evidence stay equal
+across arms; question catalog and full prompt/request hashes differ.
+
+The actual configured HTTP factory with offline Chroma/SQLite and four intercepted
+provider sends verifies two-case isolation, correction/staleapproval, supplied
+callback suppression and exact committed review retry after recreation with no
+extra action/wire. Initial comparison-harness output stays local as diagnostic;
+before the published receipt, strict pytest exits, isolated imports and archived
+fixture pins were added without changing frozen controls/product semantics.
+Independent assistant fault probes reject five bad cases and accept two good
+ones; these are separate from product/model test counts.
+
+[Packet, review and verification](../experiments/user_gap_configuration/README.md)
+bind clean full-suite `3a166d1`: 2881pass in112.603s, Ruff/format210 files, locked
+sync and three demos. Clean `f0145c9` fresh-process HTTP/SQLite457/457 including
+restart and the final archive comparison pass. Runtime/test bytes match both
+epochs; publication docs/CI are separate. Production ledger hash is unchanged;
+no real key read, paid call, reset/refill/unhalt occurred. The old grant cannot guarantee
+full reservation of the small two-arm model probe; no partial paid pair runs.
+
+Only `reasoning/catalog.py` and `evaluation/live.py` change in production. Shared
+contracts and teammate modules remain unchanged. The [adoption guide](user-gap-configuration.fa.md)
+explains the existing UI unknown/fact fields, operator file and load-once behavior.
+Question neutrality/necessity still requires caller review; no semantic detector
+or new framework/agent was added. Actual model quality, human usefulness, C5,
+independent dev/test, corpus/exclusion and T4/U3/E5 remain open; the engineering
+completion estimate is unchanged.
+
 ## 2026-10-13 — C2h current-user gaps in the no-index scripted UI
 
 The immutable manual PR40 report showed `KnownFactMarkedMissing` after version
