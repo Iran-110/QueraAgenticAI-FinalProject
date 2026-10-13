@@ -12,6 +12,7 @@ import re
 import subprocess
 import tempfile
 from contextlib import redirect_stderr, redirect_stdout
+from dataclasses import dataclass
 from decimal import Decimal
 from pathlib import Path
 from typing import get_args
@@ -64,6 +65,53 @@ EXPERIMENT_ID = "controlled-model-baseline-2026-10-13-v1"
 BATCH_CAP = Decimal("0.00491479")
 MAX_SENDS = 6
 TOP_K = 5
+_CONDITION_IDS = (
+    "controlled-v8-full",
+    "controlled-v8-key-evidence-removed",
+    "controlled-v8-unknown-version-mixed",
+    "controlled-v8-version-correction",
+    "controlled-v8-same-version-synthetic-conflict",
+    "controlled-v8-refinement-stale-source",
+)
+
+
+@dataclass(frozen=True, slots=True)
+class ExecutionPolicy:
+    """Two fixed operator configurations; neither is selected by model content."""
+
+    protocol_path: Path
+    protocol_id: str
+    experiment_id: str
+    condition_ids: tuple[str, ...]
+    input_reserve: int
+    output_limit: int
+    request_bound: Decimal
+    batch_cap: Decimal
+    max_sends: int
+
+
+BASELINE = ExecutionPolicy(
+    PROTOCOL,
+    PROTOCOL_ID,
+    EXPERIMENT_ID,
+    _CONDITION_IDS,
+    INPUT_RESERVE,
+    OUTPUT_LIMIT,
+    REQUEST_BOUND,
+    BATCH_CAP,
+    MAX_SENDS,
+)
+OUTPUT_CAP_FOLLOWUP = ExecutionPolicy(
+    Path("experiments/controlled_model_baseline/output-cap-followup-v1.json"),
+    "controlled-output-cap-followup-v1",
+    "controlled-output-cap-2026-10-13-v1",
+    ("controlled-v8-unknown-version-mixed",),
+    15360,
+    512,
+    Decimal("0.002872320"),
+    Decimal("0.002909545"),
+    1,
+)
 LIMITS = {
     "max_model_attempts": 2,
     "max_retrieval_rounds": 2,
@@ -98,25 +146,34 @@ def _inputs():
     return controlled_decision_inputs
 
 
-def _gateway_policy():
+def _validated_policy(policy):
+    if type(policy) is not ExecutionPolicy or policy not in (BASELINE, OUTPUT_CAP_FOLLOWUP):
+        raise BaselineRejected()
+    if get_price(MODEL).cost(policy.input_reserve, policy.output_limit) != policy.request_bound:
+        raise BaselineRejected()
+    return policy
+
+
+def _gateway_policy(policy=BASELINE):
+    policy = _validated_policy(policy)
     return {
         "model": MODEL,
         "phase": "development",
-        "input_token_reserve": INPUT_RESERVE,
-        "max_output_tokens": OUTPUT_LIMIT,
-        "max_request_usd": str(REQUEST_BOUND),
-        "batch_actual_cost_cap_usd": str(BATCH_CAP),
-        "max_actual_sends_including_repair": MAX_SENDS,
+        "input_token_reserve": policy.input_reserve,
+        "max_output_tokens": policy.output_limit,
+        "max_request_usd": str(policy.request_bound),
+        "batch_actual_cost_cap_usd": str(policy.batch_cap),
+        "max_actual_sends_including_repair": policy.max_sends,
     }
 
 
-def _source_paths(root, fixture_pins, review_relative):
+def _source_paths(root, fixture_pins, review_relative, policy=BASELINE):
     return sorted(
         set(
             [str(path.relative_to(root)) for path in (root / "src/agent_app").rglob("*.py")]
             + [
                 "scripts/controlled_model_baseline.py",
-                str(PROTOCOL),
+                str(policy.protocol_path),
                 fixture_pins["suite_path"],
                 fixture_pins["protocol_path"],
                 review_relative,
@@ -127,7 +184,8 @@ def _source_paths(root, fixture_pins, review_relative):
     )
 
 
-def source_observation(root, fixture_pins, review_relative):
+def source_observation(root, fixture_pins, review_relative, policy=BASELINE):
+    policy = _validated_policy(policy)
     head = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, text=True).strip()
     upstream = subprocess.check_output(
         ["git", "rev-parse", "@{upstream}"], cwd=root, text=True, stderr=subprocess.DEVNULL
@@ -141,17 +199,24 @@ def source_observation(root, fixture_pins, review_relative):
         "source_pushed": head == upstream,
         "source_hashes": {
             relative: _sha((root / relative).read_bytes())
-            for relative in _source_paths(root, fixture_pins, review_relative)
+            for relative in _source_paths(root, fixture_pins, review_relative, policy)
         },
     }
 
 
-def load_registration(root, ledger_path):
-    raw = (root / PROTOCOL).read_bytes()
+def load_registration(root, ledger_path, policy=BASELINE):
+    policy = _validated_policy(policy)
+    raw = (root / policy.protocol_path).read_bytes()
     protocol = json.loads(raw)
+    if policy == OUTPUT_CAP_FOLLOWUP and (
+        type(protocol.get("baseline_prompt_sha256")) is not str
+        or re.fullmatch(r"[0-9a-f]{64}", protocol["baseline_prompt_sha256"]) is None
+    ):
+        raise BaselineRejected()
     fixture_pins = _inputs().registration_inputs()
     conditions = _inputs().load_conditions()
-    order = [condition.condition_id for condition in conditions]
+    full_order = [condition.condition_id for condition in conditions]
+    order = list(policy.condition_ids)
     review_relative = protocol["review_pins"]["path"]
     review_path = (root / review_relative).resolve()
     if not review_path.is_relative_to(root.resolve()) or review_path.suffix != ".json":
@@ -159,10 +224,10 @@ def load_registration(root, ledger_path):
     review_bytes = review_path.read_bytes()
     review_order = json.loads(review_bytes)["ordered_condition_ids"]
     before = ledger_observation(ledger_path)
-    source = source_observation(root, fixture_pins, review_relative)
+    source = source_observation(root, fixture_pins, review_relative, policy)
     if (
-        protocol["protocol_id"] != PROTOCOL_ID
-        or protocol["experiment_id"] != EXPERIMENT_ID
+        protocol["protocol_id"] != policy.protocol_id
+        or protocol["experiment_id"] != policy.experiment_id
         or re.fullmatch(r"[a-z0-9][a-z0-9-]{0,63}", protocol["experiment_id"]) is None
         or protocol["continuation_id"] != GRANT
         or protocol["ledger"]["path"] != "runtime/budget.sqlite3"
@@ -181,20 +246,18 @@ def load_registration(root, ledger_path):
         - Decimal(before["settled_estimated_usd"])
         - Decimal(before["reserved_usd"])
         - Decimal(before["uncertain_usd"])
-        < REQUEST_BOUND
+        < policy.request_bound
         or not before["continuation"]["active"]
         or before["continuation"]["allowed_model"] != MODEL
-        or Decimal(before["continuation"]["remaining_usd"]) != BATCH_CAP
-        or get_price(MODEL).cost(INPUT_RESERVE, OUTPUT_LIMIT) != REQUEST_BOUND
-        or protocol["gateway"] != _gateway_policy()
+        or Decimal(before["continuation"]["remaining_usd"]) != policy.batch_cap
+        or protocol["gateway"] != _gateway_policy(policy)
         or protocol["limits"] != LIMITS
         or protocol["evidence_scope"] != "all"
         or protocol["top_k"] != TOP_K
         or protocol["fixture_pins"] != fixture_pins
         or protocol["ordered_condition_ids"] != order
-        or len(order) != 6
-        or len(set(order)) != 6
-        or review_order != order
+        or tuple(full_order) != _CONDITION_IDS
+        or review_order != full_order
         or _sha(review_bytes) != protocol["review_pins"]["sha256"]
         or not source["source_clean"]
         or not source["source_pushed"]
@@ -216,6 +279,8 @@ def load_registration(root, ledger_path):
         "review_pins": protocol["review_pins"],
         "ordered_condition_ids": order,
         "ledger_before": before,
+        "execution_policy": "baseline" if policy == BASELINE else "output_cap_followup",
+        "gateway": _gateway_policy(policy),
     }
 
 
@@ -225,10 +290,19 @@ def _prompt_size(request, context):
     return len(encoded) + 1024, _sha(encoded)
 
 
-def prepare(conditions=None):
+def prepare(conditions=None, *, policy=BASELINE):
     """Size both frozen rounds and the largest repair-code frame before any key."""
-    conditions = tuple(conditions if conditions is not None else _inputs().load_conditions())
-    if len(conditions) != 6 or len({item.condition_id for item in conditions}) != 6:
+    policy = _validated_policy(policy)
+    conditions = tuple(
+        conditions
+        if conditions is not None
+        else (
+            item
+            for item in _inputs().load_conditions()
+            if item.condition_id in policy.condition_ids
+        )
+    )
+    if tuple(item.condition_id for item in conditions) != policy.condition_ids:
         raise BaselineRejected()
     longest = max(get_args(OutputIssue.model_fields["code"].annotation), key=len)
     repair = OutputFeedback(issues=tuple(OutputIssue(code=longest) for _ in range(8)))
@@ -262,7 +336,7 @@ def prepare(conditions=None):
                     query_limit=2,
                 )
                 size, digest = _prompt_size(request, context)
-                if size > INPUT_RESERVE:
+                if size > policy.input_reserve:
                     raise BaselineRejected()
                 prompts.append(
                     {
@@ -279,10 +353,11 @@ def prepare(conditions=None):
 
 
 class _ScopedTransport(httpx.BaseTransport):
-    def __init__(self, underlying, ledger, before, source_guard):
+    def __init__(self, underlying, ledger, before, source_guard, policy=BASELINE):
         self.underlying, self.ledger, self.before = underlying, ledger, before
         self.source_guard, self.current, self.records = source_guard, None, []
         self.last_stop_reason = None
+        self.policy = _validated_policy(policy)
 
     def _deny(self, reason):
         self.last_stop_reason = reason
@@ -315,14 +390,14 @@ class _ScopedTransport(httpx.BaseTransport):
                 not now["continuation"]["active"] or now["continuation"]["allowed_model"] != MODEL,
                 "ContinuationInactive",
             ),
-            (len(self.records) >= MAX_SENDS, "SendLimitReached"),
+            (len(self.records) >= self.policy.max_sends, "SendLimitReached"),
             (
-                Decimal(now["continuation"]["remaining_usd"]) < REQUEST_BOUND,
+                Decimal(now["continuation"]["remaining_usd"]) < self.policy.request_bound,
                 "RemainingAuthorizationInsufficient",
             ),
-            (available < REQUEST_BOUND, "GlobalBudgetInsufficient"),
+            (available < self.policy.request_bound, "GlobalBudgetInsufficient"),
             (delta < 0, "AccountingChanged"),
-            (delta + REQUEST_BOUND > BATCH_CAP, "BatchCostCapInsufficient"),
+            (delta + self.policy.request_bound > self.policy.batch_cap, "BatchCostCapInsufficient"),
         ):
             if failed:
                 self._deny(reason)
@@ -340,14 +415,14 @@ class _ScopedTransport(httpx.BaseTransport):
         )
         if (
             record is None
-            or len(self.records) >= MAX_SENDS
+            or len(self.records) >= self.policy.max_sends
             or request.method != "POST"
             or str(request.url) != METIS_CHAT_URL
             or row is None
             or row.status != "reserved"
             or row.model != MODEL
             or row.phase != "development"
-            or row.amount_usd != REQUEST_BOUND
+            or row.amount_usd != self.policy.request_bound
             or row.run_id != record["run_id"]
             or row.case_id != record["case_id"]
             or row.case_revision != record["case_revision"]
@@ -361,7 +436,7 @@ class _ScopedTransport(httpx.BaseTransport):
             or Decimal(now["settled_estimated_usd"])
             - Decimal(self.before["settled_estimated_usd"])
             + Decimal(now["reserved_usd"])
-            > BATCH_CAP
+            > self.policy.batch_cap
         ):
             self._deny("PreSendAccountingChanged")
         self.records.append(record)
@@ -374,7 +449,7 @@ class _ScopedTransport(httpx.BaseTransport):
         return httpx.Response(
             response.status_code,
             headers=headers,
-            stream=_DecodedStream(response, record, MODEL),
+            stream=_FinishStream(response, record, MODEL),
             extensions=response.extensions,
             request=request,
         )
@@ -394,6 +469,38 @@ class _SharedTransport(httpx.BaseTransport):
         pass
 
 
+class _FinishStream(_DecodedStream):
+    """Same decoded envelope as the gateway; only known finish reasons are retained."""
+
+    def __iter__(self):
+        bounded, overflow = bytearray(), False
+        for chunk in super().__iter__():
+            if len(bounded) + len(chunk) > 262_144:
+                bounded.clear()
+                overflow = True
+            elif not overflow:
+                bounded.extend(chunk)
+            yield chunk
+        if not overflow:
+            try:
+                choices = json.loads(bounded).get("choices")
+                if isinstance(choices, list) and len(choices) == 1 and isinstance(choices[0], dict):
+                    value = choices[0].get("finish_reason")
+                    self.record["finish_reason_observed"] = True
+                    if type(value) is str and value in {
+                        "stop",
+                        "length",
+                        "tool_calls",
+                        "content_filter",
+                    }:
+                        self.record["finish_reason"] = value
+                        self.record["finish_reason_unknown"] = False
+                    else:
+                        self.record["finish_reason_unknown"] = True
+            except (ValueError, TypeError, AttributeError):
+                pass
+
+
 class _Planner:
     def __init__(self, gateway, scoped, prepared):
         self.gateway, self.scoped, self.prepared = gateway, scoped, prepared
@@ -409,7 +516,7 @@ class _Planner:
         ):
             raise ReasoningStopped("ProviderRequestFailed")
         size, digest = _prompt_size(request, context)
-        if size > INPUT_RESERVE:
+        if size > self.scoped.policy.input_reserve:
             raise ReasoningStopped("ContextLimitExceeded")
         self.latest = request.model_copy(deep=True)
         self.requests.append(self.latest)
@@ -427,6 +534,9 @@ class _Planner:
             "verified_returned_model": None,
             "http_send_started": False,
             "model_selection": None,
+            "finish_reason": None,
+            "finish_reason_observed": False,
+            "finish_reason_unknown": True,
         }
         self.attempts.append(record)
         self.scoped.current = record
@@ -528,7 +638,10 @@ class _OutputCapture:
                 entry["grounded_context_sha256"] = latest.context_sha256
 
 
-def execute(prepared, *, ledger_path, config, before, underlying=None, source_guard=None):
+def execute(
+    prepared, *, ledger_path, config, before, underlying=None, source_guard=None, policy=BASELINE
+):
+    policy = _validated_policy(policy)
     mocked = isinstance(underlying, httpx.MockTransport)
     if (
         config.model != MODEL
@@ -536,9 +649,9 @@ def execute(prepared, *, ledger_path, config, before, underlying=None, source_gu
         or config.response_mode != "grounded_plan"
         or config.continuation_id != GRANT
         or not config.live_enabled
-        or config.input_token_reserve != INPUT_RESERVE
-        or config.max_output_tokens != OUTPUT_LIMIT
-        or config.max_request_usd != REQUEST_BOUND
+        or config.input_token_reserve != policy.input_reserve
+        or config.max_output_tokens != policy.output_limit
+        or config.max_request_usd != policy.request_bound
         or (underlying is None and source_guard is None)
         or (underlying is not None and not mocked)
         or (
@@ -547,14 +660,17 @@ def execute(prepared, *, ledger_path, config, before, underlying=None, source_gu
         )
         or (
             underlying is None
-            and [item["condition"].condition_id for item in prepared]
-            != [item.condition_id for item in _inputs().load_conditions()]
+            and [item["condition"].condition_id for item in prepared] != list(policy.condition_ids)
         )
     ):
         raise BaselineRejected()
     ledger = BudgetLedger(ledger_path)
     scoped = _ScopedTransport(
-        underlying or httpx.HTTPTransport(retries=0), ledger, before, source_guard or (lambda: None)
+        underlying or httpx.HTTPTransport(retries=0),
+        ledger,
+        before,
+        source_guard or (lambda: None),
+        policy,
     )
     results, gateways, planners, skipped = [], [], [], []
     stop_code = None
@@ -603,7 +719,7 @@ def execute(prepared, *, ledger_path, config, before, underlying=None, source_gu
                 ).run(
                     condition.case,
                     condition.user_message,
-                    run_id=f"controlled-{EXPERIMENT_ID}-{position + 1}-{uuid4().hex[:8]}",
+                    run_id=f"controlled-{policy.experiment_id}-{position + 1}-{uuid4().hex[:8]}",
                 )
                 handoff, handoff_error = None, None
                 if result.status == "awaiting_approval":
@@ -670,6 +786,7 @@ def execute(prepared, *, ledger_path, config, before, underlying=None, source_gu
         source_preserved = False
     checks = {
         "at_most_six_actual_sends": len(scoped.records) <= MAX_SENDS,
+        "actual_send_limit_respected": len(scoped.records) <= policy.max_sends,
         "at_most_two_attempts_per_condition": all(
             len(planner.attempts) <= 2 for planner in planners
         ),
@@ -683,7 +800,7 @@ def execute(prepared, *, ledger_path, config, before, underlying=None, source_gu
         "no_pending_requests": after["counts"].get("reserved", 0) == 0,
         "batch_actual_estimate_bound": Decimal(after["settled_estimated_usd"])
         - Decimal(before["settled_estimated_usd"])
-        <= BATCH_CAP,
+        <= policy.batch_cap,
         "new_request_accounting_complete": accounting["new_request_accounting_complete"],
         "registered_source_unchanged": source_preserved,
     }
@@ -695,8 +812,10 @@ def execute(prepared, *, ledger_path, config, before, underlying=None, source_gu
     }
     return {
         "schema_version": 1,
-        "protocol_id": PROTOCOL_ID,
-        "experiment_id": EXPERIMENT_ID,
+        "protocol_id": policy.protocol_id,
+        "experiment_id": policy.experiment_id,
+        "execution_policy": "baseline" if policy == BASELINE else "output_cap_followup",
+        "gateway": _gateway_policy(policy),
         "evidence_scope": "all",
         "top_k": TOP_K,
         "limits": LIMITS,
@@ -714,6 +833,7 @@ def execute(prepared, *, ledger_path, config, before, underlying=None, source_gu
         "complete": len(results) == len(prepared) and finals == len(prepared),
         "stop_code": stop_code,
         "checks": checks,
+        "source_guard_installed": source_guard is not None,
         "accepted_operations": all(checks.values()),
         "actual_sends": len(scoped.records),
         "execution_mode": "mocked_model_fixed_evidence" if mocked else "live_model_fixed_evidence",
@@ -772,7 +892,8 @@ def _mock_response(request):
     )
 
 
-def _config(key):
+def _config(key, policy=BASELINE):
+    policy = _validated_policy(policy)
     return MetisConfig(
         api_key=key,
         live_enabled=True,
@@ -780,9 +901,9 @@ def _config(key):
         phase="development",
         response_mode="grounded_plan",
         continuation_id=GRANT,
-        input_token_reserve=INPUT_RESERVE,
-        max_output_tokens=OUTPUT_LIMIT,
-        max_request_usd=REQUEST_BOUND,
+        input_token_reserve=policy.input_reserve,
+        max_output_tokens=policy.output_limit,
+        max_request_usd=policy.request_bound,
     )
 
 
@@ -829,6 +950,7 @@ def _summary(receipt):
         key: receipt[key]
         for key in (
             "execution_mode",
+            "execution_policy",
             "registered_conditions",
             "attempted_conditions",
             "final_proposals",
@@ -857,24 +979,27 @@ def main():
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--live", action="store_true")
     mode.add_argument("--mock", action="store_true")
+    parser.add_argument("--output-cap-followup", action="store_true")
     parser.add_argument("--ledger", type=Path, default=ROOT / "runtime/budget.sqlite3")
     parser.add_argument("--env-file", type=Path)
     parser.add_argument("--output-dir", type=Path)
     args = parser.parse_args()
     try:
+        policy = OUTPUT_CAP_FOLLOWUP if args.output_cap_followup else BASELINE
         if args.mock:
             if args.env_file is not None:
                 raise BaselineRejected()
-            prepared = prepare()
+            prepared = prepare(policy=policy)
             with tempfile.TemporaryDirectory(prefix="controlled-baseline-mock-") as temporary:
                 ledger = _mock_ledger(Path(temporary) / "budget.sqlite3")
                 with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
                     receipt = execute(
                         prepared,
                         ledger_path=ledger._path,
-                        config=_config("public-synthetic-controlled-baseline-key"),
+                        config=_config("public-synthetic-controlled-baseline-key", policy),
                         before=ledger_observation(ledger._path),
                         underlying=httpx.MockTransport(_mock_response),
+                        policy=policy,
                     )
             receipt["execution_mode"] = "mocked_model_fixed_evidence"
             receipt["real_provider_requests"] = 0
@@ -889,15 +1014,24 @@ def main():
             if not receipt["complete"] or not receipt["accepted_operations"]:
                 raise BaselineRejected()
             return
-        protocol, registration = load_registration(ROOT, args.ledger)
-        prepared = prepare()
+        protocol, registration = load_registration(ROOT, args.ledger, policy)
+        prepared = prepare(policy=policy)
+        if policy == OUTPUT_CAP_FOLLOWUP:
+            expected = protocol["baseline_prompt_sha256"]
+            if (
+                type(expected) is not str
+                or re.fullmatch(r"[0-9a-f]{64}", expected) is None
+                or prepared[0]["prompts"][0]["prompt_sha256"] != expected
+            ):
+                raise BaselineRejected()
+            registration["baseline_prompt_sha256"] = expected
         registration["preflight"] = {
             item["condition"].condition_id: item["prompts"] for item in prepared
         }
 
         def source_guard():
             observed = source_observation(
-                ROOT, registration["fixture_pins"], registration["review_pins"]["path"]
+                ROOT, registration["fixture_pins"], registration["review_pins"]["path"], policy
             )
             if observed != {key: registration[key] for key in observed}:
                 raise BaselineRejected()
@@ -913,8 +1047,11 @@ def main():
                         "registered_conditions": len(prepared),
                         "all_prompts_fit": True,
                         "paid_requests": 0,
-                        "max_actual_sends": MAX_SENDS,
-                        "batch_actual_cost_cap_usd": str(BATCH_CAP),
+                        "max_actual_sends": policy.max_sends,
+                        "batch_actual_cost_cap_usd": str(policy.batch_cap),
+                        "execution_policy": "baseline"
+                        if policy == BASELINE
+                        else "output_cap_followup",
                         "all_six_funded_claim": False,
                         "quality_claim": False,
                         "c5_reconciled": False,
@@ -929,7 +1066,7 @@ def main():
         source_guard()
         if ledger_observation(args.ledger) != registration["ledger_before"]:
             raise BaselineRejected()
-        config = _config(_credential(ROOT, args.env_file))
+        config = _config(_credential(ROOT, args.env_file), policy)
         with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
             receipt = execute(
                 prepared,
@@ -937,6 +1074,7 @@ def main():
                 config=config,
                 before=registration["ledger_before"],
                 source_guard=source_guard,
+                policy=policy,
             )
         receipt["execution_mode"] = "live_model_fixed_evidence"
         receipt["real_provider_requests"] = receipt["actual_sends"]

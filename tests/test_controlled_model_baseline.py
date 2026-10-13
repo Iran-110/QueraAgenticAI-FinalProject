@@ -11,6 +11,7 @@ from decimal import Decimal
 import httpx
 import pytest
 
+from agent_app.llm.pricing import get_price
 from agent_app.orchestration.ports import ReasoningStopped
 from agent_app.testing import controlled_model_baseline as baseline
 from agent_app.testing.controlled_decision_inputs import load_conditions, registration_inputs
@@ -610,4 +611,169 @@ def test_non_mock_transport_cannot_use_disposable_ledger_for_paid_work(prepared,
             underlying=NeverDelegate(),
             source_guard=lambda: None,
         )
+    assert baseline.ledger_observation(ledger._path) == before
+
+
+def followup_execute(prepared, ledger, respond=baseline._mock_response):
+    with offline_network():
+        return baseline.execute(
+            prepared,
+            ledger_path=ledger._path,
+            config=baseline._config("public-synthetic-followup-key", baseline.OUTPUT_CAP_FOLLOWUP),
+            before=baseline.ledger_observation(ledger._path),
+            underlying=httpx.MockTransport(respond),
+            policy=baseline.OUTPUT_CAP_FOLLOWUP,
+        )
+
+
+def test_followup_exact_recipe_matches_price_and_keeps_baseline_defaults(prepared):
+    policy = baseline.OUTPUT_CAP_FOLLOWUP
+    assert (
+        policy.request_bound == get_price(baseline.MODEL).cost(15360, 512) == Decimal("0.002872320")
+    )
+    assert policy.batch_cap - policy.request_bound == Decimal("0.000037225")
+    assert baseline._gateway_policy()["input_token_reserve"] == 16384
+    assert baseline._gateway_policy()["max_output_tokens"] == 384
+    assert baseline._gateway_policy()["max_actual_sends_including_repair"] == 6
+    assert len(prepared) == 6
+    with offline_network():
+        followup = baseline.prepare(policy=policy)
+    assert len(followup) == 1
+    assert followup[0]["condition"].condition_id == "controlled-v8-unknown-version-mixed"
+    assert all(frame["prompt_bytes_plus_margin"] <= 15360 for frame in followup[0]["prompts"])
+    assert followup[0]["prompts"][0]["prompt_sha256"] == prepared[2]["prompts"][0]["prompt_sha256"]
+
+
+def test_followup_wire_messages_are_identical_with_only_output_cap_changed(prepared, ledger):
+    seen = []
+
+    def respond(request):
+        seen.append(json.loads(request.content))
+        return response(request)
+
+    original = execute(prepared[2:3], ledger, respond)
+    with offline_network():
+        followup = baseline.prepare(policy=baseline.OUTPUT_CAP_FOLLOWUP)
+    changed = followup_execute(followup, ledger, respond)
+    assert len(seen) == 2
+    assert seen[0]["model"] == seen[1]["model"] == "gpt-4o-mini"
+    assert seen[0]["messages"] == seen[1]["messages"]
+    assert (seen[0]["max_tokens"], seen[1]["max_tokens"]) == (384, 512)
+    assert (
+        original["provider_observations"][0]["prompt_sha256"]
+        == changed["provider_observations"][0]["prompt_sha256"]
+    )
+    assert changed["registered_conditions"] == changed["final_proposals"] == 1
+    assert changed["complete"] and changed["actual_sends"] == 1
+    assert changed["provider_observations"][0]["finish_reason"] == "stop"
+    assert changed["provider_observations"][0]["finish_reason_observed"]
+    assert not changed["provider_observations"][0]["finish_reason_unknown"]
+
+
+@pytest.mark.parametrize("route", ["retrieve_more", "malformed"])
+def test_followup_never_sends_paid_second_for_refinement_or_repair(ledger, route):
+    seen = []
+    with offline_network():
+        prepared = baseline.prepare(policy=baseline.OUTPUT_CAP_FOLLOWUP)
+
+    def respond(request):
+        seen.append(request_data(request))
+        if route == "malformed":
+            return response(request, malformed=True)
+        data = seen[-1]
+        return response(
+            request,
+            plan={
+                "context_sha256": data["request"]["context_sha256"],
+                "decision": "retrieve_more",
+                "retrieval_queries": ["Find current missing environment applicability"],
+            },
+        )
+
+    receipt = followup_execute(prepared, ledger, respond)
+    assert receipt["actual_sends"] == len(seen) == 1
+    assert receipt["accepted_operations"] and not receipt["complete"]
+    assert receipt["condition_results"][0]["result"]["error_code"] == "BudgetExceeded"
+    assert receipt["condition_results"][0]["guard_stop_reason"] == "SendLimitReached"
+    assert receipt["condition_results"][0]["result"]["model_attempts"] == 2
+    assert receipt["condition_results"][0]["result"]["retrieval_rounds"] == (
+        2 if route == "retrieve_more" else 1
+    )
+    assert len(receipt["condition_results"][0]["reasoning_outputs"]) == 2
+    assert receipt["condition_results"][0]["reasoning_outputs"][-1]["status"] == "stopped"
+    assert receipt["new_reserved_usd"] == receipt["new_uncertain_usd"] == "0"
+    assert receipt["unfunded_condition_count"] == 0
+
+
+@pytest.mark.parametrize(
+    "finish", ["length", "tool_calls", "content_filter", "private_unknown_finish"]
+)
+def test_finish_reason_observation_is_allowlisted_and_terminal(ledger, finish):
+    with offline_network():
+        prepared = baseline.prepare(policy=baseline.OUTPUT_CAP_FOLLOWUP)
+
+    def respond(request):
+        result = response(request, tokens=(3551, 512))
+        body = result.json()
+        body["choices"][0]["finish_reason"] = finish
+        return httpx.Response(200, json=body)
+
+    receipt = followup_execute(prepared, ledger, respond)
+    observation = receipt["provider_observations"][0]
+    assert receipt["actual_sends"] == 1 and not receipt["complete"]
+    assert receipt["condition_results"][0]["result"]["error_code"] == "ProviderResponseInvalid"
+    assert observation["finish_reason_observed"]
+    if finish == "private_unknown_finish":
+        assert observation["finish_reason"] is None and observation["finish_reason_unknown"]
+        assert finish not in json.dumps(receipt)
+    else:
+        assert observation["finish_reason"] == finish and not observation["finish_reason_unknown"]
+    assert receipt["new_request_accounting_complete"]
+    assert Decimal(receipt["new_cost_estimated_usd"]) > 0
+
+
+def test_followup_cli_mock_selects_one_without_keys(monkeypatch, capsys):
+    monkeypatch.setattr(sys, "argv", ["controlled-baseline", "--mock", "--output-cap-followup"])
+    monkeypatch.setattr(
+        baseline, "_credential", lambda *_: (_ for _ in ()).throw(AssertionError("No key"))
+    )
+    with offline_network():
+        baseline.main()
+    report = json.loads(capsys.readouterr().out)
+    assert report["execution_policy"] == "output_cap_followup"
+    assert report["registered_conditions"] == report["actual_sends"] == 1
+    assert report["real_provider_requests"] == 0 and report["paid_api_cost_usd"] == "0"
+
+
+def test_followup_prompt_pin_mismatch_rejects_before_key_or_provider(ledger, monkeypatch, capsys):
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "controlled-baseline",
+            "--output-cap-followup",
+            "--live",
+            "--ledger",
+            str(ledger._path),
+            "--env-file",
+            "never-read.env",
+            "--output-dir",
+            "never-created",
+        ],
+    )
+    monkeypatch.setattr(
+        baseline, "load_registration", lambda *_: ({"baseline_prompt_sha256": "0" * 64}, {})
+    )
+    monkeypatch.setattr(
+        baseline, "_credential", lambda *_: (_ for _ in ()).throw(AssertionError("No key"))
+    )
+    monkeypatch.setattr(
+        httpx.HTTPTransport,
+        "__init__",
+        lambda *_a, **_k: (_ for _ in ()).throw(AssertionError("No provider")),
+    )
+    before = baseline.ledger_observation(ledger._path)
+    with offline_network(), pytest.raises(SystemExit):
+        baseline.main()
+    assert json.loads(capsys.readouterr().out)["automatic_retry"] is False
     assert baseline.ledger_observation(ledger._path) == before

@@ -109,6 +109,8 @@ jobs:
         run: |
           uv run python scripts/controlled_model_baseline.py --mock --output-dir "$RUNNER_TEMP/controlled-model-mock"
           uv run python -c "import json,os,pathlib; r=json.loads((pathlib.Path(os.environ['RUNNER_TEMP'])/'controlled-model-mock/receipt.json').read_text(encoding='utf-8')); assert r['complete'] and r['accepted_operations'] and r['real_provider_requests']==0 and r['paid_api_cost_usd']=='0' and r['intercepted_mock_sends']==6"
+          uv run python scripts/controlled_model_baseline.py --output-cap-followup --mock --output-dir "$RUNNER_TEMP/controlled-output-cap-mock"
+          uv run python -c "import json,os,pathlib; r=json.loads((pathlib.Path(os.environ['RUNNER_TEMP'])/'controlled-output-cap-mock/receipt.json').read_text(encoding='utf-8')); assert r['complete'] and r['accepted_operations'] and r['real_provider_requests']==0 and r['paid_api_cost_usd']=='0' and r['intercepted_mock_sends']==1 and not r['source_guard_installed']"
 
   windows-pilot:
     runs-on: windows-latest
@@ -148,8 +150,10 @@ jobs:
       - name: Compare registered current queries on Windows without model calls
         run: uv run python scripts/retrieval_context_comparison.py --output "$env:RUNNER_TEMP/retrieval-context-current.json"
       - name: Check fixed-evidence projection and controlled budget/selection observations
-        run: uv run pytest tests/test_controlled_decision_inputs.py tests/test_controlled_model_baseline.py
+        run: uv run pytest tests/test_controlled_decision_inputs.py tests/test_controlled_model_baseline.py tests/test_public_core_imports.py
       - name: Accept all six fixed-evidence mock conditions on Windows without ledger credentials
         run: |
           uv run python scripts/controlled_model_baseline.py --mock --output-dir "$env:RUNNER_TEMP/controlled-model-mock"
           uv run python -c "import json,os,pathlib; r=json.loads((pathlib.Path(os.environ['RUNNER_TEMP'])/'controlled-model-mock/receipt.json').read_text(encoding='utf-8')); assert r['complete'] and r['accepted_operations'] and r['real_provider_requests']==0 and r['paid_api_cost_usd']=='0' and r['intercepted_mock_sends']==6"
+          uv run python scripts/controlled_model_baseline.py --output-cap-followup --mock --output-dir "$env:RUNNER_TEMP/controlled-output-cap-mock"
+          uv run python -c "import json,os,pathlib; r=json.loads((pathlib.Path(os.environ['RUNNER_TEMP'])/'controlled-output-cap-mock/receipt.json').read_text(encoding='utf-8')); assert r['complete'] and r['accepted_operations'] and r['real_provider_requests']==0 and r['paid_api_cost_usd']=='0' and r['intercepted_mock_sends']==1 and not r['source_guard_installed']"
