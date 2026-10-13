@@ -4,6 +4,16 @@
 
 ## وضعیت فعلی
 
+- [ ] **C2h — سؤال‌های mock مطابق facts فعلی؛ ساسان.**
+  [کنترل‌های ثبت‌شده پیش از اصلاح](../experiments/offline_corrections/protocol-v1.json)
+  و [baseline](../experiments/offline_corrections/baseline-v1.json): ۱۹ تست ثابت
+  روی source `ab6ed04` پنج pass/چهارده fail دارند. فقط مسیر بدون indexِ
+  `offline_backend` برای `ask/ask_version` اصلاح شود: نسخهٔ نامعلوم سؤال نسخه؛
+  نسخهٔ معلوم و widget نامعلوم سؤال widget؛ اطلاعات کافی برای همین script
+  با شاهد synthetic ناکافی، ارجاع. replay رخداد ناموفق قبلی باید همان نتیجه را
+  نگه دارد و ادامه با turn تازه باشد. guard core و receipt تاریخی #40 حفظ شوند؛
+  نتیجهٔ UI، correction، approval و restart/retry بعد از fix ثبت شود.
+
 ### تقسیم کار جاری — درخواست جمع‌بندی تا امشب ۱۳ اکتبر
 
 تحویل مستقل تازهٔ ساسان **C4b — حفظ تعارض اعلام‌شده در refinement/repair** در
