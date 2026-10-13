@@ -227,6 +227,17 @@ class SupportEngine:
         except _Stopped as stopped:
             progress.note("stopped", stopped.code)
             return result(stopped.status, code=stopped.code)
+        finally:
+            # A refinement can stop in retrieval, freshness or step checks
+            # before the reasoner is called again. Release only this run's
+            # internal conflict flag; retain the final captured handoff input.
+            try:
+                release = getattr(self.reasoner, "_release_core_scope", None)
+                if callable(release):
+                    release(run_id, case.case_id, case.case_revision)
+            except Exception:
+                progress.note("stopped", "ReasoningUnavailable")
+                return result("error", code="ReasoningUnavailable")
 
     def _ensure_current(self, case: CaseState) -> None:
         # Reasoning cannot replace an outstanding proposal. Check supplied state

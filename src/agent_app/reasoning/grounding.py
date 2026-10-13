@@ -8,6 +8,7 @@ import hashlib
 import json
 import re
 from collections.abc import Callable, Mapping
+from threading import RLock
 from typing import Literal, get_args
 from urllib.parse import quote
 
@@ -22,10 +23,11 @@ from agent_app.contracts import (
     GroundedGap,
     GroundedPlan,
     GroundedRequest,
+    OutputFeedback,
     OutputIssue,
     ReasoningContext,
 )
-from agent_app.orchestration.ports import GroundedPlanner
+from agent_app.orchestration.ports import GroundedPlanner, ReasoningStopped
 from agent_app.reasoning.output import InvalidAnalysis
 
 type GroundingCode = Literal[
@@ -44,6 +46,43 @@ class GroundingRejected(ValueError):
             raise ValueError("Unsupported grounding rejection code.")
         self.code = code
         super().__init__(code)
+
+
+UNRESOLVED_SOURCE_CONFLICT = GroundedGap(
+    name="unresolved_prior_source_conflict",
+    kind="source",
+    description=(
+        "A source conflict declared earlier in this invocation remains unresolved. "
+        "Missing or changed members in the current pool do not establish resolution."
+    ),
+    necessity=(
+        "Further source investigation or maintainer review is needed. "
+        "Use only current supplied excerpts; do not ask the user to certify documentation."
+    ),
+)
+
+
+def _prior_conflict(request: GroundedRequest) -> bool:
+    return any(gap.name.casefold() == UNRESOLVED_SOURCE_CONFLICT.name for gap in request.gaps)
+
+
+_TERMINAL_BINDING_CODES = frozenset({"grounded_context_mismatch", "grounded_source_mismatch"})
+
+
+def _can_repair(context: ReasoningContext) -> bool:
+    return context.attempt_index == 1 and context.remaining_model_attempts > 0
+
+
+def _terminal_output(error: InvalidAnalysis) -> bool:
+    # Match the engine's safe feedback projection. Malformed port diagnostics
+    # become repairable invalid_shape there, never raw strings or new authority.
+    try:
+        feedback = OutputFeedback.model_validate(
+            {"issues": [issue.model_dump(warnings=False) for issue in error.issues]}
+        )
+    except (ValidationError, ValueError, TypeError, AttributeError, RecursionError):
+        return False
+    return any(issue.code in _TERMINAL_BINDING_CODES for issue in feedback.issues)
 
 
 def _sha(value: object) -> str:
@@ -78,6 +117,11 @@ def validate_grounded_request(request: GroundedRequest) -> GroundedRequest:
     }
     if any(gap.kind == "user" and gap.name.casefold() in known for gap in request.gaps):
         raise GroundingRejected("grounded_question_invalid")
+    if any(
+        gap.name.casefold() == UNRESOLVED_SOURCE_CONFLICT.name and gap != UNRESOLVED_SOURCE_CONFLICT
+        for gap in request.gaps
+    ):
+        raise GroundingRejected("grounded_conflict_unresolved")
     chunks = {hit.chunk_id for hit in request.evidence.hits}
     if any(set(group) - chunks for group in request.conflict_groups):
         raise GroundingRejected("grounded_source_mismatch")
@@ -219,7 +263,7 @@ def render_grounded_plan(request: GroundedRequest, raw: object) -> AnalysisResul
         if gap is None or gap.kind != "user":
             raise GroundingRejected("grounded_question_invalid")
         question = gap.question
-    if plan.decision == "answer" and request.conflict_groups:
+    if plan.decision == "answer" and (request.conflict_groups or _prior_conflict(request)):
         raise GroundingRejected("grounded_conflict_unresolved")
 
     selected_ids = {item.chunk_id for item in plan.sources}
@@ -236,11 +280,16 @@ def render_grounded_plan(request: GroundedRequest, raw: object) -> AnalysisResul
         "- " + _display(check).replace("\n", "\n  ") for check in request.case.checks_performed
     )
     unknowns = ", ".join(_display(name) for name in request.case.unknowns) or "not enumerated"
-    conflict = (
-        "A caller-declared source conflict remains unresolved; no winning source is established."
-        if request.conflict_groups
-        else "No conflict has been declared by the caller; this does not prove consistency."
-    )
+    if _prior_conflict(request):
+        conflict = (
+            "A caller-declared source conflict from an earlier attempt remains unresolved; "
+            "the current pool does not establish resolution. Only current source excerpts "
+            "are presented; no winning source is established."
+        )
+    elif request.conflict_groups:
+        conflict = "A caller-declared source conflict remains unresolved; no winning source is established."
+    else:
+        conflict = "No conflict has been declared by the caller; this does not prove consistency."
     limit = (
         "These are attributed supplied records. The cause of the application's failure, "
         "a successful fix and a resolved case are not established by this proposal."
@@ -270,7 +319,7 @@ def render_grounded_plan(request: GroundedRequest, raw: object) -> AnalysisResul
     if plan.decision == "ask":
         gap = gaps[plan.question_name]
         rationale += " Caller-registered question necessity: " + _display(gap.necessity)
-    if request.conflict_groups:
+    if request.conflict_groups or _prior_conflict(request):
         rationale += " " + conflict
     try:
         return AnalysisResult(
@@ -352,6 +401,9 @@ class GroundedReasoner:
 
     A caller factory supplies reviewed gap/conflict metadata for each latest
     bundle. It is not model output and cannot authorize tracker execution.
+    Known unresolved status survives refinement/repair in the same invocation.
+    No old source text is cached. Fact/case/revision changes belong to a new run;
+    there is no implicit source-conflict resolution channel.
     """
 
     def __init__(
@@ -364,6 +416,39 @@ class GroundedReasoner:
     ) -> None:
         self.planner = planner
         self.request_factory = request_factory
+        self._conflicts: set[tuple[str, str, int]] = set()
+        self._conflict_lock = RLock()
+
+    def _release_core_scope(self, run_id: str, case_id: str, case_revision: int) -> None:
+        """Core-owned lifecycle cleanup; no source, planner or tracker operation."""
+        with self._conflict_lock:
+            self._conflicts.discard((run_id, case_id, case_revision))
+
+    def _continue_conflict(
+        self, request: GroundedRequest, context: ReasoningContext
+    ) -> GroundedRequest:
+        scope = (context.run_id, context.case_id, context.case_revision)
+        with self._conflict_lock:
+            inherited = scope in self._conflicts
+            if (request.conflict_groups or _prior_conflict(request)) and _can_repair(context):
+                # Never evict an unresolved invocation to admit another one.
+                # Normal application adapters allocate a fresh reasoner per run.
+                if not inherited and len(self._conflicts) >= 32:
+                    raise GroundingRejected("grounded_conflict_unresolved")
+                self._conflicts.add(scope)
+        if inherited and not request.conflict_groups and not _prior_conflict(request):
+            if len(request.gaps) >= 8:
+                # Dropping a registered user/source gap to fit the marker would
+                # rewrite reviewed input; stop before another planner/send.
+                raise GroundingRejected("grounded_conflict_unresolved")
+            return make_grounded_request(
+                request.case,
+                request.user_message,
+                request.evidence,
+                gaps=request.gaps + (UNRESOLVED_SOURCE_CONFLICT,),
+                conflict_groups=request.conflict_groups,
+            )
+        return request
 
     def analyze(
         self,
@@ -373,7 +458,14 @@ class GroundedReasoner:
         *,
         context: ReasoningContext,
     ) -> AnalysisResult:
+        scope = None
+        keep_pending = False
         try:
+            try:
+                context = ReasoningContext.model_validate(context.model_dump(warnings=False))
+            except (ValidationError, ValueError, TypeError, AttributeError, RecursionError):
+                raise GroundingRejected("grounded_context_mismatch") from None
+            scope = (context.run_id, context.case_id, context.case_revision)
             request = validate_grounded_request(
                 self.request_factory(
                     case.model_copy(deep=True), user_message, evidence.model_copy(deep=True)
@@ -387,10 +479,39 @@ class GroundedReasoner:
                 or context.case_revision != case.case_revision
             ):
                 raise GroundingRejected("grounded_context_mismatch")
+            request = self._continue_conflict(request, context)
             # Private request is retained for enforcement after the port returns.
             raw = self.planner.plan(
                 request.model_copy(deep=True), context=context.model_copy(deep=True)
             )
-            return render_grounded_plan(request, raw)
+            result = render_grounded_plan(request, raw)
+            keep_pending = (
+                result.decision == "retrieve_more" and context.can_refine and _can_repair(context)
+            )
+            return result
         except GroundingRejected as error:
+            # Invalid output may consume the existing same-run repair attempt.
+            keep_pending = (
+                scope is not None
+                and _can_repair(context)
+                and error.code not in _TERMINAL_BINDING_CODES
+            )
             raise InvalidAnalysis((OutputIssue(code=error.code),)) from None
+        except ReasoningStopped:
+            # Typed provider/accounting stops are terminal, including on the
+            # first attempt. They never buy a further paid retry.
+            raise
+        except InvalidAnalysis as error:
+            keep_pending = (
+                scope is not None and _can_repair(context) and not _terminal_output(error)
+            )
+            raise
+        except Exception:
+            # The existing engine can retry a generic adapter failure within
+            # its two-attempt allowance; its known conflict must survive too.
+            keep_pending = scope is not None and _can_repair(context)
+            raise
+        finally:
+            if scope is not None and not keep_pending:
+                with self._conflict_lock:
+                    self._conflicts.discard(scope)

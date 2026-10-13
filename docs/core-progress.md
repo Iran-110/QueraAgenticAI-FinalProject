@@ -2,6 +2,45 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-13 — C4b unresolved conflict continuity and invocation cleanup
+
+A current-pool catalog could lose its declared conflict after refinement removed
+one member or changed its content under the same chunk ID. On unchanged case/
+revision, the old core accepted a scripted answer and reported no declared
+conflict. The fourteen controls were frozen at `c9f15b8` before the production
+fix. Git-archived `03225e2` passes 7/fails 7; clean source
+`8cc41bff45a3d95e8ca9f12ef13c573ba9036f86` passes all 14 with identical test/fixture
+hashes. Three formerly admitted answers now return error without a proposal;
+four safe asks/escalations remain reviewable with unresolved disclosure in the
+maintainer summary/rationale and unchanged canonical question text.
+
+GroundedReasoner retains only a flag scoped to run/case/revision, never old quote
+content. A canonical source-only gap binds the actual enriched planner request;
+missing/changed members and source warnings do not resolve the known conflict.
+The bounded cache does not evict unfinished scopes; a needed new unresolved slot
+fails closed when full. An eight-gap catalog fails closed if a continuation
+marker must be added, rather than discarding a registered user question.
+Repairable failures retain status; terminal bindings/provider stops and outer
+engine completion release it. ReasoningCapture forwards private cleanup without
+clearing its final frame. Adapters must capture the actual planner request for
+handoff, including the derived gap/hash, rather than the factory's earlier input.
+
+The [packet](../experiments/conflict_continuity/README.md) preserves protocol,
+comparison, review and verification. Twenty-five boundary and five actual
+HTTP/SQLite MockTransport tests complement the fourteen frozen controls: 44 new
+tests. The complete local suite with runtime/test bytes identical to `8cc41bf`
+passes **2,841 tests** in 110.10s; staging/commits occurred during that run, so it
+is not a clean-Git verification claim. Ruff (203 files) and three offline demos
+pass. The comparison and fresh-process HTTP/SQLite 457/457 including restart
+receipts bind clean `8cc41bf`. Final publication CI is separate. No real model/index call, paid spend or
+production-ledger write occurred. This is scripted software-policy evidence
+from one exposed answer-informed V9 family, not model/RAG quality or an independent
+evaluation case. Conflicts remain manually declared; the default catalog supplies
+no groups and no trusted resolution protocol was added. Shared contracts and
+teammate modules are unchanged. See [behavior/adoption](conflict-continuity.fa.md).
+Independent C4, E1/E2/R4/E4/E5 and C5 remain open; the approximately 75% engineering
+completion estimate is unchanged and is not a quality score.
+
 ## 2026-10-13 — C4a actual prefix, import boundary and registered resource follow-up
 
 The clean pushed `8b16f2c` baseline passed Linux/Windows CI before its three

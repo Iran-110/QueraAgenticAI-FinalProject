@@ -10,6 +10,7 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 - Use feature branches and meaningful commits after coherent, verified chunks. Do not fabricate dates, activity, test results, or completed functionality.
 - Keep the owned task in `plan/plan.md` current in the same PR; use its task ID in handoffs and attach completion evidence before checking it off. Sync the feature branch from current `origin/main` without discarding local work. Shared plan changes are visible to teammates after Git sync, not instantly.
 - After syncing the C4 delivery, read `docs/team-handoff-c4.fa.md` for its file boundaries and receipt interpretation. The controlled packet is exposed development data, not new held-out cases. Reviewer labels, later bundles and authored plans must stay outside the current model payload and real RAG corpus.
+- After syncing C4b, read `docs/conflict-continuity.fa.md`: already-declared unresolved conflict status survives same-run refinement/repair without old quotes. Capture the actual enriched planner request for a handoff; a pre-enrichment factory request can have a different context hash. Default catalog still does not discover conflicts automatically.
 - Keep the current foundation independent of an orchestration framework. Add a dependency only when an implemented need justifies it.
 
 ## Runtime rules

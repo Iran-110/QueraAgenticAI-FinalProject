@@ -6,7 +6,34 @@
 
 ### تقسیم کار جاری — درخواست جمع‌بندی تا امشب ۱۳ اکتبر
 
-تحویل جاری ساسان **C4a — انتخاب واقعی مدل روی شواهد ثابت** در
+تحویل مستقل تازهٔ ساسان **C4b — حفظ تعارض اعلام‌شده در refinement/repair** در
+[PR #41](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/41) است.
+[مقایسهٔ اصل کد قدیم و جدید](../experiments/conflict_continuity/README.md) با
+۱۴ کنترل ثبت‌شده پیش از fix: روی `03225e2` هفت pass/هفت fail و روی source تمیز
+`8cc41bf` چهارده pass/صفر fail. سه answer نامجاز دیگر به approval نمی‌رسند؛
+چهار ask/escalate مجاز، status حل‌نشده را برای maintainer حفظ می‌کنند و quoteها
+فقط از bundle جاری‌اند. حذف منبع یا هشدار «حل شد» رفع تعارض نیست. marker فقط
+gap منبع است؛ اطلاعاتی که کاربر می‌تواند روشن کند سؤال جدا دارد.
+
+[راهنمای اتصال C4b](../docs/conflict-continuity.fa.md): status فقط در همان
+run/case/revision نگه داشته می‌شود؛ هیچ quote قدیمی cache نمی‌شود. handoff باید
+request واقعی planner پس از افزودن marker را capture کند. قراردادهای مشترک و
+ماژول‌های اعضا عوض نشده‌اند؛ catalog پیش‌فرض هنوز تعارض را خودکار تشخیص نمی‌دهد.
+تست کامل ۲۸۴۱ pass، ۴۴ regression تازه، Ruff و سه demo پاس؛ پذیرش جداگانهٔ
+HTTP/SQLite ۴۵۷/۴۵۷ و restart پاس است. [receipt و review مستقل assistant](../experiments/conflict_continuity/README.md)
+ثبت‌اند؛ CI نسخهٔ انتشار در PR مرجع بررسی شود. این کنترل تألیفی/آفلاین یک
+خانوادهٔ exposed است، هزینهٔ API صفر، case مستقل اضافه نمی‌کند و کیفیت مدل/RAG
+را ثابت نمی‌کند. E1/E2/R4/E4/E5/C5 و برآورد حدود ۷۵٪ تغییری نکرده‌اند.
+
+[گزارش دو-case بهنام، PR #40](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/40)
+پس از review و CI Linux/Windows با `78901d7` روی main است؛
+[گزارش مشاهدهٔ دستی](../docs/two-case-ui-sqlite-smoke-2026-10-13.md) correction،
+رد approval قدیمی، یک approval و replay بعد از restart backend را ثبت می‌کند.
+این رسید خودکار/کیفیت مدل نیست؛ browser session باز ماند و Edit/Reject جدا
+اجرا نشده‌اند. run scripted پس از correction با `KnownFactMarkedMissing` متوقف
+شد، پس تصمیم follow-up موفق یا بستن T4/U3/E5 را از آن نتیجه نمی‌گیریم.
+
+تحویل قبلی ساسان **C4a — انتخاب واقعی مدل روی شواهد ثابت** در
 [PR #39](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/39) است؛
 از main `80f9913` شروع شد. [بستهٔ شواهد و محدودیت‌ها](../experiments/controlled_model_baseline/README.md)
 اصل preregistration، receipt و review جدا دارد. baseline روی `8b16f2c` پس از
@@ -294,6 +321,7 @@ fixture پایهٔ این تحویل، [case چهار‌نوبتی C3](../experi
 - [x] **C3 — قرارداد خروجی و review با fixture.** `ProposalHandoff` کل case، آخرین bundle واقعاً مصرف‌شده، تمام analysis و catalog واقعی GroundedPlan را نگه می‌دارد؛ gap کاربر/منبع، همهٔ منابع و scope نسخه قابل review هستند. منبع قبلی، تغییر case با revision یکسان، packet/متن دست‌کاری‌شده و approval پیش از edit رد می‌شوند. [PR #11](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/11)، [نتیجه و handoff](../docs/review-handoff-pilot.fa.md)، fixture ثبت‌شده `b085f7d`، helper `74e353b` و API `44d70a2` شاهدند. C3 فقط سهم core و مثال آفلاین را می‌بندد؛ نمایش U2 انجام شده و #21 تمام claimهای هر chunk را حفظ می‌کند. مسیر opt-in persistence/authentication/اجرای محلی در C2d پیاده است؛ اتصال UI به همان envelope باقی می‌ماند؛ review معنایی و approval جدا هستند.
 - [ ] **C4 — baseline برای pilot متصل.** baseline ورودی HTTP روی `5af98e6` چهار fail و روی adapter جدید چهار pass دارد؛ [ثبت C2](../docs/user-intake-pilot.fa.md). baseline خروجی C3 روی کد واقعی `3f22ef9` با همان چهار regression بازپخش شد؛ چهار fail و روی نسخهٔ جدید چهار pass، همراه [case چهار‌نوبتی و محدودیت](../docs/review-handoff-pilot.fa.md). پس از اتصال P3/P4، مقایسهٔ تصمیم واقعی ادامه یابد؛ baseline نرم‌افزار جای کیفیت مدل/RAG/test نیست. receiptهای تاریخی حفظ شده‌اند؛ انتخاب Issue فعلی answer-informed و exposed است.
 - [x] **C4a — harness و prefix محدود انتخاب واقعی مدل؛ ساسان.** [بستهٔ نتیجه و review](../experiments/controlled_model_baseline/README.md) runtime/reviewer جدا، ID خنثی و catalog مربوط به bundle فعلی دارد. شش variation یک خانوادهٔ exposed، mock شش‌مسیره و baseline واقعی prefix ثبت شد: ۳ send، ۲ proposal، یک خطا و سه terminal skip؛ follow-up جدا با همان prompt فقط یک سؤال نسخهٔ کامل داد. کل چهار send $0.002845260 تخمینی؛ منابع/کل پاسخ/سؤال، هزینه و محدودیت‌ها review شده‌اند، نمرهٔ انسانی null است. این تیک تحویل محدود را می‌بندد؛ baseline شش‌حالته کامل نشده و C4 مستقل/RAG/test نهایی بازند؛ correction/conflict/stale در live این packet اجرا نشدند.
+- [x] **C4b — تداوم تعارض اعلام‌شده پس از refinement؛ ساسان، تحویل محدود آفلاین.** [protocol، مقایسه، receipt و review](../experiments/conflict_continuity/README.md): همان ۱۴ کنترل روی اصل `03225e2` هفت pass/هفت fail و روی `8cc41bf` چهارده pass. سه answer خطرناک مسدود، چهار ask/escalate مجاز با status حل‌نشده و فقط quote جاری؛ ۲۵ کنترل lifecycle/boundary و پنج تست HTTP با provider mock نیز پاس‌اند. repair مجاز status را حفظ و stop نهایی scope را آزاد می‌کند؛ run/case/revision بعدی تازه است. approval/retry/restart امن و request واقعی handoff بررسی شده‌اند. این تیک فقط این رفتار software را می‌بندد؛ تشخیص خودکار تناقض، مدل/RAG واقعی، C4 مستقل و test نهایی بازند؛ هزینه صفر و fixtureهای تاریخی بدون تغییر.
 - [ ] **C5 — رفع علت halt پیش از live.** هویت مدل، usage و هزینهٔ مورد اختلاف با مدرک provider تطبیق داده شود؛ uncertainty و ledger پاک یا reset نشوند. شرط پایان: علت توقف مستند، وضعیت ledger و مجوز/سقف باقی‌مانده روشن باشند؛ فقط آن‌وقت pilot کوچک ثبت‌شده اجرا شود.
 
 برای C2/U3 از سرویس C2a استفاده شود؛ coordinator core دیگر فقط helper تستی نیست. factory HTTP/auth و outcome پایدار C2d روی main است؛ binding frontend آفلاین U3a و index محدود P4a آماده‌اند؛ محمدحسن/بهنام تنظیم محصول و smoke مرورگر را نهایی کنند. readهای سرویس به‌تنهایی CAS lifecycle نیستند؛ C2d اکنون در transaction اولین root proposal هر revision و outcome را کنترل می‌کند و مسیر ABA قبلی را می‌بندد. resume خودکار وجود ندارد. [packet تازهٔ C5](../docs/live-reconciliation-2026-10-11.fa.md) با خواندن read-only و hash ثابت ledger ثبت شد؛ مدرک provider همچنان کم است.

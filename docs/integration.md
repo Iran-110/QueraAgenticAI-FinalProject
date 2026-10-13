@@ -58,6 +58,16 @@ available without keys or the production ledger. Public orchestration exports
 now load lazily, preserving class identity and allowing grounding-first imports
 in a fresh interpreter.
 
+The [conflict-continuity guard](conflict-continuity.fa.md) retains an already
+declared unresolved conflict within the same run/case/revision when refinement
+or repair drops its current-pool metadata. Only current excerpts are used; a
+source-only gap blocks answers and preserves review disclosure. Capture the actual
+enriched request received by `plan()` for handoff, not the earlier factory input.
+Reusable wrappers must forward `_release_core_scope` as ReasoningCapture does;
+outer engine cleanup preserves the final captured frame. Ports/contracts are
+unchanged, default catalogs do not detect conflicts, and the registered 14-control
+comparison plus 25 boundary/5 HTTP tests are offline policy evidence.
+
 The core-owned [CoreTurnService](core-turn-service.fa.md) now composes the existing
 tracker port with lazy per-run adapters and full handoffs. Use it for persistent
 ingress rather than copying test-harness policy into the API. C2d now supplies

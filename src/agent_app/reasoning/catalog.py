@@ -4,7 +4,11 @@ from collections.abc import Iterable
 
 from agent_app.contracts import CaseState, EvidenceBundle, GroundedGap, GroundedRequest
 from agent_app.orchestration.intake import STREAMLIT_VERSION_QUESTION
-from agent_app.reasoning.grounding import make_grounded_request, source_scope
+from agent_app.reasoning.grounding import (
+    UNRESOLVED_SOURCE_CONFLICT,
+    make_grounded_request,
+    source_scope,
+)
 
 
 def runtime_catalog(case: CaseState, message: str, evidence: EvidenceBundle) -> GroundedRequest:
@@ -55,7 +59,12 @@ def validate_user_gaps(definitions: Iterable[GroundedGap]) -> tuple[GroundedGap,
         if (
             len(gaps) > 6
             or len(names) != len(gaps)
-            or names & {"streamlit_version", "exact_version_documentation"}
+            or names
+            & {
+                "streamlit_version",
+                "exact_version_documentation",
+                UNRESOLVED_SOURCE_CONFLICT.name,
+            }
             or any(gap.kind != "user" for gap in gaps)
         ):
             raise ValueError
