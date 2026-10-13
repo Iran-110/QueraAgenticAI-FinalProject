@@ -125,7 +125,9 @@ def test_query_domains_are_balanced_and_human_review_is_pending():
 def test_question_and_outcome_mutation_cannot_change_candidate_selection(seed):
     original = candidates.propose(seed)
     relative = candidates.FILES["issues"]
-    records = [json.loads(line) for line in (seed / relative).read_text().splitlines()]
+    records = [
+        json.loads(line) for line in (seed / relative).read_text(encoding="utf-8").splitlines()
+    ]
     for row in records:
         row.update(
             body="PRIVATE_HELDOUT_ANSWER",

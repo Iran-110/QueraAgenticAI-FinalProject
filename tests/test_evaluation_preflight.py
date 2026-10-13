@@ -185,7 +185,7 @@ def save(bundle, artifact="manifest"):
 
 def change_fixture(bundle, index, change, *, repin=True):
     path = bundle["paths"][index]
-    fixture = json.loads(path.read_text())
+    fixture = json.loads(path.read_text(encoding="utf-8"))
     change(fixture)
     digest = write(path, fixture)
     if repin:

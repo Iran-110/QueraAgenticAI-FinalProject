@@ -26,6 +26,12 @@ API پایدار پاس‌اند. در هر دو turn مدل سؤال callback �
 protocol حفظ شده است. ۱۵/۱۵ metadata همچنان candidate است؛ dev واقعی ۱ و test
 واقعی ۰. خرج بیشتر پس از case/rubric و یک مقایسهٔ dev ثبت‌شده انجام شود.
 
+بررسی محلی پس از receipt: ۲۴۲۴ pytest، mapper ۱۳۲/۱۳۲، core/SQLite ۴۹/۴۹،
+HTTP/SQLite با interpreter تازه ۴۵۷/۴۵۷ و replay روی دو index موجود ۷۰/۷۰.
+این‌ها عملیاتی‌اند. گسترش تست‌های Windows، خواندن seed با encoding پیش‌فرض
+در یک تست تازه را آشکار کرد؛ UTF-8 صریح اصلاح شده و پذیرش CI نسخهٔ نهایی
+پیش از merge لازم است. جزئیات در verification همان packet ثبت می‌شوند.
+
 | بخش | چیزی که داریم | چیزی که هنوز اثبات نشده |
 | --- | --- | --- |
 | core — ساسان | قراردادها، correction و GroundedPlan؛ C2a سرویس core و C2d اتصال HTTP به SQLite موجود با outcome اتمیک و approval دقیق؛ HTTP پایدار #30 روی main؛ UI و index محلی در [U3a/P4a، PR #32](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/32) پیاده و با تست‌های مستقل پذیرفته شده‌اند | corpus/index نهایی، اتصال مدل و کیفیت تصمیم روی caseهای ندیده؛ C5 halt |
