@@ -95,14 +95,16 @@ def pins():
             "pyproject.toml",
             "data/evaluation/split-manifest.json",
             "experiments/corpus/pilot-allowlist.json",
-            str(PROTOCOL),
-            str(PACKET / "inputs-v1.json"),
-            str(PACKET / "scenario-review-v1.json"),
+            PROTOCOL.as_posix(),
+            (PACKET / "inputs-v1.json").as_posix(),
+            (PACKET / "scenario-review-v1.json").as_posix(),
             "scripts/user_gap_configuration_comparison.py",
             "scripts/offline_correction_comparison.py",
         )
     )
-    return {str(path.relative_to(ROOT)): sha(path.read_bytes()) for path in paths if path.is_file()}
+    return {
+        path.relative_to(ROOT).as_posix(): sha(path.read_bytes()) for path in paths if path.is_file()
+    }
 
 
 def ledger_pins():
@@ -172,7 +174,7 @@ def arm(commit, destination, registered):
     ):
         raise ValueError
     source = {
-        str(path.relative_to(destination)): sha(path.read_bytes())
+        path.relative_to(destination).as_posix(): sha(path.read_bytes())
         for path in (destination / "src/agent_app").rglob("*.py")
     }
     if any(git("show", f"{commit}:{path}") != (destination / path).read_bytes() for path in source):
@@ -198,7 +200,7 @@ def main():
         protocol = json.loads((ROOT / PROTOCOL).read_text(encoding="utf-8"))
         before, accounting = pins(), ledger_pins()
         head = git("rev-parse", "HEAD").decode().strip()
-        if git("diff", "HEAD", "--", "src", "tests", "scripts", str(PACKET)):
+        if git("diff", "HEAD", "--", "src", "tests", "scripts", PACKET.as_posix()):
             raise ValueError
         with tempfile.TemporaryDirectory(prefix="user-gap-compare-") as temporary:
             base = Path(temporary)
