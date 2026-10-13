@@ -1,0 +1,72 @@
+# Controlled runner-route comparison
+
+Registration was committed at `65f1c31` **before this comparison**. The fixture
+reuses exposed, developer-authored synthetic test material already exercised in
+unit tests; it is not a newly registered independent Issue or held-out case.
+Neither its inputs, gold, nor receipts belong in the real RAG corpus.
+
+[Result on clean source 65f1c31](results-65f1c31.json): the old runner follows
+turns in file order and does not complete any of the three registered paths;
+the conditional runner completes **3/3**. Both use exactly the same current
+core, ports, synthetic evidence, fixture and mandatory mocked provider helper.
+Only the archived runner module from `a0877705abdb54882f7d478f8801931f28d2ccca`
+is replaced in the baseline. This is not a full historical-release comparison.
+
+| Fixed mock choice | Old runner visits | Conditional runner visits |
+| --- | --- | --- |
+| parent callback question | initial, callback; then stops before incompatible version reply | initial, callback; registered terminal reached |
+| version question | initial, callback; then stops before incompatible version reply | initial, version, correction; registered terminal reached |
+| escalation | initial, callback; then stops before incompatible version reply | initial; registered terminal reached |
+
+The baseline has **zero failed mechanical checks**, but incomplete path coverage.
+Do not report its result as wrong model decisions, failed pytest, or 0% answer
+quality. The new result shows proper continuation/termination selection and no
+irrelevant future user reply, not improved semantic quality. All allocated mock
+SDK clients close in both variants. Trace data is projected to counts, IDs and
+hashes; no provider payload, credential or source/output text is published here.
+
+Real API sends and paid cost are **zero**. Receipt `simulated_settled_usd` is
+usage attributed to intercepted mock requests on separate temporary ledgers,
+not team expenditure. The designated production ledger and C5 halt are untouched.
+Maintainer approval is fixture-scripted and tracker storage is process memory.
+Persistent SQLite behavior is tested independently; these paths add **zero**
+cases to the final 15/15 evaluation set.
+
+V1 measured path completion, but did not independently audit actual wire privacy
+or require protocol/fixture/helper stability between pairs. Its original result
+above remains unchanged. New registration `e4925df` added those checks in V2;
+[V2 result](results-e4925df.json) conservatively reports 1/3 because its audit
+incorrectly equates the model's accumulated conversation with only the latest
+raw user message. This is a measurement bug, not a product/model regression.
+
+V3 was committed at `c26e9ce` before its comparison. The
+[V3 result](results-v3.json) reports **0/3 baseline, 3/3 conditional**, with every
+current prompt passing actual wire audit, original input hashes retained and
+registered protocol/fixture/helper/script/source unchanged throughout.
+Prompt case/message matches the same-step handoff and conversation rebuilt
+from only already-submitted selected user inputs, with exact capture chronology
+and count checked. Retrieved source version metadata is permitted; private gold
+and future/unselected user markers are refused. These finite synthetic markers
+do not prove absence of all possible semantic leakage. Actual HTTP is still mock,
+paid cost zero, and all the scope/quality limitations above still apply.
+
+Reproduce V3 without overwriting any original receipt:
+
+```bash
+uv run python scripts/evaluation_routes_comparison.py --output /tmp/routes-comparison-new.json
+```
+
+Git history must contain the pinned baseline commit. Protocol, fixture, script and
+shared test-helper bytes are verified before execution and between pairs; changing any requires
+new preregistration. The result pins current Python source hashes and verifies
+they stay unchanged during the run. Core-source changes legitimately require
+a new comparison rather than rewriting a historical result. To reproduce older
+V1/V2 exactly, use the archived registered script/source from their corresponding
+commits; the current script deliberately requires V3 registration.
+
+This fixed control complements the broader tests for unreleased/rejected/edited
+questions, source gaps, unmatched paraphrases, graph eligibility and final gating:
+
+```bash
+uv run pytest tests/test_eval_conditional_routes.py
+```

@@ -1,0 +1,242 @@
+{
+  "fixture_id": "synthetic-route-comparison-v1",
+  "registered_before_first_run": true,
+  "case": {
+    "case_id": "dev-routes",
+    "split": "dev",
+    "family_issue_ids": [
+      12782,
+      12629
+    ],
+    "test_eligible": false
+  },
+  "evidence_source": {
+    "path": "data/evaluation/evidence/synthetic-v1.json",
+    "sha256": "9daf055ce44f7a4e09639643f1ed28ddbfc7e9c760d022158901b85ebdcb1e3e",
+    "bundles_used": [
+      "counter",
+      "uploader"
+    ]
+  },
+  "turns": [
+    {
+      "id": "initial",
+      "visible": {
+        "message": "A widget changes after rerun; the version and parent callback are unknown.",
+        "unknowns": [
+          "streamlit_version",
+          "parent_callback_code"
+        ],
+        "reported_facts": [
+          {
+            "name": "python_version",
+            "value": "3.12.9"
+          }
+        ]
+      },
+      "conversation_source": "developer_authored_synthetic",
+      "evidence_bundle": "counter",
+      "agent_script": {
+        "decision": "ask",
+        "user_draft": "Which Streamlit version is installed in the affected environment?",
+        "next_question": "Which Streamlit version is installed in the affected environment?",
+        "missing_info": [
+          "streamlit_version"
+        ],
+        "maintainer_summary": "Synthetic question for a missing user fact.",
+        "rationale": "The user can clarify this current unknown."
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "acceptable_decisions": [
+          "ask",
+          "escalate"
+        ],
+        "note": "GOLD_NOT_A_MODEL_INPUT",
+        "gaps": [
+          {
+            "name": "streamlit_version",
+            "kind": "user",
+            "question": "Which Streamlit version is installed in the affected environment?",
+            "necessity": "Check applicable versions."
+          },
+          {
+            "name": "parent_callback_code",
+            "kind": "user",
+            "question": "Can you share the parent callback?",
+            "necessity": "Inspect user-supplied callback code."
+          }
+        ]
+      },
+      "expect": {
+        "revision": 1,
+        "pending_decision": "ask"
+      }
+    },
+    {
+      "id": "callback",
+      "visible": {
+        "message": "FUTURE_CALLBACK_RESPONSE def callback(): return 42",
+        "reported_facts": [
+          {
+            "name": "parent_callback_code",
+            "value": "FUTURE_CALLBACK_RESPONSE def callback(): return 42"
+          }
+        ]
+      },
+      "conversation_source": "developer_authored_synthetic",
+      "evidence_bundle": "counter",
+      "agent_script": {
+        "decision": "escalate",
+        "user_draft": "Please have a maintainer review the synthetic case.",
+        "maintainer_summary": "Synthetic fixture only.",
+        "rationale": "No verified fix is established."
+      },
+      "maintainer": {
+        "decision": "none"
+      },
+      "gold": {
+        "acceptable_decisions": [
+          "escalate"
+        ],
+        "note": "GOLD_NOT_A_MODEL_INPUT"
+      },
+      "expect": {
+        "revision": 2,
+        "pending_decision": "escalate"
+      }
+    },
+    {
+      "id": "version",
+      "visible": {
+        "message": "1.50.0",
+        "reply_to_approved_question": true
+      },
+      "conversation_source": "developer_authored_synthetic",
+      "evidence_bundle": "counter",
+      "agent_script": {
+        "decision": "escalate",
+        "user_draft": "Please have a maintainer review the synthetic case.",
+        "maintainer_summary": "Synthetic fixture only.",
+        "rationale": "No verified fix is established."
+      },
+      "maintainer": {
+        "decision": "none"
+      },
+      "gold": {
+        "acceptable_decisions": [
+          "escalate"
+        ],
+        "note": "GOLD_NOT_A_MODEL_INPUT"
+      },
+      "expect": {
+        "revision": 2,
+        "pending_decision": "escalate"
+      }
+    },
+    {
+      "id": "correction",
+      "visible": {
+        "message": "FUTURE_CORRECTION_MARKER: correction to version 1.49.0.",
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.49.0"
+          }
+        ]
+      },
+      "conversation_source": "developer_authored_synthetic",
+      "evidence_bundle": "uploader",
+      "agent_script": {
+        "decision": "escalate",
+        "user_draft": "Please have a maintainer review the synthetic case.",
+        "maintainer_summary": "Synthetic fixture only.",
+        "rationale": "No verified fix is established."
+      },
+      "maintainer": {
+        "decision": "none"
+      },
+      "gold": {
+        "acceptable_decisions": [
+          "escalate"
+        ],
+        "note": "GOLD_NOT_A_MODEL_INPUT"
+      },
+      "expect": {
+        "revision": 3,
+        "pending_decision": "escalate",
+        "active_facts": {
+          "streamlit_version": "1.49.0",
+          "python_version": "3.12.9"
+        },
+        "superseded_values": {
+          "streamlit_version": [
+            "1.50.0"
+          ]
+        },
+        "excluded_chunks": [
+          "syn-counter-doc"
+        ]
+      }
+    }
+  ],
+  "evaluation": {
+    "coverage": {
+      "turn_ids": [
+        "initial",
+        "callback",
+        "version",
+        "correction"
+      ],
+      "routes": [
+        {
+          "from_turn": "initial",
+          "to_turn": "callback",
+          "guard": {
+            "decision": "ask",
+            "question_target": "parent_callback_code"
+          }
+        },
+        {
+          "from_turn": "initial",
+          "to_turn": "version",
+          "guard": {
+            "decision": "ask",
+            "question_target": "streamlit_version"
+          }
+        },
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "escalate"
+          }
+        },
+        {
+          "from_turn": "callback",
+          "to_turn": null,
+          "guard": {
+            "decision": "escalate"
+          }
+        },
+        {
+          "from_turn": "version",
+          "to_turn": "correction",
+          "guard": {
+            "decision": "escalate"
+          }
+        },
+        {
+          "from_turn": "correction",
+          "to_turn": null,
+          "guard": {
+            "decision": "escalate"
+          }
+        }
+      ]
+    }
+  },
+  "registration_note": "Reused exposed synthetic test fixture; not an evaluation Issue or a new held-out case. Registered here before the controlled comparison, after development tests."
+}

@@ -14,7 +14,7 @@ from fastapi.exceptions import RequestValidationError
 from pydantic import model_validator
 
 from agent_app import api
-from agent_app.contracts import Identifier, RunResult, Sha256, TrackerCaseView
+from agent_app.contracts import CaseState, Identifier, RunResult, Sha256, TrackerCaseView
 from agent_app.orchestration import engine as engine_module
 from agent_app.orchestration.handoff import ensure_handoff_current
 from agent_app.orchestration.service import CoreAdapters, CoreTurnService
@@ -88,6 +88,7 @@ def create_app(
     *,
     reviewer_tokens: Mapping[str, str],
     adapters: Callable[[api.Scenario], api.RunAdapters] | None = None,
+    case_adapters: Callable[[CaseState, api.Scenario], api.RunAdapters] | None = None,
     retrieval_label: Literal["scripted", "local_chroma_hash"] = "scripted",
     reasoning_label: Literal[
         "scripted", "grounded_fake_gateway", "metis_grounded_live"
@@ -98,13 +99,18 @@ def create_app(
     Reviewer identity is resolved from configured bearer credentials, then the
     existing tracker authenticates it again. Empty configuration fails closed.
     Applications should bind this local prototype to loopback.
+    ``case_adapters`` receives a detached authoritative committed case after
+    ingress. It is mutually exclusive with legacy scenario-only ``adapters``;
+    exact event replay allocates neither. It never receives review gold.
     """
     if (
         not isinstance(tracker, SQLiteCaseTracker)
         or (adapters is not None and not callable(adapters))
+        or (case_adapters is not None and not callable(case_adapters))
+        or (adapters is not None and case_adapters is not None)
         or retrieval_label not in {"scripted", "local_chroma_hash"}
         or reasoning_label not in {"scripted", "grounded_fake_gateway", "metis_grounded_live"}
-        or (reasoning_label != "scripted" and adapters is None)
+        or (reasoning_label != "scripted" and adapters is None and case_adapters is None)
     ):
         raise ValueError("Invalid persistent HTTP configuration.")
     reviewers = dict(reviewer_tokens)
@@ -190,7 +196,11 @@ def create_app(
             raise HTTPException(status_code=422, detail="RequestInvalid")
 
         def factory(_case, _message, _run_id):
-            ports = (adapters or api._adapters)(request.scenario)
+            ports = (
+                case_adapters(_case.model_copy(deep=True), request.scenario)
+                if case_adapters is not None
+                else (adapters or api._adapters)(request.scenario)
+            )
             return CoreAdapters(
                 ports.retriever,
                 ports.reasoner,

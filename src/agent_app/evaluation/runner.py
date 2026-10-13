@@ -23,6 +23,7 @@ import argparse
 import hashlib
 import importlib
 import json
+import re
 import subprocess
 import sys
 import time
@@ -40,8 +41,10 @@ from fastapi.testclient import TestClient
 from agent_app import api
 from agent_app.contracts import AnalysisResult, EvidenceBundle, ReasoningContext
 from agent_app.evaluation.preflight import validate_final_bundle
+from agent_app.evaluation.routes import ConditionalRoutesRejected, RouteGraph
 from agent_app.llm.budget import BudgetLedger
 from agent_app.llm.metis import request_id_for
+from agent_app.llm.pricing import get_price, same_verified_price
 from agent_app.orchestration import engine as engine_module
 from agent_app.orchestration.intake import STREAMLIT_VERSION_QUESTION
 from agent_app.orchestration.ports import Reasoner, ReasoningStopCode, Retriever
@@ -279,6 +282,134 @@ class RetrievalRecorder:
         return self.retriever.search(request)
 
 
+def _provider_observations(observer, contexts, ledger):
+    """Project exact caller identities; malformed optional metadata stays private."""
+    fields = {
+        "request_id",
+        "run_id",
+        "case_id",
+        "case_revision",
+        "attempt_index",
+        "prompt_sha256",
+        "requested_model",
+        "verified_returned_model",
+        "http_send_started",
+        "http_status",
+        "ledger_status",
+        "input_tokens",
+        "output_tokens",
+        "cost_estimated_usd",
+        "held_usd",
+        "error_code",
+    }
+    try:
+        rows = observer(tuple(context.model_copy(deep=True) for context in contexts))
+        expected = {request_id_for(context): context for context in contexts}
+        if type(rows) is not list or len(rows) > len(expected):
+            raise ValueError
+        output, seen = [], set()
+        for row in rows:
+            if type(row) is not dict or set(row) != fields:
+                raise ValueError
+            identifier = row["request_id"]
+            context = expected.get(identifier)
+            if context is None or identifier in seen:
+                raise ValueError
+            seen.add(identifier)
+            if any(
+                row[key] != getattr(context, key)
+                for key in ("run_id", "case_id", "case_revision", "attempt_index")
+            ):
+                raise ValueError
+            if any(type(row[key]) is not int for key in ("case_revision", "attempt_index")):
+                raise ValueError
+            if (
+                type(row["prompt_sha256"]) is not str
+                or re.fullmatch(r"[0-9a-f]{64}", row["prompt_sha256"]) is None
+            ):
+                raise ValueError
+            requested, serving = row["requested_model"], row["verified_returned_model"]
+            if type(requested) is not str or get_price(requested) is None:
+                raise ValueError
+            if serving is not None and (
+                type(serving) is not str or not same_verified_price(requested, serving)
+            ):
+                raise ValueError
+            if type(row["http_send_started"]) is not bool or (
+                row["http_status"] is not None
+                and (type(row["http_status"]) is not int or not 100 <= row["http_status"] <= 599)
+            ):
+                raise ValueError
+            if not row["http_send_started"] and (
+                row["http_status"] is not None or serving is not None
+            ):
+                raise ValueError
+            if serving is not None and row["http_status"] != 200:
+                raise ValueError
+            if row["ledger_status"] not in {None, "reserved", "settled", "uncertain", "released"}:
+                raise ValueError
+            for name in ("input_tokens", "output_tokens"):
+                if row[name] is not None and (type(row[name]) is not int or row[name] < 0):
+                    raise ValueError
+            for name in ("cost_estimated_usd", "held_usd"):
+                if row[name] is not None:
+                    if type(row[name]) is not str:
+                        raise ValueError
+                    amount = Decimal(row[name])
+                    if not amount.is_finite() or not 0 <= amount <= 5:
+                        raise ValueError
+            if row["error_code"] is not None and row["error_code"] not in get_args(
+                ReasoningStopCode.__value__
+            ):
+                raise ValueError
+            reservation = ledger.get(identifier) if ledger is not None else None
+            if reservation is not None:
+                if (
+                    reservation.run_id != context.run_id
+                    or reservation.case_id != context.case_id
+                    or reservation.case_revision != context.case_revision
+                    or reservation.attempt != context.attempt_index
+                ):
+                    raise ValueError
+                if row["ledger_status"] != reservation.status or requested != reservation.model:
+                    raise ValueError
+                if (
+                    row["input_tokens"] != reservation.input_tokens
+                    or row["output_tokens"] != reservation.output_tokens
+                ):
+                    raise ValueError
+                cost = (
+                    Decimal(row["cost_estimated_usd"])
+                    if row["cost_estimated_usd"] is not None
+                    else None
+                )
+                if cost != reservation.cost_usd:
+                    raise ValueError
+                if reservation.status in {"reserved", "uncertain"}:
+                    if (
+                        row["held_usd"] is None
+                        or Decimal(row["held_usd"]) != reservation.amount_usd
+                    ):
+                        raise ValueError
+                elif row["held_usd"] is not None and Decimal(row["held_usd"]) != 0:
+                    raise ValueError
+            elif any(
+                row[key] is not None
+                for key in (
+                    "ledger_status",
+                    "input_tokens",
+                    "output_tokens",
+                    "cost_estimated_usd",
+                    "held_usd",
+                )
+            ):
+                raise ValueError
+            output.append(deepcopy(row))
+        return output, None
+    except Exception:
+        return [], "ProviderObservationsUnavailable"
+
+
 @dataclass
 class CaseRun:
     fixture: Fixture
@@ -289,6 +420,10 @@ class CaseRun:
     record: Recorder = field(default_factory=Recorder)
     steps: list[dict[str, Any]] = field(default_factory=list)
     observed_snapshots: set[str] = field(default_factory=set)
+    route_graph: RouteGraph | None = None
+    route_complete: bool = False
+    route_visits: list[str] = field(default_factory=list)
+    provider_observer: Callable | None = None
 
     def _adapters(self, case_id, turn, contexts, rounds):
         ports = self.adapters(case_id, turn)
@@ -301,6 +436,9 @@ class CaseRun:
         )
 
     def run(self, client: TestClient) -> None:
+        if self.route_graph is not None:
+            self._run_conditional(client)
+            return
         data = self.fixture.data
         primary = self.fixture.case["case_id"]
         case_ids = [primary, *self.fixture.case.get("extra_case_ids", [])]
@@ -320,6 +458,9 @@ class CaseRun:
             if event is None:
                 return
             events.append((case_id, event))
+        self._replay(client, case_ids, events)
+
+    def _replay(self, client, case_ids, events):
         # Every accepted event must replay its original receipt without side effects.
         before = {cid: client.get(f"/cases/{cid}").json() for cid in case_ids}
         for case_id, event in events:
@@ -337,6 +478,61 @@ class CaseRun:
                 body.get("case_revision") == before[case_id]["case_revision"]
                 and body.get("log") == before[case_id]["log"],
             )
+
+    def _run_conditional(self, client):
+        graph = self.route_graph
+        data = self.fixture.data
+        primary = self.fixture.case["case_id"]
+        case_ids = [primary, *self.fixture.case.get("extra_case_ids", [])]
+        views = {cid: client.get(f"/cases/{cid}").json() for cid in case_ids}
+        turns = {turn["id"]: turn for turn in data["turns"]}
+        events = []
+        node = graph.node_ids[0]
+        while node is not None:
+            # A validated forward DAG visits at most its registered 64 nodes;
+            # the engine's existing two-attempt/two-round limits remain in force.
+            self.route_visits.append(node)
+            turn = turns[node]
+            case_id = turn.get("case_id", primary)
+            others = {cid: views[cid] for cid in case_ids if cid != case_id}
+            view, event = self._turn(client, case_id, turn, views[case_id], views)
+            views[case_id] = view
+            for cid, before in others.items():
+                after = client.get(f"/cases/{cid}").json()
+                self.record.check(
+                    node, f"case {cid} untouched", after == before, after["case_revision"]
+                )
+                views[cid] = after
+            if event is None:
+                break
+            events.append((case_id, event))
+            step = self.steps[-1]
+            route = graph.select(node, step, view)
+            if route is None:
+                self.steps.append(
+                    {
+                        "turn": node,
+                        "runner_stop": "FixtureBranchUnavailable",
+                        "coverage": "No unique registered route fits the current proposal and released question.",
+                    }
+                )
+                break
+            effective = step.get("edited_proposal") or step["proposal"]
+            step["route_selection"] = {
+                "from_turn": node,
+                "to_turn": route.target,
+                "decision": route.decision,
+                "question_target": route.question_target,
+                "proposal_id": effective["proposal_id"],
+                "question_was_released": bool(view.get("awaiting_reply"))
+                if route.decision == "ask"
+                else None,
+                "edited_proposal_selected": step.get("edited_proposal") is not None,
+            }
+            node = route.target
+            if node is None:
+                self.route_complete = True
+        self._replay(client, case_ids, events)
 
     def _turn(self, client, case_id, turn, view, views):
         check = self.record.check
@@ -480,6 +676,13 @@ class CaseRun:
         }
         if self.mode == "live":
             check(step, "model attempt accounting is complete", usage["accounting_complete"])
+        if self.provider_observer is not None:
+            observations, error = _provider_observations(
+                self.provider_observer, contexts, self.usage.ledger
+            )
+            usage["provider_observations"] = observations
+            usage["provider_observations_error"] = error
+            check(step, "provider observation metadata valid", error is None, error)
         view, edited = self._maintain(
             client, case_id, step, turn, pending, view, previous_assistant
         )
@@ -706,6 +909,7 @@ def final_preflight(
     *,
     bundle_paths: list[Path] | None = None,
     trusted_root: Path | None = None,
+    conditional_routes: bool = False,
 ) -> dict[str, Any] | None:
     """Validate the whole packet, then authorize only a pinned execution subset.
 
@@ -744,6 +948,9 @@ def final_preflight(
         # This reads gold locally; for_case never receives any fixture or gold.
         loaded = collect(full_paths, mode="live")
         _final_execution_prerequisites(loaded)
+        if conditional_routes:
+            for fixture in loaded:
+                RouteGraph.from_fixture(fixture.data)
         by_path = {fixture.path.resolve(): fixture.sha256 for fixture in loaded}
         if set(by_path.values()) != set(report["hashes"]["fixtures"]):
             raise ValueError
@@ -751,6 +958,18 @@ def final_preflight(
     except (OSError, ValueError, TypeError, KeyError, AttributeError, RecursionError):
         raise ValueError("FinalEvaluationPreflightRejected") from None
     return {**report, "fixture_loader_validated": True, "execution_fixture_hashes": hashes}
+
+
+def conditional_preflight(paths: list[Path]) -> dict[Path, RouteGraph]:
+    """Compile every registered alternative before any live factory is imported."""
+    try:
+        fixtures = collect(paths, mode="live")
+        _final_execution_prerequisites(fixtures)
+        return {
+            fixture.path.resolve(): RouteGraph.from_fixture(fixture.data) for fixture in fixtures
+        }
+    except (OSError, ValueError, TypeError, KeyError, AttributeError, RecursionError):
+        raise ConditionalRoutesRejected() from None
 
 
 def run(
@@ -762,18 +981,23 @@ def run(
     final_corpus_manifest: Path | None = None,
     final_bundle: list[Path] | None = None,
     trusted_root: Path | None = None,
+    conditional_routes: bool = False,
 ) -> dict[str, Any]:
     if mode not in {"offline", "live"}:
         raise ValueError("Invalid evaluation mode.")
     if (mode == "live") != (live is not None):
         raise ValueError("Live mode needs adapters; offline mode must not receive them.")
+    route_mode = conditional_routes or (mode == "live" and final_manifest is not None)
     eligibility = final_preflight(
         paths,
         final_manifest,
         final_corpus_manifest,
         bundle_paths=final_bundle,
         trusted_root=trusted_root,
+        conditional_routes=route_mode,
     )
+    if route_mode and eligibility is None:
+        conditional_preflight(paths)
     if live is not None and not isinstance(live.ledger, BudgetLedger):
         raise ValueError("LiveLedgerRequired")
     config = _live_config(live) if live else {"agent": "scripted agent_script", "model": None}
@@ -782,6 +1006,11 @@ def run(
         if stop := _budget_stop(snapshot):
             raise ValueError(stop)
     fixtures = collect(paths, mode=mode)
+    graphs = (
+        {fixture.path.resolve(): RouteGraph.from_fixture(fixture.data) for fixture in fixtures}
+        if route_mode
+        else {}
+    )
     if (
         eligibility
         and [fixture.sha256 for fixture in fixtures] != eligibility["execution_fixture_hashes"]
@@ -798,7 +1027,17 @@ def run(
             if live is None
             else (lambda actual_case_id, _turn: live.for_case(actual_case_id))
         )
-        case_run = CaseRun(fixture, adapters, usage, mode=mode, invocation_id=invocation_id)
+        case_run = CaseRun(
+            fixture,
+            adapters,
+            usage,
+            mode=mode,
+            invocation_id=invocation_id,
+            route_graph=graphs.get(fixture.path.resolve()),
+            provider_observer=getattr(live, "observations_for_contexts", None)
+            if live is not None
+            else None,
+        )
         edit_counter = 0
         edit_prefix = f"{invocation_id or 'offline'}:{fixture.data['fixture_id']}:{case_id}:edit"
 
@@ -815,6 +1054,11 @@ def run(
             with TestClient(api.app) as client:
                 case_run.run(client)
         checks = case_run.record.checks
+        coverage_complete = (
+            case_run.route_complete
+            if route_mode
+            else sum("usage" in step for step in case_run.steps) == len(fixture.data["turns"])
+        )
         cases.append(
             {
                 "case_id": case_id,
@@ -826,11 +1070,30 @@ def run(
                 "summary": {
                     "checks": len(checks),
                     "failed": sum(not check["passed"] for check in checks),
-                    "coverage_complete": sum("usage" in step for step in case_run.steps)
-                    == len(fixture.data["turns"]),
+                    "coverage_complete": coverage_complete,
                 },
                 "checks": checks,
                 "steps": case_run.steps,
+                **(
+                    {
+                        "conditional_routes": {
+                            "selected_path_complete": case_run.route_complete,
+                            "selected_turn_ids": case_run.route_visits,
+                            "executed_turn_ids": [
+                                step["turn"] for step in case_run.steps if "usage" in step
+                            ],
+                            "unvisited_registered_turn_ids": [
+                                name
+                                for name in case_run.route_graph.node_ids
+                                if name not in case_run.route_visits
+                            ],
+                            "registered_nodes": len(fixture.data["turns"]),
+                            "max_reasoner_attempts_per_case": 2 * len(fixture.data["turns"]),
+                        },
+                    }
+                    if route_mode
+                    else {}
+                ),
             }
         )
     turns = [step for case in cases for step in case["steps"] if "usage" in step]
@@ -851,7 +1114,11 @@ def run(
             "decision_labels": True,
             "claim_grounding": "unmeasured",
             "gap_necessity": "unmeasured",
-            "live_conversation": "fixed fixture path; no adaptive follow-up selection",
+            "live_conversation": (
+                "registered conditional routes; no semantic question matching or quality scoring"
+                if route_mode
+                else "fixed fixture path; no adaptive follow-up selection"
+            ),
         },
         "tracker_backend": "process_memory_dummy_tracker",
         "maintainer": "fixture_scripted",
@@ -864,9 +1131,41 @@ def run(
         "summary": {
             "cases": len(cases),
             "turns": len(turns),
-            "planned_turns": sum(len(fixture.data["turns"]) for fixture in fixtures),
-            "coverage_complete": len(turns)
-            == sum(len(fixture.data["turns"]) for fixture in fixtures),
+            "planned_turns": (
+                sum(len(case["conditional_routes"]["selected_turn_ids"]) for case in cases)
+                if route_mode
+                else sum(len(fixture.data["turns"]) for fixture in fixtures)
+            ),
+            "coverage_complete": (
+                all(case["summary"]["coverage_complete"] for case in cases)
+                if route_mode
+                else len(turns) == sum(len(fixture.data["turns"]) for fixture in fixtures)
+            ),
+            **(
+                {
+                    "registered_turns": sum(len(fixture.data["turns"]) for fixture in fixtures),
+                    "unvisited_registered_turns": sum(
+                        len(case["conditional_routes"]["unvisited_registered_turn_ids"])
+                        for case in cases
+                    ),
+                    "selected_path_complete": all(
+                        case["conditional_routes"]["selected_path_complete"] for case in cases
+                    ),
+                    "completed_multi_turn_paths": sum(
+                        case["summary"]["coverage_complete"]
+                        and len(case["conditional_routes"]["executed_turn_ids"]) > 1
+                        for case in cases
+                    ),
+                    "completed_multi_turn_test_paths": sum(
+                        case["split"] == "test"
+                        and case["summary"]["coverage_complete"]
+                        and len(case["conditional_routes"]["executed_turn_ids"]) > 1
+                        for case in cases
+                    ),
+                }
+                if route_mode
+                else {}
+            ),
             "checks": checks_total,
             "failed": failed,
             "cases_all_passed": sum(
@@ -914,6 +1213,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("paths", type=Path, nargs="+", help="Fixture files or split directories.")
     parser.add_argument("--mode", choices=("offline", "live"), default="offline")
     parser.add_argument("--adapters", help="module:factory returning LiveAdapters (live only).")
+    parser.add_argument(
+        "--conditional-routes",
+        action="store_true",
+        help="Select only registered conditional branches; automatic for live final packets.",
+    )
     parser.add_argument("--final-manifest", type=Path)
     parser.add_argument("--final-corpus-manifest", type=Path)
     parser.add_argument(
@@ -934,12 +1238,19 @@ def main(argv: list[str] | None = None) -> int:
         parser.error("Output must be new and under a directory named after the mode.")
     # Reject invalid final packets before importing or constructing a live factory.
     try:
-        final_preflight(
+        eligibility = final_preflight(
             args.paths,
             args.final_manifest,
             args.final_corpus_manifest,
             bundle_paths=args.final_bundle,
+            conditional_routes=args.conditional_routes
+            or (args.mode == "live" and args.final_manifest is not None),
         )
+        if eligibility is None and args.conditional_routes:
+            conditional_preflight(args.final_bundle or args.paths)
+    except ConditionalRoutesRejected:
+        print(json.dumps({"code": "ConditionalRoutesRejected"}), file=sys.stderr)
+        return 1
     except ValueError:
         print(json.dumps({"code": "FinalEvaluationPreflightRejected"}), file=sys.stderr)
         return 1
@@ -950,6 +1261,7 @@ def main(argv: list[str] | None = None) -> int:
         final_manifest=args.final_manifest,
         final_corpus_manifest=args.final_corpus_manifest,
         final_bundle=args.final_bundle,
+        conditional_routes=args.conditional_routes,
     )
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)

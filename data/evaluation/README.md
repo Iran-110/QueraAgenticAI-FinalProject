@@ -4,8 +4,9 @@ Draft layout for E1/E2. The schema still needs agreement before the full 30
 cases are written; `dev/pilot-12782.json` is the first case in this format.
 The manifest currently selects **one dev case and zero test cases**. It is not
 a frozen split. The [core-owner rubric review](../../docs/evaluation-rubric.md)
-is a recommendation for E2, not an implemented scorer, team approval or an E2
-completion claim. Registered fixtures and receipts are preserved unchanged.
+is a recommendation for E2. The additive semantic-review helper below records
+caller judgments; rubric adoption, team approval and E2 completion remain open.
+Registered fixtures and historical receipts are preserved unchanged.
 
 - `split-manifest.json` lists selected cases and whole issue families per split,
   the issue IDs already exposed during development, and open blockers. Hassan's
@@ -61,7 +62,7 @@ validates **every** fixture with the existing loader and rejects escaping or
 non-JSON evidence paths before importing/constructing the live factory. The
 receipt retains `final_artifact_preflight`; `quality_claim` remains false.
 Ordinary development commands remain available for draft fixtures. This gate
-does not implement adaptive route selection or authorize spending; the separate
+does not authorize spending; the separate
 budget halt and live adapter requirements still apply. Complete final
 evaluation remains E1–E5 work.
 
@@ -80,13 +81,17 @@ evaluation remains E1–E5 work.
 | `turns[].gold` (acceptable decisions, gaps, unacceptable claims) | reviewer/scorer only, never model input or index |
 | `turns[].expect` and `probes` (operational checks on stored state) | runner |
 
-The proposed `rubric_id`, per-turn strata/gaps/evidence conditions and conditional
-routes are documented in the rubric review. They require schema and runner
-implementation by the evaluation owner. Exact `expect` fields test the scripted
+The proposed `rubric_id` and per-turn strata/gaps/evidence conditions are
+documented in the rubric review and still need owner adoption and freeze.
+Registered conditional routes are now opt-in with `--conditional-routes`, and
+mandatory for live `--final-manifest` runs. Exact `expect` fields test the scripted
 trajectory in offline mode; live mode skips them and retains the decision-label
 check, without judging source support or question necessity. A live evaluation
-must handle registered alternative questions and responses without revealing
-later inputs early; adaptive branch selection remains unimplemented.
+must register alternative questions and responses before execution. The new
+route selector handles exact registered current questions without revealing
+later inputs early; an unmatched valid paraphrase stops with a fixture coverage
+gap rather than inventing a user reply. See
+[route/live integration guide](../../docs/evaluation-live-routes.fa.md).
 
 ## Running the evaluation
 
@@ -106,7 +111,9 @@ effects. Before running it refuses duplicate case IDs, a changed evidence hash,
 a test case marked ineligible, and a family shared across splits **among the
 files loaded in that invocation**. It does not yet enforce the split manifest,
 its frozen status, exposure reservations, minimum counts or R2 corpus exclusion.
-Those checks must be implemented before claiming final held-out evaluation.
+The optional final-packet gate above enforces these declared artifact conditions
+over the whole bundle; ordinary draft runs do not. Neither proves actual final
+index exclusion or held-out quality.
 
 Each turn records latency, model attempts, retrieval rounds, steps, cost and
 tokens. The receipt also records the git commit, fixture SHA-256s and config.
@@ -121,14 +128,28 @@ to their proposal IDs and hashes. New runner receipts preserve `proposal`,
 `edited_proposal` and `released_outputs`; full proposal objects contain the
 analysis, final evidence, source inventory and review handoff. Storing them does
 not score claim support, question utility or human usefulness. The E2
-scorer/review schema remains open; older receipts remain in their original format.
+review schema still needs owner adoption; older receipts remain in their original format.
+
+`agent_app.evaluation.semantic_review` now provides typed `ReviewScope` and
+`SemanticReview` sidecars plus `score_review` / `aggregate_reviews`. Exact claim
+spans, source quotes and active user-fact references are checked against the
+bound handoff; semantic judgments are supplied by the reviewer. One unsupported
+material claim fails support; incomplete/insufficient review is unassessed,
+complete zero-claim support is N/A. Aggregates retain denominators and separate
+strata, configurations, rubrics, declared human/assistant and original/edited
+responses. They count cases separately from proposals. This helper does not
+discover claims, prove entailment, authenticate humans, grade usefulness by
+itself, freeze E2 or authorize an action. Usefulness remains a human judgment.
 
 - `offline` (default) uses the scripted `agent_script` outputs. Cost is zero and
   `quality_claim` is false: it shows operational behaviour, not decision quality.
 - `live` needs `--adapters module:factory`, returning an object with
   `for_case(case_id) -> RunAdapters`, `ledger` and `config`. The factory only
-  ever sees case IDs; scripted outputs and gold are not supplied to it. No real live adapter
-  exists yet (U3). A `BudgetLedger` is mandatory; preflight rejects a halted
+  ever sees case IDs; scripted outputs and gold are not supplied to it.
+  `agent_app.evaluation.live:factory` now supplies verified docs-pilot Chroma +
+  GroundedPlan gateway ports with case-bound cleanup. It needs explicit index,
+  manifest/snapshot pins and private environment settings; it uses the existing
+  designated ledger and refuses the current C5 halt. A `BudgetLedger` is mandatory; preflight rejects a halted
   ledger, a configured limit above the team's USD 5 cap or unavailable budget
   before `for_case` runs, and checks again before each turn. The factory must
   construct its local configuration and ledger without making paid requests;

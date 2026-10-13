@@ -2,6 +2,69 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-13 — registered routes, reusable adapters and declared review scores
+
+The runner now selects only the registered continuation matching the current
+proposal and exact approved/released question. It records selected-path coverage
+separately from unvisited nodes and actual multi-turn counts. Ordinary commands
+keep linear behavior; opt-in routes and final-profile live runs validate the
+forward graph before live factory allocation. Unknown good wording is a fixture
+coverage gap. Gold and future replies stay outside the model input.
+
+`evaluation.live` composes the verified existing docs-pilot Chroma adapter,
+production GroundedPlan catalog and mandatory ledger gateway with fresh
+case-bound ports. Its optional observer verifies context/request/ledger identity,
+serving price, send/status invariants and hold accounting. A real-factory/runner
+test exposed a settled-hold None/zero mismatch; plain/gzip integration regressions
+now retain the verified serving ID. Contradictory no-send wire claims are rejected;
+legitimate no-send duplicate settlement remains usable.
+
+An additive `case_adapters` API seam receives a detached committed tracker case,
+then the explicit `live_backend` composes the existing SQLite API/UI endpoints.
+Two-case isolation, correction, stale approval, exact-once local review retry,
+same-interpreter app recreation and cleanup pass with mocked provider wires.
+Independent review reproduced a configuration bug that wrote tracker tables into
+Chroma. Startup now rejects the index directory, protected file aliases and the
+model ledger before tracker creation; exact/hardlink/symlink controls pass.
+
+The additive semantic-review helper binds caller annotations to exact handoff,
+scope, output/source spans and active user facts. Unsupported material claims fail;
+incomplete reviews are unassessed and complete zero-claim support is N/A.
+Rubrics, strata, origins, human/assistant declarations and case/proposal denominators
+remain separate. It is not entailment, claim discovery, human authentication or
+action permission; E2 adoption and independent human scores remain open.
+
+Local locked sync, **2,593 tests**, Ruff check/format and the three required offline
+demos pass. No real API call, key read, paid spend or production ledger write
+occurred in this phase. The [integration guide](evaluation-live-routes.fa.md)
+describes exact settings and limits. A reused synthetic fixture and operational
+old-runner/current-runner protocol are registered in `experiments/evaluation_routes/`
+before their controlled comparison; current core/ports are deliberately held
+fixed in both variants. This registration alone is not an executed result.
+The [committed comparison](../experiments/evaluation_routes/README.md) then ran
+on clean `65f1c31`: old-runner path completion 0/3, conditional completion 3/3,
+with zero failed mechanical checks in the baseline. Only the runner module is
+replaced; this is operational coverage, not semantic quality or full old-release
+behavior. All allocated mock clients close; real sends/spend stay zero.
+Final local suite after the actual-page and comparison-audit additions passes
+**2,616 tests**. V2 conservatively flags accumulated conversation because its
+audit wrongly compares the wire with raw latest text; this measurement error
+and unchanged receipt remain documented. Preregistered V3 on clean `c26e9ce`
+correctly binds full current conversation/handoff and capture chronology: all
+three conditional paths and their actual mock-wire controls pass. Registered
+input bytes stay unchanged; fresh-process HTTP/SQLite again passes 457/457.
+The production ledger retains the same fingerprint and hold/halt.
+[Local verification](../experiments/evaluation_routes/verification-v3.json) records
+commands, scope and hashes. Windows CI and publication still need verification
+at the final PR head.
+
+No shared contract, old receipt, seed or original paid-probe protocol changes.
+Ordinary factory/startup retains the C5 halt; existing continuation is not a
+generic budget bypass. Draft split remains one dev/zero test. Final independent
+cases, reviewed exclusion/corpus, frozen rubric, dev quality baseline and held-out
+evaluation remain mandatory. The [current owner checklist](../plan/plan.md)
+assigns a three-dev-case first slice before completing all 30 cases.
+
 ## 2026-10-13 — bounded real-index/model correction probe
 
 Clean committed/pushed source `fbac1b4` passed **2,422 tests**, locked sync,

@@ -4,6 +4,42 @@
 
 ## وضعیت فعلی
 
+### تقسیم کار جاری — درخواست جمع‌بندی تا امشب ۱۳ اکتبر
+
+نسخهٔ قبلی با [PR #36](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/36)
+روی main `a087770` است؛ [CI انتشار Linux/Windows](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38387712898)
+پاس شد. [تحویل تازهٔ مستقل](../docs/evaluation-live-routes.fa.md): runner فقط
+مسیر ثبت‌شدهٔ متناسب با سؤال واقعی را اجرا می‌کند؛ factory مشترک Chroma/model،
+case binding پایدار و helper امتیازهای review اضافه شده‌اند. این‌ها پذیرش
+عملیاتی با mock هستند؛ rubric/fixture نهایی، کیفیت و C5 هنوز بازند.
+
+بررسی نهایی محلی این تحویل: ۲۶۱۶ pytest، Ruff و سه demo پاس؛ AppTest صفحهٔ
+واقعی با همین factory و provider mock و HTTP/SQLite تازه ۴۵۷/۴۵۷ پاس‌اند.
+[مقایسهٔ ثبت‌شدهٔ runner](../experiments/evaluation_routes/README.md) روی همان
+fixture و portهای mock: تکمیل مسیر قبلی ۰/۳ و مسیر شاخه‌ای ۳/۳؛ baseline
+هیچ check مکانیکیِ fail نداشت، اما ادامهٔ درست گفتگو را کامل نمی‌کرد.
+این بهبود عملیاتی است؛ کیفیت مدل/RAG یا سه case مستقل نیست. CI و publication
+نسخهٔ نهایی در PR ثبت شوند؛ [verification محلی](../experiments/evaluation_routes/verification-v3.json)
+و اصلاحات audit نسخه‌های V1/V2/V3 حفظ‌اند؛ اصل receiptها بازنویسی نشوند.
+
+هدف امشب درخواست ساسان است، نه تأیید زمان اعضا. اول یک برش dev قابل بررسی
+بسازیم، سپس تمام الزام‌ها را ببندیم؛ سه case جای ۳۰ case را نمی‌گیرد.
+هر تحویل PR، دستور اجرا و receipt داشته باشد؛ اگر امروز نمی‌رسد، blocker و
+قسمت قابل تقسیم همان روز اعلام شود. فردا ارائه/bonus پس از روشن شدن وضع
+بخش الزامی بررسی شود. branchها از `origin/main` sync شوند؛ تغییر plan با PR
+منتقل می‌شود و از لپ‌تاپ دیگر فوری دیده نمی‌شود.
+
+| مالک / محدودهٔ فایل | کار مشخص این برش | شرط پذیرش و ادامه |
+| --- | --- | --- |
+| ساسان — core، `evaluation/runner.py`، `routes.py`، `live.py`، `semantic_review.py`، `live_backend.py` | اتصال مسیرها، receipt معتبر، case/revision/retry و helper review؛ review/انتشار این تحویل؛ بعد baseline واقعی dev | تست‌های آفلاین و CI؛ baseline با config ثابت و protocol قبلی؛ خرج فقط ضروری/ثبت‌شده با همان ledger و علت C5 محفوظ. هم‌زمان این فایل‌ها توسط اعضا ویرایش نشوند |
+| محمدحسن — `data/evaluation/dev/`، `test/`، manifest، rubric و UI | ابتدا سه dev case قابل اجرا با gap کاربر/منبع، routeهای سؤال معتبر و rubric؛ خانواده‌ها/exposure را با حسن review کند | fixture قبل از run، ادامهٔ واقعی/ساخته‌شده مشخص؛ review مستقل original و edit جدا. سپس ۱۵ dev/۱۵ test و حداقل ۱۰ multi-turn، پنج test؛ runner/helper آماده نیاز به adopt دارد، E1/E2 بسته نشده |
+| حسن — retrieval، corpus و exclusion | برای همان سه dev case، شاهد مرتبط و نسخه‌دار یا unknown صریح معرفی کند؛ linkage/exclusion خانواده‌ها را با محمدحسن ببندد | URL/revision/hash/span/نسخه و coverage لازم/مفقود؛ خود case/comment/outcome/duplicate و جواب مستقیم از index خارج؛ build نهایی نسخه‌دار و receipt retrieval روی dev. docs pilot فعلی برای ادعای کیفیت کافی نیست |
+| بهنام — tracker/tools و شاهد T4 | یک receipt دو-case از UI موجود تا API/SQLite: approve/edit/reject، correction، approval قدیمی، restart/retry و جابه‌جایی case | action تکراری صفر و revision درست؛ PR با command/receipt روی main تازه. tracker موجود را استفاده کند؛ startup مدل عمومی در C5 halt مسدود است، smoke آفلاین مستقل انجام شود |
+
+پس از این برش، ساسان baseline/model comparison ثبت‌شده را اجرا می‌کند؛
+خانواده‌های test فقط پس از freeze و بدون tuning اجرا شوند. هیچ case، نمرهٔ
+انسانی، corpus نهایی یا حل halt از طرف افراد تأییدشده فرض نمی‌شود.
+
 بازبینی بخش الزامی، بدون bonus: **حدود ۷۰٪، برآورد مهندسی و نه نمرهٔ کیفیت**.
 [مسیر کوتاه تکمیل و حدود شواهد](../docs/delivery-readiness-2026-10-13.fa.md):
 اولویت با caseهای مستقل، corpus/exclusion نهایی، baseline واقعی dev و test
@@ -13,7 +49,8 @@
 و gate مکانیکی `frozen_final_v1` آمادهٔ بازبینی‌اند. candidateها هنوز case نهایی
 نیستند، partial exclusion هنوز به corpus نهایی اعمال نشده و E1–E5 بازند.
 runner در حالت final کل bundle و evidenceهایش را قبل از live factory بررسی
-می‌کند؛ branchهای adaptive و scoring معنایی باقی‌اند. [protocol اتصال واقعی دو turn](../experiments/grounded_http_acceptance/connected-live-protocol-v1.json)
+می‌کند؛ branchهای adaptive در تحویل تازه پیاده‌اند و semantic helper judgment
+caller را ثبت می‌کند؛ scoring مستقل و freeze هنوز باقی‌اند. [protocol اتصال واقعی دو turn](../experiments/grounded_http_acceptance/connected-live-protocol-v1.json)
 با index موجود، correction و ledger اصلی ثبت می‌شود؛ اجرا و نتیجه جدا گزارش
 می‌شوند. مجوز API جدید کاربر شامل آزمایش ضروری است؛ سقف تیم و halt/hold قبلی
 حفظ می‌شوند. هیچ پیام تیمی از این مرحله ارسال نشده است.

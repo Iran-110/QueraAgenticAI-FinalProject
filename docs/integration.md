@@ -11,6 +11,17 @@ also connect a registered docs-only Chroma index with local lexical vectors.
 No model API key is needed; the private local maintainer console uses a separately
 configured reviewer credential. Reasoning remains scripted, with no quality claim.
 
+The additive [registered-route/live composition guide](evaluation-live-routes.fa.md)
+now documents `evaluation.live:factory`, declared semantic-review scores and
+`live_backend:app_factory`. The optional `case_adapters` callback receives a
+detached committed tracker case, is mutually exclusive with legacy `adapters`,
+and allocates nothing on exact ingress replay. This same API is tested through
+the actual Streamlit page with real temporary Chroma/SQLite and mandatory mocked
+provider wires. Correction and an uncertain review retry preserve the original
+review identity across application recreation without a new model call/action.
+Ordinary live startup remains blocked by the designated ledger's C5 halt; this
+is not final corpus, actual paid UI operation or held-out quality acceptance.
+
 The core-owned [CoreTurnService](core-turn-service.fa.md) now composes the existing
 tracker port with lazy per-run adapters and full handoffs. Use it for persistent
 ingress rather than copying test-harness policy into the API. C2d now supplies
