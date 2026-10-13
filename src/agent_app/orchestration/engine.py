@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 from typing import Literal, get_args
 from uuid import uuid4
 
-from pydantic import ValidationError
+from pydantic import TypeAdapter, ValidationError
 
 from agent_app.contracts import (
     AnalysisResult,
@@ -14,6 +14,7 @@ from agent_app.contracts import (
     OutputFeedback,
     OutputIssue,
     ProposalRequirements,
+    Query,
     ReasoningContext,
     RetrievalRequest,
     RunLimits,
@@ -139,6 +140,7 @@ class SupportEngine:
         *,
         run_id: str | None = None,
         proposal_requirements: ProposalRequirements | None = None,
+        initial_query: str | None = None,
     ) -> RunResult:
         case = detached_contract(CaseState, case)
         if proposal_requirements is not None:
@@ -192,8 +194,17 @@ class SupportEngine:
             ):
                 raise _Stopped("InvalidInput")
             self._ensure_current(case)
+            if initial_query is not None:
+                try:
+                    initial_query = TypeAdapter(Query).validate_python(initial_query)
+                except (ValidationError, ValueError, TypeError):
+                    raise _Stopped("InvalidRetrievalQuery") from None
             progress.step("started", "Loaded the supplied case snapshot.")
-            queries = (build_initial_query(case, user_message),)
+            queries = (
+                initial_query
+                if initial_query is not None
+                else build_initial_query(case, user_message),
+            )
             seen_queries: set[str] = set()
             while True:
                 evidence = self._retrieve(case, queries, seen_queries, progress)
