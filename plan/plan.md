@@ -6,7 +6,8 @@
 
 ### تقسیم کار جاری — درخواست جمع‌بندی تا امشب ۱۳ اکتبر
 
-تحویل مستقل تازهٔ ساسان **C4b — حفظ تعارض اعلام‌شده در refinement/repair** است.
+تحویل مستقل تازهٔ ساسان **C4b — حفظ تعارض اعلام‌شده در refinement/repair** در
+[PR #41](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/41) است.
 [مقایسهٔ اصل کد قدیم و جدید](../experiments/conflict_continuity/README.md) با
 ۱۴ کنترل ثبت‌شده پیش از fix: روی `03225e2` هفت pass/هفت fail و روی source تمیز
 `8cc41bf` چهارده pass/صفر fail. سه answer نامجاز دیگر به approval نمی‌رسند؛

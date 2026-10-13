@@ -1,5 +1,8 @@
 # C4b: keep a declared conflict through refinement
 
+Delivery and final Linux/Windows publication checks:
+[PR #41](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/41).
+
 A current-pool omission is not a resolution of a conflict already declared by
 the caller. On actual baseline `03225e2`, an authored `retrieve_more` followed by
 an answer could lose that status when one conflict member disappeared or changed
