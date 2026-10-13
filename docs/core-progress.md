@@ -2,6 +2,33 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-13 — PR35, reproducible docs-only index acceptance
+
+PR35 initially adds one unchanged reference-fixture receipt at `e37a57a`:
+132/132, not the Chroma adapter or a built index. Recorded Python hashes match
+`56ff8ff`; its historical dirty flag is preserved. Two fresh builds on clean
+`e37a57a` produce the registered 14-source/30-chunk manifest and identical
+snapshot. Correct mapper conformance independently passes 132/132 with injected
+fixed collections. [Layered evidence and commands](../experiments/retrieval_acceptance/pr35/README.md)
+keep these scopes distinct.
+
+The companion replay explicitly consumes two supplied existing indexes, checks
+actual query/filter forwarding and exact returned material, and exercises the
+existing GroundedPlan mock gateway, HTTP and SQLite. Nine tests reject corrupted
+URLs, substituted physical queries hidden by echoes, ignored filters, missing
+indexes and reused output. Source contracts, RAG implementation and tracker
+are unchanged. Another three Git tests preserve actual seed bytes across
+autocrlf settings. The no-attributes control reproduces 56 converted newlines
+and a checksum failure; the seed-only byte policy fixes future checkout.
+The full working-tree suite passes **2,295 tests**, Ruff passes, and 129 existing
+focused tests cover actual index, page and fresh-interpreter restart.
+
+No semantic relevance/model-quality claim is made. Split remains one dev/zero
+test, draft and not family-reviewed; R1 final corpus, R2/R4, E1/E2 and C5 remain
+open. No provider, paid embedding, key read or production ledger change occurs.
+Publication, source-pinned replay and CI are recorded in the PR35 evidence
+packet; the original author's receipt remains byte-for-byte unchanged.
+
 ## 2026-10-13 — GroundedPlan through the durable pilot (C2f)
 
 The existing restricted plan and gateway now compose explicitly with persistent
