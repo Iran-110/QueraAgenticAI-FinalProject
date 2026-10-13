@@ -1,0 +1,757 @@
+{
+  "schema_version": 1,
+  "protocol": "retrieval-core-acceptance-v1",
+  "accepted": true,
+  "mode": "reference_fixture_adapter",
+  "quality_claim": false,
+  "production_index_or_embedding_tested": false,
+  "real_model_tested": false,
+  "actual_rag_accepted": false,
+  "factory_override_requested": false,
+  "candidate_preflight": null,
+  "release_before": {
+    "git_commit": "56ff8ffac057819be926bca8123b53270103baba",
+    "git_dirty": true,
+    "source_sha256": {
+      "src/agent_app/__init__.py": "651500e6469bef4ff31cda0ac90dd20cfebd2d9d9fe4bf99025c2b385598f86f",
+      "src/agent_app/api.py": "0105490eb8b860612d32a04ffdcaed701c183a3cbe5cf047bdf74211be0c2375",
+      "src/agent_app/cli.py": "b66386e6b4ba288211cecf8c6aa5957599132a97150126eb1ed815f37c2ddae4",
+      "src/agent_app/contracts.py": "1dcf0de657f3442dfb5e787e6243a9a279501305033e592cbcd060dd808d0a91",
+      "src/agent_app/demo.py": "3128a85ca44809ff75234ebe982beafcd1d6c35d6f3bf3a37b093b67c33092b4",
+      "src/agent_app/evaluation/__init__.py": "b8f1e93a3c5528cd48abc8e4690b6d67c3838c9ad1e595c7990bc11c2a763793",
+      "src/agent_app/evaluation/pilot.py": "426e95b286e63ca082bf04ddc69fe783bfbb98dfd3e3c9c919b74bba21927d9f",
+      "src/agent_app/evaluation/runner.py": "44d9d6ee081bcb3a4c3015ff02897a71dc1bd942ab888305215cfb1ccdd076b2",
+      "src/agent_app/llm/budget.py": "2e29e3dc2a922f904e2138abef7e8e984468cbf9eb6bef8b9736cd496a723d43",
+      "src/agent_app/llm/config.py": "8ecafef7f2d6f8f2b5e88184e57f84737461b66600b56874c0ea8e8c107e187e",
+      "src/agent_app/llm/demo.py": "4b5463e03078ff8c19e758ed8282de146538018721d6e5e9f902727c3c71908e",
+      "src/agent_app/llm/grounded.py": "24baef8e95ee2795ac83436eb6ef6046b2781a225330689a2f5c3ffafe4cdaa6",
+      "src/agent_app/llm/metis.py": "9950a4e36b7a04fd74e4decb110cd58c3d3acba45af073ce30c53983a8fd6076",
+      "src/agent_app/llm/pricing.py": "39993b673465401e0926584d3007b8967a1eb4eaad4d377b32324c60d619ec07",
+      "src/agent_app/offline_backend.py": "3fc5f56ea1eee99f0b81400cfa5634868f12dbea523ecde28db6ded1a14582f7",
+      "src/agent_app/orchestration/__init__.py": "344e71f3e4393d9f0cb0193c0c7d2ff02fef7d0c36abba502ba4eeb428caf1a0",
+      "src/agent_app/orchestration/conversation.py": "a9d3954ab2fdbbd083329e59e8c5511f5cc005375e4fc39747a61756aa51e3f1",
+      "src/agent_app/orchestration/engine.py": "b64867241b336ade1a8c36f8747edf4604313bda4e108bc079ce48929381c0dc",
+      "src/agent_app/orchestration/handoff.py": "615ac692e9bbed21fee47cfb435c3dbbf054b91aedd727699d88118378222833",
+      "src/agent_app/orchestration/intake.py": "a1208ec535fd022d3d20f6847a0a6f21af0d3c42fc75a078e925301397c970b4",
+      "src/agent_app/orchestration/ports.py": "2ef106155234f762832aff658602a5177bf946908b24fde3bc69129076bbbeb2",
+      "src/agent_app/orchestration/service.py": "d1399746ab8527dea7cce60181edc8ed44617b01b0782a3f8329c68c7474b1f5",
+      "src/agent_app/orchestration/turns.py": "17970a95710dc8351d14f36cc6dfbdf3308231a627fd710b64dee119908eace7",
+      "src/agent_app/orchestration/validation.py": "2debe663263680238268d5034c7e80fe5533b4f66c535d5bf0b4e072835d7f6e",
+      "src/agent_app/persistent_api.py": "7a78ccd036aaba03627f535f510687a979d687caca56c667871597e92d21b9a8",
+      "src/agent_app/reasoning/__init__.py": "12233e742809b1a2fffedccf658feca51ab510795da80d210fb8328c009f031f",
+      "src/agent_app/reasoning/ablations.py": "72436d983fcde9668583a07662aa5b04952fee0b60d0c908b911e439d4ac5d5f",
+      "src/agent_app/reasoning/code_checks.py": "f3f1efb9962b88d3a51587dcfe73296cbdcbecedc82dacec85faf7cfa7b92ba7",
+      "src/agent_app/reasoning/controlled_experiments.py": "161dc621520fc619c93755138d7c1187d3b09393da2face8caea3a6f5e2e13b9",
+      "src/agent_app/reasoning/experiments.py": "d0fc8bf3f94b0e4c99648f5ee99e7e2ed2191eabdbbc7f5110f7e7c2a2391103",
+      "src/agent_app/reasoning/fidelity_experiments.py": "f41b6d0e2b96ad293b244ef249970a9b6d24382e4384d2dee4d5fa6d171fcdfe",
+      "src/agent_app/reasoning/grounding.py": "327e219158d234b32297b890c727031d17cc2ea02ad32347a6f60cbb1b9c1e44",
+      "src/agent_app/reasoning/grounding_experiments.py": "ff7a217e12182d04470339bb9f793e0194fa05bf53fa2babdb9cce809c44d9d3",
+      "src/agent_app/reasoning/output.py": "81d7c60c1dc09f0ab7d9badd6d4dbaf405439a399506333a3e6b7dec9ca6874c",
+      "src/agent_app/reasoning/probes.py": "10ddb452c81cec3a7e8b93e937e5efcd5166c81ace0f36bf1c062b4498b9f185",
+      "src/agent_app/reasoning/prompts.py": "0bc7b83422eee46f9a598415ea3921281a451da1780db080f091818e3a79329b",
+      "src/agent_app/reasoning/proposal_checks.py": "aaa8b3bcb51992f23189a76749a747fa6b10528f3f11af806b067fe67d923464",
+      "src/agent_app/reasoning/quality_experiments.py": "4eecf613b71981b4aeb2c35efc81c5f1520edb304a106b60561b166e1e067269",
+      "src/agent_app/reasoning/review.py": "77e34b93445faf1dc6e6e7a2252971305a5d1ea3f4b7dc6713e44daf32804e14",
+      "src/agent_app/reasoning/semantic_regressions.py": "13c3ab82e66fab43bce186c086b8fea00049da7e083cbaad6c1c3393ea00c8ea",
+      "src/agent_app/retrieval/adapter.py": "3752fe760c9fb71a6cd05014a6ab870d53a652a56e2c972425e71c7d9c417c2f",
+      "src/agent_app/retrieval/offline_index.py": "def8f56afdeadd714c8891779e627da5d89ea276086bf232c135e64ff8967414",
+      "src/agent_app/retrieval/pilot_corpus.py": "dd9317632c2ccdd387aa3fb13e4cdcab8567def697e958f3d60affa7e35a8693",
+      "src/agent_app/retrieval/retriever.py": "7791e66896296ff0d85ed319ee7eba6238db9516ea04ad2a9f1af6b5f2caebe1",
+      "src/agent_app/testing/__init__.py": "bea37ce669658c22e7d916983693ed47c42a9e35806f4d726643bd1a1f14d8ed",
+      "src/agent_app/testing/chroma_binding.py": "ae23fb6e5ece3c4b198519afa371b581b60d69844d904e89d047c910e5d6e4ba",
+      "src/agent_app/testing/fakes.py": "1e44387ddcbe091f91657ce1236c36f648eb6941d4582fe42a4a37c60f6a80a0",
+      "src/agent_app/testing/grounded_http_acceptance.py": "f145dd71055e93c5b03561b46e7dd048103cf43cc7b7c1c74520347ebd055a3d",
+      "src/agent_app/testing/grounded_http_binding.py": "fe11352db2b04f87c396d20739ec3ad97f7b3e064585745e40c18d0890f4e7f9",
+      "src/agent_app/testing/http_pilot_acceptance.py": "ea5ff92fd319db247a346ff3dd90c417dccd9b0efb324550c72eaf9f078f97bf",
+      "src/agent_app/testing/http_pilot_runtime.py": "df685c1aa4dc4b666ccc680ba6e5ad552cc48f10f89400d73d9cc11108848464",
+      "src/agent_app/testing/http_pilot_worker.py": "05c73602a500f770ca3f9bddbf568032b44bd46787a8fbc623d44cdd1f42239e",
+      "src/agent_app/testing/retrieval_acceptance.py": "f6b3dfeb894b20341e9483dfd8e644165fa8944cc0329c13126545eba1db7df4",
+      "src/agent_app/testing/retrieval_acceptance_pilot.py": "6bd2a5523bfe299937fe1746df035fcb23adf13362fa80c4cb8d82e524273aa3",
+      "src/agent_app/testing/sqlite_http_binding.py": "b933322aeb9db68bc8243b1b47c3e947ada6ad474873e88739adfd6320fda3e6",
+      "src/agent_app/testing/ui_review_acceptance.py": "308bd2d8f9ea525a226a0557e7d2e6e7c3f8ae5fc4586666db2b7ac49be98f92",
+      "src/agent_app/tracker/dummy_tracker.py": "c214d49fcd9033565b19f1d11cef605b7654c6103a64d2bdbfc71a876c6e2e3d",
+      "src/agent_app/tracker/sqlite_tracker.py": "c8d9e75bac2152df68559d85d3ef0c52386cb0d10562b8cb4aae9d987be257e8",
+      "src/agent_app/turn_demo.py": "0985daf2ca881eefc52b4a9694cd5fa91becfa61cd722ef8fb470c865791cad8",
+      "src/agent_app/ui_client.py": "5b4564f4e8b93af7775b2c2fb3fa254f25b5dfae406ac65d3f48fd9de325037e",
+      "scripts/rag_acceptance.py": "73c54c00a81e5269787098e71375364dbbbd7bff8d76e1e19537a9a1c3e51d45"
+    }
+  },
+  "checks": {
+    "single:typed_bundle": true,
+    "single:request_unchanged": true,
+    "single:snapshot": true,
+    "single:global_top_k": true,
+    "single:unique_ids": true,
+    "single:queries_consumed": true,
+    "single:queries_used": true,
+    "single:result_count": true,
+    "single:metadata": true,
+    "multi:typed_bundle": true,
+    "multi:request_unchanged": true,
+    "multi:snapshot": true,
+    "multi:global_top_k": true,
+    "multi:unique_ids": true,
+    "multi:queries_consumed": true,
+    "multi:queries_used": true,
+    "multi:result_count": true,
+    "multi:metadata": true,
+    "cap:typed_bundle": true,
+    "cap:request_unchanged": true,
+    "cap:snapshot": true,
+    "cap:global_top_k": true,
+    "cap:unique_ids": true,
+    "cap:queries_consumed": true,
+    "cap:queries_used": true,
+    "cap:result_count": true,
+    "cap:metadata": true,
+    "known_version:typed_bundle": true,
+    "known_version:request_unchanged": true,
+    "known_version:snapshot": true,
+    "known_version:global_top_k": true,
+    "known_version:unique_ids": true,
+    "known_version:queries_consumed": true,
+    "known_version:queries_used": true,
+    "known_version:result_count": true,
+    "known_version:metadata": true,
+    "corrected_version:typed_bundle": true,
+    "corrected_version:request_unchanged": true,
+    "corrected_version:snapshot": true,
+    "corrected_version:global_top_k": true,
+    "corrected_version:unique_ids": true,
+    "corrected_version:queries_consumed": true,
+    "corrected_version:queries_used": true,
+    "corrected_version:result_count": true,
+    "corrected_version:metadata": true,
+    "unknown:typed_bundle": true,
+    "unknown:request_unchanged": true,
+    "unknown:snapshot": true,
+    "unknown:global_top_k": true,
+    "unknown:unique_ids": true,
+    "unknown:queries_consumed": true,
+    "unknown:queries_used": true,
+    "unknown:result_count": true,
+    "unknown:metadata": true,
+    "empty:typed_bundle": true,
+    "empty:request_unchanged": true,
+    "empty:snapshot": true,
+    "empty:global_top_k": true,
+    "empty:unique_ids": true,
+    "empty:queries_consumed": true,
+    "empty:queries_used": true,
+    "empty:result_count": true,
+    "empty:metadata": true,
+    "empty:hits": true,
+    "boundary:typed_bundle": true,
+    "boundary:request_unchanged": true,
+    "boundary:snapshot": true,
+    "boundary:global_top_k": true,
+    "boundary:unique_ids": true,
+    "boundary:queries_consumed": true,
+    "boundary:queries_used": true,
+    "boundary:result_count": true,
+    "boundary:exact_excerpt": true,
+    "oversize:stop_before_model": true,
+    "oversize:safe_diagnostics": true,
+    "malformed_url:stop_before_model": true,
+    "malformed_url:safe_diagnostics": true,
+    "failure:stop_before_model": true,
+    "failure:safe_diagnostics": true,
+    "snapshot:stop_before_model": true,
+    "snapshot:safe_diagnostics": true,
+    "snapshot:no_backend_calls": true,
+    "response_snapshot:stop_before_model": true,
+    "response_snapshot:safe_diagnostics": true,
+    "pilot:fresh_database": true,
+    "pilot:registered_pilot_hash": true,
+    "pilot:registered_evidence_reference": true,
+    "pilot:registered_evidence_hash": true,
+    "pilot:exposed_dev_only": true,
+    "pilot:registered_four_turns": true,
+    "pilot:0:proposal_staged": true,
+    "pilot:0:proposal_is_only_a_preview": true,
+    "pilot:0:exact_pending_after_adapter": true,
+    "pilot:0:registered_source_content_preserved": true,
+    "pilot:0:handoff_uses_actual_latest_output": true,
+    "pilot:0:source_inventory_matches_actual_output": true,
+    "pilot:version_question_approved": true,
+    "pilot:1:proposal_staged": true,
+    "pilot:1:proposal_is_only_a_preview": true,
+    "pilot:1:exact_pending_after_adapter": true,
+    "pilot:1:registered_source_content_preserved": true,
+    "pilot:1:handoff_uses_actual_latest_output": true,
+    "pilot:1:source_inventory_matches_actual_output": true,
+    "pilot:bound_short_reply_keeps_problem_and_user_version": true,
+    "pilot:registered_pending_answer": true,
+    "pilot:2:proposal_staged": true,
+    "pilot:2:proposal_is_only_a_preview": true,
+    "pilot:2:exact_pending_after_adapter": true,
+    "pilot:2:registered_source_content_preserved": true,
+    "pilot:2:handoff_uses_actual_latest_output": true,
+    "pilot:2:source_inventory_matches_actual_output": true,
+    "pilot:correction_updates_authoritative_user_version": true,
+    "pilot:refinement_consumes_two_queries_within_budget": true,
+    "pilot:old_release_evidence_absent_from_current_handoff": true,
+    "pilot:stale_version_approval_rejected": true,
+    "pilot:stale_version_approval_rejected_no_mutation": true,
+    "pilot:edit_preserves_current_adapter_evidence": true,
+    "pilot:pre_edit_approval_rejected": true,
+    "pilot:pre_edit_approval_rejected_no_mutation": true,
+    "pilot:review_retry_after_restart_one_action": true,
+    "pilot:3:proposal_staged": true,
+    "pilot:3:proposal_is_only_a_preview": true,
+    "pilot:3:exact_pending_after_adapter": true,
+    "pilot:3:registered_source_content_preserved": true,
+    "pilot:3:handoff_uses_actual_latest_output": true,
+    "pilot:3:source_inventory_matches_actual_output": true,
+    "pilot:withdrawal_rejection_no_action": true,
+    "pilot:old_event_replay_no_new_ports_or_actions": true,
+    "pilot:withdrawn_version_not_active": true,
+    "pilot:four_distinct_core_runs": true,
+    "pilot:same_adapter_factory_once_per_turn": true,
+    "pilot:only_two_approved_local_actions": true
+  },
+  "checks_passed": 132,
+  "checks_total": 132,
+  "cases": [
+    {
+      "id": "single",
+      "status": "passed",
+      "error_code": null
+    },
+    {
+      "id": "multi",
+      "status": "passed",
+      "error_code": null
+    },
+    {
+      "id": "cap",
+      "status": "passed",
+      "error_code": null
+    },
+    {
+      "id": "known_version",
+      "status": "passed",
+      "error_code": null
+    },
+    {
+      "id": "corrected_version",
+      "status": "passed",
+      "error_code": null
+    },
+    {
+      "id": "unknown",
+      "status": "passed",
+      "error_code": null
+    },
+    {
+      "id": "empty",
+      "status": "passed",
+      "error_code": null
+    },
+    {
+      "id": "boundary",
+      "status": "passed",
+      "error_code": null
+    },
+    {
+      "id": "oversize",
+      "status": "passed",
+      "error_code": null
+    },
+    {
+      "id": "malformed_url",
+      "status": "passed",
+      "error_code": null
+    },
+    {
+      "id": "failure",
+      "status": "passed",
+      "error_code": null
+    },
+    {
+      "id": "snapshot",
+      "status": "passed",
+      "error_code": null
+    },
+    {
+      "id": "response_snapshot",
+      "status": "passed",
+      "error_code": null
+    },
+    {
+      "id": "core_pilot",
+      "status": "passed",
+      "error_code": null
+    }
+  ],
+  "factory": {
+    "module": "agent_app.testing.retrieval_acceptance",
+    "name": "fixture_factory",
+    "source_sha256": "f6b3dfeb894b20341e9483dfd8e644165fa8944cc0329c13126545eba1db7df4",
+    "source_available": true
+  },
+  "delegate_sources": [
+    {
+      "module": "agent_app.testing.retrieval_acceptance",
+      "name": "FixtureRetriever",
+      "source_sha256": "f6b3dfeb894b20341e9483dfd8e644165fa8944cc0329c13126545eba1db7df4",
+      "source_available": true
+    },
+    {
+      "module": "agent_app.testing.retrieval_acceptance",
+      "name": "FixtureRetriever",
+      "source_sha256": "f6b3dfeb894b20341e9483dfd8e644165fa8944cc0329c13126545eba1db7df4",
+      "source_available": true
+    },
+    {
+      "module": "agent_app.testing.retrieval_acceptance",
+      "name": "FixtureRetriever",
+      "source_sha256": "f6b3dfeb894b20341e9483dfd8e644165fa8944cc0329c13126545eba1db7df4",
+      "source_available": true
+    },
+    {
+      "module": "agent_app.testing.retrieval_acceptance",
+      "name": "FixtureRetriever",
+      "source_sha256": "f6b3dfeb894b20341e9483dfd8e644165fa8944cc0329c13126545eba1db7df4",
+      "source_available": true
+    },
+    {
+      "module": "agent_app.testing.retrieval_acceptance",
+      "name": "FixtureRetriever",
+      "source_sha256": "f6b3dfeb894b20341e9483dfd8e644165fa8944cc0329c13126545eba1db7df4",
+      "source_available": true
+    },
+    {
+      "module": "agent_app.testing.retrieval_acceptance",
+      "name": "FixtureRetriever",
+      "source_sha256": "f6b3dfeb894b20341e9483dfd8e644165fa8944cc0329c13126545eba1db7df4",
+      "source_available": true
+    },
+    {
+      "module": "agent_app.testing.retrieval_acceptance",
+      "name": "FixtureRetriever",
+      "source_sha256": "f6b3dfeb894b20341e9483dfd8e644165fa8944cc0329c13126545eba1db7df4",
+      "source_available": true
+    },
+    {
+      "module": "agent_app.testing.retrieval_acceptance",
+      "name": "FixtureRetriever",
+      "source_sha256": "f6b3dfeb894b20341e9483dfd8e644165fa8944cc0329c13126545eba1db7df4",
+      "source_available": true
+    },
+    {
+      "module": "agent_app.testing.retrieval_acceptance",
+      "name": "FixtureRetriever",
+      "source_sha256": "f6b3dfeb894b20341e9483dfd8e644165fa8944cc0329c13126545eba1db7df4",
+      "source_available": true
+    },
+    {
+      "module": "agent_app.testing.retrieval_acceptance",
+      "name": "FixtureRetriever",
+      "source_sha256": "f6b3dfeb894b20341e9483dfd8e644165fa8944cc0329c13126545eba1db7df4",
+      "source_available": true
+    },
+    {
+      "module": "agent_app.testing.retrieval_acceptance",
+      "name": "FixtureRetriever",
+      "source_sha256": "f6b3dfeb894b20341e9483dfd8e644165fa8944cc0329c13126545eba1db7df4",
+      "source_available": true
+    },
+    {
+      "module": "agent_app.testing.retrieval_acceptance",
+      "name": "FixtureRetriever",
+      "source_sha256": "f6b3dfeb894b20341e9483dfd8e644165fa8944cc0329c13126545eba1db7df4",
+      "source_available": true
+    },
+    {
+      "module": "agent_app.testing.retrieval_acceptance",
+      "name": "FixtureRetriever",
+      "source_sha256": "f6b3dfeb894b20341e9483dfd8e644165fa8944cc0329c13126545eba1db7df4",
+      "source_available": true
+    }
+  ],
+  "fixture_sha256": "de36c80081af1f6ec9e1e420523a1df51ddbc72a6fc59550a409e734c554f470",
+  "source_provenance": {
+    "source_refs": [
+      {
+        "path": "experiments/review_handoff/case-current-state-latest-evidence.json",
+        "sha256": "00af34231e7e4b252bdd8e88bf815d20249135f976cef7cc358ebc34d2e110d9"
+      },
+      {
+        "path": "data/evaluation/dev/pilot-12782.json",
+        "sha256": "f4b9cef54c98dd875ff0e55f41aebcde19a9b02717b7cb8c5525eba9575f2855"
+      }
+    ],
+    "origin_issue_id": 12782,
+    "origin_url": "https://github.com/streamlit/streamlit/issues/12782",
+    "confirmed_duplicate_issue_id": 12629,
+    "reserved_issue_ids": [
+      8061,
+      8901,
+      12629,
+      12782,
+      16914
+    ],
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "source_snapshot_date": "2026-10-06",
+    "same_issue_answer_used_as_evidence": false,
+    "issue_answer_and_comments_inspected_for_selection": true,
+    "answer_informed_development_selection": true,
+    "independent_held_out_test": false,
+    "selection_disclosure": "The author inspected #12782 first-body code/workaround and comments to identify the key-identity mechanism and the #12629 duplicate relationship. The original user-reported workaround and its code are deliberately omitted from visible user input and evidence. Primary evidence is frozen official release/API text. This is answer-informed development selection, not independent discovery or held-out evaluation.",
+    "source_hits_copied_without_field_or_text_changes": true,
+    "hit_sha256_algorithm": "SHA-256 of each original copied hit JSON; UTF-8, ensure_ascii=false, sorted keys, compact comma/colon separators.",
+    "hit_sha256": {
+      "multiselect-149-default-v8": "283243573e5696cd34b6d9b1d519b3b3cf1d1a2a70e72179f98feff1b3ebb7a9",
+      "multiselect-149-signature-v8": "7c35de4fcabc85ef8610fc3c587cba0fc7805b8a39b8ff56c128bc42565d99fb",
+      "multiselect-150-default": "c5517e1f407f7128bd2cf521719d79a039523ce44796d5f7da4241fd10fdc544",
+      "release-150-multiselect-key-identity-v8": "e2723f5c8faa14ecd1b5b214a79cfdf05a2733b98a3d8336b5962c6b91790ee7",
+      "widget-key-identity-history-snapshot-v8": "e6a217c8b45b1bf0bbb8e6f6761e789e27f08fa3de05efd54291af1d56ccf36b"
+    }
+  },
+  "fixture_backend_calls": 14,
+  "pilot": {
+    "mode": "interchangeable_adapter_fixed_backend_core_sqlite_pilot",
+    "registered_dev_fixture_id": "dev-pilot-12782-v1",
+    "registered_dev_fixture_sha256": "f4b9cef54c98dd875ff0e55f41aebcde19a9b02717b7cb8c5525eba9575f2855",
+    "registered_evidence_sha256": "00af34231e7e4b252bdd8e88bf815d20249135f976cef7cc358ebc34d2e110d9",
+    "exposure": "Answer-informed: the C3 author read #12782's body, workaround and comments when designing the scenario. The family may only be used for development, never as a held-out test case.",
+    "checks": {
+      "fresh_database": true,
+      "registered_pilot_hash": true,
+      "registered_evidence_reference": true,
+      "registered_evidence_hash": true,
+      "exposed_dev_only": true,
+      "registered_four_turns": true,
+      "0:proposal_staged": true,
+      "0:proposal_is_only_a_preview": true,
+      "0:exact_pending_after_adapter": true,
+      "0:registered_source_content_preserved": true,
+      "0:handoff_uses_actual_latest_output": true,
+      "0:source_inventory_matches_actual_output": true,
+      "version_question_approved": true,
+      "1:proposal_staged": true,
+      "1:proposal_is_only_a_preview": true,
+      "1:exact_pending_after_adapter": true,
+      "1:registered_source_content_preserved": true,
+      "1:handoff_uses_actual_latest_output": true,
+      "1:source_inventory_matches_actual_output": true,
+      "bound_short_reply_keeps_problem_and_user_version": true,
+      "registered_pending_answer": true,
+      "2:proposal_staged": true,
+      "2:proposal_is_only_a_preview": true,
+      "2:exact_pending_after_adapter": true,
+      "2:registered_source_content_preserved": true,
+      "2:handoff_uses_actual_latest_output": true,
+      "2:source_inventory_matches_actual_output": true,
+      "correction_updates_authoritative_user_version": true,
+      "refinement_consumes_two_queries_within_budget": true,
+      "old_release_evidence_absent_from_current_handoff": true,
+      "stale_version_approval_rejected": true,
+      "stale_version_approval_rejected_no_mutation": true,
+      "edit_preserves_current_adapter_evidence": true,
+      "pre_edit_approval_rejected": true,
+      "pre_edit_approval_rejected_no_mutation": true,
+      "review_retry_after_restart_one_action": true,
+      "3:proposal_staged": true,
+      "3:proposal_is_only_a_preview": true,
+      "3:exact_pending_after_adapter": true,
+      "3:registered_source_content_preserved": true,
+      "3:handoff_uses_actual_latest_output": true,
+      "3:source_inventory_matches_actual_output": true,
+      "withdrawal_rejection_no_action": true,
+      "old_event_replay_no_new_ports_or_actions": true,
+      "withdrawn_version_not_active": true,
+      "four_distinct_core_runs": true,
+      "same_adapter_factory_once_per_turn": true,
+      "only_two_approved_local_actions": true
+    },
+    "turns": [
+      {
+        "turn_id": "p1-turn-1",
+        "revision": 1,
+        "preparation": "structured",
+        "decision": "ask",
+        "handoff_sha256": "c3542f2ff74aaec01bbcc522f92078908ca8728e71417ece7d397fc04fbb8c0f",
+        "released_handoff_sha256": "c3542f2ff74aaec01bbcc522f92078908ca8728e71417ece7d397fc04fbb8c0f",
+        "evidence_fingerprint": "7b166fc11594ca58f95710dc04e5ab60356e8511826bcad95ae709bac8880d94",
+        "final_chunk_ids": [
+          "multiselect-149-default-v8",
+          "multiselect-149-signature-v8",
+          "multiselect-150-default",
+          "release-150-multiselect-key-identity-v8",
+          "widget-key-identity-history-snapshot-v8"
+        ],
+        "source_inventory": [
+          {
+            "chunk_id": "multiselect-149-default-v8",
+            "content_sha256": "4817ecdacfbd571493adc8ddc624552a558a226e4b0a879c209e89f24719c257",
+            "version_scope": "unconfirmed"
+          },
+          {
+            "chunk_id": "multiselect-149-signature-v8",
+            "content_sha256": "f2970816a526c6f49408b92de827ff8ed82e85f03b9897ef9559baaf7263f014",
+            "version_scope": "unconfirmed"
+          },
+          {
+            "chunk_id": "multiselect-150-default",
+            "content_sha256": "df43b75982ac76d26297eaf80bb07cfcf282cc75c1c34f04fa9490b9c312c5ba",
+            "version_scope": "unconfirmed"
+          },
+          {
+            "chunk_id": "release-150-multiselect-key-identity-v8",
+            "content_sha256": "d9defe132d5ac3dbedfa4c76ca763e882a71025d388b772bd816fb4081928f3d",
+            "version_scope": "unconfirmed"
+          },
+          {
+            "chunk_id": "widget-key-identity-history-snapshot-v8",
+            "content_sha256": "d7d0ff722ae0e273e0fd1609233c74315e4b0a01a1589144ecb220dbb8de0efd",
+            "version_scope": "unconfirmed"
+          }
+        ],
+        "retrieval_requests_fingerprint": "19cc17acaa77803f85f3fd2c2b318015b91159146da75bd0a0abbe4a7dfe95f4",
+        "query_counts": [
+          1
+        ],
+        "backend_query_count": 1,
+        "model_attempts": 1,
+        "retrieval_rounds": 1
+      },
+      {
+        "turn_id": "p1-turn-2",
+        "revision": 2,
+        "preparation": "canonical_version_reply",
+        "decision": "answer",
+        "handoff_sha256": "ea8be7a0b6796d5014877139352ef32d4290defa92ab43997b1e4000682c5072",
+        "released_handoff_sha256": null,
+        "evidence_fingerprint": "46f83d9f8a6f27036d5c3625de742373492031dd3291406b28c8fd7730d08dde",
+        "final_chunk_ids": [
+          "multiselect-149-default-v8",
+          "multiselect-149-signature-v8",
+          "multiselect-150-default",
+          "release-150-multiselect-key-identity-v8",
+          "widget-key-identity-history-snapshot-v8"
+        ],
+        "source_inventory": [
+          {
+            "chunk_id": "multiselect-149-default-v8",
+            "content_sha256": "4817ecdacfbd571493adc8ddc624552a558a226e4b0a879c209e89f24719c257",
+            "version_scope": "historical_or_other_version"
+          },
+          {
+            "chunk_id": "multiselect-149-signature-v8",
+            "content_sha256": "f2970816a526c6f49408b92de827ff8ed82e85f03b9897ef9559baaf7263f014",
+            "version_scope": "historical_or_other_version"
+          },
+          {
+            "chunk_id": "multiselect-150-default",
+            "content_sha256": "df43b75982ac76d26297eaf80bb07cfcf282cc75c1c34f04fa9490b9c312c5ba",
+            "version_scope": "exact_metadata_match"
+          },
+          {
+            "chunk_id": "release-150-multiselect-key-identity-v8",
+            "content_sha256": "d9defe132d5ac3dbedfa4c76ca763e882a71025d388b772bd816fb4081928f3d",
+            "version_scope": "exact_metadata_match"
+          },
+          {
+            "chunk_id": "widget-key-identity-history-snapshot-v8",
+            "content_sha256": "d7d0ff722ae0e273e0fd1609233c74315e4b0a01a1589144ecb220dbb8de0efd",
+            "version_scope": "unconfirmed"
+          }
+        ],
+        "retrieval_requests_fingerprint": "91063190f632031e5c5d81c942ed4ed743fa99c2adf532cb4835a7af44688bd0",
+        "query_counts": [
+          1
+        ],
+        "backend_query_count": 1,
+        "model_attempts": 1,
+        "retrieval_rounds": 1
+      },
+      {
+        "turn_id": "p1-turn-3",
+        "revision": 3,
+        "preparation": "structured",
+        "decision": "escalate",
+        "handoff_sha256": "7181d4a808d77ee8031e53f8c6b67fe5f7fc3f37811726422c53ef4cf17651ea",
+        "released_handoff_sha256": "3199c07bcc81c506d223443c0e31f43a2f05e31e6d6937203f7c454c254e1968",
+        "evidence_fingerprint": "3565df24455a9719e31d7d81bb205b975a743c690f5a72202980527520cecd1e",
+        "final_chunk_ids": [
+          "multiselect-149-default-v8",
+          "multiselect-149-signature-v8",
+          "multiselect-150-default",
+          "widget-key-identity-history-snapshot-v8"
+        ],
+        "source_inventory": [
+          {
+            "chunk_id": "multiselect-149-default-v8",
+            "content_sha256": "4817ecdacfbd571493adc8ddc624552a558a226e4b0a879c209e89f24719c257",
+            "version_scope": "historical_or_other_version"
+          },
+          {
+            "chunk_id": "multiselect-149-signature-v8",
+            "content_sha256": "f2970816a526c6f49408b92de827ff8ed82e85f03b9897ef9559baaf7263f014",
+            "version_scope": "historical_or_other_version"
+          },
+          {
+            "chunk_id": "multiselect-150-default",
+            "content_sha256": "df43b75982ac76d26297eaf80bb07cfcf282cc75c1c34f04fa9490b9c312c5ba",
+            "version_scope": "historical_or_other_version"
+          },
+          {
+            "chunk_id": "widget-key-identity-history-snapshot-v8",
+            "content_sha256": "d7d0ff722ae0e273e0fd1609233c74315e4b0a01a1589144ecb220dbb8de0efd",
+            "version_scope": "unconfirmed"
+          }
+        ],
+        "retrieval_requests_fingerprint": "19bafc39c4c42262fd5aeb347cc1a2827a81c675e25b03cbb45a8fdfc10fe7b0",
+        "query_counts": [
+          1,
+          2
+        ],
+        "backend_query_count": 3,
+        "model_attempts": 2,
+        "retrieval_rounds": 2
+      },
+      {
+        "turn_id": "p1-turn-4",
+        "revision": 4,
+        "preparation": "structured",
+        "decision": "ask",
+        "handoff_sha256": "8bc4f75a14fcff4b5ce563dc64ed0533679220736636e974cd3c124835f4b603",
+        "released_handoff_sha256": null,
+        "evidence_fingerprint": "8556877f2f389066c904433d51888b1ba39419690d1ec513f2b2532fdeaad0d8",
+        "final_chunk_ids": [
+          "multiselect-149-default-v8",
+          "multiselect-149-signature-v8",
+          "multiselect-150-default",
+          "release-150-multiselect-key-identity-v8",
+          "widget-key-identity-history-snapshot-v8"
+        ],
+        "source_inventory": [
+          {
+            "chunk_id": "multiselect-149-default-v8",
+            "content_sha256": "4817ecdacfbd571493adc8ddc624552a558a226e4b0a879c209e89f24719c257",
+            "version_scope": "unconfirmed"
+          },
+          {
+            "chunk_id": "multiselect-149-signature-v8",
+            "content_sha256": "f2970816a526c6f49408b92de827ff8ed82e85f03b9897ef9559baaf7263f014",
+            "version_scope": "unconfirmed"
+          },
+          {
+            "chunk_id": "multiselect-150-default",
+            "content_sha256": "df43b75982ac76d26297eaf80bb07cfcf282cc75c1c34f04fa9490b9c312c5ba",
+            "version_scope": "unconfirmed"
+          },
+          {
+            "chunk_id": "release-150-multiselect-key-identity-v8",
+            "content_sha256": "d9defe132d5ac3dbedfa4c76ca763e882a71025d388b772bd816fb4081928f3d",
+            "version_scope": "unconfirmed"
+          },
+          {
+            "chunk_id": "widget-key-identity-history-snapshot-v8",
+            "content_sha256": "d7d0ff722ae0e273e0fd1609233c74315e4b0a01a1589144ecb220dbb8de0efd",
+            "version_scope": "unconfirmed"
+          }
+        ],
+        "retrieval_requests_fingerprint": "22220126a95f9a83013da0f6b95009a863065460e101446eb951cebc28acf1f1",
+        "query_counts": [
+          1
+        ],
+        "backend_query_count": 1,
+        "model_attempts": 1,
+        "retrieval_rounds": 1
+      }
+    ],
+    "total_retrieval_calls": 5,
+    "adapter_constructions": 4,
+    "total_scripted_reasoner_calls": 5,
+    "local_action_count": 2,
+    "final_revision": 4,
+    "quality_claim": false,
+    "real_retrieval_quality_claim": false,
+    "model_quality_claim": false,
+    "held_out_test": false,
+    "api_ui_connected": false,
+    "real_model_calls": 0,
+    "api_cost_usd": "0"
+  },
+  "fixture_backend": true,
+  "actual_cost_usd": 0,
+  "limitations": [
+    "Fixed evidence and authored backend ordering; no retrieval relevance or model quality measurement.",
+    "A candidate binding must retain the actual adapter mapping and inject only its read backend.",
+    "HTTP, persistence lifecycle CAS/journal, ingestion segmentation, and final corpus exclusion are not covered.",
+    "Nonempty request filters are not covered by this protocol."
+  ],
+  "release_after": {
+    "git_commit": "56ff8ffac057819be926bca8123b53270103baba",
+    "git_dirty": true,
+    "source_sha256": {
+      "src/agent_app/__init__.py": "651500e6469bef4ff31cda0ac90dd20cfebd2d9d9fe4bf99025c2b385598f86f",
+      "src/agent_app/api.py": "0105490eb8b860612d32a04ffdcaed701c183a3cbe5cf047bdf74211be0c2375",
+      "src/agent_app/cli.py": "b66386e6b4ba288211cecf8c6aa5957599132a97150126eb1ed815f37c2ddae4",
+      "src/agent_app/contracts.py": "1dcf0de657f3442dfb5e787e6243a9a279501305033e592cbcd060dd808d0a91",
+      "src/agent_app/demo.py": "3128a85ca44809ff75234ebe982beafcd1d6c35d6f3bf3a37b093b67c33092b4",
+      "src/agent_app/evaluation/__init__.py": "b8f1e93a3c5528cd48abc8e4690b6d67c3838c9ad1e595c7990bc11c2a763793",
+      "src/agent_app/evaluation/pilot.py": "426e95b286e63ca082bf04ddc69fe783bfbb98dfd3e3c9c919b74bba21927d9f",
+      "src/agent_app/evaluation/runner.py": "44d9d6ee081bcb3a4c3015ff02897a71dc1bd942ab888305215cfb1ccdd076b2",
+      "src/agent_app/llm/budget.py": "2e29e3dc2a922f904e2138abef7e8e984468cbf9eb6bef8b9736cd496a723d43",
+      "src/agent_app/llm/config.py": "8ecafef7f2d6f8f2b5e88184e57f84737461b66600b56874c0ea8e8c107e187e",
+      "src/agent_app/llm/demo.py": "4b5463e03078ff8c19e758ed8282de146538018721d6e5e9f902727c3c71908e",
+      "src/agent_app/llm/grounded.py": "24baef8e95ee2795ac83436eb6ef6046b2781a225330689a2f5c3ffafe4cdaa6",
+      "src/agent_app/llm/metis.py": "9950a4e36b7a04fd74e4decb110cd58c3d3acba45af073ce30c53983a8fd6076",
+      "src/agent_app/llm/pricing.py": "39993b673465401e0926584d3007b8967a1eb4eaad4d377b32324c60d619ec07",
+      "src/agent_app/offline_backend.py": "3fc5f56ea1eee99f0b81400cfa5634868f12dbea523ecde28db6ded1a14582f7",
+      "src/agent_app/orchestration/__init__.py": "344e71f3e4393d9f0cb0193c0c7d2ff02fef7d0c36abba502ba4eeb428caf1a0",
+      "src/agent_app/orchestration/conversation.py": "a9d3954ab2fdbbd083329e59e8c5511f5cc005375e4fc39747a61756aa51e3f1",
+      "src/agent_app/orchestration/engine.py": "b64867241b336ade1a8c36f8747edf4604313bda4e108bc079ce48929381c0dc",
+      "src/agent_app/orchestration/handoff.py": "615ac692e9bbed21fee47cfb435c3dbbf054b91aedd727699d88118378222833",
+      "src/agent_app/orchestration/intake.py": "a1208ec535fd022d3d20f6847a0a6f21af0d3c42fc75a078e925301397c970b4",
+      "src/agent_app/orchestration/ports.py": "2ef106155234f762832aff658602a5177bf946908b24fde3bc69129076bbbeb2",
+      "src/agent_app/orchestration/service.py": "d1399746ab8527dea7cce60181edc8ed44617b01b0782a3f8329c68c7474b1f5",
+      "src/agent_app/orchestration/turns.py": "17970a95710dc8351d14f36cc6dfbdf3308231a627fd710b64dee119908eace7",
+      "src/agent_app/orchestration/validation.py": "2debe663263680238268d5034c7e80fe5533b4f66c535d5bf0b4e072835d7f6e",
+      "src/agent_app/persistent_api.py": "7a78ccd036aaba03627f535f510687a979d687caca56c667871597e92d21b9a8",
+      "src/agent_app/reasoning/__init__.py": "12233e742809b1a2fffedccf658feca51ab510795da80d210fb8328c009f031f",
+      "src/agent_app/reasoning/ablations.py": "72436d983fcde9668583a07662aa5b04952fee0b60d0c908b911e439d4ac5d5f",
+      "src/agent_app/reasoning/code_checks.py": "f3f1efb9962b88d3a51587dcfe73296cbdcbecedc82dacec85faf7cfa7b92ba7",
+      "src/agent_app/reasoning/controlled_experiments.py": "161dc621520fc619c93755138d7c1187d3b09393da2face8caea3a6f5e2e13b9",
+      "src/agent_app/reasoning/experiments.py": "d0fc8bf3f94b0e4c99648f5ee99e7e2ed2191eabdbbc7f5110f7e7c2a2391103",
+      "src/agent_app/reasoning/fidelity_experiments.py": "f41b6d0e2b96ad293b244ef249970a9b6d24382e4384d2dee4d5fa6d171fcdfe",
+      "src/agent_app/reasoning/grounding.py": "327e219158d234b32297b890c727031d17cc2ea02ad32347a6f60cbb1b9c1e44",
+      "src/agent_app/reasoning/grounding_experiments.py": "ff7a217e12182d04470339bb9f793e0194fa05bf53fa2babdb9cce809c44d9d3",
+      "src/agent_app/reasoning/output.py": "81d7c60c1dc09f0ab7d9badd6d4dbaf405439a399506333a3e6b7dec9ca6874c",
+      "src/agent_app/reasoning/probes.py": "10ddb452c81cec3a7e8b93e937e5efcd5166c81ace0f36bf1c062b4498b9f185",
+      "src/agent_app/reasoning/prompts.py": "0bc7b83422eee46f9a598415ea3921281a451da1780db080f091818e3a79329b",
+      "src/agent_app/reasoning/proposal_checks.py": "aaa8b3bcb51992f23189a76749a747fa6b10528f3f11af806b067fe67d923464",
+      "src/agent_app/reasoning/quality_experiments.py": "4eecf613b71981b4aeb2c35efc81c5f1520edb304a106b60561b166e1e067269",
+      "src/agent_app/reasoning/review.py": "77e34b93445faf1dc6e6e7a2252971305a5d1ea3f4b7dc6713e44daf32804e14",
+      "src/agent_app/reasoning/semantic_regressions.py": "13c3ab82e66fab43bce186c086b8fea00049da7e083cbaad6c1c3393ea00c8ea",
+      "src/agent_app/retrieval/adapter.py": "3752fe760c9fb71a6cd05014a6ab870d53a652a56e2c972425e71c7d9c417c2f",
+      "src/agent_app/retrieval/offline_index.py": "def8f56afdeadd714c8891779e627da5d89ea276086bf232c135e64ff8967414",
+      "src/agent_app/retrieval/pilot_corpus.py": "dd9317632c2ccdd387aa3fb13e4cdcab8567def697e958f3d60affa7e35a8693",
+      "src/agent_app/retrieval/retriever.py": "7791e66896296ff0d85ed319ee7eba6238db9516ea04ad2a9f1af6b5f2caebe1",
+      "src/agent_app/testing/__init__.py": "bea37ce669658c22e7d916983693ed47c42a9e35806f4d726643bd1a1f14d8ed",
+      "src/agent_app/testing/chroma_binding.py": "ae23fb6e5ece3c4b198519afa371b581b60d69844d904e89d047c910e5d6e4ba",
+      "src/agent_app/testing/fakes.py": "1e44387ddcbe091f91657ce1236c36f648eb6941d4582fe42a4a37c60f6a80a0",
+      "src/agent_app/testing/grounded_http_acceptance.py": "f145dd71055e93c5b03561b46e7dd048103cf43cc7b7c1c74520347ebd055a3d",
+      "src/agent_app/testing/grounded_http_binding.py": "fe11352db2b04f87c396d20739ec3ad97f7b3e064585745e40c18d0890f4e7f9",
+      "src/agent_app/testing/http_pilot_acceptance.py": "ea5ff92fd319db247a346ff3dd90c417dccd9b0efb324550c72eaf9f078f97bf",
+      "src/agent_app/testing/http_pilot_runtime.py": "df685c1aa4dc4b666ccc680ba6e5ad552cc48f10f89400d73d9cc11108848464",
+      "src/agent_app/testing/http_pilot_worker.py": "05c73602a500f770ca3f9bddbf568032b44bd46787a8fbc623d44cdd1f42239e",
+      "src/agent_app/testing/retrieval_acceptance.py": "f6b3dfeb894b20341e9483dfd8e644165fa8944cc0329c13126545eba1db7df4",
+      "src/agent_app/testing/retrieval_acceptance_pilot.py": "6bd2a5523bfe299937fe1746df035fcb23adf13362fa80c4cb8d82e524273aa3",
+      "src/agent_app/testing/sqlite_http_binding.py": "b933322aeb9db68bc8243b1b47c3e947ada6ad474873e88739adfd6320fda3e6",
+      "src/agent_app/testing/ui_review_acceptance.py": "308bd2d8f9ea525a226a0557e7d2e6e7c3f8ae5fc4586666db2b7ac49be98f92",
+      "src/agent_app/tracker/dummy_tracker.py": "c214d49fcd9033565b19f1d11cef605b7654c6103a64d2bdbfc71a876c6e2e3d",
+      "src/agent_app/tracker/sqlite_tracker.py": "c8d9e75bac2152df68559d85d3ef0c52386cb0d10562b8cb4aae9d987be257e8",
+      "src/agent_app/turn_demo.py": "0985daf2ca881eefc52b4a9694cd5fa91becfa61cd722ef8fb470c865791cad8",
+      "src/agent_app/ui_client.py": "5b4564f4e8b93af7775b2c2fb3fa254f25b5dfae406ac65d3f48fd9de325037e",
+      "scripts/rag_acceptance.py": "73c54c00a81e5269787098e71375364dbbbd7bff8d76e1e19537a9a1c3e51d45"
+    }
+  },
+  "source_unchanged_during_run": true,
+  "adapter_stdout_captured": false,
+  "adapter_stderr_captured": false
+}
