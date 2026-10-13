@@ -6,6 +6,28 @@
 
 ### تقسیم کار جاری — درخواست جمع‌بندی تا امشب ۱۳ اکتبر
 
+گام جاری ساسان **C4a — baseline انتخاب واقعی مدل با شواهد ثابت** است؛
+از main منتشرشدهٔ `80f9913` / [PR #38](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/38)
+با [CI Linux/Windows](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38429631146)
+شروع شد. شش variation موجود V8/V9 از همان خانوادهٔ exposed، تا حالا
+authored/offline بوده‌اند. پروتکل تازه و reviewer inventory قبل از درخواست
+مدل ثبت می‌شوند؛ fixture/protocol قدیمی و جواب‌های آن‌ها تغییر نمی‌کنند.
+این شش Issue مستقل، corpus واقعی یا test نهایی نیستند. catalog و conflictها
+دستی‌اند و انتخاب سؤال/منبع مدل تحت همین اطلاعات اضافه سنجیده می‌شود.
+
+محدودهٔ مستقل این تحویل `testing/controlled_decision_inputs.py`،
+`testing/controlled_model_baseline.py`، wrapper و
+`experiments/controlled_model_baseline/` است. قراردادهای core، RAG، tracker،
+UI و dataset مالک‌های دیگر تغییر نمی‌کنند. runtime ورودی جدا از reviewer/gold
+دارد؛ همهٔ sourceها و دو bundle ثبت‌شده حفظ می‌شوند. آفلاین plumbing را با
+gateway mock می‌سنجیم؛ online فقط prefix مجاز با همان ledger/grant، سقف واقعی
+$0.00491479، guard هر attempt و حفظ halt/hold قدیمی اجرا می‌شود. اجرا‌نشده‌ها و
+شکست‌ها حذف یا success شمرده نمی‌شوند. هزینهٔ واقعی حساب unknown می‌ماند.
+
+[راهنمای تحویل C4 به تیم](../docs/team-handoff-c4.fa.md) نحوهٔ گرفتن تغییرات و
+مرز کارها را روشن می‌کند؛ نتیجه و review کامل پس از اجرای ثبت‌شده اضافه شود.
+E1/E2/R4/E4/E5/C5 همچنان بازند و وظایف سه dev case/corpus اعضا پابرجاست.
+
 انتشار #37 روی main `109f59e` و [CI Linux/Windows](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38406080389)
 پاس شد. تحویل مستقل ساسان **C2g** در [PR #38](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/38)،
 [query بعد از correction](../docs/current-retrieval-context.fa.md)،
@@ -262,6 +284,7 @@ fixture پایهٔ این تحویل، [case چهار‌نوبتی C3](../experi
 - [ ] **C2 — اتصال ورودی چندنوبتی.** سهم core/API آفلاین در P2 انجام و [ثبت شد](../docs/user-intake-pilot.fa.md): reported_facts، checks_performed، context_changed، reply ثبت‌شده و original-event replay؛ تست correction/withdrawal/تغییر محیط پاس‌اند. U2 در #13 وصل شد و جداسازی فرم در #21 اصلاح شد؛ API/state/review آفلاین در C2d به قراردادهای T1–T3 وصل و P3 پذیرفته شد؛ binding UI و index محدود در U3a/P4a پاس شده‌اند؛ تنظیم index/model نهایی باقی است. [قرارداد recovery](../docs/persistent-core-handoff.md) بین commit event و stage proposal، replay بدون اجرای مدل و read پس از ACK نامعلوم را مشخص می‌کند؛ coordinator core در C2a پیاده شده؛ factory HTTP و outcome واقعی اکنون در C2d آمده؛ resume خودکار ساخته نشده است. سؤال مبهم یا ویرایش‌شده fact فرضی نمی‌سازد؛ retry همان event باید پیش از stale/reply check و ساخت adapter شناسایی شود. [بازبینی مرز اتصال](../docs/team-integration-review-2026-10-11.fa.md).
 - [x] **C3 — قرارداد خروجی و review با fixture.** `ProposalHandoff` کل case، آخرین bundle واقعاً مصرف‌شده، تمام analysis و catalog واقعی GroundedPlan را نگه می‌دارد؛ gap کاربر/منبع، همهٔ منابع و scope نسخه قابل review هستند. منبع قبلی، تغییر case با revision یکسان، packet/متن دست‌کاری‌شده و approval پیش از edit رد می‌شوند. [PR #11](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/11)، [نتیجه و handoff](../docs/review-handoff-pilot.fa.md)، fixture ثبت‌شده `b085f7d`، helper `74e353b` و API `44d70a2` شاهدند. C3 فقط سهم core و مثال آفلاین را می‌بندد؛ نمایش U2 انجام شده و #21 تمام claimهای هر chunk را حفظ می‌کند. مسیر opt-in persistence/authentication/اجرای محلی در C2d پیاده است؛ اتصال UI به همان envelope باقی می‌ماند؛ review معنایی و approval جدا هستند.
 - [ ] **C4 — baseline برای pilot متصل.** baseline ورودی HTTP روی `5af98e6` چهار fail و روی adapter جدید چهار pass دارد؛ [ثبت C2](../docs/user-intake-pilot.fa.md). baseline خروجی C3 روی کد واقعی `3f22ef9` با همان چهار regression بازپخش شد؛ چهار fail و روی نسخهٔ جدید چهار pass، همراه [case چهار‌نوبتی و محدودیت](../docs/review-handoff-pilot.fa.md). پس از اتصال P3/P4، مقایسهٔ تصمیم واقعی ادامه یابد؛ baseline نرم‌افزار جای کیفیت مدل/RAG/test نیست. receiptهای تاریخی حفظ شده‌اند؛ انتخاب Issue فعلی answer-informed و exposed است.
+- [ ] **C4a — انتخاب واقعی مدل روی شواهد ثابت؛ ساسان.** [پیش‌ثبت و معیار](../docs/controlled-model-baseline.fa.md) شش variation موجود V8/V9 از یک خانوادهٔ exposed را به runtime و reviewer جدا وصل می‌کند؛ ID خنثی، catalog مربوط به bundle فعلی و gold خارج مدل. plumbing آفلاین، baseline آنلاینِ prefix مجاز، تمام خروجی/انتخاب‌های attemptها، داوری سؤال/منبع و هزینهٔ همان ledger ثبت شوند. این task محدود C4 برای caseهای مستقل/RAG/test نهایی نیست؛ مرحلهٔ آنلاین و نتیجه هنوز بعد از preregistration باقی است.
 - [ ] **C5 — رفع علت halt پیش از live.** هویت مدل، usage و هزینهٔ مورد اختلاف با مدرک provider تطبیق داده شود؛ uncertainty و ledger پاک یا reset نشوند. شرط پایان: علت توقف مستند، وضعیت ledger و مجوز/سقف باقی‌مانده روشن باشند؛ فقط آن‌وقت pilot کوچک ثبت‌شده اجرا شود.
 
 برای C2/U3 از سرویس C2a استفاده شود؛ coordinator core دیگر فقط helper تستی نیست. factory HTTP/auth و outcome پایدار C2d روی main است؛ binding frontend آفلاین U3a و index محدود P4a آماده‌اند؛ محمدحسن/بهنام تنظیم محصول و smoke مرورگر را نهایی کنند. readهای سرویس به‌تنهایی CAS lifecycle نیستند؛ C2d اکنون در transaction اولین root proposal هر revision و outcome را کنترل می‌کند و مسیر ABA قبلی را می‌بندد. resume خودکار وجود ندارد. [packet تازهٔ C5](../docs/live-reconciliation-2026-10-11.fa.md) با خواندن read-only و hash ثابت ledger ثبت شد؛ مدرک provider همچنان کم است.

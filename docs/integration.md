@@ -40,6 +40,18 @@ unversioned hits remain explicitly unconfirmed. This filters returned evidence,
 does not rerank/backfill the index, and can leave no useful source. This binding
 was verified offline after the paired paid probe, which used `"all"` scope.
 
+The [controlled model baseline](controlled-model-baseline.fa.md) reuses frozen
+V8/V9 material through a separate runtime projection and reviewed current-round
+catalog. Descriptive condition labels are harness-only; opaque model case IDs,
+unchanged user/source text and preserved fact attribution are registered.
+Reviewer-only criteria and future-bundle hints do not enter the current request.
+The real core/gateway handles at most two attempts/two rounds per condition;
+the fixed retriever supplies registered bundles rather than querying RAG. Its
+default dry command is read-only and its explicit mock mode uses disposable
+accounting. Paid execution, if eligible, consumes only the existing designated
+ledger/grant with no tracker staging/action. Teammates should follow the
+[C4 handoff](team-handoff-c4.fa.md) and current plan; ports/contracts are unchanged.
+
 The core-owned [CoreTurnService](core-turn-service.fa.md) now composes the existing
 tracker port with lazy per-run adapters and full handoffs. Use it for persistent
 ingress rather than copying test-harness policy into the API. C2d now supplies

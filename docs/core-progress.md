@@ -2,6 +2,35 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-13 — C4a controlled model baseline, before provider execution
+
+The actual model has not yet selected outputs for the six frozen V8/V9 scenarios;
+those earlier receipts are authored software-boundary tests. This delivery adds
+a separate runtime-only material projection and the actual engine/gateway
+baseline harness. Existing fixtures/protocols remain byte-identical. All six
+scenarios belong to the same answer-informed exposed #12782/#12629 family and
+add zero independent final cases. Fixed bundles are not real RAG retrieval.
+
+Before any new provider execution, the reviewer inventory defines known facts,
+user/source gaps, admissible first/final decisions and complete output/source/
+question review. Catalogs/conflicts remain manually curated extra inputs.
+Descriptive case labels are replaced by stable opaque IDs; fact attribution
+remains intact, including explicit correction references. A pre-registration
+audit found future-removal wording in the old stale-source catalog at round1.
+The new compiler normalizes the catalog against the actually supplied current
+bundle. Reviewer decisions likewise depend on the reached round; a legitimate
+round1 documentary answer is not judged using unseen round2 omissions.
+
+All eighteen first/repair/refinement prompt paths fit the conservative 16384-byte
+plus-margin token reserve without shortening excerpts. The new paid protocol
+will pin input/source/reviewer hashes on a clean pushed commit before keys/send.
+At most six sends, sharing the existing grant's USD0.00491479 remaining actual
+cost cap, are guarded independently; partial/unfunded conditions remain explicit.
+The original USD0.02 uncertainty/halt and immutable authorization stay intact;
+ordinary live startup remains blocked. No staging/approval/actions are part of
+this decision baseline. Offline mock plumbing and future paid model choices
+will be recorded separately. Human usefulness/rubric is still null.
+
 ## 2026-10-13 — C2g registered comparison and subsequent version-policy binding
 
 Clean pushed preregistration `0b3f1cc` passed Linux/Windows CI before execution.
