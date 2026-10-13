@@ -167,12 +167,12 @@ def response(
     )
 
 
-def execute(tmp_path, index, ledger, respond):
+def execute(tmp_path, index, ledger, respond, *, registered=None):
     state = tmp_path / "private-state"
     state.mkdir()
     with offline_network():
         return PROBE.run_probe(
-            protocol(index, ledger),
+            registered if registered is not None else protocol(index, ledger),
             ledger_path=ledger[0],
             index_path=index[0],
             state_dir=state,
@@ -276,6 +276,32 @@ def test_development_catalog_requires_explicit_current_unknown_and_never_reasks_
     unknown = CaseState(case_id="catalog-no-explicit-unknown", facts=(version,))
     prose_only = PROBE._development_catalog(unknown, "My parent callback is missing.", evidence)
     assert not any(gap.kind == "user" for gap in prose_only.gaps)
+
+
+@pytest.mark.parametrize("environment_changed", [False, True])
+def test_partial_version_correction_and_environment_switch_keep_distinct_fact_semantics(
+    tmp_path, index, ledger, environment_changed
+):
+    registered = protocol(index, ledger)
+    registered["turns"][1]["visible"]["context_changed"] = environment_changed
+    receipt = execute(
+        tmp_path,
+        index,
+        ledger,
+        lambda request: response(request, decision="ask", question_name="parent_callback_code"),
+        registered=registered,
+    )
+    assert receipt["accepted_complete_pilot"] is True
+    current = receipt["steps"][1]["canonical_pending_handoff"]["case"]
+    python = [fact for fact in current["facts"] if fact["name"] == "python_version"]
+    assert len(python) == 1 and python[0]["value"] == "3.12.9"
+    assert python[0]["status"] == ("superseded" if environment_changed else "active")
+    assert ("python_version" in current["unknowns"]) is environment_changed
+    assert receipt["checks"]["correction_supersedes_old_user_version"] is True
+    assert receipt["steps"][1]["canonical_pending_handoff"]["analysis"]["missing_info"] == [
+        "parent_callback_code"
+    ]
+    assert receipt["actual_sends"] == 2 and receipt["quality_claim"] is False
 
 
 def test_first_turn_repair_uses_whole_send_allowance_correction_is_prepared_without_paid_retry(

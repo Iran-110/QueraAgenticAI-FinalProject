@@ -73,6 +73,23 @@ ledger اصلی reset، unhalt یا جایگزین نمی‌شود. C5 قبلی 
 این‌ها هزینهٔ محاسبه‌شدهٔ ledger هستند؛ شارژ واقعی حساب و درخواست قدیمی disputed
 هنوز تطبیق نشده‌اند. شکست یا مصرف دو تلاش، مجوز retry خودکار تازه ایجاد نمی‌کند.
 
-نتیجه و verification اجرای این مرحله پس از اجرا، جدا از protocol اولیه و با
-source commit واقعی ثبت می‌شوند. هیچ test نهایی یا کیفیت RAG با این pilot اعلام
-نمی‌شود؛ proposalها pending می‌مانند و اقدام خودکار نداریم.
+## نتیجهٔ اجرای واقعی همین مرحله
+
+[receipt و review کامل](../experiments/grounded_http_acceptance/connected-live-README.md)
+روی source تمیز `fbac1b4` ثبت شدند: **۲ send واقعی**، مدل تأییدشدهٔ
+`gpt-4o-mini-2024-07-18`، **$0.001104015 هزینهٔ تخمینی تازه**. سؤال callback
+در هر دو turn انتخاب شد؛ revision/correction، proposal تازه، retry بدون send
+اضافه و بازیابی آخرین state پس از ساخت دوبارهٔ API پاس‌اند. پیشنهادها pending
+هستند؛ approval/action و حل Issue انجام نشده‌اند. ledger settled تخمینی اکنون
+$0.122642850 و remaining continuation برابر $0.006030190 است؛ halt/hold حفظ‌اند.
+
+یک ناسازگاری در انتظار ثبت‌شده پیدا شد: `context_changed=true` یعنی محیط تازه،
+پس Python تأییدنشده درست unknown شد؛ در known سناریو اشتباهاً Python قبلی را
+معلوم فرض کرده بودیم. protocol/receipt اصلی حفظ و این اختلاف در review ثبت
+شد. دو تست آفلاین بعدی تفاوت correction جزئی و environment switch را بررسی
+می‌کنند. این‌ها کیفیت مدل را اندازه نمی‌گیرند.
+
+مدل ادعای علت یا fix بی‌پایه نداد، ولی retrieval همین pilot منبعی با relevance
+محدود و نسخهٔ نامعلوم آورد. bias نسخهٔ قدیمی در متن query نیز هنوز رد نشده است.
+قدم بعدِ مؤثر، تکمیل caseهای dev و مقایسهٔ retrieval/تصمیم با منابع و rubric
+مشخص است؛ افزایش تعداد pytest یا هزینه بدون آن‌ها E4/E5 را نمی‌بندد.

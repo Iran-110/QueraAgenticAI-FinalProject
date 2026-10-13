@@ -2,6 +2,27 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-13 — bounded real-index/model correction probe
+
+Clean committed/pushed source `fbac1b4` passed **2,422 tests**, locked sync,
+Ruff and the three offline demos before two actual provider sends. The
+[unchanged paid receipt and separate review](../experiments/grounded_http_acceptance/connected-live-README.md)
+retain exact verified serving ID `gpt-4o-mini-2024-07-18`, complete current
+handoffs, actual real-index requests and **$0.001104015 estimated new cost**.
+Both proposals ask the missing parent callback. Version correction, a fresh
+revision-2 proposal, no-send ingress retry and same-interpreter application
+recreation pass; no proposal was approved or action released.
+
+The original protocol has a reviewer-only inconsistency: expecting Python to
+stay known while explicitly declaring a different environment. Core correctly
+retires unreconfirmed Python. Protocol and receipt remain unchanged; two new
+offline tests compare partial correction with environment switch. Real retrieval
+returned the same unversioned, weakly targeted Session State chunk on both
+turns. Full source fidelity is preserved, but targeted relevance, version-specific
+freshness and absence of historical-version ranking bias are unproven. No formal
+semantic/human quality score or held-out claim is made. Existing C5 halt, unknown
+reservation and $0.02 hold persist; provider billing remains unknown.
+
 ## 2026-10-13 — delivery-readiness work, before connected live execution
 
 The mandatory-scope audit estimates roughly 70% complete, excluding bonuses;

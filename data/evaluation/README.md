@@ -29,7 +29,8 @@ The complete project targets remain 15 dev,
 `candidates/reservations-v1.json` reserves **15 dev / 15 test metadata-only
 candidate components**, not finalized cases. It contains public IDs, links,
 counts, query scopes and review tasks, never held-out questions or answers.
-Reproduce it with `uv run python scripts/propose_evaluation_families.py --help`.
+Reproduce it into a fresh output file:
+`uv run python scripts/propose_evaluation_families.py --output /tmp/candidate-reservations-replay.json`.
 Known development exposure is excluded from test. Link components still need
 true duplicate-family review, prior exposure across all teammates, initial-text
 chronology, strata, source coverage and meaningful conditional turns. Reuse the

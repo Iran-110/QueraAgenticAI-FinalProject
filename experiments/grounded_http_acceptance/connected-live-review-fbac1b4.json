@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "review_id": "connected-live-dev-fbac1b4-delivery-audit-v1",
+  "reviewer": {
+    "type": "assistant",
+    "role": "delivery_requirements_audit",
+    "independent_of_provider_planner": true,
+    "human_gold": false
+  },
+  "receipt_sha256": "7bb15da9fafcbfaf90557b6ece5d6710d9044eedf2bf67ff32d649f39228112c",
+  "protocol_sha256": "cbdacb76fc95efd37ba5ee62d3e8d5da3ace954960d8fb414a71cdefbe6b468e",
+  "source_commit": "fbac1b4788f31d737dcb4341146cf1771225990b",
+  "scope": "Qualitative source-backed review of every analysis surface in both original pending handoffs; no semantic score or general quality claim.",
+  "quality_claim": false,
+  "heldout_claim": false,
+  "c5_reconciled": false,
+  "turn_reviews": [
+    {
+      "turn_index": 1,
+      "case_revision": 1,
+      "proposal_id": "bf2a691a-1d17-48af-9134-5da4c6ef7b4f",
+      "handoff_sha256": "1268a80d46417f14ba6d3f280bf2cce8ff57e2f21946923df0b15cbbab145f0d",
+      "analysis_sha256": "dc44971ab85ff950d8b578868e9ca5ddb28d12e0ea9315a6f729e3930c7f96c5",
+      "reviewed_surfaces": [
+        "decision",
+        "user_draft",
+        "maintainer_summary",
+        "rationale",
+        "next_question",
+        "evidence_links.0.claim",
+        "missing_info.0"
+      ],
+      "outer_handoff_integrity_valid": true,
+      "source_inventory_hashes_valid": true,
+      "actual_last_retrieval_matches_handoff": true,
+      "actual_last_grounded_request_matches_handoff": true,
+      "active_user_facts": [
+        {
+          "name": "streamlit_version",
+          "value": "1.50.0"
+        },
+        {
+          "name": "python_version",
+          "value": "3.12.9"
+        }
+      ],
+      "unknowns": [
+        "parent_callback_code",
+        "minimal_failing_reproduction"
+      ],
+      "question": "Can you share the parent selector callback that resets Session State?",
+      "decision_assessment": "Defensible targeted ask for the unprovided parent callback; not a request to rerun the known working reduction or repeat the confirmed installed version.",
+      "question_utility": "User-answerable and necessary for inspecting actual app state-update order; selection is limited to caller-curated registered gaps. No completed callback answer exists.",
+      "source_support_assessment": "Active facts attributed correctly. Complete supplied indexed excerpt quoted with commit/URL/span and unconfirmed applicability. No unsupported app diagnosis, verified fix, resolved case or executed-action assertion found in any reviewed surface.",
+      "source_applicability": "unconfirmed; applicable_versions is empty, so no current-version technical guarantee is made.",
+      "source_gap_separation": "exact_version_documentation is a source gap with no user question; callback code and failing interaction are user gaps.",
+      "formal_material_claim_count": null,
+      "formal_quality_score": null,
+      "citation_scope": "Attributed source excerpt only, not an established cause or fix."
+    },
+    {
+      "turn_index": 2,
+      "case_revision": 2,
+      "proposal_id": "0ca994c7-6950-4a49-b9be-63889411d8e2",
+      "handoff_sha256": "85c7709ca669f117efce8c22b1d16016d1f28cd0c8a309a4c41d0a2d69c8cf19",
+      "analysis_sha256": "84917fd27decb3771b6e348e4a5a38d46c8bf9666bb08ca5e607da897592d1d3",
+      "reviewed_surfaces": [
+        "decision",
+        "user_draft",
+        "maintainer_summary",
+        "rationale",
+        "next_question",
+        "evidence_links.0.claim",
+        "missing_info.0"
+      ],
+      "outer_handoff_integrity_valid": true,
+      "source_inventory_hashes_valid": true,
+      "actual_last_retrieval_matches_handoff": true,
+      "actual_last_grounded_request_matches_handoff": true,
+      "active_user_facts": [
+        {
+          "name": "streamlit_version",
+          "value": "1.49.0"
+        }
+      ],
+      "unknowns": [
+        "parent_callback_code",
+        "minimal_failing_reproduction",
+        "python_version"
+      ],
+      "question": "Can you share the parent selector callback that resets Session State?",
+      "decision_assessment": "Defensible targeted ask for the unprovided parent callback; not a request to rerun the known working reduction or repeat the confirmed installed version.",
+      "question_utility": "User-answerable and necessary for inspecting actual app state-update order; selection is limited to caller-curated registered gaps. No completed callback answer exists.",
+      "source_support_assessment": "Active facts attributed correctly. Complete supplied indexed excerpt quoted with commit/URL/span and unconfirmed applicability. No unsupported app diagnosis, verified fix, resolved case or executed-action assertion found in any reviewed surface.",
+      "source_applicability": "unconfirmed; applicable_versions is empty, so no current-version technical guarantee is made.",
+      "source_gap_separation": "exact_version_documentation is a source gap with no user question; callback code and failing interaction are user gaps.",
+      "formal_material_claim_count": null,
+      "formal_quality_score": null,
+      "citation_scope": "Attributed source excerpt only, not an established cause or fix."
+    }
+  ],
+  "protocol_inconsistency": {
+    "original_protocol_preserved": true,
+    "location": "turns[1].review_before_run.known and unacceptable",
+    "registered_expectation": "Python 3.12.9 remains known; do not reask Python version.",
+    "actual_visible_contract": "context_changed=true explicitly declares a different environment; Python is not reconfirmed.",
+    "observed_behavior": "Python 3.12.9 superseded; python_version unknown; only Streamlit 1.49.0 active.",
+    "assessment": "Reviewer-only expectation inconsistency, not a core defect. The actual selected callback question remains defensible.",
+    "contract_reference": "docs/user-turns.md:24 and :76",
+    "contract_sha256": "2f449d4c358591b9c701920e56e6f0d0f99184f2cfdb5f10af42dcdb12b6b028",
+    "retroactive_protocol_edit": false
+  },
+  "negative_findings": [
+    "Both turns retrieve the same unversioned Session State chars4000:8000 chunk, largely serialization and generic caveats; this does not establish targeted relevance to fragment multiselect defaults.",
+    "The full indexed chunk starts and ends mid-sentence/section. Faithful quotation of a complete chunk is not complete-paragraph evidence or a concise useful maintainer summary.",
+    "The correction query retains explicitly historical 1.50.0/Python text and appends active 1.49.0. Current facts are correctly bound, but this run does not establish absence of old-version retrieval ranking bias.",
+    "The two known user-gap definitions and their necessity are caller-curated. The model selects a registered question; automatic missing-information or necessity discovery was not demonstrated.",
+    "No approval/release/action, actual callback response, fix or resolution occurs. Repeating the unanswered pending callback question is not reasking information already supplied.",
+    "No version-specific source changes between turns; unconfirmed applicability is preserved. Prevention of stale version-specific evidence is not established by this live trace.",
+    "Application recreation is in the same interpreter; no live fresh-process restart claim.",
+    "This is one exposed answer-informed development family, using a 14-source/30-chunk docs-only local lexical-hash index, not an independent held-out RAG/model evaluation.",
+    "Cost is estimated from ledger token usage; actual account charge and C5 reconciliation remain unknown."
+  ],
+  "execution_observation": {
+    "actual_sends": 2,
+    "estimated_cost_usd": "0.001104015",
+    "actual_account_charge_usd": null,
+    "verified_returned_models": [
+      "gpt-4o-mini-2024-07-18",
+      "gpt-4o-mini-2024-07-18"
+    ],
+    "no_auto_approval_or_action": true
+  }
+}

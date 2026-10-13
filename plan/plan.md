@@ -18,6 +18,14 @@ runner در حالت final کل bundle و evidenceهایش را قبل از live
 می‌شوند. مجوز API جدید کاربر شامل آزمایش ضروری است؛ سقف تیم و halt/hold قبلی
 حفظ می‌شوند. هیچ پیام تیمی از این مرحله ارسال نشده است.
 
+اجرای واقعی همین مرحله روی `fbac1b4` انجام شد؛ [receipt و review](../experiments/grounded_http_acceptance/connected-live-README.md):
+۲ send، $0.001104015 تخمینی؛ correction، proposal تازه، retry و ساخت دوبارهٔ
+API پایدار پاس‌اند. در هر دو turn مدل سؤال callback لازم را انتخاب کرد؛ fix یا
+حل Issue ادعا نشد. source نسخهٔ نامعلوم و relevance محدود داشت؛ R4 و C4 بازند.
+ناسازگاری انتظار Python با `context_changed=true` در review ثبت شده و اصل
+protocol حفظ شده است. ۱۵/۱۵ metadata همچنان candidate است؛ dev واقعی ۱ و test
+واقعی ۰. خرج بیشتر پس از case/rubric و یک مقایسهٔ dev ثبت‌شده انجام شود.
+
 | بخش | چیزی که داریم | چیزی که هنوز اثبات نشده |
 | --- | --- | --- |
 | core — ساسان | قراردادها، correction و GroundedPlan؛ C2a سرویس core و C2d اتصال HTTP به SQLite موجود با outcome اتمیک و approval دقیق؛ HTTP پایدار #30 روی main؛ UI و index محلی در [U3a/P4a، PR #32](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/32) پیاده و با تست‌های مستقل پذیرفته شده‌اند | corpus/index نهایی، اتصال مدل و کیفیت تصمیم روی caseهای ندیده؛ C5 halt |
