@@ -4,6 +4,27 @@
 
 ## وضعیت فعلی
 
+- [x] **C2h — سؤال‌های mock مطابق facts فعلی؛ ساسان، تحویل محدود آفلاین.**
+  انتشار و CI نهایی در [PR #42](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/42) است.
+  [ثبت، نتیجه و review](../experiments/offline_corrections/README.md): همان ۱۹
+  کنترل V2 روی source قدیم پنج pass/چهارده fail و روی `090c1e5` نوزده pass
+  دارند. V1 و شکست assertion ظاهری UI حفظ‌اند؛ V2 فقط «Approve فعال نباشد» را
+  به‌جای الزام وجود دکمهٔ disabled ثبت می‌کند. فقط backend بدون index و scripted
+  در `ask/ask_version` اصلاح شد: نسخهٔ نامعلوم سؤال canonical؛ نسخهٔ معلوم
+  سؤال widget؛ اطلاعات کافی با شاهد synthetic ناکافی، ارجاع. guard core پابرجاست.
+  AppTest، پاسخ کوتاه پس از approval، correction، 409 برای approval قدیمی،
+  replay و retry در سه process تازه پاس‌اند؛ تست کامل ۲۸۶۰ و HTTP/SQLite
+  ۴۵۷/۴۵۷ پاس است. [راهنمای ادامه](../docs/offline-scripted-corrections.fa.md):
+  replay رخداد ناموفق قبلی همان نتیجه را نگه می‌دارد؛ ادامه با turn تازه.
+  هزینه صفر؛ کیفیت مدل/RAG یا بستن T4/U3/E5 از این نتیجه گرفته نمی‌شود.
+
+قدم کوچک بعدی بهنام: main تازه را بگیرد و smoke دو-case خودش را از UI با پیام
+جدید تکرار کند؛ correction و سؤال بعدی، Edit/Reject جدا، approval قدیمی و
+restart/retry با envelope دقیق ثبت شوند. هر review موفق یک action مورد انتظار
+دارد؛ retry همان review نباید action اضافه کند. گزارش اصلی #40 تغییر نکند؛
+نتیجهٔ تازه با PR، command و receipt جدا بیاید. محمدحسن اگر در UI blocker دید
+به او کمک کند؛ مسئولیت dev/test/rubric و corpus نهایی اعضا پابرجاست.
+
 ### تقسیم کار جاری — درخواست جمع‌بندی تا امشب ۱۳ اکتبر
 
 تحویل مستقل تازهٔ ساسان **C4b — حفظ تعارض اعلام‌شده در refinement/repair** در

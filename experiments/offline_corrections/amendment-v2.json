@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "task": "C2h",
+  "protocol_id": "offline-scripted-current-facts-v2",
+  "registered_on": "2026-10-13",
+  "amends": "protocol-v1.json",
+  "original_protocol_preserved": true,
+  "original_V1_baseline_preserved": "baseline-v1.json",
+  "original_V1_candidate_preserved": "candidate-v1.json",
+  "original_UI_test_preserved": "frozen-v1/test_offline_scripted_ui.py.txt",
+  "original_UI_test_sha256": "c34c51540c1cb4e6e0ed581d342b440aefe6e41079005ca941373e53490bdfc8",
+  "reason": "Mechanical assertion correction: a committed review clears pending; the page omits Approve. The intended safety criterion is no enabled Approve while an exact uncertain review is awaiting retry, accepting omission or disabled rendering. No approval operation, action count, case/revision/payload, request identity, question or route oracle is changed.",
+  "review": "Independent delivery_requirements_audit read the page gating and confirmed removal or disablement both block a duplicate approval. This is assistant review, not human model-quality scoring.",
+  "only_test_change": "assert not any(button.key == \"approve\" and not button.disabled for button in at.button)",
+  "baseline_preimplementation_commit": "a6ec28d9c19a68152778028e0aae936d7716b7e1",
+  "baseline_runtime_source_commit": "ab6ed0498c079365658d4741bc8e9df37537a075",
+  "source_fix_commit": "75cccd6cfbcd6c2b6233cf190dfaa97d5eeb4c92",
+  "production_changes_for_amendment": false,
+  "test_sha256": {
+    "tests/test_offline_scripted_corrections.py": "a6662383fcc1822c05726c9d0d7c969cc6946330fe48b5cb8deffdc1ecddf185",
+    "tests/test_offline_correction_upgrade.py": "ac0d208797b556adc0ad8fb8ddfc8ee245b4578565253805be3d4cc71c3b5d82",
+    "tests/test_offline_scripted_ui.py": "c114018752afaf26455116b7721ae95b820a1ddb8fbbedf7855fbea68e50761b"
+  },
+  "registered_test_controls": 19,
+  "comparison_requirement": "Replay identical amended19 test bytes on actual archived preimplementation and current source with source-origin checks; preserve all19 outcomes and current-facts correction samples. Do not replace original V1 observations.",
+  "real_provider_requests": 0,
+  "paid_api_cost_usd": "0",
+  "quality_claim": false,
+  "human_usefulness_score": null
+}

@@ -1,0 +1,1684 @@
+{
+  "schema_version": 1,
+  "mode": "offline_scripted_correction_code_comparison",
+  "registered_controls": 19,
+  "baseline_source_equivalent_to": "ab6ed0498c079365658d4741bc8e9df37537a075",
+  "initial_pins": {
+    "runner_sha256": "f39fa65720d9e4ca465da076713f153b299cfe1fd2ebdc6352f9d0739d337f21",
+    "protocol_sha256": "7ff88abbc54d88394bf3dc7b7b53d3a3cbcca6e45a389fb79492146381667d0d",
+    "amendment_sha256": "df16100620b2b394df9771602eae6bb9f35b31cc6c0be2d210ae537cee60c84e",
+    "test_sha256": {
+      "tests/test_offline_scripted_corrections.py": "a6662383fcc1822c05726c9d0d7c969cc6946330fe48b5cb8deffdc1ecddf185",
+      "tests/test_offline_correction_upgrade.py": "ac0d208797b556adc0ad8fb8ddfc8ee245b4578565253805be3d4cc71c3b5d82",
+      "tests/test_offline_scripted_ui.py": "c114018752afaf26455116b7721ae95b820a1ddb8fbbedf7855fbea68e50761b"
+    },
+    "source_sha256": {
+      "src/agent_app/__init__.py": "651500e6469bef4ff31cda0ac90dd20cfebd2d9d9fe4bf99025c2b385598f86f",
+      "src/agent_app/api.py": "e1a89d3d35b59059a80bb960031604a4c8aa86fd3690351cb13be02251e7c183",
+      "src/agent_app/cli.py": "b66386e6b4ba288211cecf8c6aa5957599132a97150126eb1ed815f37c2ddae4",
+      "src/agent_app/contracts.py": "1dcf0de657f3442dfb5e787e6243a9a279501305033e592cbcd060dd808d0a91",
+      "src/agent_app/demo.py": "3128a85ca44809ff75234ebe982beafcd1d6c35d6f3bf3a37b093b67c33092b4",
+      "src/agent_app/evaluation/__init__.py": "b8f1e93a3c5528cd48abc8e4690b6d67c3838c9ad1e595c7990bc11c2a763793",
+      "src/agent_app/evaluation/live.py": "f5513a71987fcfebdff5b09315e3b8fb027fcd0d33805db2e59e55d256c01432",
+      "src/agent_app/evaluation/pilot.py": "426e95b286e63ca082bf04ddc69fe783bfbb98dfd3e3c9c919b74bba21927d9f",
+      "src/agent_app/evaluation/preflight.py": "ba9cd68d710bfd235333f27186d516e8d135e63ad1c96cfe5609a6e77e257052",
+      "src/agent_app/evaluation/routes.py": "25f664dd22d8dbaca70250db3830c7e994d6b9ee12c7b6443ae82d2098ba8e40",
+      "src/agent_app/evaluation/runner.py": "83c6b2a93329a9ae030d9321e57072669e548272cd87075034a8cfde3821d1f2",
+      "src/agent_app/evaluation/semantic_review.py": "d83b8e33605cbdd3494b681a1eedb8b4dd348341ff32355b46c817b09b72935b",
+      "src/agent_app/live_backend.py": "276f8b8574e0bb3d78497e2b7b880eac84eacbe3ccd527c1a5fbfa1e99e07c4e",
+      "src/agent_app/llm/budget.py": "2e29e3dc2a922f904e2138abef7e8e984468cbf9eb6bef8b9736cd496a723d43",
+      "src/agent_app/llm/config.py": "8ecafef7f2d6f8f2b5e88184e57f84737461b66600b56874c0ea8e8c107e187e",
+      "src/agent_app/llm/demo.py": "4b5463e03078ff8c19e758ed8282de146538018721d6e5e9f902727c3c71908e",
+      "src/agent_app/llm/grounded.py": "24baef8e95ee2795ac83436eb6ef6046b2781a225330689a2f5c3ffafe4cdaa6",
+      "src/agent_app/llm/metis.py": "9950a4e36b7a04fd74e4decb110cd58c3d3acba45af073ce30c53983a8fd6076",
+      "src/agent_app/llm/pricing.py": "39993b673465401e0926584d3007b8967a1eb4eaad4d377b32324c60d619ec07",
+      "src/agent_app/offline_backend.py": "44c61713791092d23be43676e888e4dbd58aae4f84650d37289b0758e65dcad6",
+      "src/agent_app/orchestration/__init__.py": "5f24d76c2b832898b13d219710c1a4c10b1969d3502fb131847cc871a2f24a07",
+      "src/agent_app/orchestration/conversation.py": "a9d3954ab2fdbbd083329e59e8c5511f5cc005375e4fc39747a61756aa51e3f1",
+      "src/agent_app/orchestration/engine.py": "48bdb2ba2952614b0446d5384b9e62550c20909e566374818d1c1b5a14efa947",
+      "src/agent_app/orchestration/handoff.py": "5e438a829035c0969361f25865c2327554dbb94b0186a60b4196047fa04a7086",
+      "src/agent_app/orchestration/intake.py": "a1208ec535fd022d3d20f6847a0a6f21af0d3c42fc75a078e925301397c970b4",
+      "src/agent_app/orchestration/ports.py": "2ef106155234f762832aff658602a5177bf946908b24fde3bc69129076bbbeb2",
+      "src/agent_app/orchestration/retrieval_context.py": "b5133c15368e3383a42da4a401dd6f39461d4f3040f64f35965304806c8dc5fb",
+      "src/agent_app/orchestration/service.py": "c3a53561a48c3c703b88163e902ddc5870e2a246b8563f38cc7e2b9cae09eee6",
+      "src/agent_app/orchestration/turns.py": "17970a95710dc8351d14f36cc6dfbdf3308231a627fd710b64dee119908eace7",
+      "src/agent_app/orchestration/validation.py": "2debe663263680238268d5034c7e80fe5533b4f66c535d5bf0b4e072835d7f6e",
+      "src/agent_app/persistent_api.py": "1eab2d60a28f4543c0752092502b37d905a66b6f00ca5aa4828ed60b5d8c5c56",
+      "src/agent_app/reasoning/__init__.py": "12233e742809b1a2fffedccf658feca51ab510795da80d210fb8328c009f031f",
+      "src/agent_app/reasoning/ablations.py": "72436d983fcde9668583a07662aa5b04952fee0b60d0c908b911e439d4ac5d5f",
+      "src/agent_app/reasoning/catalog.py": "dfd7b091cc9f732e5efdedbc04f320d83cd45295665ad1c6716693def10e4009",
+      "src/agent_app/reasoning/code_checks.py": "f3f1efb9962b88d3a51587dcfe73296cbdcbecedc82dacec85faf7cfa7b92ba7",
+      "src/agent_app/reasoning/controlled_experiments.py": "161dc621520fc619c93755138d7c1187d3b09393da2face8caea3a6f5e2e13b9",
+      "src/agent_app/reasoning/experiments.py": "d0fc8bf3f94b0e4c99648f5ee99e7e2ed2191eabdbbc7f5110f7e7c2a2391103",
+      "src/agent_app/reasoning/fidelity_experiments.py": "f41b6d0e2b96ad293b244ef249970a9b6d24382e4384d2dee4d5fa6d171fcdfe",
+      "src/agent_app/reasoning/grounding.py": "11a80ca5c8f8485433d6bf4cd48339abd4f2f98cf0ecd268d0a2ec0e97502c55",
+      "src/agent_app/reasoning/grounding_experiments.py": "ff7a217e12182d04470339bb9f793e0194fa05bf53fa2babdb9cce809c44d9d3",
+      "src/agent_app/reasoning/output.py": "81d7c60c1dc09f0ab7d9badd6d4dbaf405439a399506333a3e6b7dec9ca6874c",
+      "src/agent_app/reasoning/probes.py": "10ddb452c81cec3a7e8b93e937e5efcd5166c81ace0f36bf1c062b4498b9f185",
+      "src/agent_app/reasoning/prompts.py": "0bc7b83422eee46f9a598415ea3921281a451da1780db080f091818e3a79329b",
+      "src/agent_app/reasoning/proposal_checks.py": "aaa8b3bcb51992f23189a76749a747fa6b10528f3f11af806b067fe67d923464",
+      "src/agent_app/reasoning/quality_experiments.py": "4eecf613b71981b4aeb2c35efc81c5f1520edb304a106b60561b166e1e067269",
+      "src/agent_app/reasoning/review.py": "77e34b93445faf1dc6e6e7a2252971305a5d1ea3f4b7dc6713e44daf32804e14",
+      "src/agent_app/reasoning/semantic_regressions.py": "13c3ab82e66fab43bce186c086b8fea00049da7e083cbaad6c1c3393ea00c8ea",
+      "src/agent_app/retrieval/adapter.py": "3752fe760c9fb71a6cd05014a6ab870d53a652a56e2c972425e71c7d9c417c2f",
+      "src/agent_app/retrieval/offline_index.py": "def8f56afdeadd714c8891779e627da5d89ea276086bf232c135e64ff8967414",
+      "src/agent_app/retrieval/pilot_corpus.py": "dd9317632c2ccdd387aa3fb13e4cdcab8567def697e958f3d60affa7e35a8693",
+      "src/agent_app/retrieval/retriever.py": "7791e66896296ff0d85ed319ee7eba6238db9516ea04ad2a9f1af6b5f2caebe1",
+      "src/agent_app/testing/__init__.py": "bea37ce669658c22e7d916983693ed47c42a9e35806f4d726643bd1a1f14d8ed",
+      "src/agent_app/testing/chroma_binding.py": "ae23fb6e5ece3c4b198519afa371b581b60d69844d904e89d047c910e5d6e4ba",
+      "src/agent_app/testing/controlled_decision_inputs.py": "5c25b0d02a919da1f482dcfbeee759274a9a879b23ee99e9523e761ffc1ae0eb",
+      "src/agent_app/testing/controlled_model_baseline.py": "fb5d2a57ccf9cdaa8ce4073f745598eba64070898dbf711ce15adce67a984dbd",
+      "src/agent_app/testing/fakes.py": "1e44387ddcbe091f91657ce1236c36f648eb6941d4582fe42a4a37c60f6a80a0",
+      "src/agent_app/testing/grounded_http_acceptance.py": "f145dd71055e93c5b03561b46e7dd048103cf43cc7b7c1c74520347ebd055a3d",
+      "src/agent_app/testing/grounded_http_binding.py": "03726c58ca43dcf5a679c38f859d29443f63f317f47d93205ce2a6016b0788ce",
+      "src/agent_app/testing/http_pilot_acceptance.py": "ea5ff92fd319db247a346ff3dd90c417dccd9b0efb324550c72eaf9f078f97bf",
+      "src/agent_app/testing/http_pilot_runtime.py": "df685c1aa4dc4b666ccc680ba6e5ad552cc48f10f89400d73d9cc11108848464",
+      "src/agent_app/testing/http_pilot_worker.py": "05c73602a500f770ca3f9bddbf568032b44bd46787a8fbc623d44cdd1f42239e",
+      "src/agent_app/testing/retrieval_acceptance.py": "f6b3dfeb894b20341e9483dfd8e644165fa8944cc0329c13126545eba1db7df4",
+      "src/agent_app/testing/retrieval_acceptance_pilot.py": "6bd2a5523bfe299937fe1746df035fcb23adf13362fa80c4cb8d82e524273aa3",
+      "src/agent_app/testing/retrieval_context_live_probe.py": "e510b338a87a0fe4a3ddd2b7e3d8504e9894f929918ec9f40c9c993ec126b467",
+      "src/agent_app/testing/sqlite_http_binding.py": "b933322aeb9db68bc8243b1b47c3e947ada6ad474873e88739adfd6320fda3e6",
+      "src/agent_app/testing/ui_review_acceptance.py": "308bd2d8f9ea525a226a0557e7d2e6e7c3f8ae5fc4586666db2b7ac49be98f92",
+      "src/agent_app/tracker/dummy_tracker.py": "c214d49fcd9033565b19f1d11cef605b7654c6103a64d2bdbfc71a876c6e2e3d",
+      "src/agent_app/tracker/sqlite_tracker.py": "c8d9e75bac2152df68559d85d3ef0c52386cb0d10562b8cb4aae9d987be257e8",
+      "src/agent_app/turn_demo.py": "0985daf2ca881eefc52b4a9694cd5fa91becfa61cd722ef8fb470c865791cad8",
+      "src/agent_app/ui_client.py": "5b4564f4e8b93af7775b2c2fb3fa254f25b5dfae406ac65d3f48fd9de325037e",
+      "app_pages/assistant.py": "28a8d5def09fb785b037d2a0832e400c1dc2a49e37713fd0142a239b5a5dcde1",
+      "app_pages/project_docs.py": "53da03422f1b68ae950f0230ddca13b533b584ce9253d80e6fc308e210beae62",
+      "pyproject.toml": "db235862d1a8c30f7f3eed2aa00f4c68646fe701d3367b02be1a82a6262c2c27",
+      "tests/test_persistent_tcp.py": "384d7eb6884bf7ab59a674baeb006ba5d98aaca821282e9c2013d2b0145992c0"
+    },
+    "worker_origin_guard_sha256": "8c9cfdd036ee714f4bd21e611b8ad33f2f5b032861798f037d14daa67e2e3c53"
+  },
+  "environment_scope": "OS/Python/temp/home allowlist; no inherited provider selectors or credentials",
+  "real_provider_requests": 0,
+  "paid_api_cost_usd": "0",
+  "production_ledger_used": false,
+  "production_index_or_embedding_tested": false,
+  "sample_tracker_actions": 0,
+  "quality_claim": false,
+  "heldout_claim": false,
+  "human_usefulness_score": null,
+  "scope": "Nineteen authored software controls; actual tests may approve synthetic local questions. Sample three-turn views do not approve or execute actions. No model chooses these routes; no original PR40 case is rerun.",
+  "arms": {
+    "baseline": {
+      "source_commit": "a6ec28d9c19a68152778028e0aae936d7716b7e1",
+      "source_matches_git_commit": true,
+      "source_sha256": {
+        "src/agent_app/__init__.py": "651500e6469bef4ff31cda0ac90dd20cfebd2d9d9fe4bf99025c2b385598f86f",
+        "src/agent_app/api.py": "e1a89d3d35b59059a80bb960031604a4c8aa86fd3690351cb13be02251e7c183",
+        "src/agent_app/cli.py": "b66386e6b4ba288211cecf8c6aa5957599132a97150126eb1ed815f37c2ddae4",
+        "src/agent_app/contracts.py": "1dcf0de657f3442dfb5e787e6243a9a279501305033e592cbcd060dd808d0a91",
+        "src/agent_app/demo.py": "3128a85ca44809ff75234ebe982beafcd1d6c35d6f3bf3a37b093b67c33092b4",
+        "src/agent_app/evaluation/__init__.py": "b8f1e93a3c5528cd48abc8e4690b6d67c3838c9ad1e595c7990bc11c2a763793",
+        "src/agent_app/evaluation/live.py": "f5513a71987fcfebdff5b09315e3b8fb027fcd0d33805db2e59e55d256c01432",
+        "src/agent_app/evaluation/pilot.py": "426e95b286e63ca082bf04ddc69fe783bfbb98dfd3e3c9c919b74bba21927d9f",
+        "src/agent_app/evaluation/preflight.py": "ba9cd68d710bfd235333f27186d516e8d135e63ad1c96cfe5609a6e77e257052",
+        "src/agent_app/evaluation/routes.py": "25f664dd22d8dbaca70250db3830c7e994d6b9ee12c7b6443ae82d2098ba8e40",
+        "src/agent_app/evaluation/runner.py": "83c6b2a93329a9ae030d9321e57072669e548272cd87075034a8cfde3821d1f2",
+        "src/agent_app/evaluation/semantic_review.py": "d83b8e33605cbdd3494b681a1eedb8b4dd348341ff32355b46c817b09b72935b",
+        "src/agent_app/live_backend.py": "276f8b8574e0bb3d78497e2b7b880eac84eacbe3ccd527c1a5fbfa1e99e07c4e",
+        "src/agent_app/llm/budget.py": "2e29e3dc2a922f904e2138abef7e8e984468cbf9eb6bef8b9736cd496a723d43",
+        "src/agent_app/llm/config.py": "8ecafef7f2d6f8f2b5e88184e57f84737461b66600b56874c0ea8e8c107e187e",
+        "src/agent_app/llm/demo.py": "4b5463e03078ff8c19e758ed8282de146538018721d6e5e9f902727c3c71908e",
+        "src/agent_app/llm/grounded.py": "24baef8e95ee2795ac83436eb6ef6046b2781a225330689a2f5c3ffafe4cdaa6",
+        "src/agent_app/llm/metis.py": "9950a4e36b7a04fd74e4decb110cd58c3d3acba45af073ce30c53983a8fd6076",
+        "src/agent_app/llm/pricing.py": "39993b673465401e0926584d3007b8967a1eb4eaad4d377b32324c60d619ec07",
+        "src/agent_app/offline_backend.py": "3fc5f56ea1eee99f0b81400cfa5634868f12dbea523ecde28db6ded1a14582f7",
+        "src/agent_app/orchestration/__init__.py": "5f24d76c2b832898b13d219710c1a4c10b1969d3502fb131847cc871a2f24a07",
+        "src/agent_app/orchestration/conversation.py": "a9d3954ab2fdbbd083329e59e8c5511f5cc005375e4fc39747a61756aa51e3f1",
+        "src/agent_app/orchestration/engine.py": "48bdb2ba2952614b0446d5384b9e62550c20909e566374818d1c1b5a14efa947",
+        "src/agent_app/orchestration/handoff.py": "5e438a829035c0969361f25865c2327554dbb94b0186a60b4196047fa04a7086",
+        "src/agent_app/orchestration/intake.py": "a1208ec535fd022d3d20f6847a0a6f21af0d3c42fc75a078e925301397c970b4",
+        "src/agent_app/orchestration/ports.py": "2ef106155234f762832aff658602a5177bf946908b24fde3bc69129076bbbeb2",
+        "src/agent_app/orchestration/retrieval_context.py": "b5133c15368e3383a42da4a401dd6f39461d4f3040f64f35965304806c8dc5fb",
+        "src/agent_app/orchestration/service.py": "c3a53561a48c3c703b88163e902ddc5870e2a246b8563f38cc7e2b9cae09eee6",
+        "src/agent_app/orchestration/turns.py": "17970a95710dc8351d14f36cc6dfbdf3308231a627fd710b64dee119908eace7",
+        "src/agent_app/orchestration/validation.py": "2debe663263680238268d5034c7e80fe5533b4f66c535d5bf0b4e072835d7f6e",
+        "src/agent_app/persistent_api.py": "1eab2d60a28f4543c0752092502b37d905a66b6f00ca5aa4828ed60b5d8c5c56",
+        "src/agent_app/reasoning/__init__.py": "12233e742809b1a2fffedccf658feca51ab510795da80d210fb8328c009f031f",
+        "src/agent_app/reasoning/ablations.py": "72436d983fcde9668583a07662aa5b04952fee0b60d0c908b911e439d4ac5d5f",
+        "src/agent_app/reasoning/catalog.py": "dfd7b091cc9f732e5efdedbc04f320d83cd45295665ad1c6716693def10e4009",
+        "src/agent_app/reasoning/code_checks.py": "f3f1efb9962b88d3a51587dcfe73296cbdcbecedc82dacec85faf7cfa7b92ba7",
+        "src/agent_app/reasoning/controlled_experiments.py": "161dc621520fc619c93755138d7c1187d3b09393da2face8caea3a6f5e2e13b9",
+        "src/agent_app/reasoning/experiments.py": "d0fc8bf3f94b0e4c99648f5ee99e7e2ed2191eabdbbc7f5110f7e7c2a2391103",
+        "src/agent_app/reasoning/fidelity_experiments.py": "f41b6d0e2b96ad293b244ef249970a9b6d24382e4384d2dee4d5fa6d171fcdfe",
+        "src/agent_app/reasoning/grounding.py": "11a80ca5c8f8485433d6bf4cd48339abd4f2f98cf0ecd268d0a2ec0e97502c55",
+        "src/agent_app/reasoning/grounding_experiments.py": "ff7a217e12182d04470339bb9f793e0194fa05bf53fa2babdb9cce809c44d9d3",
+        "src/agent_app/reasoning/output.py": "81d7c60c1dc09f0ab7d9badd6d4dbaf405439a399506333a3e6b7dec9ca6874c",
+        "src/agent_app/reasoning/probes.py": "10ddb452c81cec3a7e8b93e937e5efcd5166c81ace0f36bf1c062b4498b9f185",
+        "src/agent_app/reasoning/prompts.py": "0bc7b83422eee46f9a598415ea3921281a451da1780db080f091818e3a79329b",
+        "src/agent_app/reasoning/proposal_checks.py": "aaa8b3bcb51992f23189a76749a747fa6b10528f3f11af806b067fe67d923464",
+        "src/agent_app/reasoning/quality_experiments.py": "4eecf613b71981b4aeb2c35efc81c5f1520edb304a106b60561b166e1e067269",
+        "src/agent_app/reasoning/review.py": "77e34b93445faf1dc6e6e7a2252971305a5d1ea3f4b7dc6713e44daf32804e14",
+        "src/agent_app/reasoning/semantic_regressions.py": "13c3ab82e66fab43bce186c086b8fea00049da7e083cbaad6c1c3393ea00c8ea",
+        "src/agent_app/retrieval/adapter.py": "3752fe760c9fb71a6cd05014a6ab870d53a652a56e2c972425e71c7d9c417c2f",
+        "src/agent_app/retrieval/offline_index.py": "def8f56afdeadd714c8891779e627da5d89ea276086bf232c135e64ff8967414",
+        "src/agent_app/retrieval/pilot_corpus.py": "dd9317632c2ccdd387aa3fb13e4cdcab8567def697e958f3d60affa7e35a8693",
+        "src/agent_app/retrieval/retriever.py": "7791e66896296ff0d85ed319ee7eba6238db9516ea04ad2a9f1af6b5f2caebe1",
+        "src/agent_app/testing/__init__.py": "bea37ce669658c22e7d916983693ed47c42a9e35806f4d726643bd1a1f14d8ed",
+        "src/agent_app/testing/chroma_binding.py": "ae23fb6e5ece3c4b198519afa371b581b60d69844d904e89d047c910e5d6e4ba",
+        "src/agent_app/testing/controlled_decision_inputs.py": "5c25b0d02a919da1f482dcfbeee759274a9a879b23ee99e9523e761ffc1ae0eb",
+        "src/agent_app/testing/controlled_model_baseline.py": "fb5d2a57ccf9cdaa8ce4073f745598eba64070898dbf711ce15adce67a984dbd",
+        "src/agent_app/testing/fakes.py": "1e44387ddcbe091f91657ce1236c36f648eb6941d4582fe42a4a37c60f6a80a0",
+        "src/agent_app/testing/grounded_http_acceptance.py": "f145dd71055e93c5b03561b46e7dd048103cf43cc7b7c1c74520347ebd055a3d",
+        "src/agent_app/testing/grounded_http_binding.py": "03726c58ca43dcf5a679c38f859d29443f63f317f47d93205ce2a6016b0788ce",
+        "src/agent_app/testing/http_pilot_acceptance.py": "ea5ff92fd319db247a346ff3dd90c417dccd9b0efb324550c72eaf9f078f97bf",
+        "src/agent_app/testing/http_pilot_runtime.py": "df685c1aa4dc4b666ccc680ba6e5ad552cc48f10f89400d73d9cc11108848464",
+        "src/agent_app/testing/http_pilot_worker.py": "05c73602a500f770ca3f9bddbf568032b44bd46787a8fbc623d44cdd1f42239e",
+        "src/agent_app/testing/retrieval_acceptance.py": "f6b3dfeb894b20341e9483dfd8e644165fa8944cc0329c13126545eba1db7df4",
+        "src/agent_app/testing/retrieval_acceptance_pilot.py": "6bd2a5523bfe299937fe1746df035fcb23adf13362fa80c4cb8d82e524273aa3",
+        "src/agent_app/testing/retrieval_context_live_probe.py": "e510b338a87a0fe4a3ddd2b7e3d8504e9894f929918ec9f40c9c993ec126b467",
+        "src/agent_app/testing/sqlite_http_binding.py": "b933322aeb9db68bc8243b1b47c3e947ada6ad474873e88739adfd6320fda3e6",
+        "src/agent_app/testing/ui_review_acceptance.py": "308bd2d8f9ea525a226a0557e7d2e6e7c3f8ae5fc4586666db2b7ac49be98f92",
+        "src/agent_app/tracker/dummy_tracker.py": "c214d49fcd9033565b19f1d11cef605b7654c6103a64d2bdbfc71a876c6e2e3d",
+        "src/agent_app/tracker/sqlite_tracker.py": "c8d9e75bac2152df68559d85d3ef0c52386cb0d10562b8cb4aae9d987be257e8",
+        "src/agent_app/turn_demo.py": "0985daf2ca881eefc52b4a9694cd5fa91becfa61cd722ef8fb470c865791cad8",
+        "src/agent_app/ui_client.py": "5b4564f4e8b93af7775b2c2fb3fa254f25b5dfae406ac65d3f48fd9de325037e",
+        "app_pages/assistant.py": "28a8d5def09fb785b037d2a0832e400c1dc2a49e37713fd0142a239b5a5dcde1",
+        "app_pages/project_docs.py": "53da03422f1b68ae950f0230ddca13b533b584ce9253d80e6fc308e210beae62",
+        "pyproject.toml": "db235862d1a8c30f7f3eed2aa00f4c68646fe701d3367b02be1a82a6262c2c27",
+        "tests/test_persistent_tcp.py": "384d7eb6884bf7ab59a674baeb006ba5d98aaca821282e9c2013d2b0145992c0"
+      },
+      "test_sha256": {
+        "tests/test_offline_scripted_corrections.py": "a6662383fcc1822c05726c9d0d7c969cc6946330fe48b5cb8deffdc1ecddf185",
+        "tests/test_offline_correction_upgrade.py": "ac0d208797b556adc0ad8fb8ddfc8ee245b4578565253805be3d4cc71c3b5d82",
+        "tests/test_offline_scripted_ui.py": "c114018752afaf26455116b7721ae95b820a1ddb8fbbedf7855fbea68e50761b"
+      },
+      "counts": {
+        "passed": 5,
+        "failed": 14,
+        "error": 0,
+        "skipped": 0,
+        "not_run": 0
+      },
+      "pytest_exit_code": 1,
+      "test_outcomes": [
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_approved_bare_version_correction_replay_case_isolation_and_review_restart",
+          "status": "failed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_known_version_on_first_turn_asks_only_for_widget[streamlit_version]",
+          "status": "failed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_known_version_on_first_turn_asks_only_for_widget[STREAMLIT_VERSION]",
+          "status": "failed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_both_user_facts_known_escalates_without_reasking_or_inventing_answer[names0]",
+          "status": "failed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_both_user_facts_known_escalates_without_reasking_or_inventing_answer[names1]",
+          "status": "failed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_version_only_scenario_does_not_introduce_widget_question_when_version_known",
+          "status": "failed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_version_withdrawal_restores_question_and_keeps_other_user_fact",
+          "status": "failed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_only_active_user_provenance_suppresses_scripted_gap[streamlit_version-evidence-active-version]",
+          "status": "failed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_only_active_user_provenance_suppresses_scripted_gap[streamlit_version-user-superseded-version]",
+          "status": "failed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_only_active_user_provenance_suppresses_scripted_gap[widget_definition-evidence-active-widget]",
+          "status": "failed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_only_active_user_provenance_suppresses_scripted_gap[widget_definition-user-superseded-widget]",
+          "status": "failed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_other_explicit_offline_scenarios_keep_existing_scripts[answer-answer-1-1]",
+          "status": "passed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_other_explicit_offline_scenarios_keep_existing_scripts[refine-answer-2-2]",
+          "status": "passed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_other_explicit_offline_scenarios_keep_existing_scripts[escalate-escalate-1-1]",
+          "status": "passed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_other_explicit_offline_scenarios_keep_existing_scripts[error-None-0-1]",
+          "status": "passed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_legacy_scripted_ports_still_trigger_core_known_fact_guard",
+          "status": "passed"
+        },
+        {
+          "node_id": "tests/test_offline_correction_upgrade.py::test_failed_legacy_event_is_replayed_after_upgrade_and_new_turn_continues",
+          "status": "failed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_ui.py::test_no_index_app_page_follows_user_facts_and_retries_exact_review_after_recreation",
+          "status": "failed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_ui.py::test_no_index_canonical_reply_and_review_retry_survive_fresh_tcp_processes",
+          "status": "failed"
+        }
+      ],
+      "sample_http_views": [
+        {
+          "original_event": {
+            "message": "The app uses Streamlit 1.50.0 and the widget resets.",
+            "turn_id": "sample-known",
+            "expected_revision": 0,
+            "scenario": "ask",
+            "reported_facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.50.0"
+              }
+            ]
+          },
+          "http_status": 200,
+          "view": {
+            "case_id": "offline-comparison-sample",
+            "case_revision": 1,
+            "status": "open",
+            "facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.50.0",
+                "source_ref": "user:sample-known",
+                "turn_id": "sample-known",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "awaiting_reply": null,
+            "intake": {
+              "case_id": "offline-comparison-sample",
+              "turn_id": "sample-known",
+              "ingress_hash": "1486d270be0c8fa47c8fcd7a23f898e1a816817c1ed87679f71533f2a040cf75",
+              "prepared_hash": "b091cbe99b8096735c0fc0413ccee7f500c284c62647b0220f2ebf1fe78374ec",
+              "committed_revision": 1,
+              "changed_fact_names": [
+                "streamlit_version"
+              ],
+              "context_changed": false,
+              "invalidated_checks": [],
+              "preparation": "structured",
+              "replayed": false
+            },
+            "pending": null,
+            "log": [
+              {
+                "role": "user",
+                "text": "The app uses Streamlit 1.50.0 and the widget resets."
+              },
+              {
+                "role": "system",
+                "text": "The run stopped (error: KnownFactMarkedMissing). Nothing was proposed."
+              }
+            ],
+            "decisions": [],
+            "review": null,
+            "actions": [],
+            "run_outcome": {
+              "status": "core_stopped",
+              "error_code": "KnownFactMarkedMissing",
+              "result": {
+                "run_id": "bce3ee03-eaf4-43ab-8546-c9c68d4c0543",
+                "case_id": "offline-comparison-sample",
+                "case_revision": 1,
+                "status": "error",
+                "analysis": null,
+                "model_attempts": 1,
+                "retrieval_rounds": 1,
+                "steps": 3,
+                "error_code": "KnownFactMarkedMissing",
+                "trace": [
+                  {
+                    "stage": "started",
+                    "message": "Loaded the supplied case snapshot."
+                  },
+                  {
+                    "stage": "retrieval",
+                    "message": "Searching 1 query or queries."
+                  },
+                  {
+                    "stage": "evidence_received",
+                    "message": "Received 1 evidence chunks."
+                  },
+                  {
+                    "stage": "reasoning",
+                    "message": "Requesting a structured decision."
+                  },
+                  {
+                    "stage": "stopped",
+                    "message": "KnownFactMarkedMissing"
+                  }
+                ],
+                "output_issues": []
+              }
+            },
+            "mode": "synthetic_offline_sqlite",
+            "tracker_backend": "sqlite_case_tracker",
+            "retrieval_label": "scripted",
+            "reasoning_label": "scripted",
+            "quality_claim": false
+          }
+        },
+        {
+          "original_event": {
+            "message": "Correction: the installed version is 1.49.1.",
+            "turn_id": "sample-correction",
+            "expected_revision": 1,
+            "scenario": "ask",
+            "reported_facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.49.1"
+              }
+            ]
+          },
+          "http_status": 200,
+          "view": {
+            "case_id": "offline-comparison-sample",
+            "case_revision": 2,
+            "status": "open",
+            "facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.50.0",
+                "source_ref": "user:sample-known",
+                "turn_id": "sample-known",
+                "provenance_kind": "user",
+                "status": "superseded"
+              },
+              {
+                "name": "streamlit_version",
+                "value": "1.49.1",
+                "source_ref": "user:sample-correction",
+                "turn_id": "sample-correction",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "awaiting_reply": null,
+            "intake": {
+              "case_id": "offline-comparison-sample",
+              "turn_id": "sample-correction",
+              "ingress_hash": "08aad9658cf17613dbbc788badd968fa7f6434f7304ebf946c6d7b2bdf65fdc8",
+              "prepared_hash": "a26735af43ca65108e99a663a0bee3c87a44f0cef2cc7778794a3e7f9c1681ea",
+              "committed_revision": 2,
+              "changed_fact_names": [
+                "streamlit_version"
+              ],
+              "context_changed": true,
+              "invalidated_checks": [],
+              "preparation": "structured",
+              "replayed": false
+            },
+            "pending": null,
+            "log": [
+              {
+                "role": "user",
+                "text": "The app uses Streamlit 1.50.0 and the widget resets."
+              },
+              {
+                "role": "system",
+                "text": "The run stopped (error: KnownFactMarkedMissing). Nothing was proposed."
+              },
+              {
+                "role": "user",
+                "text": "Correction: the installed version is 1.49.1."
+              },
+              {
+                "role": "system",
+                "text": "The run stopped (error: KnownFactMarkedMissing). Nothing was proposed."
+              }
+            ],
+            "decisions": [],
+            "review": null,
+            "actions": [],
+            "run_outcome": {
+              "status": "core_stopped",
+              "error_code": "KnownFactMarkedMissing",
+              "result": {
+                "run_id": "c5968ee5-9855-462b-9ed0-e292415d758e",
+                "case_id": "offline-comparison-sample",
+                "case_revision": 2,
+                "status": "error",
+                "analysis": null,
+                "model_attempts": 1,
+                "retrieval_rounds": 1,
+                "steps": 3,
+                "error_code": "KnownFactMarkedMissing",
+                "trace": [
+                  {
+                    "stage": "started",
+                    "message": "Loaded the supplied case snapshot."
+                  },
+                  {
+                    "stage": "retrieval",
+                    "message": "Searching 1 query or queries."
+                  },
+                  {
+                    "stage": "evidence_received",
+                    "message": "Received 1 evidence chunks."
+                  },
+                  {
+                    "stage": "reasoning",
+                    "message": "Requesting a structured decision."
+                  },
+                  {
+                    "stage": "stopped",
+                    "message": "KnownFactMarkedMissing"
+                  }
+                ],
+                "output_issues": []
+              }
+            },
+            "mode": "synthetic_offline_sqlite",
+            "tracker_backend": "sqlite_case_tracker",
+            "retrieval_label": "scripted",
+            "reasoning_label": "scripted",
+            "quality_claim": false
+          }
+        },
+        {
+          "original_event": {
+            "message": "Here is the widget's key and code.",
+            "turn_id": "sample-widget",
+            "expected_revision": 2,
+            "scenario": "ask",
+            "reported_facts": [
+              {
+                "name": "widget_definition",
+                "value": "st.multiselect('Conversation', ['a'], key='conversation')"
+              }
+            ]
+          },
+          "http_status": 200,
+          "view": {
+            "case_id": "offline-comparison-sample",
+            "case_revision": 3,
+            "status": "open",
+            "facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.50.0",
+                "source_ref": "user:sample-known",
+                "turn_id": "sample-known",
+                "provenance_kind": "user",
+                "status": "superseded"
+              },
+              {
+                "name": "streamlit_version",
+                "value": "1.49.1",
+                "source_ref": "user:sample-correction",
+                "turn_id": "sample-correction",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "widget_definition",
+                "value": "st.multiselect('Conversation', ['a'], key='conversation')",
+                "source_ref": "user:sample-widget",
+                "turn_id": "sample-widget",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "awaiting_reply": null,
+            "intake": {
+              "case_id": "offline-comparison-sample",
+              "turn_id": "sample-widget",
+              "ingress_hash": "da06b98a4ae69ae6c2815beb0909e8e48eb95f74e9fc02cba6d47d3554518fe2",
+              "prepared_hash": "47da6a7d4bfc8d4e218d43adeddcae844d1b65bb2a7a92bd380d568086676dc5",
+              "committed_revision": 3,
+              "changed_fact_names": [
+                "widget_definition"
+              ],
+              "context_changed": false,
+              "invalidated_checks": [],
+              "preparation": "structured",
+              "replayed": false
+            },
+            "pending": null,
+            "log": [
+              {
+                "role": "user",
+                "text": "The app uses Streamlit 1.50.0 and the widget resets."
+              },
+              {
+                "role": "system",
+                "text": "The run stopped (error: KnownFactMarkedMissing). Nothing was proposed."
+              },
+              {
+                "role": "user",
+                "text": "Correction: the installed version is 1.49.1."
+              },
+              {
+                "role": "system",
+                "text": "The run stopped (error: KnownFactMarkedMissing). Nothing was proposed."
+              },
+              {
+                "role": "user",
+                "text": "Here is the widget's key and code."
+              },
+              {
+                "role": "system",
+                "text": "The run stopped (error: KnownFactMarkedMissing). Nothing was proposed."
+              }
+            ],
+            "decisions": [],
+            "review": null,
+            "actions": [],
+            "run_outcome": {
+              "status": "core_stopped",
+              "error_code": "KnownFactMarkedMissing",
+              "result": {
+                "run_id": "ed4a6e19-fb11-49e3-b982-bbea8a0ce552",
+                "case_id": "offline-comparison-sample",
+                "case_revision": 3,
+                "status": "error",
+                "analysis": null,
+                "model_attempts": 1,
+                "retrieval_rounds": 1,
+                "steps": 3,
+                "error_code": "KnownFactMarkedMissing",
+                "trace": [
+                  {
+                    "stage": "started",
+                    "message": "Loaded the supplied case snapshot."
+                  },
+                  {
+                    "stage": "retrieval",
+                    "message": "Searching 1 query or queries."
+                  },
+                  {
+                    "stage": "evidence_received",
+                    "message": "Received 1 evidence chunks."
+                  },
+                  {
+                    "stage": "reasoning",
+                    "message": "Requesting a structured decision."
+                  },
+                  {
+                    "stage": "stopped",
+                    "message": "KnownFactMarkedMissing"
+                  }
+                ],
+                "output_issues": []
+              }
+            },
+            "mode": "synthetic_offline_sqlite",
+            "tracker_backend": "sqlite_case_tracker",
+            "retrieval_label": "scripted",
+            "reasoning_label": "scripted",
+            "quality_claim": false
+          }
+        }
+      ],
+      "imports_bound_to_snapshot": true,
+      "fresh_worker_origin_guard_installed": true,
+      "network_scope": "numeric_loopback_only; fixture/worker offline_network guards retained"
+    },
+    "current": {
+      "source_commit": "090c1e5126920c1d3885c62e0fd5b0142eb9d1e2",
+      "source_matches_git_commit": true,
+      "source_sha256": {
+        "src/agent_app/__init__.py": "651500e6469bef4ff31cda0ac90dd20cfebd2d9d9fe4bf99025c2b385598f86f",
+        "src/agent_app/api.py": "e1a89d3d35b59059a80bb960031604a4c8aa86fd3690351cb13be02251e7c183",
+        "src/agent_app/cli.py": "b66386e6b4ba288211cecf8c6aa5957599132a97150126eb1ed815f37c2ddae4",
+        "src/agent_app/contracts.py": "1dcf0de657f3442dfb5e787e6243a9a279501305033e592cbcd060dd808d0a91",
+        "src/agent_app/demo.py": "3128a85ca44809ff75234ebe982beafcd1d6c35d6f3bf3a37b093b67c33092b4",
+        "src/agent_app/evaluation/__init__.py": "b8f1e93a3c5528cd48abc8e4690b6d67c3838c9ad1e595c7990bc11c2a763793",
+        "src/agent_app/evaluation/live.py": "f5513a71987fcfebdff5b09315e3b8fb027fcd0d33805db2e59e55d256c01432",
+        "src/agent_app/evaluation/pilot.py": "426e95b286e63ca082bf04ddc69fe783bfbb98dfd3e3c9c919b74bba21927d9f",
+        "src/agent_app/evaluation/preflight.py": "ba9cd68d710bfd235333f27186d516e8d135e63ad1c96cfe5609a6e77e257052",
+        "src/agent_app/evaluation/routes.py": "25f664dd22d8dbaca70250db3830c7e994d6b9ee12c7b6443ae82d2098ba8e40",
+        "src/agent_app/evaluation/runner.py": "83c6b2a93329a9ae030d9321e57072669e548272cd87075034a8cfde3821d1f2",
+        "src/agent_app/evaluation/semantic_review.py": "d83b8e33605cbdd3494b681a1eedb8b4dd348341ff32355b46c817b09b72935b",
+        "src/agent_app/live_backend.py": "276f8b8574e0bb3d78497e2b7b880eac84eacbe3ccd527c1a5fbfa1e99e07c4e",
+        "src/agent_app/llm/budget.py": "2e29e3dc2a922f904e2138abef7e8e984468cbf9eb6bef8b9736cd496a723d43",
+        "src/agent_app/llm/config.py": "8ecafef7f2d6f8f2b5e88184e57f84737461b66600b56874c0ea8e8c107e187e",
+        "src/agent_app/llm/demo.py": "4b5463e03078ff8c19e758ed8282de146538018721d6e5e9f902727c3c71908e",
+        "src/agent_app/llm/grounded.py": "24baef8e95ee2795ac83436eb6ef6046b2781a225330689a2f5c3ffafe4cdaa6",
+        "src/agent_app/llm/metis.py": "9950a4e36b7a04fd74e4decb110cd58c3d3acba45af073ce30c53983a8fd6076",
+        "src/agent_app/llm/pricing.py": "39993b673465401e0926584d3007b8967a1eb4eaad4d377b32324c60d619ec07",
+        "src/agent_app/offline_backend.py": "44c61713791092d23be43676e888e4dbd58aae4f84650d37289b0758e65dcad6",
+        "src/agent_app/orchestration/__init__.py": "5f24d76c2b832898b13d219710c1a4c10b1969d3502fb131847cc871a2f24a07",
+        "src/agent_app/orchestration/conversation.py": "a9d3954ab2fdbbd083329e59e8c5511f5cc005375e4fc39747a61756aa51e3f1",
+        "src/agent_app/orchestration/engine.py": "48bdb2ba2952614b0446d5384b9e62550c20909e566374818d1c1b5a14efa947",
+        "src/agent_app/orchestration/handoff.py": "5e438a829035c0969361f25865c2327554dbb94b0186a60b4196047fa04a7086",
+        "src/agent_app/orchestration/intake.py": "a1208ec535fd022d3d20f6847a0a6f21af0d3c42fc75a078e925301397c970b4",
+        "src/agent_app/orchestration/ports.py": "2ef106155234f762832aff658602a5177bf946908b24fde3bc69129076bbbeb2",
+        "src/agent_app/orchestration/retrieval_context.py": "b5133c15368e3383a42da4a401dd6f39461d4f3040f64f35965304806c8dc5fb",
+        "src/agent_app/orchestration/service.py": "c3a53561a48c3c703b88163e902ddc5870e2a246b8563f38cc7e2b9cae09eee6",
+        "src/agent_app/orchestration/turns.py": "17970a95710dc8351d14f36cc6dfbdf3308231a627fd710b64dee119908eace7",
+        "src/agent_app/orchestration/validation.py": "2debe663263680238268d5034c7e80fe5533b4f66c535d5bf0b4e072835d7f6e",
+        "src/agent_app/persistent_api.py": "1eab2d60a28f4543c0752092502b37d905a66b6f00ca5aa4828ed60b5d8c5c56",
+        "src/agent_app/reasoning/__init__.py": "12233e742809b1a2fffedccf658feca51ab510795da80d210fb8328c009f031f",
+        "src/agent_app/reasoning/ablations.py": "72436d983fcde9668583a07662aa5b04952fee0b60d0c908b911e439d4ac5d5f",
+        "src/agent_app/reasoning/catalog.py": "dfd7b091cc9f732e5efdedbc04f320d83cd45295665ad1c6716693def10e4009",
+        "src/agent_app/reasoning/code_checks.py": "f3f1efb9962b88d3a51587dcfe73296cbdcbecedc82dacec85faf7cfa7b92ba7",
+        "src/agent_app/reasoning/controlled_experiments.py": "161dc621520fc619c93755138d7c1187d3b09393da2face8caea3a6f5e2e13b9",
+        "src/agent_app/reasoning/experiments.py": "d0fc8bf3f94b0e4c99648f5ee99e7e2ed2191eabdbbc7f5110f7e7c2a2391103",
+        "src/agent_app/reasoning/fidelity_experiments.py": "f41b6d0e2b96ad293b244ef249970a9b6d24382e4384d2dee4d5fa6d171fcdfe",
+        "src/agent_app/reasoning/grounding.py": "11a80ca5c8f8485433d6bf4cd48339abd4f2f98cf0ecd268d0a2ec0e97502c55",
+        "src/agent_app/reasoning/grounding_experiments.py": "ff7a217e12182d04470339bb9f793e0194fa05bf53fa2babdb9cce809c44d9d3",
+        "src/agent_app/reasoning/output.py": "81d7c60c1dc09f0ab7d9badd6d4dbaf405439a399506333a3e6b7dec9ca6874c",
+        "src/agent_app/reasoning/probes.py": "10ddb452c81cec3a7e8b93e937e5efcd5166c81ace0f36bf1c062b4498b9f185",
+        "src/agent_app/reasoning/prompts.py": "0bc7b83422eee46f9a598415ea3921281a451da1780db080f091818e3a79329b",
+        "src/agent_app/reasoning/proposal_checks.py": "aaa8b3bcb51992f23189a76749a747fa6b10528f3f11af806b067fe67d923464",
+        "src/agent_app/reasoning/quality_experiments.py": "4eecf613b71981b4aeb2c35efc81c5f1520edb304a106b60561b166e1e067269",
+        "src/agent_app/reasoning/review.py": "77e34b93445faf1dc6e6e7a2252971305a5d1ea3f4b7dc6713e44daf32804e14",
+        "src/agent_app/reasoning/semantic_regressions.py": "13c3ab82e66fab43bce186c086b8fea00049da7e083cbaad6c1c3393ea00c8ea",
+        "src/agent_app/retrieval/adapter.py": "3752fe760c9fb71a6cd05014a6ab870d53a652a56e2c972425e71c7d9c417c2f",
+        "src/agent_app/retrieval/offline_index.py": "def8f56afdeadd714c8891779e627da5d89ea276086bf232c135e64ff8967414",
+        "src/agent_app/retrieval/pilot_corpus.py": "dd9317632c2ccdd387aa3fb13e4cdcab8567def697e958f3d60affa7e35a8693",
+        "src/agent_app/retrieval/retriever.py": "7791e66896296ff0d85ed319ee7eba6238db9516ea04ad2a9f1af6b5f2caebe1",
+        "src/agent_app/testing/__init__.py": "bea37ce669658c22e7d916983693ed47c42a9e35806f4d726643bd1a1f14d8ed",
+        "src/agent_app/testing/chroma_binding.py": "ae23fb6e5ece3c4b198519afa371b581b60d69844d904e89d047c910e5d6e4ba",
+        "src/agent_app/testing/controlled_decision_inputs.py": "5c25b0d02a919da1f482dcfbeee759274a9a879b23ee99e9523e761ffc1ae0eb",
+        "src/agent_app/testing/controlled_model_baseline.py": "fb5d2a57ccf9cdaa8ce4073f745598eba64070898dbf711ce15adce67a984dbd",
+        "src/agent_app/testing/fakes.py": "1e44387ddcbe091f91657ce1236c36f648eb6941d4582fe42a4a37c60f6a80a0",
+        "src/agent_app/testing/grounded_http_acceptance.py": "f145dd71055e93c5b03561b46e7dd048103cf43cc7b7c1c74520347ebd055a3d",
+        "src/agent_app/testing/grounded_http_binding.py": "03726c58ca43dcf5a679c38f859d29443f63f317f47d93205ce2a6016b0788ce",
+        "src/agent_app/testing/http_pilot_acceptance.py": "ea5ff92fd319db247a346ff3dd90c417dccd9b0efb324550c72eaf9f078f97bf",
+        "src/agent_app/testing/http_pilot_runtime.py": "df685c1aa4dc4b666ccc680ba6e5ad552cc48f10f89400d73d9cc11108848464",
+        "src/agent_app/testing/http_pilot_worker.py": "05c73602a500f770ca3f9bddbf568032b44bd46787a8fbc623d44cdd1f42239e",
+        "src/agent_app/testing/retrieval_acceptance.py": "f6b3dfeb894b20341e9483dfd8e644165fa8944cc0329c13126545eba1db7df4",
+        "src/agent_app/testing/retrieval_acceptance_pilot.py": "6bd2a5523bfe299937fe1746df035fcb23adf13362fa80c4cb8d82e524273aa3",
+        "src/agent_app/testing/retrieval_context_live_probe.py": "e510b338a87a0fe4a3ddd2b7e3d8504e9894f929918ec9f40c9c993ec126b467",
+        "src/agent_app/testing/sqlite_http_binding.py": "b933322aeb9db68bc8243b1b47c3e947ada6ad474873e88739adfd6320fda3e6",
+        "src/agent_app/testing/ui_review_acceptance.py": "308bd2d8f9ea525a226a0557e7d2e6e7c3f8ae5fc4586666db2b7ac49be98f92",
+        "src/agent_app/tracker/dummy_tracker.py": "c214d49fcd9033565b19f1d11cef605b7654c6103a64d2bdbfc71a876c6e2e3d",
+        "src/agent_app/tracker/sqlite_tracker.py": "c8d9e75bac2152df68559d85d3ef0c52386cb0d10562b8cb4aae9d987be257e8",
+        "src/agent_app/turn_demo.py": "0985daf2ca881eefc52b4a9694cd5fa91becfa61cd722ef8fb470c865791cad8",
+        "src/agent_app/ui_client.py": "5b4564f4e8b93af7775b2c2fb3fa254f25b5dfae406ac65d3f48fd9de325037e",
+        "app_pages/assistant.py": "28a8d5def09fb785b037d2a0832e400c1dc2a49e37713fd0142a239b5a5dcde1",
+        "app_pages/project_docs.py": "53da03422f1b68ae950f0230ddca13b533b584ce9253d80e6fc308e210beae62",
+        "pyproject.toml": "db235862d1a8c30f7f3eed2aa00f4c68646fe701d3367b02be1a82a6262c2c27",
+        "tests/test_persistent_tcp.py": "384d7eb6884bf7ab59a674baeb006ba5d98aaca821282e9c2013d2b0145992c0"
+      },
+      "test_sha256": {
+        "tests/test_offline_scripted_corrections.py": "a6662383fcc1822c05726c9d0d7c969cc6946330fe48b5cb8deffdc1ecddf185",
+        "tests/test_offline_correction_upgrade.py": "ac0d208797b556adc0ad8fb8ddfc8ee245b4578565253805be3d4cc71c3b5d82",
+        "tests/test_offline_scripted_ui.py": "c114018752afaf26455116b7721ae95b820a1ddb8fbbedf7855fbea68e50761b"
+      },
+      "counts": {
+        "passed": 19,
+        "failed": 0,
+        "error": 0,
+        "skipped": 0,
+        "not_run": 0
+      },
+      "pytest_exit_code": 0,
+      "test_outcomes": [
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_approved_bare_version_correction_replay_case_isolation_and_review_restart",
+          "status": "passed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_known_version_on_first_turn_asks_only_for_widget[streamlit_version]",
+          "status": "passed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_known_version_on_first_turn_asks_only_for_widget[STREAMLIT_VERSION]",
+          "status": "passed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_both_user_facts_known_escalates_without_reasking_or_inventing_answer[names0]",
+          "status": "passed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_both_user_facts_known_escalates_without_reasking_or_inventing_answer[names1]",
+          "status": "passed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_version_only_scenario_does_not_introduce_widget_question_when_version_known",
+          "status": "passed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_version_withdrawal_restores_question_and_keeps_other_user_fact",
+          "status": "passed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_only_active_user_provenance_suppresses_scripted_gap[streamlit_version-evidence-active-version]",
+          "status": "passed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_only_active_user_provenance_suppresses_scripted_gap[streamlit_version-user-superseded-version]",
+          "status": "passed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_only_active_user_provenance_suppresses_scripted_gap[widget_definition-evidence-active-widget]",
+          "status": "passed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_only_active_user_provenance_suppresses_scripted_gap[widget_definition-user-superseded-widget]",
+          "status": "passed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_other_explicit_offline_scenarios_keep_existing_scripts[answer-answer-1-1]",
+          "status": "passed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_other_explicit_offline_scenarios_keep_existing_scripts[refine-answer-2-2]",
+          "status": "passed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_other_explicit_offline_scenarios_keep_existing_scripts[escalate-escalate-1-1]",
+          "status": "passed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_other_explicit_offline_scenarios_keep_existing_scripts[error-None-0-1]",
+          "status": "passed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_corrections.py::test_legacy_scripted_ports_still_trigger_core_known_fact_guard",
+          "status": "passed"
+        },
+        {
+          "node_id": "tests/test_offline_correction_upgrade.py::test_failed_legacy_event_is_replayed_after_upgrade_and_new_turn_continues",
+          "status": "passed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_ui.py::test_no_index_app_page_follows_user_facts_and_retries_exact_review_after_recreation",
+          "status": "passed"
+        },
+        {
+          "node_id": "tests/test_offline_scripted_ui.py::test_no_index_canonical_reply_and_review_retry_survive_fresh_tcp_processes",
+          "status": "passed"
+        }
+      ],
+      "sample_http_views": [
+        {
+          "original_event": {
+            "message": "The app uses Streamlit 1.50.0 and the widget resets.",
+            "turn_id": "sample-known",
+            "expected_revision": 0,
+            "scenario": "ask",
+            "reported_facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.50.0"
+              }
+            ]
+          },
+          "http_status": 200,
+          "view": {
+            "case_id": "offline-comparison-sample",
+            "case_revision": 1,
+            "status": "awaiting_review",
+            "facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.50.0",
+                "source_ref": "user:sample-known",
+                "turn_id": "sample-known",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "awaiting_reply": null,
+            "intake": {
+              "case_id": "offline-comparison-sample",
+              "turn_id": "sample-known",
+              "ingress_hash": "1486d270be0c8fa47c8fcd7a23f898e1a816817c1ed87679f71533f2a040cf75",
+              "prepared_hash": "b091cbe99b8096735c0fc0413ccee7f500c284c62647b0220f2ebf1fe78374ec",
+              "committed_revision": 1,
+              "changed_fact_names": [
+                "streamlit_version"
+              ],
+              "context_changed": false,
+              "invalidated_checks": [],
+              "preparation": "structured",
+              "replayed": false
+            },
+            "pending": {
+              "proposal_id": "54730de1-a5bd-4a36-8dd4-441aa8c1bf87",
+              "case_id": "offline-comparison-sample",
+              "case_revision": 1,
+              "decision": "ask",
+              "user_draft": "Can you share the widget's key and code?",
+              "next_question": "Can you share the widget's key and code?",
+              "maintainer_summary": "Scripted pilot: the user has not confirmed widget_definition.",
+              "rationale": "This authored scenario needs the user's current information. Source text and retired facts cannot confirm it.",
+              "missing_info": [
+                "widget_definition"
+              ],
+              "facts_delta": [],
+              "checks_suggested": [],
+              "retrieval_queries": [],
+              "analysis": {
+                "decision": "ask",
+                "user_draft": "Can you share the widget's key and code?",
+                "maintainer_summary": "Scripted pilot: the user has not confirmed widget_definition.",
+                "rationale": "This authored scenario needs the user's current information. Source text and retired facts cannot confirm it.",
+                "evidence_links": [],
+                "missing_info": [
+                  "widget_definition"
+                ],
+                "next_question": "Can you share the widget's key and code?",
+                "retrieval_queries": [],
+                "facts_delta": [],
+                "checks_suggested": []
+              },
+              "review_handoff": {
+                "schema_version": 1,
+                "proposal_id": "54730de1-a5bd-4a36-8dd4-441aa8c1bf87",
+                "case": {
+                  "case_id": "offline-comparison-sample",
+                  "case_revision": 1,
+                  "facts": [
+                    {
+                      "name": "streamlit_version",
+                      "value": "1.50.0",
+                      "source_ref": "user:sample-known",
+                      "turn_id": "sample-known",
+                      "provenance_kind": "user",
+                      "status": "active"
+                    }
+                  ],
+                  "unknowns": [],
+                  "checks_performed": [],
+                  "evidence_refs": [],
+                  "pending_proposal_id": null
+                },
+                "user_message": "The app uses Streamlit 1.50.0 and the widget resets.",
+                "evidence": {
+                  "snapshot_id": "synthetic-demo-v1",
+                  "hits": [
+                    {
+                      "chunk_id": "demo-initial",
+                      "source_id": "synthetic:demo-initial",
+                      "excerpt": "Synthetic background about a Streamlit user session.",
+                      "source_url": "https://example.org/synthetic-demo",
+                      "source_type": "doc",
+                      "source_commit": null,
+                      "applicable_versions": [],
+                      "source_span": "synthetic demonstration; not a real retrieved source",
+                      "score": null,
+                      "score_kind": null
+                    }
+                  ],
+                  "queries_used": [],
+                  "retrieval_round": 1,
+                  "warnings": [
+                    "Synthetic evidence: not a real retrieval or quality evaluation."
+                  ]
+                },
+                "analysis": {
+                  "decision": "ask",
+                  "user_draft": "Can you share the widget's key and code?",
+                  "maintainer_summary": "Scripted pilot: the user has not confirmed widget_definition.",
+                  "rationale": "This authored scenario needs the user's current information. Source text and retired facts cannot confirm it.",
+                  "evidence_links": [],
+                  "missing_info": [
+                    "widget_definition"
+                  ],
+                  "next_question": "Can you share the widget's key and code?",
+                  "retrieval_queries": [],
+                  "facts_delta": [],
+                  "checks_suggested": []
+                },
+                "reasoning_context": {
+                  "run_id": "54730de1-a5bd-4a36-8dd4-441aa8c1bf87",
+                  "case_id": "offline-comparison-sample",
+                  "case_revision": 1,
+                  "attempt_index": 1,
+                  "output_feedback": null,
+                  "remaining_model_attempts": 1,
+                  "remaining_retrieval_rounds": 1,
+                  "can_refine": true,
+                  "query_limit": 2,
+                  "proposal_requirements": null
+                },
+                "grounded_request": null,
+                "source_inventory": [
+                  {
+                    "chunk_id": "demo-initial",
+                    "content_sha256": "2be6b0f3bf7af6f23f49e29fb707732dcf6d9969f34e9f9a0a39f606cbfe7b0f",
+                    "version_scope": "unconfirmed"
+                  }
+                ],
+                "packet": {
+                  "schema_version": 1,
+                  "case_id": "offline-comparison-sample",
+                  "case_revision": 1,
+                  "case_sha256": "d4951781bec3c343617a61444f1337091bf2f91a9e8bfb42e01f42f0aa50b560",
+                  "evidence_sha256": "78ede3b6be56c7a89b50188d46f2e66f3138c90350710f8c5bf3d5e9e17a1b1d",
+                  "analysis_sha256": "e815252c81d9bae38c833ebcabe6b30e34f5c0ff87abcbe5b992bc6288e87aa5",
+                  "surfaces": [
+                    {
+                      "surface_id": "decision",
+                      "text_sha256": "e3115a6b58a16bd1f4aceb9056eb8fdd0922bbdba31a92d0cb80a4a25cb63c9c",
+                      "length": 3
+                    },
+                    {
+                      "surface_id": "user_draft",
+                      "text_sha256": "1fc0effc22b3e313ab87ec5b069f2f37362b25c6903a8c7ad74e127030c7a6d6",
+                      "length": 40
+                    },
+                    {
+                      "surface_id": "maintainer_summary",
+                      "text_sha256": "f204f0fece2779e98c051443d83e6b6b1814eb800bd2636153c3ce209d0d1830",
+                      "length": 61
+                    },
+                    {
+                      "surface_id": "rationale",
+                      "text_sha256": "b975fa963d035f4d2b2ef23988df0ac8fc9c40486a692e378c869302530ccd75",
+                      "length": 109
+                    },
+                    {
+                      "surface_id": "next_question",
+                      "text_sha256": "1fc0effc22b3e313ab87ec5b069f2f37362b25c6903a8c7ad74e127030c7a6d6",
+                      "length": 40
+                    },
+                    {
+                      "surface_id": "missing_info.0",
+                      "text_sha256": "9c1b3263517159400c2adb717a5112e065fd91f098c3c020ca3cabcdf4612cf2",
+                      "length": 17
+                    }
+                  ],
+                  "packet_sha256": "3b6fdf006d5bc8d0c6d8e0ddd8ea437b6d5201898e8bfc0e6282746ad5fea64a"
+                },
+                "handoff_sha256": "cc022413ef278982fc62394d24da9a91e0d9d1b1600593a3a665da1d56a3fe56"
+              },
+              "evidence": [],
+              "warnings": [
+                "Synthetic evidence: not a real retrieval or quality evaluation."
+              ],
+              "model_attempts": 1,
+              "retrieval_rounds": 1,
+              "steps": 4,
+              "edited": false,
+              "synthetic": true,
+              "stale": false
+            },
+            "log": [
+              {
+                "role": "user",
+                "text": "The app uses Streamlit 1.50.0 and the widget resets."
+              }
+            ],
+            "decisions": [],
+            "review": null,
+            "actions": [],
+            "run_outcome": {
+              "status": "proposal_staged",
+              "error_code": null,
+              "result": {
+                "run_id": "54730de1-a5bd-4a36-8dd4-441aa8c1bf87",
+                "case_id": "offline-comparison-sample",
+                "case_revision": 1,
+                "status": "awaiting_approval",
+                "analysis": {
+                  "decision": "ask",
+                  "user_draft": "Can you share the widget's key and code?",
+                  "maintainer_summary": "Scripted pilot: the user has not confirmed widget_definition.",
+                  "rationale": "This authored scenario needs the user's current information. Source text and retired facts cannot confirm it.",
+                  "evidence_links": [],
+                  "missing_info": [
+                    "widget_definition"
+                  ],
+                  "next_question": "Can you share the widget's key and code?",
+                  "retrieval_queries": [],
+                  "facts_delta": [],
+                  "checks_suggested": []
+                },
+                "model_attempts": 1,
+                "retrieval_rounds": 1,
+                "steps": 4,
+                "error_code": null,
+                "trace": [
+                  {
+                    "stage": "started",
+                    "message": "Loaded the supplied case snapshot."
+                  },
+                  {
+                    "stage": "retrieval",
+                    "message": "Searching 1 query or queries."
+                  },
+                  {
+                    "stage": "evidence_received",
+                    "message": "Received 1 evidence chunks."
+                  },
+                  {
+                    "stage": "reasoning",
+                    "message": "Requesting a structured decision."
+                  },
+                  {
+                    "stage": "awaiting_approval",
+                    "message": "Prepared an ask preview."
+                  }
+                ],
+                "output_issues": []
+              }
+            },
+            "mode": "synthetic_offline_sqlite",
+            "tracker_backend": "sqlite_case_tracker",
+            "retrieval_label": "scripted",
+            "reasoning_label": "scripted",
+            "quality_claim": false
+          }
+        },
+        {
+          "original_event": {
+            "message": "Correction: the installed version is 1.49.1.",
+            "turn_id": "sample-correction",
+            "expected_revision": 1,
+            "scenario": "ask",
+            "reported_facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.49.1"
+              }
+            ]
+          },
+          "http_status": 200,
+          "view": {
+            "case_id": "offline-comparison-sample",
+            "case_revision": 2,
+            "status": "awaiting_review",
+            "facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.50.0",
+                "source_ref": "user:sample-known",
+                "turn_id": "sample-known",
+                "provenance_kind": "user",
+                "status": "superseded"
+              },
+              {
+                "name": "streamlit_version",
+                "value": "1.49.1",
+                "source_ref": "user:sample-correction",
+                "turn_id": "sample-correction",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "awaiting_reply": null,
+            "intake": {
+              "case_id": "offline-comparison-sample",
+              "turn_id": "sample-correction",
+              "ingress_hash": "08aad9658cf17613dbbc788badd968fa7f6434f7304ebf946c6d7b2bdf65fdc8",
+              "prepared_hash": "a26735af43ca65108e99a663a0bee3c87a44f0cef2cc7778794a3e7f9c1681ea",
+              "committed_revision": 2,
+              "changed_fact_names": [
+                "streamlit_version"
+              ],
+              "context_changed": true,
+              "invalidated_checks": [],
+              "preparation": "structured",
+              "replayed": false
+            },
+            "pending": {
+              "proposal_id": "eeaf0525-2c81-47b3-8471-e3371c784570",
+              "case_id": "offline-comparison-sample",
+              "case_revision": 2,
+              "decision": "ask",
+              "user_draft": "Can you share the widget's key and code?",
+              "next_question": "Can you share the widget's key and code?",
+              "maintainer_summary": "Scripted pilot: the user has not confirmed widget_definition.",
+              "rationale": "This authored scenario needs the user's current information. Source text and retired facts cannot confirm it.",
+              "missing_info": [
+                "widget_definition"
+              ],
+              "facts_delta": [],
+              "checks_suggested": [],
+              "retrieval_queries": [],
+              "analysis": {
+                "decision": "ask",
+                "user_draft": "Can you share the widget's key and code?",
+                "maintainer_summary": "Scripted pilot: the user has not confirmed widget_definition.",
+                "rationale": "This authored scenario needs the user's current information. Source text and retired facts cannot confirm it.",
+                "evidence_links": [],
+                "missing_info": [
+                  "widget_definition"
+                ],
+                "next_question": "Can you share the widget's key and code?",
+                "retrieval_queries": [],
+                "facts_delta": [],
+                "checks_suggested": []
+              },
+              "review_handoff": {
+                "schema_version": 1,
+                "proposal_id": "eeaf0525-2c81-47b3-8471-e3371c784570",
+                "case": {
+                  "case_id": "offline-comparison-sample",
+                  "case_revision": 2,
+                  "facts": [
+                    {
+                      "name": "streamlit_version",
+                      "value": "1.50.0",
+                      "source_ref": "user:sample-known",
+                      "turn_id": "sample-known",
+                      "provenance_kind": "user",
+                      "status": "superseded"
+                    },
+                    {
+                      "name": "streamlit_version",
+                      "value": "1.49.1",
+                      "source_ref": "user:sample-correction",
+                      "turn_id": "sample-correction",
+                      "provenance_kind": "user",
+                      "status": "active"
+                    }
+                  ],
+                  "unknowns": [],
+                  "checks_performed": [],
+                  "evidence_refs": [],
+                  "pending_proposal_id": null
+                },
+                "user_message": "Original user problem (historical context; not current facts):\nThe app uses Streamlit 1.50.0 and the widget resets.\n\nCurrent facts and unknowns come from the supplied CaseState. Historical context may contain superseded values; it does not update facts or provide source evidence.\n\nLatest user message (exact committed input):\nCorrection: the installed version is 1.49.1.",
+                "evidence": {
+                  "snapshot_id": "synthetic-demo-v1",
+                  "hits": [
+                    {
+                      "chunk_id": "demo-initial",
+                      "source_id": "synthetic:demo-initial",
+                      "excerpt": "Synthetic background about a Streamlit user session.",
+                      "source_url": "https://example.org/synthetic-demo",
+                      "source_type": "doc",
+                      "source_commit": null,
+                      "applicable_versions": [],
+                      "source_span": "synthetic demonstration; not a real retrieved source",
+                      "score": null,
+                      "score_kind": null
+                    }
+                  ],
+                  "queries_used": [],
+                  "retrieval_round": 1,
+                  "warnings": [
+                    "Synthetic evidence: not a real retrieval or quality evaluation."
+                  ]
+                },
+                "analysis": {
+                  "decision": "ask",
+                  "user_draft": "Can you share the widget's key and code?",
+                  "maintainer_summary": "Scripted pilot: the user has not confirmed widget_definition.",
+                  "rationale": "This authored scenario needs the user's current information. Source text and retired facts cannot confirm it.",
+                  "evidence_links": [],
+                  "missing_info": [
+                    "widget_definition"
+                  ],
+                  "next_question": "Can you share the widget's key and code?",
+                  "retrieval_queries": [],
+                  "facts_delta": [],
+                  "checks_suggested": []
+                },
+                "reasoning_context": {
+                  "run_id": "eeaf0525-2c81-47b3-8471-e3371c784570",
+                  "case_id": "offline-comparison-sample",
+                  "case_revision": 2,
+                  "attempt_index": 1,
+                  "output_feedback": null,
+                  "remaining_model_attempts": 1,
+                  "remaining_retrieval_rounds": 1,
+                  "can_refine": true,
+                  "query_limit": 2,
+                  "proposal_requirements": null
+                },
+                "grounded_request": null,
+                "source_inventory": [
+                  {
+                    "chunk_id": "demo-initial",
+                    "content_sha256": "2be6b0f3bf7af6f23f49e29fb707732dcf6d9969f34e9f9a0a39f606cbfe7b0f",
+                    "version_scope": "unconfirmed"
+                  }
+                ],
+                "packet": {
+                  "schema_version": 1,
+                  "case_id": "offline-comparison-sample",
+                  "case_revision": 2,
+                  "case_sha256": "63af2f0c6347898515bb9e12027ebb1a3bfd982f838d931b38408ee743e47fe9",
+                  "evidence_sha256": "78ede3b6be56c7a89b50188d46f2e66f3138c90350710f8c5bf3d5e9e17a1b1d",
+                  "analysis_sha256": "e815252c81d9bae38c833ebcabe6b30e34f5c0ff87abcbe5b992bc6288e87aa5",
+                  "surfaces": [
+                    {
+                      "surface_id": "decision",
+                      "text_sha256": "e3115a6b58a16bd1f4aceb9056eb8fdd0922bbdba31a92d0cb80a4a25cb63c9c",
+                      "length": 3
+                    },
+                    {
+                      "surface_id": "user_draft",
+                      "text_sha256": "1fc0effc22b3e313ab87ec5b069f2f37362b25c6903a8c7ad74e127030c7a6d6",
+                      "length": 40
+                    },
+                    {
+                      "surface_id": "maintainer_summary",
+                      "text_sha256": "f204f0fece2779e98c051443d83e6b6b1814eb800bd2636153c3ce209d0d1830",
+                      "length": 61
+                    },
+                    {
+                      "surface_id": "rationale",
+                      "text_sha256": "b975fa963d035f4d2b2ef23988df0ac8fc9c40486a692e378c869302530ccd75",
+                      "length": 109
+                    },
+                    {
+                      "surface_id": "next_question",
+                      "text_sha256": "1fc0effc22b3e313ab87ec5b069f2f37362b25c6903a8c7ad74e127030c7a6d6",
+                      "length": 40
+                    },
+                    {
+                      "surface_id": "missing_info.0",
+                      "text_sha256": "9c1b3263517159400c2adb717a5112e065fd91f098c3c020ca3cabcdf4612cf2",
+                      "length": 17
+                    }
+                  ],
+                  "packet_sha256": "466006b972a4527ee41775a3bc26198d17fe4e42a767837bb195f079f32bd461"
+                },
+                "handoff_sha256": "059beb484eef403b118219874d1ed2676f09b0efdcccb50bd89947c9542cf934"
+              },
+              "evidence": [],
+              "warnings": [
+                "Synthetic evidence: not a real retrieval or quality evaluation."
+              ],
+              "model_attempts": 1,
+              "retrieval_rounds": 1,
+              "steps": 4,
+              "edited": false,
+              "synthetic": true,
+              "stale": false
+            },
+            "log": [
+              {
+                "role": "user",
+                "text": "The app uses Streamlit 1.50.0 and the widget resets."
+              },
+              {
+                "role": "user",
+                "text": "Correction: the installed version is 1.49.1."
+              }
+            ],
+            "decisions": [],
+            "review": null,
+            "actions": [],
+            "run_outcome": {
+              "status": "proposal_staged",
+              "error_code": null,
+              "result": {
+                "run_id": "eeaf0525-2c81-47b3-8471-e3371c784570",
+                "case_id": "offline-comparison-sample",
+                "case_revision": 2,
+                "status": "awaiting_approval",
+                "analysis": {
+                  "decision": "ask",
+                  "user_draft": "Can you share the widget's key and code?",
+                  "maintainer_summary": "Scripted pilot: the user has not confirmed widget_definition.",
+                  "rationale": "This authored scenario needs the user's current information. Source text and retired facts cannot confirm it.",
+                  "evidence_links": [],
+                  "missing_info": [
+                    "widget_definition"
+                  ],
+                  "next_question": "Can you share the widget's key and code?",
+                  "retrieval_queries": [],
+                  "facts_delta": [],
+                  "checks_suggested": []
+                },
+                "model_attempts": 1,
+                "retrieval_rounds": 1,
+                "steps": 4,
+                "error_code": null,
+                "trace": [
+                  {
+                    "stage": "started",
+                    "message": "Loaded the supplied case snapshot."
+                  },
+                  {
+                    "stage": "retrieval",
+                    "message": "Searching 1 query or queries."
+                  },
+                  {
+                    "stage": "evidence_received",
+                    "message": "Received 1 evidence chunks."
+                  },
+                  {
+                    "stage": "reasoning",
+                    "message": "Requesting a structured decision."
+                  },
+                  {
+                    "stage": "awaiting_approval",
+                    "message": "Prepared an ask preview."
+                  }
+                ],
+                "output_issues": []
+              }
+            },
+            "mode": "synthetic_offline_sqlite",
+            "tracker_backend": "sqlite_case_tracker",
+            "retrieval_label": "scripted",
+            "reasoning_label": "scripted",
+            "quality_claim": false
+          }
+        },
+        {
+          "original_event": {
+            "message": "Here is the widget's key and code.",
+            "turn_id": "sample-widget",
+            "expected_revision": 2,
+            "scenario": "ask",
+            "reported_facts": [
+              {
+                "name": "widget_definition",
+                "value": "st.multiselect('Conversation', ['a'], key='conversation')"
+              }
+            ]
+          },
+          "http_status": 200,
+          "view": {
+            "case_id": "offline-comparison-sample",
+            "case_revision": 3,
+            "status": "awaiting_review",
+            "facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.50.0",
+                "source_ref": "user:sample-known",
+                "turn_id": "sample-known",
+                "provenance_kind": "user",
+                "status": "superseded"
+              },
+              {
+                "name": "streamlit_version",
+                "value": "1.49.1",
+                "source_ref": "user:sample-correction",
+                "turn_id": "sample-correction",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "widget_definition",
+                "value": "st.multiselect('Conversation', ['a'], key='conversation')",
+                "source_ref": "user:sample-widget",
+                "turn_id": "sample-widget",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "awaiting_reply": null,
+            "intake": {
+              "case_id": "offline-comparison-sample",
+              "turn_id": "sample-widget",
+              "ingress_hash": "da06b98a4ae69ae6c2815beb0909e8e48eb95f74e9fc02cba6d47d3554518fe2",
+              "prepared_hash": "47da6a7d4bfc8d4e218d43adeddcae844d1b65bb2a7a92bd380d568086676dc5",
+              "committed_revision": 3,
+              "changed_fact_names": [
+                "widget_definition"
+              ],
+              "context_changed": false,
+              "invalidated_checks": [],
+              "preparation": "structured",
+              "replayed": false
+            },
+            "pending": {
+              "proposal_id": "ed77f243-ca5a-40b1-b604-f3c979e9e66c",
+              "case_id": "offline-comparison-sample",
+              "case_revision": 3,
+              "decision": "escalate",
+              "user_draft": "A maintainer should review this case with relevant documentation.",
+              "next_question": null,
+              "maintainer_summary": "Scripted pilot: its required user facts are confirmed, but the supplied synthetic records do not establish a supported answer.",
+              "rationale": "Insufficient source support requires investigation rather than another user question.",
+              "missing_info": [],
+              "facts_delta": [],
+              "checks_suggested": [],
+              "retrieval_queries": [],
+              "analysis": {
+                "decision": "escalate",
+                "user_draft": "A maintainer should review this case with relevant documentation.",
+                "maintainer_summary": "Scripted pilot: its required user facts are confirmed, but the supplied synthetic records do not establish a supported answer.",
+                "rationale": "Insufficient source support requires investigation rather than another user question.",
+                "evidence_links": [],
+                "missing_info": [],
+                "next_question": null,
+                "retrieval_queries": [],
+                "facts_delta": [],
+                "checks_suggested": []
+              },
+              "review_handoff": {
+                "schema_version": 1,
+                "proposal_id": "ed77f243-ca5a-40b1-b604-f3c979e9e66c",
+                "case": {
+                  "case_id": "offline-comparison-sample",
+                  "case_revision": 3,
+                  "facts": [
+                    {
+                      "name": "streamlit_version",
+                      "value": "1.50.0",
+                      "source_ref": "user:sample-known",
+                      "turn_id": "sample-known",
+                      "provenance_kind": "user",
+                      "status": "superseded"
+                    },
+                    {
+                      "name": "streamlit_version",
+                      "value": "1.49.1",
+                      "source_ref": "user:sample-correction",
+                      "turn_id": "sample-correction",
+                      "provenance_kind": "user",
+                      "status": "active"
+                    },
+                    {
+                      "name": "widget_definition",
+                      "value": "st.multiselect('Conversation', ['a'], key='conversation')",
+                      "source_ref": "user:sample-widget",
+                      "turn_id": "sample-widget",
+                      "provenance_kind": "user",
+                      "status": "active"
+                    }
+                  ],
+                  "unknowns": [],
+                  "checks_performed": [],
+                  "evidence_refs": [],
+                  "pending_proposal_id": null
+                },
+                "user_message": "Original user problem (historical context; not current facts):\nThe app uses Streamlit 1.50.0 and the widget resets.\n\nCurrent facts and unknowns come from the supplied CaseState. Historical context may contain superseded values; it does not update facts or provide source evidence.\n\nPrior user message (historical context; not current facts; event=sample-correction, revision=2):\nCorrection: the installed version is 1.49.1.\n\nLatest user message (exact committed input):\nHere is the widget's key and code.",
+                "evidence": {
+                  "snapshot_id": "synthetic-demo-v1",
+                  "hits": [
+                    {
+                      "chunk_id": "demo-initial",
+                      "source_id": "synthetic:demo-initial",
+                      "excerpt": "Synthetic background about a Streamlit user session.",
+                      "source_url": "https://example.org/synthetic-demo",
+                      "source_type": "doc",
+                      "source_commit": null,
+                      "applicable_versions": [],
+                      "source_span": "synthetic demonstration; not a real retrieved source",
+                      "score": null,
+                      "score_kind": null
+                    }
+                  ],
+                  "queries_used": [],
+                  "retrieval_round": 1,
+                  "warnings": [
+                    "Synthetic evidence: not a real retrieval or quality evaluation."
+                  ]
+                },
+                "analysis": {
+                  "decision": "escalate",
+                  "user_draft": "A maintainer should review this case with relevant documentation.",
+                  "maintainer_summary": "Scripted pilot: its required user facts are confirmed, but the supplied synthetic records do not establish a supported answer.",
+                  "rationale": "Insufficient source support requires investigation rather than another user question.",
+                  "evidence_links": [],
+                  "missing_info": [],
+                  "next_question": null,
+                  "retrieval_queries": [],
+                  "facts_delta": [],
+                  "checks_suggested": []
+                },
+                "reasoning_context": {
+                  "run_id": "ed77f243-ca5a-40b1-b604-f3c979e9e66c",
+                  "case_id": "offline-comparison-sample",
+                  "case_revision": 3,
+                  "attempt_index": 1,
+                  "output_feedback": null,
+                  "remaining_model_attempts": 1,
+                  "remaining_retrieval_rounds": 1,
+                  "can_refine": true,
+                  "query_limit": 2,
+                  "proposal_requirements": null
+                },
+                "grounded_request": null,
+                "source_inventory": [
+                  {
+                    "chunk_id": "demo-initial",
+                    "content_sha256": "2be6b0f3bf7af6f23f49e29fb707732dcf6d9969f34e9f9a0a39f606cbfe7b0f",
+                    "version_scope": "unconfirmed"
+                  }
+                ],
+                "packet": {
+                  "schema_version": 1,
+                  "case_id": "offline-comparison-sample",
+                  "case_revision": 3,
+                  "case_sha256": "87b17eeffb968f016b04f044f78c72c0563ef65433218c5d837618c98efc0f38",
+                  "evidence_sha256": "78ede3b6be56c7a89b50188d46f2e66f3138c90350710f8c5bf3d5e9e17a1b1d",
+                  "analysis_sha256": "314a9389167db392c8b6d510b4d92b16aa5b9abbdd635173349eb11472c04e85",
+                  "surfaces": [
+                    {
+                      "surface_id": "decision",
+                      "text_sha256": "bcbfb80ad9bd8745e8b1ab19b2186bc65e9035594dae208142bfba1c3500b7dd",
+                      "length": 8
+                    },
+                    {
+                      "surface_id": "user_draft",
+                      "text_sha256": "e6671bb533e775f18394b87305ef9b765e2946abad966a7c588a724a98050997",
+                      "length": 65
+                    },
+                    {
+                      "surface_id": "maintainer_summary",
+                      "text_sha256": "bc09134f6f053998381c47854c94f603a4811460526edbebffad256f0687cf3c",
+                      "length": 126
+                    },
+                    {
+                      "surface_id": "rationale",
+                      "text_sha256": "fc281c89d788ba8538d8cb85cd74d112c40b2c12d557c2e7aade4de5da508258",
+                      "length": 85
+                    }
+                  ],
+                  "packet_sha256": "9b913f563e5c53cf04bd832e566c06c3e22ebed5aaf1fe16f433b05f94e26e80"
+                },
+                "handoff_sha256": "d516151058d0413e1906a6bd06688e0dfd120e2cfafc802859707c412d85ba67"
+              },
+              "evidence": [],
+              "warnings": [
+                "Synthetic evidence: not a real retrieval or quality evaluation."
+              ],
+              "model_attempts": 1,
+              "retrieval_rounds": 1,
+              "steps": 4,
+              "edited": false,
+              "synthetic": true,
+              "stale": false
+            },
+            "log": [
+              {
+                "role": "user",
+                "text": "The app uses Streamlit 1.50.0 and the widget resets."
+              },
+              {
+                "role": "user",
+                "text": "Correction: the installed version is 1.49.1."
+              },
+              {
+                "role": "user",
+                "text": "Here is the widget's key and code."
+              }
+            ],
+            "decisions": [],
+            "review": null,
+            "actions": [],
+            "run_outcome": {
+              "status": "proposal_staged",
+              "error_code": null,
+              "result": {
+                "run_id": "ed77f243-ca5a-40b1-b604-f3c979e9e66c",
+                "case_id": "offline-comparison-sample",
+                "case_revision": 3,
+                "status": "awaiting_approval",
+                "analysis": {
+                  "decision": "escalate",
+                  "user_draft": "A maintainer should review this case with relevant documentation.",
+                  "maintainer_summary": "Scripted pilot: its required user facts are confirmed, but the supplied synthetic records do not establish a supported answer.",
+                  "rationale": "Insufficient source support requires investigation rather than another user question.",
+                  "evidence_links": [],
+                  "missing_info": [],
+                  "next_question": null,
+                  "retrieval_queries": [],
+                  "facts_delta": [],
+                  "checks_suggested": []
+                },
+                "model_attempts": 1,
+                "retrieval_rounds": 1,
+                "steps": 4,
+                "error_code": null,
+                "trace": [
+                  {
+                    "stage": "started",
+                    "message": "Loaded the supplied case snapshot."
+                  },
+                  {
+                    "stage": "retrieval",
+                    "message": "Searching 1 query or queries."
+                  },
+                  {
+                    "stage": "evidence_received",
+                    "message": "Received 1 evidence chunks."
+                  },
+                  {
+                    "stage": "reasoning",
+                    "message": "Requesting a structured decision."
+                  },
+                  {
+                    "stage": "awaiting_approval",
+                    "message": "Prepared an escalate preview."
+                  }
+                ],
+                "output_issues": []
+              }
+            },
+            "mode": "synthetic_offline_sqlite",
+            "tracker_backend": "sqlite_case_tracker",
+            "retrieval_label": "scripted",
+            "reasoning_label": "scripted",
+            "quality_claim": false
+          }
+        }
+      ],
+      "imports_bound_to_snapshot": true,
+      "fresh_worker_origin_guard_installed": true,
+      "network_scope": "numeric_loopback_only; fixture/worker offline_network guards retained"
+    }
+  }
+}

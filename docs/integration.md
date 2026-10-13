@@ -68,6 +68,13 @@ outer engine cleanup preserves the final captured frame. Ports/contracts are
 unchanged, default catalogs do not detect conflicts, and the registered 14-control
 comparison plus 25 boundary/5 HTTP tests are offline policy evidence.
 
+The [current-fact scripted pilot](offline-scripted-corrections.fa.md) selects
+questions from active user facts in the opt-in no-index SQLite backend. Version
+confirmation leads to a widget-only question, then source-shortage escalation.
+Canonical version replies still require the exact approved question; widget
+details use the existing structured facts form. Recorded failed ingress events
+remain immutable on replay; send a fresh turn to continue after an upgrade.
+
 The core-owned [CoreTurnService](core-turn-service.fa.md) now composes the existing
 tracker port with lazy per-run adapters and full handoffs. Use it for persistent
 ingress rather than copying test-harness policy into the API. C2d now supplies
