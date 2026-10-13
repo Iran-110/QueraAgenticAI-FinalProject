@@ -79,7 +79,7 @@ AppTest واقعی، سه process تازهٔ TCP، correction، canonical reply 
 
 مجموع suite محلی **۲۸۶۰ تست** در 111.83s، Ruff روی ۲۰۷ فایل، سه demo با lock
 و پذیرش جداگانهٔ HTTP/SQLite **۴۵۷/۴۵۷** همراه restart پاس‌اند. runtime/test
-bytes این بررسی‌ها با `090c1e5` یکسان‌اند؛ وجود harness ثبت‌نشده هنگام اجرا
+bytes این بررسی‌ها با `090c1e5` یکسان‌اند؛ وجود harness ثبت‌نشده یا ویرایش‌شده هنگام اجرا
 به معنی receipt یک Git کاملاً clean نیست. CI انتشار جدا بررسی می‌شود.
 این نوبت مدل، index یا ledger واقعی را اجرا نکرده و هزینهٔ API صفر بوده است.
 legacy API، scriptهای صریح دیگر، guard هسته، مسیر indexed/GroundedPlan/live و
