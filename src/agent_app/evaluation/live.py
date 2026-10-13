@@ -30,7 +30,7 @@ from agent_app.llm.grounded import MetisGroundedPlanner
 from agent_app.llm.metis import request_id_for
 from agent_app.llm.pricing import get_price, same_verified_price
 from agent_app.orchestration.ports import ReasoningStopCode, ReasoningStopped
-from agent_app.reasoning.catalog import caller_catalog, validate_user_gaps
+from agent_app.reasoning.catalog import caller_catalog, load_user_gap_vocabulary, validate_user_gaps
 from agent_app.reasoning.grounding import GroundedReasoner, build_grounded_messages
 from agent_app.retrieval.adapter import ChromaRetrieverAdapter
 from agent_app.retrieval.offline_index import open_verified_index
@@ -427,6 +427,11 @@ def configured_factory(values: Mapping[str, str]) -> LiveEvaluationAdapters:
         snapshot = values["AGENT_EVAL_SNAPSHOT"]
         manifest = values["AGENT_EVAL_MANIFEST_SHA256"]
         _verified_index(index_path, snapshot, manifest)
+        user_gaps = (
+            load_user_gap_vocabulary(values["AGENT_USER_GAP_CATALOG"])
+            if "AGENT_USER_GAP_CATALOG" in values
+            else ()
+        )
         prepared = MetisConfig(
             api_key="public-placeholder-for-noncredential-config-validation",
             live_enabled=True,
@@ -462,6 +467,7 @@ def configured_factory(values: Mapping[str, str]) -> LiveEvaluationAdapters:
             ledger=ledger,
             config=config,
             top_k=top_k,
+            user_gaps=user_gaps,
         )
     except ValueError as error:
         if str(error) in {

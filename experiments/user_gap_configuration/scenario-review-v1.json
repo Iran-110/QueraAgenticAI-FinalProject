@@ -1,0 +1,634 @@
+{
+  "schema_version": 1,
+  "review_id": "user-gap-configuration-scenario-review-v1",
+  "phase": "registered before production implementation and model execution",
+  "human_reviewed": false,
+  "human_usefulness_score": null,
+  "quality_claim": false,
+  "heldout_claim": false,
+  "independent_final_case_count": 0,
+  "reviewer_only": true,
+  "question_definitions": [
+    {
+      "name": "parent_callback_code",
+      "kind": "user",
+      "description": "The parent selector callback and relevant state mutation lines are absent.",
+      "necessity": "The missing callback path can distinguish application state changes from documented widget behavior.",
+      "question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?"
+    },
+    {
+      "name": "state_update_order",
+      "kind": "user",
+      "description": "The execution order of state updates and multiselect construction is absent.",
+      "necessity": "The order can change which stored value exists when the failing widget is constructed.",
+      "question": "In the failing full app, in what order do the parent callback, Session State assignments or deletions, and multiselect construction run?"
+    },
+    {
+      "name": "minimal_failing_reproduction",
+      "kind": "user",
+      "description": "The supplied reduced example works; a minimal failing example is unavailable.",
+      "necessity": "An example that actually fails would narrow the unresolved full-app path; the working reduction is already recorded.",
+      "question": "Can you share a minimal example that actually shows the empty-default failure, including the parent selector and its state updates?"
+    }
+  ],
+  "support_rule": "Every material claim on every final surface must be supported by a complete current source excerpt or an active USER fact. Hashes/JSON/source IDs do not prove truth or relevance. Any unsupported claim fails support; incomplete review is unassessed, not success.",
+  "question_rule": "Ask only a necessary user-answerable current gap. Do not repeat known version, Python, prior checks or the working reduction; a missing document is retrieval/maintainer work. Active evidence facts and prose do not confirm user answers.",
+  "operational_rule": "At most two attempts/two retrieval rounds/two queries per round/eight steps. retrieve_more requires actual can_refine. Record reached rounds and incomplete/skipped separately; no scripted planner result is model quality.",
+  "scoring_rule": "Score decision admissibility, whole-output support and necessary/answerable/nonrepeated questions separately; usefulness human score stays null without independent human judgment. Report per condition/stratum/arm, not an all-escalate-friendly sole aggregate.",
+  "conditions": [
+    {
+      "condition_id": "gap-condition-01",
+      "source_condition_id": "controlled-v8-full",
+      "stratum": "ambiguous",
+      "known_user_facts": [
+        {
+          "name": "streamlit_version",
+          "value": "1.50.0",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "python_version",
+          "value": "3.12.9",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Chrome",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_widget_context",
+          "value": "A multiselect inside @st.fragment",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_trigger",
+          "value": "Changing a parent selector resets session state",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_observation",
+          "value": "The multiselect displays empty rather than its saved default",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_reproduction_status",
+          "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_prior_version_behavior",
+          "value": "The reporter says the same full-app logic worked in 1.49.1",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "reported_checks": [
+        "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+      ],
+      "missing_user_information": [
+        "parent_callback_code",
+        "state_update_order",
+        "minimal_failing_reproduction"
+      ],
+      "non_user_unknowns": [],
+      "semantic_source_gaps": [
+        {
+          "name": "documentation_gap_1",
+          "description": "Exact full-app root cause and a verified fix are not established"
+        }
+      ],
+      "base_runtime_source_gap_names": [],
+      "runtime_source_gap_catalog_is_metadata_coverage_not_semantic_sufficiency": true,
+      "permitted_user_questions": [
+        {
+          "name": "parent_callback_code",
+          "question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+          "why_necessary_and_answerable": "The missing callback path can distinguish application state changes from documented widget behavior."
+        },
+        {
+          "name": "state_update_order",
+          "question": "In the failing full app, in what order do the parent callback, Session State assignments or deletions, and multiselect construction run?",
+          "why_necessary_and_answerable": "The order can change which stored value exists when the failing widget is constructed."
+        },
+        {
+          "name": "minimal_failing_reproduction",
+          "question": "Can you share a minimal example that actually shows the empty-default failure, including the parent selector and its state updates?",
+          "why_necessary_and_answerable": "An example that actually fails would narrow the unresolved full-app path; the working reduction is already recorded."
+        }
+      ],
+      "acceptable_first_decisions": [
+        "answer",
+        "ask",
+        "retrieve_more"
+      ],
+      "acceptable_final_decisions_by_retrieval_round": {
+        "1": [
+          "answer",
+          "ask",
+          "escalate"
+        ],
+        "2": [
+          "answer",
+          "ask",
+          "escalate"
+        ]
+      },
+      "answer_and_routing_rule": "A bounded answer may quote supplied official default/fragment/release text with exact scope and preserved full-app uncertainty. It must not infer that the unseen app has the relevant key, that a parameter change caused its failure, or that a proposed change will fix it.",
+      "current_vs_historical_scope": "With all scope, each source retains its exact metadata. A versioned source applies to the current installation only at exact active-user-version metadata match; a mismatch is historical/comparison, unknown user version or unversioned source is unconfirmed. Never infer from source prose or retired user facts.",
+      "refinement_and_freshness_rule": "If retrieve_more is selected, bundle2 repeats the same official pool. This cannot discover new app code or independently verify a fix.",
+      "unacceptable_claims": [
+        "A definite cause or verified fix of the absent full-app code",
+        "A superseded or other-version record presented as current-version proof",
+        "The working reduced example presented as an independently failing reproduction",
+        "The removed release mechanism asserted using only default/fragment excerpts"
+      ],
+      "capacity_probe": "Offline first-eligible authored planner measures available legitimate questions, not actual model choice or user usefulness",
+      "expected_default_question_capacity": [],
+      "expected_configured_question_capacity": [
+        "parent_callback_code",
+        "state_update_order",
+        "minimal_failing_reproduction"
+      ],
+      "human_usefulness_score": null
+    },
+    {
+      "condition_id": "gap-condition-02",
+      "source_condition_id": "controlled-v8-key-evidence-removed",
+      "stratum": "ambiguous",
+      "known_user_facts": [
+        {
+          "name": "streamlit_version",
+          "value": "1.50.0",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "python_version",
+          "value": "3.12.9",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Chrome",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_widget_context",
+          "value": "A multiselect inside @st.fragment",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_trigger",
+          "value": "Changing a parent selector resets session state",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_observation",
+          "value": "The multiselect displays empty rather than its saved default",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_reproduction_status",
+          "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_prior_version_behavior",
+          "value": "The reporter says the same full-app logic worked in 1.49.1",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "reported_checks": [
+        "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+      ],
+      "missing_user_information": [
+        "parent_callback_code",
+        "state_update_order",
+        "minimal_failing_reproduction"
+      ],
+      "non_user_unknowns": [],
+      "semantic_source_gaps": [
+        {
+          "name": "documentation_gap_1",
+          "description": "The key-identity release-mechanism evidence is deliberately removed"
+        },
+        {
+          "name": "documentation_gap_2",
+          "description": "Exact full-app cause and verified fix remain absent"
+        }
+      ],
+      "base_runtime_source_gap_names": [],
+      "runtime_source_gap_catalog_is_metadata_coverage_not_semantic_sufficiency": true,
+      "permitted_user_questions": [
+        {
+          "name": "parent_callback_code",
+          "question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+          "why_necessary_and_answerable": "The missing callback path can distinguish application state changes from documented widget behavior."
+        },
+        {
+          "name": "state_update_order",
+          "question": "In the failing full app, in what order do the parent callback, Session State assignments or deletions, and multiselect construction run?",
+          "why_necessary_and_answerable": "The order can change which stored value exists when the failing widget is constructed."
+        },
+        {
+          "name": "minimal_failing_reproduction",
+          "question": "Can you share a minimal example that actually shows the empty-default failure, including the parent selector and its state updates?",
+          "why_necessary_and_answerable": "An example that actually fails would narrow the unresolved full-app path; the working reduction is already recorded."
+        }
+      ],
+      "acceptable_first_decisions": [
+        "retrieve_more",
+        "ask",
+        "escalate"
+      ],
+      "acceptable_final_decisions_by_retrieval_round": {
+        "1": [
+          "ask",
+          "escalate"
+        ],
+        "2": [
+          "ask",
+          "escalate"
+        ]
+      },
+      "answer_and_routing_rule": "Desired final routing is ask or escalate. A pure exact quotation can be content-safe yet fail this condition's decision-admissibility criterion; it is not a supported next-step answer about the missing mechanism or full-app cause.",
+      "current_vs_historical_scope": "With all scope, each source retains its exact metadata. A versioned source applies to the current installation only at exact active-user-version metadata match; a mismatch is historical/comparison, unknown user version or unversioned source is unconfirmed. Never infer from source prose or retired user facts.",
+      "refinement_and_freshness_rule": "A targeted documentation retrieval is allowed when context.can_refine is true, but the fixed second pool still lacks the release note. Final output must not recover it from another condition, model memory or an earlier run.",
+      "unacceptable_claims": [
+        "A definite cause or verified fix of the absent full-app code",
+        "A superseded or other-version record presented as current-version proof",
+        "The working reduced example presented as an independently failing reproduction",
+        "The removed release mechanism asserted using only default/fragment excerpts"
+      ],
+      "capacity_probe": "Offline first-eligible authored planner measures available legitimate questions, not actual model choice or user usefulness",
+      "expected_default_question_capacity": [],
+      "expected_configured_question_capacity": [
+        "parent_callback_code",
+        "state_update_order",
+        "minimal_failing_reproduction"
+      ],
+      "human_usefulness_score": null
+    },
+    {
+      "condition_id": "gap-condition-03",
+      "source_condition_id": "controlled-v8-unknown-version-mixed",
+      "stratum": "ambiguous",
+      "known_user_facts": [
+        {
+          "name": "python_version",
+          "value": "3.12.9",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Chrome",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_widget_context",
+          "value": "A multiselect inside @st.fragment",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_trigger",
+          "value": "Changing a parent selector resets session state",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_observation",
+          "value": "The multiselect displays empty rather than its saved default",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_reproduction_status",
+          "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "reported_checks": [
+        "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+      ],
+      "missing_user_information": [
+        "streamlit_version",
+        "parent_callback_code",
+        "state_update_order",
+        "minimal_failing_reproduction"
+      ],
+      "non_user_unknowns": [],
+      "semantic_source_gaps": [
+        {
+          "name": "documentation_gap_1",
+          "description": "Applicability to the unknown installation"
+        },
+        {
+          "name": "documentation_gap_2",
+          "description": "Full-app root cause and verified fix"
+        }
+      ],
+      "base_runtime_source_gap_names": [
+        "exact_version_documentation"
+      ],
+      "runtime_source_gap_catalog_is_metadata_coverage_not_semantic_sufficiency": true,
+      "permitted_user_questions": [
+        {
+          "name": "streamlit_version",
+          "question": "Which Streamlit version is installed in the deployment that shows this problem?",
+          "why_necessary_and_answerable": "Version-specific key identity documentation makes this fact relevant to applicability; the user can inspect the affected package version."
+        },
+        {
+          "name": "parent_callback_code",
+          "question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+          "why_necessary_and_answerable": "The missing callback path can distinguish application state changes from documented widget behavior."
+        },
+        {
+          "name": "state_update_order",
+          "question": "In the failing full app, in what order do the parent callback, Session State assignments or deletions, and multiselect construction run?",
+          "why_necessary_and_answerable": "The order can change which stored value exists when the failing widget is constructed."
+        },
+        {
+          "name": "minimal_failing_reproduction",
+          "question": "Can you share a minimal example that actually shows the empty-default failure, including the parent selector and its state updates?",
+          "why_necessary_and_answerable": "An example that actually fails would narrow the unresolved full-app path; the working reduction is already recorded."
+        }
+      ],
+      "acceptable_first_decisions": [
+        "ask",
+        "retrieve_more"
+      ],
+      "acceptable_final_decisions_by_retrieval_round": {
+        "1": [
+          "ask",
+          "escalate"
+        ],
+        "2": [
+          "ask",
+          "escalate"
+        ]
+      },
+      "answer_and_routing_rule": "Desired final routing is ask or escalate. A documentation comparison may remain safe only as attributed history; it cannot substitute for asking a necessary missing installation/app-code fact.",
+      "current_vs_historical_scope": "With all scope, each source retains its exact metadata. A versioned source applies to the current installation only at exact active-user-version metadata match; a mismatch is historical/comparison, unknown user version or unversioned source is unconfirmed. Never infer from source prose or retired user facts.",
+      "refinement_and_freshness_rule": "Further fixed documentation retrieval cannot discover an installed package version. The version question is particularly decision-relevant, but another registered missing callback/order/failing-example question can also be acceptable; human relative usefulness remains unscored.",
+      "unacceptable_claims": [
+        "A definite cause or verified fix of the absent full-app code",
+        "A superseded or other-version record presented as current-version proof",
+        "The working reduced example presented as an independently failing reproduction",
+        "The removed release mechanism asserted using only default/fragment excerpts"
+      ],
+      "capacity_probe": "Offline first-eligible authored planner measures available legitimate questions, not actual model choice or user usefulness",
+      "expected_default_question_capacity": [
+        "streamlit_version"
+      ],
+      "expected_configured_question_capacity": [
+        "streamlit_version",
+        "parent_callback_code",
+        "state_update_order",
+        "minimal_failing_reproduction"
+      ],
+      "human_usefulness_score": null
+    },
+    {
+      "condition_id": "gap-condition-04",
+      "source_condition_id": "controlled-v8-version-correction",
+      "stratum": "ambiguous",
+      "known_user_facts": [
+        {
+          "name": "python_version",
+          "value": "3.12.9",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Chrome",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_widget_context",
+          "value": "A multiselect inside @st.fragment",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_trigger",
+          "value": "Changing a parent selector resets session state",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_observation",
+          "value": "The multiselect displays empty rather than its saved default",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_reproduction_status",
+          "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_prior_version_behavior",
+          "value": "The reporter says the same full-app logic worked in 1.49.1",
+          "source_ref": "user/issue-12782",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "streamlit_version",
+          "value": "1.49.1",
+          "source_ref": "user/controlled-v8-version-correction",
+          "turn_id": "controlled-v8-correction",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "reported_checks": [
+        "User reports the reduced example still works after correcting the deployment version to 1.49.1"
+      ],
+      "missing_user_information": [
+        "parent_callback_code",
+        "state_update_order",
+        "minimal_failing_reproduction"
+      ],
+      "non_user_unknowns": [
+        "prior_evidence_observation"
+      ],
+      "semantic_source_gaps": [
+        {
+          "name": "documentation_gap_1",
+          "description": "No exact 1.49.1 coverage is supplied; 1.49.0 must not become a silent patch match"
+        },
+        {
+          "name": "documentation_gap_2",
+          "description": "The old 1.50.0 mechanism is not applicable proof for the corrected deployment"
+        }
+      ],
+      "base_runtime_source_gap_names": [
+        "exact_version_documentation"
+      ],
+      "runtime_source_gap_catalog_is_metadata_coverage_not_semantic_sufficiency": true,
+      "permitted_user_questions": [
+        {
+          "name": "parent_callback_code",
+          "question": "Can you paste the parent selector callback and the lines that update or delete selected_conversation and conversation_multiselect before the failing multiselect is rendered?",
+          "why_necessary_and_answerable": "The missing callback path can distinguish application state changes from documented widget behavior."
+        },
+        {
+          "name": "state_update_order",
+          "question": "In the failing full app, in what order do the parent callback, Session State assignments or deletions, and multiselect construction run?",
+          "why_necessary_and_answerable": "The order can change which stored value exists when the failing widget is constructed."
+        },
+        {
+          "name": "minimal_failing_reproduction",
+          "question": "Can you share a minimal example that actually shows the empty-default failure, including the parent selector and its state updates?",
+          "why_necessary_and_answerable": "An example that actually fails would narrow the unresolved full-app path; the working reduction is already recorded."
+        }
+      ],
+      "acceptable_first_decisions": [
+        "ask",
+        "retrieve_more",
+        "answer"
+      ],
+      "acceptable_final_decisions_by_retrieval_round": {
+        "1": [
+          "ask",
+          "escalate",
+          "answer"
+        ],
+        "2": [
+          "ask",
+          "escalate",
+          "answer"
+        ]
+      },
+      "answer_and_routing_rule": "A bounded answer may only present1.50.0 as historical/comparison text and explicitly keep current1.49.1 applicability unresolved. No old mechanism may explain the corrected installation as established fact.",
+      "current_vs_historical_scope": "With all scope, each source retains its exact metadata. A versioned source applies to the current installation only at exact active-user-version metadata match; a mismatch is historical/comparison, unknown user version or unversioned source is unconfirmed. Never infer from source prose or retired user facts.",
+      "refinement_and_freshness_rule": "The fixed second pool again contains only1.50.0 material. Retrieved metadata does not undo the user correction or restore retired prior_evidence_observation.",
+      "unacceptable_claims": [
+        "A definite cause or verified fix of the absent full-app code",
+        "A superseded or other-version record presented as current-version proof",
+        "The working reduced example presented as an independently failing reproduction",
+        "The removed release mechanism asserted using only default/fragment excerpts"
+      ],
+      "capacity_probe": "Offline first-eligible authored planner measures available legitimate questions, not actual model choice or user usefulness",
+      "expected_default_question_capacity": [],
+      "expected_configured_question_capacity": [
+        "parent_callback_code",
+        "state_update_order",
+        "minimal_failing_reproduction"
+      ],
+      "human_usefulness_score": null
+    }
+  ]
+}

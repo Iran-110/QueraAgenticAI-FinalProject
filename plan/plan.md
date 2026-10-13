@@ -1,8 +1,31 @@
 # plan و checklist تیم — Streamlit Support Assistant
 
-به‌روزرسانی: ۲۰۲۶-۱۰-۱۳. این نسخه ادامهٔ plan محمدحسن روی `main` در commit `2ead870` است؛ [نسخهٔ قبلی](archive/plan-before-task-checklist.md) حفظ شده. مبنای regressionهای بازبینی `6131091` بود؛ انتشار tracker با `464e55e` و سپس #21 با `94b60e1` و [CI موفق](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38151154794) ثبت شده‌اند. مبنای baseline تازهٔ C2a همین `94b60e1` است. این فایل برای تقسیم کار و شرط پایان taskهاست؛ روزهای sprint قبلی را تاریخ تحویل حساب نمی‌کنیم. الزام‌ها از صورت اصلی پروژه می‌آیند، نه از ابزارها و frameworkهای پیشنهادی plan.
+به‌روزرسانی: ۲۰۲۶-۱۰-۱۴. این نسخه ادامهٔ plan محمدحسن روی `main` در commit `2ead870` است؛ [نسخهٔ قبلی](archive/plan-before-task-checklist.md) حفظ شده. مبنای regressionهای بازبینی `6131091` بود؛ انتشار tracker با `464e55e` و سپس #21 با `94b60e1` و [CI موفق](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38151154794) ثبت شده‌اند. مبنای baseline تازهٔ C2a همین `94b60e1` است. این فایل برای تقسیم کار و شرط پایان taskهاست؛ روزهای sprint قبلی را تاریخ تحویل حساب نمی‌کنیم. الزام‌ها از صورت اصلی پروژه می‌آیند، نه از ابزارها و frameworkهای پیشنهادی plan.
 
 ## وضعیت فعلی
+
+- [x] **C4c — vocabulary سؤال‌های caller در factory معمول؛ ساسان، محدود آفلاین.**
+  انتشار و CI نهایی در [PR #44](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/44) است.
+  [ثبت قبل از اصلاح](../experiments/user_gap_configuration/protocol-v1.json):
+  ۲۱ کنترل، چهار state از همان خانوادهٔ exposed و سه سؤال بازبینی‌شده.
+  مسیر معمول فقط gap نسخه را داشت؛ تنظیم اختیاری `AGENT_USER_GAP_CATALOG`
+  باید vocabulary موجود را به factory برساند، فقط برای unknown صریح و بدون
+  تکرار fact فعال USER. source catalog، قراردادها و فایل‌های اعضا ثابت‌اند.
+  [مقایسهٔ واقعی Git و review](../experiments/user_gap_configuration/README.md):
+  همان ۲۱ کنترل از ۹ pass/۱۲ fail به ۲۱ pass رسیدند؛ دوازده مورد مربوط به
+  configuration و اتصال HTTP هستند، نه دوازده تصمیم مدل. تست کامل ۲۸۸۱، Ruff
+  روی ۲۱۰ فایل، سه demo و پذیرش HTTP/SQLite ۴۵۷/۴۵۷ همراه restart پاس‌اند.
+  [راهنمای اتصال](../docs/user-gap-configuration.fa.md): unknownها باید صریح در
+  UI/API ثبت شوند؛ vocabulary خودکار کمبود را کشف نمی‌کند. factory بدون تنظیم
+  اضافی همان رفتار قبلی را دارد. source catalog و قراردادها تغییر نکرده‌اند.
+  ledger/halt/grant قبلی محفوظ‌اند؛ pair مدل با remaining grant کامل تأمین
+  نمی‌شود، پس برای این اصلاح اجرای paid انجام نمی‌دهیم.
+
+قدم اتصال محمدحسن: برای dev caseها نام gapهای لازم را در unknowns و جواب‌ها را
+با همان نام در reported_facts ثبت کند؛ vocabulary سؤال‌ها را قبل از اجرای
+مدل review و در config خصوصی freeze کند. فرم UI موجود این ورودی را دارد؛
+نسخهٔ معلوم یا callback دریافت‌شده دوباره پرسیده نشود. این کار جای E1/E2 یا
+rubric و داوری usefulness نیست. task بهنام برای smoke دستی C2h همچنان پابرجاست.
 
 - [x] **C2h — سؤال‌های mock مطابق facts فعلی؛ ساسان، تحویل محدود آفلاین.**
   انتشار و CI نهایی در [PR #42](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/42) است.

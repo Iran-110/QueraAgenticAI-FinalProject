@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "protocol_id": "configured-user-gap-capability-v1",
+  "arm": "baseline",
+  "execution_commit": "999a9d61f66d0a61d6d8de589d29cbc0ffb1dbf6",
+  "production_source_equivalent_to": "43ee9fb0a9b22e2596990551e437946d08c204b5",
+  "worktree_clean_at_baseline": true,
+  "registered_controls": 21,
+  "counts": {
+    "passed": 9,
+    "failed": 12,
+    "error": 0,
+    "skipped": 0
+  },
+  "outcomes": [
+    {
+      "classname": "tests.test_configured_user_gap_catalog",
+      "name": "test_absent_catalog_keeps_empty_vocabulary_and_lazy_public_composition",
+      "outcome": "passed"
+    },
+    {
+      "classname": "tests.test_configured_user_gap_catalog",
+      "name": "test_valid_catalog_reaches_existing_adapters_as_reviewed_user_definitions",
+      "outcome": "failed"
+    },
+    {
+      "classname": "tests.test_configured_user_gap_catalog",
+      "name": "test_invalid_catalog_fails_before_credentials_or_adapter_construction[missing_file]",
+      "outcome": "failed"
+    },
+    {
+      "classname": "tests.test_configured_user_gap_catalog",
+      "name": "test_invalid_catalog_fails_before_credentials_or_adapter_construction[oversized]",
+      "outcome": "failed"
+    },
+    {
+      "classname": "tests.test_configured_user_gap_catalog",
+      "name": "test_invalid_catalog_fails_before_credentials_or_adapter_construction[duplicate_json_key]",
+      "outcome": "failed"
+    },
+    {
+      "classname": "tests.test_configured_user_gap_catalog",
+      "name": "test_invalid_catalog_fails_before_credentials_or_adapter_construction[boolean_schema]",
+      "outcome": "failed"
+    },
+    {
+      "classname": "tests.test_configured_user_gap_catalog",
+      "name": "test_invalid_catalog_fails_before_credentials_or_adapter_construction[unknown_outer_field]",
+      "outcome": "failed"
+    },
+    {
+      "classname": "tests.test_configured_user_gap_catalog",
+      "name": "test_invalid_catalog_fails_before_credentials_or_adapter_construction[source_gap]",
+      "outcome": "failed"
+    },
+    {
+      "classname": "tests.test_configured_user_gap_catalog",
+      "name": "test_invalid_catalog_fails_before_credentials_or_adapter_construction[reserved_name]",
+      "outcome": "failed"
+    },
+    {
+      "classname": "tests.test_configured_user_gap_catalog",
+      "name": "test_invalid_catalog_fails_before_credentials_or_adapter_construction[seven_definitions]",
+      "outcome": "failed"
+    },
+    {
+      "classname": "tests.test_configured_user_gap_catalog",
+      "name": "test_invalid_catalog_fails_before_credentials_or_adapter_construction[non_utf8]",
+      "outcome": "failed"
+    },
+    {
+      "classname": "tests.test_configured_user_gap_catalog",
+      "name": "test_halted_ledger_remains_first_even_when_catalog_is_invalid",
+      "outcome": "passed"
+    },
+    {
+      "classname": "tests.test_configured_user_gap_catalog",
+      "name": "test_loaded_catalog_is_frozen_for_factory_not_reloaded_after_file_changes",
+      "outcome": "failed"
+    },
+    {
+      "classname": "tests.test_configured_user_gap_catalog",
+      "name": "test_frozen_inputs_add_question_capacity_without_changing_current_source_catalog[0]",
+      "outcome": "passed"
+    },
+    {
+      "classname": "tests.test_configured_user_gap_catalog",
+      "name": "test_frozen_inputs_add_question_capacity_without_changing_current_source_catalog[1]",
+      "outcome": "passed"
+    },
+    {
+      "classname": "tests.test_configured_user_gap_catalog",
+      "name": "test_frozen_inputs_add_question_capacity_without_changing_current_source_catalog[2]",
+      "outcome": "passed"
+    },
+    {
+      "classname": "tests.test_configured_user_gap_catalog",
+      "name": "test_frozen_inputs_add_question_capacity_without_changing_current_source_catalog[3]",
+      "outcome": "passed"
+    },
+    {
+      "classname": "tests.test_configured_user_gap_catalog",
+      "name": "test_active_user_callback_fact_suppresses_question_even_if_unknown_name_remains",
+      "outcome": "passed"
+    },
+    {
+      "classname": "tests.test_configured_user_gap_catalog",
+      "name": "test_evidence_fact_does_not_confirm_user_callback_information",
+      "outcome": "passed"
+    },
+    {
+      "classname": "tests.test_configured_user_gap_catalog",
+      "name": "test_prose_cannot_register_question_or_choose_a_different_config_file",
+      "outcome": "passed"
+    },
+    {
+      "classname": "tests.test_user_gap_configuration_http",
+      "name": "test_configured_http_callback_gap_correction_supply_and_sqlite_review_replay",
+      "outcome": "failed"
+    }
+  ],
+  "real_model_requests": 0,
+  "quality_claim": false,
+  "paid_api_cost_usd": "0",
+  "protocol_sha256": "40bce54c03616c9a1016baa4acdc79b484a634deaf2805a29c35b2a83fc73dbc"
+}

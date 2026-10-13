@@ -1,5 +1,10 @@
 # اتصال runner، مدل و review — ۱۳ اکتبر
 
+تنظیم اختیاری تازهٔ [C4c](user-gap-configuration.fa.md)، با
+`AGENT_USER_GAP_CATALOG`، vocabulary بازبینی‌شده را به همین factory معمول
+می‌رساند؛ unknown باید صریح در case ثبت و جواب با همان نام fact شود. فیلتر
+USER فعال، source catalog و halt قبلی حفظ‌اند؛ کنترل آفلاین کیفیت مدل نیست.
+
 این تحویل سهم مستقل ساسان در E3/U3 و helper پیشنهادی E2 است. قراردادهای
 اشتراکی، tracker و adapter حسن عوض نشده‌اند؛ تک agent مبناست. default رابط
 همچنان آفلاین است. case واقعیِ ثبت‌شده هنوز یک dev و صفر test است.
