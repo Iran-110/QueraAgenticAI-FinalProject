@@ -12,7 +12,9 @@ corpus واقعی یا test مستقل نشوند.
 baseline واقعی سه send داشت؛ دو سؤال callback با منابع جاری، یک خطای provider
 و سه condition اجرا‌نشده. [رسید و review جدا](../experiments/controlled_model_baseline/README.md)
 حفظ‌اند. [follow-up یک‌درخواستی](controlled-output-cap-followup.fa.md) با همان
-prompt برای نسخهٔ نامشخص قبل از اجرای تازه ثبت شده؛ نتیجه هنوز باقی است.
+prompt برای نسخهٔ نامشخص روی `07d759f` پس از CI اجرا شد: سؤال نسخهٔ لازم،
+کاربرد منابع تأییدنشده و خروجی کامل. جمع دو اجرای جدا چهار send با هزینهٔ
+تخمینی $0.002845260؛ این تکمیل یک درخواست است، نه کیفیت RAG یا موفقیت test.
 مشکل import مستقیم core در process تازه هم با همان API عمومی اصلاح شده؛
 این تغییر ربطی به علت خطای provider ندارد. نتیجهٔ مدل را با تعداد pytest یا
 mock موفق یکی نگیریم؛ C4 مستقل و کارهای evaluation/corpus هنوز بازند.

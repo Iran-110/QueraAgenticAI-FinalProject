@@ -51,6 +51,12 @@ default dry command is read-only and its explicit mock mode uses disposable
 accounting. Paid execution, if eligible, consumes only the existing designated
 ledger/grant with no tracker staging/action. Teammates should follow the
 [C4 handoff](team-handoff-c4.fa.md) and current plan; ports/contracts are unchanged.
+The [actual result packet](../experiments/controlled_model_baseline/README.md)
+keeps the original incomplete baseline and separate one-send output-cap follow-up.
+Consumed ledger fingerprints prevent repeating these paid runs; `--mock` remains
+available without keys or the production ledger. Public orchestration exports
+now load lazily, preserving class identity and allowing grounding-first imports
+in a fresh interpreter.
 
 The core-owned [CoreTurnService](core-turn-service.fa.md) now composes the existing
 tracker port with lazy per-run adapters and full handoffs. Use it for persistent

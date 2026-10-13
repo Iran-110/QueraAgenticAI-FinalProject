@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source_commit": "07d759fafbc2331c5e912d9edb7a9465dcf3a422",
+  "local_checks": {
+    "locked_sync": true,
+    "pytest": {
+      "command": "uv run pytest",
+      "passed": 2797,
+      "seconds": 110.47
+    },
+    "ruff_check": true,
+    "ruff_format": {
+      "formatted_python_files": 199
+    },
+    "demos": {
+      "demo-followup-refine.json": {
+        "parsed": true,
+        "real_api_calls": 0,
+        "sha256": "3152082f531d318a969eec403b2c6a049624e0306f5b12b4bca2f091f2e981c9"
+      },
+      "demo-followup-gateway.json": {
+        "parsed": true,
+        "real_api_calls": 0,
+        "sha256": "ab882a1d44fee36ea57a35ca73abf3cded82da9e967ed784e091179e3e9b62fe"
+      },
+      "demo-followup-turn.json": {
+        "parsed": true,
+        "real_api_calls": 0,
+        "sha256": "fb344c4c9eea530dfb756c93966c00292620db8df9dc67ebd2c207948da189d5"
+      }
+    },
+    "http_acceptance": {
+      "receipt_sha256": "be986a46f441d75cfe6470eff78a44bca6e0995dc5a1b4c34448bfc1b8bb82c3",
+      "accepted": true,
+      "restart_accepted": true,
+      "checks_passed": 457,
+      "checks_total": 457
+    }
+  },
+  "model_quality_claim": false,
+  "real_rag_quality_claim": false,
+  "heldout_claim": false,
+  "preregistration_ci": {
+    "conclusion": "success",
+    "headSha": "07d759fafbc2331c5e912d9edb7a9465dcf3a422",
+    "jobs": [
+      {
+        "conclusion": "success",
+        "name": "windows-pilot",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "offline-checks",
+        "status": "completed"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38445395851"
+  },
+  "verification_timing": "Local checks of the same code before registration; HTTP acceptance and exact-head branch CI before the one follow-up send. Final receipts/doc-only publication is a later source epoch."
+}

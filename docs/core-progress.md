@@ -7,25 +7,31 @@ This is a factual milestone log, not a daily activity schedule. Update it after 
 The clean pushed `8b16f2c` baseline passed Linux/Windows CI before its three
 actual provider sends. Full/removed evidence each produced a current-source
 parent-callback question; unknown-version stopped with ProviderResponseInvalid,
-and three later conditions were terminal-skipped. New settled estimateUSD0.002005245,
-no new holds; originalUSD0.02 uncertainty/halt intact. Raw registration/receipt
+and three later conditions were terminal-skipped. New settled estimate USD0.002005245,
+no new holds; original USD0.02 uncertainty/halt intact. Raw registration/receipt
 and a separate whole-output assistant review are preserved in the
-[packet](../experiments/controlled_model_baseline/README.md). Output384 equals the
+[packet](../experiments/controlled_model_baseline/README.md). Output 384 equals the
 failed request's cap; the old finish reason was not recorded, so truncation is
 possible rather than established. No decision is scored for missing output.
 
 A new separately preregistered single-send output-cap follow-up preserves the
-unknown condition's first prompt/material/model and original reviewer. Output512,
-inputreserve15360, priced reserveUSD0.002872320 within old continuationremaining
-USD0.002909545; no new grant/reset/unhalt. Its result remains pending. Engine
-limits stay2/2/2/8; a requested second send is stopped rather than silently funded.
+unknown condition's first prompt/material/model and original reviewer. Output 512,
+input reserve 15360, priced reserve USD0.002872320 within old continuation remaining
+USD0.002909545; no new grant/reset/unhalt. After exact-head Linux/Windows CI,
+clean pushed `07d759f` produced one complete version question with all five source
+scopes unconfirmed, 3551 input / 385 output tokens and observed stop finish reason.
+The first messages/material exactly match the original. New estimate USD0.000840015,
+combined 4 sends USD0.002845260; old continuation remaining USD0.00206953. This is
+single-input operational completion 0→1, not causal quality/truncation proof;
+the original baseline remains incomplete with three later controls unobserved.
+Engine limits stay 2/2/2/8; a requested second send is stopped rather than funded.
 
 Independent integration review also reproduced a grounding-first import cycle
 in a fresh interpreter. Lazy public orchestration exports preserve classes/API
 while avoiding eager service/handoff imports through leaf ports. Twelve cold
 subprocess regressions include a complete offline core-to-handoff turn. This
 import fault is unrelated to the recorded provider response error. The new
-complete local suite has2797passes, Ruff199files and three demos pass. Original
+complete local suite has 2797 passes, Ruff (199 files) and three demos pass. Original
 fixtures/protocol/reviewer/prompt and teammate modules are unchanged; C4 on
 independent dev, final evaluation/RAG and C5 stay open.
 

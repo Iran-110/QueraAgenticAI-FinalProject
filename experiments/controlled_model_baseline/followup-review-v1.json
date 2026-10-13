@@ -1,0 +1,316 @@
+{
+  "schema_version": 1,
+  "review_id": "controlled-model-output-cap-followup-result-review-v1",
+  "created_on": "2026-10-13",
+  "phase": "post_execution_sidecar",
+  "experiment_id": "controlled-output-cap-2026-10-13-v1",
+  "reviewer_kind": "assistant_inspection_of_saved_complete_output",
+  "human_reviewed": false,
+  "human_usefulness_score": null,
+  "historical_artifacts_modified": false,
+  "artifact_pins": {
+    "raw_followup_receipt": {
+      "path": "experiments/controlled_model_baseline/output-cap-live-receipt-v1.json",
+      "sha256": "6132de96c1817cb320217935b8b012a7ee4899ff635a61779d41c47f624406db"
+    },
+    "raw_followup_registration": {
+      "path": "experiments/controlled_model_baseline/output-cap-live-registration-v1.json",
+      "sha256": "b0c1986ba4ba045fe14e44d1b1b7e07eaaca9524d5cd67ca015afed6b2b59279"
+    },
+    "followup_protocol": {
+      "path": "experiments/controlled_model_baseline/output-cap-followup-v1.json",
+      "sha256": "33c0d1b5b73faddce7a7688b597568e5979f98c43893a226e1c739c201555758"
+    },
+    "preregistered_reviewer": {
+      "path": "experiments/controlled_model_baseline/scenario-review-v1.json",
+      "sha256": "a49ef39f0c7e5de0ce1cb427dca2074e4976c35cbb2163414c9e38c17a2b9d7e"
+    },
+    "raw_original_baseline_receipt": {
+      "path": "experiments/controlled_model_baseline/baseline-live-receipt-v1.json",
+      "sha256": "4131077ce70bd53195dadf7bda055aa9554700e39579a6a7afa4989ac4adde4b"
+    },
+    "original_baseline_review": {
+      "path": "experiments/controlled_model_baseline/baseline-review-v1.json",
+      "sha256": "8562f8886e9f8c13de82de7d4d17aec0324d2838ff00c729de9de85b6ab603b7"
+    }
+  },
+  "execution_source": {
+    "commit": "07d759fafbc2331c5e912d9edb7a9465dcf3a422",
+    "upstream_commit_at_execution": "07d759fafbc2331c5e912d9edb7a9465dcf3a422",
+    "source_clean_at_registration": true,
+    "source_pushed_at_registration": true,
+    "source_guard_installed": true,
+    "registered_source_unchanged_recorded": true
+  },
+  "scope": {
+    "same_selected_frozen_condition": "controlled-v8-unknown-version-mixed",
+    "runtime_case_id": "c4-condition-03",
+    "issue_family": [
+      12629,
+      12782
+    ],
+    "distinct_issue_families": 1,
+    "correlated_exposed_development_only": true,
+    "answer_informed_source_and_scenario_selection": true,
+    "manual_question_and_conflict_catalog": true,
+    "independent_gap_or_conflict_discovery_measured": false,
+    "real_rag_index_searched": false,
+    "original_six_condition_baseline_not_resumed_or_completed": true,
+    "other_three_terminal_skipped_conditions_not_exercised": true,
+    "corpus_exclusion": "Keep the exposed family issues/duplicates/answers/outcomes, these fixed conditions, authored plans, reviewer files and generated receipts/reviews outside real RAG and independent final test."
+  },
+  "configuration_and_prompt_control": {
+    "same_model": "gpt-4o-mini",
+    "verified_serving_id": "gpt-4o-mini-2024-07-18",
+    "same_raw_user_message_case_source_pool_current_catalog_and_grounded_request": true,
+    "same_first_logical_context_capacity": {
+      "can_refine": true,
+      "remaining_model_attempts": 1,
+      "remaining_retrieval_rounds": 1,
+      "query_limit": 2
+    },
+    "same_response_schema_and_complete_first_model_messages": true,
+    "original_and_followup_prompt_sha256": "706520610e1eea395765bcf306d36f1558d130304309b91856c9a549eea4117c",
+    "original_input_reserve": 16384,
+    "followup_input_reserve": 15360,
+    "original_output_cap": 384,
+    "followup_output_cap": 512,
+    "followup_request_bound_usd": "0.002872320",
+    "followup_batch_cap_usd": "0.002909545",
+    "max_actual_sends": 1,
+    "top_k": 5,
+    "evidence_scope": "all",
+    "engine_limits": {
+      "max_model_attempts": 2,
+      "max_retrieval_rounds": 2,
+      "max_queries_per_round": 2,
+      "max_steps": 8
+    },
+    "configuration_change_interpretation": "A separately preregistered bounded output-resource probe after a closed terminal batch; input reserve is an operational guard and does not change the captured model messages. It is not an automatic retry or a new architecture/prompt-policy evaluation."
+  },
+  "denominators": {
+    "followup_registered_conditions": 1,
+    "followup_started_conditions": 1,
+    "followup_real_provider_sends": 1,
+    "followup_valid_rendered_first_decisions": 1,
+    "followup_final_proposals": 1,
+    "followup_terminal_or_budget_skips": 0,
+    "followup_quote_records_reviewed": 5,
+    "followup_human_usefulness_scored": 0,
+    "original_baseline_registered_conditions": 6,
+    "original_baseline_started_conditions": 3,
+    "original_baseline_final_proposals": 2,
+    "original_baseline_unknown_decision_available": false,
+    "original_baseline_terminal_skips": 3,
+    "new_independent_issue_families": 0,
+    "final_evaluation_cases": 0,
+    "aggregate_quality_success_rate": null,
+    "interpretation": "This probe has1 final proposal out of1 separately registered condition. It does not turn the original baseline into3/3 or6/6 semantic success; the original unavailable unknown output remains unavailable."
+  },
+  "whole_output_review": {
+    "request_id": "call:5143d1179615412633cbefd358431ff8cab96939f197efaed09490b278b5b2f1",
+    "proposal_id": "controlled-controlled-output-cap-2026-10-13-v1-1-649eb7c0",
+    "handoff_sha256": "b35a9983a53f28ea54a1245793477ee3c3aaa95db889d3135ff523ba633900fe",
+    "packet_sha256": "3a3b0146a435a7aec75785f782e621f4217767b7972db6381e56aeb042f709e0",
+    "analysis_sha256": "6f8fcf943f133c859d959f6f8ba61c39497399e807e331f1f364fdfc246dd583",
+    "receipt_analysis_pointer": "/condition_results/0/canonical_handoff/analysis",
+    "reviewer_kind": "assistant",
+    "human_reviewed": false,
+    "surfaces_inspected": [
+      "user_draft",
+      "maintainer_summary",
+      "rationale",
+      "every_evidence_link_claim",
+      "all_five_complete_quotes_and_scopes"
+    ],
+    "all_saved_rendered_surfaces_equal_deterministic_reconstruction": true,
+    "canonical_handoff_validated": true,
+    "first_decision": "ask",
+    "final_decision": "ask",
+    "actual_reached_evidence_round": 1,
+    "first_route_admissible_under_original_preregistered_inventory": true,
+    "final_route_admissible_for_actual_reached_round": true,
+    "question": {
+      "selected_name": "streamlit_version",
+      "text": "Which Streamlit version is installed in the deployment that shows this problem?",
+      "manual_catalog_description": "The installed Streamlit version of the affected deployment is unknown.",
+      "manual_catalog_necessity": "Version-specific key identity documentation makes this fact relevant to applicability; the user can inspect the affected package version.",
+      "registered_kind": "user",
+      "currently_unknown_user_information": true,
+      "known_python_or_other_environment_facts_reasked": false,
+      "user_asked_to_find_or_certify_documentation": false,
+      "assistant_necessity_and_answerability_review": "The affected deployment version is explicitly unknown while current supplied records describe different releases. The user can report its installed package version, which changes applicability and the next step. The question targets that deployment and does not repeat the known Python/browser/OS or ask for the already working reduction.",
+      "independent_question_discovery_demonstrated": false
+    },
+    "current_quoted_sources": [
+      {
+        "chunk_id": "multiselect-149-default-v8",
+        "source_id": "docstring:1.49.0:streamlit.multiselect",
+        "excerpt_sha256": "70e2fbaabda5a1236ab1ea09748746048895ab621d4c234be141be7561581c92",
+        "content_sha256": "4817ecdacfbd571493adc8ddc624552a558a226e4b0a879c209e89f24719c257",
+        "applicable_versions": [
+          "1.49.0"
+        ],
+        "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+        "version_scope": "unconfirmed",
+        "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+        "source_span": "JSON pointer /1.49.0/streamlit.multiselect; default parameter in normalized docstring",
+        "receipt_source_pointer": "/condition_results/0/canonical_handoff/evidence/hits/0",
+        "full_quote_binding_to_supplied_source": true,
+        "source_truth_verified": false
+      },
+      {
+        "chunk_id": "multiselect-149-signature-v8",
+        "source_id": "docstring:1.49.0:streamlit.multiselect",
+        "excerpt_sha256": "e7e63d2406f69ce0783c8c87529f597f1c6f7299b1bc189ce487456d8e1d501f",
+        "content_sha256": "f2970816a526c6f49408b92de827ff8ed82e85f03b9897ef9559baaf7263f014",
+        "applicable_versions": [
+          "1.49.0"
+        ],
+        "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+        "version_scope": "unconfirmed",
+        "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+        "source_span": "JSON pointer /1.49.0/streamlit.multiselect/signature; exact 1.49.0, not 1.49.1 coverage",
+        "receipt_source_pointer": "/condition_results/0/canonical_handoff/evidence/hits/1",
+        "full_quote_binding_to_supplied_source": true,
+        "source_truth_verified": false
+      },
+      {
+        "chunk_id": "multiselect-150-default",
+        "source_id": "docstring:1.50.0:streamlit.multiselect",
+        "excerpt_sha256": "70e2fbaabda5a1236ab1ea09748746048895ab621d4c234be141be7561581c92",
+        "content_sha256": "df43b75982ac76d26297eaf80bb07cfcf282cc75c1c34f04fa9490b9c312c5ba",
+        "applicable_versions": [
+          "1.50.0"
+        ],
+        "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+        "version_scope": "unconfirmed",
+        "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+        "source_span": "JSON pointer /1.50.0/streamlit.multiselect; default parameter in normalized docstring",
+        "receipt_source_pointer": "/condition_results/0/canonical_handoff/evidence/hits/2",
+        "full_quote_binding_to_supplied_source": true,
+        "source_truth_verified": false
+      },
+      {
+        "chunk_id": "release-150-multiselect-key-identity-v8",
+        "source_id": "release-notes:1.50.0:widget-key-identity",
+        "excerpt_sha256": "c734fa9f0259ab2528ad15bdfb99fda5e1372d79aa829919a3023f9d7e5a8154",
+        "content_sha256": "d9defe132d5ac3dbedfa4c76ca763e882a71025d388b772bd816fb4081928f3d",
+        "applicable_versions": [
+          "1.50.0"
+        ],
+        "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+        "version_scope": "unconfirmed",
+        "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md#L123",
+        "source_span": "Markdown lines 123-147: Version 1.50.0, Notable Changes including st.multiselect; release event only, no full-app root cause",
+        "receipt_source_pointer": "/condition_results/0/canonical_handoff/evidence/hits/3",
+        "full_quote_binding_to_supplied_source": true,
+        "source_truth_verified": false
+      },
+      {
+        "chunk_id": "widget-key-identity-history-snapshot-v8",
+        "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+        "excerpt_sha256": "d9aca3c8cbcc20ab01f043e0273307101f17c9ef9b641f15324337f2d0434065",
+        "content_sha256": "d7d0ff722ae0e273e0fd1609233c74315e4b0a01a1589144ecb220dbb8de0efd",
+        "applicable_versions": [],
+        "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+        "version_scope": "unconfirmed",
+        "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md#L29",
+        "source_span": "Markdown lines 29-33: unversioned October 2026 concept snapshot distinguishes progressive rollout; not exact historical app coverage",
+        "receipt_source_pointer": "/condition_results/0/canonical_handoff/evidence/hits/4",
+        "full_quote_binding_to_supplied_source": true,
+        "source_truth_verified": false
+      }
+    ],
+    "source_and_claim_review": {
+      "all_five_quote_ids_content_hashes_and_metadata_bound_to_current_pool": true,
+      "all_five_version_scopes_unconfirmed": true,
+      "different_version_or_unversioned_prose_promoted_to_installed_fact": false,
+      "silent_patch_compatibility_inferred": false,
+      "unsupported_app_cause_fix_regression_execution_or_resolution_claim_observed": false,
+      "fact_delta_or_suggested_execution_checks": false,
+      "source_authenticity_independently_verified": false,
+      "source_truth_verified": false,
+      "semantic_quality_score": null,
+      "human_usefulness_score": null,
+      "limitation": "Quotes are supplied evidence, with applicability explicitly unconfirmed. Identity/hash equality and an appropriate curated question do not establish source truth, a fix, useful resolution or general model quality."
+    },
+    "tracker_staging": false,
+    "proposal_auto_approved": false,
+    "tracker_actions": 0
+  },
+  "output_boundary_observation": {
+    "original_unknown_status": "ProviderResponseInvalid_without_rendered_proposal",
+    "original_completion_tokens": 384,
+    "original_configured_output_cap": 384,
+    "original_finish_reason_recorded": false,
+    "original_finish_reason": null,
+    "followup_completion_tokens": 385,
+    "followup_configured_output_cap": 512,
+    "followup_finish_reason": "stop",
+    "followup_finish_reason_observed": true,
+    "followup_valid_rendered_proposal": true,
+    "operational_final_proposal_availability_before_and_in_new_probe": {
+      "original_selected_condition": 0,
+      "separate_followup": 1
+    },
+    "truncation_hypothesis_possible": true,
+    "truncation_cause_confirmed": false,
+    "original_invalid_grounded_plan_demonstrated": false,
+    "causal_quality_improvement_demonstrated": false,
+    "interpretation": "The new draw stopped normally at385 tokens within a512-token cap and produced a valid question. The old draw hit384 tokens and failed the strict gateway, but its finish reason/raw response was not retained. Stochastic draws and one observation per configuration cannot confirm old truncation or a causal quality improvement."
+  },
+  "public_safe_artifact_audit": {
+    "receipt_and_registration_byte_equal_external_originals": true,
+    "raw_receipt_sha256_matches_expected6132de96": true,
+    "raw_registration_sha256_matches_expectedb0c1986b": true,
+    "embedded_registration_matches_separate_registration": true,
+    "protocol_and_reviewer_hashes_match_registration": true,
+    "same_actual_baseline_prompt_sha_and_grounded_request_checked": true,
+    "request_identity_model_phase_and_token_price_join_checked": true,
+    "credential_or_raw_header_body_field_count": 0,
+    "bearer_credential_marker_present": false,
+    "audit_scope": "Read-only saved artifacts, structural scan and supplied-content binding; no .env/key/provider/account portal/production-ledger access and no general secret-detector or source-authenticity claim."
+  },
+  "accounting": {
+    "accounting_scope": "saved_snapshots_and_exact_new_request_reservation_in_designated_shared_ledger",
+    "new_request_estimated_usd": "0.000840015",
+    "new_settled_estimated_usd": "0.000840015",
+    "shared_ledger_delta_estimated_usd": "0.000840015",
+    "input_tokens": 3551,
+    "output_tokens": 385,
+    "request_bound_usd": "0.00287232",
+    "new_request_accounting_complete": true,
+    "new_reserved_usd": "0",
+    "new_uncertain_usd": "0",
+    "original_uncertain_held_usd": "0.02",
+    "original_quarantine_sha256": "b0fc8ef5f8b8f29fa2df15d9dce1fc5f8d8cbc6fdaf3ae6dfd399c7082b79e54",
+    "original_quarantine_and_unknown_records_preserved": true,
+    "original_global_halt_preserved": true,
+    "global_operational_limit_usd": "4.5",
+    "immutable_old_continuation_id": "user-continuation-2026-10-07-v3",
+    "immutable_continuation_cap_usd": "0.1",
+    "continuation_remaining_before_usd": "0.002909545",
+    "continuation_remaining_after_usd": "0.00206953",
+    "ledger_fingerprint_before_this_probe": {
+      "db": "9f4083d1eec6e3170caa2397975d53bb562c9e79fbe8c279c91f2c369a8caffc",
+      "-wal": null,
+      "-shm": null
+    },
+    "ledger_fingerprint_after_this_probe": {
+      "db": "3886163b9acfb118b41caf145141bdfd434a3e949a4ed37a67ee917d287a2909",
+      "-wal": null,
+      "-shm": null
+    },
+    "actual_account_charge_usd": null,
+    "provider_balance_usd": null,
+    "c5_reconciled": false
+  },
+  "no_retroactive_rescoring": "The original protocol/reviewer/receipt/baseline review retain their original bytes and denominator. This new resource observation is reported separately and does not fill the original missing decision or score its unvisited controls.",
+  "quality_claim": false,
+  "causal_improvement_claim": false,
+  "rag_quality_claim": false,
+  "heldout_claim": false,
+  "final_evaluation_case_count": 0,
+  "c5_reconciled": false
+}
