@@ -1,3 +1,6 @@
 # Generated receipts stay inspectable but do not dominate the default review diff.
 experiments/review_handoff/results-review-handoff-v*.json linguist-generated=true
 experiments/gateway_handoff/results-gateway-handoff-v*.json linguist-generated=true
+
+# The seed manifest pins exact bytes; checkout must not rewrite their line endings.
+streamlit-data-for-dev-test/** -text
