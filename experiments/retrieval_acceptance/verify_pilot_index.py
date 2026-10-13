@@ -9,6 +9,7 @@ import contextlib
 import hashlib
 import io
 import json
+import re
 import subprocess
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -28,11 +29,15 @@ from agent_app.tracker.sqlite_tracker import SQLiteCaseTracker
 from agent_app.ui_client import BackendClient, BackendError
 
 ROOT = Path(__file__).resolve().parents[2]
+PROTOCOL_PATH = ROOT / "experiments/retrieval_acceptance/pr35/protocol-v1.json"
 TOKEN = "synthetic-existing-index-review-credential-for-offline-replay"
 
 
 def release_identity():
-    paths = sorted((ROOT / "src/agent_app").rglob("*.py")) + [Path(__file__).resolve()]
+    paths = sorted((ROOT / "src/agent_app").rglob("*.py")) + [
+        Path(__file__).resolve(),
+        PROTOCOL_PATH,
+    ]
     return {
         "git_commit": subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
@@ -47,6 +52,27 @@ def release_identity():
     }
 
 
+def registered_protocol():
+    raw = PROTOCOL_PATH.read_bytes()
+    protocol = json.loads(raw)
+    if (
+        not isinstance(protocol, dict)
+        or protocol.get("protocol_id") != "pr35-docs-index-review-v1"
+        or not isinstance(protocol.get("expected_snapshot_id"), str)
+        or re.fullmatch(r"docs-pilot-[0-9a-f]{64}", protocol["expected_snapshot_id"]) is None
+        or type(protocol.get("expected_sources")) is not int
+        or protocol["expected_sources"] != 14
+        or type(protocol.get("expected_chunks")) is not int
+        or protocol["expected_chunks"] != 30
+        or protocol.get("quality_claim") is not False
+        or protocol.get("held_out_test") is not False
+        or type(protocol.get("real_provider_requests")) is not int
+        or protocol["real_provider_requests"] != 0
+    ):
+        raise ValueError("PilotIndexAcceptanceRejected")
+    return protocol, hashlib.sha256(raw).hexdigest()
+
+
 def verify(index: Path, rebuild_index: Path) -> dict:
     checks, searches, handoffs = {}, [], []
 
@@ -56,9 +82,14 @@ def verify(index: Path, rebuild_index: Path) -> dict:
             raise ValueError("PilotIndexAcceptanceRejected")
 
     with offline_network(), TemporaryDirectory(prefix="rag-existing-index-replay-") as temporary:
+        protocol, protocol_sha256 = registered_protocol()
         check("distinct_build_paths", index.resolve() != rebuild_index.resolve())
         client, snapshot = open_verified_index(index)
         rebuilt, second_snapshot = open_verified_index(rebuild_index)
+        check(
+            "both_builds_match_registered_snapshot",
+            snapshot == second_snapshot == protocol["expected_snapshot_id"],
+        )
         manifest = client.manifest
         check("rebuild_snapshot_identical", snapshot == second_snapshot)
         check("rebuild_canonical_manifest_identical", manifest == rebuilt.manifest)
@@ -68,7 +99,11 @@ def verify(index: Path, rebuild_index: Path) -> dict:
             (index / MANIFEST_NAME).read_bytes() == (rebuild_index / MANIFEST_NAME).read_bytes(),
         )
         corpus = manifest["corpus"]
-        check("registered_docs_only", len(corpus["sources"]) == 14 and len(corpus["chunks"]) == 30)
+        check(
+            "registered_docs_only",
+            len(corpus["sources"]) == protocol["expected_sources"]
+            and len(corpus["chunks"]) == protocol["expected_chunks"],
+        )
         check(
             "no_issue_comment_membership",
             corpus["exclusions"]["indexed_issue_count"] == 0
@@ -321,6 +356,8 @@ def verify(index: Path, rebuild_index: Path) -> dict:
         rebuilt.verify()
     receipt = {
         "protocol": "existing-docs-pilot-index-acceptance-v1",
+        "registered_protocol_id": protocol["protocol_id"],
+        "registered_protocol_sha256": protocol_sha256,
         "accepted": True,
         "snapshot_id": snapshot,
         "canonical_manifest_sha256": manifest_hash,

@@ -47,7 +47,7 @@ def test_actual_existing_indexes_http_replay_and_scope_are_inspectable(
 ):
     output = tmp_path / "receipt.json"
     assert runner.main(arguments(indexes, output)) == 0
-    receipt = json.loads(output.read_text())
+    receipt = json.loads(output.read_text(encoding="utf-8"))
     assert receipt["accepted"] is True and receipt["checks_passed"] == receipt["checks_total"]
     assert receipt["actual_index_tested"] is True
     assert receipt["actual_provider_requests"] == 0 and receipt["actual_api_cost_usd"] == "0"
@@ -65,7 +65,17 @@ def test_actual_existing_indexes_http_replay_and_scope_are_inspectable(
     assert receipt["checks"]["review_retry_after_backend_recreation"] is True
     assert receipt["source_unchanged_during_run"] is True
     assert len(receipt["release_before"]["git_commit"]) == 40
-    assert runner.TOKEN not in output.read_text()
+    assert runner.TOKEN not in output.read_text(encoding="utf-8")
+    protocol_path = runner.PROTOCOL_PATH.relative_to(ROOT).as_posix()
+    assert receipt["registered_protocol_id"] == "pr35-docs-index-review-v1"
+    assert (
+        receipt["registered_protocol_sha256"]
+        == receipt["release_before"]["source_sha256"][protocol_path]
+    )
+    assert (
+        receipt["registered_protocol_sha256"]
+        == receipt["release_after"]["source_sha256"][protocol_path]
+    )
     assert json.loads(capsys.readouterr().out)["accepted"] is True
 
 
@@ -76,10 +86,10 @@ def test_same_index_cannot_be_reported_as_independent_rebuild(runner, indexes):
 
 def test_real_rebuild_with_changed_split_pin_is_rejected(runner, indexes):
     first, _, _, directory = indexes
-    split = json.loads((ROOT / "data/evaluation/split-manifest.json").read_text())
+    split = json.loads((ROOT / "data/evaluation/split-manifest.json").read_text(encoding="utf-8"))
     split["updated_on"] = "2000-01-01"
     path = directory / "modified-split.json"
-    path.write_text(json.dumps(split))
+    path.write_text(json.dumps(split), encoding="utf-8")
     with offline_network():
         changed = build_pilot_corpus(
             ROOT / "streamlit-data-for-dev-test",
@@ -90,6 +100,53 @@ def test_real_rebuild_with_changed_split_pin_is_rejected(runner, indexes):
         build_index(changed, target)
     with pytest.raises(ValueError, match="^PilotIndexAcceptanceRejected$"):
         runner.verify(first, target)
+
+
+def test_two_matching_altered_split_indexes_fail_before_queries_or_http(
+    runner, tmp_path, monkeypatch
+):
+    split = json.loads((ROOT / "data/evaluation/split-manifest.json").read_text(encoding="utf-8"))
+    split["updated_on"] = "2000-01-02"
+    split_path = tmp_path / "same-altered-split.json"
+    split_path.write_text(json.dumps(split), encoding="utf-8")
+    first, second = tmp_path / "altered-a", tmp_path / "altered-b"
+    with offline_network():
+        altered = build_pilot_corpus(
+            ROOT / "streamlit-data-for-dev-test",
+            split_path,
+            ROOT / "experiments/corpus/pilot-allowlist.json",
+        )
+        assert altered.snapshot_id != runner.registered_protocol()[0]["expected_snapshot_id"]
+        assert build_index(altered, first) == build_index(altered, second)
+    calls = []
+
+    def forbidden(*args, **kwargs):
+        calls.append(True)
+        raise AssertionError("RegisteredGuardMustRunFirst")
+
+    monkeypatch.setattr(runner.StreamlitRetriever, "search", forbidden)
+    monkeypatch.setattr(runner, "configured_app", forbidden)
+    with pytest.raises(ValueError, match="^PilotIndexAcceptanceRejected$"):
+        runner.verify(first, second)
+    assert calls == []
+
+
+def test_unknown_registered_protocol_is_rejected_before_index_open(runner, tmp_path, monkeypatch):
+    protocol = json.loads(runner.PROTOCOL_PATH.read_text(encoding="utf-8"))
+    protocol["protocol_id"] = "unreviewed-protocol"
+    path = tmp_path / "unknown-protocol.json"
+    path.write_text(json.dumps(protocol), encoding="utf-8")
+    monkeypatch.setattr(runner, "PROTOCOL_PATH", path)
+    calls = []
+
+    def forbidden(*args):
+        calls.append(True)
+        raise AssertionError("InvalidProtocolMustRunFirst")
+
+    monkeypatch.setattr(runner, "open_verified_index", forbidden)
+    with pytest.raises(ValueError, match="^PilotIndexAcceptanceRejected$"):
+        runner.verify(tmp_path / "a", tmp_path / "b")
+    assert calls == []
 
 
 def test_well_formed_adapter_material_with_substituted_url_is_not_accepted(
@@ -114,7 +171,10 @@ def test_missing_index_does_not_create_chroma_storage(runner, indexes, tmp_path,
     output = tmp_path / "rejected.json"
     assert runner.main(arguments((absent, indexes[1]), output)) == 1
     assert not absent.exists()
-    assert json.loads(output.read_text())["diagnostic"] == "PilotIndexAcceptanceRejected"
+    assert (
+        json.loads(output.read_text(encoding="utf-8"))["diagnostic"]
+        == "PilotIndexAcceptanceRejected"
+    )
     assert capsys.readouterr().err == ""
 
 
@@ -170,5 +230,5 @@ def test_unexpected_runtime_output_and_exception_are_not_exported(
     monkeypatch.setattr(runner, "verify", private_failure)
     assert runner.main(arguments((tmp_path / "a", tmp_path / "b"), output)) == 1
     streams = capsys.readouterr()
-    assert PRIVATE not in output.read_text() + streams.out + streams.err
-    assert json.loads(output.read_text())["accepted"] is False
+    assert PRIVATE not in output.read_text(encoding="utf-8") + streams.out + streams.err
+    assert json.loads(output.read_text(encoding="utf-8"))["accepted"] is False

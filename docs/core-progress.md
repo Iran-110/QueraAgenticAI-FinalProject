@@ -14,9 +14,11 @@ keep these scopes distinct.
 
 The companion replay explicitly consumes two supplied existing indexes, checks
 actual query/filter forwarding and exact returned material, and exercises the
-existing GroundedPlan mock gateway, HTTP and SQLite. Nine tests reject corrupted
+existing GroundedPlan mock gateway, HTTP and SQLite. Eleven tests reject corrupted
 URLs, substituted physical queries hidden by echoes, ignored filters, missing
-indexes and reused output. Source contracts, RAG implementation and tracker
+indexes and reused output. Matching but unregistered rebuilt snapshots are rejected
+before querying or HTTP; protocol bytes are pinned in both release identities.
+Source contracts, RAG implementation and tracker
 are unchanged. Another three Git tests preserve actual seed bytes across
 autocrlf settings. The no-attributes control reproduces 56 converted newlines
 and a checksum failure; the seed-only byte policy fixes future checkout.
