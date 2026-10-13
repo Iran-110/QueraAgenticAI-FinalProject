@@ -24,6 +24,47 @@ selection, linkage review and final corpus exclusion remain E1/R1/R2 work.
 The complete project targets remain 15 dev,
 15 test and at least 10 multi-turn scenarios, at least five of them in test.
 
+## Candidate reservations and final artifact gate
+
+`candidates/reservations-v1.json` reserves **15 dev / 15 test metadata-only
+candidate components**, not finalized cases. It contains public IDs, links,
+counts, query scopes and review tasks, never held-out questions or answers.
+Reproduce it into a fresh output file:
+`uv run python scripts/propose_evaluation_families.py --output /tmp/candidate-reservations-replay.json`.
+Known development exposure is excluded from test. Link components still need
+true duplicate-family review, prior exposure across all teammates, initial-text
+chronology, strata, source coverage and meaningful conditional turns. Reuse the
+existing pilot for candidate-12782; do not count it twice. The partial exclusion
+list is not a reviewed final corpus denylist.
+
+The additive `agent_app.evaluation.preflight` module checks a **new**
+`frozen_final_v1` packet without upgrading historical fixtures or receipts:
+
+```bash
+uv run python -m agent_app.evaluation.preflight --manifest FINAL_PACKET.json --corpus-manifest CORPUS.json data/evaluation/dev data/evaluation/test
+```
+
+Its schema and synthetic integrity examples are in
+[`preflight.py`](../../src/agent_app/evaluation/preflight.py) and
+[`test_evaluation_preflight.py`](../../tests/test_evaluation_preflight.py).
+It requires pinned fixture/rubric/exposure/corpus JSON, canonical origin URLs
+within reviewed families, whole-family/exposure exclusion, 15/15 minimums and
+reviewed route metadata for at least ten multi-turn cases (five test). Output
+contains counts, hashes and allowlisted diagnostics only. Human declarations
+do not authenticate the reviewer or prove semantic quality. Corpus declarations
+do not verify actual indexed content, model/prompt/code freeze or runtime binding.
+
+Runner flags `--final-manifest` and `--final-corpus-manifest` opt into this
+gate. `--final-bundle` supplies all pinned dev/test fixture paths while the
+positional paths may execute a subset, such as dev alone. It additionally
+validates **every** fixture with the existing loader and rejects escaping or
+non-JSON evidence paths before importing/constructing the live factory. The
+receipt retains `final_artifact_preflight`; `quality_claim` remains false.
+Ordinary development commands remain available for draft fixtures. This gate
+does not implement adaptive route selection or authorize spending; the separate
+budget halt and live adapter requirements still apply. Complete final
+evaluation remains E1–E5 work.
+
 ## Case fixture fields
 
 | Field | Who reads it |

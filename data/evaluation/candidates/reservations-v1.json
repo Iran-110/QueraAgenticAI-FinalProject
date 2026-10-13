@@ -1,0 +1,1288 @@
+{
+  "schema_version": 1,
+  "reservation_id": "evaluation-family-reservations-v1",
+  "status": "candidate_reservations_not_frozen",
+  "e1_complete": false,
+  "quality_claim": false,
+  "validated_multi_turn_cases": 0,
+  "reservation_counts": {
+    "dev": 15,
+    "test": 15
+  },
+  "required_multi_turn_counts": {
+    "total_min": 10,
+    "test_min": 5
+  },
+  "source": {
+    "input_sha256": {
+      "sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl": "0410c294a110e79f075d99f2516fa6f8dc4ddddcf6243eb55e6e4b9f5bf45a5e",
+      "sources/github-snapshot-2026-10-06/selection.json": "f2605cfef026d30c7af427e7c9729f799eb3c546fc14519d3d86740ce484b863",
+      "sources/github-snapshot-2026-10-06/catalog/family_review_candidates.json": "b4d74b0d15516e3c8cc3052e068730642389ac46c4fa244a2d5b7226f2eccfb6",
+      "development_exposure.json": "c3c838788952a002c3a65c20528f94cce2e1c363d4cb99101086c0a436dfb028",
+      "manifest.json": "0dd2b0118cc936b8a423793dbdc45b80a7b10f3aa4f0bfbc7002f5fde3d8e37b"
+    },
+    "generator_sha256": "34689e7a33cf7480369cd2d4e4e12797d1381fb6b1ba1dbb7ddf1ecbbe363986",
+    "integrity_scope": "Only the four metadata sources; not the entire seed or a corpus audit."
+  },
+  "selection_algorithm": {
+    "id": "metadata-round-robin-sha256-v1",
+    "domains": [
+      "session_state",
+      "widgets",
+      "rerun",
+      "callbacks"
+    ],
+    "uses": [
+      "public_issue_ids",
+      "source_urls",
+      "comment_counts",
+      "cached_query_scope",
+      "cached_linkage"
+    ],
+    "rules": "Reserve exposed pilot as dev; exclude all other exposed candidate components; alternate test/dev and query domains; choose remaining components by SHA-256 of sorted IDs.",
+    "comment_counts_are_not_multi_turn_labels": true,
+    "known_external_duplicate_edge": [
+      12629,
+      12782
+    ],
+    "no_outcome_or_question_text_used": true
+  },
+  "known_exposure_candidate_closure": [
+    8061,
+    8901,
+    9031,
+    11012,
+    12629,
+    12782,
+    16914,
+    17030
+  ],
+  "candidates": [
+    {
+      "candidate_case_id": "dev-candidate-12782",
+      "candidate_family_id": "fam-12782",
+      "proposed_split": "dev",
+      "issue_ids": [
+        12629,
+        12782
+      ],
+      "sampling_domain": "previously_exposed_development",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": true,
+      "source_refs": [
+        {
+          "issue_id": 12629,
+          "source_url": "https://github.com/streamlit/streamlit/issues/12629",
+          "comment_count": null,
+          "available_in_seed": false
+        },
+        {
+          "issue_id": 12782,
+          "source_url": "https://github.com/streamlit/streamlit/issues/12782",
+          "comment_count": 5,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "dev-candidate-9455",
+      "candidate_family_id": "candidate-family-1c2db8bf72902ff9",
+      "proposed_split": "dev",
+      "issue_ids": [
+        9455
+      ],
+      "sampling_domain": "session_state",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 9455,
+          "source_url": "https://github.com/streamlit/streamlit/issues/9455",
+          "comment_count": 3,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "dev-candidate-9770",
+      "candidate_family_id": "candidate-family-0d7d32735a378832",
+      "proposed_split": "dev",
+      "issue_ids": [
+        9770
+      ],
+      "sampling_domain": "widgets",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 9770,
+          "source_url": "https://github.com/streamlit/streamlit/issues/9770",
+          "comment_count": 8,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "dev-candidate-1644",
+      "candidate_family_id": "candidate-family-06301fa33043eee2",
+      "proposed_split": "dev",
+      "issue_ids": [
+        1644
+      ],
+      "sampling_domain": "rerun",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 1644,
+          "source_url": "https://github.com/streamlit/streamlit/issues/1644",
+          "comment_count": 3,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "dev-candidate-1085",
+      "candidate_family_id": "candidate-family-100bd81892bd1fdf",
+      "proposed_split": "dev",
+      "issue_ids": [
+        1085
+      ],
+      "sampling_domain": "callbacks",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 1085,
+          "source_url": "https://github.com/streamlit/streamlit/issues/1085",
+          "comment_count": 9,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "dev-candidate-8129",
+      "candidate_family_id": "candidate-family-296919b3689a19a3",
+      "proposed_split": "dev",
+      "issue_ids": [
+        8129
+      ],
+      "sampling_domain": "session_state",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 8129,
+          "source_url": "https://github.com/streamlit/streamlit/issues/8129",
+          "comment_count": 6,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "dev-candidate-5368",
+      "candidate_family_id": "candidate-family-145303b05c6091f7",
+      "proposed_split": "dev",
+      "issue_ids": [
+        5368
+      ],
+      "sampling_domain": "widgets",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 5368,
+          "source_url": "https://github.com/streamlit/streamlit/issues/5368",
+          "comment_count": 3,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "dev-candidate-16281",
+      "candidate_family_id": "candidate-family-0b5cd8336e171535",
+      "proposed_split": "dev",
+      "issue_ids": [
+        16281
+      ],
+      "sampling_domain": "rerun",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 16281,
+          "source_url": "https://github.com/streamlit/streamlit/issues/16281",
+          "comment_count": 3,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "dev-candidate-9259",
+      "candidate_family_id": "candidate-family-12cca76956a31f69",
+      "proposed_split": "dev",
+      "issue_ids": [
+        9259
+      ],
+      "sampling_domain": "callbacks",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 9259,
+          "source_url": "https://github.com/streamlit/streamlit/issues/9259",
+          "comment_count": 13,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "dev-candidate-4884",
+      "candidate_family_id": "candidate-family-2f64e2c2d726d34f",
+      "proposed_split": "dev",
+      "issue_ids": [
+        4884
+      ],
+      "sampling_domain": "session_state",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 4884,
+          "source_url": "https://github.com/streamlit/streamlit/issues/4884",
+          "comment_count": 9,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "dev-candidate-2584",
+      "candidate_family_id": "candidate-family-1eee76662f18d949",
+      "proposed_split": "dev",
+      "issue_ids": [
+        2584
+      ],
+      "sampling_domain": "widgets",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 2584,
+          "source_url": "https://github.com/streamlit/streamlit/issues/2584",
+          "comment_count": 3,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "dev-candidate-3533",
+      "candidate_family_id": "candidate-family-146cb7bb58b31c0c",
+      "proposed_split": "dev",
+      "issue_ids": [
+        3533,
+        3854
+      ],
+      "sampling_domain": "rerun",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 3533,
+          "source_url": "https://github.com/streamlit/streamlit/issues/3533",
+          "comment_count": 8,
+          "available_in_seed": true
+        },
+        {
+          "issue_id": 3854,
+          "source_url": "https://github.com/streamlit/streamlit/issues/3854",
+          "comment_count": 3,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "dev-candidate-4164",
+      "candidate_family_id": "candidate-family-1bab1b47ae4575ff",
+      "proposed_split": "dev",
+      "issue_ids": [
+        4164
+      ],
+      "sampling_domain": "callbacks",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 4164,
+          "source_url": "https://github.com/streamlit/streamlit/issues/4164",
+          "comment_count": 2,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "dev-candidate-9342",
+      "candidate_family_id": "candidate-family-2fc16c1e6bd89c39",
+      "proposed_split": "dev",
+      "issue_ids": [
+        9342
+      ],
+      "sampling_domain": "session_state",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 9342,
+          "source_url": "https://github.com/streamlit/streamlit/issues/9342",
+          "comment_count": 4,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "dev-candidate-13147",
+      "candidate_family_id": "candidate-family-243d6fe965eb80e4",
+      "proposed_split": "dev",
+      "issue_ids": [
+        13147
+      ],
+      "sampling_domain": "widgets",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 13147,
+          "source_url": "https://github.com/streamlit/streamlit/issues/13147",
+          "comment_count": 2,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "test-candidate-12506",
+      "candidate_family_id": "candidate-family-1702cc407de5858a",
+      "proposed_split": "test",
+      "issue_ids": [
+        12506
+      ],
+      "sampling_domain": "session_state",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 12506,
+          "source_url": "https://github.com/streamlit/streamlit/issues/12506",
+          "comment_count": 3,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "test-candidate-13953",
+      "candidate_family_id": "candidate-family-04773f763bdbc4e2",
+      "proposed_split": "test",
+      "issue_ids": [
+        13953
+      ],
+      "sampling_domain": "widgets",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 13953,
+          "source_url": "https://github.com/streamlit/streamlit/issues/13953",
+          "comment_count": 2,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "test-candidate-2069",
+      "candidate_family_id": "candidate-family-037238df22dc2b94",
+      "proposed_split": "test",
+      "issue_ids": [
+        2069
+      ],
+      "sampling_domain": "rerun",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 2069,
+          "source_url": "https://github.com/streamlit/streamlit/issues/2069",
+          "comment_count": 2,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "test-candidate-4256",
+      "candidate_family_id": "candidate-family-06962ea15272a1e3",
+      "proposed_split": "test",
+      "issue_ids": [
+        4256
+      ],
+      "sampling_domain": "callbacks",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 4256,
+          "source_url": "https://github.com/streamlit/streamlit/issues/4256",
+          "comment_count": 1,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "test-candidate-10089",
+      "candidate_family_id": "candidate-family-26022aab1df9f8de",
+      "proposed_split": "test",
+      "issue_ids": [
+        10089,
+        14717,
+        16242
+      ],
+      "sampling_domain": "session_state",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 10089,
+          "source_url": "https://github.com/streamlit/streamlit/issues/10089",
+          "comment_count": 6,
+          "available_in_seed": true
+        },
+        {
+          "issue_id": 14717,
+          "source_url": "https://github.com/streamlit/streamlit/issues/14717",
+          "comment_count": 1,
+          "available_in_seed": true
+        },
+        {
+          "issue_id": 16242,
+          "source_url": "https://github.com/streamlit/streamlit/issues/16242",
+          "comment_count": 6,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "test-candidate-268",
+      "candidate_family_id": "candidate-family-119e127d667b2156",
+      "proposed_split": "test",
+      "issue_ids": [
+        268
+      ],
+      "sampling_domain": "widgets",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 268,
+          "source_url": "https://github.com/streamlit/streamlit/issues/268",
+          "comment_count": 25,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "test-candidate-1155",
+      "candidate_family_id": "candidate-family-0b374a0f73be4d1d",
+      "proposed_split": "test",
+      "issue_ids": [
+        1155
+      ],
+      "sampling_domain": "rerun",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 1155,
+          "source_url": "https://github.com/streamlit/streamlit/issues/1155",
+          "comment_count": 2,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "test-candidate-10102",
+      "candidate_family_id": "candidate-family-11460a5b2592a98b",
+      "proposed_split": "test",
+      "issue_ids": [
+        10102,
+        16732,
+        17215
+      ],
+      "sampling_domain": "callbacks",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 10102,
+          "source_url": "https://github.com/streamlit/streamlit/issues/10102",
+          "comment_count": 5,
+          "available_in_seed": true
+        },
+        {
+          "issue_id": 16732,
+          "source_url": "https://github.com/streamlit/streamlit/issues/16732",
+          "comment_count": 2,
+          "available_in_seed": true
+        },
+        {
+          "issue_id": 17215,
+          "source_url": "https://github.com/streamlit/streamlit/issues/17215",
+          "comment_count": 3,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "test-candidate-5305",
+      "candidate_family_id": "candidate-family-2ee3d9d36da3d782",
+      "proposed_split": "test",
+      "issue_ids": [
+        5305,
+        5498,
+        16727
+      ],
+      "sampling_domain": "session_state",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 5305,
+          "source_url": "https://github.com/streamlit/streamlit/issues/5305",
+          "comment_count": 3,
+          "available_in_seed": true
+        },
+        {
+          "issue_id": 5498,
+          "source_url": "https://github.com/streamlit/streamlit/issues/5498",
+          "comment_count": 3,
+          "available_in_seed": true
+        },
+        {
+          "issue_id": 16727,
+          "source_url": "https://github.com/streamlit/streamlit/issues/16727",
+          "comment_count": 2,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "test-candidate-6320",
+      "candidate_family_id": "candidate-family-18d5f7c8d2a2f6fb",
+      "proposed_split": "test",
+      "issue_ids": [
+        6320
+      ],
+      "sampling_domain": "widgets",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 6320,
+          "source_url": "https://github.com/streamlit/streamlit/issues/6320",
+          "comment_count": 1,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "test-candidate-1185",
+      "candidate_family_id": "candidate-family-13da2d821143a2f8",
+      "proposed_split": "test",
+      "issue_ids": [
+        1185
+      ],
+      "sampling_domain": "rerun",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 1185,
+          "source_url": "https://github.com/streamlit/streamlit/issues/1185",
+          "comment_count": 4,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "test-candidate-16661",
+      "candidate_family_id": "candidate-family-1acb6f458e553c76",
+      "proposed_split": "test",
+      "issue_ids": [
+        16661
+      ],
+      "sampling_domain": "callbacks",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 16661,
+          "source_url": "https://github.com/streamlit/streamlit/issues/16661",
+          "comment_count": 1,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "test-candidate-11115",
+      "candidate_family_id": "candidate-family-2f862c43652c883c",
+      "proposed_split": "test",
+      "issue_ids": [
+        11115
+      ],
+      "sampling_domain": "session_state",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 11115,
+          "source_url": "https://github.com/streamlit/streamlit/issues/11115",
+          "comment_count": 2,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "test-candidate-12396",
+      "candidate_family_id": "candidate-family-21e73c4ff57aa442",
+      "proposed_split": "test",
+      "issue_ids": [
+        12396
+      ],
+      "sampling_domain": "widgets",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 12396,
+          "source_url": "https://github.com/streamlit/streamlit/issues/12396",
+          "comment_count": 1,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    },
+    {
+      "candidate_case_id": "test-candidate-17112",
+      "candidate_family_id": "candidate-family-208e84a276ef973b",
+      "proposed_split": "test",
+      "issue_ids": [
+        17112
+      ],
+      "sampling_domain": "rerun",
+      "linkage_status": "candidate_component_not_confirmed_duplicate_family",
+      "known_exposed_dev_family": false,
+      "source_refs": [
+        {
+          "issue_id": 17112,
+          "source_url": "https://github.com/streamlit/streamlit/issues/17112",
+          "comment_count": 4,
+          "available_in_seed": true
+        }
+      ],
+      "family_review": "pending_human_review",
+      "fixture_and_gold": "not_created",
+      "multi_turn": "pending_fixture_and_route_review"
+    }
+  ],
+  "human_review_tasklist": [
+    {
+      "candidate_case_id": "dev-candidate-12782",
+      "candidate_family_id": "fam-12782",
+      "proposed_split": "dev",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "dev-candidate-9455",
+      "candidate_family_id": "candidate-family-1c2db8bf72902ff9",
+      "proposed_split": "dev",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "dev-candidate-9770",
+      "candidate_family_id": "candidate-family-0d7d32735a378832",
+      "proposed_split": "dev",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "dev-candidate-1644",
+      "candidate_family_id": "candidate-family-06301fa33043eee2",
+      "proposed_split": "dev",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "dev-candidate-1085",
+      "candidate_family_id": "candidate-family-100bd81892bd1fdf",
+      "proposed_split": "dev",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "dev-candidate-8129",
+      "candidate_family_id": "candidate-family-296919b3689a19a3",
+      "proposed_split": "dev",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "dev-candidate-5368",
+      "candidate_family_id": "candidate-family-145303b05c6091f7",
+      "proposed_split": "dev",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "dev-candidate-16281",
+      "candidate_family_id": "candidate-family-0b5cd8336e171535",
+      "proposed_split": "dev",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "dev-candidate-9259",
+      "candidate_family_id": "candidate-family-12cca76956a31f69",
+      "proposed_split": "dev",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "dev-candidate-4884",
+      "candidate_family_id": "candidate-family-2f64e2c2d726d34f",
+      "proposed_split": "dev",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "dev-candidate-2584",
+      "candidate_family_id": "candidate-family-1eee76662f18d949",
+      "proposed_split": "dev",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "dev-candidate-3533",
+      "candidate_family_id": "candidate-family-146cb7bb58b31c0c",
+      "proposed_split": "dev",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "dev-candidate-4164",
+      "candidate_family_id": "candidate-family-1bab1b47ae4575ff",
+      "proposed_split": "dev",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "dev-candidate-9342",
+      "candidate_family_id": "candidate-family-2fc16c1e6bd89c39",
+      "proposed_split": "dev",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "dev-candidate-13147",
+      "candidate_family_id": "candidate-family-243d6fe965eb80e4",
+      "proposed_split": "dev",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "test-candidate-12506",
+      "candidate_family_id": "candidate-family-1702cc407de5858a",
+      "proposed_split": "test",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "test-candidate-13953",
+      "candidate_family_id": "candidate-family-04773f763bdbc4e2",
+      "proposed_split": "test",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "test-candidate-2069",
+      "candidate_family_id": "candidate-family-037238df22dc2b94",
+      "proposed_split": "test",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "test-candidate-4256",
+      "candidate_family_id": "candidate-family-06962ea15272a1e3",
+      "proposed_split": "test",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "test-candidate-10089",
+      "candidate_family_id": "candidate-family-26022aab1df9f8de",
+      "proposed_split": "test",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "test-candidate-268",
+      "candidate_family_id": "candidate-family-119e127d667b2156",
+      "proposed_split": "test",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "test-candidate-1155",
+      "candidate_family_id": "candidate-family-0b374a0f73be4d1d",
+      "proposed_split": "test",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "test-candidate-10102",
+      "candidate_family_id": "candidate-family-11460a5b2592a98b",
+      "proposed_split": "test",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "test-candidate-5305",
+      "candidate_family_id": "candidate-family-2ee3d9d36da3d782",
+      "proposed_split": "test",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "test-candidate-6320",
+      "candidate_family_id": "candidate-family-18d5f7c8d2a2f6fb",
+      "proposed_split": "test",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "test-candidate-1185",
+      "candidate_family_id": "candidate-family-13da2d821143a2f8",
+      "proposed_split": "test",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "test-candidate-16661",
+      "candidate_family_id": "candidate-family-1acb6f458e553c76",
+      "proposed_split": "test",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "test-candidate-11115",
+      "candidate_family_id": "candidate-family-2f862c43652c883c",
+      "proposed_split": "test",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "test-candidate-12396",
+      "candidate_family_id": "candidate-family-21e73c4ff57aa442",
+      "proposed_split": "test",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    },
+    {
+      "candidate_case_id": "test-candidate-17112",
+      "candidate_family_id": "candidate-family-208e84a276ef973b",
+      "proposed_split": "test",
+      "reviewer": "unassigned",
+      "status": "pending",
+      "tasks": [
+        "review_whole_family_links_and_duplicates_including_outside_seed",
+        "curate_initial_visible_report_and_record_later_edits_separately",
+        "register_user_and_source_gaps_and_conditional_acceptable_decisions",
+        "register_reply_routes_and_real_or_authored_conversation_provenance",
+        "review_sources_direct_answer_documents_and_corpus_exclusion",
+        "keep_gold_outcomes_and_future_turns_out_of_runtime_and_index"
+      ]
+    }
+  ],
+  "partial_corpus_denylist": {
+    "issue_ids": [
+      268,
+      1085,
+      1155,
+      1185,
+      1644,
+      2069,
+      2584,
+      3533,
+      3854,
+      4164,
+      4256,
+      4884,
+      5305,
+      5368,
+      5498,
+      6320,
+      8061,
+      8129,
+      8901,
+      9031,
+      9259,
+      9342,
+      9455,
+      9770,
+      10089,
+      10102,
+      11012,
+      11115,
+      12396,
+      12506,
+      12629,
+      12782,
+      13147,
+      13953,
+      14717,
+      16242,
+      16281,
+      16661,
+      16727,
+      16732,
+      16914,
+      17030,
+      17112,
+      17215
+    ],
+    "scope": "These Issues, comments and outcomes; expanded reviewed families and direct-answer documents remain pending.",
+    "complete": false,
+    "final_corpus_approved": false,
+    "may_be_used_as_final_allowlist": false
+  },
+  "limitations": [
+    "Cached selected links are incomplete and do not prove duplicate relationships or complete families.",
+    "No initial user messages, evidence labels, acceptable decisions, gold, reply branches or semantic judgments were authored.",
+    "Reservation counts do not satisfy E1 or the multi-turn requirement; existing split and registered fixtures are unchanged.",
+    "Test questions and outcomes must remain separate from tuning; human family/chronology review is required before freeze."
+  ]
+}

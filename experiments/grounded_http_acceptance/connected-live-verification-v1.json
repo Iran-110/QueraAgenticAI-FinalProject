@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "verification_id": "connected-live-dev-verification-v1",
+  "quality_claim": false,
+  "heldout_claim": false,
+  "c5_reconciled": false,
+  "live_source_commit": "fbac1b4788f31d737dcb4341146cf1771225990b",
+  "local_validation_commit": "05fcf77a0f5dc62a9c4fb6c2478102118e534c34",
+  "post_encoding_validation_commit": "aaedc9a224b98430caacc6472a74462d627bd78c",
+  "live_source_files_unchanged_at_publication": true,
+  "artifacts_sha256": {
+    "connected-live-protocol-v1.json": "cbdacb76fc95efd37ba5ee62d3e8d5da3ace954960d8fb414a71cdefbe6b468e",
+    "connected-live-result-fbac1b4.json": "7bb15da9fafcbfaf90557b6ece5d6710d9044eedf2bf67ff32d649f39228112c",
+    "connected-live-review-fbac1b4.json": "31e269eed435d89f4b4f19f028b9b71c4728235eb7384ed8e7f2fe7552c60834",
+    "connected-live-cleanup-baseline-v1.json": "1ae532bbcafee71b9167fcbdef97560cd7170aacfe3c29f59b0e88e9ccad6f3f"
+  },
+  "local_validation": {
+    "full_pytest": {
+      "passed": 2424,
+      "failed": 0,
+      "elapsed_seconds": 80.83
+    },
+    "before_provider_pytest": {
+      "passed": 2422,
+      "failed": 0,
+      "elapsed_seconds": 77.8
+    },
+    "post_windows_encoding_focused": {
+      "passed": 74,
+      "failed": 0
+    },
+    "locked_sync_exit": 0,
+    "ruff_check_exit": 0,
+    "ruff_format_check_exit": 0,
+    "offline_demos": {
+      "refine": 0,
+      "gateway_repair": 0,
+      "turn_demo": 0
+    }
+  },
+  "operational_replays": {
+    "core-tracker": {
+      "output_filename": "core-tracker-delivery-05fcf77.json",
+      "sha256": "9af9f0686082948ae85cea02f5405e7c823f6597dff08cda0df151c25d23bd9b",
+      "checks_passed": 49,
+      "checks_total": 49,
+      "source_commit": "05fcf77a0f5dc62a9c4fb6c2478102118e534c34",
+      "git_dirty": false,
+      "paid_requests": 0,
+      "quality_claim": false
+    },
+    "http-sqlite": {
+      "output_filename": "http-sqlite-delivery-05fcf77.json",
+      "sha256": "758f2710089f577fbd0c2b5a82e56dfbef5f5d8d45539aa9cde50f4e608d65f6",
+      "checks_passed": 457,
+      "checks_total": 457,
+      "source_commit": "05fcf77a0f5dc62a9c4fb6c2478102118e534c34",
+      "git_dirty": false,
+      "paid_requests": 0,
+      "quality_claim": false
+    },
+    "index-replay": {
+      "output_filename": "index-replay-delivery-05fcf77.json",
+      "sha256": "cb38fc684c5666cbf1d90bbf19a8e0eb5565372299bf0eec4617fdcc105d9c21",
+      "checks_passed": 70,
+      "checks_total": 70,
+      "source_commit": "05fcf77a0f5dc62a9c4fb6c2478102118e534c34",
+      "git_dirty": false,
+      "paid_requests": 0,
+      "quality_claim": false
+    },
+    "mapper": {
+      "output_filename": "mapper-delivery-05fcf77.json",
+      "sha256": "9816d6e717a84b30a44e0e5dbeff1342606df9cfe4e6ff05633931beac5e5010",
+      "checks_passed": 132,
+      "checks_total": 132,
+      "source_commit": "05fcf77a0f5dc62a9c4fb6c2478102118e534c34",
+      "git_dirty": false,
+      "paid_requests": 0,
+      "quality_claim": false
+    }
+  },
+  "live_observation": {
+    "actual_sends": 2,
+    "operational_checks_passed": 23,
+    "operational_checks_total": 23,
+    "estimated_cost_usd": "0.001104015",
+    "account_charge_usd": null,
+    "serving_model_ids": [
+      "gpt-4o-mini-2024-07-18",
+      "gpt-4o-mini-2024-07-18"
+    ],
+    "initial_proposals_released": false,
+    "restart_scope": "same_interpreter_application_recreation",
+    "protocol_python_expectation_consistent": false,
+    "protocol_unchanged": true,
+    "whole_proposal_review_kind": "separate_assistant_qualitative_not_human_gold"
+  },
+  "candidate_reservation": {
+    "sha256": "e1bcded192d7bf5c82a8883a3e6234d5df38b01f6d30b7b2d6dd706e7d21031b",
+    "regenerated_bytes_identical": true,
+    "dev_candidates": 15,
+    "test_candidates": 15,
+    "frozen_final_cases": false,
+    "actual_fixture_counts": {
+      "dev": 1,
+      "test": 0
+    }
+  },
+  "ledger": {
+    "before_fingerprint": "1b6aa4e3533d516b89f03240c6b56f8c465cf1d13d236a86c9702e73a54d4f42",
+    "after_fingerprint": "6e9ea79ff5cd1f761f3623e2a58b07c6091aa601f7847ecdcbf0cc1d8841248b",
+    "settled_estimated_usd": "0.12264285",
+    "remaining_continuation_usd": "0.00603019",
+    "unknown_record_fingerprint_preserved": true,
+    "hold_usd": "0.02",
+    "global_halt_preserved": true,
+    "ordinary_live_runner_still_halted": true
+  },
+  "ci": {
+    "earlier_windows_failure_run": 38384532146,
+    "reason": "new test omitted UTF-8 when reading non-ASCII seed JSON; production reader already explicit UTF-8",
+    "fix": "aaedc9a",
+    "final_exact_head_status": "recorded in PR checks; not asserted by this local receipt"
+  },
+  "remaining": [
+    "independent family/exposure/rubric review",
+    "actual30cases and conditional runtime routes",
+    "final corpus/index and actual runtime binding",
+    "general live factory and registered budget batch",
+    "dev comparative semantic/retrieval evaluation",
+    "frozen independent test and quality/failure report"
+  ]
+}

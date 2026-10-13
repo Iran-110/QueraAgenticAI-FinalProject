@@ -39,6 +39,7 @@ from fastapi.testclient import TestClient
 
 from agent_app import api
 from agent_app.contracts import AnalysisResult, EvidenceBundle, ReasoningContext
+from agent_app.evaluation.preflight import validate_final_bundle
 from agent_app.llm.budget import BudgetLedger
 from agent_app.llm.metis import request_id_for
 from agent_app.orchestration import engine as engine_module
@@ -81,7 +82,10 @@ def load_fixture(path: Path, *, mode: Mode = "offline") -> Fixture:
     raw = path.read_bytes()
     data = json.loads(raw)
     source = data["evidence_source"]
-    evidence = (ROOT / source["path"]).read_bytes()
+    evidence_path = (ROOT / source["path"]).resolve()
+    if not evidence_path.is_relative_to(ROOT.resolve()) or evidence_path.suffix != ".json":
+        raise ValueError("EvidenceSourcePathRejected")
+    evidence = evidence_path.read_bytes()
     if hashlib.sha256(evidence).hexdigest() != source["sha256"]:
         raise ValueError("Evidence source does not match its registered SHA-256.")
     bundles = {
@@ -293,6 +297,7 @@ class CaseRun:
             AttemptRecorder(ports.reasoner, contexts, self.observed_snapshots),
             snapshot_id=ports.snapshot_id,
             grounded_request_supplier=ports.grounded_request_supplier,
+            cleanup=ports.cleanup,
         )
 
     def run(self, client: TestClient) -> None:
@@ -643,13 +648,132 @@ def _budget_stop(snapshot) -> str | None:
     return None
 
 
+def _final_execution_prerequisites(fixtures: list[Fixture]) -> None:
+    """Check local runner inputs before a final-profile provider can be built."""
+    fixture_ids = set()
+    for fixture in fixtures:
+        identifier = fixture.data.get("fixture_id")
+        if not isinstance(identifier, str) or not identifier.strip() or identifier in fixture_ids:
+            raise ValueError
+        fixture_ids.add(identifier)
+        for turn in fixture.data["turns"]:
+            visible = turn["visible"]
+            if (
+                "reply_to_approved_question" in visible
+                and type(visible["reply_to_approved_question"]) is not bool
+            ):
+                raise ValueError
+            if set(visible) - {
+                "message",
+                "reported_facts",
+                "unknowns",
+                "checks_performed",
+                "context_changed",
+                "reply_to_approved_question",
+            }:
+                raise ValueError
+            if visible.get("reply_to_approved_question") and any(
+                visible.get(field)
+                for field in ("reported_facts", "unknowns", "checks_performed", "context_changed")
+            ):
+                raise ValueError
+            api.MessageRequest.model_validate(_event(turn, 0, "registered-question"))
+            maintainer = turn["maintainer"]
+            decision = maintainer["decision"]
+            if decision not in {"none", "approve", "reject", "edit"}:
+                raise ValueError
+            if decision == "edit":
+                api.DecisionRequest.model_validate(
+                    {
+                        "decision": decision,
+                        "proposal_id": "registered-proposal",
+                        "case_revision": 0,
+                        "edited_draft": maintainer["edited_draft"],
+                    }
+                )
+                if maintainer.get("then") not in {None, "approve"}:
+                    raise ValueError
+            elif "then" in maintainer:
+                raise ValueError
+            if not isinstance(turn.get("expect"), dict):
+                raise ValueError
+
+
+def final_preflight(
+    paths: list[Path],
+    manifest: Path | None,
+    corpus: Path | None,
+    *,
+    bundle_paths: list[Path] | None = None,
+    trusted_root: Path | None = None,
+) -> dict[str, Any] | None:
+    """Validate the whole packet, then authorize only a pinned execution subset.
+
+    This is mechanical artifact eligibility, not semantic scoring, human review
+    authenticity, adaptive route execution or permission to use a paid adapter.
+    """
+    if manifest is None and corpus is None and bundle_paths is None:
+        return None
+    if manifest is None or corpus is None:
+        raise ValueError("FinalEvaluationPreflightRejected")
+    full_paths = bundle_paths if bundle_paths is not None else paths
+    report = validate_final_bundle(full_paths, manifest, corpus, trusted_root=trusted_root or ROOT)
+    if not report["accepted"]:
+        raise ValueError("FinalEvaluationPreflightRejected")
+
+    def files(items):
+        return [
+            file.resolve()
+            for path in items
+            for file in (sorted(path.glob("*.json")) if path.is_dir() else [path])
+        ]
+
+    selected, complete = files(paths), files(full_paths)
+    if not selected or len(selected) != len(set(selected)) or not set(selected) <= set(complete):
+        raise ValueError("FinalEvaluationPreflightRejected")
+    try:
+        for path in complete:
+            raw = path.read_bytes()
+            if hashlib.sha256(raw).hexdigest() not in report["hashes"]["fixtures"]:
+                raise ValueError
+            source = json.loads(raw)["evidence_source"]
+            evidence_path = (ROOT / source["path"]).resolve()
+            if not evidence_path.is_relative_to(ROOT.resolve()) or evidence_path.suffix != ".json":
+                raise ValueError
+        # Even an offline subset must have a loader-compatible whole packet.
+        # This reads gold locally; for_case never receives any fixture or gold.
+        loaded = collect(full_paths, mode="live")
+        _final_execution_prerequisites(loaded)
+        by_path = {fixture.path.resolve(): fixture.sha256 for fixture in loaded}
+        if set(by_path.values()) != set(report["hashes"]["fixtures"]):
+            raise ValueError
+        hashes = [by_path[path] for path in selected]
+    except (OSError, ValueError, TypeError, KeyError, AttributeError, RecursionError):
+        raise ValueError("FinalEvaluationPreflightRejected") from None
+    return {**report, "fixture_loader_validated": True, "execution_fixture_hashes": hashes}
+
+
 def run(
-    paths: list[Path], *, mode: Mode = "offline", live: LiveAdapters | None = None
+    paths: list[Path],
+    *,
+    mode: Mode = "offline",
+    live: LiveAdapters | None = None,
+    final_manifest: Path | None = None,
+    final_corpus_manifest: Path | None = None,
+    final_bundle: list[Path] | None = None,
+    trusted_root: Path | None = None,
 ) -> dict[str, Any]:
     if mode not in {"offline", "live"}:
         raise ValueError("Invalid evaluation mode.")
     if (mode == "live") != (live is not None):
         raise ValueError("Live mode needs adapters; offline mode must not receive them.")
+    eligibility = final_preflight(
+        paths,
+        final_manifest,
+        final_corpus_manifest,
+        bundle_paths=final_bundle,
+        trusted_root=trusted_root,
+    )
     if live is not None and not isinstance(live.ledger, BudgetLedger):
         raise ValueError("LiveLedgerRequired")
     config = _live_config(live) if live else {"agent": "scripted agent_script", "model": None}
@@ -658,6 +782,11 @@ def run(
         if stop := _budget_stop(snapshot):
             raise ValueError(stop)
     fixtures = collect(paths, mode=mode)
+    if (
+        eligibility
+        and [fixture.sha256 for fixture in fixtures] != eligibility["execution_fixture_hashes"]
+    ):
+        raise ValueError("FinalEvaluationPreflightRejected")
     usage = Usage(live.ledger if live else None)
     invocation_id = str(uuid4()) if live else None
     source_hashes = _source_hashes()
@@ -715,6 +844,7 @@ def run(
         "schema_version": 2,
         "mode": mode,
         "quality_claim": False,
+        "final_artifact_preflight": eligibility,
         "evaluation_run_id": invocation_id,
         "scoring": {
             "operational_checks": True,
@@ -784,6 +914,14 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("paths", type=Path, nargs="+", help="Fixture files or split directories.")
     parser.add_argument("--mode", choices=("offline", "live"), default="offline")
     parser.add_argument("--adapters", help="module:factory returning LiveAdapters (live only).")
+    parser.add_argument("--final-manifest", type=Path)
+    parser.add_argument("--final-corpus-manifest", type=Path)
+    parser.add_argument(
+        "--final-bundle",
+        type=Path,
+        nargs="+",
+        help="Whole registered dev/test packet; paths may execute a pinned subset.",
+    )
     parser.add_argument(
         "--output",
         type=Path,
@@ -794,8 +932,24 @@ def main(argv: list[str] | None = None) -> int:
         parser.error("--adapters is required for live mode and not allowed offline.")
     if args.output and (args.output.exists() or args.mode not in args.output.parts):
         parser.error("Output must be new and under a directory named after the mode.")
+    # Reject invalid final packets before importing or constructing a live factory.
+    try:
+        final_preflight(
+            args.paths,
+            args.final_manifest,
+            args.final_corpus_manifest,
+            bundle_paths=args.final_bundle,
+        )
+    except ValueError:
+        print(json.dumps({"code": "FinalEvaluationPreflightRejected"}), file=sys.stderr)
+        return 1
     receipt = run(
-        args.paths, mode=args.mode, live=_load_live(args.adapters) if args.adapters else None
+        args.paths,
+        mode=args.mode,
+        live=_load_live(args.adapters) if args.adapters else None,
+        final_manifest=args.final_manifest,
+        final_corpus_manifest=args.final_corpus_manifest,
+        final_bundle=args.final_bundle,
     )
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)

@@ -2,6 +2,51 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-13 — bounded real-index/model correction probe
+
+Clean committed/pushed source `fbac1b4` passed **2,422 tests**, locked sync,
+Ruff and the three offline demos before two actual provider sends. The
+[unchanged paid receipt and separate review](../experiments/grounded_http_acceptance/connected-live-README.md)
+retain exact verified serving ID `gpt-4o-mini-2024-07-18`, complete current
+handoffs, actual real-index requests and **$0.001104015 estimated new cost**.
+Both proposals ask the missing parent callback. Version correction, a fresh
+revision-2 proposal, no-send ingress retry and same-interpreter application
+recreation pass; no proposal was approved or action released.
+
+The original protocol has a reviewer-only inconsistency: expecting Python to
+stay known while explicitly declaring a different environment. Core correctly
+retires unreconfirmed Python. Protocol and receipt remain unchanged; two new
+offline tests compare partial correction with environment switch. Real retrieval
+returned the same unversioned, weakly targeted Session State chunk on both
+turns. Full source fidelity is preserved, but targeted relevance, version-specific
+freshness and absence of historical-version ranking bias are unproven. No formal
+semantic/human quality score or held-out claim is made. Existing C5 halt, unknown
+reservation and $0.02 hold persist; provider billing remains unknown.
+
+## 2026-10-13 — delivery-readiness work, before connected live execution
+
+The mandatory-scope audit estimates roughly 70% complete, excluding bonuses;
+this is not a score or measured model quality. The core integration remains
+ahead of final corpus and independent evaluation. The runner previously dropped
+`RunAdapters.cleanup`; it now preserves the same callback and resource boundary.
+Five regression scenarios reproduce and guard the failure; shared contracts,
+seed files and historical receipts are unchanged.
+
+Metadata-only candidate reservations propose 15 dev / 15 test components,
+with no question/answer/gold export. They are not frozen E1 cases or an approved
+R2 corpus. A new final-packet preflight enforces registered hashes, genuine
+origin membership, reviewed family/exposure/exclusion metadata and counts.
+The optional runner gate additionally validates the full packet's fixture and
+evidence loader before live factory construction. Adaptive routes and semantic
+scoring remain unimplemented; passing artifact eligibility is not a quality claim.
+
+The [delivery audit](delivery-readiness-2026-10-13.fa.md) records the critical
+path and the narrow [connected live protocol](../experiments/grounded_http_acceptance/connected-live-protocol-v1.json).
+Two authored version turns, real approved-docs index and curated current-user
+gaps are development-only. Original halt and uncertain hold remain preserved;
+the two-send allowance uses the existing continuation. No paid result is
+claimed in this pre-execution entry.
+
 ## 2026-10-13 — PR35, reproducible docs-only index acceptance
 
 PR35 initially adds one unchanged reference-fixture receipt at `e37a57a`:
