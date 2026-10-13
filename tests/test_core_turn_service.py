@@ -158,7 +158,9 @@ def test_short_bound_reply_retains_original_problem_and_current_user_version(tmp
     )
     assert outcome.status == "proposal_staged"
     assert outcome.receipt.preparation == "canonical_version_reply"
-    assert MESSAGE in retriever.requests[0].queries[0]
+    query = retriever.requests[0].queries[0]
+    assert "streamlit_version=1.50.0" in query
+    assert all(term in query for term in ("multiselect", "fragment", "default", "parent"))
     assert MESSAGE in reasoner.inputs[0][1]
     assert question in outcome.handoff.user_message
     assert outcome.handoff.user_message.endswith("1.50.0")

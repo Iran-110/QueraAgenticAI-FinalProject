@@ -1,0 +1,845 @@
+{
+  "fixture_id": "current-retrieval-context-v1",
+  "provenance": {
+    "issue_family": [
+      12629,
+      12782
+    ],
+    "exposed_development_only": true,
+    "initial_problem": "Reused authored integration problem from connected-live-protocol-v1; informed by original Issue answer. No original Issue answer used as source evidence.",
+    "other_turns": "developer-authored query composition variations; environment versions are scenario facts, not verified original Issue versions",
+    "quality_claim": false,
+    "final_evaluation_case_count": 0,
+    "corpus_policy": "Do not index these cases/gold/outcomes."
+  },
+  "scenarios": [
+    {
+      "id": "environment-switch",
+      "case_state": {
+        "case_id": "query-context-environment-switch",
+        "case_revision": 2,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.50.0",
+            "source_ref": "user:turn-1",
+            "turn_id": "turn-1",
+            "provenance_kind": "user",
+            "status": "superseded"
+          },
+          {
+            "name": "python_version",
+            "value": "3.12.9",
+            "source_ref": "user:turn-1",
+            "turn_id": "turn-1",
+            "provenance_kind": "user",
+            "status": "superseded"
+          },
+          {
+            "name": "streamlit_version",
+            "value": "1.49.0",
+            "source_ref": "user:turn-2",
+            "turn_id": "turn-2",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [
+          "parent_callback_code",
+          "minimal_failing_reproduction",
+          "python_version"
+        ],
+        "checks_performed": [],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "conversation": {
+        "entries": [
+          {
+            "actor": "user",
+            "reference_id": "turn-1",
+            "revision": 1,
+            "text": "My multiselect in a fragment loses its default after the parent selector resets session state. My reduced example works and the parent callback is not provided. Streamlit 1.50.0, Python 3.12.9."
+          },
+          {
+            "actor": "user",
+            "reference_id": "turn-2",
+            "revision": 2,
+            "text": "Correction: Streamlit is 1.49.0. The reduced example still works; I have not provided the parent callback."
+          }
+        ],
+        "latest_turn_id": "turn-2",
+        "committed_revision": 2,
+        "latest_message": "Correction: Streamlit is 1.49.0. The reduced example still works; I have not provided the parent callback.",
+        "reply_to_proposal_id": null
+      },
+      "expectations": {
+        "must_contain": [
+          "streamlit_version=1.49.0",
+          "Correction:",
+          "multiselect",
+          "fragment"
+        ],
+        "must_not_contain": [
+          "1.50.0",
+          "3.12.9",
+          "python_version="
+        ],
+        "latest_needles": [
+          "Correction: Streamlit is 1.49.0."
+        ],
+        "topic_needles": [
+          "multiselect",
+          "fragment"
+        ],
+        "reasoning_contains": [
+          "My multiselect in a fragment loses its default after the parent selector resets session state. My reduced example works and the parent callback is not provided. Streamlit 1.50.0, Python 3.12.9.",
+          "Correction: Streamlit is 1.49.0. The reduced example still works; I have not provided the parent callback.",
+          "3.12.9"
+        ],
+        "predeclared_decisions": [
+          "ask missing callback/failing reproduction",
+          "bounded applicable citation without cause/fix",
+          "honest escalation"
+        ],
+        "user_gaps": [
+          "parent_callback_code",
+          "minimal_failing_reproduction"
+        ],
+        "source_gap": "Absent callback and failing reproduction cannot be established from docs."
+      }
+    },
+    {
+      "id": "ordinary-correction",
+      "case_state": {
+        "case_id": "query-context-ordinary-correction",
+        "case_revision": 2,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.50.0",
+            "source_ref": "user:turn-1",
+            "turn_id": "turn-1",
+            "provenance_kind": "user",
+            "status": "superseded"
+          },
+          {
+            "name": "python_version",
+            "value": "3.12.9",
+            "source_ref": "user:turn-1",
+            "turn_id": "turn-1",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "streamlit_version",
+            "value": "1.49.0",
+            "source_ref": "user:turn-2",
+            "turn_id": "turn-2",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [
+          "parent_callback_code",
+          "minimal_failing_reproduction"
+        ],
+        "checks_performed": [],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "conversation": {
+        "entries": [
+          {
+            "actor": "user",
+            "reference_id": "turn-1",
+            "revision": 1,
+            "text": "My multiselect in a fragment loses its default after the parent selector resets session state. My reduced example works and the parent callback is not provided. Streamlit 1.50.0, Python 3.12.9."
+          },
+          {
+            "actor": "user",
+            "reference_id": "turn-2",
+            "revision": 2,
+            "text": "Correction: Streamlit is 1.49.0 in the same environment."
+          }
+        ],
+        "latest_turn_id": "turn-2",
+        "committed_revision": 2,
+        "latest_message": "Correction: Streamlit is 1.49.0 in the same environment.",
+        "reply_to_proposal_id": null
+      },
+      "expectations": {
+        "must_contain": [
+          "streamlit_version=1.49.0",
+          "python_version=3.12.9",
+          "Correction:",
+          "multiselect"
+        ],
+        "must_not_contain": [
+          "1.50.0"
+        ],
+        "latest_needles": [
+          "Correction: Streamlit is 1.49.0"
+        ],
+        "topic_needles": [
+          "multiselect"
+        ],
+        "reasoning_contains": [
+          "My multiselect in a fragment loses its default after the parent selector resets session state. My reduced example works and the parent callback is not provided. Streamlit 1.50.0, Python 3.12.9.",
+          "1.50.0"
+        ]
+      }
+    },
+    {
+      "id": "withdraw-version",
+      "case_state": {
+        "case_id": "query-context-withdraw-version",
+        "case_revision": 2,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.50.0",
+            "source_ref": "user:turn-1",
+            "turn_id": "turn-1",
+            "provenance_kind": "user",
+            "status": "superseded"
+          },
+          {
+            "name": "python_version",
+            "value": "3.12.9",
+            "source_ref": "user:turn-1",
+            "turn_id": "turn-1",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [
+          "parent_callback_code",
+          "minimal_failing_reproduction",
+          "streamlit_version"
+        ],
+        "checks_performed": [],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "conversation": {
+        "entries": [
+          {
+            "actor": "user",
+            "reference_id": "turn-1",
+            "revision": 1,
+            "text": "My multiselect in a fragment loses its default after the parent selector resets session state. My reduced example works and the parent callback is not provided. Streamlit 1.50.0, Python 3.12.9."
+          },
+          {
+            "actor": "user",
+            "reference_id": "turn-2",
+            "revision": 2,
+            "text": "I cannot confirm the installed version; the multiselect still resets."
+          }
+        ],
+        "latest_turn_id": "turn-2",
+        "committed_revision": 2,
+        "latest_message": "I cannot confirm the installed version; the multiselect still resets.",
+        "reply_to_proposal_id": null
+      },
+      "expectations": {
+        "must_contain": [
+          "multiselect",
+          "python_version=3.12.9"
+        ],
+        "must_not_contain": [
+          "1.50.0",
+          "streamlit_version="
+        ],
+        "latest_needles": [
+          "I cannot confirm"
+        ],
+        "topic_needles": [
+          "multiselect"
+        ],
+        "reasoning_contains": [
+          "My multiselect in a fragment loses its default after the parent selector resets session state. My reduced example works and the parent callback is not provided. Streamlit 1.50.0, Python 3.12.9.",
+          "1.50.0"
+        ]
+      }
+    },
+    {
+      "id": "short-version-reply",
+      "case_state": {
+        "case_id": "query-context-short-version-reply",
+        "case_revision": 2,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.50.0",
+            "source_ref": "user:turn-2",
+            "turn_id": "turn-2",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "conversation": {
+        "entries": [
+          {
+            "actor": "user",
+            "reference_id": "turn-1",
+            "revision": 1,
+            "text": "My fragment multiselect loses its saved default after the parent selector reruns."
+          },
+          {
+            "actor": "assistant",
+            "reference_id": "version-question",
+            "revision": 1,
+            "text": "Which Streamlit version is installed in the affected environment?"
+          },
+          {
+            "actor": "user",
+            "reference_id": "turn-2",
+            "revision": 2,
+            "text": "1.50.0"
+          }
+        ],
+        "latest_turn_id": "turn-2",
+        "committed_revision": 2,
+        "latest_message": "1.50.0",
+        "reply_to_proposal_id": "version-question"
+      },
+      "expectations": {
+        "must_contain": [
+          "streamlit_version=1.50.0",
+          "multiselect",
+          "fragment",
+          "default"
+        ],
+        "must_not_contain": [],
+        "latest_needles": [
+          "1.50.0"
+        ],
+        "topic_needles": [
+          "multiselect",
+          "fragment",
+          "default"
+        ],
+        "reasoning_contains": [
+          "saved default",
+          "Which Streamlit version is installed in the affected environment?"
+        ]
+      }
+    },
+    {
+      "id": "revert-version",
+      "case_state": {
+        "case_id": "query-context-revert-version",
+        "case_revision": 3,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.50.0",
+            "source_ref": "user:turn-1",
+            "turn_id": "turn-1",
+            "provenance_kind": "user",
+            "status": "superseded"
+          },
+          {
+            "name": "python_version",
+            "value": "3.12.9",
+            "source_ref": "user:turn-1",
+            "turn_id": "turn-1",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "streamlit_version",
+            "value": "1.49.0",
+            "source_ref": "user:turn-2",
+            "turn_id": "turn-2",
+            "provenance_kind": "user",
+            "status": "superseded"
+          },
+          {
+            "name": "streamlit_version",
+            "value": "1.50.0",
+            "source_ref": "user:turn-3",
+            "turn_id": "turn-3",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [
+          "parent_callback_code",
+          "minimal_failing_reproduction"
+        ],
+        "checks_performed": [],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "conversation": {
+        "entries": [
+          {
+            "actor": "user",
+            "reference_id": "turn-1",
+            "revision": 1,
+            "text": "My multiselect in a fragment loses its default after the parent selector resets session state. My reduced example works and the parent callback is not provided. Streamlit 1.50.0, Python 3.12.9."
+          },
+          {
+            "actor": "user",
+            "reference_id": "turn-2",
+            "revision": 2,
+            "text": "Correction: Streamlit is 1.49.0."
+          },
+          {
+            "actor": "user",
+            "reference_id": "turn-3",
+            "revision": 3,
+            "text": "Final correction: Streamlit is 1.50.0 in the same environment."
+          }
+        ],
+        "latest_turn_id": "turn-3",
+        "committed_revision": 3,
+        "latest_message": "Final correction: Streamlit is 1.50.0 in the same environment.",
+        "reply_to_proposal_id": null
+      },
+      "expectations": {
+        "must_contain": [
+          "streamlit_version=1.50.0",
+          "python_version=3.12.9",
+          "multiselect"
+        ],
+        "must_not_contain": [
+          "1.49.0"
+        ],
+        "latest_needles": [
+          "Final correction:"
+        ],
+        "topic_needles": [
+          "multiselect"
+        ],
+        "reasoning_contains": [
+          "1.49.0",
+          "1.50.0"
+        ]
+      }
+    },
+    {
+      "id": "current-code-comparison",
+      "case_state": {
+        "case_id": "query-context-current-code-comparison",
+        "case_revision": 2,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.50.0",
+            "source_ref": "user:turn-1",
+            "turn_id": "turn-1",
+            "provenance_kind": "user",
+            "status": "superseded"
+          },
+          {
+            "name": "python_version",
+            "value": "3.12.9",
+            "source_ref": "user:turn-1",
+            "turn_id": "turn-1",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "streamlit_version",
+            "value": "1.49.0",
+            "source_ref": "user:turn-2",
+            "turn_id": "turn-2",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [
+          "parent_callback_code",
+          "minimal_failing_reproduction"
+        ],
+        "checks_performed": [],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "conversation": {
+        "entries": [
+          {
+            "actor": "user",
+            "reference_id": "turn-1",
+            "revision": 1,
+            "text": "My multiselect in a fragment loses its default after the parent selector resets session state. My reduced example works and the parent callback is not provided. Streamlit 1.50.0, Python 3.12.9."
+          },
+          {
+            "actor": "user",
+            "reference_id": "turn-2",
+            "revision": 2,
+            "text": "Compare 1.50.0 and 1.49.0 for this multiselect.\n```python\nold = \"1.50.0\"\nnew = \"1.49.0\"\nst.multiselect(\"v\", [old, new], key=\"k\")\n```"
+          }
+        ],
+        "latest_turn_id": "turn-2",
+        "committed_revision": 2,
+        "latest_message": "Compare 1.50.0 and 1.49.0 for this multiselect.\n```python\nold = \"1.50.0\"\nnew = \"1.49.0\"\nst.multiselect(\"v\", [old, new], key=\"k\")\n```",
+        "reply_to_proposal_id": null
+      },
+      "expectations": {
+        "must_contain": [
+          "streamlit_version=1.49.0",
+          "1.50.0",
+          "1.49.0",
+          "st.multiselect"
+        ],
+        "must_not_contain": [],
+        "latest_needles": [
+          "Compare 1.50.0 and 1.49.0",
+          "old = \"1.50.0\"",
+          "new = \"1.49.0\""
+        ],
+        "topic_needles": [
+          "multiselect"
+        ],
+        "reasoning_contains": [
+          "Compare 1.50.0 and 1.49.0 for this multiselect.\n```python\nold = \"1.50.0\"\nnew = \"1.49.0\"\nst.multiselect(\"v\", [old, new], key=\"k\")\n```",
+          "My multiselect in a fragment loses its default after the parent selector resets session state. My reduced example works and the parent callback is not provided. Streamlit 1.50.0, Python 3.12.9."
+        ],
+        "note": "Old-version literals in the latest raw comparison/code are intentionally allowed; no global string deletion."
+      }
+    },
+    {
+      "id": "retired-operating-system",
+      "case_state": {
+        "case_id": "query-context-retired-operating-system",
+        "case_revision": 2,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.50.0",
+            "source_ref": "user:turn-1",
+            "turn_id": "turn-1",
+            "provenance_kind": "user",
+            "status": "superseded"
+          },
+          {
+            "name": "python_version",
+            "value": "3.12.9",
+            "source_ref": "user:turn-1",
+            "turn_id": "turn-1",
+            "provenance_kind": "user",
+            "status": "superseded"
+          },
+          {
+            "name": "operating_system",
+            "value": "Windows",
+            "source_ref": "user:turn-1",
+            "turn_id": "turn-1",
+            "provenance_kind": "user",
+            "status": "superseded"
+          },
+          {
+            "name": "operating_system",
+            "value": "Linux",
+            "source_ref": "user:turn-2",
+            "turn_id": "turn-2",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "streamlit_version",
+            "value": "1.49.0",
+            "source_ref": "user:turn-2",
+            "turn_id": "turn-2",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [
+          "parent_callback_code",
+          "minimal_failing_reproduction",
+          "python_version"
+        ],
+        "checks_performed": [],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "conversation": {
+        "entries": [
+          {
+            "actor": "user",
+            "reference_id": "turn-1",
+            "revision": 1,
+            "text": "My multiselect resets on Windows using Streamlit 1.50.0 and Python 3.12.9."
+          },
+          {
+            "actor": "user",
+            "reference_id": "turn-2",
+            "revision": 2,
+            "text": "Same widget issue in a different environment: Linux, Streamlit 1.49.0."
+          }
+        ],
+        "latest_turn_id": "turn-2",
+        "committed_revision": 2,
+        "latest_message": "Same widget issue in a different environment: Linux, Streamlit 1.49.0.",
+        "reply_to_proposal_id": null
+      },
+      "expectations": {
+        "must_contain": [
+          "operating_system=Linux",
+          "streamlit_version=1.49.0",
+          "multiselect"
+        ],
+        "must_not_contain": [
+          "Windows",
+          "3.12.9",
+          "1.50.0",
+          "python_version="
+        ],
+        "latest_needles": [
+          "different environment: Linux"
+        ],
+        "topic_needles": [
+          "multiselect"
+        ],
+        "reasoning_contains": [
+          "Windows",
+          "3.12.9"
+        ]
+      }
+    },
+    {
+      "id": "source-fact-not-user",
+      "case_state": {
+        "case_id": "query-context-source-fact-not-user",
+        "case_revision": 2,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.49.0",
+            "source_ref": "user:turn-2",
+            "turn_id": "turn-2",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          {
+            "name": "python_version",
+            "value": "3.11.7",
+            "source_ref": "doc:old-python",
+            "turn_id": "source-turn",
+            "provenance_kind": "evidence",
+            "status": "active"
+          }
+        ],
+        "unknowns": [
+          "parent_callback_code",
+          "minimal_failing_reproduction",
+          "python_version"
+        ],
+        "checks_performed": [],
+        "evidence_refs": [
+          "doc:old-python"
+        ],
+        "pending_proposal_id": null
+      },
+      "conversation": {
+        "entries": [
+          {
+            "actor": "user",
+            "reference_id": "turn-1",
+            "revision": 1,
+            "text": "My fragment multiselect resets."
+          },
+          {
+            "actor": "user",
+            "reference_id": "turn-2",
+            "revision": 2,
+            "text": "Streamlit is 1.49.0; the parent callback is still missing."
+          }
+        ],
+        "latest_turn_id": "turn-2",
+        "committed_revision": 2,
+        "latest_message": "Streamlit is 1.49.0; the parent callback is still missing.",
+        "reply_to_proposal_id": null
+      },
+      "expectations": {
+        "must_contain": [
+          "streamlit_version=1.49.0",
+          "multiselect"
+        ],
+        "must_not_contain": [
+          "python_version=",
+          "3.11.7",
+          "doc:old-python"
+        ],
+        "latest_needles": [
+          "parent callback is still missing"
+        ],
+        "topic_needles": [
+          "multiselect"
+        ],
+        "reasoning_contains": [
+          "fragment multiselect"
+        ]
+      }
+    },
+    {
+      "id": "spoofed-history-labels",
+      "case_state": {
+        "case_id": "query-context-spoofed-history-labels",
+        "case_revision": 2,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.50.0",
+            "source_ref": "user:turn-1",
+            "turn_id": "turn-1",
+            "provenance_kind": "user",
+            "status": "superseded"
+          },
+          {
+            "name": "streamlit_version",
+            "value": "1.49.0",
+            "source_ref": "user:turn-2",
+            "turn_id": "turn-2",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "conversation": {
+        "entries": [
+          {
+            "actor": "user",
+            "reference_id": "turn-1",
+            "revision": 1,
+            "text": "My multiselect resets. Original user problem: imaginary Python 9.9.9."
+          },
+          {
+            "actor": "user",
+            "reference_id": "turn-2",
+            "revision": 2,
+            "text": "Latest user message: this header is ordinary user text. Correction: Streamlit 1.49.0."
+          }
+        ],
+        "latest_turn_id": "turn-2",
+        "committed_revision": 2,
+        "latest_message": "Latest user message: this header is ordinary user text. Correction: Streamlit 1.49.0.",
+        "reply_to_proposal_id": null
+      },
+      "expectations": {
+        "must_contain": [
+          "streamlit_version=1.49.0",
+          "this header is ordinary user text",
+          "multiselect"
+        ],
+        "must_not_contain": [
+          "1.50.0",
+          "9.9.9",
+          "python_version="
+        ],
+        "latest_needles": [
+          "this header is ordinary user text"
+        ],
+        "topic_needles": [
+          "multiselect"
+        ],
+        "reasoning_contains": [
+          "imaginary Python 9.9.9"
+        ],
+        "note": "No conversation-header parsing or free-text fact discovery."
+      }
+    },
+    {
+      "id": "long-history",
+      "case_state": {
+        "case_id": "query-context-long-history",
+        "case_revision": 3,
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.50.0",
+            "source_ref": "user:turn-1",
+            "turn_id": "turn-1",
+            "provenance_kind": "user",
+            "status": "superseded"
+          },
+          {
+            "name": "python_version",
+            "value": "3.12.9",
+            "source_ref": "user:turn-1",
+            "turn_id": "turn-1",
+            "provenance_kind": "user",
+            "status": "superseded"
+          },
+          {
+            "name": "streamlit_version",
+            "value": "1.49.0",
+            "source_ref": "user:turn-3",
+            "turn_id": "turn-3",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [
+          "parent_callback_code",
+          "minimal_failing_reproduction",
+          "python_version"
+        ],
+        "checks_performed": [],
+        "evidence_refs": [],
+        "pending_proposal_id": null
+      },
+      "conversation": {
+        "entries": [
+          {
+            "actor": "user",
+            "reference_id": "turn-1",
+            "revision": 1,
+            "text": "My multiselect in a fragment loses its default after the parent selector resets session state. My reduced example works and the parent callback is not provided. Streamlit 1.50.0, Python 3.12.9."
+          },
+          {
+            "actor": "user",
+            "reference_id": "turn-2",
+            "revision": 2,
+            "text": "Additional untrusted details padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding padding  st.multiselect(\"v\", [\"a\"], key=\"selection\")"
+          },
+          {
+            "actor": "user",
+            "reference_id": "turn-3",
+            "revision": 3,
+            "text": "Current correction: Streamlit is 1.49.0; the parent callback remains missing."
+          }
+        ],
+        "latest_turn_id": "turn-3",
+        "committed_revision": 3,
+        "latest_message": "Current correction: Streamlit is 1.49.0; the parent callback remains missing.",
+        "reply_to_proposal_id": null
+      },
+      "expectations": {
+        "must_contain": [
+          "streamlit_version=1.49.0",
+          "Current correction:",
+          "st.multiselect"
+        ],
+        "must_not_contain": [
+          "1.50.0",
+          "3.12.9"
+        ],
+        "latest_needles": [
+          "Current correction:"
+        ],
+        "topic_needles": [
+          "st.multiselect"
+        ],
+        "reasoning_contains": [
+          "padding",
+          "1.50.0"
+        ]
+      }
+    }
+  ]
+}

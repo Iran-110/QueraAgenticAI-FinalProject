@@ -54,6 +54,7 @@ from agent_app.orchestration.intake import (
     prepare_approved_version_reply,
 )
 from agent_app.orchestration.ports import Reasoner, Retriever
+from agent_app.orchestration.retrieval_context import build_current_query
 from agent_app.orchestration.turns import UserTurnRejected, propose_user_turn
 from agent_app.testing.fakes import FakeReasoner, FakeRetriever
 from agent_app.tracker.dummy_tracker import tracker
@@ -414,19 +415,19 @@ def post_message(case_id: CaseId, request: MessageRequest) -> dict[str, Any]:
         )
 
         try:
-            reasoning_message = build_reasoning_message(
-                TurnConversation(
-                    entries=tuple(case.history),
-                    latest_turn_id=turn.turn_id,
-                    committed_revision=case.state.case_revision,
-                    latest_message=request.message,
-                    reply_to_proposal_id=(
-                        request.reply_to_proposal_id
-                        if preparation == "canonical_version_reply"
-                        else None
-                    ),
-                )
+            conversation = TurnConversation(
+                entries=tuple(case.history),
+                latest_turn_id=turn.turn_id,
+                committed_revision=case.state.case_revision,
+                latest_message=request.message,
+                reply_to_proposal_id=(
+                    request.reply_to_proposal_id
+                    if preparation == "canonical_version_reply"
+                    else None
+                ),
             )
+            reasoning_message = build_reasoning_message(conversation)
+            initial_query = build_current_query(case.state, conversation)
         except (ConversationRejected, ValidationError) as error:
             code = (
                 error.code
@@ -464,7 +465,7 @@ def post_message(case_id: CaseId, request: MessageRequest) -> dict[str, Any]:
                 run_error = "AdapterSetupUnavailable"
             if run_error is None:
                 try:
-                    result = engine.run(case.state, reasoning_message)
+                    result = engine.run(case.state, reasoning_message, initial_query=initial_query)
                 except Exception:
                     run_error = "CoreRunFailed"
                 else:

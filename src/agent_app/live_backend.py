@@ -70,6 +70,7 @@ def configured_app(
             case_adapters=lambda case, _scenario: factory.for_case(case.case_id),
             retrieval_label="local_chroma_hash",
             reasoning_label="metis_grounded_live",
+            evidence_scope="exact_user_version",
         )
 
         @asynccontextmanager

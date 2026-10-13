@@ -42,6 +42,7 @@ from agent_app.orchestration.handoff import (
     validate_handoff,
 )
 from agent_app.orchestration.ports import CaseTracker, Reasoner, Retriever
+from agent_app.orchestration.retrieval_context import build_current_query
 from agent_app.orchestration.validation import detached_contract
 
 
@@ -331,15 +332,15 @@ class CoreTurnService:
                 "core_stopped", receipt=receipt, snapshot=view, error_code="InvalidTrackerReceipt"
             )
         try:
-            message = build_reasoning_message(
-                TurnConversation(
-                    entries=view.history,
-                    latest_turn_id=turn.turn_id,
-                    committed_revision=receipt.committed_revision,
-                    latest_message=turn.message,
-                    reply_to_proposal_id=reply_to_proposal_id,
-                )
+            conversation = TurnConversation(
+                entries=view.history,
+                latest_turn_id=turn.turn_id,
+                committed_revision=receipt.committed_revision,
+                latest_message=turn.message,
+                reply_to_proposal_id=reply_to_proposal_id,
             )
+            message = build_reasoning_message(conversation)
+            initial_query = build_current_query(view.state, conversation)
         except ConversationRejected as error:
             return CoreTurnOutcome(
                 "core_stopped", receipt=receipt, snapshot=view, error_code=error.code
@@ -394,6 +395,7 @@ class CoreTurnService:
                         message,
                         run_id=trusted_run_id,
                         proposal_requirements=proposal_requirements,
+                        initial_query=initial_query,
                     )
                 except Exception:
                     run_error = "CoreRunFailed"

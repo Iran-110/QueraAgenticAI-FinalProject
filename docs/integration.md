@@ -22,6 +22,24 @@ review identity across application recreation without a new model call/action.
 Ordinary live startup remains blocked by the designated ledger's C5 halt; this
 is not final corpus, actual paid UI operation or held-out quality acceptance.
 
+The [current retrieval context](current-retrieval-context.fa.md) now separates
+the initial query from exact reasoning history in both API callers. The additive
+caller-owned `SupportEngine.run(initial_query=...)` keeps legacy direct calls
+unchanged. Current user parameters and latest input lead; historical topic hints
+preserve short-reply context without promoting retired facts/source references.
+Raw model input, handoffs, events, approvals and model-authored refinement remain
+unchanged. Registered comparison controls and the smaller-output bounded online
+probe retain their own fixtures/protocols; no shared-port or RAG adapter change.
+
+The persistent factory now forwards caller-owned
+`evidence_scope="exact_user_version"` to the existing engine policy. The default
+`"all"` supports historical/comparison workflows. `live_backend.configured_app`
+selects exact scope for current-installation advice: versioned mismatches and
+versioned hits without a confirmed user version are excluded before reasoning;
+unversioned hits remain explicitly unconfirmed. This filters returned evidence,
+does not rerank/backfill the index, and can leave no useful source. This binding
+was verified offline after the paired paid probe, which used `"all"` scope.
+
 The core-owned [CoreTurnService](core-turn-service.fa.md) now composes the existing
 tracker port with lazy per-run adapters and full handoffs. Use it for persistent
 ingress rather than copying test-harness policy into the API. C2d now supplies

@@ -2,6 +2,79 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-13 — C2g registered comparison and subsequent version-policy binding
+
+Clean pushed preregistration `0b3f1cc` passed Linux/Windows CI before execution.
+The ten authored exposed variations improved literal query controls from 72/96
+to 96/96 and all-controls scenarios from 2/10 to 10/10; latest-only retained only
+2/10 complete scenarios. The actual existing docs index recorded 60 collection
+reads. These are initial-query controls, not semantic quality measurements.
+
+Exactly two paid requests used the original designated ledger/grant and verified
+serving model `gpt-4o-mini-2024-07-18`. Both arms asked the same necessary,
+user-answerable caller-curated parent-callback question; no cause/fix/resolution
+or tracker staging/action was claimed. Current query removed the retired numeric
+facts, but its top hit was 1.64.0 text_input for user1.49.0. The renderer labeled
+it other-version; the legacy hit was unversioned Session State serialization/
+caveats. No ranking/relevance or model decision-quality gain is demonstrated.
+Original receipt/registration and assistant whole-output review are separate in
+the [audited packet](../experiments/retrieval_context/README.md); human score is null.
+
+New settled estimate is USD0.001115400 with no new holds; actual account charge
+unknown. Total settled estimate USD0.12375825/180 records, existing uncertain
+USD0.02 and halt unchanged, same continuation remaining USD0.00491479. The paid
+protocol's ledger fingerprint is consumed; no rerun/reset/unhalt is permitted.
+Independent accounting/source/pin inspections reconciled the two attributed
+requests and verified source excerpts against the existing index manifest.
+
+After that paid observation, persistent create_app forwards caller-owned
+evidence_scope to the existing engine. Default all preserves comparisons;
+configured live backend uses exact_user_version for current-installation advice.
+Twenty-one actual SQLite HTTP fixture tests cover both adapter seams, wrong/
+unknown/literal versions, unversioned scope, correction/replay, forbidden citation
+and refinement freshness. Existing actual Streamlit/Chroma/SQLite/mock-wire
+tests still pass. This filters returned evidence only; no backfill or relevance
+guarantee, no shared-port/RAG replacement. The binding was absent in paid arms
+and has only offline acceptance. On production-code commit `a06925f`, with the
+receipt/document publication files still uncommitted, the full suite passed
+**2714 tests** in99.79s; locked dependencies and Ruff pass. The fresh-process
+HTTP/SQLite acceptance passed457/457 with source hashes unchanged, explicitly
+recording the working tree before this binding commit. Final CI proves the clean
+published checkout separately; those dirty local receipts are not relabeled.
+
+## 2026-10-13 — current retrieval context (C2g), before registered comparison
+
+The original paid correction handoff reproduces the exact 425-character recorded
+query with the unchanged legacy builder: historical 1.50.0 and retired Python
+3.12.9 occupy the history prefix, current 1.49.0 is appended, and the latest
+correction is absent. This is observed query pollution, not proven rank/relevance
+or decision-quality loss. The original receipt/protocol remain unchanged.
+
+An additive caller-owned engine initial_query and a current-context compiler now
+separate retrieval from reasoning in both HTTP memory and persistent service.
+Active user parameters lead, bounded latest raw input follows, and nonnumeric
+historical topic hints preserve the complaint for short version replies. Retired
+user-value hints are excluded unless current again. Whole raw current code and
+comparison input remains in reasoning; numeric historical code identifiers may
+be omitted from topic hints. The leading-digit lexer regression is fixed.
+
+Independent guards cover withdrawal, ordinary/explicit environment changes,
+A→B→A, OS history, Unicode/spoofed headers, source/assistant exclusion, canonical
+replies and replay. Shared contracts/ports, actual RAG adapter, event hashes,
+handoff/history and model-authored refinement are unchanged. The previous service
+test expecting the entire historical sentence inside a query now checks useful
+anchors/current parameter while keeping exact model-message checks.
+
+Ten exposed developer-authored variations and a separate same-state two-arm
+live protocol are registered before their controlled comparison/provider sends.
+They add zero independent final cases. The original explicit environment flag
+is recorded; Python is unknown in that arm, ordinary correction retains it in
+a separate control. Existing grant remaining permits two smaller-output requests,
+preserving input reserve, halt and the old uncertain hold. No new allowance,
+reset or unhalt is introduced. See [behavior/protocol](current-retrieval-context.fa.md).
+Results, actual index observations, cost and whole-output review must be appended
+after execution; no new paid result is claimed in this entry.
+
 ## 2026-10-13 — registered routes, reusable adapters and declared review scores
 
 The runner now selects only the registered continuation matching the current

@@ -103,6 +103,8 @@ jobs:
         run: |
           uv run python scripts/evaluation_routes_comparison.py --output "$RUNNER_TEMP/evaluation-routes-current.json"
           uv run python -c "import json,os,pathlib; r=json.loads((pathlib.Path(os.environ['RUNNER_TEMP'])/'evaluation-routes-current.json').read_text(encoding='utf-8')); assert r['conditional_path_passes']==3 and r['registered_inputs_unchanged_during_run'] and all(x['conditional_runner']['all_allocated_clients_closed'] for x in r['comparisons'])"
+      - name: Compare registered initial retrieval contexts without model calls
+        run: uv run python scripts/retrieval_context_comparison.py --output "$RUNNER_TEMP/retrieval-context-current.json"
 
   windows-pilot:
     runs-on: windows-latest
@@ -137,3 +139,7 @@ jobs:
         run: |
           uv run python scripts/evaluation_routes_comparison.py --output "$env:RUNNER_TEMP/evaluation-routes-current.json"
           uv run python -c "import json,os,pathlib; r=json.loads((pathlib.Path(os.environ['RUNNER_TEMP'])/'evaluation-routes-current.json').read_text(encoding='utf-8')); assert r['conditional_path_passes']==3 and r['registered_inputs_unchanged_during_run'] and all(x['conditional_runner']['all_allocated_clients_closed'] for x in r['comparisons'])"
+      - name: Check current query context and bounded probe with mock provider
+        run: uv run pytest tests/test_current_retrieval_context.py tests/test_retrieval_context_comparison.py tests/test_retrieval_context_live_probe.py tests/test_persistent_version_scope.py
+      - name: Compare registered current queries on Windows without model calls
+        run: uv run python scripts/retrieval_context_comparison.py --output "$env:RUNNER_TEMP/retrieval-context-current.json"
