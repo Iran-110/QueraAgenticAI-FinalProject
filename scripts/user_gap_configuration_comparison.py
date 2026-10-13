@@ -103,7 +103,9 @@ def pins():
         )
     )
     return {
-        path.relative_to(ROOT).as_posix(): sha(path.read_bytes()) for path in paths if path.is_file()
+        path.relative_to(ROOT).as_posix(): sha(path.read_bytes())
+        for path in paths
+        if path.is_file()
     }
 
 
