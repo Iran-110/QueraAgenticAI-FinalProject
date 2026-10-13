@@ -34,9 +34,10 @@ The [packet](../experiments/offline_corrections/README.md) preserves original
 registration, both test epochs, exact comparison, review and verification.
 The complete local suite passes **2,860 tests** in111.83s, Ruff (207 files),
 three locked demos and separate fresh-process HTTP/SQLite457/457 including
-restart pass. Runtime/test bytes equal `090c1e5`; the runs had an untracked
+restart pass. Runtime/test bytes equal `090c1e5`; the runs had an untracked or edited
 comparison harness, so no whole-Git-clean claim is made. Publication CI is
-separate. No real provider/index/production ledger use or paid spend occurred.
+separate. No real provider/index use, production-ledger write/accounting use,
+or paid spend occurred.
 Failed historical ingress replays its original failure; a fresh turn continues
 with the new profile. The PR40 report remains immutable. Manual two-case UI
 repeat plus Edit/Reject is still needed; T4/U3/E5 and final model/RAG evaluation
