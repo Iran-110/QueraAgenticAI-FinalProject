@@ -2,6 +2,39 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-13 — current retrieval context (C2g), before registered comparison
+
+The original paid correction handoff reproduces the exact 425-character recorded
+query with the unchanged legacy builder: historical 1.50.0 and retired Python
+3.12.9 occupy the history prefix, current 1.49.0 is appended, and the latest
+correction is absent. This is observed query pollution, not proven rank/relevance
+or decision-quality loss. The original receipt/protocol remain unchanged.
+
+An additive caller-owned engine initial_query and a current-context compiler now
+separate retrieval from reasoning in both HTTP memory and persistent service.
+Active user parameters lead, bounded latest raw input follows, and nonnumeric
+historical topic hints preserve the complaint for short version replies. Retired
+user-value hints are excluded unless current again. Whole raw current code and
+comparison input remains in reasoning; numeric historical code identifiers may
+be omitted from topic hints. The leading-digit lexer regression is fixed.
+
+Independent guards cover withdrawal, ordinary/explicit environment changes,
+A→B→A, OS history, Unicode/spoofed headers, source/assistant exclusion, canonical
+replies and replay. Shared contracts/ports, actual RAG adapter, event hashes,
+handoff/history and model-authored refinement are unchanged. The previous service
+test expecting the entire historical sentence inside a query now checks useful
+anchors/current parameter while keeping exact model-message checks.
+
+Ten exposed developer-authored variations and a separate same-state two-arm
+live protocol are registered before their controlled comparison/provider sends.
+They add zero independent final cases. The original explicit environment flag
+is recorded; Python is unknown in that arm, ordinary correction retains it in
+a separate control. Existing grant remaining permits two smaller-output requests,
+preserving input reserve, halt and the old uncertain hold. No new allowance,
+reset or unhalt is introduced. See [behavior/protocol](current-retrieval-context.fa.md).
+Results, actual index observations, cost and whole-output review must be appended
+after execution; no new paid result is claimed in this entry.
+
 ## 2026-10-13 — registered routes, reusable adapters and declared review scores
 
 The runner now selects only the registered continuation matching the current

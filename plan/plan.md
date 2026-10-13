@@ -6,6 +6,13 @@
 
 ### تقسیم کار جاری — درخواست جمع‌بندی تا امشب ۱۳ اکتبر
 
+انتشار #37 روی main `109f59e` و [CI Linux/Windows](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38406080389)
+پاس شد. سهم جاری مستقل ساسان **C2g**، [query بعد از correction](../docs/current-retrieval-context.fa.md)،
+است: reasoning/history حفظ می‌شود و context اولیهٔ retrieval از factهای فعلی،
+پیام اخیر و hint موضوعی جدا می‌آید. baseline/variantها و probe آنلاین دو-send
+جدا ثبت شده‌اند؛ نتیجه بعد از اجرا اضافه شود. این کار scope retrieval را
+بازنویسی یا R4 را بسته فرض نمی‌کند؛ وظایف سه dev case و corpus تیم همان‌اند.
+
 نسخهٔ قبلی با [PR #36](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/36)
 روی main `a087770` است؛ [CI انتشار Linux/Windows](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38387712898)
 پاس شد. [تحویل تازهٔ مستقل](../docs/evaluation-live-routes.fa.md): runner فقط
@@ -40,7 +47,9 @@ fixture و portهای mock: تکمیل مسیر قبلی ۰/۳ و مسیر شا�
 خانواده‌های test فقط پس از freeze و بدون tuning اجرا شوند. هیچ case، نمرهٔ
 انسانی، corpus نهایی یا حل halt از طرف افراد تأییدشده فرض نمی‌شود.
 
-بازبینی بخش الزامی، بدون bonus: **حدود ۷۰٪، برآورد مهندسی و نه نمرهٔ کیفیت**.
+بازبینی بخش الزامی پس از #37، بدون bonus: **حدود ۷۵٪، برآورد مهندسی و نه نمرهٔ کیفیت**.
+برآورد قبلی ۷۰٪ بود؛ آماده‌شدن routeها/factory/helper موجب این تغییر است،
+نه افزایش تعداد pytest یا اثبات کیفیت مدل. dev مستقل همچنان ۱ و test صفر است.
 [مسیر کوتاه تکمیل و حدود شواهد](../docs/delivery-readiness-2026-10-13.fa.md):
 اولویت با caseهای مستقل، corpus/exclusion نهایی، baseline واقعی dev و test
 بدون tuning است. infra آماده‌تر است؛ تست‌های آفلاین این کارها را نمی‌بندند.
