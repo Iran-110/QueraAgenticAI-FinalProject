@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-10-13T09:22:38.913240+00:00",
+  "source_commit": "82c39a9aaedc67cffabf6b04c936ef9fa39f283a",
+  "worktree_clean_at_test_start": true,
+  "original_reference_receipt": {
+    "path": "../../../rag_acceptance_results.json",
+    "sha256": "6ef4aed1b846b68664a6e7f04992ebc1096363a4a43d49a62e197f0307dcc3cc",
+    "changed": false,
+    "mode": "reference_fixture_adapter",
+    "checks_passed": 132,
+    "checks_total": 132,
+    "historical_git_dirty": true
+  },
+  "build_receipt": {
+    "path": "build-review-e37a57a.json",
+    "sha256": "ee6a04faa306cc6d10edd7b236175b5281c6ec27860494fcc6d452032fff26aa",
+    "source_commit": "e37a57a2da049914f76777f9078d910652f7fd56",
+    "independent_builder_invocations": 2,
+    "same_snapshot_and_manifest": true,
+    "sources": 14,
+    "chunks": 30
+  },
+  "actual_mapper_fixed_backend": {
+    "path": "mapper-fixture-e37a57a.json",
+    "sha256": "e100f3a346c7ac00803bc8f63beacbd8d4eddbd95ef54c3a8c810a1353cc8347",
+    "source_commit": "e37a57a2da049914f76777f9078d910652f7fd56",
+    "checks_passed": 132,
+    "checks_total": 132,
+    "consumes_fresh_index": false
+  },
+  "actual_index_replay": {
+    "path": "actual-index-82c39a9.json",
+    "sha256": "e75f6c725b795d09b6444c109de8121890381d15cf379374ccfffecb7e71741b",
+    "checks_passed": 70,
+    "checks_total": 70,
+    "direct_native_chroma_queries": 20,
+    "native_chroma_queries_including_http": 28,
+    "registered_protocol_id": "pr35-docs-index-review-v1",
+    "registered_protocol_sha256": "33ab264f46239ab0dcdab24ecafe5b41e2e39a8b518bcd2abf0185b6534ff974",
+    "source_commit": "82c39a9aaedc67cffabf6b04c936ef9fa39f283a",
+    "source_clean_before_after": true,
+    "asgi_recreation_only": true,
+    "canonical_handoffs_captured": 4
+  },
+  "git_bytes_before": {
+    "path": "git-bytes-before.json",
+    "sha256": "fbd024211b28721f888b324b18f4c4dd0b905f3803bc40a6af8136d25c81c89a",
+    "autocrlf_changed_bytes": 56,
+    "after_fix": "3 regression tests preserve pinned bytes under true/false and retain no-attributes failing control"
+  },
+  "checks": [
+    {
+      "command": "uv run pytest -q",
+      "passed": 2298,
+      "duration_seconds": 70.83,
+      "source_commit": "82c39a9aaedc67cffabf6b04c936ef9fa39f283a",
+      "clean_source": true
+    },
+    {
+      "command": "129 existing focused RAG/index/UI/TCP/CLI tests",
+      "passed": 129,
+      "duration_seconds": 21.55,
+      "scope": "Before new12+2 acceptance tests; production code unchanged"
+    },
+    {
+      "command": "uv run ruff check .; uv run ruff format --check .",
+      "result": "pass,166 files formatted"
+    },
+    {
+      "command": "uv sync --locked --group dev",
+      "source_commit": "e37a57a",
+      "result": "pass;107 packages resolved"
+    },
+    {
+      "command": "required refine/gateway-repair/turn demos",
+      "source_commit": "a80b5b5",
+      "result": "pass; corresponding production code unchanged"
+    }
+  ],
+  "production_contracts_rag_and_tracker_changed": false,
+  "actual_provider_requests": 0,
+  "actual_api_cost_usd": "0",
+  "quality_claim": false,
+  "held_out_test": false,
+  "limitations": [
+    "Original author receipt is a reference fixture, not actual mapper/index",
+    "Actual mapper132 also uses fixed collections; actualindex70 is separately scoped",
+    "One dev/zero test and draft split; finalR1/R2/R4/E1/E2 still open",
+    "Index vectors lexical; no semantic ranking/relevance or model-quality metrics",
+    "Process restart and UI checked separately in129tests; public replay is same interpreter ASGI recreation",
+    "No paid requests, .env key or production ledger access"
+  ]
+}

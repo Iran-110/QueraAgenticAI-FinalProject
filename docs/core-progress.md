@@ -23,14 +23,16 @@ Source contracts, RAG implementation and tracker
 are unchanged. Another three Git tests preserve actual seed bytes across
 autocrlf settings. The no-attributes control reproduces 56 converted newlines
 and a checksum failure; the seed-only byte policy fixes future checkout.
-The full working-tree suite passes **2,295 tests**, Ruff passes, and 129 existing
+Clean source `82c39a9` passes **2,298 tests**, Ruff passes, and 129 existing
 focused tests cover actual index, page and fresh-interpreter restart.
 
 No semantic relevance/model-quality claim is made. Split remains one dev/zero
 test, draft and not family-reviewed; R1 final corpus, R2/R4, E1/E2 and C5 remain
 open. No provider, paid embedding, key read or production ledger change occurs.
-Publication, source-pinned replay and CI are recorded in the PR35 evidence
-packet; the original author's receipt remains byte-for-byte unchanged.
+[Clean replay 70/70 and source-pinned verification](../experiments/retrieval_acceptance/pr35/verification-82c39a9.json)
+record 28 native Chroma queries (20 direct controls plus 8 HTTP), four complete
+handoffs and the separate build/mapper receipts. Publication and CI are
+recorded in the PR35 evidence packet; the original author's receipt remains byte-for-byte unchanged.
 
 ## 2026-10-13 — GroundedPlan through the durable pilot (C2f)
 

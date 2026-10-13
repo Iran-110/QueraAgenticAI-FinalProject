@@ -45,3 +45,11 @@ seed را ثابت نگه می‌دارد؛ تنظیم global Git و فایل‌
 این rule برای checkoutهای بعدی است؛ فایل محلی که قبلاً تغییر کرده خودکار repair
 نمی‌شود. builder همچنان checksum خراب را رد می‌کند؛ دادهٔ محلی را بدون بررسی
 و حفظ تغییرات خودتان جایگزین نکنید.
+
+## رسیدهای این بازبینی
+
+- [build روی e37a57a](build-review-e37a57a.json): دو invocation مستقل؛ manifest/snapshot یکسان.
+- [mapper واقعی با backend ثابت](mapper-fixture-e37a57a.json): ۱۳۲/۱۳۲؛ index تازه را مصرف نمی‌کند.
+- [index واقعی روی 82c39a9](actual-index-82c39a9.json): ۷۰/۷۰، ۲۸ query مستقیم Chroma شامل مسیر HTTP، چهار handoff کامل؛ به protocol ثبت‌شده bind است.
+- [Git بدون byte policy](git-bytes-before.json): تغییر ۵۶ byte؛ سه regression تست اصلاح را کنترل می‌کنند.
+- [verification](verification-82c39a9.json): ۲۲۹۸ pytest روی source تمیز؛ command، hash و محدودیت هر شاهد جدا ثبت‌اند.
