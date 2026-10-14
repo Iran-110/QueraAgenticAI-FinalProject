@@ -4,6 +4,20 @@
 
 ## وضعیت فعلی
 
+- [ ] **C4d / E1a — سه dev و baseline مدل؛ ساسان، کمک مستقل به ارزیابی.**
+  [caseها و inventory پیش از اجرا](../data/evaluation/dev-three-v1/scenario-review-v1.json):
+  خانواده‌های #12782/#12629، #9770 و #8129/#2379/#8180؛ سه dev exposed، صفر
+  test، chronology/duplicate خارجی و review انسانی باز. route سؤال نسخه فقط
+  به پاسخ همان سؤال وصل است؛ نسخه/کد معلوم Enum دوباره پرسیده نشود.
+  [manifest جدید](../data/evaluation/dev-three-v1/split-manifest.json) جدا از
+  manifest تاریخی است؛ افزودن case منابع RAG را خودکار زیاد نمی‌کند.
+  [protocolها](../experiments/dev_three_baseline/README.md): index واقعی با
+  مدل mock جدا از مقایسهٔ مدل روی شواهد ثابت. مجوز جدید API همین گفتگو فقط
+  یک scope تازهٔ ۲۴ slot با cap $0.10 است؛ global cap/hold/halt و grant قبلی
+  حفظ‌اند و C5 عمومی بسته نشده. [راهنما](../docs/dev-three-baseline.fa.md).
+  نتیجه و receipt پس از اجرای source تمیز افزوده می‌شود؛ این task جای E1–E5
+  یا R4 و usefulness انسانی را نمی‌گیرد.
+
 - [x] **C4c — vocabulary سؤال‌های caller در factory معمول؛ ساسان، محدود آفلاین.**
   انتشار و CI نهایی در [PR #44](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/44) است.
   [ثبت قبل از اصلاح](../experiments/user_gap_configuration/protocol-v1.json):

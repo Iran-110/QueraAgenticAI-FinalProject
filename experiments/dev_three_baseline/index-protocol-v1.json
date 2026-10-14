@@ -1,0 +1,342 @@
+{
+  "protocol_id": "dev-three-docs-index-epoch-v1",
+  "registered_on": "2026-10-14",
+  "registered_before_formal_build": true,
+  "scope": "Additive operational index epoch for three exposed dev cases. Real Chroma/local lexical vectors plus existing mocked GroundedPlan HTTP policy; no RAG/model quality or final evaluation claim.",
+  "historical_protocol_preserved": "experiments/retrieval_acceptance/pr35/protocol-v1.json",
+  "file_sha256": {
+    "data/evaluation/dev-three-v1/split-manifest.json": "f857fc559673c7ae2f508617fda3f81e3591157740e327109b00ae9a86f449ce",
+    "data/evaluation/split-manifest.json": "78e630cbef86937f2838795a2329ee56e16ea0beef7900db5c63d5fede6404ff",
+    "experiments/retrieval_acceptance/pr35/protocol-v1.json": "33ab264f46239ab0dcdab24ecafe5b41e2e39a8b518bcd2abf0185b6534ff974",
+    "experiments/corpus/pilot-allowlist.json": "209037d964182070744f608b79b676eb56c072e7655aee440ad75287aa117729"
+  },
+  "packet_sha256": {
+    "data/evaluation/dev-three-v1/evidence-v1.json": "d8ddd2dd8234fe328cc49326de1cc83d9096fe833bce254812c44d20a9f79521",
+    "data/evaluation/dev-three-v1/scenario-review-v1.json": "999abd74e7e2a9190696b6cac755b4c1dce04db51de484262636fbad714ff777",
+    "data/evaluation/dev-three-v1/exposure-review-v1.json": "ae63d11b8a86a887741ef05c87a229da3fcf580f9e145180f6239af61f360d95",
+    "data/evaluation/dev-three-v1/user-gap-vocabulary-v1.json": "d3b63719554f35d1addec14586ebc4fcb10231844097fcea65458ee01d0b6736"
+  },
+  "expected_snapshot_id": "docs-pilot-10e7fc4bf04652d5a8ab5052fe14ef6508d4295b3a6f0d6aa1796ffc77a095aa",
+  "expected_canonical_manifest_sha256": "4b700a986aaca69ad5702ba30e8c722a6a4b74c693c7c54dfaac5065021bdf37",
+  "expected_sources": 14,
+  "expected_chunks": 30,
+  "source_pins": {
+    "allowlist_sha256": "209037d964182070744f608b79b676eb56c072e7655aee440ad75287aa117729",
+    "development_exposure_sha256": "c3c838788952a002c3a65c20528f94cce2e1c363d4cb99101086c0a436dfb028",
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "package_manifest_sha256": "0dd2b0118cc936b8a423793dbdc45b80a7b10f3aa4f0bfbc7002f5fde3d8e37b",
+    "packaged_files": [
+      {
+        "bytes": 3294,
+        "path": "START_HERE.fa.txt",
+        "sha256": "dbcaec1685311700f4ae6fd726972dfc044fdedcf00bfb8adcd84eccb841a417"
+      },
+      {
+        "bytes": 1003,
+        "path": "development_exposure.json",
+        "sha256": "c3c838788952a002c3a65c20528f94cce2e1c363d4cb99101086c0a436dfb028"
+      },
+      {
+        "bytes": 2339,
+        "path": "schemas.json",
+        "sha256": "0dc21fb3d4a88d64d3c1f3ea3dca69be73ad0bef153eaf6c3a5071a11e5ad6d6"
+      },
+      {
+        "bytes": 19142,
+        "path": "sources/data_inventory.md",
+        "sha256": "687e04b6c58905b0b6910f53213c953c5aadada6eba2f5840db0a83cceef158c"
+      },
+      {
+        "bytes": 376226,
+        "path": "sources/docs_catalog.jsonl",
+        "sha256": "1de8f084bfde6a69975e5d7e1623dcda9a04363de76b9d0b4f5cb8a50b912b40"
+      },
+      {
+        "bytes": 10565,
+        "path": "sources/docs_issue_links.json",
+        "sha256": "543d24e22df44d9a2a3c15f0199069cb7de6a9c0eeaf0ceba527b10cf026fe78"
+      },
+      {
+        "bytes": 102061,
+        "path": "sources/docs_manifest.json",
+        "sha256": "3ee83ed7f9c989e144bd3a565057a91528d8edd22d827ae71544ba20aba87f7f"
+      },
+      {
+        "bytes": 618095,
+        "path": "sources/docs_scope_candidates.jsonl",
+        "sha256": "0759c7893481a4da8a11ae1b53f3f932ec60a2358c91422d723c3a2cb38c791d"
+      },
+      {
+        "bytes": 5373019,
+        "path": "sources/docstrings_scope_candidates.jsonl",
+        "sha256": "d3c4213f613738656a0bd366f05cfa7d0562c7a78bac8afaeef395f262b13fe9"
+      },
+      {
+        "bytes": 1042317,
+        "path": "sources/github-snapshot-2026-10-06/catalog/comment_records.jsonl",
+        "sha256": "a342db46e2d384285ef91e8950364376b3994f7f768fb40cd74dadfd34d54174"
+      },
+      {
+        "bytes": 2264,
+        "path": "sources/github-snapshot-2026-10-06/catalog/family_review_candidates.json",
+        "sha256": "b4d74b0d15516e3c8cc3052e068730642389ac46c4fa244a2d5b7226f2eccfb6"
+      },
+      {
+        "bytes": 721079,
+        "path": "sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+        "sha256": "0410c294a110e79f075d99f2516fa6f8dc4ddddcf6243eb55e6e4b9f5bf45a5e"
+      },
+      {
+        "bytes": 4454,
+        "path": "sources/github-snapshot-2026-10-06/profile.json",
+        "sha256": "95a0956d0eea1c1671b4e23efa4d8ecdf9f5cfa23fb63f18e2868e3b0c7d310b"
+      },
+      {
+        "bytes": 18676,
+        "path": "sources/github-snapshot-2026-10-06/selection.json",
+        "sha256": "f2605cfef026d30c7af427e7c9729f799eb3c546fc14519d3d86740ce484b863"
+      }
+    ],
+    "split_manifest_sha256": "f857fc559673c7ae2f508617fda3f81e3591157740e327109b00ae9a86f449ce"
+  },
+  "allowed_sources": [
+    {
+      "applicable_versions": [],
+      "canonical_source_url": "https://docs.streamlit.io/develop/api-reference/caching-and-state/st.session_state",
+      "characters": 8891,
+      "origin_kind": "docs_markdown",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+      "source_pointer": "content/develop/api-reference/caching-and-state/session_state.md",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/api-reference/caching-and-state/session_state.md",
+      "text_sha256": "81bf1fc22b4e27403ab7e0d6be8377a6ace4767502cb9d972fd7411a90d8e4b9"
+    },
+    {
+      "applicable_versions": [],
+      "canonical_source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.button",
+      "characters": 1095,
+      "origin_kind": "docs_markdown",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "source_id": "docs:content/develop/api-reference/widgets/button.md",
+      "source_pointer": "content/develop/api-reference/widgets/button.md",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/api-reference/widgets/button.md",
+      "text_sha256": "5a8baf2555329a5e633e5bbfee27ff67e79db554a79daa8116f5f14e1dbd05f8"
+    },
+    {
+      "applicable_versions": [],
+      "canonical_source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.text_input",
+      "characters": 1819,
+      "origin_kind": "docs_markdown",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "source_id": "docs:content/develop/api-reference/widgets/text_input.md",
+      "source_pointer": "content/develop/api-reference/widgets/text_input.md",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/api-reference/widgets/text_input.md",
+      "text_sha256": "3f3a7959730090f6c4064639d3bf880035862ff732e43f67634f934261982b5b"
+    },
+    {
+      "applicable_versions": [],
+      "canonical_source_url": "https://docs.streamlit.io/develop/concepts/architecture/session-state",
+      "characters": 12566,
+      "origin_kind": "docs_markdown",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+      "source_pointer": "content/develop/concepts/architecture/session-state.md",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/session-state.md",
+      "text_sha256": "8b004b429ff29ae446df72171e7f9adb0cc625715295d40c4d072fdcf1a86655"
+    },
+    {
+      "applicable_versions": [],
+      "canonical_source_url": "https://docs.streamlit.io/develop/concepts/architecture/widget-behavior",
+      "characters": 21389,
+      "origin_kind": "docs_markdown",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+      "source_pointer": "content/develop/concepts/architecture/widget-behavior.md",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md",
+      "text_sha256": "025129790a1fcb2d448e9ab608389f2ec55ef26751b64d1937cef5705837efeb"
+    },
+    {
+      "applicable_versions": [
+        "1.49.0"
+      ],
+      "canonical_source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.button",
+      "characters": 3754,
+      "origin_kind": "docs_generated",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "source_id": "docstring:1.49.0:streamlit.button",
+      "source_pointer": "python/streamlit.json/1.49.0/streamlit.button",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+      "text_sha256": "7bd993a4e7d0104fc869ab219a8a801761efcf1c8e6981c29ec763e3a86ed8ee"
+    },
+    {
+      "applicable_versions": [
+        "1.49.0"
+      ],
+      "canonical_source_url": "https://docs.streamlit.io/develop/api-reference/execution-flow/st.rerun",
+      "characters": 864,
+      "origin_kind": "docs_generated",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "source_id": "docstring:1.49.0:streamlit.rerun",
+      "source_pointer": "python/streamlit.json/1.49.0/streamlit.rerun",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+      "text_sha256": "948236ecd00dd63f2fcea85f1da32dffae0a6907e1516ccd245c404a31ebf167"
+    },
+    {
+      "applicable_versions": [
+        "1.49.0"
+      ],
+      "canonical_source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.text_input",
+      "characters": 4582,
+      "origin_kind": "docs_generated",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "source_id": "docstring:1.49.0:streamlit.text_input",
+      "source_pointer": "python/streamlit.json/1.49.0/streamlit.text_input",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+      "text_sha256": "16eb05c5314d6d6d1c723f5b9283d972ff38cebb8838738bc0e172ca9be604bc"
+    },
+    {
+      "applicable_versions": [
+        "1.50.0"
+      ],
+      "canonical_source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.button",
+      "characters": 3754,
+      "origin_kind": "docs_generated",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "source_id": "docstring:1.50.0:streamlit.button",
+      "source_pointer": "python/streamlit.json/1.50.0/streamlit.button",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+      "text_sha256": "7bd993a4e7d0104fc869ab219a8a801761efcf1c8e6981c29ec763e3a86ed8ee"
+    },
+    {
+      "applicable_versions": [
+        "1.50.0"
+      ],
+      "canonical_source_url": "https://docs.streamlit.io/develop/api-reference/execution-flow/st.rerun",
+      "characters": 864,
+      "origin_kind": "docs_generated",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "source_id": "docstring:1.50.0:streamlit.rerun",
+      "source_pointer": "python/streamlit.json/1.50.0/streamlit.rerun",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+      "text_sha256": "948236ecd00dd63f2fcea85f1da32dffae0a6907e1516ccd245c404a31ebf167"
+    },
+    {
+      "applicable_versions": [
+        "1.50.0"
+      ],
+      "canonical_source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.text_input",
+      "characters": 4582,
+      "origin_kind": "docs_generated",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "source_id": "docstring:1.50.0:streamlit.text_input",
+      "source_pointer": "python/streamlit.json/1.50.0/streamlit.text_input",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+      "text_sha256": "16eb05c5314d6d6d1c723f5b9283d972ff38cebb8838738bc0e172ca9be604bc"
+    },
+    {
+      "applicable_versions": [
+        "1.64.0"
+      ],
+      "canonical_source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.button",
+      "characters": 6248,
+      "origin_kind": "docs_generated",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "source_id": "docstring:1.64.0:streamlit.button",
+      "source_pointer": "python/streamlit.json/1.64.0/streamlit.button",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+      "text_sha256": "c4f21f7af3574417738637c62b13ccc4649fbc16254a467c5cd52ba1c85638ea"
+    },
+    {
+      "applicable_versions": [
+        "1.64.0"
+      ],
+      "canonical_source_url": "https://docs.streamlit.io/develop/api-reference/execution-flow/st.rerun",
+      "characters": 1659,
+      "origin_kind": "docs_generated",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "source_id": "docstring:1.64.0:streamlit.rerun",
+      "source_pointer": "python/streamlit.json/1.64.0/streamlit.rerun",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+      "text_sha256": "3a34fff5b89290f0e23bf5c9be16be431bba77b7ec3ac554997474869ac0d062"
+    },
+    {
+      "applicable_versions": [
+        "1.64.0"
+      ],
+      "canonical_source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.text_input",
+      "characters": 13421,
+      "origin_kind": "docs_generated",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "source_id": "docstring:1.64.0:streamlit.text_input",
+      "source_pointer": "python/streamlit.json/1.64.0/streamlit.text_input",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+      "text_sha256": "bd92c9cd22de3dba2af5e615796df494877c18899d5fb51bfe1ec7cbbadb3df7"
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "dev-case-a",
+      "fixture_path": "data/evaluation/dev-three-v1/cases/pilot-12782-v1.json",
+      "fixture_id": "dev-three-pilot-12782-v1",
+      "fixture_sha256": "1927084a791b36a022d0ff74682eb10f8f7afa8f96524b249149633121e1be72",
+      "queries": [
+        "multiselect fragment saved default session state",
+        "parent callback widget key reset"
+      ],
+      "http_expected_first_decision": "ask",
+      "http_scope": "Existing authored gateway policy on initial visible input only; not model decision gold."
+    },
+    {
+      "case_id": "dev-case-b",
+      "fixture_path": "data/evaluation/dev-three-v1/cases/icon-9770-v1.json",
+      "fixture_id": "dev-three-icon-9770-v1",
+      "fixture_sha256": "199b47b1c3a65e853d49ec28d9607eec36982502bd2fd5bde1c640165e35c413",
+      "queries": [
+        "button icon image Material symbol",
+        "button label Markdown image"
+      ],
+      "http_expected_first_decision": "ask",
+      "http_scope": "Existing authored gateway policy on initial visible input only; not model decision gold."
+    },
+    {
+      "case_id": "dev-case-c",
+      "fixture_path": "data/evaluation/dev-three-v1/cases/enum-8129-v1.json",
+      "fixture_id": "dev-three-enum-8129-v1",
+      "fixture_sha256": "c5becdc00a950941cb25de8f775fc1a5b024d54f607a9c494bd9e7820ab216f0",
+      "queries": [
+        "session state enum equality class identity",
+        "session state object rerun"
+      ],
+      "http_expected_first_decision": "escalate",
+      "http_scope": "Existing authored gateway policy on initial visible input only; not model decision gold."
+    }
+  ],
+  "registered_http_correction": {
+    "case_id": "dev-case-c",
+    "previous_version": "1.31.0",
+    "corrected_version": "1.31.1",
+    "conversation_source": "developer_authored_operational_probe",
+    "semantics": "Current user fact/revision, stale approval and successful exact review replay; no exact-version diagnosis or fix claim."
+  },
+  "checks": [
+    "Two independent fresh builds share canonical manifest/snapshot; no database binary equality or ranking determinism claim.",
+    "All 14 source identities and 30 chunks preserve approved raw source text, URL, commit, pointer, span, version metadata and vectors.",
+    "All Issue/comment/outcome/release-note/evaluation/fixture records are outside the docs-only allowlist; conservative related closures and reserved candidate IDs retained.",
+    "Native Collection.query observation delegates to the original implementation and verifies collection, lexical query vectors, n_results and version filters.",
+    "Exact available API versions 1.49.0/1.50.0/1.64.0 and absent 1.31.0/1.39.0 are distinguishable; missing exact sources remain source gaps.",
+    "Three pinned fixtures contribute only first visible input to existing offline HTTP/core. Gold, later turns and scripted fixture output are not passed to model/retriever.",
+    "Authored ask/escalate proposals require approval; enum correction invalidates stale approval; backend recreation repeats one already successful review without a second action.",
+    "Historical split/protocol remain byte-identical, and the new split requires its own explicit index/snapshot binding."
+  ],
+  "held_out_test": false,
+  "real_provider_requests": 0,
+  "quality_claim": false,
+  "limits": [
+    "Three exposed dev cases, zero selected test cases; 15/15 and final family/source review remain open.",
+    "Local lexical_hash_v1 embedding; no semantic retrieval relevance/ranking evidence.",
+    "Fixed-evidence icon1.39.0 answer condition and this narrower index are different source conditions.",
+    "No exact1.31 Enum class-identity cause/fix in current corpus; generic Session State sources do not prove the diagnosis.",
+    "HTTP policy is authored ground_fake_gateway; not real model quality.",
+    "Backend recreation in same interpreter; no full OS process restart or browser assertion."
+  ]
+}
