@@ -99,10 +99,10 @@ def test_indexed_grounded_page_correction_and_original_review_retry_after_backen
             assert initial["reasoning_label"] == "grounded_fake_gateway"
             assert initial["quality_claim"] is False and initial["actions"] == []
             assert initial["pending"]["next_question"] == STREAMLIT_VERSION_QUESTION.question
-            assert {gap.kind for gap in request.gaps} == {"user", "source"}
+            assert {gap.kind for gap in request.gaps} == {"user"}
             page_text = " ".join(item.value for item in at.markdown)
             assert "User information: streamlit_version" in page_text
-            assert "Source coverage: exact_version_documentation" in page_text
+            assert "Source coverage: exact_version_documentation" not in page_text
             captions = " ".join(item.value for item in at.caption)
             assert request.evidence.hits
             assert all(f"Excerpt: {hit.excerpt}" in captions for hit in request.evidence.hits)
@@ -117,6 +117,10 @@ def test_indexed_grounded_page_correction_and_original_review_retry_after_backen
             assert original_message in known_handoff.user_message
             assert known_handoff.user_message.endswith("1.50.0")
             assert not any(gap.kind == "user" for gap in known_handoff.grounded_request.gaps)
+            assert {gap.kind for gap in known_handoff.grounded_request.gaps} == {"source"}
+            assert "Source coverage: exact_version_documentation" in " ".join(
+                item.value for item in at.markdown
+            )
             assert known_handoff.analysis.evidence_links
             assert len(known["actions"]) == 1
             state.loss = True

@@ -4,6 +4,37 @@
 
 ## وضعیت فعلی
 
+- [x] **C4e — اندازه‌گیری محدود پایداری و برش خصمانهٔ آفلاین؛ ساسان.**
+  انتشار و review در [PR #46](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/46)؛
+  ۳۲۰۴ تست، HTTP/SQLite ۴۵۷/۴۵۷ و restart/retry پاس؛ CI همان head شرط merge است.
+  [protocol](../experiments/core_stability_adversarial/stability-protocol-v1.json)
+  قبل از مدل ثبت شد؛ سه دور کامل، دور چهارم پس از ۲ job از ۶ با خطای provider
+  متوقف شد. [اصل receipt و review](../experiments/core_stability_adversarial/README.md):
+  در سه دور کامل B سه route از ۹ و C هفت از ۹؛ با دور چهارم ناقص B سه از ۱۰
+  و C هشت از ۱۰. ۱۰ paired input اولیه یکسان‌اند؛ ترتیب متوازنِ چهار دور
+  کامل اجرا نشد. ۴۲ transport attempt، ۴۱ settled با تخمین $0.025141875 و
+  یک hold تازه $0.0033792؛ ۴ job اجرا نشده‌اند، نه موفق. دو پاسخ Enum با
+  `ProviderResponseInvalid` و خروجی ۱۰۲۴ token شکست محسوب شدند؛ علت دقیق
+  truncation ثابت نشده. ۲۵ proposal، ۲۰ سؤال ضروری، ۳ پاسخ محدود button؛
+  کفایت سخت‌گیرانهٔ ۲ پاسخ Enum کامل اثبات نشد و usefulness انسانی null است.
+  ۱۴ qualification اولیه نسخهٔ نامعلوم را تأییدشده خواندند؛ [fix مستقل catalog](../experiments/core_stability_adversarial/catalog-version-truth-receipt-v2.json)
+  همان ۱۰ کنترل archived را از ۳ پاس/۷ شکست به ۱۰ پاس رساند؛ نتیجهٔ live
+  بازنویسی یا دوباره نمره‌گذاری نشده و fix با API تازه آزمایش نشده است.
+  برش خصمانه پس از توقف فقط آفلاین است: ۶ کنترل سالم و ۳ counterexample؛
+  انتخاب شاهد قدیمی و answer با conflict رد شدند، quote منبع مهاجم با hash
+  معتبر پذیرفته شد و شکست semantic ثبت شد. این‌ها کیفیت RAG/test یا بستن
+  bonus نیستند. tracker/UI/RAG/قراردادهای مشترک تغییر نکرده‌اند؛ دو انتظار
+  تست اتصال برای catalog جدید اصلاح و اصل کنترل‌های تاریخی حفظ شده‌اند.
+
+- [ ] **C5b — تطبیق درخواست نامعلوم تازهٔ C4e؛ ساسان.**
+  [بستهٔ reconciliation](../experiments/core_stability_adversarial/stability-cost-reconciliation-v1.json)
+  شناسهٔ محلی و بازهٔ UTC را دارد. HTTP status، model و usage دریافت نشده‌اند؛
+  بدون رسید provider، صفر بودن هزینه فرض نمی‌شود. سه scope بسته و چهارمی
+  با `NewUncertainty` revoke شد؛ grant قدیمی نیز طبق guard موجود revoke است،
+  hold قبلی $0.02 و hold تازه باقی‌اند، pending صفر و halt پابرجاست.
+  ادامهٔ live و تست خصمانه با مدل، تا reconciliation باز می‌مانند؛ ledger reset
+  یا parent تازه برای دورزدن این وضعیت ساخته نمی‌شود. smoke آفلاین بهنام مستقل است.
+
 - [x] **C4d — آزمایش محدود سه dev و اصلاح تصمیم‌های GroundedPlan؛ ساسان.**
   انتشار در [PR #45](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/45)؛
   ۳۱۳۹ تست محلی و HTTP/SQLite ۴۵۷/۴۵۷ پاس، CI همان head شرط merge است.

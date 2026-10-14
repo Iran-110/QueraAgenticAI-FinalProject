@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "amendment_id": "catalog-ui-gap-expectation-v1",
+  "source_change_registered_by": "catalog-version-truth-protocol-v1.json",
+  "historical_test_path": "tests/test_grounded_connected_ui.py",
+  "historical_test_sha256": "9fd8dbef01260a3abd2ddee3fab11d18ba984be263b3b7bf43395005b239f518",
+  "preserved_copy": "experiments/core_stability_adversarial/grounded-connected-ui-controls-historical-v1.py",
+  "reason": "The core catalog fix intentionally stops declaring a documentation gap before the user version is known with supplied records. The UI consumes that current catalog; its legacy expectation of a premature source-gap caption is obsolete. No production UI/backend/tracker change.",
+  "current_expectation": "Before version reply, only user information gap/caption; after known version with unversioned index records, exact-version source gap/caption. All source quote, correction, original approval envelope and retry/restart assertions preserved.",
+  "frozen_model_oracle_changed": false,
+  "manual_ui_smoke_claim": false
+}

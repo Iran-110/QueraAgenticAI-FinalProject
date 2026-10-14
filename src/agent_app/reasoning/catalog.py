@@ -14,7 +14,7 @@ from agent_app.reasoning.grounding import (
 
 
 def runtime_catalog(case: CaseState, message: str, evidence: EvidenceBundle) -> GroundedRequest:
-    """Register only a user-supplied version gap and a documentary coverage gap.
+    """Separate a missing user version from established documentary coverage gaps.
 
     The latest authoritative facts and actual bundle are the complete input.
     No fixture expectations, inferred cause, gold labels or future turns are used.
@@ -36,12 +36,19 @@ def runtime_catalog(case: CaseState, message: str, evidence: EvidenceBundle) -> 
                 question=STREAMLIT_VERSION_QUESTION.question,
             )
         )
-    if not any(source_scope(case, hit) == "exact_metadata_match" for hit in evidence.hits):
+    if not evidence.hits or (
+        "streamlit_version" in known
+        and not any(source_scope(case, hit) == "exact_metadata_match" for hit in evidence.hits)
+    ):
         gaps.append(
             GroundedGap(
                 name="exact_version_documentation",
                 kind="source",
-                description="No supplied record has exact metadata for the confirmed version.",
+                description=(
+                    "The supplied evidence bundle contains no documentation records."
+                    if not evidence.hits
+                    else "No supplied record has exact metadata for the confirmed version."
+                ),
                 necessity="Further documentation retrieval or maintainer review may be needed.",
             )
         )

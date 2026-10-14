@@ -257,9 +257,18 @@ def test_frozen_inputs_add_question_capacity_without_changing_current_source_cat
     assert before.conflict_groups == after.conflict_groups == ()
     assert before.context_sha256 != after.context_sha256
     actual_base = runtime_catalog(before.case, before.user_message, before.evidence)
-    assert [gap.model_dump(mode="json") for gap in actual_base.gaps] == row[
-        "base_catalog_by_round"
-    ][0]["gaps"]
+    historical_base = row["base_catalog_by_round"][0]["gaps"]
+    if condition_index == 2:
+        # C4e registers this narrow catalog correction. Keep the old packet and
+        # literal controls for historical replay; user vocabulary still does
+        # not change source gaps between the two current configurations above.
+        assert any(gap["name"] == "exact_version_documentation" for gap in historical_base)
+        expected_base = [
+            gap for gap in historical_base if gap["name"] != "exact_version_documentation"
+        ]
+    else:
+        expected_base = historical_base
+    assert [gap.model_dump(mode="json") for gap in actual_base.gaps] == expected_base
     assert {gap.name for gap in after.gaps if gap.kind == "user"} == {
         gap.name for gap in _definitions()
     } | ({"streamlit_version"} if condition_index == 2 else set())

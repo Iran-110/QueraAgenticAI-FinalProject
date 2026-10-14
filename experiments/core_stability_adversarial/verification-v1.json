@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "verification_id": "core-stability-publication-v1",
+  "tested_runtime_commit": "c29f46b1b283ad91637e5b65428cd94b66ee6bc6",
+  "runtime_catalog_sha256": "3624384239857c38925092cd9ecfdaa9bd9af9d12b5fa253d44075481507dcfa",
+  "final_full_suite": {
+    "counts": {
+      "tests": 3204,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "xml_sha256": "cc4e2386cd357886285d96bfbe09616608e4b8f55fb394d3309d8718710c71bc"
+  },
+  "pre_live_suite": {
+    "counts": {
+      "tests": 3186,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "xml_sha256": "ba63142fec4347fb061ffe39a85aae7cf080e5f59518b1e72ad85478dbdb0865",
+    "source_commit": "beeb2f3e3d6336e8a5509503658b6affcc38284a"
+  },
+  "retained_initial_failed_suite": {
+    "counts": {
+      "tests": 3182,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0
+    },
+    "xml_sha256": "02cc30e3631e19a1cac0df2273efb017b5b04f950bb2cf7bc994a0499f013fbd",
+    "reason": "Test collection occurred before new checkpoint assertion correction: existing NewUncertainty legitimately revokes the old grant row, while preserving its credit/hold. Focused and fresh full runs verify that declared failure behavior; this did not relax accounting or alter a model oracle."
+  },
+  "retained_focused_failures": [
+    {
+      "passed": 86,
+      "failed": 1,
+      "reason": "Historical C4c assertion compared current source catalog to old literal unknown-version source gap."
+    },
+    {
+      "passed": 101,
+      "failed": 1,
+      "reason": "Existing connected UI assertion expected the premature unknown-version source-gap caption."
+    }
+  ],
+  "compatibility_policy": "Original literal control files and frozen evaluation oracles retained; two current test expectations follow only the preregistered catalog truth correction. Archived historical C4c replay reuses old control hash/oracle and old candidate.",
+  "ruff_check": "passed",
+  "ruff_format": "passed 237 Python files",
+  "three_required_demos": {
+    "refine": 0,
+    "gateway_repair": 0,
+    "turn_demo": 0
+  },
+  "http_sqlite": {
+    "passed": 457,
+    "total": 457,
+    "restart": true,
+    "receipt_path": "experiments/core_stability_adversarial/http-sqlite-receipt-v1.json"
+  },
+  "artifact_sha256": {
+    "catalog-version-truth-protocol-v1.json": "9d54993626bf68744e1be75ad0774393317d2a1f2db0909b32e1b82d2816d52c",
+    "catalog-compatibility-amendment-v1.json": "c9f81d47f37bea90d92db1aebb8ecd992ecd141422d78304e0d0dadf7afac1c9",
+    "stability-cost-reconciliation-v1.json": "9dd74362bcc4675cdb094302e5bad2c22b78f6aa4f437f9245df270ca00bbb03",
+    "stability-protocol-v1.json": "8dd1affa892761fee0a18ecc94f12fcc7879689828fd101e6a707998e988b0d1",
+    "adversarial-protocol-proposal-v1.json": "ecd297d1ddc2c01dfc77ca32b5e3e0e36f39056fd01a56a0f0d35c616d45d5d4",
+    "catalog-version-truth-receipt-v2.json": "4c401b2f0367ac17254b0eef0aca6bb86cf67071fbb88d9febf4395cd02ea3cf",
+    "stability-mechanical-review-v1.json": "ac186c364d4b85e115780c09331222ca4690ec6a263096ea5daa9f7fd55b7a3d",
+    "adversarial-oracle-v1.json": "710899ba7a866b2692e48b0a98799810c109edf7494771b070d7a878341f0b10",
+    "stability-semantic-review-v1.json": "2ab4850e0de888477c40c19a764d6e6d3fdf2c86bb69d32b82415b323317d7b8",
+    "http-sqlite-receipt-v1.json": "6483f71fc71b6f0b25ca697532615e3abc6e4994a3074be65dd23485c55281f6",
+    "historical-c4c-replay-receipt-v1.json": "7a4ffbde56387257ce280c3b637da5ca8c5fe9a16d8de344d457a7eff48ce66e",
+    "stability-live-receipt-v1.json": "8346af721b675524c29d34fee25bfe71dc813d0c93f982540e02b56234688ceb",
+    "adversarial-offline-receipt-v1.json": "a20078055e37bc203aa991945358e90d3f35c3fc3207a75bf07afa2180ca9814",
+    "catalog-version-truth-receipt-v1.json": "523f5dbec4ecedd88d2dec93d4f787089f1325ebba1dfa237d92c4abfdad49bf",
+    "adversarial-packet-v1.json": "7034cbf61ec395576fa6bfe0937b051a06f28f3268ef6981a72e2e23b00a8fe5",
+    "catalog-ui-compatibility-amendment-v1.json": "1658f51fb9c0a2795caaa771b9d6ff544d0316115511412878c521e59e81fd71"
+  },
+  "shared_files_unchanged": {
+    "src/agent_app/contracts.py": "1dcf0de657f3442dfb5e787e6243a9a279501305033e592cbcd060dd808d0a91",
+    "data/evaluation/split-manifest.json": "78e630cbef86937f2838795a2329ee56e16ea0beef7900db5c63d5fede6404ff",
+    "data/evaluation/dev-three-v1/split-manifest.json": "f857fc559673c7ae2f508617fda3f81e3591157740e327109b00ae9a86f449ce"
+  },
+  "quality_claim": false,
+  "actual_rag_quality": false,
+  "human_usefulness": null,
+  "live_fix_verification": false,
+  "ci_status_at_verification": "not yet PR; verify exact final head before publishing"
+}

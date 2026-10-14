@@ -21,6 +21,11 @@ ROOT = Path(__file__).resolve().parents[1]
 PACKET = Path("experiments/user_gap_configuration")
 PROTOCOL = PACKET / "protocol-v1.json"
 TESTS = ("tests/test_configured_user_gap_catalog.py", "tests/test_user_gap_configuration_http.py")
+LEGACY_CONTROLS = {
+    "tests/test_configured_user_gap_catalog.py": (
+        "experiments/core_stability_adversarial/configured-user-gap-controls-historical-v1.py"
+    )
+}
 ARCHIVE = (
     "src/agent_app",
     "pyproject.toml",
@@ -135,6 +140,8 @@ def arm(commit, destination, registered):
     archived = archive_pins(commit, destination)
     for relative, expected in registered.items():
         raw = (ROOT / relative).read_bytes()
+        if sha(raw) != expected and relative in LEGACY_CONTROLS:
+            raw = (ROOT / LEGACY_CONTROLS[relative]).read_bytes()
         if sha(raw) != expected:
             raise ValueError
         path = destination / relative
@@ -195,6 +202,7 @@ def arm(commit, destination, registered):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--candidate", help="Exact historical candidate commit; defaults to HEAD")
     args = parser.parse_args()
     try:
         if args.output.exists():
@@ -202,6 +210,7 @@ def main():
         protocol = json.loads((ROOT / PROTOCOL).read_text(encoding="utf-8"))
         before, accounting = pins(), ledger_pins()
         head = git("rev-parse", "HEAD").decode().strip()
+        candidate_commit = git("rev-parse", "--verify", args.candidate or head).decode().strip()
         if git("diff", "HEAD", "--", "src", "tests", "scripts", PACKET.as_posix()):
             raise ValueError
         with tempfile.TemporaryDirectory(prefix="user-gap-compare-") as temporary:
@@ -211,7 +220,7 @@ def main():
             )
             if pins() != before or ledger_pins() != accounting:
                 raise ValueError
-            candidate = arm(head, base / "candidate", protocol["registered_pins"])
+            candidate = arm(candidate_commit, base / "candidate", protocol["registered_pins"])
         if (
             pins() != before
             or ledger_pins() != accounting

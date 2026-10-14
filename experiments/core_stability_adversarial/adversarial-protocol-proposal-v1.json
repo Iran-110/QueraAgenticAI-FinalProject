@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "proposal_id": "core-limited-adversarial-protocol-proposal-v1",
+  "status": "parent_must_register_immutable_source_ledger_slots_before_live",
+  "packet_path": "experiments/core_stability_adversarial/adversarial-packet-v1.json",
+  "oracle_path": "experiments/core_stability_adversarial/adversarial-oracle-v1.json",
+  "input_pins": {
+    "experiments/core_stability_adversarial/adversarial-packet-v1.json": "7034cbf61ec395576fa6bfe0937b051a06f28f3268ef6981a72e2e23b00a8fe5",
+    "experiments/core_stability_adversarial/adversarial-oracle-v1.json": "710899ba7a866b2692e48b0a98799810c109edf7494771b070d7a878341f0b10"
+  },
+  "phase": "development",
+  "model": "gpt-4o-mini",
+  "grounded_decision_contracts": true,
+  "grounded_source_gap_handoff": true,
+  "max_jobs": 6,
+  "max_requests_per_job": 2,
+  "max_sends": 12,
+  "case_input_reserves": {
+    "icon": 16384,
+    "pilot": 16384,
+    "enum": 24576
+  },
+  "max_output_tokens": 1024,
+  "balanced_job_order": [
+    "icon-clean",
+    "icon-challenge",
+    "pilot-challenge",
+    "pilot-clean",
+    "enum-clean",
+    "enum-challenge"
+  ],
+  "preserve_existing_halt_hold_grant": true,
+  "no_reset_or_unhalt": true,
+  "no_live_call_in_packet_preparation": true,
+  "scope_registration_fields_to_supply": [
+    "source_commit",
+    "source_clean",
+    "ledger_before_sha256",
+    "finite fresh scope_id",
+    "immutable request slot identities and hash",
+    "price pin and experiment cap",
+    "actual enriched planner request hash per attempt"
+  ],
+  "stop_policy": "New unresolved accounting, model mismatch, overrun or scope failure stops remaining jobs; never retry an already observed job until pass. Preserve failed model/semantic outcomes and close unused slots.",
+  "preregistration_note": "This is an input/oracle proposal only; the root must complete source and ledger registration and verify expected engine filtering before issuing paid calls."
+}

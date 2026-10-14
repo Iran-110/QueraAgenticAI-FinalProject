@@ -2,6 +2,52 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-14 — C4e preregistered stability and limited adversarial development
+
+Publication/review: [PR #46](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/46).
+
+The [method packet](../experiments/core_stability_adversarial/README.md) freezes
+four paired rounds on the existing three exposed dev families. Each family has
+two B/C and two C/B orders; both arms share the reviewed vocabulary, full source
+bundles and optional source-gap renderer. Only decision/field prompt guidance
+differs. First attempts, all attempts, conditional paths and semantic adequacy
+are separate observations; human usefulness remains null. The historical C4d
+receipts/oracle are unchanged. No new held-out case or RAG measurement is added.
+
+Three authored clean/challenge pairs and their oracle are pinned before models:
+source instructions, obsolete-version evidence and caller-declared conflicting
+reports. The harness uses the existing exact-user-version engine option for
+this separate adversarial slice. Version/correction history is not fabricated
+for those fresh one-turn events; the stability Enum route retains the existing
+real two-turn fixture correction/stale-approval checks.
+
+The new experiment code lives in testing/scripts/experiments. Tracker, UI,
+retrieval, shared contracts and final split remain unchanged; Behnam's manual
+UI smoke is independent. [Results](../experiments/core_stability_adversarial/README.md):
+three complete paired rounds B3/9routes versus C7/9; fourth partial after
+ProviderRequestFailed, all visited B3/10 versus C8/10. Twenty of24jobs visited,
+four unobserved;42transport attempts,41settled localestimateUSD0.025141875,
+newuncertainholdUSD0.0033792. Three scopesclosed/fourthrevoked; oldcontinuation
+also revoked by existingNewUncertainty. Originalhold/cap/halt persist; no refill,
+reset, newparent or adversarial live call. Provider disposition is not known.
+
+All25proposals reconstruct,20questions necessary,3boundedbuttonanswers;
+twoEnumanswers remain incompletely adequate and two settled provider-invalid
+Enum outputs are failures. Humanutilitynull. Fourteen unknown-version proposals
+exposed a false caller "confirmed version" qualification. The separately
+registered catalog correction requires active USER version before asserting
+missing exact-version documentation with supplied records; empty evidence still
+gets an honest source gap. Actual archives: same10controls3pass/7fail before,
+10pass after. Original model scores/gold unchanged; no new paid verification.
+Two narrow current test expectations changed, original test bytes are preserved;
+historicalC4c21control replay still reproduces9/21before and21/21after.
+
+Limited adversarial execution is offline:6safecontrols+3counterexamples. Old
+source selection/declared-conflict answer blocked; hash-valid attack quotation
+accepted and classified semantic failure. No model-resistance/RAG/bonus claim.
+Final local fullsuite3204passes, HTTP/SQLite457/457 and restart/retry pass;
+exact-head CI remains publication evidence. [Integration handoff](core-stability.fa.md).
+
 ## 2026-10-14 — C4d three exposed dev families and bounded real model trials
 
 Publication: [PR #45](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/45).

@@ -1,0 +1,160 @@
+{
+  "schema_version": 2,
+  "protocol_id": "catalog-version-truth-v1",
+  "preregistration_commit": "4ce6cd25c8e92685524d2262e8c680089b76fd6f",
+  "protocol_path": "experiments/core_stability_adversarial/catalog-version-truth-protocol-v1.json",
+  "protocol_sha256": "9d54993626bf68744e1be75ad0774393317d2a1f2db0909b32e1b82d2816d52c",
+  "test_path": "tests/test_catalog_version_truth.py",
+  "frozen_control_source_sha256": "9a1fd7cc4dbba68c106f052d796052ea39d32971a9ed42e070d2d06187c7a064",
+  "frozen_oracle_controls_sha256": "d9d9eed50e71dd74cec9a0ca3d493aff4805dbb5501f7829d44608888e89345c",
+  "previous_observation": {
+    "path": "experiments/core_stability_adversarial/catalog-version-truth-receipt-v1.json",
+    "sha256": "523f5dbec4ecedd88d2dec93d4f787089f1325ebba1dfa237d92c4abfdad49bf",
+    "unchanged": true,
+    "description": "The working-tree V1 observation and its legacy compatibility failure remain preserved. This V2 adds actual committed-source archive verification."
+  },
+  "baseline": {
+    "source_commit": "beeb2f3e3d6336e8a5509503658b6affcc38284a",
+    "source_kind": "actual_git_archive",
+    "production_catalog_sha256": "8f0a96460f77107ccb71a2729d6d70c0129daea961dc020c40ceda06aae34782",
+    "test_sha256": "9a1fd7cc4dbba68c106f052d796052ea39d32971a9ed42e070d2d06187c7a064",
+    "protocol_sha256": "9d54993626bf68744e1be75ad0774393317d2a1f2db0909b32e1b82d2816d52c",
+    "test_exit_code": 1,
+    "total": 10,
+    "failed": 7,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 3,
+    "control_results": [
+      {
+        "id": "runtime-unknown-supplied",
+        "passed": false
+      },
+      {
+        "id": "caller-unknown-with-callback",
+        "passed": false
+      },
+      {
+        "id": "runtime-unknown-empty",
+        "passed": false
+      },
+      {
+        "id": "runtime-evidence-version-is-not-user-version",
+        "passed": false
+      },
+      {
+        "id": "runtime-superseded-version-is-not-current",
+        "passed": false
+      },
+      {
+        "id": "runtime-known-exact-documentation",
+        "passed": true
+      },
+      {
+        "id": "runtime-known-other-version-documentation",
+        "passed": true
+      },
+      {
+        "id": "runtime-known-empty",
+        "passed": false
+      },
+      {
+        "id": "caller-corrected-version-old-documentation",
+        "passed": true
+      },
+      {
+        "id": "caller-unknown-unversioned-documentation",
+        "passed": false
+      }
+    ],
+    "api_calls": 0,
+    "junit_sha256": "2ae3ed6de290ac9a30f4bb4f97f0cd2237210799100eb30a7330de4c29f50a69",
+    "log_sha256": "4abe22fa778b7e6476cd23cdf4f7afd2808787633326ce0f6530fa90ec4e18e6"
+  },
+  "candidate": {
+    "source_commit": "c29f46b1b283ad91637e5b65428cd94b66ee6bc6",
+    "implementation_commit": "439ff765a48e941e0998eaddd5a89953dd44a3c5",
+    "source_kind": "actual_git_archive",
+    "source_overlay": "none; committed test/protocol included unchanged",
+    "production_catalog_sha256": "3624384239857c38925092cd9ecfdaa9bd9af9d12b5fa253d44075481507dcfa",
+    "test_sha256": "9a1fd7cc4dbba68c106f052d796052ea39d32971a9ed42e070d2d06187c7a064",
+    "protocol_sha256": "9d54993626bf68744e1be75ad0774393317d2a1f2db0909b32e1b82d2816d52c",
+    "test_exit_code": 0,
+    "total": 10,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 10,
+    "control_results": [
+      {
+        "id": "runtime-unknown-supplied",
+        "passed": true
+      },
+      {
+        "id": "caller-unknown-with-callback",
+        "passed": true
+      },
+      {
+        "id": "runtime-unknown-empty",
+        "passed": true
+      },
+      {
+        "id": "runtime-evidence-version-is-not-user-version",
+        "passed": true
+      },
+      {
+        "id": "runtime-superseded-version-is-not-current",
+        "passed": true
+      },
+      {
+        "id": "runtime-known-exact-documentation",
+        "passed": true
+      },
+      {
+        "id": "runtime-known-other-version-documentation",
+        "passed": true
+      },
+      {
+        "id": "runtime-known-empty",
+        "passed": true
+      },
+      {
+        "id": "caller-corrected-version-old-documentation",
+        "passed": true
+      },
+      {
+        "id": "caller-unknown-unversioned-documentation",
+        "passed": true
+      }
+    ],
+    "import_path_guard": "All ten controls assert catalog.__file__ resolves inside the actual archive src/agent_app/reasoning/catalog.py.",
+    "network": "Every catalog/render invocation runs inside existing offline_network guard; no credential/index/ledger/provider construction.",
+    "junit_sha256": "b5f7afcd71951e0120cbe0db244735f12bbffbe1d5228c00ae5b6859e81ef9c5",
+    "log_sha256": "8c7c36904059b95b6313bab2fcf78d30044e9f921fd203022381ae49938b4fa4",
+    "api_calls": 0
+  },
+  "same_controls": true,
+  "candidate_source_frozen": true,
+  "result": "Actual archived original source passes 3/10 frozen catalog/render truth controls; actual archived committed candidate passes the same 10/10, without model/API execution or historical-result rescoring.",
+  "original_paid_results_unchanged": true,
+  "limitations": [
+    "These are deterministic software truth controls, not real-model stability improvements, held-out evaluation, RAG quality or human usefulness scores.",
+    "Original paid stability output had already completed on beeb2f3 before this separate catalog fix and retains its original shortcoming classifications.",
+    "Broader full-suite verification is separate and owned by root."
+  ],
+  "local_artifacts": {
+    "directory": "output/catalog-version-truth-2026-10-14-v1",
+    "baseline_log": "baseline.log",
+    "baseline_junit": "baseline.xml",
+    "candidate_log": "candidate-archive-v2.log",
+    "candidate_junit": "candidate-archive-v2.xml"
+  },
+  "evidence_limits": {
+    "real_model_calls": 0,
+    "api_cost_usd": "0",
+    "actual_rag_quality": false,
+    "quality_claim": false,
+    "human_usefulness": null,
+    "historical_paid_results_rescored": false
+  }
+}
