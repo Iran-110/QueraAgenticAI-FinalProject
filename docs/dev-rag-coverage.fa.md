@@ -29,3 +29,33 @@ approval قبلی را رد کند. gold و آیندهٔ گفتگو وارد pla
 یا semantic retrieval را با method جدا پیشنهاد بدهد؛ build و exclusion نهایی
 به split انسانی محمدحسن وابسته است. محمدحسن review انسانی متن‌ها و خانواده‌ها
 و سپس dev/test نهایی را دارد. smoke دستی UI/SQLite بهنام جدا باقی است.
+
+## نتیجهٔ واقعی
+
+پذیرش index، ۸۹/۸۹؛ دو build مستقل manifest یکسان و chunkهای قبلی بدون تغییر.
+[رسیدها و review](../experiments/dev_rag_coverage_v1/README.md): دو دور balanced
+مدل واقعی روی index قدیم/جدید، ۲۹ call و تخمین $0.032363430. همهٔ درخواست‌ها
+settled و شش scope بسته شدند؛ هیچ hold تازه نداریم. ۳۱۴ reservation قبلی و
+همهٔ ردیف‌های قبلی۱۴ جدول و schema با backup تطبیق کامل داشتند؛ دو hold قبلی و
+halt عمومی/سقف$4.50 و revocationها محفوظ‌اند. این صورت‌حساب provider نیست.
+
+route کامل قدیم۴/۶، جدید۲/۶؛ افزودن corpus به‌تنهایی بهبود تصمیم را نشان نداد.
+fragment1.50 در ورودی واقعی پایلوت با نسخهٔ معلوم رسید، ولی sourceهای اضافهٔ
+button1.39 و multiselect وارد bundle مدل نشدند. پنج refinement همان query قبلی
+بود و RepeatedQuery درست متوقفش کرد. یک پاسخ Enum همهٔ پنج source را انتخاب
+کرد و در هر دو attempt به grounded_render_too_large خورد؛ همان plan در سه mode
+renderer هم بزرگ است. نه متن سند بریدیم، نه validator یا attempt limit را
+شل کردیم. این شش turn بدون پاسخ تازه و یک turn طی‌نشده، شکست/پوشش ناقص‌اند.
+
+۲۹ attempt،۲۶ bundle و۲۳ turn مستقل بررسی شدند؛۳۲ ظهور hit با نسخهٔ ناسازگار
+یا نامعلوم کنار رفت. ۱۷ پیشنهاد تازه ادعای بی‌پشتوانه نداشتند، ولی این۱۷/۱۷
+کیفیت کلی نیست و usefulness انسانی هنوزnull است. دو proposal مشاهده‌شده در
+correction، متعلق به revision قبلی بودند؛ approval409 شدند و پاسخ تازه نیستند.
+سه plan اول نامعتبر و repairهایشان هم حفظ شده‌اند.
+
+گام بعد core: novel query و انتخاب source در حد اندازهٔ renderer را قبل از
+مدل ثبت و روی همین baseline مقایسه کنیم. گام RAG حسن: relevance و version
+ranking/backfill را روی queryهای واقعاً ثبت‌شده بررسی کند. قرارداد مشترک و
+defaultها عوض نشده‌اند؛ build تازه با مسیر صریح بالا انتخاب می‌شود و factory
+معمول live هنوز به‌خاطر C5 halt می‌کند. suite۳۵۱۵ و HTTP/SQLite۴۵۷/۴۵۷ پاس‌اند؛
+این شواهد مهندسی‌اند، نه test نهایی یا داوری انسانی.

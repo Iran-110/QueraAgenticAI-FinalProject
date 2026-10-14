@@ -2,6 +2,49 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-14 — C4g/R4a: three dev families with a native index
+
+The [registered packet](../experiments/dev_rag_coverage_v1/README.md) adds four
+pinned official API records in a closed profile of 18 sources and 36 chunks.
+All 46 conservative Issue reservations remain. Issues, comments, outcomes,
+fixtures and the answer-linked Enum guide are excluded. Both historical 14/30
+snapshots and all 30 old chunks are unchanged. Native acceptance passed 89/89;
+two independently built manifests match. The primary index remains intact;
+the second rebuild is deliberately invalid after tamper controls. Indexing uses
+local lexical vectors, with no semantic embedding or paid API.
+
+An offline full-payload size failure was registered before paid calls. Explicit,
+default-false `allow_full_context` permits 32768 only for newly registered,
+immutable quarantine scopes. Legacy tiers, binding bytes, schema, holds, halt,
+revocations and the USD4.50 ceiling remain unchanged. Independent review and
+45 new plus 59 existing accounting controls passed. Ordinary live startup stays
+blocked; this does not reconcile C5.
+
+Source `a6c7f8c` remained fixed during 29 settled calls, estimated USD0.032363430,
+with no new holds. Six scopes closed permanently; 19 unused slots remain claimed.
+The 629 accounting controls verify all 314 prior reservations, every prior row
+in 14 tables, unchanged schema, wire hashes, identities, rates and usage bounds.
+The initial accounting review had an incorrect observer enum expectation; its
+original result and the explicit mechanical V2 amendment are both retained.
+
+Two balanced rounds completed 4/6 routes on the historical index and 2/6 on the
+new index. Adding sources did not improve observed completion. Model evidence
+comes from native Chroma, with no fixture, gold or source-ID filter. Fragment
+1.50 reaches the known-version pilot; button1.39 and multiselect do not reach
+model bundles despite corpus membership. Five repeated refinement queries stop
+before another search. One Enum plan selects all five sources and exceeds the
+renderer limit in both attempts and all renderer modes.
+
+Review covers 29 attempts, 26 bundles and 23 visited turns. Seventeen fresh
+proposals are distinct from two stale observations. Thirty-two incompatible or
+unknown-version hit appearances are removed. Three invalid initial plans and
+their repairs, six turns without a fresh response and one unvisited turn remain
+in the receipt. Human usefulness is unscored; these exposed, answer-informed
+families do not establish held-out or general RAG performance. C4h query novelty
+and source selection, R4 relevance/backfill, human review and final evaluation
+remain open. Local validation: 3515 pytest passes, HTTP/SQLite 457/457, required
+demos, locked sync and Ruff. Final-head CI is required before publication.
+
 ## 2026-10-14 — C4f registered quality follow-up
 
 Publication/review: [PR #47](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/47).

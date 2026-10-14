@@ -4,16 +4,27 @@
 
 ## وضعیت فعلی
 
-- [ ] **C4g / R4a — سه dev با index واقعی؛ ساسان، کمک به RAG حسن.**
-  [protocol ثبت‌شده قبل از اجرا](../experiments/dev_rag_coverage_v1/protocol-v1.json)
-  و [راهنمای اتصال](../docs/dev-rag-coverage.fa.md): چهار source رسمی seed در
-  profile بستهٔ جدا۱۸/۳۶، همراه۴۶ reservation و حفظ baseline تاریخی۱۴/۳۰.
-  دو build مستقل، pin/span/version/exclusion و سرچ native باید پذیرفته شوند؛
-  سپس دو دور balanced همان سه dev روی دو index قدیم/جدید با مدل واقعی.
-  corpus membership، ranking، scope نسخه، ادعای مستند و route جدا گزارش می‌شوند.
-  فیلتر source-ID/gold برای تقویت نتیجه نداریم؛ caseها exposed و human review
-  بازند. اعتبار scope تازه باید هر دو hold و halt/C5 قبلی را نگه دارد.
+- [x] **C4g / R4a — build نسخه‌دار و آزمایش سه dev با index واقعی؛ ساسان، کمک به RAG حسن.**
+  [protocol قبل از اجرا](../experiments/dev_rag_coverage_v1/protocol-v1.json) و
+  [رسید/محدودیت‌ها](../experiments/dev_rag_coverage_v1/README.md): profile بسته۱۸/۳۶،
+  چهار source رسمی و۴۶ reservation؛ پذیرش۸۹/۸۹، دو build مستقل یکسان و حفظ تمام
+  chunkها/snapshotهای قدیمی۱۴/۳۰. این تیک تحویل محدود است، R4/کیفیت نهایی نیست.
+  دو دور balanced با source ثابتa6c7f8c؛۲۹ call، تخمین$0.032363430، صفر hold تازه،
+  شش scope بسته و۱۹ slot مصرف‌نشدهclaimed. ۶۲۹ کنترل حسابداری، همهٔ۳۱۴ ردیف
+  reservation قبلی و ردیف‌های۱۴ جدول/schema محفوظ؛ C5/halt/دو hold قبلی بازند.
+  route قدیم۴/۶ و جدید۲/۶؛ بهبود کیفیت از افزایش corpus ثابت نشد. fragment1.50
+  رسید ولی button1.39/multiselect اضافه‌شده در bundle مدل نیامد؛ پنج RepeatedQuery
+  و یک Enum overflow در دو attempt حفظ‌اند.۱۷ proposal تازه/دو مشاهدهٔ stale جدا،
+ ۳۲ hit نسخهٔ ناسازگار/نامعلوم حذف، سه plan نامعتبر و repairها حفظ؛ usefulness
+  انسانیnull.۳۵۱۵pytest و HTTP/SQLite۴۵۷/۴۵۷ و demos/Ruff پاس؛ CI head شرط انتشار.
 
+- [ ] **C4h — رفع بن‌بست query و انتخاب source در حد خروجی؛ ساسان.**
+  روی baseline کامل C4g، treatment تازه برای query واقعاً novel و انتخاب تعداد
+  source مرتبط در اندازهٔ renderer پیش از call ثبت شود؛ guard RepeatedQuery و
+  نقل‌قول کامل و attempt محدود حفظ شوند. baseline/شکست‌های قبلی بازنویسی نشوند.
+  کار حسن در R4: ranking/backfill نسخه و relevance این queryهای واقعی؛ source-ID
+  یا gold filter برای بالا بردن نتیجه ممنوع. محمدحسن human review/split و بهنام
+  smoke دستی UI/SQLite را ادامه دهند؛ این کارها با C4g بسته نشدند.
 
 - [x] **C4f — مقایسهٔ محدود مدل و بهبود انتخاب منبع؛ ساسان.**
   انتشار و review در [PR #47](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/47)؛
