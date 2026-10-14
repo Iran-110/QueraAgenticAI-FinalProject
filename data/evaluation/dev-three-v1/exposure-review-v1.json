@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "review_id": "dev-three-assistant-exposure-review-v1",
+  "registered_on": "2026-10-14",
+  "reviewer_kind": "assistant",
+  "human_reviewed": false,
+  "e1_complete": false,
+  "status": "draft_not_frozen",
+  "test_case_contents_read": false,
+  "candidate_test_metadata_changed": false,
+  "seed_input_pins": {
+    "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl": "0410c294a110e79f075d99f2516fa6f8dc4ddddcf6243eb55e6e4b9f5bf45a5e",
+    "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/comment_records.jsonl": "a342db46e2d384285ef91e8950364376b3994f7f768fb40cd74dadfd34d54174"
+  },
+  "cases": [
+    {
+      "case_id": "dev-case-a",
+      "origin_issue_id": 12782,
+      "development_only": true,
+      "answer_informed": true,
+      "body_and_comment_review": {
+        "cached_body_read": true,
+        "comments_read": true,
+        "comment_ids": [
+          3402231101,
+          3405857633,
+          3407066968,
+          3409170001,
+          3409555339
+        ]
+      },
+      "chronology": {
+        "kind": "developer_paraphrase_of_latest_cached_body",
+        "source_path": "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+        "issue_number": 12782,
+        "source_created_at": "2025-10-14T14:44:50Z",
+        "source_updated_at": "2025-10-16T07:30:17Z",
+        "source_issue_record_sha256": "7d7961a641e5194f16fb224554852e68cf96019e58e452cb9ceeaa996a20446f",
+        "original_initial_text_verified": false,
+        "note": "Cached body can contain later edits. Created_at is not proof of the original body; no later comments/outcomes are supplied as the initial user message."
+      },
+      "authored_turns": [
+        "version"
+      ],
+      "family_issue_ids": [
+        12782,
+        12629
+      ]
+    },
+    {
+      "case_id": "dev-case-b",
+      "origin_issue_id": 9770,
+      "development_only": true,
+      "answer_informed": true,
+      "body_and_comment_review": {
+        "cached_body_read": true,
+        "comments_read": true,
+        "comment_ids": [
+          2452671398,
+          2553286267,
+          3497476249,
+          3500083885,
+          3695949388,
+          3696258750,
+          3697061247,
+          3732515018
+        ]
+      },
+      "chronology": {
+        "kind": "developer_paraphrase_of_latest_cached_body",
+        "source_path": "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+        "issue_number": 9770,
+        "source_created_at": "2024-11-01T22:27:56Z",
+        "source_updated_at": "2026-08-23T18:16:03Z",
+        "source_issue_record_sha256": "cb98efea92216557931b7a500f00e534a6a9e284e1f8d608dc9887f13a5e07c5",
+        "original_initial_text_verified": false,
+        "note": "Cached body can contain later edits. Created_at is not proof of the original body; no later comments/outcomes are supplied as the initial user message."
+      },
+      "authored_turns": [
+        "version"
+      ],
+      "family_issue_ids": [
+        9770
+      ]
+    },
+    {
+      "case_id": "dev-case-c",
+      "origin_issue_id": 8129,
+      "development_only": true,
+      "answer_informed": true,
+      "body_and_comment_review": {
+        "cached_body_read": true,
+        "comments_read": true,
+        "comment_ids": [
+          1935619433,
+          1936401291,
+          1951606512,
+          1951900939,
+          1952588726,
+          1971516739
+        ]
+      },
+      "chronology": {
+        "kind": "developer_paraphrase_of_latest_cached_body",
+        "source_path": "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+        "issue_number": 8129,
+        "source_created_at": "2024-02-09T09:48:42Z",
+        "source_updated_at": "2024-02-29T16:33:45Z",
+        "source_issue_record_sha256": "ef20ef9e05d8dc64c59358af9e939d3d15481c5b9373e60623188a97dfaa8b29",
+        "original_initial_text_verified": false,
+        "note": "Cached body can contain later edits. Created_at is not proof of the original body; no later comments/outcomes are supplied as the initial user message."
+      },
+      "authored_turns": [
+        "correction"
+      ],
+      "family_issue_ids": [
+        2379,
+        8129,
+        8180
+      ]
+    }
+  ],
+  "linkage_review": [
+    {
+      "origin_issue_id": 8129,
+      "conservative_excluded_issue_ids": [
+        2379,
+        8129,
+        8180
+      ],
+      "edges": [
+        {
+          "from_issue": 8129,
+          "to_issue": 2379,
+          "basis": "Cached body and comment1936401291 say same originalbehaviour."
+        },
+        {
+          "from_issue": 8129,
+          "to_issue": 8180,
+          "basis": "Closure comment1971516739 consolidates user-definedclass-basedidentity under umbrella8180."
+        }
+      ],
+      "confirmed_duplicate_family": false,
+      "external_members_fetched": false,
+      "note": "Conservative relatedclosure, notproof allrelations are duplicates or wholefamilycomplete."
+    },
+    {
+      "origin_issue_id": 9770,
+      "conservative_excluded_issue_ids": [
+        9770
+      ],
+      "cached_issue_duplicate_links_found": false,
+      "external_duplicate_review_complete": false
+    },
+    {
+      "origin_issue_id": 12782,
+      "conservative_excluded_issue_ids": [
+        12629,
+        12782
+      ],
+      "basis": "Existing pilot family; exposed andanswer-informed."
+    }
+  ],
+  "direct_answer_documents_excluded": [
+    {
+      "origin_issue_id": 8129,
+      "source_url": "https://docs.streamlit.io/library/advanced-features/custom-classes",
+      "basis": "Explicitly linked from answer comment1951606512; not copied into evidence or allowed corpus; moderncanonicalaliases requireHassanreview."
+    }
+  ],
+  "corpus_policy": "All selected Issues, relatedconservativeclosure,comments,outcomes anddirect-answerdocuments stay outsideactualRAG. Newfixedsourceexcerpts are onlyofficialdocs; noIssueanswers. Finalcorpusapproval andexternalfamilyreview remainopen.",
+  "limitations": [
+    "Assistantreview isnot humanapproval.",
+    "Cachedbody chronology lacksoriginalrevisionhistory.",
+    "Fifteen DEV/fifteen TEST candidate metadata reservations unchanged; only firstthreeexposeddevelopmentfixtures authored.",
+    "Two-turncounterfactualcorrection andversionreplies are developercontrols, not realthreadresponses orproof ofmodelquality."
+  ]
+}

@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "packet_id": "dev-three-fixed-evidence-v1",
+  "registered_on": "2026-10-14",
+  "registered_before_first_run": true,
+  "kind": "controlled_fixed_evidence_not_actual_rag",
+  "quality_claim": false,
+  "selection_note": "Complete pinned button, fragment and Session State records plus whole contiguous multiselect default/format_func/key parameter sections. No Issue/comment/outcome answers. Source provenance hashes bind excerpts to packaged seed; source selection is assistant reviewed, not human approval.",
+  "source_pins": {
+    "streamlit-data-for-dev-test/sources/docstrings_scope_candidates.jsonl": "d3c4213f613738656a0bd366f05cfa7d0562c7a78bac8afaeef395f262b13fe9",
+    "streamlit-data-for-dev-test/sources/docs_scope_candidates.jsonl": "0759c7893481a4da8a11ae1b53f3f932ec60a2358c91422d723c3a2cb38c791d"
+  },
+  "source_records": [
+    {
+      "chunk_id": "dev-three-button-139-full",
+      "seed_path": "streamlit-data-for-dev-test/sources/docstrings_scope_candidates.jsonl",
+      "source_id": "docstring:1.39.0:streamlit.button",
+      "source_record_text_sha256": "348e29001cbb5d5a31a59a546e06555ea8f3fd11a4ccda070709105e8fae3482",
+      "excerpt_sha256": "348e29001cbb5d5a31a59a546e06555ea8f3fd11a4ccda070709105e8fae3482",
+      "span": {
+        "start": 0,
+        "end": 2698,
+        "unit": "unicode_codepoint"
+      },
+      "selection_unit": "whole_record",
+      "pinned_source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+      "function_source_url": "https://github.com/streamlit/streamlit/blob/1.39.0/lib/streamlit/elements/widgets/button.py#L86",
+      "json_pointer": "/1.39.0/streamlit.button"
+    },
+    {
+      "chunk_id": "dev-three-fragment-150-full",
+      "seed_path": "streamlit-data-for-dev-test/sources/docstrings_scope_candidates.jsonl",
+      "source_id": "docstring:1.50.0:streamlit.fragment",
+      "source_record_text_sha256": "f5186d0216ca2932aeb2ead36999ede476cc57acbcf36389d859b3e70fb12772",
+      "excerpt_sha256": "f5186d0216ca2932aeb2ead36999ede476cc57acbcf36389d859b3e70fb12772",
+      "span": {
+        "start": 0,
+        "end": 2352,
+        "unit": "unicode_codepoint"
+      },
+      "selection_unit": "whole_record",
+      "pinned_source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+      "function_source_url": "https://github.com/streamlit/streamlit/blob/1.50.0/lib/streamlit/runtime/fragment.py#L293",
+      "json_pointer": "/1.50.0/streamlit.fragment"
+    },
+    {
+      "chunk_id": "dev-three-multiselect-1490-default-key",
+      "seed_path": "streamlit-data-for-dev-test/sources/docstrings_scope_candidates.jsonl",
+      "source_id": "docstring:1.49.0:streamlit.multiselect",
+      "source_record_text_sha256": "070b426e56bd72a0e19ba8ccc5c3282d26f95b5212adfee37f3fde31acb7bc76",
+      "excerpt_sha256": "c05713349be16c456af98c8e1dad73ec80e212cbacb2b4c0272b9a7e4f1c178d",
+      "span": {
+        "start": 1406,
+        "end": 1969,
+        "unit": "unicode_codepoint"
+      },
+      "selection_unit": "whole contiguous parameter sections",
+      "pinned_source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+      "function_source_url": "https://github.com/streamlit/streamlit/blob/1.49.0/lib/streamlit/elements/widgets/multiselect.py#L233",
+      "json_pointer": "/1.49.0/streamlit.multiselect"
+    },
+    {
+      "chunk_id": "dev-three-multiselect-1500-default-key",
+      "seed_path": "streamlit-data-for-dev-test/sources/docstrings_scope_candidates.jsonl",
+      "source_id": "docstring:1.50.0:streamlit.multiselect",
+      "source_record_text_sha256": "070b426e56bd72a0e19ba8ccc5c3282d26f95b5212adfee37f3fde31acb7bc76",
+      "excerpt_sha256": "c05713349be16c456af98c8e1dad73ec80e212cbacb2b4c0272b9a7e4f1c178d",
+      "span": {
+        "start": 1406,
+        "end": 1969,
+        "unit": "unicode_codepoint"
+      },
+      "selection_unit": "whole contiguous parameter sections",
+      "pinned_source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+      "function_source_url": "https://github.com/streamlit/streamlit/blob/1.50.0/lib/streamlit/elements/widgets/multiselect.py#L233",
+      "json_pointer": "/1.50.0/streamlit.multiselect"
+    },
+    {
+      "chunk_id": "dev-three-session-state-full",
+      "seed_path": "streamlit-data-for-dev-test/sources/docs_scope_candidates.jsonl",
+      "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+      "source_record_text_sha256": "81bf1fc22b4e27403ab7e0d6be8377a6ace4767502cb9d972fd7411a90d8e4b9",
+      "excerpt_sha256": "81bf1fc22b4e27403ab7e0d6be8377a6ace4767502cb9d972fd7411a90d8e4b9",
+      "span": {
+        "start": 0,
+        "end": 8891,
+        "unit": "unicode_codepoint"
+      },
+      "selection_unit": "whole_record",
+      "pinned_source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/api-reference/caching-and-state/session_state.md",
+      "function_source_url": null,
+      "json_pointer": null
+    }
+  ],
+  "evidence_bundles": {
+    "pilot-mixed": {
+      "snapshot_id": "dev-three-fixed-pilot-v1",
+      "hits": [
+        {
+          "chunk_id": "dev-three-multiselect-1490-default-key",
+          "source_id": "docstring:1.49.0:streamlit.multiselect",
+          "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.\n\nformat_func: function; default=None\nFunction to modify the display of the options. It receives\nthe raw option as an argument and should output the label to be\nshown for that option. This has no impact on the return value of\nthe command.\n\nkey: str or int; default=None\nAn optional string or integer to use as the unique key for the widget.\nIf this is omitted, a key will be generated for the widget\nbased on its content. No two widgets may have the same key.\n\n",
+          "source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.multiselect",
+          "source_type": "doc",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.49.0"
+          ],
+          "source_span": "/1.49.0/streamlit.multiselect; Unicode codepoints [1406,1969)"
+        },
+        {
+          "chunk_id": "dev-three-multiselect-1500-default-key",
+          "source_id": "docstring:1.50.0:streamlit.multiselect",
+          "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.\n\nformat_func: function; default=None\nFunction to modify the display of the options. It receives\nthe raw option as an argument and should output the label to be\nshown for that option. This has no impact on the return value of\nthe command.\n\nkey: str or int; default=None\nAn optional string or integer to use as the unique key for the widget.\nIf this is omitted, a key will be generated for the widget\nbased on its content. No two widgets may have the same key.\n\n",
+          "source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.multiselect",
+          "source_type": "doc",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.50.0"
+          ],
+          "source_span": "/1.50.0/streamlit.multiselect; Unicode codepoints [1406,1969)"
+        },
+        {
+          "chunk_id": "dev-three-fragment-150-full",
+          "source_id": "docstring:1.50.0:streamlit.fragment",
+          "excerpt": "st.fragment(func=None, *, run_every=None)\n\nDecorator to turn a function into a fragment which can rerun independently    of the full app.\n\nWhen a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app. If\nrun_every is set, Streamlit will also rerun the fragment at the\nspecified interval while the session is active, even if the user is not\ninteracting with your app.\n\nTo trigger an app rerun from inside a fragment, call st.rerun()\ndirectly. To trigger a fragment rerun from within itself, call\nst.rerun(scope=\"fragment\"). Any values from the fragment that need to\nbe accessed from the wider app should generally be stored in Session State.\n\nWhen Streamlit element commands are called directly in a fragment, the\nelements are cleared and redrawn on each fragment rerun, just like all\nelements are redrawn on each app rerun. The rest of the app is persisted\nduring a fragment rerun. When a fragment renders elements into externally\ncreated containers, the elements will not be cleared with each fragment\nrerun. Instead, elements will accumulate in those containers with each\nfragment rerun, until the next app rerun.\n\nCalling st.sidebar in a fragment is not supported. To write elements to\nthe sidebar with a fragment, call your fragment function inside a\nwith st.sidebar context manager.\n\nFragment code can interact with Session State, imported modules, and\nother Streamlit elements created outside the fragment. Note that these\ninteractions are additive across multiple fragment reruns. You are\nresponsible for handling any side effects of that behavior.\n\nWarning\n\nFragments can only contain widgets in their main body. Fragments\ncan't render widgets to externally created containers.\n\nParameters:\n\nfunc: callable; default=None\nThe function to turn into a fragment.\n\nrun_every: int, float, timedelta, str, or None; default=None\nThe time interval between automatic fragment reruns. This can be one of\nthe following:\n\nNone (default).\n\nAn int or float specifying the interval in seconds.\n\nA string specifying the time in a format supported by Pandas'\nTimedelta constructor,\ne.g. \"1d\", \"1.5 days\", or \"1h23s\".\n\nA timedelta object from Python's built-in datetime library,\ne.g. timedelta(days=1).\n\nIf run_every is None, the fragment will only rerun from\nuser-triggered events.\n\nExamples:\n\n",
+          "source_url": "https://docs.streamlit.io/develop/api-reference/execution-flow/st.fragment",
+          "source_type": "doc",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.50.0"
+          ],
+          "source_span": "/1.50.0/streamlit.fragment; Unicode codepoints [0,2352)"
+        }
+      ]
+    },
+    "pilot-confirmed-150": {
+      "snapshot_id": "dev-three-fixed-pilot-v1",
+      "hits": [
+        {
+          "chunk_id": "dev-three-multiselect-1500-default-key",
+          "source_id": "docstring:1.50.0:streamlit.multiselect",
+          "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.\n\nformat_func: function; default=None\nFunction to modify the display of the options. It receives\nthe raw option as an argument and should output the label to be\nshown for that option. This has no impact on the return value of\nthe command.\n\nkey: str or int; default=None\nAn optional string or integer to use as the unique key for the widget.\nIf this is omitted, a key will be generated for the widget\nbased on its content. No two widgets may have the same key.\n\n",
+          "source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.multiselect",
+          "source_type": "doc",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.50.0"
+          ],
+          "source_span": "/1.50.0/streamlit.multiselect; Unicode codepoints [1406,1969)"
+        },
+        {
+          "chunk_id": "dev-three-fragment-150-full",
+          "source_id": "docstring:1.50.0:streamlit.fragment",
+          "excerpt": "st.fragment(func=None, *, run_every=None)\n\nDecorator to turn a function into a fragment which can rerun independently    of the full app.\n\nWhen a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app. If\nrun_every is set, Streamlit will also rerun the fragment at the\nspecified interval while the session is active, even if the user is not\ninteracting with your app.\n\nTo trigger an app rerun from inside a fragment, call st.rerun()\ndirectly. To trigger a fragment rerun from within itself, call\nst.rerun(scope=\"fragment\"). Any values from the fragment that need to\nbe accessed from the wider app should generally be stored in Session State.\n\nWhen Streamlit element commands are called directly in a fragment, the\nelements are cleared and redrawn on each fragment rerun, just like all\nelements are redrawn on each app rerun. The rest of the app is persisted\nduring a fragment rerun. When a fragment renders elements into externally\ncreated containers, the elements will not be cleared with each fragment\nrerun. Instead, elements will accumulate in those containers with each\nfragment rerun, until the next app rerun.\n\nCalling st.sidebar in a fragment is not supported. To write elements to\nthe sidebar with a fragment, call your fragment function inside a\nwith st.sidebar context manager.\n\nFragment code can interact with Session State, imported modules, and\nother Streamlit elements created outside the fragment. Note that these\ninteractions are additive across multiple fragment reruns. You are\nresponsible for handling any side effects of that behavior.\n\nWarning\n\nFragments can only contain widgets in their main body. Fragments\ncan't render widgets to externally created containers.\n\nParameters:\n\nfunc: callable; default=None\nThe function to turn into a fragment.\n\nrun_every: int, float, timedelta, str, or None; default=None\nThe time interval between automatic fragment reruns. This can be one of\nthe following:\n\nNone (default).\n\nAn int or float specifying the interval in seconds.\n\nA string specifying the time in a format supported by Pandas'\nTimedelta constructor,\ne.g. \"1d\", \"1.5 days\", or \"1h23s\".\n\nA timedelta object from Python's built-in datetime library,\ne.g. timedelta(days=1).\n\nIf run_every is None, the fragment will only rerun from\nuser-triggered events.\n\nExamples:\n\n",
+          "source_url": "https://docs.streamlit.io/develop/api-reference/execution-flow/st.fragment",
+          "source_type": "doc",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.50.0"
+          ],
+          "source_span": "/1.50.0/streamlit.fragment; Unicode codepoints [0,2352)"
+        }
+      ]
+    },
+    "icon-139": {
+      "snapshot_id": "dev-three-fixed-icon-v1",
+      "hits": [
+        {
+          "chunk_id": "dev-three-button-139-full",
+          "source_id": "docstring:1.39.0:streamlit.button",
+          "excerpt": "st.button(label, key=None, help=None, on_click=None, args=None, kwargs=None, *, type=\"secondary\", icon=None, disabled=False, use_container_width=False)\n\nDisplay a button widget.\n\nParameters:\n\nlabel: str; default=None\nA short label explaining to the user what this button is for.\nThe label can optionally contain GitHub-flavored Markdown of the\nfollowing types: Bold, Italics, Strikethroughs, Inline Code, and\nLinks.\n\nUnsupported Markdown elements are unwrapped so only their children\n(text contents) render. Display unsupported elements as literal\ncharacters by backslash-escaping them. E.g.,\n\"1\\. Not an ordered list\".\n\nSee the body parameter of st.markdown for additional,\nsupported Markdown directives.\n\nkey: str or int; default=None\nAn optional string or integer to use as the unique key for the widget.\nIf this is omitted, a key will be generated for the widget\nbased on its content. No two widgets may have the same key.\n\nhelp: str; default=None\nAn optional tooltip that gets displayed when the button is\nhovered over.\n\non_click: callable; default=None\nAn optional callback invoked when this button is clicked.\n\nargs: tuple; default=None\nAn optional tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.\n\ntype: \"secondary\" or \"primary\"; default=s\nAn optional string that specifies the button type. Can be \"primary\" for a\nbutton with additional emphasis or \"secondary\" for a normal button. Defaults\nto \"secondary\".\n\nicon: str or None; default=None\nAn optional emoji or icon to display next to the button label. If icon\nis None (default), no icon is displayed. If icon is a\nstring, the following options are valid:\n\nA single-character emoji. For example, you can set icon=\"🚨\"\nor icon=\"🔥\". Emoji short codes are not supported.\n\nAn icon from the Material Symbols library (rounded style) in the\nformat \":material/icon_name:\" where \"icon_name\" is the name\nof the icon in snake case.\n\nFor example, icon=\":material/thumb_up:\" will display the\nThumb Up icon. Find additional icons in the Material Symbols \nfont library.\n\ndisabled: bool; default=False\nAn optional boolean, which disables the button if set to True. The\ndefault is False.\n\nuse_container_width: bool; default=None\nWhether to expand the button's width to fill its parent container.\nIf use_container_width is False (default), Streamlit sizes\nthe button to fit its contents. If use_container_width is\nTrue, the width of the button matches its parent container.\n\nIn both cases, if the contents of the button are wider than the\nparent container, the contents will line wrap.\n\nReturns: bool\nTrue if the button was clicked on the last run of the app,\nFalse otherwise.\n\nExamples:\n\n",
+          "source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.button",
+          "source_type": "doc",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.39.0"
+          ],
+          "source_span": "/1.39.0/streamlit.button; Unicode codepoints [0,2698)"
+        }
+      ]
+    },
+    "enum-generic": {
+      "snapshot_id": "dev-three-fixed-enum-v1",
+      "hits": [
+        {
+          "chunk_id": "dev-three-session-state-full",
+          "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+          "excerpt": "---\ntitle: Session State\nslug: /develop/api-reference/caching-and-state/st.session_state\ndescription: st.session_state is a way to share variables between reruns, for each user session.\nkeywords: session state, state management, variables, reruns, user session, persistence, callbacks, widgets, multipage\n---\n\n# Session State\n\nSession State is a way to share variables between reruns, for each user session. In addition to the ability to store and persist state, Streamlit also exposes the ability to manipulate state using Callbacks. Session state also persists across apps inside a [multipage app](/develop/concepts/multipage-apps).\n\nCheck out this Session State basics tutorial video by Streamlit Developer Advocate Dr. Marisa Smith to get started:\n\n<YouTube videoId=\"92jUAXBmZyU\" />\n\n### Initialize values in Session State\n\nThe Session State API follows a field-based API, which is very similar to Python dictionaries:\n\n```python\n# Initialization\nif 'key' not in st.session_state:\n    st.session_state['key'] = 'value'\n\n# Session State also supports attribute based syntax\nif 'key' not in st.session_state:\n    st.session_state.key = 'value'\n```\n\n### Reads and updates\n\nRead the value of an item in Session State and display it by passing to `st.write` :\n\n```python\n# Read\nst.write(st.session_state.key)\n\n# Outputs: value\n```\n\nUpdate an item in Session State by assigning it a value:\n\n```python\nst.session_state.key = 'value2'     # Attribute API\nst.session_state['key'] = 'value2'  # Dictionary like API\n```\n\nCurious about what is in Session State? Use `st.write` or magic:\n\n```python\nst.write(st.session_state)\n\n# With magic:\nst.session_state\n```\n\nStreamlit throws a handy exception if an uninitialized variable is accessed:\n\n```python\nst.write(st.session_state['value'])\n\n# Throws an exception!\n```\n\n![state-uninitialized-exception](/images/state_uninitialized_exception.png)\n\n### Delete items\n\nDelete items in Session State using the syntax to delete items in any Python dictionary:\n\n```python\n# Delete a single key-value pair\ndel st.session_state[key]\n\n# Delete all the items in Session state\nfor key in st.session_state.keys():\n    del st.session_state[key]\n```\n\nSession State can also be cleared by going to Settings → Clear Cache, followed by Rerunning the app.\n\n![state-clear-cache](/images/clear_cache.png)\n\n### Session State and Widget State association\n\nEvery widget with a key is automatically added to Session State:\n\n```python\nst.text_input(\"Your name\", key=\"name\")\n\n# This exists now:\nst.session_state.name\n```\n\n### Use Callbacks to update Session State\n\nA callback is a python function which gets called when an input widget changes.\n\n**Order of execution**: When updating Session state in response to **events**, a callback function gets executed first, and then the app is executed from top to bottom.\n\nCallbacks can be used with widgets using the parameters `on_change` (or `on_click`), `args`, and `kwargs`:\n\n**Parameters**\n\n- **on_change** or **on_click** - The function name to be used as a callback\n- **args** (_tuple_) - List of arguments to be passed to the callback function\n- **kwargs** (_dict_) - Named arguments to be passed to the callback function\n\nWidgets which support the `on_change` event:\n\n- `st.checkbox`\n- `st.color_picker`\n- `st.date_input`\n- `st.data_editor`\n- `st.file_uploader`\n- `st.multiselect`\n- `st.number_input`\n- `st.radio`\n- `st.select_slider`\n- `st.selectbox`\n- `st.slider`\n- `st.text_area`\n- `st.text_input`\n- `st.time_input`\n- `st.toggle`\n\nWidgets which support the `on_click` event:\n\n- `st.button`\n- `st.download_button`\n- `st.form_submit_button`\n\nTo add a callback, define a callback function **above** the widget declaration and pass it to the widget via the `on_change` (or `on_click` ) parameter.\n\n### Forms and Callbacks\n\nWidgets inside a form can have their values be accessed and set via the Session State API. `st.form_submit_button` can have a callback associated with it. The callback gets executed upon clicking on the submit button. For example:\n\n```python\ndef form_callback():\n    st.write(st.session_state.my_slider)\n    st.write(st.session_state.my_checkbox)\n\nwith st.form(key='my_form'):\n    slider_input = st.slider('My slider', 0, 10, 5, key='my_slider')\n    checkbox_input = st.checkbox('Yes or No', key='my_checkbox')\n    submit_button = st.form_submit_button(label='Submit', on_click=form_callback)\n```\n\n### Serializable Session State\n\nSerialization refers to the process of converting an object or data structure into a format that can be persisted and shared, and allowing you to recover the data’s original structure. Python’s built-in [pickle](https://docs.python.org/3/develop/pickle.html) module serializes Python objects to a byte stream (\"pickling\") and deserializes the stream into an object (\"unpickling\").\n\nBy default, Streamlit’s [Session State](/develop/concepts/architecture/session-state) allows you to persist any Python object for the duration of the session, irrespective of the object’s pickle-serializability. This property lets you store Python primitives such as integers, floating-point numbers, complex numbers and booleans, dataframes, and even [lambdas](https://docs.python.org/3/reference/expressions.html#lambda) returned by functions. However, some execution environments may require serializing all data in Session State, so it may be useful to detect incompatibility during development, or when the execution environment will stop supporting it in the future.\n\nTo that end, Streamlit provides a `runner.enforceSerializableSessionState` [configuration option](/develop/concepts/configuration) that, when set to `true`, only allows pickle-serializable objects in Session State. To enable the option, either create a global or project config file with the following or use it as a command-line flag:\n\n```toml\n# .streamlit/config.toml\n[runner]\nenforceSerializableSessionState = true\n```\n\nBy \"_pickle-serializable_\", we mean calling `pickle.dumps(obj)` should not raise a [`PicklingError`](https://docs.python.org/3/develop/pickle.html#pickle.PicklingError) exception. When the config option is enabled, adding unserializable data to session state should result in an exception. E.g.,\n\n```python\nimport streamlit as st\n\ndef unserializable_data():\n\t\treturn lambda x: x\n\n#👇 results in an exception when enforceSerializableSessionState is on\nst.session_state.unserializable = unserializable_data()\n```\n\n<Image alt=\"UnserializableSessionStateError\" src=\"/images/unserializable-session-state-error.png\" clean />\n\n<Warning>\n\nWhen `runner.enforceSerializableSessionState` is set to `true`, Session State implicitly uses the `pickle` module, which is known to be insecure. Ensure all data saved and retrieved from Session State is trusted because it is possible to construct malicious pickle data that will execute arbitrary code during unpickling. Never load data that could have come from an untrusted source in an unsafe mode or that could have been tampered with. **Only load data you trust**.\n\n</Warning>\n\n### Caveats and limitations\n\n- Streamlit Session State is tied to a WebSocket connection. When a user reloads the browser tab or navigates using a Markdown link, the WebSocket connection and the associated Session State data are reset.\n- Only the `st.form_submit_button` has a callback in forms. Other widgets inside a form are not allowed to have callbacks.\n- `on_change` and `on_click` events are only supported on input type widgets.\n- Modifying the value of a widget via the Session state API, after instantiating it, is not allowed and will raise a `StreamlitAPIException`. For example:\n\n  ```python\n  slider = st.slider(\n      label='My Slider', min_value=1,\n      max_value=10, value=5, key='my_slider')\n\n  st.session_state.my_slider = 7\n\n  # Throws an exception!\n  ```\n\n  ![state-modified-instantiated-exception](/images/state_modified_instantiated_exception.png)\n\n- Setting the widget state via the Session State API and using the `value` parameter in the widget declaration is not recommended, and will throw a warning on the first run. For example:\n\n  ```python\n  st.session_state.my_slider = 7\n\n  slider = st.slider(\n      label='Choose a Value', min_value=1,\n      max_value=10, value=5, key='my_slider')\n  ```\n\n  ![state-value-api-exception](/images/state_value_api_exception.png)\n\n- Setting the state of button-like widgets: `st.button`, `st.download_button`, and `st.file_uploader` via the Session State API is not allowed. Such type of widgets are by default _False_ and have ephemeral _True_ states which are only valid for a single run. For example:\n\n  ```python\n  if 'my_button' not in st.session_state:\n      st.session_state.my_button = True\n\n  st.button('My button', key='my_button')\n\n  # Throws an exception!\n  ```\n\n  ![state-button-exception](/images/state_button_exception.png)\n\n<GitHubIssuesHint label=\"feature:st.session_state\" name=\"st.session_state\" />\n",
+          "source_url": "https://docs.streamlit.io/develop/api-reference/caching-and-state/st.session_state",
+          "source_type": "doc",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [],
+          "source_span": "docs:content/develop/api-reference/caching-and-state/session_state.md; Unicode codepoints [0,8891)"
+        }
+      ]
+    }
+  }
+}

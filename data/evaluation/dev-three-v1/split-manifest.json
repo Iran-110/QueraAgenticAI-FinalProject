@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "manifest_id": "split-dev-three-docs-epoch-v1",
+  "updated_on": "2026-10-14",
+  "status": "draft_not_frozen",
+  "scope": "Three exposed development cases; additive docs-only integration epoch, not final evaluation split or RAG/model quality.",
+  "targets": {
+    "dev_cases": 15,
+    "test_cases": 15,
+    "multi_turn_min": 10,
+    "multi_turn_in_test_min": 5
+  },
+  "selected": {
+    "dev": [
+      "dev-case-a",
+      "dev-case-b",
+      "dev-case-c"
+    ],
+    "test": []
+  },
+  "fixture_paths": [
+    "data/evaluation/dev-three-v1/cases/pilot-12782-v1.json",
+    "data/evaluation/dev-three-v1/cases/icon-9770-v1.json",
+    "data/evaluation/dev-three-v1/cases/enum-8129-v1.json"
+  ],
+  "families": [
+    {
+      "family_id": "fam-12782",
+      "issue_ids": [
+        12629,
+        12782
+      ],
+      "split": "dev",
+      "review_status": "confirmed_duplicate_development_family",
+      "reason": "Previously exposed and answer-informed; never independent test.",
+      "exclude_from_index": "entire family, comments and outcomes"
+    },
+    {
+      "family_id": "fam-9770-provisional",
+      "issue_ids": [
+        9770
+      ],
+      "split": "dev",
+      "review_status": "provisional_cached_component_external_duplicates_unreviewed",
+      "reason": "Body and all cached comments inspected during dev curation; no cached duplicate edge does not prove no external duplicates.",
+      "exclude_from_index": "entire conservative family, comments and outcomes"
+    },
+    {
+      "family_id": "fam-8129-conservative",
+      "issue_ids": [
+        2379,
+        8129,
+        8180
+      ],
+      "split": "dev",
+      "review_status": "conservative_related_closure_not_confirmed_duplicate_family",
+      "reason": "Initial body links #2379; related closure reserves #8180 outside packaged issue seed. Bodies/discussions/direct-answer guide exposed during dev curation.",
+      "exclude_from_index": "entire conservative related closure, comments, outcomes and direct-answer documents"
+    }
+  ],
+  "exposure_reserved_issue_ids": [
+    268,
+    1085,
+    1155,
+    1185,
+    1644,
+    2069,
+    2379,
+    2584,
+    3533,
+    3854,
+    4164,
+    4256,
+    4884,
+    5305,
+    5368,
+    5498,
+    6320,
+    8061,
+    8129,
+    8180,
+    8901,
+    9031,
+    9259,
+    9342,
+    9455,
+    9770,
+    10089,
+    10102,
+    11012,
+    11115,
+    12396,
+    12506,
+    12629,
+    12782,
+    13147,
+    13953,
+    14717,
+    16242,
+    16281,
+    16661,
+    16727,
+    16732,
+    16914,
+    17030,
+    17112,
+    17215
+  ],
+  "exposure_note": "The builder field retains the full prior candidate corpus denylist plus known exposure and new conservative families. Inclusion in this field is a corpus reservation, not a declaration that every reserved candidate has been read. development_exposure_issue_ids records the known development-only closure; untouched metadata-only test reservations remain potentially test-eligible after human review.",
+  "source_pins": {
+    "historical_manifest_path": "data/evaluation/split-manifest.json",
+    "historical_manifest_sha256": "78e630cbef86937f2838795a2329ee56e16ea0beef7900db5c63d5fede6404ff",
+    "candidate_reservations_path": "data/evaluation/candidates/reservations-v1.json",
+    "candidate_reservations_sha256": "e1bcded192d7bf5c82a8883a3e6234d5df38b01f6d30b7b2d6dd706e7d21031b",
+    "packaged_exposure_path": "streamlit-data-for-dev-test/development_exposure.json",
+    "packaged_exposure_sha256": "c3c838788952a002c3a65c20528f94cce2e1c363d4cb99101086c0a436dfb028"
+  },
+  "corpus_review": {
+    "kind": "existing_docs_only_pilot_allowlist",
+    "allowlist_path": "experiments/corpus/pilot-allowlist.json",
+    "allowlist_sha256": "209037d964182070744f608b79b676eb56c072e7655aee440ad75287aa117729",
+    "all_issues_comments_outcomes_excluded": true,
+    "direct_answer_documents": "No new documents ingested; Enum direct-answer guide remains outside the 14-source allowlist.",
+    "family_review_complete": false,
+    "final_corpus_approved": false,
+    "semantic_coverage_claim": false,
+    "expected_sources": 14,
+    "expected_chunks": 30
+  },
+  "blockers": [
+    "Remaining 12 dev and all 15 test cases, true duplicate/linkage and exposure review, and final split freeze remain open (E1).",
+    "This additive epoch does not modify the historical split or PR35 registered snapshot/oracle.",
+    "The fixed-evidence answerable icon condition is not automatically covered by this real index; its exact 1.39.0 API source is absent.",
+    "Enum 1.31.0/1.31.1 class-identity diagnosis and fix are not established by generic unversioned Session State docs; source-gap decisions remain admissible."
+  ],
+  "development_exposure_issue_ids": [
+    2379,
+    8061,
+    8129,
+    8180,
+    8901,
+    9031,
+    9455,
+    9770,
+    11012,
+    12629,
+    12782,
+    16914,
+    17030
+  ]
+}

@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "fixture_id": "dev-three-enum-8129-v1",
+  "registered_on": "2026-10-14",
+  "registered_before_first_run": true,
+  "purpose": "Real known-version complete Enum reproduction with source-only diagnosis gap; authored patch-version correction invalidates the pending first proposal.",
+  "case": {
+    "case_id": "dev-case-c",
+    "split": "dev",
+    "family_issue_ids": [
+      2379,
+      8129,
+      8180
+    ],
+    "origin_url": "https://github.com/streamlit/streamlit/issues/8129",
+    "source_snapshot_date": "2026-10-06",
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "test_eligible": false,
+    "exposure": "Assistant reviewed the cached Issue body and comments/outcomes before authoring this DEVELOPMENT fixture; answer-informed and never eligible as held-out test. Authored follow-ups are counterfactual controls, not transcript reconstructions."
+  },
+  "evidence_source": {
+    "path": "data/evaluation/dev-three-v1/evidence-v1.json",
+    "sha256": "d8ddd2dd8234fe328cc49326de1cc83d9096fe833bce254812c44d20a9f79521",
+    "bundles_used": [
+      "enum-generic"
+    ],
+    "note": "Fixed seed-backed evidence, not index output. All Issue/comment/outcome answers excluded."
+  },
+  "boundaries": {
+    "agent": "scripted AnalysisResult for offline plumbing; live ignores agent_script/gold/future turns",
+    "real_model_calls": 0,
+    "api_cost_usd": 0,
+    "storage": "evaluation runner process-local API/DummyTracker; not production durable tracker",
+    "quality_claim": false,
+    "max_reached_turns": 2,
+    "visible_to_agent": [
+      "currently selected turns[].visible"
+    ],
+    "runner_only": [
+      "gold",
+      "agent_script",
+      "maintainer",
+      "probes",
+      "evaluation.coverage",
+      "future turns"
+    ]
+  },
+  "initial_report_provenance": {
+    "kind": "developer_paraphrase_of_latest_cached_body",
+    "source_path": "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+    "issue_number": 8129,
+    "source_created_at": "2024-02-09T09:48:42Z",
+    "source_updated_at": "2024-02-29T16:33:45Z",
+    "source_issue_record_sha256": "ef20ef9e05d8dc64c59358af9e939d3d15481c5b9373e60623188a97dfaa8b29",
+    "original_initial_text_verified": false,
+    "note": "Cached body can contain later edits. Created_at is not proof of the original body; no later comments/outcomes are supplied as the initial user message."
+  },
+  "turns": [
+    {
+      "id": "initial",
+      "conversation_source": "developer_paraphrase_with_verbatim_cached_body_code",
+      "visible": {
+        "message": "An Enum stored in st.session_state compares False to Color.RED, while comparing their .value values returns True. I expect the Enum equality comparison to work. Streamlit 1.31.0, Python 3.11.6, macOS Sonoma 14.3, Chrome. Here is the complete reported example:\n\nimport streamlit as st\r\nfrom enum import Enum, auto\r\n\r\nclass Color(Enum):\r\n    RED = auto()\r\n    BLACK = auto()\r\n    YELLOW = auto()\r\n    \r\nif 'color' not in st.session_state:\r\n    st.session_state.color = Color.RED\r\n    \r\n\r\nst.code(\"st.session_state.color == Color.RED\")\r\nst.write(st.session_state.color == Color.RED)\r\n\r\nst.code(\"st.session_state.color.value == Color.RED.value\")\r\nst.write(st.session_state.color.value == Color.RED.value)",
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.31.0"
+          },
+          {
+            "name": "python_version",
+            "value": "3.11.6"
+          },
+          {
+            "name": "operating_system",
+            "value": "macOS Sonoma 14.3"
+          },
+          {
+            "name": "browser",
+            "value": "Chrome"
+          },
+          {
+            "name": "reported_reproduction_code",
+            "value": "import streamlit as st\r\nfrom enum import Enum, auto\r\n\r\nclass Color(Enum):\r\n    RED = auto()\r\n    BLACK = auto()\r\n    YELLOW = auto()\r\n    \r\nif 'color' not in st.session_state:\r\n    st.session_state.color = Color.RED\r\n    \r\n\r\nst.code(\"st.session_state.color == Color.RED\")\r\nst.write(st.session_state.color == Color.RED)\r\n\r\nst.code(\"st.session_state.color.value == Color.RED.value\")\r\nst.write(st.session_state.color.value == Color.RED.value)"
+          },
+          {
+            "name": "reported_observation",
+            "value": "Enum equality is False, while enum .value equality is True"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [
+          "Executed the supplied example and compared Enum objects and their .value values"
+        ],
+        "context_changed": false
+      },
+      "evidence_bundle": "enum-generic",
+      "agent_script": {
+        "decision": "escalate",
+        "user_draft": "You supplied the version and the complete Enum example. The available generic Session State guide does not establish the cause of this equality behaviour or a verified fix for Streamlit 1.31.0. This needs maintainer investigation of the reported reproduction.",
+        "maintainer_summary": "Known version 1.31.0 and full code; missing source coverage for Enum identity diagnosis.",
+        "rationale": "User facts are already present. Generic state-retention documentation is not exact-version Enum diagnosis or proof of a workaround."
+      },
+      "maintainer": {
+        "decision": "none",
+        "note": "Leave the first proposal unexecuted; the authored correction must invalidate it."
+      },
+      "gold": {
+        "rubric_id": "e2-core-review-draft-v1",
+        "stratum": "needs_escalation",
+        "acceptable_decisions": [
+          "answer",
+          "escalate"
+        ],
+        "decision_conditions": {
+          "answer": "Only a strictly qualified useful documentary response that states the supplied generic guide cannot establish the requested Enum diagnosis/fix and identifies maintainer investigation; generic background alone is not a resolution.",
+          "escalate": "Explain source-only cause/fix gap and the concrete reproduction to investigate. Do not ask for the already supplied version/code or for the user to produce missing documentation."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [],
+        "unacceptable_claims": [
+          "An exact-version Enum diagnosis, verified fix or affected-release range is established by the generic Session State document.",
+          "Moving the Enum to another file is proved to fix this case: the direct-answer comment/guide is withheld.",
+          "The supplied code or confirmed current installed version is missing and should be requested again.",
+          "The original 1.31.0 remains current after correction.",
+          "A maintainer action has already been performed."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality."
+      },
+      "expect": {
+        "revision": 1,
+        "pending_decision": "escalate",
+        "active_facts": {
+          "streamlit_version": "1.31.0",
+          "reported_reproduction_code": "import streamlit as st\r\nfrom enum import Enum, auto\r\n\r\nclass Color(Enum):\r\n    RED = auto()\r\n    BLACK = auto()\r\n    YELLOW = auto()\r\n    \r\nif 'color' not in st.session_state:\r\n    st.session_state.color = Color.RED\r\n    \r\n\r\nst.code(\"st.session_state.color == Color.RED\")\r\nst.write(st.session_state.color == Color.RED)\r\n\r\nst.code(\"st.session_state.color.value == Color.RED.value\")\r\nst.write(st.session_state.color.value == Color.RED.value)"
+        }
+      }
+    },
+    {
+      "id": "correction",
+      "conversation_source": "developer_authored_counterfactual_patch_version_correction_not_issue_thread_reply",
+      "visible": {
+        "message": "Correction: I checked the affected environment; it is Streamlit 1.31.1, not 1.31.0. The code, Python version and the equality result are unchanged.",
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.31.1"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [
+          "Checked the installed Streamlit release in the affected environment"
+        ],
+        "context_changed": false
+      },
+      "evidence_bundle": "enum-generic",
+      "agent_script": {
+        "decision": "escalate",
+        "user_draft": "Thanks for correcting the installed version to 1.31.1. The full Enum reproduction remains available, but the supplied generic Session State guide still does not establish its cause or a verified fix for that release. A maintainer should investigate the reported example using the corrected version.",
+        "maintainer_summary": "Current version is 1.31.1, with unchanged reproduction and reported result. Exact-version Enum diagnosis remains unsupported.",
+        "rationale": "The patch-version correction supersedes 1.31.0; the unchanged generic documentation cannot resolve the source gap."
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "rubric_id": "e2-core-review-draft-v1",
+        "stratum": "needs_escalation",
+        "acceptable_decisions": [
+          "answer",
+          "escalate"
+        ],
+        "decision_conditions": {
+          "answer": "Same strictly qualified documentary scope as initial, using current 1.31.1. No exact cause/fix claim, stale version or invented action.",
+          "escalate": "Use the current corrected release and full reproduction; distinguish missing documentation from missing user information."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [],
+        "unacceptable_claims": [
+          "An exact-version Enum diagnosis, verified fix or affected-release range is established by the generic Session State document.",
+          "Moving the Enum to another file is proved to fix this case: the direct-answer comment/guide is withheld.",
+          "The supplied code or confirmed current installed version is missing and should be requested again.",
+          "The original 1.31.0 remains current after correction.",
+          "A maintainer action has already been performed."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality."
+      },
+      "expect": {
+        "revision": 2,
+        "pending_decision": "escalate",
+        "active_facts": {
+          "streamlit_version": "1.31.1",
+          "python_version": "3.11.6"
+        },
+        "superseded_values": {
+          "streamlit_version": [
+            "1.31.0"
+          ]
+        },
+        "changed_fact_names": [
+          "streamlit_version"
+        ],
+        "previous_proposal_now_stale": true,
+        "after_decision": {
+          "status": "escalated",
+          "released_draft": "agent"
+        }
+      }
+    }
+  ],
+  "evaluation": {
+    "coverage": {
+      "turn_ids": [
+        "initial",
+        "correction"
+      ],
+      "routes": [
+        {
+          "from_turn": "initial",
+          "to_turn": "correction",
+          "guard": {
+            "decision": "answer"
+          }
+        },
+        {
+          "from_turn": "initial",
+          "to_turn": "correction",
+          "guard": {
+            "decision": "escalate"
+          }
+        },
+        {
+          "from_turn": "correction",
+          "to_turn": null,
+          "guard": {
+            "decision": "answer"
+          }
+        },
+        {
+          "from_turn": "correction",
+          "to_turn": null,
+          "guard": {
+            "decision": "escalate"
+          }
+        }
+      ]
+    }
+  },
+  "probes": [
+    {
+      "id": "stale_initial_approval_after_correction",
+      "after_turn": "correction",
+      "expect": "HTTP409, first unexecuted proposal never released; operational offline expectation only"
+    }
+  ]
+}
