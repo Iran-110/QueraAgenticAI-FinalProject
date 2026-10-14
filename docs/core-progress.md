@@ -2,6 +2,66 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-14 — C4h2: caller-owned repeat repair and native-index comparison
+
+Optional/default-false `SupportEngine.repair_repeated_queries` checks immutable
+actual caller request history after terminal source/USER validation. It rejects
+the entire overlapping plan with the existing allowlisted repair feedback,
+retaining the final retrieval guard and two-attempt allowance. Reported
+`queries_used` cannot add/remove authority. No shared contracts, RAG ranking,
+tracker, persistent API or UI were changed. The only testing seam change forwards
+the owned experiment job's strict flag to the actual engine.
+
+Preregistration `5aa8ce6` preceded implementation. The three original C4h plans
+replay with authored escalation fallback: 42/42 operational checks, not new model
+scores. Independent legacy controls compared complete result/context/request
+bytes against `f78c6e9` in eight paths; default/false remain identical. New tests
+exercise false/omitted/injected query metadata, mixed queries, limits, binding
+stops, declared conflicts, USER correction and captured current full evidence.
+
+Paid source `e654864f58a1973811652c5ee11712a98e7ad62a` was frozen throughout both
+balanced rounds/six OFF/ON pairs on the unchanged native 18-source/36-chunk index.
+Resource guidance stayed off. [Original receipt and reviews](../experiments/core_repeat_repair_v1/README.md)
+show 2/6 complete routes OFF versus 4/6 ON, 7 versus 9 fresh proposals, zero
+technical answers in either arm and six necessary USER questions in each. Two
+actual repeat repairs created fresh justified investigation escalations without
+new retrieval; the third repair ended length/provider-invalid. An independent
+final Enum refinement still selects four sources and overflows the renderer.
+
+All 24 planned turns are retained: 16 fresh, one stale-only, five visited without
+a fresh proposal, two conditional unvisited corrections. Semantic criteria were
+frozen before reading results; all 28 wire hashes and full 16 fresh handoffs
+reconstruct. Eleven reached first-model request pairs are equal; four consumed
+HTTP objects differ solely in arm-specific `reply_to_proposal_id`, so complete
+HTTP-input equality is not claimed. Correction to 1.31.1 remains current, two
+stale-approval 409 controls and 14 duplicate-approval controls pass. Scripted
+maintenance is separate from model quality; human usefulness remains null.
+
+All 28 sends settled at configured-rate estimated USD0.032936640. Independent
+cost/provenance V2 passes 1220/1220, preserving all 364 prior reservations and
+every prior row/schema in 14 tables, both old holds, halt, USD4.50 ceiling and all
+revocations. V1's raw-outer-whitespace expectation is preserved; V2 mechanically
+uses the existing stripped Text contract, without changing native stored text,
+metadata, vectors or receipts. Six scopes closed; 20 unused slots stay permanently
+claimed. No new uncertainty, pending reservation or accounting gap. This is not
+invoice reconciliation or general RAG/held-out quality. Ordinary live startup
+still halts and this campaign cannot resume.
+
+Verification: 3740 pytest pass, Ruff check/format over 274 files, required three
+demos, HTTP/SQLite fixture acceptance 457/457 with restart/retry. The first local
+HTTP invocation used default memory and reproduced its restart limitation;
+the corrected SQLite/frozen-V2 factory receipt is separate. The paid conditional
+runner itself uses TestClient/DummyTracker, not a fresh UI/SQLite restart proof.
+
+Hassan's PR50 head7581dcc is separately reviewed and not merge-ready: newest-first
+ranking discards current-version evidence, claimed over-fetch is absent,
+since_version exact-scope semantics are unreviewed and Linux lint fails. The
+[pinned review](../experiments/rag_pr50_review/README.md) preserves its complete
+synthetic control and 91 passing existing tests; no teammate branch was edited.
+Per Sasan's October14 update, MohammadHasan is expected October15 for human review/final split; Behnam's manual
+two-case UI/SQLite smoke remains his task. C4h source feasibility, R4, final
+evaluation and C5 remain open. No new framework/agent is justified by this result.
+
 ## 2026-10-14 — C4h1/E2p/E2q: resource-guidance trial and review preparation
 
 The [preregistered follow-up](../experiments/core_resource_guidance_v1/README.md)
