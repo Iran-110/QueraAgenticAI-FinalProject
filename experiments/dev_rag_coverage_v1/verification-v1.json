@@ -11969,5 +11969,20 @@
   "local_markdown_links_checked": 635,
   "broken_local_links": 0,
   "credential_scan_changed_files": 30,
-  "credential_matches": 0
+  "credential_matches": 0,
+  "initial_head_ci": {
+    "head": "1c0144234cfb7fa5087714f1361c3f058cd462ae",
+    "linux_successes": 2,
+    "windows_successes": 1,
+    "windows_cancelled_at20minute_ceiling": {
+      "run_id": 38595275199,
+      "job_id": 115960517047,
+      "started_at": "2026-10-14T16:07:28Z",
+      "completed_at": "2026-10-14T16:27:40Z",
+      "cancelled_step": "Verify configured user vocabulary and archived comparison on Windows",
+      "remaining_check_skipped": "Check current stability, catalog truth and authored attack controls without network",
+      "completed_steps_all_success": true
+    },
+    "amendment": "Windows job budget30 minutes; all gates retained, no source/data/model/paid receipt change. Final exact-head CI required."
+  }
 }

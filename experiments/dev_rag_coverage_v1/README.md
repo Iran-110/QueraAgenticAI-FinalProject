@@ -101,3 +101,11 @@ durable UI smoke remain independent team work.
 [Verification](verification-v1.json): 3515 pytest passes, HTTP/SQLite457/457,
 three required offline demos, locked sync and Ruff. Final-head GitHub checks are
 required before merge.
+
+Publication CI note: head `1c01442` passed both Linux jobs and one Windows job.
+The other Windows job reached its20-minute ceiling at the penultimate vocabulary
+check; completed steps passed and the final stability check was skipped. Its
+[original run](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38595275199)
+is retained. The job allowance is now30 minutes, with every gate preserved.
+No production code, source input or model receipt changed; final-head checks are
+still required before publication.

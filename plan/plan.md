@@ -18,6 +18,8 @@
   و یک Enum overflow در دو attempt حفظ‌اند.۱۷ proposal تازه/دو مشاهدهٔ stale جدا،
  ۳۲ hit نسخهٔ ناسازگار/نامعلوم حذف، سه plan نامعتبر و repairها حفظ؛ usefulness
   انسانیnull.۳۵۱۵pytest و HTTP/SQLite۴۵۷/۴۵۷ و demos/Ruff پاس؛ CI head شرط انتشار.
+  head1c01442 دو Linux و یک Windows پاس؛ Windows دیگر در سقف۲۰ دقیقه نزدیک
+  انتهای suite cancel شد. هیچ assertion fail یا gate حذف نشد؛ بودجهٔ job۳۰ دقیقه شد.
 
 - [ ] **C4h — رفع بن‌بست query و انتخاب source در حد خروجی؛ ساسان.**
   روی baseline کامل C4g، treatment تازه برای query واقعاً novel و انتخاب تعداد
