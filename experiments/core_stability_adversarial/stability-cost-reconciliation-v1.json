@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "reconciliation_id": "core-stability-provider-failure-v1",
+  "source_commit": "beeb2f3e3d6336e8a5509503658b6affcc38284a",
+  "live_receipt_path": "experiments/core_stability_adversarial/stability-live-receipt-v1.json",
+  "live_receipt_sha256": "8346af721b675524c29d34fee25bfe71dc813d0c93f982540e02b56234688ceb",
+  "actual_transport_attempts": 42,
+  "settled_requests": 41,
+  "new_uncertain_requests": 1,
+  "settled_estimate_usd": "0.025141875",
+  "new_uncertain_hold_usd": "0.0033792",
+  "new_total_actual_cost_usd": null,
+  "old_uncertain_hold_usd": "0.02",
+  "original_global_cap_usd": "4.50",
+  "team_brief_cap_usd": "5",
+  "pending_requests": 0,
+  "scope_dispositions": [
+    {
+      "scope_id": "user-core-stability-2026-10-14-v1-r1",
+      "status": "closed",
+      "reason": "ExperimentClosed",
+      "visited_jobs": 6,
+      "planned_jobs": 6,
+      "unused_slots": 10
+    },
+    {
+      "scope_id": "user-core-stability-2026-10-14-v1-r2",
+      "status": "closed",
+      "reason": "ExperimentClosed",
+      "visited_jobs": 6,
+      "planned_jobs": 6,
+      "unused_slots": 11
+    },
+    {
+      "scope_id": "user-core-stability-2026-10-14-v1-r3",
+      "status": "closed",
+      "reason": "ExperimentClosed",
+      "visited_jobs": 6,
+      "planned_jobs": 6,
+      "unused_slots": 13
+    },
+    {
+      "scope_id": "user-core-stability-2026-10-14-v1-r4",
+      "status": "revoked",
+      "reason": "NewUncertainty",
+      "visited_jobs": 2,
+      "planned_jobs": 6,
+      "unused_slots": 20
+    }
+  ],
+  "old_continuation_status": "revoked_by_existing_NewUncertainty_guard; no refill, no reset",
+  "new_failure": {
+    "local_request_id": "call:99512367628b4700a171466d2390b6be8ac708d62bb11ab2f354130ec2118817",
+    "requested_model": "gpt-4o-mini",
+    "reserved_at_utc": "2026-10-14T10:01:22.388Z",
+    "uncertain_at_utc": "2026-10-14T10:01:52.399Z",
+    "error_code": "ProviderRequestFailed",
+    "transport_attempt_started": true,
+    "http_status": null,
+    "returned_model": null,
+    "usage": null,
+    "provider_request_id": null,
+    "charge_or_refund": null,
+    "cause_precision": "No response metadata survived; cannot distinguish provider receipt, timeout/connection/stream failure or assert zero charge."
+  },
+  "other_settled_failures": {
+    "count": 2,
+    "error_code": "ProviderResponseInvalid",
+    "http_status": 200,
+    "verified_returned_model": "gpt-4o-mini-2024-07-18",
+    "reported_output_tokens_each": 1024,
+    "finish_reason_retained": false,
+    "interpretation": "Both reached the output cap. Truncation is plausible, but finish reason/content were not retained and the exact rejection cause is unproven. These are failed outputs, not valid plans."
+  },
+  "adversarial_live_disposition": "not authorized or sent after new uncertainty; execute registered challenge controls offline only",
+  "required_provider_evidence": [
+    "Correlated provider receipt/log for exact time window/model/key, including definitive request disposition",
+    "Serving model, input/output usage, rate, currency and charge/refund or definitive zero-charge proof",
+    "The local caller hash was not a provider correlation ID; time/account linkage must be independently established"
+  ],
+  "primary_docs_checked": [
+    {
+      "url": "https://docs.metisai.ir/api/start-api/",
+      "observed": "API-key aggregate consumption available in dashboard; aggregate alone does not establish per-request charge."
+    },
+    {
+      "url": "https://docs.metisai.ir/postman/",
+      "observed": "Official exported collection inspected; no usage/billing/log endpoint found in that checked collection. Absence is scoped to these docs, not a universal API claim."
+    }
+  ],
+  "ledger_after": {
+    "db_sha256": "9630e4dacafd451bb4d9f57a9901f05b8db329cb54a010f881dc6377bcf31cd6",
+    "meta_sha256": "873ab0915f2b9c87d5fcaf7d1dda6a79caa3d548481fa6682d2703d9808eeae1",
+    "unknown_sha256": "035b22c32745a0965a92bf5018fc6ef5acdd34398b663e0a9dbd198a92290858",
+    "old_grants_sha256": "c493b969c9adfd29d8e7671d973e00722b9e4355dc70a4af52b0aede47c301f7",
+    "halted": true,
+    "limit_nanos": 4500000000,
+    "counts": {
+      "settled": 248,
+      "uncertain": 2
+    },
+    "quarantined_request_id": null
+  },
+  "ledger_mutation_for_reconciliation": false,
+  "quality_claim": false,
+  "c5_reconciled": false
+}
