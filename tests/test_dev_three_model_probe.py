@@ -410,10 +410,13 @@ def test_remaining_job_slots_exclude_previously_observed_pair_and_validate_ident
         execution_jobs({**protocol, "jobs": jobs + [jobs[0]]}, fixtures)
 
 
-def test_actual_preflight_returns_selected_protocol_identity_before_credentials(monkeypatch):
+@pytest.mark.parametrize("version,expected_slots", [(2, 20), (3, 12)])
+def test_actual_preflight_returns_selected_protocol_identity_before_credentials(
+    monkeypatch, version, expected_slots
+):
     from agent_app.testing import dev_three_model_probe as module
 
-    selected = Path("experiments/dev_three_baseline/model-protocol-v2.json")
+    selected = Path(f"experiments/dev_three_baseline/model-protocol-v{version}.json")
     protocol = json.loads((ROOT / selected).read_bytes())
     monkeypatch.setattr(
         module,
@@ -437,6 +440,34 @@ def test_actual_preflight_returns_selected_protocol_identity_before_credentials(
     actual, fixtures, definitions, slots, registration = module.preflight(
         ROOT, ROOT / "runtime/budget.sqlite3", selected
     )
-    assert actual["protocol_id"] == "dev-three-controlled-model-v2"
+    assert actual["protocol_id"] == f"dev-three-controlled-model-v{version}"
     assert registration["protocol_path"] == selected.as_posix()
-    assert len(slots) == 20 and len(fixtures) == 3 and len(definitions) == 2
+    assert len(slots) == expected_slots and len(fixtures) == 3 and len(definitions) == 2
+
+
+def test_checkpoint_failure_before_provider_dispatch_is_not_counted_as_send(tmp_path):
+    protocol, fixtures, definitions, ledger, config, before = preparation(tmp_path)
+    calls = []
+
+    def fail_checkpoint(value):
+        assert value["provider_sends"][0]["http_send_started"] is False
+        if "event" in value:
+            raise OSError("synthetic-local-checkpoint-failure")
+
+    receipt = run_trial(
+        protocol,
+        fixtures,
+        definitions,
+        ledger,
+        config,
+        before,
+        underlying=httpx.MockTransport(lambda req: calls.append(req)),
+        checkpoint=fail_checkpoint,
+    )
+    assert calls == []
+    assert receipt["actual_sends"] == 0
+    assert receipt["accounting"]["accounting_complete"] is False
+    assert len(receipt["provider_sends"]) == 1
+    assert receipt["provider_sends"][0]["http_send_started"] is False
+    # Gateway uncertainty remains conservative; never release or replay by this observation.
+    assert ledger.snapshot().uncertain_usd > Decimal("0.02")

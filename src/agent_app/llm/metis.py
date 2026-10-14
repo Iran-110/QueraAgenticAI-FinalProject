@@ -88,7 +88,11 @@ class MetisReasoner:
                     or request.evidence != evidence
                 ):
                     raise ValueError("Grounded request does not match reasoning inputs")
-                messages = build_grounded_messages(request, context)
+                messages = build_grounded_messages(
+                    request,
+                    context,
+                    decision_contracts=self.config.grounded_decision_contracts,
+                )
             except (AttributeError, TypeError, ValueError):
                 raise ValueError("Invalid grounded request or context") from None
         if not self.config.live_enabled:

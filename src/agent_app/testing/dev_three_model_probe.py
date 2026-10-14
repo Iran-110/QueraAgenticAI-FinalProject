@@ -214,7 +214,11 @@ def preflight(root, ledger_path, protocol_path=PROTOCOL):
     source = source_observation(root, protocol_path)
     if (
         protocol["protocol_id"]
-        not in {"dev-three-controlled-model-v1", "dev-three-controlled-model-v2"}
+        not in {
+            "dev-three-controlled-model-v1",
+            "dev-three-controlled-model-v2",
+            "dev-three-controlled-model-v3",
+        }
         or ledger_path.resolve() != (root / "runtime/budget.sqlite3").resolve()
         or protocol["ledger_before_sha256"] != before["db_sha256"]
         or not before["halted"]
@@ -298,7 +302,35 @@ def preflight(root, ledger_path, protocol_path=PROTOCOL):
             for name, digest in protocol["input_pins"].items()
         ):
             raise DevProbeRejected()
+    elif protocol["protocol_id"] == "dev-three-controlled-model-v3":
+        predecessor = protocol["predecessor"]
+        previous_path = (root / predecessor["receipt_path"]).resolve()
+        if (
+            not previous_path.is_relative_to((root / "experiments/dev_three_baseline").resolve())
+            or sha(previous_path.read_bytes()) != predecessor["sha256"]
+        ):
+            raise DevProbeRejected()
+        previous = json.loads(previous_path.read_bytes())
+        if (
+            previous["protocol_id"] != "dev-three-controlled-model-v2"
+            or previous["scope_closed"] is not True
+            or protocol.get("grounded_decision_contracts") is not True
+            or protocol.get("continue_independent_jobs") is not True
+            or protocol["treatment_id"] != "current-decision-field-contracts-v1"
+            or {(arm, f.case["case_id"]) for arm, f in execution_jobs(protocol, fixtures)}
+            != {("reviewed_user_gaps", f.case["case_id"]) for f in fixtures}
+            or any(
+                previous["registration"]["source_hashes"].get(name) != digest
+                for name, digest in protocol["input_pins"].items()
+            )
+        ):
+            raise DevProbeRejected()
     elif "jobs" in protocol or protocol.get("continue_independent_jobs"):
+        raise DevProbeRejected()
+    if (
+        protocol["protocol_id"] != "dev-three-controlled-model-v3"
+        and protocol.get("grounded_decision_contracts", False) is not False
+    ):
         raise DevProbeRejected()
     definitions = load_user_gap_vocabulary(str(vocabulary_path))
     slots = request_slots(protocol, fixtures)
@@ -377,12 +409,13 @@ class ScopeTransport(httpx.BaseTransport):
             raise ReasoningStopped("BudgetExceeded", "budget_stopped")
         record = {
             "request_id": self.current,
-            "http_send_started": True,
+            "http_send_started": False,
             "verified_returned_model": None,
         }
         self.records.append(record)
         if self.on_send is not None:
             self.on_send()
+        record["http_send_started"] = True
         response = self.underlying.handle_request(request)
         record["http_status"] = response.status_code
         headers = dict(response.headers)
@@ -434,7 +467,12 @@ class ScopedPlanner:
             if (
                 len(
                     json.dumps(
-                        build_grounded_messages(request, context), ensure_ascii=False
+                        build_grounded_messages(
+                            request,
+                            context,
+                            decision_contracts=self.gateway.config.grounded_decision_contracts,
+                        ),
+                        ensure_ascii=False,
                     ).encode()
                 )
                 + 1024
@@ -473,6 +511,7 @@ def run_trial(
         config.continuation_id != protocol["scope_id"]
         or config.model != MODEL
         or config.response_mode != "grounded_plan"
+        or config.grounded_decision_contracts != protocol.get("grounded_decision_contracts", False)
     ):
         raise DevProbeRejected()
     counted = ScopeTransport(
@@ -482,7 +521,7 @@ def run_trial(
     if checkpoint:
         counted.on_send = lambda: checkpoint(
             {
-                "event": "provider_send_entered_after_reservation",
+                "event": "provider_handoff_registered_after_reservation",
                 "cases": cases,
                 "attempts": attempts,
                 "provider_sends": counted.records,
@@ -611,12 +650,17 @@ def run_trial(
         "maintainer": "registered_fixture_script",
         "tracker": "process_memory_dummy_tracker",
         "evidence": "fixed_registered_source_bundles",
-        "source_conditions": "same evidence per case/turn in both arms; only reviewed user vocabulary differs",
+        "source_conditions": (
+            "Fixed evidence/current inputs and reviewed vocabulary match V2; only opt-in decision field contracts differ."
+            if config.grounded_decision_contracts
+            else "same evidence per case/turn in both arms; only reviewed user vocabulary differs"
+        ),
+        "grounded_decision_contracts": config.grounded_decision_contracts,
         "scope_id": config.continuation_id,
         "cases": cases,
         "attempts": attempts,
         "provider_sends": counted.records,
-        "actual_sends": len(counted.records),
+        "actual_sends": sum(item["http_send_started"] for item in counted.records),
         "accounting": usage,
         "planned_case_arm_runs": len(jobs),
         "visited_case_arm_runs": len(cases),

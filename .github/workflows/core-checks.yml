@@ -91,6 +91,11 @@ jobs:
           uv run python scripts/ui_review_acceptance.py --output "$RUNNER_TEMP/ui-review-current.json"
       - name: Build only registered docs into an offline Chroma pilot
         run: uv run python scripts/build_pilot_index.py --destination "$RUNNER_TEMP/approved-docs-pilot"
+      - name: Accept separately registered three-dev index epoch without model calls
+        run: |
+          uv run python scripts/build_pilot_index.py --destination "$RUNNER_TEMP/dev-three-a" --split-manifest data/evaluation/dev-three-v1/split-manifest.json
+          uv run python scripts/build_pilot_index.py --destination "$RUNNER_TEMP/dev-three-b" --split-manifest data/evaluation/dev-three-v1/split-manifest.json
+          uv run python scripts/dev_three_index_acceptance.py --index "$RUNNER_TEMP/dev-three-a" --rebuild-index "$RUNNER_TEMP/dev-three-b" --output "$RUNNER_TEMP/dev-three-index.json"
       - name: Compare GroundedPlan persistent HTTP controls with a mocked provider
         run: |
           uv run python scripts/grounded_http_acceptance.py --baseline --output "$RUNNER_TEMP/grounded-http-baseline.json"
@@ -148,6 +153,13 @@ jobs:
           enable-cache: true
       - name: Install locked dependencies
         run: uv sync --locked --group dev
+      - name: Check funded scope, frozen dev cases and decision-contract controls without credentials
+        run: uv run pytest tests/test_budget_experiment_scope.py tests/test_budget_experiment_scope_amendment.py tests/test_budget_experiment_scope_tiers.py tests/test_dev_three_fixtures.py tests/test_dev_three_index_epoch.py tests/test_dev_three_model_probe.py tests/test_plan_observation.py tests/test_grounded_decision_contracts.py tests/test_grounded_gateway.py
+      - name: Accept separately registered three-dev index epoch on Windows without paid calls
+        run: |
+          uv run python scripts/build_pilot_index.py --destination "$env:RUNNER_TEMP/dev-three-a" --split-manifest data/evaluation/dev-three-v1/split-manifest.json
+          uv run python scripts/build_pilot_index.py --destination "$env:RUNNER_TEMP/dev-three-b" --split-manifest data/evaluation/dev-three-v1/split-manifest.json
+          uv run python scripts/dev_three_index_acceptance.py --index "$env:RUNNER_TEMP/dev-three-a" --rebuild-index "$env:RUNNER_TEMP/dev-three-b" --output "$env:RUNNER_TEMP/dev-three-index.json"
       - name: Check Windows worker and connected local pilot
         run: uv run pytest tests/test_http_pilot_runtime.py tests/test_indexed_backend.py tests/test_indexed_ui.py tests/test_persistent_tcp.py tests/test_grounded_connected_ui.py tests/test_grounded_persistent_tcp.py tests/test_grounded_http_acceptance.py tests/test_grounded_http_binding.py tests/test_adapter_cleanup.py tests/test_grounded_backend_configuration.py tests/test_grounded_live_probe.py tests/test_grounded_browser_callback.py tests/test_pilot_index_receipt.py tests/test_seed_checkout_bytes.py
       - name: Accept SQLite HTTP across fresh Windows processes

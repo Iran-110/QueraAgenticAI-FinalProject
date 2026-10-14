@@ -31,6 +31,7 @@ class MetisConfig(BaseModel):
     phase: Literal["development", "evaluation", "demo"] = "development"
     prompt_policy: PromptPolicy = "baseline"
     response_mode: Literal["analysis", "grounded_plan"] = "analysis"
+    grounded_decision_contracts: Annotated[bool, Field(strict=True)] = False
     # Caller-owned accounting authorization, never selected by model output.
     continuation_id: (
         Annotated[str, StringConstraints(pattern=r"^[a-z0-9][a-z0-9-]{0,63}$")] | None
@@ -38,6 +39,12 @@ class MetisConfig(BaseModel):
     max_output_tokens: Annotated[int, Field(strict=True, ge=128, le=2048)] = 1024
     input_token_reserve: Annotated[int, Field(strict=True, ge=4096, le=32768)] = 32768
     max_request_usd: Decimal = Decimal("0.02")
+
+    @model_validator(mode="after")
+    def require_grounded_contract_mode(self) -> "MetisConfig":
+        if self.grounded_decision_contracts and self.response_mode != "grounded_plan":
+            raise ValueError("Decision contracts require grounded plan mode")
+        return self
 
     @model_validator(mode="before")
     @classmethod
@@ -84,10 +91,14 @@ class MetisConfig(BaseModel):
         key = os.environ.get("METIS_API_KEY", "")
         if not key:
             raise ValueError("METIS_API_KEY is required")
+        contracts = os.environ.get("METIS_GROUNDED_DECISION_CONTRACTS", "false")
+        if contracts not in {"true", "false"}:
+            raise ValueError("METIS_GROUNDED_DECISION_CONTRACTS must be true or false")
         return cls(
             api_key=SecretStr(key),
             live_enabled=os.environ.get("METIS_LIVE_ENABLED") == "true",
             model=os.environ.get("METIS_MODEL", "gpt-4o-mini"),
             prompt_policy=os.environ.get("METIS_PROMPT_POLICY", "baseline"),
             response_mode=os.environ.get("METIS_RESPONSE_MODE", "analysis"),
+            grounded_decision_contracts=contracts == "true",
         )

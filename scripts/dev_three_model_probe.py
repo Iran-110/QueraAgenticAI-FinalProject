@@ -119,6 +119,7 @@ def main():
             model=MODEL,
             phase="development",
             response_mode="grounded_plan",
+            grounded_decision_contracts=protocol.get("grounded_decision_contracts", False),
             continuation_id=protocol["scope_id"],
             input_token_reserve=INPUT_RESERVE,
             max_output_tokens=OUTPUT_LIMIT,
