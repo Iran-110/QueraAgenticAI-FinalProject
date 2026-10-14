@@ -22,6 +22,8 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 - C4h1 resource guidance is experimental/default-false: read `experiments/core_resource_guidance_v1/README.md`. The stopped21-send study did not demonstrate improvement and contains a guidance-induced input-size regression. Do not resume its closed identities, drop failed/unvisited jobs or promote the flag as validated quality. E2p's additive `docs/evaluation-workbench.fa.md` displays fixed-oracle/native-evidence differences and blank human-review sidecars. E2q classifies only an attested real gateway ContextLimitExceeded before reservation and transport as a zero-cost skipped attempt in future scoped drivers; missing rows, ambiguous dispatch and old uncertain holds remain conservative. Original receipt/null accounting is unchanged. Hassan owns ranking/backfill; Behnam owns manual two-case UI/SQLite smoke. Sasan temporarily helps evaluation while MohammadHasan is unavailable.
 
+- C4h2 is optional/default-false engine-owned repeated-query repair; read `docs/repeat-query-repair.fa.md`. Only actual same-run caller requests establish query history; retriever `queries_used` is not authority. Existing terminal checks and the two-attempt allowance remain. The archived three-plan replay uses authored escalation, not a new model-quality score. Its fresh finite paid comparison is separate from closed C4h identities and from Hassan's PR50 ranking; preserve receipts/holds/halt and do not treat more escalations as quality improvement.
+
 ## Runtime rules
 
 - Default to offline mock execution. No paid API calls for routine development; the whole team's API budget is USD 5, including embeddings and evaluation.

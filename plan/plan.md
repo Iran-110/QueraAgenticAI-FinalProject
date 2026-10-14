@@ -1,8 +1,43 @@
 # plan و checklist تیم — Streamlit Support Assistant
 
-به‌روزرسانی: ۲۰۲۶-۱۰-۱۴. این نسخه ادامهٔ plan محمدحسن روی `main` در commit `2ead870` است؛ [نسخهٔ قبلی](archive/plan-before-task-checklist.md) حفظ شده. مبنای regressionهای بازبینی `6131091` بود؛ انتشار tracker با `464e55e` و سپس #21 با `94b60e1` و [CI موفق](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38151154794) ثبت شده‌اند. مبنای baseline تازهٔ C2a همین `94b60e1` است. این فایل برای تقسیم کار و شرط پایان taskهاست؛ روزهای sprint قبلی را تاریخ تحویل حساب نمی‌کنیم. الزام‌ها از صورت اصلی پروژه می‌آیند، نه از ابزارها و frameworkهای پیشنهادی plan.
+به‌روزرسانی: ۲۰۲۶-۱۰-۱۵. این نسخه ادامهٔ plan محمدحسن روی `main` در commit `2ead870` است؛ [نسخهٔ قبلی](archive/plan-before-task-checklist.md) حفظ شده. مبنای regressionهای بازبینی `6131091` بود؛ انتشار tracker با `464e55e` و سپس #21 با `94b60e1` و [CI موفق](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38151154794) ثبت شده‌اند. مبنای baseline تازهٔ C2a همین `94b60e1` است. این فایل برای تقسیم کار و شرط پایان taskهاست؛ روزهای sprint قبلی را تاریخ تحویل حساب نمی‌کنیم. الزام‌ها از صورت اصلی پروژه می‌آیند، نه از ابزارها و frameworkهای پیشنهادی plan.
 
 ## وضعیت فعلی
+
+- [x] **C4h2 — repair query تکراری و مقایسهٔ محدود؛ ساسان.**
+  [ثبت قبل از تغییر](../experiments/core_repeat_repair_v1/protocol-v1.json) و
+  [قرارداد رفتار](../docs/repeat-query-repair.fa.md): گزینه پیش‌فرض خاموش است؛
+  همان دو attempt، بدون retrieval/مدل اضافی یا اعتماد به `queries_used`.
+  بازپخش سه plan واقعی قبلی با fallback تألیفی۴۲/۴۲ پاس است؛ کیفیت مدل نیست.
+  [مقایسهٔ واقعی](../experiments/core_repeat_repair_v1/README.md)،۲ دور و۶ pair
+  با ranking/index ثابت۱۸/۳۶: مسیر کامل۲/۶ درOFF و۴/۶ درON؛ پیشنهاد تازه۷ و۹.
+  دو query تکراری به ارجاع موجه تبدیل شدند؛ صفر پاسخ فنی درهر دو حالت و
+  ۱۲ سؤال ضروری.۳ repair واقعی،۲ موفق و۱length/provider-invalid؛ یکoverflow
+  مستقل با۴source باقی است. تمام۲۴ نوبت شامل۱۶fresh/۱stale/۵empty/۲unvisited
+  ثبت‌اند؛ usefulness انسانیnull وپیش‌فرض خاموش است.۲۸send، تخمین$0.032936640،
+  صفرhold تازه؛۱۲۲۰ کنترل هزینه/پرووننس، تمام۳۶۴reservation قبلی و۱۴جدول محفوظ.
+  scopeها بسته و۲۰slot مصرف‌نشدهclaimed؛ halt/C5 همچنانباز. تحویل تست/اصلاح
+  محدود است؛ C4h کلی،R4 وevaluation نهایی بسته نشده‌اند.
+
+- [ ] **C4h3 — انتخاب source در حد renderer؛ ساسان، قدم بعد.**
+  failure ثبت‌شدهٔEnum با۴source را مبنا بگیرد؛ قبل از تغییر، روش محدود و
+  قابل بازبینی تعیین شود. quoteها کوتاه نشوند، مدل سوم یا gold/source-ID filter
+  اضافه نشود. راهنمای حجیم قبلی بهبود ثابت نکرد؛ ظرفیت وکفایت منبع باکیفیت
+  جواب یکی نیست. آزمایش‌های بسته وکیس‌های exposeشده دوبارهtest نامیده نشوند.
+
+- [ ] **R4b — review اصلاح ranking حسن؛ مالک اصلاح حسن.**
+  [PR #50](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/50)
+  در head`7581dcc` آمادهٔmerge نیست؛ [شواهد review](../experiments/rag_pr50_review/README.md):
+  newest-first شاهد نسخهٔ فعلی را کنار می‌زند، over-fetch ذکرشده پیاده نیست،
+  معنای `since_version` با exact applicability یکسان فرض شده و Linux lint fail است.
+ ۹۱ تست موجود پاس ولی regression را پوشش نمی‌دهند. Hassan branch تغییر نکرد؛
+  native receipt، کنترل نسخهٔunknown/قدیمی/correction وrelevance لازم است.
+  کار core مستقل از این اصلاح ادامه دارد. محمدحسن طبق پیام۱۴اکتبر ساسان،۱۵اکتبر برمی‌گردد؛
+  human review وsplit برای او می‌ماند؛ بهنام smoke دستی UI/SQLite را ادامه دهد.
+
+تحویل C4h1/E2p/E2q در [PR #49](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/49)
+با head`344b260`، review مستقل وچهار CI موفق، رویmain با`f78c6e9` منتشر شد.
+نتیجهٔ منفی آزمایش وhold/haltها حفظ‌اند؛ از آن بهبود کیفیت ادعا نمی‌شود.
 
 - [x] **E2p — ابزار review خروجی واقعی؛ ساسان، کمک موقت به محمدحسن.**
   [راهنما](../docs/evaluation-workbench.fa.md): صفحهٔ محلی با پیام مصرف‌شده،
@@ -57,11 +92,12 @@
   انتهای suite cancel شد. هیچ assertion fail یا gate حذف نشد؛ بودجهٔ job۳۰ دقیقه شد.
 
 - [ ] **C4h — رفع بن‌بست query و انتخاب source در حد خروجی؛ ساسان.**
-  آزمایش C4h1 فقط prompt guidance بود و مسئله را حل نکرد. مرحلهٔ بعد باید
-  history قابل‌اعتماد query از caller و fallback در دو attempt را جدا بررسی
-  کند؛ guard engine و quote کامل محفوظ‌اند. repair در attempt دوم ظرفیت
-  retrieval سپس model سوم نمی‌دهد؛ route completion با escalation بیشتر،
-  به‌تنهایی بهبود کیفیت نیست. baseline/شکست‌های قبلی بازنویسی نشوند.
+  آزمایش C4h1 فقط prompt guidance بود و مسئله را حل نکرد. C4h2 بالای همین
+  فایل،history خودcaller وfallback را باگزینهٔخاموش پیش‌فرض ودو attempt
+  تحویل داده؛ دو ارجاع تازهٔ واقعی داشت، ولی پاسخ فنی اضافه نشد. قدم بعد
+  C4h3،کفایت واندازهٔ انتخاب source است؛ guard engine وquote کامل محفوظ‌اند.
+  repair درattempt دوم ظرفیت retrieval سپس model سوم نمی‌دهد؛ route کامل‌تر
+  باescalation بیشتر، به‌تنهایی بهبود کیفیت نیست. baseline/شکست‌های قبلی محفوظ‌اند.
   کار حسن در R4: ranking/backfill نسخه و relevance این queryهای واقعی؛ source-ID
   یا gold filter برای بالا بردن نتیجه ممنوع. محمدحسن human review/split و بهنام
   smoke دستی UI/SQLite را ادامه دهند؛ این کارها با C4g بسته نشدند.

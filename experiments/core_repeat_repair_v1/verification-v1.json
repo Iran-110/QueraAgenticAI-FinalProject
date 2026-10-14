@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "verification_id": "core-repeat-release-v1",
+  "paid_source_commit": "e654864f58a1973811652c5ee11712a98e7ad62a",
+  "pytest": {
+    "tests": 3740,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": "183.901",
+    "xml_sha256": "b11dcd084649b5128fd837bbbec90a9c79baab1ec9d9775092977343270c8df2"
+  },
+  "ruff": {
+    "check_passed": true,
+    "format_check_passed": true,
+    "format_files": 274
+  },
+  "required_demos": {
+    "demo_refine": {
+      "exit_code": 0,
+      "sha256": "3fa402c758e9b91cc4965acc6aab3bcc77f323e55876d4f3b246df95121394b7"
+    },
+    "gateway_repair": {
+      "exit_code": 0,
+      "sha256": "ab882a1d44fee36ea57a35ca73abf3cded82da9e967ed784e091179e3e9b62fe"
+    },
+    "turn_demo": {
+      "exit_code": 0,
+      "sha256": "fb344c4c9eea530dfb756c93966c00292620db8df9dc67ebd2c207948da189d5"
+    }
+  },
+  "http_sqlite": {
+    "accepted": true,
+    "same_process_accepted": true,
+    "restart_accepted": true,
+    "checks_passed": 457,
+    "checks_total": 457,
+    "sha256": "25f860f649740acb893ed4ba7447f1f240ea9d6dbe46a89677b2f78ffc0df13b",
+    "model_and_index_fixture": true,
+    "actual_ui_live_model_restart_proven": false,
+    "first_default_memory_invocation_separate": "core-repeat-http-sqlite-2026-10-14.json"
+  },
+  "production_source_unchanged_since_paid_run": {
+    "tracked_python_files": 278,
+    "all_match": true
+  },
+  "local_document_links": {
+    "checked": 206,
+    "broken": []
+  },
+  "cost_review": {
+    "version": 2,
+    "checks_passed": 1220,
+    "checks_total": 1220,
+    "sha256": "a677d4cf715d8691fa9116162b99cbc01810f224333099b7be11e7afef4df8a6",
+    "v1_preserved": true
+  },
+  "original_model_receipt_sha256": "0be6625a426255ffd8e3b4b010f6c6cb87f6a10536a799d2ed7f09770a37e7d9",
+  "semantic_review_sha256": "0c465e71efa490856df6127d5ab00c83ad671982793d4628b8506b4dd4ddcf49",
+  "ci_and_final_merge": "Required on final reviewed head; not inferred from these local checks.",
+  "quality_claim": false,
+  "human_usefulness": null,
+  "held_out_test": false
+}

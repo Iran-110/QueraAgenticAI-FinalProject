@@ -1,0 +1,542 @@
+{
+  "protocol_id": "core-repeat-repair-archived-v1",
+  "original_receipt": "experiments/core_resource_guidance_v1/model-live-receipt-v1.json",
+  "original_receipt_sha256": "9658e30a92246b1bdc514aaa944447ad056a81f19fd5de15f103a55fd780c372",
+  "observed_plans": 3,
+  "authored_escalation_fallback": true,
+  "real_model_calls": 0,
+  "actual_cost_usd": "0",
+  "index_queried": false,
+  "source_support_quality_measured": false,
+  "quality_claim": false,
+  "checks_passed": 42,
+  "checks_total": 42,
+  "accepted": true,
+  "observations": [
+    {
+      "original_job_id": "r1:dev-case-b:resource_guidance_on",
+      "context_sha256": "56680b33d3d9690af64ba5ddae125e8d8bc7e015b0b49ee91a97ec47815e21a8",
+      "arms": {
+        "off": {
+          "result": {
+            "run_id": "replay:r1:dev-case-b:resource_guidance_on",
+            "case_id": "dev-case-b",
+            "case_revision": 2,
+            "status": "error",
+            "analysis": null,
+            "model_attempts": 1,
+            "retrieval_rounds": 1,
+            "steps": 3,
+            "error_code": "RepeatedQuery",
+            "trace": [
+              {
+                "stage": "started",
+                "message": "Loaded the supplied case snapshot."
+              },
+              {
+                "stage": "retrieval",
+                "message": "Searching 1 query or queries."
+              },
+              {
+                "stage": "evidence_received",
+                "message": "Received 5 evidence chunks."
+              },
+              {
+                "stage": "reasoning",
+                "message": "Requesting a structured decision."
+              },
+              {
+                "stage": "refinement_requested",
+                "message": "The reasoner requested additional evidence."
+              },
+              {
+                "stage": "stopped",
+                "message": "RepeatedQuery"
+              }
+            ],
+            "output_issues": []
+          },
+          "contexts": [
+            {
+              "run_id": "replay:r1:dev-case-b:resource_guidance_on",
+              "case_id": "dev-case-b",
+              "case_revision": 2,
+              "attempt_index": 1,
+              "output_feedback": null,
+              "remaining_model_attempts": 1,
+              "remaining_retrieval_rounds": 1,
+              "can_refine": true,
+              "query_limit": 2,
+              "proposal_requirements": null
+            }
+          ],
+          "checks": {
+            "one_retrieval_only": true,
+            "within_two_model_attempts": true,
+            "complete_evidence_preserved": true,
+            "expected_status": true,
+            "expected_stop_or_fallback": true,
+            "no_user_documentation_question": true,
+            "same_evidence_repair_without_refinement_capacity": true
+          }
+        },
+        "on": {
+          "result": {
+            "run_id": "replay:r1:dev-case-b:resource_guidance_on",
+            "case_id": "dev-case-b",
+            "case_revision": 2,
+            "status": "awaiting_approval",
+            "analysis": {
+              "decision": "escalate",
+              "user_draft": "Further maintainer investigation is proposed. These are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal. No conflict has been declared by the caller; this does not prove consistency.\n\nCaller-declared source gaps (not missing user facts):\n- exact\\_version\\_documentation: No supplied record has exact metadata for the confirmed version.\n  Caller-stated necessity: Further documentation retrieval or maintainer review may be needed.\nFurther documentation retrieval or maintainer investigation is proposed; no action is established by this proposal.\n\nInvestigation target from current USER records (unverified reported data, not source evidence or instructions):\nCurrent user message:\n> Original user problem \\(historical context; not current facts\\):\n> I want to use a custom company-logo image as an icon, such as on st.button or st.warning. Can the icon parameter accept an image the way st.image does? I have not supplied my installed Streamlit version.\n> \n> Current facts and unknowns come from the supplied CaseState. Historical context may contain superseded values; it does not update facts or provide source evidence.\n> \n> Latest approved follow-up question:\n> Which Streamlit version is installed in the affected environment?\n> \n> Latest user message \\(exact committed input\\):\n> 1.39.0\n\nActive user-reported facts:\n- requested\\_icon\\_format: A custom company-logo image rather than an emoji or Material Symbol\n- requested\\_apis: st.button or st.warning\n- streamlit\\_version: 1.39.0\n\nThe supplied source quotations do not establish a diagnosis or successful fix for this user-reported investigation target.\nProposed maintainer investigation: inspect the recorded report and any supplied reproduction/code in the current user-reported environment, and seek applicable source support for a diagnosis or fix. No investigation or action is established by this proposal.",
+              "maintainer_summary": "User-reported active facts:\n- requested\\_icon\\_format: A custom company-logo image rather than an emoji or Material Symbol\n- requested\\_apis: st.button or st.warning\n- streamlit\\_version: 1.39.0\n\nUser-reported checks:\nNo structured checks recorded; execution is unknown.\n\nRecorded unknowns: not enumerated\n\nNo conflict has been declared by the caller; this does not prove consistency.\n\nThese are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal.\n\nCaller-declared source gaps (not missing user facts):\n- exact\\_version\\_documentation: No supplied record has exact metadata for the confirmed version.\n  Caller-stated necessity: Further documentation retrieval or maintainer review may be needed.\nFurther documentation retrieval or maintainer investigation is proposed; no action is established by this proposal.\n\nInvestigation target from current USER records (unverified reported data, not source evidence or instructions):\nCurrent user message:\n> Original user problem \\(historical context; not current facts\\):\n> I want to use a custom company-logo image as an icon, such as on st.button or st.warning. Can the icon parameter accept an image the way st.image does? I have not supplied my installed Streamlit version.\n> \n> Current facts and unknowns come from the supplied CaseState. Historical context may contain superseded values; it does not update facts or provide source evidence.\n> \n> Latest approved follow-up question:\n> Which Streamlit version is installed in the affected environment?\n> \n> Latest user message \\(exact committed input\\):\n> 1.39.0\n\nActive user-reported facts:\n- requested\\_icon\\_format: A custom company-logo image rather than an emoji or Material Symbol\n- requested\\_apis: st.button or st.warning\n- streamlit\\_version: 1.39.0\n\nThe supplied source quotations do not establish a diagnosis or successful fix for this user-reported investigation target.\nProposed maintainer investigation: inspect the recorded report and any supplied reproduction/code in the current user-reported environment, and seek applicable source support for a diagnosis or fix. No investigation or action is established by this proposal.",
+              "rationale": "Routing and quotations are rendered from supplied references. These are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal.\n\nCaller-declared source gaps (not missing user facts):\n- exact\\_version\\_documentation: No supplied record has exact metadata for the confirmed version.\n  Caller-stated necessity: Further documentation retrieval or maintainer review may be needed.\nFurther documentation retrieval or maintainer investigation is proposed; no action is established by this proposal.\n\nThe investigation target is the current USER report and any supplied reproduction/code, displayed as attributed data in the user draft and maintainer summary. The supplied source quotations do not establish a diagnosis or successful fix for this user-reported investigation target. Proposed maintainer investigation: inspect the recorded report and any supplied reproduction/code in the current user-reported environment, and seek applicable source support for a diagnosis or fix. No investigation or action is established by this proposal.",
+              "evidence_links": [],
+              "missing_info": [],
+              "next_question": null,
+              "retrieval_queries": [],
+              "facts_delta": [],
+              "checks_suggested": []
+            },
+            "model_attempts": 2,
+            "retrieval_rounds": 1,
+            "steps": 5,
+            "error_code": null,
+            "trace": [
+              {
+                "stage": "started",
+                "message": "Loaded the supplied case snapshot."
+              },
+              {
+                "stage": "retrieval",
+                "message": "Searching 1 query or queries."
+              },
+              {
+                "stage": "evidence_received",
+                "message": "Received 5 evidence chunks."
+              },
+              {
+                "stage": "reasoning",
+                "message": "Requesting a structured decision."
+              },
+              {
+                "stage": "reasoning_failed",
+                "message": "ModelOutputInvalid"
+              },
+              {
+                "stage": "output_validation",
+                "message": "invalid_field"
+              },
+              {
+                "stage": "reasoning",
+                "message": "Requesting a structured decision."
+              },
+              {
+                "stage": "awaiting_approval",
+                "message": "Prepared an escalate preview."
+              }
+            ],
+            "output_issues": [
+              {
+                "code": "invalid_field",
+                "field": "retrieval_queries"
+              }
+            ]
+          },
+          "contexts": [
+            {
+              "run_id": "replay:r1:dev-case-b:resource_guidance_on",
+              "case_id": "dev-case-b",
+              "case_revision": 2,
+              "attempt_index": 1,
+              "output_feedback": null,
+              "remaining_model_attempts": 1,
+              "remaining_retrieval_rounds": 1,
+              "can_refine": true,
+              "query_limit": 2,
+              "proposal_requirements": null
+            },
+            {
+              "run_id": "replay:r1:dev-case-b:resource_guidance_on",
+              "case_id": "dev-case-b",
+              "case_revision": 2,
+              "attempt_index": 2,
+              "output_feedback": {
+                "issues": [
+                  {
+                    "code": "invalid_field",
+                    "field": "retrieval_queries"
+                  }
+                ]
+              },
+              "remaining_model_attempts": 0,
+              "remaining_retrieval_rounds": 1,
+              "can_refine": false,
+              "query_limit": 2,
+              "proposal_requirements": null
+            }
+          ],
+          "checks": {
+            "one_retrieval_only": true,
+            "within_two_model_attempts": true,
+            "complete_evidence_preserved": true,
+            "expected_status": true,
+            "expected_stop_or_fallback": true,
+            "no_user_documentation_question": true,
+            "same_evidence_repair_without_refinement_capacity": true
+          }
+        }
+      }
+    },
+    {
+      "original_job_id": "r1:dev-case-b:resource_guidance_off",
+      "context_sha256": "56680b33d3d9690af64ba5ddae125e8d8bc7e015b0b49ee91a97ec47815e21a8",
+      "arms": {
+        "off": {
+          "result": {
+            "run_id": "replay:r1:dev-case-b:resource_guidance_off",
+            "case_id": "dev-case-b",
+            "case_revision": 2,
+            "status": "error",
+            "analysis": null,
+            "model_attempts": 1,
+            "retrieval_rounds": 1,
+            "steps": 3,
+            "error_code": "RepeatedQuery",
+            "trace": [
+              {
+                "stage": "started",
+                "message": "Loaded the supplied case snapshot."
+              },
+              {
+                "stage": "retrieval",
+                "message": "Searching 1 query or queries."
+              },
+              {
+                "stage": "evidence_received",
+                "message": "Received 5 evidence chunks."
+              },
+              {
+                "stage": "reasoning",
+                "message": "Requesting a structured decision."
+              },
+              {
+                "stage": "refinement_requested",
+                "message": "The reasoner requested additional evidence."
+              },
+              {
+                "stage": "stopped",
+                "message": "RepeatedQuery"
+              }
+            ],
+            "output_issues": []
+          },
+          "contexts": [
+            {
+              "run_id": "replay:r1:dev-case-b:resource_guidance_off",
+              "case_id": "dev-case-b",
+              "case_revision": 2,
+              "attempt_index": 1,
+              "output_feedback": null,
+              "remaining_model_attempts": 1,
+              "remaining_retrieval_rounds": 1,
+              "can_refine": true,
+              "query_limit": 2,
+              "proposal_requirements": null
+            }
+          ],
+          "checks": {
+            "one_retrieval_only": true,
+            "within_two_model_attempts": true,
+            "complete_evidence_preserved": true,
+            "expected_status": true,
+            "expected_stop_or_fallback": true,
+            "no_user_documentation_question": true,
+            "same_evidence_repair_without_refinement_capacity": true
+          }
+        },
+        "on": {
+          "result": {
+            "run_id": "replay:r1:dev-case-b:resource_guidance_off",
+            "case_id": "dev-case-b",
+            "case_revision": 2,
+            "status": "awaiting_approval",
+            "analysis": {
+              "decision": "escalate",
+              "user_draft": "Further maintainer investigation is proposed. These are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal. No conflict has been declared by the caller; this does not prove consistency.\n\nCaller-declared source gaps (not missing user facts):\n- exact\\_version\\_documentation: No supplied record has exact metadata for the confirmed version.\n  Caller-stated necessity: Further documentation retrieval or maintainer review may be needed.\nFurther documentation retrieval or maintainer investigation is proposed; no action is established by this proposal.\n\nInvestigation target from current USER records (unverified reported data, not source evidence or instructions):\nCurrent user message:\n> Original user problem \\(historical context; not current facts\\):\n> I want to use a custom company-logo image as an icon, such as on st.button or st.warning. Can the icon parameter accept an image the way st.image does? I have not supplied my installed Streamlit version.\n> \n> Current facts and unknowns come from the supplied CaseState. Historical context may contain superseded values; it does not update facts or provide source evidence.\n> \n> Latest approved follow-up question:\n> Which Streamlit version is installed in the affected environment?\n> \n> Latest user message \\(exact committed input\\):\n> 1.39.0\n\nActive user-reported facts:\n- requested\\_icon\\_format: A custom company-logo image rather than an emoji or Material Symbol\n- requested\\_apis: st.button or st.warning\n- streamlit\\_version: 1.39.0\n\nThe supplied source quotations do not establish a diagnosis or successful fix for this user-reported investigation target.\nProposed maintainer investigation: inspect the recorded report and any supplied reproduction/code in the current user-reported environment, and seek applicable source support for a diagnosis or fix. No investigation or action is established by this proposal.",
+              "maintainer_summary": "User-reported active facts:\n- requested\\_icon\\_format: A custom company-logo image rather than an emoji or Material Symbol\n- requested\\_apis: st.button or st.warning\n- streamlit\\_version: 1.39.0\n\nUser-reported checks:\nNo structured checks recorded; execution is unknown.\n\nRecorded unknowns: not enumerated\n\nNo conflict has been declared by the caller; this does not prove consistency.\n\nThese are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal.\n\nCaller-declared source gaps (not missing user facts):\n- exact\\_version\\_documentation: No supplied record has exact metadata for the confirmed version.\n  Caller-stated necessity: Further documentation retrieval or maintainer review may be needed.\nFurther documentation retrieval or maintainer investigation is proposed; no action is established by this proposal.\n\nInvestigation target from current USER records (unverified reported data, not source evidence or instructions):\nCurrent user message:\n> Original user problem \\(historical context; not current facts\\):\n> I want to use a custom company-logo image as an icon, such as on st.button or st.warning. Can the icon parameter accept an image the way st.image does? I have not supplied my installed Streamlit version.\n> \n> Current facts and unknowns come from the supplied CaseState. Historical context may contain superseded values; it does not update facts or provide source evidence.\n> \n> Latest approved follow-up question:\n> Which Streamlit version is installed in the affected environment?\n> \n> Latest user message \\(exact committed input\\):\n> 1.39.0\n\nActive user-reported facts:\n- requested\\_icon\\_format: A custom company-logo image rather than an emoji or Material Symbol\n- requested\\_apis: st.button or st.warning\n- streamlit\\_version: 1.39.0\n\nThe supplied source quotations do not establish a diagnosis or successful fix for this user-reported investigation target.\nProposed maintainer investigation: inspect the recorded report and any supplied reproduction/code in the current user-reported environment, and seek applicable source support for a diagnosis or fix. No investigation or action is established by this proposal.",
+              "rationale": "Routing and quotations are rendered from supplied references. These are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal.\n\nCaller-declared source gaps (not missing user facts):\n- exact\\_version\\_documentation: No supplied record has exact metadata for the confirmed version.\n  Caller-stated necessity: Further documentation retrieval or maintainer review may be needed.\nFurther documentation retrieval or maintainer investigation is proposed; no action is established by this proposal.\n\nThe investigation target is the current USER report and any supplied reproduction/code, displayed as attributed data in the user draft and maintainer summary. The supplied source quotations do not establish a diagnosis or successful fix for this user-reported investigation target. Proposed maintainer investigation: inspect the recorded report and any supplied reproduction/code in the current user-reported environment, and seek applicable source support for a diagnosis or fix. No investigation or action is established by this proposal.",
+              "evidence_links": [],
+              "missing_info": [],
+              "next_question": null,
+              "retrieval_queries": [],
+              "facts_delta": [],
+              "checks_suggested": []
+            },
+            "model_attempts": 2,
+            "retrieval_rounds": 1,
+            "steps": 5,
+            "error_code": null,
+            "trace": [
+              {
+                "stage": "started",
+                "message": "Loaded the supplied case snapshot."
+              },
+              {
+                "stage": "retrieval",
+                "message": "Searching 1 query or queries."
+              },
+              {
+                "stage": "evidence_received",
+                "message": "Received 5 evidence chunks."
+              },
+              {
+                "stage": "reasoning",
+                "message": "Requesting a structured decision."
+              },
+              {
+                "stage": "reasoning_failed",
+                "message": "ModelOutputInvalid"
+              },
+              {
+                "stage": "output_validation",
+                "message": "invalid_field"
+              },
+              {
+                "stage": "reasoning",
+                "message": "Requesting a structured decision."
+              },
+              {
+                "stage": "awaiting_approval",
+                "message": "Prepared an escalate preview."
+              }
+            ],
+            "output_issues": [
+              {
+                "code": "invalid_field",
+                "field": "retrieval_queries"
+              }
+            ]
+          },
+          "contexts": [
+            {
+              "run_id": "replay:r1:dev-case-b:resource_guidance_off",
+              "case_id": "dev-case-b",
+              "case_revision": 2,
+              "attempt_index": 1,
+              "output_feedback": null,
+              "remaining_model_attempts": 1,
+              "remaining_retrieval_rounds": 1,
+              "can_refine": true,
+              "query_limit": 2,
+              "proposal_requirements": null
+            },
+            {
+              "run_id": "replay:r1:dev-case-b:resource_guidance_off",
+              "case_id": "dev-case-b",
+              "case_revision": 2,
+              "attempt_index": 2,
+              "output_feedback": {
+                "issues": [
+                  {
+                    "code": "invalid_field",
+                    "field": "retrieval_queries"
+                  }
+                ]
+              },
+              "remaining_model_attempts": 0,
+              "remaining_retrieval_rounds": 1,
+              "can_refine": false,
+              "query_limit": 2,
+              "proposal_requirements": null
+            }
+          ],
+          "checks": {
+            "one_retrieval_only": true,
+            "within_two_model_attempts": true,
+            "complete_evidence_preserved": true,
+            "expected_status": true,
+            "expected_stop_or_fallback": true,
+            "no_user_documentation_question": true,
+            "same_evidence_repair_without_refinement_capacity": true
+          }
+        }
+      }
+    },
+    {
+      "original_job_id": "r2:dev-case-c:resource_guidance_off",
+      "context_sha256": "ac4370721694c63cba108318f6187891d6b50f61e0f35950afc45687dcd5d22a",
+      "arms": {
+        "off": {
+          "result": {
+            "run_id": "replay:r2:dev-case-c:resource_guidance_off",
+            "case_id": "dev-case-c",
+            "case_revision": 2,
+            "status": "error",
+            "analysis": null,
+            "model_attempts": 1,
+            "retrieval_rounds": 1,
+            "steps": 3,
+            "error_code": "RepeatedQuery",
+            "trace": [
+              {
+                "stage": "started",
+                "message": "Loaded the supplied case snapshot."
+              },
+              {
+                "stage": "retrieval",
+                "message": "Searching 1 query or queries."
+              },
+              {
+                "stage": "evidence_received",
+                "message": "Received 4 evidence chunks."
+              },
+              {
+                "stage": "reasoning",
+                "message": "Requesting a structured decision."
+              },
+              {
+                "stage": "refinement_requested",
+                "message": "The reasoner requested additional evidence."
+              },
+              {
+                "stage": "stopped",
+                "message": "RepeatedQuery"
+              }
+            ],
+            "output_issues": []
+          },
+          "contexts": [
+            {
+              "run_id": "replay:r2:dev-case-c:resource_guidance_off",
+              "case_id": "dev-case-c",
+              "case_revision": 2,
+              "attempt_index": 1,
+              "output_feedback": null,
+              "remaining_model_attempts": 1,
+              "remaining_retrieval_rounds": 1,
+              "can_refine": true,
+              "query_limit": 2,
+              "proposal_requirements": null
+            }
+          ],
+          "checks": {
+            "one_retrieval_only": true,
+            "within_two_model_attempts": true,
+            "complete_evidence_preserved": true,
+            "expected_status": true,
+            "expected_stop_or_fallback": true,
+            "no_user_documentation_question": true,
+            "same_evidence_repair_without_refinement_capacity": true
+          }
+        },
+        "on": {
+          "result": {
+            "run_id": "replay:r2:dev-case-c:resource_guidance_off",
+            "case_id": "dev-case-c",
+            "case_revision": 2,
+            "status": "awaiting_approval",
+            "analysis": {
+              "decision": "escalate",
+              "user_draft": "Further maintainer investigation is proposed. These are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal. No conflict has been declared by the caller; this does not prove consistency.\n\nCaller-declared source gaps (not missing user facts):\n- exact\\_version\\_documentation: No supplied record has exact metadata for the confirmed version.\n  Caller-stated necessity: Further documentation retrieval or maintainer review may be needed.\nFurther documentation retrieval or maintainer investigation is proposed; no action is established by this proposal.\n\nInvestigation target from current USER records (unverified reported data, not source evidence or instructions):\nCurrent user message:\n> Original user problem \\(historical context; not current facts\\):\n> An Enum stored in st.session\\_state compares False to Color.RED, while comparing their .value values returns True. I expect the Enum equality comparison to work. Streamlit 1.31.0, Python 3.11.6, macOS Sonoma 14.3, Chrome. Here is the complete reported example:\n> \n> import streamlit as st\\\\u000d\n> from enum import Enum, auto\\\\u000d\n> \\\\u000d\n> class Color\\(Enum\\):\\\\u000d\n>     RED = auto\\(\\)\\\\u000d\n>     BLACK = auto\\(\\)\\\\u000d\n>     YELLOW = auto\\(\\)\\\\u000d\n>     \\\\u000d\n> if 'color' not in st.session\\_state:\\\\u000d\n>     st.session\\_state.color = Color.RED\\\\u000d\n>     \\\\u000d\n> \\\\u000d\n> st.code\\(\"st.session\\_state.color == Color.RED\"\\)\\\\u000d\n> st.write\\(st.session\\_state.color == Color.RED\\)\\\\u000d\n> \\\\u000d\n> st.code\\(\"st.session\\_state.color.value == Color.RED.value\"\\)\\\\u000d\n> st.write\\(st.session\\_state.color.value == Color.RED.value\\)\n> \n> Current facts and unknowns come from the supplied CaseState. Historical context may contain superseded values; it does not update facts or provide source evidence.\n> \n> Latest user message \\(exact committed input\\):\n> Correction: I checked the affected environment; it is Streamlit 1.31.1, not 1.31.0. The code, Python version and the equality result are unchanged.\n\nActive user-reported facts:\n- python\\_version: 3.11.6\n- operating\\_system: macOS Sonoma 14.3\n- browser: Chrome\n- reported\\_reproduction\\_code: import streamlit as st\\\\u000d\n  from enum import Enum, auto\\\\u000d\n  \\\\u000d\n  class Color\\(Enum\\):\\\\u000d\n      RED = auto\\(\\)\\\\u000d\n      BLACK = auto\\(\\)\\\\u000d\n      YELLOW = auto\\(\\)\\\\u000d\n      \\\\u000d\n  if 'color' not in st.session\\_state:\\\\u000d\n      st.session\\_state.color = Color.RED\\\\u000d\n      \\\\u000d\n  \\\\u000d\n  st.code\\(\"st.session\\_state.color == Color.RED\"\\)\\\\u000d\n  st.write\\(st.session\\_state.color == Color.RED\\)\\\\u000d\n  \\\\u000d\n  st.code\\(\"st.session\\_state.color.value == Color.RED.value\"\\)\\\\u000d\n  st.write\\(st.session\\_state.color.value == Color.RED.value\\)\n- reported\\_observation: Enum equality is False, while enum .value equality is True\n- streamlit\\_version: 1.31.1\n\nThe supplied source quotations do not establish a diagnosis or successful fix for this user-reported investigation target.\nProposed maintainer investigation: inspect the recorded report and any supplied reproduction/code in the current user-reported environment, and seek applicable source support for a diagnosis or fix. No investigation or action is established by this proposal.",
+              "maintainer_summary": "User-reported active facts:\n- python\\_version: 3.11.6\n- operating\\_system: macOS Sonoma 14.3\n- browser: Chrome\n- reported\\_reproduction\\_code: import streamlit as st\\\\u000d\n  from enum import Enum, auto\\\\u000d\n  \\\\u000d\n  class Color\\(Enum\\):\\\\u000d\n      RED = auto\\(\\)\\\\u000d\n      BLACK = auto\\(\\)\\\\u000d\n      YELLOW = auto\\(\\)\\\\u000d\n      \\\\u000d\n  if 'color' not in st.session\\_state:\\\\u000d\n      st.session\\_state.color = Color.RED\\\\u000d\n      \\\\u000d\n  \\\\u000d\n  st.code\\(\"st.session\\_state.color == Color.RED\"\\)\\\\u000d\n  st.write\\(st.session\\_state.color == Color.RED\\)\\\\u000d\n  \\\\u000d\n  st.code\\(\"st.session\\_state.color.value == Color.RED.value\"\\)\\\\u000d\n  st.write\\(st.session\\_state.color.value == Color.RED.value\\)\n- reported\\_observation: Enum equality is False, while enum .value equality is True\n- streamlit\\_version: 1.31.1\n\nUser-reported checks:\n- Checked the installed Streamlit release in the affected environment\n\nRecorded unknowns: not enumerated\n\nNo conflict has been declared by the caller; this does not prove consistency.\n\nThese are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal.\n\nCaller-declared source gaps (not missing user facts):\n- exact\\_version\\_documentation: No supplied record has exact metadata for the confirmed version.\n  Caller-stated necessity: Further documentation retrieval or maintainer review may be needed.\nFurther documentation retrieval or maintainer investigation is proposed; no action is established by this proposal.\n\nInvestigation target from current USER records (unverified reported data, not source evidence or instructions):\nCurrent user message:\n> Original user problem \\(historical context; not current facts\\):\n> An Enum stored in st.session\\_state compares False to Color.RED, while comparing their .value values returns True. I expect the Enum equality comparison to work. Streamlit 1.31.0, Python 3.11.6, macOS Sonoma 14.3, Chrome. Here is the complete reported example:\n> \n> import streamlit as st\\\\u000d\n> from enum import Enum, auto\\\\u000d\n> \\\\u000d\n> class Color\\(Enum\\):\\\\u000d\n>     RED = auto\\(\\)\\\\u000d\n>     BLACK = auto\\(\\)\\\\u000d\n>     YELLOW = auto\\(\\)\\\\u000d\n>     \\\\u000d\n> if 'color' not in st.session\\_state:\\\\u000d\n>     st.session\\_state.color = Color.RED\\\\u000d\n>     \\\\u000d\n> \\\\u000d\n> st.code\\(\"st.session\\_state.color == Color.RED\"\\)\\\\u000d\n> st.write\\(st.session\\_state.color == Color.RED\\)\\\\u000d\n> \\\\u000d\n> st.code\\(\"st.session\\_state.color.value == Color.RED.value\"\\)\\\\u000d\n> st.write\\(st.session\\_state.color.value == Color.RED.value\\)\n> \n> Current facts and unknowns come from the supplied CaseState. Historical context may contain superseded values; it does not update facts or provide source evidence.\n> \n> Latest user message \\(exact committed input\\):\n> Correction: I checked the affected environment; it is Streamlit 1.31.1, not 1.31.0. The code, Python version and the equality result are unchanged.\n\nActive user-reported facts:\n- python\\_version: 3.11.6\n- operating\\_system: macOS Sonoma 14.3\n- browser: Chrome\n- reported\\_reproduction\\_code: import streamlit as st\\\\u000d\n  from enum import Enum, auto\\\\u000d\n  \\\\u000d\n  class Color\\(Enum\\):\\\\u000d\n      RED = auto\\(\\)\\\\u000d\n      BLACK = auto\\(\\)\\\\u000d\n      YELLOW = auto\\(\\)\\\\u000d\n      \\\\u000d\n  if 'color' not in st.session\\_state:\\\\u000d\n      st.session\\_state.color = Color.RED\\\\u000d\n      \\\\u000d\n  \\\\u000d\n  st.code\\(\"st.session\\_state.color == Color.RED\"\\)\\\\u000d\n  st.write\\(st.session\\_state.color == Color.RED\\)\\\\u000d\n  \\\\u000d\n  st.code\\(\"st.session\\_state.color.value == Color.RED.value\"\\)\\\\u000d\n  st.write\\(st.session\\_state.color.value == Color.RED.value\\)\n- reported\\_observation: Enum equality is False, while enum .value equality is True\n- streamlit\\_version: 1.31.1\n\nThe supplied source quotations do not establish a diagnosis or successful fix for this user-reported investigation target.\nProposed maintainer investigation: inspect the recorded report and any supplied reproduction/code in the current user-reported environment, and seek applicable source support for a diagnosis or fix. No investigation or action is established by this proposal.",
+              "rationale": "Routing and quotations are rendered from supplied references. These are attributed supplied records. The cause of the application's failure, a successful fix and a resolved case are not established by this proposal.\n\nCaller-declared source gaps (not missing user facts):\n- exact\\_version\\_documentation: No supplied record has exact metadata for the confirmed version.\n  Caller-stated necessity: Further documentation retrieval or maintainer review may be needed.\nFurther documentation retrieval or maintainer investigation is proposed; no action is established by this proposal.\n\nThe investigation target is the current USER report and any supplied reproduction/code, displayed as attributed data in the user draft and maintainer summary. The supplied source quotations do not establish a diagnosis or successful fix for this user-reported investigation target. Proposed maintainer investigation: inspect the recorded report and any supplied reproduction/code in the current user-reported environment, and seek applicable source support for a diagnosis or fix. No investigation or action is established by this proposal.",
+              "evidence_links": [],
+              "missing_info": [],
+              "next_question": null,
+              "retrieval_queries": [],
+              "facts_delta": [],
+              "checks_suggested": []
+            },
+            "model_attempts": 2,
+            "retrieval_rounds": 1,
+            "steps": 5,
+            "error_code": null,
+            "trace": [
+              {
+                "stage": "started",
+                "message": "Loaded the supplied case snapshot."
+              },
+              {
+                "stage": "retrieval",
+                "message": "Searching 1 query or queries."
+              },
+              {
+                "stage": "evidence_received",
+                "message": "Received 4 evidence chunks."
+              },
+              {
+                "stage": "reasoning",
+                "message": "Requesting a structured decision."
+              },
+              {
+                "stage": "reasoning_failed",
+                "message": "ModelOutputInvalid"
+              },
+              {
+                "stage": "output_validation",
+                "message": "invalid_field"
+              },
+              {
+                "stage": "reasoning",
+                "message": "Requesting a structured decision."
+              },
+              {
+                "stage": "awaiting_approval",
+                "message": "Prepared an escalate preview."
+              }
+            ],
+            "output_issues": [
+              {
+                "code": "invalid_field",
+                "field": "retrieval_queries"
+              }
+            ]
+          },
+          "contexts": [
+            {
+              "run_id": "replay:r2:dev-case-c:resource_guidance_off",
+              "case_id": "dev-case-c",
+              "case_revision": 2,
+              "attempt_index": 1,
+              "output_feedback": null,
+              "remaining_model_attempts": 1,
+              "remaining_retrieval_rounds": 1,
+              "can_refine": true,
+              "query_limit": 2,
+              "proposal_requirements": null
+            },
+            {
+              "run_id": "replay:r2:dev-case-c:resource_guidance_off",
+              "case_id": "dev-case-c",
+              "case_revision": 2,
+              "attempt_index": 2,
+              "output_feedback": {
+                "issues": [
+                  {
+                    "code": "invalid_field",
+                    "field": "retrieval_queries"
+                  }
+                ]
+              },
+              "remaining_model_attempts": 0,
+              "remaining_retrieval_rounds": 1,
+              "can_refine": false,
+              "query_limit": 2,
+              "proposal_requirements": null
+            }
+          ],
+          "checks": {
+            "one_retrieval_only": true,
+            "within_two_model_attempts": true,
+            "complete_evidence_preserved": true,
+            "expected_status": true,
+            "expected_stop_or_fallback": true,
+            "no_user_documentation_question": true,
+            "same_evidence_repair_without_refinement_capacity": true
+          }
+        }
+      }
+    }
+  ]
+}
