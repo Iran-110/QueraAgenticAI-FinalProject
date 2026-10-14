@@ -32,6 +32,7 @@ from agent_app.llm.pricing import get_price, same_verified_price
 from agent_app.orchestration.ports import ReasoningStopCode, ReasoningStopped
 from agent_app.reasoning.catalog import caller_catalog, load_user_gap_vocabulary, validate_user_gaps
 from agent_app.reasoning.grounding import GroundedReasoner, build_grounded_messages
+from agent_app.reasoning.resource_guidance import add_resource_guidance
 from agent_app.reasoning.source_selection import add_source_selection_reminder
 from agent_app.retrieval.adapter import ChromaRetrieverAdapter
 from agent_app.retrieval.offline_index import open_verified_index
@@ -194,13 +195,19 @@ class _Run:
                 "attempt_index": context.attempt_index,
                 "prompt_sha256": hashlib.sha256(
                     json.dumps(
-                        add_source_selection_reminder(
-                            build_grounded_messages(
-                                request,
-                                context,
-                                decision_contracts=self.owner._config.grounded_decision_contracts,
+                        add_resource_guidance(
+                            add_source_selection_reminder(
+                                build_grounded_messages(
+                                    request,
+                                    context,
+                                    decision_contracts=self.owner._config.grounded_decision_contracts,
+                                ),
+                                enabled=self.owner._config.grounded_source_selection_reminder,
                             ),
-                            enabled=self.owner._config.grounded_source_selection_reminder,
+                            request,
+                            enabled=self.owner._config.grounded_resource_guidance,
+                            source_gap_handoff=self.owner._config.grounded_source_gap_handoff,
+                            source_gap_investigation=self.owner._config.grounded_source_gap_investigation,
                         ),
                         ensure_ascii=False,
                     ).encode()
@@ -450,6 +457,7 @@ def configured_factory(values: Mapping[str, str]) -> LiveEvaluationAdapters:
                 "METIS_GROUNDED_SOURCE_GAP_HANDOFF",
                 "METIS_GROUNDED_SOURCE_GAP_INVESTIGATION",
                 "METIS_GROUNDED_SOURCE_SELECTION_REMINDER",
+                "METIS_GROUNDED_RESOURCE_GUIDANCE",
             )
         }
         if any(
@@ -467,6 +475,7 @@ def configured_factory(values: Mapping[str, str]) -> LiveEvaluationAdapters:
             == "true",
             grounded_source_selection_reminder=switches["METIS_GROUNDED_SOURCE_SELECTION_REMINDER"]
             == "true",
+            grounded_resource_guidance=switches["METIS_GROUNDED_RESOURCE_GUIDANCE"] == "true",
             phase=values.get("AGENT_EVAL_PHASE", "development"),
             input_token_reserve=int(values.get("METIS_INPUT_TOKEN_RESERVE", "32768")),
             max_output_tokens=int(values.get("METIS_MAX_OUTPUT_TOKENS", "1024")),
