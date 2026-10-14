@@ -158,3 +158,8 @@ that number. Reproduce from the repo with the exact candidate commit:
 ```bash
 uv run python scripts/source_gap_handoff_replay.py --candidate a641b52cee3ac1ddb7e9119bb21199d3948aba32 --output-dir runtime/source-gap-comparison
 ```
+
+Publication CI follow-up: first `f62f77f` Windows run passed283 focused controls
+and failed one seed-span test because its reader used cp1252 rather than UTF-8.
+The test readers now explicitly use UTF-8. Assertions, cases/evidence/oracle and
+production code are unchanged; the failed run remains in GitHub history.

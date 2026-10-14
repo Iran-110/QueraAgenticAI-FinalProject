@@ -266,5 +266,5 @@ def test_private_runtime_failure_is_not_exported(runner, tmp_path, monkeypatch, 
     output = tmp_path / "failed.json"
     assert runner.main(["--index", "a", "--rebuild-index", "b", "--output", str(output)]) == 1
     streams = capsys.readouterr()
-    assert private not in output.read_text() + streams.out + streams.err
+    assert private not in output.read_text(encoding="utf-8") + streams.out + streams.err
     assert json.loads(output.read_bytes())["diagnostic"] == "DevThreeIndexAcceptanceRejected"

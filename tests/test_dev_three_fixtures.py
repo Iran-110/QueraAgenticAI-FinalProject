@@ -84,7 +84,8 @@ def test_fixed_docs_excerpts_have_real_seed_hashes_and_exact_complete_spans():
         assert digest(ROOT / name) == expected
     for source in evidence["source_records"]:
         records = [
-            json.loads(line) for line in (ROOT / source["seed_path"]).read_text().splitlines()
+            json.loads(line)
+            for line in (ROOT / source["seed_path"]).read_text(encoding="utf-8").splitlines()
         ]
         matches = [record for record in records if record["source_id"] == source["source_id"]]
         assert len(matches) == 1
