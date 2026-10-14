@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "amendment_id": "catalog-current-unit-compatibility-v1",
+  "registered_before_current_test_edit": true,
+  "historical_test_path": "tests/test_configured_user_gap_catalog.py",
+  "historical_sha256": "6b894d8ba785ad6ece6c3167a2d69a132e9e503916e6192511042d505c3079a0",
+  "preserved_copy": "experiments/core_stability_adversarial/configured-user-gap-controls-historical-v1.py",
+  "historical_fixture_unchanged": "experiments/user_gap_configuration/inputs-v1.json",
+  "historical_fixture_sha256": "8af45f3a1fe91cd931dd4e8ee5bfa90c4093f3e36d66951200681e8898a9bd9c",
+  "reason": "One C4c unit control asserts literal historical source catalog equality on unknown user version. C4e intentionally removes only premature exact-version-documentation declaration for nonempty evidence; user vocabulary still leaves the current source catalog unchanged between unconfigured/configured calls. Preserve original bytes and oracle for archived C4c replay.",
+  "current_assertion_policy": "Keep exact historical base gaps for all known-version controls. For the single registered unknown-version/nonempty control, assert the old frozen exact_version_documentation gap exists, then compare current base to the same historical gap list with only that premature source gap removed. All fact/evidence/question/config assertions remain."
+}
