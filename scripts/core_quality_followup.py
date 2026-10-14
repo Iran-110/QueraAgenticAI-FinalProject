@@ -51,7 +51,7 @@ def close_owned_scope(ledger, scope_id, protocol_sha256, authorization_ref):
     return ledger.close_quarantine_scope(scope_id)
 
 
-def build_method(root, ledger_path):
+def build_method(root, ledger_path, *, replication_only=False):
     """No credentials, network or authorization; freeze jobs and observed holds."""
     adversarial = json.loads((root / FOLDER / "adversarial-live-protocol-v1.json").read_bytes())
     packet = json.loads((root / PACKET / "adversarial-packet-v1.json").read_bytes())
@@ -107,6 +107,26 @@ def build_method(root, ledger_path):
                 "jobs": jobs,
             }
         )
+    if replication_only:
+        jobs = list(
+            reversed(
+                [
+                    job
+                    for batch in batches
+                    if batch["kind"] == "adversarial"
+                    for job in batch["jobs"]
+                ]
+            )
+        )
+        batches = [
+            {
+                "batch_id": f"adversarial-r2-{i + 1}",
+                "kind": "adversarial",
+                "scope_id": f"user-core-quality-v2-adversarial-{i + 1}",
+                "jobs": jobs[i * 6 : (i + 1) * 6],
+            }
+            for i in range(2)
+        ]
     pins = {
         path.relative_to(root).as_posix(): sha(path.read_bytes())
         for path in (root / "data/evaluation/dev-three-v1").rglob("*.json")
@@ -121,6 +141,10 @@ def build_method(root, ledger_path):
         path = root / FOLDER / name
         pins[path.relative_to(root).as_posix()] = sha(path.read_bytes())
     pins.update(adversarial["input_pins"])
+    if replication_only:
+        for name in ("adversarial-replication-protocol-v2.json", "model-live-receipt-v1.json"):
+            path = root / FOLDER / name
+            pins[path.relative_to(root).as_posix()] = sha(path.read_bytes())
     pins["scripts/core_quality_followup.py"] = sha(
         (root / "scripts/core_quality_followup.py").read_bytes()
     )
@@ -149,6 +173,10 @@ def build_method(root, ledger_path):
         "c5_reconciled": False,
         "stop_policy": "Any new uncertainty, overrun, changed quarantine/history, pending request or ledger failure stops all unvisited jobs. Do not re-register with another snapshot or retry spent identities.",
     }
+    if replication_only:
+        method["protocol_id"] = "core-adversarial-replication-v2"
+        method["experiment_id"] = "core-adversarial-replication-2026-10-14-v2"
+        method["replication_only"] = True
     fixtures = fixtures_for(root, {"protocol_id": "new-fixed-evidence"})
     ids = []
     for batch in batches:
@@ -164,7 +192,9 @@ def build_method(root, ledger_path):
 
 def preflight(root, ledger_path, method_path):
     method = json.loads(method_path.read_bytes())
-    if method != build_method(root, ledger_path):
+    if method != build_method(
+        root, ledger_path, replication_only=method.get("replication_only") is True
+    ):
         raise ValueError("QualityRegistrationRejected")
     observation = method["ledger_before"]
     if (
@@ -201,6 +231,7 @@ def preflight(root, ledger_path, method_path):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--prepare", action="store_true")
+    parser.add_argument("--replicate-adversarial", action="store_true")
     parser.add_argument("--live", action="store_true")
     parser.add_argument("--method", type=Path, default=ROOT / METHOD)
     parser.add_argument("--ledger", type=Path, default=ROOT / "runtime/budget.sqlite3")
@@ -216,7 +247,10 @@ def main():
         if args.prepare:
             if args.live:
                 raise ValueError("QualityRegistrationRejected")
-            write_new(args.method, build_method(ROOT, args.ledger))
+            write_new(
+                args.method,
+                build_method(ROOT, args.ledger, replication_only=args.replicate_adversarial),
+            )
             print(json.dumps({"prepared": True, "actual_sends": 0}))
             return 0
         method, registration = preflight(ROOT, args.ledger, args.method)
@@ -227,7 +261,7 @@ def main():
                         "eligible_read_only": True,
                         "batches": len(method["batches"]),
                         "max_sends": sum(b["max_request_slots"] for b in method["batches"]),
-                        "cap_usd": "0.48",
+                        "cap_usd": str(Decimal("0.06") * len(method["batches"])),
                         "actual_sends": 0,
                         "c5_reconciled": False,
                     }
