@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "protocol_id": "core-repeat-repair-v1",
+  "baseline_commit": "f78c6e9",
+  "registered_before_implementation": true,
+  "hypothesis": "Caller-owned repeated-query validation within the existing repair allowance can yield a fresh justified proposal instead of a stopped/stale turn. It does not create additional retrieval capacity or prove better answers.",
+  "implementation": {
+    "optional_engine_flag": "repair_repeated_queries",
+    "default": false,
+    "history_authority": "Actual RetrievalRequest queries owned by SupportEngine in this invocation, never retriever-reported queries_used",
+    "feedback": {"code": "invalid_field", "field": "retrieval_queries"},
+    "terminal_binding_checks_before_repair": true,
+    "existing_retrieve_guard_preserved": true,
+    "max_model_attempts": 2,
+    "max_retrieval_rounds": 2,
+    "max_queries_per_round": 2,
+    "max_steps": 8,
+    "query_rewriting_or_silent_dropping": false,
+    "new_framework": false
+  },
+  "offline_acceptance": [
+    "Default/false reproduce original stopped RepeatedQuery behavior and full outputs",
+    "Enabled detects whitespace/case-equivalent overlap and mixed repeated/novel query lists before a second backend call",
+    "Uses actual caller history despite absent, false or injected queries_used",
+    "Second attempt cannot retrieve then obtain a third model attempt",
+    "Unsupported references, stale revision, conflict, provider stop and uncertain accounting retain existing terminal controls",
+    "Current invocation/history and correction revision do not leak into a new run",
+    "Archived actual plans replay without changing their original receipts or quality labels",
+    "HTTP proposal/correction/stale approval and SQLite restart/retry controls remain intact"
+  ],
+  "planned_live_comparison": {
+    "arms": ["repeat_repair_off", "repeat_repair_on"],
+    "rounds": 2,
+    "case_families": ["dev-case-a", "dev-case-b", "dev-case-c"],
+    "paired_order": "A/B/C in round one, C/B/A in round two; alternate and reverse OFF/ON order",
+    "planned_jobs": 12,
+    "planned_turns": 24,
+    "max_fresh_request_slots": 48,
+    "index": "Unchanged verified native docs-only-dev-coverage-v1 18 sources/36 chunks for both arms",
+    "ranking": "Unchanged main adapter; Hassan PR50 is a separate review and factor",
+    "model": "gpt-4o-mini",
+    "max_output_tokens": 1024,
+    "input_token_reserve": 32768,
+    "other_guidance": "Decision contracts, source selection reminder and source gap investigation/handoff on in both arms; resource guidance off in both",
+    "scope_cap_usd": "0.06",
+    "campaign_scope_cap_usd": "0.36",
+    "new_uncertainty_or_changed_source_input_index_accounting": "Stop entire campaign; retain failed and unvisited jobs; no replacement identities or resume",
+    "old_holds_halt_cap_and_revocations_retained": true,
+    "before_key_load": "Verify original ledger/holds/cap/halt, frozen method/source/input/index and finite unused request slots",
+    "original_c4h_campaign": "Closed, never resumed",
+    "preregister_each_scenario_known_unknown_and_allowed_decisions": "Reuse immutable dev-three-v1 scenario-review-v1 and route fixtures; native source availability differs from fixed oracle and must be reviewed separately"
+  },
+  "reporting": {
+    "fresh_proposal_and_stale_only_turns_separate": true,
+    "decision_source_support_necessary_user_question_and_source_gap_separate": true,
+    "route_completion_alone_not_quality": true,
+    "all_attempts_failed_and_unvisited_in_denominators": true,
+    "human_usefulness": null,
+    "held_out_test": false,
+    "exposed_answer_informed_dev": true,
+    "no_general_rag_quality_claim": true
+  }
+}
