@@ -4,6 +4,8 @@ This is a factual milestone log, not a daily activity schedule. Update it after 
 
 ## 2026-10-14 — C4f registered quality follow-up
 
+Publication/review: [PR #47](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/47).
+
 [Frozen protocols](../experiments/core_quality_followup/README.md) retain the
 existing three exposed development families and unchanged oracles. A separate
 optional renderer investigation target has archived 17-control evidence:
@@ -32,6 +34,11 @@ all298previousreservationrows and all pre-existing rows in14tables unchanged.
 No fullpre-V1old248row snapshot; narrowerhold/history/count/accounting evidence
 is reported. [Detailed results](core-quality-followup.fa.md); RAGcoverage and
 held-out/human evaluation remain open.
+
+Final local verification3346pytest/Ruff and HTTP/SQLite457/457 includingrestart
+passed. Initialexacthead839a0c had twoLinuxpasses, oneWindowspass and oneWindows
+job cancelled atits10minute ceiling aftercompletedstepspassed. No testremoved;
+Windowsjob allowance is20minutes. FinalheadCI isrequired beforemerge.
 
 ## 2026-10-14 — C4e preregistered stability and limited adversarial development
 

@@ -5,6 +5,8 @@
 ## وضعیت فعلی
 
 - [x] **C4f — مقایسهٔ محدود مدل و بهبود انتخاب منبع؛ ساسان.**
+  انتشار و review در [PR #47](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/47)؛
+  ۳۳۴۶ pytest، Ruff و HTTP/SQLite ۴۵۷/۴۵۷ با restart/retry پاس.
   [روش ثبت‌شده](../experiments/core_quality_followup/README.md): همان سه dev و
   oracle قبلی؛ دو دور paired سقف ۱۰۲۴/۲۰۴۸، و مقایسهٔ reminder روی شش وضعیت
   سالم/خصمانه. source-gap investigation جدا روی ۱۷ کنترل archived از ۴ پاس
@@ -21,6 +23,8 @@
   و ۶۴ prompt بررسی شده؛ پنج first attempt نامعتبر/repair محفوظ‌اند. ۱۰ scope
   بسته و ۳۲ slot استفاده‌نشده claimed باقی‌اند. C5، RAG واقعی و test نهایی
   هنوز بازند؛ defaultها ثابت‌اند. CI همان head و review شرط انتشار است.
+  یک Windows با همین تغییرات پاس و دیگری در سقف ۱۰ دقیقه cancel شد؛ تمام
+  checkها حفظ و سقف job بیست دقیقه شد تا head نهایی کامل بررسی شود.
 
 - [x] **C4e — اندازه‌گیری محدود پایداری و برش خصمانهٔ آفلاین؛ ساسان.**
   انتشار و review در [PR #46](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/46)؛
