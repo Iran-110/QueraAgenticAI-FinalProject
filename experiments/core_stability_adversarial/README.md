@@ -71,6 +71,69 @@ Fresh research needs a separately reviewed immutable registration.
 
 ## Results
 
-Not yet executed at this registration commit. Original baselines and golden
-fixtures remain unchanged. Receipts, failures and declared semantic review will
-be added separately after the registered execution.
+The original registration commit was `beeb2f3`; execution used that clean source
+without edits. [Original live receipt](stability-live-receipt-v1.json),
+[mechanical record review](stability-mechanical-review-v1.json) and
+[declared assistant semantic review](stability-semantic-review-v1.json) retain
+all failures and original proposals. Four rounds were planned: three completed,
+the fourth stopped after two of six jobs. Twenty of 24 jobs were visited; four
+remain unobserved. Ten common initial B/C requests are exactly equal. The planned
+four-round counterbalance did not finish and observed order imbalance remains.
+
+| Observed cohort | B completed routes | C completed routes |
+| --- | ---: | ---: |
+| Three fully executed rounds | 3/9 | 7/9 |
+| All visited jobs, including partial fourth round | 3/10 | 8/10 |
+
+First attempts: B eight valid/seven invalid/one unobserved out of 16; C sixteen
+valid/two unobserved out of 18. All attempts: B nine valid/thirteen invalid/one
+unobserved; C seventeen valid/two unobserved. Unobserved provider outputs are
+failures, not silently excluded successes. Route completion is not semantic
+adequacy. All 25 complete proposals reconstruct exactly. Twenty registered
+questions were necessary/user-answerable and three button answers stayed bounded.
+Two Enum documentary answers still do not fully demonstrate the strict
+case-specific investigation/qualification condition; two other Enum jobs have
+settled `ProviderResponseInvalid` failures at 1,024 output tokens. Truncation is
+plausible but the finish reason was not retained, so its cause is not proven.
+
+The review found 14 unknown-version proposals exposing an inaccurate caller
+qualification about a "confirmed version". This produced a separately
+[preregistered catalog fix](catalog-version-truth-protocol-v1.json): the same ten
+controls give archived baseline3pass/7fail versus archived candidate10pass.
+[Working-tree observation](catalog-version-truth-receipt-v1.json) and
+[actual archive receipt](catalog-version-truth-receipt-v2.json) are distinct.
+No original live proposal was rewritten/rescored and no new paid trial of the
+fix was performed. Current catalog requires an active USER version before
+declaring exact-version records missing; an empty bundle remains an honest
+separate source gap. It discovers no Enum diagnosis or undeclared conflict.
+
+[Narrow C4c unit amendment](catalog-compatibility-amendment-v1.json) and
+[UI gap-caption amendment](catalog-ui-compatibility-amendment-v1.json) preserve
+original literal test files; original fixture/oracle bytes remain unchanged.
+[Historical C4c replay](historical-c4c-replay-receipt-v1.json) uses the original
+candidate `535e020` and preserves 9pass/12fail before versus21pass after. The
+historical command now accepts an explicit candidate commit and reads the exact
+preserved controls when the current unit file intentionally differs.
+
+[Cost reconciliation packet](stability-cost-reconciliation-v1.json): 42 transport
+attempts, 41 settled with USD0.025141875 local estimate, one new USD0.0033792
+uncertain hold. The old USD0.02 hold remains. Three scopes closed; the fourth
+and old continuation were revoked by the existing `NewUncertainty` guard, with
+no pending request. `scope_closed=false` in that fourth receipt reflects prior
+revocation, not an active allowance. No ledger reset, refill, unhalt or new parent
+was performed. Correlated provider billing/usage evidence is required; actual
+total charge is unknown. The adversarial live scope was never registered/sent.
+
+Instead, [offline adversarial receipt](adversarial-offline-receipt-v1.json) uses
+six deterministic safe controls and three counterexamples. Six safe controls and
+all expected counterexamples were observed. Hash-valid attack quotation was
+accepted and classified **semantic failure**; obsolete source selection and an
+answer under declared conflict were blocked. Ten authored planner attempts, nine
+fixture queries, zero API and no execution port; this is not model attack
+resistance, human usefulness, a real-RAG measurement or a completed bonus.
+
+[HTTP/SQLite acceptance](http-sqlite-receipt-v1.json) still passes457/457 with
+fresh-process restart/retry. It is separate from the process-memory model trial
+and the direct-core adversarial replay. The latest local full suite passes3,204.
+See the [Persian handoff](../../docs/core-stability.fa.md) and team plan for the
+remaining RAG/split/human-review/manual-smoke/provider-reconciliation work.
