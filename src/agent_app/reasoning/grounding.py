@@ -259,7 +259,11 @@ def _source_gap_block(request: GroundedRequest) -> str:
     )
 
 
-def render_grounded_plan(request: GroundedRequest, raw: object) -> AnalysisResult:
+def render_grounded_plan(
+    request: GroundedRequest, raw: object, *, source_gap_handoff: bool = False
+) -> AnalysisResult:
+    if type(source_gap_handoff) is not bool:
+        raise GroundingRejected("grounded_context_mismatch")
     request = validate_grounded_request(request)
     plan = parse_grounded_plan(raw)
     if plan.context_sha256 != request.context_sha256:
@@ -343,7 +347,7 @@ def render_grounded_plan(request: GroundedRequest, raw: object) -> AnalysisResul
         rationale += " Caller-registered question necessity: " + _display(gap.necessity)
     if request.conflict_groups or _prior_conflict(request):
         rationale += " " + conflict
-    source_gaps = _source_gap_block(request)
+    source_gaps = _source_gap_block(request) if source_gap_handoff else ""
     if source_gaps:
         if plan.decision != "ask":
             draft += "\n\n" + source_gaps
@@ -538,9 +542,13 @@ class GroundedReasoner:
         request_factory: Callable[[CaseState, str, EvidenceBundle], GroundedRequest] = (
             make_grounded_request
         ),
+        source_gap_handoff: bool = False,
     ) -> None:
+        if type(source_gap_handoff) is not bool:
+            raise GroundingRejected("grounded_context_mismatch")
         self.planner = planner
         self.request_factory = request_factory
+        self.source_gap_handoff = source_gap_handoff
         self._conflicts: set[tuple[str, str, int]] = set()
         self._conflict_lock = RLock()
 
@@ -609,7 +617,11 @@ class GroundedReasoner:
             raw = self.planner.plan(
                 request.model_copy(deep=True), context=context.model_copy(deep=True)
             )
-            result = render_grounded_plan(request, raw)
+            result = (
+                render_grounded_plan(request, raw, source_gap_handoff=True)
+                if self.source_gap_handoff
+                else render_grounded_plan(request, raw)
+            )
             keep_pending = (
                 result.decision == "retrieve_more" and context.can_refine and _can_repair(context)
             )

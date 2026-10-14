@@ -511,6 +511,7 @@ def run_trial(
         config.continuation_id != protocol["scope_id"]
         or config.model != MODEL
         or config.response_mode != "grounded_plan"
+        or config.grounded_source_gap_handoff
         or config.grounded_decision_contracts != protocol.get("grounded_decision_contracts", False)
     ):
         raise DevProbeRejected()

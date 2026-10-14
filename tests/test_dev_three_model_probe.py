@@ -471,3 +471,25 @@ def test_checkpoint_failure_before_provider_dispatch_is_not_counted_as_send(tmp_
     assert receipt["provider_sends"][0]["http_send_started"] is False
     # Gateway uncertainty remains conservative; never release or replay by this observation.
     assert ledger.snapshot().uncertain_usd > Decimal("0.02")
+
+
+def test_historical_trials_reject_unregistered_renderer_mode_before_provider(tmp_path):
+    from agent_app.testing.dev_three_model_probe import DevProbeRejected
+
+    protocol, fixtures, definitions, ledger, config, before = preparation(tmp_path)
+    config = MetisConfig.model_validate(
+        {**config.model_dump(), "grounded_source_gap_handoff": True}
+    )
+    snapshot = ledger.snapshot()
+    calls = []
+    with pytest.raises(DevProbeRejected):
+        run_trial(
+            protocol,
+            fixtures,
+            definitions,
+            ledger,
+            config,
+            before,
+            underlying=httpx.MockTransport(lambda req: calls.append(req)),
+        )
+    assert calls == [] and ledger.snapshot() == snapshot
