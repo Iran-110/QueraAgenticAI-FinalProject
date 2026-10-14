@@ -112,6 +112,7 @@ class SupportEngine:
         current_case: Callable[[str], CaseState] | None = None,
         proposal_checks: bool = False,
         evidence_scope: Literal["all", "exact_user_version"] = "all",
+        repair_repeated_queries: bool = False,
     ) -> None:
         self.retriever = retriever
         self.reasoner = reasoner
@@ -130,6 +131,9 @@ class SupportEngine:
         if type(evidence_scope) is not str or evidence_scope not in {"all", "exact_user_version"}:
             raise ValueError("Unsupported evidence scope policy.")
         self.evidence_scope = evidence_scope
+        if type(repair_repeated_queries) is not bool:
+            raise ValueError("Repeated-query repair requires an explicit boolean.")
+        self.repair_repeated_queries = repair_repeated_queries
         # Validate configuration before a port is invoked.
         RetrievalRequest(queries=("configuration-check",), snapshot_id=snapshot_id, top_k=top_k)
 
@@ -215,6 +219,7 @@ class SupportEngine:
                     progress,
                     run_id=run_id,
                     proposal_requirements=proposal_requirements,
+                    seen_queries=frozenset(seen_queries),
                 )
                 if analysis.decision != "retrieve_more":
                     self._ensure_current(case)
@@ -346,6 +351,7 @@ class SupportEngine:
         *,
         run_id: str,
         proposal_requirements: ProposalRequirements | None = None,
+        seen_queries: frozenset[str] = frozenset(),
     ) -> AnalysisResult:
         last_error = "ModelAttemptLimitExceeded"
         feedback = None
@@ -428,6 +434,20 @@ class SupportEngine:
                 analysis = parse_analysis(raw)
                 # Source/authority violations remain terminal, even alongside bad code.
                 self._validate_analysis(case, evidence, analysis)
+                if (
+                    self.repair_repeated_queries
+                    and analysis.decision == "retrieve_more"
+                    and any(
+                        _normalize(query) in seen_queries for query in analysis.retrieval_queries
+                    )
+                ):
+                    # Only actual caller-owned requests establish search history.
+                    # Retriever-reported queries_used cannot add or remove authority.
+                    # Reject the whole plan without rewriting/dropping queries; the
+                    # existing repair allowance cannot create a third model attempt.
+                    raise InvalidAnalysis(
+                        (OutputIssue(code="invalid_field", field="retrieval_queries"),)
+                    )
                 if has_invalid_python_code(analysis):
                     raise InvalidAnalysis((OutputIssue(code="invalid_python_syntax"),))
                 if self.proposal_checks:
