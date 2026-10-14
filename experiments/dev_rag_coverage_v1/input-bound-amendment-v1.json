@@ -1,0 +1,33 @@
+{
+  "protocol_id": "dev-real-index-input-bound-amendment-v1",
+  "registered_before_paid_calls": true,
+  "parent_protocol": "protocol-v1.json",
+  "reason": "Measured offline full native top5 prompt+1024-byte allowance exceeds frozen-evidence input tiers; full quotations must not be silently trimmed and the actual UTF8 guard stays strict. MetisConfig already caps32768.",
+  "offline_observations_bytes_plus_1024": {
+    "pilot_initial": 16164,
+    "pilot_version_historical": 28131,
+    "pilot_version_new": 31040,
+    "icon_initial": 27283,
+    "enum_initial": 25271
+  },
+  "previous_attempts": "Offline mocked transport only; ContextLimitExceeded failures retained in software test work, no provider/model call or actualledger reservation.",
+  "new_input_token_reserve": 32768,
+  "new_input_tier_scope": "new finite quarantine-set slots only; old continuation/experiment scopes keep existing16384/24576 restrictions",
+  "max_output_tokens": 1024,
+  "full_top5_evidence_unchanged": true,
+  "no_guard_relaxation": true,
+  "fresh_scope_count": 6,
+  "max_slots_per_scope": 8,
+  "additional_cap_usd_per_scope": "0.06",
+  "expected_bound_usd_per_request": "0.00608256",
+  "expected_worst_all48slots_usd": "0.29196288",
+  "old_unknown_holds_halt_grants_global_usd4_50_limit_preserved": true,
+  "required_controls": [
+    "old experiment scope rejects32768",
+    "new quarantine scope binds exact32768/gpt4omini/development/attempt<=2/output1024/2048/rate bound",
+    "all other inputs32767,32769,65536,float,bool rejected",
+    "changed gateway input bound cannot reserve funded slot",
+    "all current full prompt payloads sized beforepaid, refinement stillbounded andmayfailclosedifoversized",
+    "permanentclose/revocation, cannotrefillor replay, oldrowretention controls unchanged"
+  ]
+}
