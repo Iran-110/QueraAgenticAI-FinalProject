@@ -4,6 +4,17 @@
 
 ## وضعیت فعلی
 
+- [ ] **C4g / R4a — سه dev با index واقعی؛ ساسان، کمک به RAG حسن.**
+  [protocol ثبت‌شده قبل از اجرا](../experiments/dev_rag_coverage_v1/protocol-v1.json)
+  و [راهنمای اتصال](../docs/dev-rag-coverage.fa.md): چهار source رسمی seed در
+  profile بستهٔ جدا۱۸/۳۶، همراه۴۶ reservation و حفظ baseline تاریخی۱۴/۳۰.
+  دو build مستقل، pin/span/version/exclusion و سرچ native باید پذیرفته شوند؛
+  سپس دو دور balanced همان سه dev روی دو index قدیم/جدید با مدل واقعی.
+  corpus membership، ranking، scope نسخه، ادعای مستند و route جدا گزارش می‌شوند.
+  فیلتر source-ID/gold برای تقویت نتیجه نداریم؛ caseها exposed و human review
+  بازند. اعتبار scope تازه باید هر دو hold و halt/C5 قبلی را نگه دارد.
+
+
 - [x] **C4f — مقایسهٔ محدود مدل و بهبود انتخاب منبع؛ ساسان.**
   انتشار و review در [PR #47](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/47)؛
   ۳۳۴۶ pytest، Ruff و HTTP/SQLite ۴۵۷/۴۵۷ با restart/retry پاس.

@@ -49,12 +49,20 @@ def quality_slots(protocol, batch, fixtures):
         original = historical_slots(protocol, {**batch, "jobs": [job]}, fixtures)
         for slot in original:
             output = job["max_output_tokens"]
+            reserve = job.get("input_token_reserve", slot.input_token_reserve)
+            if (
+                type(reserve) is not int
+                or reserve not in (16384, 24576, 32768)
+                or (reserve == 32768 and batch["kind"] != "real_index")
+            ):
+                raise DevProbeRejected()
             slots.append(
                 ExperimentRequestSlot(
                     **{
                         **asdict(slot),
+                        "input_token_reserve": reserve,
                         "max_output_tokens": output,
-                        "amount_usd": get_price(MODEL).cost(slot.input_token_reserve, output),
+                        "amount_usd": get_price(MODEL).cost(reserve, output),
                     }
                 )
             )
@@ -68,7 +76,7 @@ def quality_slots(protocol, batch, fixtures):
 
 
 class QualityTransport(httpx.BaseTransport):
-    def __init__(self, underlying, ledger, scope_id, before):
+    def __init__(self, underlying, ledger, scope_id, before, *, input_profiles=None):
         self.underlying, self.ledger, self.scope_id, self.before = (
             underlying,
             ledger,
@@ -78,6 +86,7 @@ class QualityTransport(httpx.BaseTransport):
         self.current = None
         self.records = []
         self.on_send = None
+        self.input_profiles = INPUT_PROFILES if input_profiles is None else dict(input_profiles)
 
     def handle_request(self, request):
         row = self.ledger.get(self.current) if self.current else None
@@ -96,7 +105,7 @@ class QualityTransport(httpx.BaseTransport):
             or payload.get("stream") is not False
             or payload.get("max_tokens") not in (1024, 2048)
             or row.amount_usd
-            != get_price(MODEL).cost(INPUT_PROFILES[row.case_id], payload["max_tokens"])
+            != get_price(MODEL).cost(self.input_profiles[row.case_id], payload["max_tokens"])
             or scope.block_reason != "PendingRequest"
             or now["counts"].get("reserved") != 1
             or any(
@@ -194,11 +203,29 @@ def run_quality_batch(
     *,
     underlying=None,
     checkpoint=None,
+    retriever_factory=None,
 ):
     if config.continuation_id != batch["scope_id"] or not config.grounded_source_gap_handoff:
         raise DevProbeRejected()
+    if retriever_factory is not None and not callable(retriever_factory):
+        raise DevProbeRejected()
+    input_profiles = {}
+    for job in batch["jobs"]:
+        reserve = job.get("input_token_reserve", INPUT_PROFILES[job["case_id"]])
+        if (
+            type(reserve) is not int
+            or reserve not in (16384, 24576, 32768)
+            or (reserve == 32768 and batch["kind"] != "real_index")
+            or input_profiles.get(job["case_id"], reserve) != reserve
+        ):
+            raise DevProbeRejected()
+        input_profiles[job["case_id"]] = reserve
     counted = QualityTransport(
-        underlying or httpx.HTTPTransport(retries=0), ledger, batch["scope_id"], before
+        underlying or httpx.HTTPTransport(retries=0),
+        ledger,
+        batch["scope_id"],
+        before,
+        input_profiles=input_profiles,
     )
     jobs, attempts = [], []
     stopped = False
@@ -221,8 +248,12 @@ def run_quality_batch(
             start = len(attempts)
 
             def adapters(_case_id, turn, fixture=fixture, job=job, ports=ports):
-                bundle = fixture.bundles[turn["evidence_bundle"]]
-                reserve = INPUT_PROFILES[fixture.case["case_id"]]
+                if retriever_factory is None:
+                    bundle = fixture.bundles[turn["evidence_bundle"]]
+                    retriever, snapshot_id = FakeRetriever([bundle, bundle]), bundle.snapshot_id
+                else:
+                    retriever, snapshot_id = retriever_factory(job, turn)
+                reserve = input_profiles[fixture.case["case_id"]]
                 case_config = MetisConfig.model_validate(
                     {
                         **config.model_dump(),
@@ -257,14 +288,14 @@ def run_quality_batch(
                     return request
 
                 return api.RunAdapters(
-                    retriever=FakeRetriever([bundle, bundle]),
+                    retriever=retriever,
                     reasoner=GroundedReasoner(
                         planner,
                         request_factory=request_factory,
                         source_gap_handoff=True,
                         source_gap_investigation=True,
                     ),
-                    snapshot_id=bundle.snapshot_id,
+                    snapshot_id=snapshot_id,
                     grounded_request_supplier=planner.supplied_request,
                     cleanup=gateway.close,
                 )
@@ -282,7 +313,11 @@ def run_quality_batch(
                 def scoped_engine(*args, **kwargs):
                     return SupportEngine(*args, **kwargs, evidence_scope="exact_user_version")
 
-                engine_factory = scoped_engine if batch["kind"] == "adversarial" else SupportEngine
+                engine_factory = (
+                    scoped_engine
+                    if batch["kind"] in {"adversarial", "real_index"}
+                    else SupportEngine
+                )
                 with (
                     patch.object(api, "_cases", {}),
                     patch.object(api, "tracker", DummyTracker()),

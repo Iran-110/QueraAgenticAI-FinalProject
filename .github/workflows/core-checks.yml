@@ -96,6 +96,8 @@ jobs:
           uv run python scripts/build_pilot_index.py --destination "$RUNNER_TEMP/dev-three-a" --split-manifest data/evaluation/dev-three-v1/split-manifest.json
           uv run python scripts/build_pilot_index.py --destination "$RUNNER_TEMP/dev-three-b" --split-manifest data/evaluation/dev-three-v1/split-manifest.json
           uv run python scripts/dev_three_index_acceptance.py --index "$RUNNER_TEMP/dev-three-a" --rebuild-index "$RUNNER_TEMP/dev-three-b" --output "$RUNNER_TEMP/dev-three-index.json"
+      - name: Accept added dev coverage profile with native Chroma and no paid calls
+        run: uv run python scripts/dev_rag_coverage_acceptance.py --index-root "$RUNNER_TEMP/dev-rag-coverage" --output "$RUNNER_TEMP/dev-rag-coverage-receipt.json"
       - name: Compare GroundedPlan persistent HTTP controls with a mocked provider
         run: |
           uv run python scripts/grounded_http_acceptance.py --baseline --output "$RUNNER_TEMP/grounded-http-baseline.json"
@@ -156,6 +158,10 @@ jobs:
         run: uv sync --locked --group dev
       - name: Check finite quarantine funding and quality controls without credentials
         run: uv run pytest tests/test_budget_quarantine_scope.py tests/test_source_gap_investigation.py tests/test_source_selection_reminder.py tests/test_provider_observation.py tests/test_quality_configuration.py tests/test_quality_probe.py tests/test_quality_cli.py tests/test_quality_replication.py
+      - name: Verify full-context funding and native real-index composition without credentials
+        run: uv run pytest tests/test_budget_quarantine_full_context.py tests/test_dev_coverage_corpus.py tests/test_dev_rag_coverage_acceptance.py tests/test_dev_rag_model_cli.py tests/test_real_index_probe.py
+      - name: Accept added native coverage profile on Windows without paid calls
+        run: uv run python scripts/dev_rag_coverage_acceptance.py --index-root "$env:RUNNER_TEMP/dev-rag-coverage" --output "$env:RUNNER_TEMP/dev-rag-coverage-receipt.json"
       - name: Check funded scope, frozen dev cases and decision-contract controls without credentials
         run: uv run pytest tests/test_budget_experiment_scope.py tests/test_budget_experiment_scope_amendment.py tests/test_budget_experiment_scope_tiers.py tests/test_dev_three_fixtures.py tests/test_dev_three_index_epoch.py tests/test_dev_three_model_probe.py tests/test_plan_observation.py tests/test_grounded_decision_contracts.py tests/test_grounded_source_gap_handoff_v2.py tests/test_grounded_configuration_flags.py tests/test_grounded_gateway.py
       - name: Accept separately registered three-dev index epoch on Windows without paid calls
