@@ -353,6 +353,9 @@ def verify(index, rebuild_index, protocol_path=PROTOCOL_PATH):
                 views[case_id] = view
                 handoffs.append(handoff.model_dump(mode="json"))
             enum_id = CASE_IDS[2]
+            previous_case = validate_handoff(
+                ProposalHandoff.model_validate(views[enum_id]["pending"]["review_handoff"])
+            ).case
             stale = backend.prepare_review(enum_id, views[enum_id]["pending"], "approve")
             corrected = backend.send_event(
                 enum_id,
@@ -379,14 +382,21 @@ def verify(index, rebuild_index, protocol_path=PROTOCOL_PATH):
                     for f in current.case.facts
                 ),
             )
-            retained_names = {
-                fact.name
+            retained_facts = {
+                (fact.name, fact.value)
                 for fact in current.case.facts
                 if fact.status == "active" and fact.provenance_kind == "user"
             }
+            previous_facts = {
+                (fact.name, fact.value)
+                for fact in previous_case.facts
+                if fact.status == "active"
+                and fact.provenance_kind == "user"
+                and fact.name != "streamlit_version"
+            }
             check(
-                "enum:partial_correction_keeps_code_and_environment",
-                {"reported_reproduction_code", "python_version", "browser"} <= retained_names,
+                "enum:partial_correction_keeps_existing_user_facts",
+                previous_facts <= retained_facts,
             )
             before = backend.get_case(enum_id)
             try:
