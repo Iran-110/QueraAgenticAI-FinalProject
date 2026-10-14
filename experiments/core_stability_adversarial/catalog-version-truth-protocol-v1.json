@@ -1,0 +1,434 @@
+{
+  "schema_version": 1,
+  "protocol_id": "catalog-version-truth-v1",
+  "registered_before_implementation": true,
+  "registered_on": "2026-10-14",
+  "baseline_commit": "beeb2f3e3d6336e8a5509503658b6affcc38284a",
+  "trigger": "The completed original paid stability trial exposed a false catalog declaration of a confirmed user version in unknown-version inputs. Original paid outputs and their failure classifications remain unchanged.",
+  "scope": "Deterministic core catalog and full-rendered-surface truth controls only; no new model request, tracker/UI edit, retrieval index or evaluation corpus change.",
+  "hypothesis": "An active user-reported installed release is required before declaring exact-version documentation absent from a nonempty evidence bundle. Empty evidence is a genuine source gap even when the version remains unknown, and must be described as empty evidence.",
+  "policy": {
+    "unknown_version_with_supplied_records": "Register the necessary user version question; do not declare exact-version documentary coverage missing before the version is known.",
+    "unknown_version_with_empty_evidence": "Register a user version question and a separately honest empty-documentation source gap.",
+    "known_version_with_no_exact_metadata": "Retain the source gap; historical or unversioned supplied records do not establish current-release coverage.",
+    "known_version_with_exact_metadata": "No version coverage gap; exact metadata still does not verify authenticity, cause or fix.",
+    "confirmation": "Only active USER facts; source/evidence facts and superseded user facts cannot establish the current installed release.",
+    "additional_diagnosis": "No automatic diagnosis-specific source gap."
+  },
+  "records": {
+    "version139": {
+      "chunk_id": "synthetic:version139",
+      "source_id": "synthetic:record139",
+      "excerpt": "Synthetic complete documentation paragraph for release 1.39.0. It describes state retention, without establishing any application cause or fix.",
+      "source_url": "https://example.org/synthetic-version139",
+      "source_type": "doc",
+      "applicable_versions": [
+        "1.39.0"
+      ],
+      "source_span": "whole synthetic paragraph"
+    },
+    "version150": {
+      "chunk_id": "synthetic:version150",
+      "source_id": "synthetic:record150",
+      "excerpt": "Synthetic complete documentation paragraph for release 1.50.0. It describes state retention, without establishing any application cause or fix.",
+      "source_url": "https://example.org/synthetic-version150",
+      "source_type": "doc",
+      "applicable_versions": [
+        "1.50.0"
+      ],
+      "source_span": "whole synthetic paragraph"
+    },
+    "unversioned": {
+      "chunk_id": "synthetic:unversioned",
+      "source_id": "synthetic:record-unversioned",
+      "excerpt": "Synthetic complete unversioned documentation paragraph. Source applicability still requires the currently reported installed release.",
+      "source_url": "https://example.org/synthetic-unversioned",
+      "source_type": "doc",
+      "applicable_versions": [],
+      "source_span": "whole synthetic paragraph"
+    }
+  },
+  "caller_user_vocabulary": [
+    {
+      "name": "parent_callback_code",
+      "kind": "user",
+      "description": "The relevant callback is explicitly unknown.",
+      "necessity": "The user can provide their actual callback to distinguish the reported behavior.",
+      "question": "Can you share the relevant parent callback code?"
+    }
+  ],
+  "controls": [
+    {
+      "control_id": "runtime-unknown-supplied",
+      "catalog": "runtime",
+      "input": {
+        "facts": [],
+        "unknowns": [],
+        "record_ids": [
+          "version139",
+          "version150"
+        ],
+        "message": "The affected widget loses its value; use only currently reported facts."
+      },
+      "known_user_version": null,
+      "missing_information": [
+        "installed Streamlit version, answerable by the user"
+      ],
+      "expected_gaps": {
+        "streamlit_version": "user"
+      },
+      "acceptable_render_decisions": [
+        "ask",
+        "answer",
+        "escalate"
+      ],
+      "expected_source_gap_description": null,
+      "render_checks": [
+        "All user_draft, maintainer_summary and rationale surfaces preserve the current user-information/documentary-coverage distinction.",
+        "The canonical version question remains exact; no source text may confirm the installed user version.",
+        "Selected full excerpts, version-scope labels and active facts remain intact.",
+        "No diagnosis gap or workaround is invented."
+      ]
+    },
+    {
+      "control_id": "caller-unknown-with-callback",
+      "catalog": "caller",
+      "input": {
+        "facts": [],
+        "unknowns": [
+          "parent_callback_code"
+        ],
+        "record_ids": [
+          "version139"
+        ],
+        "message": "The affected widget loses its value; use only currently reported facts."
+      },
+      "known_user_version": null,
+      "missing_information": [
+        "installed Streamlit version, answerable by the user"
+      ],
+      "expected_gaps": {
+        "streamlit_version": "user",
+        "parent_callback_code": "user"
+      },
+      "acceptable_render_decisions": [
+        "ask",
+        "answer",
+        "escalate"
+      ],
+      "expected_source_gap_description": null,
+      "render_checks": [
+        "All user_draft, maintainer_summary and rationale surfaces preserve the current user-information/documentary-coverage distinction.",
+        "The canonical version question remains exact; no source text may confirm the installed user version.",
+        "Selected full excerpts, version-scope labels and active facts remain intact.",
+        "No diagnosis gap or workaround is invented."
+      ]
+    },
+    {
+      "control_id": "runtime-unknown-empty",
+      "catalog": "runtime",
+      "input": {
+        "facts": [],
+        "unknowns": [],
+        "record_ids": [],
+        "message": "The affected widget loses its value; use only currently reported facts."
+      },
+      "known_user_version": null,
+      "missing_information": [
+        "installed Streamlit version, answerable by the user",
+        "documentation records"
+      ],
+      "expected_gaps": {
+        "streamlit_version": "user",
+        "exact_version_documentation": "source"
+      },
+      "acceptable_render_decisions": [
+        "ask",
+        "escalate"
+      ],
+      "expected_source_gap_description": "The supplied evidence bundle contains no documentation records.",
+      "render_checks": [
+        "All user_draft, maintainer_summary and rationale surfaces preserve the current user-information/documentary-coverage distinction.",
+        "The canonical version question remains exact; no source text may confirm the installed user version.",
+        "Selected full excerpts, version-scope labels and active facts remain intact.",
+        "No diagnosis gap or workaround is invented."
+      ]
+    },
+    {
+      "control_id": "runtime-evidence-version-is-not-user-version",
+      "catalog": "runtime",
+      "input": {
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.39.0",
+            "source_ref": "synthetic:evidence:synthetic-current",
+            "turn_id": "synthetic-current",
+            "provenance_kind": "evidence",
+            "status": "active"
+          }
+        ],
+        "unknowns": [],
+        "record_ids": [
+          "version139"
+        ],
+        "message": "The affected widget loses its value; use only currently reported facts."
+      },
+      "known_user_version": null,
+      "missing_information": [
+        "installed Streamlit version, answerable by the user"
+      ],
+      "expected_gaps": {
+        "streamlit_version": "user"
+      },
+      "acceptable_render_decisions": [
+        "ask",
+        "answer",
+        "escalate"
+      ],
+      "expected_source_gap_description": null,
+      "render_checks": [
+        "All user_draft, maintainer_summary and rationale surfaces preserve the current user-information/documentary-coverage distinction.",
+        "The canonical version question remains exact; no source text may confirm the installed user version.",
+        "Selected full excerpts, version-scope labels and active facts remain intact.",
+        "No diagnosis gap or workaround is invented."
+      ]
+    },
+    {
+      "control_id": "runtime-superseded-version-is-not-current",
+      "catalog": "runtime",
+      "input": {
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.39.0",
+            "source_ref": "synthetic:user:synthetic-old",
+            "turn_id": "synthetic-old",
+            "provenance_kind": "user",
+            "status": "superseded"
+          }
+        ],
+        "unknowns": [],
+        "record_ids": [
+          "version139"
+        ],
+        "message": "The affected widget loses its value; use only currently reported facts."
+      },
+      "known_user_version": null,
+      "missing_information": [
+        "installed Streamlit version, answerable by the user"
+      ],
+      "expected_gaps": {
+        "streamlit_version": "user"
+      },
+      "acceptable_render_decisions": [
+        "ask",
+        "answer",
+        "escalate"
+      ],
+      "expected_source_gap_description": null,
+      "render_checks": [
+        "All user_draft, maintainer_summary and rationale surfaces preserve the current user-information/documentary-coverage distinction.",
+        "The canonical version question remains exact; no source text may confirm the installed user version.",
+        "Selected full excerpts, version-scope labels and active facts remain intact.",
+        "No diagnosis gap or workaround is invented."
+      ]
+    },
+    {
+      "control_id": "runtime-known-exact-documentation",
+      "catalog": "runtime",
+      "input": {
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.39.0",
+            "source_ref": "synthetic:user:synthetic-current",
+            "turn_id": "synthetic-current",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [],
+        "record_ids": [
+          "version139"
+        ],
+        "message": "The affected widget loses its value; use only currently reported facts."
+      },
+      "known_user_version": "1.39.0",
+      "missing_information": [],
+      "expected_gaps": {},
+      "acceptable_render_decisions": [
+        "answer",
+        "escalate"
+      ],
+      "expected_source_gap_description": null,
+      "render_checks": [
+        "All user_draft, maintainer_summary and rationale surfaces preserve the current user-information/documentary-coverage distinction.",
+        "The canonical version question remains exact; no source text may confirm the installed user version.",
+        "Selected full excerpts, version-scope labels and active facts remain intact.",
+        "No diagnosis gap or workaround is invented."
+      ]
+    },
+    {
+      "control_id": "runtime-known-other-version-documentation",
+      "catalog": "runtime",
+      "input": {
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.39.0",
+            "source_ref": "synthetic:user:synthetic-current",
+            "turn_id": "synthetic-current",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [],
+        "record_ids": [
+          "version150"
+        ],
+        "message": "The affected widget loses its value; use only currently reported facts."
+      },
+      "known_user_version": "1.39.0",
+      "missing_information": [],
+      "expected_gaps": {
+        "exact_version_documentation": "source"
+      },
+      "acceptable_render_decisions": [
+        "answer",
+        "escalate"
+      ],
+      "expected_source_gap_description": "No supplied record has exact metadata for the confirmed version.",
+      "render_checks": [
+        "All user_draft, maintainer_summary and rationale surfaces preserve the current user-information/documentary-coverage distinction.",
+        "The canonical version question remains exact; no source text may confirm the installed user version.",
+        "Selected full excerpts, version-scope labels and active facts remain intact.",
+        "No diagnosis gap or workaround is invented."
+      ]
+    },
+    {
+      "control_id": "runtime-known-empty",
+      "catalog": "runtime",
+      "input": {
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.39.0",
+            "source_ref": "synthetic:user:synthetic-current",
+            "turn_id": "synthetic-current",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [],
+        "record_ids": [],
+        "message": "The affected widget loses its value; use only currently reported facts."
+      },
+      "known_user_version": "1.39.0",
+      "missing_information": [
+        "documentation records"
+      ],
+      "expected_gaps": {
+        "exact_version_documentation": "source"
+      },
+      "acceptable_render_decisions": [
+        "escalate"
+      ],
+      "expected_source_gap_description": "The supplied evidence bundle contains no documentation records.",
+      "render_checks": [
+        "All user_draft, maintainer_summary and rationale surfaces preserve the current user-information/documentary-coverage distinction.",
+        "The canonical version question remains exact; no source text may confirm the installed user version.",
+        "Selected full excerpts, version-scope labels and active facts remain intact.",
+        "No diagnosis gap or workaround is invented."
+      ]
+    },
+    {
+      "control_id": "caller-corrected-version-old-documentation",
+      "catalog": "caller",
+      "input": {
+        "facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.50.0",
+            "source_ref": "synthetic:user:synthetic-old",
+            "turn_id": "synthetic-old",
+            "provenance_kind": "user",
+            "status": "superseded"
+          },
+          {
+            "name": "streamlit_version",
+            "value": "1.39.0",
+            "source_ref": "synthetic:user:synthetic-current",
+            "turn_id": "synthetic-current",
+            "provenance_kind": "user",
+            "status": "active"
+          }
+        ],
+        "unknowns": [],
+        "record_ids": [
+          "version150"
+        ],
+        "message": "The affected widget loses its value; use only currently reported facts."
+      },
+      "known_user_version": "1.39.0",
+      "missing_information": [],
+      "expected_gaps": {
+        "exact_version_documentation": "source"
+      },
+      "acceptable_render_decisions": [
+        "answer",
+        "escalate"
+      ],
+      "expected_source_gap_description": "No supplied record has exact metadata for the confirmed version.",
+      "render_checks": [
+        "All user_draft, maintainer_summary and rationale surfaces preserve the current user-information/documentary-coverage distinction.",
+        "The canonical version question remains exact; no source text may confirm the installed user version.",
+        "Selected full excerpts, version-scope labels and active facts remain intact.",
+        "No diagnosis gap or workaround is invented."
+      ]
+    },
+    {
+      "control_id": "caller-unknown-unversioned-documentation",
+      "catalog": "caller",
+      "input": {
+        "facts": [],
+        "unknowns": [],
+        "record_ids": [
+          "unversioned"
+        ],
+        "message": "The affected widget loses its value; use only currently reported facts."
+      },
+      "known_user_version": null,
+      "missing_information": [
+        "installed Streamlit version, answerable by the user"
+      ],
+      "expected_gaps": {
+        "streamlit_version": "user"
+      },
+      "acceptable_render_decisions": [
+        "ask",
+        "answer",
+        "escalate"
+      ],
+      "expected_source_gap_description": null,
+      "render_checks": [
+        "All user_draft, maintainer_summary and rationale surfaces preserve the current user-information/documentary-coverage distinction.",
+        "The canonical version question remains exact; no source text may confirm the installed user version.",
+        "Selected full excerpts, version-scope labels and active facts remain intact.",
+        "No diagnosis gap or workaround is invented."
+      ]
+    }
+  ],
+  "fixed_oracle": "All ten identical controls run on actual archived baseline and candidate source; do not alter expectations after failures.",
+  "test_source": "tests/test_catalog_version_truth.py",
+  "evidence_limits": {
+    "real_model_calls": 0,
+    "api_cost_usd": "0",
+    "actual_rag_quality": false,
+    "quality_claim": false,
+    "human_usefulness": null,
+    "historical_paid_results_rescored": false
+  },
+  "frozen_control_source_sha256": "9a1fd7cc4dbba68c106f052d796052ea39d32971a9ed42e070d2d06187c7a064",
+  "frozen_oracle_controls_sha256": "d9d9eed50e71dd74cec9a0ca3d493aff4805dbb5501f7829d44608888e89345c"
+}
