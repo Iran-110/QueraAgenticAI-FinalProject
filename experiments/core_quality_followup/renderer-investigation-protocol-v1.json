@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "protocol_id": "core-renderer-source-gap-investigation-v1",
+  "registered_on": "2026-10-14",
+  "registered_before_production_change": true,
+  "registered_before_control_execution": true,
+  "baseline_commit": "9704fdcf69da640d6200a83902fb9ef9da2193ee",
+  "runtime_file": "src/agent_app/reasoning/grounding.py",
+  "test_file": "tests/test_source_gap_investigation.py",
+  "authorization_basis": "User requested useful independentcore/modelqualityimprovements and authorized necessarypaidtests; this preregistration isoffline renderercontrols only, not liveauthorization.",
+  "hypothesis": "An explicitescapedattributedinvestigationtargetfromcurrentUSERfacts/message can meetthefrozenEnumsource-gap/maintainerinvestigationcondition moreclearly than genericmetadataqualification alone. It doesnot solveunexplainedProviderResponseInvalid or establisha diagnosis/fix.",
+  "treatment": {
+    "name": "source_gap_investigation",
+    "kind": "explicitoptin deterministicrendereronly",
+    "default": false,
+    "requires_source_gap_handoff": true,
+    "scope": "Only terminalanswer/escalate with acaller-declaredSOURCEgap. ASK/refinement/noSOURCEgap/fullsourcequotes andrequestpayloadremainunchanged.",
+    "target_policy": "CurrentactiveUSERfacts and currentusermessage only, escapedandattributedunverifieddata. No directanswercomments, gold/expectedlabels, case-specificrules, sourceinstructions or executingactions.",
+    "proposed_step": "Investigaterecordeduserreport/anysuppliedreproduction,currentuser-reportedenvironment andsourcelimitation. Quotations do notestablishdiagnosis/fixforreportedtarget; investigationisproposed,notexecuted."
+  },
+  "input_pins": {
+    "data/evaluation/dev-three-v1/cases/pilot-12782-v1.json": "6b542b325ac70906b014c9ac9a7bd01fb95c81a9219794f695de1e09de76c901",
+    "data/evaluation/dev-three-v1/cases/icon-9770-v1.json": "199b47b1c3a65e853d49ec28d9607eec36982502bd2fd5bde1c640165e35c413",
+    "data/evaluation/dev-three-v1/cases/enum-8129-v1.json": "c5becdc00a950941cb25de8f775fc1a5b024d54f607a9c494bd9e7820ab216f0",
+    "data/evaluation/dev-three-v1/evidence-v1.json": "d8ddd2dd8234fe328cc49326de1cc83d9096fe833bce254812c44d20a9f79521",
+    "data/evaluation/dev-three-v1/scenario-review-v1.json": "c5297daa3ccd966e20b5c9941345ac5218f4e94904b414722024b738268993c6",
+    "data/evaluation/dev-three-v1/exposure-review-v1.json": "ae63d11b8a86a887741ef05c87a229da3fcf580f9e145180f6239af61f360d95",
+    "data/evaluation/dev-three-v1/user-gap-vocabulary-v1.json": "d3b63719554f35d1addec14586ebc4fcb10231844097fcea65458ee01d0b6736",
+    "experiments/core_stability_adversarial/stability-live-receipt-v1.json": "8346af721b675524c29d34fee25bfe71dc813d0c93f982540e02b56234688ceb",
+    "experiments/core_stability_adversarial/stability-semantic-review-v1.json": "2ab4850e0de888477c40c19a764d6e6d3fdf2c86bb69d32b82415b323317d7b8"
+  },
+  "oracle_path": "data/evaluation/dev-three-v1/scenario-review-v1.json",
+  "oracle_unchanged": true,
+  "frozen_paid_replays": {
+    "receipt_path": "experiments/core_stability_adversarial/stability-live-receipt-v1.json",
+    "batch_id": "stability-r1",
+    "job_id": "r1:dev-case-c:C_decision_guidance",
+    "turns": [
+      "initial",
+      "correction"
+    ],
+    "original_outputs_rewritten": false,
+    "original_outputs_rescored": false,
+    "review_policy": "Newdeterministicreplay isseparateevidence. Revieweverychangedoutputsurfaceagainstsamefrozencondition; semanticadequacy isassistantdeclared, notkeywordscore/humanutility."
+  },
+  "controls": [
+    {
+      "control_id": "legacy-default-full-bytes",
+      "condition": "Default/explicitfalse retain complete legacy rendering, including historical source_gap_handoff=True outputs; no model request, source, fact or oracle is changed."
+    },
+    {
+      "control_id": "old-enum-initial-replay",
+      "condition": "Replay original r1 Enum initial request/plan from the paidreceipt unchanged. Candidate explicitopt-in displays current attributedUSERobservation/fullreproduction/1.31.0 as investigationtarget and qualifies that suppliedquotations do notestablishdiagnosis/fix for that target."
+    },
+    {
+      "control_id": "old-enum-correction-replay",
+      "condition": "Replay original r1 Enum correction request/plan unchanged. Target preserves full priorcode/USERfacts, uses current1.31.1, excludes superseded1.31.0 ascurrentfact, and proposesmaintainerinspection."
+    },
+    {
+      "control_id": "generic-non-enum-target",
+      "condition": "Same template on an unrelated case and documentarygap; no Enum/case-ID/issue-ID heuristic, expectedanswer or source-authenticity inference."
+    },
+    {
+      "control_id": "canonical-ask-unchanged",
+      "condition": "ASK completeanalysis unchanged under newflag, especially exactuserdraft/nextquestion/missing_info; no repeatedknownversion/code or questions aboutmissingdocumentation are synthesized."
+    },
+    {
+      "control_id": "refinement-unchanged",
+      "condition": "retrieve_more completeanalysis/queries remainunchanged; no terminaltargetblock is inserted."
+    },
+    {
+      "control_id": "no-source-gap-unchanged",
+      "condition": "Answers/escalations withoutcaller SOURCEgap retain legacycompleteanalysis."
+    },
+    {
+      "control_id": "source-target-provenance",
+      "condition": "Only activeUSERfacts and currentusermessage supply target. Source/model facts and supersededUSERfacts are excludedtarget; source excerpts remainattributedcompletequotes outside target."
+    },
+    {
+      "control_id": "escaped-untrusted-target",
+      "condition": "USERmessage/facts/code/controlcharacters/HTML/Markdowninstructions renderedasliterals withexplicituntrustedUSERattribution; no facts_delta, execution or newsourceclaims."
+    },
+    {
+      "control_id": "empty-user-fact-target",
+      "condition": "NoactiveUSERfacts uses attributedcurrentusermessage and honestno-structuredfact text; no reproduction/currentversion is invented."
+    },
+    {
+      "control_id": "complete-source-boundaries",
+      "condition": "Complete source quotes, IDs/contenthashbindings/versionmetadata/currentinventory andoriginalevidence_links remainexact; no source removed/truncated to make roomfortarget."
+    },
+    {
+      "control_id": "overflow-fail-closed",
+      "condition": "Oversizedtarget producesgrounded_render_too_large ratherthanpartial/truncatedqualifications, facts orsources; noproposal/action onfailure."
+    },
+    {
+      "control_id": "strict-boolean-and-mode",
+      "condition": "Nonboolflag rejectedbeforeplanning; source_gap_investigation=True requires source_gap_handoff=True ratherthan silentlyignoredflag."
+    },
+    {
+      "control_id": "reasoner-explicit-forwarding",
+      "condition": "GroundedReasoner explicitflag forwardsonlyrendererbehavior; enrichedrequest suppliedtoplanner is byteidenticalbefore/after andFalselegacycallformsremaincompatible."
+    }
+  ],
+  "api_calls": 0,
+  "ledger_changes": false,
+  "tracker_ui_rag_shared_contract_changes": false,
+  "new_test_cases": 0,
+  "human_reviewed": false,
+  "human_usefulness": null,
+  "quality_claim": false,
+  "actual_rag_quality": false,
+  "final_test_quality": false,
+  "known_limits": [
+    "No model response variability,finishreason,capincrease or providererror cause ismeasured byrenderercontrols.",
+    "Generic source-gap declarations stilldonotdiscoverconflictsor establishsourceauthenticity/diagnosis.",
+    "Long quotationsandtargetsmayhaveusefulness/readabilitycost; humanassessmentremainsnecessary.",
+    "Oldcontrol/oracle/request/response bytes remainpreserved; noselectivelivereplay."
+  ]
+}

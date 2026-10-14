@@ -4,6 +4,28 @@
 
 ## وضعیت فعلی
 
+- [x] **C4f — مقایسهٔ محدود مدل و بهبود انتخاب منبع؛ ساسان.**
+  انتشار و review در [PR #47](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/47)؛
+  ۳۳۴۶ pytest، Ruff و HTTP/SQLite ۴۵۷/۴۵۷ با restart/retry پاس.
+  [روش ثبت‌شده](../experiments/core_quality_followup/README.md): همان سه dev و
+  oracle قبلی؛ دو دور paired سقف ۱۰۲۴/۲۰۴۸، و مقایسهٔ reminder روی شش وضعیت
+  سالم/خصمانه. source-gap investigation جدا روی ۱۷ کنترل archived از ۴ پاس
+  به ۱۷ پاس رسیده؛ پاسخ‌های قدیمی و نمرهٔ ۷/۹ بازنویسی نمی‌شوند.
+  [راهنمای اتصال و هزینه](../docs/core-quality-followup.fa.md): مجوز تازهٔ ساسان
+  برای finite quarantine-set، با هر دو hold و تمام revocationهای قبلی، halt
+  عمومی و سقف $4.50 محفوظ. این reconciliation نیست؛ خطای نامعلوم تازه کل
+  آزمایش را می‌بندد. دو epoch واقعی، ۶۴ call با تخمین $0.041621580 و بدون
+  hold تازه؛ تمام sourceها هنگام اجرا ثابت. مقایسهٔ cap هر دو ۶/۶ بود، برتری
+  ۲۰۴۸ اثبات نشد. در دو تکرار همان challenge، baseline دو بار quote مهاجم
+  را انتخاب کرد و reminder صفر بار؛ در clean، متن مفید button در draft کاربر
+  صفر از دو در برابر دو از دو، با حفظ source برای maintainer در هر دو arm.
+  usefulness انسانی null و نمرهٔ composite تفسیر دستیار است. تمام ۴۸ proposal
+  و ۶۴ prompt بررسی شده؛ پنج first attempt نامعتبر/repair محفوظ‌اند. ۱۰ scope
+  بسته و ۳۲ slot استفاده‌نشده claimed باقی‌اند. C5، RAG واقعی و test نهایی
+  هنوز بازند؛ defaultها ثابت‌اند. CI همان head و review شرط انتشار است.
+  یک Windows با همین تغییرات پاس و دیگری در سقف ۱۰ دقیقه cancel شد؛ تمام
+  checkها حفظ و سقف job بیست دقیقه شد تا head نهایی کامل بررسی شود.
+
 - [x] **C4e — اندازه‌گیری محدود پایداری و برش خصمانهٔ آفلاین؛ ساسان.**
   انتشار و review در [PR #46](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/46)؛
   ۳۲۰۴ تست، HTTP/SQLite ۴۵۷/۴۵۷ و restart/retry پاس؛ CI همان head شرط merge است.
@@ -32,8 +54,9 @@
   بدون رسید provider، صفر بودن هزینه فرض نمی‌شود. سه scope بسته و چهارمی
   با `NewUncertainty` revoke شد؛ grant قدیمی نیز طبق guard موجود revoke است،
   hold قبلی $0.02 و hold تازه باقی‌اند، pending صفر و halt پابرجاست.
-  ادامهٔ live و تست خصمانه با مدل، تا reconciliation باز می‌مانند؛ ledger reset
-  یا parent تازه برای دورزدن این وضعیت ساخته نمی‌شود. smoke آفلاین بهنام مستقل است.
+  پروتکل live قبلی بسته می‌ماند؛ ledger reset یا parent تازه برای دورزدن این
+  وضعیت ساخته نمی‌شود. C4f با مجوز تازهٔ انسانی و scope مستقلِ محدود، هر دو
+  hold را حفظ می‌کند؛ reconciliation و halt عمومی همچنان بازند. smoke بهنام مستقل است.
 
 - [x] **C4d — آزمایش محدود سه dev و اصلاح تصمیم‌های GroundedPlan؛ ساسان.**
   انتشار در [PR #45](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/45)؛

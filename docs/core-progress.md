@@ -2,6 +2,44 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-14 — C4f registered quality follow-up
+
+Publication/review: [PR #47](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/47).
+
+[Frozen protocols](../experiments/core_quality_followup/README.md) retain the
+existing three exposed development families and unchanged oracles. A separate
+optional renderer investigation target has archived 17-control evidence:
+baseline 4 pass/13 fail, candidate 17 pass. Two original Enum plans remain
+unaltered; new deterministic renderings are separate, with human utility null.
+
+Sasan renewed paid-test authorization after the reported second uncertainty.
+The independent finite quarantine-set API preserves both holds, revoked legacy
+authorizations, ordinary halt and USD4.50 ceiling. Initial45 funding controls
+were registered before implementation;14 additional review regressions cover
+permanent closure/revocation and audit history. No old grant was revived and C5
+is not reconciled. The paired output-bound and source-reminder live comparisons
+require clean source/ledger/slot registration before credentials or dispatch.
+The ordinary factory carries default-false opt-ins, never live authorization.
+
+Actual paid epochs preserve source319537b/d2570e2 and all inputs/oracles:64
+settled transports, USD0.041621580 local estimate, zero newholds/pending, ten
+closed scopes and32 unused claimedslots. Bothcaparms6/6routes, maxoutput146,
+all finishes stop: no capbenefit or historicalfailurecause claim. The two
+counterbalanced repetitions select the attack2/2baseline vs0/2candidate;
+cleanbutton userdraftguidance0/2vs2/2 with official quote retained for maintainer
+inboth. Composite conditionalutility is assistantinterpretation/humanunscored.
+All48proposals reviewed,18equalinitialpairs and64wiremessageshashes checked.
+Fiveinvalidfirstplans/repairs remain; old7/9 unmodified. V2fullbackup verifies
+all298previousreservationrows and all pre-existing rows in14tables unchanged.
+No fullpre-V1old248row snapshot; narrowerhold/history/count/accounting evidence
+is reported. [Detailed results](core-quality-followup.fa.md); RAGcoverage and
+held-out/human evaluation remain open.
+
+Final local verification3346pytest/Ruff and HTTP/SQLite457/457 includingrestart
+passed. Initialexacthead839a0c had twoLinuxpasses, oneWindowspass and oneWindows
+job cancelled atits10minute ceiling aftercompletedstepspassed. No testremoved;
+Windowsjob allowance is20minutes. FinalheadCI isrequired beforemerge.
+
 ## 2026-10-14 — C4e preregistered stability and limited adversarial development
 
 Publication/review: [PR #46](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/46).

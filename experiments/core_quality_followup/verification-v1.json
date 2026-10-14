@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "verification_id": "core-quality-release-v1",
+  "full_pytest": {
+    "passed": 3346,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "junit_sha256": "04869f11ca098b65d1ce25ec9f3fcfeaa6e43d324009e5153c73318104ef89c5"
+  },
+  "locked_sync": true,
+  "ruff_check": true,
+  "ruff_format_python_files": 250,
+  "http_sqlite": {
+    "accepted": true,
+    "checks_passed": 457,
+    "checks_total": 457,
+    "restart_accepted": true,
+    "receipt_sha256": "00e43fec63194e8d9a00c372037e180764f9621b67ed63e93cf3c0afee38f0d4"
+  },
+  "actual_wire_messages_and_output_bounds_verified": 64,
+  "initial_pairs_equal": 18,
+  "private_value_scan_hits": 0,
+  "doc_links_valid": 620,
+  "current_model_first_attempts": {
+    "observed": 48,
+    "valid": 43,
+    "invalid": 5,
+    "unobserved": 0
+  },
+  "all_model_attempts": {
+    "observed": 64,
+    "valid": 59,
+    "invalid": 5,
+    "unobserved": 0
+  },
+  "artifact_pins": {
+    "model-live-receipt-v1.json": "592d08b73dbd44c38931d8c75a0ce90628bbeedda048af89136c876ac34a69fe",
+    "model-live-receipt-v2.json": "06f7b1b66501df6199a9d694fc70d37a9d554298bab02409e79ef072368a24aa",
+    "mechanical-review-v1.json": "65b5ec4116f78811080dbd8fbee107c42035a2594bb8cba27fbb694418b45141",
+    "mechanical-review-v2.json": "ee806b02282e9f943597e0d5579d3e14d856ea4f67968625b0f5551891c27018",
+    "semantic-cap-review-v1.json": "46c47748efa6ef4eafc9d063aa4c730236cf636d9f2b67913b7f98cfa8e80ad7",
+    "semantic-adversarial-review-v1.json": "d7c796fe21bd52ad41c6bcf71717fc816cfa0f7b4c6d3d8977179a8c866aa6c4",
+    "semantic-adversarial-review-v2.json": "ffbf1397391916e62eaff7ff716a57529342b146d1526dfe85515506836b1899",
+    "cost-review-v1.json": "149a21d989f0682c2ec4cf4b06a8c1c74ea4091d2311f67ee59982d223edd674",
+    "cost-review-v2.json": "e05cc3bd57f7f809e893b1eb02b780a7b1ef9e20e3c7e65b562991bb29578c64"
+  },
+  "not_inferred": [
+    "general_model_accuracy",
+    "actual_RAG_quality",
+    "held_out_test_success",
+    "human_usefulness",
+    "provider_invoice",
+    "1024_historical_failure_cause"
+  ],
+  "known_repaired_review_findings": [
+    "scope terminal-event deletion could reopen credit; permanent independently cross-checked marker/guards added before any paid call",
+    "CLI source rechecks/final proof, incomplete last batch and cancellation window closed before any paid call"
+  ],
+  "historical_prep_errors": [
+    "one no-tests invocation used a wrong test filename; corrected invocation passed",
+    "doc scan found two historical brief links; original brief preserved and canonical plan forwarding file added"
+  ],
+  "initial_ci_observation": {
+    "head": "839a0cba03daf0d8395fd78a35238ca4352911c8",
+    "linux_checks_passed": 2,
+    "windows_checks_passed": 1,
+    "windows_cancelled_at_job_limit": 1,
+    "run_id": 38577904127,
+    "job_id": 115899760768,
+    "test_assertion_failure_observed": false,
+    "preserve_all_checks": true,
+    "windows_timeout_minutes_after": 20,
+    "final_head_ci_required": true
+  }
+}

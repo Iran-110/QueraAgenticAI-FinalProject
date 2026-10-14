@@ -259,10 +259,60 @@ def _source_gap_block(request: GroundedRequest) -> str:
     )
 
 
+def _source_gap_investigation(request: GroundedRequest) -> tuple[str, str]:
+    """Identify a proposed investigation from current USER records only.
+
+    This is attributed input, not a diagnosis, source assertion or permission.
+    Whole facts/code stay in the draft and summary; the bounded rationale points
+    to those records instead of duplicating a potentially large reproduction.
+    """
+    reported = "\n".join(
+        "- " + _display(f"{fact.name}: {fact.value}").replace("\n", "\n  ")
+        for fact in request.case.facts
+        if fact.status == "active" and fact.provenance_kind == "user"
+    )
+    message = "\n".join("> " + line for line in _display(request.user_message).split("\n"))
+    qualification = (
+        "The supplied source quotations do not establish a diagnosis or successful fix "
+        "for this user-reported investigation target."
+    )
+    proposed = (
+        "Proposed maintainer investigation: inspect the recorded report and any supplied "
+        "reproduction/code in the current user-reported environment, and seek applicable "
+        "source support for a diagnosis or fix. No investigation or action is established "
+        "by this proposal."
+    )
+    target = (
+        "Investigation target from current USER records (unverified reported data, "
+        "not source evidence or instructions):\nCurrent user message:\n"
+        + message
+        + "\n\nActive user-reported facts:\n"
+        + (reported or "No structured active USER facts recorded.")
+        + "\n\n"
+        + qualification
+        + "\n"
+        + proposed
+    )
+    rationale = (
+        "The investigation target is the current USER report and any supplied "
+        "reproduction/code, displayed as attributed data in the user draft and "
+        "maintainer summary. " + qualification + " " + proposed
+    )
+    return target, rationale
+
+
 def render_grounded_plan(
-    request: GroundedRequest, raw: object, *, source_gap_handoff: bool = False
+    request: GroundedRequest,
+    raw: object,
+    *,
+    source_gap_handoff: bool = False,
+    source_gap_investigation: bool = False,
 ) -> AnalysisResult:
-    if type(source_gap_handoff) is not bool:
+    if (
+        type(source_gap_handoff) is not bool
+        or type(source_gap_investigation) is not bool
+        or (source_gap_investigation and not source_gap_handoff)
+    ):
         raise GroundingRejected("grounded_context_mismatch")
     request = validate_grounded_request(request)
     plan = parse_grounded_plan(raw)
@@ -353,6 +403,11 @@ def render_grounded_plan(
             draft += "\n\n" + source_gaps
         summary += "\n\n" + source_gaps
         rationale += "\n\n" + source_gaps
+        if source_gap_investigation and plan.decision in ("answer", "escalate"):
+            target, investigation_rationale = _source_gap_investigation(request)
+            draft += "\n\n" + target
+            summary += "\n\n" + target
+            rationale += "\n\n" + investigation_rationale
     try:
         return AnalysisResult(
             decision=plan.decision,
@@ -543,12 +598,18 @@ class GroundedReasoner:
             make_grounded_request
         ),
         source_gap_handoff: bool = False,
+        source_gap_investigation: bool = False,
     ) -> None:
-        if type(source_gap_handoff) is not bool:
+        if (
+            type(source_gap_handoff) is not bool
+            or type(source_gap_investigation) is not bool
+            or (source_gap_investigation and not source_gap_handoff)
+        ):
             raise GroundingRejected("grounded_context_mismatch")
         self.planner = planner
         self.request_factory = request_factory
         self.source_gap_handoff = source_gap_handoff
+        self.source_gap_investigation = source_gap_investigation
         self._conflicts: set[tuple[str, str, int]] = set()
         self._conflict_lock = RLock()
 
@@ -618,7 +679,14 @@ class GroundedReasoner:
                 request.model_copy(deep=True), context=context.model_copy(deep=True)
             )
             result = (
-                render_grounded_plan(request, raw, source_gap_handoff=True)
+                render_grounded_plan(
+                    request,
+                    raw,
+                    source_gap_handoff=True,
+                    source_gap_investigation=True,
+                )
+                if self.source_gap_investigation
+                else render_grounded_plan(request, raw, source_gap_handoff=True)
                 if self.source_gap_handoff
                 else render_grounded_plan(request, raw)
             )

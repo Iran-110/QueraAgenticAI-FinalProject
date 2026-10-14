@@ -33,6 +33,8 @@ class MetisConfig(BaseModel):
     response_mode: Literal["analysis", "grounded_plan"] = "analysis"
     grounded_decision_contracts: Annotated[bool, Field(strict=True)] = False
     grounded_source_gap_handoff: Annotated[bool, Field(strict=True)] = False
+    grounded_source_gap_investigation: Annotated[bool, Field(strict=True)] = False
+    grounded_source_selection_reminder: Annotated[bool, Field(strict=True)] = False
     # Caller-owned accounting authorization, never selected by model output.
     continuation_id: (
         Annotated[str, StringConstraints(pattern=r"^[a-z0-9][a-z0-9-]{0,63}$")] | None
@@ -47,6 +49,10 @@ class MetisConfig(BaseModel):
             raise ValueError("Decision contracts require grounded plan mode")
         if self.grounded_source_gap_handoff and self.response_mode != "grounded_plan":
             raise ValueError("Source gap handoff requires grounded plan mode")
+        if self.grounded_source_gap_investigation and not self.grounded_source_gap_handoff:
+            raise ValueError("Source gap investigation requires source gap handoff")
+        if self.grounded_source_selection_reminder and self.response_mode != "grounded_plan":
+            raise ValueError("Source selection reminder requires grounded plan mode")
         return self
 
     @model_validator(mode="before")
@@ -96,7 +102,12 @@ class MetisConfig(BaseModel):
             raise ValueError("METIS_API_KEY is required")
         contracts = os.environ.get("METIS_GROUNDED_DECISION_CONTRACTS", "false")
         handoff = os.environ.get("METIS_GROUNDED_SOURCE_GAP_HANDOFF", "false")
-        if contracts not in {"true", "false"} or handoff not in {"true", "false"}:
+        investigation = os.environ.get("METIS_GROUNDED_SOURCE_GAP_INVESTIGATION", "false")
+        reminder = os.environ.get("METIS_GROUNDED_SOURCE_SELECTION_REMINDER", "false")
+        if any(
+            value not in {"true", "false"}
+            for value in (contracts, handoff, investigation, reminder)
+        ):
             raise ValueError("Grounded mode flags must be true or false")
         return cls(
             api_key=SecretStr(key),
@@ -106,4 +117,6 @@ class MetisConfig(BaseModel):
             response_mode=os.environ.get("METIS_RESPONSE_MODE", "analysis"),
             grounded_decision_contracts=contracts == "true",
             grounded_source_gap_handoff=handoff == "true",
+            grounded_source_gap_investigation=investigation == "true",
+            grounded_source_selection_reminder=reminder == "true",
         )

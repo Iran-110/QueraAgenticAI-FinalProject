@@ -30,6 +30,8 @@ __all__ = [
     "ExperimentScopeStatus",
     "LedgerConflict",
     "LedgerUnavailable",
+    "QuarantineObservation",
+    "QuarantineScopeStatus",
     "Reservation",
 ]
 
@@ -44,6 +46,13 @@ _REQUEST_COLUMNS = (
     "request_id, run_id, case_id, case_revision, attempt, model, phase, "
     "amount_nanos, status, cost_nanos, cost_decimal, input_tokens, output_tokens, error_code"
 )
+_QUARANTINE_TERMINAL_TRIGGER_SQL = """CREATE TRIGGER quarantine_scope_terminal_immutable
+    BEFORE UPDATE OF terminal_status,terminal_reason,terminal_fingerprint ON quarantine_scopes
+    WHEN OLD.terminal_status IS NOT NULL
+    BEGIN SELECT RAISE(ABORT,'Immutable quarantine terminal state'); END"""
+_QUARANTINE_DELETE_TRIGGER_SQL = """CREATE TRIGGER quarantine_scope_registration_undeletable
+    BEFORE DELETE ON quarantine_scopes
+    BEGIN SELECT RAISE(ABORT,'Immutable quarantine registration'); END"""
 
 
 class BudgetDenied(Exception):
@@ -127,6 +136,37 @@ class ExperimentScopeStatus(ContinuationStatus):
     protocol_sha256: str
     max_requests: int
     consumed_requests: int
+
+
+@dataclass(frozen=True, slots=True)
+class QuarantineObservation:
+    """Read-only binding to all unresolved holds and historical authorizations."""
+
+    unknown_ids: tuple[str, ...]
+    unknown_fingerprints: tuple[tuple[str, str], ...]
+    meta_sha256: str
+    authorization_history_sha256: str
+    held_usd: Decimal
+
+
+@dataclass(frozen=True, slots=True)
+class QuarantineScopeStatus:
+    """A new finite exception, never a revived singleton or reconciliation."""
+
+    authorization_id: str
+    authorization_ref: str
+    unknown_ids: tuple[str, ...]
+    allowed_model: str
+    additional_cap_usd: Decimal
+    held_usd: Decimal
+    used_usd: Decimal
+    remaining_usd: Decimal
+    active: bool
+    block_reason: str | None
+    protocol_sha256: str
+    max_requests: int
+    consumed_requests: int
+    terminal_status: Literal["closed", "revoked"] | None
 
 
 def _identifier(value: str) -> str:
@@ -540,6 +580,12 @@ def _experiment_slots_fingerprint(slots: tuple[ExperimentRequestSlot, ...]) -> s
 def _validated_experiment_slots(
     slots: tuple[ExperimentRequestSlot, ...],
 ) -> tuple[ExperimentRequestSlot, ...]:
+    return _validated_request_slots(slots, outputs=(1024,), exact_request_id=False)
+
+
+def _validated_request_slots(
+    slots: tuple[ExperimentRequestSlot, ...], *, outputs: tuple[int, ...], exact_request_id: bool
+) -> tuple[ExperimentRequestSlot, ...]:
     if type(slots) is not tuple or not 1 <= len(slots) <= 24:
         raise ValueError("Invalid experiment request slots.")
     identities = set()
@@ -553,10 +599,12 @@ def _validated_experiment_slots(
         _counter(slot.case_revision)
         _counter(slot.attempt, minimum=1, maximum=2)
         bound = (
-            price.cost(slot.input_token_reserve, 1024)
+            price.cost(slot.input_token_reserve, slot.max_output_tokens)
             if price is not None
             and type(slot.input_token_reserve) is int
             and slot.input_token_reserve in (16384, 24576)
+            and type(slot.max_output_tokens) is int
+            and slot.max_output_tokens in outputs
             else None
         )
         if (
@@ -565,12 +613,27 @@ def _validated_experiment_slots(
             or type(slot.input_token_reserve) is not int
             or slot.input_token_reserve not in (16384, 24576)
             or type(slot.max_output_tokens) is not int
-            or slot.max_output_tokens != 1024
+            or slot.max_output_tokens not in outputs
             or not isinstance(slot.amount_usd, Decimal)
             or not slot.amount_usd.is_finite()
             or slot.amount_usd != bound
         ):
             raise ValueError("Invalid experiment request bounds.")
+        if exact_request_id:
+            # Import contracts only; importing the gateway would be circular.
+            from agent_app.contracts import ReasoningContext
+
+            context = ReasoningContext(
+                run_id=slot.run_id,
+                case_id=slot.case_id,
+                case_revision=slot.case_revision,
+                attempt_index=slot.attempt,
+            )
+            identity_json = context.model_dump_json(
+                include={"run_id", "case_id", "case_revision", "attempt_index"}
+            )
+            if slot.request_id != "call:" + hashlib.sha256(identity_json.encode()).hexdigest():
+                raise ValueError("Invalid caller request identity.")
         identity = (slot.run_id, slot.case_id, slot.case_revision, slot.attempt)
         if identity in identities or slot.request_id in request_ids:
             raise ValueError("Duplicate experiment request slot.")
@@ -649,15 +712,23 @@ def _find_experiment_scope(connection: sqlite3.Connection, authorization_id: str
 def _experiment_scope_usage(
     connection: sqlite3.Connection, authorization_id: str
 ) -> tuple[int, int]:
+    return _scope_usage(connection, authorization_id, "experiment")
+
+
+def _scope_usage(
+    connection: sqlite3.Connection, authorization_id: str, kind: str
+) -> tuple[int, int]:
+    if kind not in ("experiment", "quarantine"):
+        raise LedgerUnavailable()
     used = count = 0
     for mapped in connection.execute(
-        "SELECT request_id FROM experiment_scope_requests WHERE authorization_id=?",
+        f"SELECT request_id FROM {kind}_scope_requests WHERE authorization_id=?",
         (authorization_id,),
     ):
         count += 1
         row = _required(connection, mapped["request_id"])
         slot_row = connection.execute(
-            "SELECT * FROM experiment_scope_slots WHERE authorization_id=? AND request_id=?",
+            f"SELECT * FROM {kind}_scope_slots WHERE authorization_id=? AND request_id=?",
             (authorization_id, row["request_id"]),
         ).fetchone()
         if slot_row is None or any(
@@ -756,13 +827,400 @@ def _experiment_scope_status(
     )
 
 
+def _quarantine_scopes_exist(connection: sqlite3.Connection) -> bool:
+    return (
+        connection.execute(
+            "SELECT 1 FROM sqlite_master WHERE type='table' AND name='quarantine_scopes'"
+        ).fetchone()
+        is not None
+    )
+
+
+def _quarantine_schema(connection: sqlite3.Connection) -> None:
+    """New tables only, created by a fresh explicit authorization transaction."""
+    connection.execute("""CREATE TABLE IF NOT EXISTS quarantine_scopes (
+        authorization_id TEXT PRIMARY KEY,
+        authorization_ref TEXT NOT NULL,
+        protocol_sha256 TEXT NOT NULL UNIQUE,
+        cap_nanos INTEGER NOT NULL CHECK(cap_nanos BETWEEN 1 AND 100000000),
+        held_nanos INTEGER NOT NULL CHECK(held_nanos > 0),
+        unknown_binding TEXT NOT NULL,
+        meta_sha256 TEXT NOT NULL,
+        history_sha256 TEXT NOT NULL,
+        max_requests INTEGER NOT NULL CHECK(max_requests BETWEEN 1 AND 24),
+        slots_fingerprint TEXT NOT NULL,
+        registration_fingerprint TEXT NOT NULL,
+        terminal_status TEXT CHECK(terminal_status IN ('closed','revoked')),
+        terminal_reason TEXT,
+        terminal_fingerprint TEXT,
+        recorded_at TEXT NOT NULL DEFAULT(strftime('%Y-%m-%dT%H:%M:%fZ','now')),
+        CHECK (
+            (terminal_status IS NULL AND terminal_reason IS NULL AND terminal_fingerprint IS NULL)
+            OR (terminal_status IS NOT NULL AND terminal_reason IS NOT NULL AND terminal_fingerprint IS NOT NULL)
+        )
+    )""")
+    connection.execute("""CREATE TABLE IF NOT EXISTS quarantine_scope_slots (
+        request_id TEXT PRIMARY KEY,
+        authorization_id TEXT NOT NULL REFERENCES quarantine_scopes(authorization_id),
+        slot_index INTEGER NOT NULL,
+        run_id TEXT NOT NULL,
+        case_id TEXT NOT NULL,
+        case_revision INTEGER NOT NULL,
+        attempt INTEGER NOT NULL,
+        model TEXT NOT NULL,
+        phase TEXT NOT NULL,
+        input_token_reserve INTEGER NOT NULL,
+        max_output_tokens INTEGER NOT NULL,
+        amount_nanos INTEGER NOT NULL,
+        UNIQUE(authorization_id,slot_index),
+        UNIQUE(run_id,case_id,case_revision,attempt)
+    )""")
+    connection.execute("""CREATE TABLE IF NOT EXISTS quarantine_scope_requests (
+        request_id TEXT PRIMARY KEY REFERENCES reservations(request_id),
+        authorization_id TEXT NOT NULL REFERENCES quarantine_scopes(authorization_id)
+    )""")
+    connection.execute("""CREATE TABLE IF NOT EXISTS quarantine_scope_events (
+        event_id INTEGER PRIMARY KEY,
+        authorization_id TEXT NOT NULL REFERENCES quarantine_scopes(authorization_id),
+        status TEXT NOT NULL CHECK(status IN ('authorized','closed','revoked')),
+        reason_code TEXT NOT NULL,
+        recorded_at TEXT NOT NULL DEFAULT(strftime('%Y-%m-%dT%H:%M:%fZ','now'))
+    )""")
+    connection.execute(
+        _QUARANTINE_TERMINAL_TRIGGER_SQL.replace(
+            "CREATE TRIGGER ", "CREATE TRIGGER IF NOT EXISTS ", 1
+        )
+    )
+    connection.execute(
+        _QUARANTINE_DELETE_TRIGGER_SQL.replace(
+            "CREATE TRIGGER ", "CREATE TRIGGER IF NOT EXISTS ", 1
+        )
+    )
+
+
+def _quarantine_guards(connection: sqlite3.Connection) -> None:
+    for name, sql in (
+        ("quarantine_scope_terminal_immutable", _QUARANTINE_TERMINAL_TRIGGER_SQL),
+        ("quarantine_scope_registration_undeletable", _QUARANTINE_DELETE_TRIGGER_SQL),
+    ):
+        guard = connection.execute(
+            "SELECT sql FROM sqlite_master WHERE type='trigger' AND name=? AND tbl_name='quarantine_scopes'",
+            (name,),
+        ).fetchone()
+        if (
+            guard is None
+            or type(guard["sql"]) is not str
+            or " ".join(guard["sql"].split()) != " ".join(sql.split())
+        ):
+            raise LedgerUnavailable()
+
+
+def _valid_digest(value: str) -> str:
+    if type(value) is not str or re.fullmatch(r"[a-f0-9]{64}", value) is None:
+        raise ValueError("Invalid authorization fingerprint.")
+    return value
+
+
+def _unknown_binding(ids: tuple[str, ...], fingerprints: tuple[tuple[str, str], ...]) -> str:
+    if (
+        type(ids) is not tuple
+        or not 1 <= len(ids) <= 24
+        or any(type(identity) is not str for identity in ids)
+        or ids != tuple(sorted(set(ids)))
+        or type(fingerprints) is not tuple
+        or len(fingerprints) != len(ids)
+    ):
+        raise ValueError("Invalid quarantine binding.")
+    for identity, pair in zip(ids, fingerprints, strict=True):
+        _identifier(identity)
+        if type(pair) is not tuple or len(pair) != 2 or pair[0] != identity:
+            raise ValueError("Invalid quarantine binding.")
+        _valid_digest(pair[1])
+    return json.dumps(
+        {"ids": ids, "fingerprints": fingerprints}, sort_keys=True, separators=(",", ":")
+    )
+
+
+def _historical_authorizations_digest(connection: sqlite3.Connection) -> str:
+    """Legacy authorization history only; new standalone scope rows are separate."""
+    names = (
+        "ledger_continuations",
+        "continuation_requests",
+        "continuation_events",
+        "experiment_scopes",
+        "experiment_scope_slots",
+        "experiment_scope_requests",
+        "experiment_scope_events",
+    )
+    if _continuations_exist(connection):
+        for row in connection.execute("SELECT authorization_id FROM ledger_continuations"):
+            _find_continuation(connection, row["authorization_id"])
+    if _experiment_scopes_exist(connection):
+        for row in connection.execute("SELECT authorization_id FROM experiment_scopes"):
+            _find_experiment_scope(connection, row["authorization_id"])
+    rows = {}
+    for name in names:
+        exists = connection.execute(
+            "SELECT 1 FROM sqlite_master WHERE type='table' AND name=?", (name,)
+        ).fetchone()
+        rows[name] = (
+            [dict(row) for row in connection.execute(f"SELECT * FROM {name} ORDER BY rowid")]
+            if exists
+            else None
+        )
+    # Bind the uncertainty audit trail, without including future new-request
+    # settled/reserved events that would invalidate normal authorized work.
+    rows["quarantined_request_audit"] = [
+        dict(row)
+        for row in connection.execute("""SELECT * FROM ledger_events WHERE request_id IN
+            (SELECT request_id FROM reservations WHERE status='uncertain') ORDER BY event_id""")
+    ]
+    return _digest(rows)
+
+
+def _quarantine_observation(connection: sqlite3.Connection) -> QuarantineObservation:
+    _configuration(connection)
+    _totals(connection)
+    rows = connection.execute(
+        f"SELECT {_REQUEST_COLUMNS} FROM reservations WHERE status='uncertain' ORDER BY request_id"
+    ).fetchall()
+    return QuarantineObservation(
+        unknown_ids=tuple(row["request_id"] for row in rows),
+        unknown_fingerprints=tuple(
+            (row["request_id"], _quarantine_fingerprint(row)) for row in rows
+        ),
+        meta_sha256=_digest(dict(connection.execute("SELECT * FROM ledger_meta").fetchone())),
+        authorization_history_sha256=_historical_authorizations_digest(connection),
+        held_usd=_usd(sum(row["amount_nanos"] for row in rows)),
+    )
+
+
+def _find_quarantine_scope(connection: sqlite3.Connection, authorization_id: str) -> sqlite3.Row:
+    if not _quarantine_scopes_exist(connection):
+        raise LedgerConflict()
+    row = connection.execute(
+        "SELECT * FROM quarantine_scopes WHERE authorization_id=?", (authorization_id,)
+    ).fetchone()
+    if row is None:
+        raise LedgerConflict()
+    try:
+        _quarantine_guards(connection)
+        _identifier(row["authorization_id"])
+        _identifier(row["authorization_ref"])
+        for key in (
+            "protocol_sha256",
+            "meta_sha256",
+            "history_sha256",
+            "slots_fingerprint",
+            "registration_fingerprint",
+        ):
+            _valid_digest(row[key])
+        _counter(row["cap_nanos"], minimum=1, maximum=100_000_000)
+        _counter(row["held_nanos"], minimum=1)
+        _counter(row["max_requests"], minimum=1, maximum=24)
+        binding = json.loads(row["unknown_binding"])
+        if (
+            set(binding) != {"ids", "fingerprints"}
+            or _unknown_binding(
+                tuple(binding["ids"]), tuple(tuple(pair) for pair in binding["fingerprints"])
+            )
+            != row["unknown_binding"]
+        ):
+            raise ValueError
+        registered = {
+            key: row[key]
+            for key in row.keys()
+            if key
+            not in (
+                "recorded_at",
+                "registration_fingerprint",
+                "terminal_status",
+                "terminal_reason",
+                "terminal_fingerprint",
+            )
+        }
+        if _digest(registered) != row["registration_fingerprint"]:
+            raise ValueError
+        marker = (row["terminal_status"], row["terminal_reason"], row["terminal_fingerprint"])
+        if marker[0] is None:
+            if marker != (None, None, None):
+                raise ValueError
+        else:
+            if marker[0] not in ("closed", "revoked"):
+                raise ValueError
+            _identifier(marker[1])
+            _valid_digest(marker[2])
+            if marker[2] != _digest(
+                {
+                    "authorization_id": authorization_id,
+                    "registration_fingerprint": row["registration_fingerprint"],
+                    "terminal_status": marker[0],
+                    "terminal_reason": marker[1],
+                }
+            ):
+                raise ValueError
+        slot_rows = connection.execute(
+            "SELECT * FROM quarantine_scope_slots WHERE authorization_id=? ORDER BY slot_index",
+            (authorization_id,),
+        ).fetchall()
+        if [slot["slot_index"] for slot in slot_rows] != list(range(row["max_requests"])):
+            raise ValueError
+        slots = _validated_request_slots(
+            tuple(_experiment_slot(slot) for slot in slot_rows),
+            outputs=(1024, 2048),
+            exact_request_id=True,
+        )
+        if (
+            _experiment_slots_fingerprint(slots) != row["slots_fingerprint"]
+            or sum(_money(slot.amount_usd) for slot in slots) > row["cap_nanos"]
+        ):
+            raise ValueError
+    except (IndexError, KeyError, InvalidOperation, TypeError, ValueError):
+        raise LedgerUnavailable() from None
+    return row
+
+
+def _quarantine_scope_status(
+    connection: sqlite3.Connection, authorization_id: str
+) -> QuarantineScopeStatus:
+    row = _find_quarantine_scope(connection, authorization_id)
+    observed = _quarantine_observation(connection)
+    binding = json.loads(row["unknown_binding"])
+    events = connection.execute(
+        "SELECT status,reason_code FROM quarantine_scope_events WHERE authorization_id=? ORDER BY event_id",
+        (authorization_id,),
+    ).fetchall()
+    if not 1 <= len(events) <= 2 or tuple(events[0]) != (
+        "authorized",
+        "UserAuthorizedQuarantineScope",
+    ):
+        raise LedgerUnavailable()
+    if len(events) == 2 and (
+        events[1]["status"] not in ("closed", "revoked")
+        or events[1]["reason_code"]
+        not in (
+            "ExperimentClosed",
+            "NewUncertainty",
+            "HaltedAgain",
+            "CostOverrun",
+            "QuarantineChanged",
+        )
+    ):
+        raise LedgerUnavailable()
+    if row["terminal_status"] is None:
+        if len(events) != 1:
+            raise LedgerUnavailable()
+    elif len(events) != 2 or (events[1]["status"], events[1]["reason_code"]) != (
+        row["terminal_status"],
+        row["terminal_reason"],
+    ):
+        raise LedgerUnavailable()
+    used, consumed = _scope_usage(connection, authorization_id, "quarantine")
+    if consumed > row["max_requests"]:
+        raise LedgerUnavailable()
+    pending = (
+        connection.execute("SELECT 1 FROM reservations WHERE status='reserved' LIMIT 1").fetchone()
+        is not None
+    )
+    remaining = max(0, row["cap_nanos"] - used)
+    reason = None
+    if len(events) == 2:
+        reason = events[1]["reason_code"]
+    elif not _configuration(connection)[2]:
+        reason = "GlobalHaltChanged"
+    elif observed.meta_sha256 != row["meta_sha256"]:
+        reason = "LedgerConfigurationChanged"
+    elif observed.unknown_ids != tuple(binding["ids"]):
+        reason = "UncertaintyChanged"
+    elif observed.unknown_fingerprints != tuple(tuple(pair) for pair in binding["fingerprints"]):
+        reason = "QuarantineChanged"
+    elif observed.authorization_history_sha256 != row["history_sha256"]:
+        reason = "AuthorizationHistoryChanged"
+    elif _observed_overrun(connection):
+        reason = "CostOverrun"
+    elif pending:
+        reason = "PendingRequest"
+    elif not remaining:
+        reason = "ExperimentCapExceeded"
+    elif consumed == row["max_requests"]:
+        reason = "ExperimentRequestsExhausted"
+    return QuarantineScopeStatus(
+        authorization_id=row["authorization_id"],
+        authorization_ref=row["authorization_ref"],
+        unknown_ids=tuple(binding["ids"]),
+        allowed_model="gpt-4o-mini",
+        additional_cap_usd=_usd(row["cap_nanos"]),
+        held_usd=_usd(row["held_nanos"]),
+        used_usd=_usd(used),
+        remaining_usd=_usd(remaining),
+        active=reason is None,
+        block_reason=reason,
+        protocol_sha256=row["protocol_sha256"],
+        max_requests=row["max_requests"],
+        consumed_requests=consumed,
+        terminal_status=row["terminal_status"],
+    )
+
+
+def _quarantine_allowances(connection: sqlite3.Connection) -> int:
+    if not _quarantine_scopes_exist(connection):
+        return 0
+    total = 0
+    for row in connection.execute("SELECT authorization_id FROM quarantine_scopes"):
+        status = _quarantine_scope_status(connection, row["authorization_id"])
+        if status.active or status.block_reason == "PendingRequest":
+            total += _money(status.remaining_usd, ceiling=False)
+    return total
+
+
+def _all_allowances(connection: sqlite3.Connection) -> int:
+    total = _quarantine_allowances(connection)
+    for exists, table, read_status in (
+        (_continuations_exist(connection), "ledger_continuations", _continuation_status),
+        (_experiment_scopes_exist(connection), "experiment_scopes", _experiment_scope_status),
+    ):
+        if exists:
+            for row in connection.execute(f"SELECT authorization_id FROM {table}"):
+                status = read_status(connection, row["authorization_id"])
+                if status.active or status.block_reason == "PendingRequest":
+                    total += _money(status.remaining_usd, ceiling=False)
+    return total
+
+
+def _claimed_scope_identity(connection: sqlite3.Connection, slot: ExperimentRequestSlot) -> bool:
+    if (
+        _find(connection, slot.request_id) is not None
+        or connection.execute(
+            "SELECT 1 FROM reservations WHERE run_id=? AND case_id=? AND case_revision=? AND attempt=?",
+            (slot.run_id, slot.case_id, slot.case_revision, slot.attempt),
+        ).fetchone()
+    ):
+        return True
+    for exists, kind in (
+        (_experiment_scopes_exist(connection), "experiment"),
+        (_quarantine_scopes_exist(connection), "quarantine"),
+    ):
+        if (
+            exists
+            and connection.execute(
+                f"SELECT 1 FROM {kind}_scope_slots WHERE request_id=? OR (run_id=? AND case_id=? AND case_revision=? AND attempt=?)",
+                (slot.request_id, slot.run_id, slot.case_id, slot.case_revision, slot.attempt),
+            ).fetchone()
+        ):
+            return True
+    return False
+
+
 def _authorization_status(
     connection: sqlite3.Connection, authorization_id: str
-) -> ContinuationStatus:
+) -> ContinuationStatus | QuarantineScopeStatus:
     try:
         _find_continuation(connection, authorization_id)
     except LedgerConflict:
-        return _experiment_scope_status(connection, authorization_id)
+        try:
+            return _experiment_scope_status(connection, authorization_id)
+        except LedgerConflict:
+            return _quarantine_scope_status(connection, authorization_id)
     return _continuation_status(connection, authorization_id)
 
 
@@ -780,21 +1238,58 @@ def _revoke_experiment_scopes(connection: sqlite3.Connection, reason_code: str) 
 
 
 def _revoke_continuations(connection: sqlite3.Connection, reason_code: str) -> None:
-    if not _continuations_exist(connection):
-        return
-    for row in connection.execute(
-        "SELECT authorization_id FROM ledger_continuations WHERE active = 1"
-    ).fetchall():
-        _find_continuation(connection, row["authorization_id"])
-        connection.execute(
-            "UPDATE ledger_continuations SET active = 0, revocation_code = ? WHERE authorization_id = ?",
-            (reason_code, row["authorization_id"]),
-        )
-        connection.execute(
-            "INSERT INTO continuation_events (authorization_id, status, reason_code) VALUES (?, 'revoked', ?)",
-            (row["authorization_id"], reason_code),
-        )
+    if _continuations_exist(connection):
+        for row in connection.execute(
+            "SELECT authorization_id FROM ledger_continuations WHERE active = 1"
+        ).fetchall():
+            _find_continuation(connection, row["authorization_id"])
+            connection.execute(
+                "UPDATE ledger_continuations SET active = 0, revocation_code = ? WHERE authorization_id = ?",
+                (reason_code, row["authorization_id"]),
+            )
+            connection.execute(
+                "INSERT INTO continuation_events (authorization_id, status, reason_code) VALUES (?, 'revoked', ?)",
+                (row["authorization_id"], reason_code),
+            )
     _revoke_experiment_scopes(connection, reason_code)
+    _revoke_quarantine_scopes(connection, reason_code)
+
+
+def _revoke_quarantine_scopes(connection: sqlite3.Connection, reason_code: str) -> None:
+    if not _quarantine_scopes_exist(connection):
+        return
+    rows = connection.execute("""SELECT authorization_id FROM quarantine_scopes s WHERE NOT EXISTS
+        (SELECT 1 FROM quarantine_scope_events e WHERE e.authorization_id=s.authorization_id AND e.status IN ('closed','revoked'))""").fetchall()
+    for row in rows:
+        _quarantine_scope_status(connection, row["authorization_id"])
+        _terminal_quarantine_scope(connection, row["authorization_id"], "revoked", reason_code)
+
+
+def _terminal_quarantine_scope(
+    connection: sqlite3.Connection, authorization_id: str, status: str, reason: str
+) -> None:
+    row = _find_quarantine_scope(connection, authorization_id)
+    if row["terminal_status"] is not None:
+        raise LedgerUnavailable()
+    marker = _digest(
+        {
+            "authorization_id": authorization_id,
+            "registration_fingerprint": row["registration_fingerprint"],
+            "terminal_status": status,
+            "terminal_reason": reason,
+        }
+    )
+    connection.execute(
+        "INSERT INTO quarantine_scope_events(authorization_id,status,reason_code) VALUES (?,?,?)",
+        (authorization_id, status, reason),
+    )
+    changed = connection.execute(
+        """UPDATE quarantine_scopes SET terminal_status=?,terminal_reason=?,terminal_fingerprint=?
+        WHERE authorization_id=? AND terminal_status IS NULL""",
+        (status, reason, marker, authorization_id),
+    ).rowcount
+    if changed != 1:
+        raise LedgerUnavailable()
 
 
 class BudgetLedger:
@@ -914,6 +1409,13 @@ class BudgetLedger:
         with _transaction(self._path, write=True) as connection:
             limit, opening, halted = _configuration(connection)
             _totals(connection)
+            if (
+                _quarantine_scopes_exist(connection)
+                and connection.execute(
+                    "SELECT 1 FROM quarantine_scopes WHERE authorization_id=?", (authorization_id,)
+                ).fetchone()
+            ):
+                raise LedgerConflict()
             _continuation_schema(connection)
             existing = connection.execute(
                 "SELECT authorization_id FROM ledger_continuations WHERE authorization_id = ?",
@@ -993,10 +1495,176 @@ class BudgetLedger:
             )
             return _continuation_status(connection, authorization_id)
 
-    def continuation_status(self, authorization_id: str) -> ContinuationStatus:
+    def continuation_status(
+        self, authorization_id: str
+    ) -> ContinuationStatus | QuarantineScopeStatus:
         authorization_id = _identifier(authorization_id)
         with _transaction(self._path) as connection:
             return _authorization_status(connection, authorization_id)
+
+    def quarantine_observation(self) -> QuarantineObservation:
+        """Capture exact unresolved records/configuration/history without writes."""
+        with _transaction(self._path) as connection:
+            return _quarantine_observation(connection)
+
+    def authorize_quarantine_scope(
+        self,
+        *,
+        authorization_id: str,
+        authorization_ref: str,
+        expected_unknown_ids: tuple[str, ...],
+        expected_unknown_fingerprints: tuple[tuple[str, str], ...],
+        expected_meta_sha256: str,
+        expected_authorization_history_sha256: str,
+        protocol_sha256: str,
+        request_slots: tuple[ExperimentRequestSlot, ...],
+        additional_cap_usd: Decimal,
+    ) -> QuarantineScopeStatus:
+        """Record a newly authorized finite experiment over all held uncertainty.
+
+        The trusted caller must have fresh human authorization for these exact
+        immutable inputs. This independent scope neither reconciles a request
+        nor reactivates/refills historical authorizations or clears global halt.
+        """
+        authorization_id, authorization_ref = map(
+            _identifier, (authorization_id, authorization_ref)
+        )
+        protocol_sha256 = _valid_digest(protocol_sha256)
+        expected_meta_sha256 = _valid_digest(expected_meta_sha256)
+        expected_authorization_history_sha256 = _valid_digest(expected_authorization_history_sha256)
+        binding = _unknown_binding(expected_unknown_ids, expected_unknown_fingerprints)
+        cap = _money(additional_cap_usd, ceiling=False)
+        if not 0 < additional_cap_usd <= Decimal("0.10") or not cap:
+            raise ValueError("Invalid quarantine funding cap.")
+        slots = _validated_request_slots(request_slots, outputs=(1024, 2048), exact_request_id=True)
+        slots_fingerprint = _experiment_slots_fingerprint(slots)
+        if sum(_money(slot.amount_usd) for slot in slots) > cap:
+            raise ValueError("Quarantine slots exceed funding cap.")
+        with _transaction(self._path, write=True) as connection:
+            limit, opening, halted = _configuration(connection)
+            settled, reserved, uncertain = _totals(connection)
+            for exists, table in (
+                (_continuations_exist(connection), "ledger_continuations"),
+                (_experiment_scopes_exist(connection), "experiment_scopes"),
+            ):
+                if (
+                    exists
+                    and connection.execute(
+                        f"SELECT 1 FROM {table} WHERE authorization_id=?", (authorization_id,)
+                    ).fetchone()
+                ):
+                    raise LedgerConflict()
+            if _quarantine_scopes_exist(connection):
+                _quarantine_guards(connection)
+                existing = connection.execute(
+                    "SELECT 1 FROM quarantine_scopes WHERE authorization_id=?", (authorization_id,)
+                ).fetchone()
+                if existing:
+                    row = _find_quarantine_scope(connection, authorization_id)
+                    if any(
+                        row[key] != value
+                        for key, value in (
+                            ("authorization_ref", authorization_ref),
+                            ("protocol_sha256", protocol_sha256),
+                            ("unknown_binding", binding),
+                            ("meta_sha256", expected_meta_sha256),
+                            ("history_sha256", expected_authorization_history_sha256),
+                            ("cap_nanos", cap),
+                            ("slots_fingerprint", slots_fingerprint),
+                        )
+                    ):
+                        raise LedgerConflict()
+                    return _quarantine_scope_status(connection, authorization_id)
+            observed = _quarantine_observation(connection)
+            if (
+                not halted
+                or reserved
+                or _observed_overrun(connection)
+                or observed.unknown_ids != expected_unknown_ids
+                or observed.unknown_fingerprints != expected_unknown_fingerprints
+                or observed.meta_sha256 != expected_meta_sha256
+                or observed.authorization_history_sha256 != expected_authorization_history_sha256
+            ):
+                raise BudgetDenied()
+            for exists, table in (
+                (_experiment_scopes_exist(connection), "experiment_scopes"),
+                (_quarantine_scopes_exist(connection), "quarantine_scopes"),
+            ):
+                if (
+                    exists
+                    and connection.execute(
+                        f"SELECT 1 FROM {table} WHERE protocol_sha256=?", (protocol_sha256,)
+                    ).fetchone()
+                ):
+                    raise LedgerConflict()
+            if opening + settled + reserved + uncertain + _all_allowances(connection) + cap > limit:
+                raise BudgetDenied()
+            if any(_claimed_scope_identity(connection, slot) for slot in slots):
+                raise LedgerConflict()
+            _quarantine_schema(connection)
+            registered = {
+                "authorization_id": authorization_id,
+                "authorization_ref": authorization_ref,
+                "protocol_sha256": protocol_sha256,
+                "cap_nanos": cap,
+                "held_nanos": _money(observed.held_usd),
+                "unknown_binding": binding,
+                "meta_sha256": expected_meta_sha256,
+                "history_sha256": expected_authorization_history_sha256,
+                "max_requests": len(slots),
+                "slots_fingerprint": slots_fingerprint,
+            }
+            columns = ",".join(registered) + ",registration_fingerprint"
+            marks = ",".join("?" for _ in range(len(registered) + 1))
+            connection.execute(
+                f"INSERT INTO quarantine_scopes({columns}) VALUES ({marks})",
+                (*registered.values(), _digest(registered)),
+            )
+            for index, slot in enumerate(slots):
+                connection.execute(
+                    """INSERT INTO quarantine_scope_slots
+                    (request_id,authorization_id,slot_index,run_id,case_id,case_revision,attempt,model,phase,input_token_reserve,max_output_tokens,amount_nanos)
+                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?)""",
+                    (
+                        slot.request_id,
+                        authorization_id,
+                        index,
+                        slot.run_id,
+                        slot.case_id,
+                        slot.case_revision,
+                        slot.attempt,
+                        slot.model,
+                        slot.phase,
+                        slot.input_token_reserve,
+                        slot.max_output_tokens,
+                        _money(slot.amount_usd),
+                    ),
+                )
+            connection.execute(
+                "INSERT INTO quarantine_scope_events(authorization_id,status,reason_code) VALUES (?,'authorized','UserAuthorizedQuarantineScope')",
+                (authorization_id,),
+            )
+            return _quarantine_scope_status(connection, authorization_id)
+
+    def quarantine_scope_status(self, authorization_id: str) -> QuarantineScopeStatus:
+        authorization_id = _identifier(authorization_id)
+        with _transaction(self._path) as connection:
+            return _quarantine_scope_status(connection, authorization_id)
+
+    def close_quarantine_scope(self, authorization_id: str) -> QuarantineScopeStatus:
+        authorization_id = _identifier(authorization_id)
+        with _transaction(self._path, write=True) as connection:
+            status = _quarantine_scope_status(connection, authorization_id)
+            terminal = connection.execute(
+                "SELECT 1 FROM quarantine_scope_events WHERE authorization_id=? AND status IN ('closed','revoked')",
+                (authorization_id,),
+            ).fetchone()
+            if terminal is None:
+                _terminal_quarantine_scope(
+                    connection, authorization_id, "closed", "ExperimentClosed"
+                )
+                status = _quarantine_scope_status(connection, authorization_id)
+            return status
 
     def authorize_experiment_scope(
         self,
@@ -1033,6 +1701,14 @@ class BudgetLedger:
         with _transaction(self._path, write=True) as connection:
             limit, opening, _ = _configuration(connection)
             settled, reserved, uncertain = _totals(connection)
+            if (
+                _quarantine_scopes_exist(connection)
+                and connection.execute(
+                    "SELECT 1 FROM quarantine_scopes WHERE authorization_id=? OR protocol_sha256=?",
+                    (authorization_id, protocol_sha256),
+                ).fetchone()
+            ):
+                raise LedgerConflict()
             if (
                 _continuations_exist(connection)
                 and connection.execute(
@@ -1088,9 +1764,14 @@ class BudgetLedger:
                     status = _experiment_scope_status(connection, row["authorization_id"])
                     if status.active:
                         allowances += _money(status.remaining_usd, ceiling=False)
+            allowances += _quarantine_allowances(connection)
             if opening + settled + reserved + uncertain + allowances + cap > limit:
                 raise BudgetDenied()
             for slot in slots:
+                if _quarantine_scopes_exist(connection) and _claimed_scope_identity(
+                    connection, slot
+                ):
+                    raise LedgerConflict()
                 if (
                     _find(connection, slot.request_id) is not None
                     or connection.execute(
@@ -1222,11 +1903,14 @@ class BudgetLedger:
                     or amount > _money(scope.remaining_usd, ceiling=False)
                 ):
                     raise BudgetDenied()
-                if isinstance(scope, ExperimentScopeStatus):
+                if isinstance(scope, (ExperimentScopeStatus, QuarantineScopeStatus)):
                     if type(input_token_reserve) is not int or type(max_output_tokens) is not int:
                         raise BudgetDenied()
+                    kind = (
+                        "quarantine" if isinstance(scope, QuarantineScopeStatus) else "experiment"
+                    )
                     slot = connection.execute(
-                        "SELECT * FROM experiment_scope_slots WHERE authorization_id=? AND request_id=?",
+                        f"SELECT * FROM {kind}_scope_slots WHERE authorization_id=? AND request_id=?",
                         (continuation_id, request_id),
                     ).fetchone()
                     if (
@@ -1252,6 +1936,11 @@ class BudgetLedger:
                 raise BudgetDenied()
             if opening + settled + reserved + uncertain + amount > limit:
                 raise BudgetDenied()
+            if (
+                _quarantine_scopes_exist(connection)
+                and opening + settled + reserved + uncertain + _all_allowances(connection) > limit
+            ):
+                raise BudgetDenied()
             connection.execute(
                 """INSERT INTO reservations
                 (request_id, run_id, case_id, case_revision, attempt, model, phase, amount_nanos, status)
@@ -1260,7 +1949,9 @@ class BudgetLedger:
             )
             if continuation_id is not None:
                 connection.execute(
-                    "INSERT INTO experiment_scope_requests (request_id, authorization_id) VALUES (?, ?)"
+                    "INSERT INTO quarantine_scope_requests (request_id, authorization_id) VALUES (?, ?)"
+                    if isinstance(scope, QuarantineScopeStatus)
+                    else "INSERT INTO experiment_scope_requests (request_id, authorization_id) VALUES (?, ?)"
                     if isinstance(scope, ExperimentScopeStatus)
                     else "INSERT INTO continuation_requests (request_id, authorization_id) VALUES (?, ?)",
                     (request_id, continuation_id),
@@ -1312,6 +2003,8 @@ class BudgetLedger:
                 ).fetchone()
             ):
                 _revoke_continuations(connection, "QuarantineChanged")
+            if row["status"] == "uncertain":
+                _revoke_quarantine_scopes(connection, "QuarantineChanged")
             _audit(connection, request_id, "settled")
             return _reservation(_required(connection, request_id))
 

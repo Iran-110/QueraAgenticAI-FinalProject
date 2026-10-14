@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "protocol_id": "finite-quarantine-set-authorization-v1",
+  "registered_before_budget_implementation": true,
+  "authorization_basis": "Current user explicitly renewed authorization for necessary paid tests after the previous experiment reported a new uncertain provider outcome. This is a new finite exception with all known uncertainty recorded, not provider reconciliation, an old-parent replacement, ordinary startup unhalt or permission to ignore future failures.",
+  "global_cap_usd_unchanged": "4.50",
+  "team_brief_cap_usd": "5",
+  "ordinary_live_halt_unchanged": true,
+  "old_authorizations_remain_revoked": true,
+  "known_uncertain_request_ids": [
+    "call:00d470ec94177a11f66c6cb3dbbb6c83069dd1385ddd6ac7b1e3df96fa50f7fa",
+    "call:99512367628b4700a171466d2390b6be8ac708d62bb11ab2f354130ec2118817"
+  ],
+  "known_uncertain_hold_usd": "0.0233792",
+  "known_actual_charge_usd": null,
+  "registration": "Separate quarantine-set tables bind sorted complete unchanged uncertain rows, ledger meta, old authorization history, explicit human reference, immutable method/source/input/slot fingerprints, exact fresh context-derived identities and finite fully-backed cap. No old parent ID is supplied or revived.",
+  "limits": {
+    "max_requests_per_scope": 24,
+    "max_scope_cap_usd": "0.10",
+    "model": "gpt-4o-mini",
+    "phase": "development",
+    "attempt_indices": [1, 2],
+    "input_token_reserves": [16384, 24576],
+    "output_token_bounds": [1024, 2048],
+    "reserved_amount": "Exact existing verified model rate applied to frozen input/output bound. Holds, settled cost and every outstanding allowance share the original global ceiling."
+  },
+  "fail_closed": [
+    "Changed/missing quarantine row, decreased hold, changed meta or authorization history",
+    "Any new uncertain request, provider mismatch, cost overrun or explicit halt",
+    "Any outstanding pending request",
+    "Already registered protocol, used request or cross-scope invocation identity",
+    "Unregistered request, bound/model/phase/attempt change or invalid context-derived ID",
+    "Invalid ledger registration, event history or slot fingerprint",
+    "Closed/revoked/exhausted grant; replay cannot refill or reopen it"
+  ],
+  "control_file": "tests/test_budget_quarantine_scope.py",
+  "control_policy": "Synthetic disposable ledgers and mock provider only. Same pre-implementation controls must pass after implementation; the one historical singleton refusal already passes before implementation. New paid calls remain forbidden until root reviews the implementation and registers clean-source immutable experiment slots.",
+  "c5_reconciled": false
+}

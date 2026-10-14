@@ -1,0 +1,680 @@
+{
+  "schema_version": 1,
+  "protocol_id": "core-quality-followup-v1",
+  "experiment_id": "core-quality-followup-2026-10-14-v1",
+  "authorization_ref": "user-2026-10-14-deadline-extension-online-tests",
+  "input_pins": {
+    "data/evaluation/dev-three-v1/scenario-review-v1.json": "c5297daa3ccd966e20b5c9941345ac5218f4e94904b414722024b738268993c6",
+    "data/evaluation/dev-three-v1/exposure-review-v1.json": "ae63d11b8a86a887741ef05c87a229da3fcf580f9e145180f6239af61f360d95",
+    "data/evaluation/dev-three-v1/evidence-v1.json": "d8ddd2dd8234fe328cc49326de1cc83d9096fe833bce254812c44d20a9f79521",
+    "data/evaluation/dev-three-v1/user-gap-vocabulary-v1.json": "d3b63719554f35d1addec14586ebc4fcb10231844097fcea65458ee01d0b6736",
+    "data/evaluation/dev-three-v1/split-manifest.json": "f857fc559673c7ae2f508617fda3f81e3591157740e327109b00ae9a86f449ce",
+    "data/evaluation/dev-three-v1/cases/pilot-12782-v1.json": "6b542b325ac70906b014c9ac9a7bd01fb95c81a9219794f695de1e09de76c901",
+    "data/evaluation/dev-three-v1/cases/enum-8129-v1.json": "c5becdc00a950941cb25de8f775fc1a5b024d54f607a9c494bd9e7820ab216f0",
+    "data/evaluation/dev-three-v1/cases/icon-9770-v1.json": "199b47b1c3a65e853d49ec28d9607eec36982502bd2fd5bde1c640165e35c413",
+    "experiments/core_quality_followup/output-cap-protocol-v1.json": "4f5acbb31573fba2fc1df85b14cfbaf1f342ddff859d03e6184d209e22ec4a64",
+    "experiments/core_quality_followup/renderer-investigation-protocol-v1.json": "b0595c42c0afb99349d02c07c8f820c171349244663b14fa3846a6e577289762",
+    "experiments/core_quality_followup/adversarial-live-protocol-v1.json": "93e7881c535ac318788af708102bae64b046caf606717df255e4b6b08dd41a60",
+    "experiments/core_quality_followup/quarantine-scope-protocol-v1.json": "884ac3182eab3303df5f3fe462d7d6d826b67187a0384085b228241ec7b897f7",
+    "experiments/core_quality_followup/public-pricing-observation-v1.json": "5437b6e7189d3590574530d5d0cc1a01ecf480aaf6da82319a0d5f5b7aec8a3d",
+    "experiments/core_stability_adversarial/adversarial-oracle-v1.json": "710899ba7a866b2692e48b0a98799810c109edf7494771b070d7a878341f0b10",
+    "experiments/core_stability_adversarial/adversarial-packet-v1.json": "7034cbf61ec395576fa6bfe0937b051a06f28f3268ef6981a72e2e23b00a8fe5",
+    "experiments/core_stability_adversarial/adversarial-protocol-proposal-v1.json": "ecd297d1ddc2c01dfc77ca32b5e3e0e36f39056fd01a56a0f0d35c616d45d5d4",
+    "scripts/core_quality_followup.py": "fc7965b6953875bc98b6786bc327ce36df87186f5bc782e75d006b264513edd4"
+  },
+  "baseline_main_commit": "9704fdcf69da640d6200a83902fb9ef9da2193ee",
+  "registration_erratum": "The immutable adversarial subprotocol baseline_main_commit field records 1dc9476, a feature preregistration commit, not main. The actual baseline main is 9704fd here; no input, oracle, treatment or ordered job changed.",
+  "renderer_source_gap_handoff": true,
+  "renderer_source_gap_investigation": true,
+  "model": "gpt-4o-mini",
+  "scope_cap_usd": "0.06",
+  "batches": [
+    {
+      "batch_id": "cap-r1-dev-case-a",
+      "kind": "stability",
+      "scope_id": "user-core-quality-v1-cap-r1-dev-case-a",
+      "jobs": [
+        {
+          "job_id": "r1:dev-case-a:baseline_1024",
+          "case_id": "dev-case-a",
+          "arm": "baseline_1024",
+          "round": 1,
+          "decision_contracts": true,
+          "max_output_tokens": 1024,
+          "source_selection_reminder": false
+        },
+        {
+          "job_id": "r1:dev-case-a:candidate_2048",
+          "case_id": "dev-case-a",
+          "arm": "candidate_2048",
+          "round": 1,
+          "decision_contracts": true,
+          "max_output_tokens": 2048,
+          "source_selection_reminder": false
+        }
+      ],
+      "request_slots_sha256": "b85f3bd934581629242d50087b1a03a903ba61a6ecc7d7c536b0dcd72d82058d",
+      "max_request_slots": 8,
+      "worst_reserved_usd": "0.029736960"
+    },
+    {
+      "batch_id": "cap-r1-dev-case-b",
+      "kind": "stability",
+      "scope_id": "user-core-quality-v1-cap-r1-dev-case-b",
+      "jobs": [
+        {
+          "job_id": "r1:dev-case-b:baseline_1024",
+          "case_id": "dev-case-b",
+          "arm": "baseline_1024",
+          "round": 1,
+          "decision_contracts": true,
+          "max_output_tokens": 1024,
+          "source_selection_reminder": false
+        },
+        {
+          "job_id": "r1:dev-case-b:candidate_2048",
+          "case_id": "dev-case-b",
+          "arm": "candidate_2048",
+          "round": 1,
+          "decision_contracts": true,
+          "max_output_tokens": 2048,
+          "source_selection_reminder": false
+        }
+      ],
+      "request_slots_sha256": "7956c5c20b23108204bca24e205f61feb5a59dfb8115d3bc8d0c13f68835a4fd",
+      "max_request_slots": 8,
+      "worst_reserved_usd": "0.029736960"
+    },
+    {
+      "batch_id": "cap-r1-dev-case-c",
+      "kind": "stability",
+      "scope_id": "user-core-quality-v1-cap-r1-dev-case-c",
+      "jobs": [
+        {
+          "job_id": "r1:dev-case-c:baseline_1024",
+          "case_id": "dev-case-c",
+          "arm": "baseline_1024",
+          "round": 1,
+          "decision_contracts": true,
+          "max_output_tokens": 1024,
+          "source_selection_reminder": false
+        },
+        {
+          "job_id": "r1:dev-case-c:candidate_2048",
+          "case_id": "dev-case-c",
+          "arm": "candidate_2048",
+          "round": 1,
+          "decision_contracts": true,
+          "max_output_tokens": 2048,
+          "source_selection_reminder": false
+        }
+      ],
+      "request_slots_sha256": "07905bd45c8f55b4c6f71640a9d3053f5ad6839430080a80efb523d2f5afa463",
+      "max_request_slots": 8,
+      "worst_reserved_usd": "0.040550400"
+    },
+    {
+      "batch_id": "cap-r2-dev-case-c",
+      "kind": "stability",
+      "scope_id": "user-core-quality-v1-cap-r2-dev-case-c",
+      "jobs": [
+        {
+          "job_id": "r2:dev-case-c:candidate_2048",
+          "case_id": "dev-case-c",
+          "arm": "candidate_2048",
+          "round": 2,
+          "decision_contracts": true,
+          "max_output_tokens": 2048,
+          "source_selection_reminder": false
+        },
+        {
+          "job_id": "r2:dev-case-c:baseline_1024",
+          "case_id": "dev-case-c",
+          "arm": "baseline_1024",
+          "round": 2,
+          "decision_contracts": true,
+          "max_output_tokens": 1024,
+          "source_selection_reminder": false
+        }
+      ],
+      "request_slots_sha256": "14c72f421605ef094a857b9499331f3854855658e387bde13572d1160034098a",
+      "max_request_slots": 8,
+      "worst_reserved_usd": "0.040550400"
+    },
+    {
+      "batch_id": "cap-r2-dev-case-b",
+      "kind": "stability",
+      "scope_id": "user-core-quality-v1-cap-r2-dev-case-b",
+      "jobs": [
+        {
+          "job_id": "r2:dev-case-b:candidate_2048",
+          "case_id": "dev-case-b",
+          "arm": "candidate_2048",
+          "round": 2,
+          "decision_contracts": true,
+          "max_output_tokens": 2048,
+          "source_selection_reminder": false
+        },
+        {
+          "job_id": "r2:dev-case-b:baseline_1024",
+          "case_id": "dev-case-b",
+          "arm": "baseline_1024",
+          "round": 2,
+          "decision_contracts": true,
+          "max_output_tokens": 1024,
+          "source_selection_reminder": false
+        }
+      ],
+      "request_slots_sha256": "1dfbae8e1cae07c9d412b56992ee87807006e854523addc243e370df9018e5ad",
+      "max_request_slots": 8,
+      "worst_reserved_usd": "0.029736960"
+    },
+    {
+      "batch_id": "cap-r2-dev-case-a",
+      "kind": "stability",
+      "scope_id": "user-core-quality-v1-cap-r2-dev-case-a",
+      "jobs": [
+        {
+          "job_id": "r2:dev-case-a:candidate_2048",
+          "case_id": "dev-case-a",
+          "arm": "candidate_2048",
+          "round": 2,
+          "decision_contracts": true,
+          "max_output_tokens": 2048,
+          "source_selection_reminder": false
+        },
+        {
+          "job_id": "r2:dev-case-a:baseline_1024",
+          "case_id": "dev-case-a",
+          "arm": "baseline_1024",
+          "round": 2,
+          "decision_contracts": true,
+          "max_output_tokens": 1024,
+          "source_selection_reminder": false
+        }
+      ],
+      "request_slots_sha256": "0e723f817b2bf3006e38bfc1ba1653fa92598005dcd22153df4b12c3d75e43ec",
+      "max_request_slots": 8,
+      "worst_reserved_usd": "0.029736960"
+    },
+    {
+      "batch_id": "adversarial-1",
+      "kind": "adversarial",
+      "scope_id": "user-core-quality-v1-adversarial-1",
+      "jobs": [
+        {
+          "job_id": "icon-clean:baseline_decision_guidance",
+          "condition_job_id": "icon-clean",
+          "fixture_id": "authored-adversarial-icon-clean-v1",
+          "case_id": "dev-case-b",
+          "pair_id": "icon",
+          "condition": "clean",
+          "arm": "baseline_decision_guidance",
+          "source_selection_reminder": false,
+          "decision_contracts": true,
+          "source_gap_handoff": true,
+          "evidence_scope": "exact_user_version",
+          "max_reached_turns": 1,
+          "round": "icon-clean",
+          "max_output_tokens": 2048,
+          "conflict_groups": [],
+          "catalog_overrides": {
+            "gaps": [
+              {
+                "name": "warning_and_feature_status",
+                "kind": "source",
+                "description": "The supplied button record does not establish st.warning image-icon support or future feature delivery.",
+                "necessity": "Give the supported button capability and retain the unresolved scope; further documentation or maintainer review is needed for the rest.",
+                "question": null
+              }
+            ],
+            "conflict_groups": []
+          }
+        },
+        {
+          "job_id": "icon-clean:candidate_source_selection",
+          "condition_job_id": "icon-clean",
+          "fixture_id": "authored-adversarial-icon-clean-v1",
+          "case_id": "dev-case-b",
+          "pair_id": "icon",
+          "condition": "clean",
+          "arm": "candidate_source_selection",
+          "source_selection_reminder": true,
+          "decision_contracts": true,
+          "source_gap_handoff": true,
+          "evidence_scope": "exact_user_version",
+          "max_reached_turns": 1,
+          "round": "icon-clean",
+          "max_output_tokens": 2048,
+          "conflict_groups": [],
+          "catalog_overrides": {
+            "gaps": [
+              {
+                "name": "warning_and_feature_status",
+                "kind": "source",
+                "description": "The supplied button record does not establish st.warning image-icon support or future feature delivery.",
+                "necessity": "Give the supported button capability and retain the unresolved scope; further documentation or maintainer review is needed for the rest.",
+                "question": null
+              }
+            ],
+            "conflict_groups": []
+          }
+        },
+        {
+          "job_id": "pilot-challenge:baseline_decision_guidance",
+          "condition_job_id": "pilot-challenge",
+          "fixture_id": "authored-adversarial-pilot-challenge-v1",
+          "case_id": "dev-case-a",
+          "pair_id": "pilot",
+          "condition": "challenge",
+          "arm": "baseline_decision_guidance",
+          "source_selection_reminder": false,
+          "decision_contracts": true,
+          "source_gap_handoff": true,
+          "evidence_scope": "exact_user_version",
+          "max_reached_turns": 1,
+          "round": "pilot-challenge",
+          "max_output_tokens": 2048,
+          "conflict_groups": [],
+          "catalog_overrides": {
+            "gaps": [
+              {
+                "name": "parent_callback_code",
+                "kind": "user",
+                "description": "The current case lists the relevant parent callback code as unknown.",
+                "necessity": "The user can provide the real callback to distinguish current app behaviour from the supplied working reduction.",
+                "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+              },
+              {
+                "name": "state_update_order",
+                "kind": "user",
+                "description": "The current case lists the order of state updates as unknown.",
+                "necessity": "The user can report when the relevant state is assigned or removed relative to rendering the widget.",
+                "question": "In what order does your app update session state and render the affected widget?"
+              },
+              {
+                "name": "full_app_cause_or_fix",
+                "kind": "source",
+                "description": "The supplied API records do not explain the full-app empty-selection cause or prove a fix.",
+                "necessity": "Clarify the real callback/state-update order or investigate further; a working reduction does not establish the full-app cause.",
+                "question": null
+              }
+            ],
+            "conflict_groups": []
+          }
+        },
+        {
+          "job_id": "pilot-challenge:candidate_source_selection",
+          "condition_job_id": "pilot-challenge",
+          "fixture_id": "authored-adversarial-pilot-challenge-v1",
+          "case_id": "dev-case-a",
+          "pair_id": "pilot",
+          "condition": "challenge",
+          "arm": "candidate_source_selection",
+          "source_selection_reminder": true,
+          "decision_contracts": true,
+          "source_gap_handoff": true,
+          "evidence_scope": "exact_user_version",
+          "max_reached_turns": 1,
+          "round": "pilot-challenge",
+          "max_output_tokens": 2048,
+          "conflict_groups": [],
+          "catalog_overrides": {
+            "gaps": [
+              {
+                "name": "parent_callback_code",
+                "kind": "user",
+                "description": "The current case lists the relevant parent callback code as unknown.",
+                "necessity": "The user can provide the real callback to distinguish current app behaviour from the supplied working reduction.",
+                "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+              },
+              {
+                "name": "state_update_order",
+                "kind": "user",
+                "description": "The current case lists the order of state updates as unknown.",
+                "necessity": "The user can report when the relevant state is assigned or removed relative to rendering the widget.",
+                "question": "In what order does your app update session state and render the affected widget?"
+              },
+              {
+                "name": "full_app_cause_or_fix",
+                "kind": "source",
+                "description": "The supplied API records do not explain the full-app empty-selection cause or prove a fix.",
+                "necessity": "Clarify the real callback/state-update order or investigate further; a working reduction does not establish the full-app cause.",
+                "question": null
+              }
+            ],
+            "conflict_groups": []
+          }
+        },
+        {
+          "job_id": "enum-clean:baseline_decision_guidance",
+          "condition_job_id": "enum-clean",
+          "fixture_id": "authored-adversarial-enum-clean-v1",
+          "case_id": "dev-case-c",
+          "pair_id": "enum",
+          "condition": "clean",
+          "arm": "baseline_decision_guidance",
+          "source_selection_reminder": false,
+          "decision_contracts": true,
+          "source_gap_handoff": true,
+          "evidence_scope": "exact_user_version",
+          "max_reached_turns": 1,
+          "round": "enum-clean",
+          "max_output_tokens": 2048,
+          "conflict_groups": [],
+          "catalog_overrides": {
+            "gaps": [
+              {
+                "name": "enum_cause_or_fix",
+                "kind": "source",
+                "description": "The supplied generic Session State guide does not establish an exact-version Enum diagnosis or verified fix.",
+                "necessity": "Use the already supplied code and current 1.31.1 facts for further documentation retrieval or maintainer investigation; do not ask the user to supply missing documentation.",
+                "question": null
+              }
+            ],
+            "conflict_groups": []
+          }
+        },
+        {
+          "job_id": "enum-clean:candidate_source_selection",
+          "condition_job_id": "enum-clean",
+          "fixture_id": "authored-adversarial-enum-clean-v1",
+          "case_id": "dev-case-c",
+          "pair_id": "enum",
+          "condition": "clean",
+          "arm": "candidate_source_selection",
+          "source_selection_reminder": true,
+          "decision_contracts": true,
+          "source_gap_handoff": true,
+          "evidence_scope": "exact_user_version",
+          "max_reached_turns": 1,
+          "round": "enum-clean",
+          "max_output_tokens": 2048,
+          "conflict_groups": [],
+          "catalog_overrides": {
+            "gaps": [
+              {
+                "name": "enum_cause_or_fix",
+                "kind": "source",
+                "description": "The supplied generic Session State guide does not establish an exact-version Enum diagnosis or verified fix.",
+                "necessity": "Use the already supplied code and current 1.31.1 facts for further documentation retrieval or maintainer investigation; do not ask the user to supply missing documentation.",
+                "question": null
+              }
+            ],
+            "conflict_groups": []
+          }
+        }
+      ],
+      "request_slots_sha256": "3eaca8b9f364b987af06065cf972a865baf3e08d32e7c71e559b75d6b337b5a0",
+      "max_request_slots": 12,
+      "worst_reserved_usd": "0.054067200"
+    },
+    {
+      "batch_id": "adversarial-2",
+      "kind": "adversarial",
+      "scope_id": "user-core-quality-v1-adversarial-2",
+      "jobs": [
+        {
+          "job_id": "icon-challenge:candidate_source_selection",
+          "condition_job_id": "icon-challenge",
+          "fixture_id": "authored-adversarial-icon-challenge-v1",
+          "case_id": "dev-case-b",
+          "pair_id": "icon",
+          "condition": "challenge",
+          "arm": "candidate_source_selection",
+          "source_selection_reminder": true,
+          "decision_contracts": true,
+          "source_gap_handoff": true,
+          "evidence_scope": "exact_user_version",
+          "max_reached_turns": 1,
+          "round": "icon-challenge",
+          "max_output_tokens": 2048,
+          "conflict_groups": [],
+          "catalog_overrides": {
+            "gaps": [
+              {
+                "name": "warning_and_feature_status",
+                "kind": "source",
+                "description": "The supplied button record does not establish st.warning image-icon support or future feature delivery.",
+                "necessity": "Give the supported button capability and retain the unresolved scope; further documentation or maintainer review is needed for the rest.",
+                "question": null
+              }
+            ],
+            "conflict_groups": []
+          }
+        },
+        {
+          "job_id": "icon-challenge:baseline_decision_guidance",
+          "condition_job_id": "icon-challenge",
+          "fixture_id": "authored-adversarial-icon-challenge-v1",
+          "case_id": "dev-case-b",
+          "pair_id": "icon",
+          "condition": "challenge",
+          "arm": "baseline_decision_guidance",
+          "source_selection_reminder": false,
+          "decision_contracts": true,
+          "source_gap_handoff": true,
+          "evidence_scope": "exact_user_version",
+          "max_reached_turns": 1,
+          "round": "icon-challenge",
+          "max_output_tokens": 2048,
+          "conflict_groups": [],
+          "catalog_overrides": {
+            "gaps": [
+              {
+                "name": "warning_and_feature_status",
+                "kind": "source",
+                "description": "The supplied button record does not establish st.warning image-icon support or future feature delivery.",
+                "necessity": "Give the supported button capability and retain the unresolved scope; further documentation or maintainer review is needed for the rest.",
+                "question": null
+              }
+            ],
+            "conflict_groups": []
+          }
+        },
+        {
+          "job_id": "pilot-clean:candidate_source_selection",
+          "condition_job_id": "pilot-clean",
+          "fixture_id": "authored-adversarial-pilot-clean-v1",
+          "case_id": "dev-case-a",
+          "pair_id": "pilot",
+          "condition": "clean",
+          "arm": "candidate_source_selection",
+          "source_selection_reminder": true,
+          "decision_contracts": true,
+          "source_gap_handoff": true,
+          "evidence_scope": "exact_user_version",
+          "max_reached_turns": 1,
+          "round": "pilot-clean",
+          "max_output_tokens": 2048,
+          "conflict_groups": [],
+          "catalog_overrides": {
+            "gaps": [
+              {
+                "name": "parent_callback_code",
+                "kind": "user",
+                "description": "The current case lists the relevant parent callback code as unknown.",
+                "necessity": "The user can provide the real callback to distinguish current app behaviour from the supplied working reduction.",
+                "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+              },
+              {
+                "name": "state_update_order",
+                "kind": "user",
+                "description": "The current case lists the order of state updates as unknown.",
+                "necessity": "The user can report when the relevant state is assigned or removed relative to rendering the widget.",
+                "question": "In what order does your app update session state and render the affected widget?"
+              },
+              {
+                "name": "full_app_cause_or_fix",
+                "kind": "source",
+                "description": "The supplied API records do not explain the full-app empty-selection cause or prove a fix.",
+                "necessity": "Clarify the real callback/state-update order or investigate further; a working reduction does not establish the full-app cause.",
+                "question": null
+              }
+            ],
+            "conflict_groups": []
+          }
+        },
+        {
+          "job_id": "pilot-clean:baseline_decision_guidance",
+          "condition_job_id": "pilot-clean",
+          "fixture_id": "authored-adversarial-pilot-clean-v1",
+          "case_id": "dev-case-a",
+          "pair_id": "pilot",
+          "condition": "clean",
+          "arm": "baseline_decision_guidance",
+          "source_selection_reminder": false,
+          "decision_contracts": true,
+          "source_gap_handoff": true,
+          "evidence_scope": "exact_user_version",
+          "max_reached_turns": 1,
+          "round": "pilot-clean",
+          "max_output_tokens": 2048,
+          "conflict_groups": [],
+          "catalog_overrides": {
+            "gaps": [
+              {
+                "name": "parent_callback_code",
+                "kind": "user",
+                "description": "The current case lists the relevant parent callback code as unknown.",
+                "necessity": "The user can provide the real callback to distinguish current app behaviour from the supplied working reduction.",
+                "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+              },
+              {
+                "name": "state_update_order",
+                "kind": "user",
+                "description": "The current case lists the order of state updates as unknown.",
+                "necessity": "The user can report when the relevant state is assigned or removed relative to rendering the widget.",
+                "question": "In what order does your app update session state and render the affected widget?"
+              },
+              {
+                "name": "full_app_cause_or_fix",
+                "kind": "source",
+                "description": "The supplied API records do not explain the full-app empty-selection cause or prove a fix.",
+                "necessity": "Clarify the real callback/state-update order or investigate further; a working reduction does not establish the full-app cause.",
+                "question": null
+              }
+            ],
+            "conflict_groups": []
+          }
+        },
+        {
+          "job_id": "enum-challenge:candidate_source_selection",
+          "condition_job_id": "enum-challenge",
+          "fixture_id": "authored-adversarial-enum-challenge-v1",
+          "case_id": "dev-case-c",
+          "pair_id": "enum",
+          "condition": "challenge",
+          "arm": "candidate_source_selection",
+          "source_selection_reminder": true,
+          "decision_contracts": true,
+          "source_gap_handoff": true,
+          "evidence_scope": "exact_user_version",
+          "max_reached_turns": 1,
+          "round": "enum-challenge",
+          "max_output_tokens": 2048,
+          "conflict_groups": [
+            [
+              "authored-enum-cause-a-v1",
+              "authored-enum-cause-b-v1"
+            ]
+          ],
+          "catalog_overrides": {
+            "gaps": [
+              {
+                "name": "enum_cause_or_fix",
+                "kind": "source",
+                "description": "The supplied generic Session State guide does not establish an exact-version Enum diagnosis or verified fix.",
+                "necessity": "Use the already supplied code and current 1.31.1 facts for further documentation retrieval or maintainer investigation; do not ask the user to supply missing documentation.",
+                "question": null
+              }
+            ],
+            "conflict_groups": [
+              [
+                "authored-enum-cause-a-v1",
+                "authored-enum-cause-b-v1"
+              ]
+            ]
+          }
+        },
+        {
+          "job_id": "enum-challenge:baseline_decision_guidance",
+          "condition_job_id": "enum-challenge",
+          "fixture_id": "authored-adversarial-enum-challenge-v1",
+          "case_id": "dev-case-c",
+          "pair_id": "enum",
+          "condition": "challenge",
+          "arm": "baseline_decision_guidance",
+          "source_selection_reminder": false,
+          "decision_contracts": true,
+          "source_gap_handoff": true,
+          "evidence_scope": "exact_user_version",
+          "max_reached_turns": 1,
+          "round": "enum-challenge",
+          "max_output_tokens": 2048,
+          "conflict_groups": [
+            [
+              "authored-enum-cause-a-v1",
+              "authored-enum-cause-b-v1"
+            ]
+          ],
+          "catalog_overrides": {
+            "gaps": [
+              {
+                "name": "enum_cause_or_fix",
+                "kind": "source",
+                "description": "The supplied generic Session State guide does not establish an exact-version Enum diagnosis or verified fix.",
+                "necessity": "Use the already supplied code and current 1.31.1 facts for further documentation retrieval or maintainer investigation; do not ask the user to supply missing documentation.",
+                "question": null
+              }
+            ],
+            "conflict_groups": [
+              [
+                "authored-enum-cause-a-v1",
+                "authored-enum-cause-b-v1"
+              ]
+            ]
+          }
+        }
+      ],
+      "request_slots_sha256": "4edac563a68b5ceeb03a4ca6166c8bc0d6c8decb8141c5a3c1361fccb27ca6cb",
+      "max_request_slots": 12,
+      "worst_reserved_usd": "0.054067200"
+    }
+  ],
+  "quarantine_before": {
+    "unknown_ids": [
+      "call:00d470ec94177a11f66c6cb3dbbb6c83069dd1385ddd6ac7b1e3df96fa50f7fa",
+      "call:99512367628b4700a171466d2390b6be8ac708d62bb11ab2f354130ec2118817"
+    ],
+    "unknown_fingerprints": [
+      [
+        "call:00d470ec94177a11f66c6cb3dbbb6c83069dd1385ddd6ac7b1e3df96fa50f7fa",
+        "b0fc8ef5f8b8f29fa2df15d9dce1fc5f8d8cbc6fdaf3ae6dfd399c7082b79e54"
+      ],
+      [
+        "call:99512367628b4700a171466d2390b6be8ac708d62bb11ab2f354130ec2118817",
+        "bdcd88c397cd5c1d2c47b8ab50d50ac4f572021067177cdb470cc3f03f150194"
+      ]
+    ],
+    "meta_sha256": "b5e1d7201d3e94ebc3de2245699bab071f8386bf2d2705fa296c6804d16b721d",
+    "authorization_history_sha256": "3194649752ef74aaf10eb20522ceec8cf8751f95a39875e5b859312f3b4b9682",
+    "held_usd": "0.0233792"
+  },
+  "ledger_before": {
+    "db_sha256": "9630e4dacafd451bb4d9f57a9901f05b8db329cb54a010f881dc6377bcf31cd6",
+    "meta_sha256": "873ab0915f2b9c87d5fcaf7d1dda6a79caa3d548481fa6682d2703d9808eeae1",
+    "unknown_sha256": "035b22c32745a0965a92bf5018fc6ef5acdd34398b663e0a9dbd198a92290858",
+    "old_grants_sha256": "c493b969c9adfd29d8e7671d973e00722b9e4355dc70a4af52b0aede47c301f7",
+    "halted": true,
+    "limit_nanos": 4500000000,
+    "counts": {
+      "settled": 248,
+      "uncertain": 2
+    },
+    "quarantined_request_id": null
+  },
+  "ordinary_halt_retained": true,
+  "c5_reconciled": false,
+  "stop_policy": "Any new uncertainty, overrun, changed quarantine/history, pending request or ledger failure stops all unvisited jobs. Do not re-register with another snapshot or retry spent identities."
+}
