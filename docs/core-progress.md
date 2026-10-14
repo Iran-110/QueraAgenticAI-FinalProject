@@ -4,6 +4,8 @@ This is a factual milestone log, not a daily activity schedule. Update it after 
 
 ## 2026-10-14 — C4g/R4a: three dev families with a native index
 
+Publication/review: [PR #48](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/48).
+
 The [registered packet](../experiments/dev_rag_coverage_v1/README.md) adds four
 pinned official API records in a closed profile of 18 sources and 36 chunks.
 All 46 conservative Issue reservations remain. Issues, comments, outcomes,

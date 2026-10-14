@@ -5,6 +5,7 @@
 ## وضعیت فعلی
 
 - [x] **C4g / R4a — build نسخه‌دار و آزمایش سه dev با index واقعی؛ ساسان، کمک به RAG حسن.**
+  انتشار و review در [PR #48](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/48)؛
   [protocol قبل از اجرا](../experiments/dev_rag_coverage_v1/protocol-v1.json) و
   [رسید/محدودیت‌ها](../experiments/dev_rag_coverage_v1/README.md): profile بسته۱۸/۳۶،
   چهار source رسمی و۴۶ reservation؛ پذیرش۸۹/۸۹، دو build مستقل یکسان و حفظ تمام

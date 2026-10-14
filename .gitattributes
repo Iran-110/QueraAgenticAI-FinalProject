@@ -12,3 +12,9 @@ streamlit-data-for-dev-test/** -text
 # Original paid development receipt and preregistration remain exact byte artifacts.
 /experiments/grounded_http_acceptance/connected-live-*.json -text
 /experiments/grounded_http_acceptance/connected-live-result-*.json linguist-generated=true
+
+# The dev coverage protocol pins packet bytes across Windows/macOS checkouts.
+/experiments/dev_rag_coverage_v1/*.json -text
+/experiments/dev_rag_coverage_v1/*receipt*.json linguist-generated=true
+/experiments/dev_rag_coverage_v1/*review*.json linguist-generated=true
+/experiments/dev_rag_coverage_v1/verification-v1.json linguist-generated=true
