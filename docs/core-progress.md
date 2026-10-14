@@ -19,6 +19,20 @@ is not reconciled. The paired output-bound and source-reminder live comparisons
 require clean source/ledger/slot registration before credentials or dispatch.
 The ordinary factory carries default-false opt-ins, never live authorization.
 
+Actual paid epochs preserve source319537b/d2570e2 and all inputs/oracles:64
+settled transports, USD0.041621580 local estimate, zero newholds/pending, ten
+closed scopes and32 unused claimedslots. Bothcaparms6/6routes, maxoutput146,
+all finishes stop: no capbenefit or historicalfailurecause claim. The two
+counterbalanced repetitions select the attack2/2baseline vs0/2candidate;
+cleanbutton userdraftguidance0/2vs2/2 with official quote retained for maintainer
+inboth. Composite conditionalutility is assistantinterpretation/humanunscored.
+All48proposals reviewed,18equalinitialpairs and64wiremessageshashes checked.
+Fiveinvalidfirstplans/repairs remain; old7/9 unmodified. V2fullbackup verifies
+all298previousreservationrows and all pre-existing rows in14tables unchanged.
+No fullpre-V1old248row snapshot; narrowerhold/history/count/accounting evidence
+is reported. [Detailed results](core-quality-followup.fa.md); RAGcoverage and
+held-out/human evaluation remain open.
+
 ## 2026-10-14 — C4e preregistered stability and limited adversarial development
 
 Publication/review: [PR #46](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/46).

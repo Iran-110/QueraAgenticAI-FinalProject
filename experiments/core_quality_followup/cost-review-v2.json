@@ -1,0 +1,636 @@
+{
+  "schema_version": 1,
+  "review_id": "core-quality-cost-review-v2",
+  "reviewer_kind": "independent_assistant_read_only_accounting",
+  "observed_at_utc": "2026-10-14 13:36:31 UTC",
+  "scope": "Only the two registered adversarial replication batches and 16 new model transports; combined totals include the separately reviewed first 48 calls.",
+  "source_commit": "d2570e25b7dceb6db1c2619b828368dd9cb37e2d",
+  "method_sha256": "c96ab014fe4cf6ac08f60c015c144d373184134b46a74a3341b8e23e2e7f3d97",
+  "inputs": {
+    "receipt": {
+      "path": "/Users/sasan/Desktop/Agentic AI/output/core-quality-followup-2026-10-14-v2/receipt.json",
+      "sha256": "06f7b1b66501df6199a9d694fc70d37a9d554298bab02409e79ef072368a24aa"
+    },
+    "registration": {
+      "path": "/Users/sasan/Desktop/Agentic AI/output/core-quality-followup-2026-10-14-v2/registration.json",
+      "sha256": "e8e3a6f8ab329a509d9234eddc14ca4c6c7aee684ca4ea16661424fb74dc59d3"
+    },
+    "method": {
+      "path": "experiments/core_quality_followup/live-method-v1.json",
+      "sha256": "c96ab014fe4cf6ac08f60c015c144d373184134b46a74a3341b8e23e2e7f3d97"
+    },
+    "pricing": {
+      "path": "experiments/core_quality_followup/public-pricing-observation-v1.json",
+      "sha256": "5437b6e7189d3590574530d5d0cc1a01ecf480aaf6da82319a0d5f5b7aec8a3d"
+    },
+    "final_ledger": {
+      "path": "runtime/budget.sqlite3",
+      "sqlite_file_sha256": "210d04f11e4485c6ac9a5849fe574e971d8f7321f0ff2eb0b6144b1b7539993e",
+      "reservation_rows_sha256": "14d1d73da6d7ddbba7abe20af1da28cc95b9a9c6a1259ae9a3829d9824f84319",
+      "reservation_rows_encoding": "All reservations ORDER BY request_id; json.dumps(list_of_dict_rows, sort_keys=True), default separators; UTF-8 SHA256."
+    }
+  },
+  "prior_backup": {
+    "path": "/Users/sasan/Desktop/Agentic AI/output/core-quality-followup-2026-10-14-v1/ledger-before-replication-v2.sqlite3",
+    "sqlite_file_sha256": "325a8fcbae3e2cc7bd24618478f89aed9dc3bf42267df13f44d3967ff2688e60",
+    "reservation_rows_sha256": "79e47ac27fdaaea08ed6c97051800fd7f3b93c1a04cf4f80ea24867d52939a64",
+    "canonical_row_count": 298
+  },
+  "prior_ledger_table_preservation": {
+    "ledger_meta": {
+      "prior_rows": 1,
+      "after_rows": 1,
+      "all_prior_rows_unchanged": true,
+      "before_sha256": "57326df9fa35bd47dcae90516dfeb12120225ff270963fd36b9a3b1f516db333",
+      "unchanged_prior_after_sha256": "57326df9fa35bd47dcae90516dfeb12120225ff270963fd36b9a3b1f516db333"
+    },
+    "reservations": {
+      "prior_rows": 298,
+      "after_rows": 314,
+      "all_prior_rows_unchanged": true,
+      "before_sha256": "0245316cbcc0840322471e54cbba0d2253548dd77107a3a041f7c15a1c53b0a1",
+      "unchanged_prior_after_sha256": "0245316cbcc0840322471e54cbba0d2253548dd77107a3a041f7c15a1c53b0a1"
+    },
+    "ledger_events": {
+      "prior_rows": 597,
+      "after_rows": 629,
+      "all_prior_rows_unchanged": true,
+      "before_sha256": "36a4d8be89a81e84c15c51ef4c4508b16b54a1d33043f6779370040d24309a01",
+      "unchanged_prior_after_sha256": "36a4d8be89a81e84c15c51ef4c4508b16b54a1d33043f6779370040d24309a01"
+    },
+    "ledger_continuations": {
+      "prior_rows": 1,
+      "after_rows": 1,
+      "all_prior_rows_unchanged": true,
+      "before_sha256": "c493b969c9adfd29d8e7671d973e00722b9e4355dc70a4af52b0aede47c301f7",
+      "unchanged_prior_after_sha256": "c493b969c9adfd29d8e7671d973e00722b9e4355dc70a4af52b0aede47c301f7"
+    },
+    "continuation_requests": {
+      "prior_rows": 123,
+      "after_rows": 123,
+      "all_prior_rows_unchanged": true,
+      "before_sha256": "546e3d4fe8113f1885bae5a4bde298a419ad7a83c4530658f59c1737f493a0f9",
+      "unchanged_prior_after_sha256": "546e3d4fe8113f1885bae5a4bde298a419ad7a83c4530658f59c1737f493a0f9"
+    },
+    "continuation_events": {
+      "prior_rows": 2,
+      "after_rows": 2,
+      "all_prior_rows_unchanged": true,
+      "before_sha256": "06215c8a5f408de1bdd847fd3e07deab3b92aa7a4b71ff3eb867de6d65fccff5",
+      "unchanged_prior_after_sha256": "06215c8a5f408de1bdd847fd3e07deab3b92aa7a4b71ff3eb867de6d65fccff5"
+    },
+    "experiment_scopes": {
+      "prior_rows": 7,
+      "after_rows": 7,
+      "all_prior_rows_unchanged": true,
+      "before_sha256": "7ff2a3e3a6418bd9856567b0931f9dd485f9127739de7a371dab472d255da577",
+      "unchanged_prior_after_sha256": "7ff2a3e3a6418bd9856567b0931f9dd485f9127739de7a371dab472d255da577"
+    },
+    "experiment_scope_slots": {
+      "prior_rows": 152,
+      "after_rows": 152,
+      "all_prior_rows_unchanged": true,
+      "before_sha256": "1117217584bae9889bc9882de1d19228507fc003e7deb22771105db897e55863",
+      "unchanged_prior_after_sha256": "1117217584bae9889bc9882de1d19228507fc003e7deb22771105db897e55863"
+    },
+    "experiment_scope_requests": {
+      "prior_rows": 65,
+      "after_rows": 65,
+      "all_prior_rows_unchanged": true,
+      "before_sha256": "3c8b4cb704283b169c90298f78531c54a9082f509699f834ac1a96c165d2e795",
+      "unchanged_prior_after_sha256": "3c8b4cb704283b169c90298f78531c54a9082f509699f834ac1a96c165d2e795"
+    },
+    "experiment_scope_events": {
+      "prior_rows": 14,
+      "after_rows": 14,
+      "all_prior_rows_unchanged": true,
+      "before_sha256": "604c9c3e1dff20fbc23894822cf23b874bab5be6e3364c850d77180a5b3ac888",
+      "unchanged_prior_after_sha256": "604c9c3e1dff20fbc23894822cf23b874bab5be6e3364c850d77180a5b3ac888"
+    },
+    "quarantine_scopes": {
+      "prior_rows": 8,
+      "after_rows": 10,
+      "all_prior_rows_unchanged": true,
+      "before_sha256": "a9d1fb780a367eb840a48af6e9a0944ac5764f59274abfd8779ab66f49563e16",
+      "unchanged_prior_after_sha256": "a9d1fb780a367eb840a48af6e9a0944ac5764f59274abfd8779ab66f49563e16"
+    },
+    "quarantine_scope_slots": {
+      "prior_rows": 72,
+      "after_rows": 96,
+      "all_prior_rows_unchanged": true,
+      "before_sha256": "3cb8c189e0882887eaf879d3feb5b852e126115edb059d2710fd0a8f59fc868c",
+      "unchanged_prior_after_sha256": "3cb8c189e0882887eaf879d3feb5b852e126115edb059d2710fd0a8f59fc868c"
+    },
+    "quarantine_scope_requests": {
+      "prior_rows": 48,
+      "after_rows": 64,
+      "all_prior_rows_unchanged": true,
+      "before_sha256": "41c7745f1dbf96f7fc6368c6cf878f491ecc21a8b3ef687e2e09b257a155e11f",
+      "unchanged_prior_after_sha256": "41c7745f1dbf96f7fc6368c6cf878f491ecc21a8b3ef687e2e09b257a155e11f"
+    },
+    "quarantine_scope_events": {
+      "prior_rows": 16,
+      "after_rows": 20,
+      "all_prior_rows_unchanged": true,
+      "before_sha256": "43b2298f251e347f1a98c20ba29c446733cc491d9c76e1c99a398d2af906843d",
+      "unchanged_prior_after_sha256": "43b2298f251e347f1a98c20ba29c446733cc491d9c76e1c99a398d2af906843d"
+    }
+  },
+  "combined_two_runs": {
+    "first_run_transports": 48,
+    "replication_transports": 16,
+    "all_transports": 64,
+    "first_run_estimate_usd": "0.031381350",
+    "replication_estimate_usd": "0.010240230",
+    "combined_public_rate_estimate_usd": "0.041621580",
+    "combined_input_tokens": 224508,
+    "combined_output_tokens": 6936,
+    "registered_slots": 96,
+    "consumed_slots": 64,
+    "permanently_claimed_unused_slots": 32,
+    "closed_scope_count": 10,
+    "first_cost_review_sha256": "149a21d989f0682c2ec4cf4b06a8c1c74ea4091d2311f67ee59982d223edd674"
+  },
+  "public_replication_receipt": {
+    "path": "experiments/core_quality_followup/model-live-receipt-v2.json",
+    "sha256": "06f7b1b66501df6199a9d694fc70d37a9d554298bab02409e79ef072368a24aa"
+  },
+  "accounting_checks": {
+    "passed": 150,
+    "total": 150,
+    "all_passed": true,
+    "checks": {
+      "current_ledger_matches_registered_final_hash": true,
+      "embedded_registration_exact": true,
+      "embedded_method_exact": true,
+      "source_clean_and_unchanged_during_run": true,
+      "complete2_registered_replication_batches": true,
+      "unknown_binding_and_audit_history_exact": true,
+      "old_meta_exact": true,
+      "both_old_unknown_rows_exact": true,
+      "prior_parent_authorizations_exact": true,
+      "original_halt_retained": true,
+      "original_runner_limit4_50_retained": true,
+      "legacy_continuations_not_reactivated": true,
+      "c5_still_unreconciled": true,
+      "public_pricing_supported_and_not_invoice": true,
+      "public_pricing_exact_pinned": true,
+      "adversarial-r2-1:registered_batch_identity": true,
+      "adversarial-r2-1:completed_accounting": true,
+      "adversarial-r2-1:permanently_closed_scope": true,
+      "adversarial-r2-1:scope_registration_hash_exact": true,
+      "adversarial-r2-1:independent_context_slots_match_protocol": true,
+      "adversarial-r2-1:ledger_slots_exact": true,
+      "adversarial-r2-1:transport_accounting_scope_exact": true,
+      "adversarial-r2-1:immutable_scope_limits_no_refresh": true,
+      "call:6bd925f8391f27795b12bdee722e4959b33929f22e1c8700413796f2800e26b2:identity_exact": true,
+      "call:6bd925f8391f27795b12bdee722e4959b33929f22e1c8700413796f2800e26b2:settled_usage_cost_exact": true,
+      "call:6bd925f8391f27795b12bdee722e4959b33929f22e1c8700413796f2800e26b2:reservation_bound_exact": true,
+      "call:6bd925f8391f27795b12bdee722e4959b33929f22e1c8700413796f2800e26b2:transport_matches_slot": true,
+      "call:6bd925f8391f27795b12bdee722e4959b33929f22e1c8700413796f2800e26b2:reserved_then_settled_exact_audit": true,
+      "call:2d01cbcdd6e0a7376ff86dc6a0c7d4e0e2388d31318f0222bf43f316c0c62bb6:identity_exact": true,
+      "call:2d01cbcdd6e0a7376ff86dc6a0c7d4e0e2388d31318f0222bf43f316c0c62bb6:settled_usage_cost_exact": true,
+      "call:2d01cbcdd6e0a7376ff86dc6a0c7d4e0e2388d31318f0222bf43f316c0c62bb6:reservation_bound_exact": true,
+      "call:2d01cbcdd6e0a7376ff86dc6a0c7d4e0e2388d31318f0222bf43f316c0c62bb6:transport_matches_slot": true,
+      "call:2d01cbcdd6e0a7376ff86dc6a0c7d4e0e2388d31318f0222bf43f316c0c62bb6:reserved_then_settled_exact_audit": true,
+      "call:80057edbb58ccc4fcd496de73441f99c979b4a53b440964509362993847905d0:identity_exact": true,
+      "call:80057edbb58ccc4fcd496de73441f99c979b4a53b440964509362993847905d0:settled_usage_cost_exact": true,
+      "call:80057edbb58ccc4fcd496de73441f99c979b4a53b440964509362993847905d0:reservation_bound_exact": true,
+      "call:80057edbb58ccc4fcd496de73441f99c979b4a53b440964509362993847905d0:transport_matches_slot": true,
+      "call:80057edbb58ccc4fcd496de73441f99c979b4a53b440964509362993847905d0:reserved_then_settled_exact_audit": true,
+      "call:e415e438f6aa1b0308f97dea9a96871610f9e17cbe7b3f514c364bbcd447881e:identity_exact": true,
+      "call:e415e438f6aa1b0308f97dea9a96871610f9e17cbe7b3f514c364bbcd447881e:settled_usage_cost_exact": true,
+      "call:e415e438f6aa1b0308f97dea9a96871610f9e17cbe7b3f514c364bbcd447881e:reservation_bound_exact": true,
+      "call:e415e438f6aa1b0308f97dea9a96871610f9e17cbe7b3f514c364bbcd447881e:transport_matches_slot": true,
+      "call:e415e438f6aa1b0308f97dea9a96871610f9e17cbe7b3f514c364bbcd447881e:reserved_then_settled_exact_audit": true,
+      "call:ce3a7305ddb9ad324770e7f7ddd1eeb41827a093ddf168e7c46c8aa403c9aeaa:identity_exact": true,
+      "call:ce3a7305ddb9ad324770e7f7ddd1eeb41827a093ddf168e7c46c8aa403c9aeaa:settled_usage_cost_exact": true,
+      "call:ce3a7305ddb9ad324770e7f7ddd1eeb41827a093ddf168e7c46c8aa403c9aeaa:reservation_bound_exact": true,
+      "call:ce3a7305ddb9ad324770e7f7ddd1eeb41827a093ddf168e7c46c8aa403c9aeaa:transport_matches_slot": true,
+      "call:ce3a7305ddb9ad324770e7f7ddd1eeb41827a093ddf168e7c46c8aa403c9aeaa:reserved_then_settled_exact_audit": true,
+      "call:27252ebfc32a6056efe8ec594f4ddb2bef3e460ca33012b959ba984b76fa2d67:identity_exact": true,
+      "call:27252ebfc32a6056efe8ec594f4ddb2bef3e460ca33012b959ba984b76fa2d67:settled_usage_cost_exact": true,
+      "call:27252ebfc32a6056efe8ec594f4ddb2bef3e460ca33012b959ba984b76fa2d67:reservation_bound_exact": true,
+      "call:27252ebfc32a6056efe8ec594f4ddb2bef3e460ca33012b959ba984b76fa2d67:transport_matches_slot": true,
+      "call:27252ebfc32a6056efe8ec594f4ddb2bef3e460ca33012b959ba984b76fa2d67:reserved_then_settled_exact_audit": true,
+      "adversarial-r2-1:batch_cost_usage_sum_exact": true,
+      "adversarial-r2-1:permanent_marker_matches_terminal_audit": true,
+      "adversarial-r2-2:registered_batch_identity": true,
+      "adversarial-r2-2:completed_accounting": true,
+      "adversarial-r2-2:permanently_closed_scope": true,
+      "adversarial-r2-2:scope_registration_hash_exact": true,
+      "adversarial-r2-2:independent_context_slots_match_protocol": true,
+      "adversarial-r2-2:ledger_slots_exact": true,
+      "adversarial-r2-2:transport_accounting_scope_exact": true,
+      "adversarial-r2-2:immutable_scope_limits_no_refresh": true,
+      "call:ba636aa91e373771bba11171ee36b3f0b100e57225095e572db0591563d0ece1:identity_exact": true,
+      "call:ba636aa91e373771bba11171ee36b3f0b100e57225095e572db0591563d0ece1:settled_usage_cost_exact": true,
+      "call:ba636aa91e373771bba11171ee36b3f0b100e57225095e572db0591563d0ece1:reservation_bound_exact": true,
+      "call:ba636aa91e373771bba11171ee36b3f0b100e57225095e572db0591563d0ece1:transport_matches_slot": true,
+      "call:ba636aa91e373771bba11171ee36b3f0b100e57225095e572db0591563d0ece1:reserved_then_settled_exact_audit": true,
+      "call:b17bc292cf66bf1fe8504249f817bf3fb6ec766e3eb6c47f0bd6c258c0769c3b:identity_exact": true,
+      "call:b17bc292cf66bf1fe8504249f817bf3fb6ec766e3eb6c47f0bd6c258c0769c3b:settled_usage_cost_exact": true,
+      "call:b17bc292cf66bf1fe8504249f817bf3fb6ec766e3eb6c47f0bd6c258c0769c3b:reservation_bound_exact": true,
+      "call:b17bc292cf66bf1fe8504249f817bf3fb6ec766e3eb6c47f0bd6c258c0769c3b:transport_matches_slot": true,
+      "call:b17bc292cf66bf1fe8504249f817bf3fb6ec766e3eb6c47f0bd6c258c0769c3b:reserved_then_settled_exact_audit": true,
+      "call:849c0dfb3688d9a1c020924844fde4165710ff3583b1adb0c1aa4d61fb1f8e89:identity_exact": true,
+      "call:849c0dfb3688d9a1c020924844fde4165710ff3583b1adb0c1aa4d61fb1f8e89:settled_usage_cost_exact": true,
+      "call:849c0dfb3688d9a1c020924844fde4165710ff3583b1adb0c1aa4d61fb1f8e89:reservation_bound_exact": true,
+      "call:849c0dfb3688d9a1c020924844fde4165710ff3583b1adb0c1aa4d61fb1f8e89:transport_matches_slot": true,
+      "call:849c0dfb3688d9a1c020924844fde4165710ff3583b1adb0c1aa4d61fb1f8e89:reserved_then_settled_exact_audit": true,
+      "call:7d0698fd77fd5c22933cd8ab56b34df1753bb5b9afe555f3c41e6d9e1b66c066:identity_exact": true,
+      "call:7d0698fd77fd5c22933cd8ab56b34df1753bb5b9afe555f3c41e6d9e1b66c066:settled_usage_cost_exact": true,
+      "call:7d0698fd77fd5c22933cd8ab56b34df1753bb5b9afe555f3c41e6d9e1b66c066:reservation_bound_exact": true,
+      "call:7d0698fd77fd5c22933cd8ab56b34df1753bb5b9afe555f3c41e6d9e1b66c066:transport_matches_slot": true,
+      "call:7d0698fd77fd5c22933cd8ab56b34df1753bb5b9afe555f3c41e6d9e1b66c066:reserved_then_settled_exact_audit": true,
+      "call:27b3ba86709f26c50037fe9ac2ee9b6937c76d8964c413402316a342751b5263:identity_exact": true,
+      "call:27b3ba86709f26c50037fe9ac2ee9b6937c76d8964c413402316a342751b5263:settled_usage_cost_exact": true,
+      "call:27b3ba86709f26c50037fe9ac2ee9b6937c76d8964c413402316a342751b5263:reservation_bound_exact": true,
+      "call:27b3ba86709f26c50037fe9ac2ee9b6937c76d8964c413402316a342751b5263:transport_matches_slot": true,
+      "call:27b3ba86709f26c50037fe9ac2ee9b6937c76d8964c413402316a342751b5263:reserved_then_settled_exact_audit": true,
+      "call:1f20693939e206baf15169d03ca57da37a9d448cc936c96ef96dc5d0e27f6014:identity_exact": true,
+      "call:1f20693939e206baf15169d03ca57da37a9d448cc936c96ef96dc5d0e27f6014:settled_usage_cost_exact": true,
+      "call:1f20693939e206baf15169d03ca57da37a9d448cc936c96ef96dc5d0e27f6014:reservation_bound_exact": true,
+      "call:1f20693939e206baf15169d03ca57da37a9d448cc936c96ef96dc5d0e27f6014:transport_matches_slot": true,
+      "call:1f20693939e206baf15169d03ca57da37a9d448cc936c96ef96dc5d0e27f6014:reserved_then_settled_exact_audit": true,
+      "call:2c910a214bbf61d2526e8ec2d9af4dabee3f0f0a5d326a9c18ab32ca53d9a418:identity_exact": true,
+      "call:2c910a214bbf61d2526e8ec2d9af4dabee3f0f0a5d326a9c18ab32ca53d9a418:settled_usage_cost_exact": true,
+      "call:2c910a214bbf61d2526e8ec2d9af4dabee3f0f0a5d326a9c18ab32ca53d9a418:reservation_bound_exact": true,
+      "call:2c910a214bbf61d2526e8ec2d9af4dabee3f0f0a5d326a9c18ab32ca53d9a418:transport_matches_slot": true,
+      "call:2c910a214bbf61d2526e8ec2d9af4dabee3f0f0a5d326a9c18ab32ca53d9a418:reserved_then_settled_exact_audit": true,
+      "call:9dd83e8f37c22a997eefb59204c0134797d64fd8fc61f93bf9d1d7aa7d9a0caf:identity_exact": true,
+      "call:9dd83e8f37c22a997eefb59204c0134797d64fd8fc61f93bf9d1d7aa7d9a0caf:settled_usage_cost_exact": true,
+      "call:9dd83e8f37c22a997eefb59204c0134797d64fd8fc61f93bf9d1d7aa7d9a0caf:reservation_bound_exact": true,
+      "call:9dd83e8f37c22a997eefb59204c0134797d64fd8fc61f93bf9d1d7aa7d9a0caf:transport_matches_slot": true,
+      "call:9dd83e8f37c22a997eefb59204c0134797d64fd8fc61f93bf9d1d7aa7d9a0caf:reserved_then_settled_exact_audit": true,
+      "call:ca469c7a915133b95bb5c40ec20a254b1f798c2a6815d1145fc9df1899aa94e1:identity_exact": true,
+      "call:ca469c7a915133b95bb5c40ec20a254b1f798c2a6815d1145fc9df1899aa94e1:settled_usage_cost_exact": true,
+      "call:ca469c7a915133b95bb5c40ec20a254b1f798c2a6815d1145fc9df1899aa94e1:reservation_bound_exact": true,
+      "call:ca469c7a915133b95bb5c40ec20a254b1f798c2a6815d1145fc9df1899aa94e1:transport_matches_slot": true,
+      "call:ca469c7a915133b95bb5c40ec20a254b1f798c2a6815d1145fc9df1899aa94e1:reserved_then_settled_exact_audit": true,
+      "call:7a12756f898cc618864e7a5c4ed7ca18d2590b59a96fcf4b9ea2436c0876798d:identity_exact": true,
+      "call:7a12756f898cc618864e7a5c4ed7ca18d2590b59a96fcf4b9ea2436c0876798d:settled_usage_cost_exact": true,
+      "call:7a12756f898cc618864e7a5c4ed7ca18d2590b59a96fcf4b9ea2436c0876798d:reservation_bound_exact": true,
+      "call:7a12756f898cc618864e7a5c4ed7ca18d2590b59a96fcf4b9ea2436c0876798d:transport_matches_slot": true,
+      "call:7a12756f898cc618864e7a5c4ed7ca18d2590b59a96fcf4b9ea2436c0876798d:reserved_then_settled_exact_audit": true,
+      "adversarial-r2-2:batch_cost_usage_sum_exact": true,
+      "adversarial-r2-2:permanent_marker_matches_terminal_audit": true,
+      "registered24_unique_new_identities": true,
+      "exact16_new_unique_transports": true,
+      "8_new_unused_slots_still_registered": true,
+      "prior296_settled_two_uncertain_counts_retained": true,
+      "final312_settled_two_uncertain_zero_pending": true,
+      "exact16_additional_reservation_rows": true,
+      "replication_scope_attributed_requests_exact_new16": true,
+      "all10_scopes_closed_all96_slots_retained": true,
+      "replication_token_and_public_rate_cost_totals": true,
+      "settled_global_estimate_matches_prior_plus16": true,
+      "both_old_holds_retained_not_zeroed": true,
+      "global_limit_fully_backs_remaining": true,
+      "before_backup_full298_rows_digest": true,
+      "all298_prior_reservation_rows_canonical_bytes_unchanged": true,
+      "prior_table_rows_exact:ledger_meta": true,
+      "prior_table_rows_exact:reservations": true,
+      "prior_table_rows_exact:ledger_events": true,
+      "prior_table_rows_exact:ledger_continuations": true,
+      "prior_table_rows_exact:continuation_requests": true,
+      "prior_table_rows_exact:continuation_events": true,
+      "prior_table_rows_exact:experiment_scopes": true,
+      "prior_table_rows_exact:experiment_scope_slots": true,
+      "prior_table_rows_exact:experiment_scope_requests": true,
+      "prior_table_rows_exact:experiment_scope_events": true,
+      "prior_table_rows_exact:quarantine_scopes": true,
+      "prior_table_rows_exact:quarantine_scope_slots": true,
+      "prior_table_rows_exact:quarantine_scope_requests": true,
+      "prior_table_rows_exact:quarantine_scope_events": true,
+      "before_backup_read_only_unchanged": true,
+      "first48_cost_review_pinned_unchanged": true,
+      "combined64_cost_estimate_exact": true,
+      "combined64_consumed96slots32unused": true,
+      "public_and_private_replication_receipts_equal": true,
+      "read_only_snapshot_bytes_unchanged": true,
+      "read_only_snapshot_no_wal_or_shm": true
+    }
+  },
+  "usage": {
+    "http_transports": 16,
+    "new_settled_requests": 16,
+    "new_pending_requests": 0,
+    "new_uncertain_requests": 0,
+    "input_tokens": 54682,
+    "output_tokens": 1845,
+    "new_public_rate_estimate_usd": "0.010240230",
+    "prior_settled_count_retained": 296,
+    "prior_settled_public_rate_estimate_usd": "0.196815300",
+    "total_settled_count": 312,
+    "total_settled_public_rate_estimate_usd": "0.207055530",
+    "unchanged_old_unknown_count": 2,
+    "unchanged_old_unknown_hold_usd": "0.0233792",
+    "pending_requests": 0,
+    "runner_limit_usd": "4.50",
+    "team_brief_limit_usd": "5",
+    "local_bound_remaining_usd": "4.269565270",
+    "global_halt_retained": true,
+    "remaining_is_provider_balance_or_new_authorization": false
+  },
+  "baseline_preservation": {
+    "quarantine_before": {
+      "unknown_ids": [
+        "call:00d470ec94177a11f66c6cb3dbbb6c83069dd1385ddd6ac7b1e3df96fa50f7fa",
+        "call:99512367628b4700a171466d2390b6be8ac708d62bb11ab2f354130ec2118817"
+      ],
+      "unknown_fingerprints": [
+        [
+          "call:00d470ec94177a11f66c6cb3dbbb6c83069dd1385ddd6ac7b1e3df96fa50f7fa",
+          "b0fc8ef5f8b8f29fa2df15d9dce1fc5f8d8cbc6fdaf3ae6dfd399c7082b79e54"
+        ],
+        [
+          "call:99512367628b4700a171466d2390b6be8ac708d62bb11ab2f354130ec2118817",
+          "bdcd88c397cd5c1d2c47b8ab50d50ac4f572021067177cdb470cc3f03f150194"
+        ]
+      ],
+      "meta_sha256": "b5e1d7201d3e94ebc3de2245699bab071f8386bf2d2705fa296c6804d16b721d",
+      "authorization_history_sha256": "3194649752ef74aaf10eb20522ceec8cf8751f95a39875e5b859312f3b4b9682",
+      "held_usd": "0.0233792"
+    },
+    "quarantine_after": {
+      "unknown_ids": [
+        "call:00d470ec94177a11f66c6cb3dbbb6c83069dd1385ddd6ac7b1e3df96fa50f7fa",
+        "call:99512367628b4700a171466d2390b6be8ac708d62bb11ab2f354130ec2118817"
+      ],
+      "unknown_fingerprints": [
+        [
+          "call:00d470ec94177a11f66c6cb3dbbb6c83069dd1385ddd6ac7b1e3df96fa50f7fa",
+          "b0fc8ef5f8b8f29fa2df15d9dce1fc5f8d8cbc6fdaf3ae6dfd399c7082b79e54"
+        ],
+        [
+          "call:99512367628b4700a171466d2390b6be8ac708d62bb11ab2f354130ec2118817",
+          "bdcd88c397cd5c1d2c47b8ab50d50ac4f572021067177cdb470cc3f03f150194"
+        ]
+      ],
+      "meta_sha256": "b5e1d7201d3e94ebc3de2245699bab071f8386bf2d2705fa296c6804d16b721d",
+      "authorization_history_sha256": "3194649752ef74aaf10eb20522ceec8cf8751f95a39875e5b859312f3b4b9682",
+      "held_usd": "0.0233792"
+    },
+    "all_original_hold_rows_meta_and_legacy_authorization_history_and_uncertain_audit_fingerprints_equal": true,
+    "original_before_db_sha256": "86c37d37dbd79426907a999cf15c27e227f9e675e7d067e02cf5110bcab6d0f6",
+    "registered_before_counts": {
+      "settled": 296,
+      "uncertain": 2
+    },
+    "all_prior298_rows_full_baseline_snapshot_available": true,
+    "all_prior298_reservation_rows_canonical_bytes_equal": true,
+    "prior_row_sha256_before": "79e47ac27fdaaea08ed6c97051800fd7f3b93c1a04cf4f80ea24867d52939a64",
+    "prior_row_sha256_after": "79e47ac27fdaaea08ed6c97051800fd7f3b93c1a04cf4f80ea24867d52939a64",
+    "all_prior_ledger_table_rows_unchanged": true,
+    "claim_boundary": "Full byte equality in canonical JSON is proven for all 298 pre-replication reservation rows and preservation of every preexisting row in all 14 ledger tables. This stronger claim starts at the before-V2 backup and does not retroactively prove full old-248 byte equality across the first run."
+  },
+  "source_pin_observation": {
+    "recorded_clean_source": true,
+    "recorded_source_unchanged_during_replication": true,
+    "current_matching_pin_count": 101,
+    "current_pin_count": 101,
+    "subsequent_current_pin_mismatches": [],
+    "current_comparison_scope": "Descriptive working-tree observation only. Later replication preparation does not amend the original registered source or results."
+  },
+  "scopes": [
+    {
+      "batch_id": "adversarial-r2-1",
+      "scope_id": "user-core-quality-v2-adversarial-1",
+      "planned_slots": 12,
+      "consumed_slots": 6,
+      "unused_slots": 6,
+      "terminal_status": "closed",
+      "block_reason": "ExperimentClosed",
+      "authorization_sha256": "bd98f826b21369c8ae8549b840cd4941c8c9554a7413d94491a511fa166e2b3e",
+      "scope_cap_usd": "0.06",
+      "public_rate_estimate_usd": "0.004062795",
+      "unused_identities_remain_permanently_claimed": true
+    },
+    {
+      "batch_id": "adversarial-r2-2",
+      "scope_id": "user-core-quality-v2-adversarial-2",
+      "planned_slots": 12,
+      "consumed_slots": 10,
+      "unused_slots": 2,
+      "terminal_status": "closed",
+      "block_reason": "ExperimentClosed",
+      "authorization_sha256": "59d709d4c23f09056f02ee810bd96da7951a0c9dc65af4a14e272910ec611827",
+      "scope_cap_usd": "0.06",
+      "public_rate_estimate_usd": "0.006177435",
+      "unused_identities_remain_permanently_claimed": true
+    }
+  ],
+  "request_costs": [
+    {
+      "request_id": "call:6bd925f8391f27795b12bdee722e4959b33929f22e1c8700413796f2800e26b2",
+      "scope_id": "user-core-quality-v2-adversarial-1",
+      "status": "settled",
+      "input_tokens": 4669,
+      "output_tokens": 75,
+      "public_rate_estimate_usd": "0.000819885",
+      "actual_provider_charge_usd": null,
+      "http_status": 200,
+      "verified_returned_model": "gpt-4o-mini-2024-07-18",
+      "wire_max_output_tokens": 2048
+    },
+    {
+      "request_id": "call:2d01cbcdd6e0a7376ff86dc6a0c7d4e0e2388d31318f0222bf43f316c0c62bb6",
+      "scope_id": "user-core-quality-v2-adversarial-1",
+      "status": "settled",
+      "input_tokens": 4892,
+      "output_tokens": 225,
+      "public_rate_estimate_usd": "0.000955680",
+      "actual_provider_charge_usd": null,
+      "http_status": 200,
+      "verified_returned_model": "gpt-4o-mini-2024-07-18",
+      "wire_max_output_tokens": 2048
+    },
+    {
+      "request_id": "call:80057edbb58ccc4fcd496de73441f99c979b4a53b440964509362993847905d0",
+      "scope_id": "user-core-quality-v2-adversarial-1",
+      "status": "settled",
+      "input_tokens": 3105,
+      "output_tokens": 71,
+      "public_rate_estimate_usd": "0.000559185",
+      "actual_provider_charge_usd": null,
+      "http_status": 200,
+      "verified_returned_model": "gpt-4o-mini-2024-07-18",
+      "wire_max_output_tokens": 2048
+    },
+    {
+      "request_id": "call:e415e438f6aa1b0308f97dea9a96871610f9e17cbe7b3f514c364bbcd447881e",
+      "scope_id": "user-core-quality-v2-adversarial-1",
+      "status": "settled",
+      "input_tokens": 3328,
+      "output_tokens": 168,
+      "public_rate_estimate_usd": "0.000660000",
+      "actual_provider_charge_usd": null,
+      "http_status": 200,
+      "verified_returned_model": "gpt-4o-mini-2024-07-18",
+      "wire_max_output_tokens": 2048
+    },
+    {
+      "request_id": "call:ce3a7305ddb9ad324770e7f7ddd1eeb41827a093ddf168e7c46c8aa403c9aeaa",
+      "scope_id": "user-core-quality-v2-adversarial-1",
+      "status": "settled",
+      "input_tokens": 2575,
+      "output_tokens": 163,
+      "public_rate_estimate_usd": "0.000532455",
+      "actual_provider_charge_usd": null,
+      "http_status": 200,
+      "verified_returned_model": "gpt-4o-mini-2024-07-18",
+      "wire_max_output_tokens": 2048
+    },
+    {
+      "request_id": "call:27252ebfc32a6056efe8ec594f4ddb2bef3e460ca33012b959ba984b76fa2d67",
+      "scope_id": "user-core-quality-v2-adversarial-1",
+      "status": "settled",
+      "input_tokens": 2798,
+      "output_tokens": 112,
+      "public_rate_estimate_usd": "0.000535590",
+      "actual_provider_charge_usd": null,
+      "http_status": 200,
+      "verified_returned_model": "gpt-4o-mini-2024-07-18",
+      "wire_max_output_tokens": 2048
+    },
+    {
+      "request_id": "call:ba636aa91e373771bba11171ee36b3f0b100e57225095e572db0591563d0ece1",
+      "scope_id": "user-core-quality-v2-adversarial-2",
+      "status": "settled",
+      "input_tokens": 4458,
+      "output_tokens": 116,
+      "public_rate_estimate_usd": "0.000812130",
+      "actual_provider_charge_usd": null,
+      "http_status": 200,
+      "verified_returned_model": "gpt-4o-mini-2024-07-18",
+      "wire_max_output_tokens": 2048
+    },
+    {
+      "request_id": "call:b17bc292cf66bf1fe8504249f817bf3fb6ec766e3eb6c47f0bd6c258c0769c3b",
+      "scope_id": "user-core-quality-v2-adversarial-2",
+      "status": "settled",
+      "input_tokens": 4399,
+      "output_tokens": 113,
+      "public_rate_estimate_usd": "0.000800415",
+      "actual_provider_charge_usd": null,
+      "http_status": 200,
+      "verified_returned_model": "gpt-4o-mini-2024-07-18",
+      "wire_max_output_tokens": 2048
+    },
+    {
+      "request_id": "call:849c0dfb3688d9a1c020924844fde4165710ff3583b1adb0c1aa4d61fb1f8e89",
+      "scope_id": "user-core-quality-v2-adversarial-2",
+      "status": "settled",
+      "input_tokens": 4235,
+      "output_tokens": 116,
+      "public_rate_estimate_usd": "0.000775335",
+      "actual_provider_charge_usd": null,
+      "http_status": 200,
+      "verified_returned_model": "gpt-4o-mini-2024-07-18",
+      "wire_max_output_tokens": 2048
+    },
+    {
+      "request_id": "call:7d0698fd77fd5c22933cd8ab56b34df1753bb5b9afe555f3c41e6d9e1b66c066",
+      "scope_id": "user-core-quality-v2-adversarial-2",
+      "status": "settled",
+      "input_tokens": 4176,
+      "output_tokens": 113,
+      "public_rate_estimate_usd": "0.000763620",
+      "actual_provider_charge_usd": null,
+      "http_status": 200,
+      "verified_returned_model": "gpt-4o-mini-2024-07-18",
+      "wire_max_output_tokens": 2048
+    },
+    {
+      "request_id": "call:27b3ba86709f26c50037fe9ac2ee9b6937c76d8964c413402316a342751b5263",
+      "scope_id": "user-core-quality-v2-adversarial-2",
+      "status": "settled",
+      "input_tokens": 3328,
+      "output_tokens": 71,
+      "public_rate_estimate_usd": "0.000595980",
+      "actual_provider_charge_usd": null,
+      "http_status": 200,
+      "verified_returned_model": "gpt-4o-mini-2024-07-18",
+      "wire_max_output_tokens": 2048
+    },
+    {
+      "request_id": "call:1f20693939e206baf15169d03ca57da37a9d448cc936c96ef96dc5d0e27f6014",
+      "scope_id": "user-core-quality-v2-adversarial-2",
+      "status": "settled",
+      "input_tokens": 3105,
+      "output_tokens": 71,
+      "public_rate_estimate_usd": "0.000559185",
+      "actual_provider_charge_usd": null,
+      "http_status": 200,
+      "verified_returned_model": "gpt-4o-mini-2024-07-18",
+      "wire_max_output_tokens": 2048
+    },
+    {
+      "request_id": "call:2c910a214bbf61d2526e8ec2d9af4dabee3f0f0a5d326a9c18ab32ca53d9a418",
+      "scope_id": "user-core-quality-v2-adversarial-2",
+      "status": "settled",
+      "input_tokens": 2546,
+      "output_tokens": 68,
+      "public_rate_estimate_usd": "0.000464970",
+      "actual_provider_charge_usd": null,
+      "http_status": 200,
+      "verified_returned_model": "gpt-4o-mini-2024-07-18",
+      "wire_max_output_tokens": 2048
+    },
+    {
+      "request_id": "call:9dd83e8f37c22a997eefb59204c0134797d64fd8fc61f93bf9d1d7aa7d9a0caf",
+      "scope_id": "user-core-quality-v2-adversarial-2",
+      "status": "settled",
+      "input_tokens": 2481,
+      "output_tokens": 113,
+      "public_rate_estimate_usd": "0.000483945",
+      "actual_provider_charge_usd": null,
+      "http_status": 200,
+      "verified_returned_model": "gpt-4o-mini-2024-07-18",
+      "wire_max_output_tokens": 2048
+    },
+    {
+      "request_id": "call:ca469c7a915133b95bb5c40ec20a254b1f798c2a6815d1145fc9df1899aa94e1",
+      "scope_id": "user-core-quality-v2-adversarial-2",
+      "status": "settled",
+      "input_tokens": 2323,
+      "output_tokens": 134,
+      "public_rate_estimate_usd": "0.000471735",
+      "actual_provider_charge_usd": null,
+      "http_status": 200,
+      "verified_returned_model": "gpt-4o-mini-2024-07-18",
+      "wire_max_output_tokens": 2048
+    },
+    {
+      "request_id": "call:7a12756f898cc618864e7a5c4ed7ca18d2590b59a96fcf4b9ea2436c0876798d",
+      "scope_id": "user-core-quality-v2-adversarial-2",
+      "status": "settled",
+      "input_tokens": 2264,
+      "output_tokens": 116,
+      "public_rate_estimate_usd": "0.000450120",
+      "actual_provider_charge_usd": null,
+      "http_status": 200,
+      "verified_returned_model": "gpt-4o-mini-2024-07-18",
+      "wire_max_output_tokens": 2048
+    }
+  ],
+  "provider_cost_boundary": {
+    "public_pricing_source": "https://api.metisai.ir/api/v1/meta/providers/pricing",
+    "public_pricing_observation_date_utc": "2026-10-14",
+    "public_rates_match_pinned_estimator": true,
+    "actual_invoice_or_charge_verified": false,
+    "actual_new_charge_usd": null,
+    "c5_reconciled": false,
+    "both_old_unknown_outcomes_remain_unreconciled": true,
+    "statement": "Every new transport returned HTTP 200 and a verified supported model; token-derived estimates settle exactly. The current public quote is not an account invoice or evidence resolving either old unknown outcome. Both old holds remain counted against the cap."
+  },
+  "review_operations": {
+    "credential_read": false,
+    "api_calls": 0,
+    "ledger_writes": 0,
+    "git_operations": 0,
+    "model_or_rag_quality_judgment": false,
+    "manual_ui_smoke_claim": false
+  }
+}

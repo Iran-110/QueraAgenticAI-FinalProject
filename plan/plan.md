@@ -4,7 +4,7 @@
 
 ## وضعیت فعلی
 
-- [ ] **C4f — خروجی کامل‌تر مدل و انتخاب منبع؛ ساسان، در حال اجرا.**
+- [x] **C4f — مقایسهٔ محدود مدل و بهبود انتخاب منبع؛ ساسان.**
   [روش ثبت‌شده](../experiments/core_quality_followup/README.md): همان سه dev و
   oracle قبلی؛ دو دور paired سقف ۱۰۲۴/۲۰۴۸، و مقایسهٔ reminder روی شش وضعیت
   سالم/خصمانه. source-gap investigation جدا روی ۱۷ کنترل archived از ۴ پاس
@@ -12,7 +12,15 @@
   [راهنمای اتصال و هزینه](../docs/core-quality-followup.fa.md): مجوز تازهٔ ساسان
   برای finite quarantine-set، با هر دو hold و تمام revocationهای قبلی، halt
   عمومی و سقف $4.50 محفوظ. این reconciliation نیست؛ خطای نامعلوم تازه کل
-  آزمایش را می‌بندد. نتیجهٔ آنلاین، semantic review و CI پیش از تکمیل ثبت می‌شوند.
+  آزمایش را می‌بندد. دو epoch واقعی، ۶۴ call با تخمین $0.041621580 و بدون
+  hold تازه؛ تمام sourceها هنگام اجرا ثابت. مقایسهٔ cap هر دو ۶/۶ بود، برتری
+  ۲۰۴۸ اثبات نشد. در دو تکرار همان challenge، baseline دو بار quote مهاجم
+  را انتخاب کرد و reminder صفر بار؛ در clean، متن مفید button در draft کاربر
+  صفر از دو در برابر دو از دو، با حفظ source برای maintainer در هر دو arm.
+  usefulness انسانی null و نمرهٔ composite تفسیر دستیار است. تمام ۴۸ proposal
+  و ۶۴ prompt بررسی شده؛ پنج first attempt نامعتبر/repair محفوظ‌اند. ۱۰ scope
+  بسته و ۳۲ slot استفاده‌نشده claimed باقی‌اند. C5، RAG واقعی و test نهایی
+  هنوز بازند؛ defaultها ثابت‌اند. CI همان head و review شرط انتشار است.
 
 - [x] **C4e — اندازه‌گیری محدود پایداری و برش خصمانهٔ آفلاین؛ ساسان.**
   انتشار و review در [PR #46](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/46)؛
