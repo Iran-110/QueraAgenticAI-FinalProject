@@ -237,6 +237,28 @@ def _source_block(case: CaseState, hit: EvidenceHit) -> str:
     )
 
 
+def _source_gap_block(request: GroundedRequest) -> str:
+    """Retain current caller declarations as escaped data, not user questions."""
+    gaps = [gap for gap in request.gaps if gap.kind == "source"]
+    if not gaps:
+        return ""
+    declarations = "\n".join(
+        "- "
+        + _display(gap.name)
+        + ": "
+        + _display(gap.description).replace("\n", "\n  ")
+        + "\n  Caller-stated necessity: "
+        + _display(gap.necessity).replace("\n", "\n  ")
+        for gap in gaps
+    )
+    return (
+        "Caller-declared source gaps (not missing user facts):\n"
+        + declarations
+        + "\nFurther documentation retrieval or maintainer investigation is proposed; "
+        "no action is established by this proposal."
+    )
+
+
 def render_grounded_plan(request: GroundedRequest, raw: object) -> AnalysisResult:
     request = validate_grounded_request(request)
     plan = parse_grounded_plan(raw)
@@ -321,6 +343,12 @@ def render_grounded_plan(request: GroundedRequest, raw: object) -> AnalysisResul
         rationale += " Caller-registered question necessity: " + _display(gap.necessity)
     if request.conflict_groups or _prior_conflict(request):
         rationale += " " + conflict
+    source_gaps = _source_gap_block(request)
+    if source_gaps:
+        if plan.decision != "ask":
+            draft += "\n\n" + source_gaps
+        summary += "\n\n" + source_gaps
+        rationale += "\n\n" + source_gaps
     try:
         return AnalysisResult(
             decision=plan.decision,
