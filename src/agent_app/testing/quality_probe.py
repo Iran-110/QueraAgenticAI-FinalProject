@@ -15,7 +15,7 @@ from fastapi.testclient import TestClient
 from agent_app import api
 from agent_app.contracts import GroundedGap, GroundedPlan, ReasoningContext
 from agent_app.evaluation.routes import RouteGraph
-from agent_app.evaluation.runner import CaseRun, Usage, _decide
+from agent_app.evaluation.runner import CaseRun, _decide
 from agent_app.llm.budget import ExperimentRequestSlot
 from agent_app.llm.config import METIS_CHAT_URL, MetisConfig
 from agent_app.llm.grounded import MetisGroundedPlanner
@@ -29,7 +29,6 @@ from agent_app.testing.dev_three_model_probe import (
     INPUT_PROFILES,
     MODEL,
     DevProbeRejected,
-    ScopedUsage,
     SharedTransport,
     contains_secret,
     ledger_observation,
@@ -37,6 +36,11 @@ from agent_app.testing.dev_three_model_probe import (
 )
 from agent_app.testing.fakes import FakeRetriever
 from agent_app.testing.plan_observation import observe_plan_output
+from agent_app.testing.pre_dispatch_usage import (
+    PreDispatchUsage,
+    attest_pre_dispatch_stop,
+    transport_absent,
+)
 from agent_app.testing.provider_observation import ObservedStream, transport_category
 from agent_app.testing.stability_probe import invocation
 from agent_app.testing.stability_probe import slots_for_batch as historical_slots
@@ -169,7 +173,22 @@ class QualityPlanner:
             if not self.counted.ledger.quarantine_scope_status(self.counted.scope_id).active:
                 raise ReasoningStopped("BudgetExceeded", "budget_stopped")
             self.counted.current = request_id_for(context)
-            raw = self.gateway.plan(request, context=context)
+            ledger_absent_before = self.counted.ledger.get(self.counted.current) is None
+            transport_absent_before = transport_absent(self.counted.records, self.counted.current)
+            try:
+                raw = self.gateway.plan(request, context=context)
+            except ReasoningStopped as error:
+                attestation = attest_pre_dispatch_stop(
+                    self.gateway,
+                    self.counted,
+                    context,
+                    error,
+                    ledger_absent_before=ledger_absent_before,
+                    transport_absent_before=transport_absent_before,
+                )
+                if attestation is not None:
+                    record["pre_dispatch_stop"] = attestation
+                raise
             record["output_sha256"] = sha(raw.encode())
             secret = self.gateway.config.api_key.get_secret_value()
             try:
@@ -304,7 +323,7 @@ def run_quality_batch(
             case_run = CaseRun(
                 fixture,
                 adapters,
-                ScopedUsage(ledger),
+                PreDispatchUsage(ledger, attempts, counted.records),
                 mode="live",
                 invocation_id=invocation(protocol, job),
                 route_graph=RouteGraph.from_fixture(fixture.data),
@@ -384,7 +403,7 @@ def run_quality_batch(
         "attempts": attempts,
         "provider_sends": counted.records,
         "actual_sends": sum(item["http_send_started"] for item in counted.records),
-        "accounting": Usage(ledger).measure(
+        "accounting": PreDispatchUsage(ledger, attempts, counted.records).measure(
             [ReasoningContext.model_validate(a["context"]) for a in attempts]
         ),
         "planned_jobs": len(batch["jobs"]),
