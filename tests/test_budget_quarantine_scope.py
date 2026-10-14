@@ -489,3 +489,164 @@ def test_existing_gateway_uses_explicit_new_scope_and_preserves_2048_output_boun
     assert duplicate.value.code == "DuplicateModelRequest"
     assert len(requests) == 1 and requests[0]["max_tokens"] == 2048
     assert ledger.get(registered.request_id).status == "settled" and ledger.snapshot().halted
+
+
+# Additional controls prompted by independent review; original 45 expectations
+# above remain unchanged. These are not another real-model experiment.
+@pytest.mark.parametrize("terminal", ["closed", "revoked"])
+@pytest.mark.parametrize("mutation", ["delete_event", "alter_event"])
+def test_terminal_event_corruption_cannot_reactivate_unused_credit(
+    multiple_holds, terminal, mutation
+):
+    ledger, path, _legacy = multiple_holds
+    authorize(ledger)
+    if terminal == "closed":
+        ledger.close_quarantine_scope(SCOPE)
+    else:
+        ledger.halt()
+    with sqlite3.connect(path) as connection:
+        marker = connection.execute(
+            "SELECT terminal_status,terminal_reason,terminal_fingerprint FROM quarantine_scopes WHERE authorization_id=?",
+            (SCOPE,),
+        ).fetchone()
+        assert marker[0] == terminal and len(marker[2]) == 64
+        if mutation == "delete_event":
+            connection.execute(
+                "DELETE FROM quarantine_scope_events WHERE status IN ('closed','revoked')"
+            )
+        else:
+            connection.execute(
+                "UPDATE quarantine_scope_events SET reason_code='QuarantineChanged' WHERE status IN ('closed','revoked')"
+            )
+    for operation in (
+        lambda: ledger.quarantine_scope_status(SCOPE),
+        lambda: ledger.close_quarantine_scope(SCOPE),
+        lambda: reserve(ledger),
+        lambda: authorize(ledger),
+    ):
+        with pytest.raises(LedgerUnavailable):
+            operation()
+    assert ledger.get(slot().request_id) is None
+    with sqlite3.connect(path) as connection:
+        assert (
+            connection.execute(
+                "SELECT terminal_status,terminal_reason,terminal_fingerprint FROM quarantine_scopes WHERE authorization_id=?",
+                (SCOPE,),
+            ).fetchone()
+            == marker
+        )
+
+
+@pytest.mark.parametrize("field", ["terminal_status", "terminal_reason", "terminal_fingerprint"])
+def test_terminal_marker_is_one_way_and_cannot_be_cleared_or_altered(multiple_holds, field):
+    ledger, path, _legacy = multiple_holds
+    authorize(ledger)
+    closed = ledger.close_quarantine_scope(SCOPE)
+    for value in (None, "synthetic-altered-marker"):
+        with sqlite3.connect(path) as connection:
+            with pytest.raises(sqlite3.IntegrityError):
+                connection.execute(
+                    f"UPDATE quarantine_scopes SET {field}=? WHERE authorization_id=?",
+                    (value, SCOPE),
+                )
+    assert ledger.quarantine_scope_status(SCOPE) == closed
+    with pytest.raises(BudgetDenied):
+        reserve(ledger)
+
+
+@pytest.mark.parametrize("replacement", ["absent", "ineffective"])
+def test_removed_or_replaced_guard_and_reset_terminal_markers_fail_closed(
+    multiple_holds, replacement
+):
+    ledger, path, _legacy = multiple_holds
+    authorize(ledger)
+    ledger.close_quarantine_scope(SCOPE)
+    with sqlite3.connect(path) as connection:
+        connection.execute("DROP TRIGGER quarantine_scope_terminal_immutable")
+        if replacement == "ineffective":
+            connection.execute(
+                "CREATE TRIGGER quarantine_scope_terminal_immutable BEFORE UPDATE OF terminal_status ON quarantine_scopes BEGIN SELECT 1; END"
+            )
+        connection.execute("DELETE FROM quarantine_scope_events WHERE status='closed'")
+        connection.execute(
+            "UPDATE quarantine_scopes SET terminal_status=NULL,terminal_reason=NULL,terminal_fingerprint=NULL"
+        )
+    with pytest.raises(LedgerUnavailable):
+        ledger.quarantine_scope_status(SCOPE)
+    with pytest.raises(LedgerUnavailable):
+        reserve(ledger)
+    assert ledger.get(slot().request_id) is None
+
+
+@pytest.mark.parametrize("event", ["reserved", "uncertain"])
+def test_quarantined_reservation_audit_changes_invalidate_frozen_observation(multiple_holds, event):
+    ledger, path, _legacy = multiple_holds
+    observed = ledger.quarantine_observation()
+    authorize(ledger)
+    with sqlite3.connect(path) as connection:
+        connection.execute(
+            "UPDATE ledger_events SET recorded_at='synthetic-altered-history' WHERE request_id='synthetic-original-mismatch' AND status=?",
+            (event,),
+        )
+    after = ledger.quarantine_observation()
+    assert after.unknown_ids == observed.unknown_ids
+    assert after.unknown_fingerprints == observed.unknown_fingerprints
+    assert after.authorization_history_sha256 != observed.authorization_history_sha256
+    assert ledger.quarantine_scope_status(SCOPE).block_reason == "AuthorizationHistoryChanged"
+    with pytest.raises(BudgetDenied):
+        reserve(ledger)
+    with pytest.raises(BudgetDenied):
+        authorize(
+            ledger,
+            authorization_id="synthetic-another-scope",
+            protocol_sha256="e" * 64,
+            registered=(slot(2),),
+            observation=observed,
+        )
+
+
+def test_terminal_marker_write_failure_rolls_back_terminal_event_atomically(multiple_holds):
+    ledger, path, _legacy = multiple_holds
+    original = authorize(ledger)
+    with sqlite3.connect(path) as connection:
+        connection.execute(
+            "CREATE TRIGGER synthetic_marker_write_failure BEFORE UPDATE OF terminal_status ON quarantine_scopes BEGIN SELECT RAISE(ABORT,'synthetic-failure'); END"
+        )
+    with pytest.raises(LedgerUnavailable):
+        ledger.close_quarantine_scope(SCOPE)
+    assert ledger.quarantine_scope_status(SCOPE) == original
+    with sqlite3.connect(path) as connection:
+        assert connection.execute(
+            "SELECT status FROM quarantine_scope_events ORDER BY event_id"
+        ).fetchall() == [("authorized",)]
+        assert connection.execute(
+            "SELECT terminal_status,terminal_reason,terminal_fingerprint FROM quarantine_scopes"
+        ).fetchone() == (None, None, None)
+
+
+def test_terminal_registration_cannot_be_deleted_after_removing_child_audits(multiple_holds):
+    ledger, path, _legacy = multiple_holds
+    authorize(ledger)
+    closed = ledger.close_quarantine_scope(SCOPE)
+    with pytest.raises(sqlite3.IntegrityError):
+        with sqlite3.connect(path) as connection:
+            connection.execute("DELETE FROM quarantine_scope_events")
+            connection.execute("DELETE FROM quarantine_scope_slots")
+            connection.execute("DELETE FROM quarantine_scopes")
+    assert ledger.quarantine_scope_status(SCOPE) == closed
+    with pytest.raises(BudgetDenied):
+        reserve(ledger)
+
+
+def test_missing_registration_guard_cannot_recreate_deleted_closed_credit(multiple_holds):
+    ledger, path, _legacy = multiple_holds
+    authorize(ledger)
+    ledger.close_quarantine_scope(SCOPE)
+    with sqlite3.connect(path) as connection:
+        connection.execute("DROP TRIGGER quarantine_scope_registration_undeletable")
+        connection.execute("DELETE FROM quarantine_scope_events")
+        connection.execute("DELETE FROM quarantine_scope_slots")
+        connection.execute("DELETE FROM quarantine_scopes")
+    with pytest.raises(LedgerUnavailable):
+        authorize(ledger)
+    assert ledger.get(slot().request_id) is None
