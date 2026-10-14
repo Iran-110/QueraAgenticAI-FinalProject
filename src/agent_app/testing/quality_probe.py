@@ -230,6 +230,8 @@ def run_quality_batch(
         raise DevProbeRejected()
     input_profiles = {}
     for job in batch["jobs"]:
+        if type(job.get("repair_repeated_queries", False)) is not bool:
+            raise DevProbeRejected()
         reserve = job.get("input_token_reserve", INPUT_PROFILES[job["case_id"]])
         if (
             type(reserve) is not int
@@ -330,8 +332,13 @@ def run_quality_batch(
             )
             try:
 
-                def scoped_engine(*args, **kwargs):
-                    return SupportEngine(*args, **kwargs, evidence_scope="exact_user_version")
+                def scoped_engine(*args, job=job, **kwargs):
+                    return SupportEngine(
+                        *args,
+                        **kwargs,
+                        evidence_scope="exact_user_version",
+                        repair_repeated_queries=job.get("repair_repeated_queries", False),
+                    )
 
                 engine_factory = (
                     scoped_engine
