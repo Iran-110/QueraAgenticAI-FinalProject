@@ -18,6 +18,12 @@
   صفرhold تازه؛۱۲۲۰ کنترل هزینه/پرووننس، تمام۳۶۴reservation قبلی و۱۴جدول محفوظ.
   scopeها بسته و۲۰slot مصرف‌نشدهclaimed؛ halt/C5 همچنانباز. تحویل تست/اصلاح
   محدود است؛ C4h کلی،R4 وevaluation نهایی بسته نشده‌اند.
+  انتشار در [PR #51](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/51)
+  با review مستقل و چهار CI موفق روی head`d1be786`؛ merge رویmain`17426b1`.
+  [verification](../experiments/core_repeat_repair_v1/verification-v1.json):
+  ۳۷۴۰pytest، Ruff و سه demo پاس؛ پذیرش آفلاین HTTP/SQLite با۴۵۷/۴۵۷
+  شاملrestart/retry. آزمایش مدل این تحویل از TestClient/DummyTracker استفاده
+  کرد؛ شاهد تازهٔ مرورگر/SQLite یا بهبود پاسخ فنی محسوب نمی‌شود.
 
 - [ ] **C4h3 — انتخاب source در حد renderer؛ ساسان، قدم بعد.**
   failure ثبت‌شدهٔEnum با۴source را مبنا بگیرد؛ قبل از تغییر، روش محدود و
@@ -33,7 +39,20 @@
  ۹۱ تست موجود پاس ولی regression را پوشش نمی‌دهند. Hassan branch تغییر نکرد؛
   native receipt، کنترل نسخهٔunknown/قدیمی/correction وrelevance لازم است.
   کار core مستقل از این اصلاح ادامه دارد. محمدحسن طبق پیام۱۴اکتبر ساسان،۱۵اکتبر برمی‌گردد؛
-  human review وsplit برای او می‌ماند؛ بهنام smoke دستی UI/SQLite را ادامه دهد.
+  human review وsplit برای او می‌ماند.
+
+- [ ] **T4 — دریافت و review گزارش تازهٔ بهنام؛ انتشار receipt و بخش‌های باقی‌مانده با بهنام.**
+  [گزارش روی commit ثابت`8420a3b`](https://github.com/Iran-110/QueraAgenticAI-FinalProject/blob/8420a3beed37e6bc79504487cd44724a40a30d79/docs/two-case-ui-sqlite-smoke-2026-10-14.md)
+  اکنون در [PR #52](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/52)
+  بازبینی شد؛ branch او تغییر نکرد. اجرای دستی
+  Windows، آفلاین/scripted و رویsource`f8b3106` بوده، نهmain`17426b1`.
+  correction، سؤال پس از correction، stale409، Edit/Reject، جداسازی دو case،
+  restart backend و یکaction پس از replay تأییدشده را گزارش می‌کند.
+  این‌ها فعلاً گزارش اپراتورند؛ JSON و screenshot در این PR ضمیمه نیستند.
+  retry ازAPI بوده؛ در این گزارش شاهدی برای recovery مرورگر/session و
+  lost-ACK از خودUI ثبت نشده. receipt پاک‌سازی‌شده با pin لازم است؛ token/DB منتشر نشود.
+  tool failure، مصرف outcome در تصمیم بعد و handoff ارزیابی همچنان بازند؛
+  T4 تیک نمی‌خورد و این گزارش، کیفیت مدل/RAG را نشان نمی‌دهد.
 
 تحویل C4h1/E2p/E2q در [PR #49](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/49)
 با head`344b260`، review مستقل وچهار CI موفق، رویmain با`f78c6e9` منتشر شد.
@@ -589,6 +608,7 @@ handoffها و متن released محفوظ‌اند. ترکیب اصلاحات ب
 - [x] **T3 — ماژول مستقل SQLite: approval و اجرای اقدام محلی.** reviewer معتبر و همان case/revision/proposal/hash کنترل می‌شوند؛ reject اقدامی ندارد، edit پیشنهاد و approval تازه می‌خواهد، correction مجوز قبلی را باطل می‌کند. retry/restart همان review نتیجهٔ قبلی و یک action محلی می‌دهند؛ rollback و concurrent review تست شده‌اند. authentication مرز HTTP در C2d پیاده است؛ credential و envelope client/UI در U3a وصل و تست شدند؛ review معنایی مجوز اجرا نیست.
 - [ ] **T4 — شواهد عملیاتی pilot و evaluation.** برای retry/restart/stale/reject/edit/خرابی ابزار receipt بدهد، نتیجهٔ ابزار در وضعیت و تصمیم بعدی مصرف شود و دستور reset واقعی tracker را مستند کند. تست pytest این بخش و log امن با خودش؛ محمدحسن این شواهد را در گزارش evaluation استفاده کند.
   - شواهد محلی Windows در ۲۰۲۶-۱۰-۱۲: ۲۷ تست tracker/failure، ۷۷ تست SQLite/API/crash، ۳۳ تست HTTP runtime و پذیرش HTTP/SQLite با ۴۵۷/۴۵۷ check (restart=true) پاس شدند. [گزارش و دستور reset توسعه](../docs/tracker-t4-operational-evidence.md)، [اصلاح harness ویندوز در PR #31](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/31). binding آفلاین UI/auth/retry در [PR #32](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/32) پیاده و تست شده؛ وضعیت انتشار همان PR مرجع است. تنظیم credential محصول، smoke مرورگر و مصرف outcome در evaluation بازند؛ T4 تیک نمی‌خورد.
+  - گزارش دستی تازه روی branch`test/mohammadbehnam-latest-two-case-smoke`، commit`8420a3b`، در وضعیت فعلی بالای این فایل ثبت شد: اجرای تاریخی روی`f8b3106` با API retry؛ انتشار receipt، browser/session recovery، lost-ACK از UI و باقی شواهد T4 هنوز بازند. از این گزارش تکرار تمام smokeها لازم فرض نمی‌شود؛ ابتدا receipt همان اجرای ثبت‌شده منتشر و فقط شکاف‌های باقی‌مانده تکمیل شوند.
 
 شاهد T1–T3: [source ماژول](../src/agent_app/tracker/sqlite_tracker.py)، [۱۶ تست tracker](../tests/test_sqlite_tracker.py)، [pilot آفلاین](../scripts/tracker_pilot.py) و [قرارداد و دستور اجرا](../docs/sqlite-tracker.md). [PR #20](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/20) با `6628758` به branch بهنام و سپس [PR #19](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/19) با `464e55e` به main merge شدند؛ suite branch tracker با ۱۶۹۰ تست و CI انتشار main پاس‌اند. پذیرش مستقل اولیه U3/T4 را نمی‌بست؛ اکنون HTTP/P3 با C2d پذیرفته شد و binding UI/evaluation باقی است. [گزارش بازبینی](../docs/team-integration-review-2026-10-11.fa.md).
 
