@@ -1,0 +1,2058 @@
+{
+  "schema_version": 1,
+  "review_id": "core-resource-semantic-review-v1",
+  "reviewed_at_utc": "2026-10-14T18:23:24.142446+00:00",
+  "reviewer_kind": "assistant_trace_review",
+  "reviewer_implementation_overlap": "Reviewer authored optional resource guidance. Trace reconstruction and semantic judgment are separate from model/core outputs, but reviewer is not independent of treatment implementation.",
+  "human_reviewed": false,
+  "human_usefulness": null,
+  "held_out_test": false,
+  "general_quality_or_rag_accuracy_claim": false,
+  "fixed_evidence_gold_used_to_score_native_answerability": false,
+  "receipt_sha256": "9658e30a92246b1bdc514aaa944447ad056a81f19fd5de15f103a55fd780c372",
+  "source_commit": "f71ec1631d4830dfd0eb5cec0139f6abad58733e",
+  "method_sha256": "8fef8c936ecb11d958dedbc1f41f0dffd9f5eaf9f36bad4869c7ed30f7051d60",
+  "current_renderer_contracts_guidance_handoff_match_captured_source_hashes": true,
+  "attempts": [
+    {
+      "job_id": "r1:dev-case-a:resource_guidance_off",
+      "turn_id": "initial",
+      "context": {
+        "run_id": "1ca86af9-c7d5-5750-a689-8fa1e176b1b0",
+        "case_id": "dev-case-a",
+        "case_revision": 1,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": null
+      },
+      "active_user_version": null,
+      "http_send_started": true,
+      "wire_hash_reconstructed": true,
+      "pre_post_scope_matches": true,
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "ask",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "string",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 1,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "original_error_code": null,
+      "bytes_plus_1024_off": 16164,
+      "bytes_plus_1024_on": 17278,
+      "input_limit": 32768,
+      "consumed_chunks": [
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295"
+      ],
+      "decision": "ask",
+      "semantic_note": "Canonical necessary USER question for an unanswered user fact; no source-gap question.",
+      "rendered_field_characters": {
+        "user_draft": 65,
+        "maintainer_summary": 5646,
+        "rationale": 326
+      },
+      "render_fits": true
+    },
+    {
+      "job_id": "r1:dev-case-a:resource_guidance_off",
+      "turn_id": "version",
+      "context": {
+        "run_id": "36ad98b2-cc48-5193-b094-f08050da61c0",
+        "case_id": "dev-case-a",
+        "case_revision": 2,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": null
+      },
+      "active_user_version": "1.50.0",
+      "http_send_started": true,
+      "wire_hash_reconstructed": true,
+      "pre_post_scope_matches": true,
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "ask",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "string",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "original_error_code": null,
+      "bytes_plus_1024_off": 31040,
+      "bytes_plus_1024_on": 32135,
+      "input_limit": 32768,
+      "consumed_chunks": [
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+        "doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+        "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3"
+      ],
+      "decision": "ask",
+      "semantic_note": "Canonical necessary USER question for an unanswered user fact; no source-gap question.",
+      "rendered_field_characters": {
+        "user_draft": 108,
+        "maintainer_summary": 965,
+        "rationale": 366
+      },
+      "render_fits": true
+    },
+    {
+      "job_id": "r1:dev-case-a:resource_guidance_on",
+      "turn_id": "initial",
+      "context": {
+        "run_id": "40819117-a68b-5bc1-bb79-85f81e0728e7",
+        "case_id": "dev-case-a",
+        "case_revision": 1,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": null
+      },
+      "active_user_version": null,
+      "http_send_started": true,
+      "wire_hash_reconstructed": true,
+      "pre_post_scope_matches": true,
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "ask",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "string",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "original_error_code": null,
+      "bytes_plus_1024_off": 16164,
+      "bytes_plus_1024_on": 17278,
+      "input_limit": 32768,
+      "consumed_chunks": [
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295"
+      ],
+      "decision": "ask",
+      "semantic_note": "Canonical necessary USER question for an unanswered user fact; no source-gap question.",
+      "rendered_field_characters": {
+        "user_draft": 65,
+        "maintainer_summary": 956,
+        "rationale": 326
+      },
+      "render_fits": true
+    },
+    {
+      "job_id": "r1:dev-case-a:resource_guidance_on",
+      "turn_id": "version",
+      "context": {
+        "run_id": "2f0c3cd2-6f3f-50ce-b298-abb6b4951861",
+        "case_id": "dev-case-a",
+        "case_revision": 2,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": null
+      },
+      "active_user_version": "1.50.0",
+      "http_send_started": true,
+      "wire_hash_reconstructed": true,
+      "pre_post_scope_matches": true,
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "ask",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "string",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "original_error_code": null,
+      "bytes_plus_1024_off": 31040,
+      "bytes_plus_1024_on": 32135,
+      "input_limit": 32768,
+      "consumed_chunks": [
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+        "doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+        "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3"
+      ],
+      "decision": "ask",
+      "semantic_note": "Canonical necessary USER question for an unanswered user fact; no source-gap question.",
+      "rendered_field_characters": {
+        "user_draft": 108,
+        "maintainer_summary": 965,
+        "rationale": 366
+      },
+      "render_fits": true
+    },
+    {
+      "job_id": "r1:dev-case-b:resource_guidance_on",
+      "turn_id": "initial",
+      "context": {
+        "run_id": "75720553-6d58-53f1-8288-3d92e56cb689",
+        "case_id": "dev-case-b",
+        "case_revision": 1,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": null
+      },
+      "active_user_version": null,
+      "http_send_started": true,
+      "wire_hash_reconstructed": true,
+      "pre_post_scope_matches": true,
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "ask",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "string",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "original_error_code": null,
+      "bytes_plus_1024_off": 27283,
+      "bytes_plus_1024_on": 28330,
+      "input_limit": 32768,
+      "consumed_chunks": [
+        "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+        "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295"
+      ],
+      "decision": "ask",
+      "semantic_note": "Canonical necessary USER question for an unanswered user fact; no source-gap question.",
+      "rendered_field_characters": {
+        "user_draft": 65,
+        "maintainer_summary": 514,
+        "rationale": 326
+      },
+      "render_fits": true
+    },
+    {
+      "job_id": "r1:dev-case-b:resource_guidance_on",
+      "turn_id": "version",
+      "context": {
+        "run_id": "6d41caf2-0a0e-511c-8543-f41390b4c076",
+        "case_id": "dev-case-b",
+        "case_revision": 2,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": null
+      },
+      "active_user_version": "1.39.0",
+      "http_send_started": true,
+      "wire_hash_reconstructed": true,
+      "pre_post_scope_matches": true,
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "retrieve_more",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "null",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 1,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "original_error_code": null,
+      "bytes_plus_1024_off": 27499,
+      "bytes_plus_1024_on": 28509,
+      "input_limit": 32768,
+      "consumed_chunks": [
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+        "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+        "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+        "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f"
+      ],
+      "decision": "retrieve_more",
+      "semantic_note": "Plan is syntactically valid but repeated action is infeasible; engine stops before another search/model.",
+      "queries": [
+        "streamlit_version=1.39.0; requested_apis=st.button or st.warning; requested_icon_format=A custom company-logo image rather than an emoji or Material Symbol | 1.39.0 | topic: st.button st.warning st.image I want to use a custom company logo image as an icon such on or Can the parameter accept"
+      ],
+      "queries_repeat_current": true
+    },
+    {
+      "job_id": "r1:dev-case-b:resource_guidance_off",
+      "turn_id": "initial",
+      "context": {
+        "run_id": "a713de5f-4032-553f-a3ea-909c9c77e3e4",
+        "case_id": "dev-case-b",
+        "case_revision": 1,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": null
+      },
+      "active_user_version": null,
+      "http_send_started": true,
+      "wire_hash_reconstructed": true,
+      "pre_post_scope_matches": true,
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "ask",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "string",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "original_error_code": null,
+      "bytes_plus_1024_off": 27283,
+      "bytes_plus_1024_on": 28330,
+      "input_limit": 32768,
+      "consumed_chunks": [
+        "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+        "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295"
+      ],
+      "decision": "ask",
+      "semantic_note": "Canonical necessary USER question for an unanswered user fact; no source-gap question.",
+      "rendered_field_characters": {
+        "user_draft": 65,
+        "maintainer_summary": 514,
+        "rationale": 326
+      },
+      "render_fits": true
+    },
+    {
+      "job_id": "r1:dev-case-b:resource_guidance_off",
+      "turn_id": "version",
+      "context": {
+        "run_id": "419cf691-9710-5dfd-a116-fca6be81499f",
+        "case_id": "dev-case-b",
+        "case_revision": 2,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": null
+      },
+      "active_user_version": "1.39.0",
+      "http_send_started": true,
+      "wire_hash_reconstructed": true,
+      "pre_post_scope_matches": true,
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "retrieve_more",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "null",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 1,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "original_error_code": null,
+      "bytes_plus_1024_off": 27499,
+      "bytes_plus_1024_on": 28509,
+      "input_limit": 32768,
+      "consumed_chunks": [
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+        "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+        "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+        "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f"
+      ],
+      "decision": "retrieve_more",
+      "semantic_note": "Plan is syntactically valid but repeated action is infeasible; engine stops before another search/model.",
+      "queries": [
+        "streamlit_version=1.39.0; requested_apis=st.button or st.warning; requested_icon_format=A custom company-logo image rather than an emoji or Material Symbol | 1.39.0 | topic: st.button st.warning st.image I want to use a custom company logo image as an icon such on or Can the parameter accept"
+      ],
+      "queries_repeat_current": true
+    },
+    {
+      "job_id": "r1:dev-case-c:resource_guidance_off",
+      "turn_id": "initial",
+      "context": {
+        "run_id": "96cedf33-24b5-56ec-bbdf-113ef5ddec0a",
+        "case_id": "dev-case-c",
+        "case_revision": 1,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": null
+      },
+      "active_user_version": "1.31.0",
+      "http_send_started": true,
+      "wire_hash_reconstructed": true,
+      "pre_post_scope_matches": true,
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "retrieve_more",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "null",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 1,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "original_error_code": null,
+      "bytes_plus_1024_off": 25271,
+      "bytes_plus_1024_on": 26269,
+      "input_limit": 32768,
+      "consumed_chunks": [
+        "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+        "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f"
+      ],
+      "decision": "retrieve_more",
+      "semantic_note": "Normalized query is novel and runs within limits; generic retrieved documentation does not establish Enum cause/fix or relevance gain.",
+      "queries": [
+        "streamlit_version=1.31.0; python_version=3.11.6; operating_system=macOS Sonoma 14.3; browser=Chrome; reported_observation=Enum equality is False, while enum .value equality is True | An Enum stored in st.session_state compares False to Color.RED, while comparing their .value values returns True."
+      ],
+      "queries_repeat_current": false
+    },
+    {
+      "job_id": "r1:dev-case-c:resource_guidance_off",
+      "turn_id": "initial",
+      "context": {
+        "run_id": "96cedf33-24b5-56ec-bbdf-113ef5ddec0a",
+        "case_id": "dev-case-c",
+        "case_revision": 1,
+        "attempt_index": 2,
+        "output_feedback": null,
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 0,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": null
+      },
+      "active_user_version": "1.31.0",
+      "http_send_started": true,
+      "wire_hash_reconstructed": true,
+      "pre_post_scope_matches": true,
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "answer",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "null",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 2,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "original_error_code": null,
+      "bytes_plus_1024_off": 19979,
+      "bytes_plus_1024_on": 20971,
+      "input_limit": 32768,
+      "consumed_chunks": [
+        "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9"
+      ],
+      "decision": "answer",
+      "semantic_note": "Explicitly qualified documentation/background or investigation; no exact-app applicability, diagnosed cause/fix, executed action or resolution.",
+      "rendered_field_characters": {
+        "user_draft": 12417,
+        "maintainer_summary": 13483,
+        "rationale": 1121
+      },
+      "render_fits": true
+    },
+    {
+      "job_id": "r1:dev-case-c:resource_guidance_off",
+      "turn_id": "correction",
+      "context": {
+        "run_id": "3a97f86a-5977-541b-964c-eef5514273e9",
+        "case_id": "dev-case-c",
+        "case_revision": 2,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": null
+      },
+      "active_user_version": "1.31.1",
+      "http_send_started": true,
+      "wire_hash_reconstructed": true,
+      "pre_post_scope_matches": true,
+      "schema_observation": null,
+      "original_error_code": "ProviderResponseInvalid",
+      "bytes_plus_1024_off": 27747,
+      "bytes_plus_1024_on": 28751,
+      "input_limit": 32768,
+      "consumed_chunks": [
+        "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+        "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac"
+      ],
+      "decision": null,
+      "semantic_note": "Existing1024output limit returns finish=length; transport settles then ProviderResponseInvalid terminates. No valid plan or fresh correction response.",
+      "provider_observation": {
+        "request_id": "call:664a44543441fe4aac331036b2e26a180a4cec15e6f1668ed9225910b1360e83",
+        "http_send_started": true,
+        "verified_returned_model": "gpt-4o-mini-2024-07-18",
+        "wire_messages_sha256": "033048ee8aeb6c042061ffb387bd9d4bffbb27b63bc85c967a44868ee17026ef",
+        "wire_max_output_tokens": 1024,
+        "http_status": 200,
+        "envelope_shape": "object",
+        "choice_count": 1,
+        "finish_reason": "length",
+        "assistant_role": true,
+        "content_utf8_bytes": 4062,
+        "has_tool_calls": false,
+        "has_function_call": false,
+        "has_refusal": false
+      }
+    },
+    {
+      "job_id": "r1:dev-case-c:resource_guidance_on",
+      "turn_id": "initial",
+      "context": {
+        "run_id": "e4caea7c-193e-51f0-930a-6fcf7c9033a0",
+        "case_id": "dev-case-c",
+        "case_revision": 1,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": null
+      },
+      "active_user_version": "1.31.0",
+      "http_send_started": true,
+      "wire_hash_reconstructed": true,
+      "pre_post_scope_matches": true,
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "retrieve_more",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "null",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 1,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "original_error_code": null,
+      "bytes_plus_1024_off": 25271,
+      "bytes_plus_1024_on": 26269,
+      "input_limit": 32768,
+      "consumed_chunks": [
+        "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+        "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f"
+      ],
+      "decision": "retrieve_more",
+      "semantic_note": "Normalized query is novel and runs within limits; generic retrieved documentation does not establish Enum cause/fix or relevance gain.",
+      "queries": [
+        "Enum comparison behavior in Streamlit when stored in session state"
+      ],
+      "queries_repeat_current": false
+    },
+    {
+      "job_id": "r1:dev-case-c:resource_guidance_on",
+      "turn_id": "initial",
+      "context": {
+        "run_id": "e4caea7c-193e-51f0-930a-6fcf7c9033a0",
+        "case_id": "dev-case-c",
+        "case_revision": 1,
+        "attempt_index": 2,
+        "output_feedback": null,
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 0,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": null
+      },
+      "active_user_version": "1.31.0",
+      "http_send_started": true,
+      "wire_hash_reconstructed": true,
+      "pre_post_scope_matches": true,
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "escalate",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "null",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "original_error_code": null,
+      "bytes_plus_1024_off": 30962,
+      "bytes_plus_1024_on": 31971,
+      "input_limit": 32768,
+      "consumed_chunks": [
+        "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+        "doc:pinned:d5d7c652ec0d9f11786438a3:12000:12566:9ae7ff24489a7d3c",
+        "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9"
+      ],
+      "decision": "escalate",
+      "semantic_note": "Explicitly qualified documentation/background or investigation; no exact-app applicability, diagnosed cause/fix, executed action or resolution.",
+      "rendered_field_characters": {
+        "user_draft": 2864,
+        "maintainer_summary": 3806,
+        "rationale": 1121
+      },
+      "render_fits": true
+    },
+    {
+      "job_id": "r1:dev-case-c:resource_guidance_on",
+      "turn_id": "correction",
+      "context": {
+        "run_id": "b2129f54-958e-5d61-a31b-7bb13f973f48",
+        "case_id": "dev-case-c",
+        "case_revision": 2,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": null
+      },
+      "active_user_version": "1.31.1",
+      "http_send_started": true,
+      "wire_hash_reconstructed": true,
+      "pre_post_scope_matches": true,
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "retrieve_more",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "null",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 2,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "original_error_code": null,
+      "bytes_plus_1024_off": 27747,
+      "bytes_plus_1024_on": 28751,
+      "input_limit": 32768,
+      "consumed_chunks": [
+        "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+        "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac"
+      ],
+      "decision": "retrieve_more",
+      "semantic_note": "Normalized query is novel and runs within limits; generic retrieved documentation does not establish Enum cause/fix or relevance gain.",
+      "queries": [
+        "st.session_state Enum comparison",
+        "st.session_state documentation for version 1.31.1"
+      ],
+      "queries_repeat_current": false
+    },
+    {
+      "job_id": "r1:dev-case-c:resource_guidance_on",
+      "turn_id": "correction",
+      "context": {
+        "run_id": "b2129f54-958e-5d61-a31b-7bb13f973f48",
+        "case_id": "dev-case-c",
+        "case_revision": 2,
+        "attempt_index": 2,
+        "output_feedback": null,
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 0,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": null
+      },
+      "active_user_version": "1.31.1",
+      "http_send_started": true,
+      "wire_hash_reconstructed": true,
+      "pre_post_scope_matches": true,
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": false,
+        "diagnostic": "GroundedPlanSchemaInvalid",
+        "json_shape": "object",
+        "decision": "escalate",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "null",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 1,
+        "sources_count": 0,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 1,
+        "validation_errors": [
+          {
+            "field": "unrecognized_field",
+            "code": "extra_forbidden",
+            "count": 1
+          }
+        ],
+        "unreported_error_count": 0
+      },
+      "original_error_code": null,
+      "bytes_plus_1024_off": 29837,
+      "bytes_plus_1024_on": 30847,
+      "input_limit": 32768,
+      "consumed_chunks": [
+        "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+        "doc:pinned:ed6c3c87122e53b9ff5621db:0:1819:3f3a7959730090f6",
+        "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f"
+      ],
+      "decision": null,
+      "semantic_note": "Invalid output retained by fingerprint and safe schema diagnostics. Full invalid raw text is unavailable in this receipt and is not reconstructed as delivered content."
+    },
+    {
+      "job_id": "r2:dev-case-c:resource_guidance_on",
+      "turn_id": "initial",
+      "context": {
+        "run_id": "4f7042f6-72ac-580c-b922-233e31c9c4a1",
+        "case_id": "dev-case-c",
+        "case_revision": 1,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": null
+      },
+      "active_user_version": "1.31.0",
+      "http_send_started": true,
+      "wire_hash_reconstructed": true,
+      "pre_post_scope_matches": true,
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "retrieve_more",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "null",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 2,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "original_error_code": null,
+      "bytes_plus_1024_off": 25271,
+      "bytes_plus_1024_on": 26269,
+      "input_limit": 32768,
+      "consumed_chunks": [
+        "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+        "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f"
+      ],
+      "decision": "retrieve_more",
+      "semantic_note": "Normalized query is novel and runs within limits; generic retrieved documentation does not establish Enum cause/fix or relevance gain.",
+      "queries": [
+        "enum comparison in streamlit with session state",
+        "streamlit version 1.31.0 enum behavior"
+      ],
+      "queries_repeat_current": false
+    },
+    {
+      "job_id": "r2:dev-case-c:resource_guidance_on",
+      "turn_id": "initial",
+      "context": {
+        "run_id": "4f7042f6-72ac-580c-b922-233e31c9c4a1",
+        "case_id": "dev-case-c",
+        "case_revision": 1,
+        "attempt_index": 2,
+        "output_feedback": null,
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 0,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": null
+      },
+      "active_user_version": "1.31.0",
+      "http_send_started": true,
+      "wire_hash_reconstructed": true,
+      "pre_post_scope_matches": true,
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "answer",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "null",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 3,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "original_error_code": null,
+      "bytes_plus_1024_off": 30987,
+      "bytes_plus_1024_on": 31996,
+      "input_limit": 32768,
+      "consumed_chunks": [
+        "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+        "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+        "doc:pinned:d5d7c652ec0d9f11786438a3:12000:12566:9ae7ff24489a7d3c",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295"
+      ],
+      "decision": "answer",
+      "semantic_note": "Explicitly qualified documentation/background or investigation; no exact-app applicability, diagnosed cause/fix, executed action or resolution.",
+      "rendered_field_characters": {
+        "user_draft": 13179,
+        "maintainer_summary": 14245,
+        "rationale": 1121
+      },
+      "render_fits": true
+    },
+    {
+      "job_id": "r2:dev-case-c:resource_guidance_on",
+      "turn_id": "correction",
+      "context": {
+        "run_id": "2b810c1d-fed6-5682-8a7e-2fa7b3d8e85c",
+        "case_id": "dev-case-c",
+        "case_revision": 2,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": null
+      },
+      "active_user_version": "1.31.1",
+      "http_send_started": true,
+      "wire_hash_reconstructed": true,
+      "pre_post_scope_matches": true,
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "retrieve_more",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "null",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 1,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "original_error_code": null,
+      "bytes_plus_1024_off": 27747,
+      "bytes_plus_1024_on": 28751,
+      "input_limit": 32768,
+      "consumed_chunks": [
+        "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+        "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac"
+      ],
+      "decision": "retrieve_more",
+      "semantic_note": "Normalized query is novel and runs within limits; generic retrieved documentation does not establish Enum cause/fix or relevance gain.",
+      "queries": [
+        "st.session_state comparison behavior with Enum type and Streamlit version 1.31.1"
+      ],
+      "queries_repeat_current": false
+    },
+    {
+      "job_id": "r2:dev-case-c:resource_guidance_on",
+      "turn_id": "correction",
+      "context": {
+        "run_id": "2b810c1d-fed6-5682-8a7e-2fa7b3d8e85c",
+        "case_id": "dev-case-c",
+        "case_revision": 2,
+        "attempt_index": 2,
+        "output_feedback": null,
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 0,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": null
+      },
+      "active_user_version": "1.31.1",
+      "http_send_started": false,
+      "wire_hash_reconstructed": null,
+      "pre_post_scope_matches": true,
+      "schema_observation": null,
+      "original_error_code": "ContextLimitExceeded",
+      "bytes_plus_1024_off": 32065,
+      "bytes_plus_1024_on": 33075,
+      "input_limit": 32768,
+      "consumed_chunks": [
+        "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+        "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+        "doc:pinned:76af659dfdd30bb62fe9f310:16000:20000:150aa837889c9e5a"
+      ],
+      "decision": null,
+      "semantic_note": "Pre-reservation/pre-send guard failure: OFF32065 fits, ON33075 exceeds32768 because1010guidance overhead. No fresh response or new hold.",
+      "provider_observation": null
+    },
+    {
+      "job_id": "r2:dev-case-c:resource_guidance_off",
+      "turn_id": "initial",
+      "context": {
+        "run_id": "f0fec12e-96d4-5f8c-b8d0-2aca760d3049",
+        "case_id": "dev-case-c",
+        "case_revision": 1,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": null
+      },
+      "active_user_version": "1.31.0",
+      "http_send_started": true,
+      "wire_hash_reconstructed": true,
+      "pre_post_scope_matches": true,
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": false,
+        "diagnostic": "GroundedPlanSchemaInvalid",
+        "json_shape": "object",
+        "decision": "retrieve_more",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "null",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 3,
+        "retrieval_queries_count": 1,
+        "validation_error_count": 1,
+        "validation_errors": [
+          {
+            "field": "plan",
+            "code": "value_error",
+            "count": 1
+          }
+        ],
+        "unreported_error_count": 0
+      },
+      "original_error_code": null,
+      "bytes_plus_1024_off": 25271,
+      "bytes_plus_1024_on": 26269,
+      "input_limit": 32768,
+      "consumed_chunks": [
+        "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+        "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f"
+      ],
+      "decision": null,
+      "semantic_note": "Invalid output retained by fingerprint and safe schema diagnostics. Full invalid raw text is unavailable in this receipt and is not reconstructed as delivered content."
+    },
+    {
+      "job_id": "r2:dev-case-c:resource_guidance_off",
+      "turn_id": "initial",
+      "context": {
+        "run_id": "f0fec12e-96d4-5f8c-b8d0-2aca760d3049",
+        "case_id": "dev-case-c",
+        "case_revision": 1,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_grounded_plan",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": null
+      },
+      "active_user_version": "1.31.0",
+      "http_send_started": true,
+      "wire_hash_reconstructed": true,
+      "pre_post_scope_matches": true,
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "escalate",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "null",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "original_error_code": null,
+      "bytes_plus_1024_off": 25064,
+      "bytes_plus_1024_on": 26062,
+      "input_limit": 32768,
+      "consumed_chunks": [
+        "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+        "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f"
+      ],
+      "decision": "escalate",
+      "semantic_note": "Explicitly qualified documentation/background or investigation; no exact-app applicability, diagnosed cause/fix, executed action or resolution.",
+      "rendered_field_characters": {
+        "user_draft": 2864,
+        "maintainer_summary": 3806,
+        "rationale": 1121
+      },
+      "render_fits": true
+    },
+    {
+      "job_id": "r2:dev-case-c:resource_guidance_off",
+      "turn_id": "correction",
+      "context": {
+        "run_id": "8907fe8f-02ee-5ce7-bee5-21f2df408f1d",
+        "case_id": "dev-case-c",
+        "case_revision": 2,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": null
+      },
+      "active_user_version": "1.31.1",
+      "http_send_started": true,
+      "wire_hash_reconstructed": true,
+      "pre_post_scope_matches": true,
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "retrieve_more",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "null",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 1,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "original_error_code": null,
+      "bytes_plus_1024_off": 27747,
+      "bytes_plus_1024_on": 28751,
+      "input_limit": 32768,
+      "consumed_chunks": [
+        "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+        "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac"
+      ],
+      "decision": "retrieve_more",
+      "semantic_note": "Plan is syntactically valid but repeated action is infeasible; engine stops before another search/model.",
+      "queries": [
+        "streamlit_version=1.31.1; python_version=3.11.6; operating_system=macOS Sonoma 14.3; browser=Chrome; reported_observation=Enum equality is False, while enum .value equality is True | Correction: I checked the affected environment; it is Streamlit 1.31.1, not 1.31.0. The code, Python version and the equality result are unchanged. | topic: st.session_state st.session_state.color st.code st.write st.session_state.color.value An Enum stored in compares False I"
+      ],
+      "queries_repeat_current": true
+    }
+  ],
+  "turns": [
+    {
+      "job_id": "r1:dev-case-a:resource_guidance_off",
+      "turn_id": "initial",
+      "current_revision": 1,
+      "proposal_revision": 1,
+      "proposal_id": "1ca86af9-c7d5-5750-a689-8fa1e176b1b0",
+      "fresh_proposal": true,
+      "stale_observation": false,
+      "decision": "ask",
+      "human_usefulness": null,
+      "released_current_output_count": 1,
+      "decision_assessment": "Appropriate necessary user clarification for the reached current state.",
+      "claim_support_assessment": {
+        "unsupported_material_claim_found": false,
+        "source_claim_present": true,
+        "diagnosis_or_successful_fix_established": false,
+        "scope": "Current USER attribution and explicitly unconfirmed source quotations. Empty/no-source outputs do not receive an automatic claim-support win."
+      },
+      "question_assessment": {
+        "name": "streamlit_version",
+        "necessary": true,
+        "answerable_by_user": true,
+        "already_known": false,
+        "reason": "Version selects applicable sources."
+      },
+      "semantic_findings": [
+        "OFF adds an unnecessary4kserialization/caveat quote to a version-question summary; paired ON omits it. One isolated selection difference is not a general quality improvement."
+      ],
+      "all_output_surfaces_and_review_packet_reconstructed": true
+    },
+    {
+      "job_id": "r1:dev-case-a:resource_guidance_off",
+      "turn_id": "version",
+      "current_revision": 2,
+      "proposal_revision": 2,
+      "proposal_id": "36ad98b2-cc48-5193-b094-f08050da61c0",
+      "fresh_proposal": true,
+      "stale_observation": false,
+      "decision": "ask",
+      "human_usefulness": null,
+      "released_current_output_count": 1,
+      "decision_assessment": "Appropriate necessary user clarification for the reached current state.",
+      "claim_support_assessment": {
+        "unsupported_material_claim_found": false,
+        "source_claim_present": false,
+        "diagnosis_or_successful_fix_established": false,
+        "scope": "Current USER attribution and explicitly unconfirmed source quotations. Empty/no-source outputs do not receive an automatic claim-support win."
+      },
+      "question_assessment": {
+        "name": "parent_callback_code",
+        "necessary": true,
+        "answerable_by_user": true,
+        "already_known": false,
+        "reason": "The working reduction does not reproduce the failure; actual parent callback/state-update code is absent."
+      },
+      "semantic_findings": [],
+      "all_output_surfaces_and_review_packet_reconstructed": true
+    },
+    {
+      "job_id": "r1:dev-case-a:resource_guidance_on",
+      "turn_id": "initial",
+      "current_revision": 1,
+      "proposal_revision": 1,
+      "proposal_id": "40819117-a68b-5bc1-bb79-85f81e0728e7",
+      "fresh_proposal": true,
+      "stale_observation": false,
+      "decision": "ask",
+      "human_usefulness": null,
+      "released_current_output_count": 1,
+      "decision_assessment": "Appropriate necessary user clarification for the reached current state.",
+      "claim_support_assessment": {
+        "unsupported_material_claim_found": false,
+        "source_claim_present": false,
+        "diagnosis_or_successful_fix_established": false,
+        "scope": "Current USER attribution and explicitly unconfirmed source quotations. Empty/no-source outputs do not receive an automatic claim-support win."
+      },
+      "question_assessment": {
+        "name": "streamlit_version",
+        "necessary": true,
+        "answerable_by_user": true,
+        "already_known": false,
+        "reason": "Version selects applicable sources."
+      },
+      "semantic_findings": [],
+      "all_output_surfaces_and_review_packet_reconstructed": true
+    },
+    {
+      "job_id": "r1:dev-case-a:resource_guidance_on",
+      "turn_id": "version",
+      "current_revision": 2,
+      "proposal_revision": 2,
+      "proposal_id": "2f0c3cd2-6f3f-50ce-b298-abb6b4951861",
+      "fresh_proposal": true,
+      "stale_observation": false,
+      "decision": "ask",
+      "human_usefulness": null,
+      "released_current_output_count": 1,
+      "decision_assessment": "Appropriate necessary user clarification for the reached current state.",
+      "claim_support_assessment": {
+        "unsupported_material_claim_found": false,
+        "source_claim_present": false,
+        "diagnosis_or_successful_fix_established": false,
+        "scope": "Current USER attribution and explicitly unconfirmed source quotations. Empty/no-source outputs do not receive an automatic claim-support win."
+      },
+      "question_assessment": {
+        "name": "parent_callback_code",
+        "necessary": true,
+        "answerable_by_user": true,
+        "already_known": false,
+        "reason": "The working reduction does not reproduce the failure; actual parent callback/state-update code is absent."
+      },
+      "semantic_findings": [],
+      "all_output_surfaces_and_review_packet_reconstructed": true
+    },
+    {
+      "job_id": "r1:dev-case-b:resource_guidance_on",
+      "turn_id": "initial",
+      "current_revision": 1,
+      "proposal_revision": 1,
+      "proposal_id": "75720553-6d58-53f1-8288-3d92e56cb689",
+      "fresh_proposal": true,
+      "stale_observation": false,
+      "decision": "ask",
+      "human_usefulness": null,
+      "released_current_output_count": 1,
+      "decision_assessment": "Appropriate necessary user clarification for the reached current state.",
+      "claim_support_assessment": {
+        "unsupported_material_claim_found": false,
+        "source_claim_present": false,
+        "diagnosis_or_successful_fix_established": false,
+        "scope": "Current USER attribution and explicitly unconfirmed source quotations. Empty/no-source outputs do not receive an automatic claim-support win."
+      },
+      "question_assessment": {
+        "name": "streamlit_version",
+        "necessary": true,
+        "answerable_by_user": true,
+        "already_known": false,
+        "reason": "Version selects applicable sources."
+      },
+      "semantic_findings": [],
+      "all_output_surfaces_and_review_packet_reconstructed": true
+    },
+    {
+      "job_id": "r1:dev-case-b:resource_guidance_on",
+      "turn_id": "version",
+      "current_revision": 2,
+      "proposal_revision": null,
+      "proposal_id": null,
+      "fresh_proposal": false,
+      "stale_observation": false,
+      "decision": null,
+      "human_usefulness": null,
+      "released_current_output_count": 0,
+      "decision_assessment": "Known1.39turn has no fresh response after a repeated-query plan; remains action-feasibility failure.",
+      "claim_support_assessment": null,
+      "question_assessment": null,
+      "semantic_findings": []
+    },
+    {
+      "job_id": "r1:dev-case-b:resource_guidance_off",
+      "turn_id": "initial",
+      "current_revision": 1,
+      "proposal_revision": 1,
+      "proposal_id": "a713de5f-4032-553f-a3ea-909c9c77e3e4",
+      "fresh_proposal": true,
+      "stale_observation": false,
+      "decision": "ask",
+      "human_usefulness": null,
+      "released_current_output_count": 1,
+      "decision_assessment": "Appropriate necessary user clarification for the reached current state.",
+      "claim_support_assessment": {
+        "unsupported_material_claim_found": false,
+        "source_claim_present": false,
+        "diagnosis_or_successful_fix_established": false,
+        "scope": "Current USER attribution and explicitly unconfirmed source quotations. Empty/no-source outputs do not receive an automatic claim-support win."
+      },
+      "question_assessment": {
+        "name": "streamlit_version",
+        "necessary": true,
+        "answerable_by_user": true,
+        "already_known": false,
+        "reason": "Version selects applicable sources."
+      },
+      "semantic_findings": [],
+      "all_output_surfaces_and_review_packet_reconstructed": true
+    },
+    {
+      "job_id": "r1:dev-case-b:resource_guidance_off",
+      "turn_id": "version",
+      "current_revision": 2,
+      "proposal_revision": null,
+      "proposal_id": null,
+      "fresh_proposal": false,
+      "stale_observation": false,
+      "decision": null,
+      "human_usefulness": null,
+      "released_current_output_count": 0,
+      "decision_assessment": "Known1.39turn has no fresh response after a repeated-query plan; remains action-feasibility failure.",
+      "claim_support_assessment": null,
+      "question_assessment": null,
+      "semantic_findings": []
+    },
+    {
+      "job_id": "r1:dev-case-c:resource_guidance_off",
+      "turn_id": "initial",
+      "current_revision": 1,
+      "proposal_revision": 1,
+      "proposal_id": "96cedf33-24b5-56ec-bbdf-113ef5ddec0a",
+      "fresh_proposal": true,
+      "stale_observation": false,
+      "decision": "answer",
+      "human_usefulness": null,
+      "released_current_output_count": 0,
+      "decision_assessment": "Permitted qualified documentary background, not a technical explanation of Enum equality.",
+      "claim_support_assessment": {
+        "unsupported_material_claim_found": false,
+        "source_claim_present": true,
+        "diagnosis_or_successful_fix_established": false,
+        "scope": "Current USER attribution and explicitly unconfirmed source quotations. Empty/no-source outputs do not receive an automatic claim-support win."
+      },
+      "question_assessment": null,
+      "semantic_findings": [
+        "Selected general SessionState persistence/initialization/serialization/button/caveat records do not explain Enum identity/equality or show a fix. Full USER reproduction is retained for proposed investigation; usefulness remains unscored."
+      ],
+      "all_output_surfaces_and_review_packet_reconstructed": true
+    },
+    {
+      "job_id": "r1:dev-case-c:resource_guidance_off",
+      "turn_id": "correction",
+      "current_revision": 2,
+      "proposal_revision": 1,
+      "proposal_id": "96cedf33-24b5-56ec-bbdf-113ef5ddec0a",
+      "fresh_proposal": false,
+      "stale_observation": true,
+      "decision": null,
+      "human_usefulness": null,
+      "released_current_output_count": 0,
+      "decision_assessment": "No fresh current correction response. Revision1 historical proposal is not graded as revision2.",
+      "claim_support_assessment": null,
+      "question_assessment": null,
+      "semantic_findings": [
+        "Enriched current request has activeUSER1.31.1/superseded1.31.0; old displayed1.31.0 proposal cannot be approved or released for the new revision."
+      ],
+      "stale_approval_rejected_409": true
+    },
+    {
+      "job_id": "r1:dev-case-c:resource_guidance_on",
+      "turn_id": "initial",
+      "current_revision": 1,
+      "proposal_revision": 1,
+      "proposal_id": "e4caea7c-193e-51f0-930a-6fcf7c9033a0",
+      "fresh_proposal": true,
+      "stale_observation": false,
+      "decision": "escalate",
+      "human_usefulness": null,
+      "released_current_output_count": 0,
+      "decision_assessment": "Qualified source-gap investigation fits the known full reproduction, without solving the case.",
+      "claim_support_assessment": {
+        "unsupported_material_claim_found": false,
+        "source_claim_present": false,
+        "diagnosis_or_successful_fix_established": false,
+        "scope": "Current USER attribution and explicitly unconfirmed source quotations. Empty/no-source outputs do not receive an automatic claim-support win."
+      },
+      "question_assessment": null,
+      "semantic_findings": [
+        "No source-backed Enum diagnosis; full USER code/environment/observation are preserved as unverified investigation target. Proposed maintainer work is not executed or rewarded as a solved case."
+      ],
+      "all_output_surfaces_and_review_packet_reconstructed": true
+    },
+    {
+      "job_id": "r1:dev-case-c:resource_guidance_on",
+      "turn_id": "correction",
+      "current_revision": 2,
+      "proposal_revision": 1,
+      "proposal_id": "e4caea7c-193e-51f0-930a-6fcf7c9033a0",
+      "fresh_proposal": false,
+      "stale_observation": true,
+      "decision": null,
+      "human_usefulness": null,
+      "released_current_output_count": 0,
+      "decision_assessment": "No fresh current correction response. Revision1 historical proposal is not graded as revision2.",
+      "claim_support_assessment": null,
+      "question_assessment": null,
+      "semantic_findings": [
+        "Enriched current request has activeUSER1.31.1/superseded1.31.0; old displayed1.31.0 proposal cannot be approved or released for the new revision."
+      ],
+      "stale_approval_rejected_409": true
+    },
+    {
+      "job_id": "r2:dev-case-c:resource_guidance_on",
+      "turn_id": "initial",
+      "current_revision": 1,
+      "proposal_revision": 1,
+      "proposal_id": "4f7042f6-72ac-580c-b922-233e31c9c4a1",
+      "fresh_proposal": true,
+      "stale_observation": false,
+      "decision": "answer",
+      "human_usefulness": null,
+      "released_current_output_count": 0,
+      "decision_assessment": "Permitted qualified documentary background, not a technical explanation of Enum equality.",
+      "claim_support_assessment": {
+        "unsupported_material_claim_found": false,
+        "source_claim_present": true,
+        "diagnosis_or_successful_fix_established": false,
+        "scope": "Current USER attribution and explicitly unconfirmed source quotations. Empty/no-source outputs do not receive an automatic claim-support win."
+      },
+      "question_assessment": null,
+      "semantic_findings": [
+        "Selected general SessionState persistence/initialization/serialization/button/caveat records do not explain Enum identity/equality or show a fix. Full USER reproduction is retained for proposed investigation; usefulness remains unscored."
+      ],
+      "all_output_surfaces_and_review_packet_reconstructed": true
+    },
+    {
+      "job_id": "r2:dev-case-c:resource_guidance_on",
+      "turn_id": "correction",
+      "current_revision": 2,
+      "proposal_revision": 1,
+      "proposal_id": "4f7042f6-72ac-580c-b922-233e31c9c4a1",
+      "fresh_proposal": false,
+      "stale_observation": true,
+      "decision": null,
+      "human_usefulness": null,
+      "released_current_output_count": 0,
+      "decision_assessment": "No fresh current correction response. Revision1 historical proposal is not graded as revision2.",
+      "claim_support_assessment": null,
+      "question_assessment": null,
+      "semantic_findings": [
+        "Enriched current request has activeUSER1.31.1/superseded1.31.0; old displayed1.31.0 proposal cannot be approved or released for the new revision."
+      ],
+      "stale_approval_rejected_409": true
+    },
+    {
+      "job_id": "r2:dev-case-c:resource_guidance_off",
+      "turn_id": "initial",
+      "current_revision": 1,
+      "proposal_revision": 1,
+      "proposal_id": "f0fec12e-96d4-5f8c-b8d0-2aca760d3049",
+      "fresh_proposal": true,
+      "stale_observation": false,
+      "decision": "escalate",
+      "human_usefulness": null,
+      "released_current_output_count": 0,
+      "decision_assessment": "Qualified source-gap investigation fits the known full reproduction, without solving the case.",
+      "claim_support_assessment": {
+        "unsupported_material_claim_found": false,
+        "source_claim_present": false,
+        "diagnosis_or_successful_fix_established": false,
+        "scope": "Current USER attribution and explicitly unconfirmed source quotations. Empty/no-source outputs do not receive an automatic claim-support win."
+      },
+      "question_assessment": null,
+      "semantic_findings": [
+        "No source-backed Enum diagnosis; full USER code/environment/observation are preserved as unverified investigation target. Proposed maintainer work is not executed or rewarded as a solved case."
+      ],
+      "all_output_surfaces_and_review_packet_reconstructed": true
+    },
+    {
+      "job_id": "r2:dev-case-c:resource_guidance_off",
+      "turn_id": "correction",
+      "current_revision": 2,
+      "proposal_revision": 1,
+      "proposal_id": "f0fec12e-96d4-5f8c-b8d0-2aca760d3049",
+      "fresh_proposal": false,
+      "stale_observation": true,
+      "decision": null,
+      "human_usefulness": null,
+      "released_current_output_count": 0,
+      "decision_assessment": "No fresh current correction response. Revision1 historical proposal is not graded as revision2.",
+      "claim_support_assessment": null,
+      "question_assessment": null,
+      "semantic_findings": [
+        "Enriched current request has activeUSER1.31.1/superseded1.31.0; old displayed1.31.0 proposal cannot be approved or released for the new revision."
+      ],
+      "stale_approval_rejected_409": true
+    }
+  ],
+  "paired_current_first_requests": [
+    {
+      "round": 1,
+      "case_id": "dev-case-a",
+      "case_revision": 1,
+      "exact_grounded_request_equal": true,
+      "current_user_and_evidence_condition_equal": true,
+      "later_refinement_requests_not_assumed_equal": true
+    },
+    {
+      "round": 1,
+      "case_id": "dev-case-a",
+      "case_revision": 2,
+      "exact_grounded_request_equal": true,
+      "current_user_and_evidence_condition_equal": true,
+      "later_refinement_requests_not_assumed_equal": true
+    },
+    {
+      "round": 1,
+      "case_id": "dev-case-b",
+      "case_revision": 1,
+      "exact_grounded_request_equal": true,
+      "current_user_and_evidence_condition_equal": true,
+      "later_refinement_requests_not_assumed_equal": true
+    },
+    {
+      "round": 1,
+      "case_id": "dev-case-b",
+      "case_revision": 2,
+      "exact_grounded_request_equal": true,
+      "current_user_and_evidence_condition_equal": true,
+      "later_refinement_requests_not_assumed_equal": true
+    },
+    {
+      "round": 1,
+      "case_id": "dev-case-c",
+      "case_revision": 1,
+      "exact_grounded_request_equal": true,
+      "current_user_and_evidence_condition_equal": true,
+      "later_refinement_requests_not_assumed_equal": true
+    },
+    {
+      "round": 1,
+      "case_id": "dev-case-c",
+      "case_revision": 2,
+      "exact_grounded_request_equal": true,
+      "current_user_and_evidence_condition_equal": true,
+      "later_refinement_requests_not_assumed_equal": true
+    },
+    {
+      "round": 2,
+      "case_id": "dev-case-c",
+      "case_revision": 1,
+      "exact_grounded_request_equal": true,
+      "current_user_and_evidence_condition_equal": true,
+      "later_refinement_requests_not_assumed_equal": true
+    },
+    {
+      "round": 2,
+      "case_id": "dev-case-c",
+      "case_revision": 2,
+      "exact_grounded_request_equal": true,
+      "current_user_and_evidence_condition_equal": true,
+      "later_refinement_requests_not_assumed_equal": true
+    }
+  ],
+  "unvisited_jobs": [
+    {
+      "job_id": "r2:dev-case-b:resource_guidance_off",
+      "case_id": "dev-case-b",
+      "arm": "resource_guidance_off",
+      "round": 2,
+      "attempted": false,
+      "reason": "Original campaign stopped after immutable R2EnumON input-bound failure; no result inferred or substitute rerun."
+    },
+    {
+      "job_id": "r2:dev-case-b:resource_guidance_on",
+      "case_id": "dev-case-b",
+      "arm": "resource_guidance_on",
+      "round": 2,
+      "attempted": false,
+      "reason": "Original campaign stopped after immutable R2EnumON input-bound failure; no result inferred or substitute rerun."
+    },
+    {
+      "job_id": "r2:dev-case-a:resource_guidance_on",
+      "case_id": "dev-case-a",
+      "arm": "resource_guidance_on",
+      "round": 2,
+      "attempted": false,
+      "reason": "Original campaign stopped after immutable R2EnumON input-bound failure; no result inferred or substitute rerun."
+    },
+    {
+      "job_id": "r2:dev-case-a:resource_guidance_off",
+      "case_id": "dev-case-a",
+      "arm": "resource_guidance_off",
+      "round": 2,
+      "attempted": false,
+      "reason": "Original campaign stopped after immutable R2EnumON input-bound failure; no result inferred or substitute rerun."
+    }
+  ],
+  "source_inventory": [
+    {
+      "chunk_id": "doc:1.64.0:aa4d6b18eeacf49cbad94381:4000:6248:1601bed289ad4380",
+      "source_id": "docstring:1.64.0:streamlit.button",
+      "excerpt_sha256": "bbd777a2ab7a59cb44f94e1d426ed7c9a8faee19f223b5db1dd903da8f532e8b",
+      "excerpt_characters": 2246,
+      "applicable_versions": [
+        "1.64.0"
+      ],
+      "source_span": "chars:4000:6248;unit:unicode_codepoint",
+      "consumed_in_any_grounded_request": false,
+      "complete_actual_chunk_inspected": true,
+      "source_authenticity_or_installed_app_applicability_proven": false
+    },
+    {
+      "chunk_id": "doc:1.64.0:ddfbb59d31684c36f2a2a871:8000:12000:2fd02ea2045b6d75",
+      "source_id": "docstring:1.64.0:streamlit.text_input",
+      "excerpt_sha256": "45818fd27d1dde4df21b9818e0d34bd55dfc6e6dc8eaf1ad373730de8b493529",
+      "excerpt_characters": 3999,
+      "applicable_versions": [
+        "1.64.0"
+      ],
+      "source_span": "chars:8000:12000;unit:unicode_codepoint",
+      "consumed_in_any_grounded_request": false,
+      "complete_actual_chunk_inspected": true,
+      "source_authenticity_or_installed_app_applicability_proven": false
+    },
+    {
+      "chunk_id": "doc:1.64.0:ddfbb59d31684c36f2a2a871:0:4000:0705546ace8833dd",
+      "source_id": "docstring:1.64.0:streamlit.text_input",
+      "excerpt_sha256": "0705546ace8833dd0709e77f9bd8b67875f8d378cd76e182e4488b135c8caa5c",
+      "excerpt_characters": 4000,
+      "applicable_versions": [
+        "1.64.0"
+      ],
+      "source_span": "chars:0:4000;unit:unicode_codepoint",
+      "consumed_in_any_grounded_request": false,
+      "complete_actual_chunk_inspected": true,
+      "source_authenticity_or_installed_app_applicability_proven": false
+    },
+    {
+      "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+      "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+      "excerpt_sha256": "032069b132c9d295bde1b845c249944c6c4b9c0e9d06f9ac44cc654cf04b3b35",
+      "excerpt_characters": 4000,
+      "applicable_versions": [],
+      "source_span": "chars:4000:8000;unit:unicode_codepoint",
+      "consumed_in_any_grounded_request": true,
+      "complete_actual_chunk_inspected": true,
+      "source_authenticity_or_installed_app_applicability_proven": false
+    },
+    {
+      "chunk_id": "doc:1.64.0:ddfbb59d31684c36f2a2a871:4000:8000:6a924cf49d18c34c",
+      "source_id": "docstring:1.64.0:streamlit.text_input",
+      "excerpt_sha256": "6a924cf49d18c34c71586f664bf958a9afe49214b14e1067ae5f0c56afec9904",
+      "excerpt_characters": 4000,
+      "applicable_versions": [
+        "1.64.0"
+      ],
+      "source_span": "chars:4000:8000;unit:unicode_codepoint",
+      "consumed_in_any_grounded_request": false,
+      "complete_actual_chunk_inspected": true,
+      "source_authenticity_or_installed_app_applicability_proven": false
+    },
+    {
+      "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+      "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+      "excerpt_sha256": "ffc3ed5892ffbff99c69753ac072c1acd9ad0208bc0b397cdc4c4f772fc83f32",
+      "excerpt_characters": 4000,
+      "applicable_versions": [],
+      "source_span": "chars:0:4000;unit:unicode_codepoint",
+      "consumed_in_any_grounded_request": true,
+      "complete_actual_chunk_inspected": true,
+      "source_authenticity_or_installed_app_applicability_proven": false
+    },
+    {
+      "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+      "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+      "excerpt_sha256": "f181c7c30a7f43f689acea0cee147006a1279b5c945ab549142576691b89bd5a",
+      "excerpt_characters": 890,
+      "applicable_versions": [],
+      "source_span": "chars:8000:8891;unit:unicode_codepoint",
+      "consumed_in_any_grounded_request": true,
+      "complete_actual_chunk_inspected": true,
+      "source_authenticity_or_installed_app_applicability_proven": false
+    },
+    {
+      "chunk_id": "doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932",
+      "source_id": "docstring:1.50.0:streamlit.fragment",
+      "excerpt_sha256": "2d237d33c27fa367c8bac19ba308ac7e8a40a1bcd92a1351d9606b50898e0ee5",
+      "excerpt_characters": 2350,
+      "applicable_versions": [
+        "1.50.0"
+      ],
+      "source_span": "chars:0:2352;unit:unicode_codepoint",
+      "consumed_in_any_grounded_request": true,
+      "complete_actual_chunk_inspected": true,
+      "source_authenticity_or_installed_app_applicability_proven": false
+    },
+    {
+      "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+      "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+      "excerpt_sha256": "99362eb1a9b5b6f3730c28b27bd90007c56667d553294567f18c62752e6644b8",
+      "excerpt_characters": 4000,
+      "applicable_versions": [],
+      "source_span": "chars:4000:8000;unit:unicode_codepoint",
+      "consumed_in_any_grounded_request": true,
+      "complete_actual_chunk_inspected": true,
+      "source_authenticity_or_installed_app_applicability_proven": false
+    },
+    {
+      "chunk_id": "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+      "source_id": "docs:content/develop/api-reference/widgets/button.md",
+      "excerpt_sha256": "8db80c52bd50ed6b0a3baf9b40899f2ad8ff554a366d3fd7f12e0007f5050be7",
+      "excerpt_characters": 1094,
+      "applicable_versions": [],
+      "source_span": "chars:0:1095;unit:unicode_codepoint",
+      "consumed_in_any_grounded_request": true,
+      "complete_actual_chunk_inspected": true,
+      "source_authenticity_or_installed_app_applicability_proven": false
+    },
+    {
+      "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+      "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+      "excerpt_sha256": "f255b5500f6fab7f4a1e25056687eace95ecf0306d979778a9a2a57b49c589d3",
+      "excerpt_characters": 4000,
+      "applicable_versions": [],
+      "source_span": "chars:0:4000;unit:unicode_codepoint",
+      "consumed_in_any_grounded_request": true,
+      "complete_actual_chunk_inspected": true,
+      "source_authenticity_or_installed_app_applicability_proven": false
+    },
+    {
+      "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+      "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+      "excerpt_sha256": "31737a71f2f8e8986b4f44f690c33edb9d77d026703f6728c734b98b75772c89",
+      "excerpt_characters": 4000,
+      "applicable_versions": [],
+      "source_span": "chars:8000:12000;unit:unicode_codepoint",
+      "consumed_in_any_grounded_request": true,
+      "complete_actual_chunk_inspected": true,
+      "source_authenticity_or_installed_app_applicability_proven": false
+    },
+    {
+      "chunk_id": "doc:1.49.0:4bc002653b8b3907d008a134:0:4000:592d59c88ffa9fd9",
+      "source_id": "docstring:1.49.0:streamlit.multiselect",
+      "excerpt_sha256": "592d59c88ffa9fd9d221048c1d7a863a642961a5e552dea6fb575ebc8cabef0a",
+      "excerpt_characters": 4000,
+      "applicable_versions": [
+        "1.49.0"
+      ],
+      "source_span": "chars:0:4000;unit:unicode_codepoint",
+      "consumed_in_any_grounded_request": false,
+      "complete_actual_chunk_inspected": true,
+      "source_authenticity_or_installed_app_applicability_proven": false
+    },
+    {
+      "chunk_id": "doc:1.50.0:c82397cf83d9653afc3157df:0:4000:592d59c88ffa9fd9",
+      "source_id": "docstring:1.50.0:streamlit.multiselect",
+      "excerpt_sha256": "592d59c88ffa9fd9d221048c1d7a863a642961a5e552dea6fb575ebc8cabef0a",
+      "excerpt_characters": 4000,
+      "applicable_versions": [
+        "1.50.0"
+      ],
+      "source_span": "chars:0:4000;unit:unicode_codepoint",
+      "consumed_in_any_grounded_request": false,
+      "complete_actual_chunk_inspected": true,
+      "source_authenticity_or_installed_app_applicability_proven": false
+    },
+    {
+      "chunk_id": "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac",
+      "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+      "excerpt_sha256": "59047771f7fad6c54830ea682cb2d49ffc81923fe82ffb83981c10cc7791bf33",
+      "excerpt_characters": 3999,
+      "applicable_versions": [],
+      "source_span": "chars:8000:12000;unit:unicode_codepoint",
+      "consumed_in_any_grounded_request": true,
+      "complete_actual_chunk_inspected": true,
+      "source_authenticity_or_installed_app_applicability_proven": false
+    },
+    {
+      "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:12000:12566:9ae7ff24489a7d3c",
+      "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+      "excerpt_sha256": "daa0a7b8d5f5149851f69741acb1d27358d25db0a29c4950488764023c078413",
+      "excerpt_characters": 565,
+      "applicable_versions": [],
+      "source_span": "chars:12000:12566;unit:unicode_codepoint",
+      "consumed_in_any_grounded_request": true,
+      "complete_actual_chunk_inspected": true,
+      "source_authenticity_or_installed_app_applicability_proven": false
+    },
+    {
+      "chunk_id": "doc:pinned:ed6c3c87122e53b9ff5621db:0:1819:3f3a7959730090f6",
+      "source_id": "docs:content/develop/api-reference/widgets/text_input.md",
+      "excerpt_sha256": "ee682e598db2df6867182a49c8b44d58c771965e396811c647814eb52147152a",
+      "excerpt_characters": 1818,
+      "applicable_versions": [],
+      "source_span": "chars:0:1819;unit:unicode_codepoint",
+      "consumed_in_any_grounded_request": true,
+      "complete_actual_chunk_inspected": true,
+      "source_authenticity_or_installed_app_applicability_proven": false
+    },
+    {
+      "chunk_id": "doc:pinned:76af659dfdd30bb62fe9f310:16000:20000:150aa837889c9e5a",
+      "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+      "excerpt_sha256": "150aa837889c9e5a927af0d27736c4b2e0aece18f1704db93c56cf11f41dc684",
+      "excerpt_characters": 4000,
+      "applicable_versions": [],
+      "source_span": "chars:16000:20000;unit:unicode_codepoint",
+      "consumed_in_any_grounded_request": true,
+      "complete_actual_chunk_inspected": true,
+      "source_authenticity_or_installed_app_applicability_proven": false
+    }
+  ],
+  "arms": {
+    "resource_guidance_off": {
+      "attempt_records": 10,
+      "first_attempt_records": 8,
+      "actual_http_sends": 10,
+      "schema_observations": 9,
+      "schema_valid": 8,
+      "first_schema_valid": 6,
+      "visited_jobs": 4,
+      "complete_conditional_routes": 1,
+      "visited_turns": 8,
+      "fresh_proposals": 5,
+      "stale_proposal_observations": 2,
+      "turns_without_fresh_response": 3,
+      "ask_fresh_proposals": 3,
+      "repeated_query_plans": 2,
+      "novel_query_plans": 1,
+      "ProviderResponseInvalid": 1,
+      "answer_fresh_proposals": 1,
+      "schema_invalid": 1,
+      "first_schema_invalid": 1,
+      "escalate_fresh_proposals": 1,
+      "unvisited_jobs": 2
+    },
+    "resource_guidance_on": {
+      "attempt_records": 12,
+      "first_attempt_records": 8,
+      "actual_http_sends": 11,
+      "schema_observations": 11,
+      "schema_valid": 10,
+      "first_schema_valid": 8,
+      "visited_jobs": 4,
+      "complete_conditional_routes": 1,
+      "visited_turns": 8,
+      "fresh_proposals": 5,
+      "stale_proposal_observations": 2,
+      "turns_without_fresh_response": 3,
+      "ask_fresh_proposals": 3,
+      "repeated_query_plans": 1,
+      "novel_query_plans": 4,
+      "schema_invalid": 1,
+      "escalate_fresh_proposals": 1,
+      "ContextLimitExceeded": 1,
+      "answer_fresh_proposals": 1,
+      "unvisited_jobs": 2
+    }
+  },
+  "summary": {
+    "batch_pairs_attempted": 4,
+    "batch_pairs_planned": 6,
+    "visited_jobs": 8,
+    "unvisited_jobs": 4,
+    "attempt_records": 22,
+    "actual_http_sends": 21,
+    "schema_observations": 20,
+    "schema_valid": 18,
+    "schema_invalid": 2,
+    "first_attempt_records": 16,
+    "first_schema_valid": 14,
+    "first_schema_invalid": 1,
+    "visited_turns": 16,
+    "fresh_proposals": 10,
+    "necessary_user_questions": 6,
+    "documentary_background_answers": 2,
+    "qualified_escalations": 2,
+    "stale_proposal_observations": 4,
+    "turns_without_fresh_response": 6,
+    "native_bundles": 21,
+    "unique_raw_chunks": 18,
+    "unique_consumed_model_chunks": 12,
+    "all_pre_postscope_matches": true,
+    "wrong_or_unknown_version_hit_appearances_pruned": 23,
+    "wire_hashes_reconstructed": 21,
+    "all_wire_hashes_match": true,
+    "valid_repeated_query_plans": 3,
+    "valid_novel_query_plans": 5,
+    "render_overflow_attempts": 0,
+    "input_bound_failures_before_send": 1,
+    "provider_finish_length_stops": 1,
+    "local_estimated_settled_cost_usd": "0.024946020",
+    "original_campaign_accounting_complete": false,
+    "new_uncertain_hold_observed": false,
+    "human_usefulness": null,
+    "overall_quality_gain_established": false
+  },
+  "interpretation": [
+    "Botharms use the same verified18source/36chunk native lexical index with ordinarytop5 and post-rankingexactUSERversion. Eight paired firstcurrentGroundedRequests match exactly; later model queries and bundles differ.",
+    "Eacharm completes1of4visited routes. Pilot asks necessary version and callback in botharms; icon known-version replies repeatcurrentquery in botharms. AllfourEnum corrections have no freshresponse. Notfinalevaluation or generalquality gain.",
+    "Three valid repeatedquery plans stop beforeduplicate search. Five normalizednovel queries run but retrieve no Enum-specificcause/fix. Querynovelty is not relevance.",
+    "No fullquote renderer overflow occurs in this stopped smallsample; differingpaths/schemas/provider stops do not prove causalrender-quality improvement.",
+    "ActualONrefinement totals33075UTF8bytes including existingallowance; OFF32065 fits32768. Guidance1010byte overhead causes a real pre-send regression. Keeporiginalfailure; do not promote defaultFalseflag.",
+    "OFFEnumcorrection finish=length at unchanged1024outputlimit settles then ProviderResponseInvalid terminalstop. Schema-invalidfirstretrieve_more selects3sources and repairs toescalation; schema-invalidlastescalation adds one extrafield withoutremainingrepair.",
+    "Six userquestions are necessary and answerable. Two documentaryanswers onlyquote explicitlyunconfirmed broadSessionState records with qualifiedreproductionhandoff; two no-source escalations retainUSERcontext. No diagnosedcause/fix/execution claim; no automaticreward for emptyclaims or blanketescalation; humanusefulnessnull.",
+    "Fourstalecorrectionviews retainrevision1/1.31.0 whileactualcurrentrequests correctlycarryactiveUSER1.31.1. Staleapproval409preventsrelease/action; oldproposal isnevergradedfresh.",
+    "Originalfourthpairaccounting remainsincomplete becauseblockedcontext hasnoreservation.21settledHTTPcalls and no newhold are separatefrom completecampaignaccounting orroutecompletion. FourR2A/B jobs remainunvisited.",
+    "Full invalid rawmodeltext isnotavailable inreceipt; retainedfingerprints/safediagnostics arereviewedwithoutreconstructingcontent. Validplans, completeactualraw/modelsourcechunks, everyfreshoutputsurface, reviewhandoff/packet and releasedoutput arechecked. Reviewerimplementationoverlapdisclosed; assistantreview isnot humanjudgment."
+  ]
+}

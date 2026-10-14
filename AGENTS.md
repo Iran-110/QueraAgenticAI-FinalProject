@@ -20,6 +20,8 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 - C4g/R4a adds the closed docs-only-dev-coverage-v1 profile; read `docs/dev-rag-coverage.fa.md` and its preregistered packet. Preserve both historical 14/30 snapshots and all original fixtures/oracles. Four added seed API records retain raw hash/span/version identity and the full46 conservative reservation set. Native lexical-index membership, top-k relevance, post-ranking version scope and actual model semantic support are separate; no case/source-ID or gold filter is allowed in model trials. Ordinary live halt and both unknown holds stay intact.
 
+- C4h1 resource guidance is experimental/default-false: read `experiments/core_resource_guidance_v1/README.md`. The stopped21-send study did not demonstrate improvement and contains a guidance-induced input-size regression. Do not resume its closed identities, drop failed/unvisited jobs or promote the flag as validated quality. E2p's additive `docs/evaluation-workbench.fa.md` displays fixed-oracle/native-evidence differences and blank human-review sidecars. E2q classifies only an attested real gateway ContextLimitExceeded before reservation and transport as a zero-cost skipped attempt in future scoped drivers; missing rows, ambiguous dispatch and old uncertain holds remain conservative. Original receipt/null accounting is unchanged. Hassan owns ranking/backfill; Behnam owns manual two-case UI/SQLite smoke. Sasan temporarily helps evaluation while MohammadHasan is unavailable.
+
 ## Runtime rules
 
 - Default to offline mock execution. No paid API calls for routine development; the whole team's API budget is USD 5, including embeddings and evaluation.

@@ -1,5 +1,14 @@
 # Evaluation cases
 
+The additive [offline review workbench](../../docs/evaluation-workbench.fa.md)
+now prepares actual C4g/C4h turn contexts, full sources and blank SemanticReview
+sidecars. It preserves stopped, stale and unvisited rows beside fresh proposals,
+and binds original receipt/method/protocol/fixture/rubric bytes before scoring.
+It creates no human labels, final cases or frozen rubric and never makes a model
+call. Fixed-evidence oracle strata are displayed separately from actual native
+retrieval conditions. This is Sasan's temporary E2 preparation help while
+MohammadHasan is unavailable; E1–E5 completion remains open.
+
 The separately registered [three-dev packet](dev-three-v1/split-manifest.json)
 now prepares #12782, #9770 and #8129 with opaque runtime IDs, conditional routes,
 whole-family exclusions and assistant-reviewed known/missing inventories.

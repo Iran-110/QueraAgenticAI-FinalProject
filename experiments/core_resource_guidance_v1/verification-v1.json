@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "verification_id": "core-resource-release-v1",
+  "tested_code_commit": "07cea411d9362d69a36c5a11a5bf4fbfa9c1b330",
+  "original_model_source_commit": "f71ec1631d4830dfd0eb5cec0139f6abad58733e",
+  "pytest": {
+    "tests": 3649,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "junit_sha256": "7e0458780f2dbc05e53b4b1111dc9247b3181a5e6517108010dbdca7afd90fb4"
+  },
+  "ruff": {
+    "lint_passed": true,
+    "format_files_checked": 268
+  },
+  "required_demos": {
+    "demo": {
+      "json_valid": true,
+      "sha256": "9f029ca2859c94c31159fbd9b62c8a4681f34bff102251d90fb7536e6a1db5c8"
+    },
+    "gateway": {
+      "json_valid": true,
+      "sha256": "ab882a1d44fee36ea57a35ca73abf3cded82da9e967ed784e091179e3e9b62fe"
+    },
+    "turn": {
+      "json_valid": true,
+      "sha256": "fb344c4c9eea530dfb756c93966c00292620db8df9dc67ebd2c207948da189d5"
+    }
+  },
+  "http_sqlite": {
+    "accepted": true,
+    "same_process_accepted": true,
+    "restart_accepted": true,
+    "checks_passed": 457,
+    "checks_total": 457,
+    "quality_claim": false
+  },
+  "original_cost_review": {
+    "initial_v1_passed": 881,
+    "initial_v1_total": 882,
+    "final_v2_passed": 882,
+    "final_v2_total": 882,
+    "original_v1_preserved": true
+  },
+  "credential_scan": {
+    "files_checked": 29,
+    "actual_key_matches": 0,
+    "environment_ignored": true
+  },
+  "documentation_links": {
+    "checked": 203,
+    "broken": 0
+  },
+  "original_model_receipt_preserved": true,
+  "ordinary_halt_retained": true,
+  "two_old_unknown_holds_retained": true,
+  "new_paid_calls_for_observer_fix": 0,
+  "quality_claim": false,
+  "human_usefulness": null,
+  "packet_pins": {
+    "cost-review-v1.json": "de08426af345de7fc032c216065f3679a047f165188d7daaef30487a29a3da96",
+    "cost-review-v2.json": "14c06784306d2bff9481b2fb9fda8b8350304038e82ceb22220ce54483d8fcec",
+    "ledger-before-v1.json": "3aefe8683f92a6d7401a4e7b1eb64824442b95fa777a263cd5952ca50f0ae443",
+    "live-method-v1.json": "4cf4e0cf2d9d802d9ec5f63c8bc9ea5a1d204211c07fee54139089f88a45f6a4",
+    "live-method-v2.json": "8fef8c936ecb11d958dedbc1f41f0dffd9f5eaf9f36bad4869c7ed30f7051d60",
+    "model-live-receipt-v1.json": "9658e30a92246b1bdc514aaa944447ad056a81f19fd5de15f103a55fd780c372",
+    "pre-dispatch-accounting-amendment-v1.json": "ed52194abd2bfa2344fa8291ede93ac88e4d917847dad77632087815f8d5a2d4",
+    "protocol-v1.json": "dbdd943c3c54f13bea051db260a58a3de393dd1608cf5e91bd9d19587bf12a6b",
+    "semantic-review-v1.json": "f1838b2909eb4b2fa01e35488355b2ab95ff3144e6a408fe5881488153a0454a"
+  }
+}

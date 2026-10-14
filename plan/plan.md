@@ -4,6 +4,41 @@
 
 ## وضعیت فعلی
 
+- [x] **E2p — ابزار review خروجی واقعی؛ ساسان، کمک موقت به محمدحسن.**
+  [راهنما](../docs/evaluation-workbench.fa.md): صفحهٔ محلی با پیام مصرف‌شده،
+  تمام output surfaceها، factهای فعال، sourceهای واقعی و template خالی برای
+  داوری. C4g همهٔ۲۴ نوبت را نگه می‌دارد:۲۳ رسیده،۱۷ پیشنهاد تازه،۶ بدون پاسخ
+  تازه شامل۲ stale و۱ نوبت اجرا‌نشده. C4h متوقف‌شده هم۲۴ نوبت را نگه می‌دارد:
+  ۱۶ رسیده،۱۰ پیشنهاد تازه،۶ بدون پاسخ تازه شامل۴ stale و۸ اجرا‌نشده.
+  scope/hash و duplicate review کنترل می‌شوند؛ fixed oracle با native evidence
+  یکی نیست. usefulness انسانی خالی است؛ E1/E2 نهایی یا۳۰ case بسته نشده‌اند.
+
+- [x] **C4h1 — آزمایش راهنمای محدودیت query و اندازهٔ source؛ ساسان، نتیجهٔ منفی.**
+  [ثبت قبل از تغییر و اصل نتایج](../experiments/core_resource_guidance_v1/README.md):
+  همان۱۸ source/۳۶ chunk در هر دو arm، بدون تغییر ranking حسن؛۲۱ send با
+  تخمین$0.024946020،۴ pair از۶ ثبت‌شده. هر arm فقط۱ مسیر کامل از۴ مسیر
+  واقعاً اجراشده داشت؛۴ job آینده اجرا نشدند. راهنمای اختیاری برتری ثابت نکرد
+  و پیش‌فرض خاموش است. یک refinement جدید با راهنما۳۳۰۷۵ و بدون آن۳۲۰۶۵
+  byte همراه margin بود؛ guard۳۲۷۶۸ جلوی send را گرفت. اصل Usage آن attempt
+  unrecorded/null ماند و campaign طبق شرط حسابداری متوقف شد؛ resume نداریم.
+  چهار scope بسته،۱۱ slot مصرف‌نشده permanently claimed،۱۶ slot آینده تخصیص
+  نیافته؛ تمام۳۴۳ reservation قبلی و schema/۱۴ جدول،دو hold و halt حفظ‌اند.
+  [review حسابداری V2](../experiments/core_resource_guidance_v1/cost-review-v2.json)
+  ۸۸۲/۸۸۲ است؛ V1 با یک انتظار اشتباه دربارهٔ method-v1/v2 محفوظ است.
+
+- [x] **E2q — تشخیص attempt متوقف‌شده پیش از reservation؛ ساسان، آفلاین.**
+  [اصلاح محدود پس از مشاهده](../experiments/core_resource_guidance_v1/pre-dispatch-accounting-amendment-v1.json):
+  فقط typed ContextLimitExceeded از gateway واقعی با نبود reservation و هر
+  transport marker پیش/پس، برای اجراهای آینده skipped_before_reservation با
+  هزینه صفر ثبت می‌شود. حالت مبهم یا hold واقعی صفر نمی‌شود.۲۸ کنترل جدید
+  و۸۸ regression پاس؛ receipt/campaign قبلی تغییر نکرد و هیچ API تازه برای
+  این fix مصرف نشد. صفر send در کنترل HTTP، صفر route کامل بود؛ کیفیت نیست.
+
+[بررسی انتشار این تحویل](../experiments/core_resource_guidance_v1/verification-v1.json):
+۳۶۴۹pytest،Ruff روی۲۶۸ فایل،سه demo وپذیرشHTTP/SQLite۴۵۷/۴۵۷ باrestart/retry
+پاس‌اند؛ CI همان head وreview نهایی شرط انتشار است. E1/E2/R4/T4/E4/E5/C5
+با این تحویل بسته نشده‌اند و کار اعضا ادامه دارد.
+
 - [x] **C4g / R4a — build نسخه‌دار و آزمایش سه dev با index واقعی؛ ساسان، کمک به RAG حسن.**
   انتشار و review در [PR #48](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/48)؛
   [protocol قبل از اجرا](../experiments/dev_rag_coverage_v1/protocol-v1.json) و
@@ -22,9 +57,11 @@
   انتهای suite cancel شد. هیچ assertion fail یا gate حذف نشد؛ بودجهٔ job۳۰ دقیقه شد.
 
 - [ ] **C4h — رفع بن‌بست query و انتخاب source در حد خروجی؛ ساسان.**
-  روی baseline کامل C4g، treatment تازه برای query واقعاً novel و انتخاب تعداد
-  source مرتبط در اندازهٔ renderer پیش از call ثبت شود؛ guard RepeatedQuery و
-  نقل‌قول کامل و attempt محدود حفظ شوند. baseline/شکست‌های قبلی بازنویسی نشوند.
+  آزمایش C4h1 فقط prompt guidance بود و مسئله را حل نکرد. مرحلهٔ بعد باید
+  history قابل‌اعتماد query از caller و fallback در دو attempt را جدا بررسی
+  کند؛ guard engine و quote کامل محفوظ‌اند. repair در attempt دوم ظرفیت
+  retrieval سپس model سوم نمی‌دهد؛ route completion با escalation بیشتر،
+  به‌تنهایی بهبود کیفیت نیست. baseline/شکست‌های قبلی بازنویسی نشوند.
   کار حسن در R4: ranking/backfill نسخه و relevance این queryهای واقعی؛ source-ID
   یا gold filter برای بالا بردن نتیجه ممنوع. محمدحسن human review/split و بهنام
   smoke دستی UI/SQLite را ادامه دهند؛ این کارها با C4g بسته نشدند.
@@ -108,13 +145,16 @@
   در runner موجود مصرف کرد؛ جواب نسخه فقط پس از همان سؤال released وارد شود.
   این کمک جای باقی ۱۵ dev/۱۵ test یا E1–E5 را نمی‌گیرد.
 
-کار بعد حسن: همین manifest را با مسیر صریح در build مصرف کند، source coverage
-واقعی button 1.39 و multiselect/fragment را با pin/metadata و allowlist تازه
-اضافه کند و receipt index جدید بدهد. Issueها/answer/duplicateهای ارزیابی وارد
-corpus نشوند. PR #43 در HEAD `3f9e7b1` بدون diff است؛ CI سبز آن baseline تازه
-را تحویل نمی‌دهد. کار بعد محمدحسن: review مستقل این سه case و oracle، usefulness
-انسانی، family/chronology و ادامهٔ split؛ انتخاب case اولیه دیگر منتظر او نیست.
-smoke دستی باقی‌ماندهٔ بهنام در UI همچنان جداست؛ pytest و fixture جای آن نیستند.
+کار جاری حسن: از build بستهٔ۱۸/۳۶ تحویل C4g جلو برود و relevance،ranking نسخه
+و backfill را با queryهای واقعاً ثبت‌شده قبل/بعد بسنجد؛ چهار source اضافه شده‌اند
+ولی membership به معنی رسیدن source به مدل نیست. برای همین سه dev منتظر
+manifest تازه نماند؛ final split و exclusion انسانی جداست. PR #43 در آخرین
+HEAD بررسی‌شدهٔ `3f9e7b1` بدون diff بود. محمدحسن فعلاً در دسترس نیست؛ ساسان
+ابزار review و اندازه‌گیری را جلو برده، ولی usefulness انسانی،family/chronology
+و باقی۱۵ dev/۱۵ test همچنان review می‌خواهند. بهنام smoke دستی دو-case روی
+main تازه را با Edit/Reject،correction،approval قدیمی وrestart/retry ادامه دهد؛
+هر blocker UI/API را ثبت کند تا ساسان بردارد. تغییر ranking/tracker در این
+تحویل انجام نشده و source/oracle/corpus قدیمی ثابت‌اند.
 
 - [x] **C4c — vocabulary سؤال‌های caller در factory معمول؛ ساسان، محدود آفلاین.**
   انتشار و CI نهایی در [PR #44](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/44) است.
@@ -160,7 +200,7 @@ restart/retry با envelope دقیق ثبت شوند. هر review موفق یک 
 نتیجهٔ تازه با PR، command و receipt جدا بیاید. محمدحسن اگر در UI blocker دید
 به او کمک کند؛ مسئولیت dev/test/rubric و corpus نهایی اعضا پابرجاست.
 
-### تقسیم کار جاری — درخواست جمع‌بندی تا امشب ۱۳ اکتبر
+### تحویل‌های قبلی و موارد اتصال باز
 
 تحویل مستقل تازهٔ ساسان **C4b — حفظ تعارض اعلام‌شده در refinement/repair** در
 [PR #41](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/41) است.
