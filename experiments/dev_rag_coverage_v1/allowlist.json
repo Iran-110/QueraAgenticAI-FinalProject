@@ -1,0 +1,105 @@
+{
+  "protocol": "docs-only-dev-coverage-v1",
+  "scope": "three exposed development families with four added versioned official seed sources; native lexical index integration, not held-out evaluation or semantic retrieval quality",
+  "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+  "markdown_source_ids": [
+    "docs:content/develop/concepts/architecture/session-state.md",
+    "docs:content/develop/concepts/architecture/widget-behavior.md",
+    "docs:content/develop/api-reference/caching-and-state/session_state.md",
+    "docs:content/develop/api-reference/widgets/button.md",
+    "docs:content/develop/api-reference/widgets/text_input.md"
+  ],
+  "api_versions": [
+    "1.49.0",
+    "1.50.0",
+    "1.64.0"
+  ],
+  "api_functions": [
+    "streamlit.button",
+    "streamlit.rerun",
+    "streamlit.text_input"
+  ],
+  "excluded_source_types": [
+    "issue",
+    "comment",
+    "release_note",
+    "evaluation",
+    "fixture"
+  ],
+  "chunk_characters": 4000,
+  "embedding": {
+    "kind": "lexical_hash_v1",
+    "dimensions": 256,
+    "quality_claim": false
+  },
+  "collection_names": [
+    "streamlit_docs",
+    "streamlit_issues"
+  ],
+  "acceptance": [
+    "exact source text spans and versioned identities survive chunking",
+    "no Issue, comment, release note, evaluation case or answer is indexed",
+    "packaged checksums and draft exclusion manifest are pinned",
+    "content and metadata mutation under the same snapshot ID fails closed",
+    "actual Chroma search runs without network, download or provider",
+    "correction invalidates previous evidence and approval",
+    "stable approval retry after restart creates exactly one local action",
+    "the four added sources preserve frozen raw text hashes and character counts",
+    "the full conservative 46-issue reservation set is retained",
+    "the historical14-source30-chunk profile and snapshots remain unchanged"
+  ],
+  "additional_api_source_ids": [
+    "docstring:1.39.0:streamlit.button",
+    "docstring:1.49.0:streamlit.multiselect",
+    "docstring:1.50.0:streamlit.fragment",
+    "docstring:1.50.0:streamlit.multiselect"
+  ],
+  "required_reserved_issue_ids": [
+    268,
+    1085,
+    1155,
+    1185,
+    1644,
+    2069,
+    2379,
+    2584,
+    3533,
+    3854,
+    4164,
+    4256,
+    4884,
+    5305,
+    5368,
+    5498,
+    6320,
+    8061,
+    8129,
+    8180,
+    8901,
+    9031,
+    9259,
+    9342,
+    9455,
+    9770,
+    10089,
+    10102,
+    11012,
+    11115,
+    12396,
+    12506,
+    12629,
+    12782,
+    13147,
+    13953,
+    14717,
+    16242,
+    16281,
+    16661,
+    16727,
+    16732,
+    16914,
+    17030,
+    17112,
+    17215
+  ]
+}
