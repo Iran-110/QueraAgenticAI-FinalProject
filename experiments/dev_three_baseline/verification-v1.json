@@ -1,0 +1,74 @@
+{
+  "verification_id": "dev-three-publication-v1",
+  "runtime_commit": "a641b52",
+  "full_suite": {
+    "counts": {
+      "passed": 3139,
+      "failed": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "xml_sha256": "890e0d41b5701870c51c51c0b0e8a9cffb3c55ad22d96f2d8390f4ff994f9bde",
+    "local_xml_path": "/Users/sasan/Desktop/Agentic AI/output/dev-three-baseline-2026-10-14-v1/full-suite-opt-in-final.xml"
+  },
+  "configuration_controls_separate_from_41_control_replay": {
+    "path": "tests/test_grounded_configuration_flags.py",
+    "sha256": "07e19fa232b70a27373a859cf7272306f01f1ec8a690874e04f79c069b8266f5",
+    "baseline": {
+      "passed": 5,
+      "failed": 12,
+      "error": 0,
+      "skipped": 0
+    },
+    "candidate": {
+      "passed": 17,
+      "failed": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "baseline_xml_sha256": "97754dc15083f093b1c46515552e1e8f5d96bd8deb2eb7c0cd135fec78a99f20",
+    "candidate_from_full_suite_xml_sha256": "890e0d41b5701870c51c51c0b0e8a9cffb3c55ad22d96f2d8390f4ff994f9bde"
+  },
+  "retained_failed_suite": {
+    "counts": {
+      "passed": 3070,
+      "failed": 8,
+      "error": 19,
+      "skipped": 0
+    },
+    "xml_sha256": "feb7ee2c941d39f06a38136bd809dadd63fecfafd7da8de26bb8bb40961a7294",
+    "reason": "Global source-gap renderer changed historical full-analysis oracles; default restored through explicitly registered opt-in seam, old golden files unchanged."
+  },
+  "retained_configuration_setup_failures": "Missing temporary runtime parent and too-short synthetic review token fixed before frozen baseline; all intermediate logs retained outside Git.",
+  "ruff_check": "passed",
+  "ruff_format_check": "passed 226 Python files",
+  "locked_sync": "107 resolved/103 checked",
+  "native_index_receipt_path": "experiments/dev_three_baseline/index-receipt-v2.json",
+  "native_index_receipt_sha256": "d99e061b975739fe3a6221d864d2d47ab01e46404be3bb508d1523bf3cebfbaf",
+  "replay_41_receipt_path": "experiments/dev_three_baseline/source-gap-handoff-receipt-v2.json",
+  "replay_41_receipt_sha256": "693f3294e05862d031388915d3f0dd2d85f9978b130767e070c5f6b6fcc27de2",
+  "actual_model_comparison_path": "experiments/dev_three_baseline/model-comparison-v1.json",
+  "actual_model_comparison_sha256": "448380e1ac08e87a5e105c809cc41f8798afe845ed0f94612f9b5d3eb741b416",
+  "historical_shared_files_unchanged": {
+    "data/evaluation/split-manifest.json": "78e630cbef86937f2838795a2329ee56e16ea0beef7900db5c63d5fede6404ff",
+    "experiments/retrieval_acceptance/pr35/protocol-v1.json": "33ab264f46239ab0dcdab24ecafe5b41e2e39a8b518bcd2abf0185b6534ff974",
+    "src/agent_app/contracts.py": "1dcf0de657f3442dfb5e787e6243a9a279501305033e592cbcd060dd808d0a91"
+  },
+  "quality_claim": false,
+  "actual_rag_quality": false,
+  "human_usefulness": null,
+  "ci_status_at_local_verification": "not yet pushed; check exact GitHub head before merge",
+  "three_required_demos": {
+    "refine": 0,
+    "gateway_repair": 0,
+    "turn_demo": 0
+  },
+  "http_sqlite": {
+    "receipt_path": "experiments/dev_three_baseline/http-sqlite-receipt-v1.json",
+    "receipt_sha256": "10499876f9c5d26e775db43ac0bd31c2362716cc5a500fd7b186a61d6d9a5b67",
+    "passed": 457,
+    "total": 457,
+    "restart": true,
+    "retry": true
+  }
+}

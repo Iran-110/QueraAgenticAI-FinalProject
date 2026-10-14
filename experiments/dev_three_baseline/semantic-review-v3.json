@@ -1,0 +1,458 @@
+{
+  "schema_version": 1,
+  "review_id": "dev-three-model-v3-assistant-semantic-review",
+  "reviewed_on": "2026-10-14",
+  "reviewer_kind": "assistant_source_and_oracle_review",
+  "human_reviewed": false,
+  "usefulness_score": null,
+  "quality_claim": false,
+  "actual_rag_quality": false,
+  "final_test_quality": false,
+  "input_pins": {
+    "live-v3/receipt.json": "6f2cb48dc7a78f05870e63316589d575ed00a431be16f5d81344922d3099b03e",
+    "data/evaluation/dev-three-v1/scenario-review-v1.json": "c5297daa3ccd966e20b5c9941345ac5218f4e94904b414722024b738268993c6",
+    "data/evaluation/dev-three-v1/evidence-v1.json": "d8ddd2dd8234fe328cc49326de1cc83d9096fe833bce254812c44d20a9f79521"
+  },
+  "source_commit_of_run": "dbf7dc411e2722c24b2dfc90ffb1fbfea170b4cd",
+  "original_renderer_sha256": "2dad2ef894e43b5fdf710933094adec605d981cdcfbb5abb62549b10cd549b85",
+  "source_unchanged_during_run": true,
+  "review_uses_original_v3_outputs_not_later_renderer_replays": true,
+  "observed_coverage": {
+    "planned_and_visited_case_arm_jobs": 3,
+    "conditional_routes_completed": 3,
+    "executed_turns": 6,
+    "model_sends": 8,
+    "schema_valid_plans": 8,
+    "schema_invalid_plans": 0,
+    "valid_intermediate_retrieval_plans": 2,
+    "final_proposals": 6,
+    "released_outputs": 5,
+    "appropriate_registered_questions": 3,
+    "supported_quotation_answers": 3,
+    "conditional_semantic_answer_adequacy_issues": 2,
+    "unnecessary_escalations": 0
+  },
+  "intermediate_plan_reviews": [
+    {
+      "case_id": "dev-case-c",
+      "revision": 1,
+      "attempt": 1,
+      "queries": [
+        "enum comparison in streamlit session state",
+        "session state enum equality issue"
+      ],
+      "format_and_capacity_valid": true,
+      "queries_relevant_to_reported_enum_source_gap": true,
+      "requests_user_documentation_or_known_code": false,
+      "real_index_search_executed": false,
+      "returned_evidence_is_same_complete_fixed_source": true
+    },
+    {
+      "case_id": "dev-case-c",
+      "revision": 2,
+      "attempt": 1,
+      "queries": [
+        "Exact documentation for Streamlit 1.31.1 regarding enum equality in session state."
+      ],
+      "format_and_capacity_valid": true,
+      "queries_relevant_to_reported_enum_source_gap": true,
+      "requests_user_documentation_or_known_code": false,
+      "real_index_search_executed": false,
+      "returned_evidence_is_same_complete_fixed_source": true
+    }
+  ],
+  "final_proposal_reviews": [
+    {
+      "case_id": "dev-case-a",
+      "turn_id": "initial",
+      "proposal_id": "a85dd68e-719a-52d7-a568-4bf6a1738dd3",
+      "revision": 1,
+      "decision": "ask",
+      "schema_and_grounding_bindings_valid": true,
+      "all_output_surfaces_reviewed": [
+        "decision",
+        "user_draft",
+        "next_question",
+        "maintainer_summary",
+        "rationale",
+        "evidence_links.claims",
+        "missing_info",
+        "checks_suggested",
+        "retrieval_queries",
+        "released_outputs"
+      ],
+      "original_v3_renderer_reconstructs_entire_analysis_exactly": true,
+      "known_user_facts_and_checks_complete_and_attributed": true,
+      "source_reviews": [],
+      "question_review": {
+        "name": "streamlit_version",
+        "text": "Which Streamlit version is installed in the affected environment?",
+        "necessary": true,
+        "user_answerable": true,
+        "registered_before_run": true,
+        "repeated_known_information_or_working_reduction": false,
+        "asks_for_missing_documentation": false
+      },
+      "observed_unsupported_material_claims": [],
+      "source_metadata_used_as_installed_version": false,
+      "cause_fix_resolution_or_executed_action_claimed": false,
+      "unnecessary_abstention_observed": false,
+      "released_output_count": 1,
+      "approval_was_scripted_not_human": true,
+      "conditional_semantic_admissibility": "met_for_registered_bounded_scope",
+      "adequacy_limit": null,
+      "output_length": 65,
+      "human_usefulness": null
+    },
+    {
+      "case_id": "dev-case-a",
+      "turn_id": "version",
+      "proposal_id": "eb1ab391-f47b-5e5d-8cb7-69f90cab4bd3",
+      "revision": 2,
+      "decision": "ask",
+      "schema_and_grounding_bindings_valid": true,
+      "all_output_surfaces_reviewed": [
+        "decision",
+        "user_draft",
+        "next_question",
+        "maintainer_summary",
+        "rationale",
+        "evidence_links.claims",
+        "missing_info",
+        "checks_suggested",
+        "retrieval_queries",
+        "released_outputs"
+      ],
+      "original_v3_renderer_reconstructs_entire_analysis_exactly": true,
+      "known_user_facts_and_checks_complete_and_attributed": true,
+      "source_reviews": [],
+      "question_review": {
+        "name": "parent_callback_code",
+        "text": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?",
+        "necessary": true,
+        "user_answerable": true,
+        "registered_before_run": true,
+        "repeated_known_information_or_working_reduction": false,
+        "asks_for_missing_documentation": false
+      },
+      "observed_unsupported_material_claims": [],
+      "source_metadata_used_as_installed_version": false,
+      "cause_fix_resolution_or_executed_action_claimed": false,
+      "unnecessary_abstention_observed": false,
+      "released_output_count": 1,
+      "approval_was_scripted_not_human": true,
+      "conditional_semantic_admissibility": "met_for_registered_bounded_scope",
+      "adequacy_limit": null,
+      "output_length": 108,
+      "human_usefulness": null
+    },
+    {
+      "case_id": "dev-case-b",
+      "turn_id": "initial",
+      "proposal_id": "ceab7181-dc61-588b-a929-8a5f06652385",
+      "revision": 1,
+      "decision": "ask",
+      "schema_and_grounding_bindings_valid": true,
+      "all_output_surfaces_reviewed": [
+        "decision",
+        "user_draft",
+        "next_question",
+        "maintainer_summary",
+        "rationale",
+        "evidence_links.claims",
+        "missing_info",
+        "checks_suggested",
+        "retrieval_queries",
+        "released_outputs"
+      ],
+      "original_v3_renderer_reconstructs_entire_analysis_exactly": true,
+      "known_user_facts_and_checks_complete_and_attributed": true,
+      "source_reviews": [
+        {
+          "chunk_id": "dev-three-button-139-full",
+          "content_sha256": "b42b67aa868d8bbf3fb3fb461aadfbe1495df3c2b520f1dea56d22b4f056cfb5",
+          "scope": "unconfirmed",
+          "full_excerpt_present_and_attributed": true,
+          "current_source_hash_binding_valid": true,
+          "source_authenticated_independently": false
+        }
+      ],
+      "question_review": {
+        "name": "streamlit_version",
+        "text": "Which Streamlit version is installed in the affected environment?",
+        "necessary": true,
+        "user_answerable": true,
+        "registered_before_run": true,
+        "repeated_known_information_or_working_reduction": false,
+        "asks_for_missing_documentation": false
+      },
+      "observed_unsupported_material_claims": [],
+      "source_metadata_used_as_installed_version": false,
+      "cause_fix_resolution_or_executed_action_claimed": false,
+      "unnecessary_abstention_observed": false,
+      "released_output_count": 1,
+      "approval_was_scripted_not_human": true,
+      "conditional_semantic_admissibility": "met_for_registered_bounded_scope",
+      "adequacy_limit": null,
+      "output_length": 65,
+      "human_usefulness": null
+    },
+    {
+      "case_id": "dev-case-b",
+      "turn_id": "version",
+      "proposal_id": "34623419-4fed-5910-ad1b-1bae7a5dcdeb",
+      "revision": 2,
+      "decision": "answer",
+      "schema_and_grounding_bindings_valid": true,
+      "all_output_surfaces_reviewed": [
+        "decision",
+        "user_draft",
+        "next_question",
+        "maintainer_summary",
+        "rationale",
+        "evidence_links.claims",
+        "missing_info",
+        "checks_suggested",
+        "retrieval_queries",
+        "released_outputs"
+      ],
+      "original_v3_renderer_reconstructs_entire_analysis_exactly": true,
+      "known_user_facts_and_checks_complete_and_attributed": true,
+      "source_reviews": [
+        {
+          "chunk_id": "dev-three-button-139-full",
+          "content_sha256": "b42b67aa868d8bbf3fb3fb461aadfbe1495df3c2b520f1dea56d22b4f056cfb5",
+          "scope": "exact_metadata_match",
+          "full_excerpt_present_and_attributed": true,
+          "current_source_hash_binding_valid": true,
+          "source_authenticated_independently": false
+        }
+      ],
+      "question_review": null,
+      "observed_unsupported_material_claims": [],
+      "source_metadata_used_as_installed_version": false,
+      "cause_fix_resolution_or_executed_action_claimed": false,
+      "unnecessary_abstention_observed": false,
+      "released_output_count": 1,
+      "approval_was_scripted_not_human": true,
+      "conditional_semantic_admissibility": "met_for_registered_bounded_scope",
+      "adequacy_limit": null,
+      "output_length": 3383,
+      "human_usefulness": null
+    },
+    {
+      "case_id": "dev-case-c",
+      "turn_id": "initial",
+      "proposal_id": "fe6d4b3a-b467-5db9-bd81-1ffc697b09a1",
+      "revision": 1,
+      "decision": "answer",
+      "schema_and_grounding_bindings_valid": true,
+      "all_output_surfaces_reviewed": [
+        "decision",
+        "user_draft",
+        "next_question",
+        "maintainer_summary",
+        "rationale",
+        "evidence_links.claims",
+        "missing_info",
+        "checks_suggested",
+        "retrieval_queries",
+        "released_outputs"
+      ],
+      "original_v3_renderer_reconstructs_entire_analysis_exactly": true,
+      "known_user_facts_and_checks_complete_and_attributed": true,
+      "source_reviews": [
+        {
+          "chunk_id": "dev-three-session-state-full",
+          "content_sha256": "b2c299be565ca0c8229fb4e5472ab324d0f1d831a09c320282be87e81cf8e20b",
+          "scope": "unconfirmed",
+          "full_excerpt_present_and_attributed": true,
+          "current_source_hash_binding_valid": true,
+          "source_authenticated_independently": false
+        }
+      ],
+      "question_review": null,
+      "observed_unsupported_material_claims": [],
+      "source_metadata_used_as_installed_version": false,
+      "cause_fix_resolution_or_executed_action_claimed": false,
+      "unnecessary_abstention_observed": false,
+      "released_output_count": 0,
+      "approval_was_scripted_not_human": false,
+      "conditional_semantic_admissibility": "not_demonstrated_under_strict_frozen_answer_condition",
+      "adequacy_limit": "Generic Session State quotation plus global caveat lacks explicit Enum source-gap explanation and concrete maintainer investigation in the rendered response, as required by the preregistered answer condition.",
+      "output_length": 10341,
+      "human_usefulness": null
+    },
+    {
+      "case_id": "dev-case-c",
+      "turn_id": "correction",
+      "proposal_id": "2b11d2ac-c89f-5348-a236-d1d994b991c6",
+      "revision": 2,
+      "decision": "answer",
+      "schema_and_grounding_bindings_valid": true,
+      "all_output_surfaces_reviewed": [
+        "decision",
+        "user_draft",
+        "next_question",
+        "maintainer_summary",
+        "rationale",
+        "evidence_links.claims",
+        "missing_info",
+        "checks_suggested",
+        "retrieval_queries",
+        "released_outputs"
+      ],
+      "original_v3_renderer_reconstructs_entire_analysis_exactly": true,
+      "known_user_facts_and_checks_complete_and_attributed": true,
+      "source_reviews": [
+        {
+          "chunk_id": "dev-three-session-state-full",
+          "content_sha256": "b2c299be565ca0c8229fb4e5472ab324d0f1d831a09c320282be87e81cf8e20b",
+          "scope": "unconfirmed",
+          "full_excerpt_present_and_attributed": true,
+          "current_source_hash_binding_valid": true,
+          "source_authenticated_independently": false
+        }
+      ],
+      "question_review": null,
+      "observed_unsupported_material_claims": [],
+      "source_metadata_used_as_installed_version": false,
+      "cause_fix_resolution_or_executed_action_claimed": false,
+      "unnecessary_abstention_observed": false,
+      "released_output_count": 1,
+      "approval_was_scripted_not_human": true,
+      "conditional_semantic_admissibility": "not_demonstrated_under_strict_frozen_answer_condition",
+      "adequacy_limit": "Generic Session State quotation plus global caveat lacks explicit Enum source-gap explanation and concrete maintainer investigation in the rendered response, as required by the preregistered answer condition.",
+      "output_length": 10341,
+      "human_usefulness": null
+    }
+  ],
+  "enum_correction_and_approval": {
+    "current_version": "1.31.1",
+    "prior_1310_superseded_not_active": true,
+    "full_existing_code_and_observations_preserved": true,
+    "source_scope_still_unconfirmed_for_generic_doc": true,
+    "prior_unexecuted_proposal_not_released": true,
+    "corrected_proposal_released_once": true,
+    "stale_old_revision_approval_http_status": 409,
+    "stale_approval_does_not_change_case_or_provider_wires": true,
+    "message_replay_does_not_change_revision_or_logs": true,
+    "approval_scripted_not_human": true,
+    "tracker_memory_not_persistent_sqlite": true
+  },
+  "semantic_limit_finding": {
+    "case_id": "dev-case-c",
+    "turn_ids": [
+      "initial",
+      "correction"
+    ],
+    "source_support": "Quotes are attributed to the exact generic stored source; no diagnosis/fix, release range or resolved case is claimed.",
+    "frozen_condition": "Only a strictly qualified useful documentary response that states the supplied generic guide cannot establish the requested Enum diagnosis/fix and identifies maintainer investigation; generic background alone is not a resolution.",
+    "observed_response": "Global cause/fix caveat plus full Session State guide; no explicit Enum source limitation or concrete maintainer investigation in rendered user_draft/maintainer_summary/rationale.",
+    "verdict": "Operational completion and source-safe quotation are established; strict conditional answer adequacy is not established. Do not label all three jobs semantically successful.",
+    "human_usefulness": null,
+    "frozen_oracle_must_not_be_changed_after_run": true,
+    "possible_independent_next_step": "Pre-register general current source-gap disclosure and actionable next-step rendering, then keep new replay results separate from original V3 outputs."
+  },
+  "comparison": {
+    "A_runtime_catalog": {
+      "jobs": 3,
+      "conditional_routes_completed": 0,
+      "model_sends": 8,
+      "schema_valid_plans": 2,
+      "schema_invalid_plans": 6
+    },
+    "B_reviewed_user_gaps": {
+      "jobs": 3,
+      "conditional_routes_completed": 1,
+      "model_sends": 7,
+      "schema_valid_plans": 3,
+      "schema_invalid_plans": 4
+    },
+    "C_B_plus_current_decision_contracts": {
+      "jobs": 3,
+      "conditional_routes_completed": 3,
+      "model_sends": 8,
+      "schema_valid_plans": 8,
+      "schema_invalid_plans": 0
+    },
+    "matched_first_attempt_states": [
+      {
+        "case_id": "dev-case-a",
+        "revision": 1,
+        "current_case_message_evidence_equal_all_three_arms": true,
+        "B_C_request_gaps_equal": true,
+        "A_B_C_first_attempt_schema_valid": [
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "case_id": "dev-case-a",
+        "revision": 2,
+        "current_case_message_evidence_equal_all_three_arms": true,
+        "B_C_request_gaps_equal": true,
+        "A_B_C_first_attempt_schema_valid": [
+          false,
+          true,
+          true
+        ]
+      },
+      {
+        "case_id": "dev-case-b",
+        "revision": 1,
+        "current_case_message_evidence_equal_all_three_arms": true,
+        "B_C_request_gaps_equal": true,
+        "A_B_C_first_attempt_schema_valid": [
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "case_id": "dev-case-b",
+        "revision": 2,
+        "current_case_message_evidence_equal_all_three_arms": true,
+        "B_C_request_gaps_equal": true,
+        "A_B_C_first_attempt_schema_valid": [
+          false,
+          false,
+          true
+        ]
+      },
+      {
+        "case_id": "dev-case-c",
+        "revision": 1,
+        "current_case_message_evidence_equal_all_three_arms": true,
+        "B_C_request_gaps_equal": true,
+        "A_B_C_first_attempt_schema_valid": [
+          false,
+          false,
+          true
+        ]
+      }
+    ],
+    "enum_corrected_state_only_reached_in_C": true,
+    "all_completion_counts_are_operational_not_quality_scores": true
+  },
+  "accounting": {
+    "actual_sends": 8,
+    "estimated_cost_usd": "0.005253765",
+    "accounting_complete": true,
+    "account_bill_verified": false,
+    "old_hold_grant_halt_preserved": true,
+    "scope_closed": true,
+    "c5_reconciled": false
+  },
+  "limits": [
+    "Three exposed dev families, sequential single unrandomized trials; order/model variability and no causal/general or final-test claim.",
+    "A/B failures retained; C is a new prompt-treatment epoch rather than unchanged-baseline resampling.",
+    "Eight provider plans include two valid refinements; six reached turns/final proposals are a different denominator.",
+    "Enum source-only semantic answer adequacy remains unresolved in the original V3 despite correct schema/source bindings.",
+    "Icon answer is a bounded full button1.39 quotation, not warning API or feature-delivery evidence. Draft lengths3383/10341 require human usefulness/readability review.",
+    "Fixture retrieval returns repeated fixed evidence, not real index/RAG quality.",
+    "Scripted maintainer approvals/memory tracker do not prove persistent SQLite or real-human acceptance.",
+    "Content/version hashes bind records without independently authenticating external sources."
+  ]
+}

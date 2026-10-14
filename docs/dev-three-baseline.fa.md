@@ -76,3 +76,51 @@ callback و ترتیب state. سؤالِ تکرار availability نمونهٔ خ
 
 نتیجهٔ اجرا و محدودیت‌هایش در
 [packet آزمایش](../experiments/dev_three_baseline/README.md) ثبت می‌شود.
+
+## نتیجهٔ ثبت‌شده و تنظیم اختیاری مدل
+
+در baseline معمول، ۲ از ۸ plan معتبر و صفر از سه route کامل بود؛ با vocabulary
+سه از هفت و یک route؛ با `grounded_decision_contracts` هشت از هشت و سه route.
+پنج state مشترک قبل از اولین attempt در B/C، request hash برابر دارند؛ حالت‌های
+repair/refinement بعدی متفاوت‌اند. این مقایسهٔ کوچک و exposed، تکرار/تصادفی‌سازی
+ندارد و هیچ درصد دقت عمومی از آن نمی‌گیریم. سؤال‌های pilot/نسخه درست بودند؛
+Enum به correction رسید ولی پاسخ‌های اصلی فقط quote عمومی داشتند و handoff
+صریح investigation طبق oracle کم بود. receipt اصلی اصلاح یا دوباره نمره‌گذاری
+نمی‌شود؛ replay renderer جداست. usefulness انسانی همچنان null است.
+
+۲۳ درخواست واقعی با مدل تأییدشدهٔ `gpt-4o-mini-2024-07-18`، تخمین مجموع
+$0.013688565؛ scopeها بسته و حسابداری جدید settled است. هزینهٔ کل تیم و
+صورتحساب provider از این مبلغ معلوم نمی‌شود. C5 عمومی همچنان halted است.
+
+برای مصرف اختیاری در config خصوصی factory، پس از برطرف شدن gateهای عادی:
+
+```dotenv
+METIS_RESPONSE_MODE=grounded_plan
+METIS_GROUNDED_DECISION_CONTRACTS=true
+METIS_GROUNDED_SOURCE_GAP_HANDOFF=true
+AGENT_USER_GAP_CATALOG=data/evaluation/dev-three-v1/user-gap-vocabulary-v1.json
+```
+
+هر دو گزینهٔ جدید پیش‌فرض false اند؛ مجوز live یا scope نمی‌سازد و halt را کنار
+نمی‌زند. فقط prompt/schema پیشنهادی را مطابق gap و ظرفیت جاری محدود می‌کند؛
+این constrained decoding تضمین‌شده نیست و parser/validator/approval پابرجاست.
+unknownها و reported_facts همچنان باید طبق قرارداد caller صریح ثبت شوند.
+
+برای epoch واقعیِ همین manifest، دو مسیر خالی جدا:
+
+```bash
+uv run python scripts/build_pilot_index.py --destination runtime/dev-three-a --split-manifest data/evaluation/dev-three-v1/split-manifest.json
+uv run python scripts/build_pilot_index.py --destination runtime/dev-three-b --split-manifest data/evaluation/dev-three-v1/split-manifest.json
+uv run python scripts/dev_three_index_acceptance.py --index runtime/dev-three-a --rebuild-index runtime/dev-three-b --output runtime/dev-three-index-receipt.json
+```
+
+این دستورها acceptance wiring با مدل mock هستند. برای coverage تازه باید
+allowlist و protocol/snapshot جدید review شوند؛ همین build پاسخ fixture را
+خودکار وارد corpus نمی‌کند.
+
+اصلاح اختیاری handoff، source gap فعلی را با نام/توضیح/ضرورت اعلام‌شدهٔ caller، در
+summary و rationale حفظ می‌کند؛ در answer/escalate به متن کاربر هم اضافه
+می‌شود. ASK همان سؤال canonical می‌ماند. این کار gap تازه کشف نمی‌کند و
+source authenticity، diagnosis یا usefulness را ثابت نمی‌کند. متن کامل
+quote و gap حفظ است؛ overflow به‌جای حذف qualification، fail closed می‌شود.
+[اصل پاسخ live و replay جدا](../experiments/dev_three_baseline/README.md).
