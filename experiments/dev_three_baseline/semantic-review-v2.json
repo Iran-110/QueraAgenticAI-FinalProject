@@ -1,0 +1,332 @@
+{
+  "schema_version": 1,
+  "review_id": "dev-three-model-v2-assistant-semantic-review",
+  "reviewed_on": "2026-10-14",
+  "reviewer_kind": "assistant_source_and_oracle_review",
+  "human_reviewed": false,
+  "usefulness_score": null,
+  "quality_claim": false,
+  "actual_rag_quality": false,
+  "final_test_quality": false,
+  "input_pins": {
+    "live-v2-attempt-2/receipt.json": "fa2084f89c20c999248e5ed7b52e5a6ffcce0e9cc014971d445e321b0c3e4bd9",
+    "data/evaluation/dev-three-v1/scenario-review-v1.json": "c5297daa3ccd966e20b5c9941345ac5218f4e94904b414722024b738268993c6",
+    "data/evaluation/dev-three-v1/evidence-v1.json": "d8ddd2dd8234fe328cc49326de1cc83d9096fe833bce254812c44d20a9f79521"
+  },
+  "source_commit_of_run": "b86b97bfbd763bff2b2d79bcc94fc670f0fe496a",
+  "source_unchanged_during_run": true,
+  "controlled_evidence_condition": "fixed_registered_source_bundles",
+  "observed_coverage": {
+    "planned_case_arm_jobs": 5,
+    "visited_case_arm_jobs": 5,
+    "completed_jobs": 1,
+    "incomplete_jobs": 4,
+    "executed_turns": 8,
+    "paid_model_attempts": 12,
+    "schema_valid_plans": 4,
+    "schema_invalid_plans": 8,
+    "accepted_questions": 4,
+    "released_questions": 4,
+    "accepted_answers": 0,
+    "accepted_escalations": 0,
+    "all_jobs_visited_without_accounting_stop": true
+  },
+  "case_arm_jobs": [
+    {
+      "arm": "runtime_catalog",
+      "case_id": "dev-case-b",
+      "coverage_complete": false,
+      "reached_turns": [
+        "initial",
+        "version"
+      ],
+      "accepted_proposals": 1,
+      "unreached_correction": false
+    },
+    {
+      "arm": "runtime_catalog",
+      "case_id": "dev-case-c",
+      "coverage_complete": false,
+      "reached_turns": [
+        "initial"
+      ],
+      "accepted_proposals": 0,
+      "unreached_correction": true
+    },
+    {
+      "arm": "reviewed_user_gaps",
+      "case_id": "dev-case-a",
+      "coverage_complete": true,
+      "reached_turns": [
+        "initial",
+        "version"
+      ],
+      "accepted_proposals": 2,
+      "unreached_correction": false
+    },
+    {
+      "arm": "reviewed_user_gaps",
+      "case_id": "dev-case-b",
+      "coverage_complete": false,
+      "reached_turns": [
+        "initial",
+        "version"
+      ],
+      "accepted_proposals": 1,
+      "unreached_correction": false
+    },
+    {
+      "arm": "reviewed_user_gaps",
+      "case_id": "dev-case-c",
+      "coverage_complete": false,
+      "reached_turns": [
+        "initial"
+      ],
+      "accepted_proposals": 0,
+      "unreached_correction": true
+    }
+  ],
+  "accepted_proposal_reviews": [
+    {
+      "arm": "runtime_catalog",
+      "case_id": "dev-case-b",
+      "turn_id": "initial",
+      "revision": 1,
+      "proposal_id": "584944d9-9e72-5be7-a115-a745b4c19f92",
+      "decision": "ask",
+      "target": "streamlit_version",
+      "question": "Which Streamlit version is installed in the affected environment?",
+      "pre_registered_and_necessary_user_gap": true,
+      "user_answerable": true,
+      "reasks_known_information": false,
+      "asks_user_for_missing_source_documentation": false,
+      "all_output_surfaces_reviewed": [
+        "user_draft",
+        "next_question",
+        "maintainer_summary",
+        "rationale",
+        "evidence_links.claims",
+        "missing_info",
+        "released_assistant_text"
+      ],
+      "known_user_facts_verified": 2,
+      "source_quote_checks": [
+        {
+          "chunk_id": "dev-three-button-139-full",
+          "content_sha256": "b42b67aa868d8bbf3fb3fb461aadfbe1495df3c2b520f1dea56d22b4f056cfb5",
+          "plan_ref_hash_matches": true,
+          "handoff_hash_matches": true,
+          "whole_attributed_source_block_present": true,
+          "scope": "unconfirmed",
+          "scope_matches_handoff": true
+        }
+      ],
+      "no_observed_unsupported_material_claims": true,
+      "does_not_claim_cause_fix_or_executed_maintainer_action": true,
+      "release_after_scripted_approval_exact_unedited": true,
+      "real_human_approval": false
+    },
+    {
+      "arm": "reviewed_user_gaps",
+      "case_id": "dev-case-a",
+      "turn_id": "initial",
+      "revision": 1,
+      "proposal_id": "9f297d69-44e1-5d06-8b42-676ef7ba2b56",
+      "decision": "ask",
+      "target": "streamlit_version",
+      "question": "Which Streamlit version is installed in the affected environment?",
+      "pre_registered_and_necessary_user_gap": true,
+      "user_answerable": true,
+      "reasks_known_information": false,
+      "asks_user_for_missing_source_documentation": false,
+      "all_output_surfaces_reviewed": [
+        "user_draft",
+        "next_question",
+        "maintainer_summary",
+        "rationale",
+        "evidence_links.claims",
+        "missing_info",
+        "released_assistant_text"
+      ],
+      "known_user_facts_verified": 7,
+      "source_quote_checks": [
+        {
+          "chunk_id": "dev-three-multiselect-1490-default-key",
+          "content_sha256": "f1d18a2d0e92b61dbc9277d7c009dcbbc644857723821fa89636a8e733b4e45f",
+          "plan_ref_hash_matches": true,
+          "handoff_hash_matches": true,
+          "whole_attributed_source_block_present": true,
+          "scope": "unconfirmed",
+          "scope_matches_handoff": true
+        },
+        {
+          "chunk_id": "dev-three-multiselect-1500-default-key",
+          "content_sha256": "f12b18bc820e5fa3652c4dcff2cc52ac41a3a505e4ccd0812cb366a14e68730a",
+          "plan_ref_hash_matches": true,
+          "handoff_hash_matches": true,
+          "whole_attributed_source_block_present": true,
+          "scope": "unconfirmed",
+          "scope_matches_handoff": true
+        },
+        {
+          "chunk_id": "dev-three-fragment-150-full",
+          "content_sha256": "27d00d1984e64cc43af3cec3989c02f6d08f4a5660a5740e321b9c281f838273",
+          "plan_ref_hash_matches": true,
+          "handoff_hash_matches": true,
+          "whole_attributed_source_block_present": true,
+          "scope": "unconfirmed",
+          "scope_matches_handoff": true
+        }
+      ],
+      "no_observed_unsupported_material_claims": true,
+      "does_not_claim_cause_fix_or_executed_maintainer_action": true,
+      "release_after_scripted_approval_exact_unedited": true,
+      "real_human_approval": false
+    },
+    {
+      "arm": "reviewed_user_gaps",
+      "case_id": "dev-case-a",
+      "turn_id": "version",
+      "revision": 2,
+      "proposal_id": "c19244d7-8387-5ae3-8fd4-02a095114183",
+      "decision": "ask",
+      "target": "parent_callback_code",
+      "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?",
+      "pre_registered_and_necessary_user_gap": true,
+      "user_answerable": true,
+      "reasks_known_information": false,
+      "asks_user_for_missing_source_documentation": false,
+      "all_output_surfaces_reviewed": [
+        "user_draft",
+        "next_question",
+        "maintainer_summary",
+        "rationale",
+        "evidence_links.claims",
+        "missing_info",
+        "released_assistant_text"
+      ],
+      "known_user_facts_verified": 8,
+      "source_quote_checks": [
+        {
+          "chunk_id": "dev-three-multiselect-1500-default-key",
+          "content_sha256": "f12b18bc820e5fa3652c4dcff2cc52ac41a3a505e4ccd0812cb366a14e68730a",
+          "plan_ref_hash_matches": true,
+          "handoff_hash_matches": true,
+          "whole_attributed_source_block_present": true,
+          "scope": "exact_metadata_match",
+          "scope_matches_handoff": true
+        },
+        {
+          "chunk_id": "dev-three-fragment-150-full",
+          "content_sha256": "27d00d1984e64cc43af3cec3989c02f6d08f4a5660a5740e321b9c281f838273",
+          "plan_ref_hash_matches": true,
+          "handoff_hash_matches": true,
+          "whole_attributed_source_block_present": true,
+          "scope": "exact_metadata_match",
+          "scope_matches_handoff": true
+        }
+      ],
+      "no_observed_unsupported_material_claims": true,
+      "does_not_claim_cause_fix_or_executed_maintainer_action": true,
+      "release_after_scripted_approval_exact_unedited": true,
+      "real_human_approval": false
+    },
+    {
+      "arm": "reviewed_user_gaps",
+      "case_id": "dev-case-b",
+      "turn_id": "initial",
+      "revision": 1,
+      "proposal_id": "5c696fb2-4a82-5fe4-a0cb-0b418da2331f",
+      "decision": "ask",
+      "target": "streamlit_version",
+      "question": "Which Streamlit version is installed in the affected environment?",
+      "pre_registered_and_necessary_user_gap": true,
+      "user_answerable": true,
+      "reasks_known_information": false,
+      "asks_user_for_missing_source_documentation": false,
+      "all_output_surfaces_reviewed": [
+        "user_draft",
+        "next_question",
+        "maintainer_summary",
+        "rationale",
+        "evidence_links.claims",
+        "missing_info",
+        "released_assistant_text"
+      ],
+      "known_user_facts_verified": 2,
+      "source_quote_checks": [
+        {
+          "chunk_id": "dev-three-button-139-full",
+          "content_sha256": "b42b67aa868d8bbf3fb3fb461aadfbe1495df3c2b520f1dea56d22b4f056cfb5",
+          "plan_ref_hash_matches": true,
+          "handoff_hash_matches": true,
+          "whole_attributed_source_block_present": true,
+          "scope": "unconfirmed",
+          "scope_matches_handoff": true
+        }
+      ],
+      "no_observed_unsupported_material_claims": true,
+      "does_not_claim_cause_fix_or_executed_maintainer_action": true,
+      "release_after_scripted_approval_exact_unedited": true,
+      "real_human_approval": false
+    }
+  ],
+  "known_version_pilot": {
+    "candidate_current_version": "1.50.0",
+    "callback_question_necessary_and_user_answerable": true,
+    "question_targets_real_missing_callback_not_repeating_version_or_working_reduction": true,
+    "two_sources_have_exact_150_metadata_match": true,
+    "old_149_source_absent_from_current_bundle": true,
+    "no_cause_or_fix_established": true,
+    "registered_terminal_path_completed": true,
+    "actual_problem_resolved": false
+  },
+  "schema_failure_observations": {
+    "icon_known_version_both_arms": {
+      "paid_attempts": 4,
+      "current_version_fact": "1.39.0",
+      "current_fact_is_preserved": true,
+      "diagnostic": "GroundedPlanSchemaInvalid",
+      "known_field": "question_name",
+      "known_code": "string_pattern_mismatch",
+      "safe_decision_literal": "ask",
+      "accepted_proposals": 0,
+      "released_outputs": 0,
+      "reason_not_more_specific": "The raw invalid question_name value is withheld; the observer proves identifier-pattern failure but not its literal text or question necessity.",
+      "answerable_button_portion_not_answered": true
+    },
+    "enum_initial_both_arms": {
+      "paid_attempts": 4,
+      "diagnostic": "GroundedPlanSchemaInvalid",
+      "known_field": "plan",
+      "known_code": "value_error",
+      "safe_decision_literal": "retrieve_more",
+      "sources_count_each": 1,
+      "structural_observation": "The declared retrieve_more branch requires query-only output with no sources; the preserved safe source counts show an inconsistent branch.",
+      "raw_source_query_strings_not_reviewable": true,
+      "version_and_full_code_already_supplied": true,
+      "accepted_proposals": 0,
+      "released_outputs": 0,
+      "correction_not_reached": true,
+      "live_stale_approval_correction_not_claimed": true
+    }
+  },
+  "comparison_limits": [
+    "The pilot candidate completed version clarification then an appropriate callback question; the V1 runtime baseline failed schema on the corresponding known-version state. This is one exposed controlled-case observation, not a statistically established treatment effect.",
+    "The V1 pilot baseline and V2 candidate ran sequentially in separate registered collections without randomization or repetitions; order and model variability are not excluded.",
+    "Icon and Enum show no accepted post-version answer or source-gap escalation in either arm. Their malformed plans cannot count as successful core decisions.",
+    "V2 stopped_early=false means all five independent jobs were visited, not that all five conversations succeeded; only one completed its registered path.",
+    "Fixed evidence, scripted maintainer approvals and a memory tracker do not measure actual RAG, real human usefulness or held-out final evaluation.",
+    "Live Enum correction/revision/stale-approval behavior remains unreached here; separate offline receipts must not be reported as this live coverage.",
+    "Generic source URLs and stored metadata hashes bind supplied records; they do not independently authenticate historical docs or the current external pages."
+  ],
+  "accounting": {
+    "actual_sends": 12,
+    "estimated_cost_usd": "0.006672930",
+    "accounting_complete": true,
+    "actual_provider_charge_verified": false,
+    "old_hold_grant_halt_preserved": true,
+    "scope_closed": true,
+    "c5_reconciled": false
+  }
+}
