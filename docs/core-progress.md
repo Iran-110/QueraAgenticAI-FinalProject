@@ -2,6 +2,23 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-14 — C4f registered quality follow-up
+
+[Frozen protocols](../experiments/core_quality_followup/README.md) retain the
+existing three exposed development families and unchanged oracles. A separate
+optional renderer investigation target has archived 17-control evidence:
+baseline 4 pass/13 fail, candidate 17 pass. Two original Enum plans remain
+unaltered; new deterministic renderings are separate, with human utility null.
+
+Sasan renewed paid-test authorization after the reported second uncertainty.
+The independent finite quarantine-set API preserves both holds, revoked legacy
+authorizations, ordinary halt and USD4.50 ceiling. Initial45 funding controls
+were registered before implementation;14 additional review regressions cover
+permanent closure/revocation and audit history. No old grant was revived and C5
+is not reconciled. The paired output-bound and source-reminder live comparisons
+require clean source/ledger/slot registration before credentials or dispatch.
+The ordinary factory carries default-false opt-ins, never live authorization.
+
 ## 2026-10-14 — C4e preregistered stability and limited adversarial development
 
 Publication/review: [PR #46](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/46).
