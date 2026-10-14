@@ -16,6 +16,7 @@ from agent_app.testing.dev_three_model_probe import (
     INPUT_RESERVE,
     MODEL,
     OUTPUT_LIMIT,
+    PROTOCOL,
     DevProbeRejected,
     contains_secret,
     ledger_observation,
@@ -73,6 +74,7 @@ def main():
     parser.add_argument("--live", action="store_true")
     parser.add_argument("--env-file", type=Path)
     parser.add_argument("--output-dir", type=Path)
+    parser.add_argument("--protocol", type=Path, default=PROTOCOL)
     options = parser.parse_args()
     destination = None
     created = False
@@ -80,7 +82,9 @@ def main():
     scope_id = None
     private_secret = None
     try:
-        protocol, fixtures, definitions, slots, registration = preflight(ROOT, options.ledger)
+        protocol, fixtures, definitions, slots, registration = preflight(
+            ROOT, options.ledger, options.protocol
+        )
         if not options.live:
             print(
                 json.dumps(
@@ -121,7 +125,7 @@ def main():
             max_request_usd=get_price(MODEL).cost(INPUT_RESERVE, OUTPUT_LIMIT),
         )
         private_secret = config.api_key.get_secret_value()
-        if source_observation(ROOT) != {
+        if source_observation(ROOT, Path(registration["protocol_path"])) != {
             key: registration[key] for key in ("source_commit", "source_clean", "source_hashes")
         }:
             raise DevProbeRejected()
@@ -183,7 +187,7 @@ def main():
                 )
         receipt["scope_closed"] = closed_scope.block_reason == "ExperimentClosed"
         receipt["registration"] = registration
-        receipt["source_after"] = source_observation(ROOT)
+        receipt["source_after"] = source_observation(ROOT, Path(registration["protocol_path"]))
         receipt["source_unchanged_during_run"] = receipt["source_after"] == {
             key: registration[key] for key in ("source_commit", "source_clean", "source_hashes")
         }
@@ -201,7 +205,12 @@ def main():
                 }
             )
         )
-        return 2 if receipt["stopped_early"] else 0
+        return (
+            2
+            if receipt["stopped_early"]
+            or receipt["completed_case_arm_runs"] != receipt["planned_case_arm_runs"]
+            else 0
+        )
     except Exception:
         # No raw exception/credential/provider body enters terminal output.
         try:

@@ -296,6 +296,7 @@ def test_authorization_journal_failure_closes_scope_and_never_exports_exception(
     source = {"source_commit": "synthetic-source", "source_clean": True, "source_hashes": {}}
     registration = {
         **source,
+        "protocol_path": "experiments/dev_three_baseline/model-protocol-v1.json",
         "protocol_sha256": "a" * 64,
         "request_slots_sha256": "b" * 64,
         "ledger_before": ledger_observation(ledger._path),
@@ -312,7 +313,7 @@ def test_authorization_journal_failure_closes_scope_and_never_exports_exception(
             registration,
         ),
     )
-    monkeypatch.setattr(module, "source_observation", lambda root: source)
+    monkeypatch.setattr(module, "source_observation", lambda root, *args: source)
     monkeypatch.setattr(module, "credential", lambda path: config.api_key.get_secret_value())
     original_write = module.write_new
 
@@ -340,3 +341,70 @@ def test_authorization_journal_failure_closes_scope_and_never_exports_exception(
     assert ledger.experiment_scope_status(protocol["scope_id"]).block_reason == "ExperimentClosed"
     assert "synthetic-private-io-marker" not in capsys.readouterr().out
     assert (tmp_path / "live/scope-closed.json").is_file()
+
+
+def test_independent_jobs_retain_schema_failures_without_blocking_other_cases(tmp_path):
+    from agent_app.testing.dev_three_model_probe import execution_jobs
+
+    protocol, fixtures, definitions, ledger, config, before = preparation(tmp_path)
+    protocol = {**protocol, "continue_independent_jobs": True}
+    payloads = []
+
+    def reject_pilot(request):
+        actual = json.loads(json.loads(request.content)["messages"][1]["content"])["request"]
+        if actual["case"]["case_id"] == "dev-case-a":
+            return httpx.Response(
+                200,
+                json={
+                    "model": "gpt-4o-mini-2024-07-18",
+                    "choices": [
+                        {"message": {"role": "assistant", "content": "{}"}, "finish_reason": "stop"}
+                    ],
+                    "usage": {"prompt_tokens": 1000, "completion_tokens": 50, "total_tokens": 1050},
+                },
+            )
+        return response(request, payloads)
+
+    receipt = run_trial(
+        protocol,
+        fixtures,
+        definitions,
+        ledger,
+        config,
+        before,
+        underlying=httpx.MockTransport(reject_pilot),
+    )
+    assert receipt["visited_case_arm_runs"] == 6 and receipt["completed_case_arm_runs"] == 4
+    assert receipt["stopped_early"] is False
+    assert receipt["actual_sends"] == 12
+    failures = [a for a in receipt["attempts"] if a["plan"] is None]
+    assert len(failures) == 4 and all(
+        not a["schema_observation"]["syntactic_valid"] for a in failures
+    )
+    assert receipt["accounting"]["accounting_complete"] is True
+    assert any(not check["passed"] for case in receipt["cases"] for check in case["checks"])
+    assert len(execution_jobs(protocol, fixtures)) == 6
+
+
+def test_remaining_job_slots_exclude_previously_observed_pair_and_validate_identity():
+    from agent_app.testing.dev_three_model_probe import DevProbeRejected, execution_jobs
+
+    fixtures = collect([PACKET / "cases"], mode="live")
+    jobs = [
+        {"arm": arm, "case_id": case}
+        for arm in ("runtime_catalog", "reviewed_user_gaps")
+        for case in ("dev-case-a", "dev-case-b", "dev-case-c")
+        if (arm, case) != ("runtime_catalog", "dev-case-a")
+    ]
+    protocol = {"experiment_id": "remaining-dev-three-v2", "jobs": jobs}
+    slots = request_slots(protocol, fixtures)
+    assert len(slots) == 20
+    assert all(
+        not (slot.case_id == "dev-case-a" and slot.run_id == "3013e4e0-9a1b-57dd-b6c6-028145c8aea2")
+        for slot in slots
+    )
+    assert [(arm, f.case["case_id"]) for arm, f in execution_jobs(protocol, fixtures)] == [
+        (j["arm"], j["case_id"]) for j in jobs
+    ]
+    with pytest.raises(DevProbeRejected):
+        execution_jobs({**protocol, "jobs": jobs + [jobs[0]]}, fixtures)
