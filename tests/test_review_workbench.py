@@ -98,6 +98,65 @@ def test_actual_route_denominators_and_no_stale_double_count(inputs):
     assert unvisited["actual_model_attempts"] == []
 
 
+@pytest.fixture
+def resource_inputs(tmp_path):
+    source = tmp_path / "resource"
+    source.mkdir()
+    packet = ROOT / "experiments/core_resource_guidance_v1"
+    for name in ("model-live-receipt-v1.json", "live-method-v2.json", "protocol-v1.json"):
+        shutil.copyfile(packet / name, source / name)
+    return source / "model-live-receipt-v1.json", sorted(FIXTURES.glob("*.json")), SCENARIO, RUBRIC
+
+
+def test_stopped_resource_campaign_retains_unopened_pairs_and_pre_provider_attempt(resource_inputs):
+    result = build_workbench(*resource_inputs)
+    assert result["summary"] == {
+        "planned_jobs": 12,
+        "planned_turns": 24,
+        "visited_turns": 16,
+        "no_fresh_response_turns": 6,
+        "fresh_proposal": 10,
+        "stale_observation": 4,
+        "no_fresh_proposal": 2,
+        "unvisited": 8,
+    }
+    assert sum(len(row["actual_model_attempts"]) for row in result["rows"]) == 22
+    assert {row["arm"] for row in result["rows"]} == {
+        "resource_guidance_off",
+        "resource_guidance_on",
+    }
+    guard = next(
+        attempt
+        for row in result["rows"]
+        for attempt in row["actual_model_attempts"]
+        if attempt["error_code"] == "ContextLimitExceeded"
+    )
+    assert guard["context"]["attempt_index"] == 2
+    assert "pre_dispatch_stop" not in guard  # Original observation is never retrofitted.
+    assert result["kind"] == "c4h-offline-review-workbench-v1"
+    assert result["human_usefulness"] is None and not result["quality_claim"]
+
+
+def test_resource_workbench_binds_active_v2_not_initial_registration_preview(resource_inputs):
+    receipt, fixtures, scenario, rubric = resource_inputs
+    folder = receipt.parent
+    shutil.copyfile(
+        ROOT / "experiments/core_resource_guidance_v1/live-method-v1.json",
+        folder / "live-method-v2.json",
+    )
+    with pytest.raises(WorkbenchRejected, match="^WorkbenchReceiptMismatch$"):
+        build_workbench(receipt, fixtures, scenario, rubric)
+
+
+def test_unknown_campaign_is_rejected_before_loading_an_arbitrary_method(inputs):
+    receipt, *rest = inputs
+    value = json.loads(receipt.read_bytes())
+    value["protocol_id"] = "unregistered-campaign"
+    dump(receipt, value)
+    with pytest.raises(WorkbenchRejected, match="^WorkbenchReceiptMismatch$"):
+        build_workbench(receipt, *rest)
+
+
 def test_fixed_oracle_is_preserved_but_native_conditions_are_explicit(inputs):
     result = build_workbench(*inputs)
     row = next(

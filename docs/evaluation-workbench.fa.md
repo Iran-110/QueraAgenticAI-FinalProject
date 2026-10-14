@@ -5,6 +5,21 @@
 API را اجرا نمی‌کند و نمرهٔ انسانی نمی‌سازد. RAG/ranking حسن و smoke دستی
 UI/SQLite بهنام مسیر جدا دارند.
 
+برای campaign تازهٔ C4h که با۴ pair از۶ متوقف شد، همان ابزار را با receipt
+صریح اجرا کنید:
+
+```bash
+uv run python scripts/prepare_semantic_review.py prepare \
+  --receipt experiments/core_resource_guidance_v1/model-live-receipt-v1.json \
+  --output runtime/resource-review-FRESH
+```
+
+این بسته به **method فعال V2** وصل است.۲۴ نوبت ثبت‌شده،۱۶ رسیده،۱۰ پیشنهاد
+تازه،۶ بدون پاسخ تازه شامل۴ stale و۸ اجرا‌نشده باقی می‌مانند.۲۲ attempt و
+۲۱ send جدا هستند؛ توقف ورودی پیش از reservation، فراخوانی پرداخت‌شده نیست.
+Usage اصلیِ ناقص/null حفظ می‌شود و fix اندازه‌گیری آینده آن را بازنویسی نمی‌کند.
+برای C4g همان method تاریخی V1 و شمارش‌های زیر معتبرند.
+
 از ریشهٔ repository اجرا کنید؛ مقصد باید یک پوشهٔ تازه و خصوصی باشد:
 
 ```bash

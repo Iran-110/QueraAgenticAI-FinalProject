@@ -1,6 +1,6 @@
 """Offline, content-bound review preparation; no judgment, model or action.
 
-This adapter reads the actual C4g receipt rather than renderer replays. Frozen
+This adapter reads actual C4g/C4h receipts rather than renderer replays. Frozen
 fixed-evidence strata are retained as registrations, never silently relabelled
 for native retrieval. A caller declaring a human reviewer is not authenticated.
 """
@@ -37,6 +37,19 @@ _CODES = {
     "WorkbenchReviewUnassigned",
     "WorkbenchOutputExists",
     "WorkbenchWriteFailed",
+}
+
+_CAMPAIGNS = {
+    "dev-real-index-model-v1": (
+        "live-method-v1.json",
+        "experiments/dev_rag_coverage_v1/protocol-v1.json",
+        "c4g-offline-review-workbench-v1",
+    ),
+    "core-resource-guidance-model-v1": (
+        "live-method-v2.json",
+        "experiments/core_resource_guidance_v1/protocol-v1.json",
+        "c4h-offline-review-workbench-v1",
+    ),
 }
 
 
@@ -166,7 +179,9 @@ def build_workbench(
     """Read exposed development artifacts; keep all planned/failed turn rows."""
     try:
         receipt, receipt_pin = _read(receipt_path)
-        method_file, method_pin = _read(Path(receipt_path).parent / "live-method-v1.json")
+        _need(receipt.get("protocol_id") in _CAMPAIGNS, "WorkbenchReceiptMismatch")
+        method_name, protocol_name, kind = _CAMPAIGNS[receipt["protocol_id"]]
+        method_file, method_pin = _read(Path(receipt_path).parent / method_name)
         protocol, protocol_pin = _read(Path(receipt_path).parent / "protocol-v1.json")
         scenario, scenario_pin = _read(scenario_path)
         rubric_pin = _pin(rubric_path)
@@ -186,16 +201,14 @@ def build_workbench(
             fixture_pins.append(pin)
         method = receipt["method"]
         _need(
-            receipt["protocol_id"] == "dev-real-index-model-v1"
-            and receipt["real_index_retrieval"] is True
+            receipt["real_index_retrieval"] is True
             and receipt["held_out_test"] is False
             and receipt["human_reviewed"] is False
             and receipt["human_usefulness"] is None
             and method["protocol_id"] == receipt["protocol_id"]
             and method_file == method
             and receipt["registration"]["method_sha256"] == method_pin["sha256"]
-            and method["input_pins"]["experiments/dev_rag_coverage_v1/protocol-v1.json"]
-            == protocol_pin["sha256"],
+            and method["input_pins"][protocol_name] == protocol_pin["sha256"],
             "WorkbenchReceiptMismatch",
         )
         _need(
@@ -220,7 +233,7 @@ def build_workbench(
             {pin["sha256"] for pin in fixture_pins} | {scenario_pin["sha256"]} <= registered,
             "WorkbenchFixtureMismatch",
         )
-        packet_id = _hash({"kind": "c4g-offline-review-workbench-v1", "inputs": inputs})
+        packet_id = _hash({"kind": kind, "inputs": inputs})
         planned = {
             batch["batch_id"]: {job["job_id"]: job for job in batch["jobs"]}
             for batch in method["batches"]
@@ -396,7 +409,7 @@ def build_workbench(
         counts = Counter(row["status"] for row in rows)
         result = {
             "schema_version": 1,
-            "kind": "c4g-offline-review-workbench-v1",
+            "kind": kind,
             "packet_id": packet_id,
             "inputs": inputs,
             "quality_claim": False,
