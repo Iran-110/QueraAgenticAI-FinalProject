@@ -200,6 +200,7 @@ jobs:
         run: |
           uv run pytest tests/test_configured_user_gap_catalog.py tests/test_user_gap_configuration_http.py
           uv run python scripts/user_gap_configuration_comparison.py --candidate 535e020f3be4ffce684e329bc5978ffd6d3f8bb3 --output "$env:RUNNER_TEMP/user-gap-configuration.json"
-      - name: Check current stability, catalog truth and authored attack controls without network
-        run: uv run pytest tests/test_stability_probe.py tests/test_stability_review.py tests/test_catalog_version_truth.py tests/test_adversarial_packet.py tests/test_core_adversarial_replay.py
           uv run python -c "import json,os,pathlib; r=json.loads((pathlib.Path(os.environ['RUNNER_TEMP'])/'user-gap-configuration.json').read_text(encoding='utf-8')); assert r['registered_controls']==21 and r['arms']['baseline']['counts']==dict(passed=9,failed=12,error=0,skipped=0,not_run=0) and r['arms']['candidate']['counts']==dict(passed=21,failed=0,error=0,skipped=0,not_run=0) and all(a['source_matches_git_commit'] and a['imports_bound_to_snapshot'] and a['external_network_disabled'] for a in r['arms'].values()) and r['production_ledger_unchanged'] and r['real_model_requests']==0 and r['paid_api_cost_usd']=='0' and not r['quality_claim']"
+      - name: Check current stability, catalog truth and authored attack controls without network
+        run: |
+          uv run pytest tests/test_stability_probe.py tests/test_stability_review.py tests/test_catalog_version_truth.py tests/test_adversarial_packet.py tests/test_core_adversarial_replay.py
