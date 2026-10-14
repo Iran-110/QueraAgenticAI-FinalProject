@@ -445,7 +445,12 @@ def test_scope_creation_and_event_write_are_atomic_on_audit_failure(quarantined)
         )
     before = historical_rows(path)
     with pytest.raises(LedgerUnavailable):
-        authorize(ledger, authorization_id="second-scope", protocol_sha256="a" * 64)
+        authorize(
+            ledger,
+            authorization_id="second-scope",
+            protocol_sha256="a" * 64,
+            request_slots=(slot(2), slot(3)),
+        )
     assert historical_rows(path) == before
     with pytest.raises(LedgerConflict):
         ledger.experiment_scope_status("second-scope")

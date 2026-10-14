@@ -14,16 +14,20 @@ import re
 import sqlite3
 from collections.abc import Iterator
 from contextlib import contextmanager, suppress
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from decimal import ROUND_CEILING, ROUND_FLOOR, Decimal, InvalidOperation, localcontext
 from pathlib import Path
 from typing import Literal
+
+from agent_app.llm.pricing import get_price
 
 __all__ = [
     "BudgetDenied",
     "BudgetLedger",
     "BudgetSnapshot",
     "ContinuationStatus",
+    "ExperimentRequestSlot",
+    "ExperimentScopeStatus",
     "LedgerConflict",
     "LedgerUnavailable",
     "Reservation",
@@ -99,6 +103,30 @@ class ContinuationStatus:
     remaining_usd: Decimal
     active: bool
     block_reason: str | None
+
+
+@dataclass(frozen=True, slots=True)
+class ExperimentRequestSlot:
+    """Caller-owned identity and limits frozen before one paid experiment."""
+
+    request_id: str
+    run_id: str
+    case_id: str
+    case_revision: int
+    attempt: int
+    model: str = "gpt-4o-mini"
+    phase: str = "development"
+    input_token_reserve: int = 16384
+    max_output_tokens: int = 1024
+    amount_usd: Decimal = Decimal("0.003379200")
+
+
+@dataclass(frozen=True, slots=True)
+class ExperimentScopeStatus(ContinuationStatus):
+    parent_authorization_id: str
+    protocol_sha256: str
+    max_requests: int
+    consumed_requests: int
 
 
 def _identifier(value: str) -> str:
@@ -443,6 +471,314 @@ def _continuation_status(
     )
 
 
+def _experiment_scopes_exist(connection: sqlite3.Connection) -> bool:
+    return (
+        connection.execute(
+            "SELECT 1 FROM sqlite_master WHERE type='table' AND name='experiment_scopes'"
+        ).fetchone()
+        is not None
+    )
+
+
+def _experiment_scope_schema(connection: sqlite3.Connection) -> None:
+    """Add a separate experiment allowance; historical grants remain immutable."""
+    connection.execute("""CREATE TABLE IF NOT EXISTS experiment_scopes (
+        authorization_id TEXT PRIMARY KEY,
+        authorization_ref TEXT NOT NULL,
+        parent_authorization_id TEXT NOT NULL REFERENCES ledger_continuations(authorization_id),
+        expected_request_id TEXT NOT NULL REFERENCES reservations(request_id),
+        protocol_sha256 TEXT NOT NULL UNIQUE,
+        cap_nanos INTEGER NOT NULL CHECK(cap_nanos BETWEEN 1 AND 100000000),
+        held_nanos INTEGER NOT NULL CHECK(held_nanos >= 20000000),
+        parent_fingerprint TEXT NOT NULL,
+        quarantine_fingerprint TEXT NOT NULL,
+        max_requests INTEGER NOT NULL CHECK(max_requests BETWEEN 1 AND 24),
+        slots_fingerprint TEXT NOT NULL,
+        registration_fingerprint TEXT NOT NULL,
+        recorded_at TEXT NOT NULL DEFAULT(strftime('%Y-%m-%dT%H:%M:%fZ','now'))
+    )""")
+    connection.execute("""CREATE TABLE IF NOT EXISTS experiment_scope_slots (
+        request_id TEXT PRIMARY KEY,
+        authorization_id TEXT NOT NULL REFERENCES experiment_scopes(authorization_id),
+        slot_index INTEGER NOT NULL,
+        run_id TEXT NOT NULL,
+        case_id TEXT NOT NULL,
+        case_revision INTEGER NOT NULL,
+        attempt INTEGER NOT NULL,
+        model TEXT NOT NULL,
+        phase TEXT NOT NULL,
+        input_token_reserve INTEGER NOT NULL,
+        max_output_tokens INTEGER NOT NULL,
+        amount_nanos INTEGER NOT NULL,
+        UNIQUE(authorization_id, slot_index),
+        UNIQUE(run_id, case_id, case_revision, attempt)
+    )""")
+    connection.execute("""CREATE TABLE IF NOT EXISTS experiment_scope_requests (
+        request_id TEXT PRIMARY KEY REFERENCES reservations(request_id),
+        authorization_id TEXT NOT NULL REFERENCES experiment_scopes(authorization_id)
+    )""")
+    connection.execute("""CREATE TABLE IF NOT EXISTS experiment_scope_events (
+        event_id INTEGER PRIMARY KEY,
+        authorization_id TEXT NOT NULL REFERENCES experiment_scopes(authorization_id),
+        status TEXT NOT NULL CHECK(status IN ('authorized','revoked','closed')),
+        reason_code TEXT NOT NULL,
+        recorded_at TEXT NOT NULL DEFAULT(strftime('%Y-%m-%dT%H:%M:%fZ','now'))
+    )""")
+
+
+def _digest(value: object) -> str:
+    return hashlib.sha256(
+        json.dumps(value, sort_keys=True, separators=(",", ":"), default=str).encode()
+    ).hexdigest()
+
+
+def _experiment_slots_fingerprint(slots: tuple[ExperimentRequestSlot, ...]) -> str:
+    # Money identity uses exact nanoUSD, independent of Decimal trailing zeros.
+    return _digest([{**asdict(slot), "amount_usd": _money(slot.amount_usd)} for slot in slots])
+
+
+def _validated_experiment_slots(
+    slots: tuple[ExperimentRequestSlot, ...],
+) -> tuple[ExperimentRequestSlot, ...]:
+    if type(slots) is not tuple or not 1 <= len(slots) <= 24:
+        raise ValueError("Invalid experiment request slots.")
+    identities = set()
+    request_ids = set()
+    price = get_price("gpt-4o-mini")
+    for slot in slots:
+        if type(slot) is not ExperimentRequestSlot:
+            raise ValueError("Invalid experiment request slot.")
+        for value in (slot.request_id, slot.run_id, slot.case_id):
+            _identifier(value)
+        _counter(slot.case_revision)
+        _counter(slot.attempt, minimum=1, maximum=2)
+        bound = (
+            price.cost(slot.input_token_reserve, 1024)
+            if price is not None
+            and type(slot.input_token_reserve) is int
+            and slot.input_token_reserve in (16384, 24576)
+            else None
+        )
+        if (
+            slot.model != "gpt-4o-mini"
+            or slot.phase != "development"
+            or type(slot.input_token_reserve) is not int
+            or slot.input_token_reserve not in (16384, 24576)
+            or type(slot.max_output_tokens) is not int
+            or slot.max_output_tokens != 1024
+            or not isinstance(slot.amount_usd, Decimal)
+            or not slot.amount_usd.is_finite()
+            or slot.amount_usd != bound
+        ):
+            raise ValueError("Invalid experiment request bounds.")
+        identity = (slot.run_id, slot.case_id, slot.case_revision, slot.attempt)
+        if identity in identities or slot.request_id in request_ids:
+            raise ValueError("Duplicate experiment request slot.")
+        identities.add(identity)
+        request_ids.add(slot.request_id)
+    return slots
+
+
+def _experiment_slot(row: sqlite3.Row) -> ExperimentRequestSlot:
+    _counter(row["amount_nanos"], minimum=1)
+    return ExperimentRequestSlot(
+        request_id=row["request_id"],
+        run_id=row["run_id"],
+        case_id=row["case_id"],
+        case_revision=row["case_revision"],
+        attempt=row["attempt"],
+        model=row["model"],
+        phase=row["phase"],
+        input_token_reserve=row["input_token_reserve"],
+        max_output_tokens=row["max_output_tokens"],
+        amount_usd=_usd(row["amount_nanos"]),
+    )
+
+
+def _find_experiment_scope(connection: sqlite3.Connection, authorization_id: str) -> sqlite3.Row:
+    if not _experiment_scopes_exist(connection):
+        raise LedgerConflict()
+    row = connection.execute(
+        "SELECT * FROM experiment_scopes WHERE authorization_id=?", (authorization_id,)
+    ).fetchone()
+    if row is None:
+        raise LedgerConflict()
+    try:
+        for key in (
+            "authorization_id",
+            "authorization_ref",
+            "parent_authorization_id",
+            "expected_request_id",
+        ):
+            _identifier(row[key])
+        for key in (
+            "protocol_sha256",
+            "parent_fingerprint",
+            "quarantine_fingerprint",
+            "slots_fingerprint",
+            "registration_fingerprint",
+        ):
+            if not isinstance(row[key], str) or re.fullmatch(r"[a-f0-9]{64}", row[key]) is None:
+                raise ValueError
+        _counter(row["cap_nanos"], minimum=1, maximum=100_000_000)
+        _counter(row["held_nanos"], minimum=20_000_000)
+        _counter(row["max_requests"], minimum=1, maximum=24)
+        registered = {
+            key: row[key]
+            for key in row.keys()
+            if key not in ("recorded_at", "registration_fingerprint")
+        }
+        if _digest(registered) != row["registration_fingerprint"]:
+            raise ValueError
+        slot_rows = connection.execute(
+            "SELECT * FROM experiment_scope_slots WHERE authorization_id=? ORDER BY slot_index",
+            (authorization_id,),
+        ).fetchall()
+        if [slot["slot_index"] for slot in slot_rows] != list(range(row["max_requests"])):
+            raise ValueError
+        slots = _validated_experiment_slots(tuple(_experiment_slot(slot) for slot in slot_rows))
+        if _experiment_slots_fingerprint(slots) != row["slots_fingerprint"]:
+            raise ValueError
+        if sum(_money(slot.amount_usd) for slot in slots) > row["cap_nanos"]:
+            raise ValueError
+    except (IndexError, KeyError, InvalidOperation, TypeError, ValueError):
+        raise LedgerUnavailable() from None
+    return row
+
+
+def _experiment_scope_usage(
+    connection: sqlite3.Connection, authorization_id: str
+) -> tuple[int, int]:
+    used = count = 0
+    for mapped in connection.execute(
+        "SELECT request_id FROM experiment_scope_requests WHERE authorization_id=?",
+        (authorization_id,),
+    ):
+        count += 1
+        row = _required(connection, mapped["request_id"])
+        slot_row = connection.execute(
+            "SELECT * FROM experiment_scope_slots WHERE authorization_id=? AND request_id=?",
+            (authorization_id, row["request_id"]),
+        ).fetchone()
+        if slot_row is None or any(
+            row[key] != slot_row[key]
+            for key in (
+                "run_id",
+                "case_id",
+                "case_revision",
+                "attempt",
+                "model",
+                "phase",
+                "amount_nanos",
+            )
+        ):
+            raise LedgerUnavailable()
+        if row["status"] == "settled":
+            used += row["cost_nanos"]
+        elif row["status"] in ("reserved", "uncertain"):
+            used += row["amount_nanos"]
+    return used, count
+
+
+def _experiment_scope_status(
+    connection: sqlite3.Connection, authorization_id: str
+) -> ExperimentScopeStatus:
+    row = _find_experiment_scope(connection, authorization_id)
+    parent = _find_continuation(connection, row["parent_authorization_id"])
+    _, _, halted = _configuration(connection)
+    _totals(connection)
+    quarantine = _required(connection, row["expected_request_id"])
+    events = connection.execute(
+        "SELECT status, reason_code FROM experiment_scope_events WHERE authorization_id=? ORDER BY event_id",
+        (authorization_id,),
+    ).fetchall()
+    if (
+        len(events) not in (1, 2)
+        or events[0]["status"] != "authorized"
+        or events[0]["reason_code"] != "UserAuthorizedExperimentScope"
+    ):
+        raise LedgerUnavailable()
+    if len(events) == 2:
+        if events[1]["status"] not in ("revoked", "closed"):
+            raise LedgerUnavailable()
+        try:
+            _identifier(events[1]["reason_code"])
+        except ValueError:
+            raise LedgerUnavailable() from None
+    used, consumed = _experiment_scope_usage(connection, authorization_id)
+    if consumed > row["max_requests"]:
+        raise LedgerUnavailable()
+    unknown_ids = [
+        item[0]
+        for item in connection.execute(
+            "SELECT request_id FROM reservations WHERE status='uncertain'"
+        )
+    ]
+    pending = (
+        connection.execute("SELECT 1 FROM reservations WHERE status='reserved' LIMIT 1").fetchone()
+        is not None
+    )
+    remaining = max(0, row["cap_nanos"] - used)
+    reason = None
+    if len(events) == 2:
+        reason = events[1]["reason_code"]
+    elif not halted:
+        reason = "GlobalHaltChanged"
+    elif _digest(dict(parent)) != row["parent_fingerprint"]:
+        reason = "ParentAuthorizationChanged"
+    elif _quarantine_fingerprint(quarantine) != row["quarantine_fingerprint"]:
+        reason = "QuarantineChanged"
+    elif unknown_ids != [row["expected_request_id"]]:
+        reason = "UncertaintyChanged"
+    elif _observed_overrun(connection):
+        reason = "CostOverrun"
+    elif pending:
+        reason = "PendingRequest"
+    elif not remaining:
+        reason = "ExperimentCapExceeded"
+    elif consumed == row["max_requests"]:
+        reason = "ExperimentRequestsExhausted"
+    return ExperimentScopeStatus(
+        authorization_id=row["authorization_id"],
+        authorization_ref=row["authorization_ref"],
+        expected_request_id=row["expected_request_id"],
+        allowed_model="gpt-4o-mini",
+        additional_cap_usd=_usd(row["cap_nanos"]),
+        held_usd=_usd(row["held_nanos"]),
+        used_usd=_usd(used),
+        remaining_usd=_usd(remaining),
+        active=reason is None,
+        block_reason=reason,
+        parent_authorization_id=row["parent_authorization_id"],
+        protocol_sha256=row["protocol_sha256"],
+        max_requests=row["max_requests"],
+        consumed_requests=consumed,
+    )
+
+
+def _authorization_status(
+    connection: sqlite3.Connection, authorization_id: str
+) -> ContinuationStatus:
+    try:
+        _find_continuation(connection, authorization_id)
+    except LedgerConflict:
+        return _experiment_scope_status(connection, authorization_id)
+    return _continuation_status(connection, authorization_id)
+
+
+def _revoke_experiment_scopes(connection: sqlite3.Connection, reason_code: str) -> None:
+    if not _experiment_scopes_exist(connection):
+        return
+    scopes = connection.execute("""SELECT authorization_id FROM experiment_scopes s WHERE NOT EXISTS
+        (SELECT 1 FROM experiment_scope_events e WHERE e.authorization_id=s.authorization_id AND e.status IN ('revoked','closed'))""").fetchall()
+    for row in scopes:
+        _find_experiment_scope(connection, row["authorization_id"])
+        connection.execute(
+            "INSERT INTO experiment_scope_events(authorization_id,status,reason_code) VALUES (?,'revoked',?)",
+            (row["authorization_id"], reason_code),
+        )
+
+
 def _revoke_continuations(connection: sqlite3.Connection, reason_code: str) -> None:
     if not _continuations_exist(connection):
         return
@@ -458,6 +794,7 @@ def _revoke_continuations(connection: sqlite3.Connection, reason_code: str) -> N
             "INSERT INTO continuation_events (authorization_id, status, reason_code) VALUES (?, 'revoked', ?)",
             (row["authorization_id"], reason_code),
         )
+    _revoke_experiment_scopes(connection, reason_code)
 
 
 class BudgetLedger:
@@ -659,7 +996,190 @@ class BudgetLedger:
     def continuation_status(self, authorization_id: str) -> ContinuationStatus:
         authorization_id = _identifier(authorization_id)
         with _transaction(self._path) as connection:
-            return _continuation_status(connection, authorization_id)
+            return _authorization_status(connection, authorization_id)
+
+    def authorize_experiment_scope(
+        self,
+        *,
+        authorization_id: str,
+        authorization_ref: str,
+        parent_authorization_id: str,
+        protocol_sha256: str,
+        request_slots: tuple[ExperimentRequestSlot, ...],
+        additional_cap_usd: Decimal,
+    ) -> ExperimentScopeStatus:
+        """Record a new human-authorized experiment, never refill its parent grant.
+
+        This trusted caller operation requires explicit human authorization for
+        the registered protocol and request slots. It does not reconcile the
+        old incident, clear the halt, or permit ordinary live factory requests.
+        A protocol is authorized once; exact replay cannot create new credit.
+        """
+        authorization_id, authorization_ref, parent_authorization_id = map(
+            _identifier, (authorization_id, authorization_ref, parent_authorization_id)
+        )
+        if (
+            not isinstance(protocol_sha256, str)
+            or re.fullmatch(r"[a-f0-9]{64}", protocol_sha256) is None
+        ):
+            raise ValueError("Invalid experiment protocol fingerprint.")
+        cap = _money(additional_cap_usd, ceiling=False)
+        if not 0 < additional_cap_usd <= Decimal("0.10") or not cap:
+            raise ValueError("Invalid experiment funding cap.")
+        slots = _validated_experiment_slots(request_slots)
+        slots_fingerprint = _experiment_slots_fingerprint(slots)
+        if sum(_money(slot.amount_usd) for slot in slots) > cap:
+            raise ValueError("Experiment request slots exceed funding cap.")
+        with _transaction(self._path, write=True) as connection:
+            limit, opening, _ = _configuration(connection)
+            settled, reserved, uncertain = _totals(connection)
+            if (
+                _continuations_exist(connection)
+                and connection.execute(
+                    "SELECT 1 FROM ledger_continuations WHERE authorization_id=?",
+                    (authorization_id,),
+                ).fetchone()
+            ):
+                raise LedgerConflict()
+            if _experiment_scopes_exist(connection):
+                existing = connection.execute(
+                    "SELECT 1 FROM experiment_scopes WHERE authorization_id=?", (authorization_id,)
+                ).fetchone()
+                if existing:
+                    row = _find_experiment_scope(connection, authorization_id)
+                    if any(
+                        row[key] != value
+                        for key, value in (
+                            ("authorization_ref", authorization_ref),
+                            ("parent_authorization_id", parent_authorization_id),
+                            ("protocol_sha256", protocol_sha256),
+                            ("cap_nanos", cap),
+                            ("slots_fingerprint", slots_fingerprint),
+                        )
+                    ):
+                        raise LedgerConflict()
+                    return _experiment_scope_status(connection, authorization_id)
+            try:
+                parent = _find_continuation(connection, parent_authorization_id)
+            except LedgerConflict:
+                raise BudgetDenied() from None
+            parent_status = _continuation_status(connection, parent_authorization_id)
+            if parent_status.block_reason not in (None, "ContinuationCapExceeded"):
+                raise BudgetDenied()
+            quarantine = _required(connection, parent["expected_request_id"])
+            if (
+                quarantine["model"] != "gpt-4.1-mini"
+                or quarantine["error_code"] != "ProviderModelMismatch"
+            ):
+                raise BudgetDenied()
+            # Back every outstanding allowance under the same original ceiling,
+            # rather than promising the same unspent global credit twice.
+            allowances = 0
+            for row in connection.execute("SELECT authorization_id FROM ledger_continuations"):
+                status = _continuation_status(connection, row["authorization_id"])
+                if status.active:
+                    allowances += _money(status.remaining_usd, ceiling=False)
+            if _experiment_scopes_exist(connection):
+                if connection.execute(
+                    "SELECT 1 FROM experiment_scopes WHERE protocol_sha256=?", (protocol_sha256,)
+                ).fetchone():
+                    raise LedgerConflict()
+                for row in connection.execute("SELECT authorization_id FROM experiment_scopes"):
+                    status = _experiment_scope_status(connection, row["authorization_id"])
+                    if status.active:
+                        allowances += _money(status.remaining_usd, ceiling=False)
+            if opening + settled + reserved + uncertain + allowances + cap > limit:
+                raise BudgetDenied()
+            for slot in slots:
+                if (
+                    _find(connection, slot.request_id) is not None
+                    or connection.execute(
+                        "SELECT 1 FROM reservations WHERE run_id=? AND case_id=? AND case_revision=? AND attempt=?",
+                        (slot.run_id, slot.case_id, slot.case_revision, slot.attempt),
+                    ).fetchone()
+                ):
+                    raise LedgerConflict()
+                if (
+                    _experiment_scopes_exist(connection)
+                    and connection.execute(
+                        "SELECT 1 FROM experiment_scope_slots WHERE request_id=? OR (run_id=? AND case_id=? AND case_revision=? AND attempt=?)",
+                        (
+                            slot.request_id,
+                            slot.run_id,
+                            slot.case_id,
+                            slot.case_revision,
+                            slot.attempt,
+                        ),
+                    ).fetchone()
+                ):
+                    raise LedgerConflict()
+            _experiment_scope_schema(connection)
+            registration = {
+                "authorization_id": authorization_id,
+                "authorization_ref": authorization_ref,
+                "parent_authorization_id": parent_authorization_id,
+                "expected_request_id": parent["expected_request_id"],
+                "protocol_sha256": protocol_sha256,
+                "cap_nanos": cap,
+                "held_nanos": parent["held_nanos"],
+                "parent_fingerprint": _digest(dict(parent)),
+                "quarantine_fingerprint": _quarantine_fingerprint(quarantine),
+                "max_requests": len(slots),
+                "slots_fingerprint": slots_fingerprint,
+            }
+            columns = ",".join(registration) + ",registration_fingerprint"
+            marks = ",".join("?" for _ in range(len(registration) + 1))
+            connection.execute(
+                f"INSERT INTO experiment_scopes({columns}) VALUES ({marks})",
+                (*registration.values(), _digest(registration)),
+            )
+            for index, slot in enumerate(slots):
+                connection.execute(
+                    """INSERT INTO experiment_scope_slots
+                    (request_id,authorization_id,slot_index,run_id,case_id,case_revision,attempt,model,phase,input_token_reserve,max_output_tokens,amount_nanos)
+                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?)""",
+                    (
+                        slot.request_id,
+                        authorization_id,
+                        index,
+                        slot.run_id,
+                        slot.case_id,
+                        slot.case_revision,
+                        slot.attempt,
+                        slot.model,
+                        slot.phase,
+                        slot.input_token_reserve,
+                        slot.max_output_tokens,
+                        _money(slot.amount_usd),
+                    ),
+                )
+            connection.execute(
+                "INSERT INTO experiment_scope_events(authorization_id,status,reason_code) VALUES (?,'authorized','UserAuthorizedExperimentScope')",
+                (authorization_id,),
+            )
+            return _experiment_scope_status(connection, authorization_id)
+
+    def experiment_scope_status(self, authorization_id: str) -> ExperimentScopeStatus:
+        authorization_id = _identifier(authorization_id)
+        with _transaction(self._path) as connection:
+            return _experiment_scope_status(connection, authorization_id)
+
+    def close_experiment_scope(self, authorization_id: str) -> ExperimentScopeStatus:
+        """Append a permanent close event; pending requests and history stay held."""
+        authorization_id = _identifier(authorization_id)
+        with _transaction(self._path, write=True) as connection:
+            status = _experiment_scope_status(connection, authorization_id)
+            terminal = connection.execute(
+                "SELECT 1 FROM experiment_scope_events WHERE authorization_id=? AND status IN ('closed','revoked')",
+                (authorization_id,),
+            ).fetchone()
+            if terminal is None:
+                connection.execute(
+                    "INSERT INTO experiment_scope_events(authorization_id,status,reason_code) VALUES (?,'closed','ExperimentClosed')",
+                    (authorization_id,),
+                )
+                status = _experiment_scope_status(connection, authorization_id)
+            return status
 
     def reserve(
         self,
@@ -673,6 +1193,8 @@ class BudgetLedger:
         phase: str,
         amount_usd: Decimal,
         continuation_id: str | None = None,
+        input_token_reserve: int | None = None,
+        max_output_tokens: int | None = None,
     ) -> Reservation:
         request_id = _identifier(request_id)
         with _transaction(self._path, write=True) as connection:
@@ -689,7 +1211,7 @@ class BudgetLedger:
             if continuation_id is not None:
                 continuation_id = _identifier(continuation_id)
                 try:
-                    scope = _continuation_status(connection, continuation_id)
+                    scope = _authorization_status(connection, continuation_id)
                 except LedgerConflict:
                     raise BudgetDenied() from None
                 if (
@@ -700,6 +1222,32 @@ class BudgetLedger:
                     or amount > _money(scope.remaining_usd, ceiling=False)
                 ):
                     raise BudgetDenied()
+                if isinstance(scope, ExperimentScopeStatus):
+                    if type(input_token_reserve) is not int or type(max_output_tokens) is not int:
+                        raise BudgetDenied()
+                    slot = connection.execute(
+                        "SELECT * FROM experiment_scope_slots WHERE authorization_id=? AND request_id=?",
+                        (continuation_id, request_id),
+                    ).fetchone()
+                    if (
+                        slot is None
+                        or amount_usd != _usd(slot["amount_nanos"])
+                        or any(
+                            slot[key] != value
+                            for key, value in (
+                                ("run_id", run_id),
+                                ("case_id", case_id),
+                                ("case_revision", case_revision),
+                                ("attempt", attempt),
+                                ("model", model),
+                                ("phase", phase),
+                                ("amount_nanos", amount),
+                                ("input_token_reserve", input_token_reserve),
+                                ("max_output_tokens", max_output_tokens),
+                            )
+                        )
+                    ):
+                        raise BudgetDenied()
             elif halted:
                 raise BudgetDenied()
             if opening + settled + reserved + uncertain + amount > limit:
@@ -712,7 +1260,9 @@ class BudgetLedger:
             )
             if continuation_id is not None:
                 connection.execute(
-                    "INSERT INTO continuation_requests (request_id, authorization_id) VALUES (?, ?)",
+                    "INSERT INTO experiment_scope_requests (request_id, authorization_id) VALUES (?, ?)"
+                    if isinstance(scope, ExperimentScopeStatus)
+                    else "INSERT INTO continuation_requests (request_id, authorization_id) VALUES (?, ?)",
                     (request_id, continuation_id),
                 )
             _audit(connection, request_id, "reserved")
