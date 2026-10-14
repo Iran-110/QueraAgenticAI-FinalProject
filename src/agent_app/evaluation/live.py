@@ -32,6 +32,7 @@ from agent_app.llm.pricing import get_price, same_verified_price
 from agent_app.orchestration.ports import ReasoningStopCode, ReasoningStopped
 from agent_app.reasoning.catalog import caller_catalog, load_user_gap_vocabulary, validate_user_gaps
 from agent_app.reasoning.grounding import GroundedReasoner, build_grounded_messages
+from agent_app.reasoning.source_selection import add_source_selection_reminder
 from agent_app.retrieval.adapter import ChromaRetrieverAdapter
 from agent_app.retrieval.offline_index import open_verified_index
 from agent_app.retrieval.pilot_corpus import MANIFEST_NAME
@@ -193,7 +194,15 @@ class _Run:
                 "attempt_index": context.attempt_index,
                 "prompt_sha256": hashlib.sha256(
                     json.dumps(
-                        build_grounded_messages(request, context), ensure_ascii=False
+                        add_source_selection_reminder(
+                            build_grounded_messages(
+                                request,
+                                context,
+                                decision_contracts=self.owner._config.grounded_decision_contracts,
+                            ),
+                            enabled=self.owner._config.grounded_source_selection_reminder,
+                        ),
+                        ensure_ascii=False,
                     ).encode()
                 ).hexdigest(),
                 "requested_model": self.owner._config.model,
@@ -380,6 +389,7 @@ class LiveEvaluationAdapters:
                 GroundedReasoner(
                     run,
                     source_gap_handoff=self._config.grounded_source_gap_handoff,
+                    source_gap_investigation=self._config.grounded_source_gap_investigation,
                     request_factory=lambda case, message, evidence: caller_catalog(
                         case, message, evidence, definitions=self._gaps
                     ),
@@ -438,6 +448,8 @@ def configured_factory(values: Mapping[str, str]) -> LiveEvaluationAdapters:
             for name in (
                 "METIS_GROUNDED_DECISION_CONTRACTS",
                 "METIS_GROUNDED_SOURCE_GAP_HANDOFF",
+                "METIS_GROUNDED_SOURCE_GAP_INVESTIGATION",
+                "METIS_GROUNDED_SOURCE_SELECTION_REMINDER",
             )
         }
         if any(
@@ -451,6 +463,10 @@ def configured_factory(values: Mapping[str, str]) -> LiveEvaluationAdapters:
             response_mode="grounded_plan",
             grounded_decision_contracts=switches["METIS_GROUNDED_DECISION_CONTRACTS"] == "true",
             grounded_source_gap_handoff=switches["METIS_GROUNDED_SOURCE_GAP_HANDOFF"] == "true",
+            grounded_source_gap_investigation=switches["METIS_GROUNDED_SOURCE_GAP_INVESTIGATION"]
+            == "true",
+            grounded_source_selection_reminder=switches["METIS_GROUNDED_SOURCE_SELECTION_REMINDER"]
+            == "true",
             phase=values.get("AGENT_EVAL_PHASE", "development"),
             input_token_reserve=int(values.get("METIS_INPUT_TOKEN_RESERVE", "32768")),
             max_output_tokens=int(values.get("METIS_MAX_OUTPUT_TOKENS", "1024")),
