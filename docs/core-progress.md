@@ -4,6 +4,10 @@ This is a factual milestone log, not a daily activity schedule. Update it after 
 
 ## 2026-10-14 — C4d three exposed dev families and bounded real model trials
 
+Publication: [PR #45](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/45).
+Final local suite3139passes, HTTP/SQLite457/457 and three required demos pass;
+exact-head GitHub checks are required before merge.
+
 The separate draft dev-three packet adds #9770 and #8129 (conservative family
 #2379/#8180) to the #12782/#12629 pilot. Runtime IDs are opaque. Cached-body
 paraphrases, comment/outcome exposure and authored conditional follow-ups are

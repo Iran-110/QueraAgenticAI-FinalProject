@@ -5,6 +5,8 @@
 ## وضعیت فعلی
 
 - [x] **C4d — آزمایش محدود سه dev و اصلاح تصمیم‌های GroundedPlan؛ ساسان.**
+  انتشار در [PR #45](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/45)؛
+  ۳۱۳۹ تست محلی و HTTP/SQLite ۴۵۷/۴۵۷ پاس، CI همان head شرط merge است.
   [ورودی/known/unknown و oracle قبل از مدل](../data/evaluation/dev-three-v1/scenario-review-v1.json)
   و [receiptها و مقایسه](../experiments/dev_three_baseline/README.md) ثبت‌اند.
   A catalog معمول: ۲ خروجی معتبر از ۸، صفر مسیر کامل از سه؛ B vocabulary:
