@@ -1,0 +1,407 @@
+{
+  "schema_version": 1,
+  "protocol_id": "core-resource-guidance-model-v1",
+  "experiment_id": "core-resource-guidance-2026-10-14-v1",
+  "authorization_ref": "user-2026-10-14-course-core-evaluation-followup",
+  "baseline_main_commit": "f8b310681e040434aca81a6375926d135f0e87b6",
+  "input_pins": {
+    "data/evaluation/dev-three-v1/cases/enum-8129-v1.json": "c5becdc00a950941cb25de8f775fc1a5b024d54f607a9c494bd9e7820ab216f0",
+    "data/evaluation/dev-three-v1/cases/icon-9770-v1.json": "199b47b1c3a65e853d49ec28d9607eec36982502bd2fd5bde1c640165e35c413",
+    "data/evaluation/dev-three-v1/cases/pilot-12782-v1.json": "6b542b325ac70906b014c9ac9a7bd01fb95c81a9219794f695de1e09de76c901",
+    "data/evaluation/dev-three-v1/evidence-v1.json": "d8ddd2dd8234fe328cc49326de1cc83d9096fe833bce254812c44d20a9f79521",
+    "data/evaluation/dev-three-v1/exposure-review-v1.json": "ae63d11b8a86a887741ef05c87a229da3fcf580f9e145180f6239af61f360d95",
+    "data/evaluation/dev-three-v1/scenario-review-v1.json": "c5297daa3ccd966e20b5c9941345ac5218f4e94904b414722024b738268993c6",
+    "data/evaluation/dev-three-v1/split-manifest.json": "f857fc559673c7ae2f508617fda3f81e3591157740e327109b00ae9a86f449ce",
+    "data/evaluation/dev-three-v1/user-gap-vocabulary-v1.json": "d3b63719554f35d1addec14586ebc4fcb10231844097fcea65458ee01d0b6736",
+    "data/evaluation/split-manifest.json": "78e630cbef86937f2838795a2329ee56e16ea0beef7900db5c63d5fede6404ff",
+    "experiments/corpus/pilot-allowlist.json": "209037d964182070744f608b79b676eb56c072e7655aee440ad75287aa117729",
+    "experiments/dev_rag_coverage_v1/protocol-v1.json": "81baa4820a0a3c0653aba744e0e1ab367454b2528ca06ab989d94b8ace054483",
+    "experiments/dev_rag_coverage_v1/input-bound-amendment-v1.json": "814ea227b200f80980fd8dd128056a8ec5a056f99d47e3b5b010f0277411f476",
+    "experiments/dev_rag_coverage_v1/allowlist.json": "ec1d2383f79b11920b3b02ec79d01e6e3d4f180ee51d7d85fb522e9feceaca70",
+    "experiments/dev_rag_coverage_v1/split-manifest.json": "dd50ef2eb883abd8bbea356bda30fddb60861ff173522fc5f4237481a7835e9e",
+    "experiments/dev_rag_coverage_v1/index-receipt-v1.json": "137fcfa7ccb6274a6e4da84491ad9b5dbd37614dbca16ea6dcd9825722fad4d6",
+    "scripts/dev_rag_model_probe.py": "c7ab560b533889e959982012488f9509b54afa77f8d9bd5c1853d1e6db563bfe",
+    "scripts/dev_rag_coverage_acceptance.py": "ed9a8fb5f093ccd66a38052fede86e42d664d540b1550a9137f4ba3b981df7f2",
+    "experiments/core_resource_guidance_v1/protocol-v1.json": "dbdd943c3c54f13bea051db260a58a3de393dd1608cf5e91bd9d19587bf12a6b",
+    "scripts/core_resource_model_probe.py": "3cd9a48c5a93fa5e716fefe337139e4cb56ee9a05da98e4fc820e16520a1f5d8",
+    "experiments/dev_rag_coverage_v1/model-live-receipt-v1.json": "409fe34076fa6772e6442b881332874fe8e66d1f09e80a759e2ab8207d71f901",
+    "experiments/core_resource_guidance_v1/live-method-v1.json": "4cf4e0cf2d9d802d9ec5f63c8bc9ea5a1d204211c07fee54139089f88a45f6a4"
+  },
+  "indexes": {
+    "resource_guidance_off": {
+      "path": "/Users/sasan/Desktop/Agentic AI/FinalProject/QueraAgenticAI-FinalProject/runtime/dev-rag-coverage-2026-10-14-v1/coverage-18",
+      "snapshot_id": "docs-pilot-12ec2995032ad48dbec2c1f1736fca1f97727478373dd1835043eedf21ab0ee1",
+      "manifest_sha256": "24815c44f7d7e104a59579d444e8abce429f02b594dd6679165c0fbc381b9239"
+    },
+    "resource_guidance_on": {
+      "path": "/Users/sasan/Desktop/Agentic AI/FinalProject/QueraAgenticAI-FinalProject/runtime/dev-rag-coverage-2026-10-14-v1/coverage-18",
+      "snapshot_id": "docs-pilot-12ec2995032ad48dbec2c1f1736fca1f97727478373dd1835043eedf21ab0ee1",
+      "manifest_sha256": "24815c44f7d7e104a59579d444e8abce429f02b594dd6679165c0fbc381b9239"
+    }
+  },
+  "batches": [
+    {
+      "batch_id": "resource-r1-dev-case-a",
+      "kind": "real_index",
+      "scope_id": "user-core-resource-v1-resource-r1-dev-case-a",
+      "jobs": [
+        {
+          "job_id": "r1:dev-case-a:resource_guidance_off",
+          "case_id": "dev-case-a",
+          "arm": "resource_guidance_off",
+          "round": 1,
+          "decision_contracts": true,
+          "source_selection_reminder": true,
+          "max_output_tokens": 1024,
+          "input_token_reserve": 32768,
+          "resource_guidance": false
+        },
+        {
+          "job_id": "r1:dev-case-a:resource_guidance_on",
+          "case_id": "dev-case-a",
+          "arm": "resource_guidance_on",
+          "round": 1,
+          "decision_contracts": true,
+          "source_selection_reminder": true,
+          "max_output_tokens": 1024,
+          "input_token_reserve": 32768,
+          "resource_guidance": true
+        }
+      ],
+      "request_slots_sha256": "bbcc3c415d1a5cd53f70f315f685cd88aca2b4056379c8ea4e1dc3e19d5d328f",
+      "max_request_slots": 8,
+      "worst_reserved_usd": "0.048660480"
+    },
+    {
+      "batch_id": "resource-r1-dev-case-b",
+      "kind": "real_index",
+      "scope_id": "user-core-resource-v1-resource-r1-dev-case-b",
+      "jobs": [
+        {
+          "job_id": "r1:dev-case-b:resource_guidance_on",
+          "case_id": "dev-case-b",
+          "arm": "resource_guidance_on",
+          "round": 1,
+          "decision_contracts": true,
+          "source_selection_reminder": true,
+          "max_output_tokens": 1024,
+          "input_token_reserve": 32768,
+          "resource_guidance": true
+        },
+        {
+          "job_id": "r1:dev-case-b:resource_guidance_off",
+          "case_id": "dev-case-b",
+          "arm": "resource_guidance_off",
+          "round": 1,
+          "decision_contracts": true,
+          "source_selection_reminder": true,
+          "max_output_tokens": 1024,
+          "input_token_reserve": 32768,
+          "resource_guidance": false
+        }
+      ],
+      "request_slots_sha256": "df2d471882cc422b2b2c945029ecd774fac0a00963882c0ba7e09757a010409b",
+      "max_request_slots": 8,
+      "worst_reserved_usd": "0.048660480"
+    },
+    {
+      "batch_id": "resource-r1-dev-case-c",
+      "kind": "real_index",
+      "scope_id": "user-core-resource-v1-resource-r1-dev-case-c",
+      "jobs": [
+        {
+          "job_id": "r1:dev-case-c:resource_guidance_off",
+          "case_id": "dev-case-c",
+          "arm": "resource_guidance_off",
+          "round": 1,
+          "decision_contracts": true,
+          "source_selection_reminder": true,
+          "max_output_tokens": 1024,
+          "input_token_reserve": 32768,
+          "resource_guidance": false
+        },
+        {
+          "job_id": "r1:dev-case-c:resource_guidance_on",
+          "case_id": "dev-case-c",
+          "arm": "resource_guidance_on",
+          "round": 1,
+          "decision_contracts": true,
+          "source_selection_reminder": true,
+          "max_output_tokens": 1024,
+          "input_token_reserve": 32768,
+          "resource_guidance": true
+        }
+      ],
+      "request_slots_sha256": "9ccb388a6e76aa394860f0a44cb15a150a988922151ce0fd9e96c2068b1a02ef",
+      "max_request_slots": 8,
+      "worst_reserved_usd": "0.048660480"
+    },
+    {
+      "batch_id": "resource-r2-dev-case-c",
+      "kind": "real_index",
+      "scope_id": "user-core-resource-v1-resource-r2-dev-case-c",
+      "jobs": [
+        {
+          "job_id": "r2:dev-case-c:resource_guidance_on",
+          "case_id": "dev-case-c",
+          "arm": "resource_guidance_on",
+          "round": 2,
+          "decision_contracts": true,
+          "source_selection_reminder": true,
+          "max_output_tokens": 1024,
+          "input_token_reserve": 32768,
+          "resource_guidance": true
+        },
+        {
+          "job_id": "r2:dev-case-c:resource_guidance_off",
+          "case_id": "dev-case-c",
+          "arm": "resource_guidance_off",
+          "round": 2,
+          "decision_contracts": true,
+          "source_selection_reminder": true,
+          "max_output_tokens": 1024,
+          "input_token_reserve": 32768,
+          "resource_guidance": false
+        }
+      ],
+      "request_slots_sha256": "c979a540f74a7f71276cbdd37df00727500cfa7228e2158f6192a2d37b42d3c0",
+      "max_request_slots": 8,
+      "worst_reserved_usd": "0.048660480"
+    },
+    {
+      "batch_id": "resource-r2-dev-case-b",
+      "kind": "real_index",
+      "scope_id": "user-core-resource-v1-resource-r2-dev-case-b",
+      "jobs": [
+        {
+          "job_id": "r2:dev-case-b:resource_guidance_off",
+          "case_id": "dev-case-b",
+          "arm": "resource_guidance_off",
+          "round": 2,
+          "decision_contracts": true,
+          "source_selection_reminder": true,
+          "max_output_tokens": 1024,
+          "input_token_reserve": 32768,
+          "resource_guidance": false
+        },
+        {
+          "job_id": "r2:dev-case-b:resource_guidance_on",
+          "case_id": "dev-case-b",
+          "arm": "resource_guidance_on",
+          "round": 2,
+          "decision_contracts": true,
+          "source_selection_reminder": true,
+          "max_output_tokens": 1024,
+          "input_token_reserve": 32768,
+          "resource_guidance": true
+        }
+      ],
+      "request_slots_sha256": "f156db3b0b1ccd3dc79d88dabe19fc5ea06ba3694a9d00d64c7b136e44201450",
+      "max_request_slots": 8,
+      "worst_reserved_usd": "0.048660480"
+    },
+    {
+      "batch_id": "resource-r2-dev-case-a",
+      "kind": "real_index",
+      "scope_id": "user-core-resource-v1-resource-r2-dev-case-a",
+      "jobs": [
+        {
+          "job_id": "r2:dev-case-a:resource_guidance_on",
+          "case_id": "dev-case-a",
+          "arm": "resource_guidance_on",
+          "round": 2,
+          "decision_contracts": true,
+          "source_selection_reminder": true,
+          "max_output_tokens": 1024,
+          "input_token_reserve": 32768,
+          "resource_guidance": true
+        },
+        {
+          "job_id": "r2:dev-case-a:resource_guidance_off",
+          "case_id": "dev-case-a",
+          "arm": "resource_guidance_off",
+          "round": 2,
+          "decision_contracts": true,
+          "source_selection_reminder": true,
+          "max_output_tokens": 1024,
+          "input_token_reserve": 32768,
+          "resource_guidance": false
+        }
+      ],
+      "request_slots_sha256": "e5f68db9fe4d8ff303deeb92b63ce3fe039ff9fbf55830d06a866d48d3ee59f1",
+      "max_request_slots": 8,
+      "worst_reserved_usd": "0.048660480"
+    }
+  ],
+  "model": "gpt-4o-mini",
+  "scope_cap_usd": "0.06",
+  "allow_full_context": true,
+  "quarantine_before": {
+    "unknown_ids": [
+      "call:00d470ec94177a11f66c6cb3dbbb6c83069dd1385ddd6ac7b1e3df96fa50f7fa",
+      "call:99512367628b4700a171466d2390b6be8ac708d62bb11ab2f354130ec2118817"
+    ],
+    "unknown_fingerprints": [
+      [
+        "call:00d470ec94177a11f66c6cb3dbbb6c83069dd1385ddd6ac7b1e3df96fa50f7fa",
+        "b0fc8ef5f8b8f29fa2df15d9dce1fc5f8d8cbc6fdaf3ae6dfd399c7082b79e54"
+      ],
+      [
+        "call:99512367628b4700a171466d2390b6be8ac708d62bb11ab2f354130ec2118817",
+        "bdcd88c397cd5c1d2c47b8ab50d50ac4f572021067177cdb470cc3f03f150194"
+      ]
+    ],
+    "meta_sha256": "b5e1d7201d3e94ebc3de2245699bab071f8386bf2d2705fa296c6804d16b721d",
+    "authorization_history_sha256": "3194649752ef74aaf10eb20522ceec8cf8751f95a39875e5b859312f3b4b9682",
+    "held_usd": "0.0233792"
+  },
+  "ledger_before": {
+    "db_sha256": "96a84acd3cfe20d20e5cec83c92bd5c30dc8b778260c4d6d19e1a85596f190b8",
+    "meta_sha256": "873ab0915f2b9c87d5fcaf7d1dda6a79caa3d548481fa6682d2703d9808eeae1",
+    "unknown_sha256": "035b22c32745a0965a92bf5018fc6ef5acdd34398b663e0a9dbd198a92290858",
+    "old_grants_sha256": "c493b969c9adfd29d8e7671d973e00722b9e4355dc70a4af52b0aede47c301f7",
+    "halted": true,
+    "limit_nanos": 4500000000,
+    "counts": {
+      "settled": 341,
+      "uncertain": 2
+    },
+    "quarantined_request_id": null
+  },
+  "ordinary_halt_retained": true,
+  "c5_reconciled": false,
+  "human_reviewed": false,
+  "human_usefulness": null,
+  "retrieval_scope": {
+    "native_adapter": "ChromaRetrieverAdapter / StreamlitRetriever / VerifiedChromaClient",
+    "embedding": "lexical_hash_v1",
+    "top_k": 5,
+    "engine_scope": "exact_user_version",
+    "query_source": "existing current USER facts and latest message; model refinement queries bounded by core",
+    "ranking_backfill_added": false,
+    "record_native_request_and_full_result": true,
+    "record_actual_post_scope_grounded_request": true,
+    "coverage_filters_are_separate_controls_not_model_inputs": true,
+    "same_index_both_arms": true
+  },
+  "stop_policy": true,
+  "baseline_model_receipt": "experiments/dev_rag_coverage_v1/model-live-receipt-v1.json",
+  "treatment_protocol": {
+    "protocol_id": "core-resource-guidance-v1",
+    "registered_on": "2026-10-14",
+    "registered_before_treatment_implementation_and_new_model_calls": true,
+    "baseline_commit": "f8b310681e040434aca81a6375926d135f0e87b6",
+    "scope": "Three existing exposed answer-informed dev families; optional single-agent resource guidance and additive offline human-review workbench. No new held-out evaluation, framework, RAG ranking or tracker change.",
+    "course_basis": [
+      "Week03/Homework03/Project/HW03_student.ipynb: count blocked/rejected attempts and claim support separately from delivered answers",
+      "Week04/Week4 Exercise3/Week04_HW03_student_release_en/assignment.md: explicit bounded plan/tool/retry constraints",
+      "Week04/Week4 Exercise1/Week04_HW01_student_release_en/report.md: reviewer correction may regress an otherwise valid answer"
+    ],
+    "observed_problem_before_treatment": {
+      "baseline_receipt": "experiments/dev_rag_coverage_v1/model-live-receipt-v1.json",
+      "repeated_query_stops": 5,
+      "full_source_selection_render_overflow_jobs": 1,
+      "guards_correct_and_retained": true
+    },
+    "treatment": {
+      "flag": "grounded_resource_guidance",
+      "default": false,
+      "query_guidance": "Current consumed query list is already supplied. Explain the existing normalized-repeat prohibition; do not invent/rank queries or increase retrieval capacity.",
+      "render_guidance": "Derive full-source rendering size constraints from the unchanged renderer and actual current request/modes. Expose bounded exact costs/feasibility before selection, including mandatory conflict members. Never clip quotes, alter sources, silently drop conflicts or relax validation.",
+      "renderer_modes": {
+        "source_gap_handoff": true,
+        "source_gap_investigation": true
+      },
+      "response_schema_and_guard_authority_unchanged": true
+    },
+    "planned_model_method": {
+      "model": "gpt-4o-mini",
+      "max_output_tokens": 1024,
+      "input_token_reserve": 32768,
+      "max_model_attempts_per_turn": 2,
+      "max_retrieval_rounds": 2,
+      "max_queries_per_round": 2,
+      "max_steps": 8,
+      "rounds": 2,
+      "families": [
+        "dev-case-a",
+        "dev-case-b",
+        "dev-case-c"
+      ],
+      "arms": [
+        "resource_guidance_off",
+        "resource_guidance_on"
+      ],
+      "index_for_both_arms": "docs-pilot-12ec2995032ad48dbec2c1f1736fca1f97727478373dd1835043eedf21ab0ee1",
+      "ordinary_native_top_k": 5,
+      "scope_policy": "exact_user_version after ordinary native ranking; no gold/source-ID filter or ranking/backfill amendment",
+      "other_flags": "decision_contracts/source_selection_reminder/source_gap_handoff/source_gap_investigation all true in both arms",
+      "ordering": "round1 A off/on, B on/off, C off/on; round2 reversed families and opposite arm orders",
+      "fresh_scopes": 6,
+      "max_request_slots_per_scope": 8,
+      "cap_usd_per_scope": "0.06",
+      "offline_full_payload_preflight_required_before_paid_calls": true,
+      "source_index_input_fingerprints_frozen_before_paid_calls": true,
+      "stop_campaign_on_new_uncertainty_or_source_index_input_accounting_change": true,
+      "no_selective_reruns_or_spent_identity_reuse": true
+    },
+    "pre_model_scenarios": [
+      {
+        "case": "dev-case-a",
+        "known": "Python/browser/OS, working reduced example, full-app failure report",
+        "missing_user_initial": "Streamlit version and actual parent callback/state order",
+        "authored_reply": "1.50.0 only after matching approved version question",
+        "acceptable": "Necessary answerable user question; scoped documented background or qualified investigation; bounded novel relevant retrieval. No diagnosed cause/fix or multiselect-specific release claim without actual source support."
+      },
+      {
+        "case": "dev-case-b",
+        "known": "Custom logo request for button and warning; release initially unknown",
+        "authored_reply": "1.39.0 only after matching approved version question",
+        "missing_source_after_reply": "Button1.39 source may remain absent from native results; warning/future capability unproven",
+        "acceptable": "Initial useful version question; then novel relevant bounded retrieval, source-gap escalation or strictly supported source-scoped background. No asking a known version again or newer image capability extrapolation."
+      },
+      {
+        "case": "dev-case-c",
+        "known": "1.31.0, full Enum example, Python/OS/browser; authored correction1.31.1 preserves code/environment",
+        "missing_source": "Exact Enum cause/fix absent from general documentation",
+        "acceptable": "Scoped documented background with explicit unresolved cause/fix and useful reproduction handoff, qualified escalation or bounded novel relevant retrieval. No code/version reask, stale response counted as correction, executed-action report or direct-answer corpus."
+      }
+    ],
+    "review": {
+      "record_all_planned_visited_failed_and_unvisited_turns": true,
+      "separate_first_plan_validity_render_feasibility_route_completion_claim_support_and_usefulness": true,
+      "inspect_actual_current_sources_and_user_provenance_on_all_output_surfaces": true,
+      "fixed_evidence_oracle_is_not_native_index_answerability": true,
+      "unsupported_material_claim_fails_support": true,
+      "no_human_judgments_fabricated": true,
+      "human_usefulness": null,
+      "quality_claim": false
+    },
+    "accounting": {
+      "designated_ledger": "runtime/budget.sqlite3",
+      "limit_usd": "4.50",
+      "halt_and_two_prior_unknown_holds_retained": true,
+      "no_legacy_grant_reset_or_revival": true,
+      "new_finite_quarantine_scopes_only_with_explicit_full_context_binding": true,
+      "ordinary_live_startup_still_halted": true,
+      "cost_is_local_estimate_not_provider_invoice": true
+    },
+    "collaboration": {
+      "hassan": "retrieval relevance/version ranking and backfill",
+      "mohammadbehnam": "manual two-case UI/API/SQLite smoke and tracker fixes",
+      "sasan_temporary_mohammadhasan_help": "additive evaluation workbench and human-review preparation; final split/chronology/usefulness still require reviewed evidence"
+    }
+  },
+  "offline_payload_preflight": {
+    "accepted": true,
+    "archived_actual_requests": 29,
+    "observed_and_repair_contexts": 58,
+    "message_size_checks": 116,
+    "max_baseline_utf8_with_margin": 31422,
+    "max_treatment_utf8_with_margin": 32432,
+    "guard": 32768,
+    "full_current_sources_preserved": true,
+    "future_unobserved_refinements_covered": false,
+    "actual_sends": 0
+  }
+}

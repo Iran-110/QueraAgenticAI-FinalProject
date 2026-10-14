@@ -35,6 +35,7 @@ class MetisConfig(BaseModel):
     grounded_source_gap_handoff: Annotated[bool, Field(strict=True)] = False
     grounded_source_gap_investigation: Annotated[bool, Field(strict=True)] = False
     grounded_source_selection_reminder: Annotated[bool, Field(strict=True)] = False
+    grounded_resource_guidance: Annotated[bool, Field(strict=True)] = False
     # Caller-owned accounting authorization, never selected by model output.
     continuation_id: (
         Annotated[str, StringConstraints(pattern=r"^[a-z0-9][a-z0-9-]{0,63}$")] | None
@@ -53,6 +54,8 @@ class MetisConfig(BaseModel):
             raise ValueError("Source gap investigation requires source gap handoff")
         if self.grounded_source_selection_reminder and self.response_mode != "grounded_plan":
             raise ValueError("Source selection reminder requires grounded plan mode")
+        if self.grounded_resource_guidance and self.response_mode != "grounded_plan":
+            raise ValueError("Resource guidance requires grounded plan mode")
         return self
 
     @model_validator(mode="before")
@@ -104,9 +107,10 @@ class MetisConfig(BaseModel):
         handoff = os.environ.get("METIS_GROUNDED_SOURCE_GAP_HANDOFF", "false")
         investigation = os.environ.get("METIS_GROUNDED_SOURCE_GAP_INVESTIGATION", "false")
         reminder = os.environ.get("METIS_GROUNDED_SOURCE_SELECTION_REMINDER", "false")
+        resources = os.environ.get("METIS_GROUNDED_RESOURCE_GUIDANCE", "false")
         if any(
             value not in {"true", "false"}
-            for value in (contracts, handoff, investigation, reminder)
+            for value in (contracts, handoff, investigation, reminder, resources)
         ):
             raise ValueError("Grounded mode flags must be true or false")
         return cls(
@@ -119,4 +123,5 @@ class MetisConfig(BaseModel):
             grounded_source_gap_handoff=handoff == "true",
             grounded_source_gap_investigation=investigation == "true",
             grounded_source_selection_reminder=reminder == "true",
+            grounded_resource_guidance=resources == "true",
         )

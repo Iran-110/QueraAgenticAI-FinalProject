@@ -1,0 +1,14 @@
+{
+  "amendment_id": "resource-pre-dispatch-accounting-v1",
+  "registered_on": "2026-10-14",
+  "observed_original_receipt_sha256": "9658e30a92246b1bdc514aaa944447ad056a81f19fd5de15f103a55fd780c372",
+  "observed_model_source_commit": "f71ec16",
+  "original_campaign_closed_and_not_resumed": true,
+  "reason": "The fourth pair contains a trusted gateway ContextLimitExceeded before reservation and transport. Original Usage reports an unrecorded attempt and incomplete accounting despite 21 settled sends. Preserve that original report; improve future measurement only.",
+  "narrow_change": "Attest only the trusted typed ContextLimitExceeded path, with no reservation before/after and no captured transport entry for that request ID. Reuse existing Usage for all other attempts. Explicitly attested skipped-before-reservation attempts may have zero local cost/tokens; missing, contradictory, transmitted, reserved, uncertain or unattested records remain incomplete or retain their actual hold.",
+  "not_authority": "Serialized caller declarations are not authenticated proof. This helper is an operational observer of the owned gateway/transport/ledger; it does not authorize calls, actions or free old unknown requests.",
+  "unchanged": ["original receipts and null accounting values", "closed scope identities", "model and retrieval limits", "full quotation and input guard", "two historical unknown holds", "ordinary live halt", "USD4.50 ceiling", "fixtures/oracle/index", "Hassan ranking", "Behnam tracker/manual smoke", "shared evaluation runner and contracts"],
+  "verification": "Disposable-ledger and actual oversized-gateway offline controls; no new paid campaign required.",
+  "quality_claim": false,
+  "c5_reconciled": false
+}

@@ -2,6 +2,48 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-14 — C4h1/E2p/E2q: resource-guidance trial and review preparation
+
+The [preregistered follow-up](../experiments/core_resource_guidance_v1/README.md)
+tested a default-false query/render-resource prompt on the same native18/36
+index in both arms. It made21settled sends at a local estimate ofUSD0.024946020
+on source `f71ec16`, unchanged throughout. Four of six planned pairs ran;
+both arms completed only1/4 visited routes. The study does not show improvement.
+An observed refinement fits the original input bound without guidance32065,
+but guidance33075 exceeds32768. The pre-reservation guard stopped it; the
+original fourth Usage remains incomplete/null, and the campaign stays closed.
+Four future jobs were unvisited, not successful or wrong model responses.
+
+All343 prior reservation rows, all prior rows in14tables and the schema remain
+unchanged. Four closed scopes retain11 unused claimed slots;16 future slots
+were never allocated. The two unknown holds, global halt, old revocations and
+USD4.50 ceiling remain. The independent cost-review V2 passes882/882; V1's
+single mistaken method-version expectation is retained. Local costs are not
+verified account deductions. No ordinary live startup or C5 reconciliation.
+
+The additive [review workbench](evaluation-workbench.fa.md) prepares full actual
+inputs/sources/surfaces and blank content-bound sidecars for C4g and C4h, retaining
+all24 planned turns and stale/no-fresh/unvisited denominators. It reuses the
+existing SemanticReview scorer. Fixed-evidence strata are reference registrations,
+not actual-index answerability. Human usefulness and final split remain pending;
+no held-out issue body or answer was opened. Hassan's ranking and Behnam's manual
+smoke/tracker stay separate. This helps MohammadHasan's unavailable E2 work.
+
+A future-only observer now distinguishes the real gateway's typed pre-reservation
+ContextLimitExceeded from an absent/uncertain ledger record only when both ledger
+and captured transport attest absence before/after. Ambiguous or sent attempts
+retain their existing status and holds. Twenty-eight new and88 focused controls
+pass, including real zero-send HTTP with zero completed routes and cancellation
+after reservation retaining uncertainty. Original receipts are not re-scored,
+and no paid call was made for this measurement repair. Prompt guidance remains
+experimental/default-off; no new agent/framework is justified by these results.
+
+[Release verification](../experiments/core_resource_guidance_v1/verification-v1.json):
+3649pytest passed with zero fail/error/skip; Ruff268files, three required demos,
+and457/457HTTP/SQLite with restart/retry passed. Local documentation links and
+credential exclusion were checked. Publication still requires the exact final
+PR head CI/review; this verification does not close final evaluation.
+
 ## 2026-10-14 — C4g/R4a: three dev families with a native index
 
 Publication/review: [PR #48](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/48).

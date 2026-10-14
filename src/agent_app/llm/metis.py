@@ -13,6 +13,7 @@ from agent_app.llm.pricing import get_price, same_verified_price
 from agent_app.orchestration.ports import ReasoningStopped
 from agent_app.reasoning.grounding import build_grounded_messages, validate_grounded_request
 from agent_app.reasoning.prompts import build_messages
+from agent_app.reasoning.resource_guidance import add_resource_guidance
 from agent_app.reasoning.source_selection import add_source_selection_reminder
 
 
@@ -96,6 +97,13 @@ class MetisReasoner:
                 )
                 messages = add_source_selection_reminder(
                     messages, enabled=self.config.grounded_source_selection_reminder
+                )
+                messages = add_resource_guidance(
+                    messages,
+                    request,
+                    enabled=self.config.grounded_resource_guidance,
+                    source_gap_handoff=self.config.grounded_source_gap_handoff,
+                    source_gap_investigation=self.config.grounded_source_gap_investigation,
                 )
             except (AttributeError, TypeError, ValueError):
                 raise ValueError("Invalid grounded request or context") from None

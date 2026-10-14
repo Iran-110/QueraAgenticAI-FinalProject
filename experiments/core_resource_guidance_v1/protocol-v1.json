@@ -1,0 +1,75 @@
+{
+  "protocol_id": "core-resource-guidance-v1",
+  "registered_on": "2026-10-14",
+  "registered_before_treatment_implementation_and_new_model_calls": true,
+  "baseline_commit": "f8b310681e040434aca81a6375926d135f0e87b6",
+  "scope": "Three existing exposed answer-informed dev families; optional single-agent resource guidance and additive offline human-review workbench. No new held-out evaluation, framework, RAG ranking or tracker change.",
+  "course_basis": [
+    "Week03/Homework03/Project/HW03_student.ipynb: count blocked/rejected attempts and claim support separately from delivered answers",
+    "Week04/Week4 Exercise3/Week04_HW03_student_release_en/assignment.md: explicit bounded plan/tool/retry constraints",
+    "Week04/Week4 Exercise1/Week04_HW01_student_release_en/report.md: reviewer correction may regress an otherwise valid answer"
+  ],
+  "observed_problem_before_treatment": {
+    "baseline_receipt": "experiments/dev_rag_coverage_v1/model-live-receipt-v1.json",
+    "repeated_query_stops": 5,
+    "full_source_selection_render_overflow_jobs": 1,
+    "guards_correct_and_retained": true
+  },
+  "treatment": {
+    "flag": "grounded_resource_guidance",
+    "default": false,
+    "query_guidance": "Current consumed query list is already supplied. Explain the existing normalized-repeat prohibition; do not invent/rank queries or increase retrieval capacity.",
+    "render_guidance": "Derive full-source rendering size constraints from the unchanged renderer and actual current request/modes. Expose bounded exact costs/feasibility before selection, including mandatory conflict members. Never clip quotes, alter sources, silently drop conflicts or relax validation.",
+    "renderer_modes": {"source_gap_handoff": true, "source_gap_investigation": true},
+    "response_schema_and_guard_authority_unchanged": true
+  },
+  "planned_model_method": {
+    "model": "gpt-4o-mini",
+    "max_output_tokens": 1024,
+    "input_token_reserve": 32768,
+    "max_model_attempts_per_turn": 2,
+    "max_retrieval_rounds": 2,
+    "max_queries_per_round": 2,
+    "max_steps": 8,
+    "rounds": 2,
+    "families": ["dev-case-a", "dev-case-b", "dev-case-c"],
+    "arms": ["resource_guidance_off", "resource_guidance_on"],
+    "index_for_both_arms": "docs-pilot-12ec2995032ad48dbec2c1f1736fca1f97727478373dd1835043eedf21ab0ee1",
+    "ordinary_native_top_k": 5,
+    "scope_policy": "exact_user_version after ordinary native ranking; no gold/source-ID filter or ranking/backfill amendment",
+    "other_flags": "decision_contracts/source_selection_reminder/source_gap_handoff/source_gap_investigation all true in both arms",
+    "ordering": "round1 A off/on, B on/off, C off/on; round2 reversed families and opposite arm orders",
+    "fresh_scopes": 6,
+    "max_request_slots_per_scope": 8,
+    "cap_usd_per_scope": "0.06",
+    "offline_full_payload_preflight_required_before_paid_calls": true,
+    "source_index_input_fingerprints_frozen_before_paid_calls": true,
+    "stop_campaign_on_new_uncertainty_or_source_index_input_accounting_change": true,
+    "no_selective_reruns_or_spent_identity_reuse": true
+  },
+  "pre_model_scenarios": [
+    {"case": "dev-case-a", "known": "Python/browser/OS, working reduced example, full-app failure report", "missing_user_initial": "Streamlit version and actual parent callback/state order", "authored_reply": "1.50.0 only after matching approved version question", "acceptable": "Necessary answerable user question; scoped documented background or qualified investigation; bounded novel relevant retrieval. No diagnosed cause/fix or multiselect-specific release claim without actual source support."},
+    {"case": "dev-case-b", "known": "Custom logo request for button and warning; release initially unknown", "authored_reply": "1.39.0 only after matching approved version question", "missing_source_after_reply": "Button1.39 source may remain absent from native results; warning/future capability unproven", "acceptable": "Initial useful version question; then novel relevant bounded retrieval, source-gap escalation or strictly supported source-scoped background. No asking a known version again or newer image capability extrapolation."},
+    {"case": "dev-case-c", "known": "1.31.0, full Enum example, Python/OS/browser; authored correction1.31.1 preserves code/environment", "missing_source": "Exact Enum cause/fix absent from general documentation", "acceptable": "Scoped documented background with explicit unresolved cause/fix and useful reproduction handoff, qualified escalation or bounded novel relevant retrieval. No code/version reask, stale response counted as correction, executed-action report or direct-answer corpus."}
+  ],
+  "review": {
+    "record_all_planned_visited_failed_and_unvisited_turns": true,
+    "separate_first_plan_validity_render_feasibility_route_completion_claim_support_and_usefulness": true,
+    "inspect_actual_current_sources_and_user_provenance_on_all_output_surfaces": true,
+    "fixed_evidence_oracle_is_not_native_index_answerability": true,
+    "unsupported_material_claim_fails_support": true,
+    "no_human_judgments_fabricated": true,
+    "human_usefulness": null,
+    "quality_claim": false
+  },
+  "accounting": {
+    "designated_ledger": "runtime/budget.sqlite3",
+    "limit_usd": "4.50",
+    "halt_and_two_prior_unknown_holds_retained": true,
+    "no_legacy_grant_reset_or_revival": true,
+    "new_finite_quarantine_scopes_only_with_explicit_full_context_binding": true,
+    "ordinary_live_startup_still_halted": true,
+    "cost_is_local_estimate_not_provider_invoice": true
+  },
+  "collaboration": {"hassan": "retrieval relevance/version ranking and backfill", "mohammadbehnam": "manual two-case UI/API/SQLite smoke and tracker fixes", "sasan_temporary_mohammadhasan_help": "additive evaluation workbench and human-review preparation; final split/chronology/usefulness still require reviewed evidence"}
+}
