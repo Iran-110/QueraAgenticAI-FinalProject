@@ -22,6 +22,8 @@ def _versions(metadata: dict) -> tuple:
             raise RetrievalAdapterRejected("InvalidEvidenceMetadata")
         return tuple(value)
     version = metadata.get("version")
+    if version is None:
+        version = metadata.get("since_version")
     return () if version is None else (version,)
 
 
@@ -110,7 +112,21 @@ class ChromaRetrieverAdapter:
             except Exception:
                 raise RetrievalAdapterRejected("InvalidEvidenceMetadata") from None
         self._check_backend_snapshot()
-        hits = tuple(all_hits.values())[: request.top_k]
+        def version_key(hit):
+            if not hit.applicable_versions:
+                return (0,)
+            parsed = []
+            for v in hit.applicable_versions:
+                if isinstance(v, str):
+                    try:
+                        parsed.append(tuple(int(p) for p in v.split('.') if p.isdigit()))
+                    except Exception:
+                        pass
+            return max(parsed) if parsed else (0,)
+            
+        hits_list = list(all_hits.values())
+        hits_list.sort(key=version_key, reverse=True)
+        hits = tuple(hits_list)[: request.top_k]
         return EvidenceBundle(
             snapshot_id=self.snapshot_id,
             hits=hits,
