@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "protocol_id": "core-output-cap-paired-v1",
+  "baseline_commit": "9704fdcf69da640d6200a83902fb9ef9da2193ee",
+  "registered_before_new_paid_calls": true,
+  "hypothesis": "Two settled Enum failures reached 1024 output tokens, but their finish reason was not retained. A 2048-token bound may reduce incomplete provider output; this is a hypothesis, not an established cause or semantic fix.",
+  "arms": {
+    "baseline_1024": {"max_output_tokens": 1024},
+    "candidate_2048": {"max_output_tokens": 2048}
+  },
+  "common": {
+    "model": "gpt-4o-mini",
+    "decision_contracts": true,
+    "source_gap_handoff": true,
+    "source_gap_investigation": true,
+    "source_selection_reminder": false,
+    "attempt_limit": 2,
+    "retrieval_round_limit": 2,
+    "temperature_or_seed_added": false,
+    "case_ids": ["dev-case-a", "dev-case-b", "dev-case-c"],
+    "fixtures": "data/evaluation/dev-three-v1/cases",
+    "oracle": "data/evaluation/dev-three-v1/scenario-review-v1.json",
+    "future_replies": "Only the existing runner can release an authored reply after the exact canonical question was approved and released.",
+    "evidence": "Fixed original exposed and answer-informed development evidence. No real retrieval quality or new held-out test cases."
+  },
+  "schedule": {
+    "repetitions": 2,
+    "first_family_order": ["dev-case-a", "dev-case-b", "dev-case-c"],
+    "second_family_order": ["dev-case-c", "dev-case-b", "dev-case-a"],
+    "first_arm_order": ["baseline_1024", "candidate_2048"],
+    "second_arm_order": ["candidate_2048", "baseline_1024"],
+    "jobs": 12,
+    "max_request_slots": 48,
+    "scope_count": 6,
+    "cap_per_scope_usd": "0.06",
+    "scope_policy": "Each family pair has its own exact fresh identities and immutable registration; all outstanding allowances are backed under the existing USD4.50 ceiling. Any new uncertain request stops the entire experiment, without replacing the scope or retrying spent identities."
+  },
+  "observer": {
+    "raw_response_or_exception_logged": false,
+    "allowlisted_finish_reasons": ["stop", "length", "content_filter", "tool_calls", "function_call"],
+    "unknown_finish_reason": "unknown",
+    "fields": ["http_status", "verified_returned_model", "finish_reason", "choice_count", "assistant_role", "content_utf8_bytes", "has_tool_calls", "has_function_call", "has_refusal", "transport_error_category"],
+    "scope": "Only bounded response metadata from the same envelope. No response body, headers, credential, unknown field name or exception message is exported. Usage and estimated cost remain recorded by the designated ledger."
+  },
+  "reporting": {
+    "process_failures_and_unvisited_jobs_retained": true,
+    "first_attempt_and_all_attempt_validity_separate": true,
+    "route_and_semantic_support_separate": true,
+    "all_terminal_surfaces_reviewed": true,
+    "initial_paired_request_hash_checked": true,
+    "original_7_of_9_not_rescored": true,
+    "human_reviewed": false,
+    "human_usefulness": null,
+    "population_accuracy_claim": false
+  },
+  "authorization_basis": "Sasan explicitly renewed authorization for necessary paid model/adversarial tests after the deadline extension. A new finite quarantine-set API is required, preserving both uncertain holds and every old revoked scope. This is a documented new exception, not provider reconciliation or revived authorization."
+}
