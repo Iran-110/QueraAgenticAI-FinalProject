@@ -584,7 +584,11 @@ def _validated_experiment_slots(
 
 
 def _validated_request_slots(
-    slots: tuple[ExperimentRequestSlot, ...], *, outputs: tuple[int, ...], exact_request_id: bool
+    slots: tuple[ExperimentRequestSlot, ...],
+    *,
+    outputs: tuple[int, ...],
+    exact_request_id: bool,
+    inputs: tuple[int, ...] = (16384, 24576),
 ) -> tuple[ExperimentRequestSlot, ...]:
     if type(slots) is not tuple or not 1 <= len(slots) <= 24:
         raise ValueError("Invalid experiment request slots.")
@@ -602,7 +606,7 @@ def _validated_request_slots(
             price.cost(slot.input_token_reserve, slot.max_output_tokens)
             if price is not None
             and type(slot.input_token_reserve) is int
-            and slot.input_token_reserve in (16384, 24576)
+            and slot.input_token_reserve in inputs
             and type(slot.max_output_tokens) is int
             and slot.max_output_tokens in outputs
             else None
@@ -611,7 +615,7 @@ def _validated_request_slots(
             slot.model != "gpt-4o-mini"
             or slot.phase != "development"
             or type(slot.input_token_reserve) is not int
-            or slot.input_token_reserve not in (16384, 24576)
+            or slot.input_token_reserve not in inputs
             or type(slot.max_output_tokens) is not int
             or slot.max_output_tokens not in outputs
             or not isinstance(slot.amount_usd, Decimal)
@@ -921,9 +925,12 @@ def _valid_digest(value: str) -> str:
     return value
 
 
-def _unknown_binding(ids: tuple[str, ...], fingerprints: tuple[tuple[str, str], ...]) -> str:
+def _unknown_binding(
+    ids: tuple[str, ...], fingerprints: tuple[tuple[str, str], ...], *, full_context: bool = False
+) -> str:
     if (
-        type(ids) is not tuple
+        type(full_context) is not bool
+        or type(ids) is not tuple
         or not 1 <= len(ids) <= 24
         or any(type(identity) is not str for identity in ids)
         or ids != tuple(sorted(set(ids)))
@@ -936,9 +943,10 @@ def _unknown_binding(ids: tuple[str, ...], fingerprints: tuple[tuple[str, str], 
         if type(pair) is not tuple or len(pair) != 2 or pair[0] != identity:
             raise ValueError("Invalid quarantine binding.")
         _valid_digest(pair[1])
-    return json.dumps(
-        {"ids": ids, "fingerprints": fingerprints}, sort_keys=True, separators=(",", ":")
-    )
+    value = {"ids": ids, "fingerprints": fingerprints}
+    if full_context:
+        value["full_context"] = True
+    return json.dumps(value, sort_keys=True, separators=(",", ":"))
 
 
 def _historical_authorizations_digest(connection: sqlite3.Connection) -> str:
@@ -1019,10 +1027,16 @@ def _find_quarantine_scope(connection: sqlite3.Connection, authorization_id: str
         _counter(row["held_nanos"], minimum=1)
         _counter(row["max_requests"], minimum=1, maximum=24)
         binding = json.loads(row["unknown_binding"])
+        if type(binding) is not dict:
+            raise ValueError
+        full_context = binding.get("full_context", False)
         if (
-            set(binding) != {"ids", "fingerprints"}
+            set(binding) not in ({"ids", "fingerprints"}, {"ids", "fingerprints", "full_context"})
+            or ("full_context" in binding and full_context is not True)
             or _unknown_binding(
-                tuple(binding["ids"]), tuple(tuple(pair) for pair in binding["fingerprints"])
+                tuple(binding["ids"]),
+                tuple(tuple(pair) for pair in binding["fingerprints"]),
+                full_context=full_context,
             )
             != row["unknown_binding"]
         ):
@@ -1069,6 +1083,7 @@ def _find_quarantine_scope(connection: sqlite3.Connection, authorization_id: str
             tuple(_experiment_slot(slot) for slot in slot_rows),
             outputs=(1024, 2048),
             exact_request_id=True,
+            inputs=(16384, 24576, 32768) if full_context else (16384, 24576),
         )
         if (
             _experiment_slots_fingerprint(slots) != row["slots_fingerprint"]
@@ -1519,24 +1534,39 @@ class BudgetLedger:
         protocol_sha256: str,
         request_slots: tuple[ExperimentRequestSlot, ...],
         additional_cap_usd: Decimal,
+        allow_full_context: bool = False,
     ) -> QuarantineScopeStatus:
         """Record a newly authorized finite experiment over all held uncertainty.
 
         The trusted caller must have fresh human authorization for these exact
         immutable inputs. This independent scope neither reconciles a request
         nor reactivates/refills historical authorizations or clears global halt.
+        Full native context requires a fresh explicit opt-in, stored in the
+        immutable registration binding; existing/default scopes keep both old
+        input tiers and their original serialized binding bytes.
         """
+        if type(allow_full_context) is not bool:
+            raise ValueError("Invalid full-context authorization flag.")
         authorization_id, authorization_ref = map(
             _identifier, (authorization_id, authorization_ref)
         )
         protocol_sha256 = _valid_digest(protocol_sha256)
         expected_meta_sha256 = _valid_digest(expected_meta_sha256)
         expected_authorization_history_sha256 = _valid_digest(expected_authorization_history_sha256)
-        binding = _unknown_binding(expected_unknown_ids, expected_unknown_fingerprints)
+        binding = _unknown_binding(
+            expected_unknown_ids,
+            expected_unknown_fingerprints,
+            full_context=allow_full_context,
+        )
         cap = _money(additional_cap_usd, ceiling=False)
         if not 0 < additional_cap_usd <= Decimal("0.10") or not cap:
             raise ValueError("Invalid quarantine funding cap.")
-        slots = _validated_request_slots(request_slots, outputs=(1024, 2048), exact_request_id=True)
+        slots = _validated_request_slots(
+            request_slots,
+            outputs=(1024, 2048),
+            exact_request_id=True,
+            inputs=(16384, 24576, 32768) if allow_full_context else (16384, 24576),
+        )
         slots_fingerprint = _experiment_slots_fingerprint(slots)
         if sum(_money(slot.amount_usd) for slot in slots) > cap:
             raise ValueError("Quarantine slots exceed funding cap.")

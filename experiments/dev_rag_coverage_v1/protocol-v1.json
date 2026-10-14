@@ -1,0 +1,138 @@
+{
+  "protocol_id": "dev-real-rag-coverage-v1",
+  "registered_on": "2026-10-14",
+  "registered_before_implementation_and_model": true,
+  "baseline_commit": "efb30852f150e4137376035099a074b8de4066e7",
+  "scope": "Same three exposed, answer-informed dev families; native lexical Chroma index plus optional real model. No new held-out case or final semantic-RAG score.",
+  "human_reviewed": false,
+  "human_usefulness": null,
+  "unchanged_input_sha256": {
+    "data/evaluation/dev-three-v1/cases/enum-8129-v1.json": "c5becdc00a950941cb25de8f775fc1a5b024d54f607a9c494bd9e7820ab216f0",
+    "data/evaluation/dev-three-v1/cases/icon-9770-v1.json": "199b47b1c3a65e853d49ec28d9607eec36982502bd2fd5bde1c640165e35c413",
+    "data/evaluation/dev-three-v1/cases/pilot-12782-v1.json": "6b542b325ac70906b014c9ac9a7bd01fb95c81a9219794f695de1e09de76c901",
+    "data/evaluation/dev-three-v1/evidence-v1.json": "d8ddd2dd8234fe328cc49326de1cc83d9096fe833bce254812c44d20a9f79521",
+    "data/evaluation/dev-three-v1/exposure-review-v1.json": "ae63d11b8a86a887741ef05c87a229da3fcf580f9e145180f6239af61f360d95",
+    "data/evaluation/dev-three-v1/scenario-review-v1.json": "c5297daa3ccd966e20b5c9941345ac5218f4e94904b414722024b738268993c6",
+    "data/evaluation/dev-three-v1/split-manifest.json": "f857fc559673c7ae2f508617fda3f81e3591157740e327109b00ae9a86f449ce",
+    "data/evaluation/dev-three-v1/user-gap-vocabulary-v1.json": "d3b63719554f35d1addec14586ebc4fcb10231844097fcea65458ee01d0b6736",
+    "data/evaluation/split-manifest.json": "78e630cbef86937f2838795a2329ee56e16ea0beef7900db5c63d5fede6404ff",
+    "experiments/corpus/pilot-allowlist.json": "209037d964182070744f608b79b676eb56c072e7655aee440ad75287aa117729"
+  },
+  "new_profile": {
+    "protocol": "docs-only-dev-coverage-v1",
+    "additional_sources": {
+      "docstring:1.39.0:streamlit.button": {
+        "text_sha256": "348e29001cbb5d5a31a59a546e06555ea8f3fd11a4ccda070709105e8fae3482",
+        "characters": 2698,
+        "json_pointer": "/1.39.0/streamlit.button",
+        "pinned_source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+        "source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.button"
+      },
+      "docstring:1.49.0:streamlit.multiselect": {
+        "text_sha256": "070b426e56bd72a0e19ba8ccc5c3282d26f95b5212adfee37f3fde31acb7bc76",
+        "characters": 4832,
+        "json_pointer": "/1.49.0/streamlit.multiselect",
+        "pinned_source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+        "source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.multiselect"
+      },
+      "docstring:1.50.0:streamlit.fragment": {
+        "text_sha256": "f5186d0216ca2932aeb2ead36999ede476cc57acbcf36389d859b3e70fb12772",
+        "characters": 2352,
+        "json_pointer": "/1.50.0/streamlit.fragment",
+        "pinned_source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+        "source_url": "https://docs.streamlit.io/develop/api-reference/execution-flow/st.fragment"
+      },
+      "docstring:1.50.0:streamlit.multiselect": {
+        "text_sha256": "070b426e56bd72a0e19ba8ccc5c3282d26f95b5212adfee37f3fde31acb7bc76",
+        "characters": 4832,
+        "json_pointer": "/1.50.0/streamlit.multiselect",
+        "pinned_source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+        "source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.multiselect"
+      }
+    },
+    "expected_sources": 18,
+    "expected_chunks": 36,
+    "historical_sources": 14,
+    "historical_chunks": 30,
+    "no_cartesian_expansion": true
+  },
+  "exclusion": {
+    "all_issues_comments_outcomes_evaluation_fixtures_excluded": true,
+    "required_family_ids": [
+      2379,
+      8129,
+      8180,
+      9770,
+      12629,
+      12782
+    ],
+    "full_active_reserved_ids_required": true,
+    "direct_answer_enum_guide_excluded": true,
+    "family_review_final": false
+  },
+  "retrieval": {
+    "native_adapter": "ChromaRetrieverAdapter / StreamlitRetriever / VerifiedChromaClient",
+    "embedding": "lexical_hash_v1",
+    "top_k": 5,
+    "engine_scope": "exact_user_version",
+    "query_source": "existing current USER facts and latest message; model refinement queries bounded by core",
+    "ranking_backfill_added": false,
+    "record_native_request_and_full_result": true,
+    "record_actual_post_scope_grounded_request": true,
+    "coverage_filters_are_separate_controls_not_model_inputs": true
+  },
+  "model_method": {
+    "model": "gpt-4o-mini",
+    "max_output_tokens": 1024,
+    "max_attempts_per_turn": 2,
+    "conditional_max_turns_per_case": 2,
+    "rounds": 2,
+    "arms": [
+      "historical_14_sources",
+      "new_18_sources"
+    ],
+    "ordering": "round1 A baseline/candidate, B candidate/baseline, C baseline/candidate; round2 reversed families and opposite arm orders",
+    "decision_contracts": true,
+    "source_selection_reminder": true,
+    "source_gap_handoff": true,
+    "source_gap_investigation": true,
+    "fresh_finite_scopes": 6,
+    "max_slots_per_scope": 8,
+    "cap_usd_per_scope": "0.06",
+    "old_holds_halt_revocations_and_usd4_50_limit_preserved": true,
+    "stop_entire_campaign_on_new_uncertainty_or_changed_source_index_inputs_accounting": true,
+    "ordinary_live_factory_unchanged": true
+  },
+  "pre_model_scenarios": [
+    {
+      "case": "dev-case-a",
+      "known": "Python/browser/OS, full-app observation; supplied reduced example works",
+      "missing_user": "initial version; real parent callback/state update order; no failing reduction",
+      "after_authored_version": "1.50.0 only after approved matching version question",
+      "acceptable": "necessary answerable missing-user question; or bounded supported API background/qualified maintainer investigation. No root cause/fix or multiselect-specific 1.50 release-change inference."
+    },
+    {
+      "case": "dev-case-b",
+      "known": "request custom company-logo image for button/warning; initial release unknown",
+      "after_authored_version": "1.39.0 only after approved matching version question",
+      "missing_source": "warning capability/future delivery; exact button scope depends on actual retrieved 1.39 documentation",
+      "acceptable": "version question initially; afterward useful exact-1.39 button guidance if retrieved, qualified handoff for unsupported scope, or bounded retrieval if missed. No newer image support extrapolation."
+    },
+    {
+      "case": "dev-case-c",
+      "known": "1.31.0, Python3.11.6/OS/browser and full Enum example; authored correction1.31.1 preserves code/environment",
+      "missing_source": "exact Enum cause/fix not established by generic docs; no user version/code gap",
+      "acceptable": "bounded supported background with explicit missing diagnosis/fix and reproduction handoff, or source-gap escalation/refinement. No version/code reask, stale1.31.0 after correction, direct-answer corpus or executed-action claim."
+    }
+  ],
+  "acceptance": [
+    "two independently built new index manifests/snapshots byte equal",
+    "historical default and separate old dev index hashes unchanged",
+    "all persisted docs/vectors/source IDs/version identities/hash/span metadata verified",
+    "empty issue collection and full conservative exclusions",
+    "reject wrong profile/source/version/content/manifest/snapshot and stale indexed writes",
+    "three scripted real-index conditional routes plus current version/correction/approval/retry checks; software evidence only",
+    "review model claims against actual returned excerpts on every output surface; schema/route success separate from semantic support/usefulness",
+    "retain every attempted/failed/unreached job and original baseline receipts"
+  ]
+}

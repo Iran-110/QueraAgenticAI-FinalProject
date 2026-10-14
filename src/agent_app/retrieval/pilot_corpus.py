@@ -12,6 +12,7 @@ from typing import Any
 from agent_app.contracts import EvidenceHit
 
 PROTOCOL = "docs-only-local-pilot-v1"
+DEV_COVERAGE_PROTOCOL = "docs-only-dev-coverage-v1"
 DOCS_COMMIT = "695e6ce2fb1b23afc6df66b40420ab0013ad72fd"
 MARKDOWN_SOURCE_IDS = frozenset(
     {
@@ -27,6 +28,80 @@ API_FUNCTIONS = frozenset({"streamlit.button", "streamlit.rerun", "streamlit.tex
 _SOURCE_IDS = MARKDOWN_SOURCE_IDS | {
     f"docstring:{version}:{function}" for version in API_VERSIONS for function in API_FUNCTIONS
 }
+# A separate closed profile adds four existing official seed records. These are
+# explicit identities, not a larger Cartesian version/function matrix.
+DEV_COVERAGE_SOURCE_PINS = {
+    "docstring:1.39.0:streamlit.button": {
+        "text_sha256": "348e29001cbb5d5a31a59a546e06555ea8f3fd11a4ccda070709105e8fae3482",
+        "characters": 2698,
+        "canonical_source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.button",
+    },
+    "docstring:1.50.0:streamlit.fragment": {
+        "text_sha256": "f5186d0216ca2932aeb2ead36999ede476cc57acbcf36389d859b3e70fb12772",
+        "characters": 2352,
+        "canonical_source_url": "https://docs.streamlit.io/develop/api-reference/execution-flow/st.fragment",
+    },
+    "docstring:1.49.0:streamlit.multiselect": {
+        "text_sha256": "070b426e56bd72a0e19ba8ccc5c3282d26f95b5212adfee37f3fde31acb7bc76",
+        "characters": 4832,
+        "canonical_source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.multiselect",
+    },
+    "docstring:1.50.0:streamlit.multiselect": {
+        "text_sha256": "070b426e56bd72a0e19ba8ccc5c3282d26f95b5212adfee37f3fde31acb7bc76",
+        "characters": 4832,
+        "canonical_source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.multiselect",
+    },
+}
+DEV_COVERAGE_REQUIRED_ISSUE_IDS = frozenset(
+    {
+        268,
+        1085,
+        1155,
+        1185,
+        1644,
+        2069,
+        2379,
+        2584,
+        3533,
+        3854,
+        4164,
+        4256,
+        4884,
+        5305,
+        5368,
+        5498,
+        6320,
+        8061,
+        8129,
+        8180,
+        8901,
+        9031,
+        9259,
+        9342,
+        9455,
+        9770,
+        10089,
+        10102,
+        11012,
+        11115,
+        12396,
+        12506,
+        12629,
+        12782,
+        13147,
+        13953,
+        14717,
+        16242,
+        16281,
+        16661,
+        16727,
+        16732,
+        16914,
+        17030,
+        17112,
+        17215,
+    }
+)
 CHUNK_CHARACTERS = 4_000
 EMBEDDING_DIMENSIONS = 256
 COLLECTION_NAMES = ("streamlit_docs", "streamlit_issues")
@@ -101,8 +176,7 @@ class PilotCorpus:
             snapshot = "docs-pilot-" + sha256(encoded.encode("utf-8"))
             if manifest["snapshot_id"] != snapshot:
                 raise ValueError
-            if payload["protocol"] != PROTOCOL:
-                raise ValueError
+            _profile_source_ids(payload["protocol"])
             if payload["schema_version"] != 1:
                 raise ValueError
             if payload["config"] != {
@@ -159,12 +233,21 @@ def _chunk_id(source: dict[str, Any], start: int, end: int, chunk_sha: str) -> s
     return f"doc:{version}:{identity[:24]}:{start}:{end}:{chunk_sha[:16]}"
 
 
+def _profile_source_ids(protocol: str) -> frozenset[str]:
+    if protocol == PROTOCOL:
+        return _SOURCE_IDS
+    if protocol == DEV_COVERAGE_PROTOCOL:
+        return _SOURCE_IDS | frozenset(DEV_COVERAGE_SOURCE_PINS)
+    raise ValueError
+
+
 def _validate_sources(payload: dict[str, Any]) -> None:
     sources = payload["sources"]
     pins = payload["source_pins"]
+    expected_ids = _profile_source_ids(payload["protocol"])
     if (
-        len(sources) != len(_SOURCE_IDS)
-        or {source["source_id"] for source in sources} != _SOURCE_IDS
+        len(sources) != len(expected_ids)
+        or {source["source_id"] for source in sources} != expected_ids
     ):
         raise ValueError
     if pins["docs_commit"] != DOCS_COMMIT:
@@ -191,6 +274,10 @@ def _validate_sources(payload: dict[str, Any]) -> None:
     origins = []
     versions = set()
     for source in sources:
+        if payload["protocol"] == DEV_COVERAGE_PROTOCOL:
+            frozen = DEV_COVERAGE_SOURCE_PINS.get(source["source_id"], {})
+            if any(source[key] != value for key, value in frozen.items()):
+                raise ValueError
         if source["source_commit"] != pins["docs_commit"]:
             raise ValueError
         origins.append(source["origin_kind"])
@@ -259,8 +346,13 @@ def _validate_sources(payload: dict[str, Any]) -> None:
             raise ValueError
     if (
         origins.count("docs_markdown") != 5
-        or origins.count("docs_generated") != 9
-        or len(versions) != 3
+        or origins.count("docs_generated") != len(expected_ids) - 5
+        or versions
+        != (
+            API_VERSIONS | {"1.39.0"}
+            if payload["protocol"] == DEV_COVERAGE_PROTOCOL
+            else API_VERSIONS
+        )
     ):
         raise ValueError
     exclusions = payload["exclusions"]
@@ -272,6 +364,14 @@ def _validate_sources(payload: dict[str, Any]) -> None:
         or not exclusions["reserved_issue_ids"]
     ):
         raise ValueError
+    if payload["protocol"] == DEV_COVERAGE_PROTOCOL:
+        reserved = exclusions["reserved_issue_ids"]
+        if (
+            any(type(number) is not int or number <= 0 for number in reserved)
+            or len(set(reserved)) != len(reserved)
+            or not DEV_COVERAGE_REQUIRED_ISSUE_IDS <= set(reserved)
+        ):
+            raise ValueError
 
 
 def _read_json(path: Path) -> tuple[Any, bytes]:
@@ -309,9 +409,9 @@ def _package(seed: Path) -> tuple[dict[str, Any], dict[str, bytes], dict[str, An
 
 
 def _allowlist(value: dict[str, Any]) -> None:
+    _profile_source_ids(value["protocol"])
     if (
-        value["protocol"] != PROTOCOL
-        or value["docs_commit"] != DOCS_COMMIT
+        value["docs_commit"] != DOCS_COMMIT
         or value["chunk_characters"] != CHUNK_CHARACTERS
         or value["embedding"]
         != {"kind": "lexical_hash_v1", "dimensions": EMBEDDING_DIMENSIONS, "quality_claim": False}
@@ -328,6 +428,17 @@ def _allowlist(value: dict[str, Any]) -> None:
         values = value[key]
         if len(values) != len(expected) or set(values) != expected:
             raise ValueError
+    if value["protocol"] == DEV_COVERAGE_PROTOCOL:
+        for key, expected in (
+            ("additional_api_source_ids", DEV_COVERAGE_SOURCE_PINS.keys()),
+            ("required_reserved_issue_ids", DEV_COVERAGE_REQUIRED_ISSUE_IDS),
+        ):
+            values = value[key]
+            if len(values) != len(expected) or set(values) != expected:
+                raise ValueError
+    elif "additional_api_source_ids" in value or "required_reserved_issue_ids" in value:
+        # An extended allowlist cannot silently become the historical profile.
+        raise ValueError
 
 
 def _exclusions(split: dict[str, Any], exposure: dict[str, Any]) -> dict[str, Any]:
@@ -412,7 +523,7 @@ def _selected(raw: bytes, wanted: set[str], *, origin: str, commit: str) -> list
 def build_pilot_corpus(
     seed_root: str | Path, split_manifest: str | Path, allowlist_path: str | Path
 ) -> PilotCorpus:
-    """Verify the entire seed package, ingest only fourteen explicit docs records."""
+    """Verify the seed package and ingest one explicit closed documentation profile."""
     try:
         seed = Path(seed_root)
         allowlist, allowlist_raw = _read_json(Path(allowlist_path))
@@ -426,6 +537,9 @@ def build_pilot_corpus(
         split, split_raw = _read_json(Path(split_manifest))
         exposure = json.loads(files["development_exposure.json"])
         exclusions = _exclusions(split, exposure)
+        if allowlist["protocol"] == DEV_COVERAGE_PROTOCOL:
+            if not DEV_COVERAGE_REQUIRED_ISSUE_IDS <= set(exclusions["reserved_issue_ids"]):
+                raise ValueError
         pins.update(
             {
                 "allowlist_sha256": sha256(allowlist_raw),
@@ -434,11 +548,7 @@ def build_pilot_corpus(
                 "docs_commit": allowlist["docs_commit"],
             }
         )
-        api_ids = {
-            f"docstring:{version}:{function}"
-            for version in allowlist["api_versions"]
-            for function in allowlist["api_functions"]
-        }
+        api_ids = set(_profile_source_ids(allowlist["protocol"]) - MARKDOWN_SOURCE_IDS)
         sources = _selected(
             files["sources/docs_scope_candidates.jsonl"],
             set(allowlist["markdown_source_ids"]),
@@ -497,7 +607,7 @@ def build_pilot_corpus(
                 )
         payload = {
             "schema_version": 1,
-            "protocol": PROTOCOL,
+            "protocol": allowlist["protocol"],
             "scope": allowlist["scope"],
             "config": {
                 key: allowlist[key] for key in ("chunk_characters", "embedding", "collection_names")
