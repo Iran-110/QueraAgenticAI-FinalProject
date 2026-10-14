@@ -144,6 +144,13 @@
             "description": "Relevant parent callback/state-update code is not supplied; the supplied reduction works.",
             "necessity": "The user can share the real callback to distinguish full-app behaviour from the working reduction.",
             "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+          },
+          {
+            "name": "state_update_order",
+            "kind": "user",
+            "description": "The current case lists the order of state updates as unknown.",
+            "necessity": "The user can report when the relevant state is assigned or removed relative to rendering the widget.",
+            "question": "In what order does your app update session state and render the affected widget?"
           }
         ],
         "unacceptable_claims": [
@@ -212,6 +219,13 @@
             "description": "Relevant parent callback/state-update code is not supplied; the supplied reduction works.",
             "necessity": "The user can share the real callback to distinguish full-app behaviour from the working reduction.",
             "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+          },
+          {
+            "name": "state_update_order",
+            "kind": "user",
+            "description": "The current case lists the order of state updates as unknown.",
+            "necessity": "The user can report when the relevant state is assigned or removed relative to rendering the widget.",
+            "question": "In what order does your app update session state and render the affected widget?"
           }
         ],
         "unacceptable_claims": [
@@ -290,6 +304,22 @@
           "to_turn": null,
           "guard": {
             "decision": "escalate"
+          }
+        },
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "ask",
+            "question_target": "state_update_order"
+          }
+        },
+        {
+          "from_turn": "version",
+          "to_turn": null,
+          "guard": {
+            "decision": "ask",
+            "question_target": "state_update_order"
           }
         }
       ]

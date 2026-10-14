@@ -53,6 +53,19 @@ def sha(raw):
     return hashlib.sha256(raw).hexdigest()
 
 
+def contains_secret(value, secret):
+    if isinstance(value, str):
+        return secret in value
+    if isinstance(value, dict):
+        return any(
+            contains_secret(key, secret) or contains_secret(item, secret)
+            for key, item in value.items()
+        )
+    if isinstance(value, (list, tuple)):
+        return any(contains_secret(item, secret) for item in value)
+    return False
+
+
 def source_observation(root):
     paths = sorted(
         set(
@@ -359,6 +372,14 @@ class ScopedPlanner:
             self.counted.current = request_id_for(context)
             plan = self.gateway.plan(request, context=context)
             record["output_sha256"] = sha(plan.encode())
+            secret = self.gateway.config.api_key.get_secret_value()
+            try:
+                decoded = json.loads(plan)
+            except ValueError:
+                decoded = plan
+            if contains_secret(decoded, secret):
+                record["credential_echo_rejected"] = True
+                raise ReasoningStopped("ProviderResponseInvalid")
             try:
                 record["plan"] = GroundedPlan.model_validate_json(plan).model_dump(mode="json")
             except ValueError:

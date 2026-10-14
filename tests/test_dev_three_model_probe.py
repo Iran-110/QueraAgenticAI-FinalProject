@@ -1,6 +1,8 @@
 """Registered model trial wiring with fake provider and disposable accounting."""
 
+import importlib.util
 import json
+import sys
 from decimal import Decimal
 from pathlib import Path
 
@@ -213,3 +215,128 @@ def test_oversized_context_is_recorded_as_zero_wire_unfunded_attempt(tmp_path):
     )
     gateway.close()
     counted.close()
+
+
+def test_provider_echo_of_escaped_credential_is_terminal_and_never_recorded(tmp_path):
+    protocol, fixtures, definitions, ledger, config, before = preparation(tmp_path)
+    secret = 'synthetic-key"\\private-credential-echo'
+    config = MetisConfig.model_validate({**config.model_dump(), "api_key": secret})
+
+    def malicious(request):
+        payload = json.loads(json.loads(request.content)["messages"][1]["content"])
+        plan = {
+            "context_sha256": payload["request"]["context_sha256"],
+            "decision": "ask",
+            "question_name": secret,
+        }
+        return httpx.Response(
+            200,
+            json={
+                "model": "gpt-4o-mini-2024-07-18",
+                "choices": [
+                    {
+                        "message": {"role": "assistant", "content": json.dumps(plan)},
+                        "finish_reason": "stop",
+                    }
+                ],
+                "usage": {"prompt_tokens": 1000, "completion_tokens": 180, "total_tokens": 1180},
+            },
+        )
+
+    receipt = run_trial(
+        protocol,
+        fixtures,
+        definitions,
+        ledger,
+        config,
+        before,
+        underlying=httpx.MockTransport(malicious),
+    )
+    assert receipt["actual_sends"] == 1 and receipt["stopped_early"]
+    assert receipt["attempts"][0]["credential_echo_rejected"] is True
+    assert receipt["attempts"][0]["plan"] is None
+    assert secret not in json.dumps(receipt)
+    assert json.dumps(secret)[1:-1] not in json.dumps(receipt)
+    assert receipt["accounting"]["accounting_complete"] is True
+
+
+def cli_module():
+    spec = importlib.util.spec_from_file_location(
+        "dev_three_cli_unit", ROOT / "scripts/dev_three_model_probe.py"
+    )
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+@pytest.mark.parametrize("surface", ["key", "value", "list"])
+def test_private_writer_rejects_raw_and_json_escaped_credentials_before_creation(tmp_path, surface):
+    module = cli_module()
+    secret = 'synthetic-secret"\\writer-token'
+    values = {
+        "key": {secret: "x"},
+        "value": {"text": "prefix:" + secret},
+        "list": {"items": [secret]},
+    }
+    path = tmp_path / "never-created.json"
+    with pytest.raises(ValueError):
+        module.write_new(path, values[surface], secret=secret)
+    assert not path.exists()
+
+
+def test_authorization_journal_failure_closes_scope_and_never_exports_exception(
+    tmp_path, monkeypatch, capsys
+):
+    protocol, fixtures, definitions, ledger, config, _before = preparation(tmp_path)
+    protocol = {
+        **protocol,
+        "authorization_ref": "synthetic-user-authorization",
+        "parent_authorization_id": "old-grant",
+    }
+    source = {"source_commit": "synthetic-source", "source_clean": True, "source_hashes": {}}
+    registration = {
+        **source,
+        "protocol_sha256": "a" * 64,
+        "request_slots_sha256": "b" * 64,
+        "ledger_before": ledger_observation(ledger._path),
+    }
+    module = cli_module()
+    monkeypatch.setattr(
+        module,
+        "preflight",
+        lambda *args: (
+            protocol,
+            fixtures,
+            definitions,
+            request_slots(protocol, fixtures),
+            registration,
+        ),
+    )
+    monkeypatch.setattr(module, "source_observation", lambda root: source)
+    monkeypatch.setattr(module, "credential", lambda path: config.api_key.get_secret_value())
+    original_write = module.write_new
+
+    def fail_authorization(path, value, **kwargs):
+        if path.name == "authorization.json":
+            raise OSError("synthetic-private-io-marker")
+        return original_write(path, value, **kwargs)
+
+    monkeypatch.setattr(module, "write_new", fail_authorization)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "dev-three",
+            "--live",
+            "--ledger",
+            str(ledger._path),
+            "--env-file",
+            str(tmp_path / "unused.env"),
+            "--output-dir",
+            str(tmp_path / "live"),
+        ],
+    )
+    assert module.main() == 1
+    assert ledger.experiment_scope_status(protocol["scope_id"]).block_reason == "ExperimentClosed"
+    assert "synthetic-private-io-marker" not in capsys.readouterr().out
+    assert (tmp_path / "live/scope-closed.json").is_file()

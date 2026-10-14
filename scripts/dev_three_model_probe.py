@@ -17,6 +17,7 @@ from agent_app.testing.dev_three_model_probe import (
     MODEL,
     OUTPUT_LIMIT,
     DevProbeRejected,
+    contains_secret,
     ledger_observation,
     preflight,
     run_trial,
@@ -58,7 +59,9 @@ def credential(path):
     return values[0]
 
 
-def write_new(path, data):
+def write_new(path, data, *, secret=None):
+    if secret is not None and contains_secret(data, secret):
+        raise DevProbeRejected()
     with path.open("x", encoding="utf-8") as stream:
         json.dump(data, stream, ensure_ascii=False, indent=2)
         stream.write("\n")
@@ -75,6 +78,7 @@ def main():
     created = False
     scope_ledger = None
     scope_id = None
+    private_secret = None
     try:
         protocol, fixtures, definitions, slots, registration = preflight(ROOT, options.ledger)
         if not options.live:
@@ -116,6 +120,7 @@ def main():
             max_output_tokens=OUTPUT_LIMIT,
             max_request_usd=get_price(MODEL).cost(INPUT_RESERVE, OUTPUT_LIMIT),
         )
+        private_secret = config.api_key.get_secret_value()
         if source_observation(ROOT) != {
             key: registration[key] for key in ("source_commit", "source_clean", "source_hashes")
         }:
@@ -146,12 +151,13 @@ def main():
                 "global_halt_retained": ledger.snapshot().halted,
                 "c5_reconciled": False,
             },
+            secret=private_secret,
         )
         checkpoints = []
 
         def checkpoint(value):
             path = destination / f"checkpoint-{len(checkpoints) + 1}.json"
-            write_new(path, value)
+            write_new(path, value, secret=private_secret)
             checkpoints.append(path.name)
 
         with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
@@ -173,6 +179,7 @@ def main():
                         key: str(value) if key.endswith("usd") else value
                         for key, value in asdict(closed_scope).items()
                     },
+                    secret=private_secret,
                 )
         receipt["scope_closed"] = closed_scope.block_reason == "ExperimentClosed"
         receipt["registration"] = registration
@@ -180,7 +187,7 @@ def main():
         receipt["source_unchanged_during_run"] = receipt["source_after"] == {
             key: registration[key] for key in ("source_commit", "source_clean", "source_hashes")
         }
-        write_new(destination / "receipt.json", receipt)
+        write_new(destination / "receipt.json", receipt, secret=private_secret)
         print(
             json.dumps(
                 {
@@ -208,6 +215,7 @@ def main():
                         "ledger_after": ledger_observation(options.ledger),
                         "note": "Preserve registration/authorization/checkpoints; inspect ledger before any fresh registration.",
                     },
+                    secret=private_secret,
                 )
         except Exception:
             pass
@@ -230,6 +238,7 @@ def main():
                             key: str(value) if key.endswith("usd") else value
                             for key, value in asdict(closed).items()
                         },
+                        secret=private_secret,
                     )
             except Exception:
                 pass
