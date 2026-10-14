@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "protocol_id": "dev-three-controlled-model-v3",
+  "registered_on": "2026-10-14",
+  "registered_before_first_model_run": true,
+  "experiment_id": "dev-three-core-2026-10-14-v3",
+  "scope_id": "user-dev-three-2026-10-14-v3",
+  "authorization_ref": "user-2026-10-14-use-api-dev-quality",
+  "parent_authorization_id": "user-continuation-2026-10-07-v3",
+  "authorization_basis": "User explicitly requested independent case preparation and useful API-backed quality tests in this conversation. New scope cap0.10; old grant,global4.50 ceiling,halt andunknownhold retained. This does not reconcile C5.",
+  "ledger_path": "runtime/budget.sqlite3",
+  "ledger_before_sha256": "572c9d339017899562c35b549d59fa7f01198a6b23c5ae5c11dda96ca7610e07",
+  "fixture_paths": [
+    "data/evaluation/dev-three-v1/cases/pilot-12782-v1.json",
+    "data/evaluation/dev-three-v1/cases/icon-9770-v1.json",
+    "data/evaluation/dev-three-v1/cases/enum-8129-v1.json"
+  ],
+  "user_gap_vocabulary_path": "data/evaluation/dev-three-v1/user-gap-vocabulary-v1.json",
+  "input_pins": {
+    "data/evaluation/dev-three-v1/cases/enum-8129-v1.json": "c5becdc00a950941cb25de8f775fc1a5b024d54f607a9c494bd9e7820ab216f0",
+    "data/evaluation/dev-three-v1/cases/icon-9770-v1.json": "199b47b1c3a65e853d49ec28d9607eec36982502bd2fd5bde1c640165e35c413",
+    "data/evaluation/dev-three-v1/cases/pilot-12782-v1.json": "6b542b325ac70906b014c9ac9a7bd01fb95c81a9219794f695de1e09de76c901",
+    "data/evaluation/dev-three-v1/evidence-v1.json": "d8ddd2dd8234fe328cc49326de1cc83d9096fe833bce254812c44d20a9f79521",
+    "data/evaluation/dev-three-v1/exposure-review-v1.json": "ae63d11b8a86a887741ef05c87a229da3fcf580f9e145180f6239af61f360d95",
+    "data/evaluation/dev-three-v1/scenario-review-v1.json": "c5297daa3ccd966e20b5c9941345ac5218f4e94904b414722024b738268993c6",
+    "data/evaluation/dev-three-v1/split-manifest.json": "f857fc559673c7ae2f508617fda3f81e3591157740e327109b00ae9a86f449ce",
+    "data/evaluation/dev-three-v1/user-gap-vocabulary-v1.json": "d3b63719554f35d1addec14586ebc4fcb10231844097fcea65458ee01d0b6736"
+  },
+  "gateway": {
+    "model": "gpt-4o-mini",
+    "input_token_reserve": 16384,
+    "input_profiles": {
+      "dev-case-a": 16384,
+      "dev-case-b": 16384,
+      "dev-case-c": 24576
+    },
+    "max_output_tokens": 1024,
+    "max_sends": 24,
+    "experiment_cap_usd": "0.10"
+  },
+  "arms": [
+    "runtime_catalog",
+    "reviewed_user_gaps"
+  ],
+  "arm_order": "One new prompt-treatment arm on three already exposed dev families; no randomization/repetitions, model variability and order effects remain.",
+  "treatment": "Opt-in current decision and field contracts only, added to the same grounded messages. Same reviewed user vocabulary, model, source bundles, current inputs, validation, rendering, attempt limits and preregistered oracle as V1/V2. No coercion or answer tuning.",
+  "evidence_condition": "controlled_fixed_evidence; no real index searched and no semantic RAG claim",
+  "strata": {
+    "dev-case-a": "ambiguous",
+    "dev-case-b": "ambiguous then answerable button1.39 portion; warning/feature delivery unresolved",
+    "dev-case-c": "needs_escalation source-only diagnosis/fix gap, version/code already known"
+  },
+  "conditional_route_policy": "Only registered exact current released question selects a reply. Other admissible terminal routes finish early. Coverage gap/stoppedrun preserved; do not feed version reply to otherquestion. Compare common reachedstates separately from conditional path endpoints.",
+  "max_reached_turns_per_case": 2,
+  "max_attempts_per_turn": 2,
+  "max_retrieval_rounds_per_turn": 2,
+  "actual_paid_model_requests_before_registration": 15,
+  "human_reviewed": false,
+  "usefulness_score": null,
+  "final_test_cases_added": 0,
+  "e1_complete": false,
+  "e2_complete": false,
+  "quality_claim": false,
+  "source_review_policy": "All material claims on everyproposal/releasedsurface, scopedversion/sourcequotes, necessity anduseranswerability ofquestions, knownfacts/correction fidelity, unnecessaryabstention checked afterrun bydeclaredassistant reviewer; humanusefulness remainsnull.",
+  "stop_policy": "A failed model output/fixture route is retained for its case and not rerun. Continue only independently preregistered unobserved jobs while same scope/accounting is active. New uncertainty/mismatch/overrun/pending or ledger failure stops whole batch. Close unused slots at end.",
+  "accounting": "Observedreasoner requests only. Localcostestimatedfrompinnedrates; actualproviderbillingincludingolderuncertainrequest unknown. No embeddings requests.",
+  "max_reserved_worst_case_usd": "0.045957120",
+  "request_slots_sha256": "484bc2308718fbbbf9aaffd29a0f4013851023e855038b5680c8ad5a61223913",
+  "predecessor": {
+    "receipt_path": "experiments/dev_three_baseline/model-live-receipt-v2.json",
+    "sha256": "fa2084f89c20c999248e5ed7b52e5a6ffcce0e9cc014971d445e321b0c3e4bd9",
+    "new_treatment_not_baseline_resampling": true
+  },
+  "jobs": [
+    {
+      "arm": "reviewed_user_gaps",
+      "case_id": "dev-case-a"
+    },
+    {
+      "arm": "reviewed_user_gaps",
+      "case_id": "dev-case-b"
+    },
+    {
+      "arm": "reviewed_user_gaps",
+      "case_id": "dev-case-c"
+    }
+  ],
+  "continue_independent_jobs": true,
+  "amendment": "V2 observed ask with malformed question_name after icon version became known, and retrieve_more with sources despite forbidden shape on Enum. V3 tests explicit legal current decisions/question enum and per-decision field contracts. All three previously exposed dev jobs are revisited with this new treatment once; baseline failures retained. No additional repetitions.",
+  "registered_request_slots": 12,
+  "known_prior_paid_requests": 15,
+  "registered_before_first_run_of_this_protocol": true,
+  "grounded_decision_contracts": true,
+  "treatment_id": "current-decision-field-contracts-v1",
+  "comparison_policy": "Compare runtime catalog A (V1+V2), reviewed user gaps B (V2), and B+current decision contracts (V3). Report syntactic validity separately from semantic admissibility, unnecessary abstention and conditional route completion; common reached input states separately. Pilot optional terminal path is not equivalent to icon correction route. No final-test or RAG quality claim."
+}

@@ -1,0 +1,150 @@
+{
+  "comparison_id": "three-exposed-dev-arms-v1",
+  "receipts": {
+    "model-live-receipt-v1.json": "f651ca3bfabe592f8a2902d655427f9279eaf15a7ca2e955e386d52ebf505ad5",
+    "model-live-receipt-v2.json": "fa2084f89c20c999248e5ed7b52e5a6ffcce0e9cc014971d445e321b0c3e4bd9",
+    "model-live-receipt-v3.json": "6f2cb48dc7a78f05870e63316589d575ed00a431be16f5d81344922d3099b03e"
+  },
+  "arms": {
+    "runtime_catalog": {
+      "case_jobs": 3,
+      "complete_conditional_routes": 0,
+      "provider_outputs": 8,
+      "syntactically_valid_plans": 2,
+      "estimated_cost_usd": "0.004487010",
+      "cases": [
+        {
+          "case_id": "dev-case-a",
+          "route_complete": false,
+          "selected_turns": [
+            "initial",
+            "version"
+          ]
+        },
+        {
+          "case_id": "dev-case-b",
+          "route_complete": false,
+          "selected_turns": [
+            "initial",
+            "version"
+          ]
+        },
+        {
+          "case_id": "dev-case-c",
+          "route_complete": false,
+          "selected_turns": [
+            "initial"
+          ]
+        }
+      ]
+    },
+    "reviewed_user_gaps": {
+      "case_jobs": 3,
+      "complete_conditional_routes": 1,
+      "provider_outputs": 7,
+      "syntactically_valid_plans": 3,
+      "estimated_cost_usd": "0.003947790",
+      "cases": [
+        {
+          "case_id": "dev-case-a",
+          "route_complete": true,
+          "selected_turns": [
+            "initial",
+            "version"
+          ]
+        },
+        {
+          "case_id": "dev-case-b",
+          "route_complete": false,
+          "selected_turns": [
+            "initial",
+            "version"
+          ]
+        },
+        {
+          "case_id": "dev-case-c",
+          "route_complete": false,
+          "selected_turns": [
+            "initial"
+          ]
+        }
+      ]
+    },
+    "decision_contracts": {
+      "case_jobs": 3,
+      "complete_conditional_routes": 3,
+      "provider_outputs": 8,
+      "syntactically_valid_plans": 8,
+      "estimated_cost_usd": "0.005253765",
+      "cases": [
+        {
+          "case_id": "dev-case-a",
+          "route_complete": true,
+          "selected_turns": [
+            "initial",
+            "version"
+          ]
+        },
+        {
+          "case_id": "dev-case-b",
+          "route_complete": true,
+          "selected_turns": [
+            "initial",
+            "version"
+          ]
+        },
+        {
+          "case_id": "dev-case-c",
+          "route_complete": true,
+          "selected_turns": [
+            "initial",
+            "correction"
+          ]
+        }
+      ]
+    }
+  },
+  "common_reached_first_attempt_states_vocabulary_vs_contracts": [
+    {
+      "case_id": "dev-case-a",
+      "revision": 1,
+      "first_attempt_request_hash_identical": true
+    },
+    {
+      "case_id": "dev-case-a",
+      "revision": 2,
+      "first_attempt_request_hash_identical": true
+    },
+    {
+      "case_id": "dev-case-b",
+      "revision": 1,
+      "first_attempt_request_hash_identical": true
+    },
+    {
+      "case_id": "dev-case-b",
+      "revision": 2,
+      "first_attempt_request_hash_identical": true
+    },
+    {
+      "case_id": "dev-case-c",
+      "revision": 1,
+      "first_attempt_request_hash_identical": true
+    }
+  ],
+  "later_attempt_condition": "Invalid-plan repair in earlier arms differs from valid retrieve_more/refinement in V3; do not treat their later attempt payloads as equal.",
+  "newly_reached_state": "dev-case-c correction was not reached by either earlier arm",
+  "actual_sends": 23,
+  "estimated_cost_usd": "0.013688565",
+  "semantic_caveat": "V3 Enum two answers supported but explicit case-relevant maintainer investigation/source-gap handoff absent; conditional semantic adequacy not established. Keep original result before deterministic renderer follow-up.",
+  "human_review": false,
+  "human_usefulness": null,
+  "final_test_cases": 0,
+  "actual_rag_quality": false,
+  "quality_claim": false,
+  "limitations": [
+    "3 exposed answer-informed dev families only",
+    "fixed source bundles, not real retrieval",
+    "sequential, no randomization or repetitions",
+    "syntactic validity and route completion are not semantic adequacy or solved cases"
+  ]
+}

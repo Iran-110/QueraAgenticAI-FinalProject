@@ -1,0 +1,25 @@
+{
+  "protocol_id": "source-gap-handoff-replay-v1",
+  "kind": "offline deterministic replay of already observed V3 plans",
+  "registered_before_renderer_change": true,
+  "registered_after_model_observation": true,
+  "baseline_commit": "94ca7ee",
+  "baseline_grounding_sha256": "2dad2ef894e43b5fdf710933094adec605d981cdcfbb5abb62549b10cd549b85",
+  "controls_path": "tests/test_grounded_source_gap_handoff.py",
+  "controls_sha256": "7da3cbcac5018c12edd4f6f24b30fe790cc85d91405d3d6998173c6c87e7ba83",
+  "controls": 17,
+  "baseline_counts": {
+    "passed": 8,
+    "failed": 9,
+    "error": 0,
+    "skipped": 0
+  },
+  "observed_receipt_path": "experiments/dev_three_baseline/model-live-receipt-v3.json",
+  "observed_receipt_sha256": "6f2cb48dc7a78f05870e63316589d575ed00a431be16f5d81344922d3099b03e",
+  "treatment": "Render existing caller-declared source gaps/necessities and explicit maintainer investigation on terminal surfaces; canonical ask text, retrieve_more, complete quote/source/version/hash validation and no-gap output bytes remain unchanged. No automatic gap discovery or model-decision changes.",
+  "real_model_requests": 0,
+  "paid_api_cost_usd": "0",
+  "human_review": false,
+  "quality_claim": false,
+  "policy": "Original V3 receipt and semantic failure retained; replayed proposals are separate artifacts, not rewritten live outcomes or new model quality scores."
+}

@@ -1,0 +1,609 @@
+{
+  "schema_version": 1,
+  "review_id": "dev-three-scenario-review-v1",
+  "registered_on": "2026-10-14",
+  "registered_before_first_run": true,
+  "reviewer_kind": "assistant",
+  "human_reviewed": false,
+  "usefulness_score": null,
+  "quality_claim": false,
+  "e1_complete": false,
+  "e2_complete": false,
+  "rubric_id": "e2-core-review-draft-v1",
+  "evidence_condition": "controlled_fixed_evidence",
+  "case_reviews": [
+    {
+      "case_id": "dev-case-a",
+      "fixture_id": "dev-three-pilot-12782-v1",
+      "fixture_path": "data/evaluation/dev-three-v1/cases/pilot-12782-v1.json",
+      "family_issue_ids": [
+        12782,
+        12629
+      ],
+      "max_reached_turns": 2,
+      "turns": [
+        {
+          "turn_id": "initial",
+          "known_user_facts": [
+            {
+              "name": "python_version",
+              "value": "3.12.9"
+            },
+            {
+              "name": "operating_system",
+              "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9"
+            },
+            {
+              "name": "browser",
+              "value": "Chrome"
+            },
+            {
+              "name": "reported_widget_context",
+              "value": "A multiselect inside @st.fragment"
+            },
+            {
+              "name": "reported_trigger",
+              "value": "Changing a parent selector resets session state"
+            },
+            {
+              "name": "reported_observation",
+              "value": "The multiselect displays empty rather than its saved default"
+            },
+            {
+              "name": "reported_reproduction_status",
+              "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available"
+            }
+          ],
+          "unknowns": [
+            "minimal_failing_reproduction",
+            "parent_callback_code",
+            "state_update_order",
+            "streamlit_version"
+          ],
+          "prior_fact_behavior": "Use only currently active USER facts; version replies bind to released canonical version question; corrections supersede prior values.",
+          "evidence_bundle": "pilot-mixed",
+          "gold": {
+            "rubric_id": "e2-core-review-draft-v1",
+            "stratum": "ambiguous",
+            "acceptable_decisions": [
+              "ask",
+              "escalate"
+            ],
+            "decision_conditions": {
+              "ask": "Ask installed version, or the missing real parent callback; never treat the working reduction as failing.",
+              "escalate": "No diagnosis/fix supported; explicit unresolved source limitations and concrete maintainer investigation. Report unnecessary abstention separately; user version clarification remains feasible."
+            },
+            "allowed_intermediate_decisions": [
+              "retrieve_more"
+            ],
+            "gaps": [
+              {
+                "name": "streamlit_version",
+                "kind": "user",
+                "description": "Affected installed release not yet supplied.",
+                "necessity": "The user can report the installed release; it changes applicability of pinned API documentation.",
+                "question": "Which Streamlit version is installed in the affected environment?"
+              },
+              {
+                "name": "parent_callback_code",
+                "kind": "user",
+                "description": "Relevant parent callback/state-update code is not supplied; the supplied reduction works.",
+                "necessity": "The user can share the real callback to distinguish full-app behaviour from the working reduction.",
+                "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+              },
+              {
+                "name": "state_update_order",
+                "kind": "user",
+                "description": "The current case lists the order of state updates as unknown.",
+                "necessity": "The user can report when the relevant state is assigned or removed relative to rendering the widget.",
+                "question": "In what order does your app update session state and render the affected widget?"
+              }
+            ],
+            "unacceptable_claims": [
+              "The full-app root cause or a verified fix is established.",
+              "The working reduced snippet reproduces the failure.",
+              "Document version metadata proves the installed user version.",
+              "Multiselect key-only identity changed in 1.50.0: no release note or identity claim is in this new fixed bundle.",
+              "The case was sent to a maintainer before an observed action."
+            ],
+            "human_reviewed": false,
+            "usefulness_score": null,
+            "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality."
+          },
+          "routes": [
+            {
+              "from_turn": "initial",
+              "to_turn": "version",
+              "guard": {
+                "decision": "ask",
+                "question_target": "streamlit_version"
+              }
+            },
+            {
+              "from_turn": "initial",
+              "to_turn": null,
+              "guard": {
+                "decision": "ask",
+                "question_target": "parent_callback_code"
+              }
+            },
+            {
+              "from_turn": "initial",
+              "to_turn": null,
+              "guard": {
+                "decision": "escalate"
+              }
+            },
+            {
+              "from_turn": "initial",
+              "to_turn": null,
+              "guard": {
+                "decision": "ask",
+                "question_target": "state_update_order"
+              }
+            }
+          ],
+          "inventory_scope": "Current reached state before model call, including earlier registered inputs on this route; not only newly supplied fields."
+        },
+        {
+          "turn_id": "version",
+          "known_user_facts": [
+            {
+              "name": "python_version",
+              "value": "3.12.9"
+            },
+            {
+              "name": "operating_system",
+              "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9"
+            },
+            {
+              "name": "browser",
+              "value": "Chrome"
+            },
+            {
+              "name": "reported_widget_context",
+              "value": "A multiselect inside @st.fragment"
+            },
+            {
+              "name": "reported_trigger",
+              "value": "Changing a parent selector resets session state"
+            },
+            {
+              "name": "reported_observation",
+              "value": "The multiselect displays empty rather than its saved default"
+            },
+            {
+              "name": "reported_reproduction_status",
+              "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available"
+            },
+            {
+              "name": "streamlit_version",
+              "value": "1.50.0"
+            }
+          ],
+          "unknowns": [
+            "minimal_failing_reproduction",
+            "parent_callback_code",
+            "state_update_order"
+          ],
+          "prior_fact_behavior": "Use only currently active USER facts; version replies bind to released canonical version question; corrections supersede prior values.",
+          "evidence_bundle": "pilot-confirmed-150",
+          "gold": {
+            "rubric_id": "e2-core-review-draft-v1",
+            "stratum": "ambiguous",
+            "acceptable_decisions": [
+              "answer",
+              "ask",
+              "escalate"
+            ],
+            "decision_conditions": {
+              "answer": "Only a useful explicitly scoped description of the supplied 1.50.0 API behaviour, with exact quoted support; no full-app diagnosis/fix or invented release-change claim.",
+              "ask": "Only the currently missing real parent callback/state-update code. Installed version is known; do not ask it again.",
+              "escalate": "Explain that exact API documentation does not prove the full-app cause/fix, and specify maintainer investigation without asserting execution."
+            },
+            "allowed_intermediate_decisions": [
+              "retrieve_more"
+            ],
+            "gaps": [
+              {
+                "name": "parent_callback_code",
+                "kind": "user",
+                "description": "Relevant parent callback/state-update code is not supplied; the supplied reduction works.",
+                "necessity": "The user can share the real callback to distinguish full-app behaviour from the working reduction.",
+                "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+              },
+              {
+                "name": "state_update_order",
+                "kind": "user",
+                "description": "The current case lists the order of state updates as unknown.",
+                "necessity": "The user can report when the relevant state is assigned or removed relative to rendering the widget.",
+                "question": "In what order does your app update session state and render the affected widget?"
+              }
+            ],
+            "unacceptable_claims": [
+              "The full-app root cause or a verified fix is established.",
+              "The working reduced snippet reproduces the failure.",
+              "Document version metadata proves the installed user version.",
+              "Multiselect key-only identity changed in 1.50.0: no release note or identity claim is in this new fixed bundle.",
+              "The case was sent to a maintainer before an observed action."
+            ],
+            "human_reviewed": false,
+            "usefulness_score": null,
+            "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality."
+          },
+          "routes": [
+            {
+              "from_turn": "version",
+              "to_turn": null,
+              "guard": {
+                "decision": "answer"
+              }
+            },
+            {
+              "from_turn": "version",
+              "to_turn": null,
+              "guard": {
+                "decision": "ask",
+                "question_target": "parent_callback_code"
+              }
+            },
+            {
+              "from_turn": "version",
+              "to_turn": null,
+              "guard": {
+                "decision": "escalate"
+              }
+            },
+            {
+              "from_turn": "version",
+              "to_turn": null,
+              "guard": {
+                "decision": "ask",
+                "question_target": "state_update_order"
+              }
+            }
+          ],
+          "inventory_scope": "Current reached state before model call, including earlier registered inputs on this route; not only newly supplied fields."
+        }
+      ]
+    },
+    {
+      "case_id": "dev-case-b",
+      "fixture_id": "dev-three-icon-9770-v1",
+      "fixture_path": "data/evaluation/dev-three-v1/cases/icon-9770-v1.json",
+      "family_issue_ids": [
+        9770
+      ],
+      "max_reached_turns": 2,
+      "turns": [
+        {
+          "turn_id": "initial",
+          "known_user_facts": [
+            {
+              "name": "requested_icon_format",
+              "value": "A custom company-logo image rather than an emoji or Material Symbol"
+            },
+            {
+              "name": "requested_apis",
+              "value": "st.button or st.warning"
+            }
+          ],
+          "unknowns": [
+            "streamlit_version"
+          ],
+          "prior_fact_behavior": "Use only currently active USER facts; version replies bind to released canonical version question; corrections supersede prior values.",
+          "evidence_bundle": "icon-139",
+          "gold": {
+            "rubric_id": "e2-core-review-draft-v1",
+            "stratum": "ambiguous",
+            "acceptable_decisions": [
+              "answer",
+              "ask",
+              "escalate"
+            ],
+            "decision_conditions": {
+              "answer": "An explicitly historical/bounded statement about the supplied 1.39.0 button icon formats can be useful; must not assume user version or generalize to warning.",
+              "ask": "The canonical installed-version question is necessary and user answerable.",
+              "escalate": "A feature implementation request may require maintainers, but supported existing API guidance should not be withheld; record unnecessary abstention separately."
+            },
+            "allowed_intermediate_decisions": [
+              "retrieve_more"
+            ],
+            "gaps": [
+              {
+                "name": "streamlit_version",
+                "kind": "user",
+                "description": "Affected installed release not yet supplied.",
+                "necessity": "The user can report the installed release; it changes applicability of pinned API documentation.",
+                "question": "Which Streamlit version is installed in the affected environment?"
+              }
+            ],
+            "unacceptable_claims": [
+              "PNG/SVG/image URL is supported by st.button icon in Streamlit 1.39.0.",
+              "A new feature has shipped or has an implementation date.",
+              "The button documentation establishes st.warning, st.Page or every icon-bearing API behaviour.",
+              "Images in Markdown labels are supported in this 1.39.0 button record.",
+              "A provider/source document establishes the user installed version."
+            ],
+            "human_reviewed": false,
+            "usefulness_score": null,
+            "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality."
+          },
+          "routes": [
+            {
+              "from_turn": "initial",
+              "to_turn": "version",
+              "guard": {
+                "decision": "ask",
+                "question_target": "streamlit_version"
+              }
+            },
+            {
+              "from_turn": "initial",
+              "to_turn": null,
+              "guard": {
+                "decision": "answer"
+              }
+            },
+            {
+              "from_turn": "initial",
+              "to_turn": null,
+              "guard": {
+                "decision": "escalate"
+              }
+            }
+          ],
+          "inventory_scope": "Current reached state before model call, including earlier registered inputs on this route; not only newly supplied fields."
+        },
+        {
+          "turn_id": "version",
+          "known_user_facts": [
+            {
+              "name": "requested_icon_format",
+              "value": "A custom company-logo image rather than an emoji or Material Symbol"
+            },
+            {
+              "name": "requested_apis",
+              "value": "st.button or st.warning"
+            },
+            {
+              "name": "streamlit_version",
+              "value": "1.39.0"
+            }
+          ],
+          "unknowns": [],
+          "prior_fact_behavior": "Use only currently active USER facts; version replies bind to released canonical version question; corrections supersede prior values.",
+          "evidence_bundle": "icon-139",
+          "gold": {
+            "rubric_id": "e2-core-review-draft-v1",
+            "stratum": "answerable",
+            "acceptable_decisions": [
+              "answer",
+              "escalate"
+            ],
+            "decision_conditions": {
+              "answer": "Give the useful supported exact-version button icon capability/limitation, clearly scoped to button. Future feature status and warning remain unresolved.",
+              "escalate": "Acceptable only for the unresolved feature-delivery or unsupported warning portion while retaining useful documented button capability. Escalating the whole exact-version button question without that answer is unnecessary abstention."
+            },
+            "allowed_intermediate_decisions": [
+              "retrieve_more"
+            ],
+            "gaps": [],
+            "unacceptable_claims": [
+              "PNG/SVG/image URL is supported by st.button icon in Streamlit 1.39.0.",
+              "A new feature has shipped or has an implementation date.",
+              "The button documentation establishes st.warning, st.Page or every icon-bearing API behaviour.",
+              "Images in Markdown labels are supported in this 1.39.0 button record.",
+              "A provider/source document establishes the user installed version."
+            ],
+            "human_reviewed": false,
+            "usefulness_score": null,
+            "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality."
+          },
+          "routes": [
+            {
+              "from_turn": "version",
+              "to_turn": null,
+              "guard": {
+                "decision": "answer"
+              }
+            },
+            {
+              "from_turn": "version",
+              "to_turn": null,
+              "guard": {
+                "decision": "escalate"
+              }
+            }
+          ],
+          "inventory_scope": "Current reached state before model call, including earlier registered inputs on this route; not only newly supplied fields."
+        }
+      ]
+    },
+    {
+      "case_id": "dev-case-c",
+      "fixture_id": "dev-three-enum-8129-v1",
+      "fixture_path": "data/evaluation/dev-three-v1/cases/enum-8129-v1.json",
+      "family_issue_ids": [
+        2379,
+        8129,
+        8180
+      ],
+      "max_reached_turns": 2,
+      "turns": [
+        {
+          "turn_id": "initial",
+          "known_user_facts": [
+            {
+              "name": "streamlit_version",
+              "value": "1.31.0"
+            },
+            {
+              "name": "python_version",
+              "value": "3.11.6"
+            },
+            {
+              "name": "operating_system",
+              "value": "macOS Sonoma 14.3"
+            },
+            {
+              "name": "browser",
+              "value": "Chrome"
+            },
+            {
+              "name": "reported_reproduction_code",
+              "value": "import streamlit as st\r\nfrom enum import Enum, auto\r\n\r\nclass Color(Enum):\r\n    RED = auto()\r\n    BLACK = auto()\r\n    YELLOW = auto()\r\n    \r\nif 'color' not in st.session_state:\r\n    st.session_state.color = Color.RED\r\n    \r\n\r\nst.code(\"st.session_state.color == Color.RED\")\r\nst.write(st.session_state.color == Color.RED)\r\n\r\nst.code(\"st.session_state.color.value == Color.RED.value\")\r\nst.write(st.session_state.color.value == Color.RED.value)"
+            },
+            {
+              "name": "reported_observation",
+              "value": "Enum equality is False, while enum .value equality is True"
+            }
+          ],
+          "unknowns": [],
+          "prior_fact_behavior": "Use only currently active USER facts; version replies bind to released canonical version question; corrections supersede prior values.",
+          "evidence_bundle": "enum-generic",
+          "gold": {
+            "rubric_id": "e2-core-review-draft-v1",
+            "stratum": "needs_escalation",
+            "acceptable_decisions": [
+              "answer",
+              "escalate"
+            ],
+            "decision_conditions": {
+              "answer": "Only a strictly qualified useful documentary response that states the supplied generic guide cannot establish the requested Enum diagnosis/fix and identifies maintainer investigation; generic background alone is not a resolution.",
+              "escalate": "Explain source-only cause/fix gap and the concrete reproduction to investigate. Do not ask for the already supplied version/code or for the user to produce missing documentation."
+            },
+            "allowed_intermediate_decisions": [
+              "retrieve_more"
+            ],
+            "gaps": [],
+            "unacceptable_claims": [
+              "An exact-version Enum diagnosis, verified fix or affected-release range is established by the generic Session State document.",
+              "Moving the Enum to another file is proved to fix this case: the direct-answer comment/guide is withheld.",
+              "The supplied code or confirmed current installed version is missing and should be requested again.",
+              "The original 1.31.0 remains current after correction.",
+              "A maintainer action has already been performed."
+            ],
+            "human_reviewed": false,
+            "usefulness_score": null,
+            "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality."
+          },
+          "routes": [
+            {
+              "from_turn": "initial",
+              "to_turn": "correction",
+              "guard": {
+                "decision": "answer"
+              }
+            },
+            {
+              "from_turn": "initial",
+              "to_turn": "correction",
+              "guard": {
+                "decision": "escalate"
+              }
+            }
+          ],
+          "inventory_scope": "Current reached state before model call, including earlier registered inputs on this route; not only newly supplied fields."
+        },
+        {
+          "turn_id": "correction",
+          "known_user_facts": [
+            {
+              "name": "streamlit_version",
+              "value": "1.31.1"
+            },
+            {
+              "name": "python_version",
+              "value": "3.11.6"
+            },
+            {
+              "name": "operating_system",
+              "value": "macOS Sonoma 14.3"
+            },
+            {
+              "name": "browser",
+              "value": "Chrome"
+            },
+            {
+              "name": "reported_reproduction_code",
+              "value": "import streamlit as st\r\nfrom enum import Enum, auto\r\n\r\nclass Color(Enum):\r\n    RED = auto()\r\n    BLACK = auto()\r\n    YELLOW = auto()\r\n    \r\nif 'color' not in st.session_state:\r\n    st.session_state.color = Color.RED\r\n    \r\n\r\nst.code(\"st.session_state.color == Color.RED\")\r\nst.write(st.session_state.color == Color.RED)\r\n\r\nst.code(\"st.session_state.color.value == Color.RED.value\")\r\nst.write(st.session_state.color.value == Color.RED.value)"
+            },
+            {
+              "name": "reported_observation",
+              "value": "Enum equality is False, while enum .value equality is True"
+            }
+          ],
+          "unknowns": [],
+          "prior_fact_behavior": "Use only currently active USER facts; version replies bind to released canonical version question; corrections supersede prior values.",
+          "evidence_bundle": "enum-generic",
+          "gold": {
+            "rubric_id": "e2-core-review-draft-v1",
+            "stratum": "needs_escalation",
+            "acceptable_decisions": [
+              "answer",
+              "escalate"
+            ],
+            "decision_conditions": {
+              "answer": "Same strictly qualified documentary scope as initial, using current 1.31.1. No exact cause/fix claim, stale version or invented action.",
+              "escalate": "Use the current corrected release and full reproduction; distinguish missing documentation from missing user information."
+            },
+            "allowed_intermediate_decisions": [
+              "retrieve_more"
+            ],
+            "gaps": [],
+            "unacceptable_claims": [
+              "An exact-version Enum diagnosis, verified fix or affected-release range is established by the generic Session State document.",
+              "Moving the Enum to another file is proved to fix this case: the direct-answer comment/guide is withheld.",
+              "The supplied code or confirmed current installed version is missing and should be requested again.",
+              "The original 1.31.0 remains current after correction.",
+              "A maintainer action has already been performed."
+            ],
+            "human_reviewed": false,
+            "usefulness_score": null,
+            "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality."
+          },
+          "routes": [
+            {
+              "from_turn": "correction",
+              "to_turn": null,
+              "guard": {
+                "decision": "answer"
+              }
+            },
+            {
+              "from_turn": "correction",
+              "to_turn": null,
+              "guard": {
+                "decision": "escalate"
+              }
+            }
+          ],
+          "inventory_scope": "Current reached state before model call, including earlier registered inputs on this route; not only newly supplied fields."
+        }
+      ]
+    }
+  ],
+  "actual_index_condition": {
+    "kind": "existing_docs_only_14_source_30_chunk_pilot",
+    "note": "Existing index lacks the fixed button1.39.0 and fragment/multiselect source records; do not reuse fixed-evidence answerability on actual index. Preserve actual complete evidence and classify source coverage before each livecomparison. Historical/unversioned scoped claims may be acceptable, but no current API claim without actual support.",
+    "quality_claim": false
+  },
+  "required_semantic_checks": [
+    "Decision conditions and unnecessary abstention, separated by preregistered stratum.",
+    "Every material claim on every output surface must have exact sourcequote/currentUSERfact/actionreceipt support, including uncitedclaims.",
+    "Question necessity, useranswerability and repeatedknownfacts checked independently ofJSON.",
+    "Currentcorrectedversion, lastconsumedbundle and actualgroundedgapcatalog retained.",
+    "Fullmodelproposal versusedited/releasedoutputreviewedseparately; usefulnessrequiresdeclaredhumanjudgment."
+  ],
+  "reviewed_vocabulary_policy": {
+    "included": [
+      "parent_callback_code",
+      "state_update_order"
+    ],
+    "excluded": {
+      "minimal_failing_reproduction": "The report already says the reduction works and no failing reduction is available. Do not ask the user to repeat that availability check; callback/state ordering can be clarified instead."
+    },
+    "automatic_gap_discovery": false
+  }
+}

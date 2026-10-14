@@ -379,6 +379,7 @@ class LiveEvaluationAdapters:
                 retriever,
                 GroundedReasoner(
                     run,
+                    source_gap_handoff=self._config.grounded_source_gap_handoff,
                     request_factory=lambda case, message, evidence: caller_catalog(
                         case, message, evidence, definitions=self._gaps
                     ),
@@ -432,11 +433,24 @@ def configured_factory(values: Mapping[str, str]) -> LiveEvaluationAdapters:
             if "AGENT_USER_GAP_CATALOG" in values
             else ()
         )
+        switches = {
+            name: values.get(name, "false")
+            for name in (
+                "METIS_GROUNDED_DECISION_CONTRACTS",
+                "METIS_GROUNDED_SOURCE_GAP_HANDOFF",
+            )
+        }
+        if any(
+            type(value) is not str or value not in {"true", "false"} for value in switches.values()
+        ):
+            raise ValueError("LiveEvaluationConfigurationInvalid")
         prepared = MetisConfig(
             api_key="public-placeholder-for-noncredential-config-validation",
             live_enabled=True,
             model=values.get("METIS_MODEL", "gpt-4o-mini"),
             response_mode="grounded_plan",
+            grounded_decision_contracts=switches["METIS_GROUNDED_DECISION_CONTRACTS"] == "true",
+            grounded_source_gap_handoff=switches["METIS_GROUNDED_SOURCE_GAP_HANDOFF"] == "true",
             phase=values.get("AGENT_EVAL_PHASE", "development"),
             input_token_reserve=int(values.get("METIS_INPUT_TOKEN_RESERVE", "32768")),
             max_output_tokens=int(values.get("METIS_MAX_OUTPUT_TOKENS", "1024")),

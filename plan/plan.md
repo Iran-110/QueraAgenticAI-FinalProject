@@ -4,6 +4,39 @@
 
 ## وضعیت فعلی
 
+- [x] **C4d — آزمایش محدود سه dev و اصلاح تصمیم‌های GroundedPlan؛ ساسان.**
+  انتشار در [PR #45](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/45)؛
+  ۳۱۳۹ تست محلی و HTTP/SQLite ۴۵۷/۴۵۷ پاس، CI همان head شرط merge است.
+  [ورودی/known/unknown و oracle قبل از مدل](../data/evaluation/dev-three-v1/scenario-review-v1.json)
+  و [receiptها و مقایسه](../experiments/dev_three_baseline/README.md) ثبت‌اند.
+  A catalog معمول: ۲ خروجی معتبر از ۸، صفر مسیر کامل از سه؛ B vocabulary:
+  ۳ از ۷ و یک مسیر؛ C guidance اختیاری decision/فیلد: ۸ از ۸ و سه مسیر.
+  پنج state مشترکِ اولین attempt، request hash یکسان دارند؛ repair و refinement
+  بعدی یکسان نیستند. Enum پاسخ مستند داشت ولی handoff صریحِ source gap کم بود؛
+  نتیجهٔ اصلی حفظ است و replay اصلاح اختیاری renderer جدا گزارش می‌شود؛ پیش‌فرض تاریخی ثابت است.
+  ۴۱ کنترل mode از ۲۰ پاس/۲۱ شکست به ۴۱ پاس، و ۱۷ کنترل config/HTTP از
+  ۵ پاس/۱۲ شکست به ۱۷ پاس رسیدند؛ شکست اولیهٔ suite حفظ شده. این اعداد
+  کیفیت عمومی، حل Issue یا test نهایی نیستند. ۲۳ send، تخمین $0.013688565؛
+  سه scope بسته، cap/hold/halt و grant قبلی حفظ، C5 باز. index واقعی با مدل
+  mock، ۷۳/۷۳ و دو build همسان/۴۰ query؛ همین ۱۴ docs/۳۰ chunk و vectors محلی،
+  بدون پوشش تازهٔ نسخه‌های fixture. [راهنما](../docs/dev-three-baseline.fa.md).
+
+- [ ] **E1a — سه draft dev آماده؛ پذیرش انسانی و split نهایی با محمدحسن.**
+  خانواده‌های #12782/#12629، #9770 و #8129/#2379/#8180 exposed و answer-informed؛
+  صفر test تازه. chronology/duplicate خارجی و review usefulness هنوز باز.
+  [manifest فعال این آزمایش](../data/evaluation/dev-three-v1/split-manifest.json)
+  جداست؛ manifest تاریخی pilot برای بازتولید تغییر نکرده. routeها را می‌توان
+  در runner موجود مصرف کرد؛ جواب نسخه فقط پس از همان سؤال released وارد شود.
+  این کمک جای باقی ۱۵ dev/۱۵ test یا E1–E5 را نمی‌گیرد.
+
+کار بعد حسن: همین manifest را با مسیر صریح در build مصرف کند، source coverage
+واقعی button 1.39 و multiselect/fragment را با pin/metadata و allowlist تازه
+اضافه کند و receipt index جدید بدهد. Issueها/answer/duplicateهای ارزیابی وارد
+corpus نشوند. PR #43 در HEAD `3f9e7b1` بدون diff است؛ CI سبز آن baseline تازه
+را تحویل نمی‌دهد. کار بعد محمدحسن: review مستقل این سه case و oracle، usefulness
+انسانی، family/chronology و ادامهٔ split؛ انتخاب case اولیه دیگر منتظر او نیست.
+smoke دستی باقی‌ماندهٔ بهنام در UI همچنان جداست؛ pytest و fixture جای آن نیستند.
+
 - [x] **C4c — vocabulary سؤال‌های caller در factory معمول؛ ساسان، محدود آفلاین.**
   انتشار و CI نهایی در [PR #44](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/44) است.
   [ثبت قبل از اصلاح](../experiments/user_gap_configuration/protocol-v1.json):

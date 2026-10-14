@@ -1,5 +1,14 @@
 # Evaluation cases
 
+The separately registered [three-dev packet](dev-three-v1/split-manifest.json)
+now prepares #12782, #9770 and #8129 with opaque runtime IDs, conditional routes,
+whole-family exclusions and assistant-reviewed known/missing inventories.
+It remains draft, exposed development data with zero test; the historical
+one-case manifest and PR35 pins below are preserved. Use
+`uv run python -m agent_app.evaluation.runner data/evaluation/dev-three-v1/cases --conditional-routes`
+for its scripted replay. Fixed-evidence model conditions and the actual14-doc
+index are separate; [guide](../../docs/dev-three-baseline.fa.md).
+
 Draft layout for E1/E2. The schema still needs agreement before the full 30
 cases are written; `dev/pilot-12782.json` is the first case in this format.
 The manifest currently selects **one dev case and zero test cases**. It is not

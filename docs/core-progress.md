@@ -2,6 +2,60 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-14 — C4d three exposed dev families and bounded real model trials
+
+Publication: [PR #45](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/45).
+Final local suite3139passes, HTTP/SQLite457/457 and three required demos pass;
+exact-head GitHub checks are required before merge.
+
+The separate draft dev-three packet adds #9770 and #8129 (conservative family
+#2379/#8180) to the #12782/#12629 pilot. Runtime IDs are opaque. Cached-body
+paraphrases, comment/outcome exposure and authored conditional follow-ups are
+recorded before calls; no held-out test is added. The historical pilot manifest
+and PR35 oracle remain unchanged. Adding a split does not add corpus coverage.
+
+Two fresh native docs builds yield the same14-source/30-chunk snapshot and
+73/73 acceptance checks with40 native collection queries and scripted HTTP.
+No issue/comment/outcome is indexed. The fixed model evidence's exact1.39
+button/multiselect/fragment material is absent from that lexical index; these
+operational checks are not semantic retrieval quality.
+
+Actual model observations across immutable V1/V2/V3 receipts: runtime catalog
+A2/8 syntactically valid outputs and0/3 conditional routes; reviewed vocabulary
+B3/7 and1/3; opt-in current decision/field contracts C8/8 and3/3. Five shared
+first-attempt GroundedRequest hashes in B/C are identical. Later invalid repair
+and valid refinement differ, and Enum correction is newly reached. These are
+single sequential trials on three answer-informed exposed families, not an
+accuracy estimate or causal proof. Strict validation/rendering/attempt bounds
+and human approval remain; no new agent/framework was added.
+
+The semantic review retains an important V3 limitation: generic Session State
+quotes do not establish Enum diagnosis/fix, and the original answer lacks the
+explicit maintainer investigation requested by the conditional oracle. A
+separate deterministic source-gap renderer replay preserves the original live
+receipt and decisions; it surfaces existing caller declarations and necessity,
+without inventing a gap or asking the user for documentation. Its17 frozen
+controls were committed before the fix, with8pass/9fail before and17pass after.
+The initial global renderer failed full-suite historical output checks
+(3070pass/8fail/19errors); those oracles were preserved. V2 registers41 controls
+before switching to an explicit caller mode:20pass/21fail before,41pass after;
+separate17 configured HTTP controls improve5pass/12fail to17pass. Default/false
+retain full historical output bytes. Canonical questions, complete quotes/hashes/
+version scope, no-gap output bytes and retrieve_more remain unchanged. Human usefulness is still null.
+
+New finite experiment authorizations bind exact protocol/request slots, rather
+than refill the old continuation or clear its halt/unknownhold. All23 new sends
+settled with verified gpt-4o-mini-2024-07-18; estimated reasoner cost0.013688565USD.
+The three scopes are closed; global4.50USD ceiling, originalgrant and0.02USD
+unknownhold retained. Ordinary configured live still halts; C5 is unresolved.
+Checkpoint failure before provider dispatch counts zero sends, keeps conservative
+uncertainty and cannot replay a consumedslot.
+
+[Protocol, receipts and limits](../experiments/dev_three_baseline/README.md),
+[active integration guide](dev-three-baseline.fa.md), [team checklist](../plan/plan.md).
+E1/E2 final split, human review, new real-index source coverage and final evaluation
+remain open. PR43 HEAD3f9e7b1 is zero diff and is not merged as a new baseline.
+
 ## 2026-10-14 — C4c reviewed caller vocabulary on configured factory
 
 Ordinary configured composition previously supplied no user vocabulary, while

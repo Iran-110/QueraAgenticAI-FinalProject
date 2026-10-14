@@ -88,7 +88,11 @@ class MetisReasoner:
                     or request.evidence != evidence
                 ):
                     raise ValueError("Grounded request does not match reasoning inputs")
-                messages = build_grounded_messages(request, context)
+                messages = build_grounded_messages(
+                    request,
+                    context,
+                    decision_contracts=self.config.grounded_decision_contracts,
+                )
             except (AttributeError, TypeError, ValueError):
                 raise ValueError("Invalid grounded request or context") from None
         if not self.config.live_enabled:
@@ -127,6 +131,8 @@ class MetisReasoner:
                 phase=self.config.phase,
                 amount_usd=reserve,
                 continuation_id=self.config.continuation_id,
+                input_token_reserve=self.config.input_token_reserve,
+                max_output_tokens=self.config.max_output_tokens,
             )
         except BudgetDenied:
             raise ReasoningStopped("BudgetExceeded", "budget_stopped") from None

@@ -203,6 +203,51 @@ def test_grounded_plan_uses_same_context_ledger_and_single_send_with_raw_output(
     assert ledger.snapshot().reserved_usd == ledger.snapshot().uncertain_usd == 0
 
 
+def test_opt_in_decision_contracts_reach_actual_wire_without_changing_accounting(gateway_factory):
+    request, attribution = grounded_request(), context()
+    raw = GroundedPlan(
+        context_sha256=request.context_sha256, decision="ask", question_name=GAP.name
+    ).model_dump_json()
+    planner, ledger, calls, path = gateway_factory(
+        config_changes={"grounded_decision_contracts": True}, responses=[response_body(raw)]
+    )
+    assert planner.plan(request, context=attribution) == raw
+    assert json.loads(calls[0].content)["messages"] == list(
+        build_grounded_messages(request, attribution, decision_contracts=True)
+    )
+    assert len(calls) == len(reservations(path)) == 1
+    assert ledger.snapshot().settled_usd == observed_cost()
+
+
+@pytest.mark.parametrize("bad", ["true", 1, None])
+def test_decision_contract_option_is_explicit_boolean(bad):
+    with pytest.raises(ValueError):
+        MetisConfig(
+            api_key=SYNTHETIC_KEY, response_mode="grounded_plan", grounded_decision_contracts=bad
+        )
+
+
+def test_decision_contract_option_cannot_silently_change_analysis_mode():
+    with pytest.raises(ValueError, match="require grounded plan mode"):
+        MetisConfig(api_key=SYNTHETIC_KEY, grounded_decision_contracts=True)
+
+
+def test_decision_contract_environment_is_opt_in_and_mode_bound(monkeypatch):
+    monkeypatch.setenv("METIS_API_KEY", SYNTHETIC_KEY)
+    monkeypatch.delenv("METIS_GROUNDED_DECISION_CONTRACTS", raising=False)
+    monkeypatch.delenv("METIS_RESPONSE_MODE", raising=False)
+    assert not MetisConfig.from_env().grounded_decision_contracts
+    monkeypatch.setenv("METIS_GROUNDED_DECISION_CONTRACTS", "true")
+    with pytest.raises(ValueError):
+        MetisConfig.from_env()
+    monkeypatch.setenv("METIS_RESPONSE_MODE", "grounded_plan")
+    config = MetisConfig.from_env()
+    assert config.grounded_decision_contracts and not config.live_enabled
+    monkeypatch.setenv("METIS_GROUNDED_DECISION_CONTRACTS", "TRUE")
+    with pytest.raises(ValueError, match="must be true or false"):
+        MetisConfig.from_env()
+
+
 def test_grounded_output_is_charged_and_returned_without_parsing_rendering_or_repair(
     gateway_factory,
 ):

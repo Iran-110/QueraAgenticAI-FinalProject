@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "review_id": "dev-three-model-v1-assistant-semantic-review",
+  "reviewed_on": "2026-10-14",
+  "reviewer_kind": "assistant_source_and_oracle_review",
+  "human_reviewed": false,
+  "usefulness_score": null,
+  "quality_claim": false,
+  "actual_rag_quality": false,
+  "final_test_quality": false,
+  "input_pins": {
+    "experiments/dev_three_baseline/model-live-receipt-v1.json": "f651ca3bfabe592f8a2902d655427f9279eaf15a7ca2e955e386d52ebf505ad5",
+    "data/evaluation/dev-three-v1/scenario-review-v1.json": "c5297daa3ccd966e20b5c9941345ac5218f4e94904b414722024b738268993c6"
+  },
+  "source_commit_of_run": "0a64a791b9231c16b36956fb86a19cd3814d63f2",
+  "controlled_evidence_condition": "fixed_registered_source_bundles",
+  "case_stratum": "ambiguous",
+  "case_id": "dev-case-a",
+  "arm": "runtime_catalog",
+  "observed_coverage": {
+    "planned_case_arm_jobs": 6,
+    "attempted_case_arm_jobs": 1,
+    "complete_jobs": 0,
+    "incomplete_jobs": 1,
+    "unrun_jobs": 5,
+    "paid_model_attempts": 3,
+    "accepted_plans": 1,
+    "plan_schema_failures": 2,
+    "accepted_proposals": 1,
+    "released_outputs": 1
+  },
+  "initial_proposal": {
+    "proposal_id": "3013e4e0-9a1b-57dd-b6c6-028145c8aea2",
+    "revision": 1,
+    "decision": "ask",
+    "pre_registered_decision_acceptable": true,
+    "question": {
+      "target": "streamlit_version",
+      "necessary": true,
+      "user_answerable": true,
+      "reason": "No active installed-version fact was supplied; the fixed sources contain multiple version metadata values, whose applicability requires the installed release.",
+      "matches_registered_canonical_question": true,
+      "asks_already_known_fact": false,
+      "asks_user_to_supply_documentation": false,
+      "fixture_reply_available": true
+    },
+    "all_output_surfaces_reviewed": [
+      "user_draft",
+      "next_question",
+      "maintainer_summary",
+      "rationale",
+      "evidence_links.0.claim",
+      "evidence_links.1.claim",
+      "evidence_links.2.claim",
+      "missing_info.0",
+      "released_assistant_text"
+    ],
+    "source_quote_checks": [
+      {
+        "chunk_id": "dev-three-multiselect-1490-default-key",
+        "bound_full_hit_content_sha256": "f1d18a2d0e92b61dbc9277d7c009dcbbc644857723821fa89636a8e733b4e45f",
+        "excerpt_only_sha256": "7dd22b98a51686beecc664de9316aa04058d558aa3e30256fd19ff87831215a9",
+        "plan_ref_hash_matches": true,
+        "handoff_hash_matches": true,
+        "whole_attributed_source_block_present": true,
+        "scope": "unconfirmed",
+        "scope_matches_handoff": true,
+        "applied_user_version": null,
+        "applicable_versions_metadata": [
+          "1.49.0"
+        ]
+      },
+      {
+        "chunk_id": "dev-three-multiselect-1500-default-key",
+        "bound_full_hit_content_sha256": "f12b18bc820e5fa3652c4dcff2cc52ac41a3a505e4ccd0812cb366a14e68730a",
+        "excerpt_only_sha256": "7dd22b98a51686beecc664de9316aa04058d558aa3e30256fd19ff87831215a9",
+        "plan_ref_hash_matches": true,
+        "handoff_hash_matches": true,
+        "whole_attributed_source_block_present": true,
+        "scope": "unconfirmed",
+        "scope_matches_handoff": true,
+        "applied_user_version": null,
+        "applicable_versions_metadata": [
+          "1.50.0"
+        ]
+      },
+      {
+        "chunk_id": "dev-three-fragment-150-full",
+        "bound_full_hit_content_sha256": "27d00d1984e64cc43af3cec3989c02f6d08f4a5660a5740e321b9c281f838273",
+        "excerpt_only_sha256": "2d237d33c27fa367c8bac19ba308ac7e8a40a1bcd92a1351d9606b50898e0ee5",
+        "plan_ref_hash_matches": true,
+        "handoff_hash_matches": true,
+        "whole_attributed_source_block_present": true,
+        "scope": "unconfirmed",
+        "scope_matches_handoff": true,
+        "applied_user_version": null,
+        "applicable_versions_metadata": [
+          "1.50.0"
+        ]
+      }
+    ],
+    "known_user_fact_count": 7,
+    "known_facts_preserved_and_attributed": true,
+    "prior_reported_checks_attributed_to_user": true,
+    "working_reduction_misrepresented_as_failing": false,
+    "observed_unsupported_material_claims": [],
+    "cause_or_successful_fix_claimed": false,
+    "maintainer_action_claimed_without_receipt": false,
+    "source_metadata_misused_as_installed_version": false,
+    "future_information_used": false,
+    "release": {
+      "after_registered_scripted_approval": true,
+      "edited": false,
+      "exact_canonical_question": true,
+      "real_human_approval": false
+    }
+  },
+  "known_version_followup": {
+    "revision": 2,
+    "current_installed_version": "1.50.0",
+    "current_active_user_fact_present_in_both_attempts": true,
+    "version_no_longer_listed_unknown": true,
+    "model_attempts": 2,
+    "accepted_plan_count": 0,
+    "accepted_proposal_count": 0,
+    "released_output_count": 0,
+    "outcome": "No admissible proposal was produced; conditional case coverage remained incomplete.",
+    "exact_invalid_output_cause": "Not inferable: V1 retains output SHA only and plan=null, with generic invalid_grounded_plan repair feedback; raw invalid outputs are unavailable.",
+    "invalid_outputs_not_semantically_scored": true,
+    "cannot_claim_good_answer_question_or_escalation": true
+  },
+  "accounting": {
+    "actual_sends": 3,
+    "estimated_cost_usd": "0.001761870",
+    "accounting_complete": true,
+    "actual_provider_charge_verified": false,
+    "scope_closed": true,
+    "original_accounting_preserved": true,
+    "c5_reconciled": false
+  },
+  "limits": [
+    "One valid version question does not establish model quality on the rest of the case or on unrun jobs.",
+    "No A/B improvement estimate is available in V1: the reviewed-vocabulary arm was not executed.",
+    "Fixed evidence, exposed dev cases and scripted maintainer actions are not actual RAG or held-out final evaluation.",
+    "The source links are general documentation URLs; the review binds stored excerpts/version metadata and hashes, not the current public page content or independent source authenticity.",
+    "Human usefulness is unscored and remains null."
+  ]
+}
