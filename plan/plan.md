@@ -5,6 +5,8 @@
 ## وضعیت فعلی
 
 - [x] **C4e — اندازه‌گیری محدود پایداری و برش خصمانهٔ آفلاین؛ ساسان.**
+  انتشار و review در [PR #46](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/46)؛
+  ۳۲۰۴ تست، HTTP/SQLite ۴۵۷/۴۵۷ و restart/retry پاس؛ CI همان head شرط merge است.
   [protocol](../experiments/core_stability_adversarial/stability-protocol-v1.json)
   قبل از مدل ثبت شد؛ سه دور کامل، دور چهارم پس از ۲ job از ۶ با خطای provider
   متوقف شد. [اصل receipt و review](../experiments/core_stability_adversarial/README.md):

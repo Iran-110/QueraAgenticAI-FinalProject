@@ -4,6 +4,8 @@ This is a factual milestone log, not a daily activity schedule. Update it after 
 
 ## 2026-10-14 — C4e preregistered stability and limited adversarial development
 
+Publication/review: [PR #46](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/46).
+
 The [method packet](../experiments/core_stability_adversarial/README.md) freezes
 four paired rounds on the existing three exposed dev families. Each family has
 two B/C and two C/B orders; both arms share the reviewed vocabulary, full source
