@@ -92,11 +92,12 @@
   انتهای suite cancel شد. هیچ assertion fail یا gate حذف نشد؛ بودجهٔ job۳۰ دقیقه شد.
 
 - [ ] **C4h — رفع بن‌بست query و انتخاب source در حد خروجی؛ ساسان.**
-  آزمایش C4h1 فقط prompt guidance بود و مسئله را حل نکرد. مرحلهٔ بعد باید
-  history قابل‌اعتماد query از caller و fallback در دو attempt را جدا بررسی
-  کند؛ guard engine و quote کامل محفوظ‌اند. repair در attempt دوم ظرفیت
-  retrieval سپس model سوم نمی‌دهد؛ route completion با escalation بیشتر،
-  به‌تنهایی بهبود کیفیت نیست. baseline/شکست‌های قبلی بازنویسی نشوند.
+  آزمایش C4h1 فقط prompt guidance بود و مسئله را حل نکرد. C4h2 بالای همین
+  فایل،history خودcaller وfallback را باگزینهٔخاموش پیش‌فرض ودو attempt
+  تحویل داده؛ دو ارجاع تازهٔ واقعی داشت، ولی پاسخ فنی اضافه نشد. قدم بعد
+  C4h3،کفایت واندازهٔ انتخاب source است؛ guard engine وquote کامل محفوظ‌اند.
+  repair درattempt دوم ظرفیت retrieval سپس model سوم نمی‌دهد؛ route کامل‌تر
+  باescalation بیشتر، به‌تنهایی بهبود کیفیت نیست. baseline/شکست‌های قبلی محفوظ‌اند.
   کار حسن در R4: ranking/backfill نسخه و relevance این queryهای واقعی؛ source-ID
   یا gold filter برای بالا بردن نتیجه ممنوع. محمدحسن human review/split و بهنام
   smoke دستی UI/SQLite را ادامه دهند؛ این کارها با C4g بسته نشدند.
