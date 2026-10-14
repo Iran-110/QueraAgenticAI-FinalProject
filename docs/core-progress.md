@@ -2,6 +2,29 @@
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
 
+## 2026-10-14 — C4e preregistered stability and limited adversarial development
+
+The [method packet](../experiments/core_stability_adversarial/README.md) freezes
+four paired rounds on the existing three exposed dev families. Each family has
+two B/C and two C/B orders; both arms share the reviewed vocabulary, full source
+bundles and optional source-gap renderer. Only decision/field prompt guidance
+differs. First attempts, all attempts, conditional paths and semantic adequacy
+are separate observations; human usefulness remains null. The historical C4d
+receipts/oracle are unchanged. No new held-out case or RAG measurement is added.
+
+Three authored clean/challenge pairs and their oracle are pinned before models:
+source instructions, obsolete-version evidence and caller-declared conflicting
+reports. The harness uses the existing exact-user-version engine option for
+this separate adversarial slice. Version/correction history is not fabricated
+for those fresh one-turn events; the stability Enum route retains the existing
+real two-turn fixture correction/stale-approval checks.
+
+All new code lives in testing/scripts/experiments. Tracker, UI, retrieval,
+shared contracts and final split remain unchanged; Behnam's manual UI smoke is
+still independent. Finite per-round accounting retains old halt/hold/grant and
+uses the designated ledger. Execution results will be appended after the frozen
+registration; the packet is not a bonus-completion claim.
+
 ## 2026-10-14 — C4d three exposed dev families and bounded real model trials
 
 Publication: [PR #45](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/45).

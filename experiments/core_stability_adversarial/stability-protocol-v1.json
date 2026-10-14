@@ -1,0 +1,271 @@
+{
+  "schema_version": 1,
+  "protocol_id": "core-stability-v1",
+  "registered_on": "2026-10-14",
+  "registered_before_first_model_run": true,
+  "baseline_main_commit": "bb6796c34b05f14aaa23854d0d9826d473994b6b",
+  "experiment_id": "core-stability-2026-10-14-v1",
+  "authorization_ref": "user-2026-10-14-stability-and-adversarial",
+  "parent_authorization_id": "user-continuation-2026-10-07-v3",
+  "authorization_basis": "User explicitly requested first repeated model stability on the same three dev families, then a limited adversarial slice with API when useful. Separate finite exact-slot scopes; original halt/hold/grant unchanged.",
+  "ledger_path": "runtime/budget.sqlite3",
+  "ledger_before_sha256": "8e29a73dd1645ad2104737c15ec968be30ddfd8a6dacac9fdeb0b582eb16c889",
+  "model": "gpt-4o-mini",
+  "max_output_tokens": 1024,
+  "scope_cap_usd": "0.10",
+  "renderer_source_gap_handoff": true,
+  "user_gap_vocabulary_path": "data/evaluation/dev-three-v1/user-gap-vocabulary-v1.json",
+  "input_pins": {
+    "data/evaluation/dev-three-v1/cases/enum-8129-v1.json": "c5becdc00a950941cb25de8f775fc1a5b024d54f607a9c494bd9e7820ab216f0",
+    "data/evaluation/dev-three-v1/cases/icon-9770-v1.json": "199b47b1c3a65e853d49ec28d9607eec36982502bd2fd5bde1c640165e35c413",
+    "data/evaluation/dev-three-v1/cases/pilot-12782-v1.json": "6b542b325ac70906b014c9ac9a7bd01fb95c81a9219794f695de1e09de76c901",
+    "data/evaluation/dev-three-v1/evidence-v1.json": "d8ddd2dd8234fe328cc49326de1cc83d9096fe833bce254812c44d20a9f79521",
+    "data/evaluation/dev-three-v1/exposure-review-v1.json": "ae63d11b8a86a887741ef05c87a229da3fcf580f9e145180f6239af61f360d95",
+    "data/evaluation/dev-three-v1/scenario-review-v1.json": "c5297daa3ccd966e20b5c9941345ac5218f4e94904b414722024b738268993c6",
+    "data/evaluation/dev-three-v1/split-manifest.json": "f857fc559673c7ae2f508617fda3f81e3591157740e327109b00ae9a86f449ce",
+    "data/evaluation/dev-three-v1/user-gap-vocabulary-v1.json": "d3b63719554f35d1addec14586ebc4fcb10231844097fcea65458ee01d0b6736",
+    "experiments/core_stability_adversarial/adversarial-oracle-v1.json": "710899ba7a866b2692e48b0a98799810c109edf7494771b070d7a878341f0b10",
+    "experiments/core_stability_adversarial/adversarial-packet-v1.json": "7034cbf61ec395576fa6bfe0937b051a06f28f3268ef6981a72e2e23b00a8fe5",
+    "experiments/core_stability_adversarial/adversarial-protocol-proposal-v1.json": "ecd297d1ddc2c01dfc77ca32b5e3e0e36f39056fd01a56a0f0d35c616d45d5d4"
+  },
+  "batches": [
+    {
+      "batch_id": "stability-r1",
+      "kind": "stability",
+      "jobs": [
+        {
+          "job_id": "r1:dev-case-a:B_reviewed_gaps",
+          "case_id": "dev-case-a",
+          "arm": "B_reviewed_gaps",
+          "round": 1,
+          "decision_contracts": false
+        },
+        {
+          "job_id": "r1:dev-case-a:C_decision_guidance",
+          "case_id": "dev-case-a",
+          "arm": "C_decision_guidance",
+          "round": 1,
+          "decision_contracts": true
+        },
+        {
+          "job_id": "r1:dev-case-b:B_reviewed_gaps",
+          "case_id": "dev-case-b",
+          "arm": "B_reviewed_gaps",
+          "round": 1,
+          "decision_contracts": false
+        },
+        {
+          "job_id": "r1:dev-case-b:C_decision_guidance",
+          "case_id": "dev-case-b",
+          "arm": "C_decision_guidance",
+          "round": 1,
+          "decision_contracts": true
+        },
+        {
+          "job_id": "r1:dev-case-c:B_reviewed_gaps",
+          "case_id": "dev-case-c",
+          "arm": "B_reviewed_gaps",
+          "round": 1,
+          "decision_contracts": false
+        },
+        {
+          "job_id": "r1:dev-case-c:C_decision_guidance",
+          "case_id": "dev-case-c",
+          "arm": "C_decision_guidance",
+          "round": 1,
+          "decision_contracts": true
+        }
+      ],
+      "scope_id": "user-core-stability-2026-10-14-v1-r1",
+      "request_slots_sha256": "1fa3db3e6302af07d438ca95b0250e2218aae191fb242d22d7b8aff7ced8b6df",
+      "registered_slots": 24,
+      "worst_reserved_usd": "0.091914240"
+    },
+    {
+      "batch_id": "stability-r2",
+      "kind": "stability",
+      "jobs": [
+        {
+          "job_id": "r2:dev-case-b:C_decision_guidance",
+          "case_id": "dev-case-b",
+          "arm": "C_decision_guidance",
+          "round": 2,
+          "decision_contracts": true
+        },
+        {
+          "job_id": "r2:dev-case-b:B_reviewed_gaps",
+          "case_id": "dev-case-b",
+          "arm": "B_reviewed_gaps",
+          "round": 2,
+          "decision_contracts": false
+        },
+        {
+          "job_id": "r2:dev-case-c:C_decision_guidance",
+          "case_id": "dev-case-c",
+          "arm": "C_decision_guidance",
+          "round": 2,
+          "decision_contracts": true
+        },
+        {
+          "job_id": "r2:dev-case-c:B_reviewed_gaps",
+          "case_id": "dev-case-c",
+          "arm": "B_reviewed_gaps",
+          "round": 2,
+          "decision_contracts": false
+        },
+        {
+          "job_id": "r2:dev-case-a:C_decision_guidance",
+          "case_id": "dev-case-a",
+          "arm": "C_decision_guidance",
+          "round": 2,
+          "decision_contracts": true
+        },
+        {
+          "job_id": "r2:dev-case-a:B_reviewed_gaps",
+          "case_id": "dev-case-a",
+          "arm": "B_reviewed_gaps",
+          "round": 2,
+          "decision_contracts": false
+        }
+      ],
+      "scope_id": "user-core-stability-2026-10-14-v1-r2",
+      "request_slots_sha256": "174731576c7510d70794d13392a1535a03d64d3b430cdbb0c0ca575bac8b60fd",
+      "registered_slots": 24,
+      "worst_reserved_usd": "0.091914240"
+    },
+    {
+      "batch_id": "stability-r3",
+      "kind": "stability",
+      "jobs": [
+        {
+          "job_id": "r3:dev-case-c:B_reviewed_gaps",
+          "case_id": "dev-case-c",
+          "arm": "B_reviewed_gaps",
+          "round": 3,
+          "decision_contracts": false
+        },
+        {
+          "job_id": "r3:dev-case-c:C_decision_guidance",
+          "case_id": "dev-case-c",
+          "arm": "C_decision_guidance",
+          "round": 3,
+          "decision_contracts": true
+        },
+        {
+          "job_id": "r3:dev-case-a:B_reviewed_gaps",
+          "case_id": "dev-case-a",
+          "arm": "B_reviewed_gaps",
+          "round": 3,
+          "decision_contracts": false
+        },
+        {
+          "job_id": "r3:dev-case-a:C_decision_guidance",
+          "case_id": "dev-case-a",
+          "arm": "C_decision_guidance",
+          "round": 3,
+          "decision_contracts": true
+        },
+        {
+          "job_id": "r3:dev-case-b:B_reviewed_gaps",
+          "case_id": "dev-case-b",
+          "arm": "B_reviewed_gaps",
+          "round": 3,
+          "decision_contracts": false
+        },
+        {
+          "job_id": "r3:dev-case-b:C_decision_guidance",
+          "case_id": "dev-case-b",
+          "arm": "C_decision_guidance",
+          "round": 3,
+          "decision_contracts": true
+        }
+      ],
+      "scope_id": "user-core-stability-2026-10-14-v1-r3",
+      "request_slots_sha256": "27c244c2b7375c2d88220062af9bacd229aa645225422c814717bb708277e191",
+      "registered_slots": 24,
+      "worst_reserved_usd": "0.091914240"
+    },
+    {
+      "batch_id": "stability-r4",
+      "kind": "stability",
+      "jobs": [
+        {
+          "job_id": "r4:dev-case-a:C_decision_guidance",
+          "case_id": "dev-case-a",
+          "arm": "C_decision_guidance",
+          "round": 4,
+          "decision_contracts": true
+        },
+        {
+          "job_id": "r4:dev-case-a:B_reviewed_gaps",
+          "case_id": "dev-case-a",
+          "arm": "B_reviewed_gaps",
+          "round": 4,
+          "decision_contracts": false
+        },
+        {
+          "job_id": "r4:dev-case-b:C_decision_guidance",
+          "case_id": "dev-case-b",
+          "arm": "C_decision_guidance",
+          "round": 4,
+          "decision_contracts": true
+        },
+        {
+          "job_id": "r4:dev-case-b:B_reviewed_gaps",
+          "case_id": "dev-case-b",
+          "arm": "B_reviewed_gaps",
+          "round": 4,
+          "decision_contracts": false
+        },
+        {
+          "job_id": "r4:dev-case-c:C_decision_guidance",
+          "case_id": "dev-case-c",
+          "arm": "C_decision_guidance",
+          "round": 4,
+          "decision_contracts": true
+        },
+        {
+          "job_id": "r4:dev-case-c:B_reviewed_gaps",
+          "case_id": "dev-case-c",
+          "arm": "B_reviewed_gaps",
+          "round": 4,
+          "decision_contracts": false
+        }
+      ],
+      "scope_id": "user-core-stability-2026-10-14-v1-r4",
+      "request_slots_sha256": "504df1237177d2976bcda0735c45851141fdf9db3c2cfec0b8946d5e91697fef",
+      "registered_slots": 24,
+      "worst_reserved_usd": "0.091914240"
+    }
+  ],
+  "method": {
+    "paired_repetitions": 4,
+    "family_count": 3,
+    "scheduled_case_arm_jobs": 24,
+    "order": "Each family B/C twice and C/B twice; family order rotated deterministically. No temperature or seed settings changed; provider nondeterminism remains.",
+    "only_between_arm_treatment": "Current decision and field guidance. Same model, full fixed sources, reviewed user questions, validation, renderer=True and operational bounds. This new renderer setting is common to both arms; not a byte-for-byte repeat of historical V2/V3.",
+    "primary_observations": [
+      "First attempts at common reached states",
+      "All returned plans, separately from first attempts",
+      "Conditional route completion; early admissible terminal routes distinct from two-turn routes",
+      "Assistant-declared all-surface semantic support and question necessity; no human usefulness score",
+      "Repair/refinement, sends, local estimated cost, latency and operational checks"
+    ],
+    "conditional_replies": "Only the actually released exact canonical version question reveals the authored version reply. No forced continuation or future reply leakage.",
+    "stopping": "No selective reruns. Retain failed jobs and continue independent scheduled jobs only while scope accounting is active; any new uncertain request, model mismatch, overrun or journal failure stops the batch and later batches. Close unused slots.",
+    "denominators": "First attempt at each reached invocation; all attempts separately. Unreached followups are NA. Report by exposed family/stratum; no population accuracy or causal confidence claim.",
+    "review_before_models": "Existing scenario-review-v1.json remains the conditional oracle; complete model and released surfaces checked against current sources and active user facts. Adversarial packet/oracle pinned before this trial."
+  },
+  "strata": {
+    "dev-case-a": "ambiguous",
+    "dev-case-b": "ambiguous_then_answerable_button_portion",
+    "dev-case-c": "source_only_cause_fix_gap"
+  },
+  "exposure": "Three existing answer-informed/exposed dev families. Zero test cases. No RAG index, embeddings or corpus mutations.",
+  "human_reviewed": false,
+  "human_usefulness": null,
+  "quality_claim": false,
+  "actual_rag_quality": false,
+  "c5_reconciled": false,
+  "team_boundaries": "Only new core testing/experiment files and own plan/log. No tracker, UI, retrieval, shared contracts or final split edits; manual smoke remains Behnam-owned."
+}

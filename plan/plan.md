@@ -4,6 +4,17 @@
 
 ## وضعیت فعلی
 
+- [ ] **C4e — پایداری تصمیم و برش خصمانهٔ محدود؛ ساسان، در حال اجرا.**
+  [protocol چهار دور paired](../experiments/core_stability_adversarial/stability-protocol-v1.json)
+  قبل از API ثبت می‌شود؛ همان سه خانوادهٔ exposed، هر خانواده دو بار B/C و
+  دو بار C/B، با renderer و vocabulary یکسان. فقط guidance تصمیم فرق دارد.
+  first attempt، همهٔ attemptها، route و کفایت معنایی جدا گزارش می‌شوند؛
+  usefulness انسانی همچنان باز است. [سه pair خصمانهٔ تألیفی](../experiments/core_stability_adversarial/adversarial-packet-v1.json)
+  و [oracle پیش از مدل](../experiments/core_stability_adversarial/adversarial-oracle-v1.json)
+  کنار کنترل سالم ثبت‌اند؛ corpus/test نهایی نیستند و به‌تنهایی bonus را نمی‌بندند.
+  این برش فقط فایل‌های آزمایش core را دارد؛ smoke دستی بهنام، RAG حسن و
+  split/review محمدحسن دست‌نخورده‌اند. ledger اصلی و halt/hold قبلی حفظ می‌شوند.
+
 - [x] **C4d — آزمایش محدود سه dev و اصلاح تصمیم‌های GroundedPlan؛ ساسان.**
   انتشار در [PR #45](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/45)؛
   ۳۱۳۹ تست محلی و HTTP/SQLite ۴۵۷/۴۵۷ پاس، CI همان head شرط merge است.
