@@ -4,6 +4,28 @@
 
 ## وضعیت فعلی
 
+- [ ] **C4h2 — repair query تکراری با history خود core؛ ساسان.**
+  [ثبت قبل از تغییر](../experiments/core_repeat_repair_v1/protocol-v1.json) و
+  [قرارداد رفتار](../docs/repeat-query-repair.fa.md): گزینه پیش‌فرض خاموش است؛
+  همان دو attempt، بدون retrieval/مدل اضافی یا اعتماد به `queries_used`.
+  بازپخش سه plan واقعی قبلی با fallback تألیفی۴۲/۴۲ پاس است؛ کیفیت مدل نیست.
+  مقایسهٔ تازه OFF/ON روی همان سه dev و index۱۸/۳۶ آماده می‌شود؛ ranking ثابت،
+  همهٔ failure/stale/unvisitedها محفوظ، usefulness انسانی هنوزnull.
+
+- [ ] **R4b — review اصلاح ranking حسن؛ مالک اصلاح حسن.**
+  [PR #50](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/50)
+  در head`7581dcc` آمادهٔmerge نیست؛ [شواهد review](../experiments/rag_pr50_review/README.md):
+  newest-first شاهد نسخهٔ فعلی را کنار می‌زند، over-fetch ذکرشده پیاده نیست،
+  معنای `since_version` با exact applicability یکسان فرض شده و Linux lint fail است.
+ ۹۱ تست موجود پاس ولی regression را پوشش نمی‌دهند. Hassan branch تغییر نکرد؛
+  native receipt، کنترل نسخهٔunknown/قدیمی/correction وrelevance لازم است.
+  کار core مستقل از این اصلاح ادامه دارد. محمدحسن طبق اطلاع ساسان فردا برمی‌گردد؛
+  human review وsplit برای او می‌ماند؛ بهنام smoke دستی UI/SQLite را ادامه دهد.
+
+تحویل C4h1/E2p/E2q در [PR #49](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/49)
+با head`344b260`، review مستقل وچهار CI موفق، رویmain با`f78c6e9` منتشر شد.
+نتیجهٔ منفی آزمایش وhold/haltها حفظ‌اند؛ از آن بهبود کیفیت ادعا نمی‌شود.
+
 - [x] **E2p — ابزار review خروجی واقعی؛ ساسان، کمک موقت به محمدحسن.**
   [راهنما](../docs/evaluation-workbench.fa.md): صفحهٔ محلی با پیام مصرف‌شده،
   تمام output surfaceها، factهای فعال، sourceهای واقعی و template خالی برای

@@ -1,0 +1,443 @@
+{
+  "schema_version": 1,
+  "review": "PR50-ranking-review-v1",
+  "head_commit": "7581dcc9505afa4929879c65aa8de5222bdb43bd",
+  "base_commit": "f78c6e965e27a04b701b4d8a4df653617df42ead",
+  "head_adapter_sha256": "39d3de9915afb82ca4ff689c19f9fb5a1e04a0cbcfdd98c9f64068634c1ddf99",
+  "base_adapter_sha256": "3752fe760c9fb71a6cd05014a6ab870d53a652a56e2c972425e71c7d9c417c2f",
+  "reproduction": {
+    "kind": "offline_synthetic_control",
+    "module_loading": "Exact git-show blobs compiled in memory; no branch switch or source-file edit.",
+    "real_index_tested": false,
+    "model_tested": false,
+    "paid_api_calls": 0,
+    "ledger_opened": false,
+    "sources_indexed": false,
+    "human_quality_score": null,
+    "intended_claim": "Reproduces code-level ranking/metadata regressions only; does not estimate real RAG quality.",
+    "source_dependency_pins": [
+      {
+        "path": "src/agent_app/retrieval/adapter.py",
+        "base_sha256": "3752fe760c9fb71a6cd05014a6ab870d53a652a56e2c972425e71c7d9c417c2f",
+        "current_workspace_sha256": "3752fe760c9fb71a6cd05014a6ab870d53a652a56e2c972425e71c7d9c417c2f",
+        "workspace_matches_base": true
+      },
+      {
+        "path": "src/agent_app/retrieval/retriever.py",
+        "base_sha256": "7791e66896296ff0d85ed319ee7eba6238db9516ea04ad2a9f1af6b5f2caebe1",
+        "current_workspace_sha256": "7791e66896296ff0d85ed319ee7eba6238db9516ea04ad2a9f1af6b5f2caebe1",
+        "workspace_matches_base": true
+      },
+      {
+        "path": "src/agent_app/contracts.py",
+        "base_sha256": "1dcf0de657f3442dfb5e787e6243a9a279501305033e592cbcd060dd808d0a91",
+        "current_workspace_sha256": "1dcf0de657f3442dfb5e787e6243a9a279501305033e592cbcd060dd808d0a91",
+        "workspace_matches_base": true
+      },
+      {
+        "path": "src/agent_app/reasoning/grounding.py",
+        "base_sha256": "a0da31c487a5137c49fd6c5758ca787086dc06bb65cd3fee7a28552a4ab6c6e6",
+        "current_workspace_sha256": "a0da31c487a5137c49fd6c5758ca787086dc06bb65cd3fee7a28552a4ab6c6e6",
+        "workspace_matches_base": true
+      },
+      {
+        "path": "src/agent_app/orchestration/engine.py",
+        "base_sha256": "48bdb2ba2952614b0446d5384b9e62550c20909e566374818d1c1b5a14efa947",
+        "current_workspace_sha256": "9bd627646747511004ba36553729f0292338af9d0978ca00306ca1c2278c21a3",
+        "workspace_matches_base": false
+      }
+    ]
+  },
+  "ranking_control": {
+    "request": {
+      "queries": [
+        "session state 1.39.0"
+      ],
+      "snapshot_id": "pr50-offline-snapshot",
+      "top_k": 2,
+      "filters": {}
+    },
+    "case": {
+      "case_id": "pr50-offline-case",
+      "case_revision": 0,
+      "facts": [
+        {
+          "name": "streamlit_version",
+          "value": "1.39.0",
+          "source_ref": "user-message-1",
+          "turn_id": "turn-1",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "unknowns": [],
+      "checks_performed": [],
+      "evidence_refs": [],
+      "pending_proposal_id": null
+    },
+    "native_backend_rows": {
+      "docs": {
+        "ids": [
+          [
+            "current",
+            "future1"
+          ]
+        ],
+        "documents": [
+          [
+            "A relevant documented behavior.",
+            "Unrelated later-release document."
+          ]
+        ],
+        "metadatas": [
+          [
+            {
+              "chunk_id": "current",
+              "source_id": "current",
+              "source_url": "https://docs.streamlit.io/develop",
+              "source_type": "doc",
+              "applicable_versions": [
+                "1.39.0"
+              ]
+            },
+            {
+              "chunk_id": "future1",
+              "source_id": "future1",
+              "source_url": "https://docs.streamlit.io/develop",
+              "source_type": "doc",
+              "applicable_versions": [
+                "1.50.0"
+              ]
+            }
+          ]
+        ]
+      },
+      "issues": {
+        "ids": [
+          [
+            "future2"
+          ]
+        ],
+        "documents": [
+          [
+            "Unrelated later-release document."
+          ]
+        ],
+        "metadatas": [
+          [
+            {
+              "chunk_id": "future2",
+              "source_id": "future2",
+              "source_url": "https://docs.streamlit.io/develop",
+              "source_type": "doc",
+              "applicable_versions": [
+                "1.51.0"
+              ]
+            }
+          ]
+        ]
+      }
+    },
+    "baseline": {
+      "backend_calls": [
+        {
+          "query": "session state 1.39.0",
+          "n_results": 2,
+          "filters": {}
+        }
+      ],
+      "evidence_bundle": {
+        "snapshot_id": "pr50-offline-snapshot",
+        "hits": [
+          {
+            "chunk_id": "current",
+            "source_id": "current",
+            "excerpt": "A relevant documented behavior.",
+            "source_url": "https://docs.streamlit.io/develop",
+            "source_type": "doc",
+            "source_commit": null,
+            "applicable_versions": [
+              "1.39.0"
+            ],
+            "source_span": null,
+            "score": null,
+            "score_kind": null
+          },
+          {
+            "chunk_id": "future1",
+            "source_id": "future1",
+            "excerpt": "Unrelated later-release document.",
+            "source_url": "https://docs.streamlit.io/develop",
+            "source_type": "doc",
+            "source_commit": null,
+            "applicable_versions": [
+              "1.50.0"
+            ],
+            "source_span": null,
+            "score": null,
+            "score_kind": null
+          }
+        ],
+        "queries_used": [
+          "session state 1.39.0"
+        ],
+        "retrieval_round": 1,
+        "warnings": []
+      },
+      "current_scoped_hit_ids": [
+        "current"
+      ],
+      "source_scopes": {
+        "current": "exact_metadata_match",
+        "future1": "historical_or_other_version"
+      }
+    },
+    "candidate": {
+      "backend_calls": [
+        {
+          "query": "session state 1.39.0",
+          "n_results": 2,
+          "filters": {}
+        }
+      ],
+      "evidence_bundle": {
+        "snapshot_id": "pr50-offline-snapshot",
+        "hits": [
+          {
+            "chunk_id": "future2",
+            "source_id": "future2",
+            "excerpt": "Unrelated later-release document.",
+            "source_url": "https://docs.streamlit.io/develop",
+            "source_type": "doc",
+            "source_commit": null,
+            "applicable_versions": [
+              "1.51.0"
+            ],
+            "source_span": null,
+            "score": null,
+            "score_kind": null
+          },
+          {
+            "chunk_id": "future1",
+            "source_id": "future1",
+            "excerpt": "Unrelated later-release document.",
+            "source_url": "https://docs.streamlit.io/develop",
+            "source_type": "doc",
+            "source_commit": null,
+            "applicable_versions": [
+              "1.50.0"
+            ],
+            "source_span": null,
+            "score": null,
+            "score_kind": null
+          }
+        ],
+        "queries_used": [
+          "session state 1.39.0"
+        ],
+        "retrieval_round": 1,
+        "warnings": []
+      },
+      "current_scoped_hit_ids": [],
+      "source_scopes": {
+        "future2": "historical_or_other_version",
+        "future1": "historical_or_other_version"
+      }
+    },
+    "core_scope_predicate": "not hit.applicable_versions or active_user_version in hit.applicable_versions",
+    "core_scope_predicate_origin_commit": "f78c6e965e27a04b701b4d8a4df653617df42ead",
+    "core_scope_predicate_location": "src/agent_app/orchestration/engine.py:327",
+    "full_engine_invocation_in_ranking_control": false,
+    "observed_regression": "Current 1.39.0 evidence is displaced before global top-k; later exact-user-version scoping cannot recover it."
+  },
+  "metadata_controls": [
+    {
+      "native_metadata": {
+        "since_version": "1.39.0"
+      },
+      "baseline_hit": {
+        "chunk_id": "metadata-row",
+        "source_id": "metadata-source",
+        "excerpt": "Introduced in version 1.39.0.",
+        "source_url": "https://docs.streamlit.io/develop",
+        "source_type": "doc",
+        "source_commit": null,
+        "applicable_versions": [],
+        "source_span": null,
+        "score": null,
+        "score_kind": null
+      },
+      "candidate_hit": {
+        "chunk_id": "metadata-row",
+        "source_id": "metadata-source",
+        "excerpt": "Introduced in version 1.39.0.",
+        "source_url": "https://docs.streamlit.io/develop",
+        "source_type": "doc",
+        "source_commit": null,
+        "applicable_versions": [
+          "1.39.0"
+        ],
+        "source_span": null,
+        "score": null,
+        "score_kind": null
+      },
+      "baseline_source_scope": "unconfirmed",
+      "candidate_source_scope": "exact_metadata_match"
+    },
+    {
+      "native_metadata": {
+        "version": null,
+        "since_version": "1.39.0"
+      },
+      "baseline_hit": {
+        "chunk_id": "metadata-row",
+        "source_id": "metadata-source",
+        "excerpt": "Introduced in version 1.39.0.",
+        "source_url": "https://docs.streamlit.io/develop",
+        "source_type": "doc",
+        "source_commit": null,
+        "applicable_versions": [],
+        "source_span": null,
+        "score": null,
+        "score_kind": null
+      },
+      "candidate_hit": {
+        "chunk_id": "metadata-row",
+        "source_id": "metadata-source",
+        "excerpt": "Introduced in version 1.39.0.",
+        "source_url": "https://docs.streamlit.io/develop",
+        "source_type": "doc",
+        "source_commit": null,
+        "applicable_versions": [
+          "1.39.0"
+        ],
+        "source_span": null,
+        "score": null,
+        "score_kind": null
+      },
+      "baseline_source_scope": "unconfirmed",
+      "candidate_source_scope": "exact_metadata_match"
+    },
+    {
+      "native_metadata": {
+        "applicable_versions": [],
+        "since_version": "1.39.0"
+      },
+      "baseline_hit": {
+        "chunk_id": "metadata-row",
+        "source_id": "metadata-source",
+        "excerpt": "Introduced in version 1.39.0.",
+        "source_url": "https://docs.streamlit.io/develop",
+        "source_type": "doc",
+        "source_commit": null,
+        "applicable_versions": [],
+        "source_span": null,
+        "score": null,
+        "score_kind": null
+      },
+      "candidate_hit": {
+        "chunk_id": "metadata-row",
+        "source_id": "metadata-source",
+        "excerpt": "Introduced in version 1.39.0.",
+        "source_url": "https://docs.streamlit.io/develop",
+        "source_type": "doc",
+        "source_commit": null,
+        "applicable_versions": [],
+        "source_span": null,
+        "score": null,
+        "score_kind": null
+      },
+      "baseline_source_scope": "unconfirmed",
+      "candidate_source_scope": "unconfirmed"
+    }
+  ],
+  "overfetch_observation": {
+    "requested_top_k": 2,
+    "actual_candidate_backend_n_results": [
+      2
+    ],
+    "pr_claimed_multiplier": 5,
+    "claim_implemented_in_reviewed_head": false,
+    "code_location": "src/agent_app/retrieval/adapter.py:97"
+  },
+  "existing_tests": {
+    "execution": "Exact candidate adapter and exact base engine injected in-memory as their production module names; unchanged checked-in pytest files and remaining workspace modules. Engine source on disk was concurrently edited by root and was not used by this injected test run.",
+    "arguments": [
+      "-ra",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "tests/test_chroma_retrieval_adapter.py",
+      "tests/test_streamlit_retriever.py",
+      "tests/test_retrieval_acceptance.py",
+      "tests/test_catalog_version_truth.py"
+    ],
+    "exit_code": 0,
+    "passed": 91,
+    "stdout": "........................................................................ [ 79%]\n...................                                                      [100%]\n91 passed in 2.02s\n",
+    "test_file_pins": [
+      {
+        "path": "tests/test_chroma_retrieval_adapter.py",
+        "sha256": "dcf85b79cb1f25057e27076327c2054969b7b0481ca1589e253bfc96f43ad88f",
+        "matches_base": true
+      },
+      {
+        "path": "tests/test_streamlit_retriever.py",
+        "sha256": "2b7f731f82349fa0d87f894371c6f9f19a8b0cdc02fdf9ef9ecd6a7f9e1906bb",
+        "matches_base": true
+      },
+      {
+        "path": "tests/test_retrieval_acceptance.py",
+        "sha256": "88da443ee29622cadb0d1d0ca8b66f819c861a7ca8b46d24a6a349837d24dfd6",
+        "matches_base": true
+      },
+      {
+        "path": "tests/test_catalog_version_truth.py",
+        "sha256": "9a1fd7cc4dbba68c106f052d796052ea39d32971a9ed42e070d2d06187c7a064",
+        "matches_base": true
+      }
+    ],
+    "limits": "These existing tests pass but do not exercise the added newest-first displacement control."
+  },
+  "lint": {
+    "arguments": [
+      "ruff",
+      "check",
+      "--stdin-filename",
+      "src/agent_app/retrieval/adapter.py",
+      "-"
+    ],
+    "exact_candidate_stdin_sha256": "39d3de9915afb82ca4ff689c19f9fb5a1e04a0cbcfdd98c9f64068634c1ddf99",
+    "exit_code": 1,
+    "stdout": "E722 Do not use bare `except`\n   --> src/agent_app/retrieval/adapter.py:123:21\n    |\n121 |                     try:\n122 |                         parsed.append(tuple(int(p) for p in v.split('.') if p.isdigit()))\n123 |                     except:\n    |                     ^^^^^^\n124 |                         pass\n125 |             return max(parsed) if parsed else (0,)\n    |\n\nFound 1 error.\n",
+    "stderr": ""
+  },
+  "findings": [
+    {
+      "priority": "P1",
+      "location": "src/agent_app/retrieval/adapter.py:127",
+      "code": "CurrentRelevantEvidenceDisplaced",
+      "status": "reproduced"
+    },
+    {
+      "priority": "P2",
+      "location": "src/agent_app/retrieval/adapter.py:97",
+      "code": "ClaimedOverfetchNotImplemented",
+      "status": "reproduced"
+    },
+    {
+      "priority": "P2",
+      "location": "src/agent_app/retrieval/adapter.py:25",
+      "code": "SinceVersionTreatedAsExactApplicability",
+      "status": "reproduced_metadata_conversion",
+      "qualification": "Introduction-version semantics must be defined before authorizing this conversion; current canonical index already supplies applicable_versions."
+    },
+    {
+      "priority": "P2",
+      "location": "src/agent_app/retrieval/adapter.py:123",
+      "code": "RequiredLintGateFails",
+      "status": "reproduced"
+    }
+  ],
+  "merge_ready": false
+}
