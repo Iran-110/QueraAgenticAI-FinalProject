@@ -408,3 +408,35 @@ def test_remaining_job_slots_exclude_previously_observed_pair_and_validate_ident
     ]
     with pytest.raises(DevProbeRejected):
         execution_jobs({**protocol, "jobs": jobs + [jobs[0]]}, fixtures)
+
+
+def test_actual_preflight_returns_selected_protocol_identity_before_credentials(monkeypatch):
+    from agent_app.testing import dev_three_model_probe as module
+
+    selected = Path("experiments/dev_three_baseline/model-protocol-v2.json")
+    protocol = json.loads((ROOT / selected).read_bytes())
+    monkeypatch.setattr(
+        module,
+        "ledger_observation",
+        lambda path: {
+            "db_sha256": protocol["ledger_before_sha256"],
+            "halted": True,
+            "counts": {"uncertain": 1},
+            "limit_nanos": 4_500_000_000,
+        },
+    )
+    monkeypatch.setattr(
+        module,
+        "source_observation",
+        lambda root, *args: {
+            "source_commit": "synthetic",
+            "source_clean": True,
+            "source_hashes": {},
+        },
+    )
+    actual, fixtures, definitions, slots, registration = module.preflight(
+        ROOT, ROOT / "runtime/budget.sqlite3", selected
+    )
+    assert actual["protocol_id"] == "dev-three-controlled-model-v2"
+    assert registration["protocol_path"] == selected.as_posix()
+    assert len(slots) == 20 and len(fixtures) == 3 and len(definitions) == 2

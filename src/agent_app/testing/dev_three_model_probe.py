@@ -314,6 +314,7 @@ def preflight(root, ledger_path, protocol_path=PROTOCOL):
         slots,
         {
             **source,
+            "protocol_path": protocol_path.as_posix(),
             "protocol_sha256": sha(raw),
             "ledger_before": before,
             "request_slots_sha256": slots_sha256,
