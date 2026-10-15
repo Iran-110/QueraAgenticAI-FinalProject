@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "amendment_id": "retrieval-relevance-whole-record-budget-v1",
+  "registered_before_budget_implementation": true,
+  "registered_before_paid_comparison": true,
+  "original_protocol_sha256": "9f0cc9d3fdc4b71ad8a20939dee42b8aa41ea1e8124ea8c82b9aa36f436e5f84",
+  "offline_diagnosis_sha256": "48015b7d04afd1bb6dd34249a071dfa371d673a3bc146f81d5f931e9ed8c398b",
+  "observed_replay": {
+    "states": 11,
+    "native_common_contexts_fit": 10,
+    "candidate_common_contexts_fit": 9,
+    "quality_claim": false
+  },
+  "change": "Extend the compound candidate-selection treatment with engine-owned whole-record EvidenceBundle packing after confirmed USER version scope, before final top5. Candidate payload remains internal; planner gets complete selected hits only.",
+  "evidence_utf8_budget_bytes": 12000,
+  "budget_definition": "Compact EvidenceBundle.model_dump_json UTF8 size including unchanged queries/snapshot/round and fixed bounded-selection warning. Greedily retain complete ranked records that fit, skip an oversized record and continue to smaller ones, cap5. Never cut excerpts/change hashes or raise the full model guard.",
+  "rationale": "Observed new25-candidate ranking increases source variety and can replace short native rows with full4k records.12000bytes is an explicit development resource allocation leaving room within unchanged32768guard for facts, user message, catalog/schema and repair. It is not claimed to guarantee all future full prompts fit.",
+  "defaults": "Budget None preserves legacy bytes. Baseline arm usesNone; treatment12000. Strict trusted caller configuration, not source/model permission. Oversized base envelope or provider prompt remains a stop.",
+  "causal_limit": "Compare the entire reranking/candidate/version-before-cap/whole-record-packing package. Do not attribute an outcome to ranking alone or hide rejected candidates/overflow/unvisited turns.",
+  "preserve_original_offline_replay": true,
+  "fresh_scopes_only": true
+}
