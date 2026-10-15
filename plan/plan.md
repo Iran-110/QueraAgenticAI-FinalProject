@@ -35,6 +35,8 @@
   دو کنترل نوبت سوم، حفظ background در SQLite و عدم مصرف آن به‌عنوان متن قبلی
   دستیار در مدل، حفظ USERhistory و توقف بزرگ‌بودن پیش از هزینه را بررسی کردند.
   contracts/ports و فایل‌های UI/tracker تیم تغییر نکرده‌اند؛ E1/E2/T4/R4 نهایی بازند.
+  انتشار هر دو task در [PR #59](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/59)
+  مستقیماً با پایهٔ main است؛ review کد/گزارش و gate محلی طبق مجوز فعلی ثبت‌اند.
 
 - [ ] **C4h7 — reliability خروجی مدل؛ ساسان، کار بعدی.** یک JSON نامعتبر پس
   از refinement باقی است؛ raw متن provider نگه‌داری نشده و تشخیص دقیق syntax
