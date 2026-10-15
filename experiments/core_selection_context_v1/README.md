@@ -3,6 +3,8 @@
 Registered before implementation on merged PR65/main `efaf02a`. This packet
 tests advisory lexical freshness and exact legacy output compatibility. It
 contains no new model run, model choice, RAG-quality score or held-out result.
+Delivery: [PR67](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/67);
+publication status is maintained by that PR. Consume the merged `origin/main`.
 
 - [Protocol](protocol-v1.json), [pre-code input pins](input-pins-v1.json).
 - [Eight authored neutral scenarios](scenarios-v1.json),

@@ -33,6 +33,9 @@ holdsUSD0.0301376, ceilingUSD4.50 and every closed identity remain unchanged.
 Hosted CI/freshWindows/browser/native-index trial are not claimed. Newly detected
 teammate PR66 contains two sanitized receipt documents only and remains separate.
 Human semantic/usefulness review, configuration freeze and C5 stay open.
+Code, receipts and plan are delivered in
+[PR67](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/67); its status
+is the publication reference, with team consumption through merged main.
 
 ## 2026-10-16 — C4k/E2x: complete sections, advisory relevance and read-only C5
 
