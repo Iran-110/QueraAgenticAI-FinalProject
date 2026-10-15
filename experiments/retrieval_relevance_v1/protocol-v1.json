@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "protocol_id": "retrieval-relevance-v1",
+  "baseline_commit": "d5485e4d11a2abea83e65acd1cba5f6cbe5ab606",
+  "registered_before_implementation": true,
+  "reviewed_pr50_head": "1a18749159e09abd4f19d2417dc7fa1dc9146eb2",
+  "conflict_check": "PR50 unchanged after2026-10-14; no latest Hassan commits fetched. Work on separate branch; no edits to his branch/index.",
+  "diagnosis": {
+    "native18_36": "Relevant button1.39 and multiselect1.50 exist but rank below5. Adapter takes first-query/docs-first rows; confirmed USER version prunes after early cap. No evidence-backfill.",
+    "independent_rank_replay": "button1.39 ranks6/8/20 on archived queries; multiselect1.50 first useful chunk rank22. Replay exact lexical vectors, including disclosed ties; rank is not semantic support.",
+    "pr50_limit": "Backend still n_results=request.top_k; newest-first can discard current versions; since_version is not an exact applicability list."
+  },
+  "treatment": {
+    "name": "bounded_candidate_query_relevance_v1",
+    "engine_candidate_multiplier": 5,
+    "candidate_cap": 50,
+    "final_top_k": 5,
+    "sequence": [
+      "Request min(50,final_top_k*5) candidates using same logical queries/rounds.",
+      "Adapter ranks combined candidates across queries/collections by explicit API-identity overlap, lexical query relevance and native reciprocal rank; deterministic ties. Prefer one chunk per source before supplementary chunks, preserving distinct version identities.",
+      "Engine applies unchanged actual active USER version predicate to candidate records, then caps final model evidence at final_top_k."
+    ],
+    "version_authority": "Only current active USER facts in engine; never query text, source text, source metadata, model statements or since_version. Explicit applicable_versions precedence unchanged.",
+    "defaults": "native adapter policy and multiplier1 preserve existing behavior/bytes. No shared model/port changes.",
+    "integrity": "Same frozen index, full hit text/IDs/hash/version metadata, no added seed/source, case/source-ID allow/deny filter, gold or future replies. No truncation, no raised model/output guard, no third attempt.",
+    "interpretation": "Compound candidate-selection package; no individual component causality claim."
+  },
+  "live": {
+    "arms": [
+      "native_top5",
+      "candidate_relevance"
+    ],
+    "rounds": 2,
+    "cases": [
+      "dev-case-a",
+      "dev-case-b",
+      "dev-case-c"
+    ],
+    "jobs": 12,
+    "turns": 24,
+    "fresh_request_slots": 48,
+    "model": "gpt-4o-mini",
+    "max_output_tokens": 1024,
+    "input_token_reserve": 32768,
+    "scope_cap_usd": "0.06",
+    "campaign_cap_usd": "0.36",
+    "common_flags": "compact_plan, decision_contracts,source_selection_reminder,source_gap_handoff,source_gap_investigation,repeat-query repair ON; source_capacity/resource_guidance OFF. Vary only retrieval package.",
+    "order": "Round1 A/B/C,round2 C/B/A; balanced arm order.",
+    "stop": "Fresh finite identities with full journal/source/index preflight. Preserve two unknown holds,globalhalt,USD4.50ceiling and oldrevocations; newuncertainty/unexplainedaccounting/drift stops campaign. Never reset/reallocate/resume spent IDs.",
+    "outcomes": [
+      "actual candidate retrieval/pool/final post-scope evidence",
+      "relevant source passage availability vs model selection vs user-facing supported topical guidance",
+      "decision/freshness/routes,unnecessary questions,unsupported claims allsurfaces/currentUSERversion",
+      "all24 denominators incl empty/stale/unvisited; localcost/latency/sends",
+      "provider/schema/renderer/input guard failures"
+    ],
+    "quality_limit": "Exposed answer-informed development study, not finaltest or generalRAG quality. Human usefulness null. More sources/answers/escalations or route completion alone are not quality."
+  },
+  "semantic_registration": {
+    "base": "experiments/core_compact_plan_v1/semantic-review-preparation-v1.json",
+    "preserve_original_criteria": true,
+    "supported_topical_guidance": "Fresh USER-facing text states a concrete relevant API fact/constraint supported by an actual complete current-request excerpt within explicit version scope. Distinguish partial coverage, diagnosis/fix, qualified investigation and decision label. Summary-only passage availability is not guidance delivered.",
+    "case_a": "Actual multiselect1.50 default/key/on_change or fragment1.50 rerun/session-state text may support bounded relevant API guidance. Missing parent callback remains a legitimate USER question. No Enum-like rootcause/fix, key-only1.50 release inference or initial-reset claim without actual supporting passage; 1.49/1.50 multiselect text is identical.",
+    "case_b": "Actual button1.39 parameter passage can support documented icon inputs/supported label Markdown and bounded button limitation. Do not infer warning support, later image support, or unsupported future delivery. If adequate passage supplied but omitted, record available guidance omitted.",
+    "case_c": "Current1.31.0 then correction1.31.1 with same complete code/environment. Generic Session State/widget text does not establish Enum cause/fix or affected releases. Qualified background/investigation not a solved technical answer. No version/code reask.",
+    "claims": "Review original/edited/released drafts,maintainer summaries,rationales,questions,suggestedchecks,missinginfo,factupdates and uncited material claims. Same-turn evidence, not corpus membership or citation existence.",
+    "original_artifacts": "No historical fixture/gold/receipt/rescore; test bodies not opened."
+  }
+}
