@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "review_id": "dev-three-case-review-v1",
+  "reviewer_id": "mhg",
+  "reviewer_kind": "human",
+  "reviewed_on": "2026-10-15",
+  "manifest_path": "data/evaluation/dev-three-v1/split-manifest.json",
+  "manifest_sha256": "f857fc559673c7ae2f508617fda3f81e3591157740e327109b00ae9a86f449ce",
+  "cases": [
+    {
+      "case_id": "dev-case-a",
+      "fixture_path": "data/evaluation/dev-three-v1/cases/pilot-12782-v1.json",
+      "fixture_sha256": "6b542b325ac70906b014c9ac9a7bd01fb95c81a9219794f695de1e09de76c901",
+      "family_confirmed": true,
+      "missing_family_issue_ids": [
+        13022
+      ],
+      "external_duplicates_checked": true,
+      "initial_message_faithful": false,
+      "no_answer_leak_in_visible_input": true,
+      "direct_answer_documents_listed": false,
+      "turns": [
+        {
+          "turn_id": "initial",
+          "stratum_agreed": true,
+          "acceptable_decisions_agreed": true,
+          "gaps_agreed": true,
+          "unacceptable_claims_complete": true,
+          "notes": "Version, parent callback and state order are all necessary and user-answerable. 'Key-only identity changed in 1.50.0' is unsupported by the fixed bundle (multiselect 1.49.0 and 1.50.0 docstrings are identical) but supported by the 1.50.0 release notes and widget-behavior.md; apply that unacceptable claim only to fixed-evidence runs."
+        },
+        {
+          "turn_id": "version",
+          "stratum_agreed": true,
+          "acceptable_decisions_agreed": true,
+          "gaps_agreed": true,
+          "unacceptable_claims_complete": true,
+          "notes": "Asking the version again must count as an unnecessary question."
+        }
+      ],
+      "accept_case_for_dev": true,
+      "notes": "Family complete as [12629, 12782, 13022]: #12782 and #13022 were both closed as duplicates of #12629 (confirmed by mhg). The real reporter knew 1.50.0 and that 1.49.1 worked; hiding the version is an authored control, fine for dev but not faithful. The real body's workaround line (setting st.session_state[key]) is correctly withheld. 1.50.0 release notes (docs:content/develop/quick-references/release-notes/2025.md) state that st.multiselect now uses only its key for identity; docs:content/develop/concepts/architecture/widget-behavior.md says key-based identity was introduced progressively from v1.50.0 to v1.55.0. Both are legitimate docs, not leaked answers, and widget-behavior.md is already in experiments/corpus/pilot-allowlist.json. So the gold's unacceptable claim about key-only identity holds only for the fixed evidence bundle; under a real index containing these docs it is supported and must not be scored as unacceptable. Keep the docs in the corpus and split the gold by evidence condition."
+    },
+    {
+      "case_id": "dev-case-b",
+      "fixture_path": "data/evaluation/dev-three-v1/cases/icon-9770-v1.json",
+      "fixture_sha256": "199b47b1c3a65e853d49ec28d9607eec36982502bd2fd5bde1c640165e35c413",
+      "family_confirmed": false,
+      "missing_family_issue_ids": [
+        7300,
+        8734,
+        14297
+      ],
+      "external_duplicates_checked": true,
+      "initial_message_faithful": false,
+      "no_answer_leak_in_visible_input": true,
+      "direct_answer_documents_listed": false,
+      "turns": [
+        {
+          "turn_id": "initial",
+          "stratum_agreed": true,
+          "acceptable_decisions_agreed": true,
+          "gaps_agreed": true,
+          "unacceptable_claims_complete": true,
+          "notes": "The version question is necessary: the Markdown-image workaround depends on the release (1.40.0+)."
+        },
+        {
+          "turn_id": "version",
+          "stratum_agreed": true,
+          "acceptable_decisions_agreed": true,
+          "gaps_agreed": true,
+          "unacceptable_claims_complete": true,
+          "notes": "1.39.0 docstring: icon accepts only a single emoji or ':material/...'; the label Markdown list has no Images. An answer that also says 'upgrade to 1.40+ for Markdown images in labels' is useful but unsupported by this bundle; do not require it."
+        }
+      ],
+      "accept_case_for_dev": true,
+      "notes": "#7300 (closed) is the same request; #8734 was closed as its duplicate; #14297 (closed) got the Markdown-image workaround from a maintainer. Content matches the body (company logo, st.button/st.warning), but the reporter is a maintainer filing a feature request; the user-question framing and the version gap are authored. Seed button docstrings list Markdown 'Images' in labels only from 1.40.0; 1.39.0 has none. This confirms the gold and makes 1.39.0 a good boundary version. If Hassan's corpus includes button docstrings 1.40.0+, the model can correctly suggest upgrading and using a Markdown image label. That is legitimate documentation, not leakage; record the decision rather than excluding it."
+    },
+    {
+      "case_id": "dev-case-c",
+      "fixture_path": "data/evaluation/dev-three-v1/cases/enum-8129-v1.json",
+      "fixture_sha256": "c5becdc00a950941cb25de8f775fc1a5b024d54f607a9c494bd9e7820ab216f0",
+      "family_confirmed": false,
+      "missing_family_issue_ids": [
+        4909,
+        6985,
+        7419
+      ],
+      "external_duplicates_checked": true,
+      "initial_message_faithful": true,
+      "no_answer_leak_in_visible_input": true,
+      "direct_answer_documents_listed": false,
+      "turns": [
+        {
+          "turn_id": "initial",
+          "stratum_agreed": true,
+          "acceptable_decisions_agreed": true,
+          "gaps_agreed": true,
+          "unacceptable_claims_complete": true,
+          "notes": "No user gap; asking for the version or code again is wrong. Sasan's Enum note: score the first answer's source support and its missing next investigation step separately, and score the post-correction answer separately."
+        },
+        {
+          "turn_id": "correction",
+          "stratum_agreed": true,
+          "acceptable_decisions_agreed": true,
+          "gaps_agreed": true,
+          "unacceptable_claims_complete": true,
+          "notes": "The first proposal must be stale after the correction; any answer still citing 1.31.0 as current fails."
+        }
+      ],
+      "accept_case_for_dev": true,
+      "notes": "#6985 and #7419 were consolidated under umbrella #8180 by maintainers. #4909 (Enum multiselect exception) was the proposed duplicate target of #6985. #14593 mentions #8180 but is unrelated; do not add it. The visible message is the real body with verbatim code and real version 1.31.0; the 1.31.1 correction is authored. The direct-answer doc is listed only by its legacy URL. The seed catalog uses the modern path content/develop/concepts/app-design/custom-classes.md (https://docs.streamlit.io/develop/concepts/design/custom-classes#enums); add it to the exclusion list. The needs_escalation stratum is conditional on that doc being withheld; with it, the case would be answerable."
+    }
+  ],
+  "human_confirmed": true,
+  "method": "Read every visible turn, gold, cached body and comment in review-sheet.md; compared gold claims against seed docstrings (multiselect 1.49.0 vs 1.50.0 identical; button icon/label 1.39.0 vs 1.40.0+); read-only GitHub keyword searches with gh on 2026-10-15 (not exhaustive).",
+  "drafted_by": "assistant (claude-opus-5-5); judgments confirmed or corrected by mhg on 2026-10-15"
+}
