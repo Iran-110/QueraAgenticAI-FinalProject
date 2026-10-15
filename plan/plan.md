@@ -4,6 +4,20 @@
 
 ## وضعیت فعلی
 
+- [x] **پاک‌سازی Git — ۱۶ اکتبر؛ با مجوز ساسان، بدون PR تازه.**
+  ۴۸branch محلی و۶۱branch ریموت فقط پس از اثبات قرارداشتن کامل در main حذف
+  شدند؛ دوworktree تاریخی بدون تغییر ذخیره‌نشده جمع شدند. main تنها branch
+  محلی است؛ تاریخچه و receiptها در main و backup محلی Git محفوظ‌اند.
+  [PR #43](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/43) باdiff
+  خالی بسته شد؛ baseline/build/review در #45/#48/#55 تحویل شده بود.
+  [PR #50](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/50) بدون
+  merge بسته شد: مسیر متفاوت و تست‌شدهٔ #58/#59 جایگزین آن intent شده؛ کد
+  PR50 ادغام یا معادلِ main اعلام نمی‌شود. سه branch ریموت ادغام‌نشده
+  `feat/e3-eval-runner`،`feat/rag-baseline-3cases` و`fix/rag-relevance-ranking`
+  حفظ شدند. کار تازه ازmain روز شروع شود؛ R4/E1/E2/T4/C5 و کیفیت نهایی همچنان
+  شروط قبلی را دارند. کدِ source تست‌شدهٔ۵۴۷۹تستی تغییر نکرد؛ halt/سهhold،
+  ledger،corpus/exclusion و pinها ثابت‌اند. این تیک housekeeping است، نه اتمام پروژه.
+
 - [x] **T4a — review و merge رسیدهای پاک‌سازی‌شدهٔ بهنام؛ ساسان.**
   [PR #66](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/66) با
   head`0d21450` به main با`c69b0b4` رسید؛ دو JSON اصلی بدون تغییر حفظ‌اند.

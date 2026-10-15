@@ -1,3 +1,25 @@
+## 2026-10-16 — Git housekeeping, no application changes or new PR
+
+With Sasan's explicit cleanup authorization, removed48local and61remote merged
+branch refs after ancestry checks; remote deletions used exact-SHA leases in one
+atomic push. Removed two clean historical worktrees containing no unique tracked
+or untracked work; ignored contents were rebuildable environments/caches. A
+verified local Git bundle and ref inventory preserve the pre-cleanup refs.
+
+Closed PR43 as empty (head tree equals merge-base; its baseline/build/review work
+was delivered through PR45/48/55). Closed PR50 as a superseded proposal, without
+merging its unique implementation or calling it equivalent to main; PR58/59
+implement a different opt-in relevance/current-scope path. Retain all3unmerged
+remote heads: feat/e3-eval-runner, feat/rag-baseline-3cases and
+fix/rag-relevance-ranking. Remaining R4 coverage/provenance/exclusion work stays
+open; native defaults and final semantic evaluation are unchanged.
+
+Only main remains locally, with no open PRs. The plan/docs status update is
+published directly to main as requested, without a new PR. Runtime/test source
+still matches the5479-test C2j source; no new full suite is claimed for metadata
+cleanup. Ledger/holds/halt,19current protected files, original receipts, local
+credentials and all closed experiment identities are preserved.
+
 ## 2026-10-16 — C2j: version-reply validation before serialization
 
 [Behavior and limits](intake-validation.fa.md),
