@@ -47,7 +47,7 @@ Artifacts:
   and [frozen finite method](live-method-v1.json).
 - [Original paid receipt](model-live-receipt-v1.json), SHA
   `9bd7db10ba5af4ac10ed0c5e33d509a533d709455e68ce013c19ba91571c4905`.
-- [Semantic review](semantic-review-v1.json), [cost/source audit](cost-review-v1.json)
+- [Semantic review](semantic-review-v1.json), [blank human worksheet](human-review-template-v1.json), [cost/source audit](cost-review-v1.json)
   and [local verification](verification-v1.json).
 - [Offline authored feasibility](offline-replay-v1.json):24historical contexts,
   normal/repair SYSTEM-only controls and32whole-subset checks. Four authored
@@ -62,8 +62,10 @@ SQLite path. No fresh Windows/CI pass is claimed; ordinary live remains halted.
 
 One [separately preregistered order diagnostic](../core_source_order_v1/protocol-v1.json)
 tests content-agnostic first-to-last rotation across ALLcases with a common prompt.
-It neither rewrites this result nor assumes improved ranking. If content selection
-remains unchanged, stop this selection branch rather than trying permutations until
-one wins. Official [OpenAI prompting guidance](https://developers.openai.com/api/docs/guides/prompt-engineering)
+Its [closed result](../core_source_order_v1/README.md) observes only one unreleased
+joint-guide initial; correction returns to verbose generic+Enum. No stable or
+released quality gain is established, and the selection branch stops here. It
+neither rewrites this negative result nor establishes better ranking.
+Official [OpenAI prompting guidance](https://developers.openai.com/api/docs/guides/prompt-engineering)
 informed versioned instructions and fixed-input testing; it did not establish that
 this particular reminder would work.
