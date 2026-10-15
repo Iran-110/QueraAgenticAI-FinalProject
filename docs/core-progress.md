@@ -1,3 +1,37 @@
+## 2026-10-15 — C4h8: controlled Enum evidence availability
+
+[Result and handoff](enum-evidence-quality.fa.md),
+[frozen method and receipts](../experiments/core_enum_evidence_v1/README.md).
+Human review intentionally excluded the answer-linked custom-classes guide.
+No production corpus/index/exclusion/gold changed. A fresh fixed-evidence
+comparison adds two whole pinned official sections only to case C; A/B retain
+identical source bytes. Same core/model/common flags; actual capacity derives8
+in C baseline and2 in guide condition, including correction with full history.
+The original no-capacity offline20015char summary overflow remains archived;
+existing capacity was prospectively enabled in both arms without cropping sources
+or raising limits.
+
+Two balanced repetitions:12jobs/24turns/24settled sends, all fresh on first attempt;
+both arms6/6operational routes and12/12observed raw-valid compact outputs. Enum
+identity guidance in actual drafts0/4→3/4; complete separate-module pattern with
+reload/edit caveat0/4→1/4. Initial C proposals were not released; correction
+releases show1/2identity and1/2complete pattern versus0/2baseline for each.
+These are two repetitions of ONE exposed issue. No proposal combines both full
+guide sections: every guide-condition C output still selects the broad Session
+State doc plus one guide, yielding14059/14494char drafts. Source support improved
+under controlled availability; concise synthesis, applicability to installed
+versions, verified cause/fix and human usefulness remain open. Widget coercion
+is quoted with its widget scope, never scored as a remedy for direct state storage.
+
+24sends costUSD0.014651340;1627readonly source/cost checks pass, all519old
+reservations/14tables/twoholds/globalhalt/ceiling preserved.6scopes closed,
+24unused slots permanently claimed; ordinary live startup remains halted.
+Full suite4611passes, Ruff317files, three demos and fixtureHTTP/SQLite457/457.
+No production Python changed; the existing testing harness accepts the truthful
+controlled-evidence kind. No teammate RAG/UI/tracker changes or new default flag.
+This is not actual-index model quality, held-out test, paid SQLite or fresh browser
+acceptance. Human worksheet is blank and assistant review has implementation overlap.
+
 ## 2026-10-15 — C4h7: guarded JSON mode and concise display
 
 [Behavior/config](json-readability.fa.md) adds two independent default-false flags;

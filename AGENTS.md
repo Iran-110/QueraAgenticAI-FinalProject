@@ -34,6 +34,22 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 ## Runtime rules
 
+- C4h8 is a closed controlled fixed-evidence study, not a production RAG change;
+  read `docs/enum-evidence-quality.fa.md` and its experiment packet. The official
+  custom-classes guide is answer-linked and remains excluded from real retrieval.
+  Two whole pinned guide sections are supplied only by the testing fixture; the
+  original cases/gold/index/exclusions remain immutable. Historical fixture
+  snapshot IDs are logical labels; arm/bundle/context hashes bind actual evidence.
+  Preserve the original offline overflow and prospective capacity amendment.
+  Actual enriched C requests derive8baseline/2guide source maxima with the same
+  existing policy; isolated preflight correction differs because of history.
+  The24-send study observes Enum identity in3/4drafts and full module pattern in1/4;
+  initial C drafts are NOT released. Actually released correction counts are1/2
+  each, not4/4 delivered fixes. All guide outputs retain generic+oneguide and remain
+  verbose. Widget-only enumCoercion is not a direct-state remedy. No runtime fix,
+  installed-release applicability, human usefulness, real RAG or test quality is
+  established. Closed identities/unused slots are not reusable; holds/halt remain.
+
 - C4h6/R4d is opt-in question background and named candidate forwarding; read
   `docs/ask-source-background.fa.md` and `docs/candidate-live-profile.fa.md`.
   Complete selected exact-active-USER-version blocks may follow non-version
