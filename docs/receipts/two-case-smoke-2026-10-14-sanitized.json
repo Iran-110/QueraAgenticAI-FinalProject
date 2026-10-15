@@ -1,0 +1,64 @@
+{
+    "test":  "two_case_ui_api_sqlite_smoke",
+    "baseline_commit":  "f8b3106",
+    "environment":  "synthetic_offline",
+    "snapshots":  [
+                      {
+                          "case":  "case_1",
+                          "step":  "before_correction",
+                          "case_revision":  1,
+                          "status":  "awaiting_review",
+                          "pending":  true,
+                          "action_count":  0
+                      },
+                      {
+                          "case":  "case_1",
+                          "step":  "after_correction",
+                          "case_revision":  2,
+                          "status":  "awaiting_review",
+                          "pending":  true,
+                          "action_count":  0
+                      },
+                      {
+                          "case":  "case_1",
+                          "step":  "after_edit",
+                          "case_revision":  2,
+                          "status":  "awaiting_review",
+                          "pending":  true,
+                          "action_count":  0
+                      },
+                      {
+                          "case":  "case_1",
+                          "step":  "after_approval",
+                          "case_revision":  2,
+                          "status":  "awaiting_user",
+                          "pending":  false,
+                          "action_count":  1
+                      },
+                      {
+                          "case":  "case_2",
+                          "step":  "before_reject",
+                          "case_revision":  1,
+                          "status":  "awaiting_review",
+                          "pending":  true,
+                          "action_count":  0
+                      },
+                      {
+                          "case":  "case_2",
+                          "step":  "after_reject",
+                          "case_revision":  1,
+                          "status":  "open",
+                          "pending":  false,
+                          "action_count":  0
+                      }
+                  ],
+    "approval_retry":  {
+                           "case":  "case_1",
+                           "replayed":  true,
+                           "case_unchanged":  true,
+                           "actions_before":  1,
+                           "actions_after":  1,
+                           "case_revision":  2,
+                           "status":  "awaiting_user"
+                       }
+}
