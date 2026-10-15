@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "protocol_id": "core-source-capacity-v1",
+  "baseline_commit": "71c5eb010bd242c934876c61a18f1fe99d6d17f3",
+  "registered_before_implementation": true,
+  "hypothesis": "An optional compact per-request source-count bound can prevent renderer overflow without the input-size regression of the earlier verbose resource guidance. Capacity does not establish semantic support or usefulness.",
+  "diagnostic_sha256": "9e86c374c5ffbd9af54fea121cde3004a12c41519ecd068931e57644249f2ea8",
+  "implementation": {
+    "flag": "grounded_source_capacity",
+    "default": false,
+    "requires_decision_contracts": true,
+    "eligible_requests": "No declared current/prior conflict; every eligible decision base and singleton fits the existing renderer limits.",
+    "bound": "Largest common k whose k longest complete escaped source blocks, separators and actual decision-specific bases fit every eligible decision. If no positive common bound exists or a base is unmeasurable, preserve the original messages.",
+    "wire_change": "Only reduce existing sources.maxItems in response_schema and decision_contracts; no extra prompt text, source removal, quote clipping, new facts, gold/ID filtering or changed runtime validator.",
+    "authority": "Prompt guidance only. The unchanged final renderer still validates the actual plan and preserves mandatory conflicts. Model selects relevant support, not the helper.",
+    "conservatism": "A common count bound may exclude feasible combinations of smaller sources; report this rather than calling it an optimal semantic subset.",
+    "max_model_attempts": 2,
+    "new_framework": false
+  },
+  "offline_acceptance": [
+    "Default/false messages and rendering remain byte-identical for archived requests.",
+    "Enumerate all source subsets under the bound for escaped text, unequal sizes, USER corrections and renderer flag combinations.",
+    "No positive cap for an unrenderable singleton, oversized decision base, current conflict or inherited unresolved conflict; retain original enforcement.",
+    "Archived four-source failure has a smaller feasible bound; do not count authored subset rendering as improved model quality.",
+    "All archived request/repair payloads stay within the current input guard; no prompt growth.",
+    "HTTP mock verifies the actual optional gateway payload, same references/identities and final renderer rejection when the model ignores guidance."
+  ],
+  "planned_live_comparison": {
+    "arms": ["source_capacity_off", "source_capacity_on"],
+    "rounds": 2,
+    "case_families": ["dev-case-a", "dev-case-b", "dev-case-c"],
+    "planned_jobs": 12,
+    "planned_turns": 24,
+    "max_fresh_request_slots": 48,
+    "model": "gpt-4o-mini",
+    "max_output_tokens": 1024,
+    "input_token_reserve": 32768,
+    "scope_cap_usd": "0.06",
+    "campaign_scope_cap_usd": "0.36",
+    "same_native_index": "docs-only-dev-coverage-v1, 18 sources / 36 chunks, current main ranking, lexical_hash_v1",
+    "common_flags": "decision_contracts, source_selection_reminder, source_gap_handoff, source_gap_investigation and repeated-query repair ON; resource_guidance OFF",
+    "ordering": "First round A/B/C, second C/B/A; arm order balanced within each family.",
+    "outcomes": ["renderer overflow", "fresh vs stale/empty/unvisited turns", "full routes", "actual source subsets and applicability", "supported material claims and necessary answerable questions", "actual sends and settled/uncertain cost"],
+    "interpretation": "Small exposed answer-informed dev comparison, not final/held-out evaluation. Full route or fewer overflows alone is not improved answer quality; human usefulness remains unscored.",
+    "stop_policy": "Fresh finite scopes only after source/input/index/full-ledger preflight. Preserve both old unknown holds, global halt, USD4.50 ceiling and all old revocations. Any new uncertainty, unexplained accounting or changed input/source stops the campaign; no replacement or resumed identities."
+  }
+}
