@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "protocol_id": "core-compact-plan-v1",
+  "baseline_commit": "aa6bebf259970cd6d6c989d9b68e126ff479605b",
+  "registered_before_implementation": true,
+  "historical_receipt_sha256": "0cef6c5c25868de55b207bd0d1162415b91cec54f22b3eb8a0b22693b2746243",
+  "historical_diagnosis": {
+    "sends": 28,
+    "complete_schema_invalid_objects": 5,
+    "extra_field_ask_objects": 3,
+    "retrieve_more_with_nonempty_sources": 2,
+    "schema_valid_source_mismatch": 1,
+    "source_mismatch_mechanism": "Hybrid chunk ID combines another document's prefix with the selected row's span/suffix and exact digest. Current context hash matches; not stale evidence.",
+    "terminal_length": 2,
+    "length_mechanism_known": false,
+    "length_note": "Both reached1024 output tokens and4000 content UTF8 bytes, rejected before output parsing. Three available refs serialize well below that limit; copying is not established as the cause.",
+    "context_mismatches": 0
+  },
+  "hypothesis": "A compound optional wire treatment using current-request source indices and decision-specific minimal fields can reduce reference-copy and schema mistakes, with shorter outputs. Compare the package, not causal contributions of its components; length improvement is unproven.",
+  "implementation": {
+    "flag": "grounded_compact_plan",
+    "default": false,
+    "requires_decision_contracts": true,
+    "wire_sources": "Exact zero-based integer source indices of the current validated request.evidence.hits. No cached/global mapping or model-supplied mapping.",
+    "wire_shapes": {
+      "answer": ["context_sha256", "decision", "sources"],
+      "ask": ["context_sha256", "decision", "sources", "question_name"],
+      "escalate": ["context_sha256", "decision", "sources"],
+      "retrieve_more": ["context_sha256", "decision", "retrieval_queries"]
+    },
+    "all_wire_fields_required_no_extras": true,
+    "source_expansion": "After existing provider envelope/model/usage settlement checks, map selected indices to exact canonical chunk_id/content_sha256 from that same validated request and revalidate GroundedPlan. Retain full context_sha256 matching and unchanged renderer/approval.",
+    "integrity_tradeoff": "Per-source digests are generated locally from the selected current record rather than independently echoed by the model. Full current request digest binds the selection; this does not authenticate source truth or establish relevance.",
+    "failure_policy": "Malformed JSON/shape is invalid_grounded_plan within the existing repair allowance. Wrong full context hash and unknown integer source index remain terminal binding errors. Do not salvage truncated output or silently drop fields/sources.",
+    "observability": "Preserve separately named allowlisted raw-wire hash/shape/rejection diagnostics, including rejected expansion. Canonical output observations do not count as raw provider format compliance.",
+    "max_model_attempts": 2,
+    "max_retrieval_rounds": 2,
+    "max_queries_per_round": 2,
+    "new_framework": false,
+    "provider_response_format_changed": false
+  },
+  "offline_acceptance": [
+    "Default/false prompts and gateway outputs preserve historical bytes.",
+    "Canonical and indexed source selection render equal full outputs for every decision and renderer mode.",
+    "Current request binding rejects stale correction, reordered/changed evidence, wrong hash, unknown negative/out-of-range integer choices; no stale mapping reuse.",
+    "Strict JSON rejects duplicate keys, NaN, fences, oversized/invalid Unicode, booleans/floats/mixed refs, repeated selections, extra or decision-ineligible fields.",
+    "Conflict continuity, complete quotation, source-capacity composition and caller-owned counters remain enforced.",
+    "Malformed-first/valid-second mock uses exactly two sends; binding mismatch and provider length stop after one settled send.",
+    "Raw-wire diagnostics remain visible after expansion failure without raw unknown names/messages/keys.",
+    "All archived actual/repair prompts fit the same32768 input guard; no increased allowance."
+  ],
+  "planned_live_comparison": {
+    "arms": ["canonical_wire", "compact_wire"],
+    "rounds": 2,
+    "case_families": ["dev-case-a", "dev-case-b", "dev-case-c"],
+    "planned_jobs": 12,
+    "planned_turns": 24,
+    "max_fresh_request_slots": 48,
+    "model": "gpt-4o-mini",
+    "max_output_tokens": 1024,
+    "input_token_reserve": 32768,
+    "scope_cap_usd": "0.06",
+    "campaign_scope_cap_usd": "0.36",
+    "same_native_index": "docs-only-dev-coverage-v1,18sources/36chunks,current main ranking,lexical_hash_v1",
+    "common_flags": "decision_contracts,source_selection_reminder,source_gap_handoff,source_gap_investigation,repeated-query repair ON; source_capacity and resource_guidance OFF",
+    "ordering": "First round A/B/C; second C/B/A; arm order balanced within each family.",
+    "outcomes": ["raw-wire schema validity separate from canonical expansion", "source/context binding failures", "provider length stops and actual output tokens", "fresh/stale/empty/unvisited turns and full routes", "actual source support and necessary answerable questions", "actual sends and settled/uncertain costs"],
+    "interpretation": "Small exposed answer-informed dev study, not held-out/final evaluation or proof of RAG quality. Fewer structural errors or more escalations do not establish answer usefulness. Human usefulness remains unscored.",
+    "stop_policy": "Fresh finite identities only after source/input/index/full-ledger preflight. Preserve both old uncertain holds, global halt, USD4.50 ceiling and old revocations. New uncertainty, unexplained accounting or changed source/input stops the whole campaign; never replace/resume closed identities."
+  },
+  "reference": "https://developers.openai.com/api/docs/guides/structured-outputs",
+  "reference_limit": "Official OpenAI schema guidance does not establish third-party Metis support. No response_format or transport parameter is introduced in this treatment."
+}
