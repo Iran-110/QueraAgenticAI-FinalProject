@@ -1,3 +1,19 @@
+## 2026-10-15 — C4h4: strict compact wire, comparison pending
+
+[Current behavior](compact-plan-wire.fa.md) keeps the public GroundedPlan and
+renderer unchanged. Optional/default-false compact wire uses current-request
+source indices and decision-specific fields, retaining the full request digest.
+Strict shape/JSON validation, terminal binding checks, unchanged two attempts
+and provider-length stops remain. Raw-wire diagnostics are separate from locally
+expanded canonical output.161 focused controls pass, including configured HTTP.
+The registered two-round comparison uses the same exposed three-dev corpus and
+ranking; live results are pending. No model-quality improvement is claimed yet.
+
+PR55/56 human-case review and draft rubric are now on main42709b5. The prospective
+[case-A evidence review](pr55-evidence-review.fa.md) distinguishes actual supplied
+passages from corpus membership and preserves all original criteria/receipts.
+Human usefulness and the remaining12dev/15test are still MohammadHasan's work.
+
 ## 2026-10-15 — C4h3/E2r: compact capacity and native review, no live gain
 
 [Protocol and receipts](../experiments/core_source_capacity_v1/README.md) preserve

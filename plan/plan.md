@@ -44,14 +44,19 @@
   جایگزین نمی‌شود. شکست‌ها وunvisitedها هم نمایش داده می‌شوند؛ sidecarها برای
   داوری انسانی خالی‌اند. schema ارزیابی/UI/tracker ومالکیت محمدحسن عوض نشده‌اند.
 
-- [ ] **C4h4 — پایداری خروجی مدل؛ ساسان، گام بعد مستقل.**
-  برای دوlength واقعی در۱۰۲۴token و خطاهای schema/کپی source، مقایسهٔ جدا و
-  محدود ثبت شود؛ با تغییر ranking حسن هم‌زمان نشود. برتری مدل/cap تازه از
-  نتایج قبلی فرض نشود؛ پاسخ مستند و usefulness جدا از route/JSON سنجیده شود.
+- [ ] **C4h4 — پایداری خروجی مدل؛ ساسان، در حال مقایسهٔ ثبت‌شده.**
+  [protocol قبل از تغییر](../experiments/core_compact_plan_v1/protocol-v1.json)،
+  [رفتار واقعی](../docs/compact-plan-wire.fa.md) و
+  [شرط review پیش از مدل](../experiments/core_compact_plan_v1/semantic-review-preparation-v1.json):
+  index منبع و fieldهای لازم هر decision، با flag پیش‌فرض خاموش؛ قرارداد عمومی،
+  hash کامل request، renderer، approval و سقف دو attempt محفوظ‌اند.۱۶۱تست هدفمند
+  پاس؛ مقایسهٔ دو دور روی همان سه dev/index۱۸/۳۶ و ranking ثابت لازم است.
+  wire خام و expansion جدا ثبت می‌شوند؛ schema/route با پشتیبانی ادعا و usefulness
+  یکی نیست. علت length قبلی ثابت نشده و خروجی ناقص salvage نمی‌شود.
 
 - [ ] **R4b — review اصلاح ranking حسن؛ مالک اصلاح حسن.**
   [PR #50](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/50)
-  در head`7581dcc` آمادهٔmerge نیست؛ [شواهد review](../experiments/rag_pr50_review/README.md):
+  در head`1a18749` آمادهٔmerge نیست؛ [شواهد review](../experiments/rag_pr50_review/README.md):
   newest-first شاهد نسخهٔ فعلی را کنار می‌زند، over-fetch ذکرشده پیاده نیست،
   معنای `since_version` با exact applicability یکسان فرض شده و format محلی هنوز fail است.
   lint رفع شده؛ GitHub به علت Billing اصلاً jobها را شروع نکرده است.
@@ -59,8 +64,9 @@
   هنوز وجود ندارد.۹۶/۹۶ صرفاًquery-control بدون خواندن index است.
  ۹۱ تست موجود پاس ولی regression را پوشش نمی‌دهند. Hassan branch تغییر نکرد؛
   native receipt، کنترل نسخهٔunknown/قدیمی/correction وrelevance لازم است.
-  کار core مستقل از این اصلاح ادامه دارد. محمدحسن فعلاً بیمار و در دسترس نیست؛
-  human review وsplit برای او می‌ماند؛ کمک ساسان محدود به اتصال وreviewpack است.
+  کار core مستقل از این اصلاح ادامه دارد. محمدحسن review سه dev را درPR55 و
+  rubric پیش‌نویس را درPR56 رویmain رسانده؛ usefulness۱۷خروجی و۱۲dev/۱۵test
+  باقی با اوست. کمک ساسان محدود به اتصال وreviewpack است.
 
 - [ ] **T4 — دریافت و review گزارش تازهٔ بهنام؛ انتشار receipt و بخش‌های باقی‌مانده با بهنام.**
   [گزارش روی commit ثابت`8420a3b`](https://github.com/Iran-110/QueraAgenticAI-FinalProject/blob/8420a3beed37e6bc79504487cd44724a40a30d79/docs/two-case-ui-sqlite-smoke-2026-10-14.md)
@@ -213,7 +219,7 @@
   mock، ۷۳/۷۳ و دو build همسان/۴۰ query؛ همین ۱۴ docs/۳۰ chunk و vectors محلی،
   بدون پوشش تازهٔ نسخه‌های fixture. [راهنما](../docs/dev-three-baseline.fa.md).
 
-- [ ] **E1a — سه draft dev آماده؛ پذیرش انسانی و split نهایی با محمدحسن.**
+- [ ] **E1a — سه dev پذیرفتهٔ انسانی؛ split نهایی با محمدحسن.**
   خانواده‌های #12782/#12629، #9770 و #8129/#2379/#8180 exposed و answer-informed؛
   صفر test تازه. chronology/duplicate خارجی و review usefulness هنوز باز.
   [manifest فعال این آزمایش](../data/evaluation/dev-three-v1/split-manifest.json)
@@ -225,17 +231,19 @@
   `scripts/prepare_case_review.py`): هر سه برای dev پذیرفته؛ خانواده‌ها کامل‌تر شدند:
   #12629/#12782/#13022، #9770 به‌همراه #7300/#8734/#14297، و #8129/#2379/#8180
   به‌همراه #4909/#6985/#7419. مسیر جدید سند custom-classes باید به exclusion اضافه شود.
-  release note نسخهٔ 1.50.0 و `widget-behavior.md` (در allowlist فعلی) هویت key-only
-  multiselect را پشتیبانی می‌کنند؛ gold در case-a باید بر اساس شرط شواهد جدا شود (با ساسان).
+  release note۱٫۵۰ تغییر مشخص multiselect را می‌گوید؛ widget-behavior فقط rollout
+  تدریجی۱٫۵۰تا۱٫۵۵ را می‌گوید. متن دقیق باید به مدل برسد؛ عضویت درallowlist کافی
+  نیست. [review و شرط prospective ساسان](../docs/pr55-evidence-review.fa.md)
+  برای اجرای تازه ثبت شد؛ gold/receipt تاریخی دست‌نخورده‌اند.
   usefulness خروجی مدل هنوز باز است.
 
 کار جاری حسن: از build بستهٔ۱۸/۳۶ تحویل C4g جلو برود و relevance،ranking نسخه
 و backfill را با queryهای واقعاً ثبت‌شده قبل/بعد بسنجد؛ چهار source اضافه شده‌اند
 ولی membership به معنی رسیدن source به مدل نیست. برای همین سه dev منتظر
 manifest تازه نماند؛ final split و exclusion انسانی جداست. PR #43 در آخرین
-HEAD بررسی‌شدهٔ `3f9e7b1` بدون diff بود. محمدحسن فعلاً در دسترس نیست؛ ساسان
-ابزار review و اندازه‌گیری را جلو برده، ولی usefulness انسانی،family/chronology
-و باقی۱۵ dev/۱۵ test همچنان review می‌خواهند. بهنام smoke دستی دو-case روی
+HEAD بررسی‌شدهٔ `3f9e7b1` بدون diff بود. محمدحسن review سه dev وdraft rubric را
+منتشر کرده؛ ساسان ابزار review و اندازه‌گیری را جلو برده، ولی usefulness انسانی،
+ثبت exclusion تکمیلی و باقی۱۲ dev/۱۵ test همچنان بازند. بهنام smoke دستی دو-case روی
 main تازه را با Edit/Reject،correction،approval قدیمی وrestart/retry ادامه دهد؛
 هر blocker UI/API را ثبت کند تا ساسان بردارد. تغییر ranking/tracker در این
 تحویل انجام نشده و source/oracle/corpus قدیمی ثابت‌اند.

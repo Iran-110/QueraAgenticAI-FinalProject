@@ -12,13 +12,18 @@ Everything in the draft still applies unless a section below replaces it.
 
 The draft file stays byte-identical. The review workbench binds it by hash, and
 the registered dev-three fixtures name its rubric ID. Registered fixtures and
-receipts are not rewritten. New fixtures and new reviews name `e2-rubric-v1`.
+receipts are not rewritten. New fixture and review scopes name `e2-rubric-v1`.
+Sidecars for registered historical workbenches, including reviews completed
+now, retain their registered draft rubric ID/hash and criteria. Register a
+separate v1 scope before a future run; do not relabel or retrospectively regrade
+historical results.
 
 This is a review rubric, not a scorer. The existing `SemanticReview`,
-`ReviewClaimBinding` and `score_review` already carry the judgments below,
-except where a section says "not implemented". This version is not frozen. It
-freezes on dev before any test run (draft, "Review provenance, calibration and
-freeze").
+`ReviewClaimBinding` and `score_review` validate bindings and score declared
+support, decision, question and usefulness judgments. They do not implement
+every report dimension below; remaining manual reporting is listed under
+"Reporting". This version is not frozen. It freezes on dev before any test run
+(draft, "Review provenance, calibration and freeze").
 
 ## 1. Every material claim is checked against source text and version
 
@@ -65,12 +70,15 @@ This replaces the draft's citation-optional wording with a stricter rule.
 
 ## 2. The model draft and the released text are scored separately
 
-- **Separate reviews.** Each stage gets its own `SemanticReview`:
+- **Separate records.** The model original and maintainer edit each get their
+  own `SemanticReview`:
   - **Model original:** `response_origin: "model"`, its own `handoff_sha256`.
   - **Maintainer edit:** `response_origin: "maintainer_edit"`, with
     `original_handoff_sha256` pointing to the model original.
-  - **Released text:** recorded with the tracker outcome. Approval or release
-    is not proof of support, and it is not proof that an action ran.
+  - **Released text:** preserve the exact text/hash and tracker outcome beside
+    the review of its original or edited handoff. Separate released-stage
+    semantic reporting remains manual; `SemanticReview` has no released origin.
+    Approval or release is not proof of support or that an action ran.
 - **Edits never improve the model's score.** Report the model's score on its
   original output. `aggregate_reviews` already keeps origins apart and never
   blends edits.
@@ -120,9 +128,12 @@ The follow-up turn is judged on the reply it actually received:
 
 - **Using the reply:** the reply binds to the right fact; superseded values
   stop being used; the question is not repeated.
-- **Changed decision:** the decision changes when the reply resolves the gap.
-- **Unchanged decision:** a turn that ignores a decisive reply fails
-  `fact_fidelity`.
+- **Route advancement:** use the reply to take the next acceptable route. A
+  decision label may stay the same: `ask(streamlit_version)` can become
+  `ask(parent_callback_code)` when the version is resolved but code is still
+  needed. Change the label only when the registered conditions require it.
+- **Ignored reply:** a turn that ignores a decisive reply fails `fact_fidelity`,
+  regardless of whether its decision label changed.
 
 If a valid question type has no registered reply branch, mark the fixture's
 coverage insufficient. It is not a model failure (draft, "Decision quality and
@@ -139,29 +150,43 @@ model actually received. Record `evidence_condition` with each gold entry:
 
 - **`controlled_fixed_evidence`:** the fixture's own bundle. This is a
   controlled core test.
-- **`native_index`:** the real index at a pinned build, with the corpus
-  allowlist and exclusion manifest hashes.
+- **`native_index`:** the actual supplied bundle from the real index after
+  version scoping, with its evidence hash, pinned build, corpus allowlist and
+  exclusion manifest hashes.
 
-Do not apply a gold judgment from one condition to the other. If a legitimate
-document in the real index supports a claim that the fixed bundle cannot
-support, that claim is not unacceptable under `native_index`.
+Do not apply a gold judgment from one condition to the other. Index or allowlist
+membership alone is not support. A legitimate document can support a
+`native_index` claim only when its supporting passage reached the model in that
+turn's actual supplied evidence and supports the claim's wording and version
+applicability.
 
 Example: in dev-case-a, the 1.50.0 release notes say `st.multiselect` uses only
-its key for identity. `widget-behavior.md`, which is already in the allowlist,
-says key-based identity started in v1.50.0. The fixture's "key-only identity
-changed in 1.50.0 is unacceptable" therefore holds only for
-`controlled_fixed_evidence`.
+its key for identity when a key is provided. `widget-behavior.md`, which is
+already in the allowlist, describes the broader rollout of key-based widget
+identity from v1.50.0 through v1.55.0; it does not establish that every widget
+changed in v1.50.0. The fixed bundle does not support the release-specific
+`st.multiselect` claim. A separately preregistered native gold may allow it when
+the actual consumed passage supports it. This does not establish the full-app
+cause or a fix, or change historical fixed-evidence gold or results.
 
 Direct-answer documents linked from a case's answer comments are excluded from
 the index. Ordinary product documentation is not a leak and stays in the
 corpus.
 
 Not implemented: the runner and scorer read one gold per turn. Until they
-accept per-condition gold, review native-index runs against a separately
-registered gold version, and never by reinterpreting the fixed-evidence labels
-after seeing the output.
+accept per-condition gold, review native-index runs against a separate gold
+version registered before those runs, and never by reinterpreting the
+fixed-evidence labels after seeing the output. Historical workbenches keep
+their registered scope and preregistered native criteria.
 
 ## Reporting
+
+Remaining manual reporting: claim applicability is recorded in bindings but
+not exported by `ReviewScore`. Question type, `fact_fidelity`, follow-up use of
+replies, edit outcomes and released-stage judgments have no dedicated
+`SemanticReview` fields or automatic aggregates. Record these separately with
+the bound handoff identities and reasons; do not add unimplemented fields to
+the existing sidecar schema.
 
 Report each of these separately, with denominators:
 

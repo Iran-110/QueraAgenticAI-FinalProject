@@ -38,6 +38,7 @@ _CODES = {
     "WorkbenchOutputExists",
     "WorkbenchWriteFailed",
 }
+_ROOT = Path(__file__).resolve().parents[3]
 
 _CAMPAIGNS = {
     "dev-real-index-model-v1": (
@@ -55,6 +56,11 @@ _CAMPAIGNS = {
         "experiments/core_source_capacity_v1/protocol-v1.json",
         "c4h3-offline-review-workbench-v1",
     ),
+    "core-compact-plan-model-v1": (
+        "live-method-v1.json",
+        "experiments/core_compact_plan_v1/protocol-v1.json",
+        "c4h4-offline-review-workbench-v1",
+    ),
     "core-resource-guidance-model-v1": (
         "live-method-v2.json",
         "experiments/core_resource_guidance_v1/protocol-v1.json",
@@ -63,11 +69,22 @@ _CAMPAIGNS = {
 }
 
 
-# These two treatments retained C4g's native criteria instead of redefining
+# These treatments retained C4g's native criteria instead of redefining
 # source sufficiency after seeing outputs. Never infer criteria from fixtures.
 _NATIVE_CRITERIA = {
-    name: Path(__file__).resolve().parents[3] / "experiments/dev_rag_coverage_v1/protocol-v1.json"
-    for name in ("core-repeat-repair-model-v1", "core-source-capacity-model-v1")
+    name: _ROOT / "experiments/dev_rag_coverage_v1/protocol-v1.json"
+    for name in (
+        "core-repeat-repair-model-v1",
+        "core-source-capacity-model-v1",
+        "core-compact-plan-model-v1",
+    )
+}
+
+_NATIVE_AMENDMENTS = {
+    "core-compact-plan-model-v1": (
+        "experiments/core_compact_plan_v1/semantic-review-preparation-v1.json",
+        "docs/pr55-evidence-review.fa.md",
+    ),
 }
 
 
@@ -255,6 +272,25 @@ def build_workbench(
         }
         if criteria_pin is not None:
             inputs["native_criteria"] = criteria_pin
+        amendment = None
+        if receipt["protocol_id"] in _NATIVE_AMENDMENTS:
+            preparation_name, evidence_review_name = _NATIVE_AMENDMENTS[receipt["protocol_id"]]
+            preparation, preparation_pin = _read(_ROOT / preparation_name)
+            evidence_review_pin = _pin(_ROOT / evidence_review_name)
+            amendment = preparation["case_a_prospective_evidence_amendment"]
+            _need(
+                preparation["registered_before_model"] is True
+                and preparation["native_criteria_path"]
+                == "experiments/dev_rag_coverage_v1/protocol-v1.json"
+                and preparation["native_criteria_sha256"] == criteria_pin["sha256"]
+                and method["input_pins"][preparation_name] == preparation_pin["sha256"]
+                and amendment["review_path"] == evidence_review_name
+                and amendment["review_sha256"] == evidence_review_pin["sha256"]
+                and method["input_pins"][evidence_review_name] == evidence_review_pin["sha256"],
+                "WorkbenchReceiptMismatch",
+            )
+            inputs["native_criteria_preparation"] = preparation_pin
+            inputs["native_evidence_review"] = evidence_review_pin
         # The source registration already binds fixture/scenario byte hashes.
         registered = set(method["input_pins"].values())
         _need(
@@ -427,6 +463,8 @@ def build_workbench(
                         if job
                         else [],
                     }
+                    if amendment is not None and case_id == "dev-case-a":
+                        row["actual_index_preregistered_amendment"] = amendment
                     row["item_binding_sha256"] = _hash(row)
                     row["review_template"] = (
                         _template(_validate_handoff(observed["handoff"]), scope, item_id)
@@ -525,6 +563,12 @@ def _html_index(workbench):
             + pre(row["actual_index_preregistered_criteria"])
             + "</details>"
         )
+        if "actual_index_preregistered_amendment" in row:
+            parts.append(
+                "<details><summary>Prospective case-A evidence amendment for this campaign</summary>"
+                + pre(row["actual_index_preregistered_amendment"])
+                + "</details>"
+            )
         parts.append(
             "<details><summary>Reference fixed-evidence conditions (different evidence)</summary>"
             + pre(
@@ -610,6 +654,12 @@ def load_workbench(path):
             inputs["protocol"],
             *inputs["fixtures"],
             *([inputs["native_criteria"]] if "native_criteria" in inputs else []),
+            *(
+                [inputs["native_criteria_preparation"]]
+                if "native_criteria_preparation" in inputs
+                else []
+            ),
+            *([inputs["native_evidence_review"]] if "native_evidence_review" in inputs else []),
         ]:
             _need(_pin(pin["path"]) == pin, "WorkbenchInputChanged")
         expected = build_workbench(
