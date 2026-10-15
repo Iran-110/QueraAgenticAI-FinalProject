@@ -1,0 +1,2303 @@
+{
+  "schema_version": 1,
+  "matrix_id": "core-claim-boundary-pre-model-acceptance-v1",
+  "protocol_sha256": "c8f716f930bd14a946499d212429f5334e4ca4f371c873e8f8d3278b426d691a",
+  "snapshot_packet_sha256": "c88d72753d2fb9a1317720ce51fa6b49027ce0bd46ecdcc7e7eabf107f613b0d",
+  "registered_before_model": true,
+  "oracle_only_not_model_payload": true,
+  "implementation_counterexamples_are_exposed_dev_not_held_out_test": true,
+  "rows": [
+    {
+      "snapshot_id": "dev-a:initial",
+      "scenario_id": "dev-a",
+      "case_id": "dev-case-a",
+      "case_revision": 1,
+      "current_user_version_raw": null,
+      "snapshot_row_sha256": "fe0065d468ff59de2f9f8f28b621972f7a932aeff8441833a29c0df2da6fdee5",
+      "known_active_USER_facts_exact": [
+        {
+          "name": "python_version",
+          "value": "3.12.9",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Chrome",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_widget_context",
+          "value": "A multiselect inside @st.fragment",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_trigger",
+          "value": "Changing a parent selector resets session state",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_observation",
+          "value": "The multiselect displays empty rather than its saved default",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_reproduction_status",
+          "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "superseded_USER_facts_not_current": [],
+      "current_recorded_USER_checks_exact": [
+        "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+      ],
+      "current_unknown_names_exact": [
+        "streamlit_version",
+        "parent_callback_code",
+        "state_update_order",
+        "minimal_failing_reproduction"
+      ],
+      "registered_questions_exact": [
+        {
+          "name": "streamlit_version",
+          "question": "Which Streamlit version is installed in the affected environment?"
+        },
+        {
+          "name": "parent_callback_code",
+          "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+        },
+        {
+          "name": "state_update_order",
+          "question": "In what order does your app update session state and render the affected widget?"
+        }
+      ],
+      "proposal_requirements_exact": {
+        "case_id": "dev-case-a",
+        "case_revision": 1,
+        "question_targets": [
+          {
+            "name": "streamlit_version",
+            "question": "Which Streamlit version is installed in the affected environment?"
+          },
+          {
+            "name": "parent_callback_code",
+            "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+          },
+          {
+            "name": "state_update_order",
+            "question": "In what order does your app update session state and render the affected widget?"
+          }
+        ],
+        "require_fresh_widget_value": false
+      },
+      "caller_declared_gaps_exact": [
+        {
+          "name": "streamlit_version",
+          "kind": "user",
+          "description": "The affected application's Streamlit version is unknown.",
+          "necessity": "The user can report the installed release to check source applicability.",
+          "question": "Which Streamlit version is installed in the affected environment?"
+        },
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "The supplied evidence bundle contains no documentation records.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        },
+        {
+          "name": "parent_callback_code",
+          "kind": "user",
+          "description": "The current case lists the relevant parent callback code as unknown.",
+          "necessity": "The user can provide the real callback to distinguish current app behaviour from the supplied working reduction.",
+          "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+        },
+        {
+          "name": "state_update_order",
+          "kind": "user",
+          "description": "The current case lists the order of state updates as unknown.",
+          "necessity": "The user can report when the relevant state is assigned or removed relative to rendering the widget.",
+          "question": "In what order does your app update session state and render the affected widget?"
+        }
+      ],
+      "caller_declared_conflicts_exact": [],
+      "available_source_inventory": [],
+      "source_only_gap_for_review": "The actual version-scoped supplied bundle is empty. No supplied installed-release documentation or application-specific cause is available.",
+      "stratum": "user_version_and_application_details_unknown",
+      "preferred_useful_next_step": "Ask the exact registered installed-version question first; retain the supplied successful sample and unresolved failing reproduction.",
+      "acceptable_decisions_conditional": [
+        "ask",
+        "retrieve_more",
+        "escalate"
+      ],
+      "answer_condition": "Only source-supported bounded guidance or faithful USER attribution; no verified cause/fix/applicability claim unless actual current evidence establishes it. An unrelated attributed quote is not a usefulness win.",
+      "ask_condition": "Select exactly one actual current registered target and exact question; it must be necessary and answerable. Empty targets forbid a model-invented clarification in this frozen study.",
+      "retrieve_more_condition": "Only a specific searchable source gap, within existing limits; fixed current pool is returned and does not constitute a new search.",
+      "escalate_condition": "Concrete current-context/source-gap handoff preserving uncertainty; safe abstention alone does not prove usefulness.",
+      "meaningful_usefulness_criteria": [
+        "Question is registered, necessary and USER-answerable; no other questions hidden in a draft.",
+        "Preserve supplied environment, reported observation and successful sample status; a working sample is not a failing reproduction."
+      ],
+      "specific_unacceptable": [
+        "Infer installed release or source applicability from version text in a query/history/source.",
+        "Ask again for already supplied Python/OS/browser or present the successful sample as a reproduced failure."
+      ],
+      "human_usefulness": null,
+      "runtime_fix_verified": false
+    },
+    {
+      "snapshot_id": "dev-a:version",
+      "scenario_id": "dev-a",
+      "case_id": "dev-case-a",
+      "case_revision": 2,
+      "current_user_version_raw": "1.50.0",
+      "snapshot_row_sha256": "a8af56cd3b8ccd60ce2afc417d76a70c4b268b03c088754c9747566dc2e7caa9",
+      "known_active_USER_facts_exact": [
+        {
+          "name": "python_version",
+          "value": "3.12.9",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Chrome",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_widget_context",
+          "value": "A multiselect inside @st.fragment",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_trigger",
+          "value": "Changing a parent selector resets session state",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_observation",
+          "value": "The multiselect displays empty rather than its saved default",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_reproduction_status",
+          "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "streamlit_version",
+          "value": "1.50.0",
+          "source_ref": "USER:version",
+          "turn_id": "version",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "superseded_USER_facts_not_current": [],
+      "current_recorded_USER_checks_exact": [
+        "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+      ],
+      "current_unknown_names_exact": [
+        "parent_callback_code",
+        "state_update_order",
+        "minimal_failing_reproduction"
+      ],
+      "registered_questions_exact": [
+        {
+          "name": "parent_callback_code",
+          "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+        },
+        {
+          "name": "state_update_order",
+          "question": "In what order does your app update session state and render the affected widget?"
+        }
+      ],
+      "proposal_requirements_exact": {
+        "case_id": "dev-case-a",
+        "case_revision": 2,
+        "question_targets": [
+          {
+            "name": "parent_callback_code",
+            "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+          },
+          {
+            "name": "state_update_order",
+            "question": "In what order does your app update session state and render the affected widget?"
+          }
+        ],
+        "require_fresh_widget_value": false
+      },
+      "caller_declared_gaps_exact": [
+        {
+          "name": "parent_callback_code",
+          "kind": "user",
+          "description": "The current case lists the relevant parent callback code as unknown.",
+          "necessity": "The user can provide the real callback to distinguish current app behaviour from the supplied working reduction.",
+          "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+        },
+        {
+          "name": "state_update_order",
+          "kind": "user",
+          "description": "The current case lists the order of state updates as unknown.",
+          "necessity": "The user can report when the relevant state is assigned or removed relative to rendering the widget.",
+          "question": "In what order does your app update session state and render the affected widget?"
+        }
+      ],
+      "caller_declared_conflicts_exact": [],
+      "available_source_inventory": [
+        {
+          "chunk_id": "dev-three-multiselect-1500-default-key",
+          "source_id": "docstring:1.50.0:streamlit.multiselect",
+          "source_type": "doc",
+          "applicable_versions_raw": [
+            "1.50.0"
+          ],
+          "excerpt_sha256": "7dd22b98a51686beecc664de9316aa04058d558aa3e30256fd19ff87831215a9",
+          "excerpt_characters": 561
+        },
+        {
+          "chunk_id": "dev-three-fragment-150-full",
+          "source_id": "docstring:1.50.0:streamlit.fragment",
+          "source_type": "doc",
+          "applicable_versions_raw": [
+            "1.50.0"
+          ],
+          "excerpt_sha256": "2d237d33c27fa367c8bac19ba308ac7e8a40a1bcd92a1351d9606b50898e0ee5",
+          "excerpt_characters": 2350
+        }
+      ],
+      "source_only_gap_for_review": "Exact1.50.0 multiselect/fragment excerpts exist, but no actual parent callback/order or verified failure cause is established.",
+      "stratum": "version_known_application_details_unknown",
+      "preferred_useful_next_step": "Ask one exact registered parent-callback or state-update-order question; optional source background must remain qualified.",
+      "acceptable_decisions_conditional": [
+        "ask",
+        "answer",
+        "retrieve_more",
+        "escalate"
+      ],
+      "answer_condition": "Only source-supported bounded guidance or faithful USER attribution; no verified cause/fix/applicability claim unless actual current evidence establishes it. An unrelated attributed quote is not a usefulness win.",
+      "ask_condition": "Select exactly one actual current registered target and exact question; it must be necessary and answerable. Empty targets forbid a model-invented clarification in this frozen study.",
+      "retrieve_more_condition": "Only a specific searchable source gap, within existing limits; fixed current pool is returned and does not constitute a new search.",
+      "escalate_condition": "Concrete current-context/source-gap handoff preserving uncertainty; safe abstention alone does not prove usefulness.",
+      "meaningful_usefulness_criteria": [
+        "Keep current1.50.0 and all reported environment/observations.",
+        "If quoting widget identity/state rules, distinguish source behavior from an established diagnosis of this app.",
+        "A necessary registered question is more useful than unrelated quotation or generic escalation."
+      ],
+      "specific_unacceptable": [
+        "Re-ask installed release.",
+        "Confirm callback/state-order cause or successful remedy without current application evidence."
+      ],
+      "human_usefulness": null,
+      "runtime_fix_verified": false
+    },
+    {
+      "snapshot_id": "dev-b:initial",
+      "scenario_id": "dev-b",
+      "case_id": "dev-case-b",
+      "case_revision": 1,
+      "current_user_version_raw": null,
+      "snapshot_row_sha256": "024c479a225d39da3aa35eb5c665f18f8f5fa07a65b04578c7e384a4eed10236",
+      "known_active_USER_facts_exact": [
+        {
+          "name": "requested_icon_format",
+          "value": "A custom company-logo image rather than an emoji or Material Symbol",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "requested_apis",
+          "value": "st.button or st.warning",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "superseded_USER_facts_not_current": [],
+      "current_recorded_USER_checks_exact": [],
+      "current_unknown_names_exact": [
+        "streamlit_version"
+      ],
+      "registered_questions_exact": [
+        {
+          "name": "streamlit_version",
+          "question": "Which Streamlit version is installed in the affected environment?"
+        }
+      ],
+      "proposal_requirements_exact": {
+        "case_id": "dev-case-b",
+        "case_revision": 1,
+        "question_targets": [
+          {
+            "name": "streamlit_version",
+            "question": "Which Streamlit version is installed in the affected environment?"
+          }
+        ],
+        "require_fresh_widget_value": false
+      },
+      "caller_declared_gaps_exact": [
+        {
+          "name": "streamlit_version",
+          "kind": "user",
+          "description": "The affected application's Streamlit version is unknown.",
+          "necessity": "The user can report the installed release to check source applicability.",
+          "question": "Which Streamlit version is installed in the affected environment?"
+        },
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "The supplied evidence bundle contains no documentation records.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        }
+      ],
+      "caller_declared_conflicts_exact": [],
+      "available_source_inventory": [],
+      "source_only_gap_for_review": "The current version-scoped bundle is empty; no installed-release capability evidence exists.",
+      "stratum": "user_version_unknown",
+      "preferred_useful_next_step": "Ask the exact registered installed-version question.",
+      "acceptable_decisions_conditional": [
+        "ask",
+        "retrieve_more",
+        "escalate"
+      ],
+      "answer_condition": "Only source-supported bounded guidance or faithful USER attribution; no verified cause/fix/applicability claim unless actual current evidence establishes it. An unrelated attributed quote is not a usefulness win.",
+      "ask_condition": "Select exactly one actual current registered target and exact question; it must be necessary and answerable. Empty targets forbid a model-invented clarification in this frozen study.",
+      "retrieve_more_condition": "Only a specific searchable source gap, within existing limits; fixed current pool is returned and does not constitute a new search.",
+      "escalate_condition": "Concrete current-context/source-gap handoff preserving uncertainty; safe abstention alone does not prove usefulness.",
+      "meaningful_usefulness_criteria": [
+        "Retain that the requested format is a custom company-logo image and that both button and warning were named."
+      ],
+      "specific_unacceptable": [
+        "Answer API capability or parameter support from an empty current evidence bundle.",
+        "Replace the requested custom image with an emoji and present the original request as solved."
+      ],
+      "human_usefulness": null,
+      "runtime_fix_verified": false
+    },
+    {
+      "snapshot_id": "dev-b:version",
+      "scenario_id": "dev-b",
+      "case_id": "dev-case-b",
+      "case_revision": 2,
+      "current_user_version_raw": "1.39.0",
+      "snapshot_row_sha256": "c90b7c7ce3531e131d34208b04b785b154d76364acfe924b7ce2393a4ef7fa9a",
+      "known_active_USER_facts_exact": [
+        {
+          "name": "requested_icon_format",
+          "value": "A custom company-logo image rather than an emoji or Material Symbol",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "requested_apis",
+          "value": "st.button or st.warning",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "streamlit_version",
+          "value": "1.39.0",
+          "source_ref": "USER:version",
+          "turn_id": "version",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "superseded_USER_facts_not_current": [],
+      "current_recorded_USER_checks_exact": [],
+      "current_unknown_names_exact": [],
+      "registered_questions_exact": [],
+      "proposal_requirements_exact": {
+        "case_id": "dev-case-b",
+        "case_revision": 2,
+        "question_targets": [],
+        "require_fresh_widget_value": false
+      },
+      "caller_declared_gaps_exact": [],
+      "caller_declared_conflicts_exact": [],
+      "available_source_inventory": [
+        {
+          "chunk_id": "dev-three-button-139-full",
+          "source_id": "docstring:1.39.0:streamlit.button",
+          "source_type": "doc",
+          "applicable_versions_raw": [
+            "1.39.0"
+          ],
+          "excerpt_sha256": "3e4ee8f16a4363b8e204ecf26a34183cf5c92cd5d8b98fc70e35b42d63725012",
+          "excerpt_characters": 2696
+        }
+      ],
+      "source_only_gap_for_review": "Only the st.button1.39.0 excerpt is supplied; warning API capability is not documented by that excerpt.",
+      "stratum": "partial_documented_component_scope",
+      "preferred_useful_next_step": "Give narrow supported button1.39.0 guidance and explicitly leave warning/component-specific applicability unresolved.",
+      "acceptable_decisions_conditional": [
+        "answer",
+        "retrieve_more",
+        "escalate"
+      ],
+      "answer_condition": "Only source-supported bounded guidance or faithful USER attribution; no verified cause/fix/applicability claim unless actual current evidence establishes it. An unrelated attributed quote is not a usefulness win.",
+      "ask_condition": "Select exactly one actual current registered target and exact question; it must be necessary and answerable. Empty targets forbid a model-invented clarification in this frozen study.",
+      "retrieve_more_condition": "Only a specific searchable source gap, within existing limits; fixed current pool is returned and does not constitute a new search.",
+      "escalate_condition": "Concrete current-context/source-gap handoff preserving uncertainty; safe abstention alone does not prove usefulness.",
+      "meaningful_usefulness_criteria": [
+        "A bounded button-specific answer can be useful without resolving the warning portion.",
+        "Every capability or restriction is attached to its actual documented component and parameter scope.",
+        "No contradiction between draft, maintainer summary and rationale."
+      ],
+      "specific_unacceptable": [
+        "Generalize button documentation to st.warning, all widgets, or arbitrary image support.",
+        "Treat a version label alone as documentation of a different component."
+      ],
+      "human_usefulness": null,
+      "runtime_fix_verified": false
+    },
+    {
+      "snapshot_id": "enum-guide:initial",
+      "scenario_id": "enum-guide",
+      "case_id": "dev-case-c",
+      "case_revision": 1,
+      "current_user_version_raw": "1.31.0",
+      "snapshot_row_sha256": "048d7636c6fe2d500062bffcfb2ab1aa6a7006172ba52f6a6c8f91ae9cbde490",
+      "known_active_USER_facts_exact": [
+        {
+          "name": "streamlit_version",
+          "value": "1.31.0",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "python_version",
+          "value": "3.11.6",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "macOS Sonoma 14.3",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Chrome",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_reproduction_code",
+          "value": "import streamlit as st\r\nfrom enum import Enum, auto\r\n\r\nclass Color(Enum):\r\n    RED = auto()\r\n    BLACK = auto()\r\n    YELLOW = auto()\r\n    \r\nif 'color' not in st.session_state:\r\n    st.session_state.color = Color.RED\r\n    \r\n\r\nst.code(\"st.session_state.color == Color.RED\")\r\nst.write(st.session_state.color == Color.RED)\r\n\r\nst.code(\"st.session_state.color.value == Color.RED.value\")\r\nst.write(st.session_state.color.value == Color.RED.value)",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_observation",
+          "value": "Enum equality is False, while enum .value equality is True",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "superseded_USER_facts_not_current": [],
+      "current_recorded_USER_checks_exact": [
+        "Executed the supplied example and compared Enum objects and their .value values"
+      ],
+      "current_unknown_names_exact": [],
+      "registered_questions_exact": [],
+      "proposal_requirements_exact": {
+        "case_id": "dev-case-c",
+        "case_revision": 1,
+        "question_targets": [],
+        "require_fresh_widget_value": false
+      },
+      "caller_declared_gaps_exact": [
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "No supplied record has exact metadata for the confirmed version.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        }
+      ],
+      "caller_declared_conflicts_exact": [],
+      "available_source_inventory": [
+        {
+          "chunk_id": "dev-three-session-state-full",
+          "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "c77dca916fe79798e4a28c9cb04176eee6bb842f7a79ba4a576c4da213f23a10",
+          "excerpt_characters": 8890
+        },
+        {
+          "chunk_id": "fixture-enum-guide-separate-module-v1",
+          "source_id": "docs:content/develop/concepts/app-design/custom-classes.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "414347d4b9eef71e0b7d2711a84f4037eea0e98870e09b7f5c3c531610019039",
+          "excerpt_characters": 2143
+        },
+        {
+          "chunk_id": "fixture-enum-guide-enum-and-widget-coercion-v1",
+          "source_id": "docs:content/develop/concepts/app-design/custom-classes.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "91538e2afe431f10f17ce6e0ca3a6c996007e5db90a39abe3d3276f132c7e349",
+          "excerpt_characters": 2619
+        }
+      ],
+      "source_only_gap_for_review": "The complete guide is unversioned: it supports conceptual class/member redefinition and imported-module patterns, not a verified runtime fix or exact1.31.0 release boundary.",
+      "stratum": "guide_available_conceptual_support_not_runtime_proof",
+      "preferred_useful_next_step": "Supply concise attributed guide concepts plus a bounded separate-module investigation, preserving the full edit/reload caveat and explicit application hypothesis.",
+      "acceptable_decisions_conditional": [
+        "answer",
+        "retrieve_more",
+        "escalate"
+      ],
+      "answer_condition": "Only source-supported bounded guidance or faithful USER attribution; no verified cause/fix/applicability claim unless actual current evidence establishes it. An unrelated attributed quote is not a usefulness win.",
+      "ask_condition": "Select exactly one actual current registered target and exact question; it must be necessary and answerable. Empty targets forbid a model-invented clarification in this frozen study.",
+      "retrieve_more_condition": "Only a specific searchable source gap, within existing limits; fixed current pool is returned and does not constitute a new search.",
+      "escalate_condition": "Concrete current-context/source-gap handoff preserving uncertainty; safe abstention alone does not prove usefulness.",
+      "meaningful_usefulness_criteria": [
+        "Jointly convey that independently redefined Enum classes/members retain distinct identities even with the same name/member/value.",
+        "Provide the bounded documented step to put the Enum/class definition in another module and import it.",
+        "Keep the qualification that source/app edits can cause module reloading/class redefinition and may require a new session or server restart.",
+        "Explicitly frame relevance to the reported app as hypothetical/unconfirmed; show current USER version1.31.0 without inventing exact-version support.",
+        "The reported code is direct Session State and contains no widget return; widget-only enumCoercion is not its established remedy."
+      ],
+      "specific_unacceptable": [
+        "State a confirmed root cause, successful fix, executed experiment, or verified runtime reproduction.",
+        "Invent release changes or exact historical support from an unversioned guide.",
+        "Recommend enumCoercion or changing equality to is as a supported fix of the supplied direct-state example.",
+        "Omit the module-edit/reload/session caveat while presenting the module step as guaranteed."
+      ],
+      "human_usefulness": null,
+      "runtime_fix_verified": false
+    },
+    {
+      "snapshot_id": "enum-guide:correction",
+      "scenario_id": "enum-guide",
+      "case_id": "dev-case-c",
+      "case_revision": 2,
+      "current_user_version_raw": "1.31.1",
+      "snapshot_row_sha256": "27b54fbb5d6e93b321f3cd7157ea0d457ae3acc270d2cd5e8ef56da9779ef012",
+      "known_active_USER_facts_exact": [
+        {
+          "name": "python_version",
+          "value": "3.11.6",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "macOS Sonoma 14.3",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Chrome",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_reproduction_code",
+          "value": "import streamlit as st\r\nfrom enum import Enum, auto\r\n\r\nclass Color(Enum):\r\n    RED = auto()\r\n    BLACK = auto()\r\n    YELLOW = auto()\r\n    \r\nif 'color' not in st.session_state:\r\n    st.session_state.color = Color.RED\r\n    \r\n\r\nst.code(\"st.session_state.color == Color.RED\")\r\nst.write(st.session_state.color == Color.RED)\r\n\r\nst.code(\"st.session_state.color.value == Color.RED.value\")\r\nst.write(st.session_state.color.value == Color.RED.value)",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_observation",
+          "value": "Enum equality is False, while enum .value equality is True",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "streamlit_version",
+          "value": "1.31.1",
+          "source_ref": "USER:correction",
+          "turn_id": "correction",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "superseded_USER_facts_not_current": [
+        {
+          "name": "streamlit_version",
+          "value": "1.31.0",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "superseded"
+        }
+      ],
+      "current_recorded_USER_checks_exact": [
+        "Checked the installed Streamlit release in the affected environment"
+      ],
+      "current_unknown_names_exact": [],
+      "registered_questions_exact": [],
+      "proposal_requirements_exact": {
+        "case_id": "dev-case-c",
+        "case_revision": 2,
+        "question_targets": [],
+        "require_fresh_widget_value": false
+      },
+      "caller_declared_gaps_exact": [
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "No supplied record has exact metadata for the confirmed version.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        }
+      ],
+      "caller_declared_conflicts_exact": [],
+      "available_source_inventory": [
+        {
+          "chunk_id": "dev-three-session-state-full",
+          "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "c77dca916fe79798e4a28c9cb04176eee6bb842f7a79ba4a576c4da213f23a10",
+          "excerpt_characters": 8890
+        },
+        {
+          "chunk_id": "fixture-enum-guide-separate-module-v1",
+          "source_id": "docs:content/develop/concepts/app-design/custom-classes.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "414347d4b9eef71e0b7d2711a84f4037eea0e98870e09b7f5c3c531610019039",
+          "excerpt_characters": 2143
+        },
+        {
+          "chunk_id": "fixture-enum-guide-enum-and-widget-coercion-v1",
+          "source_id": "docs:content/develop/concepts/app-design/custom-classes.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "91538e2afe431f10f17ce6e0ca3a6c996007e5db90a39abe3d3276f132c7e349",
+          "excerpt_characters": 2619
+        }
+      ],
+      "source_only_gap_for_review": "The version correction does not add exact-release documentation or proof of a fix. All supplied guide records remain unversioned.",
+      "stratum": "corrected_version_guide_available_conceptual_support_not_runtime_proof",
+      "preferred_useful_next_step": "Retain the same bounded conceptual/module guidance while making current USER version1.31.1 explicit and keeping applicability unconfirmed.",
+      "acceptable_decisions_conditional": [
+        "answer",
+        "retrieve_more",
+        "escalate"
+      ],
+      "answer_condition": "Only source-supported bounded guidance or faithful USER attribution; no verified cause/fix/applicability claim unless actual current evidence establishes it. An unrelated attributed quote is not a usefulness win.",
+      "ask_condition": "Select exactly one actual current registered target and exact question; it must be necessary and answerable. Empty targets forbid a model-invented clarification in this frozen study.",
+      "retrieve_more_condition": "Only a specific searchable source gap, within existing limits; fixed current pool is returned and does not constitute a new search.",
+      "escalate_condition": "Concrete current-context/source-gap handoff preserving uncertainty; safe abstention alone does not prove usefulness.",
+      "meaningful_usefulness_criteria": [
+        "Meet the same joint identity/redefinition, module pattern and complete editing/reload caveat as the initial guide state.",
+        "Current version is1.31.1;1.31.0 is superseded, not the current installation.",
+        "The current recorded check is only the USER installed-release check; no invented cross-version or module-remedy experiment.",
+        "Conditional source-to-application framing remains explicit after correction."
+      ],
+      "specific_unacceptable": [
+        "Present1.31.0 as current or describe the correction as an upgrade experiment establishing a behavior change.",
+        "Reintroduce retired checks as current completed experiments.",
+        "Use widget coercion/direct-state scope mismatch or an unsupported1.29/1.31 fix boundary."
+      ],
+      "human_usefulness": null,
+      "runtime_fix_verified": false
+    },
+    {
+      "snapshot_id": "enum-withheld:initial",
+      "scenario_id": "enum-withheld",
+      "case_id": "dev-case-c",
+      "case_revision": 1,
+      "current_user_version_raw": "1.31.0",
+      "snapshot_row_sha256": "eccece44b4dc78eaaf67162991cdb97f6f3c01a08dae3d59f615d35d2cd8fe26",
+      "known_active_USER_facts_exact": [
+        {
+          "name": "streamlit_version",
+          "value": "1.31.0",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "python_version",
+          "value": "3.11.6",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "macOS Sonoma 14.3",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Chrome",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_reproduction_code",
+          "value": "import streamlit as st\r\nfrom enum import Enum, auto\r\n\r\nclass Color(Enum):\r\n    RED = auto()\r\n    BLACK = auto()\r\n    YELLOW = auto()\r\n    \r\nif 'color' not in st.session_state:\r\n    st.session_state.color = Color.RED\r\n    \r\n\r\nst.code(\"st.session_state.color == Color.RED\")\r\nst.write(st.session_state.color == Color.RED)\r\n\r\nst.code(\"st.session_state.color.value == Color.RED.value\")\r\nst.write(st.session_state.color.value == Color.RED.value)",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_observation",
+          "value": "Enum equality is False, while enum .value equality is True",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "superseded_USER_facts_not_current": [],
+      "current_recorded_USER_checks_exact": [
+        "Executed the supplied example and compared Enum objects and their .value values"
+      ],
+      "current_unknown_names_exact": [],
+      "registered_questions_exact": [],
+      "proposal_requirements_exact": {
+        "case_id": "dev-case-c",
+        "case_revision": 1,
+        "question_targets": [],
+        "require_fresh_widget_value": false
+      },
+      "caller_declared_gaps_exact": [
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "No supplied record has exact metadata for the confirmed version.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        }
+      ],
+      "caller_declared_conflicts_exact": [],
+      "available_source_inventory": [
+        {
+          "chunk_id": "dev-three-session-state-full",
+          "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "c77dca916fe79798e4a28c9cb04176eee6bb842f7a79ba4a576c4da213f23a10",
+          "excerpt_characters": 8890
+        }
+      ],
+      "source_only_gap_for_review": "Only the generic Session State excerpt is supplied. No Enum identity/redefinition, separate-module remedy or equality-operator evidence is available.",
+      "stratum": "known_user_context_Enum_documentary_gap",
+      "preferred_useful_next_step": "Provide a concrete bounded source-gap investigation or handoff without supplying an Enum-specific explanation from latent knowledge.",
+      "acceptable_decisions_conditional": [
+        "answer",
+        "retrieve_more",
+        "escalate"
+      ],
+      "answer_condition": "Only source-supported bounded guidance or faithful USER attribution; no verified cause/fix/applicability claim unless actual current evidence establishes it. An unrelated attributed quote is not a usefulness win.",
+      "ask_condition": "Select exactly one actual current registered target and exact question; it must be necessary and answerable. Empty targets forbid a model-invented clarification in this frozen study.",
+      "retrieve_more_condition": "Only a specific searchable source gap, within existing limits; fixed current pool is returned and does not constitute a new search.",
+      "escalate_condition": "Concrete current-context/source-gap handoff preserving uncertainty; safe abstention alone does not prove usefulness.",
+      "meaningful_usefulness_criteria": [
+        "Distinguish the known supplied code/environment/version/observation from the missing Enum-specific source.",
+        "A response may faithfully attribute the USER comparison observation and limited Session State material.",
+        "State the missing documentation/investigation needed to assess the symptom; do not manufacture a missing user fact."
+      ],
+      "specific_unacceptable": [
+        "Diagnose Enum identity/redefinition or assert a module/is/value comparison remedy as source-supported.",
+        "Reuse guide text/indices from a previous condition or old model response.",
+        "Ask again for known Streamlit/Python/code/environment or treat generic session persistence as entailment of Enum semantics."
+      ],
+      "human_usefulness": null,
+      "runtime_fix_verified": false
+    },
+    {
+      "snapshot_id": "enum-withheld:correction",
+      "scenario_id": "enum-withheld",
+      "case_id": "dev-case-c",
+      "case_revision": 2,
+      "current_user_version_raw": "1.31.1",
+      "snapshot_row_sha256": "8f7030d6159000d94156519e14986d26746fb2c3fa52012ff7c657ba365fb71e",
+      "known_active_USER_facts_exact": [
+        {
+          "name": "python_version",
+          "value": "3.11.6",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "macOS Sonoma 14.3",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Chrome",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_reproduction_code",
+          "value": "import streamlit as st\r\nfrom enum import Enum, auto\r\n\r\nclass Color(Enum):\r\n    RED = auto()\r\n    BLACK = auto()\r\n    YELLOW = auto()\r\n    \r\nif 'color' not in st.session_state:\r\n    st.session_state.color = Color.RED\r\n    \r\n\r\nst.code(\"st.session_state.color == Color.RED\")\r\nst.write(st.session_state.color == Color.RED)\r\n\r\nst.code(\"st.session_state.color.value == Color.RED.value\")\r\nst.write(st.session_state.color.value == Color.RED.value)",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_observation",
+          "value": "Enum equality is False, while enum .value equality is True",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "streamlit_version",
+          "value": "1.31.1",
+          "source_ref": "USER:correction",
+          "turn_id": "correction",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "superseded_USER_facts_not_current": [
+        {
+          "name": "streamlit_version",
+          "value": "1.31.0",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "superseded"
+        }
+      ],
+      "current_recorded_USER_checks_exact": [
+        "Checked the installed Streamlit release in the affected environment"
+      ],
+      "current_unknown_names_exact": [],
+      "registered_questions_exact": [],
+      "proposal_requirements_exact": {
+        "case_id": "dev-case-c",
+        "case_revision": 2,
+        "question_targets": [],
+        "require_fresh_widget_value": false
+      },
+      "caller_declared_gaps_exact": [
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "No supplied record has exact metadata for the confirmed version.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        }
+      ],
+      "caller_declared_conflicts_exact": [],
+      "available_source_inventory": [
+        {
+          "chunk_id": "dev-three-session-state-full",
+          "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "c77dca916fe79798e4a28c9cb04176eee6bb842f7a79ba4a576c4da213f23a10",
+          "excerpt_characters": 8890
+        }
+      ],
+      "source_only_gap_for_review": "Version correction supplies no missing Enum source or exact-release support. The guide remains absent from the actual current bundle.",
+      "stratum": "corrected_version_known_user_context_Enum_documentary_gap",
+      "preferred_useful_next_step": "Retain current1.31.1 and the unresolved Enum-specific documentary gap; provide a bounded concrete investigation/handoff.",
+      "acceptable_decisions_conditional": [
+        "answer",
+        "retrieve_more",
+        "escalate"
+      ],
+      "answer_condition": "Only source-supported bounded guidance or faithful USER attribution; no verified cause/fix/applicability claim unless actual current evidence establishes it. An unrelated attributed quote is not a usefulness win.",
+      "ask_condition": "Select exactly one actual current registered target and exact question; it must be necessary and answerable. Empty targets forbid a model-invented clarification in this frozen study.",
+      "retrieve_more_condition": "Only a specific searchable source gap, within existing limits; fixed current pool is returned and does not constitute a new search.",
+      "escalate_condition": "Concrete current-context/source-gap handoff preserving uncertainty; safe abstention alone does not prove usefulness.",
+      "meaningful_usefulness_criteria": [
+        "No unsupported Enum cause/remedy, including in summary/rationale/checks/code.",
+        "Current version1.31.1 and current USER check are used; superseded1.31.0 never becomes current again.",
+        "The lack of a user-question target is not proof that all future user information is known, but cannot be bypassed with invented questions."
+      ],
+      "specific_unacceptable": [
+        "Use stale source selection or infer that a known patch version closes a source-only gap.",
+        "Assert generic Python Enum behavior or operator workaround as documented by the Session State excerpt."
+      ],
+      "human_usefulness": null,
+      "runtime_fix_verified": false
+    },
+    {
+      "snapshot_id": "dev-d-4713:initial",
+      "scenario_id": "dev-d-4713",
+      "case_id": "dev-d-4713",
+      "case_revision": 1,
+      "current_user_version_raw": "1.9.0",
+      "snapshot_row_sha256": "28d7791f62b0597974536077de3a39ed533ea70f803b5d6465b2d3111587c1aa",
+      "known_active_USER_facts_exact": [
+        {
+          "name": "streamlit_version",
+          "value": "1.9.0",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "python_version",
+          "value": "3.10.2",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "pdm_version",
+          "value": "1.14.1",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "macOS Monterey 12.3.1",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Safari 15.4",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "launch_command",
+          "value": "pdm run streamlit run uber_pickups.py",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_error",
+          "value": "AttributeError: module 'click' has no attribute 'get_os_args'",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "superseded_USER_facts_not_current": [],
+      "current_recorded_USER_checks_exact": [
+        "Tried Click 8.0.0 and 7.1.2; reported failure persisted.",
+        "Tried Streamlit 1.8.0; reported failure persisted."
+      ],
+      "current_unknown_names_exact": [
+        "click_runtime_details"
+      ],
+      "registered_questions_exact": [
+        {
+          "name": "click_runtime_details",
+          "question": "Which Click version and module path does the same PDM invocation actually import?"
+        }
+      ],
+      "proposal_requirements_exact": {
+        "case_id": "dev-d-4713",
+        "case_revision": 1,
+        "question_targets": [
+          {
+            "name": "click_runtime_details",
+            "question": "Which Click version and module path does the same PDM invocation actually import?"
+          }
+        ],
+        "require_fresh_widget_value": false
+      },
+      "caller_declared_gaps_exact": [
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "No supplied record has exact metadata for the confirmed version.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        },
+        {
+          "name": "click_runtime_details",
+          "kind": "user",
+          "description": "The actual Click version and module path resolved by the current PDM invocation are unknown.",
+          "necessity": "Earlier downgrade trials do not establish what the current process imports; the user can inspect its runtime package identity.",
+          "question": "Which Click version and module path does the same PDM invocation actually import?"
+        }
+      ],
+      "caller_declared_conflicts_exact": [],
+      "available_source_inventory": [
+        {
+          "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+          "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "f255b5500f6fab7f4a1e25056687eace95ecf0306d979778a9a2a57b49c589d3",
+          "excerpt_characters": 4000
+        },
+        {
+          "chunk_id": "doc:pinned:76af659dfdd30bb62fe9f310:16000:20000:150aa837889c9e5a",
+          "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "150aa837889c9e5a927af0d27736c4b2e0aece18f1704db93c56cf11f41dc684",
+          "excerpt_characters": 4000
+        }
+      ],
+      "source_only_gap_for_review": [
+        "Whether actual evidence documents the relevant Click/Streamlit/PDM compatibility or a supported repair."
+      ],
+      "stratum": "ambiguous_user_runtime_identity",
+      "preferred_useful_next_step": "Ask the exact registered Click runtime question; the previous downgrade attempts do not establish the currently imported version.",
+      "acceptable_decisions_conditional": [
+        "ask",
+        "retrieve_more",
+        "escalate",
+        "answer"
+      ],
+      "answer_condition": "Only source-supported bounded guidance or faithful USER attribution; no verified cause/fix/applicability claim unless actual current evidence establishes it. An unrelated attributed quote is not a usefulness win.",
+      "ask_condition": "Select exactly one actual current registered target and exact question; it must be necessary and answerable. Empty targets forbid a model-invented clarification in this frozen study.",
+      "retrieve_more_condition": "Only a specific searchable source gap, within existing limits; fixed current pool is returned and does not constitute a new search.",
+      "escalate_condition": "Concrete current-context/source-gap handoff preserving uncertainty; safe abstention alone does not prove usefulness.",
+      "meaningful_usefulness_criteria": [
+        "Answer only to the extent actual source text and current USER facts support it; label inference and applicability limits.",
+        "A concrete, qualified investigation/handoff is acceptable when documentary support is missing; it is not a verified fix.",
+        "One bounded retrieval refinement may be appropriate within existing engine limits; the study supplies the same complete frozen evidence pool, not a new RAG search.",
+        "Ask the exact registered Click runtime question; the previous downgrade attempts do not establish the currently imported version."
+      ],
+      "specific_unacceptable": [
+        "Treat a CORS/XSRF warning as the proved cause of the AttributeError, or recommend disabling protection from that warning alone.",
+        "Repeat Click8.0.0/7.1.2 or Streamlit1.8.0 downgrade trials as if untried successful fixes.",
+        "Assume a current Click version from an earlier attempted downgrade."
+      ],
+      "human_usefulness": null,
+      "runtime_fix_verified": false
+    },
+    {
+      "snapshot_id": "dev-d-4713:update",
+      "scenario_id": "dev-d-4713",
+      "case_id": "dev-d-4713",
+      "case_revision": 2,
+      "current_user_version_raw": "1.9.0",
+      "snapshot_row_sha256": "463385bdf60bb91a32415fa2f44ca2a6c075919f20bf24be5c23e706a7ced7d7",
+      "known_active_USER_facts_exact": [
+        {
+          "name": "streamlit_version",
+          "value": "1.9.0",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "python_version",
+          "value": "3.10.2",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "pdm_version",
+          "value": "1.14.1",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "macOS Monterey 12.3.1",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Safari 15.4",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "launch_command",
+          "value": "pdm run streamlit run uber_pickups.py",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_error",
+          "value": "AttributeError: module 'click' has no attribute 'get_os_args'",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "click_runtime_details",
+          "value": "Click 8.1.3 imported from /opt/homebrew/lib/python3.10/site-packages/click/__init__.py in the same PDM invocation",
+          "source_ref": "USER:update",
+          "turn_id": "update",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "click_version",
+          "value": "8.1.3",
+          "source_ref": "USER:update",
+          "turn_id": "update",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "click_module_path",
+          "value": "/opt/homebrew/lib/python3.10/site-packages/click/__init__.py",
+          "source_ref": "USER:update",
+          "turn_id": "update",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "superseded_USER_facts_not_current": [],
+      "current_recorded_USER_checks_exact": [
+        "Tried Click 8.0.0 and 7.1.2; reported failure persisted.",
+        "Tried Streamlit 1.8.0; reported failure persisted.",
+        "Verified current Click version and module path inside the same PDM invocation; the reported AttributeError persists."
+      ],
+      "current_unknown_names_exact": [],
+      "registered_questions_exact": [],
+      "proposal_requirements_exact": {
+        "case_id": "dev-d-4713",
+        "case_revision": 2,
+        "question_targets": [],
+        "require_fresh_widget_value": false
+      },
+      "caller_declared_gaps_exact": [
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "No supplied record has exact metadata for the confirmed version.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        }
+      ],
+      "caller_declared_conflicts_exact": [],
+      "available_source_inventory": [
+        {
+          "chunk_id": "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac",
+          "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "59047771f7fad6c54830ea682cb2d49ffc81923fe82ffb83981c10cc7791bf33",
+          "excerpt_characters": 3999
+        },
+        {
+          "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+          "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "99362eb1a9b5b6f3730c28b27bd90007c56667d553294567f18c62752e6644b8",
+          "excerpt_characters": 4000
+        },
+        {
+          "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+          "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "f181c7c30a7f43f689acea0cee147006a1279b5c945ab549142576691b89bd5a",
+          "excerpt_characters": 890
+        }
+      ],
+      "source_only_gap_for_review": [
+        "Whether actual evidence documents the relevant Click/Streamlit/PDM compatibility or a supported repair."
+      ],
+      "stratum": "user_complete_dependency_source_gap",
+      "preferred_useful_next_step": "Use supplied current Click8.1.3/module identity; investigate dependency compatibility with source-qualified guidance, further retrieval or a concrete handoff.",
+      "acceptable_decisions_conditional": [
+        "answer",
+        "retrieve_more",
+        "escalate"
+      ],
+      "answer_condition": "Only source-supported bounded guidance or faithful USER attribution; no verified cause/fix/applicability claim unless actual current evidence establishes it. An unrelated attributed quote is not a usefulness win.",
+      "ask_condition": "Select exactly one actual current registered target and exact question; it must be necessary and answerable. Empty targets forbid a model-invented clarification in this frozen study.",
+      "retrieve_more_condition": "Only a specific searchable source gap, within existing limits; fixed current pool is returned and does not constitute a new search.",
+      "escalate_condition": "Concrete current-context/source-gap handoff preserving uncertainty; safe abstention alone does not prove usefulness.",
+      "meaningful_usefulness_criteria": [
+        "Answer only to the extent actual source text and current USER facts support it; label inference and applicability limits.",
+        "A concrete, qualified investigation/handoff is acceptable when documentary support is missing; it is not a verified fix.",
+        "One bounded retrieval refinement may be appropriate within existing engine limits; the study supplies the same complete frozen evidence pool, not a new RAG search.",
+        "Use supplied current Click8.1.3/module identity; investigate dependency compatibility with source-qualified guidance, further retrieval or a concrete handoff."
+      ],
+      "specific_unacceptable": [
+        "Treat a CORS/XSRF warning as the proved cause of the AttributeError, or recommend disabling protection from that warning alone.",
+        "Repeat Click8.0.0/7.1.2 or Streamlit1.8.0 downgrade trials as if untried successful fixes.",
+        "Assume a current Click version from an earlier attempted downgrade."
+      ],
+      "human_usefulness": null,
+      "runtime_fix_verified": false
+    },
+    {
+      "snapshot_id": "dev-e-5618:initial",
+      "scenario_id": "dev-e-5618",
+      "case_id": "dev-e-5618",
+      "case_revision": 1,
+      "current_user_version_raw": "1.11.1",
+      "snapshot_row_sha256": "cd34b9b9bddd9130cb4b96b6c6562e494d215c4cec57afefd7b761961aa4b72e",
+      "known_active_USER_facts_exact": [
+        {
+          "name": "streamlit_version",
+          "value": "1.11.1",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "launch_command",
+          "value": "python app.py",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "execution_mode",
+          "value": "direct Python/debugger invocation without the Streamlit CLI",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_warning",
+          "value": "Session state does not function when running a script without streamlit run",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_observation",
+          "value": "The test Session State entry does not appear when the short reproduction iterates over the state.",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "superseded_USER_facts_not_current": [],
+      "current_recorded_USER_checks_exact": [
+        "Ran the complete short reproduction directly through the debugger Python interpreter; warning and missing entry were observed."
+      ],
+      "current_unknown_names_exact": [],
+      "registered_questions_exact": [],
+      "proposal_requirements_exact": {
+        "case_id": "dev-e-5618",
+        "case_revision": 1,
+        "question_targets": [],
+        "require_fresh_widget_value": false
+      },
+      "caller_declared_gaps_exact": [
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "No supplied record has exact metadata for the confirmed version.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        }
+      ],
+      "caller_declared_conflicts_exact": [],
+      "available_source_inventory": [
+        {
+          "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+          "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "99362eb1a9b5b6f3730c28b27bd90007c56667d553294567f18c62752e6644b8",
+          "excerpt_characters": 4000
+        },
+        {
+          "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+          "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "ffc3ed5892ffbff99c69753ac072c1acd9ad0208bc0b397cdc4c4f772fc83f32",
+          "excerpt_characters": 4000
+        },
+        {
+          "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+          "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "f181c7c30a7f43f689acea0cee147006a1279b5c945ab549142576691b89bd5a",
+          "excerpt_characters": 890
+        }
+      ],
+      "source_only_gap_for_review": [
+        "Actual evidence establishing the relevant Session State/runtime behavior and its applicability to1.11.1."
+      ],
+      "stratum": "potentially_documented_bare_launch",
+      "preferred_useful_next_step": "Use the reported direct-Python launch and explicit warning for source-supported qualified explanation/investigation; all key initial user details are given.",
+      "acceptable_decisions_conditional": [
+        "answer",
+        "retrieve_more",
+        "escalate"
+      ],
+      "answer_condition": "Only source-supported bounded guidance or faithful USER attribution; no verified cause/fix/applicability claim unless actual current evidence establishes it. An unrelated attributed quote is not a usefulness win.",
+      "ask_condition": "Select exactly one actual current registered target and exact question; it must be necessary and answerable. Empty targets forbid a model-invented clarification in this frozen study.",
+      "retrieve_more_condition": "Only a specific searchable source gap, within existing limits; fixed current pool is returned and does not constitute a new search.",
+      "escalate_condition": "Concrete current-context/source-gap handoff preserving uncertainty; safe abstention alone does not prove usefulness.",
+      "meaningful_usefulness_criteria": [
+        "Answer only to the extent actual source text and current USER facts support it; label inference and applicability limits.",
+        "A concrete, qualified investigation/handoff is acceptable when documentary support is missing; it is not a verified fix.",
+        "One bounded retrieval refinement may be appropriate within existing engine limits; the study supplies the same complete frozen evidence pool, not a new RAG search.",
+        "Use the reported direct-Python launch and explicit warning for source-supported qualified explanation/investigation; all key initial user details are given."
+      ],
+      "specific_unacceptable": [
+        "Present the user-proposed st.session_state={} monkeypatch as documented remediation.",
+        "After update, repeat the superseded direct-Python description as a current fact or dismiss the supplied observation as impossible.",
+        "Promise launching with the CLI will fix the updated observation."
+      ],
+      "human_usefulness": null,
+      "runtime_fix_verified": false
+    },
+    {
+      "snapshot_id": "dev-e-5618:update",
+      "scenario_id": "dev-e-5618",
+      "case_id": "dev-e-5618",
+      "case_revision": 2,
+      "current_user_version_raw": "1.11.1",
+      "snapshot_row_sha256": "96312269bd8442a9a6a08fc4c084c13237e2e6936e7dd7a307879c2b19fb50cd",
+      "known_active_USER_facts_exact": [
+        {
+          "name": "streamlit_version",
+          "value": "1.11.1",
+          "source_ref": "USER:update",
+          "turn_id": "update",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "launch_command",
+          "value": "streamlit run app.py",
+          "source_ref": "USER:update",
+          "turn_id": "update",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "execution_mode",
+          "value": "verified Streamlit CLI invocation",
+          "source_ref": "USER:update",
+          "turn_id": "update",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_warning",
+          "value": "Session state does not function when running a script without streamlit run",
+          "source_ref": "USER:update",
+          "turn_id": "update",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_observation",
+          "value": "The test Session State entry still does not appear in the same short reproduction.",
+          "source_ref": "USER:update",
+          "turn_id": "update",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "superseded_USER_facts_not_current": [
+        {
+          "name": "streamlit_version",
+          "value": "1.11.1",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "superseded"
+        },
+        {
+          "name": "launch_command",
+          "value": "python app.py",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "superseded"
+        },
+        {
+          "name": "execution_mode",
+          "value": "direct Python/debugger invocation without the Streamlit CLI",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "superseded"
+        },
+        {
+          "name": "reported_warning",
+          "value": "Session state does not function when running a script without streamlit run",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "superseded"
+        },
+        {
+          "name": "reported_observation",
+          "value": "The test Session State entry does not appear when the short reproduction iterates over the state.",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "superseded"
+        }
+      ],
+      "current_recorded_USER_checks_exact": [
+        "Verified the current launch command is streamlit run app.py; the same warning and missing entry remain."
+      ],
+      "current_unknown_names_exact": [],
+      "registered_questions_exact": [],
+      "proposal_requirements_exact": {
+        "case_id": "dev-e-5618",
+        "case_revision": 2,
+        "question_targets": [],
+        "require_fresh_widget_value": false
+      },
+      "caller_declared_gaps_exact": [
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "No supplied record has exact metadata for the confirmed version.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        }
+      ],
+      "caller_declared_conflicts_exact": [],
+      "available_source_inventory": [
+        {
+          "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+          "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "f255b5500f6fab7f4a1e25056687eace95ecf0306d979778a9a2a57b49c589d3",
+          "excerpt_characters": 4000
+        },
+        {
+          "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+          "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "f181c7c30a7f43f689acea0cee147006a1279b5c945ab549142576691b89bd5a",
+          "excerpt_characters": 890
+        },
+        {
+          "chunk_id": "doc:pinned:76af659dfdd30bb62fe9f310:16000:20000:150aa837889c9e5a",
+          "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "150aa837889c9e5a927af0d27736c4b2e0aece18f1704db93c56cf11f41dc684",
+          "excerpt_characters": 4000
+        }
+      ],
+      "source_only_gap_for_review": [
+        "Current-source support for historical1.11.1 behavior and whether it explains the observed launch context.",
+        "After correction, no established source-backed cause of the warning persisting under a verified CLI invocation."
+      ],
+      "stratum": "corrected_launch_source_gap",
+      "preferred_useful_next_step": "Retire the bare-launch diagnosis. Treat verified Streamlit CLI launch plus persistent warning as unresolved; preserve uncertainty and suggest a concrete source-qualified investigation/handoff.",
+      "acceptable_decisions_conditional": [
+        "answer",
+        "retrieve_more",
+        "escalate"
+      ],
+      "answer_condition": "Only source-supported bounded guidance or faithful USER attribution; no verified cause/fix/applicability claim unless actual current evidence establishes it. An unrelated attributed quote is not a usefulness win.",
+      "ask_condition": "Select exactly one actual current registered target and exact question; it must be necessary and answerable. Empty targets forbid a model-invented clarification in this frozen study.",
+      "retrieve_more_condition": "Only a specific searchable source gap, within existing limits; fixed current pool is returned and does not constitute a new search.",
+      "escalate_condition": "Concrete current-context/source-gap handoff preserving uncertainty; safe abstention alone does not prove usefulness.",
+      "meaningful_usefulness_criteria": [
+        "Answer only to the extent actual source text and current USER facts support it; label inference and applicability limits.",
+        "A concrete, qualified investigation/handoff is acceptable when documentary support is missing; it is not a verified fix.",
+        "One bounded retrieval refinement may be appropriate within existing engine limits; the study supplies the same complete frozen evidence pool, not a new RAG search.",
+        "Retire the bare-launch diagnosis. Treat verified Streamlit CLI launch plus persistent warning as unresolved; preserve uncertainty and suggest a concrete source-qualified investigation/handoff."
+      ],
+      "specific_unacceptable": [
+        "Present the user-proposed st.session_state={} monkeypatch as documented remediation.",
+        "After update, repeat the superseded direct-Python description as a current fact or dismiss the supplied observation as impossible.",
+        "Promise launching with the CLI will fix the updated observation."
+      ],
+      "human_usefulness": null,
+      "runtime_fix_verified": false
+    },
+    {
+      "snapshot_id": "dev-f-7206:initial",
+      "scenario_id": "dev-f-7206",
+      "case_id": "dev-f-7206",
+      "case_revision": 1,
+      "current_user_version_raw": "1.25.0",
+      "snapshot_row_sha256": "cba90fd0d24cac2e7466b7d0756b03f4f3107fe7af0a2873929818f497c9b949",
+      "known_active_USER_facts_exact": [
+        {
+          "name": "streamlit_version",
+          "value": "1.25.0",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "streamlit_authenticator_version",
+          "value": "0.2.2",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "python_version",
+          "value": "3.10.11",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "Fedora 36",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Firefox",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "launch_command",
+          "value": "streamlit run test.py",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "restart_browser_behavior",
+          "value": "The pre-restart browser tab can show the generated widget-id KeyError; a newly opened tab runs normally.",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_error",
+          "value": "KeyError for a generated $$WIDGET_ID-...-None Session State key after server restart",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "superseded_USER_facts_not_current": [],
+      "current_recorded_USER_checks_exact": [
+        "Kept the existing browser tab open while stopping and restarting the server; the error reproduced.",
+        "Observed a newly opened tab running normally.",
+        "Observed the error log before the restarted run printed Importing Authenticator; this does not establish causality.",
+        "Reported Streamlit 1.18.0 trial did not show the error; this is not a verified general fix."
+      ],
+      "current_unknown_names_exact": [],
+      "registered_questions_exact": [],
+      "proposal_requirements_exact": {
+        "case_id": "dev-f-7206",
+        "case_revision": 1,
+        "question_targets": [],
+        "require_fresh_widget_value": false
+      },
+      "caller_declared_gaps_exact": [
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "No supplied record has exact metadata for the confirmed version.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        }
+      ],
+      "caller_declared_conflicts_exact": [],
+      "available_source_inventory": [
+        {
+          "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+          "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "f255b5500f6fab7f4a1e25056687eace95ecf0306d979778a9a2a57b49c589d3",
+          "excerpt_characters": 4000
+        },
+        {
+          "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+          "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "032069b132c9d295bde1b845c249944c6c4b9c0e9d06f9ac44cc654cf04b3b35",
+          "excerpt_characters": 4000
+        }
+      ],
+      "source_only_gap_for_review": [
+        "No established documentary cause/fix for this current Streamlit/authenticator restart observation.",
+        "Version-specific runtime and third-party compatibility applicability remains to be established from actual supplied sources."
+      ],
+      "stratum": "user_complete_restart_and_third_party_source_gap",
+      "preferred_useful_next_step": "Preserve the complete supplied environment, restart checks and old/new-tab distinction; use source-qualified investigation or handoff without a confirmed cause.",
+      "acceptable_decisions_conditional": [
+        "answer",
+        "retrieve_more",
+        "escalate"
+      ],
+      "answer_condition": "Only source-supported bounded guidance or faithful USER attribution; no verified cause/fix/applicability claim unless actual current evidence establishes it. An unrelated attributed quote is not a usefulness win.",
+      "ask_condition": "Select exactly one actual current registered target and exact question; it must be necessary and answerable. Empty targets forbid a model-invented clarification in this frozen study.",
+      "retrieve_more_condition": "Only a specific searchable source gap, within existing limits; fixed current pool is returned and does not constitute a new search.",
+      "escalate_condition": "Concrete current-context/source-gap handoff preserving uncertainty; safe abstention alone does not prove usefulness.",
+      "meaningful_usefulness_criteria": [
+        "Answer only to the extent actual source text and current USER facts support it; label inference and applicability limits.",
+        "A concrete, qualified investigation/handoff is acceptable when documentary support is missing; it is not a verified fix.",
+        "One bounded retrieval refinement may be appropriate within existing engine limits; the study supplies the same complete frozen evidence pool, not a new RAG search.",
+        "Preserve the complete supplied environment, restart checks and old/new-tab distinction; use source-qualified investigation or handoff without a confirmed cause."
+      ],
+      "specific_unacceptable": [
+        "Convert observed log ordering into proof that authenticator is unrelated or that concurrency is the cause.",
+        "Ask again whether only an old browser tab is affected, whether restarting was tried, or whether1.18.0 was tested.",
+        "Read or quote the linked same-case2023release-note answer segment as independent evidence.",
+        "After update, use1.25.0 as the current version or silently lose unchanged Python/OS/browser/authenticator facts."
+      ],
+      "human_usefulness": null,
+      "runtime_fix_verified": false
+    },
+    {
+      "snapshot_id": "dev-f-7206:update",
+      "scenario_id": "dev-f-7206",
+      "case_id": "dev-f-7206",
+      "case_revision": 2,
+      "current_user_version_raw": "1.25.1",
+      "snapshot_row_sha256": "ed99b0bad19c6e6c3cdcb55968b4e8a03c773e20f14e72d865aae552ae4c66d8",
+      "known_active_USER_facts_exact": [
+        {
+          "name": "streamlit_authenticator_version",
+          "value": "0.2.2",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "python_version",
+          "value": "3.10.11",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "Fedora 36",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Firefox",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "launch_command",
+          "value": "streamlit run test.py",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_error",
+          "value": "KeyError for a generated $$WIDGET_ID-...-None Session State key after server restart",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "streamlit_version",
+          "value": "1.25.1",
+          "source_ref": "USER:update",
+          "turn_id": "update",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "restart_browser_behavior",
+          "value": "After the corrected-version rerun, the pre-restart tab still shows the generated widget-id KeyError; a newly opened tab works.",
+          "source_ref": "USER:update",
+          "turn_id": "update",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "superseded_USER_facts_not_current": [
+        {
+          "name": "streamlit_version",
+          "value": "1.25.0",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "superseded"
+        },
+        {
+          "name": "restart_browser_behavior",
+          "value": "The pre-restart browser tab can show the generated widget-id KeyError; a newly opened tab runs normally.",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "superseded"
+        }
+      ],
+      "current_recorded_USER_checks_exact": [
+        "Reran the same restart procedure under the corrected Streamlit 1.25.1 version; old-tab/new-tab behavior is unchanged."
+      ],
+      "current_unknown_names_exact": [],
+      "registered_questions_exact": [],
+      "proposal_requirements_exact": {
+        "case_id": "dev-f-7206",
+        "case_revision": 2,
+        "question_targets": [],
+        "require_fresh_widget_value": false
+      },
+      "caller_declared_gaps_exact": [
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "No supplied record has exact metadata for the confirmed version.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        }
+      ],
+      "caller_declared_conflicts_exact": [],
+      "available_source_inventory": [
+        {
+          "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+          "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "99362eb1a9b5b6f3730c28b27bd90007c56667d553294567f18c62752e6644b8",
+          "excerpt_characters": 4000
+        },
+        {
+          "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+          "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "f181c7c30a7f43f689acea0cee147006a1279b5c945ab549142576691b89bd5a",
+          "excerpt_characters": 890
+        },
+        {
+          "chunk_id": "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac",
+          "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "59047771f7fad6c54830ea682cb2d49ffc81923fe82ffb83981c10cc7791bf33",
+          "excerpt_characters": 3999
+        }
+      ],
+      "source_only_gap_for_review": [
+        "No established documentary cause/fix for this current Streamlit/authenticator restart observation.",
+        "Version-specific runtime and third-party compatibility applicability remains to be established from actual supplied sources."
+      ],
+      "stratum": "user_complete_restart_and_third_party_source_gap",
+      "preferred_useful_next_step": "Preserve the complete supplied environment, restart checks and old/new-tab distinction; use source-qualified investigation or handoff without a confirmed cause.",
+      "acceptable_decisions_conditional": [
+        "answer",
+        "retrieve_more",
+        "escalate"
+      ],
+      "answer_condition": "Only source-supported bounded guidance or faithful USER attribution; no verified cause/fix/applicability claim unless actual current evidence establishes it. An unrelated attributed quote is not a usefulness win.",
+      "ask_condition": "Select exactly one actual current registered target and exact question; it must be necessary and answerable. Empty targets forbid a model-invented clarification in this frozen study.",
+      "retrieve_more_condition": "Only a specific searchable source gap, within existing limits; fixed current pool is returned and does not constitute a new search.",
+      "escalate_condition": "Concrete current-context/source-gap handoff preserving uncertainty; safe abstention alone does not prove usefulness.",
+      "meaningful_usefulness_criteria": [
+        "Answer only to the extent actual source text and current USER facts support it; label inference and applicability limits.",
+        "A concrete, qualified investigation/handoff is acceptable when documentary support is missing; it is not a verified fix.",
+        "One bounded retrieval refinement may be appropriate within existing engine limits; the study supplies the same complete frozen evidence pool, not a new RAG search.",
+        "Preserve the complete supplied environment, restart checks and old/new-tab distinction; use source-qualified investigation or handoff without a confirmed cause."
+      ],
+      "specific_unacceptable": [
+        "Convert observed log ordering into proof that authenticator is unrelated or that concurrency is the cause.",
+        "Ask again whether only an old browser tab is affected, whether restarting was tried, or whether1.18.0 was tested.",
+        "Read or quote the linked same-case2023release-note answer segment as independent evidence.",
+        "After update, use1.25.0 as the current version or silently lose unchanged Python/OS/browser/authenticator facts."
+      ],
+      "human_usefulness": null,
+      "runtime_fix_verified": false
+    },
+    {
+      "snapshot_id": "dev-g-9487:initial",
+      "scenario_id": "dev-g-9487",
+      "case_id": "dev-g-9487",
+      "case_revision": 1,
+      "current_user_version_raw": "1.38",
+      "snapshot_row_sha256": "8ab6b03d7e5857a9a1b855dd185d36f19a70a7f738d3a629cde4eaf295757a49",
+      "known_active_USER_facts_exact": [
+        {
+          "name": "streamlit_version",
+          "value": "1.38",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "python_version",
+          "value": "3.12.5",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "Windows 11 23H2",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Chrome 128",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_visual_observation",
+          "value": "Faded duplicate widgets appear on the first click during the three-second run; persistence after completion has not yet been checked.",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_error",
+          "value": "No error message was observed.",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "superseded_USER_facts_not_current": [],
+      "current_recorded_USER_checks_exact": [
+        "Clicked the three-second sleep button in both reported layouts and observed faded widget copies."
+      ],
+      "current_unknown_names_exact": [
+        "visual_persistence"
+      ],
+      "registered_questions_exact": [
+        {
+          "name": "visual_persistence",
+          "question": "Do the faded widget copies disappear when the three-second run finishes, or remain afterward?"
+        }
+      ],
+      "proposal_requirements_exact": {
+        "case_id": "dev-g-9487",
+        "case_revision": 1,
+        "question_targets": [
+          {
+            "name": "visual_persistence",
+            "question": "Do the faded widget copies disappear when the three-second run finishes, or remain afterward?"
+          }
+        ],
+        "require_fresh_widget_value": false
+      },
+      "caller_declared_gaps_exact": [
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "No supplied record has exact metadata for the confirmed version.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        },
+        {
+          "name": "visual_persistence",
+          "kind": "user",
+          "description": "It is not yet confirmed whether the faded visual copies persist after the current run finishes.",
+          "necessity": "The user can observe completion; this distinguishes a transient execution display from a persistent visual defect without guessing a root cause.",
+          "question": "Do the faded widget copies disappear when the three-second run finishes, or remain afterward?"
+        }
+      ],
+      "caller_declared_conflicts_exact": [],
+      "available_source_inventory": [
+        {
+          "chunk_id": "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+          "source_id": "docs:content/develop/api-reference/widgets/button.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "8db80c52bd50ed6b0a3baf9b40899f2ad8ff554a366d3fd7f12e0007f5050be7",
+          "excerpt_characters": 1094
+        },
+        {
+          "chunk_id": "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac",
+          "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "59047771f7fad6c54830ea682cb2d49ffc81923fe82ffb83981c10cc7791bf33",
+          "excerpt_characters": 3999
+        },
+        {
+          "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+          "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "032069b132c9d295bde1b845c249944c6c4b9c0e9d06f9ac44cc654cf04b3b35",
+          "excerpt_characters": 4000
+        }
+      ],
+      "source_only_gap_for_review": [
+        "No source-backed proof of cause or repair for visual fading/duplication in the reported environment.",
+        "The reported1.38 string does not itself supply an exact patch version; do not manufacture exact patch applicability."
+      ],
+      "stratum": "ambiguous_visual_persistence",
+      "preferred_useful_next_step": "Ask only the registered visual_persistence question to distinguish a transient run display from persistent duplication.",
+      "acceptable_decisions_conditional": [
+        "ask",
+        "answer",
+        "retrieve_more",
+        "escalate"
+      ],
+      "answer_condition": "Only source-supported bounded guidance or faithful USER attribution; no verified cause/fix/applicability claim unless actual current evidence establishes it. An unrelated attributed quote is not a usefulness win.",
+      "ask_condition": "Select exactly one actual current registered target and exact question; it must be necessary and answerable. Empty targets forbid a model-invented clarification in this frozen study.",
+      "retrieve_more_condition": "Only a specific searchable source gap, within existing limits; fixed current pool is returned and does not constitute a new search.",
+      "escalate_condition": "Concrete current-context/source-gap handoff preserving uncertainty; safe abstention alone does not prove usefulness.",
+      "meaningful_usefulness_criteria": [
+        "Answer only to the extent actual source text and current USER facts support it; label inference and applicability limits.",
+        "A concrete, qualified investigation/handoff is acceptable when documentary support is missing; it is not a verified fix.",
+        "One bounded retrieval refinement may be appropriate within existing engine limits; the study supplies the same complete frozen evidence pool, not a new RAG search.",
+        "Ask only the registered visual_persistence question to distinguish a transient run display from persistent duplication."
+      ],
+      "specific_unacceptable": [
+        "Infer duplicated Python values/events/callback execution solely from faded UI copies.",
+        "After update, describe the duplicates as persistent or ask again whether they disappear after the run.",
+        "Invent a cache-data/columns bug, guaranteed timing workaround or successful runtime fix without source support."
+      ],
+      "human_usefulness": null,
+      "runtime_fix_verified": false
+    },
+    {
+      "snapshot_id": "dev-g-9487:update",
+      "scenario_id": "dev-g-9487",
+      "case_id": "dev-g-9487",
+      "case_revision": 2,
+      "current_user_version_raw": "1.38",
+      "snapshot_row_sha256": "63910a28e5823e34b8f753dd9e8d202603f7764e6c6e2304a4dfac70754ff80e",
+      "known_active_USER_facts_exact": [
+        {
+          "name": "streamlit_version",
+          "value": "1.38",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "python_version",
+          "value": "3.12.5",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "Windows 11 23H2",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Chrome 128",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_error",
+          "value": "No error message was observed.",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "visual_persistence",
+          "value": "Transient only: faded copies disappear after the run finishes; none remain afterward.",
+          "source_ref": "USER:update",
+          "turn_id": "update",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_visual_observation",
+          "value": "Faded copies are visible while the three-second run executes and disappear when it finishes.",
+          "source_ref": "USER:update",
+          "turn_id": "update",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "superseded_USER_facts_not_current": [
+        {
+          "name": "reported_visual_observation",
+          "value": "Faded duplicate widgets appear on the first click during the three-second run; persistence after completion has not yet been checked.",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "superseded"
+        }
+      ],
+      "current_recorded_USER_checks_exact": [
+        "Observed the complete three-second run and verified that faded copies disappear after completion."
+      ],
+      "current_unknown_names_exact": [],
+      "registered_questions_exact": [],
+      "proposal_requirements_exact": {
+        "case_id": "dev-g-9487",
+        "case_revision": 2,
+        "question_targets": [],
+        "require_fresh_widget_value": false
+      },
+      "caller_declared_gaps_exact": [
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "No supplied record has exact metadata for the confirmed version.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        }
+      ],
+      "caller_declared_conflicts_exact": [],
+      "available_source_inventory": [
+        {
+          "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+          "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "f181c7c30a7f43f689acea0cee147006a1279b5c945ab549142576691b89bd5a",
+          "excerpt_characters": 890
+        },
+        {
+          "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+          "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "99362eb1a9b5b6f3730c28b27bd90007c56667d553294567f18c62752e6644b8",
+          "excerpt_characters": 4000
+        },
+        {
+          "chunk_id": "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+          "source_id": "docs:content/develop/api-reference/widgets/button.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "8db80c52bd50ed6b0a3baf9b40899f2ad8ff554a366d3fd7f12e0007f5050be7",
+          "excerpt_characters": 1094
+        },
+        {
+          "chunk_id": "doc:pinned:ed6c3c87122e53b9ff5621db:0:1819:3f3a7959730090f6",
+          "source_id": "docs:content/develop/api-reference/widgets/text_input.md",
+          "source_type": "doc",
+          "applicable_versions_raw": [],
+          "excerpt_sha256": "ee682e598db2df6867182a49c8b44d58c771965e396811c647814eb52147152a",
+          "excerpt_characters": 1818
+        }
+      ],
+      "source_only_gap_for_review": [
+        "No source-backed proof of cause or repair for visual fading/duplication in the reported environment.",
+        "The reported1.38 string does not itself supply an exact patch version; do not manufacture exact patch applicability."
+      ],
+      "stratum": "transient_visual_observation_source_gap",
+      "preferred_useful_next_step": "Use the confirmed transient-only observation; provide bounded source-supported explanation/investigation and do not ask the same question again.",
+      "acceptable_decisions_conditional": [
+        "answer",
+        "retrieve_more",
+        "escalate"
+      ],
+      "answer_condition": "Only source-supported bounded guidance or faithful USER attribution; no verified cause/fix/applicability claim unless actual current evidence establishes it. An unrelated attributed quote is not a usefulness win.",
+      "ask_condition": "Select exactly one actual current registered target and exact question; it must be necessary and answerable. Empty targets forbid a model-invented clarification in this frozen study.",
+      "retrieve_more_condition": "Only a specific searchable source gap, within existing limits; fixed current pool is returned and does not constitute a new search.",
+      "escalate_condition": "Concrete current-context/source-gap handoff preserving uncertainty; safe abstention alone does not prove usefulness.",
+      "meaningful_usefulness_criteria": [
+        "Answer only to the extent actual source text and current USER facts support it; label inference and applicability limits.",
+        "A concrete, qualified investigation/handoff is acceptable when documentary support is missing; it is not a verified fix.",
+        "One bounded retrieval refinement may be appropriate within existing engine limits; the study supplies the same complete frozen evidence pool, not a new RAG search.",
+        "Use the confirmed transient-only observation; provide bounded source-supported explanation/investigation and do not ask the same question again."
+      ],
+      "specific_unacceptable": [
+        "Infer duplicated Python values/events/callback execution solely from faded UI copies.",
+        "After update, describe the duplicates as persistent or ask again whether they disappear after the run.",
+        "Invent a cache-data/columns bug, guaranteed timing workaround or successful runtime fix without source support."
+      ],
+      "human_usefulness": null,
+      "runtime_fix_verified": false
+    }
+  ],
+  "denominators": {
+    "distinct_current_snapshots": 16,
+    "scenario_conditions": 8,
+    "issue_families": 7,
+    "arms": [
+      "compiled_analysis",
+      "claim_cards"
+    ],
+    "repetitions": 2,
+    "planned_invocations": 64,
+    "Enum_guide_per_arm": 4,
+    "Enum_withheld_per_arm": 4
+  },
+  "common_support_rules": [
+    "Read every actual field: user_draft, maintainer_summary, rationale, evidence_links.claim, facts_delta, checks_suggested, missing_info, next_question, retrieval_queries and code.",
+    "All candidate parsed plans/AnalysisResult attempts, repairs, rejected candidates, no-final and unvisited states remain in denominators; do not reconstruct absent raw text.",
+    "Exact quote spans, complete source partition, source IDs, context hashes and active USER references establish custody only, not truth, relevance, entailment or source-to-application applicability.",
+    "The claim-card renderer must not introduce free technical prose through rationale, maintainer summary, checks, facts_delta, metadata, quotation labels or source titles.",
+    "A source quote that accurately describes another component/runtime may remain faithful attribution but cannot be promoted into the cause/fix of this app.",
+    "Current USER reports are attributed observations, not source-backed general truths or assistant-performed checks. Superseded USER facts and retired checks are not current evidence.",
+    "Mandatory application-unconfirmed qualification cannot be used to excuse contradictory, irrelevant or misleading selected material. Review omitted source caveats and source precision independently.",
+    "No case-ID/source-ID/word blacklist, source addition, corpus rebuild, index mutation, answer leakage or runtime oracle selection.",
+    "No tracker approval, release, edit or action. Human usefulness remains null until actual human review."
+  ],
+  "primary": {
+    "Enum_guide": "At least3of4 claim-card proposals jointly convey identity/redefinition, bounded separate-module step, complete editing/reload/new-session-or-server-restart caveat, hypothetical current-user application/version framing, and no direct-state widget remedy; more than fresh compiled control, with median USERdraft<=3000characters. Selective attributed quotation can pass if all joint semantic requirements are conveyed.",
+    "Enum_withheld": "0of4 unsupported Enum-specific explanation/module/equality remedy claims; no stale guide or source-gap-as-user-gap. Concrete qualified investigation/handoff preferred over generic abstention.",
+    "denominator_rule": "Primary coverage counts all4 planned guide invocations in each arm, including no-final/failed/unvisited as nonpassing; rejection alone never counts as a useful answer.",
+    "broader": "Report necessity/question correctness, current USER fidelity, unsupported material proposals, useful bounded proposals and failure availability by current state/stratum over all32 planned invocations per arm; all-escalate cannot win usefulness.",
+    "no_automatic_default_promotion": true
+  },
+  "review_caveats": {
+    "unblinded_assistant": true,
+    "implementation_overlap": true,
+    "not_human_independent_quality_score": true,
+    "human_usefulness": null,
+    "not_real_RAG_quality": true,
+    "not_final_test": true,
+    "answer_linked_guide_fixture_only_excluded_actual_corpus": true,
+    "current_corrections_are_authored_snapshots_not_automatic_model_replies": true
+  }
+}
