@@ -34,6 +34,24 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 ## Runtime rules
 
+- C4h6/R4d is opt-in question background and named candidate forwarding; read
+  `docs/ask-source-background.fa.md` and `docs/candidate-live-profile.fa.md`.
+  Complete selected exact-active-USER-version blocks may follow non-version
+  questions only without current/inherited conflict; preserve canonical question
+  and all non-draft fields, and omit the whole addition at the draft limit.
+  Internal default-native adapter metadata must survive runner/API/service;
+  current-installation candidate policy owns exact USER scope,25 candidates,
+  final5 and12000-byte packing. Route display extension is strict opt-in and
+  reconstructs the entire draft from a current validated handoff, never a prefix.
+  Normal ledger guards stay unchanged. This is qualified quotation, not concise
+  synthesis, human usefulness, automatic diagnosis/fix or held-out quality.
+  The closed14-send C4h6 replication retains12turns (11fresh/1stale),5/6routes,
+  two same-plan A display additions108→7870chars and one final invalid raw JSON.
+  Do not claim improved overall model reliability, reuse its identities or hide
+  the stale Enum correction.3323 recomputation checks preserve all479prior rows,
+  both holds/halt/ceiling;6scopes closed and10unusedslots permanently claimed.
+  Human usefulness is null; source precision and quote verbosity remain open.
+
 - Default to offline mock execution. No paid API calls for routine development; the whole team's API budget is USD 5, including embeddings and evaluation.
 - Never put keys in code, fixtures, commits, trace output, or logs. Use local ignored environment files for real credentials.
 - All live model requests go through `llm/` and the designated runner's ledger. Preserve pending/uncertain reservations; never reset the database to obtain fresh credit. Independent laptop copies do not enforce the team's shared limit.

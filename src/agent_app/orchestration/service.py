@@ -43,6 +43,7 @@ from agent_app.orchestration.handoff import (
 )
 from agent_app.orchestration.ports import CaseTracker, Reasoner, Retriever
 from agent_app.orchestration.retrieval_context import build_current_query
+from agent_app.orchestration.retrieval_profile import retrieval_profile_options
 from agent_app.orchestration.validation import detached_contract
 
 
@@ -52,6 +53,8 @@ class CoreAdapters:
 
     The service consumes the final grounded request, then invokes cleanup once
     before staging. Factories must clean up resources if allocation itself fails.
+    retrieval_profile is trusted internal metadata copied through API adapters;
+    its registered current-installation policy may override a comparison scope.
     """
 
     retriever: Retriever
@@ -59,6 +62,7 @@ class CoreAdapters:
     snapshot_id: str
     grounded_request_supplier: Callable[[], GroundedRequest | None] | None = None
     cleanup: Callable[[], None] | None = None
+    retrieval_profile: str = "native"
 
 
 type CoreAdapterFactory = Callable[[CaseState, str, str], CoreAdapters]
@@ -384,7 +388,10 @@ class CoreTurnService:
                     top_k=self.top_k,
                     current_case=current_case,
                     proposal_checks=self.proposal_checks,
-                    evidence_scope=self.evidence_scope,
+                    **(
+                        {"evidence_scope": self.evidence_scope}
+                        | retrieval_profile_options(ports.retrieval_profile, top_k=self.top_k)
+                    ),
                 )
             except Exception:
                 run_error = "AdapterSetupFailed"

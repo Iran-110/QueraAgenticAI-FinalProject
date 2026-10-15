@@ -23,6 +23,7 @@ from agent_app.llm.metis import request_id_for
 from agent_app.llm.pricing import get_price
 from agent_app.orchestration import SupportEngine
 from agent_app.orchestration.ports import ReasoningStopped
+from agent_app.orchestration.retrieval_profile import retrieval_profile_options
 from agent_app.reasoning.catalog import caller_catalog
 from agent_app.reasoning.grounding import GroundedReasoner, make_grounded_request
 from agent_app.testing.dev_three_model_probe import (
@@ -242,6 +243,19 @@ def run_quality_batch(
             raise DevProbeRejected()
         if type(job.get("repair_repeated_queries", False)) is not bool:
             raise DevProbeRejected()
+        if type(job.get("ask_source_background", False)) is not bool:
+            raise DevProbeRejected()
+        try:
+            named_policy = retrieval_profile_options(job.get("retrieval_profile", "native"))
+        except ValueError:
+            raise DevProbeRejected() from None
+        if named_policy and not (
+            multiplier == 5
+            and evidence_budget == 12000
+            and job.get("repair_repeated_queries") is True
+            and job.get("retrieval_selection_policy") == "query_relevance_v1"
+        ):
+            raise DevProbeRejected()
         reserve = job.get("input_token_reserve", INPUT_PROFILES[job["case_id"]])
         if (
             type(reserve) is not int
@@ -328,10 +342,20 @@ def run_quality_batch(
                         request_factory=request_factory,
                         source_gap_handoff=True,
                         source_gap_investigation=True,
+                        **(
+                            {"ask_source_background": True}
+                            if job.get("ask_source_background", False)
+                            else {}
+                        ),
                     ),
                     snapshot_id=snapshot_id,
                     grounded_request_supplier=planner.supplied_request,
                     cleanup=gateway.close,
+                    **(
+                        {"retrieval_profile": job["retrieval_profile"]}
+                        if job.get("retrieval_profile", "native") != "native"
+                        else {}
+                    ),
                 )
 
             case_run = CaseRun(
@@ -340,11 +364,23 @@ def run_quality_batch(
                 PreDispatchUsage(ledger, attempts, counted.records),
                 mode="live",
                 invocation_id=invocation(protocol, job),
-                route_graph=RouteGraph.from_fixture(fixture.data),
+                route_graph=RouteGraph.from_fixture(
+                    fixture.data,
+                    **(
+                        {"allow_source_background": True}
+                        if job.get("ask_source_background", False)
+                        else {}
+                    ),
+                ),
             )
             try:
 
                 def scoped_engine(*args, job=job, **kwargs):
+                    named_policy = retrieval_profile_options(job.get("retrieval_profile", "native"))
+                    if named_policy:
+                        if any(kwargs.get(key) != value for key, value in named_policy.items()):
+                            raise DevProbeRejected()
+                        return SupportEngine(*args, **kwargs)
                     return SupportEngine(
                         *args,
                         **kwargs,

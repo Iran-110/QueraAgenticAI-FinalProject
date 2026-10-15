@@ -1,0 +1,1543 @@
+{
+  "schema_version": 1,
+  "review_id": "core-ask-background-assistant-semantic-audit-v1",
+  "receipt_sha256": "49fbc22af9e0880354d98280c4815e5911ff7672d7a6493398c9f675f4d10c94",
+  "workbench_file_sha256": "b9fab9fffa9834faf12f7e4efda0cb8ca5633fb3ec21c2738b0a9dd38572533f",
+  "workbench_sha256": "68a4fde6f23c484004707b52770b28a4288b15468db90de9a39880d01c5c9f59",
+  "paired_render_file_sha256": "14345d9cb8318dcb6bcceec24c6734032cb92b97f03c1345b66c2369fbca9380",
+  "paid_source_commit": "7c476c294acd359045cb571b1a273afd31ab0aab",
+  "reviewer_kind": "assistant",
+  "reviewer_implementation_overlap": true,
+  "review_process": "Unblinded assistant implemented grounding.py and its tests, then read actual current inputs, complete selected excerpts and every original/released surface; mechanical reconstruction is not independent semantic calibration.",
+  "human_reviewed": false,
+  "human_usefulness": null,
+  "held_out_test": false,
+  "general_quality_claim": false,
+  "model_quality_causality_claim": false,
+  "paired_same_plan_display_effect_only": true,
+  "observations": {
+    "fresh_proposal": 11,
+    "fresh_surfaces_user_draft": 11,
+    "fresh_surfaces_maintainer_summary": 11,
+    "fresh_surfaces_rationale": 11,
+    "active_USER_fact_values_checked": 58,
+    "complete_selected_excerpts_checked": 19,
+    "fresh_evidence_link_surfaces": 19,
+    "unconfirmed_selected_references": 13,
+    "released_original_drafts": 9,
+    "fresh_released_surface_texts": 9,
+    "necessary_answerable_USER_questions": 6,
+    "fresh_next_question_surfaces": 6,
+    "fresh_missing_info_surfaces": 6,
+    "exact_metadata_match_selected_references": 6,
+    "A_partial_background_delivered": 2,
+    "B_partial_guidance_delivered": 2,
+    "stale_observation": 1
+  },
+  "all12_rows": [
+    {
+      "item_id": "9bc7841f4516502c1dae95ad",
+      "job_id": "r1:dev-case-a:candidate_profile",
+      "case_id": "dev-case-a",
+      "round": 1,
+      "turn_id": "initial",
+      "status": "fresh_proposal",
+      "item_binding_sha256": "24ce48ea7a0108f88e3df1822af50a55c43b1992de04deeeffb5bd65dd6a6472",
+      "human_usefulness": null,
+      "supported_diagnosis_or_fix": false,
+      "unsupported_material_claim_found": false,
+      "edited_proposal_present": false,
+      "released_count": 1,
+      "actual_attempts": 1,
+      "actual_latest_active_USER_versions": [],
+      "same_plan_OFF_ON_rendering": true,
+      "decision": "ask",
+      "question": "Which Streamlit version is installed in the affected environment?",
+      "selected_sources": [
+        {
+          "chunk_id": "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac",
+          "content_sha256": "4c2f28ece4c360cb55a2548e4ced7a396af8821f3596e139e21d71f234668cc9",
+          "version_scope": "unconfirmed",
+          "excerpt_sha256": "59047771f7fad6c54830ea682cb2d49ffc81923fe82ffb83981c10cc7791bf33",
+          "complete_in_summary": true,
+          "complete_in_USER_draft": false
+        },
+        {
+          "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+          "content_sha256": "1f9efadeb74763026751a91edab89ef73b8fce73024c9264b7d734c5c14b68f0",
+          "version_scope": "unconfirmed",
+          "excerpt_sha256": "032069b132c9d295bde1b845c249944c6c4b9c0e9d06f9ac44cc654cf04b3b35",
+          "complete_in_summary": true,
+          "complete_in_USER_draft": false
+        }
+      ],
+      "handoff_sha256": "cd4219f0e37afcc1e5bc21732d8a8f166becbcf29e68703c8c0464985e3966d2",
+      "OFF_draft_chars": 65,
+      "ON_draft_chars": 65,
+      "new_background_delivered": false,
+      "partial_topical_guidance_delivered": false,
+      "guidance_bindings": [],
+      "question_necessary_answerable_nonrepeating": true,
+      "assessment": "Installed Streamlit version is genuinely unknown. Exact canonical version question is necessary and USER-answerable. Unversioned widget/state selections remain in maintainer context only. No user-facing technical guidance or invented release/cause/fix."
+    },
+    {
+      "item_id": "c37a3aede38185156869e104",
+      "job_id": "r1:dev-case-a:candidate_profile",
+      "case_id": "dev-case-a",
+      "round": 1,
+      "turn_id": "version",
+      "status": "fresh_proposal",
+      "item_binding_sha256": "442482b0e4af451c11b0420ba9023eb3b0847e17eb387e45c4c568f1d83220d0",
+      "human_usefulness": null,
+      "supported_diagnosis_or_fix": false,
+      "unsupported_material_claim_found": false,
+      "edited_proposal_present": false,
+      "released_count": 1,
+      "actual_attempts": 1,
+      "actual_latest_active_USER_versions": [
+        "1.50.0"
+      ],
+      "same_plan_OFF_ON_rendering": true,
+      "decision": "ask",
+      "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?",
+      "selected_sources": [
+        {
+          "chunk_id": "doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932",
+          "content_sha256": "f34d72fe228e007d6c486ca2339366895a64528b17d92bbb134f2a62ac968d36",
+          "version_scope": "exact_metadata_match",
+          "excerpt_sha256": "2d237d33c27fa367c8bac19ba308ac7e8a40a1bcd92a1351d9606b50898e0ee5",
+          "complete_in_summary": true,
+          "complete_in_USER_draft": true
+        },
+        {
+          "chunk_id": "doc:1.50.0:c82397cf83d9653afc3157df:0:4000:592d59c88ffa9fd9",
+          "content_sha256": "d6bc6ca3095c3175ee8f1126ae15e483248d354d048bc1f58ac995677cb27501",
+          "version_scope": "exact_metadata_match",
+          "excerpt_sha256": "592d59c88ffa9fd9d221048c1d7a863a642961a5e552dea6fb575ebc8cabef0a",
+          "complete_in_summary": true,
+          "complete_in_USER_draft": true
+        }
+      ],
+      "handoff_sha256": "125eea067804b3dda91706ff67799df9e99b2d327e4eccaa07073cbeeaeeddf8",
+      "OFF_draft_chars": 108,
+      "ON_draft_chars": 7870,
+      "new_background_delivered": true,
+      "partial_topical_guidance_delivered": true,
+      "guidance_bindings": [
+        {
+          "claim": "For an input widget created inside a fragment, the documented fragment rerun behavior applies; configured run_every can also rerun the fragment.",
+          "qualification": "Supported partial API background under exact supplied version metadata; no source authenticity, root cause, successful fix or resolved case is established.",
+          "chunk_id": "doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932",
+          "source_id": "docstring:1.50.0:streamlit.fragment",
+          "content_sha256": "f34d72fe228e007d6c486ca2339366895a64528b17d92bbb134f2a62ac968d36",
+          "excerpt_sha256": "2d237d33c27fa367c8bac19ba308ac7e8a40a1bcd92a1351d9606b50898e0ee5",
+          "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.50.0"
+          ],
+          "supplied_source_span": "chars:0:2352;unit:unicode_codepoint",
+          "quote_span_unit": "unicode_codepoint_in_current_normalized_excerpt",
+          "start": 139,
+          "end": 434,
+          "text": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app. If\nrun_every is set, Streamlit will also rerun the fragment at the\nspecified interval while the session is active, even if the user is not\ninteracting with your app.",
+          "complete_rendered_block_in_user_draft": true,
+          "complete_rendered_block_sha256": "d21e2e83411527ed012d18d4b351ecb708dd3b47949c5e0e37a2b0610335f00f",
+          "complete_rendered_block_start": 331,
+          "complete_rendered_block_end": 3222
+        },
+        {
+          "claim": "The1.50 multiselect API supplies an optional on_change callback when its value changes.",
+          "qualification": "Supported partial API background under exact supplied version metadata; no source authenticity, root cause, successful fix or resolved case is established.",
+          "chunk_id": "doc:1.50.0:c82397cf83d9653afc3157df:0:4000:592d59c88ffa9fd9",
+          "source_id": "docstring:1.50.0:streamlit.multiselect",
+          "content_sha256": "d6bc6ca3095c3175ee8f1126ae15e483248d354d048bc1f58ac995677cb27501",
+          "excerpt_sha256": "592d59c88ffa9fd9d221048c1d7a863a642961a5e552dea6fb575ebc8cabef0a",
+          "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.50.0"
+          ],
+          "supplied_source_span": "chars:0:4000;unit:unicode_codepoint",
+          "quote_span_unit": "unicode_codepoint_in_current_normalized_excerpt",
+          "start": 2323,
+          "end": 2419,
+          "text": "on_change: callable; default=None\nAn optional callback invoked when this widget's value changes.",
+          "complete_rendered_block_in_user_draft": true,
+          "complete_rendered_block_sha256": "84d5f74d328376d5eb3880a8bc581b3e0c4c35f315cfa01015948d7f1bf4d006",
+          "complete_rendered_block_start": 3224,
+          "complete_rendered_block_end": 7870
+        }
+      ],
+      "question_necessary_answerable_nonrepeating": true,
+      "assessment": "The USER still needs to provide the failing parent callback/state-update path; the supplied reduced example works. Both exact1.50 sources are selected and completely delivered after the same question. Fragment rerun behavior and the optional multiselect callback are relevant partial background. Nothing establishes the reported reset cause, key-only identity transition or a successful fix.",
+      "verbosity_risk": "A108-character question becomes7870characters of qualified full quotations, including unrelated parameters and an inherited index chunk ending mid-sentence. No new runtime/source clipping occurred; human usefulness/readability is unscored."
+    },
+    {
+      "item_id": "3f63ef8dd9345a7a10fb5d20",
+      "job_id": "r1:dev-case-b:candidate_profile",
+      "case_id": "dev-case-b",
+      "round": 1,
+      "turn_id": "initial",
+      "status": "fresh_proposal",
+      "item_binding_sha256": "bb224554ecee8127dd363593c0f0239efab91f3daacd8961ccac7412ea9e417c",
+      "human_usefulness": null,
+      "supported_diagnosis_or_fix": false,
+      "unsupported_material_claim_found": false,
+      "edited_proposal_present": false,
+      "released_count": 1,
+      "actual_attempts": 1,
+      "actual_latest_active_USER_versions": [],
+      "same_plan_OFF_ON_rendering": true,
+      "decision": "ask",
+      "question": "Which Streamlit version is installed in the affected environment?",
+      "selected_sources": [
+        {
+          "chunk_id": "doc:pinned:ed6c3c87122e53b9ff5621db:0:1819:3f3a7959730090f6",
+          "content_sha256": "d9860e798c004aca5de633fdd40ed0d6a908ad7c1423f23967821c78858b6823",
+          "version_scope": "unconfirmed",
+          "excerpt_sha256": "ee682e598db2df6867182a49c8b44d58c771965e396811c647814eb52147152a",
+          "complete_in_summary": true,
+          "complete_in_USER_draft": false
+        }
+      ],
+      "handoff_sha256": "2c10673d472fa86ea6f2323b30e775af7864a19d5555341a178acd537d0cd0cb",
+      "OFF_draft_chars": 65,
+      "ON_draft_chars": 65,
+      "new_background_delivered": false,
+      "partial_topical_guidance_delivered": false,
+      "guidance_bindings": [],
+      "question_necessary_answerable_nonrepeating": true,
+      "assessment": "Installed Streamlit version is unknown and the canonical version question is necessary. No background is exposed before that answer. Initial summary source selection includes off-topic st.text_input inR1 and low-value button/state stubs inR2; selection precision is not established by the correct question.",
+      "selected_off_topic_source": "docs:content/develop/api-reference/widgets/text_input.md"
+    },
+    {
+      "item_id": "2f27f41d83ce3ad4ffb955f8",
+      "job_id": "r1:dev-case-b:candidate_profile",
+      "case_id": "dev-case-b",
+      "round": 1,
+      "turn_id": "version",
+      "status": "fresh_proposal",
+      "item_binding_sha256": "7e74f777ef6c6f8320ca391558b19f3b1ca41815de2070ce1e91fce2ffb1af16",
+      "human_usefulness": null,
+      "supported_diagnosis_or_fix": false,
+      "unsupported_material_claim_found": false,
+      "edited_proposal_present": false,
+      "released_count": 1,
+      "actual_attempts": 1,
+      "actual_latest_active_USER_versions": [
+        "1.39.0"
+      ],
+      "same_plan_OFF_ON_rendering": true,
+      "decision": "answer",
+      "question": null,
+      "selected_sources": [
+        {
+          "chunk_id": "doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a",
+          "content_sha256": "16aa13d3117d330630bec0c9fdcab5b65b68fdaf181e19e7808d62254d33e91c",
+          "version_scope": "exact_metadata_match",
+          "excerpt_sha256": "3e4ee8f16a4363b8e204ecf26a34183cf5c92cd5d8b98fc70e35b42d63725012",
+          "complete_in_summary": true,
+          "complete_in_USER_draft": true
+        },
+        {
+          "chunk_id": "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+          "content_sha256": "7f160477362e3068ff9cda925247c5f1b83f6ee19100a9786679351c82ca4968",
+          "version_scope": "unconfirmed",
+          "excerpt_sha256": "8db80c52bd50ed6b0a3baf9b40899f2ad8ff554a366d3fd7f12e0007f5050be7",
+          "complete_in_summary": true,
+          "complete_in_USER_draft": true
+        }
+      ],
+      "handoff_sha256": "3efbb16cf03948e4511bb06e2f08b0afb15388c0a4d07f11834fe65953074710",
+      "OFF_draft_chars": 4999,
+      "ON_draft_chars": 4999,
+      "new_background_delivered": false,
+      "partial_topical_guidance_delivered": true,
+      "guidance_bindings": [
+        {
+          "claim": "Supplied1.39 button documentation specifies icon=None, a single-character emoji or a rounded Material Symbols icon string; emoji short codes are not supported.",
+          "qualification": "Supported partial API background under exact supplied version metadata; no source authenticity, root cause, successful fix or resolved case is established.",
+          "chunk_id": "doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a",
+          "source_id": "docstring:1.39.0:streamlit.button",
+          "content_sha256": "16aa13d3117d330630bec0c9fdcab5b65b68fdaf181e19e7808d62254d33e91c",
+          "excerpt_sha256": "3e4ee8f16a4363b8e204ecf26a34183cf5c92cd5d8b98fc70e35b42d63725012",
+          "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.39.0"
+          ],
+          "supplied_source_span": "chars:0:2698;unit:unicode_codepoint",
+          "quote_span_unit": "unicode_codepoint_in_current_normalized_excerpt",
+          "start": 1486,
+          "end": 2082,
+          "text": "icon: str or None; default=None\nAn optional emoji or icon to display next to the button label. If icon\nis None (default), no icon is displayed. If icon is a\nstring, the following options are valid:\n\nA single-character emoji. For example, you can set icon=\"🚨\"\nor icon=\"🔥\". Emoji short codes are not supported.\n\nAn icon from the Material Symbols library (rounded style) in the\nformat \":material/icon_name:\" where \"icon_name\" is the name\nof the icon in snake case.\n\nFor example, icon=\":material/thumb_up:\" will display the\nThumb Up icon. Find additional icons in the Material Symbols \nfont library.\n",
+          "complete_rendered_block_in_user_draft": true,
+          "complete_rendered_block_sha256": "e0dd83b7ec92f466158a0a56ef3240383ac8d2b4c3e90eefbe9b27c82cb9e0d7",
+          "complete_rendered_block_start": 155,
+          "complete_rendered_block_end": 3434
+        }
+      ],
+      "question_necessary_answerable_nonrepeating": null,
+      "assessment": "Both original and released drafts carry the complete button1.39 icon input contract, unchanged by OFF/ON rendering. Partial button guidance only: st.warning, custom image future delivery and an executed/successful change are not established. A nearly5000-character quote-based answer still lacks a concise direct explanation."
+    },
+    {
+      "item_id": "5cf4fee60a2101dff52660f9",
+      "job_id": "r1:dev-case-c:candidate_profile",
+      "case_id": "dev-case-c",
+      "round": 1,
+      "turn_id": "initial",
+      "status": "fresh_proposal",
+      "item_binding_sha256": "438a7a2ad2cbf1a4c369a139fc3d174798f8b8461b2908a270469043f6e04103",
+      "human_usefulness": null,
+      "supported_diagnosis_or_fix": false,
+      "unsupported_material_claim_found": false,
+      "edited_proposal_present": false,
+      "released_count": 0,
+      "actual_attempts": 1,
+      "actual_latest_active_USER_versions": [
+        "1.31.0"
+      ],
+      "same_plan_OFF_ON_rendering": true,
+      "decision": "answer",
+      "question": null,
+      "selected_sources": [
+        {
+          "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+          "content_sha256": "03d32ce10b9df64d1b0e7067b804eb34e60583514c0fff7ff63b312bff5de605",
+          "version_scope": "unconfirmed",
+          "excerpt_sha256": "99362eb1a9b5b6f3730c28b27bd90007c56667d553294567f18c62752e6644b8",
+          "complete_in_summary": true,
+          "complete_in_USER_draft": true
+        },
+        {
+          "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+          "content_sha256": "1f9efadeb74763026751a91edab89ef73b8fce73024c9264b7d734c5c14b68f0",
+          "version_scope": "unconfirmed",
+          "excerpt_sha256": "032069b132c9d295bde1b845c249944c6c4b9c0e9d06f9ac44cc654cf04b3b35",
+          "complete_in_summary": true,
+          "complete_in_USER_draft": true
+        }
+      ],
+      "handoff_sha256": "1b5532de2b534139f9445162ba2c188fe55d3a57c04ab982e89e3b8defe384b4",
+      "OFF_draft_chars": 12274,
+      "ON_draft_chars": 12274,
+      "new_background_delivered": false,
+      "partial_topical_guidance_delivered": false,
+      "guidance_bindings": [],
+      "question_necessary_answerable_nonrepeating": null,
+      "assessment": "Generic Counter/Session State callback or serialization quotations, if selected, are fully qualified as unconfirmed applicability. They do not diagnose Enum class identity, equality, affected releases or a fix. Current report/code/environment are retained as USER data. No version/code reask and no request for USER documentation research."
+    },
+    {
+      "item_id": "6bd81d2168586761d7ebae3d",
+      "job_id": "r1:dev-case-c:candidate_profile",
+      "case_id": "dev-case-c",
+      "round": 1,
+      "turn_id": "correction",
+      "status": "fresh_proposal",
+      "item_binding_sha256": "9f453777fdd0418a531aa859651b65ca6bbcfff2d44b74ea090febe92baf25e5",
+      "human_usefulness": null,
+      "supported_diagnosis_or_fix": false,
+      "unsupported_material_claim_found": false,
+      "edited_proposal_present": false,
+      "released_count": 1,
+      "actual_attempts": 2,
+      "actual_latest_active_USER_versions": [
+        "1.31.1"
+      ],
+      "same_plan_OFF_ON_rendering": true,
+      "decision": "escalate",
+      "question": null,
+      "selected_sources": [],
+      "handoff_sha256": "0add07c1cdc648863ad171fb443e63352ba723f51bc9cf975fce21ffe4d5503e",
+      "OFF_draft_chars": 3302,
+      "ON_draft_chars": 3302,
+      "new_background_delivered": false,
+      "partial_topical_guidance_delivered": false,
+      "guidance_bindings": [],
+      "question_necessary_answerable_nonrepeating": null,
+      "assessment": "Generic Counter/Session State callback or serialization quotations, if selected, are fully qualified as unconfirmed applicability. They do not diagnose Enum class identity, equality, affected releases or a fix. Current report/code/environment are retained as USER data. No version/code reask and no request for USER documentation research. The fresh correction escalates a source gap, with the old version only in explicitly historical USER context and1.31.1 active; no invented cause/fix."
+    },
+    {
+      "item_id": "25f25e4a74005fc5e3129a97",
+      "job_id": "r2:dev-case-c:candidate_profile",
+      "case_id": "dev-case-c",
+      "round": 2,
+      "turn_id": "initial",
+      "status": "fresh_proposal",
+      "item_binding_sha256": "91604a0b74fc2d062e79b0ba998fcbb4410881606889b24ea0bc34a358170f31",
+      "human_usefulness": null,
+      "supported_diagnosis_or_fix": false,
+      "unsupported_material_claim_found": false,
+      "edited_proposal_present": false,
+      "released_count": 0,
+      "actual_attempts": 1,
+      "actual_latest_active_USER_versions": [
+        "1.31.0"
+      ],
+      "same_plan_OFF_ON_rendering": true,
+      "decision": "answer",
+      "question": null,
+      "selected_sources": [
+        {
+          "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+          "content_sha256": "03d32ce10b9df64d1b0e7067b804eb34e60583514c0fff7ff63b312bff5de605",
+          "version_scope": "unconfirmed",
+          "excerpt_sha256": "99362eb1a9b5b6f3730c28b27bd90007c56667d553294567f18c62752e6644b8",
+          "complete_in_summary": true,
+          "complete_in_USER_draft": true
+        },
+        {
+          "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+          "content_sha256": "1f9efadeb74763026751a91edab89ef73b8fce73024c9264b7d734c5c14b68f0",
+          "version_scope": "unconfirmed",
+          "excerpt_sha256": "032069b132c9d295bde1b845c249944c6c4b9c0e9d06f9ac44cc654cf04b3b35",
+          "complete_in_summary": true,
+          "complete_in_USER_draft": true
+        }
+      ],
+      "handoff_sha256": "dbfaf8624aff80aa1b11587eefd35a87097f79cd39da833f24a94e8b78e61b7b",
+      "OFF_draft_chars": 12274,
+      "ON_draft_chars": 12274,
+      "new_background_delivered": false,
+      "partial_topical_guidance_delivered": false,
+      "guidance_bindings": [],
+      "question_necessary_answerable_nonrepeating": null,
+      "assessment": "Generic Counter/Session State callback or serialization quotations, if selected, are fully qualified as unconfirmed applicability. They do not diagnose Enum class identity, equality, affected releases or a fix. Current report/code/environment are retained as USER data. No version/code reask and no request for USER documentation research."
+    },
+    {
+      "item_id": "0f688aa2929a2d77d296922d",
+      "job_id": "r2:dev-case-c:candidate_profile",
+      "case_id": "dev-case-c",
+      "round": 2,
+      "turn_id": "correction",
+      "status": "stale_observation",
+      "item_binding_sha256": "540b3f6ca354d85333e6c7f397dc02b51713250af344549e9c8a5d9f3c7ae348",
+      "human_usefulness": null,
+      "supported_diagnosis_or_fix": false,
+      "unsupported_material_claim_found": false,
+      "edited_proposal_present": false,
+      "released_count": 0,
+      "actual_attempts": 2,
+      "actual_latest_active_USER_versions": [
+        "1.31.1"
+      ],
+      "same_plan_OFF_ON_rendering": true,
+      "assessment": "Correction event and both actual requests use active1.31.1; old1.31.0 is superseded. After retrieve_more, second compact output is invalid. Only the stale revision1 proposal remains visible;409 prevents approval and nothing is released. Not a fresh answer or semantic success.",
+      "fresh_response_semantic_score": null,
+      "observed_proposal_active_USER_versions": [
+        "1.31.0"
+      ],
+      "stale_approval_rejected_409": true,
+      "raw_wire_observation": {
+        "request_id": "call:90644029419e4cdfd93959eddbeb6fd6971dfd957f949a24d6c9ed0c14cb1a49",
+        "schema_version": 1,
+        "wire_format": "grounded-indexed-plan-v1",
+        "raw_output_sha256": "a75c5e1c4c1d48a1efdabfde2087a16a5bd9f47d0c6f2bfa5137059e3c8d20a2",
+        "raw_utf8_bytes": 121,
+        "json_shape": "invalid",
+        "decision": null,
+        "sources_count": null,
+        "selected_indexes": null,
+        "wire_schema_valid": false,
+        "canonical_binding_valid": false,
+        "rejection_code": "invalid_grounded_plan",
+        "unexpected_field_count": 0
+      },
+      "new_background_delivered": false,
+      "partial_topical_guidance_delivered": false,
+      "question_necessary_answerable_nonrepeating": null
+    },
+    {
+      "item_id": "77a0d32b2e4bba536cd25295",
+      "job_id": "r2:dev-case-b:candidate_profile",
+      "case_id": "dev-case-b",
+      "round": 2,
+      "turn_id": "initial",
+      "status": "fresh_proposal",
+      "item_binding_sha256": "b44699b5bab6f0b53d86cb2bca5d7a0e7dc0969d5495ffc2b54a5a45a587c88c",
+      "human_usefulness": null,
+      "supported_diagnosis_or_fix": false,
+      "unsupported_material_claim_found": false,
+      "edited_proposal_present": false,
+      "released_count": 1,
+      "actual_attempts": 1,
+      "actual_latest_active_USER_versions": [],
+      "same_plan_OFF_ON_rendering": true,
+      "decision": "ask",
+      "question": "Which Streamlit version is installed in the affected environment?",
+      "selected_sources": [
+        {
+          "chunk_id": "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+          "content_sha256": "7f160477362e3068ff9cda925247c5f1b83f6ee19100a9786679351c82ca4968",
+          "version_scope": "unconfirmed",
+          "excerpt_sha256": "8db80c52bd50ed6b0a3baf9b40899f2ad8ff554a366d3fd7f12e0007f5050be7",
+          "complete_in_summary": true,
+          "complete_in_USER_draft": false
+        },
+        {
+          "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+          "content_sha256": "fadf21e4394dc4afcedb4f806c7cf23ea014df84bd663d280acbb0d607ba0661",
+          "version_scope": "unconfirmed",
+          "excerpt_sha256": "f181c7c30a7f43f689acea0cee147006a1279b5c945ab549142576691b89bd5a",
+          "complete_in_summary": true,
+          "complete_in_USER_draft": false
+        }
+      ],
+      "handoff_sha256": "83036443f9fcbf6e76404a8d53bbc48644abf5955ee1d6c1dc1677d847335736",
+      "OFF_draft_chars": 65,
+      "ON_draft_chars": 65,
+      "new_background_delivered": false,
+      "partial_topical_guidance_delivered": false,
+      "guidance_bindings": [],
+      "question_necessary_answerable_nonrepeating": true,
+      "assessment": "Installed Streamlit version is unknown and the canonical version question is necessary. No background is exposed before that answer. Initial summary source selection includes off-topic st.text_input inR1 and low-value button/state stubs inR2; selection precision is not established by the correct question."
+    },
+    {
+      "item_id": "3ce9c8262ff9b6e513ae1549",
+      "job_id": "r2:dev-case-b:candidate_profile",
+      "case_id": "dev-case-b",
+      "round": 2,
+      "turn_id": "version",
+      "status": "fresh_proposal",
+      "item_binding_sha256": "d8e550750aebebf5d190ba9c4861e5f876bbee561581dd1c37cf9ba41fbf3a7f",
+      "human_usefulness": null,
+      "supported_diagnosis_or_fix": false,
+      "unsupported_material_claim_found": false,
+      "edited_proposal_present": false,
+      "released_count": 1,
+      "actual_attempts": 1,
+      "actual_latest_active_USER_versions": [
+        "1.39.0"
+      ],
+      "same_plan_OFF_ON_rendering": true,
+      "decision": "answer",
+      "question": null,
+      "selected_sources": [
+        {
+          "chunk_id": "doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a",
+          "content_sha256": "16aa13d3117d330630bec0c9fdcab5b65b68fdaf181e19e7808d62254d33e91c",
+          "version_scope": "exact_metadata_match",
+          "excerpt_sha256": "3e4ee8f16a4363b8e204ecf26a34183cf5c92cd5d8b98fc70e35b42d63725012",
+          "complete_in_summary": true,
+          "complete_in_USER_draft": true
+        },
+        {
+          "chunk_id": "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+          "content_sha256": "7f160477362e3068ff9cda925247c5f1b83f6ee19100a9786679351c82ca4968",
+          "version_scope": "unconfirmed",
+          "excerpt_sha256": "8db80c52bd50ed6b0a3baf9b40899f2ad8ff554a366d3fd7f12e0007f5050be7",
+          "complete_in_summary": true,
+          "complete_in_USER_draft": true
+        }
+      ],
+      "handoff_sha256": "a20c8d4d12a8636431297f04ffda6c9bf781ad023de0f586679f25b116e633bd",
+      "OFF_draft_chars": 4999,
+      "ON_draft_chars": 4999,
+      "new_background_delivered": false,
+      "partial_topical_guidance_delivered": true,
+      "guidance_bindings": [
+        {
+          "claim": "Supplied1.39 button documentation specifies icon=None, a single-character emoji or a rounded Material Symbols icon string; emoji short codes are not supported.",
+          "qualification": "Supported partial API background under exact supplied version metadata; no source authenticity, root cause, successful fix or resolved case is established.",
+          "chunk_id": "doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a",
+          "source_id": "docstring:1.39.0:streamlit.button",
+          "content_sha256": "16aa13d3117d330630bec0c9fdcab5b65b68fdaf181e19e7808d62254d33e91c",
+          "excerpt_sha256": "3e4ee8f16a4363b8e204ecf26a34183cf5c92cd5d8b98fc70e35b42d63725012",
+          "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.39.0"
+          ],
+          "supplied_source_span": "chars:0:2698;unit:unicode_codepoint",
+          "quote_span_unit": "unicode_codepoint_in_current_normalized_excerpt",
+          "start": 1486,
+          "end": 2082,
+          "text": "icon: str or None; default=None\nAn optional emoji or icon to display next to the button label. If icon\nis None (default), no icon is displayed. If icon is a\nstring, the following options are valid:\n\nA single-character emoji. For example, you can set icon=\"🚨\"\nor icon=\"🔥\". Emoji short codes are not supported.\n\nAn icon from the Material Symbols library (rounded style) in the\nformat \":material/icon_name:\" where \"icon_name\" is the name\nof the icon in snake case.\n\nFor example, icon=\":material/thumb_up:\" will display the\nThumb Up icon. Find additional icons in the Material Symbols \nfont library.\n",
+          "complete_rendered_block_in_user_draft": true,
+          "complete_rendered_block_sha256": "e0dd83b7ec92f466158a0a56ef3240383ac8d2b4c3e90eefbe9b27c82cb9e0d7",
+          "complete_rendered_block_start": 155,
+          "complete_rendered_block_end": 3434
+        }
+      ],
+      "question_necessary_answerable_nonrepeating": null,
+      "assessment": "Both original and released drafts carry the complete button1.39 icon input contract, unchanged by OFF/ON rendering. Partial button guidance only: st.warning, custom image future delivery and an executed/successful change are not established. A nearly5000-character quote-based answer still lacks a concise direct explanation."
+    },
+    {
+      "item_id": "6d4d79b717b3840d0ba08114",
+      "job_id": "r2:dev-case-a:candidate_profile",
+      "case_id": "dev-case-a",
+      "round": 2,
+      "turn_id": "initial",
+      "status": "fresh_proposal",
+      "item_binding_sha256": "f5b0ee95b79e98ba90606d1d777bafa83ff5620d352c2eae3ce010f08849e537",
+      "human_usefulness": null,
+      "supported_diagnosis_or_fix": false,
+      "unsupported_material_claim_found": false,
+      "edited_proposal_present": false,
+      "released_count": 1,
+      "actual_attempts": 1,
+      "actual_latest_active_USER_versions": [],
+      "same_plan_OFF_ON_rendering": true,
+      "decision": "ask",
+      "question": "Which Streamlit version is installed in the affected environment?",
+      "selected_sources": [
+        {
+          "chunk_id": "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac",
+          "content_sha256": "4c2f28ece4c360cb55a2548e4ced7a396af8821f3596e139e21d71f234668cc9",
+          "version_scope": "unconfirmed",
+          "excerpt_sha256": "59047771f7fad6c54830ea682cb2d49ffc81923fe82ffb83981c10cc7791bf33",
+          "complete_in_summary": true,
+          "complete_in_USER_draft": false
+        },
+        {
+          "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+          "content_sha256": "1f9efadeb74763026751a91edab89ef73b8fce73024c9264b7d734c5c14b68f0",
+          "version_scope": "unconfirmed",
+          "excerpt_sha256": "032069b132c9d295bde1b845c249944c6c4b9c0e9d06f9ac44cc654cf04b3b35",
+          "complete_in_summary": true,
+          "complete_in_USER_draft": false
+        }
+      ],
+      "handoff_sha256": "0662e6a1477f35322518db2c4b6352976c9fca7246f32e8b6eaf55ada8a46d06",
+      "OFF_draft_chars": 65,
+      "ON_draft_chars": 65,
+      "new_background_delivered": false,
+      "partial_topical_guidance_delivered": false,
+      "guidance_bindings": [],
+      "question_necessary_answerable_nonrepeating": true,
+      "assessment": "Installed Streamlit version is genuinely unknown. Exact canonical version question is necessary and USER-answerable. Unversioned widget/state selections remain in maintainer context only. No user-facing technical guidance or invented release/cause/fix."
+    },
+    {
+      "item_id": "5eacf4e37a427d245fd23f7f",
+      "job_id": "r2:dev-case-a:candidate_profile",
+      "case_id": "dev-case-a",
+      "round": 2,
+      "turn_id": "version",
+      "status": "fresh_proposal",
+      "item_binding_sha256": "1310edc47ce0ed6ed39d881250860d03743c1ed3ae1777a266cc332e8e26588c",
+      "human_usefulness": null,
+      "supported_diagnosis_or_fix": false,
+      "unsupported_material_claim_found": false,
+      "edited_proposal_present": false,
+      "released_count": 1,
+      "actual_attempts": 1,
+      "actual_latest_active_USER_versions": [
+        "1.50.0"
+      ],
+      "same_plan_OFF_ON_rendering": true,
+      "decision": "ask",
+      "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?",
+      "selected_sources": [
+        {
+          "chunk_id": "doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932",
+          "content_sha256": "f34d72fe228e007d6c486ca2339366895a64528b17d92bbb134f2a62ac968d36",
+          "version_scope": "exact_metadata_match",
+          "excerpt_sha256": "2d237d33c27fa367c8bac19ba308ac7e8a40a1bcd92a1351d9606b50898e0ee5",
+          "complete_in_summary": true,
+          "complete_in_USER_draft": true
+        },
+        {
+          "chunk_id": "doc:1.50.0:c82397cf83d9653afc3157df:0:4000:592d59c88ffa9fd9",
+          "content_sha256": "d6bc6ca3095c3175ee8f1126ae15e483248d354d048bc1f58ac995677cb27501",
+          "version_scope": "exact_metadata_match",
+          "excerpt_sha256": "592d59c88ffa9fd9d221048c1d7a863a642961a5e552dea6fb575ebc8cabef0a",
+          "complete_in_summary": true,
+          "complete_in_USER_draft": true
+        }
+      ],
+      "handoff_sha256": "97b5bc52c1d46055175593c868cfa86d288bdc2463340260271b3215bba49842",
+      "OFF_draft_chars": 108,
+      "ON_draft_chars": 7870,
+      "new_background_delivered": true,
+      "partial_topical_guidance_delivered": true,
+      "guidance_bindings": [
+        {
+          "claim": "For an input widget created inside a fragment, the documented fragment rerun behavior applies; configured run_every can also rerun the fragment.",
+          "qualification": "Supported partial API background under exact supplied version metadata; no source authenticity, root cause, successful fix or resolved case is established.",
+          "chunk_id": "doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932",
+          "source_id": "docstring:1.50.0:streamlit.fragment",
+          "content_sha256": "f34d72fe228e007d6c486ca2339366895a64528b17d92bbb134f2a62ac968d36",
+          "excerpt_sha256": "2d237d33c27fa367c8bac19ba308ac7e8a40a1bcd92a1351d9606b50898e0ee5",
+          "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.50.0"
+          ],
+          "supplied_source_span": "chars:0:2352;unit:unicode_codepoint",
+          "quote_span_unit": "unicode_codepoint_in_current_normalized_excerpt",
+          "start": 139,
+          "end": 434,
+          "text": "When a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app. If\nrun_every is set, Streamlit will also rerun the fragment at the\nspecified interval while the session is active, even if the user is not\ninteracting with your app.",
+          "complete_rendered_block_in_user_draft": true,
+          "complete_rendered_block_sha256": "d21e2e83411527ed012d18d4b351ecb708dd3b47949c5e0e37a2b0610335f00f",
+          "complete_rendered_block_start": 331,
+          "complete_rendered_block_end": 3222
+        },
+        {
+          "claim": "The1.50 multiselect API supplies an optional on_change callback when its value changes.",
+          "qualification": "Supported partial API background under exact supplied version metadata; no source authenticity, root cause, successful fix or resolved case is established.",
+          "chunk_id": "doc:1.50.0:c82397cf83d9653afc3157df:0:4000:592d59c88ffa9fd9",
+          "source_id": "docstring:1.50.0:streamlit.multiselect",
+          "content_sha256": "d6bc6ca3095c3175ee8f1126ae15e483248d354d048bc1f58ac995677cb27501",
+          "excerpt_sha256": "592d59c88ffa9fd9d221048c1d7a863a642961a5e552dea6fb575ebc8cabef0a",
+          "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.50.0"
+          ],
+          "supplied_source_span": "chars:0:4000;unit:unicode_codepoint",
+          "quote_span_unit": "unicode_codepoint_in_current_normalized_excerpt",
+          "start": 2323,
+          "end": 2419,
+          "text": "on_change: callable; default=None\nAn optional callback invoked when this widget's value changes.",
+          "complete_rendered_block_in_user_draft": true,
+          "complete_rendered_block_sha256": "84d5f74d328376d5eb3880a8bc581b3e0c4c35f315cfa01015948d7f1bf4d006",
+          "complete_rendered_block_start": 3224,
+          "complete_rendered_block_end": 7870
+        }
+      ],
+      "question_necessary_answerable_nonrepeating": true,
+      "assessment": "The USER still needs to provide the failing parent callback/state-update path; the supplied reduced example works. Both exact1.50 sources are selected and completely delivered after the same question. Fragment rerun behavior and the optional multiselect callback are relevant partial background. Nothing establishes the reported reset cause, key-only identity transition or a successful fix.",
+      "verbosity_risk": "A108-character question becomes7870characters of qualified full quotations, including unrelated parameters and an inherited index chunk ending mid-sentence. No new runtime/source clipping occurred; human usefulness/readability is unscored."
+    }
+  ],
+  "mechanical_checks": {
+    "passed": 205,
+    "total": 205,
+    "checks": [
+      {
+        "check": "r1:dev-case-a:candidate_profile:initial no edited proposal exists",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:initial one actual final canonical plan",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:initial ON recreates original complete analysis",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:initial non-draft outputs identical in paired rendering",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:initial all released texts equal original and are unedited",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:initial no generated fact deltas/checks/futurequeries",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:initial active USER fact retained:python_version",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:initial active USER fact retained:operating_system",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:initial active USER fact retained:browser",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:initial active USER fact retained:reported_widget_context",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:initial active USER fact retained:reported_trigger",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:initial active USER fact retained:reported_observation",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:initial active USER fact retained:reported_reproduction_status",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:initial complete selected excerpt in maintainer summary:doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:initial source content hash is current:doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:initial complete selected excerpt in maintainer summary:doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:initial source content hash is current:doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:initial necessary canonical registered USER question",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:initial no source-gap question to USER",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:version no edited proposal exists",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:version one actual final canonical plan",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:version ON recreates original complete analysis",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:version non-draft outputs identical in paired rendering",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:version all released texts equal original and are unedited",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:version no generated fact deltas/checks/futurequeries",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:version active USER fact retained:python_version",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:version active USER fact retained:operating_system",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:version active USER fact retained:browser",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:version active USER fact retained:reported_widget_context",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:version active USER fact retained:reported_trigger",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:version active USER fact retained:reported_observation",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:version active USER fact retained:reported_reproduction_status",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:version active USER fact retained:streamlit_version",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:version complete selected excerpt in maintainer summary:doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:version source content hash is current:doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:version complete selected excerpt in maintainer summary:doc:1.50.0:c82397cf83d9653afc3157df:0:4000:592d59c88ffa9fd9",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:version source content hash is current:doc:1.50.0:c82397cf83d9653afc3157df:0:4000:592d59c88ffa9fd9",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:version necessary canonical registered USER question",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:version no source-gap question to USER",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:version actual active USER version1.50.0",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:version original necessary callback remains exact",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-a:candidate_profile:version partial current background is the only display change",
+        "passed": true
+      },
+      {
+        "check": "Bound complete quoted source present in current USER draft",
+        "passed": true
+      },
+      {
+        "check": "Bound complete quoted source present in current USER draft",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-b:candidate_profile:initial no edited proposal exists",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-b:candidate_profile:initial one actual final canonical plan",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-b:candidate_profile:initial ON recreates original complete analysis",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-b:candidate_profile:initial non-draft outputs identical in paired rendering",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-b:candidate_profile:initial all released texts equal original and are unedited",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-b:candidate_profile:initial no generated fact deltas/checks/futurequeries",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-b:candidate_profile:initial active USER fact retained:requested_icon_format",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-b:candidate_profile:initial active USER fact retained:requested_apis",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-b:candidate_profile:initial complete selected excerpt in maintainer summary:doc:pinned:ed6c3c87122e53b9ff5621db:0:1819:3f3a7959730090f6",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-b:candidate_profile:initial source content hash is current:doc:pinned:ed6c3c87122e53b9ff5621db:0:1819:3f3a7959730090f6",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-b:candidate_profile:initial necessary canonical registered USER question",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-b:candidate_profile:initial no source-gap question to USER",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-b:candidate_profile:version no edited proposal exists",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-b:candidate_profile:version one actual final canonical plan",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-b:candidate_profile:version ON recreates original complete analysis",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-b:candidate_profile:version non-draft outputs identical in paired rendering",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-b:candidate_profile:version all released texts equal original and are unedited",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-b:candidate_profile:version no generated fact deltas/checks/futurequeries",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-b:candidate_profile:version active USER fact retained:requested_icon_format",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-b:candidate_profile:version active USER fact retained:requested_apis",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-b:candidate_profile:version active USER fact retained:streamlit_version",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-b:candidate_profile:version complete selected excerpt in maintainer summary:doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-b:candidate_profile:version source content hash is current:doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-b:candidate_profile:version complete selected excerpt in maintainer summary:doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-b:candidate_profile:version source content hash is current:doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+        "passed": true
+      },
+      {
+        "check": "Bound complete quoted source present in current USER draft",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-b:candidate_profile:version button exact current version",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:initial no edited proposal exists",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:initial one actual final canonical plan",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:initial ON recreates original complete analysis",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:initial non-draft outputs identical in paired rendering",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:initial all released texts equal original and are unedited",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:initial no generated fact deltas/checks/futurequeries",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:initial active USER fact retained:streamlit_version",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:initial active USER fact retained:python_version",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:initial active USER fact retained:operating_system",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:initial active USER fact retained:browser",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:initial active USER fact retained:reported_reproduction_code",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:initial active USER fact retained:reported_observation",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:initial complete selected excerpt in maintainer summary:doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:initial source content hash is current:doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:initial complete selected excerpt in maintainer summary:doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:initial source content hash is current:doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:initial initial active version1.31.0",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:correction no edited proposal exists",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:correction one actual final canonical plan",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:correction ON recreates original complete analysis",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:correction non-draft outputs identical in paired rendering",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:correction all released texts equal original and are unedited",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:correction no generated fact deltas/checks/futurequeries",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:correction active USER fact retained:python_version",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:correction active USER fact retained:operating_system",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:correction active USER fact retained:browser",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:correction active USER fact retained:reported_reproduction_code",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:correction active USER fact retained:reported_observation",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:correction active USER fact retained:streamlit_version",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:correction fresh correction uses1.31.1",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:correction fresh correction escalates without fictitious solution",
+        "passed": true
+      },
+      {
+        "check": "r1:dev-case-c:candidate_profile:correction source investigation remains proposed",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-c:candidate_profile:initial no edited proposal exists",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-c:candidate_profile:initial one actual final canonical plan",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-c:candidate_profile:initial ON recreates original complete analysis",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-c:candidate_profile:initial non-draft outputs identical in paired rendering",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-c:candidate_profile:initial all released texts equal original and are unedited",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-c:candidate_profile:initial no generated fact deltas/checks/futurequeries",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-c:candidate_profile:initial active USER fact retained:streamlit_version",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-c:candidate_profile:initial active USER fact retained:python_version",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-c:candidate_profile:initial active USER fact retained:operating_system",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-c:candidate_profile:initial active USER fact retained:browser",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-c:candidate_profile:initial active USER fact retained:reported_reproduction_code",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-c:candidate_profile:initial active USER fact retained:reported_observation",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-c:candidate_profile:initial complete selected excerpt in maintainer summary:doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-c:candidate_profile:initial source content hash is current:doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-c:candidate_profile:initial complete selected excerpt in maintainer summary:doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-c:candidate_profile:initial source content hash is current:doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-c:candidate_profile:initial initial active version1.31.0",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-c:candidate_profile:correction no edited proposal exists",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-c:candidate_profile:correction stale response is retained, not fresh",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-c:candidate_profile:correction stale response was not released",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-c:candidate_profile:correction actual correction uses active1.31.1",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-c:candidate_profile:correction invalid latest compact output has no parsed canonical plan",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-c:candidate_profile:correction stale409 guard observed",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-c:candidate_profile:correction retained old proposal remains revision1/1.31.0",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:initial no edited proposal exists",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:initial one actual final canonical plan",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:initial ON recreates original complete analysis",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:initial non-draft outputs identical in paired rendering",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:initial all released texts equal original and are unedited",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:initial no generated fact deltas/checks/futurequeries",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:initial active USER fact retained:requested_icon_format",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:initial active USER fact retained:requested_apis",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:initial complete selected excerpt in maintainer summary:doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:initial source content hash is current:doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:initial complete selected excerpt in maintainer summary:doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:initial source content hash is current:doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:initial necessary canonical registered USER question",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:initial no source-gap question to USER",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:version no edited proposal exists",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:version one actual final canonical plan",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:version ON recreates original complete analysis",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:version non-draft outputs identical in paired rendering",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:version all released texts equal original and are unedited",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:version no generated fact deltas/checks/futurequeries",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:version active USER fact retained:requested_icon_format",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:version active USER fact retained:requested_apis",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:version active USER fact retained:streamlit_version",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:version complete selected excerpt in maintainer summary:doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:version source content hash is current:doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:version complete selected excerpt in maintainer summary:doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:version source content hash is current:doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+        "passed": true
+      },
+      {
+        "check": "Bound complete quoted source present in current USER draft",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-b:candidate_profile:version button exact current version",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:initial no edited proposal exists",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:initial one actual final canonical plan",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:initial ON recreates original complete analysis",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:initial non-draft outputs identical in paired rendering",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:initial all released texts equal original and are unedited",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:initial no generated fact deltas/checks/futurequeries",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:initial active USER fact retained:python_version",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:initial active USER fact retained:operating_system",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:initial active USER fact retained:browser",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:initial active USER fact retained:reported_widget_context",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:initial active USER fact retained:reported_trigger",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:initial active USER fact retained:reported_observation",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:initial active USER fact retained:reported_reproduction_status",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:initial complete selected excerpt in maintainer summary:doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:initial source content hash is current:doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:initial complete selected excerpt in maintainer summary:doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:initial source content hash is current:doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:initial necessary canonical registered USER question",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:initial no source-gap question to USER",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:version no edited proposal exists",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:version one actual final canonical plan",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:version ON recreates original complete analysis",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:version non-draft outputs identical in paired rendering",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:version all released texts equal original and are unedited",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:version no generated fact deltas/checks/futurequeries",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:version active USER fact retained:python_version",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:version active USER fact retained:operating_system",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:version active USER fact retained:browser",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:version active USER fact retained:reported_widget_context",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:version active USER fact retained:reported_trigger",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:version active USER fact retained:reported_observation",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:version active USER fact retained:reported_reproduction_status",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:version active USER fact retained:streamlit_version",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:version complete selected excerpt in maintainer summary:doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:version source content hash is current:doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:version complete selected excerpt in maintainer summary:doc:1.50.0:c82397cf83d9653afc3157df:0:4000:592d59c88ffa9fd9",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:version source content hash is current:doc:1.50.0:c82397cf83d9653afc3157df:0:4000:592d59c88ffa9fd9",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:version necessary canonical registered USER question",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:version no source-gap question to USER",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:version actual active USER version1.50.0",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:version original necessary callback remains exact",
+        "passed": true
+      },
+      {
+        "check": "r2:dev-case-a:candidate_profile:version partial current background is the only display change",
+        "passed": true
+      },
+      {
+        "check": "Bound complete quoted source present in current USER draft",
+        "passed": true
+      },
+      {
+        "check": "Bound complete quoted source present in current USER draft",
+        "passed": true
+      },
+      {
+        "check": "all12 planned rows retained",
+        "passed": true
+      },
+      {
+        "check": "fresh11 and stale1",
+        "passed": true
+      },
+      {
+        "check": "only two A backgrounds newly delivered",
+        "passed": true
+      },
+      {
+        "check": "two B partial guidance observations",
+        "passed": true
+      },
+      {
+        "check": "six necessary USER questions",
+        "passed": true
+      }
+    ]
+  },
+  "assistant_semantic_findings": {
+    "unsupported_material_claim_found": false,
+    "diagnosis_or_successful_fix_established": false,
+    "source_gap_question_to_USER_found": false,
+    "unnecessary_or_repeated_USER_question_found": false,
+    "A": "Two repetitions of one exposed case gain partial current-version documentary background in original/released USER drafts:OFFquestion108→ON7870characters; callback remains necessary. No new source discovery/model-intelligence or solved-case claim.",
+    "B": "Two current-version button partial answers are unchanged by display treatment; warning/future delivery remain unanswered. One initial summary selects an irrelevant text_input document.",
+    "C": "Two initial answer labels remain generic background/investigation, unreleased. One correction escalates active1.31.1; the other has invalid compact output and only an old stale1.31.0 proposal.409 blocks its approval. No Enum diagnosis/fix.",
+    "verbosity": "New A drafts7870characters and B drafts4999characters are lengthy full quotation bundles; preserved complete source chunks can themselves end mid-sentence. This is a usability limit for human review, not a measured usefulness benefit or a source truncation introduced by this renderer.",
+    "denominator": "All12planned/visited turns:11fresh,1stale,0unvisited;9released original drafts,0edits. Route5/6 compared with prior6/6 is descriptive across independent stochastic runs, not causal renderer/model improvement.",
+    "third_turn_boundary": "Separately tested offline continuation persists complete approved assistant background in SQLite but excludes it from next model input under the existing conversation boundary. Complete USER history remains and large UTF8 USER histories still stop before reservation. No live third-turn quality claim."
+  }
+}

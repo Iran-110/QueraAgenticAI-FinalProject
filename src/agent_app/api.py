@@ -55,6 +55,7 @@ from agent_app.orchestration.intake import (
 )
 from agent_app.orchestration.ports import Reasoner, Retriever
 from agent_app.orchestration.retrieval_context import build_current_query
+from agent_app.orchestration.retrieval_profile import retrieval_profile_options
 from agent_app.orchestration.turns import UserTurnRejected, propose_user_turn
 from agent_app.testing.fakes import FakeReasoner, FakeRetriever
 from agent_app.tracker.dummy_tracker import tracker
@@ -207,6 +208,8 @@ class RunAdapters:
     or accept a request supplied by model output.
     Cleanup runs once after capture and before staging, on success or failure.
     The factory owns cleanup of resources when allocation itself raises.
+    The trailing retrieval_profile is trusted factory metadata, not a USER field;
+    the engine accepts only registered named policies and retains all limits.
     """
 
     retriever: Retriever
@@ -214,6 +217,7 @@ class RunAdapters:
     snapshot_id: str = SNAPSHOT_ID
     grounded_request_supplier: Callable[[], GroundedRequest | None] | None = None
     cleanup: Callable[[], None] | None = None
+    retrieval_profile: str = "native"
 
 
 def _adapters(scenario: Scenario) -> RunAdapters:
@@ -460,6 +464,7 @@ def post_message(case_id: CaseId, request: MessageRequest) -> dict[str, Any]:
                     capture,
                     snapshot_id=adapters.snapshot_id,
                     current_revision=lambda cid: _cases[cid].state.case_revision,
+                    **retrieval_profile_options(adapters.retrieval_profile),
                 )
             except Exception:
                 run_error = "AdapterSetupUnavailable"

@@ -1,3 +1,41 @@
+## 2026-10-15 — C4h6/R4d: qualified question background and connected profile
+
+[Behavior](ask-source-background.fa.md) and [integration](candidate-live-profile.fa.md)
+keep native defaults. Trusted named metadata now survives factory/runner/API/service
+and fixes the R4c candidate policy at the actual engine; no public contracts/ports
+or tracker/UI modules changed. Optional follow-up background uses only complete
+selected exact-active-USER-version records without conflicts; canonical question
+and every non-draft field stay unchanged. A separately preregistered strict route
+extension reconstructs the entire current handoff display, never a question prefix.
+
+[Fresh study](../experiments/core_ask_background_v1/README.md): six single paid jobs,
+12 planned/visited turns,14 settled sends,11fresh/1stale and5/6 selected routes.
+Same-plan local OFF/ON yields two A background drafts:108→7870chars. Both release
+relevant1.50 fragment/multiselect context while the callback question stays necessary;
+this is display/partial guidance, not a model-intelligence or human-usefulness gain.
+B retains partial1.39 icon guidance; one initial off-topic text_input selection
+limits precision. C has no Enum cause/fix: one correction properly escalates with
+active1.31.1; the other has final invalid compact JSON after retrieval, old1.31.0
+remains stale/409/unreleased. Compared with priorR4c6/6 routes, reliability gain
+is not established. Every failure/turn remains; no third attempt or salvage.
+
+Unblinded assistant review retains11fresh analyses/19completequotes/58activeUSER
+facts/six necessary questions,9released originals and zero edits. Human usefulness
+is null and long quotations need review.14nativequeries, exact ranking/scope/packing
+and all479previousreservations/14tables recompute;3323checks pass, maximum bundle
+11952/12000bytes. Initial six audit-only enriched-binding mistakes and result remain.
+CostUSD0.012407340, cumulativeUSD0.403656330 plus unchanged oldUSD0.0233792holds.
+Six scopes closed/10unusedslotsclaimed; no new uncertainty or pending reservation.
+Ordinary halt/ceiling/revocations persist; original paid source7c476c2 stayed fixed.
+
+4322pytest on stable00fff4e, Ruff305files, three demos and fixtureHTTP/SQLite457/457
+pass. Two offline third-turn controls retain full approved background inSQLite
+while excluding prior assistant text from the next model request, preserving USER
+history and stopping oversized history before reservation/transport. This is not
+a new browser/liveSQLite proof. Local publication is explicitly authorized despite
+blocked Actions; no freshWindows run or final evaluation is claimed. PR54/57/58
+already merged to main3cbbdd3 with a separate4150-test rerun; old receipts unchanged.
+
 ## 2026-10-15 — R4c/C4h5: closed bounded candidate comparison
 
 [Behavior and integration](retrieval-relevance.fa.md): opt-in adapter query/API

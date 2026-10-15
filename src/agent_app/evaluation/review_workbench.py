@@ -66,6 +66,11 @@ _CAMPAIGNS = {
         "experiments/retrieval_relevance_v1/protocol-v1.json",
         "r4c-offline-review-workbench-v1",
     ),
+    "core-ask-background-model-v1": (
+        "live-method-v1.json",
+        "experiments/core_ask_background_v1/protocol-v1.json",
+        "c4h6-offline-review-workbench-v1",
+    ),
     "core-resource-guidance-model-v1": (
         "live-method-v2.json",
         "experiments/core_resource_guidance_v1/protocol-v1.json",
@@ -83,6 +88,7 @@ _NATIVE_CRITERIA = {
         "core-source-capacity-model-v1",
         "core-compact-plan-model-v1",
         "retrieval-relevance-model-v1",
+        "core-ask-background-model-v1",
     )
 }
 
@@ -93,6 +99,10 @@ _NATIVE_AMENDMENTS = {
     ),
     "retrieval-relevance-model-v1": (
         "experiments/retrieval_relevance_v1/semantic-review-preparation-v1.json",
+        "docs/pr55-evidence-review.fa.md",
+    ),
+    "core-ask-background-model-v1": (
+        "experiments/core_ask_background_v1/semantic-review-preparation-v1.json",
         "docs/pr55-evidence-review.fa.md",
     ),
 }
@@ -245,6 +255,18 @@ def build_workbench(
             fixtures[case_id] = (fixture, pin)
             fixture_pins.append(pin)
         method = receipt["method"]
+        if receipt["protocol_id"] == "core-ask-background-model-v1":
+            _need(
+                receipt.get("renderer_ask_source_background") is True
+                and receipt.get("no_model_prompt_treatment") is True
+                and receipt.get("single_paid_model_condition") is True
+                and all(
+                    job.get("ask_source_background") is True and job["arm"] == "candidate_profile"
+                    for batch in method["batches"]
+                    for job in batch["jobs"]
+                ),
+                "WorkbenchReceiptMismatch",
+            )
         _need(
             receipt["real_index_retrieval"] is True
             and receipt["held_out_test"] is False
@@ -302,7 +324,10 @@ def build_workbench(
             )
             inputs["native_criteria_preparation"] = preparation_pin
             inputs["native_evidence_review"] = evidence_review_pin
-            if receipt["protocol_id"] == "retrieval-relevance-model-v1":
+            if receipt["protocol_id"] in {
+                "retrieval-relevance-model-v1",
+                "core-ask-background-model-v1",
+            }:
                 topical_guidance = preparation.get("topical_guidance_criteria")
                 supported_topical_guidance = preparation.get("supported_topical_guidance")
                 _need(
@@ -492,6 +517,11 @@ def build_workbench(
                     if topical_guidance is not None:
                         row["supported_topical_guidance"] = supported_topical_guidance
                         row["topical_guidance_criteria"] = topical_guidance[case_id]
+                    if receipt["protocol_id"] == "core-ask-background-model-v1":
+                        row["renderer_condition"] = "ask_source_background_on"
+                        row["comparison_condition"] = (
+                            "OFF renderer on the identical actual request/plan; no second model call"
+                        )
                     row["item_binding_sha256"] = _hash(row)
                     row["review_template"] = (
                         _template(_validate_handoff(observed["handoff"]), scope, item_id)

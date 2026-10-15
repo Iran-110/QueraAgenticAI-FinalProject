@@ -1,5 +1,13 @@
 # Connect your module to the core
 
+The optional [named candidate profile](candidate-live-profile.fa.md) now survives
+factory, evaluation runner, memory API and persistent service conversion. Set
+`AGENT_RETRIEVAL_PROFILE=candidate_relevance_v1` with `AGENT_EVAL_TOP_K=5` to use
+the bounded R4c policy; native remains the default. The separate
+[question-background option](ask-source-background.fa.md) preserves the canonical
+question and appends only selected exact-current-version records. Both are trusted
+operator settings, not USER fields; normal ledger halt/holds remain enforced.
+
 The opt-in [C4c vocabulary configuration](user-gap-configuration.fa.md) connects
 reviewed user questions to the ordinary `evaluation.live`/`live_backend` factory.
 Set `AGENT_USER_GAP_CATALOG` in operator configuration, register the applicable

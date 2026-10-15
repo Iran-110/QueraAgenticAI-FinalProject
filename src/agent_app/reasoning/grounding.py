@@ -307,10 +307,12 @@ def render_grounded_plan(
     *,
     source_gap_handoff: bool = False,
     source_gap_investigation: bool = False,
+    ask_source_background: bool = False,
 ) -> AnalysisResult:
     if (
         type(source_gap_handoff) is not bool
         or type(source_gap_investigation) is not bool
+        or type(ask_source_background) is not bool
         or (source_gap_investigation and not source_gap_handoff)
     ):
         raise GroundingRejected("grounded_context_mismatch")
@@ -374,8 +376,35 @@ def render_grounded_plan(
         draft = limit + "\n\n" + excerpts
     elif plan.decision == "ask":
         # Exact canonical question display also supports the narrow version
-        # intake path. Context/evidence belongs in the maintainer summary.
+        # intake path. Optional background never changes that version question.
         draft = question
+        if (
+            ask_source_background
+            and plan.question_name.casefold() != "streamlit_version"
+            and _user_version(request.case) is not None
+            and not request.conflict_groups
+            and not _prior_conflict(request)
+        ):
+            background = "\n\n".join(
+                _source_block(request.case, hit)
+                for hit in selected_hits
+                if source_scope(request.case, hit) == "exact_metadata_match"
+            )
+            if background:
+                candidate = (
+                    question
+                    + "\n\nSelected source background; the follow-up still needs your reply.\n"
+                    + limit
+                    + "\n\n"
+                    + background
+                )
+                draft_limit = AnalysisResult.model_json_schema()["properties"]["user_draft"][
+                    "maxLength"
+                ]
+                # Keep the original question if complete supplementary records
+                # cannot fit. Never shorten a source or add a rendering failure.
+                if len(candidate) <= draft_limit:
+                    draft = candidate
     else:
         draft = "Further maintainer investigation is proposed. " + limit + " " + conflict
     summary = (
@@ -599,10 +628,12 @@ class GroundedReasoner:
         ),
         source_gap_handoff: bool = False,
         source_gap_investigation: bool = False,
+        ask_source_background: bool = False,
     ) -> None:
         if (
             type(source_gap_handoff) is not bool
             or type(source_gap_investigation) is not bool
+            or type(ask_source_background) is not bool
             or (source_gap_investigation and not source_gap_handoff)
         ):
             raise GroundingRejected("grounded_context_mismatch")
@@ -610,6 +641,7 @@ class GroundedReasoner:
         self.request_factory = request_factory
         self.source_gap_handoff = source_gap_handoff
         self.source_gap_investigation = source_gap_investigation
+        self.ask_source_background = ask_source_background
         self._conflicts: set[tuple[str, str, int]] = set()
         self._conflict_lock = RLock()
 
@@ -680,6 +712,14 @@ class GroundedReasoner:
             )
             result = (
                 render_grounded_plan(
+                    request,
+                    raw,
+                    source_gap_handoff=self.source_gap_handoff,
+                    source_gap_investigation=self.source_gap_investigation,
+                    ask_source_background=True,
+                )
+                if self.ask_source_background
+                else render_grounded_plan(
                     request,
                     raw,
                     source_gap_handoff=True,

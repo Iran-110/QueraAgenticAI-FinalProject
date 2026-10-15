@@ -4,6 +4,56 @@
 
 ## وضعیت فعلی
 
+- [x] **انتشار محلی PR54/57/58؛ ساسان.** هر سه به‌ترتیب به main رسیدند؛
+  source نهایی `3cbbdd3` همان tree تحویل PR58 است. اجرای کامل ثابت روی همین
+  main:۴۱۵۰ تست پاس؛ [رسید انتشار](../experiments/local_release_2026_10_15/verification-v1.json).
+  Actions همچنان به علت Billing اجرا نشده؛ اجرای تازهٔ Windows ادعا نمی‌شود.
+- [x] **C4h6 — سؤال همراه با زمینهٔ مستند موجود؛ ساسان، تحویل محدود و opt-in.**
+  [ثبت پیش از کد/API](../experiments/core_ask_background_v1/protocol-v1.json).
+  فقط منابع انتخاب‌شده با نسخهٔ دقیق USER، بدون conflict، بعد از سؤال غیرنسخه‌ای؛
+  متن کامل و qualified، با حفظ سؤال و fallback به سؤال در صورت عبور از سقف.
+  [نتیجه و محدودیت‌ها](../experiments/core_ask_background_v1/README.md): شش job
+  و هر۱۲ turn حفظ‌اند؛۱۱ fresh و یک stale، پنج route کامل از شش. A در هر دو
+  تکرار کنار سؤال callback، متن مستند۱٫۵۰ را واقعاً released کرد؛ همان plan
+  در OFF فقط۱۰۸ کاراکتر سؤال و در ON متن۷۸۷۰ کاراکتری دارد. اثر نمایش است،
+  usefulness انسانی ثابت نشده و طول متن نیاز به review دارد. B همان راهنمای
+  جزئی icon۱٫۳۹ را حفظ کرد؛ یک text_input بی‌ربط در summary اولیه هم دیده شد.
+  Enum هنوز fix ندارد؛ یک correction پس از retrieve_more خروجی JSON نامعتبر
+  داشت، پیشنهاد قبلی stale و approval آن۴۰۹ بود. schema خام۱۳/۱۴؛ این اجرا
+  نسبت به R4c با۶/۶ route، بهبود پایداری کلی را نشان نداد. هزینه۱۴ send برابر
+  تخمین$0.012407340؛۳۳۲۳ کنترل native/هزینه پاس،۴۷۹ reservation قبلی و۱۴ جدول
+  حفظ؛ شش scope بسته و۱۰ slot مصرف‌نشده claimed. این‌ها همان سه dev دیده‌شده‌اند؛ test نهایی نیست.
+- [x] **R4d/C2i — profile قابل اتصال retrieval؛ ساسان.**
+  [راهنمای اتصال](../docs/candidate-live-profile.fa.md): profile اختیاری
+  `candidate_relevance_v1` به engine هر دو مسیر API حافظه‌ای/runner و HTTP/SQLite
+  می‌رسد؛ native پیش‌فرض ثابت است. wrapper runner نیز metadata را حفظ می‌کند.
+  read واقعی۲۵ کاندیدا، نسخهٔ فعال پیش از cap، budget کامل۱۲۰۰۰، correction،
+  approval متن دقیق و restart/retry با همان tracker تست شده‌اند. اجرای API تازه
+  از named profile حافظه‌ای/runner بوده؛ provider ماک در پذیرش SQLite، live SQLite
+  یا مرورگر تازه حساب نمی‌شود. [verification](../experiments/core_ask_background_v1/verification-v1.json):
+  ۴۳۲۲pytest،Ruff۳۰۵فایل،سهdemo وHTTP/SQLite۴۵۷/۴۵۷ پاس؛CI اجرا نشده است.
+  دو کنترل نوبت سوم، حفظ background در SQLite و عدم مصرف آن به‌عنوان متن قبلی
+  دستیار در مدل، حفظ USERhistory و توقف بزرگ‌بودن پیش از هزینه را بررسی کردند.
+  contracts/ports و فایل‌های UI/tracker تیم تغییر نکرده‌اند؛ E1/E2/T4/R4 نهایی بازند.
+  انتشار هر دو task در [PR #59](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/59)
+  مستقیماً با پایهٔ main است؛ review کد/گزارش و gate محلی طبق مجوز فعلی ثبت‌اند.
+
+- [ ] **C4h7 — reliability خروجی مدل؛ ساسان، کار بعدی.** یک JSON نامعتبر پس
+  از refinement باقی است؛ raw متن provider نگه‌داری نشده و تشخیص دقیق syntax
+  از hash ممکن نیست. قبل از افزودن JSON mode باید سازگاری Metis با canary مستقل
+  محدود بررسی شود؛ OpenAI-compatible بودن اثبات پشتیبانی همهٔ پارامترها نیست.
+  به‌صورت کور پارامتر اضافه یا validator/retry شل نشود. تنظیم نهایی پس از
+  review usefulness و dev بیشتر freeze شود؛ test برای tuning استفاده نشود.
+
+کارهای مستقل اعضا برای نسخهٔ نهایی (پیش از شروع branch خود را از main به‌روز کنید):
+
+| نفر | تحویل بعدی | شرط پایان |
+| --- | --- | --- |
+| حسن | review profile جدید و پوشش/رتبه‌بندی منابع؛ provenance و exclusion بعد از split نهایی | source دقیقِ رسیده به مدل، برچسب relevance/Recall@k و build pinned؛ عضویت در index به‌تنهایی کافی نیست |
+| محمدحسن | usefulness انسانی خروجی‌های فعلی، به‌خصوص سؤال۱۰۸کاراکتری درمقابل متن۷۸۷۰کاراکتری؛۱۲dev و۱۵test باقی، freeze rubric/gold وابسته به evidence condition | test برای tuning دیده نشود؛ حداقل ۱۰ گفتگوی چندنوبتی شامل ۵ test؛ سپس baseline و test نهایی |
+| بهنام | بخش‌های باز T4: receipt پاک‌سازی‌شده و pin، lost-ACK از خود UI و failure/outcome | revision/approval/retry مستقل دو پرونده و شاهد مصرف outcome در تصمیم بعد؛ token/DB خصوصی منتشر نشود |
+| ساسان | C4h6 و R4d/C2i تحویل شد؛ C4h7 و config پیشنهادی پس از review انسانی و dev بیشتر | قراردادها و defaultها ثابت، source/cost/خطاها کامل؛ این تحویل پایان evaluation نیست |
+
 **قاعدهٔ انتشار فعلی — ۱۵ اکتبر، با دستور صریح ساسان:** منتظر رفع Billing
 نمی‌مانیم. برای انتشار، review و تست محلی روی source ثبت‌شده، پذیرش اتصال و
 محدودیت‌های پلتفرم را ضمیمه می‌کنیم؛ Actions همچنان blocked است و CI سبز ادعا
@@ -32,10 +82,9 @@ ledger، holdها، halt و receiptهای تاریخی تغییر نمی‌کن�
   بودجهٔ bundle حداکثر۱۱۷۵۱/۱۲۰۰۰ byte بود. این تیک تحویل آزمایش است؛ RAG/eval
   نهایی بسته نشده‌اند و پیش‌فرض‌ها خاموش‌اند.
   انتشار در [PR #58](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/58)،
-  فعلاً با پایهٔ PR57 است؛ ترتیب ادغام PR54، سپس retarget/merge57 روی main،
-  سپس retarget/review58 روی main است. به branch پایه merge نشود؛ طبق قاعدهٔ انتشار
-  فعلی با verification محلی و ثبت blocked بودن CI پیش می‌رویم. PR50 و branch حسن
-  دست‌نخورده‌اند؛ این کار به merge آن وابسته نیست.
+  پس از ادغام PR54/57، روی main `3cbbdd3` رسید؛
+  [verification محلی](../experiments/local_release_2026_10_15/verification-v1.json)
+  و blocked بودن CI ثبت‌اند. PR50 و branch حسن دست‌نخورده‌اند؛ این کار به merge آن وابسته نیست.
 
 - [x] **C4h2 — repair query تکراری و مقایسهٔ محدود؛ ساسان.**
   [ثبت قبل از تغییر](../experiments/core_repeat_repair_v1/protocol-v1.json) و
@@ -96,8 +145,8 @@ ledger، holdها، halt و receiptهای تاریخی تغییر نمی‌کن�
   یکی نیست. خروجی ناقص salvage نمی‌شود. regression کامل۴۰۰۶pytest،Ruff،سهdemo
   وپذیرشHTTP/SQLite۴۵۷/۴۵۷ پاس‌اند؛CI به‌علت سهمیهٔActions هنوز اجرا نمی‌شود.
   انتشار در [PR #57](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/57)،
-  فعلاً رویbranchپایهٔPR54 است؛ بعدازmerge54 بهmain retarget شود، بهbranchپایه
-  merge نشود. انتشار فعلی با استثنای محلیِ ثبت‌شده در بالای plan انجام می‌شود.
+  پس از merge54 به main retarget و همان‌جا merge شد؛ انتشار فعلی با استثنای
+  محلیِ ثبت‌شده در بالای plan و رسید main `3cbbdd3` انجام شده است.
 
 - [ ] **R4b — review اصلاح ranking حسن؛ مالک اصلاح حسن.**
   [PR #50](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/50)
