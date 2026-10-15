@@ -52,6 +52,22 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
   both holds/halt/ceiling;6scopes closed and10unusedslots permanently claimed.
   Human usefulness is null; source precision and quote verbosity remain open.
 
+- C4h7 adds default-false `grounded_json_object` and `concise_user_draft`; read
+  `docs/json-readability.fa.md` and its closed preregistered packet. JSON mode adds
+  only the outbound format argument; no validator, terminal stop, identity, budget
+  or two-attempt fallback changes. Concise eligible ask background is a source
+  inventory, not delivered API guidance. All answer quotes and review summaries
+  remain complete; only the registered fixed rationale-location sentence may
+  differ. Trusted factory/runner flags must reconstruct the entire handoff display.
+  The closed26-send study observed12/12 raw valid outputs in BOTH comparison arms
+  and all26fresh; this does not demonstrate relative JSON reliability or usefulness.
+  Five same-plan A inventories shorten7870→1220 but lose delivered API passages.
+  Four B answers retain partial icon guidance; eight C answers remain generic,
+  not Enum diagnosis/fix.5466native/cost checks preserve493prior reservations and
+  all14tables/holds/halt;7scopes closed and26unusedslotsclaimed. Do not resume
+  method identities, promote defaults, equate route labels with solved cases or
+  use final test for tuning. Human usefulness remains null.
+
 - Default to offline mock execution. No paid API calls for routine development; the whole team's API budget is USD 5, including embeddings and evaluation.
 - Never put keys in code, fixtures, commits, trace output, or logs. Use local ignored environment files for real credentials.
 - All live model requests go through `llm/` and the designated runner's ledger. Preserve pending/uncertain reservations; never reset the database to obtain fresh credit. Independent laptop copies do not enforce the team's shared limit.

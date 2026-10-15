@@ -38,25 +38,37 @@
   انتشار هر دو task در [PR #59](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/59)
   مستقیماً با پایهٔ main است؛ review کد/گزارش و gate محلی طبق مجوز فعلی ثبت‌اند.
 
-- [ ] **C4h7 — پایداری JSON و خوانایی؛ ساسان، در حال انجام.** یک JSON نامعتبر پس
-  از refinement باقی است؛ raw متن provider نگه‌داری نشده و تشخیص دقیق syntax
-  از hash ممکن نیست. قبل از افزودن JSON mode باید سازگاری Metis با canary مستقل
-  محدود بررسی شود؛ OpenAI-compatible بودن اثبات پشتیبانی همهٔ پارامترها نیست.
-  به‌صورت کور پارامتر اضافه یا validator/retry شل نشود. تنظیم نهایی پس از
-  review usefulness و dev بیشتر freeze شود؛ test برای tuning استفاده نشود.
-  آزمایش تازهٔ محدود روی همان سه dev/index۱۸/۳۶: ابتدا canary سازگاری، سپس
-  مقایسهٔ JSON OFF/ON با هویت‌های تازه و paired render محلی روی همان plan.
-  حالت خلاصه opt-in است؛ نقل‌قول پاسخ فنی و مدارک کامل reviewer حفظ می‌شوند.
-  نتایج قبلی، holdها، halt، corpus و gold تغییر نمی‌کنند.
+- [x] **C4h7 — JSON و نمایش کوتاه؛ ساسان، تحویل آزمایش و اتصال.**
+  [رفتار و flags](../docs/json-readability.fa.md)،
+  [protocol پیش از کد](../experiments/core_json_readability_v1/protocol-v1.json) و
+  [رسید](../experiments/core_json_readability_v1/README.md): canary دو نوبتی پاس؛
+  سپس دو دور متوازن روی همان سه dev/index۱۸/۳۶، دوازده job/۲۴نوبت.
+  raw JSON و expansion هر دو arm۱۲/۱۲، پیشنهاد تازه۱۲/۱۲ و route۶/۶؛ بنابراین
+  برتری نسبی JSON mode ثابت نشده. تمام۲۶نوبت با canary تازه‌اند؛ هیچ failure
+  یا نوبت برنامه‌ریزی‌شده حذف نشده. renderer کوتاه روی همان plan: سؤال callback
+  ۷۸۷۰→۱۲۲۰؛ summary/sourceها کامل، ولی passageهای API دیگر در سؤال منتشر
+  نمی‌شوند. پاسخ button۴۹۹۹ و quote icon حفظ؛ Enum هنوز generic و بدون cause/fix.
+  هیچ quote بریده یا متن فنی تازه تولید نمی‌شود؛ گزارش کامل USER در summary
+  می‌ماند. تغییر rationale فقط جملهٔ ثابت محل نمایش است. هر دو flag خاموش
+  پیش‌فرض‌اند و USER نمی‌تواند فعالشان کند؛ usefulness انسانی null.
+  ۲۶send، هزینه$0.023094885؛۵۴۶۶کنترل native/ledger/canonical پاس،۴۹۳reservation
+  قبلی/۱۴جدول/holdها/halt محفوظ؛۷scope بسته و۲۶slotباقیclaimed. CI اجرا نشده؛
+  ۴۵۰۶pytest،Ruff۳۱۲فایل،سهdemo وfixtureHTTP/SQLite۴۵۷/۴۵۷ محلی پاس‌اند.
+  این تیک پایان آزمایش/اتصال است؛ پایان کیفیت مدل، RAG یا test نهایی نیست.
+
+- [ ] **تنظیم نهایی core پس از review انسانی و dev گسترده‌تر؛ ساسان با محمدحسن.**
+  مقایسهٔ usefulness سؤال کوتاه/کامل، متن طولانی عمومی Enum و precision منابع
+  اولیهٔ B؛ انتخاب تنظیم پیشنهادی فقط با شواهد dev، سپس freeze پیش از test.
+  قالب صحیح و route کامل جای داوری ادعا/نسخه/ضرورت سؤال را نمی‌گیرند.
 
 کارهای مستقل اعضا برای نسخهٔ نهایی (پیش از شروع branch خود را از main به‌روز کنید):
 
 | نفر | تحویل بعدی | شرط پایان |
 | --- | --- | --- |
 | حسن | review profile جدید و پوشش/رتبه‌بندی منابع؛ provenance و exclusion بعد از split نهایی | source دقیقِ رسیده به مدل، برچسب relevance/Recall@k و build pinned؛ عضویت در index به‌تنهایی کافی نیست |
-| محمدحسن | usefulness انسانی خروجی‌های فعلی، به‌خصوص سؤال۱۰۸کاراکتری درمقابل متن۷۸۷۰کاراکتری؛۱۲dev و۱۵test باقی، freeze rubric/gold وابسته به evidence condition | test برای tuning دیده نشود؛ حداقل ۱۰ گفتگوی چندنوبتی شامل ۵ test؛ سپس baseline و test نهایی |
+| محمدحسن | usefulness انسانی خروجی‌های فعلی، به‌خصوص مقایسهٔ۱۰۸/۱۲۲۰/۷۸۷۰کاراکتر با trade-off حذف passage فنی از فهرست؛۱۲dev و۱۵test باقی، freeze rubric/gold وابسته به evidence condition | test برای tuning دیده نشود؛ حداقل ۱۰ گفتگوی چندنوبتی شامل ۵ test؛ سپس baseline و test نهایی |
 | بهنام | بخش‌های باز T4: receipt پاک‌سازی‌شده و pin، lost-ACK از خود UI و failure/outcome | revision/approval/retry مستقل دو پرونده و شاهد مصرف outcome در تصمیم بعد؛ token/DB خصوصی منتشر نشود |
-| ساسان | C4h6 و R4d/C2i تحویل شد؛ C4h7 و config پیشنهادی پس از review انسانی و dev بیشتر | قراردادها و defaultها ثابت، source/cost/خطاها کامل؛ این تحویل پایان evaluation نیست |
+| ساسان | C4h6/C4h7 و R4d/C2i تحویل؛ config پیشنهادی پس از review انسانی و dev بیشتر | قراردادها و defaultها ثابت، source/cost/خطاها کامل؛ این تحویل پایان evaluation نیست |
 
 **قاعدهٔ انتشار فعلی — ۱۵ اکتبر، با دستور صریح ساسان:** منتظر رفع Billing
 نمی‌مانیم. برای انتشار، review و تست محلی روی source ثبت‌شده، پذیرش اتصال و

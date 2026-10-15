@@ -1,3 +1,31 @@
+## 2026-10-15 — C4h7: guarded JSON mode and concise display
+
+[Behavior/config](json-readability.fa.md) adds two independent default-false flags;
+shared models, sources/index/gold, terminal rules and two attempts are unchanged.
+JSON adds only response_format=json_object. Concise display preserves all complete
+answer quotes and reviewer summary; eligible questions show source inventories,
+not technical API guidance. Repeated USER investigation details stay complete in
+summary; only a fixed rationale-location sentence changes accurately.
+
+[Closed fresh study](../experiments/core_json_readability_v1/README.md): canary2turns
+passed all gates before12pairedjobs/24turns. Both JSON arms12/12raw-valid/canonical,
+12fresh/6routes,6ask/6answer labels. Relative JSON reliability improvement is NOT
+established. All26planned turns fresh,26settled sends/USD0.023094885. Same-plan
+presentation changes13drafts: A7870→1220 with loss of delivered API passages,
+B4999 unchanged/full icon guidance, C two-source background12274→10612 without
+Enum diagnosis/fix. Human usefulness remains null; source precision still needs review.
+
+5466read-only native/cost recomputations preserve493prior reservations/14tables;
+the auditor also contributed implementation/tests. Raw validity is recorded gateway
+observation, not reparse from hashes; canonical expansions are recomputed. Preserved:
+old holdsUSD0.0233792/halt/ceiling;7scopes closed/26unusedslotsclaimed. Actual
+candidate window25/max model bundle11751/12000bytes recompute. Cumulative local
+estimateUSD0.426751215.4506pytest stable0aacece, Ruff312files, three demos and
+fixtureHTTP/SQLite457/457 passed; actual MockTransport/native-index/HTTP/SQLite
+controls cover both flags with correction/staleapproval/restart/retry. No new
+browser/Windows/liveSQLite proof. Paid source d9564ba stayed fixed; ordinary
+live factory remains halted and Actions did not run because of billing.
+
 ## 2026-10-15 — C4h6/R4d: qualified question background and connected profile
 
 [Behavior](ask-source-background.fa.md) and [integration](candidate-live-profile.fa.md)
