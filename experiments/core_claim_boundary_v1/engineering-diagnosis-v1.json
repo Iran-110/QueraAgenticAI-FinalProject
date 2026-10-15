@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "source_commit": "7ac9610deb296e8ef63138e41fe423126d02b95c",
+  "scope": "read-only engineering diagnosis of closed round1 receipts only; no paid rerun or repository edits",
+  "receipt_sha256": {
+    "claim-r1-dev-a/receipt.json": "4b2f06ca373de6c09bd9b98e316e491a15d9f11b26cc7c357e0b69927aa16c89",
+    "claim-r1-dev-b/receipt.json": "c8a3d1135042523fb745977a3607ecfee281043d2584c77b997bc17797ae1c87",
+    "claim-r1-dev-d-4713/receipt.json": "aa245be20e7db4053dab9373bd0c3e116af2d2b673e4ed9ceaa4ffe442ad4baa",
+    "claim-r1-dev-e-5618/receipt.json": "b32e9672d113fe78563b305c9e7171feb9ef135b905d1cb73904a526421611f1",
+    "claim-r1-dev-f-7206/receipt.json": "254a88eb13c059f3044113bf86bf9df1905337307bd38e3329690770e33ed1f9",
+    "claim-r1-dev-g-9487/receipt.json": "28158c2eb4f74f3479ba6497139642b2ef2b007f1993c94787f6aeccea353e40",
+    "claim-r1-enum-guide/receipt.json": "847fe095cf930978e83141f2539d08009efabbabf8f3f972e6daec69c52cea46",
+    "claim-r1-enum-withheld/receipt.json": "d48dfe719f19c22d56dd72ffc60ae5bdd0bc2e581340c3aa04738d540ac943f7"
+  },
+  "observed_counts": {
+    "claim_invocations": 16,
+    "claim_attempts": 28,
+    "unparsed_candidates": 20,
+    "parsed_candidates": 8,
+    "final_proposals": 5,
+    "final_ModelOutputInvalid": 8,
+    "final_GroundedSourceMismatch": 3
+  },
+  "observed_out_of_range_selections": [
+    {
+      "batch": "claim-r1-dev-e-5618",
+      "attempt_index": 0,
+      "selection": [
+        {
+          "source_index": 2,
+          "block_index": 28,
+          "reason": "block_index_outside_current_source"
+        },
+        {
+          "source_index": 2,
+          "block_index": 36,
+          "reason": "block_index_outside_current_source"
+        }
+      ]
+    },
+    {
+      "batch": "claim-r1-enum-withheld",
+      "attempt_index": 0,
+      "selection": [
+        {
+          "source_index": 52,
+          "block_index": 55,
+          "reason": "source_index_outside_current_catalog"
+        },
+        {
+          "source_index": 42,
+          "block_index": 49,
+          "reason": "source_index_outside_current_catalog"
+        }
+      ]
+    },
+    {
+      "batch": "claim-r1-enum-withheld",
+      "attempt_index": 2,
+      "selection": [
+        {
+          "source_index": 42,
+          "block_index": 49,
+          "reason": "source_index_outside_current_catalog"
+        }
+      ]
+    }
+  ],
+  "unknown": "Unparsed raw output is not retained. The exact syntax/shape/field/cross-field reason for any invalid_grounded_plan candidate cannot be reconstructed or assigned.",
+  "definite_schema_gap": {
+    "five_neutral_authored_examples": [
+      "answer_empty_sources",
+      "answer_question",
+      "ask_null_question",
+      "escalate_queries",
+      "retrieve_with_passage"
+    ],
+    "advertised_Draft202012_schema_accepts_each": true,
+    "actual_strict_parser_rejects_each": true,
+    "cause": "Pydantic model_validator cross-field constraints are absent from model_json_schema; source/current-fact catalog bounds are also validated outside the advertised generic schema."
+  },
+  "observer_gap": "syntactic_valid=False means strict ClaimPlan parse failed, not necessarily invalid JSON syntax; validation_error_count=None and no safe failure subtype were retained. No invented raw diagnostic.",
+  "future_options": [
+    "Keep frozen campaign and guards unchanged. Prospectively export safe separate JSON syntax / shape / required-field / typed-field / branch-rule diagnostics without raw text or unknown field names.",
+    "Make the advertised private schema explicitly encode the same existing per-decision branches and no extra payload; never relax current parser/source/USER validation. Prove equivalence offline.",
+    "Investigate a flat current-request passage_index or dynamically bounded selection schema as a generic wire usability change, with exact local expansion under the existing full context binding and unchanged source checks. This is a prospective hypothesis, not a demonstrated cure; do not buy another score by retrying this campaign."
+  ],
+  "no_API_git_repository_or_real_ledger_mutations": true,
+  "human_review": false,
+  "automatic_entailment": false
+}
