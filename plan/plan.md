@@ -118,7 +118,7 @@
   روی head`7cfa066` بدون blocker، با همان Python تست‌شده است. هر دو job Actions
   همین head قبل اجرای step به علت Billing متوقف شدند؛ workflow/protection تغییر نکرده‌اند.
 
-- [ ] **C4i/E2v — dev گسترده‌تر و توان توضیح مستند؛ ساسان، برش مستقل موقت.**
+- [x] **C4i/E2v — dev گسترده‌تر و توان توضیح مستند؛ ساسان، تحویل مطالعه با نتیجهٔ منفی.**
   [protocol پیش از کد/API](../experiments/core_broader_dev_v1/protocol-v1.json):
   مقایسهٔ مسیر موجود `AnalysisResult + compiled_rules` با `GroundedPlan`، بدون
   prompt/framework/renderer تازه و بدون بازکردن شاخهٔ بستهٔ C4h9. چهار خانوادهٔ
@@ -139,6 +139,18 @@
   قبلی یافت. [epoch جدید آماده‌سازی](../experiments/core_broader_dev_v1/preparation-amendment-v1.json)
   قبل هر method/API با byteهای جاری pin می‌شود و تمام queryها فقط روی copy‌اند؛
   رسیدها، case/gold، manifestهای قدیمی و hold/halt ledger بازنویسی نمی‌شوند.
+  [نتیجه](../docs/broader-dev-quality.fa.md):۶۴invocation روی۱۶snapshot اجرا شد؛۷۵send،۶۰پیشنهاد
+  pending و۴`ModelOutputInvalid`، صفرapproval/release/action. Enum با guide در
+  compiled کوتاه‌تر شد (median۷۱۸٫۵ در برابر۱۴۴۹۴)، اما شرط کامل ازپیش‌ثبت‌شده
+  **۰/۴ در هر دو مسیر** است؛ ادعای علت، کاربرد نادرست widget coercion و نسخهٔ
+  بی‌پشتوانه اجازهٔ پیشنهاد این مسیر را نمی‌دهند. کوتاه‌شدن، ارتقای کیفیت نیست.
+  تمام candidateهای parsed و failureها در [review](../experiments/core_broader_dev_v1/semantic-review-v1.json)
+  نگه داشته می‌شوند؛ usefulness انسانی هنوزnull، مطالعه fixed evidence و غیرtest است.
+  [هزینه](../experiments/core_broader_dev_v1/cost-review-v1.json):۳۰۲۷کنترل پاس،
+  $0.074765295 تازه،۵۹۱reservation قبلی/۱۴جدول محفوظ؛۱۶scope بسته و۵۳slot
+  استفاده‌نشدهclaimed، صفرuncertainty تازه، hold/halt/سقف ثابت. [verification](../experiments/core_broader_dev_v1/verification-v1.json):
+  ۴۹۸۱pytest،Ruff۳۳۷فایل،سهdemo وHTTP/SQLite۴۵۷/۴۵۷ پاس؛ hosted CI پاس ادعا نمی‌شود.
+  default،factory،prompt،renderer،قرارداد عمومی و مالکیت کار بچه‌ها تغییر نکرده‌اند.
 
 - [ ] **تنظیم نهایی core پس از review انسانی و dev گسترده‌تر؛ ساسان با محمدحسن.**
   مقایسهٔ usefulness سؤال کوتاه/کامل، متن طولانی عمومی Enum و precision منابع
@@ -150,9 +162,9 @@
 | نفر | تحویل بعدی | شرط پایان |
 | --- | --- | --- |
 | حسن | review profile جدید و پوشش/رتبه‌بندی منابع؛ provenance و exclusion بعد از split نهایی | source دقیقِ رسیده به مدل، برچسب relevance/Recall@k و build pinned؛ عضویت در index به‌تنهایی کافی نیست |
-| محمدحسن | usefulness انسانی خروجی‌های فعلی؛ worksheetهای C4h8/C4h9/C4h9b بدون نمره، initial و correction/released جدا؛ مقایسهٔ نمایش کوتاه و پوشش واقعی؛۱۲dev و۱۵test باقی، freeze rubric/gold وابسته به evidence condition | guide answer-linked وارد corpus نشود؛ تک draft منتشرنشده۷۰۹۹ بهبود پایدار نیست؛ test برای tuning دیده نشود؛ حداقل ۱۰ گفتگوی چندنوبتی شامل ۵ test؛ سپس baseline و test نهایی |
+| محمدحسن | usefulness انسانی خروجی‌های فعلی؛ worksheetهای C4h8/C4h9/C4h9b و [C4i/E2v](../experiments/core_broader_dev_v1/human-review-v1.json) بدون نمره، initial و correction/released جدا؛ review پذیرش چهار خانوادهٔ مکمل و exposure هر شش report؛۱۲dev و۱۵test باقی، freeze rubric/gold وابسته به evidence condition | guide answer-linked وارد corpus نشود؛ Enum کوتاه۷۱۸٫۵ با ادعای بی‌پشتوانه بهبود نیست؛ مکمل‌ها خودکار جای رزرو۱۵/۱۵ را نمی‌گیرند؛ test برای tuning دیده نشود؛ حداقل۱۰گفتگوی چندنوبتی شامل۵test؛ سپس baseline وtest نهایی |
 | بهنام | بخش‌های باز T4: receipt پاک‌سازی‌شده و pin، lost-ACK از خود UI و failure/outcome | revision/approval/retry مستقل دو پرونده و شاهد مصرف outcome در تصمیم بعد؛ token/DB خصوصی منتشر نشود |
-| ساسان | C4h9/C4h9b تحویل با نتیجهٔ محدود/منفی؛ انتخاب config پیشنهادی پس از review انسانی و dev بیشتر، سپس freeze پیش از test | reminder مکمل پیش‌فرضfalse و توصیه‌نشده؛ این شاخهٔ prompt/order بسته، قراردادها ثابت؛ guide fixture اثبات fix یا کیفیت RAG/test نیست |
+| ساسان | C4i/E2v تحویل؛ طراحی قدم بعد برای مرز ادعا/منبع/کاربرد/فرضیه با counterexampleهای ثبت‌شده، سپس review انسانی و config freeze پیش ازtest | compiled آزاد با این شواهد توصیه نمی‌شود؛ شرط case/source-ID و prompt/order tuning تازه برای نمرهٔ Enum ممنوع؛ single-agent و قراردادهای تیم ثابت؛ fixture اثبات fix یا کیفیت RAG/test نیست |
 
 **قاعدهٔ انتشار فعلی — ۱۵ اکتبر، با دستور صریح ساسان:** منتظر رفع Billing
 نمی‌مانیم. برای انتشار، review و تست محلی روی source ثبت‌شده، پذیرش اتصال و
