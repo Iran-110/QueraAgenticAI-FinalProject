@@ -4,6 +4,14 @@
 
 ## وضعیت فعلی
 
+- [ ] **C4l/E2y — context فعلی برای advisor انتخاب شاهد؛ ساسان، فقط آفلاین.**
+  [ثبت پیش از پیاده‌سازی](../experiments/core_selection_context_v1/protocol-v1.json):
+  `TurnConversation` موجود با کل CaseState و request فعلی bind شود؛ استفادهٔ
+  اختیاری از projection فعلی، واژه‌های fact منسوخ را از topic hint کنار بگذارد.
+  حالت بدون context، پیام مدل، corpus، قراردادهای تیم و ledger ثابت بمانند.
+  این کنترل freshness واژگانی است؛ semantics و منشأ واقعی history را authenticate
+  نمی‌کند. correction، A→B→A، follow-up، mismatch و عدم تغییر داده تست شوند.
+
 - [x] **C4k/E2x — انتخاب شاهد کامل و بررسی فقط‌خواندنی C5؛ ساسان، تحویل آفلاین.**
   [ثبت پیش از پیاده‌سازی](../experiments/core_evidence_selection_v1/protocol-v1.json):
   [نتیجه/اتصال](../docs/evidence-selection.fa.md) و
@@ -24,7 +32,8 @@
   جمعاً$0.0301376،halt/سقف و۱۹ فایل محافظت‌شده ثابت‌اند؛ C5 به مدرک provider نیاز
   دارد. API/corpus/exclusion/gold/shared contracts و فایل‌های UI/tracker/RAG عوض نشدند.
   کد و شواهد در [PR #65](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/65)
-  روی branch مستقل push شده‌اند؛ این ثبت به معنی merge شدن به main نیست.
+  پس از review نهایی به main با`efaf02a` merge شدند؛
+  [رسید merge و تطابق تست محلی](../experiments/core_evidence_selection_v1/merge-review-v1.json).
 
 - [x] **انتشار محلی PR54/57/58؛ ساسان.** هر سه به‌ترتیب به main رسیدند؛
   source نهایی `3cbbdd3` همان tree تحویل PR58 است. اجرای کامل ثابت روی همین
