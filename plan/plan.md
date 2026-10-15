@@ -4,6 +4,23 @@
 
 ## وضعیت فعلی
 
+- [x] **انتشار محلی PR54/57/58؛ ساسان.** هر سه به‌ترتیب به main رسیدند؛
+  source نهایی `3cbbdd3` همان tree تحویل PR58 است. اجرای کامل ثابت روی همین
+  main:۴۱۵۰ تست پاس؛ [رسید انتشار](../experiments/local_release_2026_10_15/verification-v1.json).
+  Actions همچنان به علت Billing اجرا نشده؛ اجرای تازهٔ Windows ادعا نمی‌شود.
+- [ ] **C4h6 — سؤال همراه با زمینهٔ مستند موجود؛ ساسان.**
+  [ثبت پیش از کد/API](../experiments/core_ask_background_v1/protocol-v1.json).
+  فقط منابع انتخاب‌شده با نسخهٔ دقیق USER، بدون conflict، بعد از سؤال غیرنسخه‌ای؛
+  متن کامل و qualified، با حفظ سؤال و fallback به سؤال در صورت عبور از سقف.
+  مقایسهٔ renderer روی همان plan و سپس شش job واقعی، با هزینهٔ ثبت‌شده؛
+  usefulness انسانی و test نهایی از این کار جدا می‌مانند.
+- [ ] **R4d/C2i — profile قابل اتصال retrieval؛ ساسان.**
+  profile اختیاری `candidate_relevance_v1` باید به engine واقعی هر دو مسیر
+  API حافظه‌ای/runner و HTTP/SQLite برسد؛ native پیش‌فرض ثابت می‌ماند.
+  شرط پایان: read واقعی کاندیداها، scope نسخه پیش از cap، correction و approval/retry
+  همان متن، تست configuration و حفظ halt/index-before-key. فایل‌های UI/tracker
+  تیم بازنویسی نمی‌شوند و taskهای محمدحسن/حسن/بهنام طبق owner قبلی باز می‌مانند.
+
 **قاعدهٔ انتشار فعلی — ۱۵ اکتبر، با دستور صریح ساسان:** منتظر رفع Billing
 نمی‌مانیم. برای انتشار، review و تست محلی روی source ثبت‌شده، پذیرش اتصال و
 محدودیت‌های پلتفرم را ضمیمه می‌کنیم؛ Actions همچنان blocked است و CI سبز ادعا

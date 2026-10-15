@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "protocol_id": "core-ask-background-v1",
+  "registered_before_implementation": true,
+  "registered_before_paid_calls": true,
+  "baseline_commit": "3cbbdd3b12e1412b2372590fba8beb4253bb0cfa",
+  "authorization_ref": "user-2026-10-15-local-core-quality-online-and-publication",
+  "problem": "An ask decision currently renders only the canonical question even when model-selected exact-current-version records supply relevant qualified background.",
+  "treatment": {
+    "ask_source_background": true,
+    "default": false,
+    "only_decision": "ask",
+    "require_active_USER_streamlit_version": true,
+    "exclude_version_question": true,
+    "exclude_current_or_inherited_conflict": true,
+    "selected_sources_only": true,
+    "require_exact_metadata_match": true,
+    "copy_complete_qualified_source_blocks": true,
+    "preserve_question_missing_info_summary_links": true,
+    "if_whole_background_exceeds_draft_bound": "retain_exact_original_question",
+    "no_model_prompt_change": true,
+    "no_source_truncation_or_new_synthesis": true
+  },
+  "offline": {
+    "receipt": "experiments/retrieval_relevance_v1/model-live-receipt-v1.json",
+    "receipt_sha256": "edf56d75266d97466666224738e2d5c95e2cbbc32e396188714d00c4fbdafd17",
+    "paired_render_same_actual_request_plan": true,
+    "preserve_all_planned_turns": 24,
+    "availability_is_not_guidance_or_usefulness": true
+  },
+  "live": {
+    "protocol_id": "core-ask-background-model-v1",
+    "experiment_id": "core-ask-background-2026-10-15-v1",
+    "model": "gpt-4o-mini",
+    "rounds": 2,
+    "case_order": [
+      [
+        "dev-case-a",
+        "dev-case-b",
+        "dev-case-c"
+      ],
+      [
+        "dev-case-c",
+        "dev-case-b",
+        "dev-case-a"
+      ]
+    ],
+    "arm": "candidate_profile",
+    "jobs": 6,
+    "turns": 12,
+    "fresh_request_slots": 24,
+    "max_output_tokens": 1024,
+    "input_token_reserve": 32768,
+    "scope_cap_usd": "0.03",
+    "campaign_cap_usd": "0.18",
+    "same_retrieval_package_as_R4c_treatment": true,
+    "single_paid_model_run_with_local_OFF_ON_rendering_per_actual_plan": true,
+    "real_provider_condition": "ON renderer; OFF from same current request/canonical plan only, no second model send",
+    "compact_plan": true,
+    "resource_guidance": false,
+    "source_capacity": false,
+    "repair_repeated_queries": true,
+    "retrieval_candidate_multiplier": 5,
+    "selection_policy": "query_relevance_v1",
+    "evidence_utf8_budget_bytes": 12000,
+    "record_actual_native_candidates": true,
+    "fixed_index_source_count": 18,
+    "fixed_index_chunk_count": 36,
+    "index_and_fixture_gold_exclusions_unchanged": true,
+    "ordinary_halt_and_two_old_unknown_holds_retained": true,
+    "stop_entire_campaign_on_new_uncertainty_or_changed_source_index_inputs_accounting": true,
+    "closed_identities_never_resume": true
+  },
+  "prospective_review": {
+    "A_initial": "Canonical necessary version question; no background without known USER version.",
+    "A_version": "Canonical necessary callback question. Partial background counts only if a relevant current-version passage is selected and delivered; no callback/root-cause/fix inference.",
+    "B_initial": "Canonical necessary version question.",
+    "B_version": "Source-backed partial icon guidance can count, warning/future-delivery questions remain unresolved.",
+    "C_initial_and_correction": "Qualified background/investigation only without Enum-specific evidence; correction must use active1.31.1, initial1.31.0; no causal/fix success or repeated known-user questions.",
+    "all_surfaces": "Check source text/version and all material claims, necessity/answerability/nonrepetition of questions, escaped quoted instructions, no stale evidence or action execution claims.",
+    "raw_schema_is_not_quality": true,
+    "human_usefulness": null,
+    "assistant_review_unblinded_with_implementation_overlap": true,
+    "held_out_test": false,
+    "no_general_RAG_or_component_model_quality_claim": true
+  },
+  "integration": {
+    "task": "R4d/C2i",
+    "named_trusted_profile": "candidate_relevance_v1",
+    "native_defaults_preserved": true,
+    "forward_through_memory_and_persistent_HTTP": true,
+    "configured_ledger_halt_unchanged": true,
+    "no_new_shared_Pydantic_contract_or_port": true,
+    "internal_adapter_metadata_additive_with_default_native": true
+  },
+  "not_changed": [
+    "historical receipts, criteria and closed scopes",
+    "corpus, exclusion, fixtures, gold and heldout test content",
+    "tracker and UI ownership",
+    "model attempts, retrieval rounds and queries limits",
+    "global ledger halt, holds and USD4.50 ceiling"
+  ]
+}
