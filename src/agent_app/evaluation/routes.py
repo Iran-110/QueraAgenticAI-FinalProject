@@ -40,9 +40,10 @@ class RouteGraph:
     node_ids: tuple[str, ...]
     routes: tuple[Route, ...]
     allow_source_background: bool = False
+    concise_user_draft: bool = False
 
     @classmethod
-    def from_fixture(cls, data, *, allow_source_background=False):
+    def from_fixture(cls, data, *, allow_source_background=False, concise_user_draft=False):
         """Validate every branch locally before constructing any live factory.
 
         Review declarations and graph eligibility are not authenticated human
@@ -50,6 +51,7 @@ class RouteGraph:
         """
         try:
             _need(type(allow_source_background) is bool)
+            _need(type(concise_user_draft) is bool)
             _need(data.get("registered_before_first_run") is True)
             turns = data["turns"]
             _need(type(turns) is list and 1 <= len(turns) <= MAX_ROUTE_NODES)
@@ -129,7 +131,7 @@ class RouteGraph:
                 if route.source in reached and route.target is not None:
                     reached.add(route.target)
             _need(reached == set(ids))
-            return cls(tuple(ids), tuple(routes), allow_source_background)
+            return cls(tuple(ids), tuple(routes), allow_source_background, concise_user_draft)
         except ConditionalRoutesRejected:
             raise
         except (TypeError, KeyError, ValueError, AttributeError, RecursionError):
@@ -168,6 +170,7 @@ class RouteGraph:
                     ],
                 },
                 ask_source_background=True,
+                **({"concise_user_draft": True} if self.concise_user_draft else {}),
             )
             # A canonical prefix alone is not enough. Human-edited or arbitrary
             # text must not unlock a future authored reply or alter old routes.

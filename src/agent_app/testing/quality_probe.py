@@ -127,6 +127,13 @@ class QualityTransport(httpx.BaseTransport):
                 json.dumps(payload["messages"], ensure_ascii=False, sort_keys=True).encode()
             ),
             "wire_max_output_tokens": payload["max_tokens"],
+            "wire_response_format": (
+                "absent"
+                if "response_format" not in payload
+                else "json_object"
+                if payload["response_format"] == {"type": "json_object"}
+                else "other"
+            ),
         }
         self.records.append(record)
         if self.on_send:
@@ -245,6 +252,11 @@ def run_quality_batch(
             raise DevProbeRejected()
         if type(job.get("ask_source_background", False)) is not bool:
             raise DevProbeRejected()
+        if any(
+            type(job.get(name, False)) is not bool
+            for name in ("grounded_json_object", "concise_user_draft")
+        ):
+            raise DevProbeRejected()
         try:
             named_policy = retrieval_profile_options(job.get("retrieval_profile", "native"))
         except ValueError:
@@ -309,6 +321,7 @@ def run_quality_batch(
                         "grounded_resource_guidance": job.get("resource_guidance", False),
                         "grounded_source_capacity": job.get("source_capacity", False),
                         "grounded_compact_plan": job.get("compact_plan", False),
+                        "grounded_json_object": job.get("grounded_json_object", False),
                         "max_output_tokens": job["max_output_tokens"],
                         "input_token_reserve": reserve,
                         "max_request_usd": get_price(MODEL).cost(reserve, job["max_output_tokens"]),
@@ -347,6 +360,11 @@ def run_quality_batch(
                             if job.get("ask_source_background", False)
                             else {}
                         ),
+                        **(
+                            {"concise_user_draft": True}
+                            if job.get("concise_user_draft", False)
+                            else {}
+                        ),
                     ),
                     snapshot_id=snapshot_id,
                     grounded_request_supplier=planner.supplied_request,
@@ -370,6 +388,9 @@ def run_quality_batch(
                         {"allow_source_background": True}
                         if job.get("ask_source_background", False)
                         else {}
+                    ),
+                    **(
+                        {"concise_user_draft": True} if job.get("concise_user_draft", False) else {}
                     ),
                 ),
             )

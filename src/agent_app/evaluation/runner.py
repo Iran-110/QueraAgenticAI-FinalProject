@@ -1012,6 +1012,7 @@ def run(
             fixture.path.resolve(): RouteGraph.from_fixture(
                 fixture.data,
                 allow_source_background=getattr(live, "ask_source_background", False),
+                concise_user_draft=getattr(live, "concise_user_draft", False),
             )
             for fixture in fixtures
         }

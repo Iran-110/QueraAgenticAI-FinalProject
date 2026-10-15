@@ -271,11 +271,14 @@ class LiveEvaluationAdapters:
         top_k: int = 1,
         retrieval_profile: str = "native",
         ask_source_background: bool = False,
+        concise_user_draft: bool = False,
         transport_factory: Callable[[], httpx.BaseTransport] | None = None,
     ):
         try:
             retrieval_profile = validate_retrieval_profile(retrieval_profile, top_k=top_k)
             if type(ask_source_background) is not bool:
+                raise ValueError
+            if type(concise_user_draft) is not bool:
                 raise ValueError
         except ValueError:
             raise ValueError("LiveEvaluationConfigurationInvalid") from None
@@ -309,6 +312,7 @@ class LiveEvaluationAdapters:
         self.ledger, self._config, self._snapshot, self._top_k = ledger, config, snapshot_id, top_k
         self._retrieval_profile = retrieval_profile
         self._ask_source_background = ask_source_background
+        self._concise_user_draft = concise_user_draft
         self._transport_factory = transport_factory or (lambda: httpx.HTTPTransport(retries=0))
         self._observations, self._active = [], set()
         self._lock = RLock()
@@ -325,6 +329,10 @@ class LiveEvaluationAdapters:
             )
         if self._ask_source_background:
             adapter_id += "_ask_source_background_v1"
+        if self._config.grounded_json_object:
+            adapter_id += "_json_object_v1"
+        if self._concise_user_draft:
+            adapter_id += "_concise_draft_v1"
         return {
             "model": self._config.model,
             "snapshot_id": self._snapshot,
@@ -344,6 +352,11 @@ class LiveEvaluationAdapters:
     def ask_source_background(self) -> bool:
         """Trusted display policy for conditional routes, never a USER setting."""
         return self._ask_source_background
+
+    @property
+    def concise_user_draft(self) -> bool:
+        """Trusted local presentation policy; never model or USER authority."""
+        return self._concise_user_draft
 
     def observations_for_contexts(self, contexts: tuple[ReasoningContext, ...]):
         identities = {
@@ -419,6 +432,7 @@ class LiveEvaluationAdapters:
                     source_gap_handoff=self._config.grounded_source_gap_handoff,
                     source_gap_investigation=self._config.grounded_source_gap_investigation,
                     ask_source_background=self._ask_source_background,
+                    **({"concise_user_draft": True} if self._concise_user_draft else {}),
                     request_factory=lambda case, message, evidence: caller_catalog(
                         case, message, evidence, definitions=self._gaps
                     ),
@@ -463,6 +477,9 @@ def configured_factory(values: Mapping[str, str]) -> LiveEvaluationAdapters:
         ask_source_background = values.get("AGENT_GROUNDED_ASK_SOURCE_BACKGROUND", "false")
         if type(ask_source_background) is not str or ask_source_background not in {"true", "false"}:
             raise ValueError("LiveEvaluationConfigurationInvalid")
+        concise_user_draft = values.get("AGENT_GROUNDED_CONCISE_USER_DRAFT", "false")
+        if type(concise_user_draft) is not str or concise_user_draft not in {"true", "false"}:
+            raise ValueError("LiveEvaluationConfigurationInvalid")
         ledger_path = ROOT / "runtime/budget.sqlite3"
         if (
             Path(values.get("AGENT_EVAL_LEDGER", str(ledger_path))).resolve()
@@ -490,6 +507,7 @@ def configured_factory(values: Mapping[str, str]) -> LiveEvaluationAdapters:
                 "METIS_GROUNDED_RESOURCE_GUIDANCE",
                 "METIS_GROUNDED_SOURCE_CAPACITY",
                 "METIS_GROUNDED_COMPACT_PLAN",
+                "METIS_GROUNDED_JSON_OBJECT",
             )
         }
         if any(
@@ -510,6 +528,7 @@ def configured_factory(values: Mapping[str, str]) -> LiveEvaluationAdapters:
             grounded_resource_guidance=switches["METIS_GROUNDED_RESOURCE_GUIDANCE"] == "true",
             grounded_source_capacity=switches["METIS_GROUNDED_SOURCE_CAPACITY"] == "true",
             grounded_compact_plan=switches["METIS_GROUNDED_COMPACT_PLAN"] == "true",
+            grounded_json_object=switches["METIS_GROUNDED_JSON_OBJECT"] == "true",
             phase=values.get("AGENT_EVAL_PHASE", "development"),
             input_token_reserve=int(values.get("METIS_INPUT_TOKEN_RESERVE", "32768")),
             max_output_tokens=int(values.get("METIS_MAX_OUTPUT_TOKENS", "1024")),
@@ -541,6 +560,7 @@ def configured_factory(values: Mapping[str, str]) -> LiveEvaluationAdapters:
             top_k=top_k,
             retrieval_profile=retrieval_profile,
             ask_source_background=ask_source_background == "true",
+            concise_user_draft=concise_user_draft == "true",
             user_gaps=user_gaps,
         )
     except ValueError as error:
