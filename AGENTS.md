@@ -24,6 +24,8 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 - C4h2 is optional/default-false engine-owned repeated-query repair; read `docs/repeat-query-repair.fa.md`. Only actual same-run caller requests establish query history; retriever `queries_used` is not authority. Existing terminal checks and the two-attempt allowance remain. The archived three-plan replay uses authored escalation, not a new model-quality score. Its fresh finite paid comparison is separate from closed C4h identities and from Hassan's PR50 ranking; preserve receipts/holds/halt and do not treat more escalations as quality improvement.
 
+- C4h3 adds optional/default-false compact source capacity; read `docs/source-capacity.fa.md`. Only existing prompt schema counts change; final renderer remains authority. The closed28-send study has4/6 routes in both arms and no technical answers; only two ON calls changed the bound. Do not promote this as measured quality improvement or resume its closed slots. C4h2/C4h3 review workbenches bind the original native criteria separately from fixed fixture gold. Human usefulness remains unscored.
+
 ## Runtime rules
 
 - Default to offline mock execution. No paid API calls for routine development; the whole team's API budget is USD 5, including embeddings and evaluation.

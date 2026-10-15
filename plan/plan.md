@@ -25,21 +25,42 @@
   شاملrestart/retry. آزمایش مدل این تحویل از TestClient/DummyTracker استفاده
   کرد؛ شاهد تازهٔ مرورگر/SQLite یا بهبود پاسخ فنی محسوب نمی‌شود.
 
-- [ ] **C4h3 — انتخاب source در حد renderer؛ ساسان، قدم بعد.**
-  failure ثبت‌شدهٔEnum با۴source را مبنا بگیرد؛ قبل از تغییر، روش محدود و
-  قابل بازبینی تعیین شود. quoteها کوتاه نشوند، مدل سوم یا gold/source-ID filter
-  اضافه نشود. راهنمای حجیم قبلی بهبود ثابت نکرد؛ ظرفیت وکفایت منبع باکیفیت
-  جواب یکی نیست. آزمایش‌های بسته وکیس‌های exposeشده دوبارهtest نامیده نشوند.
+- [x] **C4h3 — ظرفیت source و مقایسهٔ محدود؛ ساسان، بدون بهبود live اثبات‌شده.**
+  [روش و receiptها](../experiments/core_source_capacity_v1/README.md) و
+  [رفتار واقعی](../docs/source-capacity.fa.md): گزینهٔ پیش‌فرض خاموش؛ فقط کاهش
+  maxItems موجود، بدون متن اضافی، بریدن quote یا تماس سوم. روی شکست قبلی،
+  سقف امن۳ به دست آمد؛ در۱۵۸context تاریخی رشد ورودی صفر بود.
+  live تازه روی همان index۱۸/۳۶: OFF وON هر دو۴/۶ route و۸fresh،۵ سؤال و۳ ارجاع؛
+  صفر پاسخ فنی. فقط۲call یک correction واقعاً سقف متفاوت داشت؛ overflow در
+  هیچ arm رخ نداد، پس کاهش failure یا افزایش کیفیت از این اجرا ثابت نشد.
+  همهٔ۲۴نوبت شامل۱۶fresh،۴empty و۴unvisited محفوظ؛ دوlength، schema وsource-mismatch
+  باقی‌اند.۲۸send، تخمین$0.032721150، صفرhold تازه؛۱۲۲۵کنترل هزینه/provenance،
+  حفظ۳۹۲reservation قبلی و۱۴جدول؛۶scope بسته و۲۰slot مصرف‌نشدهclaimed.
+  halt/C5 وtest نهایی بازند. این تیک تحویل آزمایش است، نه آمادگی نهایی core.
+
+- [x] **E2r — بستهٔ داوری C4h2/C4h3؛ ساسان، کمک محدود به محمدحسن.**
+  [workbench](../docs/evaluation-workbench.fa.md) اکنون هر دو receipt را می‌پذیرد؛
+  criterion اصلی native با hash به method وصل است و با gold ثابت fixture
+  جایگزین نمی‌شود. شکست‌ها وunvisitedها هم نمایش داده می‌شوند؛ sidecarها برای
+  داوری انسانی خالی‌اند. schema ارزیابی/UI/tracker ومالکیت محمدحسن عوض نشده‌اند.
+
+- [ ] **C4h4 — پایداری خروجی مدل؛ ساسان، گام بعد مستقل.**
+  برای دوlength واقعی در۱۰۲۴token و خطاهای schema/کپی source، مقایسهٔ جدا و
+  محدود ثبت شود؛ با تغییر ranking حسن هم‌زمان نشود. برتری مدل/cap تازه از
+  نتایج قبلی فرض نشود؛ پاسخ مستند و usefulness جدا از route/JSON سنجیده شود.
 
 - [ ] **R4b — review اصلاح ranking حسن؛ مالک اصلاح حسن.**
   [PR #50](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/50)
   در head`7581dcc` آمادهٔmerge نیست؛ [شواهد review](../experiments/rag_pr50_review/README.md):
   newest-first شاهد نسخهٔ فعلی را کنار می‌زند، over-fetch ذکرشده پیاده نیست،
-  معنای `since_version` با exact applicability یکسان فرض شده و Linux lint fail است.
+  معنای `since_version` با exact applicability یکسان فرض شده و format محلی هنوز fail است.
+  lint رفع شده؛ GitHub به علت Billing اصلاً jobها را شروع نکرده است.
+  بازپخش۲۴query روی index واقعی۱۸/۳۶، همان membership قبلی را داد؛ over-fetch
+  هنوز وجود ندارد.۹۶/۹۶ صرفاًquery-control بدون خواندن index است.
  ۹۱ تست موجود پاس ولی regression را پوشش نمی‌دهند. Hassan branch تغییر نکرد؛
   native receipt، کنترل نسخهٔunknown/قدیمی/correction وrelevance لازم است.
-  کار core مستقل از این اصلاح ادامه دارد. محمدحسن طبق پیام۱۴اکتبر ساسان،۱۵اکتبر برمی‌گردد؛
-  human review وsplit برای او می‌ماند.
+  کار core مستقل از این اصلاح ادامه دارد. محمدحسن فعلاً بیمار و در دسترس نیست؛
+  human review وsplit برای او می‌ماند؛ کمک ساسان محدود به اتصال وreviewpack است.
 
 - [ ] **T4 — دریافت و review گزارش تازهٔ بهنام؛ انتشار receipt و بخش‌های باقی‌مانده با بهنام.**
   [گزارش روی commit ثابت`8420a3b`](https://github.com/Iran-110/QueraAgenticAI-FinalProject/blob/8420a3beed37e6bc79504487cd44724a40a30d79/docs/two-case-ui-sqlite-smoke-2026-10-14.md)
@@ -679,3 +700,11 @@ handoffها و متن released محفوظ‌اند. ترکیب اصلاحات ب
 ## محدودیت‌های اجرا
 
 کل بودجهٔ تیم ۵ دلار است، شامل embedding، توسعه، evaluation و bonus. اجرای عادی live فعلاً به دلیل halt ledger متوقف است؛ ledger جدید یا reset راه ادامه نیست. کلید و raw credentials وارد log/Git/fixture نمی‌شوند. سقف هر invocation همان ۲ تلاش مدل، ۲ دور retrieval، ۲ query در هر دور و ۸ step است؛ پیشنهاد از اجرای اقدام جدا و همهٔ تغییرات عملیاتی روی tracker محلی‌اند.
+
+### وضعیت انتشار C4h3/E2r
+
+[بررسی محلی](../experiments/core_source_capacity_v1/verification-v1.json):۳۸۲۷pytest،
+Ruff،سهdemo وHTTP/SQLite۴۵۷/۴۵۷ پاس. تغییرات در [PR #54](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/54)
+رویbranch`feat/core-source-capacity` منتشر شدند؛ تاCI همانhead اجرا و پاس نشود
+merge نمی‌شوند. درhead`6a4bd26`، هر دوjob قبل از شروع با خطای Billing متوقف شدند.
+Billing گیت‌هاب باید از سمت صاحب حساب رفع شود؛ نتیجهٔ تست محلی جایCI نیست.

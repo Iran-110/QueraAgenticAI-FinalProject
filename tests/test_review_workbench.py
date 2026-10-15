@@ -458,3 +458,60 @@ def test_cli_allows_prepare_but_never_turns_pending_into_scores(inputs, tmp_path
     )
     assert json.loads(capsys.readouterr().out)["code"] == "WorkbenchReviewUnassigned"
     assert not (output / "scores.json").exists()
+
+
+@pytest.mark.parametrize(
+    "folder,kind,expected",
+    [
+        ("core_repeat_repair_v1", "c4h2-offline-review-workbench-v1", (16, 1, 5, 2)),
+        ("core_source_capacity_v1", "c4h3-offline-review-workbench-v1", (16, 0, 4, 4)),
+    ],
+)
+def test_new_core_campaigns_use_bound_native_criteria_and_keep_every_planned_turn(
+    tmp_path, folder, kind, expected
+):
+    packet = ROOT / "experiments" / folder
+    output = tmp_path / "workbench"
+    result = prepare_workbench(
+        packet / "model-live-receipt-v1.json",
+        sorted(FIXTURES.glob("*.json")),
+        SCENARIO,
+        RUBRIC,
+        output,
+    )
+    assert result["kind"] == kind
+    assert result["summary"]["planned_turns"] == 24
+    counts = tuple(
+        result["summary"][key]
+        for key in ("fresh_proposal", "stale_observation", "no_fresh_proposal", "unvisited")
+    )
+    if expected is not None:
+        assert counts == expected
+    assert sum(counts) == 24
+    assert load_workbench(output / "workbench.json") == result
+    assert (
+        result["inputs"]["native_criteria"]["sha256"]
+        == hashlib.sha256((PACKET / "protocol-v1.json").read_bytes()).hexdigest()
+    )
+    assert all(not row["oracle_evidence_condition_matches_actual"] for row in result["rows"])
+    assert all(
+        row["review_template"] is None or row["review_template"]["usefulness_score"] is None
+        for row in result["rows"]
+    )
+
+
+def test_core_review_rejects_changed_native_criteria_before_preparing(tmp_path, monkeypatch):
+    from agent_app.evaluation import review_workbench
+
+    changed = tmp_path / "criteria.json"
+    value = json.loads((PACKET / "protocol-v1.json").read_bytes())
+    value["pre_model_scenarios"][0]["acceptable"] = "Unregistered replacement criterion."
+    dump(changed, value)
+    monkeypatch.setitem(review_workbench._NATIVE_CRITERIA, "core-source-capacity-model-v1", changed)
+    with pytest.raises(WorkbenchRejected, match="WorkbenchReceiptMismatch"):
+        build_workbench(
+            ROOT / "experiments/core_source_capacity_v1/model-live-receipt-v1.json",
+            sorted(FIXTURES.glob("*.json")),
+            SCENARIO,
+            RUBRIC,
+        )

@@ -283,6 +283,7 @@ def run_quality_batch(
                             "source_selection_reminder", False
                         ),
                         "grounded_resource_guidance": job.get("resource_guidance", False),
+                        "grounded_source_capacity": job.get("source_capacity", False),
                         "max_output_tokens": job["max_output_tokens"],
                         "input_token_reserve": reserve,
                         "max_request_usd": get_price(MODEL).cost(reserve, job["max_output_tokens"]),

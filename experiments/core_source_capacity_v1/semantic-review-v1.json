@@ -1,0 +1,3576 @@
+{
+  "schema_version": 1,
+  "review_id": "core-source-capacity-semantic-review-v1",
+  "receipt_sha256": "0cef6c5c25868de55b207bd0d1162415b91cec54f22b3eb8a0b22693b2746243",
+  "preparation_sha256": "c48a4fbc9b813ddf4085d2327d6eaf5cba3ba6f68ead1c65fff58646fdd9afd4",
+  "reviewer_kind": "assistant",
+  "reviewer_implementation_overlap": true,
+  "blinded": false,
+  "human_reviewed": false,
+  "human_usefulness": null,
+  "quality_improvement_demonstrated": false,
+  "held_out_test": false,
+  "source_commit": "05be694cede26a46b2de28c1760d0d1e8f0bc73c",
+  "summary": {
+    "planned_jobs": 12,
+    "planned_turns": 24,
+    "visited_turns": 20,
+    "no_fresh_response_turns": 4,
+    "fresh_proposal": 16,
+    "stale_observation": 0,
+    "no_fresh_proposal": 4,
+    "unvisited": 4
+  },
+  "arms": {
+    "source_capacity_off": {
+      "jobs": 6,
+      "complete_routes": 4,
+      "fresh_proposals": 8,
+      "ask": 5,
+      "escalate": 3,
+      "answer": 0,
+      "capacity_changed_wire": 0,
+      "render_overflow": 0
+    },
+    "source_capacity_on": {
+      "jobs": 6,
+      "complete_routes": 4,
+      "fresh_proposals": 8,
+      "ask": 5,
+      "escalate": 3,
+      "answer": 0,
+      "capacity_changed_wire": 2,
+      "render_overflow": 0
+    }
+  },
+  "paired_initial_requests": [
+    {
+      "batch": "capacity-r1-dev-case-a",
+      "first_grounded_request_equal": true
+    },
+    {
+      "batch": "capacity-r1-dev-case-b",
+      "first_grounded_request_equal": true
+    },
+    {
+      "batch": "capacity-r1-dev-case-c",
+      "first_grounded_request_equal": true
+    },
+    {
+      "batch": "capacity-r2-dev-case-c",
+      "first_grounded_request_equal": true
+    },
+    {
+      "batch": "capacity-r2-dev-case-b",
+      "first_grounded_request_equal": true
+    },
+    {
+      "batch": "capacity-r2-dev-case-a",
+      "first_grounded_request_equal": true
+    }
+  ],
+  "attempts": [
+    {
+      "request_id": "call:9d5f923e8289784a62cf6f9f46d50924a8eb1e28766790f12eed5befb95c3224",
+      "job_id": "r1:dev-case-a:source_capacity_off",
+      "arm": "source_capacity_off",
+      "revision": 1,
+      "attempt": 1,
+      "capacity": 8,
+      "changed_wire": false,
+      "render_error": null,
+      "provider_error": null,
+      "finish_reason": "stop",
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "ask",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "string",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 1,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "utf8_with_margin": 16164
+    },
+    {
+      "request_id": "call:42727216a416994d0472fd58a1ac5c4cfbb5b6bf498ecd03c0a8920f1cafbfa1",
+      "job_id": "r1:dev-case-a:source_capacity_off",
+      "arm": "source_capacity_off",
+      "revision": 2,
+      "attempt": 1,
+      "capacity": 8,
+      "changed_wire": false,
+      "render_error": null,
+      "provider_error": null,
+      "finish_reason": "stop",
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "ask",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "string",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "utf8_with_margin": 31040
+    },
+    {
+      "request_id": "call:ee2e8802c393415bfc69b50061d58992ea5b23920d2592fce6c51600195d4ab1",
+      "job_id": "r1:dev-case-a:source_capacity_on",
+      "arm": "source_capacity_on",
+      "revision": 1,
+      "attempt": 1,
+      "capacity": 8,
+      "changed_wire": false,
+      "render_error": null,
+      "provider_error": null,
+      "finish_reason": "stop",
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "ask",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "string",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 1,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "utf8_with_margin": 16164
+    },
+    {
+      "request_id": "call:0f361e2c4fb7c7bcde0493dd9adbeacd6d8eb75917291d9dec6780aad070645e",
+      "job_id": "r1:dev-case-a:source_capacity_on",
+      "arm": "source_capacity_on",
+      "revision": 2,
+      "attempt": 1,
+      "capacity": 8,
+      "changed_wire": false,
+      "render_error": null,
+      "provider_error": null,
+      "finish_reason": "stop",
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "ask",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "string",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "utf8_with_margin": 31040
+    },
+    {
+      "request_id": "call:d297d960462a99ae56c621be3eb44af2577a3a166c02c6891f407b8dd5675732",
+      "job_id": "r1:dev-case-b:source_capacity_on",
+      "arm": "source_capacity_on",
+      "revision": 1,
+      "attempt": 1,
+      "capacity": 8,
+      "changed_wire": false,
+      "render_error": null,
+      "provider_error": null,
+      "finish_reason": "stop",
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "ask",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "string",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 1,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "utf8_with_margin": 27283
+    },
+    {
+      "request_id": "call:f2adc7ea4f3e38002081c18c50d02c4536a3e625fe17740aa67b3f4410ed5a3a",
+      "job_id": "r1:dev-case-b:source_capacity_on",
+      "arm": "source_capacity_on",
+      "revision": 2,
+      "attempt": 1,
+      "capacity": 8,
+      "changed_wire": false,
+      "render_error": null,
+      "provider_error": null,
+      "finish_reason": "stop",
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "retrieve_more",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "null",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 1,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "utf8_with_margin": 27499
+    },
+    {
+      "request_id": "call:78974cd379153d4879df6e86f5fae9f7fb741347935e37d3cc6e5e1486901c7f",
+      "job_id": "r1:dev-case-b:source_capacity_on",
+      "arm": "source_capacity_on",
+      "revision": 2,
+      "attempt": 2,
+      "capacity": 8,
+      "changed_wire": false,
+      "render_error": null,
+      "provider_error": null,
+      "finish_reason": "stop",
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "escalate",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "null",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "utf8_with_margin": 27284
+    },
+    {
+      "request_id": "call:6ab6547ada34c4911a6c130ade80869ebee7ae846efc03ce5f3807120fd616d5",
+      "job_id": "r1:dev-case-b:source_capacity_off",
+      "arm": "source_capacity_off",
+      "revision": 1,
+      "attempt": 1,
+      "capacity": 8,
+      "changed_wire": false,
+      "render_error": null,
+      "provider_error": null,
+      "finish_reason": "stop",
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": false,
+        "diagnostic": "GroundedPlanSchemaInvalid",
+        "json_shape": "object",
+        "decision": "ask",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "string",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 1,
+        "sources_count": 0,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 1,
+        "validation_errors": [
+          {
+            "field": "unrecognized_field",
+            "code": "extra_forbidden",
+            "count": 1
+          }
+        ],
+        "unreported_error_count": 0
+      },
+      "utf8_with_margin": 27283
+    },
+    {
+      "request_id": "call:0a1081ca9e79f0cab84199f85aa9831533dd31ccfb16d60cf1bd6905ad749508",
+      "job_id": "r1:dev-case-b:source_capacity_off",
+      "arm": "source_capacity_off",
+      "revision": 1,
+      "attempt": 2,
+      "capacity": 8,
+      "changed_wire": false,
+      "render_error": null,
+      "provider_error": null,
+      "finish_reason": "stop",
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": false,
+        "diagnostic": "GroundedPlanSchemaInvalid",
+        "json_shape": "object",
+        "decision": "ask",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "string",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 1,
+        "sources_count": 0,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 1,
+        "validation_errors": [
+          {
+            "field": "unrecognized_field",
+            "code": "extra_forbidden",
+            "count": 1
+          }
+        ],
+        "unreported_error_count": 0
+      },
+      "utf8_with_margin": 27076
+    },
+    {
+      "request_id": "call:03aa747e58ca28cc94f2bfb03ed4e11b2ae2990460042cfb69e3a7d880510f9a",
+      "job_id": "r1:dev-case-c:source_capacity_off",
+      "arm": "source_capacity_off",
+      "revision": 1,
+      "attempt": 1,
+      "capacity": 8,
+      "changed_wire": false,
+      "render_error": null,
+      "provider_error": "ProviderResponseInvalid",
+      "finish_reason": "length",
+      "schema_observation": null,
+      "utf8_with_margin": 25271
+    },
+    {
+      "request_id": "call:d5ef2774e3b98048393b0ff7703db3f17b4b2a33f54c1907a849ec6e0954d3dc",
+      "job_id": "r1:dev-case-c:source_capacity_on",
+      "arm": "source_capacity_on",
+      "revision": 1,
+      "attempt": 1,
+      "capacity": 8,
+      "changed_wire": false,
+      "render_error": null,
+      "provider_error": null,
+      "finish_reason": "stop",
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": false,
+        "diagnostic": "GroundedPlanSchemaInvalid",
+        "json_shape": "object",
+        "decision": "retrieve_more",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "null",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 3,
+        "retrieval_queries_count": 1,
+        "validation_error_count": 1,
+        "validation_errors": [
+          {
+            "field": "plan",
+            "code": "value_error",
+            "count": 1
+          }
+        ],
+        "unreported_error_count": 0
+      },
+      "utf8_with_margin": 25271
+    },
+    {
+      "request_id": "call:610f64580fa41a4ddf8ec8db3051819caa91c5c559267534c7ce09b308f5c1bd",
+      "job_id": "r1:dev-case-c:source_capacity_on",
+      "arm": "source_capacity_on",
+      "revision": 1,
+      "attempt": 2,
+      "capacity": 8,
+      "changed_wire": false,
+      "render_error": null,
+      "provider_error": null,
+      "finish_reason": "stop",
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "escalate",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "null",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 2,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "utf8_with_margin": 25064
+    },
+    {
+      "request_id": "call:c2aa500d6eae2453ecbdc6d3cf1bc0a536bd412951c69aa065564e9fdb2986c2",
+      "job_id": "r1:dev-case-c:source_capacity_on",
+      "arm": "source_capacity_on",
+      "revision": 2,
+      "attempt": 1,
+      "capacity": 3,
+      "changed_wire": true,
+      "render_error": null,
+      "provider_error": null,
+      "finish_reason": "stop",
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "retrieve_more",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "null",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 1,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "utf8_with_margin": 27747
+    },
+    {
+      "request_id": "call:206a068eabeba133652ac678f287b6f56854b89cc76e3d728e095aa839551cf7",
+      "job_id": "r1:dev-case-c:source_capacity_on",
+      "arm": "source_capacity_on",
+      "revision": 2,
+      "attempt": 2,
+      "capacity": 3,
+      "changed_wire": true,
+      "render_error": null,
+      "provider_error": null,
+      "finish_reason": "stop",
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "escalate",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "null",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "utf8_with_margin": 27532
+    },
+    {
+      "request_id": "call:9d6c9433fd551d8e85569aad774a8acdeac5054ab4a168981d27a0a2f9df9ac9",
+      "job_id": "r2:dev-case-c:source_capacity_on",
+      "arm": "source_capacity_on",
+      "revision": 1,
+      "attempt": 1,
+      "capacity": 8,
+      "changed_wire": false,
+      "render_error": null,
+      "provider_error": "ProviderResponseInvalid",
+      "finish_reason": "length",
+      "schema_observation": null,
+      "utf8_with_margin": 25271
+    },
+    {
+      "request_id": "call:0844538b1911806e15a3984bf0e7fadfceb35afb15a04cd6bcdb95b14b6b1902",
+      "job_id": "r2:dev-case-c:source_capacity_off",
+      "arm": "source_capacity_off",
+      "revision": 1,
+      "attempt": 1,
+      "capacity": 8,
+      "changed_wire": false,
+      "render_error": null,
+      "provider_error": null,
+      "finish_reason": "stop",
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": false,
+        "diagnostic": "GroundedPlanSchemaInvalid",
+        "json_shape": "object",
+        "decision": "retrieve_more",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "null",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 2,
+        "retrieval_queries_count": 1,
+        "validation_error_count": 1,
+        "validation_errors": [
+          {
+            "field": "plan",
+            "code": "value_error",
+            "count": 1
+          }
+        ],
+        "unreported_error_count": 0
+      },
+      "utf8_with_margin": 25271
+    },
+    {
+      "request_id": "call:59760407a7fdc11928a10f75fedde404a24252b826c947876312785e90336f36",
+      "job_id": "r2:dev-case-c:source_capacity_off",
+      "arm": "source_capacity_off",
+      "revision": 1,
+      "attempt": 2,
+      "capacity": 8,
+      "changed_wire": false,
+      "render_error": null,
+      "provider_error": null,
+      "finish_reason": "stop",
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "escalate",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "null",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "utf8_with_margin": 25064
+    },
+    {
+      "request_id": "call:6fa220eeed0a122fa43a465d05cb4f05ade9dc33fdc9c18243c6fc058e592dc9",
+      "job_id": "r2:dev-case-c:source_capacity_off",
+      "arm": "source_capacity_off",
+      "revision": 2,
+      "attempt": 1,
+      "capacity": 3,
+      "changed_wire": false,
+      "render_error": null,
+      "provider_error": null,
+      "finish_reason": "stop",
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "retrieve_more",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "null",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 1,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "utf8_with_margin": 27747
+    },
+    {
+      "request_id": "call:7024d62fca5e0554a72c177bb231c2846487c76d144d7e0174dda0d12c36974d",
+      "job_id": "r2:dev-case-c:source_capacity_off",
+      "arm": "source_capacity_off",
+      "revision": 2,
+      "attempt": 2,
+      "capacity": 3,
+      "changed_wire": false,
+      "render_error": null,
+      "provider_error": null,
+      "finish_reason": "stop",
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "escalate",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "null",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "utf8_with_margin": 27532
+    },
+    {
+      "request_id": "call:6b78b9d7f8199be5a10eaede83d1479a3f049c9333a640d815f47cb6eb9f88ad",
+      "job_id": "r2:dev-case-b:source_capacity_off",
+      "arm": "source_capacity_off",
+      "revision": 1,
+      "attempt": 1,
+      "capacity": 8,
+      "changed_wire": false,
+      "render_error": null,
+      "provider_error": null,
+      "finish_reason": "stop",
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "ask",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "string",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "utf8_with_margin": 27283
+    },
+    {
+      "request_id": "call:b3511c967d6491dca955d12e428a671031094436ed286c67367d607aca2b264b",
+      "job_id": "r2:dev-case-b:source_capacity_off",
+      "arm": "source_capacity_off",
+      "revision": 2,
+      "attempt": 1,
+      "capacity": 8,
+      "changed_wire": false,
+      "render_error": null,
+      "provider_error": null,
+      "finish_reason": "stop",
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "retrieve_more",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "null",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 1,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "utf8_with_margin": 27499
+    },
+    {
+      "request_id": "call:168d91b7b1453f5adff2e15377f3592dc28534bec495be1071735b3448aa5cee",
+      "job_id": "r2:dev-case-b:source_capacity_off",
+      "arm": "source_capacity_off",
+      "revision": 2,
+      "attempt": 2,
+      "capacity": 8,
+      "changed_wire": false,
+      "render_error": null,
+      "provider_error": null,
+      "finish_reason": "stop",
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "escalate",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "null",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 3,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "utf8_with_margin": 27284
+    },
+    {
+      "request_id": "call:61aefdee7d8e9a743d584463e0bf43ef0b22a480774631d3988c2d7bb31dda76",
+      "job_id": "r2:dev-case-b:source_capacity_on",
+      "arm": "source_capacity_on",
+      "revision": 1,
+      "attempt": 1,
+      "capacity": 8,
+      "changed_wire": false,
+      "render_error": null,
+      "provider_error": null,
+      "finish_reason": "stop",
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": false,
+        "diagnostic": "GroundedPlanSchemaInvalid",
+        "json_shape": "object",
+        "decision": "ask",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "string",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 1,
+        "sources_count": 0,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 1,
+        "validation_errors": [
+          {
+            "field": "unrecognized_field",
+            "code": "extra_forbidden",
+            "count": 1
+          }
+        ],
+        "unreported_error_count": 0
+      },
+      "utf8_with_margin": 27283
+    },
+    {
+      "request_id": "call:fa9f93031eac282542b85dd35bcba5c5ae3c8086ed014be9dd72ac942e02fea0",
+      "job_id": "r2:dev-case-b:source_capacity_on",
+      "arm": "source_capacity_on",
+      "revision": 1,
+      "attempt": 2,
+      "capacity": 8,
+      "changed_wire": false,
+      "render_error": "grounded_source_mismatch",
+      "provider_error": null,
+      "finish_reason": "stop",
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "ask",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "string",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 2,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "utf8_with_margin": 27076
+    },
+    {
+      "request_id": "call:5df19f642bb6f4d2ab591b796d86b80493447e3c9c58284fe4ac5222717f9185",
+      "job_id": "r2:dev-case-a:source_capacity_on",
+      "arm": "source_capacity_on",
+      "revision": 1,
+      "attempt": 1,
+      "capacity": 8,
+      "changed_wire": false,
+      "render_error": null,
+      "provider_error": null,
+      "finish_reason": "stop",
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "ask",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "string",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 1,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "utf8_with_margin": 16164
+    },
+    {
+      "request_id": "call:dfb1ea6ac947bba09de3669c0b4a32813929db144a534be1a5a5b8fa58a0e644",
+      "job_id": "r2:dev-case-a:source_capacity_on",
+      "arm": "source_capacity_on",
+      "revision": 2,
+      "attempt": 1,
+      "capacity": 8,
+      "changed_wire": false,
+      "render_error": null,
+      "provider_error": null,
+      "finish_reason": "stop",
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "ask",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "string",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 1,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "utf8_with_margin": 31040
+    },
+    {
+      "request_id": "call:a1d9145e66069cc30df36d986a527e1d3db0de56445c5dc23a6eef6f4ed3f401",
+      "job_id": "r2:dev-case-a:source_capacity_off",
+      "arm": "source_capacity_off",
+      "revision": 1,
+      "attempt": 1,
+      "capacity": 8,
+      "changed_wire": false,
+      "render_error": null,
+      "provider_error": null,
+      "finish_reason": "stop",
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "ask",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "string",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 1,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "utf8_with_margin": 16164
+    },
+    {
+      "request_id": "call:7de1a7994cd57470646af643734e35319e4125634da44d7eb3d6824f088c5b88",
+      "job_id": "r2:dev-case-a:source_capacity_off",
+      "arm": "source_capacity_off",
+      "revision": 2,
+      "attempt": 1,
+      "capacity": 8,
+      "changed_wire": false,
+      "render_error": null,
+      "provider_error": null,
+      "finish_reason": "stop",
+      "schema_observation": {
+        "schema_version": 1,
+        "syntactic_valid": true,
+        "diagnostic": "GroundedPlanValid",
+        "json_shape": "object",
+        "decision": "ask",
+        "known_field_shapes": {
+          "context_sha256": "string",
+          "decision": "string",
+          "question_name": "string",
+          "retrieval_queries": "array",
+          "sources": "array"
+        },
+        "missing_known_fields": [],
+        "unexpected_field_count": 0,
+        "sources_count": 0,
+        "retrieval_queries_count": 0,
+        "validation_error_count": 0,
+        "validation_errors": [],
+        "unreported_error_count": 0
+      },
+      "utf8_with_margin": 31040
+    }
+  ],
+  "turns": [
+    {
+      "job_id": "r1:dev-case-a:source_capacity_off",
+      "arm": "source_capacity_off",
+      "case_id": "dev-case-a",
+      "turn_id": "initial",
+      "status": "fresh_proposal",
+      "operational_checks": [
+        {
+          "step": "initial",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "initial",
+          "check": "decision is acceptable (gold)",
+          "passed": true,
+          "detail": "ask"
+        },
+        {
+          "step": "initial",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "initial",
+          "check": "model attempt accounting is complete",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "initial",
+          "check": "approve",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "initial",
+          "check": "double approval refused",
+          "passed": true,
+          "detail": 409
+        }
+      ],
+      "human_usefulness": null,
+      "assistant_review": "Initial installed-version question is necessary. After version1.50.0, parent callback/state update code is still absent and the supplied reduction works; that follow-up is answerable and avoids a fabricated fix.",
+      "decision": "ask",
+      "question": "Which Streamlit version is installed in the affected environment?",
+      "proposal_id": "5a4bf55a-1dd4-50d2-bf7a-5afefc85c2f8",
+      "handoff_sha256": "7fab5955ae1b3a5e489b50daad992e91fb6bd161e317bb001bc88cf0598e316d",
+      "all_surfaces_sha256": {
+        "decision": "2f2fc7f2e9ce13b09b84f63d54d0b4a59f4dbd46aea41da67023817e2d0c5e59",
+        "user_draft": "a03a15504bfa332da9f301e1a1d5351a19bb9bb85c0d63162ca09d76e6303d89",
+        "maintainer_summary": "8572e231182dbf1c5f313d768c12f7b34ae37f02a0a32a89cc39096985656da2",
+        "rationale": "a6e21541077d87dccd034bf6f7f71f14d9fac4febd9a1fdcd3a3fd333d390abc",
+        "next_question": "a03a15504bfa332da9f301e1a1d5351a19bb9bb85c0d63162ca09d76e6303d89",
+        "evidence_links.0.claim": "add16c53e090e977e7860a3e107572d469c9e0ec47c3828739730e3e07a71fdc",
+        "missing_info.0": "12b1868d440a19d45f8f8034aadd972b6fcd991479ef7c8a4e3ee3db5ea4b398"
+      },
+      "unsupported_material_claim_found": false,
+      "technical_answer_provided": false,
+      "current_user_facts": [
+        {
+          "fact": {
+            "name": "python_version",
+            "value": "3.12.9",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "4ebf5202c64311e58588ddad1b51753ca65d913184d84d3fa917bb6c35affb04"
+        },
+        {
+          "fact": {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "2a43d83b135e7952832d7c03a0f35e6ff309a067df8f4d4df4afbf57643c7594"
+        },
+        {
+          "fact": {
+            "name": "browser",
+            "value": "Chrome",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "ee5795ed878182a59bc322070ac33d68f37f2edbec6d9b132b9ec44bada062f2"
+        },
+        {
+          "fact": {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "38b7d5419c98b027578b72c34b2d5f94fda0b32ebf61010e6a9132824db228ab"
+        },
+        {
+          "fact": {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "c9ee317ccccb21d066d0701542364e32c4287e551e8e85746b7897210e04ba7b"
+        },
+        {
+          "fact": {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "eba4da3c4ddfccaf1a3d73ffc4c5c502064ac91aa5fffab35b227ff4265d7e04"
+        },
+        {
+          "fact": {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "33544b213e36dc7d6924b58ccb7f021e2797a983f966992b0369f539838e1f20"
+        }
+      ],
+      "reviewed_question_necessary_and_answerable": true,
+      "selected_chunks": [
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295"
+      ]
+    },
+    {
+      "job_id": "r1:dev-case-a:source_capacity_off",
+      "arm": "source_capacity_off",
+      "case_id": "dev-case-a",
+      "turn_id": "version",
+      "status": "fresh_proposal",
+      "operational_checks": [
+        {
+          "step": "version",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "version",
+          "check": "decision is acceptable (gold)",
+          "passed": true,
+          "detail": "ask"
+        },
+        {
+          "step": "version",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "version",
+          "check": "model attempt accounting is complete",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "version",
+          "check": "approve",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "version",
+          "check": "double approval refused",
+          "passed": true,
+          "detail": 409
+        }
+      ],
+      "human_usefulness": null,
+      "assistant_review": "Initial installed-version question is necessary. After version1.50.0, parent callback/state update code is still absent and the supplied reduction works; that follow-up is answerable and avoids a fabricated fix.",
+      "decision": "ask",
+      "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?",
+      "proposal_id": "ada16f3f-f3f9-5e3e-bf32-e0695d1d2c4a",
+      "handoff_sha256": "e8c390d66d85762db3d228a52284e36a9787b93363d189519e3fa651e64733ab",
+      "all_surfaces_sha256": {
+        "decision": "2f2fc7f2e9ce13b09b84f63d54d0b4a59f4dbd46aea41da67023817e2d0c5e59",
+        "user_draft": "d965a231edf861e7c4819f069fcbb777f8d2de40db373a2dba6e0e4897a70399",
+        "maintainer_summary": "ac3fb2ec3b5afac2d3b592a3609e5bb54f899574f0f269228388300a4e242c2f",
+        "rationale": "6a71432be0d531a616fd7f83a61d098050969d1dfee9199d64e1b02a0af89349",
+        "next_question": "d965a231edf861e7c4819f069fcbb777f8d2de40db373a2dba6e0e4897a70399",
+        "missing_info.0": "dcd01738190fed50a1cc08733efcc81383d8273a24a47980f39f6460f3263b95"
+      },
+      "unsupported_material_claim_found": false,
+      "technical_answer_provided": false,
+      "current_user_facts": [
+        {
+          "fact": {
+            "name": "python_version",
+            "value": "3.12.9",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "4ebf5202c64311e58588ddad1b51753ca65d913184d84d3fa917bb6c35affb04"
+        },
+        {
+          "fact": {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "2a43d83b135e7952832d7c03a0f35e6ff309a067df8f4d4df4afbf57643c7594"
+        },
+        {
+          "fact": {
+            "name": "browser",
+            "value": "Chrome",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "ee5795ed878182a59bc322070ac33d68f37f2edbec6d9b132b9ec44bada062f2"
+        },
+        {
+          "fact": {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "38b7d5419c98b027578b72c34b2d5f94fda0b32ebf61010e6a9132824db228ab"
+        },
+        {
+          "fact": {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "c9ee317ccccb21d066d0701542364e32c4287e551e8e85746b7897210e04ba7b"
+        },
+        {
+          "fact": {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "eba4da3c4ddfccaf1a3d73ffc4c5c502064ac91aa5fffab35b227ff4265d7e04"
+        },
+        {
+          "fact": {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "33544b213e36dc7d6924b58ccb7f021e2797a983f966992b0369f539838e1f20"
+        },
+        {
+          "fact": {
+            "name": "streamlit_version",
+            "value": "1.50.0",
+            "source_ref": "user:version",
+            "turn_id": "version",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "078d9c2efe7cf153dc8ef4b636bb864d60b27ae4918623be9e4c717bb4a91e28"
+        }
+      ],
+      "reviewed_question_necessary_and_answerable": true,
+      "selected_chunks": []
+    },
+    {
+      "job_id": "r1:dev-case-a:source_capacity_on",
+      "arm": "source_capacity_on",
+      "case_id": "dev-case-a",
+      "turn_id": "initial",
+      "status": "fresh_proposal",
+      "operational_checks": [
+        {
+          "step": "initial",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "initial",
+          "check": "decision is acceptable (gold)",
+          "passed": true,
+          "detail": "ask"
+        },
+        {
+          "step": "initial",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "initial",
+          "check": "model attempt accounting is complete",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "initial",
+          "check": "approve",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "initial",
+          "check": "double approval refused",
+          "passed": true,
+          "detail": 409
+        }
+      ],
+      "human_usefulness": null,
+      "assistant_review": "Initial installed-version question is necessary. After version1.50.0, parent callback/state update code is still absent and the supplied reduction works; that follow-up is answerable and avoids a fabricated fix.",
+      "decision": "ask",
+      "question": "Which Streamlit version is installed in the affected environment?",
+      "proposal_id": "30830aaa-38a3-54e6-adcc-cc6080b1731c",
+      "handoff_sha256": "7d833a5202da5bf3d396d1258692a75a8c087639e4cebddced482154abb96e42",
+      "all_surfaces_sha256": {
+        "decision": "2f2fc7f2e9ce13b09b84f63d54d0b4a59f4dbd46aea41da67023817e2d0c5e59",
+        "user_draft": "a03a15504bfa332da9f301e1a1d5351a19bb9bb85c0d63162ca09d76e6303d89",
+        "maintainer_summary": "8572e231182dbf1c5f313d768c12f7b34ae37f02a0a32a89cc39096985656da2",
+        "rationale": "a6e21541077d87dccd034bf6f7f71f14d9fac4febd9a1fdcd3a3fd333d390abc",
+        "next_question": "a03a15504bfa332da9f301e1a1d5351a19bb9bb85c0d63162ca09d76e6303d89",
+        "evidence_links.0.claim": "add16c53e090e977e7860a3e107572d469c9e0ec47c3828739730e3e07a71fdc",
+        "missing_info.0": "12b1868d440a19d45f8f8034aadd972b6fcd991479ef7c8a4e3ee3db5ea4b398"
+      },
+      "unsupported_material_claim_found": false,
+      "technical_answer_provided": false,
+      "current_user_facts": [
+        {
+          "fact": {
+            "name": "python_version",
+            "value": "3.12.9",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "4ebf5202c64311e58588ddad1b51753ca65d913184d84d3fa917bb6c35affb04"
+        },
+        {
+          "fact": {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "2a43d83b135e7952832d7c03a0f35e6ff309a067df8f4d4df4afbf57643c7594"
+        },
+        {
+          "fact": {
+            "name": "browser",
+            "value": "Chrome",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "ee5795ed878182a59bc322070ac33d68f37f2edbec6d9b132b9ec44bada062f2"
+        },
+        {
+          "fact": {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "38b7d5419c98b027578b72c34b2d5f94fda0b32ebf61010e6a9132824db228ab"
+        },
+        {
+          "fact": {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "c9ee317ccccb21d066d0701542364e32c4287e551e8e85746b7897210e04ba7b"
+        },
+        {
+          "fact": {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "eba4da3c4ddfccaf1a3d73ffc4c5c502064ac91aa5fffab35b227ff4265d7e04"
+        },
+        {
+          "fact": {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "33544b213e36dc7d6924b58ccb7f021e2797a983f966992b0369f539838e1f20"
+        }
+      ],
+      "reviewed_question_necessary_and_answerable": true,
+      "selected_chunks": [
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295"
+      ]
+    },
+    {
+      "job_id": "r1:dev-case-a:source_capacity_on",
+      "arm": "source_capacity_on",
+      "case_id": "dev-case-a",
+      "turn_id": "version",
+      "status": "fresh_proposal",
+      "operational_checks": [
+        {
+          "step": "version",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "version",
+          "check": "decision is acceptable (gold)",
+          "passed": true,
+          "detail": "ask"
+        },
+        {
+          "step": "version",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "version",
+          "check": "model attempt accounting is complete",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "version",
+          "check": "approve",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "version",
+          "check": "double approval refused",
+          "passed": true,
+          "detail": 409
+        }
+      ],
+      "human_usefulness": null,
+      "assistant_review": "Initial installed-version question is necessary. After version1.50.0, parent callback/state update code is still absent and the supplied reduction works; that follow-up is answerable and avoids a fabricated fix.",
+      "decision": "ask",
+      "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?",
+      "proposal_id": "d155251e-7fdf-5e6e-9f7e-d4ae3fc42552",
+      "handoff_sha256": "fed05f392c263abf8aab6b9baf5c065b080e9618d5eecd60fb9655c5e7899f11",
+      "all_surfaces_sha256": {
+        "decision": "2f2fc7f2e9ce13b09b84f63d54d0b4a59f4dbd46aea41da67023817e2d0c5e59",
+        "user_draft": "d965a231edf861e7c4819f069fcbb777f8d2de40db373a2dba6e0e4897a70399",
+        "maintainer_summary": "ac3fb2ec3b5afac2d3b592a3609e5bb54f899574f0f269228388300a4e242c2f",
+        "rationale": "6a71432be0d531a616fd7f83a61d098050969d1dfee9199d64e1b02a0af89349",
+        "next_question": "d965a231edf861e7c4819f069fcbb777f8d2de40db373a2dba6e0e4897a70399",
+        "missing_info.0": "dcd01738190fed50a1cc08733efcc81383d8273a24a47980f39f6460f3263b95"
+      },
+      "unsupported_material_claim_found": false,
+      "technical_answer_provided": false,
+      "current_user_facts": [
+        {
+          "fact": {
+            "name": "python_version",
+            "value": "3.12.9",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "4ebf5202c64311e58588ddad1b51753ca65d913184d84d3fa917bb6c35affb04"
+        },
+        {
+          "fact": {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "2a43d83b135e7952832d7c03a0f35e6ff309a067df8f4d4df4afbf57643c7594"
+        },
+        {
+          "fact": {
+            "name": "browser",
+            "value": "Chrome",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "ee5795ed878182a59bc322070ac33d68f37f2edbec6d9b132b9ec44bada062f2"
+        },
+        {
+          "fact": {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "38b7d5419c98b027578b72c34b2d5f94fda0b32ebf61010e6a9132824db228ab"
+        },
+        {
+          "fact": {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "c9ee317ccccb21d066d0701542364e32c4287e551e8e85746b7897210e04ba7b"
+        },
+        {
+          "fact": {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "eba4da3c4ddfccaf1a3d73ffc4c5c502064ac91aa5fffab35b227ff4265d7e04"
+        },
+        {
+          "fact": {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "33544b213e36dc7d6924b58ccb7f021e2797a983f966992b0369f539838e1f20"
+        },
+        {
+          "fact": {
+            "name": "streamlit_version",
+            "value": "1.50.0",
+            "source_ref": "user:version",
+            "turn_id": "version",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "078d9c2efe7cf153dc8ef4b636bb864d60b27ae4918623be9e4c717bb4a91e28"
+        }
+      ],
+      "reviewed_question_necessary_and_answerable": true,
+      "selected_chunks": []
+    },
+    {
+      "job_id": "r1:dev-case-b:source_capacity_on",
+      "arm": "source_capacity_on",
+      "case_id": "dev-case-b",
+      "turn_id": "initial",
+      "status": "fresh_proposal",
+      "operational_checks": [
+        {
+          "step": "initial",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "initial",
+          "check": "decision is acceptable (gold)",
+          "passed": true,
+          "detail": "ask"
+        },
+        {
+          "step": "initial",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "initial",
+          "check": "model attempt accounting is complete",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "initial",
+          "check": "approve",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "initial",
+          "check": "double approval refused",
+          "passed": true,
+          "detail": 409
+        }
+      ],
+      "human_usefulness": null,
+      "assistant_review": "Initial version question is necessary. Actual returned evidence lacks exact1.39 button capability; escalation is qualified and does not claim custom-image support, warning capability or future delivery. Generic selected background is not an icon answer.",
+      "decision": "ask",
+      "question": "Which Streamlit version is installed in the affected environment?",
+      "proposal_id": "5d9cd899-c67b-597b-a970-6efa6628098b",
+      "handoff_sha256": "2eff7225ed25db497d54a8a39045715df185af029203ed2ad37bbba2dfb760d5",
+      "all_surfaces_sha256": {
+        "decision": "2f2fc7f2e9ce13b09b84f63d54d0b4a59f4dbd46aea41da67023817e2d0c5e59",
+        "user_draft": "a03a15504bfa332da9f301e1a1d5351a19bb9bb85c0d63162ca09d76e6303d89",
+        "maintainer_summary": "46976b6cf2f8d25740845e47b04d38cd2d71b5a67648f60c9e80cc66a4116468",
+        "rationale": "a6e21541077d87dccd034bf6f7f71f14d9fac4febd9a1fdcd3a3fd333d390abc",
+        "next_question": "a03a15504bfa332da9f301e1a1d5351a19bb9bb85c0d63162ca09d76e6303d89",
+        "evidence_links.0.claim": "09f437ddca2227c2f7cbf25bda42d96e2107785b6c73f0ee45fe5f9ead68f05b",
+        "missing_info.0": "12b1868d440a19d45f8f8034aadd972b6fcd991479ef7c8a4e3ee3db5ea4b398"
+      },
+      "unsupported_material_claim_found": false,
+      "technical_answer_provided": false,
+      "current_user_facts": [
+        {
+          "fact": {
+            "name": "requested_icon_format",
+            "value": "A custom company-logo image rather than an emoji or Material Symbol",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "fc20a261da8f595d8e8dff5479a92314d8a6ddc23120e2b74e7216d4c93ead4b"
+        },
+        {
+          "fact": {
+            "name": "requested_apis",
+            "value": "st.button or st.warning",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "ef901f9670931a6a36d17020a914593b7c9d880182bf38dafc29cbdefafb4bb9"
+        }
+      ],
+      "reviewed_question_necessary_and_answerable": true,
+      "selected_chunks": [
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9"
+      ]
+    },
+    {
+      "job_id": "r1:dev-case-b:source_capacity_on",
+      "arm": "source_capacity_on",
+      "case_id": "dev-case-b",
+      "turn_id": "version",
+      "status": "fresh_proposal",
+      "operational_checks": [
+        {
+          "step": "version",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "version",
+          "check": "decision is acceptable (gold)",
+          "passed": true,
+          "detail": "escalate"
+        },
+        {
+          "step": "version",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "version",
+          "check": "model attempt accounting is complete",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "version",
+          "check": "approve",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "version",
+          "check": "double approval refused",
+          "passed": true,
+          "detail": 409
+        }
+      ],
+      "human_usefulness": null,
+      "assistant_review": "Initial version question is necessary. Actual returned evidence lacks exact1.39 button capability; escalation is qualified and does not claim custom-image support, warning capability or future delivery. Generic selected background is not an icon answer.",
+      "decision": "escalate",
+      "question": null,
+      "proposal_id": "b93d6764-8dcb-5c37-b116-eba98d0c65a8",
+      "handoff_sha256": "1d7fc7b438ac75ca4515dc18c3ab44ee38662f03efdbb68138c09ff9b0d654df",
+      "all_surfaces_sha256": {
+        "decision": "f965e5fbf98dd531b7c0fd4f9bdc8dd6df79f623c8345b8aa1b7cd756d317dd8",
+        "user_draft": "776822669ad93e1e71c53d125a7272a89fc164b3cf16b658de29178301bee663",
+        "maintainer_summary": "27d751e1aaa0e0e582d0ca7e36f04b359293e3e423725dc0ebc64a0bf0cd72ff",
+        "rationale": "d54f2a8022f6cae55b3cb2647b2da8d7bb4bff2260de9670fc4224af1b2f656f"
+      },
+      "unsupported_material_claim_found": false,
+      "technical_answer_provided": false,
+      "current_user_facts": [
+        {
+          "fact": {
+            "name": "requested_icon_format",
+            "value": "A custom company-logo image rather than an emoji or Material Symbol",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "fc20a261da8f595d8e8dff5479a92314d8a6ddc23120e2b74e7216d4c93ead4b"
+        },
+        {
+          "fact": {
+            "name": "requested_apis",
+            "value": "st.button or st.warning",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "ef901f9670931a6a36d17020a914593b7c9d880182bf38dafc29cbdefafb4bb9"
+        },
+        {
+          "fact": {
+            "name": "streamlit_version",
+            "value": "1.39.0",
+            "source_ref": "user:version",
+            "turn_id": "version",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "27131f58510b92abf5edb54c9463c1f4418077f6b61c96da0c766bd1675d5244"
+        }
+      ],
+      "reviewed_question_necessary_and_answerable": null,
+      "selected_chunks": []
+    },
+    {
+      "job_id": "r1:dev-case-b:source_capacity_off",
+      "arm": "source_capacity_off",
+      "case_id": "dev-case-b",
+      "turn_id": "initial",
+      "status": "no_fresh_proposal",
+      "operational_checks": [
+        {
+          "step": "initial",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "initial",
+          "check": "decision is acceptable (gold)",
+          "passed": false,
+          "detail": null
+        },
+        {
+          "step": "initial",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "initial",
+          "check": "model attempt accounting is complete",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "initial",
+          "check": "approve: proposal available",
+          "passed": false,
+          "detail": null
+        }
+      ],
+      "human_usefulness": null,
+      "assistant_review": "No fresh response or unvisited; retained in the denominator."
+    },
+    {
+      "job_id": "r1:dev-case-b:source_capacity_off",
+      "arm": "source_capacity_off",
+      "case_id": "dev-case-b",
+      "turn_id": "version",
+      "status": "unvisited",
+      "operational_checks": [],
+      "human_usefulness": null,
+      "assistant_review": "No fresh response or unvisited; retained in the denominator."
+    },
+    {
+      "job_id": "r1:dev-case-c:source_capacity_off",
+      "arm": "source_capacity_off",
+      "case_id": "dev-case-c",
+      "turn_id": "initial",
+      "status": "no_fresh_proposal",
+      "operational_checks": [
+        {
+          "step": "initial",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "initial",
+          "check": "decision is acceptable (gold)",
+          "passed": false,
+          "detail": null
+        },
+        {
+          "step": "initial",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "initial",
+          "check": "model attempt accounting is complete",
+          "passed": true,
+          "detail": null
+        }
+      ],
+      "human_usefulness": null,
+      "assistant_review": "No fresh response or unvisited; retained in the denominator."
+    },
+    {
+      "job_id": "r1:dev-case-c:source_capacity_off",
+      "arm": "source_capacity_off",
+      "case_id": "dev-case-c",
+      "turn_id": "correction",
+      "status": "unvisited",
+      "operational_checks": [],
+      "human_usefulness": null,
+      "assistant_review": "No fresh response or unvisited; retained in the denominator."
+    },
+    {
+      "job_id": "r1:dev-case-c:source_capacity_on",
+      "arm": "source_capacity_on",
+      "case_id": "dev-case-c",
+      "turn_id": "initial",
+      "status": "fresh_proposal",
+      "operational_checks": [
+        {
+          "step": "initial",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "initial",
+          "check": "decision is acceptable (gold)",
+          "passed": true,
+          "detail": "escalate"
+        },
+        {
+          "step": "initial",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "initial",
+          "check": "model attempt accounting is complete",
+          "passed": true,
+          "detail": null
+        }
+      ],
+      "human_usefulness": null,
+      "assistant_review": "Full code and USER version are present; no version/code reask. Escalation retains the reproduction and explicitly lacks a proven diagnosis/fix. Correction uses current1.31.1;1.31.0 remains only labelled history.",
+      "decision": "escalate",
+      "question": null,
+      "proposal_id": "2bc36c9b-7f4d-584e-bc7e-cb2f8ae050b2",
+      "handoff_sha256": "2078f7079755d47026e436c4c5e7004a4d289aa1a4c711f954871786d43153da",
+      "all_surfaces_sha256": {
+        "decision": "f965e5fbf98dd531b7c0fd4f9bdc8dd6df79f623c8345b8aa1b7cd756d317dd8",
+        "user_draft": "00e0af84e25fd5fa2b4e4df8c23fffaec9730face2c8cbd9143fdd6a9999910a",
+        "maintainer_summary": "7eb919cfc40c4190e8ea991f140afa5fb8805d659a68662421621501aa77c7fe",
+        "rationale": "d54f2a8022f6cae55b3cb2647b2da8d7bb4bff2260de9670fc4224af1b2f656f",
+        "evidence_links.0.claim": "c7ed6e4f1700fad3802b37fd5b93f8ce9e8e784a1ec63c3f2122b7bd905f4720",
+        "evidence_links.1.claim": "add16c53e090e977e7860a3e107572d469c9e0ec47c3828739730e3e07a71fdc"
+      },
+      "unsupported_material_claim_found": false,
+      "technical_answer_provided": false,
+      "current_user_facts": [
+        {
+          "fact": {
+            "name": "streamlit_version",
+            "value": "1.31.0",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "783b88052b1c66a8932e0418e8ba871496892cd28448e358c67b38e5bf45ee4b"
+        },
+        {
+          "fact": {
+            "name": "python_version",
+            "value": "3.11.6",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "c1ca55f20f681aa82611efbb6f5c818cb6fea8ff7291fc68e8652cf4a6a32795"
+        },
+        {
+          "fact": {
+            "name": "operating_system",
+            "value": "macOS Sonoma 14.3",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "4b62420b98feba1bd5729bd1cc189589bce4424ba79cba8678c108a6ae858fed"
+        },
+        {
+          "fact": {
+            "name": "browser",
+            "value": "Chrome",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "ee5795ed878182a59bc322070ac33d68f37f2edbec6d9b132b9ec44bada062f2"
+        },
+        {
+          "fact": {
+            "name": "reported_reproduction_code",
+            "value": "import streamlit as st\r\nfrom enum import Enum, auto\r\n\r\nclass Color(Enum):\r\n    RED = auto()\r\n    BLACK = auto()\r\n    YELLOW = auto()\r\n    \r\nif 'color' not in st.session_state:\r\n    st.session_state.color = Color.RED\r\n    \r\n\r\nst.code(\"st.session_state.color == Color.RED\")\r\nst.write(st.session_state.color == Color.RED)\r\n\r\nst.code(\"st.session_state.color.value == Color.RED.value\")\r\nst.write(st.session_state.color.value == Color.RED.value)",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "d90fcc45846b3fb613c82fd89ae7071840497c4784b9730e1ab328354337c191"
+        },
+        {
+          "fact": {
+            "name": "reported_observation",
+            "value": "Enum equality is False, while enum .value equality is True",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "fa90e76e9748a39298bb0f5e50daac55ae450646d28023c560cec940ab6e04d6"
+        }
+      ],
+      "reviewed_question_necessary_and_answerable": null,
+      "selected_chunks": [
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+        "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898"
+      ]
+    },
+    {
+      "job_id": "r1:dev-case-c:source_capacity_on",
+      "arm": "source_capacity_on",
+      "case_id": "dev-case-c",
+      "turn_id": "correction",
+      "status": "fresh_proposal",
+      "operational_checks": [
+        {
+          "step": "correction",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "correction",
+          "check": "decision is acceptable (gold)",
+          "passed": true,
+          "detail": "escalate"
+        },
+        {
+          "step": "correction",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "correction",
+          "check": "model attempt accounting is complete",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "correction",
+          "check": "approve",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "correction",
+          "check": "double approval refused",
+          "passed": true,
+          "detail": 409
+        },
+        {
+          "step": "correction",
+          "check": "stale approval rejected without mutation or new model send",
+          "passed": true,
+          "detail": 409
+        }
+      ],
+      "human_usefulness": null,
+      "assistant_review": "Full code and USER version are present; no version/code reask. Escalation retains the reproduction and explicitly lacks a proven diagnosis/fix. Correction uses current1.31.1;1.31.0 remains only labelled history.",
+      "decision": "escalate",
+      "question": null,
+      "proposal_id": "fb96e95a-b45a-54db-a97f-c5f96d27fead",
+      "handoff_sha256": "634e54525f2625c4911c1bff5ca0d84a44d733534f4483ff22c3e7cf6559fe02",
+      "all_surfaces_sha256": {
+        "decision": "f965e5fbf98dd531b7c0fd4f9bdc8dd6df79f623c8345b8aa1b7cd756d317dd8",
+        "user_draft": "e2999393b7dd162f2a1937e7836bc1548c124b6188c92457344a883c78b6cf3d",
+        "maintainer_summary": "0b080b4c67d66ba676483a6ba36d0832a5416603f58ab40f7a9449c4173b66e7",
+        "rationale": "d54f2a8022f6cae55b3cb2647b2da8d7bb4bff2260de9670fc4224af1b2f656f"
+      },
+      "unsupported_material_claim_found": false,
+      "technical_answer_provided": false,
+      "current_user_facts": [
+        {
+          "fact": {
+            "name": "python_version",
+            "value": "3.11.6",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "c1ca55f20f681aa82611efbb6f5c818cb6fea8ff7291fc68e8652cf4a6a32795"
+        },
+        {
+          "fact": {
+            "name": "operating_system",
+            "value": "macOS Sonoma 14.3",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "4b62420b98feba1bd5729bd1cc189589bce4424ba79cba8678c108a6ae858fed"
+        },
+        {
+          "fact": {
+            "name": "browser",
+            "value": "Chrome",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "ee5795ed878182a59bc322070ac33d68f37f2edbec6d9b132b9ec44bada062f2"
+        },
+        {
+          "fact": {
+            "name": "reported_reproduction_code",
+            "value": "import streamlit as st\r\nfrom enum import Enum, auto\r\n\r\nclass Color(Enum):\r\n    RED = auto()\r\n    BLACK = auto()\r\n    YELLOW = auto()\r\n    \r\nif 'color' not in st.session_state:\r\n    st.session_state.color = Color.RED\r\n    \r\n\r\nst.code(\"st.session_state.color == Color.RED\")\r\nst.write(st.session_state.color == Color.RED)\r\n\r\nst.code(\"st.session_state.color.value == Color.RED.value\")\r\nst.write(st.session_state.color.value == Color.RED.value)",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "d90fcc45846b3fb613c82fd89ae7071840497c4784b9730e1ab328354337c191"
+        },
+        {
+          "fact": {
+            "name": "reported_observation",
+            "value": "Enum equality is False, while enum .value equality is True",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "fa90e76e9748a39298bb0f5e50daac55ae450646d28023c560cec940ab6e04d6"
+        },
+        {
+          "fact": {
+            "name": "streamlit_version",
+            "value": "1.31.1",
+            "source_ref": "user:correction",
+            "turn_id": "correction",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "41e15626ca46b8f96f7a34c02cf27693ece0f865f0657d53da40ca7574d7ac0c"
+        }
+      ],
+      "reviewed_question_necessary_and_answerable": null,
+      "selected_chunks": []
+    },
+    {
+      "job_id": "r2:dev-case-c:source_capacity_on",
+      "arm": "source_capacity_on",
+      "case_id": "dev-case-c",
+      "turn_id": "initial",
+      "status": "no_fresh_proposal",
+      "operational_checks": [
+        {
+          "step": "initial",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "initial",
+          "check": "decision is acceptable (gold)",
+          "passed": false,
+          "detail": null
+        },
+        {
+          "step": "initial",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "initial",
+          "check": "model attempt accounting is complete",
+          "passed": true,
+          "detail": null
+        }
+      ],
+      "human_usefulness": null,
+      "assistant_review": "No fresh response or unvisited; retained in the denominator."
+    },
+    {
+      "job_id": "r2:dev-case-c:source_capacity_on",
+      "arm": "source_capacity_on",
+      "case_id": "dev-case-c",
+      "turn_id": "correction",
+      "status": "unvisited",
+      "operational_checks": [],
+      "human_usefulness": null,
+      "assistant_review": "No fresh response or unvisited; retained in the denominator."
+    },
+    {
+      "job_id": "r2:dev-case-c:source_capacity_off",
+      "arm": "source_capacity_off",
+      "case_id": "dev-case-c",
+      "turn_id": "initial",
+      "status": "fresh_proposal",
+      "operational_checks": [
+        {
+          "step": "initial",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "initial",
+          "check": "decision is acceptable (gold)",
+          "passed": true,
+          "detail": "escalate"
+        },
+        {
+          "step": "initial",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "initial",
+          "check": "model attempt accounting is complete",
+          "passed": true,
+          "detail": null
+        }
+      ],
+      "human_usefulness": null,
+      "assistant_review": "Full code and USER version are present; no version/code reask. Escalation retains the reproduction and explicitly lacks a proven diagnosis/fix. Correction uses current1.31.1;1.31.0 remains only labelled history.",
+      "decision": "escalate",
+      "question": null,
+      "proposal_id": "ee821765-727a-5cf5-b1bc-dd7fb942bd25",
+      "handoff_sha256": "ac0d142466d809b7dcf5155fa23d1775003d97b6c2590faedd4930e08684a17e",
+      "all_surfaces_sha256": {
+        "decision": "f965e5fbf98dd531b7c0fd4f9bdc8dd6df79f623c8345b8aa1b7cd756d317dd8",
+        "user_draft": "00e0af84e25fd5fa2b4e4df8c23fffaec9730face2c8cbd9143fdd6a9999910a",
+        "maintainer_summary": "90dc7a29466be46c9ca679051b215dd15f7b3d1708faad84dfbea67c76407e46",
+        "rationale": "d54f2a8022f6cae55b3cb2647b2da8d7bb4bff2260de9670fc4224af1b2f656f"
+      },
+      "unsupported_material_claim_found": false,
+      "technical_answer_provided": false,
+      "current_user_facts": [
+        {
+          "fact": {
+            "name": "streamlit_version",
+            "value": "1.31.0",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "783b88052b1c66a8932e0418e8ba871496892cd28448e358c67b38e5bf45ee4b"
+        },
+        {
+          "fact": {
+            "name": "python_version",
+            "value": "3.11.6",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "c1ca55f20f681aa82611efbb6f5c818cb6fea8ff7291fc68e8652cf4a6a32795"
+        },
+        {
+          "fact": {
+            "name": "operating_system",
+            "value": "macOS Sonoma 14.3",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "4b62420b98feba1bd5729bd1cc189589bce4424ba79cba8678c108a6ae858fed"
+        },
+        {
+          "fact": {
+            "name": "browser",
+            "value": "Chrome",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "ee5795ed878182a59bc322070ac33d68f37f2edbec6d9b132b9ec44bada062f2"
+        },
+        {
+          "fact": {
+            "name": "reported_reproduction_code",
+            "value": "import streamlit as st\r\nfrom enum import Enum, auto\r\n\r\nclass Color(Enum):\r\n    RED = auto()\r\n    BLACK = auto()\r\n    YELLOW = auto()\r\n    \r\nif 'color' not in st.session_state:\r\n    st.session_state.color = Color.RED\r\n    \r\n\r\nst.code(\"st.session_state.color == Color.RED\")\r\nst.write(st.session_state.color == Color.RED)\r\n\r\nst.code(\"st.session_state.color.value == Color.RED.value\")\r\nst.write(st.session_state.color.value == Color.RED.value)",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "d90fcc45846b3fb613c82fd89ae7071840497c4784b9730e1ab328354337c191"
+        },
+        {
+          "fact": {
+            "name": "reported_observation",
+            "value": "Enum equality is False, while enum .value equality is True",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "fa90e76e9748a39298bb0f5e50daac55ae450646d28023c560cec940ab6e04d6"
+        }
+      ],
+      "reviewed_question_necessary_and_answerable": null,
+      "selected_chunks": []
+    },
+    {
+      "job_id": "r2:dev-case-c:source_capacity_off",
+      "arm": "source_capacity_off",
+      "case_id": "dev-case-c",
+      "turn_id": "correction",
+      "status": "fresh_proposal",
+      "operational_checks": [
+        {
+          "step": "correction",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "correction",
+          "check": "decision is acceptable (gold)",
+          "passed": true,
+          "detail": "escalate"
+        },
+        {
+          "step": "correction",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "correction",
+          "check": "model attempt accounting is complete",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "correction",
+          "check": "approve",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "correction",
+          "check": "double approval refused",
+          "passed": true,
+          "detail": 409
+        },
+        {
+          "step": "correction",
+          "check": "stale approval rejected without mutation or new model send",
+          "passed": true,
+          "detail": 409
+        }
+      ],
+      "human_usefulness": null,
+      "assistant_review": "Full code and USER version are present; no version/code reask. Escalation retains the reproduction and explicitly lacks a proven diagnosis/fix. Correction uses current1.31.1;1.31.0 remains only labelled history.",
+      "decision": "escalate",
+      "question": null,
+      "proposal_id": "3fddcb9d-3d2c-5f7f-925b-fe2ece7c11b0",
+      "handoff_sha256": "57fd1b4562d39491748d3dd10e8554f00fa6e4ce1e56f3d9cc4d61e8d770dc75",
+      "all_surfaces_sha256": {
+        "decision": "f965e5fbf98dd531b7c0fd4f9bdc8dd6df79f623c8345b8aa1b7cd756d317dd8",
+        "user_draft": "e2999393b7dd162f2a1937e7836bc1548c124b6188c92457344a883c78b6cf3d",
+        "maintainer_summary": "0b080b4c67d66ba676483a6ba36d0832a5416603f58ab40f7a9449c4173b66e7",
+        "rationale": "d54f2a8022f6cae55b3cb2647b2da8d7bb4bff2260de9670fc4224af1b2f656f"
+      },
+      "unsupported_material_claim_found": false,
+      "technical_answer_provided": false,
+      "current_user_facts": [
+        {
+          "fact": {
+            "name": "python_version",
+            "value": "3.11.6",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "c1ca55f20f681aa82611efbb6f5c818cb6fea8ff7291fc68e8652cf4a6a32795"
+        },
+        {
+          "fact": {
+            "name": "operating_system",
+            "value": "macOS Sonoma 14.3",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "4b62420b98feba1bd5729bd1cc189589bce4424ba79cba8678c108a6ae858fed"
+        },
+        {
+          "fact": {
+            "name": "browser",
+            "value": "Chrome",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "ee5795ed878182a59bc322070ac33d68f37f2edbec6d9b132b9ec44bada062f2"
+        },
+        {
+          "fact": {
+            "name": "reported_reproduction_code",
+            "value": "import streamlit as st\r\nfrom enum import Enum, auto\r\n\r\nclass Color(Enum):\r\n    RED = auto()\r\n    BLACK = auto()\r\n    YELLOW = auto()\r\n    \r\nif 'color' not in st.session_state:\r\n    st.session_state.color = Color.RED\r\n    \r\n\r\nst.code(\"st.session_state.color == Color.RED\")\r\nst.write(st.session_state.color == Color.RED)\r\n\r\nst.code(\"st.session_state.color.value == Color.RED.value\")\r\nst.write(st.session_state.color.value == Color.RED.value)",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "d90fcc45846b3fb613c82fd89ae7071840497c4784b9730e1ab328354337c191"
+        },
+        {
+          "fact": {
+            "name": "reported_observation",
+            "value": "Enum equality is False, while enum .value equality is True",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "fa90e76e9748a39298bb0f5e50daac55ae450646d28023c560cec940ab6e04d6"
+        },
+        {
+          "fact": {
+            "name": "streamlit_version",
+            "value": "1.31.1",
+            "source_ref": "user:correction",
+            "turn_id": "correction",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "41e15626ca46b8f96f7a34c02cf27693ece0f865f0657d53da40ca7574d7ac0c"
+        }
+      ],
+      "reviewed_question_necessary_and_answerable": null,
+      "selected_chunks": []
+    },
+    {
+      "job_id": "r2:dev-case-b:source_capacity_off",
+      "arm": "source_capacity_off",
+      "case_id": "dev-case-b",
+      "turn_id": "initial",
+      "status": "fresh_proposal",
+      "operational_checks": [
+        {
+          "step": "initial",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "initial",
+          "check": "decision is acceptable (gold)",
+          "passed": true,
+          "detail": "ask"
+        },
+        {
+          "step": "initial",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "initial",
+          "check": "model attempt accounting is complete",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "initial",
+          "check": "approve",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "initial",
+          "check": "double approval refused",
+          "passed": true,
+          "detail": 409
+        }
+      ],
+      "human_usefulness": null,
+      "assistant_review": "Initial version question is necessary. Actual returned evidence lacks exact1.39 button capability; escalation is qualified and does not claim custom-image support, warning capability or future delivery. Generic selected background is not an icon answer.",
+      "decision": "ask",
+      "question": "Which Streamlit version is installed in the affected environment?",
+      "proposal_id": "d280d445-a17c-5407-ad8b-8a2595c95d0a",
+      "handoff_sha256": "6241f06fc5c2644eb3f7d561130de46bafe438179c31ad931eab0933edeee091",
+      "all_surfaces_sha256": {
+        "decision": "2f2fc7f2e9ce13b09b84f63d54d0b4a59f4dbd46aea41da67023817e2d0c5e59",
+        "user_draft": "a03a15504bfa332da9f301e1a1d5351a19bb9bb85c0d63162ca09d76e6303d89",
+        "maintainer_summary": "f24da05e43ac210da5868a317cc58c2e66ab983224d5ca68215fb635234cf3b6",
+        "rationale": "a6e21541077d87dccd034bf6f7f71f14d9fac4febd9a1fdcd3a3fd333d390abc",
+        "next_question": "a03a15504bfa332da9f301e1a1d5351a19bb9bb85c0d63162ca09d76e6303d89",
+        "missing_info.0": "12b1868d440a19d45f8f8034aadd972b6fcd991479ef7c8a4e3ee3db5ea4b398"
+      },
+      "unsupported_material_claim_found": false,
+      "technical_answer_provided": false,
+      "current_user_facts": [
+        {
+          "fact": {
+            "name": "requested_icon_format",
+            "value": "A custom company-logo image rather than an emoji or Material Symbol",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "fc20a261da8f595d8e8dff5479a92314d8a6ddc23120e2b74e7216d4c93ead4b"
+        },
+        {
+          "fact": {
+            "name": "requested_apis",
+            "value": "st.button or st.warning",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "ef901f9670931a6a36d17020a914593b7c9d880182bf38dafc29cbdefafb4bb9"
+        }
+      ],
+      "reviewed_question_necessary_and_answerable": true,
+      "selected_chunks": []
+    },
+    {
+      "job_id": "r2:dev-case-b:source_capacity_off",
+      "arm": "source_capacity_off",
+      "case_id": "dev-case-b",
+      "turn_id": "version",
+      "status": "fresh_proposal",
+      "operational_checks": [
+        {
+          "step": "version",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "version",
+          "check": "decision is acceptable (gold)",
+          "passed": true,
+          "detail": "escalate"
+        },
+        {
+          "step": "version",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "version",
+          "check": "model attempt accounting is complete",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "version",
+          "check": "approve",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "version",
+          "check": "double approval refused",
+          "passed": true,
+          "detail": 409
+        }
+      ],
+      "human_usefulness": null,
+      "assistant_review": "Initial version question is necessary. Actual returned evidence lacks exact1.39 button capability; escalation is qualified and does not claim custom-image support, warning capability or future delivery. Generic selected background is not an icon answer.",
+      "decision": "escalate",
+      "question": null,
+      "proposal_id": "df8894da-cc42-594e-a561-0cdcea5db779",
+      "handoff_sha256": "5082e5234a0fcc772abb72c4580f0fddee2d4a7c25e20de0002e51086dc90c6e",
+      "all_surfaces_sha256": {
+        "decision": "f965e5fbf98dd531b7c0fd4f9bdc8dd6df79f623c8345b8aa1b7cd756d317dd8",
+        "user_draft": "776822669ad93e1e71c53d125a7272a89fc164b3cf16b658de29178301bee663",
+        "maintainer_summary": "7267e9098221d7ef960820c5b697af68806c175032b089114d41dbb3e23596c5",
+        "rationale": "d54f2a8022f6cae55b3cb2647b2da8d7bb4bff2260de9670fc4224af1b2f656f",
+        "evidence_links.0.claim": "32458af3743512e557286f41e59419a6f7a0fa93596110008fe58852512e3943",
+        "evidence_links.1.claim": "44acabb53ba8d65389ead6dd0b369c742b3fa93131098189ba81d7b691318fe5",
+        "evidence_links.2.claim": "db3664088e89ca41c4557a843f62f128637624b16becaf33fca9d02410d3d96f"
+      },
+      "unsupported_material_claim_found": false,
+      "technical_answer_provided": false,
+      "current_user_facts": [
+        {
+          "fact": {
+            "name": "requested_icon_format",
+            "value": "A custom company-logo image rather than an emoji or Material Symbol",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "fc20a261da8f595d8e8dff5479a92314d8a6ddc23120e2b74e7216d4c93ead4b"
+        },
+        {
+          "fact": {
+            "name": "requested_apis",
+            "value": "st.button or st.warning",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "ef901f9670931a6a36d17020a914593b7c9d880182bf38dafc29cbdefafb4bb9"
+        },
+        {
+          "fact": {
+            "name": "streamlit_version",
+            "value": "1.39.0",
+            "source_ref": "user:version",
+            "turn_id": "version",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "27131f58510b92abf5edb54c9463c1f4418077f6b61c96da0c766bd1675d5244"
+        }
+      ],
+      "reviewed_question_necessary_and_answerable": null,
+      "selected_chunks": [
+        "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+        "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3"
+      ]
+    },
+    {
+      "job_id": "r2:dev-case-b:source_capacity_on",
+      "arm": "source_capacity_on",
+      "case_id": "dev-case-b",
+      "turn_id": "initial",
+      "status": "no_fresh_proposal",
+      "operational_checks": [
+        {
+          "step": "initial",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "initial",
+          "check": "decision is acceptable (gold)",
+          "passed": false,
+          "detail": null
+        },
+        {
+          "step": "initial",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "initial",
+          "check": "model attempt accounting is complete",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "initial",
+          "check": "approve: proposal available",
+          "passed": false,
+          "detail": null
+        }
+      ],
+      "human_usefulness": null,
+      "assistant_review": "No fresh response or unvisited; retained in the denominator."
+    },
+    {
+      "job_id": "r2:dev-case-b:source_capacity_on",
+      "arm": "source_capacity_on",
+      "case_id": "dev-case-b",
+      "turn_id": "version",
+      "status": "unvisited",
+      "operational_checks": [],
+      "human_usefulness": null,
+      "assistant_review": "No fresh response or unvisited; retained in the denominator."
+    },
+    {
+      "job_id": "r2:dev-case-a:source_capacity_on",
+      "arm": "source_capacity_on",
+      "case_id": "dev-case-a",
+      "turn_id": "initial",
+      "status": "fresh_proposal",
+      "operational_checks": [
+        {
+          "step": "initial",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "initial",
+          "check": "decision is acceptable (gold)",
+          "passed": true,
+          "detail": "ask"
+        },
+        {
+          "step": "initial",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "initial",
+          "check": "model attempt accounting is complete",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "initial",
+          "check": "approve",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "initial",
+          "check": "double approval refused",
+          "passed": true,
+          "detail": 409
+        }
+      ],
+      "human_usefulness": null,
+      "assistant_review": "Initial installed-version question is necessary. After version1.50.0, parent callback/state update code is still absent and the supplied reduction works; that follow-up is answerable and avoids a fabricated fix.",
+      "decision": "ask",
+      "question": "Which Streamlit version is installed in the affected environment?",
+      "proposal_id": "9e36ba87-13a8-575d-b8be-379752ce1d52",
+      "handoff_sha256": "1646fcc50fa4518366485d895ccf959f0a953b61423ff9cb3c8780a43a3fcd62",
+      "all_surfaces_sha256": {
+        "decision": "2f2fc7f2e9ce13b09b84f63d54d0b4a59f4dbd46aea41da67023817e2d0c5e59",
+        "user_draft": "a03a15504bfa332da9f301e1a1d5351a19bb9bb85c0d63162ca09d76e6303d89",
+        "maintainer_summary": "8572e231182dbf1c5f313d768c12f7b34ae37f02a0a32a89cc39096985656da2",
+        "rationale": "a6e21541077d87dccd034bf6f7f71f14d9fac4febd9a1fdcd3a3fd333d390abc",
+        "next_question": "a03a15504bfa332da9f301e1a1d5351a19bb9bb85c0d63162ca09d76e6303d89",
+        "evidence_links.0.claim": "add16c53e090e977e7860a3e107572d469c9e0ec47c3828739730e3e07a71fdc",
+        "missing_info.0": "12b1868d440a19d45f8f8034aadd972b6fcd991479ef7c8a4e3ee3db5ea4b398"
+      },
+      "unsupported_material_claim_found": false,
+      "technical_answer_provided": false,
+      "current_user_facts": [
+        {
+          "fact": {
+            "name": "python_version",
+            "value": "3.12.9",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "4ebf5202c64311e58588ddad1b51753ca65d913184d84d3fa917bb6c35affb04"
+        },
+        {
+          "fact": {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "2a43d83b135e7952832d7c03a0f35e6ff309a067df8f4d4df4afbf57643c7594"
+        },
+        {
+          "fact": {
+            "name": "browser",
+            "value": "Chrome",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "ee5795ed878182a59bc322070ac33d68f37f2edbec6d9b132b9ec44bada062f2"
+        },
+        {
+          "fact": {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "38b7d5419c98b027578b72c34b2d5f94fda0b32ebf61010e6a9132824db228ab"
+        },
+        {
+          "fact": {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "c9ee317ccccb21d066d0701542364e32c4287e551e8e85746b7897210e04ba7b"
+        },
+        {
+          "fact": {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "eba4da3c4ddfccaf1a3d73ffc4c5c502064ac91aa5fffab35b227ff4265d7e04"
+        },
+        {
+          "fact": {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "33544b213e36dc7d6924b58ccb7f021e2797a983f966992b0369f539838e1f20"
+        }
+      ],
+      "reviewed_question_necessary_and_answerable": true,
+      "selected_chunks": [
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295"
+      ]
+    },
+    {
+      "job_id": "r2:dev-case-a:source_capacity_on",
+      "arm": "source_capacity_on",
+      "case_id": "dev-case-a",
+      "turn_id": "version",
+      "status": "fresh_proposal",
+      "operational_checks": [
+        {
+          "step": "version",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "version",
+          "check": "decision is acceptable (gold)",
+          "passed": true,
+          "detail": "ask"
+        },
+        {
+          "step": "version",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "version",
+          "check": "model attempt accounting is complete",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "version",
+          "check": "approve",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "version",
+          "check": "double approval refused",
+          "passed": true,
+          "detail": 409
+        }
+      ],
+      "human_usefulness": null,
+      "assistant_review": "Initial installed-version question is necessary. After version1.50.0, parent callback/state update code is still absent and the supplied reduction works; that follow-up is answerable and avoids a fabricated fix.",
+      "decision": "ask",
+      "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?",
+      "proposal_id": "d48afaa3-df0c-5f10-ac28-48926779fd5d",
+      "handoff_sha256": "73e90236a526638956080573355cd0967bf08937127a2357b26778d5bd4f8f64",
+      "all_surfaces_sha256": {
+        "decision": "2f2fc7f2e9ce13b09b84f63d54d0b4a59f4dbd46aea41da67023817e2d0c5e59",
+        "user_draft": "d965a231edf861e7c4819f069fcbb777f8d2de40db373a2dba6e0e4897a70399",
+        "maintainer_summary": "7e642c5980994f95374959796b897eb5b5b76ed6fe3d00666a187bfb06dfb993",
+        "rationale": "6a71432be0d531a616fd7f83a61d098050969d1dfee9199d64e1b02a0af89349",
+        "next_question": "d965a231edf861e7c4819f069fcbb777f8d2de40db373a2dba6e0e4897a70399",
+        "evidence_links.0.claim": "09f437ddca2227c2f7cbf25bda42d96e2107785b6c73f0ee45fe5f9ead68f05b",
+        "missing_info.0": "dcd01738190fed50a1cc08733efcc81383d8273a24a47980f39f6460f3263b95"
+      },
+      "unsupported_material_claim_found": false,
+      "technical_answer_provided": false,
+      "current_user_facts": [
+        {
+          "fact": {
+            "name": "python_version",
+            "value": "3.12.9",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "4ebf5202c64311e58588ddad1b51753ca65d913184d84d3fa917bb6c35affb04"
+        },
+        {
+          "fact": {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "2a43d83b135e7952832d7c03a0f35e6ff309a067df8f4d4df4afbf57643c7594"
+        },
+        {
+          "fact": {
+            "name": "browser",
+            "value": "Chrome",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "ee5795ed878182a59bc322070ac33d68f37f2edbec6d9b132b9ec44bada062f2"
+        },
+        {
+          "fact": {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "38b7d5419c98b027578b72c34b2d5f94fda0b32ebf61010e6a9132824db228ab"
+        },
+        {
+          "fact": {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "c9ee317ccccb21d066d0701542364e32c4287e551e8e85746b7897210e04ba7b"
+        },
+        {
+          "fact": {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "eba4da3c4ddfccaf1a3d73ffc4c5c502064ac91aa5fffab35b227ff4265d7e04"
+        },
+        {
+          "fact": {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "33544b213e36dc7d6924b58ccb7f021e2797a983f966992b0369f539838e1f20"
+        },
+        {
+          "fact": {
+            "name": "streamlit_version",
+            "value": "1.50.0",
+            "source_ref": "user:version",
+            "turn_id": "version",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "078d9c2efe7cf153dc8ef4b636bb864d60b27ae4918623be9e4c717bb4a91e28"
+        }
+      ],
+      "reviewed_question_necessary_and_answerable": true,
+      "selected_chunks": [
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9"
+      ]
+    },
+    {
+      "job_id": "r2:dev-case-a:source_capacity_off",
+      "arm": "source_capacity_off",
+      "case_id": "dev-case-a",
+      "turn_id": "initial",
+      "status": "fresh_proposal",
+      "operational_checks": [
+        {
+          "step": "initial",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "initial",
+          "check": "decision is acceptable (gold)",
+          "passed": true,
+          "detail": "ask"
+        },
+        {
+          "step": "initial",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "initial",
+          "check": "model attempt accounting is complete",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "initial",
+          "check": "approve",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "initial",
+          "check": "double approval refused",
+          "passed": true,
+          "detail": 409
+        }
+      ],
+      "human_usefulness": null,
+      "assistant_review": "Initial installed-version question is necessary. After version1.50.0, parent callback/state update code is still absent and the supplied reduction works; that follow-up is answerable and avoids a fabricated fix.",
+      "decision": "ask",
+      "question": "Which Streamlit version is installed in the affected environment?",
+      "proposal_id": "d7ce904b-1979-5609-93cd-ad6e0916e36e",
+      "handoff_sha256": "8cc76c4c4473a779540e7f2dc26c378a35668d4b9f4942b7fffeef2c82cedcc2",
+      "all_surfaces_sha256": {
+        "decision": "2f2fc7f2e9ce13b09b84f63d54d0b4a59f4dbd46aea41da67023817e2d0c5e59",
+        "user_draft": "a03a15504bfa332da9f301e1a1d5351a19bb9bb85c0d63162ca09d76e6303d89",
+        "maintainer_summary": "8572e231182dbf1c5f313d768c12f7b34ae37f02a0a32a89cc39096985656da2",
+        "rationale": "a6e21541077d87dccd034bf6f7f71f14d9fac4febd9a1fdcd3a3fd333d390abc",
+        "next_question": "a03a15504bfa332da9f301e1a1d5351a19bb9bb85c0d63162ca09d76e6303d89",
+        "evidence_links.0.claim": "add16c53e090e977e7860a3e107572d469c9e0ec47c3828739730e3e07a71fdc",
+        "missing_info.0": "12b1868d440a19d45f8f8034aadd972b6fcd991479ef7c8a4e3ee3db5ea4b398"
+      },
+      "unsupported_material_claim_found": false,
+      "technical_answer_provided": false,
+      "current_user_facts": [
+        {
+          "fact": {
+            "name": "python_version",
+            "value": "3.12.9",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "4ebf5202c64311e58588ddad1b51753ca65d913184d84d3fa917bb6c35affb04"
+        },
+        {
+          "fact": {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "2a43d83b135e7952832d7c03a0f35e6ff309a067df8f4d4df4afbf57643c7594"
+        },
+        {
+          "fact": {
+            "name": "browser",
+            "value": "Chrome",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "ee5795ed878182a59bc322070ac33d68f37f2edbec6d9b132b9ec44bada062f2"
+        },
+        {
+          "fact": {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "38b7d5419c98b027578b72c34b2d5f94fda0b32ebf61010e6a9132824db228ab"
+        },
+        {
+          "fact": {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "c9ee317ccccb21d066d0701542364e32c4287e551e8e85746b7897210e04ba7b"
+        },
+        {
+          "fact": {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "eba4da3c4ddfccaf1a3d73ffc4c5c502064ac91aa5fffab35b227ff4265d7e04"
+        },
+        {
+          "fact": {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "33544b213e36dc7d6924b58ccb7f021e2797a983f966992b0369f539838e1f20"
+        }
+      ],
+      "reviewed_question_necessary_and_answerable": true,
+      "selected_chunks": [
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295"
+      ]
+    },
+    {
+      "job_id": "r2:dev-case-a:source_capacity_off",
+      "arm": "source_capacity_off",
+      "case_id": "dev-case-a",
+      "turn_id": "version",
+      "status": "fresh_proposal",
+      "operational_checks": [
+        {
+          "step": "version",
+          "check": "event accepted",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "version",
+          "check": "decision is acceptable (gold)",
+          "passed": true,
+          "detail": "ask"
+        },
+        {
+          "step": "version",
+          "check": "no draft released before approval",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "version",
+          "check": "model attempt accounting is complete",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "step": "version",
+          "check": "approve",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "step": "version",
+          "check": "double approval refused",
+          "passed": true,
+          "detail": 409
+        }
+      ],
+      "human_usefulness": null,
+      "assistant_review": "Initial installed-version question is necessary. After version1.50.0, parent callback/state update code is still absent and the supplied reduction works; that follow-up is answerable and avoids a fabricated fix.",
+      "decision": "ask",
+      "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?",
+      "proposal_id": "892acd11-e51e-5a25-87d4-d3d39d666156",
+      "handoff_sha256": "d646cdbd296a1e0847fcf442bef305219e0457f54fa7c37bd7ce60762e68b857",
+      "all_surfaces_sha256": {
+        "decision": "2f2fc7f2e9ce13b09b84f63d54d0b4a59f4dbd46aea41da67023817e2d0c5e59",
+        "user_draft": "d965a231edf861e7c4819f069fcbb777f8d2de40db373a2dba6e0e4897a70399",
+        "maintainer_summary": "ac3fb2ec3b5afac2d3b592a3609e5bb54f899574f0f269228388300a4e242c2f",
+        "rationale": "6a71432be0d531a616fd7f83a61d098050969d1dfee9199d64e1b02a0af89349",
+        "next_question": "d965a231edf861e7c4819f069fcbb777f8d2de40db373a2dba6e0e4897a70399",
+        "missing_info.0": "dcd01738190fed50a1cc08733efcc81383d8273a24a47980f39f6460f3263b95"
+      },
+      "unsupported_material_claim_found": false,
+      "technical_answer_provided": false,
+      "current_user_facts": [
+        {
+          "fact": {
+            "name": "python_version",
+            "value": "3.12.9",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "4ebf5202c64311e58588ddad1b51753ca65d913184d84d3fa917bb6c35affb04"
+        },
+        {
+          "fact": {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "2a43d83b135e7952832d7c03a0f35e6ff309a067df8f4d4df4afbf57643c7594"
+        },
+        {
+          "fact": {
+            "name": "browser",
+            "value": "Chrome",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "ee5795ed878182a59bc322070ac33d68f37f2edbec6d9b132b9ec44bada062f2"
+        },
+        {
+          "fact": {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "38b7d5419c98b027578b72c34b2d5f94fda0b32ebf61010e6a9132824db228ab"
+        },
+        {
+          "fact": {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "c9ee317ccccb21d066d0701542364e32c4287e551e8e85746b7897210e04ba7b"
+        },
+        {
+          "fact": {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "eba4da3c4ddfccaf1a3d73ffc4c5c502064ac91aa5fffab35b227ff4265d7e04"
+        },
+        {
+          "fact": {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+            "source_ref": "user:initial",
+            "turn_id": "initial",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "33544b213e36dc7d6924b58ccb7f021e2797a983f966992b0369f539838e1f20"
+        },
+        {
+          "fact": {
+            "name": "streamlit_version",
+            "value": "1.50.0",
+            "source_ref": "user:version",
+            "turn_id": "version",
+            "provenance_kind": "user",
+            "status": "active"
+          },
+          "sha256": "078d9c2efe7cf153dc8ef4b636bb864d60b27ae4918623be9e4c717bb4a91e28"
+        }
+      ],
+      "reviewed_question_necessary_and_answerable": true,
+      "selected_chunks": []
+    }
+  ],
+  "selected_quote_reviews": {
+    "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295": {
+      "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+      "excerpt_sha256": "032069b132c9d295bde1b845c249944c6c4b9c0e9d06f9ac44cc654cf04b3b35",
+      "applicable_versions": [],
+      "assessment": "Complete supplied background excerpt, unconfirmed applicability; not a cause/fix or an icon-capability answer."
+    },
+    "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9": {
+      "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+      "excerpt_sha256": "ffc3ed5892ffbff99c69753ac072c1acd9ad0208bc0b397cdc4c4f772fc83f32",
+      "applicable_versions": [],
+      "assessment": "Complete supplied background excerpt, unconfirmed applicability; not a cause/fix or an icon-capability answer."
+    },
+    "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898": {
+      "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+      "excerpt_sha256": "31737a71f2f8e8986b4f44f690c33edb9d77d026703f6728c734b98b75772c89",
+      "applicable_versions": [],
+      "assessment": "Complete supplied background excerpt, unconfirmed applicability; not a cause/fix or an icon-capability answer."
+    },
+    "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2": {
+      "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+      "excerpt_sha256": "f181c7c30a7f43f689acea0cee147006a1279b5c945ab549142576691b89bd5a",
+      "applicable_versions": [],
+      "assessment": "Complete supplied background excerpt, unconfirmed applicability; not a cause/fix or an icon-capability answer."
+    },
+    "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e": {
+      "source_id": "docs:content/develop/api-reference/widgets/button.md",
+      "excerpt_sha256": "8db80c52bd50ed6b0a3baf9b40899f2ad8ff554a366d3fd7f12e0007f5050be7",
+      "applicable_versions": [],
+      "assessment": "Complete supplied background excerpt, unconfirmed applicability; not a cause/fix or an icon-capability answer."
+    },
+    "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3": {
+      "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+      "excerpt_sha256": "99362eb1a9b5b6f3730c28b27bd90007c56667d553294567f18c62752e6644b8",
+      "applicable_versions": [],
+      "assessment": "Complete supplied background excerpt, unconfirmed applicability; not a cause/fix or an icon-capability answer."
+    }
+  },
+  "checks": [
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:9d5f923e8289784a62cf6f9f46d50924a8eb1e28766790f12eed5befb95c3224",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:42727216a416994d0472fd58a1ac5c4cfbb5b6bf498ecd03c0a8920f1cafbfa1",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:ee2e8802c393415bfc69b50061d58992ea5b23920d2592fce6c51600195d4ab1",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:0f361e2c4fb7c7bcde0493dd9adbeacd6d8eb75917291d9dec6780aad070645e",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:d297d960462a99ae56c621be3eb44af2577a3a166c02c6891f407b8dd5675732",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:f2adc7ea4f3e38002081c18c50d02c4536a3e625fe17740aa67b3f4410ed5a3a",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:78974cd379153d4879df6e86f5fae9f7fb741347935e37d3cc6e5e1486901c7f",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:6ab6547ada34c4911a6c130ade80869ebee7ae846efc03ce5f3807120fd616d5",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:0a1081ca9e79f0cab84199f85aa9831533dd31ccfb16d60cf1bd6905ad749508",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:03aa747e58ca28cc94f2bfb03ed4e11b2ae2990460042cfb69e3a7d880510f9a",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:d5ef2774e3b98048393b0ff7703db3f17b4b2a33f54c1907a849ec6e0954d3dc",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:610f64580fa41a4ddf8ec8db3051819caa91c5c559267534c7ce09b308f5c1bd",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:c2aa500d6eae2453ecbdc6d3cf1bc0a536bd412951c69aa065564e9fdb2986c2",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:206a068eabeba133652ac678f287b6f56854b89cc76e3d728e095aa839551cf7",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:9d6c9433fd551d8e85569aad774a8acdeac5054ab4a168981d27a0a2f9df9ac9",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:0844538b1911806e15a3984bf0e7fadfceb35afb15a04cd6bcdb95b14b6b1902",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:59760407a7fdc11928a10f75fedde404a24252b826c947876312785e90336f36",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:6fa220eeed0a122fa43a465d05cb4f05ade9dc33fdc9c18243c6fc058e592dc9",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:7024d62fca5e0554a72c177bb231c2846487c76d144d7e0174dda0d12c36974d",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:6b78b9d7f8199be5a10eaede83d1479a3f049c9333a640d815f47cb6eb9f88ad",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:b3511c967d6491dca955d12e428a671031094436ed286c67367d607aca2b264b",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:168d91b7b1453f5adff2e15377f3592dc28534bec495be1071735b3448aa5cee",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:61aefdee7d8e9a743d584463e0bf43ef0b22a480774631d3988c2d7bb31dda76",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:fa9f93031eac282542b85dd35bcba5c5ae3c8086ed014be9dd72ac942e02fea0",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:5df19f642bb6f4d2ab591b796d86b80493447e3c9c58284fe4ac5222717f9185",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:dfb1ea6ac947bba09de3669c0b4a32813929db144a534be1a5a5b8fa58a0e644",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:a1d9145e66069cc30df36d986a527e1d3db0de56445c5dc23a6eef6f4ed3f401",
+      "passed": true
+    },
+    {
+      "name": "actual_wire_hash",
+      "request_id": "call:7de1a7994cd57470646af643734e35319e4125634da44d7eb3d6824f088c5b88",
+      "passed": true
+    },
+    {
+      "name": "full_original_analysis_reconstructed",
+      "job_id": "r1:dev-case-a:source_capacity_off",
+      "turn": "initial",
+      "passed": true
+    },
+    {
+      "name": "full_original_analysis_reconstructed",
+      "job_id": "r1:dev-case-a:source_capacity_off",
+      "turn": "version",
+      "passed": true
+    },
+    {
+      "name": "full_original_analysis_reconstructed",
+      "job_id": "r1:dev-case-a:source_capacity_on",
+      "turn": "initial",
+      "passed": true
+    },
+    {
+      "name": "full_original_analysis_reconstructed",
+      "job_id": "r1:dev-case-a:source_capacity_on",
+      "turn": "version",
+      "passed": true
+    },
+    {
+      "name": "full_original_analysis_reconstructed",
+      "job_id": "r1:dev-case-b:source_capacity_on",
+      "turn": "initial",
+      "passed": true
+    },
+    {
+      "name": "full_original_analysis_reconstructed",
+      "job_id": "r1:dev-case-b:source_capacity_on",
+      "turn": "version",
+      "passed": true
+    },
+    {
+      "name": "full_original_analysis_reconstructed",
+      "job_id": "r1:dev-case-c:source_capacity_on",
+      "turn": "initial",
+      "passed": true
+    },
+    {
+      "name": "full_original_analysis_reconstructed",
+      "job_id": "r1:dev-case-c:source_capacity_on",
+      "turn": "correction",
+      "passed": true
+    },
+    {
+      "name": "full_original_analysis_reconstructed",
+      "job_id": "r2:dev-case-c:source_capacity_off",
+      "turn": "initial",
+      "passed": true
+    },
+    {
+      "name": "full_original_analysis_reconstructed",
+      "job_id": "r2:dev-case-c:source_capacity_off",
+      "turn": "correction",
+      "passed": true
+    },
+    {
+      "name": "full_original_analysis_reconstructed",
+      "job_id": "r2:dev-case-b:source_capacity_off",
+      "turn": "initial",
+      "passed": true
+    },
+    {
+      "name": "full_original_analysis_reconstructed",
+      "job_id": "r2:dev-case-b:source_capacity_off",
+      "turn": "version",
+      "passed": true
+    },
+    {
+      "name": "full_original_analysis_reconstructed",
+      "job_id": "r2:dev-case-a:source_capacity_on",
+      "turn": "initial",
+      "passed": true
+    },
+    {
+      "name": "full_original_analysis_reconstructed",
+      "job_id": "r2:dev-case-a:source_capacity_on",
+      "turn": "version",
+      "passed": true
+    },
+    {
+      "name": "full_original_analysis_reconstructed",
+      "job_id": "r2:dev-case-a:source_capacity_off",
+      "turn": "initial",
+      "passed": true
+    },
+    {
+      "name": "full_original_analysis_reconstructed",
+      "job_id": "r2:dev-case-a:source_capacity_off",
+      "turn": "version",
+      "passed": true
+    }
+  ],
+  "mechanical_checks_passed": 44,
+  "mechanical_checks_total": 44,
+  "limitations": [
+    "The implementing assistant reviewed these exposed dev outputs; no independent human usefulness score.",
+    "Only two ON calls on one correction changed the schema bound; all six paired initial grounded requests and initial wire payloads were unchanged.",
+    "No renderer overflow occurred in either arm; no live causal overflow reduction or answer-quality gain can be established.",
+    "All technical answer counts are zero. Six escalations and ten necessary questions are not a solved-case rate.",
+    "Two length failures, invalid field combinations and source mismatch remain; do not hide four empty and four unvisited turns.",
+    "Tests use native retrieval plus TestClient/DummyTracker and scripted approval; not a new browser/SQLite manual report."
+  ]
+}

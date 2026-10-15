@@ -45,11 +45,29 @@ _CAMPAIGNS = {
         "experiments/dev_rag_coverage_v1/protocol-v1.json",
         "c4g-offline-review-workbench-v1",
     ),
+    "core-repeat-repair-model-v1": (
+        "live-method-v1.json",
+        "experiments/core_repeat_repair_v1/protocol-v1.json",
+        "c4h2-offline-review-workbench-v1",
+    ),
+    "core-source-capacity-model-v1": (
+        "live-method-v1.json",
+        "experiments/core_source_capacity_v1/protocol-v1.json",
+        "c4h3-offline-review-workbench-v1",
+    ),
     "core-resource-guidance-model-v1": (
         "live-method-v2.json",
         "experiments/core_resource_guidance_v1/protocol-v1.json",
         "c4h-offline-review-workbench-v1",
     ),
+}
+
+
+# These two treatments retained C4g's native criteria instead of redefining
+# source sufficiency after seeing outputs. Never infer criteria from fixtures.
+_NATIVE_CRITERIA = {
+    name: Path(__file__).resolve().parents[3] / "experiments/dev_rag_coverage_v1/protocol-v1.json"
+    for name in ("core-repeat-repair-model-v1", "core-source-capacity-model-v1")
 }
 
 
@@ -217,8 +235,16 @@ def build_workbench(
         )
         scenario_cases = {case["case_id"]: case for case in scenario["case_reviews"]}
         _need(len(scenario_cases) == len(scenario["case_reviews"]))
-        criteria = {case["case"]: case for case in protocol["pre_model_scenarios"]}
-        _need(len(criteria) == len(protocol["pre_model_scenarios"]))
+        criteria_protocol, criteria_pin = protocol, None
+        if receipt["protocol_id"] in _NATIVE_CRITERIA:
+            criteria_protocol, criteria_pin = _read(_NATIVE_CRITERIA[receipt["protocol_id"]])
+            _need(
+                method["input_pins"]["experiments/dev_rag_coverage_v1/protocol-v1.json"]
+                == criteria_pin["sha256"],
+                "WorkbenchReceiptMismatch",
+            )
+        criteria = {case["case"]: case for case in criteria_protocol["pre_model_scenarios"]}
+        _need(len(criteria) == len(criteria_protocol["pre_model_scenarios"]))
         inputs = {
             "receipt": receipt_pin,
             "fixtures": sorted(fixture_pins, key=lambda pin: pin["path"]),
@@ -227,6 +253,8 @@ def build_workbench(
             "method": method_pin,
             "protocol": protocol_pin,
         }
+        if criteria_pin is not None:
+            inputs["native_criteria"] = criteria_pin
         # The source registration already binds fixture/scenario byte hashes.
         registered = set(method["input_pins"].values())
         _need(
@@ -581,6 +609,7 @@ def load_workbench(path):
             inputs["method"],
             inputs["protocol"],
             *inputs["fixtures"],
+            *([inputs["native_criteria"]] if "native_criteria" in inputs else []),
         ]:
             _need(_pin(pin["path"]) == pin, "WorkbenchInputChanged")
         expected = build_workbench(
