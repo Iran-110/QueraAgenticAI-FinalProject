@@ -16,15 +16,19 @@
   recovery درخواست تأییدنشده در session تازه ثابت نیست. T4 کلی، failure/outcome
   و handoff ارزیابی بازند؛ CI به علت Billing شروع نشده؛ halt/سهhold حفظ‌اند.
 
-- [ ] **C2j — validation یکسان helperهای پاسخ نسخه؛ ساسان، قدم مستقل بعدی.**
-  probe آفلاین در`intake.py` پذیرش field اضافیِ nested در object دست‌ساز Python
-  را برای pending و approved بازتولید کرد؛ validator موجود همان ورودی را رد
-  می‌کند. [مرز دقیق](../docs/pr66-review.fa.md): استفاده از `detached_contract`
-  پیش از dump، regression برای top-level/nested extra و عدم تغییر ورودی، خطای
-  ثابت`IntakeRejected("InvalidInput")` و خروجی canonical معتبر بدون تغییر.
-  shared contract، extraction، revision/dedup و authority tracker تغییر نکنند؛
-  بدون API و با halt موجود. این تشخیص exploit از HTTP یا بهبود کیفیت مدل نیست؛
-  هنوز پیاده‌سازی نشده و با RAG/UI/tracker اعضا تداخل ندارد.
+- [ ] **C2j — validation یکسان helperهای پاسخ نسخه؛ ساسان، در حال review.**
+  [protocol پیش از کد](../experiments/intake_validation_v1/protocol-v1.json)،
+  [۱۶ baseline معتبر](../experiments/intake_validation_v1/valid-baseline-v1.json)
+  و [مقایسهٔ آفلاین](../experiments/intake_validation_v1/comparison-v1.json).
+  هر دو helper pending/approved با همان `detached_contract` پیش از dump
+  بررسی می‌شوند؛ top-level/nested extra و دادهٔ خصوصی قبل از extraction با
+  خطای ثابت`IntakeRejected("InvalidInput")` رد می‌شوند و ورودی تغییر نمی‌کند.
+  ۵۵ تست تازه در baseline،۲۹fail/۲۶pass و پس از اصلاح۵۵pass؛۱۶ خروجی و transition
+  معتبر دقیقاً ثابت‌اند. تست متمرکز با موارد قبلی۱۶۶pass است؛ تیک پایان پس از
+  suite کامل، HTTP/SQLite و review نهایی ثبت می‌شود. shared validator/contract،
+  extraction، revision/dedup و authority tracker ثابت؛ API صفر و halt محفوظ.
+  این hardening درون Python است، نه exploit از HTTP یا بهبود کیفیت مدل؛ فایل‌های
+  RAG/UI/tracker تیم تغییر نکرده‌اند.
 
 - [x] **C4l/E2y — context فعلی برای advisor انتخاب شاهد؛ ساسان، تحویل آفلاین.**
   [ثبت پیش از پیاده‌سازی](../experiments/core_selection_context_v1/protocol-v1.json):

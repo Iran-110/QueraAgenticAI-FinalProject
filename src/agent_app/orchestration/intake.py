@@ -19,6 +19,7 @@ from agent_app.contracts import (
     ReportedFact,
     UserTurn,
 )
+from agent_app.orchestration.validation import detached_contract
 
 type IntakeRejectionCode = Literal[
     "InvalidInput",
@@ -76,11 +77,11 @@ def prepare_version_reply(
     on replay instead of preparing again after the pending question is cleared.
     """
     try:
-        # Revalidation detaches nested values and rejects bypass-constructed
-        # objects before any extraction. Do not export Pydantic error details.
-        case = CaseState.model_validate(case.model_dump(warnings=False))
-        turn = UserTurn.model_validate(turn.model_dump(warnings=False))
-        question = AnalysisResult.model_validate(question.model_dump(warnings=False))
+        # Inspect nested bypassed state before dumping can silently drop it.
+        # Do not export Pydantic error details.
+        case = detached_contract(CaseState, case)
+        turn = detached_contract(UserTurn, turn)
+        question = detached_contract(AnalysisResult, question)
     except (ValidationError, ValueError, TypeError, AttributeError, RecursionError):
         raise IntakeRejected("InvalidInput") from None
 
@@ -117,9 +118,9 @@ def prepare_approved_version_reply(
     event; replay must return its recorded outcome without preparing again.
     """
     try:
-        case = CaseState.model_validate(case.model_dump(warnings=False))
-        turn = UserTurn.model_validate(turn.model_dump(warnings=False))
-        reply = ApprovedReplyQuestion.model_validate(reply.model_dump(warnings=False))
+        case = detached_contract(CaseState, case)
+        turn = detached_contract(UserTurn, turn)
+        reply = detached_contract(ApprovedReplyQuestion, reply)
     except (ValidationError, ValueError, TypeError, AttributeError, RecursionError):
         raise IntakeRejected("InvalidInput") from None
 
