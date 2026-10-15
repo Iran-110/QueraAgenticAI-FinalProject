@@ -21,6 +21,15 @@
   همان متن، تست configuration و حفظ halt/index-before-key. فایل‌های UI/tracker
   تیم بازنویسی نمی‌شوند و taskهای محمدحسن/حسن/بهنام طبق owner قبلی باز می‌مانند.
 
+کارهای مستقل اعضا برای نسخهٔ نهایی (پیش از شروع branch خود را از main به‌روز کنید):
+
+| نفر | تحویل بعدی | شرط پایان |
+| --- | --- | --- |
+| حسن | review profile جدید و پوشش/رتبه‌بندی منابع؛ provenance و exclusion بعد از split نهایی | source دقیقِ رسیده به مدل، برچسب relevance/Recall@k و build pinned؛ عضویت در index به‌تنهایی کافی نیست |
+| محمدحسن | usefulness انسانی، ۱۲ dev و ۱۵ test باقی‌مانده، freeze rubric/gold وابسته به evidence condition | test برای tuning دیده نشود؛ حداقل ۱۰ گفتگوی چندنوبتی شامل ۵ test؛ سپس baseline و test نهایی |
+| بهنام | بخش‌های باز T4: receipt پاک‌سازی‌شده و pin، lost-ACK از خود UI و failure/outcome | revision/approval/retry مستقل دو پرونده و شاهد مصرف outcome در تصمیم بعد؛ token/DB خصوصی منتشر نشود |
+| ساسان | C4h6 و R4d/C2i، تست محلی/online محدود و انتشار | قراردادها و defaultها ثابت، source/cost/خطاها کامل؛ بعد config پیشنهادی برای review انسانی، بدون ادعای پایان evaluation |
+
 **قاعدهٔ انتشار فعلی — ۱۵ اکتبر، با دستور صریح ساسان:** منتظر رفع Billing
 نمی‌مانیم. برای انتشار، review و تست محلی روی source ثبت‌شده، پذیرش اتصال و
 محدودیت‌های پلتفرم را ضمیمه می‌کنیم؛ Actions همچنان blocked است و CI سبز ادعا
@@ -49,10 +58,9 @@ ledger، holdها، halt و receiptهای تاریخی تغییر نمی‌کن�
   بودجهٔ bundle حداکثر۱۱۷۵۱/۱۲۰۰۰ byte بود. این تیک تحویل آزمایش است؛ RAG/eval
   نهایی بسته نشده‌اند و پیش‌فرض‌ها خاموش‌اند.
   انتشار در [PR #58](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/58)،
-  فعلاً با پایهٔ PR57 است؛ ترتیب ادغام PR54، سپس retarget/merge57 روی main،
-  سپس retarget/review58 روی main است. به branch پایه merge نشود؛ طبق قاعدهٔ انتشار
-  فعلی با verification محلی و ثبت blocked بودن CI پیش می‌رویم. PR50 و branch حسن
-  دست‌نخورده‌اند؛ این کار به merge آن وابسته نیست.
+  پس از ادغام PR54/57، روی main `3cbbdd3` رسید؛
+  [verification محلی](../experiments/local_release_2026_10_15/verification-v1.json)
+  و blocked بودن CI ثبت‌اند. PR50 و branch حسن دست‌نخورده‌اند؛ این کار به merge آن وابسته نیست.
 
 - [x] **C4h2 — repair query تکراری و مقایسهٔ محدود؛ ساسان.**
   [ثبت قبل از تغییر](../experiments/core_repeat_repair_v1/protocol-v1.json) و
@@ -113,8 +121,8 @@ ledger، holdها، halt و receiptهای تاریخی تغییر نمی‌کن�
   یکی نیست. خروجی ناقص salvage نمی‌شود. regression کامل۴۰۰۶pytest،Ruff،سهdemo
   وپذیرشHTTP/SQLite۴۵۷/۴۵۷ پاس‌اند؛CI به‌علت سهمیهٔActions هنوز اجرا نمی‌شود.
   انتشار در [PR #57](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/57)،
-  فعلاً رویbranchپایهٔPR54 است؛ بعدازmerge54 بهmain retarget شود، بهbranchپایه
-  merge نشود. انتشار فعلی با استثنای محلیِ ثبت‌شده در بالای plan انجام می‌شود.
+  پس از merge54 به main retarget و همان‌جا merge شد؛ انتشار فعلی با استثنای
+  محلیِ ثبت‌شده در بالای plan و رسید main `3cbbdd3` انجام شده است.
 
 - [ ] **R4b — review اصلاح ranking حسن؛ مالک اصلاح حسن.**
   [PR #50](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/50)

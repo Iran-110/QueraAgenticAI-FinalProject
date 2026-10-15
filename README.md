@@ -2,7 +2,7 @@
 
 پروژهٔ نهایی بوت‌کمپ Agentic AI کوئرا: دستیار بررسی گزارش خطا و پیگیری پرونده، با شواهد قابل بررسی و تأیید انسانی پیش از اجرای اقدام.
 
-**وضعیت فعلی:** core، correction، API/UI و tracker پایدار SQLite متصل‌اند؛ index محلی محدود و runner ارزیابی هم وجود دارند. آزمایش واقعی مدل روی سه خانوادهٔ dev با شواهد ثابت ثبت شده؛ پوشش RAG و split/ارزیابی نهایی هنوز کامل نیستند. در [آزمایش پایداری C4e](docs/core-stability.fa.md) guidance در سه دور کامل route بیشتری حفظ کرد، ولی شکست‌های Enum و یک درخواست با هزینهٔ نامعلوم هم ثبت شدند. ادامهٔ live فعلاً halted است؛ دموها و CI آفلاین‌اند. برای اتصال بخش خودتان از [راهنمای اتصال ماژول‌ها](docs/integration.md) و [plan جاری](plan/plan.md) شروع کنید.
+**وضعیت فعلی، ۱۵ اکتبر:** core، correction، API/UI، tracker پایدار SQLite و runner متصل‌اند. [R4c](experiments/retrieval_relevance_v1/README.md) روی index محدود واقعی ۱۸ source/۳۶ chunk و همان سه dev، راهنمای جزئی button را در دو تکرار به پاسخ رساند؛ هنوز حل کامل مسئله یا کیفیت نهایی RAG نیست. [profile اختیاری retrieval](docs/candidate-live-profile.fa.md) حالا تا engine هر دو مسیر API/runner و HTTP/SQLite منتقل می‌شود؛ [زمینهٔ مستند کنار سؤال](docs/ask-source-background.fa.md) هم گزینهٔ جدا و خاموش پیش‌فرض است. split نهایی، داوری usefulness و test مستقل باقی‌اند. startup معمول live همچنان halt دارد؛ آزمایش‌های مجاز محدود از همان ledger و با حفظ holdهای قبلی اجرا می‌شوند. Actions به علت Billing اجرا نمی‌شود؛ انتشار فعلی با review و verification محلیِ مجازشده توسط ساسان است. برای اتصال از [راهنما](docs/integration.md) و [plan جاری](plan/plan.md) شروع کنید. گزارش‌های پایین، تاریخچهٔ آزمایش‌ها و محدودیت همان زمان‌اند.
 
 دامنهٔ پیشنهادی ما **Session State، Widgets و callback/rerun** است؛ انتخاب نهایی دامنه و تقسیم کار با هماهنگی تیم انجام می‌شود.
 
