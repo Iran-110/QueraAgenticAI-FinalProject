@@ -23,6 +23,8 @@
   هر سه uncertain با۳۶ کنترل read-only بررسی شدند؛ ledger۷۱۸row/۱۴جدول، سهhold
   جمعاً$0.0301376،halt/سقف و۱۹ فایل محافظت‌شده ثابت‌اند؛ C5 به مدرک provider نیاز
   دارد. API/corpus/exclusion/gold/shared contracts و فایل‌های UI/tracker/RAG عوض نشدند.
+  کد و شواهد در [PR #65](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/65)
+  روی branch مستقل push شده‌اند؛ این ثبت به معنی merge شدن به main نیست.
 
 - [x] **انتشار محلی PR54/57/58؛ ساسان.** هر سه به‌ترتیب به main رسیدند؛
   source نهایی `3cbbdd3` همان tree تحویل PR58 است. اجرای کامل ثابت روی همین

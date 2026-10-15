@@ -24,6 +24,8 @@
 Source code with complete sections/advisory/replay is `7e20cf4`; the separate C5
 packet is `245eaf8`. Runtime/default factories and teammate modules are unchanged.
 All new selection is opt-in and all reported projections are authored offline.
+Delivery is [PR #65](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/65),
+on its own branch; opening the PR does not claim a main merge or passing hosted CI.
 
 Ten retained claim plans include7 original finals and3 binding rejections.21 raw
 claim attempts were never retained and cannot be reconstructed. All7 valid plans
