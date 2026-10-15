@@ -34,6 +34,24 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 ## Runtime rules
 
+- C4j/E2w adds an explicitly constructed experimental passage/active-USER plan;
+  read `docs/claim-source-boundary.fa.md` and its frozen experiment packet.
+  No free technical prose/check/fact/authority channel is accepted; all final
+  surfaces are core-rendered with current request binding and qualified exact
+  quotations. Block custody is not relevance, caveat completeness or entailment.
+  The stopped52-send study has22pending/15errors/27unvisited of64planned states;
+  Enum's registered target failed and defaults/factories are not promoted.
+  Keep all30parsed candidates and21unretained representation failures explicit;
+  old syntactic_valid is strict-plan acceptance, not proof of JSON syntax.
+  Post-paid branch-schema/allowlisted-feedback hardening is offline-only evidence,
+  not a retrofit or API improvement. A new connect_timeout is uncertain: preserve
+  all666old reservations/14tables, three holds totalingUSD0.0301376, halt and
+  USD4.50 ceiling. Do not resume this cohort or regenerate its IDs;28allocated
+  unused slots are claimed,48other planned slots were never allocated but the
+  stopped protocol forbids reuse. No real Chroma read, corpus/exclusion/gold or
+  teammate-module changes; guide stays answer-linked fixture-only. Human
+  usefulness/config freeze/held-out evaluation and useful full guidance remain open.
+
 - C4i/E2v is a closed proposal-only comparison of the existing quote and
   `AnalysisResult/compiled_rules` pipelines; read `docs/broader-dev-quality.fa.md`.
   Seven exposed families/16 distinct current snapshots yield64 invocations,
