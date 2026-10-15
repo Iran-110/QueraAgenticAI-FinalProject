@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "protocol_id": "core-source-order-v1",
+  "registered_before_implementation": true,
+  "registered_before_paid_calls": true,
+  "baseline_commit": "11093735cdd526d711a371527147091b31d5b159",
+  "authorization_ref": "user-2026-10-15-complementary-selection-order-diagnostic",
+  "question": "Does uniformly rotating the same complete fixed evidence pool change content selection, revealing positional sensitivity after the failed generic complementary-source reminder?",
+  "experiment_kind": "controlled_fixed_evidence_order_diagnostic",
+  "not_real_RAG": true,
+  "held_out_test": false,
+  "answer_informed_exposed_dev": true,
+  "ordinary_live_halt_unchanged": true,
+  "parent": {
+    "receipt_path": "experiments/core_complementary_sources_v1/model-live-receipt-v1.json",
+    "receipt_sha256": "9bd7db10ba5af4ac10ed0c5e33d509a533d709455e68ce013c19ba91571c4905",
+    "source_packet_path": "experiments/core_enum_evidence_v1/source-packet-v1.json",
+    "source_packet_sha256": "f320f1071b2fa1e4ebfdd36c3f91df60f5a0f520ea6c22bb7aac8fae992f7d33",
+    "protected_inputs_path": "experiments/core_enum_evidence_v1/protected-inputs-v1.json",
+    "protected_inputs_sha256": "b4fa80865c6e604cf40ef925297a684c28a674ef9b9b7c9efb37e5cb15b1c35c",
+    "previous_method_closed_no_reuse": true
+  },
+  "treatment": {
+    "scope": "testing supplier only",
+    "arms": [
+      "original_order",
+      "rotate_left_one"
+    ],
+    "operation": "After the same trusted fixed_guide_added supplier returns the CURRENT bundle, keep identity order in control; in treatment rotate the first record to the end if length>1. Apply uniformly to EVERY current bundle in EVERY case/turn, without consulting source/case IDs, text, titles, versions, gold, future messages or outcomes.",
+    "no_source_removal_addition_truncation_or_relabeling": true,
+    "record_set_and_full_metadata_equal": true,
+    "source_order_and_references_may_differ": true,
+    "context_hash_and_index_mapping_must_rebind": true,
+    "no_prompt_change": true,
+    "complementary_sources": false,
+    "no_production_flag_renderer_or_RAG_change": true,
+    "choice_motivation_disclosed": "Chosen prospectively after all8fresh C outputs selected the first broad record plus the Enum record despite SYSTEM guidance; exposed-dev diagnostic, not an unbiased held-out score."
+  },
+  "evidence_conditions": {
+    "arms": [
+      "original_order",
+      "rotate_left_one"
+    ],
+    "common_evidence_condition": "fixed_guide_added",
+    "A_B": "Exactly original per-turn fixed records in both arms.",
+    "C": "Both arms receive the SAME original generic source plus both complete pinned guide records; do not remove generic evidence from model input.",
+    "guide_is_answer_linked_experimental_fixture_only": true,
+    "real_index_sources": 18,
+    "real_index_chunks": 36,
+    "actual_index_exclusion_corpus_original_gold_unchanged": true,
+    "snapshot_label": "Historical logical fixture label; evidence condition/arm/bundle/context hashes identify actual supplied content, not RAG identity.",
+    "all_source_text_complete_and_untrusted": true,
+    "no_gold_outcome_future_replies_or_review_criteria_in_model_payload": true,
+    "shared_supplier_queries_are_logged_not_RAG_search": true,
+    "same_content_not_same_order": true
+  },
+  "live": {
+    "protocol_id": "core-source-order-model-v1",
+    "experiment_id": "core-source-order-2026-10-15-v1",
+    "kind": "controlled_evidence",
+    "model": "gpt-4o-mini",
+    "rounds": 2,
+    "case_order": [
+      [
+        "dev-case-a",
+        "dev-case-b",
+        "dev-case-c"
+      ],
+      [
+        "dev-case-c",
+        "dev-case-b",
+        "dev-case-a"
+      ]
+    ],
+    "paired_arm_order": [
+      [
+        "original_order",
+        "rotate_left_one"
+      ],
+      [
+        "rotate_left_one",
+        "original_order"
+      ],
+      [
+        "original_order",
+        "rotate_left_one"
+      ],
+      [
+        "rotate_left_one",
+        "original_order"
+      ],
+      [
+        "original_order",
+        "rotate_left_one"
+      ],
+      [
+        "rotate_left_one",
+        "original_order"
+      ]
+    ],
+    "batches": 6,
+    "jobs": 12,
+    "turns": 24,
+    "fresh_request_slots": 48,
+    "max_output_tokens": 1024,
+    "input_token_reserve": 32768,
+    "scope_cap_usd": "0.06",
+    "campaign_cap_usd": "0.36",
+    "common_flags": {
+      "grounded_json_object": true,
+      "concise_user_draft": true,
+      "ask_source_background": true,
+      "compact_plan": true,
+      "decision_contracts": true,
+      "source_selection_reminder": true,
+      "source_gap_handoff": true,
+      "source_gap_investigation": true,
+      "source_capacity": true,
+      "resource_guidance": false,
+      "repair_repeated_queries": false,
+      "retrieval_profile": "native",
+      "retrieval_candidate_multiplier": 1,
+      "evidence_utf8_budget_bytes": null,
+      "complementary_sources": false
+    },
+    "new_flag_only_difference": false,
+    "no_new_gateway_transport_canary": "Same model and previously observed JSON wire; actual json_object must still be recorded for every new send.",
+    "ledger_before_expected_observation_only": {
+      "reservations": 567,
+      "settled": 565,
+      "uncertain": 2,
+      "pending": 0,
+      "settled_local_estimate_usd": "0.457647795",
+      "old_hold_usd": "0.0233792",
+      "global_halt": true,
+      "ceiling_usd": "4.50",
+      "full_tables": 14
+    },
+    "stop_entire_campaign_on_new_uncertainty_overrun_source_or_ledger_drift": true,
+    "closed_scope_request_slots_never_resume_or_regenerate": true,
+    "all_failed_stale_empty_unvisited_turns_retained": true,
+    "only_intervention": "content-agnostic complete-record rotation; common prompt/config unchanged"
+  },
+  "scenarios_before_model": [
+    {
+      "case_id": "dev-case-a",
+      "known": "Reduced example works; real parent callback/state update order absent. Initial Streamlit version unknown, other supplied facts retained.",
+      "continuation": "1.50.0 only after approved matching canonical version question.",
+      "user_gap": "Version initially, then callback/state order/minimal failing reproduction.",
+      "source_gap": "No source addition this study. Actual selected excerpt must support any partial guidance.",
+      "acceptable": "Necessary answerable question, or qualified supported partial guidance plus needed follow-up; no inferred rootcause/key-only release change."
+    },
+    {
+      "case_id": "dev-case-b",
+      "known": "Custom company logo image requested in button and warning; initial Streamlit version unknown.",
+      "continuation": "1.39.0 only after approved matching version question.",
+      "user_gap": "Version initially only.",
+      "source_gap": "Button1.39 full passage present; warning/future arbitrary logo support not established.",
+      "acceptable": "Ask version then partial actual icon/label contract; qualify unsupported portions, no invented future support."
+    },
+    {
+      "case_id": "dev-case-c",
+      "known": "1.31.0/Python3.11.6/macOS/browser/code/equality observation supplied initially, no widget in reproduction.",
+      "continuation": "Only version corrected to1.31.1, same code/environment/result.",
+      "user_gap": "No necessary missing version/code/environment.",
+      "source_gap": "Modern conceptual guide does not prove installed1.31 applicability or runtime fix; source metadata remains unconfirmed.",
+      "acceptable": "Source-supported Enum guidance and documented general next step with full qualifiers, or qualified retrieval/maintainer handoff. No widget-coercion fix for direct state, no asks for facts already given.",
+      "approval": "Initial C proposals deliberately unapproved/unreleased; correction invalidates old approval409; only correction then approved."
+    }
+  ],
+  "prospective_outcomes": {
+    "primary_diagnostic": "Compare selected CONTENT IDs/whole roles against input positions across fresh original and rotated pools; distinguish invariant content selection from index-position following and actual quote-order effects.",
+    "secondary_quality": "Joint complete Enum identity section plus full module pattern with edit/reload caveat in originaldraft and actually released corrections; unnecessary generic quote and chars separately. Same prior safety/A_B criteria; no shorter-text-only success.",
+    "unit": "Four Cturns are two repetitions of ONE exposed case; released corrections2perarm; initial drafts are not delivered. No population accuracy inference.",
+    "not_a_guaranteed_quality_gain": true,
+    "one_followup_only": "This is the only new order diagnostic in this task. Preserve all results. If content selection/coverage remains unchanged, stop this selection branch rather than buying successive permutations/prompts until one wins.",
+    "renderer_order_caveat": "Existing renderer follows supplied source order. Authored selections of the same content may reorder whole output blocks; compare complete block identity and qualifiers, not byte-identical drafts. Length is invariant for an unchanged selected set.",
+    "common_input_caveat": "Full evidence record SET and current USER facts are identical. Ordered bundle, source index mapping, context digest and USER wire payload intentionally differ. Never reuse old indexes/context hashes on rotated evidence.",
+    "A_B_nonregression": "Retain necessary answerable questions and actual partial button contract; do not add unrelated guide content or unsupported claim.",
+    "all_claims_surfaces": "Review all important claims and qualifiers in originaldraft/summary/rationale/claims/sources vs actual full text/currentfacts; actualreleased text separately, edited text if present separately.",
+    "widget_scope": "Enum coercion is widget-returned values; direct SessionState code contains no widget. No runtime cause/fix claim or manufactured exact-version metadata.",
+    "human_reviewed": false,
+    "human_usefulness": null,
+    "reviewer": "unblinded assistant; implementation/test overlap must be disclosed",
+    "no_order_as_production_ranking_recommendation": true,
+    "no_RAG_or_final_test_quality_claim": true,
+    "no_default_promotion": true
+  },
+  "offline_before_live": [
+    "Source rotation only in a new testing supplier; all unchanged complete records/metadata retained, same common fixed guide condition. Empty/singleton unchanged; current-turn only; caller mutation cannot relabel logs.",
+    "Apply to ALLcases/turns without source/case-ID/text/gold condition. Uniform permutation chosen before paid calls.",
+    "Existing prompt configuration identical, complementary_sources=False in both arms. Ordered USER payload/context and index map necessarily change; explicit rebind and stale-index/context rejection.",
+    "Authored same-content selections retain every complete source block/qualifier under reorder; byteorder may differ, length invariant. All four guideCcontexts have both guides still jointly selectable within bound2; retain original subset overflow.",
+    "Configured actual gateway through HTTP/SQLite, correction/stale409/approval/restart/retry,2attempt/2round/2query/8step and32768/1024 guards unchanged; any failure remains.",
+    "Freeze new finite method/48slots/6scopes, exact code/packets/criteria/protected19files/all14tables567rowjournal before credentials; preserve2holds/halt/4.50ceiling and all closed identities."
+  ],
+  "not_changed": [
+    "real RAG corpus/index/exclusion and answer-linked guide ban",
+    "original cases/gold/receipts/methods",
+    "renderer/public contracts/tracker/UI/teammate retrieval modules",
+    "attempt/retrieval/input/output limits",
+    "ordinary ledger halt/holds/ceiling/prior grants/history",
+    "single-agent runtime architecture"
+  ],
+  "negative_parent": {
+    "protocol_path": "experiments/core_complementary_sources_v1/protocol-v1.json",
+    "receipt_path": "experiments/core_complementary_sources_v1/model-live-receipt-v1.json",
+    "receipt_sha256": "9bd7db10ba5af4ac10ed0c5e33d509a533d709455e68ce013c19ba91571c4905",
+    "observed_joint_C_drafts_both_arms": "0/4",
+    "all_C_drafts_chars": 14494,
+    "no_quality_gain_demonstrated": true,
+    "all_method_identities_closed_never_reused": true
+  }
+}
