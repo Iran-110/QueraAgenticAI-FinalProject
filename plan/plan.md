@@ -25,9 +25,10 @@
   شاملrestart/retry. آزمایش مدل این تحویل از TestClient/DummyTracker استفاده
   کرد؛ شاهد تازهٔ مرورگر/SQLite یا بهبود پاسخ فنی محسوب نمی‌شود.
 
-- [ ] **C4h3 — انتخاب source در حد renderer؛ ساسان، قدم بعد.**
-  failure ثبت‌شدهٔEnum با۴source را مبنا بگیرد؛ قبل از تغییر، روش محدود و
-  قابل بازبینی تعیین شود. quoteها کوتاه نشوند، مدل سوم یا gold/source-ID filter
+- [ ] **C4h3 — انتخاب source در حد renderer؛ ساسان، در حال مقایسه.**
+  [روش قبل از پیاده‌سازی](../experiments/core_source_capacity_v1/protocol-v1.json)
+  و [قرارداد رفتار](../docs/source-capacity.fa.md) ثبت شد؛ سقف تعداد فقط از طول
+  کامل renderer همان درخواست حساب می‌شود و پیش‌فرض خاموش است. quoteها کوتاه نشوند، مدل سوم یا gold/source-ID filter
   اضافه نشود. راهنمای حجیم قبلی بهبود ثابت نکرد؛ ظرفیت وکفایت منبع باکیفیت
   جواب یکی نیست. آزمایش‌های بسته وکیس‌های exposeشده دوبارهtest نامیده نشوند.
 
@@ -35,11 +36,14 @@
   [PR #50](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/50)
   در head`7581dcc` آمادهٔmerge نیست؛ [شواهد review](../experiments/rag_pr50_review/README.md):
   newest-first شاهد نسخهٔ فعلی را کنار می‌زند، over-fetch ذکرشده پیاده نیست،
-  معنای `since_version` با exact applicability یکسان فرض شده و Linux lint fail است.
+  معنای `since_version` با exact applicability یکسان فرض شده و format محلی هنوز fail است.
+  lint رفع شده؛ GitHub به علت Billing اصلاً jobها را شروع نکرده است.
+  بازپخش۲۴query روی index واقعی۱۸/۳۶، همان membership قبلی را داد؛ over-fetch
+  هنوز وجود ندارد.۹۶/۹۶ صرفاًquery-control بدون خواندن index است.
  ۹۱ تست موجود پاس ولی regression را پوشش نمی‌دهند. Hassan branch تغییر نکرد؛
   native receipt، کنترل نسخهٔunknown/قدیمی/correction وrelevance لازم است.
-  کار core مستقل از این اصلاح ادامه دارد. محمدحسن طبق پیام۱۴اکتبر ساسان،۱۵اکتبر برمی‌گردد؛
-  human review وsplit برای او می‌ماند.
+  کار core مستقل از این اصلاح ادامه دارد. محمدحسن فعلاً بیمار و در دسترس نیست؛
+  human review وsplit برای او می‌ماند؛ کمک ساسان محدود به اتصال وreviewpack است.
 
 - [ ] **T4 — دریافت و review گزارش تازهٔ بهنام؛ انتشار receipt و بخش‌های باقی‌مانده با بهنام.**
   [گزارش روی commit ثابت`8420a3b`](https://github.com/Iran-110/QueraAgenticAI-FinalProject/blob/8420a3beed37e6bc79504487cd44724a40a30d79/docs/two-case-ui-sqlite-smoke-2026-10-14.md)

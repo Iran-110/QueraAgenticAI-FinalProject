@@ -1,3 +1,12 @@
+## 2026-10-15 — C4h3 compact source capacity, comparison in progress
+
+Preregistered before implementation; default-false per-request schema guidance
+changes only existing source-count bounds. Whole quotes and the original
+renderer, two-attempt limit and conflict enforcement remain.
+See [behavior](source-capacity.fa.md). Hassan PR50 new head1a18749 still lacks
+over-fetching;24 native query replays have unchanged membership. Local format
+fails and GitHub billing prevents jobs from starting; PR remains unmerged.
+
 # Agent-core progress
 
 This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.

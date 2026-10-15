@@ -30,3 +30,31 @@ explicit version policy, metadata semantics, regression controls for unknown,
 older/current and corrected versions, and native-index before/after receipts.
 This review edits none of his RAG files, sources, index or branch. Root's
 repeat-query comparison keeps the main adapter unchanged as a separate factor.
+
+## New head 1a18749, reviewed 2026-10-15
+
+Hassan force-updated the branch to `1a18749159e09abd4f19d2417dc7fa1dc9146eb2`.
+[New independent receipt](review-head-1a18749-v1.json) preserves the old review.
+Reproduce from this repository (no credentials, paid calls or rebuild):
+
+```bash
+uv run python scripts/review_rag_pr50_head.py --output runtime/pr50-new-head-review.json
+```
+
+The exact new adapter is loaded from Git in memory. All **24 archived native
+retrieval requests** replayed on the verified18-source/36-chunk index return the
+same membership in both versions. Order can change; this is not a relevance
+score. Every backend call still receives the requested top_k, not top_k*5.
+The mixed-collection synthetic control still loses the current1.39 source in
+favor of unrelated future versions. `since_version` still becomes exact
+applicability; canonical index records already have `applicable_versions`.
+No files on Hassan's branch or in the index were changed.
+
+The advertised context-comparison command was independently rerun:96/96 literal
+query controls, **index_queried=false, zero collection reads and zero model calls**.
+It cannot establish that the ranking delivered the missing records to a model.
+Local Ruff lint now passes; `ruff format --check` still fails on the adapter.
+GitHub job116157085323's annotation reports account payments/spending-limit
+failure **before the job started**. This infrastructure failure is separate from
+both the local formatting failure and the demonstrated behavior problems.
+No billing setting was changed. PR50 remains unmerged.
