@@ -1,5 +1,20 @@
 # Connect your module to the core
 
+The [C4h9/C4h9b selection studies](complementary-sources.fa.md) do not change
+shared ports/contracts, renderer, UI/tracker, real index or exclusions.
+`METIS_GROUNDED_COMPLEMENTARY_SOURCES` is strict/default-false and requires the
+existing grounded source-selection reminder; the trusted factory and runner
+forward it, with an enabled adapter-ID suffix. It adds only fixed SYSTEM text.
+Its registered quality target failed, so leave it OFF in recommended settings.
+One source-order diagnostic is confined to testing suppliers; no production
+ranking flag exists. Same complete records/metadata survive, but ordered USER
+payload/context/index mapping differ. Old context hashes reject; a number with
+a fresh valid context names the current position and may select other content.
+One unreleased Enum draft got shorter with both full guides; no correction
+release did. Keep the guide fixture-only and use the blank human worksheets for
+review; this is not real-retrieval or final-test acceptance. Ordinary live remains
+halted, and closed paid methods/slots cannot be resumed.
+
 The [C4h8 Enum evidence comparison](enum-evidence-quality.fa.md) adds only a
 controlled fixture supplier and finite testing driver. Shared contracts,
 production factories/defaults, RAG index/exclusions and original gold stay

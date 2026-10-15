@@ -84,26 +84,35 @@
   بررسی دوبارهٔ۱۹فایل محافظت‌شده ثبت شد. Actions روی head بازبینی‌شده پیش از
   شروع jobها به علت Billing متوقف شد؛ publication طبق مجوز review/test محلی است.
 
-- [ ] **C4h9 — انتخاب شاهد مکمل و خوانایی؛ ساسان با review محمدحسن.**
+- [x] **C4h9 — انتخاب شاهد مکمل و خوانایی؛ ساسان، تحویل آزمایش با نتیجهٔ منفی.**
   [protocol پیش از پیاده‌سازی/API](../experiments/core_complementary_sources_v1/protocol-v1.json)
   ثبت شد؛ مقایسه تمام شد و نتیجه منفی بود. هر دو arm همان شواهدِ دارای guide را گرفتند؛ فقط
   SYSTEM reminder عمومی و اختیاری فرق دارد. renderer و داده‌های RAG ثابت‌اند.
-  معیار اصلی انتخاب/نمایش هر دو بخش کامل و مکمل با caveat است؛ کاهش طول به‌تنهایی
-  امتیاز کیفیت نیست. baseline تازه می‌گیریم؛ بررسی می‌کنیم چرا با وجود دو بخش
-  مفید، generic+oneguide انتخاب می‌شود. تعداد route یا answer هدف
+  معیار اصلی انتخاب/نمایش هر دو بخش کامل و مکمل با caveat بود؛ کاهش طول به‌تنهایی
+  امتیاز کیفیت نیست. baseline تازه نشان داد با وجود دو بخش مفید، همچنان
+  generic+oneguide انتخاب می‌شود. تعداد route یا answer هدف
   کیفیت نیست؛ توضیح و قدم بعدی مستند باید در متن کاربر بیاید. راهنمای excluded
   صرفاً fixture می‌ماند؛ تغییر default یا افزودن framework بدون شواهد انجام نشود.
   در اجرای تازه، هر دو حالت۴/۴Enum همان generic+Enum و۱۴۴۹۴کاراکتر را داشتند؛
   پوشش مشترک هر دو بخش۰/۴، پس هدف کیفیت پاس نشد و flag توصیه نمی‌شود.
-  رسید اصلی و هزینه$0.016245240 حفظ‌اند؛ خروجی کامل پس از review منتشر می‌شود.
+  [receipt،review و هزینه](../experiments/core_complementary_sources_v1/README.md)
+  حفظ‌اند:۲۴send/$0.016245240،۱۷۷۰کنترل source/cost و۱۱۲۶کنترل مکانیکی semantic
+  پاس. تیک پایان آزمایش است؛ هدف کیفیت پاس نشده و review انسانی باز است.
 
-- [ ] **C4h9b — تشخیص حساسیت به ترتیب منابع؛ ساسان، فقط یک آزمایش محدود.**
+- [x] **C4h9b — تشخیص حساسیت به ترتیب منابع؛ ساسان، تحویل یک آزمایش محدود.**
   [protocol پیش از پیاده‌سازی/API](../experiments/core_source_order_v1/protocol-v1.json).
   همان pool کامل و همان prompt در هر دو حالت؛ فقط در supplier آزمایش، اولین
   رکورد به انتها می‌رود، برای همهٔ caseها و بدون شرط source/case ID یا محتوا.
-  هدف تشخیص اثر ترتیب است، نه ادعای ranking بهتر. اگر انتخاب محتوا تغییر نکرد،
-  این شاخه را با محدودیت ثبت‌شده می‌بندیم؛ permutationهای بعدی برای گرفتن نمره
-  بهتر نمی‌خریم. exclusion، gold، RAG و runtime ثابت‌اند.
+  [نتیجه و مرزها](../docs/complementary-sources.fa.md): در Enum پوشش مشترک۰/۴→۱/۴،
+  فقط یک initial منتشرنشده۱۴۴۹۴→۷۰۹۹؛ correction دوباره به۱۴۴۹۴ برگشت.
+  پوشش مشترک correctionهای واقعاً released در هر دو حالت۰/۲ است؛ بهبود پایدار
+  ثابت نشد. A نیز انتخاب inventory وابسته به موقعیت داشت؛ سؤال لازم حفظ شد.
+  هدف تشخیص اثر ترتیب بود، نه ranking بهتر. این شاخه بسته است؛ permutation یا
+  prompt بعدی برای گرفتن نمره بهتر اجرا نشود. exclusion،gold،RAG و runtime ثابت‌اند.
+  [receipt و هزینه](../experiments/core_source_order_v1/README.md):۲۴send/$0.015791160،
+  ۱۸۵۸کنترل cost/source پاس؛ هر۵۶۷reservation قبلی/۱۴جدول حفظ،۶scope بسته،
+  ۲۴slotباقی claimed؛ holdها/halt/سقف ثابت. [verification](../experiments/core_source_order_v1/verification-v1.json):
+  ۴۸۹۶pytest،Ruff۳۲۹فایل،سهdemo وfixtureHTTP/SQLite۴۵۷/۴۵۷ پاس؛ CI سبز ادعا نمی‌شود.
 
 - [ ] **تنظیم نهایی core پس از review انسانی و dev گسترده‌تر؛ ساسان با محمدحسن.**
   مقایسهٔ usefulness سؤال کوتاه/کامل، متن طولانی عمومی Enum و precision منابع
@@ -115,9 +124,9 @@
 | نفر | تحویل بعدی | شرط پایان |
 | --- | --- | --- |
 | حسن | review profile جدید و پوشش/رتبه‌بندی منابع؛ provenance و exclusion بعد از split نهایی | source دقیقِ رسیده به مدل، برچسب relevance/Recall@k و build pinned؛ عضویت در index به‌تنهایی کافی نیست |
-| محمدحسن | usefulness انسانی خروجی‌های فعلی؛ C4h8 با worksheet بدون نمره، initial و correction/released جدا؛ مقایسهٔ۱۰۸/۱۲۲۰/۷۸۷۰کاراکتر؛۱۲dev و۱۵test باقی، freeze rubric/gold وابسته به evidence condition | guide answer-linked وارد corpus نشود؛ test برای tuning دیده نشود؛ حداقل ۱۰ گفتگوی چندنوبتی شامل ۵ test؛ سپس baseline و test نهایی |
+| محمدحسن | usefulness انسانی خروجی‌های فعلی؛ worksheetهای C4h8/C4h9/C4h9b بدون نمره، initial و correction/released جدا؛ مقایسهٔ نمایش کوتاه و پوشش واقعی؛۱۲dev و۱۵test باقی، freeze rubric/gold وابسته به evidence condition | guide answer-linked وارد corpus نشود؛ تک draft منتشرنشده۷۰۹۹ بهبود پایدار نیست؛ test برای tuning دیده نشود؛ حداقل ۱۰ گفتگوی چندنوبتی شامل ۵ test؛ سپس baseline و test نهایی |
 | بهنام | بخش‌های باز T4: receipt پاک‌سازی‌شده و pin، lost-ACK از خود UI و failure/outcome | revision/approval/retry مستقل دو پرونده و شاهد مصرف outcome در تصمیم بعد؛ token/DB خصوصی منتشر نشود |
-| ساسان | C4h8 کنترل شواهد تحویل؛ C4h9 انتخاب شاهد مکمل و خوانایی، سپس config پیشنهادی پس از review انسانی/dev بیشتر | قراردادها و defaultها ثابت، source/cost/خطاها کامل؛ راهنمای fixture به‌معنای fix یا کیفیت RAG/test نیست |
+| ساسان | C4h9/C4h9b تحویل با نتیجهٔ محدود/منفی؛ انتخاب config پیشنهادی پس از review انسانی و dev بیشتر، سپس freeze پیش از test | reminder مکمل پیش‌فرضfalse و توصیه‌نشده؛ این شاخهٔ prompt/order بسته، قراردادها ثابت؛ guide fixture اثبات fix یا کیفیت RAG/test نیست |
 
 **قاعدهٔ انتشار فعلی — ۱۵ اکتبر، با دستور صریح ساسان:** منتظر رفع Billing
 نمی‌مانیم. برای انتشار، review و تست محلی روی source ثبت‌شده، پذیرش اتصال و

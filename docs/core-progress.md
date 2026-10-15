@@ -1,3 +1,46 @@
+## 2026-10-15 — C4h9/C4h9b: complementary-source selection and order diagnostic
+
+[Result and integration boundaries](complementary-sources.fa.md). Two fresh
+preregistered fixed-evidence studies preserve the same three exposed dev cases,
+complete source pools, original gold and19protected files/index18/36/exclusions.
+The answer-linked custom-classes guide remains fixture-only. Each study has
+12jobs/24turns/24settled sends, all fresh on the first attempt; both arms6/6routes.
+Neither study demonstrates a stable improvement in delivered Enum guidance.
+
+C4h9 adds a generic trusted SYSTEM selection suffix, strict/default-false through
+config/factory/runner. The actual enabled suffix was reconstructed from each
+wire; every12paired analysis is identical. Both arms choose generic+Enum in4/4C
+drafts/14494chars, joint full-guide coverage0/4 and released correction coverage0/2.
+Its prospectively registered quality target failed; retain the flag for
+reproduction, not as a validated improvement. Renderer and USER/schema unchanged.
+CostUSD0.016245240;1770cost/source and1126semantic mechanical checks pass.
+
+C4h9b keeps a common prompt with that suffix OFF in both arms, uniformly moves
+the first complete record to the end for every current bundle, and rebinds context
+and integer positions. One rotated R2initial selects both full guides/7099chars;
+it was deliberately NOT released, and its correction returns to generic+Enum.
+Joint C drafts0/4→1/4; actually released joint corrections0/2 in both arms.
+Three C content pairs stay stable despite changed positions/quote order; known-
+version A inventories also change source choice with position while retaining
+the needed callback question. This diagnoses limited order sensitivity, not a
+stable readability win or production ranking recommendation. The branch stops
+here; no more permutations/prompts are purchased for a better score.
+
+Order costUSD0.015791160;1858source/cost checks pass after a disclosed mechanical
+audit adaptation correction. All567prior reservations/14tables/history preserved,
+6scopes closed/24unusedslots permanently claimed, two old holds/halt/USD4.50
+ceiling unchanged. Combined48sends costUSD0.032036400; cumulative local usage/
+list-price estimateUSD0.473438955 plusUSD0.0233792old holds, not an invoice or
+cross-laptop team total. Both original receipts and failed/unused inventories stay.
+
+4896pytest on frozen source`daad455`, Ruff329files, three required demos and
+fixtureHTTP/SQLite457/457 pass locally. The paid order source`3902fc7` adds only
+the frozen method, with unchanged Python. Mocked-provider persistent tests cover
+repair, correction, stale409, restart and retry; paid studies use the memory
+runner/gateway. No fresh browser/Windows/paidSQLite/CI or real-RAG/test quality
+claim. Human worksheets remain blank; assistant review overlaps implementation.
+Shared contracts/ports, UI/tracker, RAG ranking and production defaults unchanged.
+
 ## 2026-10-15 — C4h8: controlled Enum evidence availability
 
 [Result and handoff](enum-evidence-quality.fa.md),
