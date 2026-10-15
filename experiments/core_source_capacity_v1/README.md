@@ -79,3 +79,9 @@ and1024-token `length` failures with a separately registered comparison. RAG
 ranking remains Hassan's separate factor; [PR50 review](../rag_pr50_review/README.md)
 shows its newest head still lacks advertised over-fetching. Do not combine that
 unmerged change with this baseline. Human rubric/split/test remain open.
+
+[Final local verification](verification-v1.json):3827 pytest pass on unchanged
+commit3891358, Ruff280 files, locked dependency sync, all three offline demos,
+HTTP/SQLite457/457 and137 local plan links. The earlier full run's commit-stability
+failure is retained rather than erased; it passed on a stable checkout and the
+complete final suite was rerun. Local verification is not GitHub CI success.

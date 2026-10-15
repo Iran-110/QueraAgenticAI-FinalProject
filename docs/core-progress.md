@@ -1806,3 +1806,8 @@ The tracker's operations and explicit reset boundary are documented in
 [connected offline backend](offline-ui-index-pilot.fa.md) uses that same tracker.
 The legacy memory API/core demo does not use its database; restarting the memory
 demo is not a persistence/recovery test.
+
+C4h3 local verification on3891358:3827 pytest, Ruff280 files, all three demos,
+HTTP/SQLite457/457 and137 plan links pass. See the experiment verification receipt;
+publication still requires final-head CI. Earlier source-stability test failure
+from changing commit during the suite is preserved; the final suite ran unchanged.

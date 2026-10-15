@@ -692,3 +692,10 @@ handoffها و متن released محفوظ‌اند. ترکیب اصلاحات ب
 ## محدودیت‌های اجرا
 
 کل بودجهٔ تیم ۵ دلار است، شامل embedding، توسعه، evaluation و bonus. اجرای عادی live فعلاً به دلیل halt ledger متوقف است؛ ledger جدید یا reset راه ادامه نیست. کلید و raw credentials وارد log/Git/fixture نمی‌شوند. سقف هر invocation همان ۲ تلاش مدل، ۲ دور retrieval، ۲ query در هر دور و ۸ step است؛ پیشنهاد از اجرای اقدام جدا و همهٔ تغییرات عملیاتی روی tracker محلی‌اند.
+
+### وضعیت انتشار C4h3/E2r
+
+[بررسی محلی](../experiments/core_source_capacity_v1/verification-v1.json):۳۸۲۷pytest،
+Ruff،سهdemo وHTTP/SQLite۴۵۷/۴۵۷ پاس. تغییرات رویbranch`feat/core-source-capacity`
+برایreview منتشر می‌شوند؛ تاCI همانhead اجرا و پاس نشود merge نشده‌اند.
+Billing گیت‌هاب باید از سمت صاحب حساب رفع شود؛ نتیجهٔ تست محلی جایCI نیست.
