@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "task": "C4k/E2x",
+  "verification_date": "2026-10-16",
+  "tested_source_commit": "245eaf83f1d8822645d592a5022c8e37df372550",
+  "runtime_feature_commit": "7e20cf446bcd23db600375e440a75a3b8614a61a",
+  "protocol_before_code_commit": "2348eb8bef8f8403fd7412890cef76dacd727445",
+  "pytest": {
+    "tests": 5344,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "pytest_seconds": 253.676,
+  "pytest_XML_source": "local-output:evidence-selection-full-2026-10-16-v1.xml",
+  "pytest_XML_sha256": "ef717021be269cec4c7518b187e62472c0d2ecac3b37f54832858900958429aa",
+  "new_targeted_tests": 110,
+  "separate_review_repeated_targeted_tests": 110,
+  "ruff_check_passed": true,
+  "ruff_format_files": 352,
+  "required_offline_demos_passed": [
+    "demo --scenario refine",
+    "gateway-demo --scenario repair",
+    "turn-demo"
+  ],
+  "demos_actual_API_calls": 0,
+  "HTTP_SQLite": {
+    "accepted": true,
+    "checks_passed": 457,
+    "checks_total": 457,
+    "same_process_accepted": true,
+    "restart_accepted": true,
+    "source_unchanged_during_run": true,
+    "quality_claim": false,
+    "real_model_tested": false,
+    "production_index_or_embedding_tested": false,
+    "production_ledger_used": false
+  },
+  "HTTP_receipt": "http-sqlite-v1.json",
+  "runtime_source_unchanged_since_tested_commit": true,
+  "offline_replay": {
+    "checks_passed": 62,
+    "checks_total": 62,
+    "snapshots": 16,
+    "actual_engine_contexts": 64,
+    "actual_engine_runs": 32,
+    "maximum_gateway_input_bytes": 27366,
+    "retained_plans": 10,
+    "old_binding_rejections_preserved": 3,
+    "unavailable_raw_claim_attempts": 21,
+    "JSON_normalized_receipt_reproducibility_checked": true,
+    "model_outputs_rewritten": false,
+    "projections_are_authored": true
+  },
+  "C5_readonly": {
+    "checks_passed": 36,
+    "checks_total": 36,
+    "uncertain_requests": 3,
+    "C5_resolved": false,
+    "ledger_mutations": 0,
+    "ledger_after_sha256": "141c3536fb864595d94e0d0dd4a55976418def1012402b70f313c92050222785",
+    "ledger_matches_before": true,
+    "halt_preserved": true,
+    "cumulative_settled_local_estimate_usd": "0.599798760",
+    "uncertain_holds_not_verified_charges_usd": "0.0301376"
+  },
+  "protected_current_epoch": {
+    "matches": 19,
+    "total": 19,
+    "historical_physical_epoch_restored_claim": false
+  },
+  "review": {
+    "engineering_blockers_after_fixes": 0,
+    "initial_P2_findings_fixed": [
+      "nonempty fenced thematic-looking content falsely marked empty",
+      "replay input guard omitted JSON framing/escaping"
+    ],
+    "reviewer": "separate assistant, not independent human usefulness review",
+    "document_relative_links_checked": 29,
+    "document_blockers": 0
+  },
+  "actual_API_calls": 0,
+  "human_usefulness": null,
+  "model_quality_improvement": false,
+  "real_RAG_or_held_out_test": false,
+  "new_production_default": false,
+  "hosted_CI_pass_claim": false,
+  "new_Windows_or_browser_run_claim": false,
+  "team_modules_shared_contracts_corpus_exclusion_gold_changed": false,
+  "artifact_sha256": {
+    "protocol-v1.json": "c96f1fd86d99472c15a28b2f82c9dd9b414bca3c05e807fc7b7bda4d19f53526",
+    "default-baseline-v1.json": "d8b219c21f4bc3012f184051faf35c787f64a0e30f00f8af8acce411dc881a9a",
+    "selection-method-v1.json": "f87add734f1735beef5e6992de0ac062013161e422b7f9648bd3028b71d20313",
+    "failure-inventory-v1.json": "682eed7efcd83191b11f7bc4b940c22bbdb4e82cd394345915e471adf4d58c03",
+    "first-replay-v1.json": "6d8583dc3f6d6957238fafc3847724c83c12952e97f6b0fd338de3f58f2472bf",
+    "preflight-amendment-v1.json": "79dd3cea0ab29967efb6741c5137ad4f723287b2b3cffe7cde6b976b18b9b9a7",
+    "replay-v2.json": "e55c4c471df98f6dae5d1824983d831df9bc29d66602ccbdc42bfd8f60a33035",
+    "c5-readonly-audit-v1.py": "1b0b85366876b2b0ca8d507ffa5c5fa825c596b3fbc01afb89f7cc1557c8dda5",
+    "c5-readonly-audit-v1.json": "ea631d59e2422b6efbf61145abdc623eb9c4afe219817d4f19443d9c7a2930bf",
+    "c5-readonly-report.fa.md": "526e1fff7a163624b42ebe1f9fb5ea79586cf5aa4f5d41257b8b156300480808",
+    "http-sqlite-v1.json": "d12790609558fa28d99a3d74ed54131cd69216897230a7164479b9c9f685aa48"
+  },
+  "final_document_relative_links_checked": 218,
+  "actual_credential_files_read": false,
+  "team_PR43_head_unchanged": "3f9e7b14d4ecd62bac384741e2790f6fc02980f8",
+  "team_PR50_head_unchanged": "1a18749159e09abd4f19d2417dc7fa1dc9146eb2"
+}
