@@ -2,7 +2,7 @@
 
 پروژهٔ نهایی بوت‌کمپ Agentic AI کوئرا: دستیار بررسی گزارش خطا و پیگیری پرونده، با شواهد قابل بررسی و تأیید انسانی پیش از اجرای اقدام.
 
-**وضعیت فعلی، ۱۵ اکتبر:** core، correction، API/UI، tracker پایدار SQLite و runner متصل‌اند. [R4c](experiments/retrieval_relevance_v1/README.md) روی index محدود واقعی ۱۸ source/۳۶ chunk و همان سه dev، راهنمای جزئی button را در دو تکرار به پاسخ رساند؛ هنوز حل کامل مسئله یا کیفیت نهایی RAG نیست. [profile اختیاری retrieval](docs/candidate-live-profile.fa.md) حالا تا engine هر دو مسیر API/runner و HTTP/SQLite منتقل می‌شود؛ [زمینهٔ مستند کنار سؤال](docs/ask-source-background.fa.md) هم گزینهٔ جدا و خاموش پیش‌فرض است. split نهایی، داوری usefulness و test مستقل باقی‌اند. startup معمول live همچنان halt دارد؛ آزمایش‌های مجاز محدود از همان ledger و با حفظ holdهای قبلی اجرا می‌شوند. Actions به علت Billing اجرا نمی‌شود؛ انتشار فعلی با review و verification محلیِ مجازشده توسط ساسان است. برای اتصال از [راهنما](docs/integration.md) و [plan جاری](plan/plan.md) شروع کنید. گزارش‌های پایین، تاریخچهٔ آزمایش‌ها و محدودیت همان زمان‌اند.
+**وضعیت فعلی، ۱۶ اکتبر:** core، correction، API/UI، tracker پایدار SQLite و runner متصل‌اند. [C2j](docs/intake-validation.fa.md) validation دو helper پاسخ نسخه را پیش از dump یکسان کرده؛ [انتخاب section کامل](docs/evidence-selection.fa.md) و [context فعلی advisor](docs/selection-context.fa.md) هم کنترل‌های اختیاری آفلاین‌اند. source اجرایی فعلی همان نسخهٔ تست‌شدهٔ `f780ca8` با ۵۴۷۹ pytest و پذیرش HTTP/SQLite برابر ۴۵۷/۴۵۷ است؛ تغییر مستندات اجرای تازهٔ آن suite نیست. [جمع‌بندی پس از C2j](docs/core-progress.md#post-c2j-checkpoint) بهبود معنایی تازه‌ای برای انتشار پیدا نکرد: انتخاب شاهد مرتبط و کامل، usefulness انسانی، split/config نهایی و test مستقل بازند. Enum هنوز پاسخ کامل و پایدارِ تأییدشده ندارد. halt و هر سه hold حفظ شده‌اند؛ scopeهای بسته دوباره اجرا نمی‌شوند و C5 به مدرک provider نیاز دارد. Actions به علت Billing اجرا نمی‌شود؛ انتشار فعلی با review و verification محلیِ مجازشده توسط ساسان است. برای اتصال از [راهنما](docs/integration.md) و [plan جاری](plan/plan.md) شروع کنید. گزارش‌های پایین، تاریخچهٔ آزمایش‌ها و محدودیت همان زمان‌اند.
 
 [C4h9/C4h9b: انتخاب شاهد مکمل و خوانایی Enum](docs/complementary-sources.fa.md): دو مقایسهٔ تازه، مجموع۴۸send روی همان سه dev و منابع ثابت. دستور عمومی انتخاب منابع مکمل هیچ بهبودی نداشت؛ جابه‌جایی ترتیب منابع فقط یک draft اولیهٔ منتشرنشده را با حفظ هر دو guide از۱۴۴۹۴ به۷۰۹۹کاراکتر رساند و correction دوباره طولانی شد. پوشش مشترک پاسخ‌های واقعاً منتشرشده در هر دو حالت۰/۲ بود؛ بهبود پایدار ثابت نشد. flag مکمل خاموش و توصیه‌نشده می‌ماند؛ index/exclusion/gold و قراردادها ثابت‌اند. ۴۸۹۶pytest و fixtureHTTP/SQLite۴۵۷/۴۵۷ محلی پاس؛ داوری انسانی و test نهایی بازند. نتیجهٔ منفی و تمام receiptها حفظ شده‌اند.
 
@@ -114,7 +114,7 @@ pilot آفلاین و restart/retry آن ۴۵۷/۴۵۷ check پاس دارد. cl
 استفاده کنید؛ UI mode واقعی backend را نشان می‌دهد. launcher آفلاین هزینهٔ API
 ندارد. corpus/split نهایی و کیفیت مدل/RAG هنوز باقی‌اند.
 
-پایپلاین GitHub Actions برای پوش همهٔ branchها و PRها، تست‌ها و بررسی سبک کد را بدون مصرف API اجرا می‌کند. پیش از ادامه کار، branch خودتان را از `main` به‌روز کنید تا پایه مشترک و پایپلاین را داشته باشید.
+پایپلاین GitHub Actions برای تست و بررسی سبک کد بدون مصرف API تنظیم شده، اما فعلاً به علت Billing شروع نمی‌شود. تا رفع آن، review و تست‌های محلی روی source ثبت‌شده مبنای انتشارند؛ نتیجهٔ محلی را CI سبز گزارش نکنید. پیش از ادامه کار، branch خودتان را از `origin/main` به‌روز کنید.
 
 ## تقسیم کار چهار نفره
 

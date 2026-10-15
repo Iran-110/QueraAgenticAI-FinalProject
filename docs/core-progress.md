@@ -1,3 +1,54 @@
+<a id="post-c2j-checkpoint"></a>
+
+## 2026-10-16 — Post-C2j quality checkpoint; runtime unchanged
+
+Reviewed retained answer failures and the current selection/question/rendering
+boundaries with separate assistant audits. No new independently justified
+semantic runtime improvement was identified in this bounded review. Pause new
+core implementation here; this is not a claim that answer quality is complete.
+[Checkpoint receipt](receipts/core-quality-checkpoint-2026-10-16.json).
+
+A central remaining limitation is useful evidence selection; JSON/schema
+validity alone does not resolve it. Exact quotes can be irrelevant or omit the
+required body/caveat. The closed
+[claim-boundary study](../experiments/core_claim_boundary_v1/README.md) and
+[broader-dev comparison](broader-dev-quality.fa.md) retain those failures.
+[Sections](evidence-selection.fa.md) restore structural body coverage only in
+authored projections; [current-query context](selection-context.fa.md) remains
+lexical and advisory. Neither establishes a new model choice, entailment or a
+reliable Enum remedy. Do not add a case/source-ID rule, reopen prompt/order
+permutations, shorten away caveats or promote experimental defaults for a score.
+
+A narrower display issue was reproduced: CRLF in retained USER code becomes
+visible escaped carriage-return markers in the maintainer summary. A pure
+in-memory candidate normalizing CRLF before `_display` changes four of the 16
+frozen valid render digests (Enum guide/withheld, initial/correction), only in
+`maintainer_summary`; the other 12 remain exact. It was **not shipped**. A global
+change would break that baseline, and ask-background evaluation reconstructs
+the entire draft using the current renderer (`_question_display_matches` in
+`evaluation/routes.py`). A hypothetical old CRLF source background would need
+legacy reconstruction. Existing stored handoffs validate stored analysis rather
+than rerendering; the candidate is not evidence of a current approval/retry
+failure. A future display revision needs an explicit compatibility design; the
+small readability benefit does not justify another runtime flag in this task.
+
+Fresh offline checks on `c82d1f9`: 245 focused tests pass. Both existing replays
+reproduce their archived bytes (62/62 structural controls, 81/81 current-context
+controls). Runtime/tests/config/scripts remain identical to the tested C2j
+source `f780ca8`: its 5479-test and HTTP/SQLite 457/457 receipts still apply, but
+neither full suite nor HTTP acceptance was rerun for this docs-only checkpoint.
+No model/API, real credentials or native-index client was used; current 19 physical
+pins and ledger SHA 141c3536... remain exact. Three holds, halt, ceiling, all
+closed study identities, original failures and fixture-only guide are retained.
+Hosted CI remains billing-blocked; no human usefulness or final-test score.
+
+Next work is evidence-led: human review of relevance, complete guidance/caveats
+and usefulness using existing worksheets; provider reconciliation for C5; then
+a new preregistered dev hypothesis and configuration decision before any new
+model comparison or held-out test. E1/E2/R4/T4 and final configuration freeze
+remain open with their existing owners. Teammate modules and shared contracts
+are unchanged. This delivery updates documentation and the audit receipt only.
+
 ## 2026-10-16 — Git housekeeping, no application changes or new PR
 
 With Sasan's explicit cleanup authorization, removed48local and61remote merged
