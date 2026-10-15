@@ -208,6 +208,8 @@ class QualityPlanner:
             record["error_code"] = error.code
             raise
         finally:
+            if self.gateway.config.grounded_compact_plan:
+                record["wire_output"] = self.gateway.latest_wire_observation(context)
             self.counted.current = None
 
 
@@ -284,6 +286,7 @@ def run_quality_batch(
                         ),
                         "grounded_resource_guidance": job.get("resource_guidance", False),
                         "grounded_source_capacity": job.get("source_capacity", False),
+                        "grounded_compact_plan": job.get("compact_plan", False),
                         "max_output_tokens": job["max_output_tokens"],
                         "input_token_reserve": reserve,
                         "max_request_usd": get_price(MODEL).cost(reserve, job["max_output_tokens"]),

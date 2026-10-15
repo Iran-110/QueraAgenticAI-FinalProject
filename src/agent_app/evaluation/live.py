@@ -220,6 +220,8 @@ class _Run:
                 )
                 raise
             finally:
+                if self.owner._config.grounded_compact_plan:
+                    record["wire_output"] = self.gateway.latest_wire_observation(context)
                 self.transport.current = None
                 try:
                     reservation = self.owner.ledger.get(record["request_id"])
@@ -444,6 +446,7 @@ def configured_factory(values: Mapping[str, str]) -> LiveEvaluationAdapters:
                 "METIS_GROUNDED_SOURCE_SELECTION_REMINDER",
                 "METIS_GROUNDED_RESOURCE_GUIDANCE",
                 "METIS_GROUNDED_SOURCE_CAPACITY",
+                "METIS_GROUNDED_COMPACT_PLAN",
             )
         }
         if any(
@@ -463,6 +466,7 @@ def configured_factory(values: Mapping[str, str]) -> LiveEvaluationAdapters:
             == "true",
             grounded_resource_guidance=switches["METIS_GROUNDED_RESOURCE_GUIDANCE"] == "true",
             grounded_source_capacity=switches["METIS_GROUNDED_SOURCE_CAPACITY"] == "true",
+            grounded_compact_plan=switches["METIS_GROUNDED_COMPACT_PLAN"] == "true",
             phase=values.get("AGENT_EVAL_PHASE", "development"),
             input_token_reserve=int(values.get("METIS_INPUT_TOKEN_RESERVE", "32768")),
             max_output_tokens=int(values.get("METIS_MAX_OUTPUT_TOKENS", "1024")),

@@ -1,0 +1,373 @@
+{
+  "schema_version": 1,
+  "review_id": "core-compact-plan-structural-review-v1",
+  "receipt_sha256": "3aef0c1c19961df987af752a449376359523772aae94bc1520e86b9b2ce49e52",
+  "cost_review_sha256": "45ee0b2172f98c89b685abb56defe20147b7efe67b1dd11d85507019c5dc07c0",
+  "workbench_sha256": "bb8b6999baaf240e9d6f657f908cd00e51cf43497d38d458d5cf93d82357caec",
+  "source_commit": "96f7c388179a67b88002e6efd9a4b57eccf25317",
+  "quality_claim": false,
+  "human_usefulness": null,
+  "raw_wire_schema_independently_reparsed": false,
+  "summary": {
+    "planned_jobs": 12,
+    "planned_turns": 24,
+    "visited_turns": 23,
+    "no_fresh_response_turns": 3,
+    "fresh_proposal": 20,
+    "stale_observation": 1,
+    "no_fresh_proposal": 2,
+    "unvisited": 1
+  },
+  "arms": {
+    "canonical_wire": {
+      "jobs": 6,
+      "complete_routes": 4,
+      "turn_statuses": {
+        "fresh_proposal": 10,
+        "no_fresh_proposal": 1,
+        "stale_observation": 1
+      },
+      "fresh_decisions": {
+        "ask": 6,
+        "escalate": 3,
+        "answer": 1
+      },
+      "attempts": 18,
+      "actual_sends": 18,
+      "canonical_schema_observations": {
+        "GroundedPlanValid": 15,
+        "GroundedPlanSchemaInvalid": 3
+      },
+      "recorded_compact_wire_valid": 0,
+      "recorded_compact_binding_valid": 0,
+      "finish_reasons": {
+        "stop": 18
+      },
+      "renderer_rejection_codes": {
+        "grounded_render_too_large": 1
+      },
+      "terminal_error_codes": {},
+      "output_tokens_total": 3287,
+      "output_tokens_median": 161.5,
+      "estimated_cost_usd": "0.020278005"
+    },
+    "compact_wire": {
+      "jobs": 6,
+      "complete_routes": 5,
+      "turn_statuses": {
+        "fresh_proposal": 10,
+        "no_fresh_proposal": 1,
+        "unvisited": 1
+      },
+      "fresh_decisions": {
+        "ask": 6,
+        "escalate": 2,
+        "answer": 2
+      },
+      "attempts": 15,
+      "actual_sends": 14,
+      "canonical_schema_observations": {
+        "GroundedPlanValid": 14,
+        "unobserved": 1
+      },
+      "recorded_compact_wire_valid": 14,
+      "recorded_compact_binding_valid": 14,
+      "finish_reasons": {
+        "stop": 14
+      },
+      "renderer_rejection_codes": {},
+      "terminal_error_codes": {
+        "ContextLimitExceeded": 1
+      },
+      "output_tokens_total": 948,
+      "output_tokens_median": 66.5,
+      "estimated_cost_usd": "0.014556300"
+    }
+  },
+  "paired_initial_requests": [
+    {
+      "batch": "compact-r1-dev-case-a",
+      "initial_request_equal": true
+    },
+    {
+      "batch": "compact-r1-dev-case-b",
+      "initial_request_equal": true
+    },
+    {
+      "batch": "compact-r1-dev-case-c",
+      "initial_request_equal": true
+    },
+    {
+      "batch": "compact-r2-dev-case-c",
+      "initial_request_equal": true
+    },
+    {
+      "batch": "compact-r2-dev-case-b",
+      "initial_request_equal": true
+    },
+    {
+      "batch": "compact-r2-dev-case-a",
+      "initial_request_equal": true
+    }
+  ],
+  "render_checks": [
+    {
+      "item_id": "103d634312d64b9f2a60728d",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "0e18531cc724a1a72a8d0c64",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "448b515225eaf3fad62ea725",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "c62965fb1dd929809a27c956",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "2bb2892561b5e5f71e90361a",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "6fba2bd1322f2033c629eddb",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "132265d6797d16f14eb2ef3a",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "00d6a2c9be16e0092aaef261",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "fca106bdc49bfe648577d606",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "bb54b41d1c8bdce83fda60a6",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "37b4741d5e692285f318aecc",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "dfc8854c1f7832a16f311d3a",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "73efbe2be16bce3634c99912",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "df4de16ebea60e450c568fb1",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "c902a1f86bbe00f9700a2794",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "3070e2d28622573bdbf880b7",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "053163f105651a9c1e3f4fd8",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "679a400fd005f25d8a1fafe3",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "9081e53ea1d3ef654aa14cb5",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "ab7c4a638c27e68eda6cc84d",
+      "original_analysis_reconstructed": true
+    }
+  ],
+  "turns": [
+    {
+      "job_id": "r1:dev-case-a:canonical_wire",
+      "arm": "canonical_wire",
+      "case_id": "dev-case-a",
+      "turn_id": "initial",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r1:dev-case-a:canonical_wire",
+      "arm": "canonical_wire",
+      "case_id": "dev-case-a",
+      "turn_id": "version",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r1:dev-case-a:compact_wire",
+      "arm": "compact_wire",
+      "case_id": "dev-case-a",
+      "turn_id": "initial",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r1:dev-case-a:compact_wire",
+      "arm": "compact_wire",
+      "case_id": "dev-case-a",
+      "turn_id": "version",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r1:dev-case-b:compact_wire",
+      "arm": "compact_wire",
+      "case_id": "dev-case-b",
+      "turn_id": "initial",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r1:dev-case-b:compact_wire",
+      "arm": "compact_wire",
+      "case_id": "dev-case-b",
+      "turn_id": "version",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r1:dev-case-b:canonical_wire",
+      "arm": "canonical_wire",
+      "case_id": "dev-case-b",
+      "turn_id": "initial",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r1:dev-case-b:canonical_wire",
+      "arm": "canonical_wire",
+      "case_id": "dev-case-b",
+      "turn_id": "version",
+      "status": "no_fresh_proposal"
+    },
+    {
+      "job_id": "r1:dev-case-c:canonical_wire",
+      "arm": "canonical_wire",
+      "case_id": "dev-case-c",
+      "turn_id": "initial",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r1:dev-case-c:canonical_wire",
+      "arm": "canonical_wire",
+      "case_id": "dev-case-c",
+      "turn_id": "correction",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r1:dev-case-c:compact_wire",
+      "arm": "compact_wire",
+      "case_id": "dev-case-c",
+      "turn_id": "initial",
+      "status": "no_fresh_proposal"
+    },
+    {
+      "job_id": "r1:dev-case-c:compact_wire",
+      "arm": "compact_wire",
+      "case_id": "dev-case-c",
+      "turn_id": "correction",
+      "status": "unvisited"
+    },
+    {
+      "job_id": "r2:dev-case-c:compact_wire",
+      "arm": "compact_wire",
+      "case_id": "dev-case-c",
+      "turn_id": "initial",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r2:dev-case-c:compact_wire",
+      "arm": "compact_wire",
+      "case_id": "dev-case-c",
+      "turn_id": "correction",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r2:dev-case-c:canonical_wire",
+      "arm": "canonical_wire",
+      "case_id": "dev-case-c",
+      "turn_id": "initial",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r2:dev-case-c:canonical_wire",
+      "arm": "canonical_wire",
+      "case_id": "dev-case-c",
+      "turn_id": "correction",
+      "status": "stale_observation"
+    },
+    {
+      "job_id": "r2:dev-case-b:canonical_wire",
+      "arm": "canonical_wire",
+      "case_id": "dev-case-b",
+      "turn_id": "initial",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r2:dev-case-b:canonical_wire",
+      "arm": "canonical_wire",
+      "case_id": "dev-case-b",
+      "turn_id": "version",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r2:dev-case-b:compact_wire",
+      "arm": "compact_wire",
+      "case_id": "dev-case-b",
+      "turn_id": "initial",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r2:dev-case-b:compact_wire",
+      "arm": "compact_wire",
+      "case_id": "dev-case-b",
+      "turn_id": "version",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r2:dev-case-a:compact_wire",
+      "arm": "compact_wire",
+      "case_id": "dev-case-a",
+      "turn_id": "initial",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r2:dev-case-a:compact_wire",
+      "arm": "compact_wire",
+      "case_id": "dev-case-a",
+      "turn_id": "version",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r2:dev-case-a:canonical_wire",
+      "arm": "canonical_wire",
+      "case_id": "dev-case-a",
+      "turn_id": "initial",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r2:dev-case-a:canonical_wire",
+      "arm": "canonical_wire",
+      "case_id": "dev-case-a",
+      "turn_id": "version",
+      "status": "fresh_proposal"
+    }
+  ],
+  "interpretation": [
+    "Compound treatment, exposed three-dev data, two rounds; no component-level causal claim or held-out result.",
+    "Raw wire validity is recorded by the gateway; canonical validity after local expansion is a separate observation.",
+    "Answer labels, route completion, byte-exact rendering and source binding do not establish semantic support or usefulness.",
+    "Neither arm hit provider length; this study cannot establish a reduction in length failures.",
+    "One compact refinement exceeded the input guard; it is an attested zero-cost skip and its follow-up remains unvisited.",
+    "Median tokens are descriptive of different realized paths, not a controlled same-response efficiency estimate."
+  ]
+}
