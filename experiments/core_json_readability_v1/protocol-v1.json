@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "protocol_id": "core-json-readability-v1",
+  "registered_before_implementation": true,
+  "registered_before_paid_calls": true,
+  "baseline_commit": "00b27899488c936c4c07115801c9642d62ad6dbd",
+  "authorization_ref": "user-2026-10-15-json-readability-quality-comparison",
+  "problem": {
+    "schema": "A stopped complete compact response can still be malformed JSON; C4h6 recorded one invalid JSON result and one stale correction despite provider finish_reason stop.",
+    "presentation": "Current user drafts duplicate large user-report/investigation blocks; complete source quotations belong in review but readability must not be confused with semantic guidance or usefulness."
+  },
+  "transport_treatment": {
+    "flag": "grounded_json_object",
+    "default": false,
+    "off": "Existing wire body with response_format absent.",
+    "on": {
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "strict_boolean": true,
+    "same_model_messages_output_budget_attempts_and_validator": true,
+    "gateway_support_not_assumed": true,
+    "canary_before_comparison": true,
+    "no_fallback_after_unknown_or_unsupported_response": true,
+    "raw_JSON_schema_and_canonical_binding_are_separate_observations": true
+  },
+  "presentation_treatment": {
+    "flag": "concise_user_draft",
+    "default": false,
+    "strict_boolean": true,
+    "changes_only": "AnalysisResult.user_draft plus one fixed investigation-rationale sentence only when that sentence would otherwise misdescribe the concise display.",
+    "unchanged": [
+      "model request/messages and source selection",
+      "decision",
+      "next_question",
+      "missing_info",
+      "complete maintainer_summary",
+      "EvidenceLinks and source records"
+    ],
+    "ask": "Exact canonical question. Only existing eligible ask background (known active USER version, non-version user gap, no current/inherited conflict and selected exact-version records) may append an escaped complete source inventory with source/chunk IDs, safe URL, versions/scope and fixed no-authenticity/cause/fix qualification. Complete quotations remain in review summary; no cut excerpts.",
+    "unknown_or_version_ask": "Exact original canonical question bytes.",
+    "answer": "Keep all complete selected quotations, including button icon passage. Only shorten duplicated USER-report/code/facts investigation block after source gaps; no new technical synthesis.",
+    "escalate": "Keep source gaps, conflict and uncertainty. Replace repeated full USER-report/code with short proposed-investigation/status/current-active-USER-version text; source gaps never become USER questions.",
+    "whole_record_bound": "Never truncate excerpts, metadata, source reference tokens or supplied qualifications. If whole optional ask inventory cannot fit the draft bound, retain exact original question.",
+    "prospective_tradeoff": "Replacing A full API quotations with source inventory can remove USER-facing API-fact guidance even while preserving the necessary question and source access. Count guidance loss explicitly; shorter text is not a usefulness score.",
+    "display_comparison": "Offline OFF/ON renderer pairing on the identical actual current request/canonical plan. Both paid JSON arms use concise_user_draft ON, so JSON comparison has identical presentation; no attribution of display changes to JSON transport.",
+    "rationale_exception": "For concise answer/escalate investigation display only, replace the fixed sentence claiming USER report/code appears in both user_draft and summary with a fixed accurate sentence: full USER report/reproduction remains in maintainer_summary; current USER version/status is shown in user_draft. All other rationale bytes and all other non-draft fields stay equal. No new technical synthesis."
+  },
+  "offline": {
+    "receipt": "experiments/core_ask_background_v1/model-live-receipt-v1.json",
+    "receipt_sha256": "49fbc22af9e0880354d98280c4815e5911ff7672d7a6493398c9f675f4d10c94",
+    "planned_turns_preserved": 12,
+    "expected_historical_inventory_not_new_quality": {
+      "fresh": 11,
+      "stale": 1
+    },
+    "paired_render_same_actual_request_plan": true,
+    "ordinary_historical_receipts_gold_and_scopes_unchanged": true
+  },
+  "live": {
+    "protocol_id": "core-json-readability-model-v1",
+    "experiment_id": "core-json-readability-2026-10-15-v1",
+    "model": "gpt-4o-mini",
+    "rounds": 2,
+    "case_order": [
+      [
+        "dev-case-a",
+        "dev-case-b",
+        "dev-case-c"
+      ],
+      [
+        "dev-case-c",
+        "dev-case-b",
+        "dev-case-a"
+      ]
+    ],
+    "paired_arms": [
+      "json_object_off",
+      "json_object_on"
+    ],
+    "paired_arm_order": [
+      [
+        "json_object_off",
+        "json_object_on"
+      ],
+      [
+        "json_object_on",
+        "json_object_off"
+      ],
+      [
+        "json_object_off",
+        "json_object_on"
+      ],
+      [
+        "json_object_on",
+        "json_object_off"
+      ],
+      [
+        "json_object_off",
+        "json_object_on"
+      ],
+      [
+        "json_object_on",
+        "json_object_off"
+      ]
+    ],
+    "canary": {
+      "batch_id": "json-readability-canary-dev-case-a",
+      "case_id": "dev-case-a",
+      "arm": "json_object_canary",
+      "kind": "normal existing two-turn job",
+      "grounded_json_object": true,
+      "jobs": 1,
+      "turns": 2,
+      "fresh_request_slots": 4,
+      "scope_cap_usd": "0.03",
+      "report_separately_from_paired_comparison": true,
+      "gate_before_any_paired_scope": [
+        "Every actual wire payload has exact response_format json_object.",
+        "Every actual provider send has HTTP200, verified expected serving-model identity and finish_reason stop.",
+        "Every actual compact output has valid raw schema and canonical source binding.",
+        "Entire canary route completes with fresh proposals and known complete accounting.",
+        "Source/index/input/journal baseline unchanged; no new uncertainty, pending or overrun."
+      ],
+      "failure": "Close entire registered method; retain canary and all unvisited comparisons. Do not retry with OFF/fallback, resume spent identities or regenerate baseline/identities to bypass a stop."
+    },
+    "paired_batches": 6,
+    "paired_jobs": 12,
+    "paired_turns": 24,
+    "paired_request_slots": 48,
+    "total_batches": 7,
+    "total_jobs": 13,
+    "total_turns": 26,
+    "fresh_request_slots": 52,
+    "max_output_tokens": 1024,
+    "input_token_reserve": 32768,
+    "paired_scope_cap_usd": "0.06",
+    "campaign_cap_usd": "0.39",
+    "retrieval_profile": "candidate_relevance_v1",
+    "same_named_profile_through_memory_HTTP": true,
+    "same_retrieval_package_as_R4c_treatment": true,
+    "common_flags": {
+      "concise_user_draft": true,
+      "ask_source_background": true,
+      "compact_plan": true,
+      "decision_contracts": true,
+      "source_selection_reminder": true,
+      "source_gap_handoff": true,
+      "source_gap_investigation": true,
+      "repair_repeated_queries": true,
+      "resource_guidance": false,
+      "source_capacity": false,
+      "retrieval_candidate_multiplier": 5,
+      "selection_policy": "query_relevance_v1",
+      "evidence_utf8_budget_bytes": 12000,
+      "record_actual_native_candidates": true
+    },
+    "fixed_index_source_count": 18,
+    "fixed_index_chunk_count": 36,
+    "fixed_index_manifest_sha256": "24815c44f7d7e104a59579d444e8abce429f02b594dd6679165c0fbc381b9239",
+    "ledger_before_expected_observation_only": {
+      "reservations": 493,
+      "settled": 491,
+      "uncertain": 2,
+      "pending": 0,
+      "settled_local_estimate_usd": "0.403656330",
+      "old_hold_usd": "0.0233792",
+      "global_halt": true,
+      "ceiling_usd": "4.50",
+      "full_tables": 14
+    },
+    "register_all_immutable_request_and_scope_identities_before_any_canary_send": true,
+    "stop_entire_campaign_on_new_uncertainty_or_changed_source_index_inputs_accounting": true,
+    "closed_identities_never_resume": true,
+    "unknown_old_holds_halt_and_all_prior_rows_preserved": true,
+    "no_global_halt_override": true
+  },
+  "prospective_review": {
+    "schema": "Report raw schema and independent canonical expansion separately, preserve rejected/length/stale/unvisited denominator; JSON object formatting does not prove schema validity, source support or model quality.",
+    "decision": "Same existing native evidence-conditioned criteria; report necessary questions and defensible abstentions separately from answers and solved cases.",
+    "all_surfaces": "Review all material claims and current-version applicability, not only evidence_links; compare original vs released/edited separately. Source text remains untrusted data.",
+    "A": "Necessary version/callback questions; exact-current-source availability or source inventory is not USER-facing API guidance, diagnosis or callback fix.",
+    "B": "Partial icon guidance only if the actual source passage is selected and delivered; warning/future delivery can remain unresolved.",
+    "C": "Without Enum-specific evidence, qualified background/investigation only; active1.31.0 initially and1.31.1 after correction, no reasking known facts, source gap or cause/fix fabrication.",
+    "presentation": "Measure draft chars, complete quote retention, exact non-draft equality except the registered single fixed investigation-rationale sentence, and any loss of actual topical guidance. No automatic usefulness score from shorter text.",
+    "human_usefulness": null,
+    "assistant_review_unblinded_with_implementation_overlap": true,
+    "held_out_test": false,
+    "no_general_RAG_or_component_model_quality_claim": true
+  },
+  "not_changed": [
+    "original fixtures, gold, exclusions and corpus/index",
+    "old receipts, protocols and closed scope identities",
+    "tracker/UI ownership and shared Pydantic contracts",
+    "two model attempts, two retrieval rounds, query/step limits",
+    "ordinary global ledger halt, old holds and USD4.50 ceiling",
+    "single-agent architecture"
+  ],
+  "input_artifacts_to_pin_before_live": [
+    "this protocol",
+    "exact paid source commit/hash inventory",
+    "offline same-plan presentation replay and semantic-review preparation",
+    "parent C4h6 original receipt and protocol/route amendment",
+    "three exposed dev fixtures/vocabulary and unchanged native evidence criteria",
+    "native18/36 index manifest/storage binding",
+    "all14table ledger journal and unknown/grant history"
+  ],
+  "primary_api_references": [
+    {
+      "url": "https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=chat",
+      "checked_on": "2026-10-15",
+      "meaning": "Upstream JSON object mode is not strict schema enforcement; incomplete output and validation still need handling. Not proof of Metis support."
+    },
+    {
+      "url": "https://docs.metisai.ir/api/wrapper/openai/",
+      "checked_on": "2026-10-15",
+      "meaning": "Metis documents OpenAI wrapper with incomplete feature coverage; response_format support is not established by this page. Finite observational canary required."
+    }
+  ]
+}

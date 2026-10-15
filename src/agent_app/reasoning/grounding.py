@@ -237,6 +237,32 @@ def _source_block(case: CaseState, hit: EvidenceHit) -> str:
     )
 
 
+def _source_reference_block(case: CaseState, hit: EvidenceHit) -> str:
+    """Attribute a complete reference without summarizing its source contents.
+
+    This supplementary question inventory is not delivered API guidance. The
+    renderer still retains the exact full quotation in the maintainer summary.
+    """
+    scope = {
+        "unconfirmed": "Applicability to the installed environment is unconfirmed.",
+        "exact_metadata_match": (
+            "Supplied version metadata exactly matches the user-reported version; "
+            "this does not verify source authenticity or a cause/fix."
+        ),
+        "historical_or_other_version": (
+            "Historical/comparison source for a different version; "
+            "not evidence of applicability to the current installation."
+        ),
+    }[source_scope(case, hit)]
+    url = quote(hit.source_url, safe=":/?&=.%#")
+    return (
+        f"[Supplied source {_display(hit.source_id)}]({url}) ({hit.source_type}).\n"
+        f"Chunk: {_display(hit.chunk_id)}. "
+        f"Versions in metadata: {_display(', '.join(hit.applicable_versions) or 'unknown')}.\n"
+        f"{scope} Complete quotation retained in the maintainer summary."
+    )
+
+
 def _source_gap_block(request: GroundedRequest) -> str:
     """Retain current caller declarations as escaped data, not user questions."""
     gaps = [gap for gap in request.gaps if gap.kind == "source"]
@@ -259,12 +285,15 @@ def _source_gap_block(request: GroundedRequest) -> str:
     )
 
 
-def _source_gap_investigation(request: GroundedRequest) -> tuple[str, str]:
+def _source_gap_investigation(
+    request: GroundedRequest, *, concise_user_draft: bool = False
+) -> tuple[str, str]:
     """Identify a proposed investigation from current USER records only.
 
     This is attributed input, not a diagnosis, source assertion or permission.
-    Whole facts/code stay in the draft and summary; the bounded rationale points
-    to those records instead of duplicating a potentially large reproduction.
+    The default keeps whole facts/code in both draft and summary. A concise
+    draft instead records current version/status; its complete report stays in
+    the unchanged summary, and its rationale names that actual presentation.
     """
     reported = "\n".join(
         "- " + _display(f"{fact.name}: {fact.value}").replace("\n", "\n  ")
@@ -298,6 +327,23 @@ def _source_gap_investigation(request: GroundedRequest) -> tuple[str, str]:
         "reproduction/code, displayed as attributed data in the user draft and "
         "maintainer summary. " + qualification + " " + proposed
     )
+    if concise_user_draft:
+        target = (
+            "Investigation target: the recorded USER report and any supplied "
+            "reproduction/code, retained completely in the maintainer summary.\n"
+            "Active user-reported Streamlit version: "
+            + _display(_user_version(request.case) or "unknown")
+            + ".\n"
+            + qualification
+            + "\n"
+            + proposed
+        )
+        rationale = (
+            "The investigation target is the current USER report and any supplied "
+            "reproduction/code, displayed as attributed data in the maintainer summary, "
+            "with the current USER version and proposed investigation status in the user "
+            "draft. " + qualification + " " + proposed
+        )
     return target, rationale
 
 
@@ -308,11 +354,13 @@ def render_grounded_plan(
     source_gap_handoff: bool = False,
     source_gap_investigation: bool = False,
     ask_source_background: bool = False,
+    concise_user_draft: bool = False,
 ) -> AnalysisResult:
     if (
         type(source_gap_handoff) is not bool
         or type(source_gap_investigation) is not bool
         or type(ask_source_background) is not bool
+        or type(concise_user_draft) is not bool
         or (source_gap_investigation and not source_gap_handoff)
     ):
         raise GroundingRejected("grounded_context_mismatch")
@@ -386,18 +434,21 @@ def render_grounded_plan(
             and not _prior_conflict(request)
         ):
             background = "\n\n".join(
-                _source_block(request.case, hit)
+                (
+                    _source_reference_block(request.case, hit)
+                    if concise_user_draft
+                    else _source_block(request.case, hit)
+                )
                 for hit in selected_hits
                 if source_scope(request.case, hit) == "exact_metadata_match"
             )
             if background:
-                candidate = (
-                    question
-                    + "\n\nSelected source background; the follow-up still needs your reply.\n"
-                    + limit
-                    + "\n\n"
-                    + background
+                heading = (
+                    "Selected source references; the follow-up still needs your reply.\n"
+                    if concise_user_draft
+                    else "Selected source background; the follow-up still needs your reply.\n"
                 )
+                candidate = question + "\n\n" + heading + limit + "\n\n" + background
                 draft_limit = AnalysisResult.model_json_schema()["properties"]["user_draft"][
                     "maxLength"
                 ]
@@ -433,9 +484,16 @@ def render_grounded_plan(
         summary += "\n\n" + source_gaps
         rationale += "\n\n" + source_gaps
         if source_gap_investigation and plan.decision in ("answer", "escalate"):
-            target, investigation_rationale = _source_gap_investigation(request)
+            full_target, investigation_rationale = _source_gap_investigation(request)
+            target = full_target
+            if concise_user_draft:
+                target, investigation_rationale = _source_gap_investigation(
+                    request, concise_user_draft=True
+                )
             draft += "\n\n" + target
-            summary += "\n\n" + target
+            # Complete attributed USER records remain in the review summary,
+            # even when their repeated copy is omitted from the USER draft.
+            summary += "\n\n" + full_target
             rationale += "\n\n" + investigation_rationale
     try:
         return AnalysisResult(
@@ -629,11 +687,13 @@ class GroundedReasoner:
         source_gap_handoff: bool = False,
         source_gap_investigation: bool = False,
         ask_source_background: bool = False,
+        concise_user_draft: bool = False,
     ) -> None:
         if (
             type(source_gap_handoff) is not bool
             or type(source_gap_investigation) is not bool
             or type(ask_source_background) is not bool
+            or type(concise_user_draft) is not bool
             or (source_gap_investigation and not source_gap_handoff)
         ):
             raise GroundingRejected("grounded_context_mismatch")
@@ -642,6 +702,7 @@ class GroundedReasoner:
         self.source_gap_handoff = source_gap_handoff
         self.source_gap_investigation = source_gap_investigation
         self.ask_source_background = ask_source_background
+        self.concise_user_draft = concise_user_draft
         self._conflicts: set[tuple[str, str, int]] = set()
         self._conflict_lock = RLock()
 
@@ -712,6 +773,15 @@ class GroundedReasoner:
             )
             result = (
                 render_grounded_plan(
+                    request,
+                    raw,
+                    source_gap_handoff=self.source_gap_handoff,
+                    source_gap_investigation=self.source_gap_investigation,
+                    ask_source_background=self.ask_source_background,
+                    concise_user_draft=True,
+                )
+                if self.concise_user_draft
+                else render_grounded_plan(
                     request,
                     raw,
                     source_gap_handoff=self.source_gap_handoff,

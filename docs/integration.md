@@ -8,6 +8,16 @@ the bounded R4c policy; native remains the default. The separate
 question and appends only selected exact-current-version records. Both are trusted
 operator settings, not USER fields; normal ledger halt/holds remain enforced.
 
+The independent [C4h7 JSON/display options](json-readability.fa.md) add strict
+`METIS_GROUNDED_JSON_OBJECT=true` and `AGENT_GROUNDED_CONCISE_USER_DRAFT=true`,
+both default false. JSON adds only the outbound object-format argument; existing
+validators, terminal stops and two attempts remain. Concise display keeps full
+answer quotations and full reviewer reports; eligible question background becomes
+a qualified source inventory. Runner reconstructs the entire matching display
+under trusted configuration. Neither field is accepted from USER messages. The
+closed three-dev comparison observed12/12 raw valid outputs in both JSON arms,
+so no relative reliability gain or human-usefulness score is claimed.
+
 The opt-in [C4c vocabulary configuration](user-gap-configuration.fa.md) connects
 reviewed user questions to the ordinary `evaluation.live`/`live_backend` factory.
 Set `AGENT_USER_GAP_CATALOG` in operator configuration, register the applicable

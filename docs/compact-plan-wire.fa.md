@@ -27,8 +27,10 @@ index اعشاری/boolean، تکرار source یا field بی‌ربط پذیر
 همان شواهد وصل می‌کند؛ این کار درستی معنایی یا اعتبار خود منبع را ثابت نمی‌کند.
 
 پیشنهاد، تأیید، revision و اجرای tracker تغییر نکرده‌اند. flag خاموش، byteهای
-prompt و خروجی gateway قبلی را حفظ می‌کند. `response_format` جدیدی به Metis
-نمی‌فرستیم؛ پشتیبانی آن از Structured Outputs تأیید نشده است.
+prompt و خروجی gateway قبلی را حفظ می‌کند. compact به‌تنهایی `response_format`
+نمی‌فرستد. گزینهٔ مستقل [C4h7](json-readability.fa.md) پس از canary محدود،
+فقط `json_object` را opt-in اضافه می‌کند؛ پشتیبانی strict Structured Outputs
+تأیید نشده و هر دو پیش‌فرض خاموش‌اند.
 
 ## ثبت و مقایسه
 

@@ -177,6 +177,11 @@ class MetisReasoner:
             "max_tokens": self.config.max_output_tokens,
             "stream": False,
         }
+        if self.config.grounded_json_object:
+            # Optional provider formatting request, never validation or evidence
+            # authority. Unsupported responses retain the existing terminal
+            # uncertain-accounting path; never retry by removing this setting.
+            payload["response_format"] = {"type": "json_object"}
         try:
             with self.client.stream(
                 "POST",
