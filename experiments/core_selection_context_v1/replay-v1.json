@@ -1,0 +1,1424 @@
+{
+  "schema_version": 1,
+  "task": "C4l/E2y",
+  "kind": "authored_offline_lexical_freshness_and_legacy_parity",
+  "source_input_pins": {
+    "experiments/core_selection_context_v1/protocol-v1.json": "76a471f1d9ada7708e8aae18f9d945429f1bb8e492d9a6e7444bf330e76aae83",
+    "experiments/core_selection_context_v1/scenarios-v1.json": "472c3536a2f2178076248af30e5a1b4a1f3c7b86b8a6499a48431b4f9c794b46",
+    "experiments/core_selection_context_v1/legacy-baseline-v1.json": "2e1b20463f4ed673e9953324b79ee9f7eaf72b2963c25d5135c112f0b70fd89b",
+    "experiments/core_broader_dev_v1/snapshots-v1.json": "c88d72753d2fb9a1317720ce51fa6b49027ce0bd46ecdcc7e7eabf107f613b0d"
+  },
+  "authored_neutral_rows": [
+    {
+      "scenario_id": "retired-topic-correction",
+      "kind": "newly_authored_neutral_dev_not_real_issue_not_heldout",
+      "full_reasoning_message_sha256": "d4a32842f598f01e06a0564ba760afca8ac887f3131e5338f8b3efa1c83db8b4",
+      "claim_request_sha256_unchanged": "55f91c69460d789518cad6a6659e776dea749162984d3bbc6a2464443575095e",
+      "bound_context_sha256": "70c604f88975cd0165412088bc52c5d7e4f70f1ad49194147108740bd3fe6786",
+      "bounded_current_query": "component=connection pooling | Correction: I described the wrong component. The current problem is connection pooling; available connections are exhausted. | topic: I need help with in our reporting page The menu offers CSV downloads for selected rows downloaded file sometimes has so",
+      "legacy": {
+        "ranked_units": [
+          {
+            "source_index": 0,
+            "block_index": 0,
+            "overlap": 0.35361931169717575,
+            "matched_terms": 15,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 249
+          },
+          {
+            "source_index": 1,
+            "block_index": 0,
+            "overlap": 0.12208823775033299,
+            "matched_terms": 7,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 258
+          },
+          {
+            "source_index": 2,
+            "block_index": 0,
+            "overlap": 0.02879396867861767,
+            "matched_terms": 3,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 155
+          }
+        ],
+        "shortlist": {
+          "context_sha256": "55f91c69460d789518cad6a6659e776dea749162984d3bbc6a2464443575095e",
+          "passages": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "passage_utf8_bytes": 507,
+          "oversized": [],
+          "historical": [],
+          "semantic_support": null,
+          "human_review_required": true
+        },
+        "inspection": {
+          "schema_version": 1,
+          "context_sha256": "55f91c69460d789518cad6a6659e776dea749162984d3bbc6a2464443575095e",
+          "decision_unchanged": "answer",
+          "selected_units": 2,
+          "selected_raw_utf8_bytes": 507,
+          "warnings": [],
+          "semantic_support": null,
+          "human_review_required": true
+        }
+      },
+      "typed_advisory": {
+        "ranked_units": [
+          {
+            "source_index": 1,
+            "block_index": 0,
+            "overlap": 0.2640484338313749,
+            "matched_terms": 4,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 258
+          },
+          {
+            "source_index": 0,
+            "block_index": 0,
+            "overlap": 0.20695951305577562,
+            "matched_terms": 7,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 249
+          },
+          {
+            "source_index": 2,
+            "block_index": 0,
+            "overlap": 0.0,
+            "matched_terms": 0,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 155
+          }
+        ],
+        "shortlist": {
+          "context_sha256": "55f91c69460d789518cad6a6659e776dea749162984d3bbc6a2464443575095e",
+          "passages": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "passage_utf8_bytes": 507,
+          "oversized": [],
+          "historical": [],
+          "semantic_support": null,
+          "human_review_required": true,
+          "query_context_sha256": "70c604f88975cd0165412088bc52c5d7e4f70f1ad49194147108740bd3fe6786"
+        },
+        "inspection": {
+          "schema_version": 1,
+          "context_sha256": "55f91c69460d789518cad6a6659e776dea749162984d3bbc6a2464443575095e",
+          "decision_unchanged": "answer",
+          "selected_units": 2,
+          "selected_raw_utf8_bytes": 507,
+          "warnings": [],
+          "semantic_support": null,
+          "human_review_required": true,
+          "query_context_sha256": "70c604f88975cd0165412088bc52c5d7e4f70f1ad49194147108740bd3fe6786",
+          "query_input_kind": "bound_current_user_projection"
+        }
+      },
+      "authored_current_source_is_top_observation_not_quality": true,
+      "model_proposals_created": 0,
+      "human_usefulness": null,
+      "reviewer_expectations_only": {
+        "runtime_or_model_input": false,
+        "semantic_support": null,
+        "human_review_required": true,
+        "retired_topic_terms": [
+          "document",
+          "export"
+        ],
+        "current_topic_terms": [
+          "connection",
+          "pooling"
+        ],
+        "current_source_indexes": [
+          1
+        ],
+        "history_expected_to_contaminate_legacy_overlap": true,
+        "acceptance": "Bound advisory must remove known superseded topic terms from historical hints, retain current USER component, and must not change the supplied full reasoning message or evidence."
+      }
+    },
+    {
+      "scenario_id": "topic-a-b-a",
+      "kind": "newly_authored_neutral_dev_not_real_issue_not_heldout",
+      "full_reasoning_message_sha256": "6948c5140e135f7b2a1d2fc4062aca2f4c249bd97ef1acf7a8209fba79ff1cde",
+      "claim_request_sha256_unchanged": "d4b68b5af6e6305f2bb0966789659b1ab4a920ed4b392ccf6610bb28e62720c5",
+      "bound_context_sha256": "a14cdb0c6bdb07ff827a7dea386399e993469b8d6091b61170aa03243a352a03",
+      "bounded_current_query": "component=document export | Correction again: the affected component is document export. | topic: Document export loses the header row Correction this is",
+      "legacy": {
+        "ranked_units": [
+          {
+            "source_index": 0,
+            "block_index": 0,
+            "overlap": 0.20694883822005994,
+            "matched_terms": 5,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 249
+          },
+          {
+            "source_index": 1,
+            "block_index": 0,
+            "overlap": 0.0831733005630726,
+            "matched_terms": 2,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 155
+          },
+          {
+            "source_index": 2,
+            "block_index": 0,
+            "overlap": 0.031336981843148606,
+            "matched_terms": 1,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 258
+          }
+        ],
+        "shortlist": {
+          "context_sha256": "d4b68b5af6e6305f2bb0966789659b1ab4a920ed4b392ccf6610bb28e62720c5",
+          "passages": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "passage_utf8_bytes": 404,
+          "oversized": [],
+          "historical": [],
+          "semantic_support": null,
+          "human_review_required": true
+        },
+        "inspection": {
+          "schema_version": 1,
+          "context_sha256": "d4b68b5af6e6305f2bb0966789659b1ab4a920ed4b392ccf6610bb28e62720c5",
+          "decision_unchanged": "answer",
+          "selected_units": 2,
+          "selected_raw_utf8_bytes": 404,
+          "warnings": [],
+          "semantic_support": null,
+          "human_review_required": true
+        }
+      },
+      "typed_advisory": {
+        "ranked_units": [
+          {
+            "source_index": 0,
+            "block_index": 0,
+            "overlap": 0.5127481234149855,
+            "matched_terms": 5,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 249
+          },
+          {
+            "source_index": 1,
+            "block_index": 0,
+            "overlap": 0.0,
+            "matched_terms": 0,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 155
+          },
+          {
+            "source_index": 2,
+            "block_index": 0,
+            "overlap": 0.0,
+            "matched_terms": 0,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 258
+          }
+        ],
+        "shortlist": {
+          "context_sha256": "d4b68b5af6e6305f2bb0966789659b1ab4a920ed4b392ccf6610bb28e62720c5",
+          "passages": [
+            [
+              0,
+              0
+            ]
+          ],
+          "passage_utf8_bytes": 249,
+          "oversized": [],
+          "historical": [],
+          "semantic_support": null,
+          "human_review_required": true,
+          "query_context_sha256": "a14cdb0c6bdb07ff827a7dea386399e993469b8d6091b61170aa03243a352a03"
+        },
+        "inspection": {
+          "schema_version": 1,
+          "context_sha256": "d4b68b5af6e6305f2bb0966789659b1ab4a920ed4b392ccf6610bb28e62720c5",
+          "decision_unchanged": "answer",
+          "selected_units": 1,
+          "selected_raw_utf8_bytes": 249,
+          "warnings": [],
+          "semantic_support": null,
+          "human_review_required": true,
+          "query_context_sha256": "a14cdb0c6bdb07ff827a7dea386399e993469b8d6091b61170aa03243a352a03",
+          "query_input_kind": "bound_current_user_projection"
+        }
+      },
+      "authored_current_source_is_top_observation_not_quality": true,
+      "model_proposals_created": 0,
+      "human_usefulness": null,
+      "reviewer_expectations_only": {
+        "runtime_or_model_input": false,
+        "semantic_support": null,
+        "human_review_required": true,
+        "retired_topic_terms": [
+          "cache",
+          "eviction"
+        ],
+        "current_topic_terms": [
+          "document",
+          "export"
+        ],
+        "current_source_indexes": [
+          0
+        ],
+        "acceptance": "A reactivated current A remains available; a retired value must not create a permanent blacklist."
+      }
+    },
+    {
+      "scenario_id": "version-only-followup",
+      "kind": "newly_authored_neutral_dev_not_real_issue_not_heldout",
+      "full_reasoning_message_sha256": "2a51cff348c2e56a3598cc2e2adff137af1692f49e9c55fdbd2638117b2a5b80",
+      "claim_request_sha256_unchanged": "dd9cad135dbdb268b39652dfb5a6242969237f46e2d0fb9c3e8fb4d6b8e42c14",
+      "bound_context_sha256": "95c5bdc9ad7d9a640035a72007d6d522a948069396d06769ac53bdae839e9069",
+      "bounded_current_query": "streamlit_version=1.49.0; component=connection pooling | 1.49.0 | topic: Connection pooling exhausts available connections",
+      "legacy": {
+        "ranked_units": [
+          {
+            "source_index": 0,
+            "block_index": 0,
+            "overlap": 0.13666135885235214,
+            "matched_terms": 5,
+            "has_body": true,
+            "version_scope": "exact_metadata_match",
+            "passage_utf8_bytes": 258
+          },
+          {
+            "source_index": 2,
+            "block_index": 0,
+            "overlap": 0.13666135885235214,
+            "matched_terms": 5,
+            "has_body": true,
+            "version_scope": "historical_or_other_version",
+            "passage_utf8_bytes": 258
+          },
+          {
+            "source_index": 1,
+            "block_index": 0,
+            "overlap": 0.0,
+            "matched_terms": 0,
+            "has_body": true,
+            "version_scope": "exact_metadata_match",
+            "passage_utf8_bytes": 249
+          }
+        ],
+        "shortlist": {
+          "context_sha256": "dd9cad135dbdb268b39652dfb5a6242969237f46e2d0fb9c3e8fb4d6b8e42c14",
+          "passages": [
+            [
+              0,
+              0
+            ]
+          ],
+          "passage_utf8_bytes": 258,
+          "oversized": [],
+          "historical": [
+            [
+              2,
+              0
+            ]
+          ],
+          "semantic_support": null,
+          "human_review_required": true
+        },
+        "inspection": {
+          "schema_version": 1,
+          "context_sha256": "dd9cad135dbdb268b39652dfb5a6242969237f46e2d0fb9c3e8fb4d6b8e42c14",
+          "decision_unchanged": "answer",
+          "selected_units": 1,
+          "selected_raw_utf8_bytes": 258,
+          "warnings": [],
+          "semantic_support": null,
+          "human_review_required": true
+        }
+      },
+      "typed_advisory": {
+        "ranked_units": [
+          {
+            "source_index": 0,
+            "block_index": 0,
+            "overlap": 0.4719374084188735,
+            "matched_terms": 4,
+            "has_body": true,
+            "version_scope": "exact_metadata_match",
+            "passage_utf8_bytes": 258
+          },
+          {
+            "source_index": 2,
+            "block_index": 0,
+            "overlap": 0.4719374084188735,
+            "matched_terms": 4,
+            "has_body": true,
+            "version_scope": "historical_or_other_version",
+            "passage_utf8_bytes": 258
+          },
+          {
+            "source_index": 1,
+            "block_index": 0,
+            "overlap": 0.0,
+            "matched_terms": 0,
+            "has_body": true,
+            "version_scope": "exact_metadata_match",
+            "passage_utf8_bytes": 249
+          }
+        ],
+        "shortlist": {
+          "context_sha256": "dd9cad135dbdb268b39652dfb5a6242969237f46e2d0fb9c3e8fb4d6b8e42c14",
+          "passages": [
+            [
+              0,
+              0
+            ]
+          ],
+          "passage_utf8_bytes": 258,
+          "oversized": [],
+          "historical": [
+            [
+              2,
+              0
+            ]
+          ],
+          "semantic_support": null,
+          "human_review_required": true,
+          "query_context_sha256": "95c5bdc9ad7d9a640035a72007d6d522a948069396d06769ac53bdae839e9069"
+        },
+        "inspection": {
+          "schema_version": 1,
+          "context_sha256": "dd9cad135dbdb268b39652dfb5a6242969237f46e2d0fb9c3e8fb4d6b8e42c14",
+          "decision_unchanged": "answer",
+          "selected_units": 1,
+          "selected_raw_utf8_bytes": 258,
+          "warnings": [],
+          "semantic_support": null,
+          "human_review_required": true,
+          "query_context_sha256": "95c5bdc9ad7d9a640035a72007d6d522a948069396d06769ac53bdae839e9069",
+          "query_input_kind": "bound_current_user_projection"
+        }
+      },
+      "authored_current_source_is_top_observation_not_quality": true,
+      "model_proposals_created": 0,
+      "human_usefulness": null,
+      "reviewer_expectations_only": {
+        "runtime_or_model_input": false,
+        "semantic_support": null,
+        "human_review_required": true,
+        "current_topic_terms": [
+          "connection",
+          "pooling"
+        ],
+        "current_source_indexes": [
+          0
+        ],
+        "historical_source_indexes": [
+          2
+        ],
+        "acceptance": "A numeric latest reply must retain unchanged active USER component; exact reported-version metadata may guide scope but does not prove runtime applicability."
+      }
+    },
+    {
+      "scenario_id": "assistant-evidence-exclusion",
+      "kind": "newly_authored_neutral_dev_not_real_issue_not_heldout",
+      "full_reasoning_message_sha256": "e7d3e6f9a2aa49a59f2fdd3f0aba3972ed00017dc79bac6fd8ffd2ad756f2815",
+      "claim_request_sha256_unchanged": "235f1b8125c30a6decaaacd741e435437c04cfdeb6dbbbb4d7d511337291365f",
+      "bound_context_sha256": "6d0c82c929c9cbc90fbb6b88b48566fbeb6d3fbae84ce01afe1be06d2cedabd3",
+      "bounded_current_query": "component=connection pooling | The affected component is still connection pooling. | topic: Connection pooling is exhausted",
+      "legacy": {
+        "ranked_units": [
+          {
+            "source_index": 0,
+            "block_index": 0,
+            "overlap": 0.17438322022940816,
+            "matched_terms": 3,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 258
+          },
+          {
+            "source_index": 1,
+            "block_index": 0,
+            "overlap": 0.0,
+            "matched_terms": 0,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 85
+          }
+        ],
+        "shortlist": {
+          "context_sha256": "235f1b8125c30a6decaaacd741e435437c04cfdeb6dbbbb4d7d511337291365f",
+          "passages": [
+            [
+              0,
+              0
+            ]
+          ],
+          "passage_utf8_bytes": 258,
+          "oversized": [],
+          "historical": [],
+          "semantic_support": null,
+          "human_review_required": true
+        },
+        "inspection": {
+          "schema_version": 1,
+          "context_sha256": "235f1b8125c30a6decaaacd741e435437c04cfdeb6dbbbb4d7d511337291365f",
+          "decision_unchanged": "answer",
+          "selected_units": 1,
+          "selected_raw_utf8_bytes": 258,
+          "warnings": [],
+          "semantic_support": null,
+          "human_review_required": true
+        }
+      },
+      "typed_advisory": {
+        "ranked_units": [
+          {
+            "source_index": 0,
+            "block_index": 0,
+            "overlap": 0.33188042459414085,
+            "matched_terms": 2,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 258
+          },
+          {
+            "source_index": 1,
+            "block_index": 0,
+            "overlap": 0.0,
+            "matched_terms": 0,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 85
+          }
+        ],
+        "shortlist": {
+          "context_sha256": "235f1b8125c30a6decaaacd741e435437c04cfdeb6dbbbb4d7d511337291365f",
+          "passages": [
+            [
+              0,
+              0
+            ]
+          ],
+          "passage_utf8_bytes": 258,
+          "oversized": [],
+          "historical": [],
+          "semantic_support": null,
+          "human_review_required": true,
+          "query_context_sha256": "6d0c82c929c9cbc90fbb6b88b48566fbeb6d3fbae84ce01afe1be06d2cedabd3"
+        },
+        "inspection": {
+          "schema_version": 1,
+          "context_sha256": "235f1b8125c30a6decaaacd741e435437c04cfdeb6dbbbb4d7d511337291365f",
+          "decision_unchanged": "answer",
+          "selected_units": 1,
+          "selected_raw_utf8_bytes": 258,
+          "warnings": [],
+          "semantic_support": null,
+          "human_review_required": true,
+          "query_context_sha256": "6d0c82c929c9cbc90fbb6b88b48566fbeb6d3fbae84ce01afe1be06d2cedabd3",
+          "query_input_kind": "bound_current_user_projection"
+        }
+      },
+      "authored_current_source_is_top_observation_not_quality": true,
+      "model_proposals_created": 0,
+      "human_usefulness": null,
+      "reviewer_expectations_only": {
+        "runtime_or_model_input": false,
+        "semantic_support": null,
+        "human_review_required": true,
+        "forbidden_query_only_terms": [
+          "glacier",
+          "migration"
+        ],
+        "current_topic_terms": [
+          "connection",
+          "pooling"
+        ],
+        "current_source_indexes": [
+          0
+        ],
+        "acceptance": "Unapproved assistant prose and active evidence-provenance rows are not USER query authority."
+      }
+    },
+    {
+      "scenario_id": "fact-name-metadata-poison",
+      "kind": "newly_authored_neutral_dev_not_real_issue_not_heldout",
+      "full_reasoning_message_sha256": "19beb42b42241671bbd0c37703aa1eacc7803d64e1fc56495d7d807aafe1dd42",
+      "claim_request_sha256_unchanged": "09e091b5d5037f60d23be050563dab4b89bbe6e0af22763d457db7bf89cc631a",
+      "bound_context_sha256": "0fe325da71a8c0a44195c07eea13906439fc7b20886cac9f6046cabb125f9fc8",
+      "bounded_current_query": "glacier_migration=connection pooling | Connections are exhausted.",
+      "legacy": {
+        "ranked_units": [
+          {
+            "source_index": 0,
+            "block_index": 0,
+            "overlap": 0.37458404931941075,
+            "matched_terms": 3,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 258
+          },
+          {
+            "source_index": 1,
+            "block_index": 0,
+            "overlap": 0.0,
+            "matched_terms": 0,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 85
+          }
+        ],
+        "shortlist": {
+          "context_sha256": "09e091b5d5037f60d23be050563dab4b89bbe6e0af22763d457db7bf89cc631a",
+          "passages": [
+            [
+              0,
+              0
+            ]
+          ],
+          "passage_utf8_bytes": 258,
+          "oversized": [],
+          "historical": [],
+          "semantic_support": null,
+          "human_review_required": true
+        },
+        "inspection": {
+          "schema_version": 1,
+          "context_sha256": "09e091b5d5037f60d23be050563dab4b89bbe6e0af22763d457db7bf89cc631a",
+          "decision_unchanged": "answer",
+          "selected_units": 1,
+          "selected_raw_utf8_bytes": 258,
+          "warnings": [],
+          "semantic_support": null,
+          "human_review_required": true
+        }
+      },
+      "typed_advisory": {
+        "ranked_units": [
+          {
+            "source_index": 0,
+            "block_index": 0,
+            "overlap": 0.44540518926170997,
+            "matched_terms": 3,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 258
+          },
+          {
+            "source_index": 1,
+            "block_index": 0,
+            "overlap": 0.0,
+            "matched_terms": 0,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 85
+          }
+        ],
+        "shortlist": {
+          "context_sha256": "09e091b5d5037f60d23be050563dab4b89bbe6e0af22763d457db7bf89cc631a",
+          "passages": [
+            [
+              0,
+              0
+            ]
+          ],
+          "passage_utf8_bytes": 258,
+          "oversized": [],
+          "historical": [],
+          "semantic_support": null,
+          "human_review_required": true,
+          "query_context_sha256": "0fe325da71a8c0a44195c07eea13906439fc7b20886cac9f6046cabb125f9fc8"
+        },
+        "inspection": {
+          "schema_version": 1,
+          "context_sha256": "09e091b5d5037f60d23be050563dab4b89bbe6e0af22763d457db7bf89cc631a",
+          "decision_unchanged": "answer",
+          "selected_units": 1,
+          "selected_raw_utf8_bytes": 258,
+          "warnings": [],
+          "semantic_support": null,
+          "human_review_required": true,
+          "query_context_sha256": "0fe325da71a8c0a44195c07eea13906439fc7b20886cac9f6046cabb125f9fc8",
+          "query_input_kind": "bound_current_user_projection"
+        }
+      },
+      "authored_current_source_is_top_observation_not_quality": true,
+      "model_proposals_created": 0,
+      "human_usefulness": null,
+      "reviewer_expectations_only": {
+        "runtime_or_model_input": false,
+        "semantic_support": null,
+        "human_review_required": true,
+        "forbidden_query_only_terms": [
+          "glacier",
+          "migration"
+        ],
+        "current_topic_terms": [
+          "connection",
+          "pooling"
+        ],
+        "current_source_indexes": [
+          0
+        ],
+        "acceptance": "Fact names, document identifiers and URLs must not manufacture query or passage relevance; actual active USER values still count."
+      }
+    },
+    {
+      "scenario_id": "latest-negation-counterexample",
+      "kind": "newly_authored_neutral_dev_not_real_issue_not_heldout",
+      "full_reasoning_message_sha256": "45a1dbd78522b48e74f62f8ebe9d017b831f2c2409168ad8a587d009455c2d05",
+      "claim_request_sha256_unchanged": "9dd893c66c381cc77e616a0aaf39224984b1245b4885b3dbb738eeb202bb4b32",
+      "bound_context_sha256": "b2b03c63537828ee1d236bc2f214b227e3fc08dcfa13e8a6dbe577b05590daf8",
+      "bounded_current_query": "component=connection pooling | This is not a document export delimiter encoding header download problem. The affected component is connection pooling.",
+      "legacy": {
+        "ranked_units": [
+          {
+            "source_index": 0,
+            "block_index": 0,
+            "overlap": 0.35367225665647606,
+            "matched_terms": 6,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 249
+          },
+          {
+            "source_index": 1,
+            "block_index": 0,
+            "overlap": 0.3025757535682541,
+            "matched_terms": 3,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 258
+          }
+        ],
+        "shortlist": {
+          "context_sha256": "9dd893c66c381cc77e616a0aaf39224984b1245b4885b3dbb738eeb202bb4b32",
+          "passages": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "passage_utf8_bytes": 507,
+          "oversized": [],
+          "historical": [],
+          "semantic_support": null,
+          "human_review_required": true
+        },
+        "inspection": {
+          "schema_version": 1,
+          "context_sha256": "9dd893c66c381cc77e616a0aaf39224984b1245b4885b3dbb738eeb202bb4b32",
+          "decision_unchanged": "answer",
+          "selected_units": 2,
+          "selected_raw_utf8_bytes": 507,
+          "warnings": [],
+          "semantic_support": null,
+          "human_review_required": true
+        }
+      },
+      "typed_advisory": {
+        "ranked_units": [
+          {
+            "source_index": 0,
+            "block_index": 0,
+            "overlap": 0.3409102528603055,
+            "matched_terms": 6,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 249
+          },
+          {
+            "source_index": 1,
+            "block_index": 0,
+            "overlap": 0.32666669422325556,
+            "matched_terms": 3,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 258
+          }
+        ],
+        "shortlist": {
+          "context_sha256": "9dd893c66c381cc77e616a0aaf39224984b1245b4885b3dbb738eeb202bb4b32",
+          "passages": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "passage_utf8_bytes": 507,
+          "oversized": [],
+          "historical": [],
+          "semantic_support": null,
+          "human_review_required": true,
+          "query_context_sha256": "b2b03c63537828ee1d236bc2f214b227e3fc08dcfa13e8a6dbe577b05590daf8"
+        },
+        "inspection": {
+          "schema_version": 1,
+          "context_sha256": "9dd893c66c381cc77e616a0aaf39224984b1245b4885b3dbb738eeb202bb4b32",
+          "decision_unchanged": "answer",
+          "selected_units": 2,
+          "selected_raw_utf8_bytes": 507,
+          "warnings": [],
+          "semantic_support": null,
+          "human_review_required": true,
+          "query_context_sha256": "b2b03c63537828ee1d236bc2f214b227e3fc08dcfa13e8a6dbe577b05590daf8",
+          "query_input_kind": "bound_current_user_projection"
+        }
+      },
+      "authored_current_source_is_top_observation_not_quality": null,
+      "model_proposals_created": 0,
+      "human_usefulness": null,
+      "reviewer_expectations_only": {
+        "runtime_or_model_input": false,
+        "semantic_support": null,
+        "human_review_required": true,
+        "current_topic_terms": [
+          "connection",
+          "pooling"
+        ],
+        "latest_negated_terms": [
+          "document",
+          "export",
+          "delimiter",
+          "encoding",
+          "header",
+          "download"
+        ],
+        "counterexample_not_a_pass_requirement_for_semantic_inference": true,
+        "acceptance": "Literal terms in a latest negation can still create false-positive overlap. Preserve semantic_support null and human review; do not claim generic negation understanding or silently infer a correction."
+      }
+    },
+    {
+      "scenario_id": "synonym-counterexample",
+      "kind": "newly_authored_neutral_dev_not_real_issue_not_heldout",
+      "full_reasoning_message_sha256": "1c64ed01f7d43f69ef2d1337b03dc32c4a9a2a5f89f60adcd1ccd9152d8caa71",
+      "claim_request_sha256_unchanged": "c6f6686dce2d8e6268e04b8879975510ed609ee7d7f12cac4bc44da6c17d3eed",
+      "bound_context_sha256": "a5f50a7c3fa02cecb2442df38eb390371563bbe44a1d5b722057e7a5cd3d2fd1",
+      "bounded_current_query": "Application freezes.",
+      "legacy": {
+        "ranked_units": [
+          {
+            "source_index": 0,
+            "block_index": 0,
+            "overlap": 0.0,
+            "matched_terms": 0,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 141
+          },
+          {
+            "source_index": 1,
+            "block_index": 0,
+            "overlap": 0.0,
+            "matched_terms": 0,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 79
+          }
+        ],
+        "shortlist": {
+          "context_sha256": "c6f6686dce2d8e6268e04b8879975510ed609ee7d7f12cac4bc44da6c17d3eed",
+          "passages": [],
+          "passage_utf8_bytes": 0,
+          "oversized": [],
+          "historical": [],
+          "semantic_support": null,
+          "human_review_required": true
+        },
+        "inspection": {
+          "schema_version": 1,
+          "context_sha256": "c6f6686dce2d8e6268e04b8879975510ed609ee7d7f12cac4bc44da6c17d3eed",
+          "decision_unchanged": "escalate",
+          "selected_units": 0,
+          "selected_raw_utf8_bytes": 0,
+          "warnings": [],
+          "semantic_support": null,
+          "human_review_required": true
+        }
+      },
+      "typed_advisory": {
+        "ranked_units": [
+          {
+            "source_index": 0,
+            "block_index": 0,
+            "overlap": 0.0,
+            "matched_terms": 0,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 141
+          },
+          {
+            "source_index": 1,
+            "block_index": 0,
+            "overlap": 0.0,
+            "matched_terms": 0,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 79
+          }
+        ],
+        "shortlist": {
+          "context_sha256": "c6f6686dce2d8e6268e04b8879975510ed609ee7d7f12cac4bc44da6c17d3eed",
+          "passages": [],
+          "passage_utf8_bytes": 0,
+          "oversized": [],
+          "historical": [],
+          "semantic_support": null,
+          "human_review_required": true,
+          "query_context_sha256": "a5f50a7c3fa02cecb2442df38eb390371563bbe44a1d5b722057e7a5cd3d2fd1"
+        },
+        "inspection": {
+          "schema_version": 1,
+          "context_sha256": "c6f6686dce2d8e6268e04b8879975510ed609ee7d7f12cac4bc44da6c17d3eed",
+          "decision_unchanged": "escalate",
+          "selected_units": 0,
+          "selected_raw_utf8_bytes": 0,
+          "warnings": [],
+          "semantic_support": null,
+          "human_review_required": true,
+          "query_context_sha256": "a5f50a7c3fa02cecb2442df38eb390371563bbe44a1d5b722057e7a5cd3d2fd1",
+          "query_input_kind": "bound_current_user_projection"
+        }
+      },
+      "authored_current_source_is_top_observation_not_quality": null,
+      "model_proposals_created": 0,
+      "human_usefulness": null,
+      "reviewer_expectations_only": {
+        "runtime_or_model_input": false,
+        "semantic_support": null,
+        "human_review_required": true,
+        "related_source_indexes_by_authored_judgment": [
+          0
+        ],
+        "counterexample_not_a_pass_requirement_for_semantic_inference": true,
+        "acceptance": "A useful synonym-only passage may have zero lexical overlap. No shortlist must not be mislabeled irrelevant, unsupported or safely rejectable; semantic support stays null."
+      }
+    },
+    {
+      "scenario_id": "isolated-case-current-export",
+      "kind": "newly_authored_neutral_dev_not_real_issue_not_heldout",
+      "full_reasoning_message_sha256": "fa86c707d176450ea24bbe65aa07261df958038b7dd9f151d5e7973d5a9905b4",
+      "claim_request_sha256_unchanged": "f5a0557968c6fc08c074c86d06bcf0462a9b28c258516f6489264bf28b999a7f",
+      "bound_context_sha256": "934c85145fbf0c8cc7b0fc7b8f6b4f990d5882ecd8025b73d6a73624b4a5baa7",
+      "bounded_current_query": "component=document export | Document export loses its header row.",
+      "legacy": {
+        "ranked_units": [
+          {
+            "source_index": 0,
+            "block_index": 0,
+            "overlap": 0.5803683924059735,
+            "matched_terms": 4,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 249
+          },
+          {
+            "source_index": 1,
+            "block_index": 0,
+            "overlap": 0.0,
+            "matched_terms": 0,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 258
+          },
+          {
+            "source_index": 2,
+            "block_index": 0,
+            "overlap": 0.0,
+            "matched_terms": 0,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 155
+          }
+        ],
+        "shortlist": {
+          "context_sha256": "f5a0557968c6fc08c074c86d06bcf0462a9b28c258516f6489264bf28b999a7f",
+          "passages": [
+            [
+              0,
+              0
+            ]
+          ],
+          "passage_utf8_bytes": 249,
+          "oversized": [],
+          "historical": [],
+          "semantic_support": null,
+          "human_review_required": true
+        },
+        "inspection": {
+          "schema_version": 1,
+          "context_sha256": "f5a0557968c6fc08c074c86d06bcf0462a9b28c258516f6489264bf28b999a7f",
+          "decision_unchanged": "answer",
+          "selected_units": 1,
+          "selected_raw_utf8_bytes": 249,
+          "warnings": [],
+          "semantic_support": null,
+          "human_review_required": true
+        }
+      },
+      "typed_advisory": {
+        "ranked_units": [
+          {
+            "source_index": 0,
+            "block_index": 0,
+            "overlap": 0.6026864514596515,
+            "matched_terms": 4,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 249
+          },
+          {
+            "source_index": 1,
+            "block_index": 0,
+            "overlap": 0.0,
+            "matched_terms": 0,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 258
+          },
+          {
+            "source_index": 2,
+            "block_index": 0,
+            "overlap": 0.0,
+            "matched_terms": 0,
+            "has_body": true,
+            "version_scope": "unconfirmed",
+            "passage_utf8_bytes": 155
+          }
+        ],
+        "shortlist": {
+          "context_sha256": "f5a0557968c6fc08c074c86d06bcf0462a9b28c258516f6489264bf28b999a7f",
+          "passages": [
+            [
+              0,
+              0
+            ]
+          ],
+          "passage_utf8_bytes": 249,
+          "oversized": [],
+          "historical": [],
+          "semantic_support": null,
+          "human_review_required": true,
+          "query_context_sha256": "934c85145fbf0c8cc7b0fc7b8f6b4f990d5882ecd8025b73d6a73624b4a5baa7"
+        },
+        "inspection": {
+          "schema_version": 1,
+          "context_sha256": "f5a0557968c6fc08c074c86d06bcf0462a9b28c258516f6489264bf28b999a7f",
+          "decision_unchanged": "answer",
+          "selected_units": 1,
+          "selected_raw_utf8_bytes": 249,
+          "warnings": [],
+          "semantic_support": null,
+          "human_review_required": true,
+          "query_context_sha256": "934c85145fbf0c8cc7b0fc7b8f6b4f990d5882ecd8025b73d6a73624b4a5baa7",
+          "query_input_kind": "bound_current_user_projection"
+        }
+      },
+      "authored_current_source_is_top_observation_not_quality": true,
+      "model_proposals_created": 0,
+      "human_usefulness": null,
+      "reviewer_expectations_only": {
+        "runtime_or_model_input": false,
+        "semantic_support": null,
+        "human_review_required": true,
+        "current_topic_terms": [
+          "document",
+          "export"
+        ],
+        "current_source_indexes": [
+          0
+        ],
+        "isolation_partner": "retired-topic-correction",
+        "acceptance": "A context from another case must not be reusable even if evidence shapes overlap; current source indexes are authored expectations, not model labels."
+      }
+    }
+  ],
+  "legacy_default_states_checked": 24,
+  "checks": [
+    {
+      "name": "frozen_input:experiments/core_selection_context_v1/protocol-v1.json",
+      "passed": true
+    },
+    {
+      "name": "frozen_input:experiments/core_selection_context_v1/scenarios-v1.json",
+      "passed": true
+    },
+    {
+      "name": "frozen_input:experiments/core_selection_context_v1/legacy-baseline-v1.json",
+      "passed": true
+    },
+    {
+      "name": "frozen_input:experiments/core_broader_dev_v1/snapshots-v1.json",
+      "passed": true
+    },
+    {
+      "name": "exact_stored_reasoning:retired-topic-correction",
+      "passed": true
+    },
+    {
+      "name": "legacy_neutral_byte_parity:retired-topic-correction",
+      "passed": true
+    },
+    {
+      "name": "typed_output_digest_custody:retired-topic-correction",
+      "passed": true
+    },
+    {
+      "name": "not_semantic_support:retired-topic-correction",
+      "passed": true
+    },
+    {
+      "name": "bounded_query:retired-topic-correction",
+      "passed": true
+    },
+    {
+      "name": "known_retired_topic_not_in_projection:retired-topic-correction",
+      "passed": true
+    },
+    {
+      "name": "current_topic_kept:retired-topic-correction",
+      "passed": true
+    },
+    {
+      "name": "full_inputs_unchanged:retired-topic-correction",
+      "passed": true
+    },
+    {
+      "name": "exact_stored_reasoning:topic-a-b-a",
+      "passed": true
+    },
+    {
+      "name": "legacy_neutral_byte_parity:topic-a-b-a",
+      "passed": true
+    },
+    {
+      "name": "typed_output_digest_custody:topic-a-b-a",
+      "passed": true
+    },
+    {
+      "name": "not_semantic_support:topic-a-b-a",
+      "passed": true
+    },
+    {
+      "name": "bounded_query:topic-a-b-a",
+      "passed": true
+    },
+    {
+      "name": "known_retired_topic_not_in_projection:topic-a-b-a",
+      "passed": true
+    },
+    {
+      "name": "current_topic_kept:topic-a-b-a",
+      "passed": true
+    },
+    {
+      "name": "full_inputs_unchanged:topic-a-b-a",
+      "passed": true
+    },
+    {
+      "name": "exact_stored_reasoning:version-only-followup",
+      "passed": true
+    },
+    {
+      "name": "legacy_neutral_byte_parity:version-only-followup",
+      "passed": true
+    },
+    {
+      "name": "typed_output_digest_custody:version-only-followup",
+      "passed": true
+    },
+    {
+      "name": "not_semantic_support:version-only-followup",
+      "passed": true
+    },
+    {
+      "name": "bounded_query:version-only-followup",
+      "passed": true
+    },
+    {
+      "name": "current_topic_kept:version-only-followup",
+      "passed": true
+    },
+    {
+      "name": "full_inputs_unchanged:version-only-followup",
+      "passed": true
+    },
+    {
+      "name": "exact_stored_reasoning:assistant-evidence-exclusion",
+      "passed": true
+    },
+    {
+      "name": "legacy_neutral_byte_parity:assistant-evidence-exclusion",
+      "passed": true
+    },
+    {
+      "name": "typed_output_digest_custody:assistant-evidence-exclusion",
+      "passed": true
+    },
+    {
+      "name": "not_semantic_support:assistant-evidence-exclusion",
+      "passed": true
+    },
+    {
+      "name": "bounded_query:assistant-evidence-exclusion",
+      "passed": true
+    },
+    {
+      "name": "current_topic_kept:assistant-evidence-exclusion",
+      "passed": true
+    },
+    {
+      "name": "metadata_or_nonUSER_poison_terms_not_matched:assistant-evidence-exclusion",
+      "passed": true
+    },
+    {
+      "name": "full_inputs_unchanged:assistant-evidence-exclusion",
+      "passed": true
+    },
+    {
+      "name": "exact_stored_reasoning:fact-name-metadata-poison",
+      "passed": true
+    },
+    {
+      "name": "legacy_neutral_byte_parity:fact-name-metadata-poison",
+      "passed": true
+    },
+    {
+      "name": "typed_output_digest_custody:fact-name-metadata-poison",
+      "passed": true
+    },
+    {
+      "name": "not_semantic_support:fact-name-metadata-poison",
+      "passed": true
+    },
+    {
+      "name": "bounded_query:fact-name-metadata-poison",
+      "passed": true
+    },
+    {
+      "name": "current_topic_kept:fact-name-metadata-poison",
+      "passed": true
+    },
+    {
+      "name": "metadata_or_nonUSER_poison_terms_not_matched:fact-name-metadata-poison",
+      "passed": true
+    },
+    {
+      "name": "full_inputs_unchanged:fact-name-metadata-poison",
+      "passed": true
+    },
+    {
+      "name": "exact_stored_reasoning:latest-negation-counterexample",
+      "passed": true
+    },
+    {
+      "name": "legacy_neutral_byte_parity:latest-negation-counterexample",
+      "passed": true
+    },
+    {
+      "name": "typed_output_digest_custody:latest-negation-counterexample",
+      "passed": true
+    },
+    {
+      "name": "not_semantic_support:latest-negation-counterexample",
+      "passed": true
+    },
+    {
+      "name": "bounded_query:latest-negation-counterexample",
+      "passed": true
+    },
+    {
+      "name": "current_topic_kept:latest-negation-counterexample",
+      "passed": true
+    },
+    {
+      "name": "full_inputs_unchanged:latest-negation-counterexample",
+      "passed": true
+    },
+    {
+      "name": "exact_stored_reasoning:synonym-counterexample",
+      "passed": true
+    },
+    {
+      "name": "legacy_neutral_byte_parity:synonym-counterexample",
+      "passed": true
+    },
+    {
+      "name": "typed_output_digest_custody:synonym-counterexample",
+      "passed": true
+    },
+    {
+      "name": "not_semantic_support:synonym-counterexample",
+      "passed": true
+    },
+    {
+      "name": "bounded_query:synonym-counterexample",
+      "passed": true
+    },
+    {
+      "name": "full_inputs_unchanged:synonym-counterexample",
+      "passed": true
+    },
+    {
+      "name": "exact_stored_reasoning:isolated-case-current-export",
+      "passed": true
+    },
+    {
+      "name": "legacy_neutral_byte_parity:isolated-case-current-export",
+      "passed": true
+    },
+    {
+      "name": "typed_output_digest_custody:isolated-case-current-export",
+      "passed": true
+    },
+    {
+      "name": "not_semantic_support:isolated-case-current-export",
+      "passed": true
+    },
+    {
+      "name": "bounded_query:isolated-case-current-export",
+      "passed": true
+    },
+    {
+      "name": "current_topic_kept:isolated-case-current-export",
+      "passed": true
+    },
+    {
+      "name": "full_inputs_unchanged:isolated-case-current-export",
+      "passed": true
+    },
+    {
+      "name": "legacy_exposed_snapshot_byte_parity:dev-a:initial",
+      "passed": true
+    },
+    {
+      "name": "legacy_exposed_snapshot_byte_parity:dev-a:version",
+      "passed": true
+    },
+    {
+      "name": "legacy_exposed_snapshot_byte_parity:dev-b:initial",
+      "passed": true
+    },
+    {
+      "name": "legacy_exposed_snapshot_byte_parity:dev-b:version",
+      "passed": true
+    },
+    {
+      "name": "legacy_exposed_snapshot_byte_parity:enum-guide:initial",
+      "passed": true
+    },
+    {
+      "name": "legacy_exposed_snapshot_byte_parity:enum-guide:correction",
+      "passed": true
+    },
+    {
+      "name": "legacy_exposed_snapshot_byte_parity:enum-withheld:initial",
+      "passed": true
+    },
+    {
+      "name": "legacy_exposed_snapshot_byte_parity:enum-withheld:correction",
+      "passed": true
+    },
+    {
+      "name": "legacy_exposed_snapshot_byte_parity:dev-d-4713:initial",
+      "passed": true
+    },
+    {
+      "name": "legacy_exposed_snapshot_byte_parity:dev-d-4713:update",
+      "passed": true
+    },
+    {
+      "name": "legacy_exposed_snapshot_byte_parity:dev-e-5618:initial",
+      "passed": true
+    },
+    {
+      "name": "legacy_exposed_snapshot_byte_parity:dev-e-5618:update",
+      "passed": true
+    },
+    {
+      "name": "legacy_exposed_snapshot_byte_parity:dev-f-7206:initial",
+      "passed": true
+    },
+    {
+      "name": "legacy_exposed_snapshot_byte_parity:dev-f-7206:update",
+      "passed": true
+    },
+    {
+      "name": "legacy_exposed_snapshot_byte_parity:dev-g-9487:initial",
+      "passed": true
+    },
+    {
+      "name": "legacy_exposed_snapshot_byte_parity:dev-g-9487:update",
+      "passed": true
+    },
+    {
+      "name": "eight_authored_and16old_default_states",
+      "passed": true
+    },
+    {
+      "name": "all_frozen_packet_bytes_unchanged",
+      "passed": true
+    }
+  ],
+  "checks_passed": 81,
+  "checks_total": 81,
+  "all_checks_passed": true,
+  "actual_API_calls": 0,
+  "ledger_or_index_clients_created": 0,
+  "model_messages_sources_or_default_ranking_changed": false,
+  "new_model_selection_or_semantic_quality_claim": false,
+  "human_usefulness": null,
+  "held_out_or_RAG_quality": false,
+  "remaining_limits": [
+    "TurnConversation has no case_id. Caller must load authoritative same-case history; content binding is not authentication.",
+    "Latest-message negation still has literal topic words; lexical scoring does not understand intent or prove relevance.",
+    "Unstructured historical details not represented by retired facts can still survive bounded topic hints.",
+    "Synonyms can have zero overlap. Shortlist absence is not proof of missing or irrelevant evidence.",
+    "All fixtures are authored neutral development controls, not model conversations or final evaluation cases."
+  ]
+}

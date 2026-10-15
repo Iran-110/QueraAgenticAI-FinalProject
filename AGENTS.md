@@ -34,6 +34,18 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 ## Runtime rules
 
+- C4l/E2y adds optional private bound current-query context to the existing
+  lexical advisor; read `docs/selection-context.fa.md`. Omitted/None paths keep
+  all24 frozen advisory digests exact. Bind the full current request/case/history,
+  derive the existing projection, and reject mismatches rather than falling
+  back. Only actual USER text/active USER values originate lexical terms; helper
+  labels/fact names alone do not. Preserve all active values beyond packing.
+  Caller owns authoritative same-case history (TurnConversation has no case_id);
+  content binding is not authentication. Latest negation, synonyms and unretired
+  historical details remain counterexamples. Advisory ordering is not semantic
+  support, a new model decision, default promotion or API authorization. Preserve
+  halt/three holds, existing packets/closed IDs and full source/model input bytes.
+
 - C4k/E2x is offline structural selection, not improved model quality. Read
   `docs/evidence-selection.fa.md` and its preregistered packet. Private
   `block_mode="sections"` is explicit opt-in; default paragraph context/messages/

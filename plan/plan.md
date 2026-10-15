@@ -6,11 +6,16 @@
 
 - [ ] **C4l/E2y — context فعلی برای advisor انتخاب شاهد؛ ساسان، فقط آفلاین.**
   [ثبت پیش از پیاده‌سازی](../experiments/core_selection_context_v1/protocol-v1.json):
-  `TurnConversation` موجود با کل CaseState و request فعلی bind شود؛ استفادهٔ
-  اختیاری از projection فعلی، واژه‌های fact منسوخ را از topic hint کنار بگذارد.
-  حالت بدون context، پیام مدل، corpus، قراردادهای تیم و ledger ثابت بمانند.
-  این کنترل freshness واژگانی است؛ semantics و منشأ واقعی history را authenticate
-  نمی‌کند. correction، A→B→A، follow-up، mismatch و عدم تغییر داده تست شوند.
+  [کد و اتصال](../docs/selection-context.fa.md)،
+  [packet و baseline](../experiments/core_selection_context_v1/README.md) و
+  [replay۸۱/۸۱](../experiments/core_selection_context_v1/replay-v1.json).
+  context خصوصی با کل CaseState/request/conversation bind شد؛ اصلاح موضوع،
+  A→B→A، پاسخ کوتاه نسخه و رد context قدیمی/دست‌کاری‌شده تست شدند. نام fact و
+  label به‌تنهایی امتیاز نمی‌سازند؛ همهٔ valueهای USER فعال حفظ‌اند. ۲۴digest
+  حالت قبلی دقیقاً ثابت؛۸۰pytest متمرکز پاس. در fixture تألیفی، منبع موضوع فعلی
+  از دوم به اول رفت، اما موضوع قدیمی در shortlist باقی می‌ماند؛ negation/synonym
+  هنوز محدودیت‌اند. مدل/API/retrieval/default تغییر نکرده؛ halt/سهhold حفظ‌اند.
+  تیک پایان پس از suite کامل، پذیرش HTTP/SQLite و review محلی ثبت می‌شود.
 
 - [x] **C4k/E2x — انتخاب شاهد کامل و بررسی فقط‌خواندنی C5؛ ساسان، تحویل آفلاین.**
   [ثبت پیش از پیاده‌سازی](../experiments/core_evidence_selection_v1/protocol-v1.json):
