@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "task": "C4k/E2x",
+  "experiment_id": "core-evidence-selection-offline-v1",
+  "status": "registered-before-implementation; offline-only exposed-development controls",
+  "baseline_commit": "59bd2c7ea3b2a22bc25c1ab5fd48d83ba5349c4f",
+  "input_pins": {
+    "experiments/core_broader_dev_v1/snapshots-v1.json": "c88d72753d2fb9a1317720ce51fa6b49027ce0bd46ecdcc7e7eabf107f613b0d",
+    "experiments/core_claim_boundary_v1/model-receipt-v1.json": "a57cfac1ccd45068a81907e718e32a68d66cedbff1725f5138f7a82abea103f2",
+    "experiments/core_claim_boundary_v1/semantic-review-v1.json": "bcd95cfd123c523d96335b563e6a44eb1dcedcdbb11f299a9e622eb33e2c1ec2",
+    "experiments/core_claim_boundary_v1/acceptance-matrix-v1.json": "63f830a68f96a60f920a1b5694112469f08037754bacda71bfd5fc48c4921261",
+    "src/agent_app/reasoning/claim_plan.py": "36846d8b282b077c89f63f52656e8ead02dc8cef3e58a4b6a8a263b7f2b637af",
+    "src/agent_app/llm/claims.py": "6d09129d083c8f71ef86a47d508d6cd11a6a646133a0a4f446e6688b682550b0"
+  },
+  "purpose": [
+    "reproduce retained heading-only/omitted-body/qualification failures without reconstructing unavailable raw outputs",
+    "add explicit source-derived whole-section units while preserving default paragraph behavior",
+    "offer current-context lexical candidate signals without claiming semantic entailment",
+    "read-only investigate all three uncertain requests without settling or clearing halt"
+  ],
+  "primary_controls": {
+    "default_context_messages_renderer_byte_parity": "all16 pinned snapshots",
+    "complete_source_coverage": "every character/separator/fence retained in current original order",
+    "structural_subtree": "selected root sections include all descendants until peer/ancestor; no heading-only answer support",
+    "same_input_offline_projection": "retained plan selections project by spans into new units under fresh authored replay context; never attribute revised plan to model",
+    "advisory_relevance": "query+active USER values only; no case/source ID/gold rules; zero overlap and ties not evidence of truth",
+    "current_binding": "new units/mode bind source/full case revision; old context and stale correction reject",
+    "limits": "existing 2 attempts/2 retrieval rounds/2 queries/8 steps and input/render bounds remain",
+    "counterexamples": [
+      "irrelevant complete sections remain possible",
+      "qualifier in sibling/cross-source may be absent",
+      "lexical match may be misleading or synonym-only query may miss",
+      "whole section overflow must stop, never truncate",
+      "questions/source gaps/conflicts not bypassed",
+      "no refuse-all or quote-all quality score"
+    ]
+  },
+  "measurement": {
+    "structural_replay": "report all retained candidates/finals, rejected and unavailable separately; old model receipts immutable",
+    "suggestions": "deterministic offline candidate proposals, not new model choices, not released answers",
+    "quality": "no model reliability, RAG, runtime fix, human usefulness or held-out claim",
+    "frozen_old_studies": "all closed scopes/IDs stay closed; no API calls",
+    "data": "seven previously exposed families/16snapshots; guide fixture-only; corpus/gold/manifests/exclusions untouched"
+  },
+  "publication_gate": [
+    "meaningful targeted tests",
+    "full pytest and Ruff",
+    "three required offline demos",
+    "HTTP/SQLite fixture acceptance if core path changes",
+    "separate review of default parity/limits/binding/reporting",
+    "plan/docs with observed failures and limitations"
+  ],
+  "API_calls_authorized": 0,
+  "ledger_halt_preserved": true,
+  "C5_requires_provider_evidence": true
+}

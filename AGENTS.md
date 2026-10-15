@@ -34,6 +34,18 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 ## Runtime rules
 
+- C4k/E2x is offline structural selection, not improved model quality. Read
+  `docs/evidence-selection.fa.md` and its preregistered packet. Private
+  `block_mode="sections"` is explicit opt-in; default paragraph context/messages/
+  renderer bytes stay identical. Section subtrees keep full code/body but do not
+  include every peer/cross-source caveat or prove relevance. Lexical helpers are
+  advisory, use current supplied message/active USER fact rows, and can still
+  match historical words in message prose. No model/source/gold or case-ID rule
+  supplies authority. Keep original retained/rejected/unavailable observations;
+  replay projections are authored, not new model choices. Preserve the original
+  failed preflight and its JSON-framing amendment. Three-incident C5 review is
+  read-only; it does not reconcile provider costs, clear halt or resume any IDs.
+
 - C4j/E2w adds an explicitly constructed experimental passage/active-USER plan;
   read `docs/claim-source-boundary.fa.md` and its frozen experiment packet.
   No free technical prose/check/fact/authority channel is accepted; all final

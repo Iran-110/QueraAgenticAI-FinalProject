@@ -1,3 +1,44 @@
+## 2026-10-16 — C4k/E2x: complete sections, advisory relevance and read-only C5
+
+[Behavior and limits](evidence-selection.fa.md),
+[prospective protocol, replay and cost packet](../experiments/core_evidence_selection_v1/README.md).
+Registered on baseline59bd2c7 before code;16 frozen context/messages/render
+digests remain exact under default paragraphs. Explicit private sections mode
+retains each recognized root/subtree/body/code and rejects empty headings as
+answer support; modes/sources/USER revisions bind the request hash. Default
+factories/contracts/SYSTEM and teammate modules stay unchanged.
+
+Post-hoc replay preserves all10retained claim plans:7 valid originals project
+to whole sections,3 source-binding failures remain rejected and21 raw claim
+attempts are unavailable (20 representation rejections/one provider failure).
+Enum's selected heading now includes the whole module body/edit-reload caveat
+in authored projection,1459→5962chars; seven-plan median grows1459→5073. The
+93char canonical question stays exact. These are NOT new model selections,
+semantic fixes or usefulness scores. Irrelevant complete sections and missing
+peer/cross-source caveats remain possible; guide stays excluded/fixture-only.
+
+Pure lexical helpers inspect supplied message+active USER fact rows, no
+case/source-ID/oracle routing. Bounded whole-unit suggestions are advisory;
+historical prose, lexical false positives and synonym misses remain. No prompt
+tuning, source additions, excerpt truncation, default promotion or API calls.
+All62 replay controls pass;64 actual engine normal/repair/refinement contexts
+across32 authored runs,16 four-issue repairs, peak27366 under unchanged32768.
+Two new P2 findings (fenced thematic content falsely empty, replay undercounting
+JSON framing) were fixed; original first observation/amendment retained.
+
+Code7e20cf4 with C5packet245eaf8:5344pytest, Ruff352files, three offline demos,
+and fresh existing HTTP/SQLite acceptance457/457 including restart pass. The
+section path is explicit engine behavior, not automatically enabled in HTTP/UI.
+Separate assistant repeats110targeted tests; final code/doc review has no
+remaining blocker. Hosted CI/freshWindows/browser/model quality not claimed.
+
+Three-incident read-only C5 audit36/36 preserves ledger SHA141c3536...,718rows/
+14tables and19current physical pins.715settled local estimateUSD0.599798760;
+three uncertain holdsUSD0.0301376, halt/USD4.50 preserved. First historical
+HTTP200 lacks retained serving identity/usage; second transport category unknown;
+third is connect_timeout. No provider evidence was obtained, no settlement or
+unhalt performed, no closed identity reused; C5 and human/final evaluation open.
+
 ## 2026-10-15 — C4j/E2w: constrained source/USER passages, stopped comparison
 
 [Integration, outcome and remaining work](claim-source-boundary.fa.md),

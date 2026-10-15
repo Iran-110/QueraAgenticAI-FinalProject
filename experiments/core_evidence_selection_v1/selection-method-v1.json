@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "task": "C4k/E2x",
+  "registered_before_advisory_implementation": true,
+  "algorithm": "Advisory cosine overlap with corpus-local IDF over complete current units; query is latest supplied user_message plus active provenance_kind=user fact values only. Ignore numeric tokens and generic language stopwords. No source IDs, URLs, case IDs, or oracle fields influence score. Stable ties follow current source/unit positions.",
+  "shortlist": "Up to two substantive positive-overlap units by default, within 6000 raw passage UTF8 bytes; skip whole oversized units, never truncate. Explicit historical/other USER-version records are omitted from this current-environment advisory list, not from original evidence. No source diversity rule: two complementary chunks of one source may both be suggested.",
+  "scope": "Pure analyst/caller helper. No automatic decision changes, source acceptance, citations, model messages, retrieval ranking, factories, or execution authority. Lexical signals are not relevance/entailment labels; missing signals are not proof of missing evidence. Source text can adversarially match query terms.",
+  "comparison": "Original retained selections, authored projection into complete sections, and independent advisory shortlist are separate observations. Original model choices are not rewritten or reclassified. Full evidence remains available.",
+  "semantic_quality_claim": false,
+  "actual_API_calls": 0
+}

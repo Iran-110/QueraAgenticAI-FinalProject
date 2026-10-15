@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "task": "C4k/E2x",
+  "kind": "offline auditor and synthetic test preparation correction, no model/API calls",
+  "first_observation": "first-replay-v1.json",
+  "retained_original_observation": true,
+  "finding": "First replay counted sum(content UTF8 bytes)+1024. Existing production gateway counts len(json.dumps(messages, ensure_ascii=False).encode('utf-8'))+1024, including escaped newlines, quotes and framing. The first calculation undercounted the16 observed inputs; all still fit under the correct guard. A separate authored quote-heavy control can exceed32768 although the first calculation says it fits.",
+  "correction": "Replay uses the exact existing gateway serialization. No production input/reserve/output bound is raised, no source is truncated and no request is sent.",
+  "additional_code_review_fix": "The new section-body detector incorrectly treated thematic-rule-looking text INSIDE a nonempty code fence as empty markup. It now counts all nonempty fence content as body; actual semantic relevance remains unverified.",
+  "first_test_preparation_failure": "One new projection test changed a GroundedRequest message using model_copy without rebuilding its bound hash. The existing validator correctly rejected it before projection. The test now constructs a valid NEW GroundedRequest; no validator is relaxed.",
+  "old_studies_receipts_ledger_halt_unchanged": true,
+  "quality_claim": false
+}

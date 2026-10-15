@@ -1,8 +1,30 @@
 # plan و checklist تیم — Streamlit Support Assistant
 
-به‌روزرسانی: ۲۰۲۶-۱۰-۱۵. این نسخه ادامهٔ plan محمدحسن روی `main` در commit `2ead870` است؛ [نسخهٔ قبلی](archive/plan-before-task-checklist.md) حفظ شده. مبنای regressionهای بازبینی `6131091` بود؛ انتشار tracker با `464e55e` و سپس #21 با `94b60e1` و [CI موفق](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38151154794) ثبت شده‌اند. مبنای baseline تازهٔ C2a همین `94b60e1` است. این فایل برای تقسیم کار و شرط پایان taskهاست؛ روزهای sprint قبلی را تاریخ تحویل حساب نمی‌کنیم. الزام‌ها از صورت اصلی پروژه می‌آیند، نه از ابزارها و frameworkهای پیشنهادی plan.
+به‌روزرسانی: ۲۰۲۶-۱۰-۱۶. این نسخه ادامهٔ plan محمدحسن روی `main` در commit `2ead870` است؛ [نسخهٔ قبلی](archive/plan-before-task-checklist.md) حفظ شده. مبنای regressionهای بازبینی `6131091` بود؛ انتشار tracker با `464e55e` و سپس #21 با `94b60e1` و [CI موفق](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38151154794) ثبت شده‌اند. مبنای baseline تازهٔ C2a همین `94b60e1` است. این فایل برای تقسیم کار و شرط پایان taskهاست؛ روزهای sprint قبلی را تاریخ تحویل حساب نمی‌کنیم. الزام‌ها از صورت اصلی پروژه می‌آیند، نه از ابزارها و frameworkهای پیشنهادی plan.
 
 ## وضعیت فعلی
+
+- [x] **C4k/E2x — انتخاب شاهد کامل و بررسی فقط‌خواندنی C5؛ ساسان، تحویل آفلاین.**
+  [ثبت پیش از پیاده‌سازی](../experiments/core_evidence_selection_v1/protocol-v1.json):
+  [نتیجه/اتصال](../docs/evidence-selection.fa.md) و
+  [packet و verification](../experiments/core_evidence_selection_v1/README.md).
+  unit اختیاریِ section کامل، همراه بدنه/code و subtree؛ heading خالی از body
+  answer نیست. همهٔ۱۶ default context/messages/render عین baseline ماندند.
+  هر۱۰ plan نگهداری‌شده، سه binding ردشده و۲۱ خروجی خام ناموجود حفظ‌اند؛ هفت
+  projection تألیفی، انتخاب تازهٔ مدل نیستند. body/caveat غایب Enum در بازپخش
+  کامل شد، اما draft۱۴۵۹→۵۹۶۲ و median همان هفت خروجی۱۴۵۹→۵۰۷۳ شد؛ نقل نامرتبط
+  همچنان ممکن است. lexical shortlist فقط advisory است؛ semantics/usefulness
+  تأیید نشده، guide fixture-only و تیک پایان کیفیت/RAG/test نیست.
+  ۶۲ کنترل replay،۱۱۰ تست جدید،۶۴ context واقعی engine/۳۲run با repair/refine و
+  سقف قدیمی؛ بیشینه ورودی۲۷۳۶۶. ۵۳۴۴pytest،Ruff۳۵۲فایل،سهdemo و مسیر قبلی
+  HTTP/SQLite۴۵۷/۴۵۷ با restart پاس؛ section mode در engine تست شده و factory/UI
+  خودکار فعالش نمی‌کنند. دو ایراد جدید fence/body و auditor framing پیش از
+  freeze رفع شدند؛ مشاهدهٔ اول و amendment حفظ‌اند؛ hosted CI پاس ادعا نمی‌شود.
+  هر سه uncertain با۳۶ کنترل read-only بررسی شدند؛ ledger۷۱۸row/۱۴جدول، سهhold
+  جمعاً$0.0301376،halt/سقف و۱۹ فایل محافظت‌شده ثابت‌اند؛ C5 به مدرک provider نیاز
+  دارد. API/corpus/exclusion/gold/shared contracts و فایل‌های UI/tracker/RAG عوض نشدند.
+  کد و شواهد در [PR #65](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/65)
+  روی branch مستقل push شده‌اند؛ این ثبت به معنی merge شدن به main نیست.
 
 - [x] **انتشار محلی PR54/57/58؛ ساسان.** هر سه به‌ترتیب به main رسیدند؛
   source نهایی `3cbbdd3` همان tree تحویل PR58 است. اجرای کامل ثابت روی همین
@@ -193,7 +215,7 @@
 | حسن | review profile جدید و پوشش/رتبه‌بندی منابع؛ provenance و exclusion بعد از split نهایی | source دقیقِ رسیده به مدل، برچسب relevance/Recall@k و build pinned؛ عضویت در index به‌تنهایی کافی نیست |
 | محمدحسن | usefulness انسانی خروجی‌های فعلی؛ [worksheet تازهٔ C4j/E2w](../experiments/core_claim_boundary_v1/human-review-v1.json) و worksheetهای قبلی بدون نمره، initial/correction و model/edited جدا؛ review پذیرش چهار خانوادهٔ مکمل و exposure هر شش report؛۱۲dev و۱۵test باقی، freeze rubric/gold وابسته به evidence condition | guide answer-linked وارد corpus نشود؛ کوتاهی/quote دقیق بدون caveat بهبود نیست؛ مکمل‌ها خودکار جای رزرو۱۵/۱۵ را نمی‌گیرند؛ test برای tuning دیده نشود؛ حداقل۱۰گفتگوی چندنوبتی شامل۵test؛ سپس baseline وtest نهایی |
 | بهنام | بخش‌های باز T4: receipt پاک‌سازی‌شده و pin، lost-ACK از خود UI و failure/outcome | revision/approval/retry مستقل دو پرونده و شاهد مصرف outcome در تصمیم بعد؛ token/DB خصوصی منتشر نشود |
-| ساسان | C4j/E2w و offline diagnostics تحویل؛ review انسانی/کاربرد و انتخاب کامل شاهد، روشن‌شدن request نامعلوم، سپس protocol/config freeze پیش از API یاtest تازه | مسیر جدید با۷/۱۹pending و Enum ناقص default نشود؛ compiled آزاد با این شواهد توصیه نمی‌شود؛ شرط case/source-ID و prompt/order tuning تازه برای نمرهٔ Enum ممنوع؛ single-agent/قراردادهای تیم ثابت؛ fixture اثبات fix یا کیفیت RAG/test نیست |
+| ساسان | C4k/E2x، section اختیاری و replay آفلاین تحویل؛ review انسانیِ ارتباط/کاربرد/طول خروجی، گرفتن مدرک provider برای سه request نامعلوم، سپس protocol/config freeze پیش از API یاtest تازه | projection و lexical shortlist انتخاب مدل یا usefulness نیست؛ مسیرهای C4j/compiled آزاد default نشوند؛ شرط case/source-ID و prompt/order tuning تازه برای نمرهٔ Enum ممنوع؛ single-agent/قراردادهای تیم ثابت؛ fixture اثبات fix یا کیفیت RAG/test نیست |
 
 **قاعدهٔ انتشار فعلی — ۱۵ اکتبر، با دستور صریح ساسان:** منتظر رفع Billing
 نمی‌مانیم. برای انتشار، review و تست محلی روی source ثبت‌شده، پذیرش اتصال و
@@ -845,7 +867,7 @@ fixture پایهٔ این تحویل، [case چهار‌نوبتی C3](../experi
 - [ ] **C4 — baseline برای pilot متصل.** baseline ورودی HTTP روی `5af98e6` چهار fail و روی adapter جدید چهار pass دارد؛ [ثبت C2](../docs/user-intake-pilot.fa.md). baseline خروجی C3 روی کد واقعی `3f22ef9` با همان چهار regression بازپخش شد؛ چهار fail و روی نسخهٔ جدید چهار pass، همراه [case چهار‌نوبتی و محدودیت](../docs/review-handoff-pilot.fa.md). پس از اتصال P3/P4، مقایسهٔ تصمیم واقعی ادامه یابد؛ baseline نرم‌افزار جای کیفیت مدل/RAG/test نیست. receiptهای تاریخی حفظ شده‌اند؛ انتخاب Issue فعلی answer-informed و exposed است.
 - [x] **C4a — harness و prefix محدود انتخاب واقعی مدل؛ ساسان.** [بستهٔ نتیجه و review](../experiments/controlled_model_baseline/README.md) runtime/reviewer جدا، ID خنثی و catalog مربوط به bundle فعلی دارد. شش variation یک خانوادهٔ exposed، mock شش‌مسیره و baseline واقعی prefix ثبت شد: ۳ send، ۲ proposal، یک خطا و سه terminal skip؛ follow-up جدا با همان prompt فقط یک سؤال نسخهٔ کامل داد. کل چهار send $0.002845260 تخمینی؛ منابع/کل پاسخ/سؤال، هزینه و محدودیت‌ها review شده‌اند، نمرهٔ انسانی null است. این تیک تحویل محدود را می‌بندد؛ baseline شش‌حالته کامل نشده و C4 مستقل/RAG/test نهایی بازند؛ correction/conflict/stale در live این packet اجرا نشدند.
 - [x] **C4b — تداوم تعارض اعلام‌شده پس از refinement؛ ساسان، تحویل محدود آفلاین.** [protocol، مقایسه، receipt و review](../experiments/conflict_continuity/README.md): همان ۱۴ کنترل روی اصل `03225e2` هفت pass/هفت fail و روی `8cc41bf` چهارده pass. سه answer خطرناک مسدود، چهار ask/escalate مجاز با status حل‌نشده و فقط quote جاری؛ ۲۵ کنترل lifecycle/boundary و پنج تست HTTP با provider mock نیز پاس‌اند. repair مجاز status را حفظ و stop نهایی scope را آزاد می‌کند؛ run/case/revision بعدی تازه است. approval/retry/restart امن و request واقعی handoff بررسی شده‌اند. این تیک فقط این رفتار software را می‌بندد؛ تشخیص خودکار تناقض، مدل/RAG واقعی، C4 مستقل و test نهایی بازند؛ هزینه صفر و fixtureهای تاریخی بدون تغییر.
-- [ ] **C5 — رفع علت halt پیش از live.** هویت مدل، usage و هزینهٔ مورد اختلاف با مدرک provider تطبیق داده شود؛ uncertainty و ledger پاک یا reset نشوند. شرط پایان: علت توقف مستند، وضعیت ledger و مجوز/سقف باقی‌مانده روشن باشند؛ فقط آن‌وقت pilot کوچک ثبت‌شده اجرا شود.
+- [ ] **C5 — رفع علت halt پیش از live.** هویت مدل، usage و هزینهٔ مورد اختلاف با مدرک provider تطبیق داده شود؛ uncertainty و ledger پاک یا reset نشوند. شرط پایان: علت توقف مستند، وضعیت ledger و مجوز/سقف باقی‌مانده روشن باشند؛ فقط آن‌وقت pilot کوچک ثبت‌شده اجرا شود. [بررسی تازهٔ هر سه uncertain در C4k](../experiments/core_evidence_selection_v1/c5-readonly-report.fa.md) با۳۶کنترل read-only، همان۷۱۸reservation،۱۴جدول و SHA را حفظ کرد؛ HTTP200 اولی، خطای transport نامشخص دومی وconnect_timeout سومی، model/usage/charge قطعی یا zero-charge را ثابت نمی‌کنند. settled محلی$0.599798760 وholdها$0.0301376اند؛ مدرک provider/account-wide هنوز کم است و هیچsettle/release/unhalt اجرا نشد.
 
 برای C2/U3 از سرویس C2a استفاده شود؛ coordinator core دیگر فقط helper تستی نیست. factory HTTP/auth و outcome پایدار C2d روی main است؛ binding frontend آفلاین U3a و index محدود P4a آماده‌اند؛ محمدحسن/بهنام تنظیم محصول و smoke مرورگر را نهایی کنند. readهای سرویس به‌تنهایی CAS lifecycle نیستند؛ C2d اکنون در transaction اولین root proposal هر revision و outcome را کنترل می‌کند و مسیر ABA قبلی را می‌بندد. resume خودکار وجود ندارد. [packet تازهٔ C5](../docs/live-reconciliation-2026-10-11.fa.md) با خواندن read-only و hash ثابت ledger ثبت شد؛ مدرک provider همچنان کم است.
 

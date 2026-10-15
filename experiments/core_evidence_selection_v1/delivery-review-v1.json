@@ -1,0 +1,940 @@
+{
+  "schema_version": 1,
+  "task": "C4k/E2x",
+  "source_runtime_commit": "245eaf83f1d8822645d592a5022c8e37df372550",
+  "checks": [
+    {
+      "name": "artifact:protocol-v1.json",
+      "passed": true
+    },
+    {
+      "name": "artifact:default-baseline-v1.json",
+      "passed": true
+    },
+    {
+      "name": "artifact:selection-method-v1.json",
+      "passed": true
+    },
+    {
+      "name": "artifact:failure-inventory-v1.json",
+      "passed": true
+    },
+    {
+      "name": "artifact:first-replay-v1.json",
+      "passed": true
+    },
+    {
+      "name": "artifact:preflight-amendment-v1.json",
+      "passed": true
+    },
+    {
+      "name": "artifact:replay-v2.json",
+      "passed": true
+    },
+    {
+      "name": "artifact:c5-readonly-audit-v1.py",
+      "passed": true
+    },
+    {
+      "name": "artifact:c5-readonly-audit-v1.json",
+      "passed": true
+    },
+    {
+      "name": "artifact:c5-readonly-report.fa.md",
+      "passed": true
+    },
+    {
+      "name": "artifact:http-sqlite-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:docs/evidence-selection.fa.md:../experiments/core_evidence_selection_v1/protocol-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:docs/evidence-selection.fa.md:../experiments/core_evidence_selection_v1/default-baseline-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:docs/evidence-selection.fa.md:../experiments/core_evidence_selection_v1/failure-inventory-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:docs/evidence-selection.fa.md:../src/agent_app/reasoning/claim_plan.py",
+      "passed": true
+    },
+    {
+      "name": "link:docs/evidence-selection.fa.md:../src/agent_app/reasoning/evidence_selection.py",
+      "passed": true
+    },
+    {
+      "name": "link:docs/evidence-selection.fa.md:../experiments/core_evidence_selection_v1/replay-v2.json",
+      "passed": true
+    },
+    {
+      "name": "link:docs/evidence-selection.fa.md:../src/agent_app/testing/evidence_selection_replay.py",
+      "passed": true
+    },
+    {
+      "name": "link:docs/evidence-selection.fa.md:../experiments/core_evidence_selection_v1/first-replay-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:docs/evidence-selection.fa.md:../experiments/core_evidence_selection_v1/preflight-amendment-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:docs/evidence-selection.fa.md:../experiments/core_evidence_selection_v1/c5-readonly-report.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:experiments/core_evidence_selection_v1/README.md:protocol-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:experiments/core_evidence_selection_v1/README.md:default-baseline-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:experiments/core_evidence_selection_v1/README.md:failure-inventory-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:experiments/core_evidence_selection_v1/README.md:selection-method-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:experiments/core_evidence_selection_v1/README.md:first-replay-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:experiments/core_evidence_selection_v1/README.md:preflight-amendment-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:experiments/core_evidence_selection_v1/README.md:replay-v2.json",
+      "passed": true
+    },
+    {
+      "name": "link:experiments/core_evidence_selection_v1/README.md:c5-readonly-audit-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:experiments/core_evidence_selection_v1/README.md:c5-readonly-audit-v1.py",
+      "passed": true
+    },
+    {
+      "name": "link:experiments/core_evidence_selection_v1/README.md:c5-readonly-report.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:experiments/core_evidence_selection_v1/README.md:../../docs/evidence-selection.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:experiments/core_evidence_selection_v1/README.md:verification-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:experiments/core_evidence_selection_v1/README.md:http-sqlite-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:experiments/core_evidence_selection_v1/c5-readonly-report.fa.md:c5-readonly-audit-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:experiments/core_evidence_selection_v1/c5-readonly-report.fa.md:c5-readonly-audit-v1.py",
+      "passed": true
+    },
+    {
+      "name": "link:experiments/core_evidence_selection_v1/c5-readonly-report.fa.md:../../src/agent_app/llm/budget.py",
+      "passed": true
+    },
+    {
+      "name": "link:experiments/core_evidence_selection_v1/c5-readonly-report.fa.md:../../src/agent_app/llm/metis.py",
+      "passed": true
+    },
+    {
+      "name": "link:experiments/core_evidence_selection_v1/c5-readonly-report.fa.md:../../src/agent_app/llm/pricing.py",
+      "passed": true
+    },
+    {
+      "name": "link:experiments/core_evidence_selection_v1/c5-readonly-report.fa.md:../../docs/live-reconciliation-2026-10-11.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:experiments/core_evidence_selection_v1/c5-readonly-report.fa.md:../core_stability_adversarial/stability-cost-reconciliation-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:experiments/core_evidence_selection_v1/c5-readonly-report.fa.md:../core_claim_boundary_v1/provider-stop-review-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:archive/plan-before-task-checklist.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_evidence_selection_v1/protocol-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/evidence-selection.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_evidence_selection_v1/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/local_release_2026_10_15/verification-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_ask_background_v1/protocol-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_ask_background_v1/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/candidate-live-profile.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_ask_background_v1/verification-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/json-readability.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_json_readability_v1/protocol-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_json_readability_v1/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/enum-evidence-quality.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_enum_evidence_v1/protocol-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_enum_evidence_v1/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_complementary_sources_v1/protocol-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_complementary_sources_v1/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_source_order_v1/protocol-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/complementary-sources.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_source_order_v1/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_source_order_v1/verification-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_source_order_v1/publication-review-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_broader_dev_v1/protocol-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_broader_dev_v1/bound-amendment-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_broader_dev_v1/preparation-first-failure-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_broader_dev_v1/index-recovery-review-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_broader_dev_v1/preparation-amendment-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/broader-dev-quality.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_broader_dev_v1/semantic-review-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_broader_dev_v1/cost-review-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_broader_dev_v1/verification-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_claim_boundary_v1/protocol-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_claim_boundary_v1/acceptance-matrix-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/claim-source-boundary.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_claim_boundary_v1/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_claim_boundary_v1/verification-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_claim_boundary_v1/human-review-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/retrieval_relevance_v1/protocol-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/retrieval-relevance.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/retrieval_relevance_v1/whole-record-budget-amendment-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/retrieval_relevance_v1/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/local_release_2026_10_15/verification-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_repeat_repair_v1/protocol-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/repeat-query-repair.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_repeat_repair_v1/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_repeat_repair_v1/verification-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_source_capacity_v1/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/source-capacity.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/evaluation-workbench.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_compact_plan_v1/protocol-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/compact-plan-wire.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_compact_plan_v1/semantic-review-preparation-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_compact_plan_v1/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/rag_pr50_review/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/evaluation-workbench.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_resource_guidance_v1/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_resource_guidance_v1/cost-review-v2.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_resource_guidance_v1/pre-dispatch-accounting-amendment-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_resource_guidance_v1/verification-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/dev_rag_coverage_v1/protocol-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/dev_rag_coverage_v1/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_quality_followup/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/core-quality-followup.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_stability_adversarial/stability-protocol-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_stability_adversarial/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_stability_adversarial/catalog-version-truth-receipt-v2.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_stability_adversarial/stability-cost-reconciliation-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../data/evaluation/dev-three-v1/scenario-review-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/dev_three_baseline/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/dev-three-baseline.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../data/evaluation/dev-three-v1/split-manifest.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../data/evaluation/dev-three-v1/case-review-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/pr55-evidence-review.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/user_gap_configuration/protocol-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/user_gap_configuration/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/user-gap-configuration.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/offline_corrections/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/offline-scripted-corrections.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/conflict_continuity/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/conflict-continuity.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/conflict_continuity/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/two-case-ui-sqlite-smoke-2026-10-13.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/controlled_model_baseline/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/controlled-output-cap-followup.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/team-handoff-c4.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/current-retrieval-context.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/retrieval_context/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/retrieval_context/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/evaluation-live-routes.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/evaluation_routes/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/evaluation_routes/verification-v3.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../data/evaluation/dev-three-v1/split-manifest.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/delivery-readiness-2026-10-13.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../data/evaluation/candidates/reservations-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/grounded_http_acceptance/connected-live-protocol-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/grounded_http_acceptance/connected-live-README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/retrieval_acceptance/pr35/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/controlled-core-v8.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/controlled-core-v9.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/extractive-core.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/retrieval_acceptance/results-main-ec1a1f0.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/retrieval_acceptance/release-main-ec1a1f0.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/rag-adapter-acceptance.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/persistent-http.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/offline-ui-index-pilot.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/ui_review_acceptance/verification-c14314f.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/retrieval_acceptance/pr35/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/retrieval_acceptance/pr35/verification-82c39a9.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/team-integration-review-2026-10-11.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/core-turn-service.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/rag-handoff-review-2026-10-11.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/retrieval_acceptance/candidate-bdb7c53.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/rag-core-acceptance.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/rag-adapter-acceptance.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/rag-core-acceptance.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/evaluation-rubric.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/review_handoff/case-current-state-latest-evidence.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/review_handoff/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/integration.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../data/evaluation/dev/pilot-12782.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../data/evaluation/receipts/pilot-12782-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/user-intake-pilot.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/persistent-http.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/rag-adapter-acceptance.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:member_1_todo.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:member_2_todo.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:member_3_todo.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:member_4_todo.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/rag-adapter-acceptance.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/retrieval_acceptance/results-main-ec1a1f0.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/retrieval_context/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/core-turn-service.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../tests/test_core_turn_service.py",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../tests/test_core_conversation.py",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../tests/test_engine_freshness.py",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/rag-core-acceptance.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/retrieval_acceptance/fixture-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/retrieval_acceptance/results-fixture-v3.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/rag-adapter-acceptance.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/http_pilot_acceptance/results-sqlite-b7107c0.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/persistent-http.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/persistent-http.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/http_pilot_acceptance/protocol-v2.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/http_pilot_acceptance/comparison-sqlite.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/user-intake-pilot.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/persistent-core-handoff.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/team-integration-review-2026-10-11.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/review-handoff-pilot.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/user-intake-pilot.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/review-handoff-pilot.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/controlled_model_baseline/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/conflict_continuity/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_evidence_selection_v1/c5-readonly-report.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/live-reconciliation-2026-10-11.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/core-readiness-audit.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/team-integration-review-2026-10-11.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../tests/test_core_tracker_failure_boundaries.py",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../data/evaluation/receipts/offline/core-boundary-review-2026-10-11-v3.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/tracker-t4-operational-evidence.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../src/agent_app/tracker/sqlite_tracker.py",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../tests/test_sqlite_tracker.py",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../scripts/tracker_pilot.py",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/sqlite-tracker.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/team-integration-review-2026-10-11.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../data/evaluation/dev-three-v1/split-manifest.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/dev-three-baseline.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../data/evaluation/split-manifest.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../data/evaluation/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/evaluation-rubric-v1.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../data/evaluation/receipts/offline/dev-2026-10-10.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/evaluation-rubric.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/corpus/seed-profile.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/corpus/pilot-allowlist.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/offline-ui-index-pilot.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/grounded_http_acceptance/protocol-v1.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/grounded-persistent-pilot.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/grounded_http_acceptance/live-result-0b962de.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/grounded_http_acceptance/live-review-0b962de.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/retrieval_context/README.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/grounded_http_acceptance/verification-89a0aec.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/grounded_http_acceptance/browser-receipt-89a0aec.json",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/grounded-persistent-pilot.fa.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/architecture.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/integration.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/user-turns.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../docs/core-progress.md",
+      "passed": true
+    },
+    {
+      "name": "link:plan/plan.md:../experiments/core_source_capacity_v1/verification-v1.json",
+      "passed": true
+    },
+    {
+      "name": "teammate_modules_corpus_contracts_unchanged",
+      "passed": true
+    },
+    {
+      "name": "new_delivery_credential_pattern_scan_no_actual_key_read",
+      "passed": true
+    }
+  ],
+  "relative_links_checked": 218,
+  "artifact_hashes_checked": 11,
+  "checks_passed": 231,
+  "checks_total": 231,
+  "all_checks_passed": true,
+  "actual_API_calls": 0,
+  "main_merge_performed": false,
+  "human_quality_review": false,
+  "hosted_CI_pass_claim": false
+}
