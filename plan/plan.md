@@ -4,7 +4,7 @@
 
 ## وضعیت فعلی
 
-- [ ] **C4l/E2y — context فعلی برای advisor انتخاب شاهد؛ ساسان، فقط آفلاین.**
+- [x] **C4l/E2y — context فعلی برای advisor انتخاب شاهد؛ ساسان، تحویل آفلاین.**
   [ثبت پیش از پیاده‌سازی](../experiments/core_selection_context_v1/protocol-v1.json):
   [کد و اتصال](../docs/selection-context.fa.md)،
   [packet و baseline](../experiments/core_selection_context_v1/README.md) و
@@ -15,7 +15,13 @@
   حالت قبلی دقیقاً ثابت؛۸۰pytest متمرکز پاس. در fixture تألیفی، منبع موضوع فعلی
   از دوم به اول رفت، اما موضوع قدیمی در shortlist باقی می‌ماند؛ negation/synonym
   هنوز محدودیت‌اند. مدل/API/retrieval/default تغییر نکرده؛ halt/سهhold حفظ‌اند.
-  تیک پایان پس از suite کامل، پذیرش HTTP/SQLite و review محلی ثبت می‌شود.
+  [verification](../experiments/core_selection_context_v1/verification-v1.json):
+  روی source ثابت`50a3f8d`،۵۴۲۴pytest،Ruff۳۵۶فایل،سهdemo وHTTP/SQLite۴۵۷/۴۵۷
+  باrestart پاس؛ review جدا۱۲۳تست را تکرار کرد و blocker ندارد. replay قبلی
+  ۶۲/۶۲ نیز عین رسید قبلی ماند؛ ledger و۱۹pin فعلی ثابت‌اند. تیک تحویل این
+  کنترل اختیاری است، نه کیفیت مدل/RAG/test یا پایان C5. CI پاس ادعا نمی‌شود؛
+  انتشار با مجوز صریح تست محلی ساسان است. PR تازهٔ۶۶ بهنام فقط دو رسید دارد،
+  با این task تداخل ندارد و جدا مانده است.
 
 - [x] **C4k/E2x — انتخاب شاهد کامل و بررسی فقط‌خواندنی C5؛ ساسان، تحویل آفلاین.**
   [ثبت پیش از پیاده‌سازی](../experiments/core_evidence_selection_v1/protocol-v1.json):
@@ -229,7 +235,7 @@
 | حسن | review profile جدید و پوشش/رتبه‌بندی منابع؛ provenance و exclusion بعد از split نهایی | source دقیقِ رسیده به مدل، برچسب relevance/Recall@k و build pinned؛ عضویت در index به‌تنهایی کافی نیست |
 | محمدحسن | usefulness انسانی خروجی‌های فعلی؛ [worksheet تازهٔ C4j/E2w](../experiments/core_claim_boundary_v1/human-review-v1.json) و worksheetهای قبلی بدون نمره، initial/correction و model/edited جدا؛ review پذیرش چهار خانوادهٔ مکمل و exposure هر شش report؛۱۲dev و۱۵test باقی، freeze rubric/gold وابسته به evidence condition | guide answer-linked وارد corpus نشود؛ کوتاهی/quote دقیق بدون caveat بهبود نیست؛ مکمل‌ها خودکار جای رزرو۱۵/۱۵ را نمی‌گیرند؛ test برای tuning دیده نشود؛ حداقل۱۰گفتگوی چندنوبتی شامل۵test؛ سپس baseline وtest نهایی |
 | بهنام | بخش‌های باز T4: receipt پاک‌سازی‌شده و pin، lost-ACK از خود UI و failure/outcome | revision/approval/retry مستقل دو پرونده و شاهد مصرف outcome در تصمیم بعد؛ token/DB خصوصی منتشر نشود |
-| ساسان | C4k/E2x، section اختیاری و replay آفلاین تحویل؛ review انسانیِ ارتباط/کاربرد/طول خروجی، گرفتن مدرک provider برای سه request نامعلوم، سپس protocol/config freeze پیش از API یاtest تازه | projection و lexical shortlist انتخاب مدل یا usefulness نیست؛ مسیرهای C4j/compiled آزاد default نشوند؛ شرط case/source-ID و prompt/order tuning تازه برای نمرهٔ Enum ممنوع؛ single-agent/قراردادهای تیم ثابت؛ fixture اثبات fix یا کیفیت RAG/test نیست |
+| ساسان | C4k/E2x و C4l/E2y، section و context فعلی اختیاری با replay آفلاین تحویل؛ review انسانیِ ارتباط/کاربرد/طول خروجی، گرفتن مدرک provider برای سه request نامعلوم، سپس protocol/config freeze پیش از API یاtest تازه | projection و lexical shortlist انتخاب مدل یا usefulness نیست؛ context binding منشأ history را authenticate نمی‌کند؛ مسیرهای C4j/compiled آزاد default نشوند؛ شرط case/source-ID و prompt/order tuning تازه برای نمرهٔ Enum ممنوع؛ single-agent/قراردادهای تیم ثابت؛ fixture اثبات fix یا کیفیت RAG/test نیست |
 
 **قاعدهٔ انتشار فعلی — ۱۵ اکتبر، با دستور صریح ساسان:** منتظر رفع Billing
 نمی‌مانیم. برای انتشار، review و تست محلی روی source ثبت‌شده، پذیرش اتصال و

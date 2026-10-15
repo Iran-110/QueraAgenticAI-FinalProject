@@ -81,6 +81,13 @@ negation در آخرین پیام هنوز واژهٔ نفی‌شده را match
 هر۸۱ کنترل پاس است؛ این عدد نرخ موفقیت مدل، RAG یا test نهایی نیست. هیچ مدل
 plan تازه‌ای انتخاب نکرده و usefulness انسانی همچنان نمره ندارد.
 
+[verification روی source ثابت](../experiments/core_selection_context_v1/verification-v1.json)
+در`50a3f8d`:۵۴۲۴pytest،Ruff۳۵۶فایل و سهdemo پاس؛ مسیر قبلی HTTP/SQLite نیز
+۴۵۷/۴۵۷ باrestart پاس شد. review جدا۱۲۳ تست را تکرار کرد و blocker ندارد.
+هر دو replay جدید۸۱کنترلی و قبلی۶۲کنترلی عین رسید نگهداری‌شده تولید شدند.
+ledger با SHA قبلی، سهhold و۱۹pin فعلی ثابت‌اند؛ API صفر. hosted CI و اجرای
+تازهٔ Windows/browser ادعا نمی‌شوند؛ انتشار با مجوز تست محلی ساسان است.
+
 ## بازتولید
 
 ```bash

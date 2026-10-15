@@ -8,6 +8,12 @@ contains no new model run, model choice, RAG-quality score or held-out result.
 - [Eight authored neutral scenarios](scenarios-v1.json),
   [24 frozen legacy rank/shortlist/inspection baselines](legacy-baseline-v1.json).
 - [Replay receipt](replay-v1.json): 81/81 controls, all24 default digests exact.
+- [Frozen-source verification](verification-v1.json): 5424 pytest, Ruff356 files,
+  three offline demos and fresh [HTTP/SQLite457/457](http-sqlite-v1.json), including
+  restart. Separate assistant review repeats123 focused tests without blockers.
+  The previous C4k62-control receipt also reproduces exactly. This is local
+  verification; hosted CI, new Windows/browser runs and native RAG quality are
+  not claimed.
 - [Integration and explicit limitations](../../docs/selection-context.fa.md),
   [runner](../../src/agent_app/testing/selection_context_replay.py).
 
