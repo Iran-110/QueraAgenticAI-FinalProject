@@ -34,6 +34,22 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 ## Runtime rules
 
+- C4i/E2v is a closed proposal-only comparison of the existing quote and
+  `AnalysisResult/compiled_rules` pipelines; read `docs/broader-dev-quality.fa.md`.
+  Seven exposed families/16 distinct current snapshots yield64 invocations,
+  75 sends,60 pending proposals and4 retained errors; no approval/release/action.
+  Compiled Enum drafts are shorter but fail the preregistered quality target:
+  0/4 versus0/4 control. Do not promote free prose, infer entailment from schema
+  or citations, drop rejected parsed candidates, or resume128 closed identities.
+  The four supplemental families and all six inspected reports are exposed dev,
+  outside the reserved split; E1/E4/test and human usefulness remain open.
+  Preserve the original preparation failures/amendments:17 original physical
+  matches plus2 historical native drifts, full182-control logical equality and
+  a separately registered current19-byte epoch. Never claim original19 hashes
+  were restored. All future immutable native reads use disposable copies.
+  The ledger's old holds/halt remain; current-study closed scopes are no new
+  general live authorization. Production defaults/contracts are unchanged.
+
 - C4h9/C4h9b are closed controlled source-selection studies; read
   `docs/complementary-sources.fa.md` and both frozen packets. The default-false
   complementary SYSTEM reminder failed its registered joint-coverage goal and

@@ -1,0 +1,567 @@
+{
+  "schema_version": 1,
+  "review_id": "supplemental-core-dev-pre-model-criteria-v1",
+  "protocol_sha256": "504d34bac87142adf9a09b2ab56117d3c752ea7b6b306b2a89ba61acf003b3f6",
+  "registered_before_model": true,
+  "scope": "Eight current-state criteria from four supplemental families; other eightABC/Enum-condition snapshots are prepared separately.",
+  "human_reviewed": false,
+  "human_usefulness": null,
+  "no_final_split_or_population_quality_claim": true,
+  "original_case_bodies_not_gold": true,
+  "all_escalate_is_not_automatic_quality_success": true,
+  "common": {
+    "source_condition": "Actual complete fixed candidate-profile evidence is frozen by the snapshot preparation before model calls; claims are judged against those bytes, not assumed covered by the index.",
+    "all_material_surfaces": [
+      "user_draft",
+      "maintainer_summary",
+      "rationale",
+      "evidence_links.claim",
+      "checks_suggested",
+      "facts_delta",
+      "next_question",
+      "code"
+    ],
+    "common_unacceptable": [
+      "Treat JSON/schema/citation identity as proof of source entailment.",
+      "Use an unavailable answer/comment, future current state or original Issue outcome as evidence.",
+      "Invent an API, dependency compatibility fix, measured runtime cause, successful reproduction or source version applicability.",
+      "Ask for documentation or other source gaps as if they were missing user facts.",
+      "Discard failed, unvisited, repaired or unsupported proposals from denominators."
+    ],
+    "no_tracker_approval_release_or_action": true,
+    "human_usefulness": null,
+    "runtime_fix_verified": false
+  },
+  "snapshots": [
+    {
+      "scenario_id": "dev-d-4713",
+      "case_id": "dev-d-4713",
+      "turn_id": "initial",
+      "current_state_provenance": {
+        "kind": "curated_cached_report_input",
+        "authored_counterfactual": false,
+        "actual_thread_reply": false,
+        "automatically_consumed_model_reply": false
+      },
+      "known_current_user_facts": {
+        "streamlit_version": "1.9.0",
+        "python_version": "3.10.2",
+        "pdm_version": "1.14.1",
+        "operating_system": "macOS Monterey 12.3.1",
+        "browser": "Safari 15.4",
+        "launch_command": "pdm run streamlit run uber_pickups.py",
+        "reported_error": "AttributeError: module 'click' has no attribute 'get_os_args'"
+      },
+      "known_current_checks": [
+        "Tried Click 8.0.0 and 7.1.2; reported failure persisted.",
+        "Tried Streamlit 1.8.0; reported failure persisted."
+      ],
+      "registered_user_gaps": [
+        "click_runtime_details"
+      ],
+      "source_gaps_are_separate": true,
+      "evidence_review_rules": [
+        "Answer only to the extent actual source text and current USER facts support it; label inference and applicability limits.",
+        "A concrete, qualified investigation/handoff is acceptable when documentary support is missing; it is not a verified fix.",
+        "One bounded retrieval refinement may be appropriate within existing engine limits; the study supplies the same complete frozen evidence pool, not a new RAG search."
+      ],
+      "human_usefulness": null,
+      "authored_counterfactual": false,
+      "source_support_and_usefulness_review_pending": true,
+      "stratum": "ambiguous_user_runtime_identity",
+      "preferred_next_step": "Ask the exact registered Click runtime question; the previous downgrade attempts do not establish the currently imported version.",
+      "acceptable_decisions": [
+        "ask",
+        "retrieve_more",
+        "escalate",
+        "answer"
+      ],
+      "decision_conditions": {
+        "ask": "Only click_runtime_details, when still unknown; no general Streamlit/version/code/environment re-ask.",
+        "answer": "Bounded actual-source guidance with missing compatibility support disclosed; no asserted repair or unsupported downgrade instruction.",
+        "retrieve_more": "Seek the missing version-specific dependency/CLI contract within the existing refinement budget.",
+        "escalate": "Preserve exact error/runtime facts and failed checks; a safe fallback is not automatically useful or the preferred ambiguity resolution."
+      },
+      "source_gaps": [
+        "Whether actual evidence documents the relevant Click/Streamlit/PDM compatibility or a supported repair."
+      ],
+      "must_not_reask": [
+        "streamlit_version",
+        "python_version",
+        "pdm_version",
+        "operating_system",
+        "browser",
+        "launch_command",
+        "reported_code"
+      ],
+      "specific_failures": [
+        "Treat a CORS/XSRF warning as the proved cause of the AttributeError, or recommend disabling protection from that warning alone.",
+        "Repeat Click8.0.0/7.1.2 or Streamlit1.8.0 downgrade trials as if untried successful fixes.",
+        "Assume a current Click version from an earlier attempted downgrade."
+      ]
+    },
+    {
+      "scenario_id": "dev-d-4713",
+      "case_id": "dev-d-4713",
+      "turn_id": "update",
+      "current_state_provenance": {
+        "kind": "authored_counterfactual_current_state_update",
+        "authored_counterfactual": true,
+        "actual_thread_reply": false,
+        "automatically_consumed_model_reply": false
+      },
+      "known_current_user_facts": {
+        "streamlit_version": "1.9.0",
+        "python_version": "3.10.2",
+        "pdm_version": "1.14.1",
+        "operating_system": "macOS Monterey 12.3.1",
+        "browser": "Safari 15.4",
+        "launch_command": "pdm run streamlit run uber_pickups.py",
+        "reported_error": "AttributeError: module 'click' has no attribute 'get_os_args'",
+        "click_runtime_details": "Click 8.1.3 imported from /opt/homebrew/lib/python3.10/site-packages/click/__init__.py in the same PDM invocation",
+        "click_version": "8.1.3",
+        "click_module_path": "/opt/homebrew/lib/python3.10/site-packages/click/__init__.py"
+      },
+      "known_current_checks": [
+        "Tried Click 8.0.0 and 7.1.2; reported failure persisted.",
+        "Tried Streamlit 1.8.0; reported failure persisted.",
+        "Verified current Click version and module path inside the same PDM invocation; the reported AttributeError persists."
+      ],
+      "registered_user_gaps": [],
+      "source_gaps_are_separate": true,
+      "evidence_review_rules": [
+        "Answer only to the extent actual source text and current USER facts support it; label inference and applicability limits.",
+        "A concrete, qualified investigation/handoff is acceptable when documentary support is missing; it is not a verified fix.",
+        "One bounded retrieval refinement may be appropriate within existing engine limits; the study supplies the same complete frozen evidence pool, not a new RAG search."
+      ],
+      "human_usefulness": null,
+      "authored_counterfactual": true,
+      "source_support_and_usefulness_review_pending": true,
+      "stratum": "user_complete_dependency_source_gap",
+      "preferred_next_step": "Use supplied current Click8.1.3/module identity; investigate dependency compatibility with source-qualified guidance, further retrieval or a concrete handoff.",
+      "acceptable_decisions": [
+        "answer",
+        "retrieve_more",
+        "escalate"
+      ],
+      "decision_conditions": {
+        "ask": "Only click_runtime_details, when still unknown; no general Streamlit/version/code/environment re-ask.",
+        "answer": "Bounded actual-source guidance with missing compatibility support disclosed; no asserted repair or unsupported downgrade instruction.",
+        "retrieve_more": "Seek the missing version-specific dependency/CLI contract within the existing refinement budget.",
+        "escalate": "Preserve exact error/runtime facts and failed checks; a safe fallback is not automatically useful or the preferred ambiguity resolution."
+      },
+      "source_gaps": [
+        "Whether actual evidence documents the relevant Click/Streamlit/PDM compatibility or a supported repair."
+      ],
+      "must_not_reask": [
+        "streamlit_version",
+        "python_version",
+        "pdm_version",
+        "operating_system",
+        "browser",
+        "launch_command",
+        "reported_code",
+        "click_runtime_details",
+        "click_version",
+        "click_module_path"
+      ],
+      "specific_failures": [
+        "Treat a CORS/XSRF warning as the proved cause of the AttributeError, or recommend disabling protection from that warning alone.",
+        "Repeat Click8.0.0/7.1.2 or Streamlit1.8.0 downgrade trials as if untried successful fixes.",
+        "Assume a current Click version from an earlier attempted downgrade."
+      ]
+    },
+    {
+      "scenario_id": "dev-e-5618",
+      "case_id": "dev-e-5618",
+      "turn_id": "initial",
+      "current_state_provenance": {
+        "kind": "curated_cached_report_input",
+        "authored_counterfactual": false,
+        "actual_thread_reply": false,
+        "automatically_consumed_model_reply": false
+      },
+      "known_current_user_facts": {
+        "streamlit_version": "1.11.1",
+        "launch_command": "python app.py",
+        "execution_mode": "direct Python/debugger invocation without the Streamlit CLI",
+        "reported_warning": "Session state does not function when running a script without streamlit run",
+        "reported_observation": "The test Session State entry does not appear when the short reproduction iterates over the state."
+      },
+      "known_current_checks": [
+        "Ran the complete short reproduction directly through the debugger Python interpreter; warning and missing entry were observed."
+      ],
+      "registered_user_gaps": [],
+      "source_gaps_are_separate": true,
+      "evidence_review_rules": [
+        "Answer only to the extent actual source text and current USER facts support it; label inference and applicability limits.",
+        "A concrete, qualified investigation/handoff is acceptable when documentary support is missing; it is not a verified fix.",
+        "One bounded retrieval refinement may be appropriate within existing engine limits; the study supplies the same complete frozen evidence pool, not a new RAG search."
+      ],
+      "human_usefulness": null,
+      "authored_counterfactual": false,
+      "source_support_and_usefulness_review_pending": true,
+      "stratum": "potentially_documented_bare_launch",
+      "preferred_next_step": "Use the reported direct-Python launch and explicit warning for source-supported qualified explanation/investigation; all key initial user details are given.",
+      "acceptable_decisions": [
+        "answer",
+        "retrieve_more",
+        "escalate"
+      ],
+      "decision_conditions": {
+        "answer": "Only actual-source-supported explanation or a qualified next investigation; after correction do not claim the current process is still launched with bare Python.",
+        "retrieve_more": "Investigate the corrected/current launch context and historical1.11.1 applicability rather than manufacturing a missing fact.",
+        "escalate": "Document the reproduction, current command and warning contradiction without inventing a runtime cause."
+      },
+      "source_gaps": [
+        "Actual evidence establishing the relevant Session State/runtime behavior and its applicability to1.11.1."
+      ],
+      "must_not_reask": [
+        "streamlit_version",
+        "launch_command",
+        "execution_mode",
+        "reported_code",
+        "reported_warning"
+      ],
+      "retired_current_facts": {},
+      "specific_failures": [
+        "Present the user-proposed st.session_state={} monkeypatch as documented remediation.",
+        "After update, repeat the superseded direct-Python description as a current fact or dismiss the supplied observation as impossible.",
+        "Promise launching with the CLI will fix the updated observation."
+      ]
+    },
+    {
+      "scenario_id": "dev-e-5618",
+      "case_id": "dev-e-5618",
+      "turn_id": "update",
+      "current_state_provenance": {
+        "kind": "authored_counterfactual_current_state_update",
+        "authored_counterfactual": true,
+        "actual_thread_reply": false,
+        "automatically_consumed_model_reply": false
+      },
+      "known_current_user_facts": {
+        "streamlit_version": "1.11.1",
+        "launch_command": "streamlit run app.py",
+        "execution_mode": "verified Streamlit CLI invocation",
+        "reported_warning": "Session state does not function when running a script without streamlit run",
+        "reported_observation": "The test Session State entry still does not appear in the same short reproduction."
+      },
+      "known_current_checks": [
+        "Verified the current launch command is streamlit run app.py; the same warning and missing entry remain."
+      ],
+      "registered_user_gaps": [],
+      "source_gaps_are_separate": true,
+      "evidence_review_rules": [
+        "Answer only to the extent actual source text and current USER facts support it; label inference and applicability limits.",
+        "A concrete, qualified investigation/handoff is acceptable when documentary support is missing; it is not a verified fix.",
+        "One bounded retrieval refinement may be appropriate within existing engine limits; the study supplies the same complete frozen evidence pool, not a new RAG search."
+      ],
+      "human_usefulness": null,
+      "authored_counterfactual": true,
+      "source_support_and_usefulness_review_pending": true,
+      "stratum": "corrected_launch_source_gap",
+      "preferred_next_step": "Retire the bare-launch diagnosis. Treat verified Streamlit CLI launch plus persistent warning as unresolved; preserve uncertainty and suggest a concrete source-qualified investigation/handoff.",
+      "acceptable_decisions": [
+        "answer",
+        "retrieve_more",
+        "escalate"
+      ],
+      "decision_conditions": {
+        "answer": "Only actual-source-supported explanation or a qualified next investigation; after correction do not claim the current process is still launched with bare Python.",
+        "retrieve_more": "Investigate the corrected/current launch context and historical1.11.1 applicability rather than manufacturing a missing fact.",
+        "escalate": "Document the reproduction, current command and warning contradiction without inventing a runtime cause."
+      },
+      "source_gaps": [
+        "Current-source support for historical1.11.1 behavior and whether it explains the observed launch context.",
+        "After correction, no established source-backed cause of the warning persisting under a verified CLI invocation."
+      ],
+      "must_not_reask": [
+        "streamlit_version",
+        "launch_command",
+        "execution_mode",
+        "reported_code",
+        "reported_warning"
+      ],
+      "retired_current_facts": {
+        "launch_command": "python app.py",
+        "execution_mode": "direct Python/debugger invocation without the Streamlit CLI"
+      },
+      "specific_failures": [
+        "Present the user-proposed st.session_state={} monkeypatch as documented remediation.",
+        "After update, repeat the superseded direct-Python description as a current fact or dismiss the supplied observation as impossible.",
+        "Promise launching with the CLI will fix the updated observation."
+      ]
+    },
+    {
+      "scenario_id": "dev-f-7206",
+      "case_id": "dev-f-7206",
+      "turn_id": "initial",
+      "current_state_provenance": {
+        "kind": "curated_cached_report_input",
+        "authored_counterfactual": false,
+        "actual_thread_reply": false,
+        "automatically_consumed_model_reply": false
+      },
+      "known_current_user_facts": {
+        "streamlit_version": "1.25.0",
+        "streamlit_authenticator_version": "0.2.2",
+        "python_version": "3.10.11",
+        "operating_system": "Fedora 36",
+        "browser": "Firefox",
+        "launch_command": "streamlit run test.py",
+        "restart_browser_behavior": "The pre-restart browser tab can show the generated widget-id KeyError; a newly opened tab runs normally.",
+        "reported_error": "KeyError for a generated $$WIDGET_ID-...-None Session State key after server restart"
+      },
+      "known_current_checks": [
+        "Kept the existing browser tab open while stopping and restarting the server; the error reproduced.",
+        "Observed a newly opened tab running normally.",
+        "Observed the error log before the restarted run printed Importing Authenticator; this does not establish causality.",
+        "Reported Streamlit 1.18.0 trial did not show the error; this is not a verified general fix."
+      ],
+      "registered_user_gaps": [],
+      "source_gaps_are_separate": true,
+      "evidence_review_rules": [
+        "Answer only to the extent actual source text and current USER facts support it; label inference and applicability limits.",
+        "A concrete, qualified investigation/handoff is acceptable when documentary support is missing; it is not a verified fix.",
+        "One bounded retrieval refinement may be appropriate within existing engine limits; the study supplies the same complete frozen evidence pool, not a new RAG search."
+      ],
+      "human_usefulness": null,
+      "authored_counterfactual": false,
+      "source_support_and_usefulness_review_pending": true,
+      "stratum": "user_complete_restart_and_third_party_source_gap",
+      "preferred_next_step": "Preserve the complete supplied environment, restart checks and old/new-tab distinction; use source-qualified investigation or handoff without a confirmed cause.",
+      "acceptable_decisions": [
+        "answer",
+        "retrieve_more",
+        "escalate"
+      ],
+      "decision_conditions": {
+        "answer": "A qualified source-supported partial investigation, not an invented concurrency/authenticator diagnosis or verified upgrade fix.",
+        "retrieve_more": "Seek appropriate runtime/restart/dependency documents without using the same Issue answers/direct fix notes.",
+        "escalate": "Carry current versions, complete reproduction, timing observation and tried downgrade; user facts are already available."
+      },
+      "source_gaps": [
+        "No established documentary cause/fix for this current Streamlit/authenticator restart observation.",
+        "Version-specific runtime and third-party compatibility applicability remains to be established from actual supplied sources."
+      ],
+      "must_not_reask": [
+        "streamlit_version",
+        "streamlit_authenticator_version",
+        "python_version",
+        "operating_system",
+        "browser",
+        "reported_code",
+        "launch_command",
+        "restart_browser_behavior"
+      ],
+      "retired_current_facts": {},
+      "specific_failures": [
+        "Convert observed log ordering into proof that authenticator is unrelated or that concurrency is the cause.",
+        "Ask again whether only an old browser tab is affected, whether restarting was tried, or whether1.18.0 was tested.",
+        "Read or quote the linked same-case2023release-note answer segment as independent evidence.",
+        "After update, use1.25.0 as the current version or silently lose unchanged Python/OS/browser/authenticator facts."
+      ]
+    },
+    {
+      "scenario_id": "dev-f-7206",
+      "case_id": "dev-f-7206",
+      "turn_id": "update",
+      "current_state_provenance": {
+        "kind": "authored_counterfactual_current_state_update",
+        "authored_counterfactual": true,
+        "actual_thread_reply": false,
+        "automatically_consumed_model_reply": false
+      },
+      "known_current_user_facts": {
+        "streamlit_version": "1.25.1",
+        "streamlit_authenticator_version": "0.2.2",
+        "python_version": "3.10.11",
+        "operating_system": "Fedora 36",
+        "browser": "Firefox",
+        "launch_command": "streamlit run test.py",
+        "restart_browser_behavior": "After the corrected-version rerun, the pre-restart tab still shows the generated widget-id KeyError; a newly opened tab works.",
+        "reported_error": "KeyError for a generated $$WIDGET_ID-...-None Session State key after server restart"
+      },
+      "known_current_checks": [
+        "Reran the same restart procedure under the corrected Streamlit 1.25.1 version; old-tab/new-tab behavior is unchanged."
+      ],
+      "registered_user_gaps": [],
+      "source_gaps_are_separate": true,
+      "evidence_review_rules": [
+        "Answer only to the extent actual source text and current USER facts support it; label inference and applicability limits.",
+        "A concrete, qualified investigation/handoff is acceptable when documentary support is missing; it is not a verified fix.",
+        "One bounded retrieval refinement may be appropriate within existing engine limits; the study supplies the same complete frozen evidence pool, not a new RAG search."
+      ],
+      "human_usefulness": null,
+      "authored_counterfactual": true,
+      "source_support_and_usefulness_review_pending": true,
+      "stratum": "user_complete_restart_and_third_party_source_gap",
+      "preferred_next_step": "Preserve the complete supplied environment, restart checks and old/new-tab distinction; use source-qualified investigation or handoff without a confirmed cause.",
+      "acceptable_decisions": [
+        "answer",
+        "retrieve_more",
+        "escalate"
+      ],
+      "decision_conditions": {
+        "answer": "A qualified source-supported partial investigation, not an invented concurrency/authenticator diagnosis or verified upgrade fix.",
+        "retrieve_more": "Seek appropriate runtime/restart/dependency documents without using the same Issue answers/direct fix notes.",
+        "escalate": "Carry current versions, complete reproduction, timing observation and tried downgrade; user facts are already available."
+      },
+      "source_gaps": [
+        "No established documentary cause/fix for this current Streamlit/authenticator restart observation.",
+        "Version-specific runtime and third-party compatibility applicability remains to be established from actual supplied sources."
+      ],
+      "must_not_reask": [
+        "streamlit_version",
+        "streamlit_authenticator_version",
+        "python_version",
+        "operating_system",
+        "browser",
+        "reported_code",
+        "launch_command",
+        "restart_browser_behavior"
+      ],
+      "retired_current_facts": {
+        "streamlit_version": "1.25.0"
+      },
+      "specific_failures": [
+        "Convert observed log ordering into proof that authenticator is unrelated or that concurrency is the cause.",
+        "Ask again whether only an old browser tab is affected, whether restarting was tried, or whether1.18.0 was tested.",
+        "Read or quote the linked same-case2023release-note answer segment as independent evidence.",
+        "After update, use1.25.0 as the current version or silently lose unchanged Python/OS/browser/authenticator facts."
+      ]
+    },
+    {
+      "scenario_id": "dev-g-9487",
+      "case_id": "dev-g-9487",
+      "turn_id": "initial",
+      "current_state_provenance": {
+        "kind": "curated_cached_report_input",
+        "authored_counterfactual": false,
+        "actual_thread_reply": false,
+        "automatically_consumed_model_reply": false
+      },
+      "known_current_user_facts": {
+        "streamlit_version": "1.38",
+        "python_version": "3.12.5",
+        "operating_system": "Windows 11 23H2",
+        "browser": "Chrome 128",
+        "reported_visual_observation": "Faded duplicate widgets appear on the first click during the three-second run; persistence after completion has not yet been checked.",
+        "reported_error": "No error message was observed."
+      },
+      "known_current_checks": [
+        "Clicked the three-second sleep button in both reported layouts and observed faded widget copies."
+      ],
+      "registered_user_gaps": [
+        "visual_persistence"
+      ],
+      "source_gaps_are_separate": true,
+      "evidence_review_rules": [
+        "Answer only to the extent actual source text and current USER facts support it; label inference and applicability limits.",
+        "A concrete, qualified investigation/handoff is acceptable when documentary support is missing; it is not a verified fix.",
+        "One bounded retrieval refinement may be appropriate within existing engine limits; the study supplies the same complete frozen evidence pool, not a new RAG search."
+      ],
+      "human_usefulness": null,
+      "authored_counterfactual": false,
+      "source_support_and_usefulness_review_pending": true,
+      "stratum": "ambiguous_visual_persistence",
+      "preferred_next_step": "Ask only the registered visual_persistence question to distinguish a transient run display from persistent duplication.",
+      "acceptable_decisions": [
+        "ask",
+        "answer",
+        "retrieve_more",
+        "escalate"
+      ],
+      "decision_conditions": {
+        "ask": "Only visual_persistence while unconfirmed; no unnecessary repeat of code, browser, environment or raw version.",
+        "answer": "Actual-source-supported partial guidance with transient/persistent scope and version uncertainty preserved; not a verified state/event duplication diagnosis.",
+        "retrieve_more": "Seek lifecycle/display evidence relevant to the actual observation.",
+        "escalate": "Retain user observations, code and version scope; safe fallback is not automatically the preferred handling of a directly answerable clarification."
+      },
+      "source_gaps": [
+        "No source-backed proof of cause or repair for visual fading/duplication in the reported environment.",
+        "The reported1.38 string does not itself supply an exact patch version; do not manufacture exact patch applicability."
+      ],
+      "must_not_reask": [
+        "reported_code",
+        "python_version",
+        "operating_system",
+        "browser",
+        "reported_error"
+      ],
+      "version_scope_note": "Preserve raw reported Streamlit1.38. No authored patch number is added in either state.",
+      "specific_failures": [
+        "Infer duplicated Python values/events/callback execution solely from faded UI copies.",
+        "After update, describe the duplicates as persistent or ask again whether they disappear after the run.",
+        "Invent a cache-data/columns bug, guaranteed timing workaround or successful runtime fix without source support."
+      ]
+    },
+    {
+      "scenario_id": "dev-g-9487",
+      "case_id": "dev-g-9487",
+      "turn_id": "update",
+      "current_state_provenance": {
+        "kind": "authored_counterfactual_current_state_update",
+        "authored_counterfactual": true,
+        "actual_thread_reply": false,
+        "automatically_consumed_model_reply": false
+      },
+      "known_current_user_facts": {
+        "streamlit_version": "1.38",
+        "python_version": "3.12.5",
+        "operating_system": "Windows 11 23H2",
+        "browser": "Chrome 128",
+        "reported_visual_observation": "Faded copies are visible while the three-second run executes and disappear when it finishes.",
+        "reported_error": "No error message was observed.",
+        "visual_persistence": "Transient only: faded copies disappear after the run finishes; none remain afterward."
+      },
+      "known_current_checks": [
+        "Observed the complete three-second run and verified that faded copies disappear after completion."
+      ],
+      "registered_user_gaps": [],
+      "source_gaps_are_separate": true,
+      "evidence_review_rules": [
+        "Answer only to the extent actual source text and current USER facts support it; label inference and applicability limits.",
+        "A concrete, qualified investigation/handoff is acceptable when documentary support is missing; it is not a verified fix.",
+        "One bounded retrieval refinement may be appropriate within existing engine limits; the study supplies the same complete frozen evidence pool, not a new RAG search."
+      ],
+      "human_usefulness": null,
+      "authored_counterfactual": true,
+      "source_support_and_usefulness_review_pending": true,
+      "stratum": "transient_visual_observation_source_gap",
+      "preferred_next_step": "Use the confirmed transient-only observation; provide bounded source-supported explanation/investigation and do not ask the same question again.",
+      "acceptable_decisions": [
+        "answer",
+        "retrieve_more",
+        "escalate"
+      ],
+      "decision_conditions": {
+        "ask": "Only visual_persistence while unconfirmed; no unnecessary repeat of code, browser, environment or raw version.",
+        "answer": "Actual-source-supported partial guidance with transient/persistent scope and version uncertainty preserved; not a verified state/event duplication diagnosis.",
+        "retrieve_more": "Seek lifecycle/display evidence relevant to the actual observation.",
+        "escalate": "Retain user observations, code and version scope; safe fallback is not automatically the preferred handling of a directly answerable clarification."
+      },
+      "source_gaps": [
+        "No source-backed proof of cause or repair for visual fading/duplication in the reported environment.",
+        "The reported1.38 string does not itself supply an exact patch version; do not manufacture exact patch applicability."
+      ],
+      "must_not_reask": [
+        "reported_code",
+        "python_version",
+        "operating_system",
+        "browser",
+        "reported_error",
+        "visual_persistence"
+      ],
+      "version_scope_note": "Preserve raw reported Streamlit1.38. No authored patch number is added in either state.",
+      "specific_failures": [
+        "Infer duplicated Python values/events/callback execution solely from faded UI copies.",
+        "After update, describe the duplicates as persistent or ask again whether they disappear after the run.",
+        "Invent a cache-data/columns bug, guaranteed timing workaround or successful runtime fix without source support."
+      ]
+    }
+  ],
+  "reviewer": "unblinded assistant with input-authoring/implementation overlap",
+  "review_criteria_and_future_current_states_must_not_enter_model_payload": true
+}

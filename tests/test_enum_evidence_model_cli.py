@@ -164,42 +164,12 @@ def test_cleanup_requires_exact_scope_digest_and_authorization(cli):
 
 @pytest.fixture
 def method_inputs(tmp_path, monkeypatch, multiple_holds):
+    from registered_native_inputs import registered_method_inputs
+
     module = _module(monkeypatch)
-    ledger, path, _ = multiple_holds
-    root = tmp_path / "synthetic-method-inputs"
-    paths = [p.relative_to(ROOT) for p in (ROOT / "data/evaluation/dev-three-v1").rglob("*.json")]
-    protected = controls._read(ROOT / module.FOLDER / "protected-inputs-v1.json")
-    paths += [Path(name) for name in protected["files"]]
-    paths += [
-        module.FOLDER / "protocol-v1.json",
-        module.FOLDER / "capacity-amendment-v1.json",
-        module.FOLDER / "offline-boundary-initial-v1.json",
-        module.FOLDER / "source-packet-v1.json",
-        module.FOLDER / "offline-boundary-review-v1.json",
-        module.FOLDER / "semantic-review-preparation-v1.json",
-        module.FOLDER / "protected-inputs-v1.json",
-        module.PARENT_FOLDER / "protocol-v1.json",
-        module.PARENT_FOLDER / "model-live-receipt-v1.json",
-        Path("experiments/core_quality_followup/quarantine-scope-protocol-v1.json"),
-        Path("docs/pr55-evidence-review.fa.md"),
-        Path("scripts/core_enum_evidence_probe.py"),
-        Path("scripts/core_repeat_model_probe.py"),
-        Path("src/agent_app/testing/enum_evidence.py"),
-    ]
-    for relative in set(paths):
-        destination = root / relative
-        destination.parent.mkdir(parents=True, exist_ok=True)
-        original = ROOT / relative
-        destination.write_bytes(
-            original.read_bytes() if original.is_file() else b'{"accepted":true,"actual_sends":0}'
-        )
-    policy = root / "experiments/core_quality_followup/quarantine-scope-protocol-v1.json"
-    value = json.loads(policy.read_bytes())
-    value["known_uncertain_request_ids"] = list(ledger.quarantine_observation().unknown_ids)
-    policy.write_text(json.dumps(value))
-    fixtures = module.fixtures_for(ROOT, {"protocol_id": "core-stability-v1"})
-    monkeypatch.setattr(module, "fixtures_for", lambda *_args: fixtures)
-    return module, root, path, fixtures
+    root = tmp_path / "synthetic-registered-inputs"
+    value = registered_method_inputs(module, ROOT, root, monkeypatch, multiple_holds)
+    return value
 
 
 def test_fresh_controlled_method_has_exact48_fresh_slots_and_no_native_retriever(method_inputs):

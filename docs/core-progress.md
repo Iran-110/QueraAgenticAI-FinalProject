@@ -1,3 +1,42 @@
+## 2026-10-15 — C4i/E2v: broader fixed-snapshot dev and unsupported concise Enum prose
+
+[Result, data boundaries and next work](broader-dev-quality.fa.md). The existing
+GroundedPlan and existing compiled AnalysisResult pipelines were compared on
+seven exposed families/eight conditions/16 distinct current snapshots, with two
+balanced repetitions:64 invocations,75 settled sends,60 pending proposals and
+four retained ModelOutputInvalid errors. No approval/release/action was performed;
+current snapshots are not automatically consumed replies or successful routes.
+No production default/factory/prompt/renderer/public contract was changed.
+
+Compiled Enum-guide drafts have median718.5 versus14494 quote-control characters,
+but the preregistered complete explanation criterion fails0/4 in both arms.
+Unsupported cause/fix certainty, widget-coercion advice for widget-free state,
+version extrapolation and source-poor withheld explanations prevent promotion.
+Broader cases expose known-fact re-asks, unsupported launch/restart/rendering
+claims and four rejected finals. Full parsed candidates/all surfaces are reviewed;
+human usefulness remains null. Source-faithful quotation alone is not routing or
+usefulness success. This is fixed-evidence dev, not real RAG or final test quality.
+
+Preparation failures are preserved. Unsupported49152 registration was rejected
+before paid calls; a prospective amendment retains32768/2048 and existing guards.
+An initial Chroma read rewrote two native files. Original17/19 physical matches
+and2 drifts are explicit, not restored;182 independent logical controls match all
+18 sources/36 chunks/metadata/vectors/exclusions. A new current19 physical epoch
+was prospectively pinned before method/API; subsequent native reads use copies.
+Original fixtures/gold/manifests and guide exclusion remain unchanged. Four new
+families and all six inspected reports are supplementary exposed dev outside all
+reserved15/15 components, not a replacement split or unseen test.
+
+Cost/source review3027 controls preserves591 prior reservations/all14tables,
+old holds/halt/4.50 ceiling. Fresh local estimateUSD0.074765295; cumulative
+USD0.548204250 plus oldUSD0.0233792 uncertain hold.16 scopes closed,53 unused
+slots permanently claimed; no new uncertainty/pending.75 actual wires omit
+response_format; this is no JSON-mode verdict or invoice reconciliation.
+4981pytest/Ruff337files/three demos/fixtureHTTP-SQLite457 pass locally.
+Historical registry unit tests now register explicit invalid-as-Chroma synthetic
+storage in temporary roots, preserving real production guards and old artifact
+bytes; native corpus proof is separate. Hosted CI remains billing-blocked.
+
 ## 2026-10-15 — C4h9/C4h9b: complementary-source selection and order diagnostic
 
 [Result and integration boundaries](complementary-sources.fa.md). Two fresh

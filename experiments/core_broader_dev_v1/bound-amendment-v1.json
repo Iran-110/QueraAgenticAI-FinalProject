@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "amendment_id": "core-broader-dev-operational-bound-v1",
+  "protocol_path": "experiments/core_broader_dev_v1/protocol-v1.json",
+  "protocol_sha256": "504d34bac87142adf9a09b2ab56117d3c752ea7b6b306b2a89ba61acf003b3f6",
+  "registered_before_paid_calls": true,
+  "registered_after_initial_implementation_started": true,
+  "observation": "Static construction of the new49152input config/slots was rejected by existing MetisConfig and quarantine full-context maximum32768 before any paid call, reservation, scope, key lookup or actual transport. This was a registration error, not a provider context failure. Preserve original protocol unchanged.",
+  "original_declared_live_values": {
+    "input_token_reserve": 49152,
+    "max_output_tokens": 2048,
+    "scope_cap_usd": "0.08",
+    "campaign_cap_usd": "1.28"
+  },
+  "effective_live_overrides": {
+    "input_token_reserve": 32768,
+    "max_output_tokens": 2048,
+    "scope_cap_usd": "0.06",
+    "campaign_cap_usd": "0.96"
+  },
+  "guard_or_pricing_changes": false,
+  "source_or_case_record_cropping": false,
+  "original_index_gold_exclusion_changes": false,
+  "original_protocol_rewritten": false,
+  "model_calls": 0,
+  "actual_sends": 0,
+  "real_ledger_mutations": 0,
+  "pending_requirement": "All16full current snapshots and authored invalid-shape repair payloads must fit32768beforekey/reservation. Preserve any overflow and stop preparation rather than silently removing source text or raising guards.",
+  "all_other_registered_design_criteria_and_denominators_unchanged": true
+}

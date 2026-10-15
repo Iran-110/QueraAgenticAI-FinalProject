@@ -1,0 +1,449 @@
+{
+  "schema_version": 1,
+  "packet_id": "supplemental-core-dev-inputs-v1",
+  "protocol_path": "experiments/core_broader_dev_v1/protocol-v1.json",
+  "protocol_sha256": "504d34bac87142adf9a09b2ab56117d3c752ea7b6b306b2a89ba61acf003b3f6",
+  "scope": "Four supplemental exposed development families; current-state inputs, not final split/gold or actual conversation replies.",
+  "source": {
+    "catalog_path": "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+    "catalog_sha256": "0410c294a110e79f075d99f2516fa6f8dc4ddddcf6243eb55e6e4b9f5bf45a5e",
+    "snapshot_date": "2026-10-06",
+    "original_initial_text_verified": false
+  },
+  "user_gap_vocabulary": {
+    "schema_version": 1,
+    "user_gaps": [
+      {
+        "name": "click_runtime_details",
+        "kind": "user",
+        "description": "The actual Click version and module path resolved by the current PDM invocation are unknown.",
+        "necessity": "Earlier downgrade trials do not establish what the current process imports; the user can inspect its runtime package identity.",
+        "question": "Which Click version and module path does the same PDM invocation actually import?"
+      },
+      {
+        "name": "visual_persistence",
+        "kind": "user",
+        "description": "It is not yet confirmed whether the faded visual copies persist after the current run finishes.",
+        "necessity": "The user can observe completion; this distinguishes a transient execution display from a persistent visual defect without guessing a root cause.",
+        "question": "Do the faded widget copies disappear when the three-second run finishes, or remain afterward?"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "scenario_id": "dev-d-4713",
+      "case_id": "dev-d-4713",
+      "origin": {
+        "issue_number": 4713,
+        "source_url": "https://github.com/streamlit/streamlit/issues/4713",
+        "catalog_path": "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+        "catalog_line": 69,
+        "catalog_sha256": "0410c294a110e79f075d99f2516fa6f8dc4ddddcf6243eb55e6e4b9f5bf45a5e",
+        "raw_line_sha256": "63d48c3648fd2e530bddfe0407e90317d941aa47d2d2691261869c71c7a8c330",
+        "body_utf8_sha256": "0d89041bdfad592cf10fd27f535b276936fb438c33f634d14fb3ee696fedd362",
+        "source_created_at": "2022-05-10T10:25:30Z",
+        "source_updated_at": "2022-05-17T06:24:14Z",
+        "original_initial_text_verified": false,
+        "curation_kind": "developer_paraphrase_of_latest_cached_report_with_reported_code",
+        "comments_read": false,
+        "outcome_or_answer_comments_used": false,
+        "user_report_is_not_documentary_evidence": true
+      },
+      "turns": [
+        {
+          "id": "initial",
+          "provenance": {
+            "kind": "curated_cached_report_input",
+            "authored_counterfactual": false,
+            "actual_thread_reply": false,
+            "automatically_consumed_model_reply": false
+          },
+          "visible": {
+            "message": "My app fails before opening when I launch it with `pdm run streamlit run uber_pickups.py` from the VS Code terminal. The small script is:\n\n```python\nimport streamlit as st\nimport pandas as pd\nimport numpy as np\n\nst.title('Uber pickups in NYC')\n```\n\nThe traceback ends inside Streamlit's `_get_command_line_as_string` at `click.get_os_args()` with `AttributeError: module 'click' has no attribute 'get_os_args'`. It also prints a CORS/XSRF configuration warning before the traceback. My reported environment is Streamlit 1.9.0, Python 3.10.2, PDM 1.14.1, macOS Monterey 12.3.1 and Safari 15.4. I already tried Click 8.0.0 and 7.1.2 and a Streamlit 1.8.0 downgrade; those attempts did not solve it. I have not checked which Click installation the current PDM process actually imports.",
+            "reported_facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.9.0"
+              },
+              {
+                "name": "python_version",
+                "value": "3.10.2"
+              },
+              {
+                "name": "pdm_version",
+                "value": "1.14.1"
+              },
+              {
+                "name": "operating_system",
+                "value": "macOS Monterey 12.3.1"
+              },
+              {
+                "name": "browser",
+                "value": "Safari 15.4"
+              },
+              {
+                "name": "launch_command",
+                "value": "pdm run streamlit run uber_pickups.py"
+              },
+              {
+                "name": "reported_error",
+                "value": "AttributeError: module 'click' has no attribute 'get_os_args'"
+              }
+            ],
+            "unknowns": [
+              "click_runtime_details"
+            ],
+            "checks_performed": [
+              "Tried Click 8.0.0 and 7.1.2; reported failure persisted.",
+              "Tried Streamlit 1.8.0; reported failure persisted."
+            ],
+            "context_changed": false
+          }
+        },
+        {
+          "id": "update",
+          "provenance": {
+            "kind": "authored_counterfactual_current_state_update",
+            "authored_counterfactual": true,
+            "actual_thread_reply": false,
+            "automatically_consumed_model_reply": false
+          },
+          "visible": {
+            "message": "I checked the interpreter used by that same PDM command: it imports Click 8.1.3 from `/opt/homebrew/lib/python3.10/site-packages/click/__init__.py`. Streamlit is still 1.9.0 in this run. The same `click.get_os_args` AttributeError remains. These are the currently verified runtime details; my earlier downgrade attempts were unsuccessful trials, not the current Click version.",
+            "reported_facts": [
+              {
+                "name": "click_runtime_details",
+                "value": "Click 8.1.3 imported from /opt/homebrew/lib/python3.10/site-packages/click/__init__.py in the same PDM invocation"
+              },
+              {
+                "name": "click_version",
+                "value": "8.1.3"
+              },
+              {
+                "name": "click_module_path",
+                "value": "/opt/homebrew/lib/python3.10/site-packages/click/__init__.py"
+              },
+              {
+                "name": "streamlit_version",
+                "value": "1.9.0"
+              }
+            ],
+            "unknowns": [],
+            "checks_performed": [
+              "Verified current Click version and module path inside the same PDM invocation; the reported AttributeError persists."
+            ],
+            "context_changed": false
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "dev-e-5618",
+      "case_id": "dev-e-5618",
+      "origin": {
+        "issue_number": 5618,
+        "source_url": "https://github.com/streamlit/streamlit/issues/5618",
+        "catalog_path": "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+        "catalog_line": 85,
+        "catalog_sha256": "0410c294a110e79f075d99f2516fa6f8dc4ddddcf6243eb55e6e4b9f5bf45a5e",
+        "raw_line_sha256": "20de744da822ebac9b5d3ac07a0a8b12bf500148b0854798d0435a13090b0b91",
+        "body_utf8_sha256": "1342d5c8c995d19fe24f9b8e415f307edf9f6ee38e541b9c2997d3ad024cc1c3",
+        "source_created_at": "2022-10-28T09:52:15Z",
+        "source_updated_at": "2022-11-15T17:00:16Z",
+        "original_initial_text_verified": false,
+        "curation_kind": "developer_paraphrase_of_latest_cached_report_with_reported_code",
+        "comments_read": false,
+        "outcome_or_answer_comments_used": false,
+        "user_report_is_not_documentary_evidence": true
+      },
+      "turns": [
+        {
+          "id": "initial",
+          "provenance": {
+            "kind": "curated_cached_report_input",
+            "authored_counterfactual": false,
+            "actual_thread_reply": false,
+            "automatically_consumed_model_reply": false
+          },
+          "visible": {
+            "message": "When I debug this script by running it directly with Python, the Session State entry is absent when I iterate over it. This is the complete short reproduction:\n\n```python\nimport streamlit as st\nprint(f'Version: {st.__version__}')\nst.session_state['test'] = 'present'\nprint('Keys:')\nfor k, v in st.session_state.items():\n    print(f'{k} = {v}')\nprint('Done')\n```\n\nThe printed Streamlit version is 1.11.1. The output prints `Keys:` and `Done`, without the `test = present` entry, and logs `Session state does not function when running a script without streamlit run`. I launched the script directly through the debugger's Python interpreter, rather than with the Streamlit CLI. Can you help me understand what I should investigate?",
+            "reported_facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.11.1"
+              },
+              {
+                "name": "launch_command",
+                "value": "python app.py"
+              },
+              {
+                "name": "execution_mode",
+                "value": "direct Python/debugger invocation without the Streamlit CLI"
+              },
+              {
+                "name": "reported_warning",
+                "value": "Session state does not function when running a script without streamlit run"
+              },
+              {
+                "name": "reported_observation",
+                "value": "The test Session State entry does not appear when the short reproduction iterates over the state."
+              }
+            ],
+            "unknowns": [],
+            "checks_performed": [
+              "Ran the complete short reproduction directly through the debugger Python interpreter; warning and missing entry were observed."
+            ],
+            "context_changed": false
+          }
+        },
+        {
+          "id": "update",
+          "provenance": {
+            "kind": "authored_counterfactual_current_state_update",
+            "authored_counterfactual": true,
+            "actual_thread_reply": false,
+            "automatically_consumed_model_reply": false
+          },
+          "visible": {
+            "message": "Correction to my launch details: I verified that the current command is `streamlit run app.py`, not `python app.py`. Streamlit is still 1.11.1, and the same short script, warning and missing Session State entry are observed. Please use this verified current launch command instead of the earlier direct-Python description.",
+            "reported_facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.11.1"
+              },
+              {
+                "name": "launch_command",
+                "value": "streamlit run app.py"
+              },
+              {
+                "name": "execution_mode",
+                "value": "verified Streamlit CLI invocation"
+              },
+              {
+                "name": "reported_warning",
+                "value": "Session state does not function when running a script without streamlit run"
+              },
+              {
+                "name": "reported_observation",
+                "value": "The test Session State entry still does not appear in the same short reproduction."
+              }
+            ],
+            "unknowns": [],
+            "checks_performed": [
+              "Verified the current launch command is streamlit run app.py; the same warning and missing entry remain."
+            ],
+            "context_changed": true
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "dev-f-7206",
+      "case_id": "dev-f-7206",
+      "origin": {
+        "issue_number": 7206,
+        "source_url": "https://github.com/streamlit/streamlit/issues/7206",
+        "catalog_path": "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+        "catalog_line": 121,
+        "catalog_sha256": "0410c294a110e79f075d99f2516fa6f8dc4ddddcf6243eb55e6e4b9f5bf45a5e",
+        "raw_line_sha256": "f6fb4b094760534035ac22d8148bfeb5636aa693571682801897567d81c6efc7",
+        "body_utf8_sha256": "d9c7eeb17ab287ad27e2ce1de904e0aae551cc1966fa9ecb6c3ed6e35014e5af",
+        "source_created_at": "2023-08-19T18:09:27Z",
+        "source_updated_at": "2023-09-08T17:10:29Z",
+        "original_initial_text_verified": false,
+        "curation_kind": "developer_paraphrase_of_latest_cached_report_with_reported_code",
+        "comments_read": false,
+        "outcome_or_answer_comments_used": false,
+        "user_report_is_not_documentary_evidence": true
+      },
+      "turns": [
+        {
+          "id": "initial",
+          "provenance": {
+            "kind": "curated_cached_report_input",
+            "authored_counterfactual": false,
+            "actual_thread_reply": false,
+            "automatically_consumed_model_reply": false
+          },
+          "visible": {
+            "message": "A small Streamlit app with streamlit-authenticator works on its first server start. If I leave the browser tab open, stop the server with Ctrl+C and start it again, the old tab can show `KeyError: st.session_state has no key` for a generated `$$WIDGET_ID-...-None` key. A newly opened tab runs normally. The reported environment is Streamlit 1.25.0, streamlit-authenticator 0.2.2, Python 3.10.11, Fedora 36 and Firefox. I start it with `streamlit run test.py`. This is the reported reproduction code; the authentication values are public demo values from the cached report, not deployment credentials:\n\n```python\nimport time\r\nimport uuid\r\nfrom datetime import datetime\r\n\r\nexec_id = uuid.uuid4().hex[:6]\r\nprint(f'{exec_id} Rerunning page')\r\n\r\nprint(f'{exec_id} Importing streamlit')\r\nimport streamlit as st\r\n\r\nprint(f'{exec_id} Sleeping before import authenticator, {datetime.now()}')\r\ntime.sleep(5)\r\n\r\nprint(f'{exec_id} Importing Authenticator, {datetime.now()}')\r\nimport streamlit_authenticator as stauth\r\n\r\nauthenticator = stauth.Authenticate(\r\n    {'usernames': {'mateus': {'email': None, 'name': 'mateus', 'password': 2341234}}},\r\n    'st_debug_cookie',\r\n    'kjsdnfkjdsnjfknskd',\r\n    30,\r\n    {'emails': None}\r\n)\r\n\r\nname, authentication_status, username = authenticator.login('Login', 'main')\r\n\r\nif authentication_status:\r\n    st.write(f'Welcome *{name}*')\r\n    st.title('Some content')\r\nelif authentication_status is False:\r\n    st.error('Username/password is incorrect')\r\nelif authentication_status is None:\r\n    st.warning('Please enter your username and password')\n```\n\nThe steps were: wait for the initial browser run to finish, wait about 30 seconds, stop the server while keeping that tab open, then start it again. It may take more than one restart to reproduce. The logs show the error before the `Importing Authenticator` print on the restarted run. That timing is an observation, not a proven root cause. I do not call Streamlit caching functions in this reproduction. I tried Streamlit 1.18.0 and the reported error disappeared, but I do not want to remain on that old version.",
+            "reported_facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.25.0"
+              },
+              {
+                "name": "streamlit_authenticator_version",
+                "value": "0.2.2"
+              },
+              {
+                "name": "python_version",
+                "value": "3.10.11"
+              },
+              {
+                "name": "operating_system",
+                "value": "Fedora 36"
+              },
+              {
+                "name": "browser",
+                "value": "Firefox"
+              },
+              {
+                "name": "launch_command",
+                "value": "streamlit run test.py"
+              },
+              {
+                "name": "restart_browser_behavior",
+                "value": "The pre-restart browser tab can show the generated widget-id KeyError; a newly opened tab runs normally."
+              },
+              {
+                "name": "reported_error",
+                "value": "KeyError for a generated $$WIDGET_ID-...-None Session State key after server restart"
+              }
+            ],
+            "unknowns": [],
+            "checks_performed": [
+              "Kept the existing browser tab open while stopping and restarting the server; the error reproduced.",
+              "Observed a newly opened tab running normally.",
+              "Observed the error log before the restarted run printed Importing Authenticator; this does not establish causality.",
+              "Reported Streamlit 1.18.0 trial did not show the error; this is not a verified general fix."
+            ],
+            "context_changed": false
+          }
+        },
+        {
+          "id": "update",
+          "provenance": {
+            "kind": "authored_counterfactual_current_state_update",
+            "authored_counterfactual": true,
+            "actual_thread_reply": false,
+            "automatically_consumed_model_reply": false
+          },
+          "visible": {
+            "message": "Correction: the Streamlit version in the reproduction is 1.25.1, not 1.25.0. The authenticator remains 0.2.2 and the code, Python, OS, browser and restart procedure are unchanged. I reran that procedure: the old tab still shows the generated widget-id KeyError while a newly opened tab works.",
+            "reported_facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.25.1"
+              },
+              {
+                "name": "restart_browser_behavior",
+                "value": "After the corrected-version rerun, the pre-restart tab still shows the generated widget-id KeyError; a newly opened tab works."
+              }
+            ],
+            "unknowns": [],
+            "checks_performed": [
+              "Reran the same restart procedure under the corrected Streamlit 1.25.1 version; old-tab/new-tab behavior is unchanged."
+            ],
+            "context_changed": false
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "dev-g-9487",
+      "case_id": "dev-g-9487",
+      "origin": {
+        "issue_number": 9487,
+        "source_url": "https://github.com/streamlit/streamlit/issues/9487",
+        "catalog_path": "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+        "catalog_line": 157,
+        "catalog_sha256": "0410c294a110e79f075d99f2516fa6f8dc4ddddcf6243eb55e6e4b9f5bf45a5e",
+        "raw_line_sha256": "f7e0ad74d447ac6a393d7f7b29cc8da28bb49132df6e3ec88196a4716eb456d1",
+        "body_utf8_sha256": "07f9eaa90ec6b078bd7a8506226f08172d58383cb7cd7636442601afa3a53c1f",
+        "source_created_at": "2024-09-17T07:39:37Z",
+        "source_updated_at": "2025-05-05T16:15:45Z",
+        "original_initial_text_verified": false,
+        "curation_kind": "developer_paraphrase_of_latest_cached_report_with_reported_code",
+        "comments_read": false,
+        "outcome_or_answer_comments_used": false,
+        "user_report_is_not_documentary_evidence": true
+      },
+      "turns": [
+        {
+          "id": "initial",
+          "provenance": {
+            "kind": "curated_cached_report_input",
+            "authored_counterfactual": false,
+            "actual_thread_reply": false,
+            "automatically_consumed_model_reply": false
+          },
+          "visible": {
+            "message": "On the first click of a button that sleeps for three seconds, I see faded duplicate widgets. With the button inside a column, other widgets can appear duplicated too. There is no error message. I reported Streamlit version `1.38` (the exact patch was not recorded), Python 3.12.5, Windows 11 23H2 and Chrome 128. Here are both reported examples:\n\n```python\n============ test 1 ====================\r\nimport streamlit as st\r\nimport time\r\n\r\n@st.cache_data\r\ndef test():\r\n    return 'test'\r\n\r\nif \"bug\" not in st.session_state:\r\n    st.session_state.bug = test()\r\n    \r\nst.markdown(\"TEST BUG\")\r\nif st.button(\"sleep 3 second\"):\r\n    time.sleep(3)\r\n\r\n======= test 2 ===================\r\nimport streamlit as st\r\nimport time\r\n\r\n@st.cache_data\r\ndef test():\r\n    return 'test'\r\n\r\nif \"bug\" not in st.session_state:\r\n    st.session_state.bug = test()\r\n    \r\nst.markdown(\"TEST BUG\")\r\n\r\ncol = st.columns(2)\r\nwith col[0]:\r\n    st.text_area('text', value='bug')\r\n    st.toggle(\"Activate feature\")\r\nwith col[1]:\r\n    if st.button(\"sleep 3 second\"):\r\n            time.sleep(3)\n```\n\nI have not explicitly checked whether the faded copies remain after the run finishes. I am describing their visual appearance, not claiming that Python values or event handlers are duplicated.",
+            "reported_facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.38"
+              },
+              {
+                "name": "python_version",
+                "value": "3.12.5"
+              },
+              {
+                "name": "operating_system",
+                "value": "Windows 11 23H2"
+              },
+              {
+                "name": "browser",
+                "value": "Chrome 128"
+              },
+              {
+                "name": "reported_visual_observation",
+                "value": "Faded duplicate widgets appear on the first click during the three-second run; persistence after completion has not yet been checked."
+              },
+              {
+                "name": "reported_error",
+                "value": "No error message was observed."
+              }
+            ],
+            "unknowns": [
+              "visual_persistence"
+            ],
+            "checks_performed": [
+              "Clicked the three-second sleep button in both reported layouts and observed faded widget copies."
+            ],
+            "context_changed": false
+          }
+        },
+        {
+          "id": "update",
+          "provenance": {
+            "kind": "authored_counterfactual_current_state_update",
+            "authored_counterfactual": true,
+            "actual_thread_reply": false,
+            "automatically_consumed_model_reply": false
+          },
+          "visible": {
+            "message": "I checked the timing: the faded copies are transient. They disappear once the three-second run finishes; no duplicates remain afterward. The version report is still 1.38 and the code/environment are unchanged. I have not measured duplicate Python events or values, so please do not infer that from the visual effect.",
+            "reported_facts": [
+              {
+                "name": "visual_persistence",
+                "value": "Transient only: faded copies disappear after the run finishes; none remain afterward."
+              },
+              {
+                "name": "reported_visual_observation",
+                "value": "Faded copies are visible while the three-second run executes and disappear when it finishes."
+              }
+            ],
+            "unknowns": [],
+            "checks_performed": [
+              "Observed the complete three-second run and verified that faded copies disappear after completion."
+            ],
+            "context_changed": false
+          }
+        }
+      ]
+    }
+  ],
+  "boundaries": {
+    "source_code_executed": false,
+    "future_turns_in_initial_input": false,
+    "review_criteria_in_runtime_input": false,
+    "comments_or_outcomes_in_input": false,
+    "automatic_reply_or_release": false,
+    "final_test_eligible": false,
+    "original_split_or_reservations_modified": false,
+    "source_gaps_are_not_user_questions": true,
+    "human_usefulness": null
+  }
+}

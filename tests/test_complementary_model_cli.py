@@ -186,59 +186,12 @@ def test_zero_dispatch_wire_not_observed(cli, monkeypatch):
 
 @pytest.fixture
 def method_inputs(tmp_path, monkeypatch, multiple_holds):
+    from registered_native_inputs import registered_method_inputs
+
     module = _module(monkeypatch)
-    ledger, path, _ = multiple_holds
     root = tmp_path / "synthetic-registered-inputs"
-    protected = controls._read(ROOT / module.PARENT_FOLDER / "protected-inputs-v1.json")
-    paths = [p.relative_to(ROOT) for p in (ROOT / "data/evaluation/dev-three-v1").rglob("*.json")]
-    paths += [Path(name) for name in protected["files"]]
-    paths += [
-        module.FOLDER / "protocol-v1.json",
-        module.PARENT_FOLDER / "protocol-v1.json",
-        module.PARENT_FOLDER / "capacity-amendment-v1.json",
-        module.PARENT_FOLDER / "offline-boundary-initial-v1.json",
-        module.PARENT_FOLDER / "offline-boundary-review-v1.json",
-        module.PARENT_FOLDER / "model-live-receipt-v1.json",
-        module.PARENT_FOLDER / "source-packet-v1.json",
-        module.PARENT_FOLDER / "protected-inputs-v1.json",
-        Path("experiments/core_quality_followup/quarantine-scope-protocol-v1.json"),
-        Path("docs/pr55-evidence-review.fa.md"),
-        Path("scripts/core_complementary_sources_probe.py"),
-        Path("scripts/core_repeat_model_probe.py"),
-        Path("src/agent_app/testing/finite_controlled_probe.py"),
-        Path("src/agent_app/testing/complementary_evidence.py"),
-        Path("src/agent_app/testing/enum_evidence.py"),
-    ]
-    for relative in set(paths):
-        target = root / relative
-        target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_bytes((ROOT / relative).read_bytes())
-    policy = root / "experiments/core_quality_followup/quarantine-scope-protocol-v1.json"
-    value = controls._read(policy)
-    value["known_uncertain_request_ids"] = list(ledger.quarantine_observation().unknown_ids)
-    policy.write_text(json.dumps(value))
-    (root / module.FOLDER / "offline-replay-v1.json").write_text(
-        json.dumps(
-            {
-                "protocol_sha256": module.PROTOCOL_SHA256,
-                "parent_receipt_sha256": "bf4ba6855c56591ea2875bde060c917363f3507e2cf7e1885fe3b4488b7fabda",
-                "renderer_unchanged": True,
-                "accepted": True,
-                "actual_sends": 0,
-                "held_out_test": False,
-                "human_usefulness": None,
-                "historical_contexts": 24,
-                "SYSTEM_only_treatment": True,
-                "USER_evidence_schema_unchanged": True,
-            }
-        )
-    )
-    (root / module.FOLDER / "semantic-review-preparation-v1.json").write_bytes(
-        (ROOT / module.FOLDER / "semantic-review-preparation-v1.json").read_bytes()
-    )
-    fixtures = module.fixtures_for(ROOT, {"protocol_id": "core-stability-v1"})
-    monkeypatch.setattr(module, "fixtures_for", lambda *_args: fixtures)
-    return module, root, path, fixtures
+    value = registered_method_inputs(module, ROOT, root, monkeypatch, multiple_holds)
+    return value
 
 
 def test_fresh_method_48_slots_6_pairs_same_full_evidence_and_only_prompt_flag_differs(

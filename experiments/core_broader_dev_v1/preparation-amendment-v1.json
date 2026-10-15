@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "amendment_id": "core-broader-dev-copy-only-native-preparation-v1",
+  "protocol_path": "experiments/core_broader_dev_v1/protocol-v1.json",
+  "protocol_sha256": "504d34bac87142adf9a09b2ab56117d3c752ea7b6b306b2a89ba61acf003b3f6",
+  "registered_before_method_and_paid_calls": true,
+  "actual_sends": 0,
+  "reason": "The first native preparation read changed two Chroma storage bytes despite unchanged verified logical corpus. Original physical guard rejected preparation. No exact byte backup was found. Preserve failure and old19hashes; never claim they match current storage.",
+  "first_failure_path": "experiments/core_broader_dev_v1/preparation-first-failure-v1.json",
+  "first_failure_sha256": "a6bbdb09abc64423ffa6b0fe22ce635fe6c3e71c439b3928803d79a939407e05",
+  "effective_protected_inputs_path": "experiments/core_broader_dev_v1/protected-inputs-v1.json",
+  "effective_protected_inputs_sha256": "658583614304bf99c6890973274d2e683068302fd897422b64e1942773506727",
+  "independent_logical_review_sha256": "f65beb377b41762d7ccb1be9a99224217c80408c4fc2085eaa977f629ddd1128",
+  "required_before_paid": "Every future Chroma client operates on isolated byte-identical copies. Freeze exact current19physical hashes, verify originals unchanged across copied reads, verify complete original18sources/36chunks/metadata/lexical vectors/exclusions before model. Keep original closed identities/methods/receipts immutable.",
+  "scope": "Preparation repair before ANY new request identity or authorization allocation, not a continuation after a paid drift stop. New study guard remains exact current-byte/source/journal binding on every send.",
+  "original_physical_identity_restored": false,
+  "original_manifest_or_case_or_gold_or_exclusion_rewritten": false,
+  "no_corpus_source_added_or_removed": true,
+  "no_key_or_scope_or_model_before_review": true
+}
