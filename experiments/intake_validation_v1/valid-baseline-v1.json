@@ -1,0 +1,2024 @@
+{
+  "schema_version": 1,
+  "task": "C2j",
+  "kind": "frozen-valid-input-output-parity",
+  "source_commit": "fdd405a3c510425305c5f85357a43a7e61fc9457",
+  "source_sha256": {
+    "src/agent_app/orchestration/intake.py": "a1208ec535fd022d3d20f6847a0a6f21af0d3c42fc75a078e925301397c970b4",
+    "src/agent_app/orchestration/validation.py": "2debe663263680238268d5034c7e80fe5533b4f66c535d5bf0b4e072835d7f6e",
+    "src/agent_app/orchestration/turns.py": "17970a95710dc8351d14f36cc6dfbdf3308231a627fd710b64dee119908eace7",
+    "src/agent_app/contracts.py": "1dcf0de657f3442dfb5e787e6243a9a279501305033e592cbcd060dd808d0a91"
+  },
+  "row_count": 16,
+  "rows": [
+    {
+      "id": "pending-canonical-release",
+      "helper": "prepare_version_reply",
+      "authorship": "Fresh neutral development fixture; no Issue, evaluation case, gold, model output or real source.",
+      "construction_message_before_contract_normalization": "1.42.0",
+      "expected_version": "1.42.0",
+      "input_contracts": {
+        "json": {
+          "case": {
+            "case_id": "case:c2j-pending-0",
+            "case_revision": 4,
+            "facts": [],
+            "unknowns": [
+              "streamlit_version"
+            ],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "pending_proposal_id": "proposal:c2j-pending-0"
+          },
+          "turn": {
+            "case_id": "case:c2j-pending-0",
+            "expected_revision": 4,
+            "turn_id": "turn:c2j-pending-0",
+            "source_ref": "user:c2j-pending-0",
+            "message": "1.42.0",
+            "reported_facts": [],
+            "unknowns": [],
+            "checks_performed": [],
+            "context_changed": false
+          },
+          "proposal_id": "proposal:c2j-pending-0",
+          "question": {
+            "decision": "ask",
+            "user_draft": "Which Streamlit version is installed in the affected environment?",
+            "maintainer_summary": "The user has not supplied an affected installation release.",
+            "rationale": "Ask the user for the affected installation before selecting a release-specific source.",
+            "evidence_links": [],
+            "missing_info": [
+              "streamlit_version"
+            ],
+            "next_question": "Which Streamlit version is installed in the affected environment?",
+            "retrieval_queries": [],
+            "facts_delta": [],
+            "checks_suggested": []
+          }
+        },
+        "canonical_json": "{\"case\":{\"case_id\":\"case:c2j-pending-0\",\"case_revision\":4,\"checks_performed\":[],\"evidence_refs\":[],\"facts\":[],\"pending_proposal_id\":\"proposal:c2j-pending-0\",\"unknowns\":[\"streamlit_version\"]},\"proposal_id\":\"proposal:c2j-pending-0\",\"question\":{\"checks_suggested\":[],\"decision\":\"ask\",\"evidence_links\":[],\"facts_delta\":[],\"maintainer_summary\":\"The user has not supplied an affected installation release.\",\"missing_info\":[\"streamlit_version\"],\"next_question\":\"Which Streamlit version is installed in the affected environment?\",\"rationale\":\"Ask the user for the affected installation before selecting a release-specific source.\",\"retrieval_queries\":[],\"user_draft\":\"Which Streamlit version is installed in the affected environment?\"},\"turn\":{\"case_id\":\"case:c2j-pending-0\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"1.42.0\",\"reported_facts\":[],\"source_ref\":\"user:c2j-pending-0\",\"turn_id\":\"turn:c2j-pending-0\",\"unknowns\":[]}}",
+        "canonical_sha256": "21cee1734187985e0b201961cfedcb22cd53f901e555a9caf005522d7338fe9e"
+      },
+      "prepared_user_turn": {
+        "json": {
+          "case_id": "case:c2j-pending-0",
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-pending-0",
+          "source_ref": "user:c2j-pending-0",
+          "message": "1.42.0",
+          "reported_facts": [
+            {
+              "name": "streamlit_version",
+              "value": "1.42.0"
+            }
+          ],
+          "unknowns": [],
+          "checks_performed": [],
+          "context_changed": false
+        },
+        "canonical_json": "{\"case_id\":\"case:c2j-pending-0\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"1.42.0\",\"reported_facts\":[{\"name\":\"streamlit_version\",\"value\":\"1.42.0\"}],\"source_ref\":\"user:c2j-pending-0\",\"turn_id\":\"turn:c2j-pending-0\",\"unknowns\":[]}",
+        "canonical_sha256": "da33782cae2f7f8e814b59bdcf38f03227e60efb0dd5873babaa32e5c995519e"
+      },
+      "proposed_transition": {
+        "json": {
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-pending-0",
+          "source_ref": "user:c2j-pending-0",
+          "event_hash": "da33782cae2f7f8e814b59bdcf38f03227e60efb0dd5873babaa32e5c995519e",
+          "candidate": {
+            "case_id": "case:c2j-pending-0",
+            "case_revision": 5,
+            "facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.42.0",
+                "source_ref": "user:c2j-pending-0",
+                "turn_id": "turn:c2j-pending-0",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "pending_proposal_id": null
+          },
+          "changed_fact_names": [
+            "streamlit_version"
+          ],
+          "context_changed": false,
+          "invalidated_checks": []
+        },
+        "canonical_json": "{\"candidate\":{\"case_id\":\"case:c2j-pending-0\",\"case_revision\":5,\"checks_performed\":[],\"evidence_refs\":[],\"facts\":[{\"name\":\"streamlit_version\",\"provenance_kind\":\"user\",\"source_ref\":\"user:c2j-pending-0\",\"status\":\"active\",\"turn_id\":\"turn:c2j-pending-0\",\"value\":\"1.42.0\"}],\"pending_proposal_id\":null,\"unknowns\":[]},\"changed_fact_names\":[\"streamlit_version\"],\"context_changed\":false,\"event_hash\":\"da33782cae2f7f8e814b59bdcf38f03227e60efb0dd5873babaa32e5c995519e\",\"expected_revision\":4,\"invalidated_checks\":[],\"source_ref\":\"user:c2j-pending-0\",\"turn_id\":\"turn:c2j-pending-0\"}",
+        "canonical_sha256": "64fc73465ae96029e8685ad0a4a4427bf290e203a391d303cecc413b4c9d307b"
+      },
+      "input_contracts_after_call_sha256": "21cee1734187985e0b201961cfedcb22cd53f901e555a9caf005522d7338fe9e",
+      "input_contracts_unchanged": true
+    },
+    {
+      "id": "pending-streamlit-prefix",
+      "helper": "prepare_version_reply",
+      "authorship": "Fresh neutral development fixture; no Issue, evaluation case, gold, model output or real source.",
+      "construction_message_before_contract_normalization": "Streamlit 1.50.0",
+      "expected_version": "1.50.0",
+      "input_contracts": {
+        "json": {
+          "case": {
+            "case_id": "case:c2j-pending-1",
+            "case_revision": 4,
+            "facts": [],
+            "unknowns": [
+              "streamlit_version"
+            ],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "pending_proposal_id": "proposal:c2j-pending-1"
+          },
+          "turn": {
+            "case_id": "case:c2j-pending-1",
+            "expected_revision": 4,
+            "turn_id": "turn:c2j-pending-1",
+            "source_ref": "user:c2j-pending-1",
+            "message": "Streamlit 1.50.0",
+            "reported_facts": [],
+            "unknowns": [],
+            "checks_performed": [],
+            "context_changed": false
+          },
+          "proposal_id": "proposal:c2j-pending-1",
+          "question": {
+            "decision": "ask",
+            "user_draft": "Which Streamlit version is installed in the affected environment?",
+            "maintainer_summary": "The user has not supplied an affected installation release.",
+            "rationale": "Ask the user for the affected installation before selecting a release-specific source.",
+            "evidence_links": [],
+            "missing_info": [
+              "streamlit_version"
+            ],
+            "next_question": "Which Streamlit version is installed in the affected environment?",
+            "retrieval_queries": [],
+            "facts_delta": [],
+            "checks_suggested": []
+          }
+        },
+        "canonical_json": "{\"case\":{\"case_id\":\"case:c2j-pending-1\",\"case_revision\":4,\"checks_performed\":[],\"evidence_refs\":[],\"facts\":[],\"pending_proposal_id\":\"proposal:c2j-pending-1\",\"unknowns\":[\"streamlit_version\"]},\"proposal_id\":\"proposal:c2j-pending-1\",\"question\":{\"checks_suggested\":[],\"decision\":\"ask\",\"evidence_links\":[],\"facts_delta\":[],\"maintainer_summary\":\"The user has not supplied an affected installation release.\",\"missing_info\":[\"streamlit_version\"],\"next_question\":\"Which Streamlit version is installed in the affected environment?\",\"rationale\":\"Ask the user for the affected installation before selecting a release-specific source.\",\"retrieval_queries\":[],\"user_draft\":\"Which Streamlit version is installed in the affected environment?\"},\"turn\":{\"case_id\":\"case:c2j-pending-1\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"Streamlit 1.50.0\",\"reported_facts\":[],\"source_ref\":\"user:c2j-pending-1\",\"turn_id\":\"turn:c2j-pending-1\",\"unknowns\":[]}}",
+        "canonical_sha256": "99a3474af33fc824114ce5065a26ce652a20b80fa0793e4ddf0a20a757663066"
+      },
+      "prepared_user_turn": {
+        "json": {
+          "case_id": "case:c2j-pending-1",
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-pending-1",
+          "source_ref": "user:c2j-pending-1",
+          "message": "Streamlit 1.50.0",
+          "reported_facts": [
+            {
+              "name": "streamlit_version",
+              "value": "1.50.0"
+            }
+          ],
+          "unknowns": [],
+          "checks_performed": [],
+          "context_changed": false
+        },
+        "canonical_json": "{\"case_id\":\"case:c2j-pending-1\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"Streamlit 1.50.0\",\"reported_facts\":[{\"name\":\"streamlit_version\",\"value\":\"1.50.0\"}],\"source_ref\":\"user:c2j-pending-1\",\"turn_id\":\"turn:c2j-pending-1\",\"unknowns\":[]}",
+        "canonical_sha256": "0fe77fc78b45e231c6cbaa54464d68284bfd3838715f40a01df71393df8459fc"
+      },
+      "proposed_transition": {
+        "json": {
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-pending-1",
+          "source_ref": "user:c2j-pending-1",
+          "event_hash": "0fe77fc78b45e231c6cbaa54464d68284bfd3838715f40a01df71393df8459fc",
+          "candidate": {
+            "case_id": "case:c2j-pending-1",
+            "case_revision": 5,
+            "facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.50.0",
+                "source_ref": "user:c2j-pending-1",
+                "turn_id": "turn:c2j-pending-1",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "pending_proposal_id": null
+          },
+          "changed_fact_names": [
+            "streamlit_version"
+          ],
+          "context_changed": false,
+          "invalidated_checks": []
+        },
+        "canonical_json": "{\"candidate\":{\"case_id\":\"case:c2j-pending-1\",\"case_revision\":5,\"checks_performed\":[],\"evidence_refs\":[],\"facts\":[{\"name\":\"streamlit_version\",\"provenance_kind\":\"user\",\"source_ref\":\"user:c2j-pending-1\",\"status\":\"active\",\"turn_id\":\"turn:c2j-pending-1\",\"value\":\"1.50.0\"}],\"pending_proposal_id\":null,\"unknowns\":[]},\"changed_fact_names\":[\"streamlit_version\"],\"context_changed\":false,\"event_hash\":\"0fe77fc78b45e231c6cbaa54464d68284bfd3838715f40a01df71393df8459fc\",\"expected_revision\":4,\"invalidated_checks\":[],\"source_ref\":\"user:c2j-pending-1\",\"turn_id\":\"turn:c2j-pending-1\"}",
+        "canonical_sha256": "9d4fb07537bff94c4bd46fe62b15efad5a843de9a38b650caa79dc8f1d86939e"
+      },
+      "input_contracts_after_call_sha256": "99a3474af33fc824114ce5065a26ce652a20b80fa0793e4ddf0a20a757663066",
+      "input_contracts_unchanged": true
+    },
+    {
+      "id": "pending-outer-whitespace",
+      "helper": "prepare_version_reply",
+      "authorship": "Fresh neutral development fixture; no Issue, evaluation case, gold, model output or real source.",
+      "construction_message_before_contract_normalization": "  Streamlit 0.99.1  ",
+      "expected_version": "0.99.1",
+      "input_contracts": {
+        "json": {
+          "case": {
+            "case_id": "case:c2j-pending-2",
+            "case_revision": 4,
+            "facts": [],
+            "unknowns": [
+              "streamlit_version"
+            ],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "pending_proposal_id": "proposal:c2j-pending-2"
+          },
+          "turn": {
+            "case_id": "case:c2j-pending-2",
+            "expected_revision": 4,
+            "turn_id": "turn:c2j-pending-2",
+            "source_ref": "user:c2j-pending-2",
+            "message": "Streamlit 0.99.1",
+            "reported_facts": [],
+            "unknowns": [],
+            "checks_performed": [],
+            "context_changed": false
+          },
+          "proposal_id": "proposal:c2j-pending-2",
+          "question": {
+            "decision": "ask",
+            "user_draft": "Which Streamlit version is installed in the affected environment?",
+            "maintainer_summary": "The user has not supplied an affected installation release.",
+            "rationale": "Ask the user for the affected installation before selecting a release-specific source.",
+            "evidence_links": [],
+            "missing_info": [
+              "streamlit_version"
+            ],
+            "next_question": "Which Streamlit version is installed in the affected environment?",
+            "retrieval_queries": [],
+            "facts_delta": [],
+            "checks_suggested": []
+          }
+        },
+        "canonical_json": "{\"case\":{\"case_id\":\"case:c2j-pending-2\",\"case_revision\":4,\"checks_performed\":[],\"evidence_refs\":[],\"facts\":[],\"pending_proposal_id\":\"proposal:c2j-pending-2\",\"unknowns\":[\"streamlit_version\"]},\"proposal_id\":\"proposal:c2j-pending-2\",\"question\":{\"checks_suggested\":[],\"decision\":\"ask\",\"evidence_links\":[],\"facts_delta\":[],\"maintainer_summary\":\"The user has not supplied an affected installation release.\",\"missing_info\":[\"streamlit_version\"],\"next_question\":\"Which Streamlit version is installed in the affected environment?\",\"rationale\":\"Ask the user for the affected installation before selecting a release-specific source.\",\"retrieval_queries\":[],\"user_draft\":\"Which Streamlit version is installed in the affected environment?\"},\"turn\":{\"case_id\":\"case:c2j-pending-2\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"Streamlit 0.99.1\",\"reported_facts\":[],\"source_ref\":\"user:c2j-pending-2\",\"turn_id\":\"turn:c2j-pending-2\",\"unknowns\":[]}}",
+        "canonical_sha256": "1fe8fe890a2c52c16bcb39bb3104b8cbba06b7311a35384bd6c9c81781047e5a"
+      },
+      "prepared_user_turn": {
+        "json": {
+          "case_id": "case:c2j-pending-2",
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-pending-2",
+          "source_ref": "user:c2j-pending-2",
+          "message": "Streamlit 0.99.1",
+          "reported_facts": [
+            {
+              "name": "streamlit_version",
+              "value": "0.99.1"
+            }
+          ],
+          "unknowns": [],
+          "checks_performed": [],
+          "context_changed": false
+        },
+        "canonical_json": "{\"case_id\":\"case:c2j-pending-2\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"Streamlit 0.99.1\",\"reported_facts\":[{\"name\":\"streamlit_version\",\"value\":\"0.99.1\"}],\"source_ref\":\"user:c2j-pending-2\",\"turn_id\":\"turn:c2j-pending-2\",\"unknowns\":[]}",
+        "canonical_sha256": "fc927c11fe7335e1d968f7af180b2a5be255144e03347678d0ba7601a3fc2b0b"
+      },
+      "proposed_transition": {
+        "json": {
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-pending-2",
+          "source_ref": "user:c2j-pending-2",
+          "event_hash": "fc927c11fe7335e1d968f7af180b2a5be255144e03347678d0ba7601a3fc2b0b",
+          "candidate": {
+            "case_id": "case:c2j-pending-2",
+            "case_revision": 5,
+            "facts": [
+              {
+                "name": "streamlit_version",
+                "value": "0.99.1",
+                "source_ref": "user:c2j-pending-2",
+                "turn_id": "turn:c2j-pending-2",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "pending_proposal_id": null
+          },
+          "changed_fact_names": [
+            "streamlit_version"
+          ],
+          "context_changed": false,
+          "invalidated_checks": []
+        },
+        "canonical_json": "{\"candidate\":{\"case_id\":\"case:c2j-pending-2\",\"case_revision\":5,\"checks_performed\":[],\"evidence_refs\":[],\"facts\":[{\"name\":\"streamlit_version\",\"provenance_kind\":\"user\",\"source_ref\":\"user:c2j-pending-2\",\"status\":\"active\",\"turn_id\":\"turn:c2j-pending-2\",\"value\":\"0.99.1\"}],\"pending_proposal_id\":null,\"unknowns\":[]},\"changed_fact_names\":[\"streamlit_version\"],\"context_changed\":false,\"event_hash\":\"fc927c11fe7335e1d968f7af180b2a5be255144e03347678d0ba7601a3fc2b0b\",\"expected_revision\":4,\"invalidated_checks\":[],\"source_ref\":\"user:c2j-pending-2\",\"turn_id\":\"turn:c2j-pending-2\"}",
+        "canonical_sha256": "2a5fd03b0ec8dcacddc2226ca86d403b5fa3bc9a755517d85b0c3fb7a9df8366"
+      },
+      "input_contracts_after_call_sha256": "1fe8fe890a2c52c16bcb39bb3104b8cbba06b7311a35384bd6c9c81781047e5a",
+      "input_contracts_unchanged": true
+    },
+    {
+      "id": "pending-zero-release",
+      "helper": "prepare_version_reply",
+      "authorship": "Fresh neutral development fixture; no Issue, evaluation case, gold, model output or real source.",
+      "construction_message_before_contract_normalization": "0.0.0",
+      "expected_version": "0.0.0",
+      "input_contracts": {
+        "json": {
+          "case": {
+            "case_id": "case:c2j-pending-3",
+            "case_revision": 4,
+            "facts": [],
+            "unknowns": [
+              "streamlit_version"
+            ],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "pending_proposal_id": "proposal:c2j-pending-3"
+          },
+          "turn": {
+            "case_id": "case:c2j-pending-3",
+            "expected_revision": 4,
+            "turn_id": "turn:c2j-pending-3",
+            "source_ref": "user:c2j-pending-3",
+            "message": "0.0.0",
+            "reported_facts": [],
+            "unknowns": [],
+            "checks_performed": [],
+            "context_changed": false
+          },
+          "proposal_id": "proposal:c2j-pending-3",
+          "question": {
+            "decision": "ask",
+            "user_draft": "Which Streamlit version is installed in the affected environment?",
+            "maintainer_summary": "The user has not supplied an affected installation release.",
+            "rationale": "Ask the user for the affected installation before selecting a release-specific source.",
+            "evidence_links": [],
+            "missing_info": [
+              "streamlit_version"
+            ],
+            "next_question": "Which Streamlit version is installed in the affected environment?",
+            "retrieval_queries": [],
+            "facts_delta": [],
+            "checks_suggested": []
+          }
+        },
+        "canonical_json": "{\"case\":{\"case_id\":\"case:c2j-pending-3\",\"case_revision\":4,\"checks_performed\":[],\"evidence_refs\":[],\"facts\":[],\"pending_proposal_id\":\"proposal:c2j-pending-3\",\"unknowns\":[\"streamlit_version\"]},\"proposal_id\":\"proposal:c2j-pending-3\",\"question\":{\"checks_suggested\":[],\"decision\":\"ask\",\"evidence_links\":[],\"facts_delta\":[],\"maintainer_summary\":\"The user has not supplied an affected installation release.\",\"missing_info\":[\"streamlit_version\"],\"next_question\":\"Which Streamlit version is installed in the affected environment?\",\"rationale\":\"Ask the user for the affected installation before selecting a release-specific source.\",\"retrieval_queries\":[],\"user_draft\":\"Which Streamlit version is installed in the affected environment?\"},\"turn\":{\"case_id\":\"case:c2j-pending-3\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"0.0.0\",\"reported_facts\":[],\"source_ref\":\"user:c2j-pending-3\",\"turn_id\":\"turn:c2j-pending-3\",\"unknowns\":[]}}",
+        "canonical_sha256": "a4e5a0777ec51cab2e8150566a6d21cc6e627aac0aa07ef4284e46bd6027d5d7"
+      },
+      "prepared_user_turn": {
+        "json": {
+          "case_id": "case:c2j-pending-3",
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-pending-3",
+          "source_ref": "user:c2j-pending-3",
+          "message": "0.0.0",
+          "reported_facts": [
+            {
+              "name": "streamlit_version",
+              "value": "0.0.0"
+            }
+          ],
+          "unknowns": [],
+          "checks_performed": [],
+          "context_changed": false
+        },
+        "canonical_json": "{\"case_id\":\"case:c2j-pending-3\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"0.0.0\",\"reported_facts\":[{\"name\":\"streamlit_version\",\"value\":\"0.0.0\"}],\"source_ref\":\"user:c2j-pending-3\",\"turn_id\":\"turn:c2j-pending-3\",\"unknowns\":[]}",
+        "canonical_sha256": "c79d7959ff390289248743ce46e4faf355bc0f4a74c42da53f0e707633b338a5"
+      },
+      "proposed_transition": {
+        "json": {
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-pending-3",
+          "source_ref": "user:c2j-pending-3",
+          "event_hash": "c79d7959ff390289248743ce46e4faf355bc0f4a74c42da53f0e707633b338a5",
+          "candidate": {
+            "case_id": "case:c2j-pending-3",
+            "case_revision": 5,
+            "facts": [
+              {
+                "name": "streamlit_version",
+                "value": "0.0.0",
+                "source_ref": "user:c2j-pending-3",
+                "turn_id": "turn:c2j-pending-3",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "pending_proposal_id": null
+          },
+          "changed_fact_names": [
+            "streamlit_version"
+          ],
+          "context_changed": false,
+          "invalidated_checks": []
+        },
+        "canonical_json": "{\"candidate\":{\"case_id\":\"case:c2j-pending-3\",\"case_revision\":5,\"checks_performed\":[],\"evidence_refs\":[],\"facts\":[{\"name\":\"streamlit_version\",\"provenance_kind\":\"user\",\"source_ref\":\"user:c2j-pending-3\",\"status\":\"active\",\"turn_id\":\"turn:c2j-pending-3\",\"value\":\"0.0.0\"}],\"pending_proposal_id\":null,\"unknowns\":[]},\"changed_fact_names\":[\"streamlit_version\"],\"context_changed\":false,\"event_hash\":\"c79d7959ff390289248743ce46e4faf355bc0f4a74c42da53f0e707633b338a5\",\"expected_revision\":4,\"invalidated_checks\":[],\"source_ref\":\"user:c2j-pending-3\",\"turn_id\":\"turn:c2j-pending-3\"}",
+        "canonical_sha256": "f97df7d16223d47161eb835d5a71a155ab653653e9ec95fc72a10b10a3bf4c23"
+      },
+      "input_contracts_after_call_sha256": "a4e5a0777ec51cab2e8150566a6d21cc6e627aac0aa07ef4284e46bd6027d5d7",
+      "input_contracts_unchanged": true
+    },
+    {
+      "id": "pending-large-components",
+      "helper": "prepare_version_reply",
+      "authorship": "Fresh neutral development fixture; no Issue, evaluation case, gold, model output or real source.",
+      "construction_message_before_contract_normalization": "12.345.678",
+      "expected_version": "12.345.678",
+      "input_contracts": {
+        "json": {
+          "case": {
+            "case_id": "case:c2j-pending-4",
+            "case_revision": 4,
+            "facts": [],
+            "unknowns": [
+              "streamlit_version"
+            ],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "pending_proposal_id": "proposal:c2j-pending-4"
+          },
+          "turn": {
+            "case_id": "case:c2j-pending-4",
+            "expected_revision": 4,
+            "turn_id": "turn:c2j-pending-4",
+            "source_ref": "user:c2j-pending-4",
+            "message": "12.345.678",
+            "reported_facts": [],
+            "unknowns": [],
+            "checks_performed": [],
+            "context_changed": false
+          },
+          "proposal_id": "proposal:c2j-pending-4",
+          "question": {
+            "decision": "ask",
+            "user_draft": "Which Streamlit version is installed in the affected environment?",
+            "maintainer_summary": "The user has not supplied an affected installation release.",
+            "rationale": "Ask the user for the affected installation before selecting a release-specific source.",
+            "evidence_links": [],
+            "missing_info": [
+              "streamlit_version"
+            ],
+            "next_question": "Which Streamlit version is installed in the affected environment?",
+            "retrieval_queries": [],
+            "facts_delta": [],
+            "checks_suggested": []
+          }
+        },
+        "canonical_json": "{\"case\":{\"case_id\":\"case:c2j-pending-4\",\"case_revision\":4,\"checks_performed\":[],\"evidence_refs\":[],\"facts\":[],\"pending_proposal_id\":\"proposal:c2j-pending-4\",\"unknowns\":[\"streamlit_version\"]},\"proposal_id\":\"proposal:c2j-pending-4\",\"question\":{\"checks_suggested\":[],\"decision\":\"ask\",\"evidence_links\":[],\"facts_delta\":[],\"maintainer_summary\":\"The user has not supplied an affected installation release.\",\"missing_info\":[\"streamlit_version\"],\"next_question\":\"Which Streamlit version is installed in the affected environment?\",\"rationale\":\"Ask the user for the affected installation before selecting a release-specific source.\",\"retrieval_queries\":[],\"user_draft\":\"Which Streamlit version is installed in the affected environment?\"},\"turn\":{\"case_id\":\"case:c2j-pending-4\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"12.345.678\",\"reported_facts\":[],\"source_ref\":\"user:c2j-pending-4\",\"turn_id\":\"turn:c2j-pending-4\",\"unknowns\":[]}}",
+        "canonical_sha256": "a8bf639eb6e666c477d042ce2d7c92ac4a520ec6f73481b89a1ea35f35014cd3"
+      },
+      "prepared_user_turn": {
+        "json": {
+          "case_id": "case:c2j-pending-4",
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-pending-4",
+          "source_ref": "user:c2j-pending-4",
+          "message": "12.345.678",
+          "reported_facts": [
+            {
+              "name": "streamlit_version",
+              "value": "12.345.678"
+            }
+          ],
+          "unknowns": [],
+          "checks_performed": [],
+          "context_changed": false
+        },
+        "canonical_json": "{\"case_id\":\"case:c2j-pending-4\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"12.345.678\",\"reported_facts\":[{\"name\":\"streamlit_version\",\"value\":\"12.345.678\"}],\"source_ref\":\"user:c2j-pending-4\",\"turn_id\":\"turn:c2j-pending-4\",\"unknowns\":[]}",
+        "canonical_sha256": "95ef4e2b228927638ece928cef4d130b56665000f78162407788a5a39c427eae"
+      },
+      "proposed_transition": {
+        "json": {
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-pending-4",
+          "source_ref": "user:c2j-pending-4",
+          "event_hash": "95ef4e2b228927638ece928cef4d130b56665000f78162407788a5a39c427eae",
+          "candidate": {
+            "case_id": "case:c2j-pending-4",
+            "case_revision": 5,
+            "facts": [
+              {
+                "name": "streamlit_version",
+                "value": "12.345.678",
+                "source_ref": "user:c2j-pending-4",
+                "turn_id": "turn:c2j-pending-4",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "pending_proposal_id": null
+          },
+          "changed_fact_names": [
+            "streamlit_version"
+          ],
+          "context_changed": false,
+          "invalidated_checks": []
+        },
+        "canonical_json": "{\"candidate\":{\"case_id\":\"case:c2j-pending-4\",\"case_revision\":5,\"checks_performed\":[],\"evidence_refs\":[],\"facts\":[{\"name\":\"streamlit_version\",\"provenance_kind\":\"user\",\"source_ref\":\"user:c2j-pending-4\",\"status\":\"active\",\"turn_id\":\"turn:c2j-pending-4\",\"value\":\"12.345.678\"}],\"pending_proposal_id\":null,\"unknowns\":[]},\"changed_fact_names\":[\"streamlit_version\"],\"context_changed\":false,\"event_hash\":\"95ef4e2b228927638ece928cef4d130b56665000f78162407788a5a39c427eae\",\"expected_revision\":4,\"invalidated_checks\":[],\"source_ref\":\"user:c2j-pending-4\",\"turn_id\":\"turn:c2j-pending-4\"}",
+        "canonical_sha256": "52c9f95d0682ac636e4d714492bf9f1ddaf6dffb602c2bfdfca26c5ebeb28d3c"
+      },
+      "input_contracts_after_call_sha256": "a8bf639eb6e666c477d042ce2d7c92ac4a520ec6f73481b89a1ea35f35014cd3",
+      "input_contracts_unchanged": true
+    },
+    {
+      "id": "pending-existing-user-context",
+      "helper": "prepare_version_reply",
+      "authorship": "Fresh neutral development fixture; no Issue, evaluation case, gold, model output or real source.",
+      "construction_message_before_contract_normalization": "1.51.2",
+      "expected_version": "1.51.2",
+      "input_contracts": {
+        "json": {
+          "case": {
+            "case_id": "case:c2j-pending-5",
+            "case_revision": 4,
+            "facts": [
+              {
+                "name": "operating_system",
+                "value": "Linux",
+                "source_ref": "user:initial",
+                "turn_id": "turn:initial",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [
+              "streamlit_version",
+              "python_version"
+            ],
+            "checks_performed": [
+              "Reproduced in an isolated application."
+            ],
+            "evidence_refs": [
+              "doc:neutral-pooling"
+            ],
+            "pending_proposal_id": "proposal:c2j-pending-5"
+          },
+          "turn": {
+            "case_id": "case:c2j-pending-5",
+            "expected_revision": 4,
+            "turn_id": "turn:c2j-pending-5",
+            "source_ref": "user:c2j-pending-5",
+            "message": "1.51.2",
+            "reported_facts": [],
+            "unknowns": [],
+            "checks_performed": [],
+            "context_changed": false
+          },
+          "proposal_id": "proposal:c2j-pending-5",
+          "question": {
+            "decision": "ask",
+            "user_draft": "Which Streamlit version is installed in the affected environment?",
+            "maintainer_summary": "The user has not supplied an affected installation release.",
+            "rationale": "Ask the user for the affected installation before selecting a release-specific source.",
+            "evidence_links": [],
+            "missing_info": [
+              "streamlit_version"
+            ],
+            "next_question": "Which Streamlit version is installed in the affected environment?",
+            "retrieval_queries": [],
+            "facts_delta": [],
+            "checks_suggested": []
+          }
+        },
+        "canonical_json": "{\"case\":{\"case_id\":\"case:c2j-pending-5\",\"case_revision\":4,\"checks_performed\":[\"Reproduced in an isolated application.\"],\"evidence_refs\":[\"doc:neutral-pooling\"],\"facts\":[{\"name\":\"operating_system\",\"provenance_kind\":\"user\",\"source_ref\":\"user:initial\",\"status\":\"active\",\"turn_id\":\"turn:initial\",\"value\":\"Linux\"}],\"pending_proposal_id\":\"proposal:c2j-pending-5\",\"unknowns\":[\"streamlit_version\",\"python_version\"]},\"proposal_id\":\"proposal:c2j-pending-5\",\"question\":{\"checks_suggested\":[],\"decision\":\"ask\",\"evidence_links\":[],\"facts_delta\":[],\"maintainer_summary\":\"The user has not supplied an affected installation release.\",\"missing_info\":[\"streamlit_version\"],\"next_question\":\"Which Streamlit version is installed in the affected environment?\",\"rationale\":\"Ask the user for the affected installation before selecting a release-specific source.\",\"retrieval_queries\":[],\"user_draft\":\"Which Streamlit version is installed in the affected environment?\"},\"turn\":{\"case_id\":\"case:c2j-pending-5\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"1.51.2\",\"reported_facts\":[],\"source_ref\":\"user:c2j-pending-5\",\"turn_id\":\"turn:c2j-pending-5\",\"unknowns\":[]}}",
+        "canonical_sha256": "2190f07d29264404c692c27c3055c595c058794ab1e3e67178b4c9fc3a92f74c"
+      },
+      "prepared_user_turn": {
+        "json": {
+          "case_id": "case:c2j-pending-5",
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-pending-5",
+          "source_ref": "user:c2j-pending-5",
+          "message": "1.51.2",
+          "reported_facts": [
+            {
+              "name": "streamlit_version",
+              "value": "1.51.2"
+            }
+          ],
+          "unknowns": [],
+          "checks_performed": [],
+          "context_changed": false
+        },
+        "canonical_json": "{\"case_id\":\"case:c2j-pending-5\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"1.51.2\",\"reported_facts\":[{\"name\":\"streamlit_version\",\"value\":\"1.51.2\"}],\"source_ref\":\"user:c2j-pending-5\",\"turn_id\":\"turn:c2j-pending-5\",\"unknowns\":[]}",
+        "canonical_sha256": "fcb9a9d67d8bc66b4bfcbcaac3f89508d23ed5fc5d67fb18679d9b9c55a9ad51"
+      },
+      "proposed_transition": {
+        "json": {
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-pending-5",
+          "source_ref": "user:c2j-pending-5",
+          "event_hash": "fcb9a9d67d8bc66b4bfcbcaac3f89508d23ed5fc5d67fb18679d9b9c55a9ad51",
+          "candidate": {
+            "case_id": "case:c2j-pending-5",
+            "case_revision": 5,
+            "facts": [
+              {
+                "name": "operating_system",
+                "value": "Linux",
+                "source_ref": "user:initial",
+                "turn_id": "turn:initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "streamlit_version",
+                "value": "1.51.2",
+                "source_ref": "user:c2j-pending-5",
+                "turn_id": "turn:c2j-pending-5",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [
+              "python_version"
+            ],
+            "checks_performed": [
+              "Reproduced in an isolated application."
+            ],
+            "evidence_refs": [],
+            "pending_proposal_id": null
+          },
+          "changed_fact_names": [
+            "streamlit_version"
+          ],
+          "context_changed": false,
+          "invalidated_checks": []
+        },
+        "canonical_json": "{\"candidate\":{\"case_id\":\"case:c2j-pending-5\",\"case_revision\":5,\"checks_performed\":[\"Reproduced in an isolated application.\"],\"evidence_refs\":[],\"facts\":[{\"name\":\"operating_system\",\"provenance_kind\":\"user\",\"source_ref\":\"user:initial\",\"status\":\"active\",\"turn_id\":\"turn:initial\",\"value\":\"Linux\"},{\"name\":\"streamlit_version\",\"provenance_kind\":\"user\",\"source_ref\":\"user:c2j-pending-5\",\"status\":\"active\",\"turn_id\":\"turn:c2j-pending-5\",\"value\":\"1.51.2\"}],\"pending_proposal_id\":null,\"unknowns\":[\"python_version\"]},\"changed_fact_names\":[\"streamlit_version\"],\"context_changed\":false,\"event_hash\":\"fcb9a9d67d8bc66b4bfcbcaac3f89508d23ed5fc5d67fb18679d9b9c55a9ad51\",\"expected_revision\":4,\"invalidated_checks\":[],\"source_ref\":\"user:c2j-pending-5\",\"turn_id\":\"turn:c2j-pending-5\"}",
+        "canonical_sha256": "b59a891f09ced8aaf881d368cc735da4159c2d85dc7d3b137b57e8d67089f427"
+      },
+      "input_contracts_after_call_sha256": "2190f07d29264404c692c27c3055c595c058794ab1e3e67178b4c9fc3a92f74c",
+      "input_contracts_unchanged": true
+    },
+    {
+      "id": "pending-superseded-user-version",
+      "helper": "prepare_version_reply",
+      "authorship": "Fresh neutral development fixture; no Issue, evaluation case, gold, model output or real source.",
+      "construction_message_before_contract_normalization": "Streamlit 1.48.3",
+      "expected_version": "1.48.3",
+      "input_contracts": {
+        "json": {
+          "case": {
+            "case_id": "case:c2j-pending-6",
+            "case_revision": 4,
+            "facts": [
+              {
+                "name": "operating_system",
+                "value": "Linux",
+                "source_ref": "user:initial",
+                "turn_id": "turn:initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "streamlit_version",
+                "value": "1.41.0",
+                "source_ref": "user:initial",
+                "turn_id": "turn:initial",
+                "provenance_kind": "user",
+                "status": "superseded"
+              }
+            ],
+            "unknowns": [
+              "streamlit_version",
+              "python_version"
+            ],
+            "checks_performed": [
+              "Reproduced in an isolated application."
+            ],
+            "evidence_refs": [
+              "doc:neutral-pooling"
+            ],
+            "pending_proposal_id": "proposal:c2j-pending-6"
+          },
+          "turn": {
+            "case_id": "case:c2j-pending-6",
+            "expected_revision": 4,
+            "turn_id": "turn:c2j-pending-6",
+            "source_ref": "user:c2j-pending-6",
+            "message": "Streamlit 1.48.3",
+            "reported_facts": [],
+            "unknowns": [],
+            "checks_performed": [],
+            "context_changed": false
+          },
+          "proposal_id": "proposal:c2j-pending-6",
+          "question": {
+            "decision": "ask",
+            "user_draft": "Which Streamlit version is installed in the affected environment?",
+            "maintainer_summary": "The user has not supplied an affected installation release.",
+            "rationale": "Ask the user for the affected installation before selecting a release-specific source.",
+            "evidence_links": [],
+            "missing_info": [
+              "streamlit_version"
+            ],
+            "next_question": "Which Streamlit version is installed in the affected environment?",
+            "retrieval_queries": [],
+            "facts_delta": [],
+            "checks_suggested": []
+          }
+        },
+        "canonical_json": "{\"case\":{\"case_id\":\"case:c2j-pending-6\",\"case_revision\":4,\"checks_performed\":[\"Reproduced in an isolated application.\"],\"evidence_refs\":[\"doc:neutral-pooling\"],\"facts\":[{\"name\":\"operating_system\",\"provenance_kind\":\"user\",\"source_ref\":\"user:initial\",\"status\":\"active\",\"turn_id\":\"turn:initial\",\"value\":\"Linux\"},{\"name\":\"streamlit_version\",\"provenance_kind\":\"user\",\"source_ref\":\"user:initial\",\"status\":\"superseded\",\"turn_id\":\"turn:initial\",\"value\":\"1.41.0\"}],\"pending_proposal_id\":\"proposal:c2j-pending-6\",\"unknowns\":[\"streamlit_version\",\"python_version\"]},\"proposal_id\":\"proposal:c2j-pending-6\",\"question\":{\"checks_suggested\":[],\"decision\":\"ask\",\"evidence_links\":[],\"facts_delta\":[],\"maintainer_summary\":\"The user has not supplied an affected installation release.\",\"missing_info\":[\"streamlit_version\"],\"next_question\":\"Which Streamlit version is installed in the affected environment?\",\"rationale\":\"Ask the user for the affected installation before selecting a release-specific source.\",\"retrieval_queries\":[],\"user_draft\":\"Which Streamlit version is installed in the affected environment?\"},\"turn\":{\"case_id\":\"case:c2j-pending-6\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"Streamlit 1.48.3\",\"reported_facts\":[],\"source_ref\":\"user:c2j-pending-6\",\"turn_id\":\"turn:c2j-pending-6\",\"unknowns\":[]}}",
+        "canonical_sha256": "087249ac0431a4aaf05858aed7ddded14fd6882b185d6014d89b801c7edd48be"
+      },
+      "prepared_user_turn": {
+        "json": {
+          "case_id": "case:c2j-pending-6",
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-pending-6",
+          "source_ref": "user:c2j-pending-6",
+          "message": "Streamlit 1.48.3",
+          "reported_facts": [
+            {
+              "name": "streamlit_version",
+              "value": "1.48.3"
+            }
+          ],
+          "unknowns": [],
+          "checks_performed": [],
+          "context_changed": false
+        },
+        "canonical_json": "{\"case_id\":\"case:c2j-pending-6\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"Streamlit 1.48.3\",\"reported_facts\":[{\"name\":\"streamlit_version\",\"value\":\"1.48.3\"}],\"source_ref\":\"user:c2j-pending-6\",\"turn_id\":\"turn:c2j-pending-6\",\"unknowns\":[]}",
+        "canonical_sha256": "fc2bde1a9df089594887cc629a7a5ec01a1894f2eebc93a68f6b943849018533"
+      },
+      "proposed_transition": {
+        "json": {
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-pending-6",
+          "source_ref": "user:c2j-pending-6",
+          "event_hash": "fc2bde1a9df089594887cc629a7a5ec01a1894f2eebc93a68f6b943849018533",
+          "candidate": {
+            "case_id": "case:c2j-pending-6",
+            "case_revision": 5,
+            "facts": [
+              {
+                "name": "operating_system",
+                "value": "Linux",
+                "source_ref": "user:initial",
+                "turn_id": "turn:initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "streamlit_version",
+                "value": "1.41.0",
+                "source_ref": "user:initial",
+                "turn_id": "turn:initial",
+                "provenance_kind": "user",
+                "status": "superseded"
+              },
+              {
+                "name": "streamlit_version",
+                "value": "1.48.3",
+                "source_ref": "user:c2j-pending-6",
+                "turn_id": "turn:c2j-pending-6",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [
+              "python_version"
+            ],
+            "checks_performed": [
+              "Reproduced in an isolated application."
+            ],
+            "evidence_refs": [],
+            "pending_proposal_id": null
+          },
+          "changed_fact_names": [
+            "streamlit_version"
+          ],
+          "context_changed": false,
+          "invalidated_checks": []
+        },
+        "canonical_json": "{\"candidate\":{\"case_id\":\"case:c2j-pending-6\",\"case_revision\":5,\"checks_performed\":[\"Reproduced in an isolated application.\"],\"evidence_refs\":[],\"facts\":[{\"name\":\"operating_system\",\"provenance_kind\":\"user\",\"source_ref\":\"user:initial\",\"status\":\"active\",\"turn_id\":\"turn:initial\",\"value\":\"Linux\"},{\"name\":\"streamlit_version\",\"provenance_kind\":\"user\",\"source_ref\":\"user:initial\",\"status\":\"superseded\",\"turn_id\":\"turn:initial\",\"value\":\"1.41.0\"},{\"name\":\"streamlit_version\",\"provenance_kind\":\"user\",\"source_ref\":\"user:c2j-pending-6\",\"status\":\"active\",\"turn_id\":\"turn:c2j-pending-6\",\"value\":\"1.48.3\"}],\"pending_proposal_id\":null,\"unknowns\":[\"python_version\"]},\"changed_fact_names\":[\"streamlit_version\"],\"context_changed\":false,\"event_hash\":\"fc2bde1a9df089594887cc629a7a5ec01a1894f2eebc93a68f6b943849018533\",\"expected_revision\":4,\"invalidated_checks\":[],\"source_ref\":\"user:c2j-pending-6\",\"turn_id\":\"turn:c2j-pending-6\"}",
+        "canonical_sha256": "37ef5b8247d837558589da0ed297ad359470bdb13730b43631563b1e87e3ded1"
+      },
+      "input_contracts_after_call_sha256": "087249ac0431a4aaf05858aed7ddded14fd6882b185d6014d89b801c7edd48be",
+      "input_contracts_unchanged": true
+    },
+    {
+      "id": "pending-source-version-and-question-fields",
+      "helper": "prepare_version_reply",
+      "authorship": "Fresh neutral development fixture; no Issue, evaluation case, gold, model output or real source.",
+      "construction_message_before_contract_normalization": "1.49.1",
+      "expected_version": "1.49.1",
+      "input_contracts": {
+        "json": {
+          "case": {
+            "case_id": "case:c2j-pending-7",
+            "case_revision": 4,
+            "facts": [
+              {
+                "name": "operating_system",
+                "value": "Linux",
+                "source_ref": "user:initial",
+                "turn_id": "turn:initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "streamlit_version",
+                "value": "1.20.0",
+                "source_ref": "doc:neutral-release",
+                "turn_id": "turn:source",
+                "provenance_kind": "evidence",
+                "status": "active"
+              },
+              {
+                "name": "artifact_hint",
+                "value": "Source suggests an old configuration.",
+                "source_ref": "doc:neutral-pooling",
+                "turn_id": "turn:source",
+                "provenance_kind": "evidence",
+                "status": "active"
+              }
+            ],
+            "unknowns": [
+              "streamlit_version",
+              "python_version"
+            ],
+            "checks_performed": [
+              "Reproduced in an isolated application."
+            ],
+            "evidence_refs": [
+              "doc:neutral-pooling"
+            ],
+            "pending_proposal_id": "proposal:c2j-pending-7"
+          },
+          "turn": {
+            "case_id": "case:c2j-pending-7",
+            "expected_revision": 4,
+            "turn_id": "turn:c2j-pending-7",
+            "source_ref": "user:c2j-pending-7",
+            "message": "1.49.1",
+            "reported_facts": [],
+            "unknowns": [],
+            "checks_performed": [],
+            "context_changed": false
+          },
+          "proposal_id": "proposal:c2j-pending-7",
+          "question": {
+            "decision": "ask",
+            "user_draft": "Which Streamlit version is installed in the affected environment?",
+            "maintainer_summary": "The user has not supplied an affected installation release.",
+            "rationale": "Ask the user for the affected installation before selecting a release-specific source.",
+            "evidence_links": [
+              {
+                "claim": "A neutral source lists a release.",
+                "chunk_id": "chunk:neutral-release"
+              }
+            ],
+            "missing_info": [
+              "streamlit_version"
+            ],
+            "next_question": "Which Streamlit version is installed in the affected environment?",
+            "retrieval_queries": [],
+            "facts_delta": [
+              {
+                "name": "source_family",
+                "value": "neutral documentation",
+                "source_ref": "doc:neutral-release",
+                "turn_id": "turn:source",
+                "provenance_kind": "evidence",
+                "status": "active"
+              }
+            ],
+            "checks_suggested": [
+              "Read the installed release from the affected application."
+            ]
+          }
+        },
+        "canonical_json": "{\"case\":{\"case_id\":\"case:c2j-pending-7\",\"case_revision\":4,\"checks_performed\":[\"Reproduced in an isolated application.\"],\"evidence_refs\":[\"doc:neutral-pooling\"],\"facts\":[{\"name\":\"operating_system\",\"provenance_kind\":\"user\",\"source_ref\":\"user:initial\",\"status\":\"active\",\"turn_id\":\"turn:initial\",\"value\":\"Linux\"},{\"name\":\"streamlit_version\",\"provenance_kind\":\"evidence\",\"source_ref\":\"doc:neutral-release\",\"status\":\"active\",\"turn_id\":\"turn:source\",\"value\":\"1.20.0\"},{\"name\":\"artifact_hint\",\"provenance_kind\":\"evidence\",\"source_ref\":\"doc:neutral-pooling\",\"status\":\"active\",\"turn_id\":\"turn:source\",\"value\":\"Source suggests an old configuration.\"}],\"pending_proposal_id\":\"proposal:c2j-pending-7\",\"unknowns\":[\"streamlit_version\",\"python_version\"]},\"proposal_id\":\"proposal:c2j-pending-7\",\"question\":{\"checks_suggested\":[\"Read the installed release from the affected application.\"],\"decision\":\"ask\",\"evidence_links\":[{\"chunk_id\":\"chunk:neutral-release\",\"claim\":\"A neutral source lists a release.\"}],\"facts_delta\":[{\"name\":\"source_family\",\"provenance_kind\":\"evidence\",\"source_ref\":\"doc:neutral-release\",\"status\":\"active\",\"turn_id\":\"turn:source\",\"value\":\"neutral documentation\"}],\"maintainer_summary\":\"The user has not supplied an affected installation release.\",\"missing_info\":[\"streamlit_version\"],\"next_question\":\"Which Streamlit version is installed in the affected environment?\",\"rationale\":\"Ask the user for the affected installation before selecting a release-specific source.\",\"retrieval_queries\":[],\"user_draft\":\"Which Streamlit version is installed in the affected environment?\"},\"turn\":{\"case_id\":\"case:c2j-pending-7\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"1.49.1\",\"reported_facts\":[],\"source_ref\":\"user:c2j-pending-7\",\"turn_id\":\"turn:c2j-pending-7\",\"unknowns\":[]}}",
+        "canonical_sha256": "230053cc3c64a36a8a7b9daf8809bc7b1e7aac5f31a605cc175a9a6330732e02"
+      },
+      "prepared_user_turn": {
+        "json": {
+          "case_id": "case:c2j-pending-7",
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-pending-7",
+          "source_ref": "user:c2j-pending-7",
+          "message": "1.49.1",
+          "reported_facts": [
+            {
+              "name": "streamlit_version",
+              "value": "1.49.1"
+            }
+          ],
+          "unknowns": [],
+          "checks_performed": [],
+          "context_changed": false
+        },
+        "canonical_json": "{\"case_id\":\"case:c2j-pending-7\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"1.49.1\",\"reported_facts\":[{\"name\":\"streamlit_version\",\"value\":\"1.49.1\"}],\"source_ref\":\"user:c2j-pending-7\",\"turn_id\":\"turn:c2j-pending-7\",\"unknowns\":[]}",
+        "canonical_sha256": "b3188d98bd511927d5aca2efc78cef01bb62ad4817d00d2ddf632ea1b78a0005"
+      },
+      "proposed_transition": {
+        "json": {
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-pending-7",
+          "source_ref": "user:c2j-pending-7",
+          "event_hash": "b3188d98bd511927d5aca2efc78cef01bb62ad4817d00d2ddf632ea1b78a0005",
+          "candidate": {
+            "case_id": "case:c2j-pending-7",
+            "case_revision": 5,
+            "facts": [
+              {
+                "name": "operating_system",
+                "value": "Linux",
+                "source_ref": "user:initial",
+                "turn_id": "turn:initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "streamlit_version",
+                "value": "1.20.0",
+                "source_ref": "doc:neutral-release",
+                "turn_id": "turn:source",
+                "provenance_kind": "evidence",
+                "status": "superseded"
+              },
+              {
+                "name": "artifact_hint",
+                "value": "Source suggests an old configuration.",
+                "source_ref": "doc:neutral-pooling",
+                "turn_id": "turn:source",
+                "provenance_kind": "evidence",
+                "status": "superseded"
+              },
+              {
+                "name": "streamlit_version",
+                "value": "1.49.1",
+                "source_ref": "user:c2j-pending-7",
+                "turn_id": "turn:c2j-pending-7",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [
+              "python_version",
+              "artifact_hint"
+            ],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "pending_proposal_id": null
+          },
+          "changed_fact_names": [
+            "streamlit_version",
+            "artifact_hint"
+          ],
+          "context_changed": true,
+          "invalidated_checks": [
+            "Reproduced in an isolated application."
+          ]
+        },
+        "canonical_json": "{\"candidate\":{\"case_id\":\"case:c2j-pending-7\",\"case_revision\":5,\"checks_performed\":[],\"evidence_refs\":[],\"facts\":[{\"name\":\"operating_system\",\"provenance_kind\":\"user\",\"source_ref\":\"user:initial\",\"status\":\"active\",\"turn_id\":\"turn:initial\",\"value\":\"Linux\"},{\"name\":\"streamlit_version\",\"provenance_kind\":\"evidence\",\"source_ref\":\"doc:neutral-release\",\"status\":\"superseded\",\"turn_id\":\"turn:source\",\"value\":\"1.20.0\"},{\"name\":\"artifact_hint\",\"provenance_kind\":\"evidence\",\"source_ref\":\"doc:neutral-pooling\",\"status\":\"superseded\",\"turn_id\":\"turn:source\",\"value\":\"Source suggests an old configuration.\"},{\"name\":\"streamlit_version\",\"provenance_kind\":\"user\",\"source_ref\":\"user:c2j-pending-7\",\"status\":\"active\",\"turn_id\":\"turn:c2j-pending-7\",\"value\":\"1.49.1\"}],\"pending_proposal_id\":null,\"unknowns\":[\"python_version\",\"artifact_hint\"]},\"changed_fact_names\":[\"streamlit_version\",\"artifact_hint\"],\"context_changed\":true,\"event_hash\":\"b3188d98bd511927d5aca2efc78cef01bb62ad4817d00d2ddf632ea1b78a0005\",\"expected_revision\":4,\"invalidated_checks\":[\"Reproduced in an isolated application.\"],\"source_ref\":\"user:c2j-pending-7\",\"turn_id\":\"turn:c2j-pending-7\"}",
+        "canonical_sha256": "63c2292e5f7d921fcf309c3858b033fbbc74aefacf037c0db80b4add1f3f6c5f"
+      },
+      "input_contracts_after_call_sha256": "230053cc3c64a36a8a7b9daf8809bc7b1e7aac5f31a605cc175a9a6330732e02",
+      "input_contracts_unchanged": true
+    },
+    {
+      "id": "approved-canonical-release",
+      "helper": "prepare_approved_version_reply",
+      "authorship": "Fresh neutral development fixture; no Issue, evaluation case, gold, model output or real source.",
+      "construction_message_before_contract_normalization": "1.42.0",
+      "expected_version": "1.42.0",
+      "input_contracts": {
+        "json": {
+          "case": {
+            "case_id": "case:c2j-approved-0",
+            "case_revision": 4,
+            "facts": [],
+            "unknowns": [
+              "streamlit_version"
+            ],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "pending_proposal_id": null
+          },
+          "turn": {
+            "case_id": "case:c2j-approved-0",
+            "expected_revision": 4,
+            "turn_id": "turn:c2j-approved-0",
+            "source_ref": "user:c2j-approved-0",
+            "message": "1.42.0",
+            "reported_facts": [],
+            "unknowns": [],
+            "checks_performed": [],
+            "context_changed": false
+          },
+          "proposal_id": "proposal:c2j-approved-0",
+          "reply": {
+            "case_id": "case:c2j-approved-0",
+            "case_revision": 4,
+            "proposal_id": "proposal:c2j-approved-0",
+            "question": {
+              "decision": "ask",
+              "user_draft": "Which Streamlit version is installed in the affected environment?",
+              "maintainer_summary": "The user has not supplied an affected installation release.",
+              "rationale": "Ask the user for the affected installation before selecting a release-specific source.",
+              "evidence_links": [],
+              "missing_info": [
+                "streamlit_version"
+              ],
+              "next_question": "Which Streamlit version is installed in the affected environment?",
+              "retrieval_queries": [],
+              "facts_delta": [],
+              "checks_suggested": []
+            }
+          }
+        },
+        "canonical_json": "{\"case\":{\"case_id\":\"case:c2j-approved-0\",\"case_revision\":4,\"checks_performed\":[],\"evidence_refs\":[],\"facts\":[],\"pending_proposal_id\":null,\"unknowns\":[\"streamlit_version\"]},\"proposal_id\":\"proposal:c2j-approved-0\",\"reply\":{\"case_id\":\"case:c2j-approved-0\",\"case_revision\":4,\"proposal_id\":\"proposal:c2j-approved-0\",\"question\":{\"checks_suggested\":[],\"decision\":\"ask\",\"evidence_links\":[],\"facts_delta\":[],\"maintainer_summary\":\"The user has not supplied an affected installation release.\",\"missing_info\":[\"streamlit_version\"],\"next_question\":\"Which Streamlit version is installed in the affected environment?\",\"rationale\":\"Ask the user for the affected installation before selecting a release-specific source.\",\"retrieval_queries\":[],\"user_draft\":\"Which Streamlit version is installed in the affected environment?\"}},\"turn\":{\"case_id\":\"case:c2j-approved-0\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"1.42.0\",\"reported_facts\":[],\"source_ref\":\"user:c2j-approved-0\",\"turn_id\":\"turn:c2j-approved-0\",\"unknowns\":[]}}",
+        "canonical_sha256": "c51840065435bcb916a31413a871ed8a6c22762c5ec03d09a6cddd26b5c29215"
+      },
+      "prepared_user_turn": {
+        "json": {
+          "case_id": "case:c2j-approved-0",
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-approved-0",
+          "source_ref": "user:c2j-approved-0",
+          "message": "1.42.0",
+          "reported_facts": [
+            {
+              "name": "streamlit_version",
+              "value": "1.42.0"
+            }
+          ],
+          "unknowns": [],
+          "checks_performed": [],
+          "context_changed": false
+        },
+        "canonical_json": "{\"case_id\":\"case:c2j-approved-0\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"1.42.0\",\"reported_facts\":[{\"name\":\"streamlit_version\",\"value\":\"1.42.0\"}],\"source_ref\":\"user:c2j-approved-0\",\"turn_id\":\"turn:c2j-approved-0\",\"unknowns\":[]}",
+        "canonical_sha256": "9c323affc650a15d48610bc8d48837dd7a77638db8e1ff979c7529c29cb50900"
+      },
+      "proposed_transition": {
+        "json": {
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-approved-0",
+          "source_ref": "user:c2j-approved-0",
+          "event_hash": "9c323affc650a15d48610bc8d48837dd7a77638db8e1ff979c7529c29cb50900",
+          "candidate": {
+            "case_id": "case:c2j-approved-0",
+            "case_revision": 5,
+            "facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.42.0",
+                "source_ref": "user:c2j-approved-0",
+                "turn_id": "turn:c2j-approved-0",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "pending_proposal_id": null
+          },
+          "changed_fact_names": [
+            "streamlit_version"
+          ],
+          "context_changed": false,
+          "invalidated_checks": []
+        },
+        "canonical_json": "{\"candidate\":{\"case_id\":\"case:c2j-approved-0\",\"case_revision\":5,\"checks_performed\":[],\"evidence_refs\":[],\"facts\":[{\"name\":\"streamlit_version\",\"provenance_kind\":\"user\",\"source_ref\":\"user:c2j-approved-0\",\"status\":\"active\",\"turn_id\":\"turn:c2j-approved-0\",\"value\":\"1.42.0\"}],\"pending_proposal_id\":null,\"unknowns\":[]},\"changed_fact_names\":[\"streamlit_version\"],\"context_changed\":false,\"event_hash\":\"9c323affc650a15d48610bc8d48837dd7a77638db8e1ff979c7529c29cb50900\",\"expected_revision\":4,\"invalidated_checks\":[],\"source_ref\":\"user:c2j-approved-0\",\"turn_id\":\"turn:c2j-approved-0\"}",
+        "canonical_sha256": "d97a59de755bcbe6bee8697b3958c2b0937a0360e529d145cbe8825af9d83399"
+      },
+      "input_contracts_after_call_sha256": "c51840065435bcb916a31413a871ed8a6c22762c5ec03d09a6cddd26b5c29215",
+      "input_contracts_unchanged": true
+    },
+    {
+      "id": "approved-streamlit-prefix",
+      "helper": "prepare_approved_version_reply",
+      "authorship": "Fresh neutral development fixture; no Issue, evaluation case, gold, model output or real source.",
+      "construction_message_before_contract_normalization": "Streamlit 1.50.0",
+      "expected_version": "1.50.0",
+      "input_contracts": {
+        "json": {
+          "case": {
+            "case_id": "case:c2j-approved-1",
+            "case_revision": 4,
+            "facts": [],
+            "unknowns": [
+              "streamlit_version"
+            ],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "pending_proposal_id": null
+          },
+          "turn": {
+            "case_id": "case:c2j-approved-1",
+            "expected_revision": 4,
+            "turn_id": "turn:c2j-approved-1",
+            "source_ref": "user:c2j-approved-1",
+            "message": "Streamlit 1.50.0",
+            "reported_facts": [],
+            "unknowns": [],
+            "checks_performed": [],
+            "context_changed": false
+          },
+          "proposal_id": "proposal:c2j-approved-1",
+          "reply": {
+            "case_id": "case:c2j-approved-1",
+            "case_revision": 4,
+            "proposal_id": "proposal:c2j-approved-1",
+            "question": {
+              "decision": "ask",
+              "user_draft": "Which Streamlit version is installed in the affected environment?",
+              "maintainer_summary": "The user has not supplied an affected installation release.",
+              "rationale": "Ask the user for the affected installation before selecting a release-specific source.",
+              "evidence_links": [],
+              "missing_info": [
+                "streamlit_version"
+              ],
+              "next_question": "Which Streamlit version is installed in the affected environment?",
+              "retrieval_queries": [],
+              "facts_delta": [],
+              "checks_suggested": []
+            }
+          }
+        },
+        "canonical_json": "{\"case\":{\"case_id\":\"case:c2j-approved-1\",\"case_revision\":4,\"checks_performed\":[],\"evidence_refs\":[],\"facts\":[],\"pending_proposal_id\":null,\"unknowns\":[\"streamlit_version\"]},\"proposal_id\":\"proposal:c2j-approved-1\",\"reply\":{\"case_id\":\"case:c2j-approved-1\",\"case_revision\":4,\"proposal_id\":\"proposal:c2j-approved-1\",\"question\":{\"checks_suggested\":[],\"decision\":\"ask\",\"evidence_links\":[],\"facts_delta\":[],\"maintainer_summary\":\"The user has not supplied an affected installation release.\",\"missing_info\":[\"streamlit_version\"],\"next_question\":\"Which Streamlit version is installed in the affected environment?\",\"rationale\":\"Ask the user for the affected installation before selecting a release-specific source.\",\"retrieval_queries\":[],\"user_draft\":\"Which Streamlit version is installed in the affected environment?\"}},\"turn\":{\"case_id\":\"case:c2j-approved-1\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"Streamlit 1.50.0\",\"reported_facts\":[],\"source_ref\":\"user:c2j-approved-1\",\"turn_id\":\"turn:c2j-approved-1\",\"unknowns\":[]}}",
+        "canonical_sha256": "d4ca8b49820608c5781e9570168640311b44db21643c085774c8f27bc0927c25"
+      },
+      "prepared_user_turn": {
+        "json": {
+          "case_id": "case:c2j-approved-1",
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-approved-1",
+          "source_ref": "user:c2j-approved-1",
+          "message": "Streamlit 1.50.0",
+          "reported_facts": [
+            {
+              "name": "streamlit_version",
+              "value": "1.50.0"
+            }
+          ],
+          "unknowns": [],
+          "checks_performed": [],
+          "context_changed": false
+        },
+        "canonical_json": "{\"case_id\":\"case:c2j-approved-1\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"Streamlit 1.50.0\",\"reported_facts\":[{\"name\":\"streamlit_version\",\"value\":\"1.50.0\"}],\"source_ref\":\"user:c2j-approved-1\",\"turn_id\":\"turn:c2j-approved-1\",\"unknowns\":[]}",
+        "canonical_sha256": "9e3e8084d715153d19d0ce055f2e39d2ebcd623292e30630237d8ceb0df29db1"
+      },
+      "proposed_transition": {
+        "json": {
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-approved-1",
+          "source_ref": "user:c2j-approved-1",
+          "event_hash": "9e3e8084d715153d19d0ce055f2e39d2ebcd623292e30630237d8ceb0df29db1",
+          "candidate": {
+            "case_id": "case:c2j-approved-1",
+            "case_revision": 5,
+            "facts": [
+              {
+                "name": "streamlit_version",
+                "value": "1.50.0",
+                "source_ref": "user:c2j-approved-1",
+                "turn_id": "turn:c2j-approved-1",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "pending_proposal_id": null
+          },
+          "changed_fact_names": [
+            "streamlit_version"
+          ],
+          "context_changed": false,
+          "invalidated_checks": []
+        },
+        "canonical_json": "{\"candidate\":{\"case_id\":\"case:c2j-approved-1\",\"case_revision\":5,\"checks_performed\":[],\"evidence_refs\":[],\"facts\":[{\"name\":\"streamlit_version\",\"provenance_kind\":\"user\",\"source_ref\":\"user:c2j-approved-1\",\"status\":\"active\",\"turn_id\":\"turn:c2j-approved-1\",\"value\":\"1.50.0\"}],\"pending_proposal_id\":null,\"unknowns\":[]},\"changed_fact_names\":[\"streamlit_version\"],\"context_changed\":false,\"event_hash\":\"9e3e8084d715153d19d0ce055f2e39d2ebcd623292e30630237d8ceb0df29db1\",\"expected_revision\":4,\"invalidated_checks\":[],\"source_ref\":\"user:c2j-approved-1\",\"turn_id\":\"turn:c2j-approved-1\"}",
+        "canonical_sha256": "333092fd0d84f0dca9dec7c3ad6ecf84adb8cf4a9329a66e15c6ed2c0c826078"
+      },
+      "input_contracts_after_call_sha256": "d4ca8b49820608c5781e9570168640311b44db21643c085774c8f27bc0927c25",
+      "input_contracts_unchanged": true
+    },
+    {
+      "id": "approved-outer-whitespace",
+      "helper": "prepare_approved_version_reply",
+      "authorship": "Fresh neutral development fixture; no Issue, evaluation case, gold, model output or real source.",
+      "construction_message_before_contract_normalization": "  Streamlit 0.99.1  ",
+      "expected_version": "0.99.1",
+      "input_contracts": {
+        "json": {
+          "case": {
+            "case_id": "case:c2j-approved-2",
+            "case_revision": 4,
+            "facts": [],
+            "unknowns": [
+              "streamlit_version"
+            ],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "pending_proposal_id": null
+          },
+          "turn": {
+            "case_id": "case:c2j-approved-2",
+            "expected_revision": 4,
+            "turn_id": "turn:c2j-approved-2",
+            "source_ref": "user:c2j-approved-2",
+            "message": "Streamlit 0.99.1",
+            "reported_facts": [],
+            "unknowns": [],
+            "checks_performed": [],
+            "context_changed": false
+          },
+          "proposal_id": "proposal:c2j-approved-2",
+          "reply": {
+            "case_id": "case:c2j-approved-2",
+            "case_revision": 4,
+            "proposal_id": "proposal:c2j-approved-2",
+            "question": {
+              "decision": "ask",
+              "user_draft": "Which Streamlit version is installed in the affected environment?",
+              "maintainer_summary": "The user has not supplied an affected installation release.",
+              "rationale": "Ask the user for the affected installation before selecting a release-specific source.",
+              "evidence_links": [],
+              "missing_info": [
+                "streamlit_version"
+              ],
+              "next_question": "Which Streamlit version is installed in the affected environment?",
+              "retrieval_queries": [],
+              "facts_delta": [],
+              "checks_suggested": []
+            }
+          }
+        },
+        "canonical_json": "{\"case\":{\"case_id\":\"case:c2j-approved-2\",\"case_revision\":4,\"checks_performed\":[],\"evidence_refs\":[],\"facts\":[],\"pending_proposal_id\":null,\"unknowns\":[\"streamlit_version\"]},\"proposal_id\":\"proposal:c2j-approved-2\",\"reply\":{\"case_id\":\"case:c2j-approved-2\",\"case_revision\":4,\"proposal_id\":\"proposal:c2j-approved-2\",\"question\":{\"checks_suggested\":[],\"decision\":\"ask\",\"evidence_links\":[],\"facts_delta\":[],\"maintainer_summary\":\"The user has not supplied an affected installation release.\",\"missing_info\":[\"streamlit_version\"],\"next_question\":\"Which Streamlit version is installed in the affected environment?\",\"rationale\":\"Ask the user for the affected installation before selecting a release-specific source.\",\"retrieval_queries\":[],\"user_draft\":\"Which Streamlit version is installed in the affected environment?\"}},\"turn\":{\"case_id\":\"case:c2j-approved-2\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"Streamlit 0.99.1\",\"reported_facts\":[],\"source_ref\":\"user:c2j-approved-2\",\"turn_id\":\"turn:c2j-approved-2\",\"unknowns\":[]}}",
+        "canonical_sha256": "60c6e935c8ac5310fd30205052fb554032d8a58d2992ae78fc8b49169083870b"
+      },
+      "prepared_user_turn": {
+        "json": {
+          "case_id": "case:c2j-approved-2",
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-approved-2",
+          "source_ref": "user:c2j-approved-2",
+          "message": "Streamlit 0.99.1",
+          "reported_facts": [
+            {
+              "name": "streamlit_version",
+              "value": "0.99.1"
+            }
+          ],
+          "unknowns": [],
+          "checks_performed": [],
+          "context_changed": false
+        },
+        "canonical_json": "{\"case_id\":\"case:c2j-approved-2\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"Streamlit 0.99.1\",\"reported_facts\":[{\"name\":\"streamlit_version\",\"value\":\"0.99.1\"}],\"source_ref\":\"user:c2j-approved-2\",\"turn_id\":\"turn:c2j-approved-2\",\"unknowns\":[]}",
+        "canonical_sha256": "e0fcfdc81aabb163361d2a9519e447d3062c3fd883316408a72523aea7965dc9"
+      },
+      "proposed_transition": {
+        "json": {
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-approved-2",
+          "source_ref": "user:c2j-approved-2",
+          "event_hash": "e0fcfdc81aabb163361d2a9519e447d3062c3fd883316408a72523aea7965dc9",
+          "candidate": {
+            "case_id": "case:c2j-approved-2",
+            "case_revision": 5,
+            "facts": [
+              {
+                "name": "streamlit_version",
+                "value": "0.99.1",
+                "source_ref": "user:c2j-approved-2",
+                "turn_id": "turn:c2j-approved-2",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "pending_proposal_id": null
+          },
+          "changed_fact_names": [
+            "streamlit_version"
+          ],
+          "context_changed": false,
+          "invalidated_checks": []
+        },
+        "canonical_json": "{\"candidate\":{\"case_id\":\"case:c2j-approved-2\",\"case_revision\":5,\"checks_performed\":[],\"evidence_refs\":[],\"facts\":[{\"name\":\"streamlit_version\",\"provenance_kind\":\"user\",\"source_ref\":\"user:c2j-approved-2\",\"status\":\"active\",\"turn_id\":\"turn:c2j-approved-2\",\"value\":\"0.99.1\"}],\"pending_proposal_id\":null,\"unknowns\":[]},\"changed_fact_names\":[\"streamlit_version\"],\"context_changed\":false,\"event_hash\":\"e0fcfdc81aabb163361d2a9519e447d3062c3fd883316408a72523aea7965dc9\",\"expected_revision\":4,\"invalidated_checks\":[],\"source_ref\":\"user:c2j-approved-2\",\"turn_id\":\"turn:c2j-approved-2\"}",
+        "canonical_sha256": "97f21eac8286763af0c72ddda9157df3d54fd8519ee1e0b4dd88ffb899ac741a"
+      },
+      "input_contracts_after_call_sha256": "60c6e935c8ac5310fd30205052fb554032d8a58d2992ae78fc8b49169083870b",
+      "input_contracts_unchanged": true
+    },
+    {
+      "id": "approved-zero-release",
+      "helper": "prepare_approved_version_reply",
+      "authorship": "Fresh neutral development fixture; no Issue, evaluation case, gold, model output or real source.",
+      "construction_message_before_contract_normalization": "0.0.0",
+      "expected_version": "0.0.0",
+      "input_contracts": {
+        "json": {
+          "case": {
+            "case_id": "case:c2j-approved-3",
+            "case_revision": 4,
+            "facts": [],
+            "unknowns": [
+              "streamlit_version"
+            ],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "pending_proposal_id": null
+          },
+          "turn": {
+            "case_id": "case:c2j-approved-3",
+            "expected_revision": 4,
+            "turn_id": "turn:c2j-approved-3",
+            "source_ref": "user:c2j-approved-3",
+            "message": "0.0.0",
+            "reported_facts": [],
+            "unknowns": [],
+            "checks_performed": [],
+            "context_changed": false
+          },
+          "proposal_id": "proposal:c2j-approved-3",
+          "reply": {
+            "case_id": "case:c2j-approved-3",
+            "case_revision": 4,
+            "proposal_id": "proposal:c2j-approved-3",
+            "question": {
+              "decision": "ask",
+              "user_draft": "Which Streamlit version is installed in the affected environment?",
+              "maintainer_summary": "The user has not supplied an affected installation release.",
+              "rationale": "Ask the user for the affected installation before selecting a release-specific source.",
+              "evidence_links": [],
+              "missing_info": [
+                "streamlit_version"
+              ],
+              "next_question": "Which Streamlit version is installed in the affected environment?",
+              "retrieval_queries": [],
+              "facts_delta": [],
+              "checks_suggested": []
+            }
+          }
+        },
+        "canonical_json": "{\"case\":{\"case_id\":\"case:c2j-approved-3\",\"case_revision\":4,\"checks_performed\":[],\"evidence_refs\":[],\"facts\":[],\"pending_proposal_id\":null,\"unknowns\":[\"streamlit_version\"]},\"proposal_id\":\"proposal:c2j-approved-3\",\"reply\":{\"case_id\":\"case:c2j-approved-3\",\"case_revision\":4,\"proposal_id\":\"proposal:c2j-approved-3\",\"question\":{\"checks_suggested\":[],\"decision\":\"ask\",\"evidence_links\":[],\"facts_delta\":[],\"maintainer_summary\":\"The user has not supplied an affected installation release.\",\"missing_info\":[\"streamlit_version\"],\"next_question\":\"Which Streamlit version is installed in the affected environment?\",\"rationale\":\"Ask the user for the affected installation before selecting a release-specific source.\",\"retrieval_queries\":[],\"user_draft\":\"Which Streamlit version is installed in the affected environment?\"}},\"turn\":{\"case_id\":\"case:c2j-approved-3\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"0.0.0\",\"reported_facts\":[],\"source_ref\":\"user:c2j-approved-3\",\"turn_id\":\"turn:c2j-approved-3\",\"unknowns\":[]}}",
+        "canonical_sha256": "112a6563da953b11142115cf1c32389bbf03e7dadbdaeb182ef3182815dcaec8"
+      },
+      "prepared_user_turn": {
+        "json": {
+          "case_id": "case:c2j-approved-3",
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-approved-3",
+          "source_ref": "user:c2j-approved-3",
+          "message": "0.0.0",
+          "reported_facts": [
+            {
+              "name": "streamlit_version",
+              "value": "0.0.0"
+            }
+          ],
+          "unknowns": [],
+          "checks_performed": [],
+          "context_changed": false
+        },
+        "canonical_json": "{\"case_id\":\"case:c2j-approved-3\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"0.0.0\",\"reported_facts\":[{\"name\":\"streamlit_version\",\"value\":\"0.0.0\"}],\"source_ref\":\"user:c2j-approved-3\",\"turn_id\":\"turn:c2j-approved-3\",\"unknowns\":[]}",
+        "canonical_sha256": "d73419cb6c041e275b1de3b464b1970df635d9dee43d2fd09f481231d90536ab"
+      },
+      "proposed_transition": {
+        "json": {
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-approved-3",
+          "source_ref": "user:c2j-approved-3",
+          "event_hash": "d73419cb6c041e275b1de3b464b1970df635d9dee43d2fd09f481231d90536ab",
+          "candidate": {
+            "case_id": "case:c2j-approved-3",
+            "case_revision": 5,
+            "facts": [
+              {
+                "name": "streamlit_version",
+                "value": "0.0.0",
+                "source_ref": "user:c2j-approved-3",
+                "turn_id": "turn:c2j-approved-3",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "pending_proposal_id": null
+          },
+          "changed_fact_names": [
+            "streamlit_version"
+          ],
+          "context_changed": false,
+          "invalidated_checks": []
+        },
+        "canonical_json": "{\"candidate\":{\"case_id\":\"case:c2j-approved-3\",\"case_revision\":5,\"checks_performed\":[],\"evidence_refs\":[],\"facts\":[{\"name\":\"streamlit_version\",\"provenance_kind\":\"user\",\"source_ref\":\"user:c2j-approved-3\",\"status\":\"active\",\"turn_id\":\"turn:c2j-approved-3\",\"value\":\"0.0.0\"}],\"pending_proposal_id\":null,\"unknowns\":[]},\"changed_fact_names\":[\"streamlit_version\"],\"context_changed\":false,\"event_hash\":\"d73419cb6c041e275b1de3b464b1970df635d9dee43d2fd09f481231d90536ab\",\"expected_revision\":4,\"invalidated_checks\":[],\"source_ref\":\"user:c2j-approved-3\",\"turn_id\":\"turn:c2j-approved-3\"}",
+        "canonical_sha256": "059536d4f28b6541a9186d7e9e7859523943e0be1bb621eef899b1ea12a8d4ef"
+      },
+      "input_contracts_after_call_sha256": "112a6563da953b11142115cf1c32389bbf03e7dadbdaeb182ef3182815dcaec8",
+      "input_contracts_unchanged": true
+    },
+    {
+      "id": "approved-large-components",
+      "helper": "prepare_approved_version_reply",
+      "authorship": "Fresh neutral development fixture; no Issue, evaluation case, gold, model output or real source.",
+      "construction_message_before_contract_normalization": "12.345.678",
+      "expected_version": "12.345.678",
+      "input_contracts": {
+        "json": {
+          "case": {
+            "case_id": "case:c2j-approved-4",
+            "case_revision": 4,
+            "facts": [],
+            "unknowns": [
+              "streamlit_version"
+            ],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "pending_proposal_id": null
+          },
+          "turn": {
+            "case_id": "case:c2j-approved-4",
+            "expected_revision": 4,
+            "turn_id": "turn:c2j-approved-4",
+            "source_ref": "user:c2j-approved-4",
+            "message": "12.345.678",
+            "reported_facts": [],
+            "unknowns": [],
+            "checks_performed": [],
+            "context_changed": false
+          },
+          "proposal_id": "proposal:c2j-approved-4",
+          "reply": {
+            "case_id": "case:c2j-approved-4",
+            "case_revision": 4,
+            "proposal_id": "proposal:c2j-approved-4",
+            "question": {
+              "decision": "ask",
+              "user_draft": "Which Streamlit version is installed in the affected environment?",
+              "maintainer_summary": "The user has not supplied an affected installation release.",
+              "rationale": "Ask the user for the affected installation before selecting a release-specific source.",
+              "evidence_links": [],
+              "missing_info": [
+                "streamlit_version"
+              ],
+              "next_question": "Which Streamlit version is installed in the affected environment?",
+              "retrieval_queries": [],
+              "facts_delta": [],
+              "checks_suggested": []
+            }
+          }
+        },
+        "canonical_json": "{\"case\":{\"case_id\":\"case:c2j-approved-4\",\"case_revision\":4,\"checks_performed\":[],\"evidence_refs\":[],\"facts\":[],\"pending_proposal_id\":null,\"unknowns\":[\"streamlit_version\"]},\"proposal_id\":\"proposal:c2j-approved-4\",\"reply\":{\"case_id\":\"case:c2j-approved-4\",\"case_revision\":4,\"proposal_id\":\"proposal:c2j-approved-4\",\"question\":{\"checks_suggested\":[],\"decision\":\"ask\",\"evidence_links\":[],\"facts_delta\":[],\"maintainer_summary\":\"The user has not supplied an affected installation release.\",\"missing_info\":[\"streamlit_version\"],\"next_question\":\"Which Streamlit version is installed in the affected environment?\",\"rationale\":\"Ask the user for the affected installation before selecting a release-specific source.\",\"retrieval_queries\":[],\"user_draft\":\"Which Streamlit version is installed in the affected environment?\"}},\"turn\":{\"case_id\":\"case:c2j-approved-4\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"12.345.678\",\"reported_facts\":[],\"source_ref\":\"user:c2j-approved-4\",\"turn_id\":\"turn:c2j-approved-4\",\"unknowns\":[]}}",
+        "canonical_sha256": "92b32c251f6655fe7c1023d505cfa1a4582718ff9861283e433e5c25bbccd5c4"
+      },
+      "prepared_user_turn": {
+        "json": {
+          "case_id": "case:c2j-approved-4",
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-approved-4",
+          "source_ref": "user:c2j-approved-4",
+          "message": "12.345.678",
+          "reported_facts": [
+            {
+              "name": "streamlit_version",
+              "value": "12.345.678"
+            }
+          ],
+          "unknowns": [],
+          "checks_performed": [],
+          "context_changed": false
+        },
+        "canonical_json": "{\"case_id\":\"case:c2j-approved-4\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"12.345.678\",\"reported_facts\":[{\"name\":\"streamlit_version\",\"value\":\"12.345.678\"}],\"source_ref\":\"user:c2j-approved-4\",\"turn_id\":\"turn:c2j-approved-4\",\"unknowns\":[]}",
+        "canonical_sha256": "9d6575af39e47f9d7dc282b44fa01156265b478d18f6b667123bb49add68ecd7"
+      },
+      "proposed_transition": {
+        "json": {
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-approved-4",
+          "source_ref": "user:c2j-approved-4",
+          "event_hash": "9d6575af39e47f9d7dc282b44fa01156265b478d18f6b667123bb49add68ecd7",
+          "candidate": {
+            "case_id": "case:c2j-approved-4",
+            "case_revision": 5,
+            "facts": [
+              {
+                "name": "streamlit_version",
+                "value": "12.345.678",
+                "source_ref": "user:c2j-approved-4",
+                "turn_id": "turn:c2j-approved-4",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "pending_proposal_id": null
+          },
+          "changed_fact_names": [
+            "streamlit_version"
+          ],
+          "context_changed": false,
+          "invalidated_checks": []
+        },
+        "canonical_json": "{\"candidate\":{\"case_id\":\"case:c2j-approved-4\",\"case_revision\":5,\"checks_performed\":[],\"evidence_refs\":[],\"facts\":[{\"name\":\"streamlit_version\",\"provenance_kind\":\"user\",\"source_ref\":\"user:c2j-approved-4\",\"status\":\"active\",\"turn_id\":\"turn:c2j-approved-4\",\"value\":\"12.345.678\"}],\"pending_proposal_id\":null,\"unknowns\":[]},\"changed_fact_names\":[\"streamlit_version\"],\"context_changed\":false,\"event_hash\":\"9d6575af39e47f9d7dc282b44fa01156265b478d18f6b667123bb49add68ecd7\",\"expected_revision\":4,\"invalidated_checks\":[],\"source_ref\":\"user:c2j-approved-4\",\"turn_id\":\"turn:c2j-approved-4\"}",
+        "canonical_sha256": "3793433dcfc562d1e69555aa314372f2d601218bf60813a6cf24bd8fc93e7216"
+      },
+      "input_contracts_after_call_sha256": "92b32c251f6655fe7c1023d505cfa1a4582718ff9861283e433e5c25bbccd5c4",
+      "input_contracts_unchanged": true
+    },
+    {
+      "id": "approved-existing-user-context",
+      "helper": "prepare_approved_version_reply",
+      "authorship": "Fresh neutral development fixture; no Issue, evaluation case, gold, model output or real source.",
+      "construction_message_before_contract_normalization": "1.51.2",
+      "expected_version": "1.51.2",
+      "input_contracts": {
+        "json": {
+          "case": {
+            "case_id": "case:c2j-approved-5",
+            "case_revision": 4,
+            "facts": [
+              {
+                "name": "operating_system",
+                "value": "Linux",
+                "source_ref": "user:initial",
+                "turn_id": "turn:initial",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [
+              "streamlit_version",
+              "python_version"
+            ],
+            "checks_performed": [
+              "Reproduced in an isolated application."
+            ],
+            "evidence_refs": [
+              "doc:neutral-pooling"
+            ],
+            "pending_proposal_id": null
+          },
+          "turn": {
+            "case_id": "case:c2j-approved-5",
+            "expected_revision": 4,
+            "turn_id": "turn:c2j-approved-5",
+            "source_ref": "user:c2j-approved-5",
+            "message": "1.51.2",
+            "reported_facts": [],
+            "unknowns": [],
+            "checks_performed": [],
+            "context_changed": false
+          },
+          "proposal_id": "proposal:c2j-approved-5",
+          "reply": {
+            "case_id": "case:c2j-approved-5",
+            "case_revision": 4,
+            "proposal_id": "proposal:c2j-approved-5",
+            "question": {
+              "decision": "ask",
+              "user_draft": "Which Streamlit version is installed in the affected environment?",
+              "maintainer_summary": "The user has not supplied an affected installation release.",
+              "rationale": "Ask the user for the affected installation before selecting a release-specific source.",
+              "evidence_links": [],
+              "missing_info": [
+                "streamlit_version"
+              ],
+              "next_question": "Which Streamlit version is installed in the affected environment?",
+              "retrieval_queries": [],
+              "facts_delta": [],
+              "checks_suggested": []
+            }
+          }
+        },
+        "canonical_json": "{\"case\":{\"case_id\":\"case:c2j-approved-5\",\"case_revision\":4,\"checks_performed\":[\"Reproduced in an isolated application.\"],\"evidence_refs\":[\"doc:neutral-pooling\"],\"facts\":[{\"name\":\"operating_system\",\"provenance_kind\":\"user\",\"source_ref\":\"user:initial\",\"status\":\"active\",\"turn_id\":\"turn:initial\",\"value\":\"Linux\"}],\"pending_proposal_id\":null,\"unknowns\":[\"streamlit_version\",\"python_version\"]},\"proposal_id\":\"proposal:c2j-approved-5\",\"reply\":{\"case_id\":\"case:c2j-approved-5\",\"case_revision\":4,\"proposal_id\":\"proposal:c2j-approved-5\",\"question\":{\"checks_suggested\":[],\"decision\":\"ask\",\"evidence_links\":[],\"facts_delta\":[],\"maintainer_summary\":\"The user has not supplied an affected installation release.\",\"missing_info\":[\"streamlit_version\"],\"next_question\":\"Which Streamlit version is installed in the affected environment?\",\"rationale\":\"Ask the user for the affected installation before selecting a release-specific source.\",\"retrieval_queries\":[],\"user_draft\":\"Which Streamlit version is installed in the affected environment?\"}},\"turn\":{\"case_id\":\"case:c2j-approved-5\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"1.51.2\",\"reported_facts\":[],\"source_ref\":\"user:c2j-approved-5\",\"turn_id\":\"turn:c2j-approved-5\",\"unknowns\":[]}}",
+        "canonical_sha256": "afae0134343ffe974d100b5723c9b17efd761c7e60cb02c0269fe5b9dd225c25"
+      },
+      "prepared_user_turn": {
+        "json": {
+          "case_id": "case:c2j-approved-5",
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-approved-5",
+          "source_ref": "user:c2j-approved-5",
+          "message": "1.51.2",
+          "reported_facts": [
+            {
+              "name": "streamlit_version",
+              "value": "1.51.2"
+            }
+          ],
+          "unknowns": [],
+          "checks_performed": [],
+          "context_changed": false
+        },
+        "canonical_json": "{\"case_id\":\"case:c2j-approved-5\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"1.51.2\",\"reported_facts\":[{\"name\":\"streamlit_version\",\"value\":\"1.51.2\"}],\"source_ref\":\"user:c2j-approved-5\",\"turn_id\":\"turn:c2j-approved-5\",\"unknowns\":[]}",
+        "canonical_sha256": "95cec006e265be1d1a4c5aa08265d50480bd8dd1cb9cc5187f3e15f08b23a59d"
+      },
+      "proposed_transition": {
+        "json": {
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-approved-5",
+          "source_ref": "user:c2j-approved-5",
+          "event_hash": "95cec006e265be1d1a4c5aa08265d50480bd8dd1cb9cc5187f3e15f08b23a59d",
+          "candidate": {
+            "case_id": "case:c2j-approved-5",
+            "case_revision": 5,
+            "facts": [
+              {
+                "name": "operating_system",
+                "value": "Linux",
+                "source_ref": "user:initial",
+                "turn_id": "turn:initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "streamlit_version",
+                "value": "1.51.2",
+                "source_ref": "user:c2j-approved-5",
+                "turn_id": "turn:c2j-approved-5",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [
+              "python_version"
+            ],
+            "checks_performed": [
+              "Reproduced in an isolated application."
+            ],
+            "evidence_refs": [],
+            "pending_proposal_id": null
+          },
+          "changed_fact_names": [
+            "streamlit_version"
+          ],
+          "context_changed": false,
+          "invalidated_checks": []
+        },
+        "canonical_json": "{\"candidate\":{\"case_id\":\"case:c2j-approved-5\",\"case_revision\":5,\"checks_performed\":[\"Reproduced in an isolated application.\"],\"evidence_refs\":[],\"facts\":[{\"name\":\"operating_system\",\"provenance_kind\":\"user\",\"source_ref\":\"user:initial\",\"status\":\"active\",\"turn_id\":\"turn:initial\",\"value\":\"Linux\"},{\"name\":\"streamlit_version\",\"provenance_kind\":\"user\",\"source_ref\":\"user:c2j-approved-5\",\"status\":\"active\",\"turn_id\":\"turn:c2j-approved-5\",\"value\":\"1.51.2\"}],\"pending_proposal_id\":null,\"unknowns\":[\"python_version\"]},\"changed_fact_names\":[\"streamlit_version\"],\"context_changed\":false,\"event_hash\":\"95cec006e265be1d1a4c5aa08265d50480bd8dd1cb9cc5187f3e15f08b23a59d\",\"expected_revision\":4,\"invalidated_checks\":[],\"source_ref\":\"user:c2j-approved-5\",\"turn_id\":\"turn:c2j-approved-5\"}",
+        "canonical_sha256": "ba5eff1288d1d33a2cdd51e98095e1335f50134b85bbfb890fb08748ca54cacf"
+      },
+      "input_contracts_after_call_sha256": "afae0134343ffe974d100b5723c9b17efd761c7e60cb02c0269fe5b9dd225c25",
+      "input_contracts_unchanged": true
+    },
+    {
+      "id": "approved-superseded-user-version",
+      "helper": "prepare_approved_version_reply",
+      "authorship": "Fresh neutral development fixture; no Issue, evaluation case, gold, model output or real source.",
+      "construction_message_before_contract_normalization": "Streamlit 1.48.3",
+      "expected_version": "1.48.3",
+      "input_contracts": {
+        "json": {
+          "case": {
+            "case_id": "case:c2j-approved-6",
+            "case_revision": 4,
+            "facts": [
+              {
+                "name": "operating_system",
+                "value": "Linux",
+                "source_ref": "user:initial",
+                "turn_id": "turn:initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "streamlit_version",
+                "value": "1.41.0",
+                "source_ref": "user:initial",
+                "turn_id": "turn:initial",
+                "provenance_kind": "user",
+                "status": "superseded"
+              }
+            ],
+            "unknowns": [
+              "streamlit_version",
+              "python_version"
+            ],
+            "checks_performed": [
+              "Reproduced in an isolated application."
+            ],
+            "evidence_refs": [
+              "doc:neutral-pooling"
+            ],
+            "pending_proposal_id": null
+          },
+          "turn": {
+            "case_id": "case:c2j-approved-6",
+            "expected_revision": 4,
+            "turn_id": "turn:c2j-approved-6",
+            "source_ref": "user:c2j-approved-6",
+            "message": "Streamlit 1.48.3",
+            "reported_facts": [],
+            "unknowns": [],
+            "checks_performed": [],
+            "context_changed": false
+          },
+          "proposal_id": "proposal:c2j-approved-6",
+          "reply": {
+            "case_id": "case:c2j-approved-6",
+            "case_revision": 4,
+            "proposal_id": "proposal:c2j-approved-6",
+            "question": {
+              "decision": "ask",
+              "user_draft": "Which Streamlit version is installed in the affected environment?",
+              "maintainer_summary": "The user has not supplied an affected installation release.",
+              "rationale": "Ask the user for the affected installation before selecting a release-specific source.",
+              "evidence_links": [],
+              "missing_info": [
+                "streamlit_version"
+              ],
+              "next_question": "Which Streamlit version is installed in the affected environment?",
+              "retrieval_queries": [],
+              "facts_delta": [],
+              "checks_suggested": []
+            }
+          }
+        },
+        "canonical_json": "{\"case\":{\"case_id\":\"case:c2j-approved-6\",\"case_revision\":4,\"checks_performed\":[\"Reproduced in an isolated application.\"],\"evidence_refs\":[\"doc:neutral-pooling\"],\"facts\":[{\"name\":\"operating_system\",\"provenance_kind\":\"user\",\"source_ref\":\"user:initial\",\"status\":\"active\",\"turn_id\":\"turn:initial\",\"value\":\"Linux\"},{\"name\":\"streamlit_version\",\"provenance_kind\":\"user\",\"source_ref\":\"user:initial\",\"status\":\"superseded\",\"turn_id\":\"turn:initial\",\"value\":\"1.41.0\"}],\"pending_proposal_id\":null,\"unknowns\":[\"streamlit_version\",\"python_version\"]},\"proposal_id\":\"proposal:c2j-approved-6\",\"reply\":{\"case_id\":\"case:c2j-approved-6\",\"case_revision\":4,\"proposal_id\":\"proposal:c2j-approved-6\",\"question\":{\"checks_suggested\":[],\"decision\":\"ask\",\"evidence_links\":[],\"facts_delta\":[],\"maintainer_summary\":\"The user has not supplied an affected installation release.\",\"missing_info\":[\"streamlit_version\"],\"next_question\":\"Which Streamlit version is installed in the affected environment?\",\"rationale\":\"Ask the user for the affected installation before selecting a release-specific source.\",\"retrieval_queries\":[],\"user_draft\":\"Which Streamlit version is installed in the affected environment?\"}},\"turn\":{\"case_id\":\"case:c2j-approved-6\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"Streamlit 1.48.3\",\"reported_facts\":[],\"source_ref\":\"user:c2j-approved-6\",\"turn_id\":\"turn:c2j-approved-6\",\"unknowns\":[]}}",
+        "canonical_sha256": "8e24401f9d0e06c1e27251942870afce9575821bb815a43b1baf3f60ded52e59"
+      },
+      "prepared_user_turn": {
+        "json": {
+          "case_id": "case:c2j-approved-6",
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-approved-6",
+          "source_ref": "user:c2j-approved-6",
+          "message": "Streamlit 1.48.3",
+          "reported_facts": [
+            {
+              "name": "streamlit_version",
+              "value": "1.48.3"
+            }
+          ],
+          "unknowns": [],
+          "checks_performed": [],
+          "context_changed": false
+        },
+        "canonical_json": "{\"case_id\":\"case:c2j-approved-6\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"Streamlit 1.48.3\",\"reported_facts\":[{\"name\":\"streamlit_version\",\"value\":\"1.48.3\"}],\"source_ref\":\"user:c2j-approved-6\",\"turn_id\":\"turn:c2j-approved-6\",\"unknowns\":[]}",
+        "canonical_sha256": "24f0bfed5779edfae22c772a0bf69a8e6f8cdc7322da70c4c8382f5b44f26e47"
+      },
+      "proposed_transition": {
+        "json": {
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-approved-6",
+          "source_ref": "user:c2j-approved-6",
+          "event_hash": "24f0bfed5779edfae22c772a0bf69a8e6f8cdc7322da70c4c8382f5b44f26e47",
+          "candidate": {
+            "case_id": "case:c2j-approved-6",
+            "case_revision": 5,
+            "facts": [
+              {
+                "name": "operating_system",
+                "value": "Linux",
+                "source_ref": "user:initial",
+                "turn_id": "turn:initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "streamlit_version",
+                "value": "1.41.0",
+                "source_ref": "user:initial",
+                "turn_id": "turn:initial",
+                "provenance_kind": "user",
+                "status": "superseded"
+              },
+              {
+                "name": "streamlit_version",
+                "value": "1.48.3",
+                "source_ref": "user:c2j-approved-6",
+                "turn_id": "turn:c2j-approved-6",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [
+              "python_version"
+            ],
+            "checks_performed": [
+              "Reproduced in an isolated application."
+            ],
+            "evidence_refs": [],
+            "pending_proposal_id": null
+          },
+          "changed_fact_names": [
+            "streamlit_version"
+          ],
+          "context_changed": false,
+          "invalidated_checks": []
+        },
+        "canonical_json": "{\"candidate\":{\"case_id\":\"case:c2j-approved-6\",\"case_revision\":5,\"checks_performed\":[\"Reproduced in an isolated application.\"],\"evidence_refs\":[],\"facts\":[{\"name\":\"operating_system\",\"provenance_kind\":\"user\",\"source_ref\":\"user:initial\",\"status\":\"active\",\"turn_id\":\"turn:initial\",\"value\":\"Linux\"},{\"name\":\"streamlit_version\",\"provenance_kind\":\"user\",\"source_ref\":\"user:initial\",\"status\":\"superseded\",\"turn_id\":\"turn:initial\",\"value\":\"1.41.0\"},{\"name\":\"streamlit_version\",\"provenance_kind\":\"user\",\"source_ref\":\"user:c2j-approved-6\",\"status\":\"active\",\"turn_id\":\"turn:c2j-approved-6\",\"value\":\"1.48.3\"}],\"pending_proposal_id\":null,\"unknowns\":[\"python_version\"]},\"changed_fact_names\":[\"streamlit_version\"],\"context_changed\":false,\"event_hash\":\"24f0bfed5779edfae22c772a0bf69a8e6f8cdc7322da70c4c8382f5b44f26e47\",\"expected_revision\":4,\"invalidated_checks\":[],\"source_ref\":\"user:c2j-approved-6\",\"turn_id\":\"turn:c2j-approved-6\"}",
+        "canonical_sha256": "2fa3ffe01fcef8a9016ec47f02efff4d6f6095b923de6f6f632c3f0b19300a06"
+      },
+      "input_contracts_after_call_sha256": "8e24401f9d0e06c1e27251942870afce9575821bb815a43b1baf3f60ded52e59",
+      "input_contracts_unchanged": true
+    },
+    {
+      "id": "approved-source-version-and-question-fields",
+      "helper": "prepare_approved_version_reply",
+      "authorship": "Fresh neutral development fixture; no Issue, evaluation case, gold, model output or real source.",
+      "construction_message_before_contract_normalization": "1.49.1",
+      "expected_version": "1.49.1",
+      "input_contracts": {
+        "json": {
+          "case": {
+            "case_id": "case:c2j-approved-7",
+            "case_revision": 4,
+            "facts": [
+              {
+                "name": "operating_system",
+                "value": "Linux",
+                "source_ref": "user:initial",
+                "turn_id": "turn:initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "streamlit_version",
+                "value": "1.20.0",
+                "source_ref": "doc:neutral-release",
+                "turn_id": "turn:source",
+                "provenance_kind": "evidence",
+                "status": "active"
+              },
+              {
+                "name": "artifact_hint",
+                "value": "Source suggests an old configuration.",
+                "source_ref": "doc:neutral-pooling",
+                "turn_id": "turn:source",
+                "provenance_kind": "evidence",
+                "status": "active"
+              }
+            ],
+            "unknowns": [
+              "streamlit_version",
+              "python_version"
+            ],
+            "checks_performed": [
+              "Reproduced in an isolated application."
+            ],
+            "evidence_refs": [
+              "doc:neutral-pooling"
+            ],
+            "pending_proposal_id": null
+          },
+          "turn": {
+            "case_id": "case:c2j-approved-7",
+            "expected_revision": 4,
+            "turn_id": "turn:c2j-approved-7",
+            "source_ref": "user:c2j-approved-7",
+            "message": "1.49.1",
+            "reported_facts": [],
+            "unknowns": [],
+            "checks_performed": [],
+            "context_changed": false
+          },
+          "proposal_id": "proposal:c2j-approved-7",
+          "reply": {
+            "case_id": "case:c2j-approved-7",
+            "case_revision": 4,
+            "proposal_id": "proposal:c2j-approved-7",
+            "question": {
+              "decision": "ask",
+              "user_draft": "Which Streamlit version is installed in the affected environment?",
+              "maintainer_summary": "The user has not supplied an affected installation release.",
+              "rationale": "Ask the user for the affected installation before selecting a release-specific source.",
+              "evidence_links": [
+                {
+                  "claim": "A neutral source lists a release.",
+                  "chunk_id": "chunk:neutral-release"
+                }
+              ],
+              "missing_info": [
+                "streamlit_version"
+              ],
+              "next_question": "Which Streamlit version is installed in the affected environment?",
+              "retrieval_queries": [],
+              "facts_delta": [
+                {
+                  "name": "source_family",
+                  "value": "neutral documentation",
+                  "source_ref": "doc:neutral-release",
+                  "turn_id": "turn:source",
+                  "provenance_kind": "evidence",
+                  "status": "active"
+                }
+              ],
+              "checks_suggested": [
+                "Read the installed release from the affected application."
+              ]
+            }
+          }
+        },
+        "canonical_json": "{\"case\":{\"case_id\":\"case:c2j-approved-7\",\"case_revision\":4,\"checks_performed\":[\"Reproduced in an isolated application.\"],\"evidence_refs\":[\"doc:neutral-pooling\"],\"facts\":[{\"name\":\"operating_system\",\"provenance_kind\":\"user\",\"source_ref\":\"user:initial\",\"status\":\"active\",\"turn_id\":\"turn:initial\",\"value\":\"Linux\"},{\"name\":\"streamlit_version\",\"provenance_kind\":\"evidence\",\"source_ref\":\"doc:neutral-release\",\"status\":\"active\",\"turn_id\":\"turn:source\",\"value\":\"1.20.0\"},{\"name\":\"artifact_hint\",\"provenance_kind\":\"evidence\",\"source_ref\":\"doc:neutral-pooling\",\"status\":\"active\",\"turn_id\":\"turn:source\",\"value\":\"Source suggests an old configuration.\"}],\"pending_proposal_id\":null,\"unknowns\":[\"streamlit_version\",\"python_version\"]},\"proposal_id\":\"proposal:c2j-approved-7\",\"reply\":{\"case_id\":\"case:c2j-approved-7\",\"case_revision\":4,\"proposal_id\":\"proposal:c2j-approved-7\",\"question\":{\"checks_suggested\":[\"Read the installed release from the affected application.\"],\"decision\":\"ask\",\"evidence_links\":[{\"chunk_id\":\"chunk:neutral-release\",\"claim\":\"A neutral source lists a release.\"}],\"facts_delta\":[{\"name\":\"source_family\",\"provenance_kind\":\"evidence\",\"source_ref\":\"doc:neutral-release\",\"status\":\"active\",\"turn_id\":\"turn:source\",\"value\":\"neutral documentation\"}],\"maintainer_summary\":\"The user has not supplied an affected installation release.\",\"missing_info\":[\"streamlit_version\"],\"next_question\":\"Which Streamlit version is installed in the affected environment?\",\"rationale\":\"Ask the user for the affected installation before selecting a release-specific source.\",\"retrieval_queries\":[],\"user_draft\":\"Which Streamlit version is installed in the affected environment?\"}},\"turn\":{\"case_id\":\"case:c2j-approved-7\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"1.49.1\",\"reported_facts\":[],\"source_ref\":\"user:c2j-approved-7\",\"turn_id\":\"turn:c2j-approved-7\",\"unknowns\":[]}}",
+        "canonical_sha256": "6cef38e9eac023f11d7c69a2e2c3f9c7a3d274c3bdaaf1db7a35ecec433eaa95"
+      },
+      "prepared_user_turn": {
+        "json": {
+          "case_id": "case:c2j-approved-7",
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-approved-7",
+          "source_ref": "user:c2j-approved-7",
+          "message": "1.49.1",
+          "reported_facts": [
+            {
+              "name": "streamlit_version",
+              "value": "1.49.1"
+            }
+          ],
+          "unknowns": [],
+          "checks_performed": [],
+          "context_changed": false
+        },
+        "canonical_json": "{\"case_id\":\"case:c2j-approved-7\",\"checks_performed\":[],\"context_changed\":false,\"expected_revision\":4,\"message\":\"1.49.1\",\"reported_facts\":[{\"name\":\"streamlit_version\",\"value\":\"1.49.1\"}],\"source_ref\":\"user:c2j-approved-7\",\"turn_id\":\"turn:c2j-approved-7\",\"unknowns\":[]}",
+        "canonical_sha256": "4e3f0d8f92ba3873155e3cd8a3d899d7f9897d7ea091b8b17a076f47dc0004ad"
+      },
+      "proposed_transition": {
+        "json": {
+          "expected_revision": 4,
+          "turn_id": "turn:c2j-approved-7",
+          "source_ref": "user:c2j-approved-7",
+          "event_hash": "4e3f0d8f92ba3873155e3cd8a3d899d7f9897d7ea091b8b17a076f47dc0004ad",
+          "candidate": {
+            "case_id": "case:c2j-approved-7",
+            "case_revision": 5,
+            "facts": [
+              {
+                "name": "operating_system",
+                "value": "Linux",
+                "source_ref": "user:initial",
+                "turn_id": "turn:initial",
+                "provenance_kind": "user",
+                "status": "active"
+              },
+              {
+                "name": "streamlit_version",
+                "value": "1.20.0",
+                "source_ref": "doc:neutral-release",
+                "turn_id": "turn:source",
+                "provenance_kind": "evidence",
+                "status": "superseded"
+              },
+              {
+                "name": "artifact_hint",
+                "value": "Source suggests an old configuration.",
+                "source_ref": "doc:neutral-pooling",
+                "turn_id": "turn:source",
+                "provenance_kind": "evidence",
+                "status": "superseded"
+              },
+              {
+                "name": "streamlit_version",
+                "value": "1.49.1",
+                "source_ref": "user:c2j-approved-7",
+                "turn_id": "turn:c2j-approved-7",
+                "provenance_kind": "user",
+                "status": "active"
+              }
+            ],
+            "unknowns": [
+              "python_version",
+              "artifact_hint"
+            ],
+            "checks_performed": [],
+            "evidence_refs": [],
+            "pending_proposal_id": null
+          },
+          "changed_fact_names": [
+            "streamlit_version",
+            "artifact_hint"
+          ],
+          "context_changed": true,
+          "invalidated_checks": [
+            "Reproduced in an isolated application."
+          ]
+        },
+        "canonical_json": "{\"candidate\":{\"case_id\":\"case:c2j-approved-7\",\"case_revision\":5,\"checks_performed\":[],\"evidence_refs\":[],\"facts\":[{\"name\":\"operating_system\",\"provenance_kind\":\"user\",\"source_ref\":\"user:initial\",\"status\":\"active\",\"turn_id\":\"turn:initial\",\"value\":\"Linux\"},{\"name\":\"streamlit_version\",\"provenance_kind\":\"evidence\",\"source_ref\":\"doc:neutral-release\",\"status\":\"superseded\",\"turn_id\":\"turn:source\",\"value\":\"1.20.0\"},{\"name\":\"artifact_hint\",\"provenance_kind\":\"evidence\",\"source_ref\":\"doc:neutral-pooling\",\"status\":\"superseded\",\"turn_id\":\"turn:source\",\"value\":\"Source suggests an old configuration.\"},{\"name\":\"streamlit_version\",\"provenance_kind\":\"user\",\"source_ref\":\"user:c2j-approved-7\",\"status\":\"active\",\"turn_id\":\"turn:c2j-approved-7\",\"value\":\"1.49.1\"}],\"pending_proposal_id\":null,\"unknowns\":[\"python_version\",\"artifact_hint\"]},\"changed_fact_names\":[\"streamlit_version\",\"artifact_hint\"],\"context_changed\":true,\"event_hash\":\"4e3f0d8f92ba3873155e3cd8a3d899d7f9897d7ea091b8b17a076f47dc0004ad\",\"expected_revision\":4,\"invalidated_checks\":[\"Reproduced in an isolated application.\"],\"source_ref\":\"user:c2j-approved-7\",\"turn_id\":\"turn:c2j-approved-7\"}",
+        "canonical_sha256": "b53ae32b6163b3304e0347c83c4a57ece375c1b9c56f86b0b449fcb15c10c2c6"
+      },
+      "input_contracts_after_call_sha256": "6cef38e9eac023f11d7c69a2e2c3f9c7a3d274c3bdaaf1db7a35ecec433eaa95",
+      "input_contracts_unchanged": true
+    }
+  ],
+  "API_calls": 0
+}

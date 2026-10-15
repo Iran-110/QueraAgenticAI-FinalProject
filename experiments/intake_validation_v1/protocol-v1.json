@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "task": "C2j",
+  "kind": "prospective-offline-intake-validation-boundary",
+  "source_commit": "fdd405a3c510425305c5f85357a43a7e61fc9457",
+  "source_sha256": {
+    "src/agent_app/orchestration/intake.py": "a1208ec535fd022d3d20f6847a0a6f21af0d3c42fc75a078e925301397c970b4",
+    "src/agent_app/orchestration/validation.py": "2debe663263680238268d5034c7e80fe5533b4f66c535d5bf0b4e072835d7f6e",
+    "src/agent_app/orchestration/turns.py": "17970a95710dc8351d14f36cc6dfbdf3308231a627fd710b64dee119908eace7",
+    "src/agent_app/contracts.py": "1dcf0de657f3442dfb5e787e6243a9a279501305033e592cbcd060dd808d0a91"
+  },
+  "problem": "The two intake helpers serialize before revalidation, which silently drops bypass-constructed Python extra/private attributes. Existing recursive detached_contract rejects these values before serialization.",
+  "scope": "Use existing detached_contract at the pending and approved version-reply helper boundaries only, preserving valid outputs exactly and mapping invalid boundary values to existing IntakeRejected(InvalidInput).",
+  "unchanged": [
+    "shared contracts and shared validator",
+    "version extraction and normalization",
+    "identity/revision/proposal/question checks",
+    "tracker approval authority, event deduplication and persistence",
+    "public HTTP and UI behavior",
+    "model/retrieval/corpus/exclusions/gold",
+    "halt, three uncertain holds, ledger and every closed experiment identity"
+  ],
+  "baseline_capture": "Before any C2j implementation change, using the current old helper implementations.",
+  "fixture_authorship": "Eight authored neutral valid variants for each helper (16 rows), not final/held-out evaluation, real Issue evidence or model-quality data.",
+  "canonical_json": {
+    "ensure_ascii": false,
+    "sort_keys": true,
+    "separators": [
+      ",",
+      ":"
+    ],
+    "encoding": "utf-8",
+    "digest": "sha256"
+  },
+  "acceptance": [
+    "All 16 prepared UserTurn canonical bytes and SHA256 values remain exact.",
+    "All 16 full propose_user_turn transition canonical bytes and SHA256 values remain exact.",
+    "Input contracts remain unchanged on successful and rejected calls.",
+    "Top-level/nested bypass extras and private data reject with the existing content-free InvalidInput error.",
+    "Existing case/revision/proposal/question/extraction error semantics remain unchanged for otherwise valid contracts."
+  ],
+  "API_calls": 0,
+  "no_provider_or_ledger_operations": true,
+  "claim_limit": "This addresses an in-process Python contract boundary only; it is not an HTTP exploit demonstration, authentication improvement, approval integration proof or model/RAG quality score."
+}
