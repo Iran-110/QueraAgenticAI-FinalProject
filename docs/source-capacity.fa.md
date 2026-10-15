@@ -25,3 +25,17 @@
 correction، conflict، singleton بیش‌ازحد، request قدیمی و HTTP mock هستند.
 اصل receiptهای تاریخی تغییر نمی‌کند؛ render کردن subset تألیفی بهبود مدل نیست.
 مقایسهٔ live پس از freeze کد، index و ledger در همان پوشهٔ experiment ثبت می‌شود.
+
+## نتیجهٔ ثبت‌شده
+
+[مقایسه و receiptها](../experiments/core_source_capacity_v1/README.md): دو دور
+balanced با همان index۱۸/۳۶، مدل gpt-4o-mini و۲۸send. OFF وON هر دو۴/۶ مسیر
+کامل و۸ پیشنهاد تازه داشتند؛ هر کدام۵ سؤال و۳ ارجاع، صفر پاسخ فنی. راهنما فقط
+در دو call یک correction واقعاً سقف را از۸ به۳ رساند. هیچ arm این بار overflow
+نداشت؛ شواهد زندهٔ کاهش overflow یا افزایش کیفیت نداریم و گزینه خاموش می‌ماند.
+
+دو پاسخ provider با length متوقف شدند؛ schema نامعتبر و یک source mismatch
+هم باقی‌اند.۴empty و۴unvisited را حذف نکردیم. دو correction موفق نسخه۱.۳۱.۱
+را حفظ کردند؛ review انسانی هنوز لازم است. هزینهٔ تخمینی این اجرا$0.032721150،
+صفر hold تازه، هر۶ scope بسته؛ هزینهٔ تخمینی کل ledger$0.330022770 به‌علاوه
+$0.0233792 hold قدیمی است. halt و سقف قبلی محفوظ‌اند.

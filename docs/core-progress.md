@@ -1,15 +1,30 @@
-## 2026-10-15 — C4h3 compact source capacity, comparison in progress
+## 2026-10-15 — C4h3/E2r: compact capacity and native review, no live gain
 
-Preregistered before implementation; default-false per-request schema guidance
-changes only existing source-count bounds. Whole quotes and the original
-renderer, two-attempt limit and conflict enforcement remain.
-See [behavior](source-capacity.fa.md). Hassan PR50 new head1a18749 still lacks
-over-fetching;24 native query replays have unchanged membership. Local format
-fails and GitHub billing prevents jobs from starting; PR remains unmerged.
+[Protocol and receipts](../experiments/core_source_capacity_v1/README.md) preserve
+all failures and the original study. Optional/default-false source-count guidance
+has no prompt growth on79 archived requests/158 contexts. The archived four-source
+overflow admits a bound3; this is offline renderer feasibility, not model quality.
 
-# Agent-core progress
+The fresh28-send study on the same18/36 native lexical index completed4/6 routes
+and8 fresh proposals in each arm:5 questions,3 escalations,zero technical answers.
+Only two ON calls changed the bound. No arm overflowed; no causal live improvement
+is established.16 fresh,4 empty,4 unvisited turns all retained; two length failures,
+invalid schema and one source mismatch remain. The implementing assistant reviewed
+the outputs; human usefulness stays null. No flag promoted.
 
-This is a factual milestone log, not a daily activity schedule. Update it after a verified change; keep real dates and real limitations.
+Local estimated costUSD0.032721150, cumulativeUSD0.330022770.1225 read-only
+accounting/provenance controls pass; all392 previous reservations and14 tables
+remain. Both holdsUSD0.0233792/global halt/ceiling/old revocations persist;6 scopes
+closed and20 unused slots permanently claimed. No closed identities are resumable.
+The live study used TestClient/DummyTracker with scripted approval. Separately,
+fixture HTTP/SQLite457/457 passed, including restart/retry.
+
+E2r extends the existing review workbench to C4h2/C4h3 with hash-bound original
+native criteria, unchanged fixed oracle and empty human-review sidecars. It does
+not complete MohammadHasan's final split/human review. Hassan PR50 head1a18749
+still has no over-fetching;24 archived native queries have unchanged membership.
+Local lint passes but format fails; GitHub billing prevents jobs from starting.
+The branch remains untouched and PR50 remains unmerged.
 
 ## 2026-10-14 — C4h2: caller-owned repeat repair and native-index comparison
 

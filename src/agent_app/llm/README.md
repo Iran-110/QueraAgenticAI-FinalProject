@@ -17,3 +17,9 @@ than creating independent clients, budget files, or credentials.
 
 Operator commands, dated prices, failure handling, and integration limits are in
 [the model gateway guide](../../../docs/model-gateway.md).
+
+Optional `METIS_GROUNDED_SOURCE_CAPACITY=true` requires
+`METIS_GROUNDED_DECISION_CONTRACTS=true`. It only tightens existing prompt schema
+count bounds for measurable, conflict-free requests; it does not authorize live
+calls or select evidence. Default remains false: the small paired native-index
+study showed no route/answer-quality gain. See [behavior and limitations](../../../docs/source-capacity.fa.md).

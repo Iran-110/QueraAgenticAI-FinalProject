@@ -25,12 +25,29 @@
   شاملrestart/retry. آزمایش مدل این تحویل از TestClient/DummyTracker استفاده
   کرد؛ شاهد تازهٔ مرورگر/SQLite یا بهبود پاسخ فنی محسوب نمی‌شود.
 
-- [ ] **C4h3 — انتخاب source در حد renderer؛ ساسان، در حال مقایسه.**
-  [روش قبل از پیاده‌سازی](../experiments/core_source_capacity_v1/protocol-v1.json)
-  و [قرارداد رفتار](../docs/source-capacity.fa.md) ثبت شد؛ سقف تعداد فقط از طول
-  کامل renderer همان درخواست حساب می‌شود و پیش‌فرض خاموش است. quoteها کوتاه نشوند، مدل سوم یا gold/source-ID filter
-  اضافه نشود. راهنمای حجیم قبلی بهبود ثابت نکرد؛ ظرفیت وکفایت منبع باکیفیت
-  جواب یکی نیست. آزمایش‌های بسته وکیس‌های exposeشده دوبارهtest نامیده نشوند.
+- [x] **C4h3 — ظرفیت source و مقایسهٔ محدود؛ ساسان، بدون بهبود live اثبات‌شده.**
+  [روش و receiptها](../experiments/core_source_capacity_v1/README.md) و
+  [رفتار واقعی](../docs/source-capacity.fa.md): گزینهٔ پیش‌فرض خاموش؛ فقط کاهش
+  maxItems موجود، بدون متن اضافی، بریدن quote یا تماس سوم. روی شکست قبلی،
+  سقف امن۳ به دست آمد؛ در۱۵۸context تاریخی رشد ورودی صفر بود.
+  live تازه روی همان index۱۸/۳۶: OFF وON هر دو۴/۶ route و۸fresh،۵ سؤال و۳ ارجاع؛
+  صفر پاسخ فنی. فقط۲call یک correction واقعاً سقف متفاوت داشت؛ overflow در
+  هیچ arm رخ نداد، پس کاهش failure یا افزایش کیفیت از این اجرا ثابت نشد.
+  همهٔ۲۴نوبت شامل۱۶fresh،۴empty و۴unvisited محفوظ؛ دوlength، schema وsource-mismatch
+  باقی‌اند.۲۸send، تخمین$0.032721150، صفرhold تازه؛۱۲۲۵کنترل هزینه/provenance،
+  حفظ۳۹۲reservation قبلی و۱۴جدول؛۶scope بسته و۲۰slot مصرف‌نشدهclaimed.
+  halt/C5 وtest نهایی بازند. این تیک تحویل آزمایش است، نه آمادگی نهایی core.
+
+- [x] **E2r — بستهٔ داوری C4h2/C4h3؛ ساسان، کمک محدود به محمدحسن.**
+  [workbench](../docs/evaluation-workbench.fa.md) اکنون هر دو receipt را می‌پذیرد؛
+  criterion اصلی native با hash به method وصل است و با gold ثابت fixture
+  جایگزین نمی‌شود. شکست‌ها وunvisitedها هم نمایش داده می‌شوند؛ sidecarها برای
+  داوری انسانی خالی‌اند. schema ارزیابی/UI/tracker ومالکیت محمدحسن عوض نشده‌اند.
+
+- [ ] **C4h4 — پایداری خروجی مدل؛ ساسان، گام بعد مستقل.**
+  برای دوlength واقعی در۱۰۲۴token و خطاهای schema/کپی source، مقایسهٔ جدا و
+  محدود ثبت شود؛ با تغییر ranking حسن هم‌زمان نشود. برتری مدل/cap تازه از
+  نتایج قبلی فرض نشود؛ پاسخ مستند و usefulness جدا از route/JSON سنجیده شود.
 
 - [ ] **R4b — review اصلاح ranking حسن؛ مالک اصلاح حسن.**
   [PR #50](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/50)
