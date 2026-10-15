@@ -38,12 +38,16 @@
   انتشار هر دو task در [PR #59](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/59)
   مستقیماً با پایهٔ main است؛ review کد/گزارش و gate محلی طبق مجوز فعلی ثبت‌اند.
 
-- [ ] **C4h7 — reliability خروجی مدل؛ ساسان، کار بعدی.** یک JSON نامعتبر پس
+- [ ] **C4h7 — پایداری JSON و خوانایی؛ ساسان، در حال انجام.** یک JSON نامعتبر پس
   از refinement باقی است؛ raw متن provider نگه‌داری نشده و تشخیص دقیق syntax
   از hash ممکن نیست. قبل از افزودن JSON mode باید سازگاری Metis با canary مستقل
   محدود بررسی شود؛ OpenAI-compatible بودن اثبات پشتیبانی همهٔ پارامترها نیست.
   به‌صورت کور پارامتر اضافه یا validator/retry شل نشود. تنظیم نهایی پس از
   review usefulness و dev بیشتر freeze شود؛ test برای tuning استفاده نشود.
+  آزمایش تازهٔ محدود روی همان سه dev/index۱۸/۳۶: ابتدا canary سازگاری، سپس
+  مقایسهٔ JSON OFF/ON با هویت‌های تازه و paired render محلی روی همان plan.
+  حالت خلاصه opt-in است؛ نقل‌قول پاسخ فنی و مدارک کامل reviewer حفظ می‌شوند.
+  نتایج قبلی، holdها، halt، corpus و gold تغییر نمی‌کنند.
 
 کارهای مستقل اعضا برای نسخهٔ نهایی (پیش از شروع branch خود را از main به‌روز کنید):
 
