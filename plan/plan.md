@@ -4,6 +4,16 @@
 
 ## وضعیت فعلی
 
+- [ ] **C4k/E2x — انتخاب شاهد کامل و بررسی فقط‌خواندنی C5؛ ساسان، آفلاین.**
+  [ثبت پیش از پیاده‌سازی](../experiments/core_evidence_selection_v1/protocol-v1.json):
+  شکست‌های retained مطالعهٔ C4j به کنترل قابل بازپخش تبدیل شوند؛ unit اختیاریِ
+  section کامل، همراه بدنه/code و subtree، بدون تغییر پیش‌فرض یا prompt جدید.
+  نشانهٔ lexical ارتباط با پیام و USER فعال، فقط advisory است؛ کامل‌بودن ساختاری
+  اثبات relevance یا entailment نیست. baseline پیام/hash/render روی۱۶snapshot
+  پیش از تغییر ثبت شده؛ بازپخش authored، انتخاب تازهٔ مدل یا کیفیت RAG/test نیست.
+  هر سه uncertain فقط‌خواندنی بررسی شوند؛ API، تغییر ledger/hold/halt، corpus،
+  exclusion، gold، قراردادهای تیم و فایل‌های UI/tracker/RAG در این task مجاز نیست.
+
 - [x] **انتشار محلی PR54/57/58؛ ساسان.** هر سه به‌ترتیب به main رسیدند؛
   source نهایی `3cbbdd3` همان tree تحویل PR58 است. اجرای کامل ثابت روی همین
   main:۴۱۵۰ تست پاس؛ [رسید انتشار](../experiments/local_release_2026_10_15/verification-v1.json).
