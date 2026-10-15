@@ -165,6 +165,11 @@ def test_registered_design_has128_fresh_valid_slots_no_releases(registered_input
         for job in batch["jobs"]:
             assert job["input_token_reserve"] == 32768
             assert job["max_output_tokens"] == 2048
+    rounds = {}
+    for batch in method["batches"]:
+        scenario = batch["jobs"][0]["scenario_id"]
+        rounds.setdefault(scenario, []).append([job["arm"] for job in batch["jobs"]])
+    assert all(second == first[::-1] for first, second in rounds.values())
 
 
 @pytest.mark.parametrize("target", ["protocol", "protected", "offline"])

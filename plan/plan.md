@@ -118,6 +118,28 @@
   روی head`7cfa066` بدون blocker، با همان Python تست‌شده است. هر دو job Actions
   همین head قبل اجرای step به علت Billing متوقف شدند؛ workflow/protection تغییر نکرده‌اند.
 
+- [ ] **C4i/E2v — dev گسترده‌تر و توان توضیح مستند؛ ساسان، برش مستقل موقت.**
+  [protocol پیش از کد/API](../experiments/core_broader_dev_v1/protocol-v1.json):
+  مقایسهٔ مسیر موجود `AnalysisResult + compiled_rules` با `GroundedPlan`، بدون
+  prompt/framework/renderer تازه و بدون بازکردن شاخهٔ بستهٔ C4h9. چهار خانوادهٔ
+  مکمل #4713،#5618،#7206،#9487 جدا از رزروهای۱۵/۱۵ محمدحسن‌اند؛ همهٔ شش report
+  غربال‌شده در exposure ثبت می‌شوند. این انتخاب، split نهایی را freeze نمی‌کند.
+  هفت خانواده،۱۶snapshot جاری و دو تکرار متوازن؛۶۴invocation برنامه‌ریزی‌شده،
+  همه proposal-only و pending review، صفر approval/release/action؛ موفقیت route
+  ادعا نمی‌شود. ورودی فعلی، شواهد کامل و سؤال‌های ثبت‌شده در هر دو حالت یکسان‌اند.
+  guide excluded فقط در condition کنترل‌شدهٔ Enum می‌ماند؛ condition بدون guide
+  باید همچنان کمبود سند را از اطلاعات معلوم کاربر جدا کند. معیار موفقیت، توضیح
+  مستند همراه قدم بعد و caveat است؛ کوتاه‌شدن یا answer label به‌تنهایی کافی نیست.
+  [اصلاح bound پیش از هزینه](../experiments/core_broader_dev_v1/bound-amendment-v1.json)
+  سقف موجود۳۲۷۶۸ را حفظ کرد؛ registration اولیه۴۹۱۵۲ نامعتبر بود و حذف نشده است.
+  [خطای آماده‌سازی native](../experiments/core_broader_dev_v1/preparation-first-failure-v1.json)
+  نیز حفظ شد: Chroma هنگام read دو فایل ذخیره‌سازی را بازنویسی کرد؛۱۷hash تاریخی
+  ثابت ماند و ادعای حفظ هر۱۹byte نداریم. [review مستقل](../experiments/core_broader_dev_v1/index-recovery-review-v1.json)
+  ۱۸۲کنترل منطقی شامل کل۱۸source/۳۶chunk/metadata/vector/exclusion را برابر manifest
+  قبلی یافت. [epoch جدید آماده‌سازی](../experiments/core_broader_dev_v1/preparation-amendment-v1.json)
+  قبل هر method/API با byteهای جاری pin می‌شود و تمام queryها فقط روی copy‌اند؛
+  رسیدها، case/gold، manifestهای قدیمی و hold/halt ledger بازنویسی نمی‌شوند.
+
 - [ ] **تنظیم نهایی core پس از review انسانی و dev گسترده‌تر؛ ساسان با محمدحسن.**
   مقایسهٔ usefulness سؤال کوتاه/کامل، متن طولانی عمومی Enum و precision منابع
   اولیهٔ B؛ انتخاب تنظیم پیشنهادی فقط با شواهد dev، سپس freeze پیش از test.

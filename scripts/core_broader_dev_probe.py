@@ -272,7 +272,8 @@ def build_method(root, ledger_path):
     scopes, ids = [], []
     scenarios = protocol["scenarios"]
     for round_number in (1, 2):
-        for index, scenario in enumerate(scenarios if round_number == 1 else scenarios[::-1]):
+        for scenario in scenarios if round_number == 1 else scenarios[::-1]:
+            index = scenarios.index(scenario)
             order = protocol["arms"] if (index + round_number) % 2 else protocol["arms"][::-1]
             selected = [row["id"] for row in packet["snapshots"] if row["scenario_id"] == scenario]
             if len(selected) != 2:
