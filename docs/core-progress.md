@@ -1,4 +1,4 @@
-## 2026-10-15 — C4h4: strict compact wire, comparison pending
+## 2026-10-15 — C4h4: strict compact wire, closed exposed-dev comparison
 
 [Current behavior](compact-plan-wire.fa.md) keeps the public GroundedPlan and
 renderer unchanged. Optional/default-false compact wire uses current-request
@@ -6,8 +6,20 @@ source indices and decision-specific fields, retaining the full request digest.
 Strict shape/JSON validation, terminal binding checks, unchanged two attempts
 and provider-length stops remain. Raw-wire diagnostics are separate from locally
 expanded canonical output.161 focused controls pass, including configured HTTP.
-The registered two-round comparison uses the same exposed three-dev corpus and
-ranking; live results are pending. No model-quality improvement is claimed yet.
+The [closed two-round comparison](../experiments/core_compact_plan_v1/README.md)
+uses the same exposed three-dev corpus/ranking:3/18 schema-invalid canonical
+responses versus0/14 compact,4/6 versus5/6 complete routes,10 fresh proposals each.
+Three answer labels are investigation/background, not supported topical technical
+answers. One refinement overflows both wire projections of that same request;
+the attested pre-dispatch skip and its unvisited follow-up are retained. Neither
+arm hit provider length; no length cure or general quality gain is established.
+All24 turns remain. Default stays off; human usefulness remains unscored.
+
+32 sends cost an estimatedUSD0.034834305, settled cumulativeUSD0.364857075;
+both old holdsUSD0.0233792/halt/ceiling/revocations persist. Independent read-only
+cost/provenance audit1671/1671 preserves420 prior reservations and14 tables.
+Six scopes closed,16 unused slots permanently claimed. Source stayed96f7c38.
+Full local4006 pytest, Ruff, three demos and fixture HTTP/SQLite457/457 pass.
 
 PR55/56 human-case review and draft rubric are now on main42709b5. The prospective
 [case-A evidence review](pr55-evidence-review.fa.md) distinguishes actual supplied

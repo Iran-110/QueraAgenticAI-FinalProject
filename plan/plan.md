@@ -44,15 +44,24 @@
   جایگزین نمی‌شود. شکست‌ها وunvisitedها هم نمایش داده می‌شوند؛ sidecarها برای
   داوری انسانی خالی‌اند. schema ارزیابی/UI/tracker ومالکیت محمدحسن عوض نشده‌اند.
 
-- [ ] **C4h4 — پایداری خروجی مدل؛ ساسان، در حال مقایسهٔ ثبت‌شده.**
+- [x] **C4h4 — قرارداد خروجی کوتاه و مقایسهٔ ثبت‌شده؛ ساسان.**
   [protocol قبل از تغییر](../experiments/core_compact_plan_v1/protocol-v1.json)،
   [رفتار واقعی](../docs/compact-plan-wire.fa.md) و
   [شرط review پیش از مدل](../experiments/core_compact_plan_v1/semantic-review-preparation-v1.json):
   index منبع و fieldهای لازم هر decision، با flag پیش‌فرض خاموش؛ قرارداد عمومی،
   hash کامل request، renderer، approval و سقف دو attempt محفوظ‌اند.۱۶۱تست هدفمند
-  پاس؛ مقایسهٔ دو دور روی همان سه dev/index۱۸/۳۶ و ranking ثابت لازم است.
+  پاس؛ [مقایسهٔ دو دور](../experiments/core_compact_plan_v1/README.md)
+  روی همان سه dev/index۱۸/۳۶ وranking ثابت انجام شد: schema نامعتبر۳/۱۸ درbaseline،
+  صفر/۱۴ درcompact؛ binding هر۱۴انتخاب درست. مسیر کامل۴/۶به۵/۶، ولیfresh هر دو۱۰.
+  ۱۲سؤال،۵ارجاع و۳label پاسخ، بدون پاسخ فنیِ مسئله؛ usefulness انسانیnull.
+  همه۲۴نوبت، شامل۲۰fresh/۱stale/۲empty/۱unvisited محفوظ‌اند. یکrefinement سقف ورودی
+  را رد کرد؛ projection هر دو قالب روی همانrequest بیش‌ازسقف است. length درهیچarm
+  رخ نداد، پس کاهش length ثابت نشده.۳۲send، تخمین$0.034834305؛۱۶۷۱کنترل هزینه،
+  حفظ۴۲۰reservation قبلی و۱۴جدول، صفرhold تازه؛۶scope بسته و۱۶slotباقیclaimed.
+  پیش‌فرض خاموش؛ این تیک تحویل آزمایش است، نه کیفیت نهایی core/RAG.
   wire خام و expansion جدا ثبت می‌شوند؛ schema/route با پشتیبانی ادعا و usefulness
-  یکی نیست. علت length قبلی ثابت نشده و خروجی ناقص salvage نمی‌شود.
+  یکی نیست. خروجی ناقص salvage نمی‌شود. regression کامل۴۰۰۶pytest،Ruff،سهdemo
+  وپذیرشHTTP/SQLite۴۵۷/۴۵۷ پاس‌اند؛CI به‌علت سهمیهٔActions هنوز اجرا نمی‌شود.
 
 - [ ] **R4b — review اصلاح ranking حسن؛ مالک اصلاح حسن.**
   [PR #50](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/50)

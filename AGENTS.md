@@ -26,6 +26,8 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 - C4h3 adds optional/default-false compact source capacity; read `docs/source-capacity.fa.md`. Only existing prompt schema counts change; final renderer remains authority. The closed28-send study has4/6 routes in both arms and no technical answers; only two ON calls changed the bound. Do not promote this as measured quality improvement or resume its closed slots. C4h2/C4h3 review workbenches bind the original native criteria separately from fixed fixture gold. Human usefulness remains unscored.
 
+- C4h4 adds optional/default-false compact plan wire; read `docs/compact-plan-wire.fa.md` and the closed `experiments/core_compact_plan_v1/` comparison. Current-request integer selections expand locally to exact canonical references; per-source hashes are no longer independently echoed by the model. Full context digest, terminal binding/length checks and the two-attempt limit remain. Raw-wire observations are distinct from canonical expansion. The32-send exposed-dev study observed fewer schema errors and4/6 versus5/6 routes, but zero supported topical technical answers and one pre-dispatch input overflow. Do not promote the flag, claim a length cure, truncate evidence or resume closed identities. PR55/56 case review/rubric distinguish consumed passages from index membership; historical draft scopes/criteria remain unchanged.
+
 ## Runtime rules
 
 - Default to offline mock execution. No paid API calls for routine development; the whole team's API budget is USD 5, including embeddings and evaluation.

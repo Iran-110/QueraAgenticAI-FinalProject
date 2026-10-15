@@ -56,3 +56,18 @@ amendment مشخص بالا؛ ادعای اجرای rubric v1 یا E2 نهایی
 revocationها باقی‌اند. روش بسته‌شده یا slot مصرف‌شده قابل ادامه‌دادن نیست.
 نتیجهٔ واقعی، هزینه و محدودیت‌ها در پوشهٔ experiment ثبت می‌شوند؛ این داده‌ها
 dev در معرض دید هستند، ارزیابی نهایی یا held-out نیستند.
+
+## نتیجهٔ اجرا
+
+[receipt و reviewها](../experiments/core_compact_plan_v1/README.md):۳۲send،
+schema نامعتبر۳/۱۸درbaseline و۰/۱۴درcompact؛ مسیر کامل۴/۶درمقابل۵/۶، اماfresh
+هر دو۱۰است. یکrefinement بیش‌ازسقف ورودی بود؛ هر دو projection همانrequest
+ازسقف عبور می‌کنند. baseline یکrender overflow هم داشت؛ proposal قدیمی stale
+ماند وapproval آن409گرفت. هیچ‌کدام length نداشتند؛ علت شکست طول قبلی حل‌شده
+اعلام نمی‌شود. سه label پاسخ فقط background/پیشنهاد investigation بودند؛
+پاسخ فنیِ درخواست‌شده درهیچarm ثابت نشد.۱۲سؤال ضروری وبدون تکرار fact معلوم
+بودند؛ usefulness انسانی هنوزnull وگزینه خاموش است.
+
+تخمین هزینهٔ این اجرا$0.034834305بود؛۱۶۷۱کنترل هزینه/provenance پاس وهر۶scope
+بسته شد. تمام۲۴نوبت، ازجمله۱stale،۲empty و۱unvisited، محفوظ‌اند. snapshot ثابت
+وreceiptهای اصلی برای داوری مستقل باقی‌اند.
