@@ -47,6 +47,13 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 ## Verification
 
+Sasan explicitly authorized local-verified publication on 2026-10-15 while GitHub
+Actions billing remains unavailable. For this release, record the source commit,
+local full/targeted tests, actual-index and HTTP/SQLite acceptance, review and
+remaining platform limitations before publishing. This supersedes the old
+wait-for-CI publication notes in plan/docs; it does not make blocked checks pass,
+disable workflows, waive ledger holds/halt or alter old receipts.
+
 From the repository root:
 
 ```bash

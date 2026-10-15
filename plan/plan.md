@@ -4,6 +4,13 @@
 
 ## وضعیت فعلی
 
+**قاعدهٔ انتشار فعلی — ۱۵ اکتبر، با دستور صریح ساسان:** منتظر رفع Billing
+نمی‌مانیم. برای انتشار، review و تست محلی روی source ثبت‌شده، پذیرش اتصال و
+محدودیت‌های پلتفرم را ضمیمه می‌کنیم؛ Actions همچنان blocked است و CI سبز ادعا
+نمی‌کنیم. این قاعده جای شرط انتظار CI در یادداشت‌های قبلی را می‌گیرد؛ workflowها،
+ledger، holdها، halt و receiptهای تاریخی تغییر نمی‌کنند. branch هر نفر پیش از
+کار از `origin/main` به‌روز شود؛ کارهای E1/E2، R4، T4 و ارائه همچنان شاهد جدا می‌خواهند.
+
 - [x] **R4c/C4h5 — رساندن منابع مرتبط و مقایسهٔ محدود؛ ساسان، کمک مستقل به RAG.**
   [protocol](../experiments/retrieval_relevance_v1/protocol-v1.json) و
   [رفتار و اتصال](../docs/retrieval-relevance.fa.md): PR50 حسن درhead`1a18749`
@@ -26,8 +33,9 @@
   نهایی بسته نشده‌اند و پیش‌فرض‌ها خاموش‌اند.
   انتشار در [PR #58](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/58)،
   فعلاً با پایهٔ PR57 است؛ ترتیب ادغام PR54، سپس retarget/merge57 روی main،
-  سپس retarget/review58 روی main است. به branch پایه merge نشود؛ CI همان head
-  باید اجرا شود. PR50 و branch حسن دست‌نخورده‌اند؛ این کار به merge آن وابسته نیست.
+  سپس retarget/review58 روی main است. به branch پایه merge نشود؛ طبق قاعدهٔ انتشار
+  فعلی با verification محلی و ثبت blocked بودن CI پیش می‌رویم. PR50 و branch حسن
+  دست‌نخورده‌اند؛ این کار به merge آن وابسته نیست.
 
 - [x] **C4h2 — repair query تکراری و مقایسهٔ محدود؛ ساسان.**
   [ثبت قبل از تغییر](../experiments/core_repeat_repair_v1/protocol-v1.json) و
@@ -89,7 +97,7 @@
   وپذیرشHTTP/SQLite۴۵۷/۴۵۷ پاس‌اند؛CI به‌علت سهمیهٔActions هنوز اجرا نمی‌شود.
   انتشار در [PR #57](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/57)،
   فعلاً رویbranchپایهٔPR54 است؛ بعدازmerge54 بهmain retarget شود، بهbranchپایه
-  merge نشود. merge نهایی تاCI همانhead باز می‌ماند.
+  merge نشود. انتشار فعلی با استثنای محلیِ ثبت‌شده در بالای plan انجام می‌شود.
 
 - [ ] **R4b — review اصلاح ranking حسن؛ مالک اصلاح حسن.**
   [PR #50](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/50)
@@ -750,6 +758,7 @@ handoffها و متن released محفوظ‌اند. ترکیب اصلاحات ب
 
 [بررسی محلی](../experiments/core_source_capacity_v1/verification-v1.json):۳۸۲۷pytest،
 Ruff،سهdemo وHTTP/SQLite۴۵۷/۴۵۷ پاس. تغییرات در [PR #54](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/54)
-رویbranch`feat/core-source-capacity` منتشر شدند؛ تاCI همانhead اجرا و پاس نشود
-merge نمی‌شوند. درhead`6a4bd26`، هر دوjob قبل از شروع با خطای Billing متوقف شدند.
-Billing گیت‌هاب باید از سمت صاحب حساب رفع شود؛ نتیجهٔ تست محلی جایCI نیست.
+رویbranch`feat/core-source-capacity` منتشر شدند. شرط انتظار CI با دستور صریح
+۱۵ اکتبر ساسان جای خود را به review و verification محلی داد؛ این به معنی CI
+موفق یا رفع Billing نیست. درhead`6a4bd26`، هر دوjob قبل از شروع با خطای Billing
+متوقف شدند؛ اصل verification و receiptها حفظ می‌شوند.
