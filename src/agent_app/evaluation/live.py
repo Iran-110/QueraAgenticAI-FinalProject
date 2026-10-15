@@ -30,6 +30,7 @@ from agent_app.llm.grounded import MetisGroundedPlanner
 from agent_app.llm.metis import configured_grounded_messages, request_id_for
 from agent_app.llm.pricing import get_price, same_verified_price
 from agent_app.orchestration.ports import ReasoningStopCode, ReasoningStopped
+from agent_app.orchestration.retrieval_profile import validate_retrieval_profile
 from agent_app.reasoning.catalog import caller_catalog, load_user_gap_vocabulary, validate_user_gaps
 from agent_app.reasoning.grounding import GroundedReasoner
 from agent_app.retrieval.adapter import ChromaRetrieverAdapter
@@ -268,8 +269,16 @@ class LiveEvaluationAdapters:
         config: MetisConfig,
         user_gaps: Iterable[GroundedGap] = (),
         top_k: int = 1,
+        retrieval_profile: str = "native",
+        ask_source_background: bool = False,
         transport_factory: Callable[[], httpx.BaseTransport] | None = None,
     ):
+        try:
+            retrieval_profile = validate_retrieval_profile(retrieval_profile, top_k=top_k)
+            if type(ask_source_background) is not bool:
+                raise ValueError
+        except ValueError:
+            raise ValueError("LiveEvaluationConfigurationInvalid") from None
         state = _budget_guard(ledger)
         try:
             self._index_path = Path(index_path).resolve()
@@ -298,6 +307,8 @@ class LiveEvaluationAdapters:
         if price.cost(config.input_token_reserve, config.max_output_tokens) > state.available_usd:
             raise ValueError("LiveBudgetUnavailable")
         self.ledger, self._config, self._snapshot, self._top_k = ledger, config, snapshot_id, top_k
+        self._retrieval_profile = retrieval_profile
+        self._ask_source_background = ask_source_background
         self._transport_factory = transport_factory or (lambda: httpx.HTTPTransport(retries=0))
         self._observations, self._active = [], set()
         self._lock = RLock()
@@ -305,20 +316,34 @@ class LiveEvaluationAdapters:
 
     @property
     def config(self):
+        adapter_id = "verified_chroma_metis_grounded_v1"
+        retriever_id = f"verified_chroma_lexical_hash_top{self._top_k}_v1"
+        if self._retrieval_profile == "candidate_relevance_v1":
+            adapter_id = "verified_chroma_metis_grounded_candidate_relevance_v1"
+            retriever_id = (
+                "verified_chroma_lexical_hash_candidate_relevance_top5_window25_bytes12000_v1"
+            )
+        if self._ask_source_background:
+            adapter_id += "_ask_source_background_v1"
         return {
             "model": self._config.model,
             "snapshot_id": self._snapshot,
             "prompt_policy": self._config.prompt_policy,
             "response_mode": "grounded_plan",
             "phase": self._config.phase,
-            "adapter_id": "verified_chroma_metis_grounded_v1",
-            "retriever_id": f"verified_chroma_lexical_hash_top{self._top_k}_v1",
+            "adapter_id": adapter_id,
+            "retriever_id": retriever_id,
         }
 
     @property
     def index_path(self) -> Path:
         """Pinned resolved storage directory; callers can protect it from tracker writes."""
         return self._index_path
+
+    @property
+    def ask_source_background(self) -> bool:
+        """Trusted display policy for conditional routes, never a USER setting."""
+        return self._ask_source_background
 
     def observations_for_contexts(self, contexts: tuple[ReasoningContext, ...]):
         identities = {
@@ -369,8 +394,17 @@ class LiveEvaluationAdapters:
         try:
             native = StreamlitRetriever("", snapshot_id=self._snapshot, client=self._client)
             retriever = _BoundedRetriever(
-                ChromaRetrieverAdapter("", snapshot_id=self._snapshot, core_retriever=native),
-                self._top_k,
+                ChromaRetrieverAdapter(
+                    "",
+                    snapshot_id=self._snapshot,
+                    core_retriever=native,
+                    selection_policy=(
+                        "query_relevance_v1"
+                        if self._retrieval_profile == "candidate_relevance_v1"
+                        else "native"
+                    ),
+                ),
+                25 if self._retrieval_profile == "candidate_relevance_v1" else self._top_k,
             )
             underlying = self._transport_factory()
             if not isinstance(underlying, httpx.BaseTransport):
@@ -384,6 +418,7 @@ class LiveEvaluationAdapters:
                     run,
                     source_gap_handoff=self._config.grounded_source_gap_handoff,
                     source_gap_investigation=self._config.grounded_source_gap_investigation,
+                    ask_source_background=self._ask_source_background,
                     request_factory=lambda case, message, evidence: caller_catalog(
                         case, message, evidence, definitions=self._gaps
                     ),
@@ -391,6 +426,7 @@ class LiveEvaluationAdapters:
                 snapshot_id=self._snapshot,
                 grounded_request_supplier=run.supplied_request,
                 cleanup=run.close,
+                retrieval_profile=self._retrieval_profile,
             )
         except Exception:
             if run is not None:
@@ -420,6 +456,13 @@ def configured_factory(values: Mapping[str, str]) -> LiveEvaluationAdapters:
     try:
         if values.get("METIS_LIVE_ENABLED") != "true":
             raise ValueError("LiveCallsDisabled")
+        top_k = int(values.get("AGENT_EVAL_TOP_K", "1"))
+        retrieval_profile = validate_retrieval_profile(
+            values.get("AGENT_RETRIEVAL_PROFILE", "native"), top_k=top_k
+        )
+        ask_source_background = values.get("AGENT_GROUNDED_ASK_SOURCE_BACKGROUND", "false")
+        if type(ask_source_background) is not str or ask_source_background not in {"true", "false"}:
+            raise ValueError("LiveEvaluationConfigurationInvalid")
         ledger_path = ROOT / "runtime/budget.sqlite3"
         if (
             Path(values.get("AGENT_EVAL_LEDGER", str(ledger_path))).resolve()
@@ -472,7 +515,6 @@ def configured_factory(values: Mapping[str, str]) -> LiveEvaluationAdapters:
             max_output_tokens=int(values.get("METIS_MAX_OUTPUT_TOKENS", "1024")),
             max_request_usd=Decimal(values.get("METIS_MAX_REQUEST_USD", "0.02")),
         )
-        top_k = int(values.get("AGENT_EVAL_TOP_K", "1"))
         price = get_price(prepared.model)
         if (
             price is None
@@ -497,6 +539,8 @@ def configured_factory(values: Mapping[str, str]) -> LiveEvaluationAdapters:
             ledger=ledger,
             config=config,
             top_k=top_k,
+            retrieval_profile=retrieval_profile,
+            ask_source_background=ask_source_background == "true",
             user_gaps=user_gaps,
         )
     except ValueError as error:

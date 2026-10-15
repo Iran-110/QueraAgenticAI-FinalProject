@@ -433,6 +433,7 @@ class CaseRun:
             snapshot_id=ports.snapshot_id,
             grounded_request_supplier=ports.grounded_request_supplier,
             cleanup=ports.cleanup,
+            retrieval_profile=ports.retrieval_profile,
         )
 
     def run(self, client: TestClient) -> None:
@@ -1007,7 +1008,13 @@ def run(
             raise ValueError(stop)
     fixtures = collect(paths, mode=mode)
     graphs = (
-        {fixture.path.resolve(): RouteGraph.from_fixture(fixture.data) for fixture in fixtures}
+        {
+            fixture.path.resolve(): RouteGraph.from_fixture(
+                fixture.data,
+                allow_source_background=getattr(live, "ask_source_background", False),
+            )
+            for fixture in fixtures
+        }
         if route_mode
         else {}
     )

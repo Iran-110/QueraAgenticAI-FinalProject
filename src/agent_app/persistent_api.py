@@ -212,6 +212,7 @@ def create_app(
                 ports.snapshot_id,
                 ports.grounded_request_supplier,
                 ports.cleanup,
+                ports.retrieval_profile,
             )
 
         service = CoreTurnService(
