@@ -6,6 +6,7 @@ from collections.abc import Mapping
 from typing import Any
 
 from agent_app.contracts import EvidenceBundle, EvidenceHit, RetrievalRequest
+from agent_app.retrieval.relevance import rank_candidates
 from agent_app.retrieval.retriever import StreamlitRetriever
 
 
@@ -60,7 +61,15 @@ def _rows(result: Any, collection: str):
 
 
 class ChromaRetrieverAdapter:
-    def __init__(self, base_path: str, *, snapshot_id: str, core_retriever=None):
+    def __init__(
+        self, base_path: str, *, snapshot_id: str, core_retriever=None, selection_policy="native"
+    ):
+        if type(selection_policy) is not str or selection_policy not in {
+            "native",
+            "query_relevance_v1",
+        }:
+            raise RetrievalAdapterRejected("InvalidSelectionPolicy")
+        self.selection_policy = selection_policy
         try:
             self.snapshot_id = EvidenceBundle(snapshot_id=snapshot_id).snapshot_id
         except Exception:
@@ -89,7 +98,8 @@ class ChromaRetrieverAdapter:
             raise RetrievalAdapterRejected("RetrievalSnapshotMismatch")
         self._check_backend_snapshot()
         all_hits = {}
-        for query in request.queries:
+        positions = {}
+        for query_index, query in enumerate(request.queries):
             try:
                 raw_results = self.core_retriever.search(
                     query=query, n_results=request.top_k, filters=dict(request.filters)
@@ -100,17 +110,26 @@ class ChromaRetrieverAdapter:
                 if not isinstance(raw_results, Mapping):
                     raise RetrievalAdapterRejected("InvalidRetrievalRows")
                 for collection in ("docs", "issues"):
-                    for hit in _rows(raw_results[collection], collection):
+                    for rank, hit in enumerate(_rows(raw_results[collection], collection), 1):
+                        if self.selection_policy == "query_relevance_v1" and rank > request.top_k:
+                            raise RetrievalAdapterRejected("InvalidRetrievalRows")
                         previous = all_hits.get(hit.chunk_id)
                         if previous is not None and previous != hit:
                             raise RetrievalAdapterRejected("ConflictingEvidenceChunk")
                         all_hits.setdefault(hit.chunk_id, hit)
+                        if self.selection_policy == "query_relevance_v1":
+                            positions.setdefault(hit.chunk_id, []).append(
+                                (query_index, collection, rank)
+                            )
             except RetrievalAdapterRejected:
                 raise
             except Exception:
                 raise RetrievalAdapterRejected("InvalidEvidenceMetadata") from None
         self._check_backend_snapshot()
-        hits = tuple(all_hits.values())[: request.top_k]
+        hits = tuple(all_hits.values())
+        if self.selection_policy == "query_relevance_v1":
+            hits = rank_candidates(hits, request.queries, positions)
+        hits = hits[: request.top_k]
         return EvidenceBundle(
             snapshot_id=self.snapshot_id,
             hits=hits,

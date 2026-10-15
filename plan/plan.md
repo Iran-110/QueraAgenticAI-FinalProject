@@ -4,6 +4,39 @@
 
 ## وضعیت فعلی
 
+**قاعدهٔ انتشار فعلی — ۱۵ اکتبر، با دستور صریح ساسان:** منتظر رفع Billing
+نمی‌مانیم. برای انتشار، review و تست محلی روی source ثبت‌شده، پذیرش اتصال و
+محدودیت‌های پلتفرم را ضمیمه می‌کنیم؛ Actions همچنان blocked است و CI سبز ادعا
+نمی‌کنیم. این قاعده جای شرط انتظار CI در یادداشت‌های قبلی را می‌گیرد؛ workflowها،
+ledger، holdها، halt و receiptهای تاریخی تغییر نمی‌کنند. branch هر نفر پیش از
+کار از `origin/main` به‌روز شود؛ کارهای E1/E2، R4، T4 و ارائه همچنان شاهد جدا می‌خواهند.
+
+- [x] **R4c/C4h5 — رساندن منابع مرتبط و مقایسهٔ محدود؛ ساسان، کمک مستقل به RAG.**
+  [protocol](../experiments/retrieval_relevance_v1/protocol-v1.json) و
+  [رفتار و اتصال](../docs/retrieval-relevance.fa.md): PR50 حسن درhead`1a18749`
+  تغییری نکرده؛ کار روی branch جدا، بدون تغییر branch/index/corpus اوست.
+  برای خروجی نهایی۵، تا۲۵ کاندیدا می‌گیریم؛ ranking عمومی API/واژه‌ها و
+  فیلتر نسخهٔ فعال USER پیش از cap نهایی اعمال می‌شوند. همهٔ گزینه‌ها opt-in اند.
+  [بودجهٔ رکورد کامل](../experiments/retrieval_relevance_v1/whole-record-budget-amendment-v1.json)
+  پس از مشاهدهٔ overflow آفلاین و پیش از API ثبت شد؛ متن منبع بریده نمی‌شود.
+  replay روی index واقعی در۱۱ state، با packing هر۱۱ را زیر سقف نگه داشت.
+  [مقایسهٔ تازه](../experiments/retrieval_relevance_v1/README.md) با flagهای core
+  مشترک: route کامل۵/۶ در baseline و۶/۶ در نسخهٔ جدید؛ fresh از۱۰ به۱۲ رسید.
+  هر۲۴ نوبت، شامل۲۲ fresh، یک empty و یک unvisited محفوظ‌اند. schema خام معتبر
+  ۱۴/۱۵ در baseline و۱۲/۱۲ در نسخهٔ جدید؛ هیچ length/input/render overflow نبود.
+  راهنمای مستند button۱٫۳۹ در هر دو تکرار به کاربر رسید، در baseline صفر از دو؛
+  پاسخ جزئی برای همان یک case است. multiselect به مدل رسید ولی سؤال callback
+  همچنان لازم بود؛ Enum هنوز علت/fix اثبات‌شده ندارد. usefulness انسانی null است.
+  ۲۷ send با تخمین$0.026391915؛۳۹۱۲ کنترل هزینه/provenance پاس، همهٔ۴۵۲ reservation
+  قبلی و۱۴ جدول، hold/halt/سقف محفوظ‌اند. شش scope بسته و۲۱ slot باقی claimed شدند.
+  بودجهٔ bundle حداکثر۱۱۷۵۱/۱۲۰۰۰ byte بود. این تیک تحویل آزمایش است؛ RAG/eval
+  نهایی بسته نشده‌اند و پیش‌فرض‌ها خاموش‌اند.
+  انتشار در [PR #58](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/58)،
+  فعلاً با پایهٔ PR57 است؛ ترتیب ادغام PR54، سپس retarget/merge57 روی main،
+  سپس retarget/review58 روی main است. به branch پایه merge نشود؛ طبق قاعدهٔ انتشار
+  فعلی با verification محلی و ثبت blocked بودن CI پیش می‌رویم. PR50 و branch حسن
+  دست‌نخورده‌اند؛ این کار به merge آن وابسته نیست.
+
 - [x] **C4h2 — repair query تکراری و مقایسهٔ محدود؛ ساسان.**
   [ثبت قبل از تغییر](../experiments/core_repeat_repair_v1/protocol-v1.json) و
   [قرارداد رفتار](../docs/repeat-query-repair.fa.md): گزینه پیش‌فرض خاموش است؛
@@ -64,7 +97,7 @@
   وپذیرشHTTP/SQLite۴۵۷/۴۵۷ پاس‌اند؛CI به‌علت سهمیهٔActions هنوز اجرا نمی‌شود.
   انتشار در [PR #57](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/57)،
   فعلاً رویbranchپایهٔPR54 است؛ بعدازmerge54 بهmain retarget شود، بهbranchپایه
-  merge نشود. merge نهایی تاCI همانhead باز می‌ماند.
+  merge نشود. انتشار فعلی با استثنای محلیِ ثبت‌شده در بالای plan انجام می‌شود.
 
 - [ ] **R4b — review اصلاح ranking حسن؛ مالک اصلاح حسن.**
   [PR #50](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/50)
@@ -725,6 +758,7 @@ handoffها و متن released محفوظ‌اند. ترکیب اصلاحات ب
 
 [بررسی محلی](../experiments/core_source_capacity_v1/verification-v1.json):۳۸۲۷pytest،
 Ruff،سهdemo وHTTP/SQLite۴۵۷/۴۵۷ پاس. تغییرات در [PR #54](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/54)
-رویbranch`feat/core-source-capacity` منتشر شدند؛ تاCI همانhead اجرا و پاس نشود
-merge نمی‌شوند. درhead`6a4bd26`، هر دوjob قبل از شروع با خطای Billing متوقف شدند.
-Billing گیت‌هاب باید از سمت صاحب حساب رفع شود؛ نتیجهٔ تست محلی جایCI نیست.
+رویbranch`feat/core-source-capacity` منتشر شدند. شرط انتظار CI با دستور صریح
+۱۵ اکتبر ساسان جای خود را به review و verification محلی داد؛ این به معنی CI
+موفق یا رفع Billing نیست. درhead`6a4bd26`، هر دوjob قبل از شروع با خطای Billing
+متوقف شدند؛ اصل verification و receiptها حفظ می‌شوند.

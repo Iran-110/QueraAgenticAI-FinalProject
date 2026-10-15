@@ -1,0 +1,573 @@
+{
+  "schema_version": 1,
+  "review_id": "retrieval-relevance-assistant-semantic-review-v1",
+  "receipt_sha256": "edf56d75266d97466666224738e2d5c95e2cbbc32e396188714d00c4fbdafd17",
+  "preparation_sha256": "c00a1f88b2128908abbba0115a232eb1a02d169123970413a61d345b420ca2ab",
+  "workbench_sha256": "51c25d91829f418648eb16ba335e24e0bdcf006f916bc6f8fb06c4db0e945916",
+  "reviewer_kind": "assistant",
+  "reviewer_implementation_overlap": true,
+  "review_process": "Unblinded read-only assistant subagent with workbench/test overlap inspected all actual fresh surfaces; implementing assistant assembled this narrative. Not independent calibrated human judgment.",
+  "human_reviewed": false,
+  "human_usefulness": null,
+  "held_out_test": false,
+  "general_quality_claim": false,
+  "observed_partial_button_guidance_gain": true,
+  "summary": {
+    "planned_jobs": 12,
+    "planned_turns": 24,
+    "visited_turns": 23,
+    "no_fresh_response_turns": 1,
+    "fresh_proposal": 22,
+    "stale_observation": 0,
+    "no_fresh_proposal": 1,
+    "unvisited": 1
+  },
+  "arms": {
+    "native_top5": {
+      "fresh": 10,
+      "necessary_questions": 6,
+      "partial_topical_guidance": 0,
+      "qualified_enum_background": 2,
+      "enum_cause_or_fix": 0
+    },
+    "candidate_relevance": {
+      "fresh": 12,
+      "necessary_questions": 6,
+      "partial_topical_guidance": 2,
+      "qualified_enum_background": 4,
+      "enum_cause_or_fix": 0
+    }
+  },
+  "reviewed_observations": {
+    "fresh_proposals": 22,
+    "populated_surfaces": 148,
+    "selected_complete_excerpts": 36,
+    "active_USER_fact_values": 116,
+    "unconfirmed_applicability_refs": 30,
+    "current_exact_version_refs": 6,
+    "necessary_USER_questions": 12,
+    "source_gap_questions_to_USER": 0,
+    "unsupported_material_claim_found": false,
+    "released_original_drafts": 19,
+    "edited_proposals": 0,
+    "visited_fresh_enum_corrections_active1_31_1": 3
+  },
+  "case_a_availability": {
+    "native_fragment1_50": 2,
+    "treatment_fragment1_50": 2,
+    "treatment_multiselect1_50": 2,
+    "treatment_multiselect_selected": 1,
+    "user_facing_guidance_delivered": 0,
+    "qualification": "Question drafts do not deliver the source background. Callback/state-order gap remains legitimate; supplied reduction works. No key-only1.50 release inference."
+  },
+  "turns": [
+    {
+      "item_id": "b44d81d0833cb69c118813fb",
+      "job_id": "r1:dev-case-a:native_top5",
+      "arm": "native_top5",
+      "round": 1,
+      "case_id": "dev-case-a",
+      "turn_id": "initial",
+      "status": "fresh_proposal",
+      "human_usefulness": null,
+      "handoff_sha256": "43c8584b4cd194802ad64ec9395d6da3ddce7574912b6053d7a7baa094a55376",
+      "decision": "ask",
+      "assistant_assessment": "Necessary version/callback questions. Actual API records improve maintainer context, but the released draft is only a question; no user-facing technical guidance or invented cause/release change.",
+      "supported_diagnosis_or_fix": false,
+      "question_necessary_answerable_nonrepeating": true,
+      "partial_topical_guidance_delivered": false,
+      "selected_chunks": [
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295"
+      ]
+    },
+    {
+      "item_id": "01c4989c2831a08496bc6f08",
+      "job_id": "r1:dev-case-a:native_top5",
+      "arm": "native_top5",
+      "round": 1,
+      "case_id": "dev-case-a",
+      "turn_id": "version",
+      "status": "fresh_proposal",
+      "human_usefulness": null,
+      "handoff_sha256": "437f8bf5c0d64010bde2a215e7304f4fd9941a9e07bf067c42b24f0864b4019a",
+      "decision": "ask",
+      "assistant_assessment": "Necessary version/callback questions. Actual API records improve maintainer context, but the released draft is only a question; no user-facing technical guidance or invented cause/release change.",
+      "supported_diagnosis_or_fix": false,
+      "question_necessary_answerable_nonrepeating": true,
+      "partial_topical_guidance_delivered": false,
+      "selected_chunks": [
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2"
+      ]
+    },
+    {
+      "item_id": "5d9fd2900a935d34108089cd",
+      "job_id": "r1:dev-case-a:candidate_relevance",
+      "arm": "candidate_relevance",
+      "round": 1,
+      "case_id": "dev-case-a",
+      "turn_id": "initial",
+      "status": "fresh_proposal",
+      "human_usefulness": null,
+      "handoff_sha256": "15621bc03084f0ef2781c6547b4b0538794a873d5f175264625b3e74a07915ed",
+      "decision": "ask",
+      "assistant_assessment": "Necessary version/callback questions. Actual API records improve maintainer context, but the released draft is only a question; no user-facing technical guidance or invented cause/release change.",
+      "supported_diagnosis_or_fix": false,
+      "question_necessary_answerable_nonrepeating": true,
+      "partial_topical_guidance_delivered": false,
+      "selected_chunks": [
+        "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295"
+      ]
+    },
+    {
+      "item_id": "20b51fa4e5e0956f6f2d0f7b",
+      "job_id": "r1:dev-case-a:candidate_relevance",
+      "arm": "candidate_relevance",
+      "round": 1,
+      "case_id": "dev-case-a",
+      "turn_id": "version",
+      "status": "fresh_proposal",
+      "human_usefulness": null,
+      "handoff_sha256": "735fcf3658458ad7e7e4eda6848785d3aad9e6e6de9bfa0762e89670e2d31dbd",
+      "decision": "ask",
+      "assistant_assessment": "Necessary version/callback questions. Actual API records improve maintainer context, but the released draft is only a question; no user-facing technical guidance or invented cause/release change.",
+      "supported_diagnosis_or_fix": false,
+      "question_necessary_answerable_nonrepeating": true,
+      "partial_topical_guidance_delivered": false,
+      "selected_chunks": [
+        "doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932",
+        "doc:1.50.0:c82397cf83d9653afc3157df:0:4000:592d59c88ffa9fd9"
+      ]
+    },
+    {
+      "item_id": "f912399974547f4d97f6d58c",
+      "job_id": "r1:dev-case-b:candidate_relevance",
+      "arm": "candidate_relevance",
+      "round": 1,
+      "case_id": "dev-case-b",
+      "turn_id": "initial",
+      "status": "fresh_proposal",
+      "human_usefulness": null,
+      "handoff_sha256": "35cb0cca21ba508fec82aaab5be35e11c5d6571401c07fa8f97107bb3aabeafc",
+      "decision": "ask",
+      "assistant_assessment": "Initial version question is necessary. After1.39 is known, candidate treatment delivers the exact documented icon options; native lacks the passage and escalates. Button coverage is partial; warning/future delivery remain unanswered.",
+      "supported_diagnosis_or_fix": false,
+      "question_necessary_answerable_nonrepeating": true,
+      "partial_topical_guidance_delivered": false,
+      "selected_chunks": [
+        "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+        "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898"
+      ]
+    },
+    {
+      "item_id": "7f87bce6ff1485f78a61012c",
+      "job_id": "r1:dev-case-b:candidate_relevance",
+      "arm": "candidate_relevance",
+      "round": 1,
+      "case_id": "dev-case-b",
+      "turn_id": "version",
+      "status": "fresh_proposal",
+      "human_usefulness": null,
+      "handoff_sha256": "a8f8662f115e645dfcc79e1f7a9a94cbd61bd91e3647187133c8fac0ecb870cf",
+      "decision": "answer",
+      "assistant_assessment": "Initial version question is necessary. After1.39 is known, candidate treatment delivers the exact documented icon options; native lacks the passage and escalates. Button coverage is partial; warning/future delivery remain unanswered.",
+      "supported_diagnosis_or_fix": false,
+      "question_necessary_answerable_nonrepeating": null,
+      "partial_topical_guidance_delivered": true,
+      "selected_chunks": [
+        "doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a",
+        "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e"
+      ],
+      "guidance_binding": {
+        "claim": "The documented1.39 button icon options include a single-character emoji or a rounded Material Symbols icon string.",
+        "chunk_id": "doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a",
+        "excerpt_sha256": "3e4ee8f16a4363b8e204ecf26a34183cf5c92cd5d8b98fc70e35b42d63725012",
+        "applicable_versions": [
+          "1.39.0"
+        ],
+        "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+        "quotes": [
+          {
+            "start": 1685,
+            "end": 1710,
+            "text": "A single-character emoji."
+          },
+          {
+            "start": 1796,
+            "end": 1860,
+            "text": "An icon from the Material Symbols library (rounded style) in the"
+          }
+        ],
+        "span_unit": "unicode_codepoint_in_current_excerpt",
+        "delivered_in_original_and_released_draft": true,
+        "scope": "Partial button-specific contract, not runtime conformance, warning support, future delivery or solved case."
+      }
+    },
+    {
+      "item_id": "194196a13df420a9de87be6b",
+      "job_id": "r1:dev-case-b:native_top5",
+      "arm": "native_top5",
+      "round": 1,
+      "case_id": "dev-case-b",
+      "turn_id": "initial",
+      "status": "fresh_proposal",
+      "human_usefulness": null,
+      "handoff_sha256": "9c4e22f74b2121f0b703dff2bf26e07c01de075e3da754d42fb814a28e1d34d5",
+      "decision": "ask",
+      "assistant_assessment": "Initial version question is necessary. After1.39 is known, candidate treatment delivers the exact documented icon options; native lacks the passage and escalates. Button coverage is partial; warning/future delivery remain unanswered.",
+      "supported_diagnosis_or_fix": false,
+      "question_necessary_answerable_nonrepeating": true,
+      "partial_topical_guidance_delivered": false,
+      "selected_chunks": [
+        "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2"
+      ]
+    },
+    {
+      "item_id": "afd00db97607ad19f1b2f137",
+      "job_id": "r1:dev-case-b:native_top5",
+      "arm": "native_top5",
+      "round": 1,
+      "case_id": "dev-case-b",
+      "turn_id": "version",
+      "status": "fresh_proposal",
+      "human_usefulness": null,
+      "handoff_sha256": "16b240e3c75284282a1521043160212e38370106b6d42404a60374bf77a4653a",
+      "decision": "escalate",
+      "assistant_assessment": "Initial version question is necessary. After1.39 is known, candidate treatment delivers the exact documented icon options; native lacks the passage and escalates. Button coverage is partial; warning/future delivery remain unanswered.",
+      "supported_diagnosis_or_fix": false,
+      "question_necessary_answerable_nonrepeating": null,
+      "partial_topical_guidance_delivered": false,
+      "selected_chunks": []
+    },
+    {
+      "item_id": "35954fd40035b701c71f106b",
+      "job_id": "r1:dev-case-c:native_top5",
+      "arm": "native_top5",
+      "round": 1,
+      "case_id": "dev-case-c",
+      "turn_id": "initial",
+      "status": "no_fresh_proposal",
+      "human_usefulness": null,
+      "assistant_assessment": "No fresh response after invalid compact output, or conditional unvisited correction. Retain denominator; not a semantic success/unsupported answer."
+    },
+    {
+      "item_id": "a378e8ff57a78e2b3d0faacd",
+      "job_id": "r1:dev-case-c:native_top5",
+      "arm": "native_top5",
+      "round": 1,
+      "case_id": "dev-case-c",
+      "turn_id": "correction",
+      "status": "unvisited",
+      "human_usefulness": null,
+      "assistant_assessment": "No fresh response after invalid compact output, or conditional unvisited correction. Retain denominator; not a semantic success/unsupported answer."
+    },
+    {
+      "item_id": "0aa31c4abcbcf2ca07fb95e7",
+      "job_id": "r1:dev-case-c:candidate_relevance",
+      "arm": "candidate_relevance",
+      "round": 1,
+      "case_id": "dev-case-c",
+      "turn_id": "initial",
+      "status": "fresh_proposal",
+      "human_usefulness": null,
+      "handoff_sha256": "48e32cf66ceace17dfa8ffa6367a42aafb38f1d054e5fb96bbf3dd0f99f46189",
+      "decision": "answer",
+      "assistant_assessment": "Qualified generic Session State background and proposed investigation with unconfirmed applicability; no Enum cause/fix or affected range. Retain complete code/environment and active initial version1.31.0; no unnecessary questions.",
+      "supported_diagnosis_or_fix": false,
+      "question_necessary_answerable_nonrepeating": null,
+      "partial_topical_guidance_delivered": false,
+      "selected_chunks": [
+        "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295"
+      ]
+    },
+    {
+      "item_id": "28816577641603fc0c5db967",
+      "job_id": "r1:dev-case-c:candidate_relevance",
+      "arm": "candidate_relevance",
+      "round": 1,
+      "case_id": "dev-case-c",
+      "turn_id": "correction",
+      "status": "fresh_proposal",
+      "human_usefulness": null,
+      "handoff_sha256": "ba49f20277d1bb3e4c5d1cc3b6abc01d9c738edca0d9b2269df5a952f6a64e87",
+      "decision": "answer",
+      "assistant_assessment": "Qualified generic Session State background and proposed investigation with unconfirmed applicability; no Enum cause/fix or affected range. Retain complete code/environment and active correction1.31.1; no unnecessary questions.",
+      "supported_diagnosis_or_fix": false,
+      "question_necessary_answerable_nonrepeating": null,
+      "partial_topical_guidance_delivered": false,
+      "selected_chunks": [
+        "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295"
+      ]
+    },
+    {
+      "item_id": "d10cfb52cc955dd3906a122d",
+      "job_id": "r2:dev-case-c:candidate_relevance",
+      "arm": "candidate_relevance",
+      "round": 2,
+      "case_id": "dev-case-c",
+      "turn_id": "initial",
+      "status": "fresh_proposal",
+      "human_usefulness": null,
+      "handoff_sha256": "d3b1899928178fc90b641e563b5e713f2e3d128e1d6f76f7a18f6af2fded3a9a",
+      "decision": "answer",
+      "assistant_assessment": "Qualified generic Session State background and proposed investigation with unconfirmed applicability; no Enum cause/fix or affected range. Retain complete code/environment and active initial version1.31.0; no unnecessary questions.",
+      "supported_diagnosis_or_fix": false,
+      "question_necessary_answerable_nonrepeating": null,
+      "partial_topical_guidance_delivered": false,
+      "selected_chunks": [
+        "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295"
+      ]
+    },
+    {
+      "item_id": "141d9b7b0575c75a1722f876",
+      "job_id": "r2:dev-case-c:candidate_relevance",
+      "arm": "candidate_relevance",
+      "round": 2,
+      "case_id": "dev-case-c",
+      "turn_id": "correction",
+      "status": "fresh_proposal",
+      "human_usefulness": null,
+      "handoff_sha256": "d0e171f3d81fa56fc68a3737049a602fc2b7881d2864b6bf0bbd576191a0bd96",
+      "decision": "answer",
+      "assistant_assessment": "Qualified generic Session State background and proposed investigation with unconfirmed applicability; no Enum cause/fix or affected range. Retain complete code/environment and active correction1.31.1; no unnecessary questions.",
+      "supported_diagnosis_or_fix": false,
+      "question_necessary_answerable_nonrepeating": null,
+      "partial_topical_guidance_delivered": false,
+      "selected_chunks": [
+        "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295"
+      ]
+    },
+    {
+      "item_id": "9dbd63fe406fcfd9a04f2dd8",
+      "job_id": "r2:dev-case-c:native_top5",
+      "arm": "native_top5",
+      "round": 2,
+      "case_id": "dev-case-c",
+      "turn_id": "initial",
+      "status": "fresh_proposal",
+      "human_usefulness": null,
+      "handoff_sha256": "315493d9d21530f62e801a61110d79c9e7492733553213b8cc51c371cb693508",
+      "decision": "answer",
+      "assistant_assessment": "Qualified generic Session State background and proposed investigation with unconfirmed applicability; no Enum cause/fix or affected range. Retain complete code/environment and active initial version1.31.0; no unnecessary questions.",
+      "supported_diagnosis_or_fix": false,
+      "question_necessary_answerable_nonrepeating": null,
+      "partial_topical_guidance_delivered": false,
+      "selected_chunks": [
+        "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f"
+      ]
+    },
+    {
+      "item_id": "cc56414fb87c7331a2f39e3d",
+      "job_id": "r2:dev-case-c:native_top5",
+      "arm": "native_top5",
+      "round": 2,
+      "case_id": "dev-case-c",
+      "turn_id": "correction",
+      "status": "fresh_proposal",
+      "human_usefulness": null,
+      "handoff_sha256": "739f735ad407d06b5150e52b327de115cbba2d55a31eab42aa7c6548308180e0",
+      "decision": "answer",
+      "assistant_assessment": "Qualified generic Session State background and proposed investigation with unconfirmed applicability; no Enum cause/fix or affected range. Retain complete code/environment and active correction1.31.1; no unnecessary questions.",
+      "supported_diagnosis_or_fix": false,
+      "question_necessary_answerable_nonrepeating": null,
+      "partial_topical_guidance_delivered": false,
+      "selected_chunks": [
+        "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2"
+      ]
+    },
+    {
+      "item_id": "6f0fbe6e0ecc48b8b6df1411",
+      "job_id": "r2:dev-case-b:native_top5",
+      "arm": "native_top5",
+      "round": 2,
+      "case_id": "dev-case-b",
+      "turn_id": "initial",
+      "status": "fresh_proposal",
+      "human_usefulness": null,
+      "handoff_sha256": "9ae07096393163edc7636ccd700edc9c5f5447c7d16d6d1a4c8b476193c6f2f9",
+      "decision": "ask",
+      "assistant_assessment": "Initial version question is necessary. After1.39 is known, candidate treatment delivers the exact documented icon options; native lacks the passage and escalates. Button coverage is partial; warning/future delivery remain unanswered.",
+      "supported_diagnosis_or_fix": false,
+      "question_necessary_answerable_nonrepeating": true,
+      "partial_topical_guidance_delivered": false,
+      "selected_chunks": [
+        "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2"
+      ]
+    },
+    {
+      "item_id": "7747211d83e5ed76170f6009",
+      "job_id": "r2:dev-case-b:native_top5",
+      "arm": "native_top5",
+      "round": 2,
+      "case_id": "dev-case-b",
+      "turn_id": "version",
+      "status": "fresh_proposal",
+      "human_usefulness": null,
+      "handoff_sha256": "d6ed578b56402fe07484a3bcc73fd10d2ee9570b1e82e43c9c8a80b0411d403b",
+      "decision": "escalate",
+      "assistant_assessment": "Initial version question is necessary. After1.39 is known, candidate treatment delivers the exact documented icon options; native lacks the passage and escalates. Button coverage is partial; warning/future delivery remain unanswered.",
+      "supported_diagnosis_or_fix": false,
+      "question_necessary_answerable_nonrepeating": null,
+      "partial_topical_guidance_delivered": false,
+      "selected_chunks": []
+    },
+    {
+      "item_id": "4bcedc7b6d17cb1d3a97df50",
+      "job_id": "r2:dev-case-b:candidate_relevance",
+      "arm": "candidate_relevance",
+      "round": 2,
+      "case_id": "dev-case-b",
+      "turn_id": "initial",
+      "status": "fresh_proposal",
+      "human_usefulness": null,
+      "handoff_sha256": "33426fa1b624e72138e253ee7b5490b5638aac0bac665e12b36bd136b156e3a0",
+      "decision": "ask",
+      "assistant_assessment": "Initial version question is necessary. After1.39 is known, candidate treatment delivers the exact documented icon options; native lacks the passage and escalates. Button coverage is partial; warning/future delivery remain unanswered.",
+      "supported_diagnosis_or_fix": false,
+      "question_necessary_answerable_nonrepeating": true,
+      "partial_topical_guidance_delivered": false,
+      "selected_chunks": [
+        "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2"
+      ]
+    },
+    {
+      "item_id": "e1afbb83b8ed866eb6e096ae",
+      "job_id": "r2:dev-case-b:candidate_relevance",
+      "arm": "candidate_relevance",
+      "round": 2,
+      "case_id": "dev-case-b",
+      "turn_id": "version",
+      "status": "fresh_proposal",
+      "human_usefulness": null,
+      "handoff_sha256": "6309a799604a596ce73197f5649283602c6eee2d013e526179d2589fba80d65f",
+      "decision": "answer",
+      "assistant_assessment": "Initial version question is necessary. After1.39 is known, candidate treatment delivers the exact documented icon options; native lacks the passage and escalates. Button coverage is partial; warning/future delivery remain unanswered.",
+      "supported_diagnosis_or_fix": false,
+      "question_necessary_answerable_nonrepeating": null,
+      "partial_topical_guidance_delivered": true,
+      "selected_chunks": [
+        "doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a",
+        "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e"
+      ],
+      "guidance_binding": {
+        "claim": "The documented1.39 button icon options include a single-character emoji or a rounded Material Symbols icon string.",
+        "chunk_id": "doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a",
+        "excerpt_sha256": "3e4ee8f16a4363b8e204ecf26a34183cf5c92cd5d8b98fc70e35b42d63725012",
+        "applicable_versions": [
+          "1.39.0"
+        ],
+        "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+        "quotes": [
+          {
+            "start": 1685,
+            "end": 1710,
+            "text": "A single-character emoji."
+          },
+          {
+            "start": 1796,
+            "end": 1860,
+            "text": "An icon from the Material Symbols library (rounded style) in the"
+          }
+        ],
+        "span_unit": "unicode_codepoint_in_current_excerpt",
+        "delivered_in_original_and_released_draft": true,
+        "scope": "Partial button-specific contract, not runtime conformance, warning support, future delivery or solved case."
+      }
+    },
+    {
+      "item_id": "5c039b617f15039d283e83ff",
+      "job_id": "r2:dev-case-a:candidate_relevance",
+      "arm": "candidate_relevance",
+      "round": 2,
+      "case_id": "dev-case-a",
+      "turn_id": "initial",
+      "status": "fresh_proposal",
+      "human_usefulness": null,
+      "handoff_sha256": "5a46d2bb6c907f7fb713d51203c3cd1913f2ab27a4e3450c093d74e6bc07380d",
+      "decision": "ask",
+      "assistant_assessment": "Necessary version/callback questions. Actual API records improve maintainer context, but the released draft is only a question; no user-facing technical guidance or invented cause/release change.",
+      "supported_diagnosis_or_fix": false,
+      "question_necessary_answerable_nonrepeating": true,
+      "partial_topical_guidance_delivered": false,
+      "selected_chunks": [
+        "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac"
+      ]
+    },
+    {
+      "item_id": "a4040002a1f91bb24bc8a8fa",
+      "job_id": "r2:dev-case-a:candidate_relevance",
+      "arm": "candidate_relevance",
+      "round": 2,
+      "case_id": "dev-case-a",
+      "turn_id": "version",
+      "status": "fresh_proposal",
+      "human_usefulness": null,
+      "handoff_sha256": "33568b9fb977523bb25ca907eaf805bd93e9fadaa994f570907174378427f5d3",
+      "decision": "ask",
+      "assistant_assessment": "Necessary version/callback questions. Actual API records improve maintainer context, but the released draft is only a question; no user-facing technical guidance or invented cause/release change.",
+      "supported_diagnosis_or_fix": false,
+      "question_necessary_answerable_nonrepeating": true,
+      "partial_topical_guidance_delivered": false,
+      "selected_chunks": [
+        "doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932"
+      ]
+    },
+    {
+      "item_id": "93b5a94a06d5523013e2b553",
+      "job_id": "r2:dev-case-a:native_top5",
+      "arm": "native_top5",
+      "round": 2,
+      "case_id": "dev-case-a",
+      "turn_id": "initial",
+      "status": "fresh_proposal",
+      "human_usefulness": null,
+      "handoff_sha256": "b57f1960df3a3ca406ef00fa3a76b81811f59c1ea39e084cb1fc94bf4581e3fd",
+      "decision": "ask",
+      "assistant_assessment": "Necessary version/callback questions. Actual API records improve maintainer context, but the released draft is only a question; no user-facing technical guidance or invented cause/release change.",
+      "supported_diagnosis_or_fix": false,
+      "question_necessary_answerable_nonrepeating": true,
+      "partial_topical_guidance_delivered": false,
+      "selected_chunks": [
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295"
+      ]
+    },
+    {
+      "item_id": "d923fa44d3588720a133dc10",
+      "job_id": "r2:dev-case-a:native_top5",
+      "arm": "native_top5",
+      "round": 2,
+      "case_id": "dev-case-a",
+      "turn_id": "version",
+      "status": "fresh_proposal",
+      "human_usefulness": null,
+      "handoff_sha256": "d7fa770b64c754e7e4d35abf69d4e5b3e354b9177bd8864a608fc60751a56531",
+      "decision": "ask",
+      "assistant_assessment": "Necessary version/callback questions. Actual API records improve maintainer context, but the released draft is only a question; no user-facing technical guidance or invented cause/release change.",
+      "supported_diagnosis_or_fix": false,
+      "question_necessary_answerable_nonrepeating": true,
+      "partial_topical_guidance_delivered": false,
+      "selected_chunks": [
+        "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+        "doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932"
+      ]
+    }
+  ],
+  "limitations": [
+    "Two rounds of the same three exposed answer-informed dev cases; not held-out or broad RAG quality.",
+    "The two guided outputs repeat one case; they are not two independent solved cases.",
+    "Button guide is partial; no unsupported warning/image-upgrade/future delivery inference. It is a long attributed quotation, not a human usefulness score.",
+    "Four treatment Enum answer labels remain qualified background/investigation, not diagnosis/fix.",
+    "Whole package changed; no ranking-only or individual component causal claim.",
+    "No numerical strict support-gate/claim-ratio/human-usefulness score is assigned by this narrative review."
+  ]
+}

@@ -27,6 +27,8 @@ from agent_app.reasoning.code_checks import has_invalid_python_code
 from agent_app.reasoning.output import InvalidAnalysis, parse_analysis
 from agent_app.reasoning.proposal_checks import callback_code_issues
 
+_EVIDENCE_BUDGET_WARNING = "Evidence is bounded by the configured whole-record byte budget."
+
 
 def _normalize(text: str) -> str:
     return " ".join(text.split()).casefold()
@@ -113,6 +115,8 @@ class SupportEngine:
         proposal_checks: bool = False,
         evidence_scope: Literal["all", "exact_user_version"] = "all",
         repair_repeated_queries: bool = False,
+        retrieval_candidate_multiplier: int = 1,
+        evidence_utf8_budget_bytes: int | None = None,
     ) -> None:
         self.retriever = retriever
         self.reasoner = reasoner
@@ -134,6 +138,16 @@ class SupportEngine:
         if type(repair_repeated_queries) is not bool:
             raise ValueError("Repeated-query repair requires an explicit boolean.")
         self.repair_repeated_queries = repair_repeated_queries
+        if not (
+            type(retrieval_candidate_multiplier) is int and retrieval_candidate_multiplier in (1, 5)
+        ):
+            raise ValueError("Unsupported retrieval candidate multiplier.")
+        self.retrieval_candidate_multiplier = retrieval_candidate_multiplier
+        if evidence_utf8_budget_bytes is not None and not (
+            type(evidence_utf8_budget_bytes) is int and 2048 <= evidence_utf8_budget_bytes <= 32768
+        ):
+            raise ValueError("Unsupported whole-record evidence byte budget.")
+        self.evidence_utf8_budget_bytes = evidence_utf8_budget_bytes
         # Validate configuration before a port is invoked.
         RetrievalRequest(queries=("configuration-check",), snapshot_id=snapshot_id, top_k=top_k)
 
@@ -288,9 +302,10 @@ class SupportEngine:
             raise _Stopped("QueryLimitExceeded", "budget_stopped")
         if any(_normalize(query) in seen_queries for query in queries):
             raise _Stopped("RepeatedQuery")
+        candidate_limit = min(50, self.top_k * self.retrieval_candidate_multiplier)
         try:
             request = RetrievalRequest(
-                queries=queries, snapshot_id=self.snapshot_id, top_k=self.top_k
+                queries=queries, snapshot_id=self.snapshot_id, top_k=candidate_limit
             )
         except ValidationError:
             raise _Stopped("InvalidRetrievalQuery") from None
@@ -307,7 +322,7 @@ class SupportEngine:
             # Revalidate even model_construct()/model_copy() results supplied by an adapter.
             data = raw.model_dump(warnings=False) if isinstance(raw, EvidenceBundle) else raw
             evidence = EvidenceBundle.model_validate(data)
-            if evidence.snapshot_id != self.snapshot_id or len(evidence.hits) > self.top_k:
+            if evidence.snapshot_id != self.snapshot_id or len(evidence.hits) > candidate_limit:
                 raise ValueError("Unexpected snapshot or result count")
             evidence = EvidenceBundle.model_validate(
                 {**evidence.model_dump(), "retrieval_round": progress.retrieval_rounds}
@@ -340,6 +355,33 @@ class SupportEngine:
                     "evidence_scoped", f"Excluded {excluded} chunks outside the confirmed version."
                 )
                 evidence = evidence.model_copy(update={"hits": hits})
+        if self.evidence_utf8_budget_bytes is not None:
+            # Bound the complete serialized envelope, never a partial quotation.
+            # This allocation leaves the independent full-prompt guard unchanged.
+            try:
+                warnings = evidence.warnings
+                if _EVIDENCE_BUDGET_WARNING not in warnings:
+                    warnings = (*warnings, _EVIDENCE_BUDGET_WARNING)
+                packed = EvidenceBundle.model_validate(
+                    {**evidence.model_dump(), "hits": (), "warnings": warnings}
+                )
+                if len(packed.model_dump_json().encode("utf-8")) > self.evidence_utf8_budget_bytes:
+                    raise ValueError
+                selected = ()
+                for hit in evidence.hits:
+                    if len(selected) >= self.top_k:
+                        break
+                    candidate = packed.model_copy(update={"hits": (*selected, hit)})
+                    if (
+                        len(candidate.model_dump_json().encode("utf-8"))
+                        <= self.evidence_utf8_budget_bytes
+                    ):
+                        selected = (*selected, hit)
+                evidence = packed.model_copy(update={"hits": selected})
+            except (ValidationError, ValueError, TypeError):
+                raise _Stopped("RetrievalResultInvalid") from None
+        elif self.retrieval_candidate_multiplier != 1:
+            evidence = evidence.model_copy(update={"hits": evidence.hits[: self.top_k]})
         return evidence
 
     def _analyze(

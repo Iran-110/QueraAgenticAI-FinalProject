@@ -6,6 +6,7 @@ and evaluator labels never become model evidence or source-selection filters.
 """
 
 import hashlib
+import json
 import re
 from copy import deepcopy
 from pathlib import Path
@@ -82,12 +83,16 @@ class _ObservedIndexedRetriever:
         binding.verify()
         self.binding, self.job, self.turn, self.records = binding, job, turn, records
         self.round = 0
+        self._active_record = None
+        self.candidate_limit = min(50, 5 * job.get("retrieval_candidate_multiplier", 1))
+        core = StreamlitRetriever("", snapshot_id=binding.snapshot_id, client=binding.client)
+        if job.get("record_native_candidates", False):
+            core = _ObservedNativeRetriever(core, lambda: self._active_record)
         self.adapter = ChromaRetrieverAdapter(
             "",
             snapshot_id=binding.snapshot_id,
-            core_retriever=StreamlitRetriever(
-                "", snapshot_id=binding.snapshot_id, client=binding.client
-            ),
+            core_retriever=core,
+            selection_policy=job.get("retrieval_selection_policy", "native"),
         )
 
     def search(self, request):
@@ -104,6 +109,9 @@ class _ObservedIndexedRetriever:
             "error_code": None,
         }
         self.records.append(record)
+        self._active_record = record
+        if self.job.get("record_native_candidates", False):
+            record["native_calls"] = []
         try:
             request = RetrievalRequest.model_validate(request.model_dump(warnings=False))
             if request.filters:
@@ -112,7 +120,7 @@ class _ObservedIndexedRetriever:
                 raise RealIndexProbeRejected()
             record["requested"] = request.model_dump(mode="json")
             bounded = RetrievalRequest.model_validate(
-                {**request.model_dump(), "top_k": min(5, request.top_k)}
+                {**request.model_dump(), "top_k": min(self.candidate_limit, request.top_k)}
             )
             record["executed"] = bounded.model_dump(mode="json")
             self.binding.verify()
@@ -123,6 +131,47 @@ class _ObservedIndexedRetriever:
         except Exception:
             record["error_code"] = "RealIndexRetrievalRejected"
             raise RealIndexProbeRejected() from None
+        finally:
+            self._active_record = None
+
+
+class _ObservedNativeRetriever:
+    """Opt-in observations of actual reads, separate from selected/model hits."""
+
+    def __init__(self, core, current):
+        self.core, self.current = core, current
+        self.snapshot_id = core.snapshot_id
+
+    def search(self, *, query, n_results, filters):
+        raw = self.core.search(query=query, n_results=n_results, filters=filters)
+        record = self.current()
+        if record is None:
+            raise RealIndexProbeRejected()
+        record["native_calls"].append(
+            {
+                "query": query,
+                "n_results": n_results,
+                "filters": deepcopy(filters),
+                "collections": {
+                    name: [
+                        {
+                            "rank": index + 1,
+                            "chunk_id": metadata["chunk_id"],
+                            "source_id": metadata["source_id"],
+                            "text_sha256": hashlib.sha256(text.encode()).hexdigest(),
+                            "metadata_sha256": hashlib.sha256(
+                                json.dumps(metadata, sort_keys=True).encode()
+                            ).hexdigest(),
+                        }
+                        for index, (text, metadata) in enumerate(
+                            zip(raw[name]["documents"][0], raw[name]["metadatas"][0], strict=True)
+                        )
+                    ]
+                    for name in ("docs", "issues")
+                },
+            }
+        )
+        return raw
 
 
 def _validated_bindings(indexes):
@@ -177,6 +226,12 @@ def run_real_index_batch(
             or job.get("arm") not in indexes
             or "catalog_overrides" in job
             or "conflict_groups" in job
+            or type(job.get("retrieval_candidate_multiplier", 1)) is not int
+            or job.get("retrieval_candidate_multiplier", 1) not in {1, 5}
+            or type(job.get("retrieval_selection_policy", "native")) is not str
+            or job.get("retrieval_selection_policy", "native")
+            not in {"native", "query_relevance_v1"}
+            or type(job.get("record_native_candidates", False)) is not bool
             for job in batch["jobs"]
         )
     ):
@@ -216,7 +271,15 @@ def run_real_index_batch(
         **receipt,
         "actual_retrievals": records,
         "index_bindings": index_receipts,
-        "retrieval_mode": "verified_native_chroma_lexical_hash_top5_exact_user_version",
+        "retrieval_mode": (
+            "verified_native_chroma_bounded_candidates_exact_user_version"
+            if any(
+                job.get("retrieval_candidate_multiplier", 1) != 1
+                or job.get("retrieval_selection_policy", "native") != "native"
+                for job in batch["jobs"]
+            )
+            else "verified_native_chroma_lexical_hash_top5_exact_user_version"
+        ),
         "fixed_fixture_evidence_used": False,
         "held_out_test": False,
         "human_reviewed": False,

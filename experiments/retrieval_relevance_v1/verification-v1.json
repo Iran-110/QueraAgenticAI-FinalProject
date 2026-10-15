@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "tested_commit": "324e0e7",
+  "paid_source_commit": "d77704d62121f0caa21f4e6b92fd5ef5721e5908",
+  "pytest": {
+    "tests": 4150,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xml_path": "/Users/sasan/Desktop/Agentic AI/output/retrieval-relevance-full-2026-10-15-v1.xml",
+    "xml_sha256": "4f470d60dd5852fdc3f13a864a177a85c87dd23de37fcccfa5a3a21993fb375e",
+    "full_run_on_unchanged_checkout": true
+  },
+  "production_source_changed_after_full_suite": false,
+  "post_suite_changes": "Frozen method, receipts, read-only report script and docs/plan only; no production Python changed.",
+  "uv_sync_locked_group_dev": true,
+  "ruff_check": true,
+  "ruff_format": {
+    "passed": true,
+    "files": 297
+  },
+  "offline_demos": [
+    "refine",
+    "gateway repair",
+    "turn-demo"
+  ],
+  "http_sqlite_acceptance": {
+    "checks_passed": 457,
+    "checks_total": 457,
+    "restart": true,
+    "retry": true,
+    "path": "/Users/sasan/Desktop/Agentic AI/output/retrieval-relevance-http-sqlite-2026-10-15-v1.json",
+    "sha256": "8ae56d3b20bc928312fde6f1400da368452535156e21cdf8798ab6fed4a0365e",
+    "real_model_quality": false
+  },
+  "plan_local_links": {
+    "checked": 149,
+    "missing": 0
+  },
+  "original_receipt_sha256": "edf56d75266d97466666224738e2d5c95e2cbbc32e396188714d00c4fbdafd17",
+  "native_cost_provenance_checks": 3912,
+  "ordinary_halt_and_two_old_holds_preserved": true,
+  "github_actions": "Owner-reported exhausted allowance prevents jobs from starting; local tests are not final-head CI.",
+  "final_read_only_production_review": {
+    "findings": 0,
+    "focused_tests_passed": 77,
+    "tests": [
+      "tests/test_retrieval_relevance.py",
+      "tests/test_relevance_native_gateway.py"
+    ],
+    "production_files": [
+      "src/agent_app/retrieval/relevance.py",
+      "src/agent_app/retrieval/adapter.py",
+      "src/agent_app/orchestration/engine.py"
+    ],
+    "human_semantic_review": false
+  }
+}
