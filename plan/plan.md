@@ -152,6 +152,16 @@
   ۴۹۸۱pytest،Ruff۳۳۷فایل،سهdemo وHTTP/SQLite۴۵۷/۴۵۷ پاس؛ hosted CI پاس ادعا نمی‌شود.
   default،factory،prompt،renderer،قرارداد عمومی و مالکیت کار بچه‌ها تغییر نکرده‌اند.
 
+- [ ] **C4j/E2w — مرز ادعا/منبع/وضعیت فعلی؛ ساسان، در حال اجرا.**
+  [protocol پیش از پیاده‌سازی/API](../experiments/core_claim_boundary_v1/protocol-v1.json)
+  و [ماتریس۱۶وضعیت](../experiments/core_claim_boundary_v1/acceptance-matrix-v1.json):
+  مقایسهٔ تازهٔ compiled با plan خصوصیِ انتخاب passage و fact فعال USER؛ تمام
+  surfaceها core-rendered و بدون متن فنی آزاد، cause/fix یا تغییر fact/check از مدل.
+  ورودی کامل، exclusion، قراردادهای عمومی و single-agent ثابت‌اند؛ exact quote
+  اثبات relevance/entailment نیست.۶۴invocation روی۱۶snapshot برنامه‌ریزی شده؛
+  معیار Enum شامل identity، module، caveat ویرایش/reload و محدودیت کاربرد/نسخه است،
+  نه فقط کوتاهی. API تنها پس از preflight/review/تست و ثبت method تازه انجام می‌شود.
+
 - [ ] **تنظیم نهایی core پس از review انسانی و dev گسترده‌تر؛ ساسان با محمدحسن.**
   مقایسهٔ usefulness سؤال کوتاه/کامل، متن طولانی عمومی Enum و precision منابع
   اولیهٔ B؛ انتخاب تنظیم پیشنهادی فقط با شواهد dev، سپس freeze پیش از test.

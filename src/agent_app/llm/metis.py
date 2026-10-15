@@ -88,6 +88,17 @@ class MetisReasoner:
     def __exit__(self, *_: object) -> None:
         self.close()
 
+    def _analysis_messages(self, case, user_message, evidence, context):
+        """Trusted internal projection; identity, budget and transport stay here."""
+        return build_messages(
+            case,
+            user_message,
+            evidence,
+            feedback=context.output_feedback,
+            policy=self.config.prompt_policy,
+            context=context,
+        )
+
     def analyze(
         self,
         case: CaseState,
@@ -135,14 +146,7 @@ class MetisReasoner:
         if price is None:
             raise ReasoningStopped("UnknownPricing", "budget_stopped")
         if self.config.response_mode == "analysis":
-            messages = build_messages(
-                case,
-                user_message,
-                evidence,
-                feedback=context.output_feedback,
-                policy=self.config.prompt_policy,
-                context=context,
-            )
+            messages = self._analysis_messages(case, user_message, evidence, context)
         # UTF-8 byte count plus framing margin is a conservative operational guard,
         # not a provider billing guarantee. The live pilot must verify this assumption.
         message_bytes = len(json.dumps(messages, ensure_ascii=False).encode("utf-8"))
