@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "task": "C4l/E2y",
+  "protocol_id": "bound-selection-context-offline-v1",
+  "registered_before_implementation": true,
+  "baseline_main_commit": "efaf02a604370733333ccc3adfa90b60898f2062",
+  "problem": "The optional lexical advisor still consumes the full supplied reasoning-history string. Retiring a structured USER fact does not remove that old word from raw history overlap.",
+  "change": "Explicit private EvidenceQueryContext binds the current complete ClaimRequest hash, complete caller CaseState, complete validated TurnConversation, existing build_current_query projection and its own digest. rank/suggest/inspect optionally accept it. None retains the exact legacy output; no model/retrieval/factory default changes.",
+  "typed_query": "Reuse existing build_reasoning_message for exact message binding and build_current_query for bounded current query. Only lexical terms originating in actual USER entry text or active USER fact VALUES qualify; helper labels/fact names alone do not manufacture matches. Preserve all active USER fact-value terms beyond the bounded projection. Do not parse historical headers or infer facts from text.",
+  "output_custody": "Typed shortlists and inspection reports record the query-context digest. Legacy dataclass fields/results remain exactly unchanged. All inputs remain intact; a context mismatch rejects rather than falling back to legacy raw history.",
+  "preregistered_controls": [
+    "Freeze legacy rank/shortlist/inspection digests before code on16 prior exposed snapshots and authored neutral fixtures; None remains exact.",
+    "Known superseded topic absent from bounded historical hints while current topic retained; latest-message negation is an explicit lexical counterexample.",
+    "A-to-B-to-A reactivates the current A rather than permanently blacklisting old values.",
+    "Unchanged technical topic survives version-only follow-up; assistant/evidence rows and metadata names do not become query authority.",
+    "Reject stale request/source/mode/revision/full-case/hash/query/history tampering and cross-case context reuse, even when message text is identical.",
+    "Preserve exact reasoning messages, current source bytes, case/facts, conversation and budgets; no source truncation or action authority.",
+    "TurnConversation has no case_id; caller must load it from the authoritative same-case view. Content binding does not authenticate history origin or human review."
+  ],
+  "evaluation_kind": "authored neutral offline controls plus exposed-dev default parity, never new model choices or held-out quality",
+  "semantic_quality_or_RAG_claim": false,
+  "API_calls_authorized": 0,
+  "ledger_halt_three_holds_preserved": true,
+  "old_packets_or_closed_IDs_rewritten": false,
+  "publication_gate": ["meaningful targeted tests and explicit false-positive/negative controls", "full pytest and Ruff on frozen source", "existing HTTP/SQLite acceptance and three offline demos", "separate code/receipt review", "plan/docs updated before user-authorized local-tested merge"]
+}

@@ -91,6 +91,12 @@ Enum در Session State را ثابت نمی‌کند. هیچ علت، نسخه�
 و پنهان نشده است. overlap مثبت می‌تواند misleading باشد و synonym مفید می‌تواند
 overlap صفر بگیرد. در همهٔ حالت‌ها `semantic_support=null` و review انسانی لازم است.
 
+در ادامهٔ C4l، [context اختیاری فعلی](selection-context.fa.md) با CaseState و
+TurnConversation کامل به request متصل می‌شود و برای همین helperها projection
+فعلی می‌سازد. حالت بدون context دقیقاً رفتار بالا را حفظ می‌کند. این extension
+واژه‌های fact منسوخ را در hint محدود می‌کند؛ حذف کامل موضوع قدیمی یا semantics
+را تضمین نمی‌کند و وارد مدل یا retrieval پیش‌فرض نشده است.
+
 ## نتیجهٔ بازپخش؛ انتخاب مدل تازه نیست
 
 [replay V2](../experiments/core_evidence_selection_v1/replay-v2.json) با

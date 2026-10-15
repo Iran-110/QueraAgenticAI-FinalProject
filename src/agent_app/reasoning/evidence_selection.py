@@ -11,6 +11,7 @@ import re
 from collections import Counter
 from dataclasses import dataclass
 
+from agent_app.orchestration.validation import detached_contract
 from agent_app.reasoning.claim_plan import (
     ClaimRequest,
     claim_block_has_body,
@@ -18,6 +19,10 @@ from agent_app.reasoning.claim_plan import (
     validate_claim_request,
 )
 from agent_app.reasoning.grounding import GroundingRejected, source_scope
+from agent_app.reasoning.selection_context import (
+    EvidenceQueryContext,
+    validate_evidence_query_context,
+)
 
 _WORDS = re.compile(r"[^\W_]+", re.UNICODE)
 _STOP = frozenset(
@@ -52,6 +57,11 @@ class EvidenceShortlist:
     human_review_required: bool = True
 
 
+@dataclass(frozen=True, kw_only=True)
+class ContextualEvidenceShortlist(EvidenceShortlist):
+    query_context_sha256: str
+
+
 def _terms(text):
     # Numeric environment strings never grant version scope through overlap.
     return Counter(
@@ -61,26 +71,61 @@ def _terms(text):
     )
 
 
-def rank_evidence_units(request: ClaimRequest) -> tuple[EvidenceUnitHint, ...]:
+def _validated_inputs(request, query_context):
+    if query_context is None:
+        # Preserve the historical no-context path and serialized output fields.
+        return validate_claim_request(request), None
+    try:
+        request = validate_claim_request(detached_contract(ClaimRequest, request))
+        return request, validate_evidence_query_context(request, query_context)
+    except Exception:
+        raise GroundingRejected("grounded_context_mismatch") from None
+
+
+def rank_evidence_units(
+    request: ClaimRequest, *, query_context: EvidenceQueryContext | None = None
+) -> tuple[EvidenceUnitHint, ...]:
     """Rank current units by advisory IDF-cosine against current USER input.
 
     Only passage text contributes document terms; metadata names and identifiers
     cannot manufacture relevance. Superseded/evidence/inference fact ROWS are
     not query terms. The supplied message may still contain historical prose;
     this helper does not parse or certify its factual freshness. Full-source
-    and case hashes are checked before inspection.
+    and case hashes are checked before inspection. An optional bound typed
+    context uses the existing current-query projection; omitted context retains
+    the complete historical-message behavior exactly.
     """
-    request = validate_claim_request(request)
+    request, query_context = _validated_inputs(request, query_context)
     grounded = request.grounded
-    query = _terms(
-        grounded.user_message
-        + "\n"
-        + "\n".join(
-            fact.value
-            for fact in grounded.case.facts
-            if fact.status == "active" and fact.provenance_kind == "user"
-        )
+    current_values = "\n".join(
+        fact.value
+        for fact in grounded.case.facts
+        if fact.status == "active" and fact.provenance_kind == "user"
     )
+    if query_context is None:
+        query = _terms(grounded.user_message + "\n" + current_values)
+    else:
+        # The helper's labels and fact names are not USER-provided text. A
+        # projected token must also occur in actual USER entries or active USER
+        # values. Old words can still survive in latest negation/unretired hints;
+        # this is a lexical provenance control, never semantic understanding.
+        origin = _terms(
+            "\n".join(
+                entry.text for entry in query_context.conversation.entries if entry.actor == "user"
+            )
+            + "\n"
+            + current_values
+        )
+        query = Counter(
+            {
+                term: count
+                for term, count in _terms(query_context.current_query).items()
+                if term in origin
+            }
+        )
+        # Keep current code/long values even when the bounded search projection
+        # cannot pack them; no source or reasoning message is shortened here.
+        query.update(_terms(current_values))
     units = []
     for source, spans in enumerate(request.blocks):
         hit = grounded.evidence.hits[source]
@@ -122,7 +167,11 @@ def rank_evidence_units(request: ClaimRequest) -> tuple[EvidenceUnitHint, ...]:
 
 
 def suggest_evidence_units(
-    request: ClaimRequest, *, max_units: int = 2, passage_utf8_budget: int = 6_000
+    request: ClaimRequest,
+    *,
+    max_units: int = 2,
+    passage_utf8_budget: int = 6_000,
+    query_context: EvidenceQueryContext | None = None,
 ) -> EvidenceShortlist:
     """Return bounded whole-unit inspection suggestions, never a model answer.
 
@@ -136,8 +185,8 @@ def suggest_evidence_units(
         raise ValueError("InvalidEvidenceShortlistLimit")
     if type(passage_utf8_budget) is not int or passage_utf8_budget <= 0:
         raise ValueError("InvalidEvidenceShortlistBudget")
-    request = validate_claim_request(request)
-    ranked = rank_evidence_units(request)
+    request, query_context = _validated_inputs(request, query_context)
+    ranked = rank_evidence_units(request, query_context=query_context)
     selected, oversized, historical = [], [], []
     used = 0
     for hint in ranked:
@@ -153,16 +202,25 @@ def suggest_evidence_units(
         if len(selected) < max_units:
             selected.append(ref)
             used += hint.passage_utf8_bytes
-    return EvidenceShortlist(
+    result = dict(
         context_sha256=request.context_sha256,
         passages=tuple(selected),
         passage_utf8_bytes=used,
         oversized=tuple(oversized),
         historical=tuple(historical),
     )
+    return (
+        EvidenceShortlist(**result)
+        if query_context is None
+        else ContextualEvidenceShortlist(
+            **result, query_context_sha256=query_context.context_sha256
+        )
+    )
 
 
-def inspect_claim_selection(request: ClaimRequest, raw) -> dict:
+def inspect_claim_selection(
+    request: ClaimRequest, raw, *, query_context: EvidenceQueryContext | None = None
+) -> dict:
     """Report bounded lexical/structural observations of an EXISTING plan.
 
     A high overlap is never reported as supported or relevant. These observations
@@ -170,7 +228,7 @@ def inspect_claim_selection(request: ClaimRequest, raw) -> dict:
     Old context/source/fact selections still fail instead of being silently
     rebound to the new case. No content or arbitrary field names enter warnings.
     """
-    request = validate_claim_request(request)
+    request, query_context = _validated_inputs(request, query_context)
     plan = parse_claim_plan(raw)
     if plan.context_sha256 != request.context_sha256:
         raise GroundingRejected("grounded_context_mismatch")
@@ -181,7 +239,7 @@ def inspect_claim_selection(request: ClaimRequest, raw) -> dict:
     )
     if any(index >= len(active) for index in plan.user_facts):
         raise GroundingRejected("grounded_context_mismatch")
-    ranked = rank_evidence_units(request)
+    ranked = rank_evidence_units(request, query_context=query_context)
     hints = {(h.source_index, h.block_index): h for h in ranked}
     if any(ref not in hints for ref in plan.passages):
         raise GroundingRejected("grounded_source_mismatch")
@@ -192,7 +250,7 @@ def inspect_claim_selection(request: ClaimRequest, raw) -> dict:
         warnings.append("no_lexical_signal_not_proof_of_irrelevance")
     if any(hints[ref].version_scope == "historical_or_other_version" for ref in plan.passages):
         warnings.append("different_reported_version_not_runtime_verification")
-    return {
+    observation = {
         "schema_version": 1,
         "context_sha256": request.context_sha256,
         "decision_unchanged": plan.decision,
@@ -202,3 +260,9 @@ def inspect_claim_selection(request: ClaimRequest, raw) -> dict:
         "semantic_support": None,
         "human_review_required": True,
     }
+    if query_context is not None:
+        observation.update(
+            query_context_sha256=query_context.context_sha256,
+            query_input_kind="bound_current_user_projection",
+        )
+    return observation

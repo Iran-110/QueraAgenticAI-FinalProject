@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "task": "C4l/E2y",
+  "verification_date_local": "2026-10-16",
+  "tested_source_commit": "50a3f8d1483ec8dcf89ecb95c949b9eac963493f",
+  "baseline_main_commit": "efaf02a604370733333ccc3adfa90b60898f2062",
+  "protocol_before_code_commit": "d221fe2",
+  "pytest": {
+    "tests": 5424,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "pytest_seconds": 242.818,
+  "pytest_XML_source": "local-output:selection-context-2026-10-16-pytest-v1.xml",
+  "pytest_XML_sha256": "04486a31ecbee0fd5fc57ee4a209fa6126e7f7471278445545f074c4074aaf29",
+  "new_focused_tests": 80,
+  "separate_assistant_review_repeated_tests": 123,
+  "ruff_check_passed": true,
+  "ruff_format_files": 356,
+  "locked_sync_passed": true,
+  "required_offline_demos_passed": [
+    "demo --scenario refine",
+    "gateway-demo --scenario repair",
+    "turn-demo"
+  ],
+  "demos_real_API_calls": 0,
+  "HTTP_SQLite": {
+    "accepted": true,
+    "checks_passed": 457,
+    "checks_total": 457,
+    "same_process_accepted": true,
+    "restart_accepted": true,
+    "source_unchanged_during_run": true,
+    "quality_claim": false,
+    "real_model_tested": false,
+    "production_index_or_embedding_tested": false,
+    "production_ledger_used": false
+  },
+  "HTTP_receipt": "http-sqlite-v1.json",
+  "offline_replay": {
+    "checks_passed": 81,
+    "checks_total": 81,
+    "authored_neutral_scenarios": 8,
+    "legacy_advisory_states_byte_exact": 24,
+    "new_replay_JSON_normalized_exact": true,
+    "prior_C4k_replay_JSON_normalized_exact": true,
+    "prior_C4k_checks": [
+      62,
+      62
+    ]
+  },
+  "observed_correction": {
+    "legacy_source_order": [
+      0,
+      1,
+      2
+    ],
+    "typed_source_order": [
+      1,
+      0,
+      2
+    ],
+    "typed_shortlist_source_indexes": [
+      1,
+      0
+    ],
+    "complete_old_source_exclusion_claim": false,
+    "model_quality_claim": false
+  },
+  "negative_controls_retained": [
+    "latest negation remains lexical false positive",
+    "synonym remains lexical false negative",
+    "old-topic source still in shortlist",
+    "unretired historical details may remain"
+  ],
+  "primary_ledger": {
+    "sha256_unchanged": "141c3536fb864595d94e0d0dd4a55976418def1012402b70f313c92050222785",
+    "read_as_bytes_only": true,
+    "budget_client_created": false,
+    "halt_preserved": true,
+    "uncertain_holds_preserved": 3,
+    "uncertain_holds_not_verified_charges_usd": "0.030137600",
+    "settled_local_estimate_usd": "0.599798760",
+    "cap_usd": "4.50",
+    "prior_C5_readonly_receipt": "../core_evidence_selection_v1/c5-readonly-audit-v1.json",
+    "new_provider_reconciliation_evidence": false,
+    "closed_experiment_IDs_reused": false
+  },
+  "protected_current_epoch": {
+    "matches": 19,
+    "total": 19,
+    "historical_original_epoch_restored_claim": false,
+    "pin_file": "../core_broader_dev_v1/protected-inputs-v1.json"
+  },
+  "review": {
+    "engineering_blockers": 0,
+    "reviewer": "separate assistant, not independent human usefulness review",
+    "raw_conversation_tuple_guard_preserved": true,
+    "exact_500_character_query_boundary_preserved": true
+  },
+  "actual_paid_API_calls": 0,
+  "actual_credential_files_read": 0,
+  "new_production_default": false,
+  "human_usefulness": null,
+  "semantic_or_RAG_or_held_out_quality_claim": false,
+  "new_native_index_trial": false,
+  "shared_contracts_or_team_modules_or_corpus_exclusion_gold_changed": false,
+  "hosted_CI_pass_claim": false,
+  "local_publication_authorized_by_user": true,
+  "fresh_Windows_or_browser_test_claim": false,
+  "teammate_PR66_observed": {
+    "head": "0d21450322a10bee9ca95c49000f378141fec913",
+    "scope": "two sanitized receipt documents only",
+    "overlap_with_current_change": false,
+    "merged_in_this_delivery": false
+  },
+  "source_sha256": {
+    "src/agent_app/reasoning/selection_context.py": "1986336314074301dc74d345b9770c9c8667b6d1ebd6eb915633c5f76178db7d",
+    "src/agent_app/reasoning/evidence_selection.py": "7df2d994039713666f1f8da054bd69b510b3176360dedd1b991769b8489a22e3",
+    "src/agent_app/testing/selection_context_replay.py": "560a985be997a428b714042248dcebe51813670b195ecc26f4543c229b840a96",
+    "tests/test_selection_context.py": "dde54208f5adea3c8c603dbdc5a94ed3dddf0a0d23c93cbe8e7f184c21cbdd47",
+    "tests/test_selection_context_replay.py": "d592e4d8051eaa63bc8fd4573606946a506a5d2c9d4802d9614a1de17198d738"
+  },
+  "artifact_sha256": {
+    "http-sqlite-v1.json": "9c2d04724371935cdde3944e28b420b24b7bc484fc0ca8c4fc7115a324e94835",
+    "input-pins-v1.json": "361c4f95bd496a495e94c78c2cf593fef17fd8a45de6f0176c00adf6b3e1f27f",
+    "legacy-baseline-v1.json": "2e1b20463f4ed673e9953324b79ee9f7eaf72b2963c25d5135c112f0b70fd89b",
+    "protocol-v1.json": "76a471f1d9ada7708e8aae18f9d945429f1bb8e492d9a6e7444bf330e76aae83",
+    "replay-v1.json": "a247d21d54afccb81d7aa2b154e3093ea22fb1a8d91ab41f01477188bd79cbd9",
+    "scenarios-v1.json": "472c3536a2f2178076248af30e5a1b4a1f3c7b86b8a6499a48431b4f9c794b46"
+  },
+  "final_document_relative_links_checked": 218
+}

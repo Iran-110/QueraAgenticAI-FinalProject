@@ -1,3 +1,42 @@
+## 2026-10-16 — C4l/E2y: bound current-user advisory context, offline
+
+PR65 merged main at `efaf02a` after exact-head local review; its additive
+[merge receipt](../experiments/core_evidence_selection_v1/merge-review-v1.json)
+preserves the5344-test source/hosted-billing distinction.
+
+[Current-context extension](selection-context.fa.md),
+[preregistered packet](../experiments/core_selection_context_v1/README.md).
+The optional lexical advisor previously rescored the full raw reasoning history
+after a structured USER fact was superseded. The new explicitly supplied private
+EvidenceQueryContext binds the entire current request/case/conversation and
+existing current-query projection. USER-value terms survive500-character query
+packing; helper labels/fact names and assistant/evidence rows alone cannot add
+query terms. Stale/tampered contexts reject with a fixed code, without fallback.
+Omitted/None outputs remain exact across24 frozen pre-code states. Full sources,
+model messages, public contracts/factories and teammate modules are unchanged.
+
+Eight authored neutral scenarios pass81 replay controls. In the correction
+fixture, the current source moves second→first, but the old source remains in
+the shortlist. Latest negation still causes a lexical false positive; a synonym
+still has zero overlap. These remain retained negative observations, not semantic
+passes. Same-case history provenance is caller-owned: TurnConversation has no
+case_id, and exact content binding cannot authenticate its origin. This is no
+new model choice, paid API result, RAG/final-test or usefulness improvement.
+
+Frozen source`50a3f8d`:5424pytest (80new), Ruff356files, three required offline
+demos and fresh existing HTTP/SQLite457/457 including restart pass. Separate
+assistant review repeats123focused tests with no blocker. Both the new81-control
+and prior C4k62-control receipts reproduce exactly. [Verification](../experiments/core_selection_context_v1/verification-v1.json)
+pins code/artifacts/XML; ledgerSHA141c3536... and all19current physical pins match.
+No real credentials/provider reconciliation or paid call; halt, three uncertain
+holdsUSD0.0301376, ceilingUSD4.50 and every closed identity remain unchanged.
+Hosted CI/freshWindows/browser/native-index trial are not claimed. Newly detected
+teammate PR66 contains two sanitized receipt documents only and remains separate.
+Human semantic/usefulness review, configuration freeze and C5 stay open.
+Code, receipts and plan are delivered in
+[PR67](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/67); its status
+is the publication reference, with team consumption through merged main.
+
 ## 2026-10-16 — C4k/E2x: complete sections, advisory relevance and read-only C5
 
 [Behavior and limits](evidence-selection.fa.md),
