@@ -24,6 +24,10 @@
   قبلی و۱۴ جدول، hold/halt/سقف محفوظ‌اند. شش scope بسته و۲۱ slot باقی claimed شدند.
   بودجهٔ bundle حداکثر۱۱۷۵۱/۱۲۰۰۰ byte بود. این تیک تحویل آزمایش است؛ RAG/eval
   نهایی بسته نشده‌اند و پیش‌فرض‌ها خاموش‌اند.
+  انتشار در [PR #58](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/58)،
+  فعلاً با پایهٔ PR57 است؛ ترتیب ادغام PR54، سپس retarget/merge57 روی main،
+  سپس retarget/review58 روی main است. به branch پایه merge نشود؛ CI همان head
+  باید اجرا شود. PR50 و branch حسن دست‌نخورده‌اند؛ این کار به merge آن وابسته نیست.
 
 - [x] **C4h2 — repair query تکراری و مقایسهٔ محدود؛ ساسان.**
   [ثبت قبل از تغییر](../experiments/core_repeat_repair_v1/protocol-v1.json) و
