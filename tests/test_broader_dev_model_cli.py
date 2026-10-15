@@ -162,39 +162,11 @@ def test_real_proposal_gateway_through_finite_cli_retains_bounds(cli, monkeypatc
 
 @pytest.fixture
 def registered_inputs(tmp_path, monkeypatch, multiple_holds):
+    from registered_native_inputs import broader_registered_inputs
+
     module = _module(monkeypatch)
-    ledger, path, _ = multiple_holds
     root = tmp_path / "registered-inputs"
-    protocol = controls._read(ROOT / module.FOLDER / "protocol-v1.json")
-    protected = controls._read(ROOT / protocol["inputs"]["original_protected_inputs"])
-    names = {
-        *(
-            value
-            for key, value in protocol["inputs"].items()
-            if not key.endswith("sha256") and isinstance(value, str)
-        ),
-        *protected["files"],
-        (module.FOLDER / "protocol-v1.json").as_posix(),
-        (module.FOLDER / "bound-amendment-v1.json").as_posix(),
-        (module.FOLDER / "preparation-amendment-v1.json").as_posix(),
-        (module.FOLDER / "preparation-first-failure-v1.json").as_posix(),
-        (module.FOLDER / "protected-inputs-v1.json").as_posix(),
-        (module.FOLDER / "index-recovery-review-v1.json").as_posix(),
-        "scripts/core_broader_dev_probe.py",
-        "scripts/prepare_broader_dev_snapshots.py",
-        "src/agent_app/testing/broader_proposals.py",
-        "src/agent_app/testing/finite_controlled_probe.py",
-        "experiments/core_quality_followup/quarantine-scope-protocol-v1.json",
-    }
-    for name in names:
-        target = root / name
-        target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_bytes((ROOT / name).read_bytes())
-    policy = root / "experiments/core_quality_followup/quarantine-scope-protocol-v1.json"
-    value = json.loads(policy.read_bytes())
-    value["known_uncertain_request_ids"] = list(ledger.quarantine_observation().unknown_ids)
-    policy.write_text(json.dumps(value))
-    return module, root, path
+    return broader_registered_inputs(module, ROOT, root, monkeypatch, multiple_holds)
 
 
 def test_registered_design_has128_fresh_valid_slots_no_releases(registered_inputs):

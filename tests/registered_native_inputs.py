@@ -152,3 +152,81 @@ def registered_method_inputs(module, source_root, target_root, monkeypatch, mult
     fixtures = module.fixtures_for(source_root, {"protocol_id": "core-stability-v1"})
     monkeypatch.setattr(module, "fixtures_for", lambda *_args: fixtures)
     return module, target_root, ledger_path, fixtures
+
+
+def broader_registered_inputs(module, source_root, target_root, monkeypatch, multiple_holds):
+    """Register synthetic physical bytes for the broader CLI's current-epoch guard.
+
+    This is not a native reconstruction: historical logical-review statements
+    remain fixture metadata. No Chroma client or retriever opens these deliberately
+    invalid bytes. Old protected hashes and the study protocol remain untouched;
+    only the temporary effective epoch and its dependent digest bindings change.
+    """
+    ledger, ledger_path, _ = multiple_holds
+    folder = module.FOLDER
+    raw_protocol = (source_root / folder / "protocol-v1.json").read_bytes()
+    assert sha(raw_protocol) == module.PROTOCOL_SHA256
+    protocol = json.loads(raw_protocol)
+    amendment_relative = folder / "preparation-amendment-v1.json"
+    raw_amendment = (source_root / amendment_relative).read_bytes()
+    assert sha(raw_amendment) == module.PREPARATION_AMENDMENT_SHA256
+    amendment = json.loads(raw_amendment)
+    protected_relative = Path(amendment["effective_protected_inputs_path"])
+    protected = _json(source_root / protected_relative)
+    names = {
+        *(
+            value
+            for key, value in protocol["inputs"].items()
+            if not key.endswith("sha256") and isinstance(value, str)
+        ),
+        *protected["files"],
+        *(
+            str(folder / name)
+            for name in (
+                "protocol-v1.json",
+                "bound-amendment-v1.json",
+                "preparation-amendment-v1.json",
+                "preparation-first-failure-v1.json",
+                "protected-inputs-v1.json",
+                "index-recovery-review-v1.json",
+            )
+        ),
+        "scripts/core_broader_dev_probe.py",
+        "scripts/prepare_broader_dev_snapshots.py",
+        "src/agent_app/testing/broader_proposals.py",
+        "src/agent_app/testing/finite_controlled_probe.py",
+        "experiments/core_quality_followup/quarantine-scope-protocol-v1.json",
+    }
+    for name in sorted(names):
+        relative = Path(name)
+        destination = target_root / relative
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        raw = (
+            synthetic_native_bytes(relative)
+            if relative.parts[0] == "runtime"
+            else (source_root / relative).read_bytes()
+        )
+        destination.write_bytes(raw)
+    for name, registered_digest in protected["files"].items():
+        actual_digest = sha((target_root / name).read_bytes())
+        if Path(name).parts[0] == "runtime":
+            protected["files"][name] = actual_digest
+        else:
+            assert actual_digest == registered_digest
+    _write_json(target_root / protected_relative, protected)
+    protected_sha = sha((target_root / protected_relative).read_bytes())
+    amendment["effective_protected_inputs_sha256"] = protected_sha
+    _write_json(target_root / amendment_relative, amendment)
+    amendment_sha = sha((target_root / amendment_relative).read_bytes())
+    monkeypatch.setattr(module, "PREPARATION_AMENDMENT_SHA256", amendment_sha)
+    preparation_path = target_root / folder / "preparation-v1.json"
+    preparation = _json(preparation_path)
+    preparation["protected_epoch_sha256"] = protected_sha
+    preparation["input_pins"][protected_relative.as_posix()] = protected_sha
+    preparation["input_pins"][amendment_relative.as_posix()] = amendment_sha
+    _write_json(preparation_path, preparation)
+    policy = target_root / "experiments/core_quality_followup/quarantine-scope-protocol-v1.json"
+    value = _json(policy)
+    value["known_uncertain_request_ids"] = list(ledger.quarantine_observation().unknown_ids)
+    _write_json(policy, value)
+    return module, target_root, ledger_path
