@@ -1,4 +1,4 @@
-## 2026-10-15 — R4c/C4h5: bounded candidate relevance, comparison pending
+## 2026-10-15 — R4c/C4h5: closed bounded candidate comparison
 
 [Behavior and integration](retrieval-relevance.fa.md): opt-in adapter query/API
 relevance and source diversity over expanded candidates; engine applies existing
@@ -7,8 +7,29 @@ whole-record serialized evidence budget was separately preregistered before its
 implementation/API. Replaying11 archived states now fits11/11 common compact
 prompts/repairs; relevant button1.39 and multiselect1.50 actually reach the model
 request. Complete source text/hash/identity,18/36 index and exclusion are unchanged.
-This is availability, not a model-quality gain. Both fresh arms will use identical
-core flags, with all24 denominators and actual native read/selection/prompt traces.
+Both fresh arms used identical core flags. The
+[27-send comparison](../experiments/retrieval_relevance_v1/README.md) observes
+5/6 versus6/6 routes and10 versus12 fresh proposals, with all24 turns retained
+(22fresh/1empty/1unvisited). Raw compact validity14/15 versus12/12; neither arm
+has provider-length, input or renderer overflow. More answer labels are not a
+solved-case count; semantic guidance/usefulness remain separate review dimensions.
+
+Assistant review finds a narrow partial-guidance gain: both treatment button1.39
+version turns deliver the actual icon-format passage, native0/2 versus treatment2/2
+repetitions of one exposed case. Multiselect1.50 reaches both treatment version
+bundles but only necessary callback questions reach the user. Enum answer labels
+remain qualified background/investigation, with zero proven cause/fix. All12
+questions are necessary; all three fresh corrections keep active1.31.1.22 fresh
+proposals/148 populated surfaces were reviewed; human usefulness remains null.
+
+Read-only native/cost recomputation3912/3912 reconstructs every native search,
+adapter bundle and model USER-scope/whole-record packing bundle; maximum treatment
+evidence11751/12000bytes. EstimatedUSD0.026391915, cumulativeUSD0.391248990;
+all452 prior reservations and14-table rows/schema, both old holds/halt/ceiling
+and prior revocations remain. Six scopes closed,21 unused slots claimed. Source
+d77704d stayed unchanged during paid calls. Full4150 pytest, current Ruff297files,
+three demos and separate
+fixture HTTP/SQLite457/457 pass. No historical criterion or receipt was rescored.
 
 Defaults remain native/multiplier1/budgetNone; no shared models, RAG build,
 tracker/UI or ordinary live factory defaults change. Hassan PR50 head1a18749 is

@@ -30,6 +30,8 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 - R4c/C4h5 is opt-in bounded candidate relevance; read `docs/retrieval-relevance.fa.md` and its preregistered experiment. Adapter query/API relevance orders complete candidates; engine uses actual active USER-version scope before final top-k and optional whole-record UTF8 budgeting. Native/multiplier1/budgetNone preserve defaults. The12000-byte bundle budget followed an archived offline overflow and is not a raised or guaranteed full-prompt allowance. No query/version-text authority, since_version-to-exact inference, case/source-ID filters, source additions or excerpt truncation. Both fresh model arms use identical core flags, separate actual native reads/candidate selection/post-scope evidence, and preserve all planned turns. Passage availability, user-facing supported topical guidance, diagnosis/fix and human usefulness are separate outcomes. Hassan PR50 stays separate; normal live factory remains halted.
 
+  The closed27-send comparison observes5/6 versus6/6 routes,10 versus12 fresh proposals and partial button1.39 guidance0/2 versus2/2 repetitions of one exposed case. A still asks necessary callback questions; C still has no Enum diagnosis/fix. Human usefulness is null and no defaults are promoted.3912 native/cost checks preserve all452 old reservations/14tables/holds/halt; six scopes closed and21 unused slots permanently claimed. Do not resume the closed method or call this final RAG/test quality.
+
 ## Runtime rules
 
 - Default to offline mock execution. No paid API calls for routine development; the whole team's API budget is USD 5, including embeddings and evaluation.

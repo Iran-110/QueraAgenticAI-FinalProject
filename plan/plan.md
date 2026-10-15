@@ -4,17 +4,26 @@
 
 ## وضعیت فعلی
 
-- [ ] **R4c/C4h5 — رساندن منابع مرتبط و مقایسهٔ کیفیت؛ ساسان، کمک مستقل به RAG.**
+- [x] **R4c/C4h5 — رساندن منابع مرتبط و مقایسهٔ محدود؛ ساسان، کمک مستقل به RAG.**
   [protocol](../experiments/retrieval_relevance_v1/protocol-v1.json) و
   [رفتار و اتصال](../docs/retrieval-relevance.fa.md): PR50 حسن درhead`1a18749`
-  تغییری نکرده؛ کار رویbranchجدا وبدونتغییرbranch/index/corpusاوست. کاندیدای۲۵
-  برایخروجی۵،rankingعمومیAPI/واژه‌ها وscopeنسخهٔفعالUSER پیش‌ازcap؛ همهopt-in.
+  تغییری نکرده؛ کار روی branch جدا، بدون تغییر branch/index/corpus اوست.
+  برای خروجی نهایی۵، تا۲۵ کاندیدا می‌گیریم؛ ranking عمومی API/واژه‌ها و
+  فیلتر نسخهٔ فعال USER پیش از cap نهایی اعمال می‌شوند. همهٔ گزینه‌ها opt-in اند.
   [بودجهٔ رکورد کامل](../experiments/retrieval_relevance_v1/whole-record-budget-amendment-v1.json)
-  بعدازمشاهدهٔoverflow آفلاین وپیش‌ازAPI ثبت شد؛ متن منبع بریده نمی‌شود.
-  replayواقعی۱۱state،باpacking۱۱/۱۱زیرسقف؛ button۱٫۳۹ وmultiselect۱٫۵۰به
-  evidenceنوبت‌مناسب‌رسیدند. هنوز availability است، نه کیفیت پاسخ.
-  مقایسهٔ تازه باflagهایcore مشترک،همه۲۴نوبت،هزینه/hold/haltمحفوظ وreview
-  همهٔادعاها/سؤال‌ها لازم است؛نتیجهٔliveوusefulnessهنوزثبت‌نشده‌اند.
+  پس از مشاهدهٔ overflow آفلاین و پیش از API ثبت شد؛ متن منبع بریده نمی‌شود.
+  replay روی index واقعی در۱۱ state، با packing هر۱۱ را زیر سقف نگه داشت.
+  [مقایسهٔ تازه](../experiments/retrieval_relevance_v1/README.md) با flagهای core
+  مشترک: route کامل۵/۶ در baseline و۶/۶ در نسخهٔ جدید؛ fresh از۱۰ به۱۲ رسید.
+  هر۲۴ نوبت، شامل۲۲ fresh، یک empty و یک unvisited محفوظ‌اند. schema خام معتبر
+  ۱۴/۱۵ در baseline و۱۲/۱۲ در نسخهٔ جدید؛ هیچ length/input/render overflow نبود.
+  راهنمای مستند button۱٫۳۹ در هر دو تکرار به کاربر رسید، در baseline صفر از دو؛
+  پاسخ جزئی برای همان یک case است. multiselect به مدل رسید ولی سؤال callback
+  همچنان لازم بود؛ Enum هنوز علت/fix اثبات‌شده ندارد. usefulness انسانی null است.
+  ۲۷ send با تخمین$0.026391915؛۳۹۱۲ کنترل هزینه/provenance پاس، همهٔ۴۵۲ reservation
+  قبلی و۱۴ جدول، hold/halt/سقف محفوظ‌اند. شش scope بسته و۲۱ slot باقی claimed شدند.
+  بودجهٔ bundle حداکثر۱۱۷۵۱/۱۲۰۰۰ byte بود. این تیک تحویل آزمایش است؛ RAG/eval
+  نهایی بسته نشده‌اند و پیش‌فرض‌ها خاموش‌اند.
 
 - [x] **C4h2 — repair query تکراری و مقایسهٔ محدود؛ ساسان.**
   [ثبت قبل از تغییر](../experiments/core_repeat_repair_v1/protocol-v1.json) و

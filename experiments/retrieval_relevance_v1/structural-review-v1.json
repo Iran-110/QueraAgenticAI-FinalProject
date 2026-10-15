@@ -1,0 +1,394 @@
+{
+  "schema_version": 1,
+  "review_id": "retrieval-relevance-structural-review-v1",
+  "receipt_sha256": "edf56d75266d97466666224738e2d5c95e2cbbc32e396188714d00c4fbdafd17",
+  "cost_review_sha256": "71c5b97ad26d42d9a94c7710cb5d5d1a7aa17dfe8195af43fad63a30cffc978c",
+  "workbench_sha256": "51c25d91829f418648eb16ba335e24e0bdcf006f916bc6f8fb06c4db0e945916",
+  "source_commit": "d77704d62121f0caa21f4e6b92fd5ef5721e5908",
+  "quality_claim": false,
+  "human_usefulness": null,
+  "raw_wire_schema_independently_reparsed": false,
+  "summary": {
+    "planned_jobs": 12,
+    "planned_turns": 24,
+    "visited_turns": 23,
+    "no_fresh_response_turns": 1,
+    "fresh_proposal": 22,
+    "stale_observation": 0,
+    "no_fresh_proposal": 1,
+    "unvisited": 1
+  },
+  "arms": {
+    "native_top5": {
+      "jobs": 6,
+      "complete_routes": 5,
+      "turn_statuses": {
+        "fresh_proposal": 10,
+        "no_fresh_proposal": 1,
+        "unvisited": 1
+      },
+      "fresh_decisions": {
+        "ask": 6,
+        "escalate": 2,
+        "answer": 2
+      },
+      "attempts": 15,
+      "actual_sends": 15,
+      "canonical_schema_observations": {
+        "GroundedPlanValid": 14,
+        "unobserved": 1
+      },
+      "recorded_compact_wire_valid": 14,
+      "recorded_compact_binding_valid": 14,
+      "recorded_raw_wire_schema_invalid": 1,
+      "visited_turn_latency_ms": {
+        "observations": 11,
+        "median": 5131.1,
+        "sum": 72793.7,
+        "scope": "HTTP-turn observations; includes empty visited turns, excludes unvisited"
+      },
+      "finish_reasons": {
+        "stop": 15
+      },
+      "renderer_rejection_codes": {},
+      "terminal_error_codes": {},
+      "output_tokens_total": 1053,
+      "output_tokens_median": 59,
+      "estimated_cost_usd": "0.015768885"
+    },
+    "candidate_relevance": {
+      "jobs": 6,
+      "complete_routes": 6,
+      "turn_statuses": {
+        "fresh_proposal": 12
+      },
+      "fresh_decisions": {
+        "ask": 6,
+        "answer": 6
+      },
+      "attempts": 12,
+      "actual_sends": 12,
+      "canonical_schema_observations": {
+        "GroundedPlanValid": 12
+      },
+      "recorded_compact_wire_valid": 12,
+      "recorded_compact_binding_valid": 12,
+      "recorded_raw_wire_schema_invalid": 0,
+      "visited_turn_latency_ms": {
+        "observations": 12,
+        "median": 4656.75,
+        "sum": 57300.3,
+        "scope": "HTTP-turn observations; includes empty visited turns, excludes unvisited"
+      },
+      "finish_reasons": {
+        "stop": 12
+      },
+      "renderer_rejection_codes": {},
+      "terminal_error_codes": {},
+      "output_tokens_total": 726,
+      "output_tokens_median": 58.5,
+      "estimated_cost_usd": "0.010623030"
+    }
+  },
+  "paired_initial_requests": [
+    {
+      "batch": "relevance-r1-dev-case-a",
+      "initial_user_state_equal": true,
+      "initial_queries_equal": true
+    },
+    {
+      "batch": "relevance-r1-dev-case-b",
+      "initial_user_state_equal": true,
+      "initial_queries_equal": true
+    },
+    {
+      "batch": "relevance-r1-dev-case-c",
+      "initial_user_state_equal": true,
+      "initial_queries_equal": true
+    },
+    {
+      "batch": "relevance-r2-dev-case-c",
+      "initial_user_state_equal": true,
+      "initial_queries_equal": true
+    },
+    {
+      "batch": "relevance-r2-dev-case-b",
+      "initial_user_state_equal": true,
+      "initial_queries_equal": true
+    },
+    {
+      "batch": "relevance-r2-dev-case-a",
+      "initial_user_state_equal": true,
+      "initial_queries_equal": true
+    }
+  ],
+  "render_checks": [
+    {
+      "item_id": "b44d81d0833cb69c118813fb",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "01c4989c2831a08496bc6f08",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "5d9fd2900a935d34108089cd",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "20b51fa4e5e0956f6f2d0f7b",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "f912399974547f4d97f6d58c",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "7f87bce6ff1485f78a61012c",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "194196a13df420a9de87be6b",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "afd00db97607ad19f1b2f137",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "0aa31c4abcbcf2ca07fb95e7",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "28816577641603fc0c5db967",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "d10cfb52cc955dd3906a122d",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "141d9b7b0575c75a1722f876",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "9dbd63fe406fcfd9a04f2dd8",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "cc56414fb87c7331a2f39e3d",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "6f0fbe6e0ecc48b8b6df1411",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "7747211d83e5ed76170f6009",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "4bcedc7b6d17cb1d3a97df50",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "e1afbb83b8ed866eb6e096ae",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "5c039b617f15039d283e83ff",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "a4040002a1f91bb24bc8a8fa",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "93b5a94a06d5523013e2b553",
+      "original_analysis_reconstructed": true
+    },
+    {
+      "item_id": "d923fa44d3588720a133dc10",
+      "original_analysis_reconstructed": true
+    }
+  ],
+  "turns": [
+    {
+      "job_id": "r1:dev-case-a:native_top5",
+      "arm": "native_top5",
+      "case_id": "dev-case-a",
+      "turn_id": "initial",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r1:dev-case-a:native_top5",
+      "arm": "native_top5",
+      "case_id": "dev-case-a",
+      "turn_id": "version",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r1:dev-case-a:candidate_relevance",
+      "arm": "candidate_relevance",
+      "case_id": "dev-case-a",
+      "turn_id": "initial",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r1:dev-case-a:candidate_relevance",
+      "arm": "candidate_relevance",
+      "case_id": "dev-case-a",
+      "turn_id": "version",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r1:dev-case-b:candidate_relevance",
+      "arm": "candidate_relevance",
+      "case_id": "dev-case-b",
+      "turn_id": "initial",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r1:dev-case-b:candidate_relevance",
+      "arm": "candidate_relevance",
+      "case_id": "dev-case-b",
+      "turn_id": "version",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r1:dev-case-b:native_top5",
+      "arm": "native_top5",
+      "case_id": "dev-case-b",
+      "turn_id": "initial",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r1:dev-case-b:native_top5",
+      "arm": "native_top5",
+      "case_id": "dev-case-b",
+      "turn_id": "version",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r1:dev-case-c:native_top5",
+      "arm": "native_top5",
+      "case_id": "dev-case-c",
+      "turn_id": "initial",
+      "status": "no_fresh_proposal"
+    },
+    {
+      "job_id": "r1:dev-case-c:native_top5",
+      "arm": "native_top5",
+      "case_id": "dev-case-c",
+      "turn_id": "correction",
+      "status": "unvisited"
+    },
+    {
+      "job_id": "r1:dev-case-c:candidate_relevance",
+      "arm": "candidate_relevance",
+      "case_id": "dev-case-c",
+      "turn_id": "initial",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r1:dev-case-c:candidate_relevance",
+      "arm": "candidate_relevance",
+      "case_id": "dev-case-c",
+      "turn_id": "correction",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r2:dev-case-c:candidate_relevance",
+      "arm": "candidate_relevance",
+      "case_id": "dev-case-c",
+      "turn_id": "initial",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r2:dev-case-c:candidate_relevance",
+      "arm": "candidate_relevance",
+      "case_id": "dev-case-c",
+      "turn_id": "correction",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r2:dev-case-c:native_top5",
+      "arm": "native_top5",
+      "case_id": "dev-case-c",
+      "turn_id": "initial",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r2:dev-case-c:native_top5",
+      "arm": "native_top5",
+      "case_id": "dev-case-c",
+      "turn_id": "correction",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r2:dev-case-b:native_top5",
+      "arm": "native_top5",
+      "case_id": "dev-case-b",
+      "turn_id": "initial",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r2:dev-case-b:native_top5",
+      "arm": "native_top5",
+      "case_id": "dev-case-b",
+      "turn_id": "version",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r2:dev-case-b:candidate_relevance",
+      "arm": "candidate_relevance",
+      "case_id": "dev-case-b",
+      "turn_id": "initial",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r2:dev-case-b:candidate_relevance",
+      "arm": "candidate_relevance",
+      "case_id": "dev-case-b",
+      "turn_id": "version",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r2:dev-case-a:candidate_relevance",
+      "arm": "candidate_relevance",
+      "case_id": "dev-case-a",
+      "turn_id": "initial",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r2:dev-case-a:candidate_relevance",
+      "arm": "candidate_relevance",
+      "case_id": "dev-case-a",
+      "turn_id": "version",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r2:dev-case-a:native_top5",
+      "arm": "native_top5",
+      "case_id": "dev-case-a",
+      "turn_id": "initial",
+      "status": "fresh_proposal"
+    },
+    {
+      "job_id": "r2:dev-case-a:native_top5",
+      "arm": "native_top5",
+      "case_id": "dev-case-a",
+      "turn_id": "version",
+      "status": "fresh_proposal"
+    }
+  ],
+  "interpretation": [
+    "Compound treatment, exposed three-dev data, two rounds; no component-level causal claim or held-out result.",
+    "Both arms use the same compact wire/core flags. Raw wire validity is separate from canonical expansion and semantic guidance.",
+    "Answer labels, route completion, byte-exact rendering and source binding do not establish semantic support or usefulness.",
+    "Neither arm hit provider length; this study cannot establish a reduction in length failures.",
+    "All native candidate reads, adapter selection, USER version scope and whole-record packing are separately reconstructed in the cost/provenance audit.",
+    "Median tokens are descriptive of different realized paths, not a controlled same-response efficiency estimate.",
+    "Latency is observed per reached HTTP turn with different paths/attempts; unvisited turns have no zero-latency imputation."
+  ]
+}
