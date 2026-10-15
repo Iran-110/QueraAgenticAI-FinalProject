@@ -11,6 +11,7 @@ from agent_app.llm.budget import BudgetDenied, BudgetLedger, LedgerConflict, Led
 from agent_app.llm.config import METIS_CHAT_URL, MetisConfig
 from agent_app.llm.pricing import get_price, same_verified_price
 from agent_app.orchestration.ports import ReasoningStopped
+from agent_app.reasoning.compact_plan import add_compact_plan_messages
 from agent_app.reasoning.grounding import build_grounded_messages, validate_grounded_request
 from agent_app.reasoning.prompts import build_messages
 from agent_app.reasoning.resource_guidance import add_resource_guidance
@@ -42,7 +43,9 @@ def configured_grounded_messages(config, request, context):
         source_gap_handoff=config.grounded_source_gap_handoff,
         source_gap_investigation=config.grounded_source_gap_investigation,
     )
-    return messages
+    return add_compact_plan_messages(
+        messages, request, context, enabled=config.grounded_compact_plan
+    )
 
 
 def request_id_for(context: ReasoningContext) -> str:

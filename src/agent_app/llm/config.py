@@ -37,6 +37,7 @@ class MetisConfig(BaseModel):
     grounded_source_selection_reminder: Annotated[bool, Field(strict=True)] = False
     grounded_resource_guidance: Annotated[bool, Field(strict=True)] = False
     grounded_source_capacity: Annotated[bool, Field(strict=True)] = False
+    grounded_compact_plan: Annotated[bool, Field(strict=True)] = False
     # Caller-owned accounting authorization, never selected by model output.
     continuation_id: (
         Annotated[str, StringConstraints(pattern=r"^[a-z0-9][a-z0-9-]{0,63}$")] | None
@@ -59,6 +60,8 @@ class MetisConfig(BaseModel):
             raise ValueError("Resource guidance requires grounded plan mode")
         if self.grounded_source_capacity and not self.grounded_decision_contracts:
             raise ValueError("Source capacity requires grounded decision contracts")
+        if self.grounded_compact_plan and not self.grounded_decision_contracts:
+            raise ValueError("Compact plan requires grounded decision contracts")
         return self
 
     @model_validator(mode="before")
@@ -112,9 +115,10 @@ class MetisConfig(BaseModel):
         reminder = os.environ.get("METIS_GROUNDED_SOURCE_SELECTION_REMINDER", "false")
         resources = os.environ.get("METIS_GROUNDED_RESOURCE_GUIDANCE", "false")
         capacity = os.environ.get("METIS_GROUNDED_SOURCE_CAPACITY", "false")
+        compact = os.environ.get("METIS_GROUNDED_COMPACT_PLAN", "false")
         if any(
             value not in {"true", "false"}
-            for value in (contracts, handoff, investigation, reminder, resources, capacity)
+            for value in (contracts, handoff, investigation, reminder, resources, capacity, compact)
         ):
             raise ValueError("Grounded mode flags must be true or false")
         return cls(
@@ -129,4 +133,5 @@ class MetisConfig(BaseModel):
             grounded_source_selection_reminder=reminder == "true",
             grounded_resource_guidance=resources == "true",
             grounded_source_capacity=capacity == "true",
+            grounded_compact_plan=compact == "true",
         )
