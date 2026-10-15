@@ -1,3 +1,50 @@
+## 2026-10-15 — C4j/E2w: constrained source/USER passages, stopped comparison
+
+[Integration, outcome and remaining work](claim-source-boundary.fa.md),
+[frozen packet and original receipts](../experiments/core_claim_boundary_v1/README.md).
+The new private ClaimReasoner/MetisClaimPlanner route uses existing ports and
+single-send ledger gateway. Model selects exact current source blocks/active
+USER fact indexes, decision/registered question or queries; core renders every
+AnalysisResult field without free technical prose, invented facts/checks or
+authority. Whole source bytes/fences/metadata remain. Current request hash/revision,
+raw USER version, declared/inherited conflicts and two-attempt stops are preserved.
+Passage custody does not establish relevance, complete caveats or entailment;
+normal factories/env/defaults/contracts/RAG/UI/tracker remain unchanged.
+
+The prospectively frozen seven-family/16-snapshot/64-invocation fixed-evidence
+comparison stopped after52 sends:51settled and one connect_timeout uncertainty.
+37visited states produce22pending/15errors,27remain unvisited. Existing compiled
+has15/18pending, new passage route7/19. Six compiled questions are necessary but
+nine other finals materially overreach. New finals include one necessary question,
+one incomplete Enum guide and five irrelevant/insubstantial faithful quotes.
+Enum's sole new final selects identity plus a module heading, omits body/reload
+caveat; registered quality goal fails. Two withheld invalid source selections
+are rejected without a final proposal, not useful source-gap success. All30parsed
+candidates/all final surfaces reviewed;21raw representation failures unavailable,
+not proven JSON syntax errors.605custody checks are not semantic accuracy;
+unblinded assistant/implementation overlap disclosed, human usefulness null.
+
+Post-paid offline hardening exposes already-enforced conditional schema rules
+and bounded allowlisted parse feedback/stages without raw messages/values/paths;
+existing strict acceptance/terminal checks remain. It was not used by the paid
+cohort and has no new online reliability score. Final local verification and
+the separate full-input repair preflight are linked in the packet.
+Final code`9ad8dcb`:5234pytest/Ruff346files/three demos and fresh fixture
+HTTP/SQLite457/457 with restart pass locally. Separate assistant review repeats
+253focused tests without blockers. Hosted CI is not claimed passing; publication
+uses Sasan's recorded local-verification authorization.
+
+New settled estimateUSD0.051594510, cumulative localUSD0.599798760;
+new uncertain holdUSD0.0067584, total3holdsUSD0.0301376. Halt/ceiling/old666rows
+and14tables preserved.2355V2cost/source controls pass; original failed V1 and
+its explicit auditor-only arithmetic amendment remain.80allocated slots:
+52used/28unused permanently claimed;48planned slots never allocated, still
+forbidden by the closed protocol. No resuming/replacing identities or live guard
+bypass; provider cost unknown, C5 unreconciled. No approval/edit/release/action,
+real retrieval, paid SQLite/browser or held-out evaluation claim. Current19epoch
+and original corpus/exclusions/gold stay fixed; prior two physical drifts remain
+historical disclosures. Teammate PR43/50 heads were unchanged at the final fetch.
+
 ## 2026-10-15 — C4i/E2v: broader fixed-snapshot dev and unsupported concise Enum prose
 
 [Result, data boundaries and next work](broader-dev-quality.fa.md). The existing

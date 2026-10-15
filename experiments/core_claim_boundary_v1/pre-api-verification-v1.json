@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "tested_code_commit": "5de8507e6093b67d60fecd16c057f07d61675f2c",
+  "paid_source_commit": "7ac9610deb296e8ef63138e41fe423126d02b95c",
+  "paid_change_from_tested_code": [
+    "experiments/core_claim_boundary_v1/live-method-v1.json"
+  ],
+  "pytest": {
+    "tests": "5126",
+    "failures": "0",
+    "errors": "0",
+    "skipped": "0",
+    "time": "248.388"
+  },
+  "xml_path": "/Users/sasan/Desktop/Agentic AI/output/claim-boundary-full-2026-10-15-v1.xml",
+  "xml_sha256": "6770cc00470cefa050392821da70b7887d320237629eeeae04ea55fd98fd031c",
+  "HTTP_SQLite": {
+    "accepted": true,
+    "same_process_accepted": true,
+    "restart_accepted": true,
+    "checks_passed": 457,
+    "checks_total": 457,
+    "quality_claim": false,
+    "real_model_tested": false
+  },
+  "HTTP_receipt_path": "/Users/sasan/Desktop/Agentic AI/output/claim-boundary-http-sqlite-2026-10-15-v1.json",
+  "HTTP_receipt_sha256": "0de9c8dfe9bdaaba7c793fae6356f1b60a48148c9d7b8a5c1a6b2e4c2091c184",
+  "uv_sync_locked_group_dev": true,
+  "ruff_check": true,
+  "ruff_format_files": 345,
+  "three_required_demos_passed": true,
+  "pre_API_reviews": [
+    {
+      "reviewed_code_commit": "5de8507",
+      "blockers": 0,
+      "independently_repeated_gateway_runner_CLI_tests": 68,
+      "reviewer": "separate assistant; implementation overlap with reasoning module disclosed"
+    },
+    {
+      "reviewed_code_commit": "5de8507",
+      "blockers": 0,
+      "independently_repeated_gateway_runner_CLI_tests": 68,
+      "reviewer": "separate assistant; acceptance-oracle ownership disclosed"
+    }
+  ],
+  "human_usefulness": null,
+  "CI_pass_claim": false
+}

@@ -152,6 +152,35 @@
   ۴۹۸۱pytest،Ruff۳۳۷فایل،سهdemo وHTTP/SQLite۴۵۷/۴۵۷ پاس؛ hosted CI پاس ادعا نمی‌شود.
   default،factory،prompt،renderer،قرارداد عمومی و مالکیت کار بچه‌ها تغییر نکرده‌اند.
 
+- [x] **C4j/E2w — کنترل منبع و USER؛ ساسان، تحویل آزمایشی با هدف کیفیت ناموفق.**
+  [protocol پیش از پیاده‌سازی/API](../experiments/core_claim_boundary_v1/protocol-v1.json)
+  و [ماتریس۱۶وضعیت](../experiments/core_claim_boundary_v1/acceptance-matrix-v1.json):
+  مقایسهٔ تازهٔ compiled با plan خصوصیِ انتخاب passage و fact فعال USER؛ تمام
+  surfaceها core-rendered و بدون متن فنی آزاد، cause/fix یا تغییر fact/check از مدل.
+  [قرارداد و اتصال](../docs/claim-source-boundary.fa.md)،
+  [رسید/تمام خطاها و review](../experiments/core_claim_boundary_v1/README.md).
+  ورودی کامل، exclusion، قراردادهای عمومی و single-agent ثابت‌اند؛ exact quote
+  اثبات relevance/entailment نیست. از۶۴invocation،۳۷بازدید،۲۲pending،۱۵error و۲۷
+  بازدیدنشده حفظ‌اند؛compiled۱۵/۱۸ و مسیر جدید۷/۱۹ پیشنهاد دادند. Enum جدید
+  identity+عنوان module را آورد ولی بدنه/caveat را نیاورد؛ هدف مشترک پاس نشد.
+  دو انتخاب منبع نامعتبر withheld مسدود شدند؛ این دو error پاسخ مفید محسوب نمی‌شوند.
+  ۵۲send شامل۵۱settled/$0.051594510 و یک connect_timeout با هزینهٔ نامعلوم بود؛
+  hold تازه$0.0067584،جمع سهhold$0.0301376،halt/سقف قبلی محفوظ. کمپین بسته است،
+  هیچ ID آن از نو استفاده نشود؛۲۸slotتخصیص‌یافتهunusedclaimed و۴۸slotاصلاًتخصیص‌نیافته.
+  ۲۳۵۵کنترل هزینه/source و۶۰۵کنترل custody پاس؛ قضاوت انسانیusefulness خالی است.
+  ایراد قطعی schema شرطی/feedback مبهم پس از API جداگانه آفلاین اصلاح شد؛ نتیجهٔ
+  آنلاین به آن نسبت داده نمی‌شود. [verification](../experiments/core_claim_boundary_v1/verification-v1.json).
+  روی source نهایی `9ad8dcb` هر۵۲۳۴pytest پاس،Ruff۳۴۶فایل،سهdemo و پذیرش تازهٔ
+  HTTP/SQLite۴۵۷/۴۵۷ با restart پاس؛review جداگانه۲۵۳تست را تکرار کرد وblockerنداشت.
+  Actions به‌خاطر Billing پاس ادعا نمی‌شود؛ انتشار طبق مجوز فعلی review/test محلی است.
+  تیک پایان تحویل کنترل/آزمایش است؛ تنظیم پیش‌فرض، کیفیت Enum یا test نهایی بسته نیست.
+
+- [ ] **C4j-follow-up — پاسخ مفید با انتخاب کامل شاهد و پایداری plan؛ ساسان.**
+  ابتدا وضعیت request نامعلوم واقعاً روشن شود؛ ledger/hold/halt پاک یا دور زده نشود.
+  review انسانی خروجی‌ها و شواهد dev موجود، سپس تصمیم دربارهٔ راه قابل‌آزمایش بعدی؛
+  جواب دارای بدنهٔ راهنما و caveat لازم باشد. اصلاح آفلاین diagnostics هنوز مقایسهٔ
+  API ندارد؛ نه نقل نامرتبط، نه error و نه «همه ارجاع» موفقیت کیفیت نیست.
+
 - [ ] **تنظیم نهایی core پس از review انسانی و dev گسترده‌تر؛ ساسان با محمدحسن.**
   مقایسهٔ usefulness سؤال کوتاه/کامل، متن طولانی عمومی Enum و precision منابع
   اولیهٔ B؛ انتخاب تنظیم پیشنهادی فقط با شواهد dev، سپس freeze پیش از test.
@@ -162,9 +191,9 @@
 | نفر | تحویل بعدی | شرط پایان |
 | --- | --- | --- |
 | حسن | review profile جدید و پوشش/رتبه‌بندی منابع؛ provenance و exclusion بعد از split نهایی | source دقیقِ رسیده به مدل، برچسب relevance/Recall@k و build pinned؛ عضویت در index به‌تنهایی کافی نیست |
-| محمدحسن | usefulness انسانی خروجی‌های فعلی؛ worksheetهای C4h8/C4h9/C4h9b و [C4i/E2v](../experiments/core_broader_dev_v1/human-review-v1.json) بدون نمره، initial و correction/released جدا؛ review پذیرش چهار خانوادهٔ مکمل و exposure هر شش report؛۱۲dev و۱۵test باقی، freeze rubric/gold وابسته به evidence condition | guide answer-linked وارد corpus نشود؛ Enum کوتاه۷۱۸٫۵ با ادعای بی‌پشتوانه بهبود نیست؛ مکمل‌ها خودکار جای رزرو۱۵/۱۵ را نمی‌گیرند؛ test برای tuning دیده نشود؛ حداقل۱۰گفتگوی چندنوبتی شامل۵test؛ سپس baseline وtest نهایی |
+| محمدحسن | usefulness انسانی خروجی‌های فعلی؛ [worksheet تازهٔ C4j/E2w](../experiments/core_claim_boundary_v1/human-review-v1.json) و worksheetهای قبلی بدون نمره، initial/correction و model/edited جدا؛ review پذیرش چهار خانوادهٔ مکمل و exposure هر شش report؛۱۲dev و۱۵test باقی، freeze rubric/gold وابسته به evidence condition | guide answer-linked وارد corpus نشود؛ کوتاهی/quote دقیق بدون caveat بهبود نیست؛ مکمل‌ها خودکار جای رزرو۱۵/۱۵ را نمی‌گیرند؛ test برای tuning دیده نشود؛ حداقل۱۰گفتگوی چندنوبتی شامل۵test؛ سپس baseline وtest نهایی |
 | بهنام | بخش‌های باز T4: receipt پاک‌سازی‌شده و pin، lost-ACK از خود UI و failure/outcome | revision/approval/retry مستقل دو پرونده و شاهد مصرف outcome در تصمیم بعد؛ token/DB خصوصی منتشر نشود |
-| ساسان | C4i/E2v تحویل؛ طراحی قدم بعد برای مرز ادعا/منبع/کاربرد/فرضیه با counterexampleهای ثبت‌شده، سپس review انسانی و config freeze پیش ازtest | compiled آزاد با این شواهد توصیه نمی‌شود؛ شرط case/source-ID و prompt/order tuning تازه برای نمرهٔ Enum ممنوع؛ single-agent و قراردادهای تیم ثابت؛ fixture اثبات fix یا کیفیت RAG/test نیست |
+| ساسان | C4j/E2w و offline diagnostics تحویل؛ review انسانی/کاربرد و انتخاب کامل شاهد، روشن‌شدن request نامعلوم، سپس protocol/config freeze پیش از API یاtest تازه | مسیر جدید با۷/۱۹pending و Enum ناقص default نشود؛ compiled آزاد با این شواهد توصیه نمی‌شود؛ شرط case/source-ID و prompt/order tuning تازه برای نمرهٔ Enum ممنوع؛ single-agent/قراردادهای تیم ثابت؛ fixture اثبات fix یا کیفیت RAG/test نیست |
 
 **قاعدهٔ انتشار فعلی — ۱۵ اکتبر، با دستور صریح ساسان:** منتظر رفع Billing
 نمی‌مانیم. برای انتشار، review و تست محلی روی source ثبت‌شده، پذیرش اتصال و

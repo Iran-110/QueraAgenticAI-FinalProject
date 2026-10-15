@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "amendment_id": "claim-boundary-readonly-auditor-arithmetic-v2",
+  "original_audit_method_sha256": "b00fbd4b9dbd9551e1bacb7851e3b0e424f7029ee1cc9de97eaefd315fe8fedd",
+  "original_script_sha256": "b7cdef3e0bcdaca0156b7adeb8c41b9dde4bfc084a3e50b8c1a3a9724f031580",
+  "original_report_sha256": "b1946e5daee9f67f05a5a05adab91b86d4d8b403a4e9c9592ae1488ec4d5cb07",
+  "original_controls_passed": 2344,
+  "original_controls_total": 2345,
+  "original_failed_check": "batch_cost_within_finite_cap:claim-r2-dev-f-7206",
+  "reason": "Auditor incorrectly required scope used_usd to equal settled_usd. Actual scope usage conservatively includes uncertain/reserved amounts; last scope has zero settled and USD0.0067584 uncertain hold. Existing production behavior is correct.",
+  "correction": "Recalculate settled sum separately; then add actual SQL reserved/uncertain amounts to conservative scope usage. Preserve unknown cost null, all new holds and stopped/unvisited campaign.",
+  "production_code_ledger_receipts_unchanged": true,
+  "actual_API_calls": 0,
+  "reauthorization_or_ID_resume": false,
+  "v2_script_sha256": "f833b6d0265cbc6a04d2aa0a02e36b57480d5a84749515d7de174251c4450a78",
+  "v2_report_not_yet_run": true,
+  "semantic_criteria_or_model_output_changed": false
+}

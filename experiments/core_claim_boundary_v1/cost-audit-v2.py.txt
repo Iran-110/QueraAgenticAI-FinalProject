@@ -1,0 +1,527 @@
+"""C4j/E2w read-only receipt/accounting audit; run only after explicit paid-receipt GO.
+
+No credentials, model/gateway/ledger/index clients, native search, or Git changes.
+Pure contract/prompt helpers come from an isolated archive of the paid commit.
+Implementation overlap is disclosed; this is not independent human quality review.
+"""
+import argparse
+import hashlib
+import importlib
+import importlib.util
+import json
+import os
+import sqlite3
+import subprocess
+import sys
+from collections import Counter
+from contextlib import closing
+from decimal import Decimal as D
+from pathlib import Path
+from uuid import NAMESPACE_URL, uuid5
+
+ROOT = Path('/Users/sasan/Desktop/Agentic AI/FinalProject/QueraAgenticAI-FinalProject')
+OUT = ROOT.parents[1] / 'output'
+FOLDER = 'experiments/core_claim_boundary_v1'
+PARENT = 'experiments/core_broader_dev_v1'
+PRIVATE = OUT / 'core-claim-boundary-model-2026-10-15-v1'
+BEFORE = OUT / 'claim-boundary-ledger-before-2026-10-15-v1.sqlite3'
+CURRENT = ROOT / 'runtime/budget.sqlite3'
+BACKUP_SHA = '42a475bb73409d5b80c9cb133d67ce3cb2a53012752f22eeb0293694c25ce754'
+UTILITY = OUT / 'source-order-cost-audit-v2.py'
+UTILITY_SHA = '047ee1ee23cfb31d69ffb63d4f90d3da0964ffcbb2b5bb362a793e2cbfcb7975'
+INPUT_RATE, OUTPUT_RATE = D('0.000000165'), D('0.000000660')
+RESERVE = 32768 * INPUT_RATE + 2048 * OUTPUT_RATE
+ARMS = ('compiled_analysis', 'claim_cards')
+PAID_SOURCE = '7ac9610deb296e8ef63138e41fe423126d02b95c'
+METHOD_SHA = '0c3f28f2beb6603a505a816bedca298ecd0ee5cd6ffbc11a26356d0db77b8bd0'
+
+
+def sha(raw):
+    return hashlib.sha256(raw).hexdigest()
+
+
+def read(path):
+    return json.loads(path.read_bytes())
+
+
+def bundle_sha(bundle):
+    return sha(json.dumps(bundle, ensure_ascii=False, sort_keys=True).encode())
+
+
+def safe_write(path, value):
+    fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+    with os.fdopen(fd, 'w', encoding='utf-8') as handle:
+        json.dump(value, handle, ensure_ascii=False, indent=2)
+        handle.write('\n')
+
+
+def utility():
+    if sha(UTILITY.read_bytes()) != UTILITY_SHA:
+        raise ValueError('AuditUtilityPinRejected')
+    spec = importlib.util.spec_from_file_location('readonly_prior_audit_helpers', UTILITY)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--source-commit', required=True)
+    parser.add_argument('--receipt-sha256', required=True)
+    parser.add_argument('--output', type=Path, default=OUT / 'claim-boundary-cost-review-v2.json')
+    args = parser.parse_args()
+    if args.output.exists() or not args.output.resolve().is_relative_to(OUT.resolve()):
+        raise ValueError('AuditPrivateOutputRejected')
+    a = utility()
+    checks, output_reviews, wire_reviews, state_inventory, fixed_calls = [], [], [], [], []
+    C = lambda name, condition, details=None: a.check(checks, name, condition, details)
+    receipt_raw = (PRIVATE / 'receipt.json').read_bytes()
+    if sha(receipt_raw) != args.receipt_sha256:
+        raise ValueError('AuditReceiptBindingRejected')
+    receipt = json.loads(receipt_raw)
+    method, registration = receipt['method'], receipt['registration']
+    source = registration['source_commit']
+    if source != args.source_commit or source != PAID_SOURCE or sha(BEFORE.read_bytes()) != BACKUP_SHA:
+        raise ValueError('AuditExecutionBindingRejected')
+    before_audit_ledger_sha = sha(CURRENT.read_bytes())
+    frozen = {}
+    for name, pin in {**registration['source_hashes'], **method['input_pins']}.items():
+        raw = subprocess.check_output(['git', 'show', f'{source}:{name}'], cwd=ROOT)
+        C('paid_source_pin:' + name, sha(raw) == pin)
+        frozen[name] = raw
+    pinned = a.pinned_helpers(source)
+    contracts = importlib.import_module('agent_app.contracts')
+    prompts = importlib.import_module('agent_app.reasoning.prompts')
+    grounding = importlib.import_module('agent_app.reasoning.grounding')
+    claims = importlib.import_module('agent_app.reasoning.claim_plan')
+    for module in (contracts, prompts, grounding, claims):
+        C('pure_helper_from_paid_archive:' + module.__name__,
+          Path(module.__file__).resolve().is_relative_to(pinned.root / 'src/agent_app'))
+    method_raw = subprocess.check_output(['git', 'show', f'{source}:{FOLDER}/live-method-v1.json'], cwd=ROOT)
+    C('method_exact_embedded_before_paid', sha(method_raw) == registration['method_sha256'] == METHOD_SHA
+      and method_raw == (json.dumps(method, ensure_ascii=False, indent=2) + '\n').encode())
+    C('registration_file_exact', read(PRIVATE / 'registration.json') == registration)
+    C('source_unchanged_during_campaign', receipt['source_unchanged'] is True
+      and registration['source_commit'] == receipt['source_after']['source_commit']
+      and registration['source_hashes'] == receipt['source_after']['source_hashes'])
+    protocol = json.loads(frozen[FOLDER + '/protocol-v1.json'])
+    physical = json.loads(frozen[PARENT + '/preparation-amendment-v1.json'])
+    epoch = json.loads(frozen[PARENT + '/protected-inputs-v1.json'])
+    packet = json.loads(frozen[PARENT + '/snapshots-v1.json'])
+    preparation = json.loads(frozen[PARENT + '/preparation-v1.json'])
+    matrix = json.loads(frozen[FOLDER + '/acceptance-matrix-v1.json'])
+    snapshots = {row['id']: row for row in packet['snapshots']}
+    C('registered_protocol_matrix_and_old_frozen_packet_exact', method['treatment_protocol'] == protocol
+      and sha(frozen[FOLDER + '/protocol-v1.json']) == 'c8f716f930bd14a946499d212429f5334e4ca4f371c873e8f8d3278b426d691a'
+      and sha(frozen[FOLDER + '/acceptance-matrix-v1.json']) == '63f830a68f96a60f920a1b5694112469f08037754bacda71bfd5fc48c4921261'
+      and matrix['protocol_sha256'] == sha(frozen[FOLDER + '/protocol-v1.json'])
+      and matrix['registered_before_model'] is True and matrix['oracle_only_not_model_payload'] is True
+      and matrix['snapshot_packet_sha256'] == sha(frozen[PARENT + '/snapshots-v1.json'])
+      and sha(frozen[PARENT + '/snapshots-v1.json']) == protocol['inputs']['snapshots_sha256'])
+    C('proposal_only_not_route_RAG_or_quality', method['proposal_only'] is True
+      and receipt['proposal_only'] is True and receipt['tracker_actions_executed'] == 0
+      and method['real_RAG_retrieval'] is False and receipt['real_RAG_retrieval'] is False
+      and receipt['human_usefulness'] is None and receipt['held_out_test'] is False
+      and receipt['no_automatic_approval_or_release'] is True
+      and receipt['existing_compiled_vs_constrained_passages_not_single_factor_prompt'] is True
+      and receipt['schema_or_exact_passage_is_not_automatic_entailment'] is True)
+    C('16distinct_states7families64invocations128slots', len(snapshots) == 16
+      and protocol['families'] == 7 and len(method['batches']) == 16
+      and sum(len(b['jobs']) for b in method['batches']) == 32
+      and sum(len(j['snapshot_ids']) for b in method['batches'] for j in b['jobs']) == 64
+      and len(method['fresh_request_ids']) == len(set(method['fresh_request_ids'])) == 128
+      and len(method['fresh_scope_ids']) == len(set(method['fresh_scope_ids'])) == 16
+      and method['scope_cap_usd'] == '0.06' and method['campaign_scope_cap_usd'] == '0.96')
+    C('old_preparation_current_epoch_bound', preparation['accepted'] is True
+      and preparation['snapshot_packet_sha256'] == sha(frozen[PARENT + '/snapshots-v1.json'])
+      and preparation['protected_epoch_sha256'] == sha(frozen[PARENT + '/protected-inputs-v1.json'])
+      and physical['effective_protected_inputs_sha256'] == preparation['protected_epoch_sha256']
+      and preparation['native_client_isolated_copy_only'] is True
+      and preparation['historical_original19_files_unchanged'] is False
+      and preparation['original18_sources36_chunks_metadata_vectors_exclusions_equal'] is True)
+    old_protected_name = 'experiments/core_enum_evidence_v1/protected-inputs-v1.json'
+    old_protected = json.loads(frozen[old_protected_name])
+    C('historical17same2drift_not_falsely_restored', old_protected['files'] == epoch['original_files']
+      and epoch['original_physical_matches'] == 17 and len(epoch['original_physical_mismatches']) == 2
+      and sum(epoch['files'][k] == value for k, value in old_protected['files'].items()) == 17
+      and physical['original_physical_identity_restored'] is False)
+    C('new_exact19_equals_method', method['protected_files'] == epoch['files'] and len(epoch['files']) == 19)
+    protected_before = {}
+    for name, pin in epoch['files'].items():
+        path = (ROOT / name).resolve()
+        actual = sha(path.read_bytes())
+        protected_before[name] = actual
+        C('current_epoch_exact_file:' + name, path.is_relative_to(ROOT) and actual == pin)
+    manifest_name = next(k for k in epoch['files'] if k.endswith('/pilot-manifest.json'))
+    manifest = read(ROOT / manifest_name)
+    C('same18sources36chunks_docs_only_guide_excluded', len(manifest['corpus']['sources']) == 18
+      and len(manifest['corpus']['chunks']) == 36
+      and all(s['source_id'].startswith(('docs:', 'docstring:'))
+              and 'custom-classes' not in s['source_id'] for s in manifest['corpus']['sources']))
+    for artifact_name, artifact in [('snapshots', packet), ('preparation', preparation)]:
+        for name, pin in artifact['input_pins'].items():
+            archived = subprocess.check_output(['git', 'show', f'{source}:{name}'], cwd=ROOT)
+            C(artifact_name + '_input_pin:' + name, sha(archived) == pin)
+    source_observations = {row['snapshot_id']: row for row in packet['source_observations_runner_only']}
+    for key, row in snapshots.items():
+        C('snapshot_eight_current_fields_no_gold:' + key, set(row) == {
+            'id', 'scenario_id', 'turn_id', 'case', 'user_message', 'evidence', 'catalog_request', 'proposal_requirements'})
+        req = pinned.GroundedRequest.model_validate(row['catalog_request'])
+        C('registered_case_evidence_user_current_binding:' + key, req.case.model_dump(mode='json') == row['case']
+          and req.evidence.model_dump(mode='json') == row['evidence'] and req.user_message == row['user_message'].strip())
+        obs = source_observations[key]
+        C('preparation_fixed_bundle_pin:' + key, obs['final_bundle_sha256'] == bundle_sha(row['evidence'])
+          and obs['model_calls'] == 0)
+    planned_slots, run_rows = {}, {}
+    for batch in method['batches']:
+        slots = []
+        C('paired_schedule:' + batch['batch_id'], {j['arm'] for j in batch['jobs']} == set(ARMS)
+          and batch['jobs'][0]['snapshot_ids'] == batch['jobs'][1]['snapshot_ids']
+          and len(batch['scope_id']) <= 64 and batch['kind'] == 'controlled_evidence')
+        for job in batch['jobs']:
+            C('fixed_bounds:' + job['job_id'], job['input_token_reserve'] == 32768 and job['max_output_tokens'] == 2048)
+            for key in job['snapshot_ids']:
+                row = snapshots[key]
+                run = str(uuid5(NAMESPACE_URL, json.dumps([method['experiment_id'], job['job_id'], key])))
+                run_rows[run] = (job, row)
+                for attempt in (1, 2):
+                    ctx = dict(run_id=run, case_id=row['case']['case_id'], case_revision=row['case']['case_revision'], attempt_index=attempt)
+                    slots.append(dict(request_id=a.request_id(ctx), run_id=run, case_id=ctx['case_id'],
+                        case_revision=ctx['case_revision'], attempt=attempt, model='gpt-4o-mini', phase='development',
+                        input_token_reserve=32768, max_output_tokens=2048, amount_usd=RESERVE))
+        C('registered_full8slots:' + batch['batch_id'], len(slots) == batch['max_request_slots'] == 8
+          and sha(json.dumps(slots, default=str, sort_keys=True).encode()) == batch['request_slots_sha256']
+          and sum(s['amount_usd'] for s in slots) == D(batch['worst_reserved_usd']) <= D('0.06'))
+        planned_slots[batch['scope_id']] = slots
+    ids, scope_ids = set(method['fresh_request_ids']), set(method['fresh_scope_ids'])
+    C('exact128request_identity_order', [s['request_id'] for b in method['batches'] for s in planned_slots[b['scope_id']]] == method['fresh_request_ids'])
+    C('actual_batches_registered_prefix', [b['batch_id'] for b in receipt['batches']]
+      == [b['batch_id'] for b in method['batches'][:len(receipt['batches'])]])
+    with closing(a.connection(BEFORE)) as old, closing(a.connection(CURRENT)) as new:
+        C('full_schema_and14tables', a.schema(old) == a.schema(new)
+          and sum(x['type'] == 'table' for x in a.schema(old)) == 14)
+        C('all14table_before_journal_matches', a.journal(old) == method['ledger_journal_before'])
+        table_counts = {}
+        for table in (o['name'] for o in a.schema(old) if o['type'] == 'table'):
+            prior, current = a.rows(old, table), a.rows(new, table)
+            current_map = {r['audit_rowid']: r for r in current}
+            C('full_old_rows_exact:' + table, all(current_map.get(r['audit_rowid']) == r for r in prior))
+            old_row_ids = {r['audit_rowid'] for r in prior}
+            extra = [r for r in current if r['audit_rowid'] not in old_row_ids]
+            key = a.ALLOWED_ADDITIONS.get(table)
+            C('new_rows_only_registered:' + table, not extra or key is not None and all(
+                r[key] in (ids if key == 'request_id' else scope_ids)
+                and ('request_id' not in r or r['request_id'] in ids) for r in extra))
+            table_counts[table] = len(prior)
+        old_res = {r['request_id']: dict(r) for r in old.execute('SELECT * FROM reservations')}
+        now_res = {r['request_id']: dict(r) for r in new.execute('SELECT * FROM reservations')}
+        fresh = {k: r for k, r in now_res.items() if k not in old_res}
+        C('before666664settled2uncertain', len(old_res) == 666 and Counter(r['status'] for r in old_res.values()) == {'settled':664, 'uncertain':2})
+        for rid, row in old_res.items(): C('prior_reservation:' + rid, now_res.get(rid) == row)
+        old_unknown = {k:r for k,r in old_res.items() if r['status'] == 'uncertain'}
+        old_meta = dict(old.execute('SELECT * FROM ledger_meta').fetchone())
+        new_meta = dict(new.execute('SELECT * FROM ledger_meta').fetchone())
+        C('halt_and_ceiling_exact', old_meta == new_meta and new_meta['halted'] == 1 and new_meta['limit_nanos'] == 4500000000)
+        C('old2holds_preserved', all(now_res[k] == r for k,r in old_unknown.items())
+          and sum(D(r['amount_nanos']) / 1000000000 for r in old_unknown.values()) == D('0.0233792'))
+        C('fresh_slots_never_reuse_any_old_identity', not ids & (set(old_res) | {r[0] for r in old.execute('SELECT request_id FROM quarantine_scope_slots')})
+          and not scope_ids & {r[0] for r in old.execute('SELECT authorization_id FROM quarantine_scopes')})
+        C('all_new_reservations_are_registered', set(fresh) <= ids)
+        for table in ('continuation_requests','experiment_scope_slots','quarantine_scope_slots'):
+            C('fresh128never_reuse_prior_allocated_identity:' + table,not ids & {r[0] for r in old.execute('SELECT request_id FROM ' + table)})
+        old_scopes = {r[0] for r in old.execute('SELECT authorization_id FROM quarantine_scopes')}
+        C('all91prior_scopes_closed',len(old_scopes) == 91 and all(r[0] == 'closed' for r in old.execute('SELECT terminal_status FROM quarantine_scopes')))
+        scopes = {r['authorization_id']:dict(r) for r in new.execute('SELECT * FROM quarantine_scopes')}
+        new_scopes = set(scopes) - old_scopes
+        C('actual_allocated_scopes_match_visited_batches', new_scopes == {b['scope_id'] for b in receipt['batches']} and new_scopes <= scope_ids)
+        used_slots = unused_slots = 0
+        for batch in receipt['batches']:
+            sid = batch['scope_id']; scope = scopes[sid]
+            breg = read(PRIVATE / batch['batch_id'] / 'registration.json')
+            C('scope_registration_binding:' + sid, scope['protocol_sha256'] == sha(json.dumps(breg, sort_keys=True).encode())
+              and breg['method_sha256'] == registration['method_sha256'] and breg['source_commit'] == source
+              and breg['source_hashes'] == registration['source_hashes'] and scope['authorization_ref'] == method['authorization_ref'])
+            C('scope_cap_holds_terminal:' + sid, scope['cap_nanos'] == 60000000
+              and scope['held_nanos'] == sum(r['amount_nanos'] for r in old_unknown.values())
+              and scope['max_requests'] == 8 and scope['terminal_status'] in {'closed','revoked'}
+              and json.loads(scope['unknown_binding']) == {
+                  'ids':method['quarantine_before']['unknown_ids'],
+                  'fingerprints':method['quarantine_before']['unknown_fingerprints'],'full_context':True})
+            base = {k:v for k,v in scope.items() if k not in {'recorded_at','registration_fingerprint','terminal_status','terminal_reason','terminal_fingerprint'}}
+            C('scope_full_registration_fingerprint:' + sid, a.digest(base) == scope['registration_fingerprint'])
+            C('scope_terminal_fingerprint:' + sid, a.digest({'authorization_id':sid,'registration_fingerprint':scope['registration_fingerprint'],
+              'terminal_status':scope['terminal_status'],'terminal_reason':scope['terminal_reason']}) == scope['terminal_fingerprint'])
+            actual_slots = [dict(r) for r in new.execute('SELECT * FROM quarantine_scope_slots WHERE authorization_id=? ORDER BY slot_index',(sid,))]
+            expected_slots = planned_slots[sid]
+            C('all8immutable_slots:' + sid, len(actual_slots) == 8)
+            for index,(actual,expected) in enumerate(zip(actual_slots,expected_slots)):
+                C('slot:' + sid + ':' + str(index), {k:v for k,v in actual.items() if k not in {'authorization_id','slot_index','amount_nanos'}}
+                  == {k:v for k,v in expected.items() if k != 'amount_usd'}
+                  and actual['amount_nanos'] == int(RESERVE * 1000000000) and actual['slot_index'] == index)
+            C('scope_slots_fingerprint:' + sid, a.digest([{**s,'amount_usd':int(RESERVE*1000000000)} for s in expected_slots]) == scope['slots_fingerprint'])
+            used = {r[0] for r in new.execute('SELECT request_id FROM quarantine_scope_requests WHERE authorization_id=?',(sid,))}
+            C('only_actual_reservations_use_slots:' + sid, used == {s['request_id'] for s in expected_slots if s['request_id'] in fresh})
+            events = [dict(r) for r in new.execute('SELECT * FROM quarantine_scope_events WHERE authorization_id=? ORDER BY event_id',(sid,))]
+            C('scope_authorized_then_closed:' + sid, len(events) == 2 and events[0]['status'] == 'authorized'
+              and events[1]['status'] == scope['terminal_status'] and events[1]['reason_code'] == scope['terminal_reason'])
+            used_slots += len(used); unused_slots += len(actual_slots) - len(used)
+        all_attempts, all_sends = [], []
+        all_observed_states = {}
+        for batch in receipt['batches']:
+            declared = next(b for b in method['batches'] if b['batch_id'] == batch['batch_id'])
+            sends = {r['request_id']:r for r in batch['provider_sends']}
+            usage = {r['request_id']:r for r in batch['accounting']['requests']}
+            C('send_record_ids_unique:' + batch['batch_id'], len(sends) == len(batch['provider_sends']))
+            for job in batch['jobs']:
+                planned = next(j for j in declared['jobs'] if j['job_id'] == job['job_id'])
+                C('actual_job_registered:' + job['job_id'], all(job.get(k) == v for k,v in planned.items()))
+                for state in job['states']:
+                    key = (job['job_id'], state['snapshot_id'])
+                    C('state_observed_once:' + str(key), key not in all_observed_states)
+                    all_observed_states[key] = state
+                    row = snapshots[state['snapshot_id']]
+                    expected_run = str(uuid5(NAMESPACE_URL, json.dumps([method['experiment_id'], job['job_id'], row['id']])))
+                    C('independent_state_no_approval_or_action:' + expected_run, state['run_id'] == expected_run
+                      and state['approved'] is False and state['released'] is False and state['actions_executed'] == 0)
+                    result = contracts.RunResult.model_validate(state['result'])
+                    C('result_current_revision_bound:' + expected_run, result.run_id == expected_run
+                      and result.case_id == row['case']['case_id'] and result.case_revision == row['case']['case_revision']
+                      and result.model_attempts <= 2 and result.retrieval_rounds <= 2 and result.steps <= 8)
+                    if state['handoff'] is not None:
+                        handoff = pinned.validate_handoff(pinned.ProposalHandoff.model_validate(state['handoff']))
+                        C('complete_current_handoff_contract:' + expected_run,
+                          state['proposal_pending_review'] is True and result.status == 'awaiting_approval'
+                          and handoff.case.model_dump(mode='json') == row['case']
+                          and handoff.user_message == row['user_message']
+                          and handoff.analysis == result.analysis)
+                    C('proposal_flag_matches_handoff:' + expected_run, state['proposal_pending_review'] is (state['handoff'] is not None))
+                    state_attempts = batch['attempts'][state['attempt_start']:state['attempt_start'] + state['attempt_count']]
+                    C('state_attempts_exact_current_context:' + expected_run,len(state_attempts) == result.model_attempts and all(x['context']['run_id'] == expected_run for x in state_attempts))
+                    if job['arm'] == 'claim_cards' and result.analysis is not None:
+                        last = state_attempts[-1]
+                        C('final_claim_engine_output_matches_last_core_render:' + expected_run,last['rendered_analysis'] == result.analysis.model_dump(mode='json'))
+                        if state['handoff'] is not None:
+                            C('claim_final_full_grounded_handoff_exact:' + expected_run,state['handoff']['grounded_request'] == last['request'] and state['handoff']['evidence'] == last['request']['evidence'])
+            for record in batch['actual_fixed_evidence_calls']:
+                job = next(j for j in declared['jobs'] if j['job_id'] == record['job_id'])
+                row = snapshots[record['snapshot_id']]
+                C('fixed_supplier_current_bundle:' + record['job_id'] + ':' + row['id'] + ':' + str(record['supplier_call']),
+                  record['arm'] == job['arm'] and record['case_revision'] == row['case']['case_revision']
+                  and record['returned_bundle_sha256'] == bundle_sha(row['evidence'])
+                  and record['actual_search'] is False and record['complete_current_record_set'] is True
+                  and record['supplier_call'] in (1,2) and record['snapshot_id'] in job['snapshot_ids'])
+                fixed_calls.append({k:record[k] for k in ('job_id','arm','snapshot_id','supplier_call','returned_bundle_sha256','actual_search')})
+            for attempt in batch['attempts']:
+                ctx = attempt['context']; rid = a.request_id(ctx); all_attempts.append(rid)
+                job,row = run_rows[ctx['run_id']]
+                context = pinned.ReasoningContext.model_validate(ctx)
+                candidate = job['arm'] == 'claim_cards'
+                if candidate:
+                    request = pinned.GroundedRequest.model_validate(attempt['request'])
+                    case,evidence,message = request.case,request.evidence,request.user_message
+                    catalog = pinned.GroundedRequest.model_validate(row['catalog_request'])
+                    expected = grounding.make_grounded_request(case,message,evidence,gaps=catalog.gaps,conflict_groups=catalog.conflict_groups)
+                    C('current_claim_grounded_catalog_binding:' + rid, request == expected)
+                    claim_request = claims.build_claim_request(request)
+                    C('claim_hash_binds_current_complete_request:' + rid, attempt['claim_context_sha256'] == claim_request.context_sha256)
+                    messages = claims.build_claim_messages(claim_request,context)
+                    model_input = json.loads(messages[1]['content'])
+                    C('actual_claim_wire_projection_exact:' + rid, attempt['claim_input'] == model_input)
+                    source_blocks = attempt['claim_input']['request']['evidence']['sources']
+                    C('full_source_count_no_guide_oracle_addition:' + rid,len(source_blocks) == len(evidence.hits))
+                    for index,(hit,source_input) in enumerate(zip(evidence.hits,source_blocks)):
+                        blocks = source_input['blocks']
+                        C('whole_source_utf8_reconstruction:' + rid + ':' + str(index),
+                          ''.join(block['text'] for block in blocks).encode('utf-8') == hit.excerpt.encode('utf-8')
+                          and source_input['source_index'] == index and blocks[0]['start'] == 0
+                          and blocks[-1]['end'] == len(hit.excerpt)
+                          and all(block['block_index'] == bi and block['text'] == hit.excerpt[block['start']:block['end']]
+                                  and (bi == 0 or blocks[bi-1]['end'] == block['start']) for bi,block in enumerate(blocks)))
+                    observed_schema = attempt.get('schema_observation')
+                    review = dict(request_id=rid,arm=job['arm'],recorded_raw_schema_valid=(
+                        observed_schema.get('syntactic_valid') if isinstance(observed_schema,dict) else None),
+                        raw_wire_schema_independently_reparsed=False,
+                        raw_provider_text_retained=False,parsed_claim_present=attempt['claim_plan'] is not None,
+                        canonical_claim_independently_reparsed=False,canonical_render_independently_recomputed=False,
+                        exact_passage_custody_is_not_semantic_entailment=True)
+                    if attempt.get('output_sha256') is not None:
+                        C('recorded_raw_output_hash_shape:' + rid,a.hash_shape(attempt['output_sha256']))
+                        review['recorded_raw_output_sha256'] = attempt['output_sha256']
+                    if attempt['claim_plan'] is not None:
+                        plan = claims.parse_claim_plan(attempt['claim_plan'])
+                        C('canonical_claim_schema_exact:' + rid,plan.model_dump(mode='json') == attempt['claim_plan']
+                          and observed_schema['syntactic_valid'] is True)
+                        review['canonical_claim_independently_reparsed'] = True
+                        try:
+                            rendered = claims.render_claim_plan(claim_request,plan)
+                        except grounding.GroundingRejected as error:
+                            C('parsed_rejected_claim_preserves_no_render:' + rid,
+                              attempt['rendered_analysis'] is None and attempt.get('rendering_rejected') is True)
+                            review['independently_recomputed_render_rejection_code'] = error.code
+                        else:
+                            C('canonical_claim_render_exact:' + rid,rendered.model_dump(mode='json') == attempt['rendered_analysis'])
+                            C('core_only_claim_analysis_authority:' + rid,not rendered.facts_delta and not rendered.checks_suggested
+                              and (rendered.decision == 'retrieve_more' or not rendered.retrieval_queries))
+                            review['canonical_render_independently_recomputed'] = True
+                            review['canonical_analysis_sha256'] = bundle_sha(rendered.model_dump(mode='json'))
+                    else:
+                        C('absent_parsed_claim_never_claimed_rendered:' + rid,attempt['rendered_analysis'] is None)
+                    output_reviews.append(review)
+                else:
+                    case = contracts.CaseState.model_validate(attempt['case'])
+                    evidence = pinned.EvidenceBundle.model_validate(attempt['evidence'])
+                    message = attempt['user_message']
+                    messages = prompts.build_messages(case,message,evidence,context=context,feedback=context.output_feedback,policy='compiled_rules')
+                    a.audit_output(checks,output_reviews,attempt,None,{'arm':job['arm'],'compact_plan':False},sends.get(rid),pinned)
+                    if attempt['analysis'] is not None:
+                        parsed = contracts.AnalysisResult.model_validate(attempt['analysis'])
+                        C('recorded_analysis_independent_contract:' + rid, parsed.model_dump(mode='json') == attempt['analysis'])
+                C('same_full_registered_current_case_and_message:' + rid, case.model_dump(mode='json') == row['case']
+                  and message == row['user_message'] and context.proposal_requirements.model_dump(mode='json') == row['proposal_requirements'])
+                expected_evidence = dict(row['evidence']); actual_evidence = evidence.model_dump(mode='json')
+                expected_evidence['retrieval_round'] = actual_evidence['retrieval_round']
+                C('all_complete_fixed_current_evidence_exact:' + rid, actual_evidence == expected_evidence)
+                message_digest = bundle_sha(messages)
+                byte_bound = len(json.dumps(messages,ensure_ascii=False).encode()) + 1024
+                C('actual_prompt_local_observation_matches_reconstruction:' + rid,
+                  attempt['messages_sha256'] == message_digest and attempt['input_bytes_plus_guard'] == byte_bound)
+                C('attempt_in_registered_fresh_slot:' + rid, rid in ids)
+                send,entry,u = sends.get(rid),fresh.get(rid),usage.get(rid)
+                cost = None
+                if send is not None and send['http_send_started'] is True:
+                    all_sends.append(rid)
+                    C('actual_wire_absent_mode_bounds_and_hash:' + rid,
+                      send['wire_response_format'] == 'absent' and send['wire_max_output_tokens'] == 2048
+                      and send['wire_messages_sha256'] == message_digest and byte_bound <= 32768)
+                    C('actual_send_has_accounting:' + rid, entry is not None and u is not None)
+                    if entry is not None and u is not None:
+                        C('reservation_context_and_full_bounds:' + rid,
+                          entry['run_id'] == ctx['run_id'] and entry['case_id'] == ctx['case_id']
+                          and entry['case_revision'] == ctx['case_revision'] and entry['attempt'] == ctx['attempt_index']
+                          and entry['model'] == 'gpt-4o-mini' and entry['phase'] == 'development'
+                          and entry['amount_nanos'] == int(RESERVE * 1000000000))
+                        if entry['status'] == 'settled':
+                            cost = entry['input_tokens'] * INPUT_RATE + entry['output_tokens'] * OUTPUT_RATE
+                            C('settled_sanitized_usage_and_local_price:' + rid, cost == D(entry['cost_decimal']) == D(u['cost_usd'])
+                              and entry['cost_nanos'] == int(cost*1000000000) and u['status'] == 'settled'
+                              and entry['input_tokens'] == u['input_tokens'] <= 32768
+                              and entry['output_tokens'] == u['output_tokens'] <= 2048)
+                            C('verified_returned_model_envelope:' + rid, send['http_status'] == 200
+                              and send['verified_returned_model'] == 'gpt-4o-mini-2024-07-18'
+                              and send['envelope_shape'] == 'object' and send['choice_count'] == 1
+                              and send['assistant_role'] is True and not send['has_tool_calls']
+                              and not send['has_function_call'] and not send['has_refusal'])
+                            events = [r[0] for r in new.execute('SELECT status FROM ledger_events WHERE request_id=? ORDER BY event_id',(rid,))]
+                            C('reserved_then_settled_exactly:' + rid, events == ['reserved','settled'])
+                        else:
+                            C('unknown_or_pending_cost_not_fabricated:' + rid,
+                              entry['status'] == u['status'] and u['cost_usd'] is None
+                              and all(entry[key] is None for key in ('cost_nanos','cost_decimal','input_tokens','output_tokens'))
+                              and u['input_tokens'] is None and u['output_tokens'] is None
+                              and D(u['reserved_amount_usd']) == D(entry['amount_nanos']) / D(1000000000))
+                else:
+                    C('no_send_no_false_known_zero:' + rid, u is not None and u['cost_usd'] is None)
+                wire_reviews.append(dict(request_id=rid,arm=job['arm'],job_id=job['job_id'],snapshot_id=row['id'],
+                    attempt_index=ctx['attempt_index'],http_send_started=send is not None and send['http_send_started'] is True,
+                    messages_reconstructed=True,input_bytes_plus_guard=byte_bound,
+                    local_estimate_usd=str(cost) if cost is not None else None,
+                    recorded_finish_reason=send.get('finish_reason') if send else None,
+                    error_code=attempt['error_code']))
+            sent = [r for r in batch['provider_sends'] if r['http_send_started'] is True]
+            C('count_and_absent_format_observation:' + batch['batch_id'], type(batch['actual_sends']) is int
+              and batch['actual_sends'] == len(sent) and batch['json_object_wire_observed'] is None
+              and batch['actual_no_response_format_field'] is (True if sent else None))
+            original_result = read(PRIVATE / batch['batch_id'] / 'model-result.json')
+            C('original_model_result_retained:' + batch['batch_id'], all(batch[k] == v for k,v in original_result.items()))
+            local = sum((D(u['cost_usd']) for u in batch['accounting']['requests'] if u['status'] == 'settled'),D(0))
+            C('batch_settled_cost_recomputed:' + batch['batch_id'],local == D(batch['accounting']['settled_usd']))
+            unknown_consumption = sum((D(entry['amount_nanos']) / D(1000000000) for entry in fresh.values()
+                if entry['request_id'] in usage and entry['status'] in {'reserved','uncertain'}),D(0))
+            C('batch_conservative_scope_consumption_with_holds:' + batch['batch_id'],local + unknown_consumption
+              == D(batch['scope_disposition']['used_usd']) <= D('0.06'))
+            C('no_route_or_action:' + batch['batch_id'], batch['completed_routes'] == batch['actions_executed'] == 0)
+        C('all_attempts_unique_bounded128', len(all_attempts) == len(set(all_attempts)) <= 128)
+        C('all_actual_send_reservations_belong_to_attempts', set(all_sends) <= set(fresh) <= set(all_attempts))
+        for batch in method['batches']:
+            for job in batch['jobs']:
+                for key in job['snapshot_ids']:
+                    state = all_observed_states.get((job['job_id'],key))
+                    state_inventory.append(dict(batch_id=batch['batch_id'],job_id=job['job_id'],arm=job['arm'],round=job['round'],
+                        snapshot_id=key,scenario_id=job['scenario_id'],
+                        status=state['result']['status'] if state else 'unvisited',
+                        pending_proposal=bool(state and state['proposal_pending_review']),
+                        decision=state['result']['analysis']['decision'] if state and state['result']['analysis'] is not None else None,
+                        released=False,actions_executed=0,model_attempts=state['result']['model_attempts'] if state else None))
+        old_total = sum((D(r['cost_decimal']) for r in old_res.values() if r['status'] == 'settled'),D(0))
+        fresh_total = sum((D(r['cost_decimal']) for r in fresh.values() if r['status'] == 'settled'),D(0))
+        final_total = sum((D(r['cost_decimal']) for r in now_res.values() if r['status'] == 'settled'),D(0))
+        C('known_old_spend_and_exact_new_delta', old_total == D('0.548204250') and final_total - old_total == fresh_total <= D('0.96'))
+        C('all_settled_costs_recomputed_from_actual_usage', fresh_total == sum((D(r['local_estimate_usd']) for r in wire_reviews if r['local_estimate_usd'] is not None),D(0)))
+        summary = dict(before_reservations=len(old_res),after_reservations=len(now_res),
+            prior_table_counts=table_counts,before_settled_local_estimate_usd=str(old_total),
+            new_settled_local_estimate_usd=str(fresh_total),after_settled_local_estimate_usd=str(final_total),
+            old_hold_usd='0.0233792',new_uncertain_hold_usd=str(sum((D(r['amount_nanos']) / D(1000000000) for r in fresh.values() if r['status'] == 'uncertain'),D(0))),
+            all_uncertain_hold_usd=str(sum((D(r['amount_nanos']) / D(1000000000) for r in now_res.values() if r['status'] == 'uncertain'),D(0))),fresh_reservation_statuses=dict(Counter(r['status'] for r in fresh.values())),
+            pending_total=sum(r['status'] == 'reserved' for r in now_res.values()),
+            new_uncertain=sum(r['status'] == 'uncertain' for r in fresh.values()),
+            actual_sends=len(all_sends),actual_attempts=len(all_attempts),
+            response_format_absent_actual_sends=sum(r.get('http_send_started') is True and r.get('wire_response_format') == 'absent' for b in receipt['batches'] for r in b['provider_sends']),
+            metadata_only_transport_records=sum(r.get('http_send_started') is False for b in receipt['batches'] for r in b['provider_sends']),
+            planned_states=64,distinct_snapshots=16,unique_families=7,
+            planned_batches=16,visited_batches=len(receipt['batches']),new_scopes=len(new_scopes),
+            allocated_slots=used_slots+unused_slots,used_slots=used_slots,unused_slots_permanently_claimed=unused_slots,
+            planned_unallocated_slots=128-used_slots-unused_slots,halted=bool(new_meta['halted']),limit_usd='4.50',
+            state_statuses=dict(Counter(s['status'] for s in state_inventory)),
+            pending_proposals=sum(s['pending_proposal'] for s in state_inventory),released_outputs=0,actions_executed=0,
+            cost_and_sends_by_arm={arm:dict(actual_sends=sum(r['arm'] == arm and r['http_send_started'] for r in wire_reviews),
+                local_estimate_usd=str(sum((D(r['local_estimate_usd']) for r in wire_reviews if r['arm'] == arm and r['local_estimate_usd'] is not None),D(0)))) for arm in ARMS})
+    C('auditor_left_designated_ledger_bytes_unchanged', sha(CURRENT.read_bytes()) == before_audit_ledger_sha)
+    C('receipt_ledger_after_matches_actual', receipt['ledger_after']['db_sha256'] == before_audit_ledger_sha)
+    C('auditor_left_all_current19bytes_unchanged', all(sha((ROOT/n).read_bytes()) == h for n,h in protected_before.items()))
+    report = dict(schema_version=1,review_id='core-claim-boundary-cost-review-v2',reviewer_kind='assistant',
+        reviewer_implementation_overlap=True,independent_human_review=False,read_only_recalculation=True,
+        actual_API_calls_by_reviewer=0,credential_accessed=False,Chroma_clients_created_by_auditor=0,
+        real_ledger_access='SQLite URI mode=ro; query_only transaction snapshots',
+        source_commit=source,original_receipt_sha256=sha(receipt_raw),frozen_method_sha256=sha(method_raw),
+        audit_script_sha256=sha(Path(__file__).read_bytes()),utility_sha256=UTILITY_SHA,ledger_backup_sha256=BACKUP_SHA,
+        provider_invoice_verified=False,raw_provider_text_retained=False,raw_schema_independently_reparsed=False,
+        cost_kind='sanitized observed provider usage times pinned local price; not provider account deduction',
+        human_usefulness=None,held_out_test=False,model_quality_score=False,
+        checks_passed=sum(c['passed'] for c in checks),checks_total=len(checks),all_checks_passed=all(c['passed'] for c in checks),
+        preserved_initial_audit_report_sha256='b1946e5daee9f67f05a5a05adab91b86d4d8b403a4e9c9592ae1488ec4d5cb07',
+        auditor_arithmetic_amendment='Separately verify actual settled cost and conservative scope consumption including reserved/uncertain holds; unknown provider cost stays null.',
+        campaign_completed=len(receipt['batches']) == len(method['batches']) and all(not batch['stopped_early'] for batch in receipt['batches']),
+        stopped_campaign_not_resumable=True,planned_unallocated_ids_are_closed_by_protocol_not_claimed_in_SQLite=True,
+        summary=summary,all64planned_state_inventory=state_inventory,wire_usage_reviews=wire_reviews,
+        recorded_raw_schema_and_independent_canonical_reviews=output_reviews,fixed_supplier_observations=fixed_calls,
+        current19physical_guard_restored_as_original=False,historical_physical_matches=17,historical_physical_drift=2,
+        interpretation=[
+            '64 planned engine invocations cover16 distinct caller-authored current states of7 exposed families. They are not64 independent examples or actual conversations.',
+            'Existing compiled analysis and new constrained passage plans get the same full current snapshot, evidence pool and caller-owned question targets. Different prompt/response/renderer contracts make this a pipeline comparison, not a single-factor treatment.',
+            'Original19physical identity remains failed17/2; a prospectively registered new preparation epoch pins all current19files. No historical protocol, receipt or physical claim is rewritten.',
+            'Native candidate search happened only during preparation using isolated verified copies. Paid fixed suppliers do not search. The answer-linked official guide remains fixture-only and excluded from real RAG.',
+            'Raw provider text is not retained. Raw hashes/schema flags are recorded observer diagnostics; retained typed claims, source-block reconstruction, canonical render and complete current prompt/handoff contracts are independently recalculated. Exact selected quote custody is not semantic entailment.',
+            'No proposal is automatically approved or released. Source support, necessary questions and human usefulness require separate semantic/human review.'],checks=checks)
+    safe_write(args.output,report)
+    print(json.dumps(dict(path=str(args.output),sha256=sha(args.output.read_bytes()),checks_passed=report['checks_passed'],
+        checks_total=report['checks_total'],all_checks_passed=report['all_checks_passed'],summary=summary,
+        failed_checks=[c for c in checks if not c['passed']]),indent=2))
+    pinned.temporary.cleanup()
+
+
+if __name__ == '__main__':
+    try:
+        main()
+    except Exception as error:
+        marker = OUT / 'claim-boundary-cost-audit-v2-failure-v1.json'
+        initial = OUT / 'claim-boundary-cost-audit-v2.initial.py'
+        if not marker.exists():
+            raw = Path(__file__).read_bytes()
+            fd = os.open(initial, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+            with os.fdopen(fd, 'wb') as handle:
+                handle.write(raw)
+            safe_write(marker, dict(schema_version=1, initial_script_sha256=sha(raw),
+                error_class=type(error).__name__, error_message_sha256=sha(str(error).encode()),
+                actual_API_calls_by_reviewer=0, credential_accessed=False,
+                ledger_access='read-only', report_claimed_passed=False))
+        raise

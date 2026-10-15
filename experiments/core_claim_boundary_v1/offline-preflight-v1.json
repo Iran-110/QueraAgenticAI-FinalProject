@@ -1,0 +1,2054 @@
+{
+  "schema_version": 1,
+  "accepted": true,
+  "actual_sends": 0,
+  "snapshots": 16,
+  "input_token_reserve": 32768,
+  "max_output_tokens": 2048,
+  "rows": [
+    {
+      "snapshot_id": "dev-a:initial",
+      "arm": "compiled_analysis",
+      "attempt": 1,
+      "context": {
+        "run_id": "715a3bc1-caa4-5e37-b8dc-73830a4440e3",
+        "case_id": "dev-case-a",
+        "case_revision": 1,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-a",
+          "case_revision": 1,
+          "question_targets": [
+            {
+              "name": "streamlit_version",
+              "question": "Which Streamlit version is installed in the affected environment?"
+            },
+            {
+              "name": "parent_callback_code",
+              "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+            },
+            {
+              "name": "state_update_order",
+              "question": "In what order does your app update session state and render the affected widget?"
+            }
+          ],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "2ee33107da831c9bb43cce14088e36f605e27a24ba4f787af1d644d8824b0f28",
+      "messages_sha256": "d38eaa4dc6e022506c7370f76e99ab4db5be5f8f1252e091ea6125f2ab17edb8",
+      "input_bytes_plus_guard": 15405,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-a:initial",
+      "arm": "compiled_analysis",
+      "attempt": 2,
+      "context": {
+        "run_id": "715a3bc1-caa4-5e37-b8dc-73830a4440e3",
+        "case_id": "dev-case-a",
+        "case_revision": 1,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-a",
+          "case_revision": 1,
+          "question_targets": [
+            {
+              "name": "streamlit_version",
+              "question": "Which Streamlit version is installed in the affected environment?"
+            },
+            {
+              "name": "parent_callback_code",
+              "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+            },
+            {
+              "name": "state_update_order",
+              "question": "In what order does your app update session state and render the affected widget?"
+            }
+          ],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "2ee33107da831c9bb43cce14088e36f605e27a24ba4f787af1d644d8824b0f28",
+      "messages_sha256": "3b5535d08e682ca081b03dac18b0a6b84b943dbc915e8fd96a3788b667303a2a",
+      "input_bytes_plus_guard": 15584,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-a:initial",
+      "arm": "claim_cards",
+      "attempt": 1,
+      "context": {
+        "run_id": "6a0e406b-6143-5cd5-a354-4304355aba84",
+        "case_id": "dev-case-a",
+        "case_revision": 1,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-a",
+          "case_revision": 1,
+          "question_targets": [
+            {
+              "name": "streamlit_version",
+              "question": "Which Streamlit version is installed in the affected environment?"
+            },
+            {
+              "name": "parent_callback_code",
+              "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+            },
+            {
+              "name": "state_update_order",
+              "question": "In what order does your app update session state and render the affected widget?"
+            }
+          ],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "2ee33107da831c9bb43cce14088e36f605e27a24ba4f787af1d644d8824b0f28",
+      "messages_sha256": "6553010d9e739a1ce2ec8d9ed0e38de7904095ddcef0a4703f686379e0621433",
+      "input_bytes_plus_guard": 9879,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-a:initial",
+      "arm": "claim_cards",
+      "attempt": 2,
+      "context": {
+        "run_id": "6a0e406b-6143-5cd5-a354-4304355aba84",
+        "case_id": "dev-case-a",
+        "case_revision": 1,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-a",
+          "case_revision": 1,
+          "question_targets": [
+            {
+              "name": "streamlit_version",
+              "question": "Which Streamlit version is installed in the affected environment?"
+            },
+            {
+              "name": "parent_callback_code",
+              "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+            },
+            {
+              "name": "state_update_order",
+              "question": "In what order does your app update session state and render the affected widget?"
+            }
+          ],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "2ee33107da831c9bb43cce14088e36f605e27a24ba4f787af1d644d8824b0f28",
+      "messages_sha256": "b8a3032a96bb4fe86d4ba42a0c55c90b14f4f466d86ee7af1894a2013d8783d0",
+      "input_bytes_plus_guard": 9934,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-a:version",
+      "arm": "compiled_analysis",
+      "attempt": 1,
+      "context": {
+        "run_id": "cd1062a5-a372-5dab-a975-91ce3e9e8671",
+        "case_id": "dev-case-a",
+        "case_revision": 2,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-a",
+          "case_revision": 2,
+          "question_targets": [
+            {
+              "name": "parent_callback_code",
+              "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+            },
+            {
+              "name": "state_update_order",
+              "question": "In what order does your app update session state and render the affected widget?"
+            }
+          ],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "aef9efb279421c5d64111a2c89d60ec9b39c6c33330777b266f73bc401aa0ab8",
+      "messages_sha256": "a0ea6ed52972d63f018bf59bde64bcf76603644bdd0079422e76f0afa1904ef2",
+      "input_bytes_plus_guard": 19821,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-a:version",
+      "arm": "compiled_analysis",
+      "attempt": 2,
+      "context": {
+        "run_id": "cd1062a5-a372-5dab-a975-91ce3e9e8671",
+        "case_id": "dev-case-a",
+        "case_revision": 2,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-a",
+          "case_revision": 2,
+          "question_targets": [
+            {
+              "name": "parent_callback_code",
+              "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+            },
+            {
+              "name": "state_update_order",
+              "question": "In what order does your app update session state and render the affected widget?"
+            }
+          ],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "aef9efb279421c5d64111a2c89d60ec9b39c6c33330777b266f73bc401aa0ab8",
+      "messages_sha256": "51f6f1a804140429eb75cf1ed4794c3fe8d0bfa28d3a7bb411cc91614257c32e",
+      "input_bytes_plus_guard": 20000,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-a:version",
+      "arm": "claim_cards",
+      "attempt": 1,
+      "context": {
+        "run_id": "05ba48f9-5c5d-5eb4-8c5a-a327b728c024",
+        "case_id": "dev-case-a",
+        "case_revision": 2,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-a",
+          "case_revision": 2,
+          "question_targets": [
+            {
+              "name": "parent_callback_code",
+              "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+            },
+            {
+              "name": "state_update_order",
+              "question": "In what order does your app update session state and render the affected widget?"
+            }
+          ],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "aef9efb279421c5d64111a2c89d60ec9b39c6c33330777b266f73bc401aa0ab8",
+      "messages_sha256": "9979594b6470aef9f20957fe681ce5ca98003d3e493dc1aacc01b76703173b42",
+      "input_bytes_plus_guard": 15398,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-a:version",
+      "arm": "claim_cards",
+      "attempt": 2,
+      "context": {
+        "run_id": "05ba48f9-5c5d-5eb4-8c5a-a327b728c024",
+        "case_id": "dev-case-a",
+        "case_revision": 2,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-a",
+          "case_revision": 2,
+          "question_targets": [
+            {
+              "name": "parent_callback_code",
+              "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+            },
+            {
+              "name": "state_update_order",
+              "question": "In what order does your app update session state and render the affected widget?"
+            }
+          ],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "aef9efb279421c5d64111a2c89d60ec9b39c6c33330777b266f73bc401aa0ab8",
+      "messages_sha256": "e3d6e6fe4d7421b41bdaf73469c24b84747450b926eb9818c5920b7584301024",
+      "input_bytes_plus_guard": 15453,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-b:initial",
+      "arm": "compiled_analysis",
+      "attempt": 1,
+      "context": {
+        "run_id": "4910159b-59e3-578b-9a35-426b37c9a306",
+        "case_id": "dev-case-b",
+        "case_revision": 1,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-b",
+          "case_revision": 1,
+          "question_targets": [
+            {
+              "name": "streamlit_version",
+              "question": "Which Streamlit version is installed in the affected environment?"
+            }
+          ],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "0cc99b5965de7e21ac1856e52b5db5ba0798ec816963bfe5f1287107fd7e2b6c",
+      "messages_sha256": "f833824be35cc45f7b0dc8cf8bcb2e6b7d4a855f0ac7728c6d178977f3172b0f",
+      "input_bytes_plus_guard": 12959,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-b:initial",
+      "arm": "compiled_analysis",
+      "attempt": 2,
+      "context": {
+        "run_id": "4910159b-59e3-578b-9a35-426b37c9a306",
+        "case_id": "dev-case-b",
+        "case_revision": 1,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-b",
+          "case_revision": 1,
+          "question_targets": [
+            {
+              "name": "streamlit_version",
+              "question": "Which Streamlit version is installed in the affected environment?"
+            }
+          ],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "0cc99b5965de7e21ac1856e52b5db5ba0798ec816963bfe5f1287107fd7e2b6c",
+      "messages_sha256": "c26c9969fa612aed5f93614458e92ddaac172860036cb6fc371b3b735bf8c88a",
+      "input_bytes_plus_guard": 13138,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-b:initial",
+      "arm": "claim_cards",
+      "attempt": 1,
+      "context": {
+        "run_id": "18371788-18a4-5f28-a467-c5b14e51d7b8",
+        "case_id": "dev-case-b",
+        "case_revision": 1,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-b",
+          "case_revision": 1,
+          "question_targets": [
+            {
+              "name": "streamlit_version",
+              "question": "Which Streamlit version is installed in the affected environment?"
+            }
+          ],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "0cc99b5965de7e21ac1856e52b5db5ba0798ec816963bfe5f1287107fd7e2b6c",
+      "messages_sha256": "b20cc3b10e4b82a18a5e1b8d26a42e1575df855d93d2c69cbb2627c17e40b868",
+      "input_bytes_plus_guard": 6377,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-b:initial",
+      "arm": "claim_cards",
+      "attempt": 2,
+      "context": {
+        "run_id": "18371788-18a4-5f28-a467-c5b14e51d7b8",
+        "case_id": "dev-case-b",
+        "case_revision": 1,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-b",
+          "case_revision": 1,
+          "question_targets": [
+            {
+              "name": "streamlit_version",
+              "question": "Which Streamlit version is installed in the affected environment?"
+            }
+          ],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "0cc99b5965de7e21ac1856e52b5db5ba0798ec816963bfe5f1287107fd7e2b6c",
+      "messages_sha256": "619a2dd9ff20460c7f9cf5a83e78476fdadcc4ad8ecee5a960a952558aa601b6",
+      "input_bytes_plus_guard": 6432,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-b:version",
+      "arm": "compiled_analysis",
+      "attempt": 1,
+      "context": {
+        "run_id": "42a7be49-3bbe-5493-9bd0-0658b0f5e8c0",
+        "case_id": "dev-case-b",
+        "case_revision": 2,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-b",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "53346457987efe9bd6668d094a349445299be79c03cbccc3ff51fe9d8c4098ea",
+      "messages_sha256": "5fbe0d5128b44b0ae78ec2a340cc5f165e9276d3cb3af1df9b3153696dd3aa00",
+      "input_bytes_plus_guard": 16581,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-b:version",
+      "arm": "compiled_analysis",
+      "attempt": 2,
+      "context": {
+        "run_id": "42a7be49-3bbe-5493-9bd0-0658b0f5e8c0",
+        "case_id": "dev-case-b",
+        "case_revision": 2,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-b",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "53346457987efe9bd6668d094a349445299be79c03cbccc3ff51fe9d8c4098ea",
+      "messages_sha256": "1054f93560cbc3a12fca6a0e261b66ad57611bc28f62a5f0fd1c9a83e4ddd09d",
+      "input_bytes_plus_guard": 16760,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-b:version",
+      "arm": "claim_cards",
+      "attempt": 1,
+      "context": {
+        "run_id": "2aeaba73-fd0b-524d-ba6a-f01c79a1f0b8",
+        "case_id": "dev-case-b",
+        "case_revision": 2,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-b",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "53346457987efe9bd6668d094a349445299be79c03cbccc3ff51fe9d8c4098ea",
+      "messages_sha256": "a3992710560adb03465cd19282c942468861595fcfbd4ca216fd0120054e296c",
+      "input_bytes_plus_guard": 11133,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-b:version",
+      "arm": "claim_cards",
+      "attempt": 2,
+      "context": {
+        "run_id": "2aeaba73-fd0b-524d-ba6a-f01c79a1f0b8",
+        "case_id": "dev-case-b",
+        "case_revision": 2,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-b",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "53346457987efe9bd6668d094a349445299be79c03cbccc3ff51fe9d8c4098ea",
+      "messages_sha256": "a375cf58183fe1be9d7a061ceefcba2d5cf62daf8b52a856c4b4dcfa2e8fa6e6",
+      "input_bytes_plus_guard": 11188,
+      "fits": true
+    },
+    {
+      "snapshot_id": "enum-guide:initial",
+      "arm": "compiled_analysis",
+      "attempt": 1,
+      "context": {
+        "run_id": "b71b8b1d-70e7-5ba6-9942-654c3ae71ca0",
+        "case_id": "dev-case-c",
+        "case_revision": 1,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-c",
+          "case_revision": 1,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "2cc9d8697304671db72df86f8bd038451d530512de8e4cacdb0253b2133ad79a",
+      "messages_sha256": "582b374f4432480406622fd0f811b8f5d37574a769411b24d2392c2ea3bdf70d",
+      "input_bytes_plus_guard": 30980,
+      "fits": true
+    },
+    {
+      "snapshot_id": "enum-guide:initial",
+      "arm": "compiled_analysis",
+      "attempt": 2,
+      "context": {
+        "run_id": "b71b8b1d-70e7-5ba6-9942-654c3ae71ca0",
+        "case_id": "dev-case-c",
+        "case_revision": 1,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-c",
+          "case_revision": 1,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "2cc9d8697304671db72df86f8bd038451d530512de8e4cacdb0253b2133ad79a",
+      "messages_sha256": "1457e0dd21c797e7603bad7c9f2a54c0e513ae7688369eeedb40346e94248edc",
+      "input_bytes_plus_guard": 31159,
+      "fits": true
+    },
+    {
+      "snapshot_id": "enum-guide:initial",
+      "arm": "claim_cards",
+      "attempt": 1,
+      "context": {
+        "run_id": "d0e794b7-3ef4-5060-be96-22d3640ab66a",
+        "case_id": "dev-case-c",
+        "case_revision": 1,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-c",
+          "case_revision": 1,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "2cc9d8697304671db72df86f8bd038451d530512de8e4cacdb0253b2133ad79a",
+      "messages_sha256": "bc661b825368ebec193e7d0f5bf6dd27c7dcd1a1bcada6ec5b2338a0b1529756",
+      "input_bytes_plus_guard": 30812,
+      "fits": true
+    },
+    {
+      "snapshot_id": "enum-guide:initial",
+      "arm": "claim_cards",
+      "attempt": 2,
+      "context": {
+        "run_id": "d0e794b7-3ef4-5060-be96-22d3640ab66a",
+        "case_id": "dev-case-c",
+        "case_revision": 1,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-c",
+          "case_revision": 1,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "2cc9d8697304671db72df86f8bd038451d530512de8e4cacdb0253b2133ad79a",
+      "messages_sha256": "5f31d7ef92fde7518a292107fba50a8f977d5cab429ad02181bbd0149131a0fa",
+      "input_bytes_plus_guard": 30867,
+      "fits": true
+    },
+    {
+      "snapshot_id": "enum-guide:correction",
+      "arm": "compiled_analysis",
+      "attempt": 1,
+      "context": {
+        "run_id": "47086a2d-e019-5f38-8474-90203cf799e3",
+        "case_id": "dev-case-c",
+        "case_revision": 2,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-c",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "2cc9d8697304671db72df86f8bd038451d530512de8e4cacdb0253b2133ad79a",
+      "messages_sha256": "662342b42d4aa7fb2e6a4dbab50ee8259899bcfa2af936c917e7611e78991853",
+      "input_bytes_plus_guard": 31585,
+      "fits": true
+    },
+    {
+      "snapshot_id": "enum-guide:correction",
+      "arm": "compiled_analysis",
+      "attempt": 2,
+      "context": {
+        "run_id": "47086a2d-e019-5f38-8474-90203cf799e3",
+        "case_id": "dev-case-c",
+        "case_revision": 2,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-c",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "2cc9d8697304671db72df86f8bd038451d530512de8e4cacdb0253b2133ad79a",
+      "messages_sha256": "e5f57210cdd6e79305e96e7f0f2fea02dd2c15cfc1089a8f88b683262726cb28",
+      "input_bytes_plus_guard": 31764,
+      "fits": true
+    },
+    {
+      "snapshot_id": "enum-guide:correction",
+      "arm": "claim_cards",
+      "attempt": 1,
+      "context": {
+        "run_id": "89d43a36-200d-5cb6-ba84-2f83d0f08220",
+        "case_id": "dev-case-c",
+        "case_revision": 2,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-c",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "2cc9d8697304671db72df86f8bd038451d530512de8e4cacdb0253b2133ad79a",
+      "messages_sha256": "4ef1caa6b1b719e3795a8baae78f5674630a600bf0410daab3a3faf53152b96c",
+      "input_bytes_plus_guard": 31411,
+      "fits": true
+    },
+    {
+      "snapshot_id": "enum-guide:correction",
+      "arm": "claim_cards",
+      "attempt": 2,
+      "context": {
+        "run_id": "89d43a36-200d-5cb6-ba84-2f83d0f08220",
+        "case_id": "dev-case-c",
+        "case_revision": 2,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-c",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "2cc9d8697304671db72df86f8bd038451d530512de8e4cacdb0253b2133ad79a",
+      "messages_sha256": "3937c147dfd958ac1c3734f12be0ee402a62a5dd5d7776c559ffd7f5df224bf8",
+      "input_bytes_plus_guard": 31466,
+      "fits": true
+    },
+    {
+      "snapshot_id": "enum-withheld:initial",
+      "arm": "compiled_analysis",
+      "attempt": 1,
+      "context": {
+        "run_id": "721a06e4-228a-5acc-8abe-359f45688bf7",
+        "case_id": "dev-case-c",
+        "case_revision": 1,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-c",
+          "case_revision": 1,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "4e3b2227cdcc8022492283147d4e76b3498c1ed7dd869240d9b47393087af9b3",
+      "messages_sha256": "0084044b39a8cc4a3971b04adde8081e4d420df3ab862d346565433850a714ef",
+      "input_bytes_plus_guard": 24547,
+      "fits": true
+    },
+    {
+      "snapshot_id": "enum-withheld:initial",
+      "arm": "compiled_analysis",
+      "attempt": 2,
+      "context": {
+        "run_id": "721a06e4-228a-5acc-8abe-359f45688bf7",
+        "case_id": "dev-case-c",
+        "case_revision": 1,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-c",
+          "case_revision": 1,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "4e3b2227cdcc8022492283147d4e76b3498c1ed7dd869240d9b47393087af9b3",
+      "messages_sha256": "18ec132efe74c17e42101154dc2b5cb55734c2ce547295bc99ae10a6dfc05747",
+      "input_bytes_plus_guard": 24726,
+      "fits": true
+    },
+    {
+      "snapshot_id": "enum-withheld:initial",
+      "arm": "claim_cards",
+      "attempt": 1,
+      "context": {
+        "run_id": "acc7ce0c-dff3-53d5-b462-e6969eb648cb",
+        "case_id": "dev-case-c",
+        "case_revision": 1,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-c",
+          "case_revision": 1,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "4e3b2227cdcc8022492283147d4e76b3498c1ed7dd869240d9b47393087af9b3",
+      "messages_sha256": "84e8a4c0e338353915ca2400db56d45c35a248aae576ec2b0d70414fb92b8ea8",
+      "input_bytes_plus_guard": 22940,
+      "fits": true
+    },
+    {
+      "snapshot_id": "enum-withheld:initial",
+      "arm": "claim_cards",
+      "attempt": 2,
+      "context": {
+        "run_id": "acc7ce0c-dff3-53d5-b462-e6969eb648cb",
+        "case_id": "dev-case-c",
+        "case_revision": 1,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-c",
+          "case_revision": 1,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "4e3b2227cdcc8022492283147d4e76b3498c1ed7dd869240d9b47393087af9b3",
+      "messages_sha256": "d866889d02c710af33617988f3461c7d9682a171509fcb7e6c9f8257ecae70f8",
+      "input_bytes_plus_guard": 22995,
+      "fits": true
+    },
+    {
+      "snapshot_id": "enum-withheld:correction",
+      "arm": "compiled_analysis",
+      "attempt": 1,
+      "context": {
+        "run_id": "084fc07a-68e4-5846-acf3-ee2f44f653df",
+        "case_id": "dev-case-c",
+        "case_revision": 2,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-c",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "4e3b2227cdcc8022492283147d4e76b3498c1ed7dd869240d9b47393087af9b3",
+      "messages_sha256": "bdb4b09cfbd5b5e5f0107dea7678823bb22640c692a07571a45983443924ac8c",
+      "input_bytes_plus_guard": 25152,
+      "fits": true
+    },
+    {
+      "snapshot_id": "enum-withheld:correction",
+      "arm": "compiled_analysis",
+      "attempt": 2,
+      "context": {
+        "run_id": "084fc07a-68e4-5846-acf3-ee2f44f653df",
+        "case_id": "dev-case-c",
+        "case_revision": 2,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-c",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "4e3b2227cdcc8022492283147d4e76b3498c1ed7dd869240d9b47393087af9b3",
+      "messages_sha256": "3b1b0bb0eea03b62de67166152427e0e3dd54d3a8bed5b52bc2d44a22e0c25f0",
+      "input_bytes_plus_guard": 25331,
+      "fits": true
+    },
+    {
+      "snapshot_id": "enum-withheld:correction",
+      "arm": "claim_cards",
+      "attempt": 1,
+      "context": {
+        "run_id": "0c8f8789-8eb5-5994-bc63-23f3979a89c8",
+        "case_id": "dev-case-c",
+        "case_revision": 2,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-c",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "4e3b2227cdcc8022492283147d4e76b3498c1ed7dd869240d9b47393087af9b3",
+      "messages_sha256": "82c3e3de6ab53acb32d4be69ee2ed11d704752d443465d49878b1d9c01b98319",
+      "input_bytes_plus_guard": 23539,
+      "fits": true
+    },
+    {
+      "snapshot_id": "enum-withheld:correction",
+      "arm": "claim_cards",
+      "attempt": 2,
+      "context": {
+        "run_id": "0c8f8789-8eb5-5994-bc63-23f3979a89c8",
+        "case_id": "dev-case-c",
+        "case_revision": 2,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-case-c",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "4e3b2227cdcc8022492283147d4e76b3498c1ed7dd869240d9b47393087af9b3",
+      "messages_sha256": "8670877b912ddb9a7452d033e9fc906ebe9eed8ee20558d044cbb71400eb2de5",
+      "input_bytes_plus_guard": 23594,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-d-4713:initial",
+      "arm": "compiled_analysis",
+      "attempt": 1,
+      "context": {
+        "run_id": "3aec48a5-769a-5616-a8cb-342d6b0899cf",
+        "case_id": "dev-d-4713",
+        "case_revision": 1,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-d-4713",
+          "case_revision": 1,
+          "question_targets": [
+            {
+              "name": "click_runtime_details",
+              "question": "Which Click version and module path does the same PDM invocation actually import?"
+            }
+          ],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "1d40b6a98ec681185149dec9fcf900d8d96f1cd5c95a4bb9dbde46c72355a5df",
+      "messages_sha256": "b666406728ac9e486c2a49a7d347ed9ac81e04f5b143f6cf20b34e166bbeeb50",
+      "input_bytes_plus_guard": 25342,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-d-4713:initial",
+      "arm": "compiled_analysis",
+      "attempt": 2,
+      "context": {
+        "run_id": "3aec48a5-769a-5616-a8cb-342d6b0899cf",
+        "case_id": "dev-d-4713",
+        "case_revision": 1,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-d-4713",
+          "case_revision": 1,
+          "question_targets": [
+            {
+              "name": "click_runtime_details",
+              "question": "Which Click version and module path does the same PDM invocation actually import?"
+            }
+          ],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "1d40b6a98ec681185149dec9fcf900d8d96f1cd5c95a4bb9dbde46c72355a5df",
+      "messages_sha256": "87d822bbc203826ff3e9df83172b3ddaf9c1476304940d51a16be03066556046",
+      "input_bytes_plus_guard": 25521,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-d-4713:initial",
+      "arm": "claim_cards",
+      "attempt": 1,
+      "context": {
+        "run_id": "3a76b3b2-431b-5f7a-ad14-fd679c757928",
+        "case_id": "dev-d-4713",
+        "case_revision": 1,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-d-4713",
+          "case_revision": 1,
+          "question_targets": [
+            {
+              "name": "click_runtime_details",
+              "question": "Which Click version and module path does the same PDM invocation actually import?"
+            }
+          ],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "1d40b6a98ec681185149dec9fcf900d8d96f1cd5c95a4bb9dbde46c72355a5df",
+      "messages_sha256": "a4b433fe9f0907ce28a5392e39202790154f41ffd68b68f9c3c8848eb0eb44fb",
+      "input_bytes_plus_guard": 22686,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-d-4713:initial",
+      "arm": "claim_cards",
+      "attempt": 2,
+      "context": {
+        "run_id": "3a76b3b2-431b-5f7a-ad14-fd679c757928",
+        "case_id": "dev-d-4713",
+        "case_revision": 1,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-d-4713",
+          "case_revision": 1,
+          "question_targets": [
+            {
+              "name": "click_runtime_details",
+              "question": "Which Click version and module path does the same PDM invocation actually import?"
+            }
+          ],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "1d40b6a98ec681185149dec9fcf900d8d96f1cd5c95a4bb9dbde46c72355a5df",
+      "messages_sha256": "a19fda9297e3356a37edc9938ed3890c16f5f2117bc70fe926134ab4317f88e5",
+      "input_bytes_plus_guard": 22741,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-d-4713:update",
+      "arm": "compiled_analysis",
+      "attempt": 1,
+      "context": {
+        "run_id": "c144db15-4971-592d-a447-d0ead48d5fc9",
+        "case_id": "dev-d-4713",
+        "case_revision": 2,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-d-4713",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "95d6549cb7458ce6971a5821082c4ff2f50fc314a33fc01d6f79018fe65f7367",
+      "messages_sha256": "581dedb8b00435cb3ff5a4e1eb0a5ad1f57879db51ba87dcb864246948d08eda",
+      "input_bytes_plus_guard": 27939,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-d-4713:update",
+      "arm": "compiled_analysis",
+      "attempt": 2,
+      "context": {
+        "run_id": "c144db15-4971-592d-a447-d0ead48d5fc9",
+        "case_id": "dev-d-4713",
+        "case_revision": 2,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-d-4713",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "95d6549cb7458ce6971a5821082c4ff2f50fc314a33fc01d6f79018fe65f7367",
+      "messages_sha256": "c830b29e22abfbca6ab5498cc1b364dcb82ec18a0ec435f56aa0966660c52724",
+      "input_bytes_plus_guard": 28118,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-d-4713:update",
+      "arm": "claim_cards",
+      "attempt": 1,
+      "context": {
+        "run_id": "51851d06-aa7d-5e9c-bda6-d61a7bc22b2c",
+        "case_id": "dev-d-4713",
+        "case_revision": 2,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-d-4713",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "95d6549cb7458ce6971a5821082c4ff2f50fc314a33fc01d6f79018fe65f7367",
+      "messages_sha256": "f1271dec9642e6f59afc6d960ec78a7a4514e944ef71ab7019a84e141b992fba",
+      "input_bytes_plus_guard": 25899,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-d-4713:update",
+      "arm": "claim_cards",
+      "attempt": 2,
+      "context": {
+        "run_id": "51851d06-aa7d-5e9c-bda6-d61a7bc22b2c",
+        "case_id": "dev-d-4713",
+        "case_revision": 2,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-d-4713",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "95d6549cb7458ce6971a5821082c4ff2f50fc314a33fc01d6f79018fe65f7367",
+      "messages_sha256": "b2218aa43e28f21cd27697e065c525c5d6ffec6b4a7a9aff06d35566bc5006a6",
+      "input_bytes_plus_guard": 25954,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-e-5618:initial",
+      "arm": "compiled_analysis",
+      "attempt": 1,
+      "context": {
+        "run_id": "58c4d0b6-050e-50ba-a8f6-a3b4f33650fc",
+        "case_id": "dev-e-5618",
+        "case_revision": 1,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-e-5618",
+          "case_revision": 1,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "126bfd798ab0861961494c7d58df83edde03d9839a82462b72bcb6afe75e122f",
+      "messages_sha256": "44eadd23d2ce51f81d78b50a069fce6e01a73e665845fd65fdb905521e0c9f6e",
+      "input_bytes_plus_guard": 26230,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-e-5618:initial",
+      "arm": "compiled_analysis",
+      "attempt": 2,
+      "context": {
+        "run_id": "58c4d0b6-050e-50ba-a8f6-a3b4f33650fc",
+        "case_id": "dev-e-5618",
+        "case_revision": 1,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-e-5618",
+          "case_revision": 1,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "126bfd798ab0861961494c7d58df83edde03d9839a82462b72bcb6afe75e122f",
+      "messages_sha256": "1c1169166830fa45c4e978c92428e8cf99fc93848db9b45e453f8b968bd1f9a2",
+      "input_bytes_plus_guard": 26409,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-e-5618:initial",
+      "arm": "claim_cards",
+      "attempt": 1,
+      "context": {
+        "run_id": "b80fc437-d432-555d-aba0-8e5e93979810",
+        "case_id": "dev-e-5618",
+        "case_revision": 1,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-e-5618",
+          "case_revision": 1,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "126bfd798ab0861961494c7d58df83edde03d9839a82462b72bcb6afe75e122f",
+      "messages_sha256": "ea8867d3f8e8ba43e2f0c659e48c752552474a9f9f257053b30ae1b398111d82",
+      "input_bytes_plus_guard": 24190,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-e-5618:initial",
+      "arm": "claim_cards",
+      "attempt": 2,
+      "context": {
+        "run_id": "b80fc437-d432-555d-aba0-8e5e93979810",
+        "case_id": "dev-e-5618",
+        "case_revision": 1,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-e-5618",
+          "case_revision": 1,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "126bfd798ab0861961494c7d58df83edde03d9839a82462b72bcb6afe75e122f",
+      "messages_sha256": "3b40abf2c4b846446ad089179568a9d74ba9028864e296e0f58bb0ec92eec7af",
+      "input_bytes_plus_guard": 24245,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-e-5618:update",
+      "arm": "compiled_analysis",
+      "attempt": 1,
+      "context": {
+        "run_id": "97ed3193-8323-5ef9-a99b-78b480dd1559",
+        "case_id": "dev-e-5618",
+        "case_revision": 2,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-e-5618",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "5b0a783d92995838ba912cee1cff7621f59efa750415916f4ce785613ed33d06",
+      "messages_sha256": "f7bfd51a333a9549497ad0f8788b07ff7316ec0b63cbf4f1022dbbafd1251fbb",
+      "input_bytes_plus_guard": 27816,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-e-5618:update",
+      "arm": "compiled_analysis",
+      "attempt": 2,
+      "context": {
+        "run_id": "97ed3193-8323-5ef9-a99b-78b480dd1559",
+        "case_id": "dev-e-5618",
+        "case_revision": 2,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-e-5618",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "5b0a783d92995838ba912cee1cff7621f59efa750415916f4ce785613ed33d06",
+      "messages_sha256": "568973efa870a4f58a5d179ea2c6da0b676aa4e64e33f393804c6cfe89203efe",
+      "input_bytes_plus_guard": 27995,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-e-5618:update",
+      "arm": "claim_cards",
+      "attempt": 1,
+      "context": {
+        "run_id": "3d9bd1d8-21f1-596f-bf8a-269b31a8565a",
+        "case_id": "dev-e-5618",
+        "case_revision": 2,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-e-5618",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "5b0a783d92995838ba912cee1cff7621f59efa750415916f4ce785613ed33d06",
+      "messages_sha256": "ffd0c83bc9a9ca21a368f91a3e8967ceb147d88a39ca53d03745556c7f85f22a",
+      "input_bytes_plus_guard": 25239,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-e-5618:update",
+      "arm": "claim_cards",
+      "attempt": 2,
+      "context": {
+        "run_id": "3d9bd1d8-21f1-596f-bf8a-269b31a8565a",
+        "case_id": "dev-e-5618",
+        "case_revision": 2,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-e-5618",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "5b0a783d92995838ba912cee1cff7621f59efa750415916f4ce785613ed33d06",
+      "messages_sha256": "adc59ce4e2d2fd5e0f8d580ffc7c96a35ec5b6a91e8b94385f4170b5c3c60e5c",
+      "input_bytes_plus_guard": 25294,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-f-7206:initial",
+      "arm": "compiled_analysis",
+      "attempt": 1,
+      "context": {
+        "run_id": "39e1ee2f-abc8-5e26-a552-cc34e579cdae",
+        "case_id": "dev-f-7206",
+        "case_revision": 1,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-f-7206",
+          "case_revision": 1,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "cd6857ae952f2286867f8fdb24149a230a01dbcb14fb4a8091efe6bf9a8ce352",
+      "messages_sha256": "5ba5ea85e0fa43fb5d54becf17d9a9eb009deab04bc9b2dc5cd2539d44ae2afe",
+      "input_bytes_plus_guard": 26656,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-f-7206:initial",
+      "arm": "compiled_analysis",
+      "attempt": 2,
+      "context": {
+        "run_id": "39e1ee2f-abc8-5e26-a552-cc34e579cdae",
+        "case_id": "dev-f-7206",
+        "case_revision": 1,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-f-7206",
+          "case_revision": 1,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "cd6857ae952f2286867f8fdb24149a230a01dbcb14fb4a8091efe6bf9a8ce352",
+      "messages_sha256": "4673184ea78715d3d71294d07389d8ca79e0521c1672e9c415064a30b7983cb3",
+      "input_bytes_plus_guard": 26835,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-f-7206:initial",
+      "arm": "claim_cards",
+      "attempt": 1,
+      "context": {
+        "run_id": "e402259d-7610-54bc-a36a-5bfb1c8b66ee",
+        "case_id": "dev-f-7206",
+        "case_revision": 1,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-f-7206",
+          "case_revision": 1,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "cd6857ae952f2286867f8fdb24149a230a01dbcb14fb4a8091efe6bf9a8ce352",
+      "messages_sha256": "a6474fee5dc543c47378dff0daa9952b3d2eb7789dfe3a40672fc877dbc54c3c",
+      "input_bytes_plus_guard": 24045,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-f-7206:initial",
+      "arm": "claim_cards",
+      "attempt": 2,
+      "context": {
+        "run_id": "e402259d-7610-54bc-a36a-5bfb1c8b66ee",
+        "case_id": "dev-f-7206",
+        "case_revision": 1,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-f-7206",
+          "case_revision": 1,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "cd6857ae952f2286867f8fdb24149a230a01dbcb14fb4a8091efe6bf9a8ce352",
+      "messages_sha256": "8e4a3ab5de315f82cee1fe62be0c2b25cf1909808ccc8563681cdd1682fa0f63",
+      "input_bytes_plus_guard": 24100,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-f-7206:update",
+      "arm": "compiled_analysis",
+      "attempt": 1,
+      "context": {
+        "run_id": "93dc4c80-fa7e-5c89-b25e-eab842600301",
+        "case_id": "dev-f-7206",
+        "case_revision": 2,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-f-7206",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "2abd60eee9aa06cd2c065adec7a69dc44e3e8db4e34ae1f30464de42e6c37dcf",
+      "messages_sha256": "914a5b6c1bcb18707db8b81044fb062370081b19cf41bfcc237c0b43bbe47427",
+      "input_bytes_plus_guard": 29264,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-f-7206:update",
+      "arm": "compiled_analysis",
+      "attempt": 2,
+      "context": {
+        "run_id": "93dc4c80-fa7e-5c89-b25e-eab842600301",
+        "case_id": "dev-f-7206",
+        "case_revision": 2,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-f-7206",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "2abd60eee9aa06cd2c065adec7a69dc44e3e8db4e34ae1f30464de42e6c37dcf",
+      "messages_sha256": "aa9dea7f4ca358b45c44ab7c1257557bc4188e616f7d4cbe1160c7205db76289",
+      "input_bytes_plus_guard": 29443,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-f-7206:update",
+      "arm": "claim_cards",
+      "attempt": 1,
+      "context": {
+        "run_id": "36062bea-e4d7-59a9-8d00-8cababb04145",
+        "case_id": "dev-f-7206",
+        "case_revision": 2,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-f-7206",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "2abd60eee9aa06cd2c065adec7a69dc44e3e8db4e34ae1f30464de42e6c37dcf",
+      "messages_sha256": "4cacd58c9a5c6a3370b1a69baa3e63d444c51b923231b8cdadcd746a12d2e428",
+      "input_bytes_plus_guard": 26829,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-f-7206:update",
+      "arm": "claim_cards",
+      "attempt": 2,
+      "context": {
+        "run_id": "36062bea-e4d7-59a9-8d00-8cababb04145",
+        "case_id": "dev-f-7206",
+        "case_revision": 2,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-f-7206",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "2abd60eee9aa06cd2c065adec7a69dc44e3e8db4e34ae1f30464de42e6c37dcf",
+      "messages_sha256": "7f8422a0aab054ff83ef0a5dc913c0da685e735d37502dc3d3e784e2b1a9bc66",
+      "input_bytes_plus_guard": 26884,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-g-9487:initial",
+      "arm": "compiled_analysis",
+      "attempt": 1,
+      "context": {
+        "run_id": "581180a3-216e-56c8-8ed6-8c2e8f2aba75",
+        "case_id": "dev-g-9487",
+        "case_revision": 1,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-g-9487",
+          "case_revision": 1,
+          "question_targets": [
+            {
+              "name": "visual_persistence",
+              "question": "Do the faded widget copies disappear when the three-second run finishes, or remain afterward?"
+            }
+          ],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "de66759effe3cb6c5edeb9dac99815fcbf791f5eb429cfa7920c795255d092c4",
+      "messages_sha256": "0a3ddc33d08930955fd0c5d93c770efee062cc428d88b27a7c865e4c1379756f",
+      "input_bytes_plus_guard": 27736,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-g-9487:initial",
+      "arm": "compiled_analysis",
+      "attempt": 2,
+      "context": {
+        "run_id": "581180a3-216e-56c8-8ed6-8c2e8f2aba75",
+        "case_id": "dev-g-9487",
+        "case_revision": 1,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-g-9487",
+          "case_revision": 1,
+          "question_targets": [
+            {
+              "name": "visual_persistence",
+              "question": "Do the faded widget copies disappear when the three-second run finishes, or remain afterward?"
+            }
+          ],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "de66759effe3cb6c5edeb9dac99815fcbf791f5eb429cfa7920c795255d092c4",
+      "messages_sha256": "3a1d4cfc2d9d440a835e29da35ae46327dfb74079891f29ba7925c6c76eaa117",
+      "input_bytes_plus_guard": 27915,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-g-9487:initial",
+      "arm": "claim_cards",
+      "attempt": 1,
+      "context": {
+        "run_id": "d3fc8887-d386-5635-8f5a-baef7fd2f600",
+        "case_id": "dev-g-9487",
+        "case_revision": 1,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-g-9487",
+          "case_revision": 1,
+          "question_targets": [
+            {
+              "name": "visual_persistence",
+              "question": "Do the faded widget copies disappear when the three-second run finishes, or remain afterward?"
+            }
+          ],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "de66759effe3cb6c5edeb9dac99815fcbf791f5eb429cfa7920c795255d092c4",
+      "messages_sha256": "949300c4cc9afa81d3c3cbec93ee5fd6c667250f2a127afe81d53e0427e8edc5",
+      "input_bytes_plus_guard": 24990,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-g-9487:initial",
+      "arm": "claim_cards",
+      "attempt": 2,
+      "context": {
+        "run_id": "d3fc8887-d386-5635-8f5a-baef7fd2f600",
+        "case_id": "dev-g-9487",
+        "case_revision": 1,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-g-9487",
+          "case_revision": 1,
+          "question_targets": [
+            {
+              "name": "visual_persistence",
+              "question": "Do the faded widget copies disappear when the three-second run finishes, or remain afterward?"
+            }
+          ],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "de66759effe3cb6c5edeb9dac99815fcbf791f5eb429cfa7920c795255d092c4",
+      "messages_sha256": "b232f45468d307ef4552902cafe09181566613f218c6e5ca6246383ffd74f62d",
+      "input_bytes_plus_guard": 25045,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-g-9487:update",
+      "arm": "compiled_analysis",
+      "attempt": 1,
+      "context": {
+        "run_id": "3b2d4b4c-2b79-5a60-b0b9-88b7508e823c",
+        "case_id": "dev-g-9487",
+        "case_revision": 2,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-g-9487",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "dc788887d2c5337b39b8512e379f08a815ac8eb97e4dcca95ddf4820d0cf2163",
+      "messages_sha256": "f909837a4695ce75322f38affbb39fba507b4faa8b252e955779faf69945c5f1",
+      "input_bytes_plus_guard": 27714,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-g-9487:update",
+      "arm": "compiled_analysis",
+      "attempt": 2,
+      "context": {
+        "run_id": "3b2d4b4c-2b79-5a60-b0b9-88b7508e823c",
+        "case_id": "dev-g-9487",
+        "case_revision": 2,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-g-9487",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "dc788887d2c5337b39b8512e379f08a815ac8eb97e4dcca95ddf4820d0cf2163",
+      "messages_sha256": "3155ae6b793401cc49b9c356be0cafbf183f05f202f75bc7e77791cecf3f9420",
+      "input_bytes_plus_guard": 27893,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-g-9487:update",
+      "arm": "claim_cards",
+      "attempt": 1,
+      "context": {
+        "run_id": "7e43995b-db8c-5286-ad49-3a14d2a9d241",
+        "case_id": "dev-g-9487",
+        "case_revision": 2,
+        "attempt_index": 1,
+        "output_feedback": null,
+        "remaining_model_attempts": 1,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": true,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-g-9487",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "dc788887d2c5337b39b8512e379f08a815ac8eb97e4dcca95ddf4820d0cf2163",
+      "messages_sha256": "2145de561ca5e3f0cc945135d32f6adcfff0ccc899f51b9e096252364a01c6df",
+      "input_bytes_plus_guard": 24570,
+      "fits": true
+    },
+    {
+      "snapshot_id": "dev-g-9487:update",
+      "arm": "claim_cards",
+      "attempt": 2,
+      "context": {
+        "run_id": "7e43995b-db8c-5286-ad49-3a14d2a9d241",
+        "case_id": "dev-g-9487",
+        "case_revision": 2,
+        "attempt_index": 2,
+        "output_feedback": {
+          "issues": [
+            {
+              "code": "invalid_shape",
+              "field": null
+            }
+          ]
+        },
+        "remaining_model_attempts": 0,
+        "remaining_retrieval_rounds": 1,
+        "can_refine": false,
+        "query_limit": 2,
+        "proposal_requirements": {
+          "case_id": "dev-g-9487",
+          "case_revision": 2,
+          "question_targets": [],
+          "require_fresh_widget_value": false
+        }
+      },
+      "evidence_sha256": "dc788887d2c5337b39b8512e379f08a815ac8eb97e4dcca95ddf4820d0cf2163",
+      "messages_sha256": "18b701a2cfebb71b6a03418ad1dc62cf0d855ba1d4d18b4631c31a4884e1edbe",
+      "input_bytes_plus_guard": 24625,
+      "fits": true
+    }
+  ],
+  "max_input_bytes_plus_guard": 31764,
+  "proposal_only": true,
+  "human_usefulness": null,
+  "held_out_test": false,
+  "no_sources_cropped": true,
+  "no_release_or_action": true,
+  "uses_registered_round1_run_ids": true,
+  "round2_run_ids_have_same_encoded_length": true
+}

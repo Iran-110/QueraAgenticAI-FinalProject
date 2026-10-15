@@ -1,0 +1,987 @@
+"""Read-only accounting/source audit with disclosed implementation overlap; invoke only after run completion.
+
+Never imports experiment runners, reads credentials, creates a gateway/ledger/index
+client, or sends a request. Prompt helpers load from the exact pinned Git source. SQLite connections are URI mode=ro/query_only transactions.
+All actual outcomes are read from immutable receipts; no fixed success counts.
+"""
+
+import argparse
+import os
+import hashlib
+import importlib
+import io
+import json
+import re
+import sqlite3
+import subprocess
+import sys
+import tarfile
+import tempfile
+from collections import Counter
+from contextlib import closing
+from decimal import Decimal
+from pathlib import Path
+from types import SimpleNamespace
+from uuid import NAMESPACE_URL, uuid5
+
+ROOT = Path('/Users/sasan/Desktop/Agentic AI/FinalProject/QueraAgenticAI-FinalProject')
+OUT = Path('/Users/sasan/Desktop/Agentic AI/output')
+FOLDER = 'experiments/core_source_order_v1'
+PARENT = 'experiments/core_enum_evidence_v1'
+PRIVATE = OUT / 'core-source-order-model-2026-10-15-v1'
+BEFORE = OUT / 'source-order-ledger-before-2026-10-15-v1.sqlite3'
+CURRENT = ROOT / 'runtime/budget.sqlite3'
+RATE_INPUT, RATE_OUTPUT = Decimal('0.000000165'), Decimal('0.000000660')
+RESERVE = RATE_INPUT * 32768 + RATE_OUTPUT * 1024
+ALLOWED_ADDITIONS = {
+    'reservations': 'request_id', 'ledger_events': 'request_id',
+    'quarantine_scopes': 'authorization_id', 'quarantine_scope_events': 'authorization_id',
+    'quarantine_scope_slots': 'authorization_id', 'quarantine_scope_requests': 'authorization_id',
+}
+
+
+def sha(raw):
+    return hashlib.sha256(raw).hexdigest()
+
+
+def canonical(value):
+    return json.dumps(value, sort_keys=True, separators=(',', ':'), default=str).encode()
+
+
+def digest(value):
+    return sha(canonical(value))
+
+
+def connection(path):
+    db = sqlite3.connect(path.resolve().as_uri() + '?mode=ro', uri=True)
+    db.row_factory = sqlite3.Row
+    db.execute('PRAGMA query_only=ON')
+    db.execute('BEGIN')
+    return db
+
+
+def request_id(context):
+    selected = {key: context[key] for key in ('run_id', 'case_id', 'case_revision', 'attempt_index')}
+    return 'call:' + sha(json.dumps(selected, separators=(',', ':')).encode())
+
+
+def schema(db):
+    return [dict(r) for r in db.execute(
+        "SELECT type,name,tbl_name,sql FROM sqlite_master WHERE name NOT LIKE 'sqlite_%' ORDER BY type,name"
+    )]
+
+
+def rows(db, table):
+    if not re.fullmatch(r'[A-Za-z_][A-Za-z_0-9]*', table):
+        raise ValueError('AuditTableRejected')
+    return [dict(r) for r in db.execute(f'SELECT rowid AS audit_rowid,* FROM "{table}" ORDER BY rowid')]
+
+
+def journal(db):
+    objects = schema(db)
+    return {'schema': objects, 'tables': {
+        item['name']: {
+            'columns': [r[1] for r in db.execute(f'PRAGMA table_info("{item["name"]}")')],
+            'row_sha256': sorted(sha(json.dumps({k: v for k, v in row.items() if k != 'audit_rowid'}, sort_keys=True).encode())
+                                 for row in rows(db, item['name']))
+        } for item in objects if item['type'] == 'table'
+    }}
+
+
+def check(checks, name, condition, details=None):
+    checks.append({'check': name, 'passed': bool(condition), **({'details': details} if details is not None else {})})
+
+
+def pinned_helpers(source):
+    """Import trusted prompt/contract code from the exact recorded Git commit.
+
+    Extraction is temporary and outside Git. No experiment driver, credentials,
+    gateway instance, ledger client or index client is created.
+    """
+    if not re.fullmatch(r'[0-9a-f]{40}', source):
+        raise ValueError('AuditSourceCommitRejected')
+    if any(name == 'agent_app' or name.startswith('agent_app.') for name in sys.modules):
+        raise ValueError('AuditModuleIsolationRejected')
+    temporary = tempfile.TemporaryDirectory(prefix='source-order-pinned-audit-', dir=OUT)
+    root = Path(temporary.name)
+    archived = subprocess.check_output(['git', 'archive', source, 'src/agent_app'], cwd=ROOT)
+    with tarfile.open(fileobj=io.BytesIO(archived)) as archive:
+        archive.extractall(root, filter='data')
+    sys.path.insert(0, str(root / 'src'))
+    contracts = importlib.import_module('agent_app.contracts')
+    config = importlib.import_module('agent_app.llm.config')
+    metis = importlib.import_module('agent_app.llm.metis')
+    compact = importlib.import_module('agent_app.reasoning.compact_plan')
+    grounding = importlib.import_module('agent_app.reasoning.grounding')
+    handoff = importlib.import_module('agent_app.orchestration.handoff')
+    capacity = importlib.import_module('agent_app.reasoning.source_capacity')
+    selection = importlib.import_module('agent_app.reasoning.source_selection')
+    for module in (contracts, config, metis, compact, grounding, handoff, capacity, selection):
+        if not Path(module.__file__).resolve().is_relative_to(root / 'src' / 'agent_app'):
+            raise ValueError('AuditModuleIsolationRejected')
+    return SimpleNamespace(
+        temporary=temporary, root=root,
+        GroundedRequest=contracts.GroundedRequest, GroundedPlan=contracts.GroundedPlan,
+        ProposalHandoff=contracts.ProposalHandoff, validate_handoff=handoff.validate_handoff,
+        EvidenceBundle=contracts.EvidenceBundle, EvidenceHit=contracts.EvidenceHit,
+        ReasoningContext=contracts.ReasoningContext, MetisConfig=config.MetisConfig,
+        configured_grounded_messages=metis.configured_grounded_messages,
+        expand_compact_plan=compact.expand_compact_plan,
+        render_grounded_plan=grounding.render_grounded_plan,
+        GroundingRejected=grounding.GroundingRejected,
+        source_content_sha256=grounding.source_content_sha256,
+        source_capacity=capacity.source_capacity,
+        COMPLEMENTARY_SOURCE_POLICY=selection.COMPLEMENTARY_SOURCE_POLICY,
+    )
+
+
+WIRE_OBSERVATION_FIELDS = frozenset({
+    'request_id', 'schema_version', 'wire_format', 'raw_output_sha256',
+    'raw_utf8_bytes', 'json_shape', 'decision', 'sources_count',
+    'selected_indexes', 'wire_schema_valid', 'canonical_binding_valid',
+    'rejection_code', 'unexpected_field_count',
+})
+DECISIONS = frozenset({'answer', 'ask', 'escalate', 'retrieve_more'})
+BINDING_CODES = frozenset({'grounded_context_mismatch', 'grounded_source_mismatch'})
+
+
+def hash_shape(value):
+    return type(value) is str and re.fullmatch(r'[0-9a-f]{64}', value) is not None
+
+
+def audit_output(checks, reviews, attempt, request, job, send, pinned):
+    """Check record consistency without pretending hashes reveal raw JSON.
+
+    Raw provider text is unavailable. Compact successes permit an independent
+    current-index expansion and canonical hash check; raw schema flags remain
+    explicitly identified as recorded observations, including rejected outputs.
+    No raw errors, unknown names, query text or source text are exported.
+    """
+    rid = request_id(attempt['context'])
+    compact = job['compact_plan']
+    observation = attempt.get('wire_output')
+    review = {
+        'request_id': rid, 'arm': job['arm'],
+        'canonical_plan_present': attempt.get('plan') is not None,
+        'output_sha256_kind': 'locally_expanded_canonical_json' if compact else 'raw_provider_content',
+        'raw_wire_schema_independently_reparsed': False,
+        'canonical_expansion_independently_checked': False,
+        'canonical_output_hash_independently_checked': False,
+        'raw_schema_diagnostic_source': 'gateway_raw_wire_observer' if compact else 'raw_provider_plan_observer',
+    }
+    reviews.append(review)
+    if not compact:
+        check(checks, 'canonical_arm_preserves_original_observation_shape:' + rid,
+              'wire_output' not in attempt)
+        observed = attempt.get('schema_observation')
+        review['recorded_raw_wire_schema_valid'] = (
+            observed.get('syntactic_valid') if type(observed) is dict
+            and type(observed.get('syntactic_valid')) is bool else None)
+        output_hash = attempt.get('output_sha256')
+        if output_hash is not None:
+            check(checks, 'canonical_arm_recorded_raw_output_hash_shape:' + rid, hash_shape(output_hash))
+            review['recorded_raw_output_sha256'] = output_hash if hash_shape(output_hash) else None
+        return
+    check(checks, 'compact_arm_raw_observation_field_present:' + rid, 'wire_output' in attempt)
+    if observation is None:
+        check(checks, 'unobserved_raw_never_claimed_as_valid_or_expanded:' + rid,
+              attempt.get('plan') is None and 'schema_observation' not in attempt
+              and 'output_sha256' not in attempt)
+        review['recorded_raw_wire_schema_valid'] = None
+        review['recorded_raw_observation_available'] = False
+        if send is not None and send.get('finish_reason') == 'length':
+            check(checks, 'length_rejected_before_compact_expansion:' + rid,
+                  attempt['error_code'] == 'ProviderResponseInvalid')
+        return
+    check(checks, 'compact_observation_is_safe_allowlist_only:' + rid,
+          type(observation) is dict and set(observation) == WIRE_OBSERVATION_FIELDS)
+    if type(observation) is not dict:
+        return
+    check(checks, 'compact_raw_observation_identity_and_fixed_metadata:' + rid,
+          observation.get('request_id') == rid and observation.get('schema_version') == 1
+          and observation.get('wire_format') == 'grounded-indexed-plan-v1')
+    raw_hash, byte_count = observation.get('raw_output_sha256'), observation.get('raw_utf8_bytes')
+    check(checks, 'compact_raw_hash_and_byte_count_shape:' + rid,
+          hash_shape(raw_hash) and type(byte_count) is int and 0 < byte_count <= 262144)
+    if send is not None:
+        check(checks, 'compact_raw_bytes_match_observed_provider_content:' + rid,
+              byte_count == send.get('content_utf8_bytes') and send.get('finish_reason') == 'stop')
+    wire_valid, binding_valid = observation.get('wire_schema_valid'), observation.get('canonical_binding_valid')
+    rejection = observation.get('rejection_code')
+    indices, count = observation.get('selected_indexes'), observation.get('sources_count')
+    safe_indices = type(indices) is list and len(indices) <= 8 and all(
+        type(index) is int and 0 <= index < 100 for index in indices)
+    check(checks, 'compact_observation_values_are_bounded_and_allowlisted:' + rid,
+          type(wire_valid) is bool and type(binding_valid) is bool
+          and observation.get('json_shape') in {'object', 'other', 'invalid'}
+          and observation.get('decision') in DECISIONS | {None}
+          and rejection in BINDING_CODES | {'invalid_grounded_plan', None}
+          and (indices is None or safe_indices)
+          and (count is None or type(count) is int and 0 <= count <= 262144)
+          and type(observation.get('unexpected_field_count')) is int
+          and 0 <= observation['unexpected_field_count'] <= 262144)
+    review.update(
+        recorded_raw_observation_available=True,
+        recorded_raw_output_sha256=raw_hash if hash_shape(raw_hash) else None,
+        recorded_raw_utf8_bytes=byte_count if type(byte_count) is int else None,
+        recorded_raw_wire_schema_valid=wire_valid if type(wire_valid) is bool else None,
+        recorded_canonical_binding_valid=binding_valid if type(binding_valid) is bool else None,
+        recorded_rejection_code=rejection if rejection in BINDING_CODES | {'invalid_grounded_plan'} else None,
+        selected_indexes=indices if safe_indices else None,
+    )
+    if not binding_valid:
+        check(checks, 'rejected_compact_wire_has_no_local_canonical_output:' + rid,
+              attempt.get('plan') is None and 'schema_observation' not in attempt
+              and 'output_sha256' not in attempt
+              and (wire_valid is False and rejection == 'invalid_grounded_plan'
+                   or wire_valid is True and rejection in BINDING_CODES))
+        return
+    check(checks, 'expanded_compact_has_valid_raw_record_and_canonical_plan:' + rid,
+          wire_valid is True and rejection is None and attempt.get('plan') is not None)
+    try:
+        plan = pinned.GroundedPlan.model_validate(attempt['plan'])
+        wire = {'context_sha256': plan.context_sha256, 'decision': plan.decision}
+        if plan.decision == 'retrieve_more':
+            wire['retrieval_queries'] = list(plan.retrieval_queries)
+            check(checks, 'retrieve_more_raw_observation_has_no_source_field:' + rid,
+                  indices is None and count is None)
+        else:
+            wire['sources'] = indices
+            check(checks, 'source_index_count_matches_canonical_source_count:' + rid,
+                  safe_indices and len(indices) == count == len(plan.sources))
+            if plan.decision == 'ask':
+                wire['question_name'] = plan.question_name
+        expanded = pinned.expand_compact_plan(json.dumps(wire), request)
+        expansion_matches = expanded.model_dump(mode='json') == attempt['plan']
+        output_hash_matches = sha(expanded.model_dump_json().encode()) == attempt.get('output_sha256')
+        check(checks, 'independent_current_index_expansion_exact:' + rid, expansion_matches)
+        check(checks, 'independent_expanded_canonical_output_hash:' + rid, output_hash_matches)
+        check(checks, 'raw_and_expanded_hashes_have_distinct_meanings:' + rid,
+              hash_shape(attempt.get('output_sha256')) and raw_hash != attempt['output_sha256'])
+        check(checks, 'downstream_schema_observation_is_canonical_success:' + rid,
+              attempt.get('schema_observation', {}).get('syntactic_valid') is True)
+        review['canonical_expansion_independently_checked'] = expansion_matches
+        review['canonical_output_hash_independently_checked'] = output_hash_matches
+    except (ValueError, TypeError, KeyError, AttributeError, RecursionError):
+        check(checks, 'independent_current_index_expansion_exact:' + rid, False)
+
+
+def bundle_digest(value):
+    return sha(json.dumps(value, sort_keys=True, ensure_ascii=False).encode())
+
+
+def fixed_sources(method, frozen_inputs, checks, pinned):
+    packet=json.loads(frozen_inputs[PARENT + '/source-packet-v1.json'])
+    text=packet['raw_source']['raw_text']
+    raw=text.encode('utf-8')
+    check(checks,'complete_official_guide_raw_hash_and_size',
+          sha(raw)=='b1c5a760e61d213f294297fae055bae52e25b0d296761fd1c533cf282246b8c6'
+          and len(raw)==15170 and len(text)==15158)
+    check(checks,'packet_explicit_answer_linked_fixture_only_not_RAG',
+          packet['boundaries']['answer_informed_exposed_dev'] is True
+          and packet['boundaries']['official_guide_is_answer_linked'] is True
+          and packet['boundaries']['corpus_ingestion_allowed'] is False
+          and packet['boundaries']['real_RAG_index_changed'] is False
+          and packet['boundaries']['held_out_test_eligible'] is False
+          and packet['boundaries']['actual_search'] is False)
+    records=packet['source_records']
+    check(checks,'exactly_two_added_whole_guide_records',len(records)==2)
+    expected=((1637,3780,'414347d4b9eef71e0b7d2711a84f4037eea0e98870e09b7f5c3c531610019039'),
+              (12538,15157,'91538e2afe431f10f17ce6e0ca3a6c996007e5db90a39abe3d3276f132c7e349'))
+    added=[]
+    for index,(record,(start,end,digest_)) in enumerate(zip(records,expected,strict=True)):
+        hit=pinned.EvidenceHit.model_validate(record['hit'])
+        check(checks,'exact_full_paragraph_bytes_hash_and_unknown_version:'+str(index),
+              hit.excerpt==text[start:end] and sha(hit.excerpt.encode())==digest_
+              and not hit.applicable_versions
+              and hit.source_commit=='695e6ce2fb1b23afc6df66b40420ab0013ad72fd'
+              and record['span']=={'unit':'unicode_codepoint','start':start,'end':end}
+              and hit.source_url==packet['raw_source']['pinned_source_url']
+              and hit.source_span==f'unicode_codepoint[{start}:{end}); raw_utf8_sha256=b1c5a760e61d213f294297fae055bae52e25b0d296761fd1c533cf282246b8c6'
+              and record['excerpt_utf8_sha256']==digest_
+              and record['normalized_evidence_sha256']==pinned.source_content_sha256(hit))
+        added.append(hit)
+    evidence=json.loads(frozen_inputs['data/evaluation/dev-three-v1/evidence-v1.json'])
+    return packet,tuple(added),evidence
+
+
+def expected_fixed_bundle_for(job,fixture,turn_id,evidence,added,pinned):
+    turn=next(turn for turn in fixture['turns'] if turn['id']==turn_id)
+    bundle=pinned.EvidenceBundle.model_validate(evidence['evidence_bundles'][turn['evidence_bundle']])
+    if job['case_id']=='dev-case-c' and job['evidence_condition']=='fixed_guide_added':
+        bundle=pinned.EvidenceBundle.model_validate({**bundle.model_dump(),'hits':(*bundle.hits,*added)})
+    return bundle
+
+
+def expected_bundle_for(job,fixture,turn_id,evidence,added,pinned):
+    fixed=expected_fixed_bundle_for(job,fixture,turn_id,evidence,added,pinned)
+    hits=fixed.hits
+    if job['evidence_order']=='rotate_left_one' and len(hits)>1:
+        hits=(*hits[1:],hits[0])
+    return pinned.EvidenceBundle.model_validate({**fixed.model_dump(),'hits':hits})
+
+
+def audit_controlled_bundle(checks,reviews,rid,current,bundle,job,pinned):
+    version=next((f.value for f in current.case.facts if f.name.casefold()=='streamlit_version'
+                  and f.status=='active' and f.provenance_kind=='user'),None)
+    hits=tuple(hit for hit in bundle.hits if not hit.applicable_versions or version in hit.applicable_versions)
+    expected=bundle.model_copy(update={'hits':hits,'retrieval_round':current.evidence.retrieval_round})
+    matches=expected.model_dump(mode='json')==current.evidence.model_dump(mode='json')
+    check(checks,'exact_registered_fixed_records_then_current_USER_scope:'+rid,matches)
+    check(checks,'no_packing_clipping_or_mutated_record:'+rid,
+          all(hit==next(original for original in bundle.hits if original.chunk_id==hit.chunk_id)
+              for hit in current.evidence.hits))
+    capacity=pinned.source_capacity(current,source_gap_handoff=True,source_gap_investigation=True)
+    reviews.append({'request_id':rid,'arm':job['arm'],'case_id':job['case_id'],
+                    'fixture_hits':len(bundle.hits),'actual_current_hits':len(current.evidence.hits),
+                    'actual_model_bundle_reconstructed':matches,'current_user_version':version,
+                    'source_capacity_advertised_bound':capacity,'whole_current_bundle_utf8_bytes':len(current.evidence.model_dump_json().encode()),
+                    'guide_version_applicability':'unconfirmed; no exact1.31 inference',
+                    'actual_search':False,'semantic_support_or_usefulness_certified':False})
+
+
+def turn_inventory(receipt, fixtures, checks, pinned):
+    """Derive coverage from all registered turns, not successful outputs alone."""
+    method = receipt['method']
+    batches = {batch['batch_id']: batch for batch in receipt['batches']}
+    check(checks, 'actual_batch_ids_unique_and_registered',
+          len(batches) == len(receipt['batches'])
+          and set(batches) <= {batch['batch_id'] for batch in method['batches']})
+    inventory = []
+    for registered in method['batches']:
+        actual = batches.get(registered['batch_id'])
+        jobs = {job['job_id']: job for job in actual['jobs']} if actual else {}
+        check(checks, 'actual_job_ids_unique_and_registered:' + registered['batch_id'],
+              len(jobs) == (len(actual['jobs']) if actual else 0)
+              and set(jobs) <= {job['job_id'] for job in registered['jobs']})
+        for planned in registered['jobs']:
+            job = jobs.get(planned['job_id'])
+            fixture = fixtures[planned['case_id']]
+            actual_steps = [step for step in job['steps'] if 'request' in step] if job else []
+            steps = {step['turn']: step for step in actual_steps}
+            check(checks, 'actual_turn_ids_unique_and_registered:' + planned['job_id'],
+                  len(steps) == len(actual_steps)
+                  and set(steps) <= {turn['id'] for turn in fixture['turns']})
+            for turn in fixture['turns']:
+                step = steps.get(turn['id'])
+                status = 'unvisited' if step is None else 'no_fresh_proposal'
+                decision = None
+                proposal = step.get('proposal') if step else None
+                if proposal and proposal.get('review_handoff'):
+                    if (proposal.get('stale') is False
+                            and proposal['case_revision'] == step['request']['expected_revision'] + 1):
+                        status = 'fresh_proposal'
+                        handoff = pinned.validate_handoff(
+                            pinned.ProposalHandoff.model_validate(proposal['review_handoff']))
+                        check(checks, 'fresh_handoff_case_revision_analysis_identity:' + planned['job_id'] + ':' + turn['id'],
+                              handoff.case.case_id == proposal['case_id'] == planned['case_id']
+                              and handoff.case.case_revision == proposal['case_revision']
+                              and handoff.proposal_id == proposal['proposal_id']
+                              and handoff.analysis.model_dump(mode='json') == proposal['analysis'])
+                        decision = handoff.analysis.decision
+                    else:
+                        status = 'stale_observation'
+                releases=step.get('released_outputs',[]) if step else []
+                check(checks,'released_text_keeps_current_original_or_edited_draft:'+planned['job_id']+':'+turn['id'],
+                      type(releases) is list
+                      and (not releases or status=='fresh_proposal')
+                      and all(output.get('role')=='assistant'
+                              and output.get('decision')==(step.get('edited_proposal') or proposal)['analysis']['decision']
+                              and output.get('text')==(step.get('edited_proposal') or proposal)['analysis']['user_draft']
+                              for output in releases))
+                inventory.append({
+                    'job_id': planned['job_id'], 'case_id': planned['case_id'],
+                    'round': planned['round'], 'arm': planned['arm'],
+                    'stage': 'controlled_evidence', 'turn_id': turn['id'],
+                    'status': status, 'decision': decision,
+                    'released_output_count':len(releases),
+                    'released_output_sha256':[sha(output['text'].encode()) for output in releases],
+                    'edited_output_count':sum(output.get('edited') is True for output in releases),
+                })
+    return inventory
+
+
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--output', type=Path, default=OUT / 'source-order-cost-review-v2.json')
+    parser.add_argument('--source-commit', required=True)
+    parser.add_argument('--receipt-sha256', required=True)
+    args = parser.parse_args()
+    if not re.fullmatch(r'[0-9a-f]{40}', args.source_commit) or not hash_shape(args.receipt_sha256):
+        raise ValueError('AuditExecutionBindingRejected')
+    if not args.output.resolve().is_relative_to(OUT.resolve()) or args.output.resolve().is_relative_to(ROOT.resolve()):
+        raise ValueError('AuditPrivateOutputRequired')
+    if args.output.exists():
+        raise ValueError('AuditOutputAlreadyExists')
+    checks, wire_reviews, pre_dispatch, unaccounted, native_reviews = [], [], [], [], []
+    output_reviews, candidate_reviews = [], []
+    raw = (PRIVATE / 'receipt.json').read_bytes()
+    if sha(raw) != args.receipt_sha256:
+        raise ValueError('AuditReceiptBindingRejected')
+    receipt = json.loads(raw)
+    method, registration = receipt['method'], receipt['registration']
+    source = registration['source_commit']
+    if source != args.source_commit:
+        raise ValueError('AuditExecutionBindingRejected')
+    pinned = pinned_helpers(source)
+    method_raw = (ROOT / FOLDER / 'live-method-v1.json').read_bytes()
+    check(checks, 'frozen_method_exact_embedded_bytes', sha(method_raw) == registration['method_sha256']
+          and method_raw == (json.dumps(method, ensure_ascii=False, indent=2) + '\n').encode())
+    check(checks, 'source_registration_and_end_match', source == receipt['source_after']['source_commit']
+          and registration['source_hashes'] == receipt['source_after']['source_hashes']
+          and receipt['source_unchanged'] is True)
+    check(checks, 'registration_is_original_file', json.loads((PRIVATE / 'registration.json').read_bytes()) == registration)
+    frozen_inputs = {}
+    for name, pin in {**registration['source_hashes'], **method['input_pins']}.items():
+        archived = subprocess.check_output(['git', 'show', f'{source}:{name}'], cwd=ROOT)
+        frozen_inputs[name] = archived
+        check(checks, 'paid_commit_pin:' + name, sha(archived) == pin)
+    for name, pin in registration['source_hashes'].items():
+        if name.startswith('src/agent_app/'):
+            check(checks, 'wire_audit_helper_loaded_from_paid_source:' + name,
+                  sha((pinned.root / name).read_bytes()) == pin)
+    check(checks,'controlled_evidence_campaign_identity',
+          method['protocol_id']==receipt['protocol_id']=='core-source-order-model-v1'
+          and method['experiment_id']=='core-source-order-2026-10-15-v1'
+          and method['authorization_ref']=='user-2026-10-15-complementary-selection-order-diagnostic')
+    check(checks,'exact6pairs12jobs24turns48freshslots',len(method['batches'])==6
+          and sum(len(b['jobs']) for b in method['batches'])==12
+          and len(method['fresh_request_ids'])==len(set(method['fresh_request_ids']))==48
+          and method['scope_cap_usd']=='0.06' and method['campaign_scope_cap_usd']=='0.36')
+    check(checks,'no_real_RAG_or_final_quality_claim',method['real_RAG_retrieval'] is False
+          and receipt['real_RAG_retrieval'] is False
+          and method['controlled_fixed_evidence'] is True and receipt['controlled_fixed_evidence'] is True
+          and method['answer_linked_guide_fixture_only'] is True and receipt['answer_linked_guide_fixture_only'] is True
+          and receipt['held_out_test'] is False and receipt['human_usefulness'] is None)
+    protocol_name=FOLDER+'/protocol-v1.json'
+    protocol=json.loads(frozen_inputs[protocol_name])
+    check(checks,'exact_prospective_protocol_preserved_before_implementation',
+          sha(frozen_inputs[protocol_name])=='2ec9f8b3f0adfc7bf889b05ffa6aacad996f661d9f90c42c0bed99ade7910bee'
+          and frozen_inputs[protocol_name]==subprocess.check_output(['git','show','1aebc34:'+protocol_name],cwd=ROOT)
+          and subprocess.run(['git','merge-base','--is-ancestor','1aebc34',source],cwd=ROOT,capture_output=True).returncode==0
+          and method['treatment_protocol']==protocol)
+    parent_name=protocol['parent']['receipt_path']
+    check(checks,'negative_closed_parent_and_original_source_packet_preserved',
+          sha(frozen_inputs[parent_name])==protocol['parent']['receipt_sha256']
+          and sha(frozen_inputs[PARENT+'/source-packet-v1.json'])==protocol['parent']['source_packet_sha256']
+          and sha(frozen_inputs[PARENT+'/protected-inputs-v1.json'])==protocol['parent']['protected_inputs_sha256']
+          and protocol['negative_parent']['receipt_path']==parent_name
+          and protocol['negative_parent']['receipt_sha256']==protocol['parent']['receipt_sha256']
+          and protocol['negative_parent']['no_quality_gain_demonstrated'] is True)
+    negative_protocol_name=protocol['negative_parent']['protocol_path']
+    negative_protocol=json.loads(frozen_inputs[negative_protocol_name])
+    check(checks,'negative_parent_protocol_not_rewritten',
+          sha(frozen_inputs[negative_protocol_name])=='1c698261830ed17f79dcfb80c821746ae8cf5fb2c8bfe819db36e473174b9cea')
+    parent_method=json.loads(subprocess.check_output(['git','show',source+':experiments/core_complementary_sources_v1/live-method-v1.json'],cwd=ROOT))
+    check(checks,'no_closed_parent_identity_reuse',
+          not set(method['fresh_request_ids']) & set(parent_method['fresh_request_ids'])
+          and not set(method['fresh_scope_ids']) & set(parent_method['fresh_scope_ids']))
+    protected=json.loads(frozen_inputs[PARENT+'/protected-inputs-v1.json'])
+    check(checks,'all19protected_inputs_and_guide_still_excluded_from_real_RAG',
+          method['protected_files']==protected['files'] and len(protected['files'])==19
+          and protected['answer_linked_guide_absent_from_index'] is True
+          and protected['real_index_source_count']==18 and protected['real_index_chunk_count']==36)
+    for name,digest_ in protected['files'].items():
+        target=(ROOT/name).resolve()
+        check(checks,'protected_index_original_fixture_or_exclusion_file:'+name,
+              target.is_relative_to(ROOT.resolve()) and sha(target.read_bytes())==digest_)
+    binding=protected['real_index_binding']
+    manifest_path=Path(binding['path'])/'pilot-manifest.json'
+    manifest_raw=manifest_path.read_bytes();manifest=json.loads(manifest_raw)
+    check(checks,'real_RAG_manifest_and_guide_exclusion_still_exact',
+          sha(manifest_raw)==binding['manifest_sha256']
+          and manifest['snapshot_id']==binding['snapshot_id']
+          and all('custom-classes' not in item['source_id'] for item in manifest['corpus']['sources']))
+    initial=json.loads(frozen_inputs[PARENT+'/offline-boundary-initial-v1.json'])
+    final=json.loads(frozen_inputs[PARENT+'/offline-boundary-review-v1.json'])
+    fresh_offline=json.loads(frozen_inputs[FOLDER+'/offline-replay-v1.json'])
+    prep=json.loads(frozen_inputs[FOLDER+'/semantic-review-preparation-v1.json'])
+    original_diagnosis_counts={'initial_accepted':initial['accepted'],'final_accepted':final['accepted'],
+        'initial_permitted_violations':initial['permitted_bound_violations'],
+        'final_permitted_violations':final['permitted_bound_violations'],
+        'all_subsets':final['all_subset_rows'],'preserved_actual_render_rejections':final['actual_renderer_rejections']}
+    check(checks,'original_overflow_and_accepted_capacity_preflight_not_hidden',
+          initial['accepted'] is False and final['accepted'] is True
+          and initial['source_capacity'] is False and final['source_capacity'] is True
+          and initial['actual_sends']==final['actual_sends']==0
+          and initial['actual_search'] is False and final['actual_search'] is False
+          and final['permitted_bound_violations']==0
+          and initial['actual_renderer_rejections']==final['actual_renderer_rejections']==2)
+    check(checks,'new_readiness_and_semantic_review_registered_not_model_scores',
+          fresh_offline['accepted'] is True and type(fresh_offline['actual_sends']) is int
+          and fresh_offline['actual_sends']==0 and fresh_offline['historical_contexts']==24
+          and fresh_offline['common_prompt'] is True and fresh_offline['common_SYSTEM_policy'] is True
+          and fresh_offline['complete_record_set_unchanged'] is True
+          and fresh_offline['ordered_USER_payload_and_context_may_differ'] is True
+          and fresh_offline['human_usefulness'] is None and fresh_offline['held_out_test'] is False
+          and prep['protocol_sha256']==sha(frozen_inputs[protocol_name])
+          and prep['parent_receipt_sha256']==protocol['parent']['receipt_sha256']
+          and prep['source_packet_sha256']==protocol['parent']['source_packet_sha256']
+          and prep['complete_criteria']==protocol['prospective_outcomes']
+          and prep['scenarios_before_model']==protocol['scenarios_before_model'])
+    actual_ids, scope_ids = set(method['fresh_request_ids']), set(method['fresh_scope_ids'])
+    fixtures = {}
+    for name in method['input_pins']:
+        if name.startswith('data/evaluation/dev-three-v1/cases/'):
+            fixture = json.loads(frozen_inputs[name])
+            fixtures[fixture['case']['case_id']] = fixture
+    planned_slots = {}
+    for batch in method['batches']:
+        check(checks,'same_fixed_guide_set_common_prompt_only_order_differs:'+batch['batch_id'],
+              batch['kind']=='controlled_evidence' and len(batch['jobs'])==2
+              and {job['arm'] for job in batch['jobs']}=={'original_order','rotate_left_one'}
+              and all(job['source_capacity'] is True and job['grounded_json_object'] is True
+                      and job['concise_user_draft'] is True and job['ask_source_background'] is True
+                      and job['compact_plan'] is True and job['source_selection_reminder'] is True
+                      and job['decision_contracts'] is True and job['resource_guidance'] is False
+                      and job['repair_repeated_queries'] is False
+                      and job['input_token_reserve']==32768 and job['max_output_tokens']==1024
+                      and 'retrieval_profile' not in job
+                      and job['evidence_condition']=='fixed_guide_added'
+                      and type(job['complementary_sources']) is bool
+                      and job['complementary_sources'] is False and job['evidence_order']==job['arm']
+                      for job in batch['jobs']))
+        check(checks,'scope_fits_actual_config_bound:'+batch['batch_id'],len(batch['scope_id'])<=64)
+        slots = []
+        for job in batch['jobs']:
+            fixture = fixtures[job['case_id']]
+            for revision, turn in enumerate(fixture['turns'], 1):
+                identity = f"{method['experiment_id']}:{job['job_id']}:{fixture['fixture_id']}:{job['case_id']}:{turn['id']}"
+                run_id = str(uuid5(NAMESPACE_URL, identity))
+                for attempt in (1, 2):
+                    context = {'run_id': run_id, 'case_id': job['case_id'], 'case_revision': revision, 'attempt_index': attempt}
+                    slots.append({'request_id': request_id(context), 'run_id': run_id,
+                                  'case_id': job['case_id'], 'case_revision': revision, 'attempt': attempt,
+                                  'model': 'gpt-4o-mini', 'phase': 'development',
+                                  'input_token_reserve': 32768, 'max_output_tokens': 1024, 'amount_usd': RESERVE})
+        check(checks, 'exact_slot_registration:' + batch['batch_id'], len(slots) == batch['max_request_slots'] == 8
+              and sha(json.dumps(slots, default=str, sort_keys=True).encode()) == batch['request_slots_sha256']
+              and sum(slot['amount_usd'] for slot in slots) == Decimal(batch['worst_reserved_usd']))
+        planned_slots[batch['scope_id']] = slots
+    check(checks, 'planned_ids_exact48_registered', [s['request_id'] for b in method['batches']
+          for s in planned_slots[b['scope_id']]] == method['fresh_request_ids'])
+    packet,added,evidence = fixed_sources(method,frozen_inputs,checks,pinned)
+    planned_turn_rows=turn_inventory(receipt,fixtures,checks,pinned)
+    check(checks,'actual_batches_are_registered_prefix',
+          [b['batch_id'] for b in receipt['batches']]==[b['batch_id'] for b in method['batches'][:len(receipt['batches'])]])
+
+    with closing(connection(BEFORE)) as old, closing(connection(CURRENT)) as new:
+        check(checks, 'full_14_table_schema_equal', schema(old) == schema(new))
+        prior_tables = {item['name']: rows(old, item['name']) for item in schema(old) if item['type'] == 'table'}
+        check(checks, 'backup_journal_equals_frozen_method', journal(old) == method['ledger_journal_before'])
+        for name, prior in prior_tables.items():
+            current = {row['audit_rowid']: row for row in rows(new, name)}
+            check(checks, 'all_prior_rows_preserved:' + name,
+                  all(current.get(row['audit_rowid']) == row for row in prior), {'prior_rows': len(prior)})
+            extra = [row for rid, row in current.items() if rid not in {row['audit_rowid'] for row in prior}]
+            key = ALLOWED_ADDITIONS.get(name)
+            check(checks, 'new_rows_only_owned:' + name, not extra or key is not None
+                  and all(row[key] in (actual_ids if key == 'request_id' else scope_ids)
+                          and ('request_id' not in row or row['request_id'] in actual_ids) for row in extra))
+        old_res = {row['request_id']: dict(row) for row in old.execute('SELECT * FROM reservations')}
+        current_res = {row['request_id']: dict(row) for row in new.execute('SELECT * FROM reservations')}
+        check(checks, 'frozen_backup565_settled2_uncertain14_tables', len(old_res) == 567 and len(prior_tables) == 14
+              and Counter(row['status'] for row in old_res.values()) == {'settled': 565, 'uncertain': 2})
+        new_res = {rid: row for rid, row in current_res.items() if rid not in old_res}
+        for rid, row in old_res.items():
+            check(checks, 'prior_reservation_exact:' + rid, current_res.get(rid) == row)
+        check(checks, 'all_new_reservations_in_fresh_registered_slots', set(new_res) <= actual_ids)
+        meta_old = dict(old.execute('SELECT * FROM ledger_meta').fetchone())
+        meta_new = dict(new.execute('SELECT * FROM ledger_meta').fetchone())
+        check(checks, 'same_halt_and4_50_ceiling', meta_old == meta_new and meta_new['halted'] == 1
+              and meta_new['limit_nanos'] == 4500000000)
+        old_unknown = {rid: row for rid, row in old_res.items() if row['status'] == 'uncertain'}
+        check(checks, 'both_old_uncertain_holds_exact', len(old_unknown) == 2
+              and all(current_res.get(rid) == row for rid, row in old_unknown.items()))
+        check(checks, 'no_pending_reservations_after_completion', not any(row['status'] == 'reserved' for row in current_res.values()))
+        current_scopes = {row['authorization_id']: dict(row) for row in new.execute('SELECT * FROM quarantine_scopes')}
+        old_scope_ids = {row['authorization_id'] for row in old.execute('SELECT * FROM quarantine_scopes')}
+        actual_scopes = set(current_scopes) - old_scope_ids
+        batch_scopes = {batch['scope_id'] for batch in receipt['batches']}
+        check(checks, 'exact_visited_owned_scopes', actual_scopes == batch_scopes and actual_scopes <= scope_ids)
+        unused_claimed, used_slots = 0, 0
+        for batch in receipt['batches']:
+            sid, scope = batch['scope_id'], current_scopes[batch['scope_id']]
+            breg = json.loads((PRIVATE / batch['batch_id'] / 'registration.json').read_bytes())
+            check(checks, 'scope_digest_and_owner:' + sid, sha(json.dumps(breg, sort_keys=True).encode()) == scope['protocol_sha256']
+                  and breg['method_sha256'] == registration['method_sha256'] and breg['source_commit'] == source
+                  and breg['source_hashes'] == registration['source_hashes']
+                  and scope['authorization_ref'] == method['authorization_ref'])
+            check(checks, 'scope_cap_full_context_and_terminal:' + sid, scope['cap_nanos'] == 60000000
+                  and scope['held_nanos'] == sum(row['amount_nanos'] for row in old_unknown.values())
+                  and scope['max_requests'] == len(planned_slots[sid]) and scope['terminal_status'] in {'closed', 'revoked'}
+                  and json.loads(scope['unknown_binding']) == {
+                      'ids': method['quarantine_before']['unknown_ids'],
+                      'fingerprints': method['quarantine_before']['unknown_fingerprints'], 'full_context': True})
+            base = {k: v for k, v in scope.items() if k not in {
+                'recorded_at', 'registration_fingerprint', 'terminal_status', 'terminal_reason', 'terminal_fingerprint'}}
+            check(checks, 'scope_registration_fingerprint:' + sid, digest(base) == scope['registration_fingerprint'])
+            check(checks, 'scope_terminal_fingerprint:' + sid, digest({
+                'authorization_id': sid, 'registration_fingerprint': scope['registration_fingerprint'],
+                'terminal_status': scope['terminal_status'], 'terminal_reason': scope['terminal_reason']}) == scope['terminal_fingerprint'])
+            slots = [dict(row) for row in new.execute(
+                'SELECT * FROM quarantine_scope_slots WHERE authorization_id=? ORDER BY slot_index', (sid,))]
+            expected = planned_slots[sid]
+            check(checks, 'scope_has_all_immutable_registered_slots:' + sid, len(slots) == len(expected))
+            for index, (row, slot) in enumerate(zip(slots, expected)):
+                check(checks, 'slot_exact:' + sid + ':' + str(index),
+                      {k: v for k, v in row.items() if k not in {'authorization_id', 'slot_index', 'amount_nanos'}}
+                      == {k: v for k, v in slot.items() if k != 'amount_usd'}
+                      and row['slot_index'] == index and row['amount_nanos'] == int(RESERVE * 1000000000))
+            check(checks, 'slots_fingerprint:' + sid, digest([{**slot, 'amount_usd': int(RESERVE * 1000000000)}
+                  for slot in expected]) == scope['slots_fingerprint'])
+            used = {row['request_id'] for row in new.execute(
+                'SELECT * FROM quarantine_scope_requests WHERE authorization_id=?', (sid,))}
+            check(checks, 'used_slots_equal_actual_reservations:' + sid,
+                  used == {slot['request_id'] for slot in expected if slot['request_id'] in new_res})
+            events = [dict(row) for row in new.execute(
+                'SELECT * FROM quarantine_scope_events WHERE authorization_id=? ORDER BY event_id', (sid,))]
+            check(checks, 'owned_scope_authorized_then_terminal:' + sid, len(events) == 2
+                  and events[0]['status'] == 'authorized' and events[0]['reason_code'] == 'UserAuthorizedQuarantineScope'
+                  and events[1]['status'] == scope['terminal_status'] and events[1]['reason_code'] == scope['terminal_reason'])
+            used_slots += len(used)
+            unused_claimed += len(slots) - len(used)
+
+        all_attempt_ids, all_send_ids, total = [], [], Decimal(0)
+        common_system_digests=set()
+        initial_order_pairs=[]
+        actual_source_position_rows=[]
+        for batch in receipt['batches']:
+            declared = next(item for item in method['batches'] if item['batch_id'] == batch['batch_id'])
+            sends = {row['request_id']: row for row in batch['provider_sends']}
+            usage_rows = {row['request_id']: row for row in batch['accounting']['requests']}
+            jobs = {run: job for job in batch['jobs'] for run in job['run_ids']}
+            for job in batch['jobs']:
+                original = next(item for item in declared['jobs'] if item['job_id'] == job['job_id'])
+                check(checks, 'actual_job_keeps_registered_retrieval_package:' + job['job_id'],
+                      all(job.get(key) == original.get(key) for key in (
+                          'case_id', 'arm', 'round', 'compact_plan', 'source_capacity',
+                          'resource_guidance', 'repair_repeated_queries', 'decision_contracts',
+                          'source_selection_reminder', 'max_output_tokens', 'input_token_reserve',
+                          'retrieval_candidate_multiplier', 'retrieval_selection_policy',
+                          'record_native_candidates', 'evidence_utf8_budget_bytes',
+                          'ask_source_background', 'retrieval_profile', 'grounded_json_object', 'concise_user_draft',
+                          'complementary_sources', 'evidence_condition', 'evidence_order')))
+            for record in batch['actual_fixed_evidence_calls']:
+                job=next(job for job in declared['jobs'] if job['case_id']==record['case_id'] and job['arm']==record['arm'] and job['job_id']==record['job_id'])
+                bundle=expected_bundle_for(job,fixtures[job['case_id']],record['turn_id'],evidence,added,pinned)
+                tag=f"{batch['batch_id']}:{job['job_id']}:{record['turn_id']}:{record['fixed_supplier_call']}"
+                check(checks,'actual_fixed_supplier_never_claims_search:'+tag,
+                      record['actual_search'] is False and record['evidence_condition']=='fixed_guide_added'
+                      and record['evidence_order']==job['evidence_order']
+                      and 1<=record['fixed_supplier_call']<=2
+                      and 1<=len(record['requested_queries'])<=2 and record['requested_top_k']==5
+                      and record['snapshot_id']==bundle.snapshot_id)
+                fixed=expected_fixed_bundle_for(job,fixtures[job['case_id']],record['turn_id'],evidence,added,pinned)
+                check(checks,'actual_uniform_rotation_exact_complete_record_SET:'+tag,
+                      record['fixed_bundle_sha256']==bundle_digest(fixed.model_dump(mode='json'))
+                      and record['fixed_chunk_ids']==[hit.chunk_id for hit in fixed.hits]
+                      and record['same_complete_record_set'] is True
+                      and sorted(bundle_digest(hit.model_dump(mode='json')) for hit in fixed.hits)
+                      ==sorted(bundle_digest(hit.model_dump(mode='json')) for hit in bundle.hits))
+                check(checks,'complete_fixed_bundle_hash_and_hit_order:'+tag,
+                      record['returned_bundle_sha256']==bundle_digest(bundle.model_dump(mode='json'))
+                      and record['returned_chunk_ids']==[hit.chunk_id for hit in bundle.hits])
+                candidate_reviews.append({'fixed_supplier_id':tag,'arm':job['arm'],'case_id':job['case_id'],
+                                          'returned_hit_count':len(bundle.hits),'actual_search':False,
+                                          'job_id':job['job_id'],'evidence_condition':record['evidence_condition']})
+            for attempt in batch['attempts']:
+                context, request = attempt['context'], attempt['request']
+                rid = request_id(context)
+                all_attempt_ids.append(rid)
+                job = jobs[context['run_id']]
+                current = pinned.GroundedRequest.model_validate(request)
+                ctx = pinned.ReasoningContext.model_validate(context)
+                config = pinned.MetisConfig(
+                    api_key='public-offline-audit-placeholder', response_mode='grounded_plan',
+                    grounded_decision_contracts=True, grounded_source_selection_reminder=True,
+                    grounded_source_gap_handoff=True, grounded_source_gap_investigation=True,
+                    grounded_source_capacity=True, grounded_resource_guidance=False,
+                    grounded_complementary_sources=job['complementary_sources'],
+                    grounded_compact_plan=job['compact_plan'], grounded_json_object=job['grounded_json_object'], input_token_reserve=32768,
+                    max_output_tokens=1024,
+                )
+                messages = pinned.configured_grounded_messages(config, current, ctx)
+                common_system_digests.add(sha(messages[0]['content'].encode()))
+                check(checks,'actual_common_SYSTEM_no_complementary_prompt_treatment:'+rid,
+                      job['complementary_sources'] is False
+                      and config.grounded_complementary_sources is False
+                      and pinned.COMPLEMENTARY_SOURCE_POLICY not in messages[0]['content'])
+                audit_output(checks, output_reviews, attempt, current, job, sends.get(rid), pinned)
+                wire = sha(json.dumps(list(messages), ensure_ascii=False, sort_keys=True).encode())
+                byte_bound = len(json.dumps(messages, ensure_ascii=False).encode()) + 1024
+                fixture=fixtures[job['case_id']]
+                turn = fixture['turns'][context['case_revision'] - 1]['id']
+                current_turn=fixture['turns'][context['case_revision']-1]
+                expected_facts={}
+                for visible_turn in fixture['turns'][:context['case_revision']]:
+                    for fact in visible_turn['visible'].get('reported_facts',[]):
+                        expected_facts[fact['name'].casefold()]=fact['value']
+                active_user={fact.name.casefold():fact.value for fact in current.case.facts
+                             if fact.status=='active' and fact.provenance_kind=='user'}
+                check(checks,'only_current_registered_USER_facts_and_correction:'+rid,
+                      all((active_user.get(name)==value if value is not None else name not in active_user)
+                          for name,value in expected_facts.items())
+                      and current.case.case_id==job['case_id']
+                      and current.case.case_revision==context['case_revision'])
+                if context['case_revision']==1:
+                    user_history_matches=current.user_message==current_turn['visible']['message']
+                else:
+                    user_history_matches=(current.user_message.startswith(
+                        'Original user problem (historical context; not current facts):\n'+fixture['turns'][0]['visible']['message'])
+                        and current.user_message.endswith(
+                            'Latest user message (exact committed input):\n'+current_turn['visible']['message']))
+                check(checks,'initial_report_retained_latest_USER_exact_no_future_reply:'+rid,user_history_matches)
+                check(checks,'no_gold_script_or_trial_control_in_model_request:'+rid,
+                      not {'gold','expect','agent_script','scenarios_before_model','prospective_outcomes',
+                           'complementary_sources','evidence_condition','arm','round','job_id'} & set(request))
+                matching=[record for record in batch['actual_fixed_evidence_calls']
+                          if record['case_id']==job['case_id'] and record['arm']==job['arm']
+                          and record['job_id']==job['job_id'] and record['evidence_condition']=='fixed_guide_added'
+                          and record['turn_id']==turn
+                          and record['fixed_supplier_call']==request['evidence']['retrieval_round']]
+                check(checks,'one_actual_fixed_supplier_origin:'+rid,len(matching)==1)
+                origin_bundle=expected_bundle_for(job,fixtures[job['case_id']],turn,evidence,added,pinned)
+                audit_controlled_bundle(checks,native_reviews,rid,current,origin_bundle,job,pinned)
+                capacity=pinned.source_capacity(current,source_gap_handoff=True,source_gap_investigation=True)
+                prompt_payload=json.loads(messages[1]['content'])
+                branch_bounds={branch['properties']['decision']['const']:branch['properties']['sources']['maxItems']
+                               for branch in prompt_payload['response_schema']['oneOf']
+                               if 'sources' in branch['properties']}
+                check(checks,'actual_compact_advertised_source_bounds_derived_from_complete_current_records:'+rid,
+                      bool(branch_bounds) and all(value==(capacity if capacity is not None else 8)
+                                                 for value in branch_bounds.values()))
+                native_reviews[-1]['actual_prompt_source_maxItems_by_decision']=branch_bounds
+                native_reviews[-1]['selected_source_count']=len(attempt['plan']['sources']) if attempt.get('plan') is not None else None
+                actual_source_position_rows.append({
+                    'request_id':rid,'arm':job['arm'],'case_id':job['case_id'],
+                    'case_revision':context['case_revision'],'attempt_index':context['attempt_index'],
+                    'ordered_chunk_ids':[hit.chunk_id for hit in current.evidence.hits],
+                    'selected_chunk_ids':[ref['chunk_id'] for ref in attempt['plan']['sources']] if attempt.get('plan') else None,
+                    'recorded_selected_indexes':attempt.get('wire_output',{}).get('selected_indexes') if attempt.get('wire_output') else None,
+                    'current_context_sha256':current.context_sha256,
+                })
+                check(checks, 'attempt_belongs_to_planned_slot:' + rid, rid in actual_ids)
+                usage, row, send = usage_rows.get(rid), new_res.get(rid), sends.get(rid)
+                if send is not None and send.get('http_send_started') is True:
+                    all_send_ids.append(rid)
+                    check(checks, 'wire_exact:' + rid, send['wire_messages_sha256'] == wire)
+                    check(checks, 'actual_outbound_JSON_argument_matches_registered_arm:' + rid,
+                          send.get('wire_response_format') == ('json_object' if job['grounded_json_object'] else 'absent'))
+                    check(checks, 'dispatch_within_input_output_guard:' + rid, byte_bound <= 32768
+                          and send['wire_max_output_tokens'] == 1024)
+                    check(checks, 'sent_request_has_recorded_reservation:' + rid, row is not None and usage is not None)
+                    if row is None or usage is None:
+                        unaccounted.append({'request_id': rid, 'reason': 'sent_without_matching_accounting'})
+                        continue
+                    check(checks, 'reservation_context_and_bounds:' + rid,
+                          row['run_id'] == context['run_id'] and row['case_id'] == context['case_id']
+                          and row['case_revision'] == context['case_revision'] and row['attempt'] == context['attempt_index']
+                          and row['model'] == 'gpt-4o-mini' and row['phase'] == 'development'
+                          and row['amount_nanos'] == int(RESERVE * 1000000000))
+                    if row['status'] == 'settled':
+                        cost = row['input_tokens'] * RATE_INPUT + row['output_tokens'] * RATE_OUTPUT
+                        total += cost
+                        check(checks, 'verified_provider_envelope:' + rid, send['http_send_started'] is True
+                              and send['http_status'] == 200 and send['verified_returned_model'] == 'gpt-4o-mini-2024-07-18'
+                              and send['envelope_shape'] == 'object' and send['choice_count'] == 1
+                              and send['assistant_role'] is True and not send['has_tool_calls']
+                              and not send['has_function_call'] and not send['has_refusal'])
+                        check(checks, 'exact_usage_and_local_price:' + rid, Decimal(row['cost_decimal']) == cost
+                              == Decimal(usage['cost_usd']) and row['cost_nanos'] == int(cost * 1000000000)
+                              and row['input_tokens'] == usage['input_tokens'] <= 32768
+                              and row['output_tokens'] == usage['output_tokens'] <= 1024 and usage['status'] == 'settled')
+                        events = [dict(r) for r in new.execute(
+                            'SELECT * FROM ledger_events WHERE request_id=? ORDER BY event_id', (rid,))]
+                        check(checks, 'reserved_then_settled_no_hold:' + rid, [event['status'] for event in events] == ['reserved', 'settled'])
+                    else:
+                        cost = None
+                        check(checks, 'unknown_dispatch_not_free:' + rid, usage['status'] == row['status']
+                              and usage['cost_usd'] is None and usage['input_tokens'] is None and usage['output_tokens'] is None)
+                        unaccounted.append({'request_id': rid, 'status': row['status'], 'held_usd': str(Decimal(row['amount_nanos']) / 1000000000)})
+                    wire_reviews.append({'request_id': rid, 'batch_id': batch['batch_id'], 'arm': job['arm'],
+                                         'case_revision': context['case_revision'], 'attempt_index': context['attempt_index'],
+                                         'wire_sha256_reconstructed': send['wire_messages_sha256'] == wire,
+                                         'message_utf8_plus_margin': byte_bound, 'input_tokens': row['input_tokens'],
+                                         'output_tokens': row['output_tokens'], 'local_list_price_cost_usd': str(cost) if cost is not None else None,
+                                         'finish_reason': send.get('finish_reason'), 'typed_error': attempt['error_code']})
+                elif usage is not None and usage['status'] == 'skipped_before_reservation':
+                    attestation = attempt.get('pre_dispatch_stop', {})
+                    expected = {'schema_version': 1, 'request_id': rid,
+                                'context_sha256': digest(context), 'stop_code': 'ContextLimitExceeded',
+                                'gateway_kind': 'MetisGroundedPlanner', 'ledger_absent_before': True,
+                                'ledger_absent_after': True, 'transport_absent_before': True, 'transport_absent_after': True}
+                    check(checks, 'typed_pre_dispatch_zero_attestation:' + rid, attestation == expected
+                          and attempt['error_code'] == 'ContextLimitExceeded' and rid not in current_res
+                          and byte_bound > 32768 and usage['cost_usd'] == usage['reserved_amount_usd'] == '0'
+                          and usage['input_tokens'] == usage['output_tokens'] == 0)
+                    check(checks, 'skipped_slot_unused_permanently_claimed:' + rid,
+                          new.execute('SELECT 1 FROM quarantine_scope_slots WHERE request_id=?', (rid,)).fetchone() is not None
+                          and new.execute('SELECT 1 FROM quarantine_scope_requests WHERE request_id=?', (rid,)).fetchone() is None)
+                    pre_dispatch.append({'request_id': rid, 'batch_id': batch['batch_id'], 'arm': job['arm'],
+                                         'message_utf8_plus_margin': byte_bound, 'typed_error': attempt['error_code'],
+                                         'status': usage['status'], 'local_cost_usd': '0', 'invoice_claim': False})
+                else:
+                    check(checks, 'absent_dispatch_never_silently_zero:' + rid, usage is not None
+                          and usage['status'] in {'unrecorded', 'reserved', 'uncertain'} and usage['cost_usd'] is None)
+                    unaccounted.append({'request_id': rid, 'status': usage['status'] if usage is not None else 'missing',
+                                        'held_usd': str(Decimal(row['amount_nanos']) / 1000000000) if row is not None else None})
+            actual_started=[row for row in batch['provider_sends'] if row['http_send_started'] is True]
+            observed_wire=(all(row.get('wire_response_format')=='json_object' for row in actual_started)
+                           if actual_started else None)
+            check(checks,'actual_send_count_and_observation_not_metadata_only:'+batch['batch_id'],
+                  type(batch['actual_sends']) is int and batch['actual_sends']==len(actual_started)
+                  and len(sends)==len(batch['provider_sends'])
+                  and batch['json_object_wire_observed'] is observed_wire)
+            model_result=json.loads((PRIVATE/batch['batch_id']/'model-result.json').read_bytes())
+            check(checks,'original_model_result_preserved_before_derived_verdict:'+batch['batch_id'],
+                  all(model_result[key]==batch[key] for key in model_result))
+            local = sum((Decimal(row['cost_usd']) for row in batch['accounting']['requests'] if row['status'] == 'settled'), Decimal(0))
+            check(checks, 'scope_actual_spend_within0_06:' + batch['batch_id'], local == Decimal(batch['accounting']['settled_usd'])
+                  == Decimal(batch['scope_disposition']['used_usd']) <= Decimal('0.06'))
+            if batch['accounting']['accounting_complete']:
+                check(checks, 'complete_accounting_exact_known_cost:' + batch['batch_id'], local == Decimal(batch['accounting']['cost_usd']))
+            else:
+                check(checks, 'incomplete_accounting_preserves_nulls:' + batch['batch_id'], batch['accounting']['cost_usd'] is None
+                      and batch['accounting']['input_tokens'] is None and batch['accounting']['output_tokens'] is None)
+        for batch in receipt['batches']:
+            initial={}
+            jobs_by_run={run:job for job in batch['jobs'] for run in job['run_ids']}
+            for attempt in batch['attempts']:
+                context=attempt['context']
+                if context['case_revision']==1 and context['attempt_index']==1:
+                    job=jobs_by_run[context['run_id']]
+                    initial[job['arm']]=attempt['request']
+            if set(initial)=={'original_order','rotate_left_one'}:
+                original,rotated=initial['original_order'],initial['rotate_left_one']
+                oh,rh=original['evidence']['hits'],rotated['evidence']['hits']
+                record_set_equal=sorted(bundle_digest(h) for h in oh)==sorted(bundle_digest(h) for h in rh)
+                expected_hits=[*oh[1:],oh[0]] if len(oh)>1 else oh
+                check(checks,'paired_actual_initial_pool_uniform_order_and_current_USER:'+batch['batch_id'],
+                      rh==expected_hits and record_set_equal
+                      and original['case']==rotated['case']
+                      and original['user_message']==rotated['user_message'])
+                check(checks,'paired_actual_initial_context_rebound_if_order_changes:'+batch['batch_id'],
+                      (original['context_sha256']!=rotated['context_sha256']) if len(oh)>1
+                      else original['context_sha256']==rotated['context_sha256'])
+                initial_order_pairs.append({'batch_id':batch['batch_id'],'record_set_equal':record_set_equal,
+                    'current_user_facts_equal':original['case']==rotated['case'],
+                    'ordered_record_count':len(oh),'context_rebound':original['context_sha256']!=rotated['context_sha256']})
+        check(checks,'all_actual_common_SYSTEM_bytes_identical',len(common_system_digests)<=1)
+        check(checks, 'all_attempt_ids_unique_and_within48', len(all_attempt_ids) == len(set(all_attempt_ids)) <= 48)
+        check(checks, 'all_sent_ids_and_all_reservations_have_actual_attempts',
+              set(all_send_ids) <= set(new_res) <= set(all_attempt_ids))
+        check(checks,'fresh_ids_never_in_any_old_reservation_or_allocated_slot',
+              not actual_ids & (set(old_res) | {row['request_id'] for row in old.execute('SELECT request_id FROM quarantine_scope_slots')})
+              and not scope_ids & old_scope_ids)
+        old_total = sum((Decimal(row['cost_decimal']) for row in old_res.values() if row['status'] == 'settled'), Decimal(0))
+        check(checks,'known_before567_local_estimate_and_old_holds',
+              old_total==Decimal('0.457647795')
+              and sum(Decimal(row['amount_nanos'])/1000000000 for row in old_unknown.values())==Decimal('0.0233792'))
+        final_total = sum((Decimal(row['cost_decimal']) for row in current_res.values() if row['status'] == 'settled'), Decimal(0))
+        check(checks, 'exact_new_settled_cost_delta', final_total - old_total == total <= Decimal('0.36'))
+        summary = {'before_reservations': len(old_res), 'after_reservations': len(current_res),
+                   'before_settled_local_estimate_usd': str(old_total), 'new_settled_local_estimate_usd': str(total),
+                   'after_settled_local_estimate_usd': str(final_total), 'actual_sends': len(all_send_ids),
+                   'attempts_including_typed_zero_or_unaccounted': len(all_attempt_ids),
+                   'transmitted_JSON_wire_observations':sum(row.get('wire_response_format')=='json_object' and row.get('http_send_started') is True for batch in receipt['batches'] for row in batch['provider_sends']),
+                   'metadata_only_untransmitted_transport_records':sum(row.get('http_send_started') is False for batch in receipt['batches'] for row in batch['provider_sends']), 'known_pre_dispatch_zero_attempts': len(pre_dispatch),
+                   'ambiguous_or_held_attempts': len(unaccounted), 'new_reservation_statuses': dict(Counter(row['status'] for row in new_res.values())),
+                   'old_hold_usd': str(sum(Decimal(row['amount_nanos']) / 1000000000 for row in old_unknown.values())),
+                   'prior_table_counts': {name: len(rows) for name, rows in prior_tables.items()},
+                   'new_scopes': len(actual_scopes), 'allocated_slots': sum(len(planned_slots[sid]) for sid in actual_scopes), 'used_slots': used_slots,
+                   'unused_allocated_slots_permanently_claimed': unused_claimed,
+                   'planned_unallocated_slots': sum(len(slots) for sid, slots in planned_slots.items() if sid not in actual_scopes),
+                   'halted': bool(meta_new['halted']), 'limit_usd': str(Decimal(meta_new['limit_nanos']) / 1000000000),
+                   'planned_batches': len(method['batches']),
+                   'planned_jobs': sum(len(batch['jobs']) for batch in method['batches']),
+                   'planned_turns': sum(len(fixtures[job['case_id']]['turns'])
+                                        for batch in method['batches'] for job in batch['jobs']),
+                   'turn_statuses': dict(Counter(row['status'] for row in planned_turn_rows)),
+                   'actual_released_outputs':sum(row['released_output_count'] for row in planned_turn_rows),
+                   'actual_C_correction_releases_by_arm':{arm:sum(row['released_output_count'] for row in planned_turn_rows if row['case_id']=='dev-case-c' and row['turn_id']=='correction' and row['arm']==arm) for arm in ('original_order','rotate_left_one')},
+                   'actual_C_initial_releases_by_arm':{arm:sum(row['released_output_count'] for row in planned_turn_rows if row['case_id']=='dev-case-c' and row['turn_id']=='initial' and row['arm']==arm) for arm in ('original_order','rotate_left_one')},
+                   'turn_statuses_by_stage_arm': {
+                       label: dict(Counter(row['status'] for row in planned_turn_rows
+                                           if row['stage'] + ':' + row['arm'] == label))
+                       for label in sorted({row['stage'] + ':' + row['arm'] for row in planned_turn_rows})},
+                                      'cost_and_sends_by_arm': {arm: {
+                       'actual_sends': sum(row['arm'] == arm for row in wire_reviews),
+                       'settled_local_estimate_usd': str(sum((Decimal(row['local_list_price_cost_usd'])
+                           for row in wire_reviews if row['arm'] == arm and row['local_list_price_cost_usd'] is not None), Decimal(0)))}
+                       for arm in ('original_order','rotate_left_one')},
+                   'fresh_decision_labels': dict(Counter(row['decision'] for row in planned_turn_rows
+                                                         if row['status'] == 'fresh_proposal')),
+                   'visited_jobs': sum(batch['visited_jobs'] for batch in receipt['batches']),
+                   'completed_routes_operational_only': sum(batch['completed_routes'] for batch in receipt['batches']),
+                   'raw_wire_observation_counts_by_arm': {
+                       arm: dict(Counter(
+                           'valid' if review.get('recorded_raw_wire_schema_valid') is True
+                           else 'invalid' if review.get('recorded_raw_wire_schema_valid') is False
+                           else 'unobserved'
+                           for review in output_reviews if review['arm'] == arm))
+                       for arm in ('original_order','rotate_left_one')},
+                   'independently_verified_compact_expansions': sum(
+                       review['canonical_expansion_independently_checked'] for review in output_reviews),
+                   'raw_schema_reparse_possible_without_retained_provider_text': False}
+
+    audit_correction = {
+        'initial_script_sha256':'c468a24670516f274431bcc3407233d31474b9902967c7d415019513d9a27139',
+        'initial_failure_marker_sha256':'34689d3ce8447faf8127a69bc2c6e4868a88d1eb428c07244ac28136923fd57b',
+        'initial_result_written':False,
+        'mechanical_fix':'Canonical SourceRef entries in serialized attempt.plan.sources are JSON dictionaries, not pydantic objects. Position-observation audit reads ref[chunk_id]. Original script and private failure marker retained; no source, receipt, method or ledger changed.',
+        'paid_calls_by_reviewer':0,
+    }
+    result = {'schema_version': 1, 'audit_correction': audit_correction, 'review_id': 'core-source-order-cost-review-v2', 'reviewer_kind': 'assistant',
+              'independent_of_model_campaign': False, 'reviewer_implementation_overlap': True, 'read_only_recalculation': True, 'paid_calls_by_reviewer': 0, 'credential_accessed': False,
+              'real_ledger_access': 'SQLite URI mode=ro; PRAGMA query_only; transaction snapshot',
+              'provider_invoice_verified': False, 'provider_raw_usage_envelopes_retained': False,
+              'cost_kind': 'recorded sanitized provider usage and pinned list-price local estimate; not account deduction',
+              'quality_claim': False, 'human_usefulness': None, 'source_commit': source,
+              'original_receipt_sha256': sha(raw), 'frozen_method_sha256': sha(method_raw),
+              'ledger_backup_sha256': sha(BEFORE.read_bytes()), 'before_ledger_file_sha256': method['ledger_before']['db_sha256'],
+              'checks_passed': sum(item['passed'] for item in checks), 'checks_total': len(checks),
+              'all_checks_passed': all(item['passed'] for item in checks), 'summary': summary,
+              'all_planned_turn_inventory': planned_turn_rows,
+              'paired_renderer_semantics_separate_review_required': True,
+              'actual_source_position_reviews':actual_source_position_rows,
+              'paired_initial_order_context_reviews':initial_order_pairs,
+              'common_SYSTEM_sha256':sorted(common_system_digests),
+              'wire_and_usage_reviews': wire_reviews, 'controlled_bundle_and_source_capacity_reviews': native_reviews,
+              'raw_wire_and_canonical_output_reviews': output_reviews,
+              'fixed_supplier_observation_reviews': candidate_reviews,
+              'registered_original_failed_and_final_capacity_preflight': original_diagnosis_counts,
+              'actual_fixed_evidence_supplier_calls': candidate_reviews,
+              'actual_RAG_searches_in_experiment': 0, 'Chroma_clients_created_by_auditor': 0,
+              'raw_wire_schema_independently_reparsed': False,
+              'prompt_and_pure_contract_helpers_source': 'isolated git archive of exact paid source_commit',
+              'pre_dispatch_stops': pre_dispatch, 'unaccounted_or_held_attempts': unaccounted,
+              'unvisited_unallocated_batches': [batch['batch_id'] for batch in method['batches'] if batch['scope_id'] not in batch_scopes],
+              'interpretation': ['All old rows/schema/holds/halt/revocations are independently compared, not inferred from receipt flags.',
+                                 'This controlled fixture supplier performs no actual search. The answer-linked official guide remains excluded from real RAG; all19 protected index/storage/exclusion/original-fixture file hashes are verified unchanged without opening Chroma.',
+                                 'Original fixed A/B records and complete C baseline plus both exact full guide sections are reconstructed, then uniformly rotated by declared arm before active USER-version scope. All full metadata and record SET remain unchanged; context and selected indexes rebind to the new order. This is an answer-informed controlled diagnostic, not RAG, ranking or final-test quality.',
+                                 'Typed pre-dispatch zeros need reconstructed overflow plus owned real-gateway attestation and absence of ledger/wire. Missing rows alone remain unknown.',
+                                 'Raw provider text is not retained. Raw hashes, byte counts and schema diagnostics are recorded gateway observations; raw schema compliance cannot be independently reparsed from hashes.',
+                                 'For compact successes the audit independently expands bounded selected indexes against the exact current request and verifies the canonical output hash. This is separate from raw-wire schema diagnostics.',
+                                 'Both arms receive the SAME complete fixed-guide record SET and the same JSON/compact/concise/common source-capacity and SYSTEM policy with complementary_sources=False. The only intervention is uniform complete-record rotation. Ordered USER payloads/context hashes/source index mapping intentionally differ; canonical expansion is checked against the actual ordered request. Conditional histories may diverge after decisions. Original over-capacity failures remain retained.',
+                                 'Fresh fallback, route completion, source support and human usefulness require separate semantic review. No model or RAG improvement is inferred here.'],
+              'checks': checks}
+    fd=os.open(args.output,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600)
+    with os.fdopen(fd,'w',encoding='utf-8') as output:
+        json.dump(result, output, ensure_ascii=False, indent=2)
+        output.write('\n')
+    args.output.chmod(0o600)
+    print(json.dumps({'path': str(args.output), 'sha256': sha(args.output.read_bytes()),
+                      'checks_passed': result['checks_passed'], 'checks_total': len(checks),
+                      'all_checks_passed': result['all_checks_passed'], 'summary': summary,
+                      'failed_checks': [item for item in checks if not item['passed']]}, indent=2))
+
+
+if __name__ == '__main__':
+    try:
+        main()
+    except Exception:
+        print(json.dumps({'error_code': 'SourceOrderCostAuditStopped', 'raw_diagnostics_exported': False}))
+        raise SystemExit(2) from None
