@@ -1,6 +1,8 @@
 # C2j — validate version-reply boundaries before serialization
 
 Pure offline software regression; no model, retrieval or held-out quality claim.
+Delivery: [PR69](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/69);
+its status is the publication reference. Consume the merged `origin/main`.
 The existing recursive detacher now validates the two intake helpers' original
 typed inputs before serialization can drop bypassed extra/private state.
 

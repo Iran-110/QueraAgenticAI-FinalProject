@@ -32,6 +32,8 @@
   revision/dedup و authority tracker ثابت؛ API صفر،۱۹pin وledger ثابت، halt/سهhold
   محفوظ. hardening دو مرز درون Python است، نه auth یا بهبود مدل/RAG/test؛ فایل‌های
   RAG/UI/tracker تیم تغییر نکرده‌اند. CI پاس و Windows/browser تازه ادعا نمی‌شود.
+  کد و شواهد در [PR #69](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/69)؛
+  وضعیت انتشار همان PR مرجع است و مصرف تیم از `origin/main` باشد.
 
 - [x] **C4l/E2y — context فعلی برای advisor انتخاب شاهد؛ ساسان، تحویل آفلاین.**
   [ثبت پیش از پیاده‌سازی](../experiments/core_selection_context_v1/protocol-v1.json):
