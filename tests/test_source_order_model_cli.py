@@ -186,61 +186,16 @@ def test_zero_dispatch_wire_not_observed(cli, monkeypatch):
 
 @pytest.fixture
 def method_inputs(tmp_path, monkeypatch, multiple_holds):
+    from registered_native_inputs import registered_method_inputs
+
     module = _module(monkeypatch)
-    ledger, path, _ = multiple_holds
     root = tmp_path / "synthetic-registered-inputs"
-    protected = controls._read(ROOT / module.PARENT_FOLDER / "protected-inputs-v1.json")
-    paths = [p.relative_to(ROOT) for p in (ROOT / "data/evaluation/dev-three-v1").rglob("*.json")]
-    paths += [Path(name) for name in protected["files"]]
-    paths += [
-        module.FOLDER / "protocol-v1.json",
-        module.PARENT_FOLDER / "protocol-v1.json",
-        module.PARENT_FOLDER / "capacity-amendment-v1.json",
-        module.PARENT_FOLDER / "offline-boundary-initial-v1.json",
-        module.PARENT_FOLDER / "offline-boundary-review-v1.json",
-        module.PARENT_FOLDER / "model-live-receipt-v1.json",
-        Path("experiments/core_complementary_sources_v1/protocol-v1.json"),
-        Path("experiments/core_complementary_sources_v1/model-live-receipt-v1.json"),
-        module.PARENT_FOLDER / "source-packet-v1.json",
-        module.PARENT_FOLDER / "protected-inputs-v1.json",
-        Path("experiments/core_quality_followup/quarantine-scope-protocol-v1.json"),
-        Path("docs/pr55-evidence-review.fa.md"),
-        Path("scripts/core_source_order_probe.py"),
-        Path("scripts/core_repeat_model_probe.py"),
-        Path("src/agent_app/testing/finite_controlled_probe.py"),
-        Path("src/agent_app/testing/source_order.py"),
-        Path("src/agent_app/testing/enum_evidence.py"),
-    ]
-    for relative in set(paths):
-        target = root / relative
-        target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_bytes((ROOT / relative).read_bytes())
-    policy = root / "experiments/core_quality_followup/quarantine-scope-protocol-v1.json"
-    value = controls._read(policy)
-    value["known_uncertain_request_ids"] = list(ledger.quarantine_observation().unknown_ids)
-    policy.write_text(json.dumps(value))
-    (root / module.FOLDER / "offline-replay-v1.json").write_text(
-        json.dumps(
-            {
-                "protocol_sha256": module.PROTOCOL_SHA256,
-                "parent_receipt_sha256": "9bd7db10ba5af4ac10ed0c5e33d509a533d709455e68ce013c19ba91571c4905",
-                "common_SYSTEM_policy": True,
-                "accepted": True,
-                "actual_sends": 0,
-                "held_out_test": False,
-                "human_usefulness": None,
-                "historical_contexts": 24,
-                "common_prompt": True,
-                "complete_record_set_unchanged": True,
-            }
-        )
-    )
-    (root / module.FOLDER / "semantic-review-preparation-v1.json").write_bytes(
-        (ROOT / module.FOLDER / "semantic-review-preparation-v1.json").read_bytes()
-    )
-    fixtures = module.fixtures_for(ROOT, {"protocol_id": "core-stability-v1"})
-    monkeypatch.setattr(module, "fixtures_for", lambda *_args: fixtures)
-    return module, root, path, fixtures
+    value = registered_method_inputs(module, ROOT, root, monkeypatch, multiple_holds)
+    # The actual-replay regression reloads through this test module's ROOT.
+    # Keep its complete real replay content, with the temporary protocol pin,
+    # inside the same hermetic registered tree used by production validation.
+    monkeypatch.setitem(globals(), "ROOT", root)
+    return value
 
 
 def test_fresh_method_48_slots_6_pairs_same_record_set_common_prompt_only_order_differs(
