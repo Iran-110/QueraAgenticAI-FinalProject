@@ -113,3 +113,18 @@ source، stratumهای مرجع، داورهای انسانی/assistant و اص�
 candidateهای test باز نشده، split نهایی freeze نشده و E1/E2/E4/E5 از ساختن
 این workbench بسته نمی‌شوند. در حالت عادی halt هزینه و هر دو hold قبلی
 بدون تغییر باقی می‌مانند.
+
+## ادامهٔ C4h2 و C4h3
+
+هر دو receipt جدید هم پشتیبانی می‌شوند. معیار native از protocol اولیهٔ C4g
+خوانده و با hash همان method بررسی می‌شود؛ معیار fixture یا داوری پس از دیدن
+جواب جای آن نمی‌نشیند. روش C4h2 همهٔ۲۴ نوبت شامل۱۶fresh،۱stale،۵empty و۲unvisited
+را نگه می‌دارد. C4h3 شامل۱۶fresh،صفرstale،۴empty و۴unvisited است.
+
+```bash
+uv run python scripts/prepare_semantic_review.py prepare   --receipt experiments/core_source_capacity_v1/model-live-receipt-v1.json   --output runtime/capacity-review-FRESH
+```
+
+برای C4h2 مسیر receipt را به `experiments/core_repeat_repair_v1/model-live-receipt-v1.json`
+تغییر دهید و مقصد تازه بدهید. در هر دو حالت usefulness و claim inventory خالی‌اند؛
+این کار E2 را برای محمدحسن آماده می‌کند و جای داوری انسانی را نمی‌گیرد.
