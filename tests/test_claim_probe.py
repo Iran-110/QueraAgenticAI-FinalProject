@@ -646,12 +646,17 @@ def test_actual_gateway_repair_keeps_declared_conflict_and_complete_handoff(mult
 
 
 @pytest.mark.parametrize(
-    "invalid",
-    ["[]", '{"unrecognized-field":', "[" * 2000 + "0" + "]" * 2000],
+    "invalid,stage",
+    [
+        ("[]", ("shape",)),
+        ('{"unrecognized-field":', ("json",)),
+        # A runtime may parse the array or hit its recursion bound first.
+        ("[" * 2000 + "0" + "]" * 2000, ("shape", "json")),
+    ],
     ids=["array", "malformed_object", "deep_array"],
 )
 def test_claim_observation_does_not_bypass_real_repair_or_export_invalid_fields(
-    multiple_holds, invalid
+    multiple_holds, invalid, stage
 ):
     def handler(wire, _index):
         data = json.loads(wire["messages"][1]["content"])
@@ -672,3 +677,15 @@ def test_claim_observation_does_not_bypass_real_repair_or_export_invalid_fields(
     assert "unrecognized-field" not in json.dumps(result)
     assert all(candidate["claim_plan"] is None for candidate in candidates[::2])
     assert all(candidate["rendered_analysis"] is not None for candidate in candidates[1::2])
+    assert all(
+        candidate["plan_observation"]["failure_stage"] in stage for candidate in candidates[::2]
+    )
+    assert all(
+        candidate["plan_observation"]["failure_stage"] is None for candidate in candidates[1::2]
+    )
+    assert all(
+        candidate["plan_observation"]["strict_plan_valid"] is False for candidate in candidates[::2]
+    )
+    assert all(
+        candidate["plan_observation"]["strict_plan_valid"] is True for candidate in candidates[1::2]
+    )

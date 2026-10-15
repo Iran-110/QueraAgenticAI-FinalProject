@@ -25,6 +25,7 @@ from agent_app.contracts import (
     EvidenceLink,
     GroundedRequest,
     Identifier,
+    OutputFeedback,
     OutputIssue,
     Query,
     ReasoningContext,
@@ -48,6 +49,51 @@ from agent_app.reasoning.output import InvalidAnalysis
 _INDEX = Annotated[int, Field(strict=True, ge=0)]
 _FENCE = re.compile(r"^[ \t]*(`{3,}|~{3,})(.*?)(?:\r?\n)?$")
 _TERMINAL = frozenset({"grounded_context_mismatch", "grounded_source_mismatch"})
+_DIAGNOSTIC_CODES = frozenset(
+    {
+        "invalid_json",
+        "duplicate_field",
+        "invalid_shape",
+        "output_too_large",
+        "missing_field",
+        "unknown_field",
+        "invalid_field",
+        "invalid_grounded_plan",
+    }
+)
+_DIAGNOSTIC_STAGES = frozenset({"json", "duplicate", "shape", "schema", "branch", "representation"})
+
+
+def _safe_claim_issues(issues):
+    """Allow only fixed codes and existing public field names; never raw paths."""
+    try:
+        if type(issues) is not tuple or not 1 <= len(issues) <= 4:
+            raise ValueError
+        feedback = OutputFeedback.model_validate(
+            {"issues": [issue.model_dump(warnings=False) for issue in issues]}
+        )
+        if any(
+            issue.code not in _DIAGNOSTIC_CODES
+            or issue.field not in {None, "decision", "retrieval_queries"}
+            for issue in feedback.issues
+        ):
+            raise ValueError
+        return feedback.issues
+    except (ValidationError, ValueError, TypeError, AttributeError, RecursionError):
+        return (OutputIssue(code="invalid_grounded_plan"),)
+
+
+class ClaimPlanRejected(GroundingRejected):
+    """Same rejection code/acceptance boundary, with bounded safe diagnostics."""
+
+    def __init__(self, stage, issues):
+        super().__init__("invalid_grounded_plan")
+        self.stage = stage if stage in _DIAGNOSTIC_STAGES else "representation"
+        self.issues = _safe_claim_issues(issues)
+
+
+class _DuplicateClaimField(ValueError):
+    pass
 
 
 class ClaimBlock(Contract):
@@ -180,7 +226,7 @@ def _unique_object(pairs):
     value = {}
     for name, item in pairs:
         if name in value:
-            raise ValueError
+            raise _DuplicateClaimField
         value[name] = item
     return value
 
@@ -190,19 +236,105 @@ def _constant(_):
 
 
 def parse_claim_plan(raw) -> ClaimPlan:
+    """Keep strict acceptance; diagnostics contain no model values or raw errors."""
     try:
         if isinstance(raw, str):
             if len(raw.encode("utf-8")) > 262_144:
-                raise ValueError
+                raise ClaimPlanRejected("representation", (OutputIssue(code="output_too_large"),))
             raw = json.loads(raw, object_pairs_hook=_unique_object, parse_constant=_constant)
         elif isinstance(raw, ClaimPlan):
             raw = raw.model_dump(warnings=False)
         elif isinstance(raw, Mapping):
             raw = dict(raw)
         json.dumps(raw, ensure_ascii=False, allow_nan=False).encode("utf-8")
+    except ClaimPlanRejected:
+        raise
+    except _DuplicateClaimField:
+        raise ClaimPlanRejected("duplicate", (OutputIssue(code="duplicate_field"),)) from None
+    except (ValueError, UnicodeError, RecursionError):
+        raise ClaimPlanRejected("json", (OutputIssue(code="invalid_json"),)) from None
+    except (TypeError, AttributeError):
+        raise ClaimPlanRejected("shape", (OutputIssue(code="invalid_shape"),)) from None
+    if type(raw) is not dict:
+        raise ClaimPlanRejected("shape", (OutputIssue(code="invalid_shape"),))
+    try:
         return ClaimPlan.model_validate(raw)
-    except (ValidationError, ValueError, TypeError, UnicodeError, RecursionError):
-        raise GroundingRejected("invalid_grounded_plan") from None
+    except ValidationError as error:
+        issues = []
+        branch = False
+        # Validation data is inspected locally, never retained or interpolated.
+        # Unknown field names/locations, values and library messages are omitted.
+        for entry in error.errors(include_url=False, include_context=False, include_input=False):
+            kind, location = entry["type"], entry["loc"]
+            if not location:
+                branch = True
+                issue = OutputIssue(code="invalid_grounded_plan", field="decision")
+            else:
+                code = (
+                    "missing_field"
+                    if kind == "missing"
+                    else "unknown_field"
+                    if kind == "extra_forbidden"
+                    else "invalid_field"
+                )
+                field = location[0] if location[0] in {"decision", "retrieval_queries"} else None
+                issue = OutputIssue(code=code, field=field)
+            if issue not in issues:
+                issues.append(issue)
+            if len(issues) == 4:
+                break
+        raise ClaimPlanRejected("branch" if branch else "schema", tuple(issues)) from None
+    except (ValueError, TypeError, UnicodeError, RecursionError):
+        raise ClaimPlanRejected("schema", (OutputIssue(code="invalid_field"),)) from None
+
+
+def observe_claim_plan(raw) -> dict:
+    """Content-free parser outcome; passing still does not establish semantics.
+
+    No raw text, parsed values, unknown names, JSON paths or exception messages
+    are included, even for valid plans. This does not inspect source applicability
+    or current index bindings, which remain the renderer's separate boundary.
+    """
+    try:
+        parse_claim_plan(raw)
+        return {"schema_version": 1, "strict_plan_valid": True, "failure_stage": None, "issues": []}
+    except ClaimPlanRejected as error:
+        stage = error.stage if error.stage in _DIAGNOSTIC_STAGES else "representation"
+        return {
+            "schema_version": 1,
+            "strict_plan_valid": False,
+            "failure_stage": stage,
+            "issues": [issue.model_dump(mode="json") for issue in _safe_claim_issues(error.issues)],
+        }
+
+
+def claim_plan_schema() -> dict:
+    """Advertise the already-enforced decision branches without relaxing them.
+
+    This is a wire explanation, never an action or semantic validator. Current
+    source/fact/question membership and case binding still require local checks.
+    """
+    schema = ClaimPlan.model_json_schema()
+    rules = {
+        "answer": {
+            "passages": {"minItems": 1},
+            "question_name": {"type": "null"},
+            "retrieval_queries": {"maxItems": 0},
+        },
+        "ask": {"question_name": {"type": "string"}, "retrieval_queries": {"maxItems": 0}},
+        "escalate": {"question_name": {"type": "null"}, "retrieval_queries": {"maxItems": 0}},
+        "retrieve_more": {
+            "passages": {"maxItems": 0},
+            "user_facts": {"maxItems": 0},
+            "question_name": {"type": "null"},
+            "retrieval_queries": {"minItems": 1},
+        },
+    }
+    schema["allOf"] = [
+        {"if": {"properties": {"decision": {"const": decision}}}, "then": {"properties": fields}}
+        for decision, fields in rules.items()
+    ]
+    return schema
 
 
 def _active_facts(request):
@@ -445,7 +577,7 @@ def build_claim_messages(request: ClaimRequest, context: ReasoningContext) -> li
                 ],
             },
             "context": context.model_dump(mode="json"),
-            "response_schema": ClaimPlan.model_json_schema(),
+            "response_schema": claim_plan_schema(),
         }
         return [
             {"role": "system", "content": _SYSTEM},
@@ -527,7 +659,12 @@ class ClaimReasoner(GroundedReasoner):
             keep_pending = (
                 scope is not None and _can_repair(context) and error.code not in _TERMINAL
             )
-            raise InvalidAnalysis((OutputIssue(code=error.code),)) from None
+            issues = (
+                _safe_claim_issues(error.issues)
+                if isinstance(error, ClaimPlanRejected)
+                else (OutputIssue(code=error.code),)
+            )
+            raise InvalidAnalysis(issues) from None
         except ReasoningStopped:
             raise
         except InvalidAnalysis as error:

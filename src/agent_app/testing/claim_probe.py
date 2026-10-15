@@ -28,6 +28,7 @@ from agent_app.orchestration.ports import ReasoningStopped
 from agent_app.reasoning.claim_plan import (
     ClaimReasoner,
     build_claim_messages,
+    observe_claim_plan,
     parse_claim_plan,
     render_claim_plan,
 )
@@ -241,10 +242,15 @@ class _ClaimPlanner:
                     "syntactic_valid": False,
                     "validation_error_count": None,
                 }
+                record["plan_observation"] = observe_claim_plan(raw)
                 return raw
             if echo:
                 record["credential_echo_rejected"] = True
                 raise ReasoningStopped("ProviderResponseInvalid")
+            # Added after the stopped V1 paid cohort. Historical receipts keep
+            # their original observations; this safe projection distinguishes
+            # future parse stages without retaining untrusted output text.
+            record["plan_observation"] = observe_claim_plan(raw)
             try:
                 parsed = parse_claim_plan(raw)
                 record["claim_plan"] = parsed.model_dump(mode="json")
