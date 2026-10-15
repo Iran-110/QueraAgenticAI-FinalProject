@@ -1,0 +1,36 @@
+{
+    "test":  "approval_ack_drop_ui_retry_browser_reopen",
+    "environment":  "synthetic_offline",
+    "method":  "manual_local_smoke_test",
+    "fault":  "Successful approval committed in backend; response dropped by local proxy",
+    "before_approval":  {
+                            "revision":  1,
+                            "status":  "awaiting_review",
+                            "action_count":  0
+                        },
+    "after_response_drop":  {
+                                "revision":  1,
+                                "status":  "answer_sent",
+                                "action_count":  1
+                            },
+    "after_ui_retry":  {
+                           "revision":  1,
+                           "status":  "answer_sent",
+                           "action_count":  1
+                       },
+    "after_browser_reopen":  {
+                                 "revision":  1,
+                                 "status":  "answer_sent",
+                                 "action_count":  1
+                             },
+    "checks":  {
+                   "approval_committed":  true,
+                   "retry_did_not_duplicate_action":  true,
+                   "browser_reopen_preserved_state":  true
+               },
+    "limitations":  [
+                        "Browser reopening created a new Streamlit session and case.",
+                        "Recovery of an unconfirmed retry across a new browser session was not tested.",
+                        "The fault proxy was a temporary local test tool."
+                    ]
+}
