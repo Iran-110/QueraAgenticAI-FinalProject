@@ -62,6 +62,9 @@
   wire خام و expansion جدا ثبت می‌شوند؛ schema/route با پشتیبانی ادعا و usefulness
   یکی نیست. خروجی ناقص salvage نمی‌شود. regression کامل۴۰۰۶pytest،Ruff،سهdemo
   وپذیرشHTTP/SQLite۴۵۷/۴۵۷ پاس‌اند؛CI به‌علت سهمیهٔActions هنوز اجرا نمی‌شود.
+  انتشار در [PR #57](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/57)،
+  فعلاً رویbranchپایهٔPR54 است؛ بعدازmerge54 بهmain retarget شود، بهbranchپایه
+  merge نشود. merge نهایی تاCI همانhead باز می‌ماند.
 
 - [ ] **R4b — review اصلاح ranking حسن؛ مالک اصلاح حسن.**
   [PR #50](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/50)
