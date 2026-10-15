@@ -11,7 +11,7 @@ import hashlib
 import json
 import re
 from collections.abc import Callable, Mapping
-from typing import Annotated, Self
+from typing import Annotated, Literal, Self
 from urllib.parse import quote
 
 from pydantic import Field, ValidationError, field_validator, model_validator
@@ -48,6 +48,13 @@ from agent_app.reasoning.output import InvalidAnalysis
 
 _INDEX = Annotated[int, Field(strict=True, ge=0)]
 _FENCE = re.compile(r"^[ \t]*(`{3,}|~{3,})(.*?)(?:\r?\n)?$")
+_ATX = re.compile(r"^[ \t]{0,3}(#{1,6})(?:[ \t]+|$)")
+_SETEXT = re.compile(r"^[ \t]{0,3}(=+|-+)[ \t]*$")
+_THEMATIC = re.compile(
+    r"^[ \t]*(?:(?:\*[ \t]*){3,}|(?:_[ \t]*){3,}|(?:-[ \t]*){3,}|={3,}|<hr\s*/?>)[ \t]*$",
+    re.IGNORECASE,
+)
+_LIST_OR_QUOTE = re.compile(r"^[ \t]{0,3}(?:[-+*][ \t]+|\d+[.)][ \t]+|>)")
 _TERMINAL = frozenset({"grounded_context_mismatch", "grounded_source_mismatch"})
 _DIAGNOSTIC_CODES = frozenset(
     {
@@ -111,6 +118,7 @@ class ClaimRequest(Contract):
     grounded: GroundedRequest
     blocks: tuple[tuple[ClaimBlock, ...], ...]
     context_sha256: Sha256
+    block_mode: Literal["paragraphs", "sections"] = "paragraphs"
 
 
 class ClaimPlan(Contract):
@@ -195,26 +203,141 @@ def partition_claim_blocks(text: str) -> tuple[ClaimBlock, ...]:
     return tuple(spans)
 
 
+def _claim_structure(text):
+    """Recognize conservative Markdown structure, never semantic dependencies."""
+    if type(text) is not str or not text:
+        raise GroundingRejected("grounded_source_mismatch")
+    lines = text.splitlines(keepends=True)
+    offsets = [0]
+    for line in lines:
+        offsets.append(offsets[-1] + len(line))
+    metadata = set()
+    first = next((i for i, line in enumerate(lines) if line.strip()), None)
+    if first is not None and lines[first].strip() == "---":
+        end = next(
+            (i for i in range(first + 1, len(lines)) if lines[i].strip() in {"---", "..."}),
+            None,
+        )
+        # A closed front-matter prefix is metadata, not prose support. A lone
+        # thematic rule does not hide the remaining source as presumed YAML.
+        if end is not None:
+            metadata.update(range(end + 1))
+    headings, fenced, delimiters, heading_lines = [], set(), set(), set()
+    marker = None
+    for i, line in enumerate(lines):
+        if i in metadata:
+            continue
+        fence = _FENCE.fullmatch(line)
+        if marker is not None:
+            fenced.add(i)
+            if (
+                fence
+                and fence[1][0] == marker[0]
+                and len(fence[1]) >= len(marker)
+                and not fence[2].strip()
+            ):
+                delimiters.add(i)
+                marker = None
+            continue
+        if fence:
+            marker = fence[1]
+            fenced.add(i)
+            delimiters.add(i)
+            continue
+        atx = _ATX.match(line)
+        if atx:
+            headings.append((i, i + 1, len(atx[1])))
+            heading_lines.add(i)
+            continue
+        setext = _SETEXT.fullmatch(line.rstrip("\r\n"))
+        if (
+            setext
+            and i > 0
+            and i - 1 not in metadata | fenced | heading_lines
+            and lines[i - 1].strip()
+            and not _ATX.match(lines[i - 1])
+            and not _THEMATIC.fullmatch(lines[i - 1].strip())
+            and not _LIST_OR_QUOTE.match(lines[i - 1])
+            and not lines[i - 1].startswith(("    ", "\t"))
+        ):
+            start = i - 1
+            while (
+                start > 0
+                and lines[start - 1].strip()
+                and start - 1 not in metadata | fenced | heading_lines
+                and not _ATX.match(lines[start - 1])
+                and not _THEMATIC.fullmatch(lines[start - 1].strip())
+                and not _LIST_OR_QUOTE.match(lines[start - 1])
+                and not lines[start - 1].startswith(("    ", "\t"))
+            ):
+                start -= 1
+            headings.append((start, i + 1, 1 if setext[1][0] == "=" else 2))
+            heading_lines.update(range(start, i + 1))
+    return lines, offsets, headings, metadata, fenced, delimiters
+
+
+def partition_claim_sections(text: str) -> tuple[ClaimBlock, ...]:
+    """Partition by shallowest recognized headings, retaining entire subtrees.
+
+    Every source character, preamble, separator and fence remains in order. A
+    qualifier in a peer section or another record need not be in the same unit;
+    structural completeness is not semantic completeness or relevance.
+    """
+    _lines, offsets, headings, _metadata, _fenced, _delimiters = _claim_structure(text)
+    if not headings:
+        return (ClaimBlock(start=0, end=len(text)),)
+    depth = min(level for _start, _end, level in headings)
+    starts = sorted({0, *(offsets[start] for start, _end, level in headings if level == depth)})
+    ends = [*starts[1:], len(text)]
+    return tuple(ClaimBlock(start=start, end=end) for start, end in zip(starts, ends, strict=True))
+
+
+def claim_block_has_body(text: str) -> bool:
+    """Reject obvious empty structure only; content is not proof of usefulness.
+
+    Nonempty fence contents count as body without executing or interpreting
+    their language. Heading words, front matter and delimiters alone do not.
+    """
+    if type(text) is not str or not text:
+        return False
+    lines, _offsets, headings, metadata, fenced, delimiters = _claim_structure(text)
+    heading_lines = {i for start, end, _level in headings for i in range(start, end)}
+    ignored = metadata | heading_lines | delimiters
+    return any(
+        i not in ignored and line.strip() and (i in fenced or not _THEMATIC.fullmatch(line.strip()))
+        for i, line in enumerate(lines)
+    )
+
+
 def _digest(value) -> str:
     return hashlib.sha256(
         json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()
     ).hexdigest()
 
 
-def build_claim_request(grounded: GroundedRequest) -> ClaimRequest:
+def build_claim_request(
+    grounded: GroundedRequest, *, block_mode: Literal["paragraphs", "sections"] = "paragraphs"
+) -> ClaimRequest:
     grounded = validate_grounded_request(grounded)
-    blocks = tuple(partition_claim_blocks(hit.excerpt) for hit in grounded.evidence.hits)
+    if type(block_mode) is not str or block_mode not in {"paragraphs", "sections"}:
+        raise GroundingRejected("grounded_context_mismatch")
+    partition = partition_claim_sections if block_mode == "sections" else partition_claim_blocks
+    blocks = tuple(partition(hit.excerpt) for hit in grounded.evidence.hits)
     payload = {
         "grounded": grounded.model_dump(mode="json"),
         "blocks": [[b.model_dump(mode="json") for b in source] for source in blocks],
     }
-    return ClaimRequest(grounded=grounded, blocks=blocks, context_sha256=_digest(payload))
+    if block_mode != "paragraphs":
+        payload["block_mode"] = block_mode
+    return ClaimRequest(
+        grounded=grounded, blocks=blocks, context_sha256=_digest(payload), block_mode=block_mode
+    )
 
 
 def validate_claim_request(request: ClaimRequest) -> ClaimRequest:
     try:
         request = ClaimRequest.model_validate(request.model_dump(warnings=False))
-        rebuilt = build_claim_request(request.grounded)
+        rebuilt = build_claim_request(request.grounded, block_mode=request.block_mode)
         if rebuilt != request:
             raise ValueError
         return request
@@ -383,6 +506,13 @@ def render_claim_plan(request: ClaimRequest, raw) -> AnalysisResult:
     for source, block in plan.passages:
         if source >= len(request.blocks) or block >= len(request.blocks[source]):
             raise GroundingRejected("grounded_source_mismatch")
+        if request.block_mode == "sections" and plan.decision == "answer":
+            hit = grounded.evidence.hits[source]
+            span = request.blocks[source][block]
+            if not claim_block_has_body(hit.excerpt[span.start : span.end]):
+                raise ClaimPlanRejected(
+                    "branch", (OutputIssue(code="invalid_grounded_plan", field="decision"),)
+                )
     question = None
     if plan.decision == "ask":
         gap = next((g for g in grounded.gaps if g.name == plan.question_name), None)
@@ -612,8 +742,12 @@ class ClaimReasoner(GroundedReasoner):
         request_factory: Callable[[CaseState, str, EvidenceBundle], GroundedRequest] = (
             make_grounded_request
         ),
+        block_mode: Literal["paragraphs", "sections"] = "paragraphs",
     ):
+        if type(block_mode) is not str or block_mode not in {"paragraphs", "sections"}:
+            raise GroundingRejected("grounded_context_mismatch")
         super().__init__(planner, request_factory=request_factory)
+        self.block_mode = block_mode
         self.last_request: ClaimRequest | None = None
 
     def analyze(self, case, user_message, evidence, *, context):
@@ -641,7 +775,7 @@ class ClaimReasoner(GroundedReasoner):
                 raise GroundingRejected("grounded_context_mismatch")
             grounded = self._continue_conflict(grounded, context)
             _requirements(grounded, context)
-            request = build_claim_request(grounded)
+            request = build_claim_request(grounded, block_mode=self.block_mode)
             self.last_request = request.model_copy(deep=True)
             raw = self.planner.plan(
                 request.model_copy(deep=True), context=context.model_copy(deep=True)

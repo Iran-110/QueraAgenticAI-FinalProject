@@ -1,0 +1,1971 @@
+{
+  "schema_version": 1,
+  "task": "C4k/E2x",
+  "kind": "posthoc_authored_offline_structural_replay_and_advisory",
+  "actual_API_calls": 0,
+  "ledger_or_native_index_access": false,
+  "input_pins": {
+    "experiments/core_broader_dev_v1/snapshots-v1.json": "c88d72753d2fb9a1317720ce51fa6b49027ce0bd46ecdcc7e7eabf107f613b0d",
+    "experiments/core_claim_boundary_v1/model-receipt-v1.json": "a57cfac1ccd45068a81907e718e32a68d66cedbff1725f5138f7a82abea103f2",
+    "experiments/core_claim_boundary_v1/semantic-review-v1.json": "bcd95cfd123c523d96335b563e6a44eb1dcedcdbb11f299a9e622eb33e2c1ec2",
+    "experiments/core_claim_boundary_v1/acceptance-matrix-v1.json": "63f830a68f96a60f920a1b5694112469f08037754bacda71bfd5fc48c4921261"
+  },
+  "default_baseline_sha256": "d8b219c21f4bc3012f184051faf35c787f64a0e30f00f8af8acce411dc881a9a",
+  "snapshot_preflights": [
+    {
+      "snapshot_id": "dev-a:initial",
+      "paragraph_units": 0,
+      "section_units": 0,
+      "all_source_bytes_retained": true,
+      "messages_bytes_plus_existing_1024_guard": 9751,
+      "independent_advisory_shortlist": {
+        "context_sha256": "eadbedecba713a38e9f242c44aa8e936bbcf3871579748f964eec3663454d645",
+        "passages": [],
+        "passage_utf8_bytes": 0,
+        "oversized": [],
+        "historical": [],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "lexical_hints": [],
+      "not_a_model_decision_or_proposal": true
+    },
+    {
+      "snapshot_id": "dev-a:version",
+      "paragraph_units": 21,
+      "section_units": 2,
+      "all_source_bytes_retained": true,
+      "messages_bytes_plus_existing_1024_guard": 13892,
+      "independent_advisory_shortlist": {
+        "context_sha256": "0eab5a982d7cfbaa2a8e1564ae967f02d4f72a23c622497176247cac7eb0c638",
+        "passages": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "passage_utf8_bytes": 2911,
+        "oversized": [],
+        "historical": [],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "lexical_hints": [
+        {
+          "source_index": 1,
+          "block_index": 0,
+          "overlap": 0.1827771477498985,
+          "matched_terms": 18,
+          "has_body": true,
+          "version_scope": "exact_metadata_match",
+          "passage_utf8_bytes": 2350
+        },
+        {
+          "source_index": 0,
+          "block_index": 0,
+          "overlap": 0.051357080592048104,
+          "matched_terms": 4,
+          "has_body": true,
+          "version_scope": "exact_metadata_match",
+          "passage_utf8_bytes": 561
+        }
+      ],
+      "not_a_model_decision_or_proposal": true
+    },
+    {
+      "snapshot_id": "dev-b:initial",
+      "paragraph_units": 0,
+      "section_units": 0,
+      "all_source_bytes_retained": true,
+      "messages_bytes_plus_existing_1024_guard": 6573,
+      "independent_advisory_shortlist": {
+        "context_sha256": "73100033941e02beaab173fcc50b9dcbe2f921122810a2fdeb0fae0d4953e469",
+        "passages": [],
+        "passage_utf8_bytes": 0,
+        "oversized": [],
+        "historical": [],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "lexical_hints": [],
+      "not_a_model_decision_or_proposal": true
+    },
+    {
+      "snapshot_id": "dev-b:version",
+      "paragraph_units": 21,
+      "section_units": 1,
+      "all_source_bytes_retained": true,
+      "messages_bytes_plus_existing_1024_guard": 9902,
+      "independent_advisory_shortlist": {
+        "context_sha256": "ce97e79e0cefae87d4c52243908f55ed3e97c5d0c1cab335e73e947873feae0f",
+        "passages": [
+          [
+            0,
+            0
+          ]
+        ],
+        "passage_utf8_bytes": 2702,
+        "oversized": [],
+        "historical": [],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "lexical_hints": [
+        {
+          "source_index": 0,
+          "block_index": 0,
+          "overlap": 0.12955055921335995,
+          "matched_terms": 12,
+          "has_body": true,
+          "version_scope": "exact_metadata_match",
+          "passage_utf8_bytes": 2702
+        }
+      ],
+      "not_a_model_decision_or_proposal": true
+    },
+    {
+      "snapshot_id": "enum-guide:initial",
+      "paragraph_units": 85,
+      "section_units": 4,
+      "all_source_bytes_retained": true,
+      "messages_bytes_plus_existing_1024_guard": 25097,
+      "independent_advisory_shortlist": {
+        "context_sha256": "657ae696c4ef70da081ae10471174d98d37aaed75035ced87d93d47ee59e7924",
+        "passages": [
+          [
+            2,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "passage_utf8_bytes": 4774,
+        "oversized": [
+          [
+            0,
+            1
+          ]
+        ],
+        "historical": [],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "lexical_hints": [
+        {
+          "source_index": 2,
+          "block_index": 0,
+          "overlap": 0.25809527073953736,
+          "matched_terms": 15,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 2619
+        },
+        {
+          "source_index": 1,
+          "block_index": 0,
+          "overlap": 0.1892170089856207,
+          "matched_terms": 13,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 2155
+        },
+        {
+          "source_index": 0,
+          "block_index": 0,
+          "overlap": 0.17062725397873305,
+          "matched_terms": 3,
+          "has_body": false,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 310
+        },
+        {
+          "source_index": 0,
+          "block_index": 1,
+          "overlap": 0.16013794408242518,
+          "matched_terms": 15,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 8593
+        }
+      ],
+      "not_a_model_decision_or_proposal": true
+    },
+    {
+      "snapshot_id": "enum-guide:correction",
+      "paragraph_units": 85,
+      "section_units": 4,
+      "all_source_bytes_retained": true,
+      "messages_bytes_plus_existing_1024_guard": 25666,
+      "independent_advisory_shortlist": {
+        "context_sha256": "51a578f6d4779f70fd5de01665bd11f7c65fb5d52146e7864fa0225be3dffec3",
+        "passages": [
+          [
+            2,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "passage_utf8_bytes": 4774,
+        "oversized": [
+          [
+            0,
+            1
+          ]
+        ],
+        "historical": [],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "lexical_hints": [
+        {
+          "source_index": 2,
+          "block_index": 0,
+          "overlap": 0.2582780528499345,
+          "matched_terms": 21,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 2619
+        },
+        {
+          "source_index": 0,
+          "block_index": 1,
+          "overlap": 0.17007164842310243,
+          "matched_terms": 24,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 8593
+        },
+        {
+          "source_index": 1,
+          "block_index": 0,
+          "overlap": 0.16866997272189294,
+          "matched_terms": 14,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 2155
+        },
+        {
+          "source_index": 0,
+          "block_index": 0,
+          "overlap": 0.1573035522733503,
+          "matched_terms": 4,
+          "has_body": false,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 310
+        }
+      ],
+      "not_a_model_decision_or_proposal": true
+    },
+    {
+      "snapshot_id": "enum-withheld:initial",
+      "paragraph_units": 62,
+      "section_units": 2,
+      "all_source_bytes_retained": true,
+      "messages_bytes_plus_existing_1024_guard": 18743,
+      "independent_advisory_shortlist": {
+        "context_sha256": "e5c31ec6566ce52f6e47fa501c1fff970bb108272c95dbfae1ce5fc5766985ef",
+        "passages": [],
+        "passage_utf8_bytes": 0,
+        "oversized": [
+          [
+            0,
+            1
+          ]
+        ],
+        "historical": [],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "lexical_hints": [
+        {
+          "source_index": 0,
+          "block_index": 1,
+          "overlap": 0.18826612723092995,
+          "matched_terms": 15,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 8593
+        },
+        {
+          "source_index": 0,
+          "block_index": 0,
+          "overlap": 0.177907231342875,
+          "matched_terms": 3,
+          "has_body": false,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 310
+        }
+      ],
+      "not_a_model_decision_or_proposal": true
+    },
+    {
+      "snapshot_id": "enum-withheld:correction",
+      "paragraph_units": 62,
+      "section_units": 2,
+      "all_source_bytes_retained": true,
+      "messages_bytes_plus_existing_1024_guard": 19312,
+      "independent_advisory_shortlist": {
+        "context_sha256": "702d2617d4eb79129a10387eaf5c3ebbf1754207d78d9c87acbbaf9137263983",
+        "passages": [],
+        "passage_utf8_bytes": 0,
+        "oversized": [
+          [
+            0,
+            1
+          ]
+        ],
+        "historical": [],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "lexical_hints": [
+        {
+          "source_index": 0,
+          "block_index": 1,
+          "overlap": 0.19933369548157964,
+          "matched_terms": 24,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 8593
+        },
+        {
+          "source_index": 0,
+          "block_index": 0,
+          "overlap": 0.1668313033849922,
+          "matched_terms": 4,
+          "has_body": false,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 310
+        }
+      ],
+      "not_a_model_decision_or_proposal": true
+    },
+    {
+      "snapshot_id": "dev-d-4713:initial",
+      "paragraph_units": 52,
+      "section_units": 5,
+      "all_source_bytes_retained": true,
+      "messages_bytes_plus_existing_1024_guard": 19264,
+      "independent_advisory_shortlist": {
+        "context_sha256": "311db80b6793063010b73e465ead8f3c4886152229e2606875f1d1e90212fc8e",
+        "passages": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "passage_utf8_bytes": 5336,
+        "oversized": [
+          [
+            1,
+            1
+          ]
+        ],
+        "historical": [],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "lexical_hints": [
+        {
+          "source_index": 0,
+          "block_index": 1,
+          "overlap": 0.15494789397311942,
+          "matched_terms": 16,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 3587
+        },
+        {
+          "source_index": 1,
+          "block_index": 0,
+          "overlap": 0.13133813668599104,
+          "matched_terms": 11,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 1749
+        },
+        {
+          "source_index": 1,
+          "block_index": 1,
+          "overlap": 0.04715418703577323,
+          "matched_terms": 5,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 2206
+        },
+        {
+          "source_index": 0,
+          "block_index": 0,
+          "overlap": 0.021301137387725863,
+          "matched_terms": 3,
+          "has_body": false,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 413
+        },
+        {
+          "source_index": 1,
+          "block_index": 2,
+          "overlap": 0.0,
+          "matched_terms": 0,
+          "has_body": false,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 45
+        }
+      ],
+      "not_a_model_decision_or_proposal": true
+    },
+    {
+      "snapshot_id": "dev-d-4713:update",
+      "paragraph_units": 52,
+      "section_units": 6,
+      "all_source_bytes_retained": true,
+      "messages_bytes_plus_existing_1024_guard": 22344,
+      "independent_advisory_shortlist": {
+        "context_sha256": "b121ff1c2cc44223789929ccbb301ab5f631120ba3248ff2da5d1c43003381cc",
+        "passages": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "passage_utf8_bytes": 5450,
+        "oversized": [
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "historical": [],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "lexical_hints": [
+        {
+          "source_index": 1,
+          "block_index": 0,
+          "overlap": 0.12024191860162844,
+          "matched_terms": 14,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 3631
+        },
+        {
+          "source_index": 0,
+          "block_index": 1,
+          "overlap": 0.09563245104365718,
+          "matched_terms": 13,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 1819
+        },
+        {
+          "source_index": 0,
+          "block_index": 2,
+          "overlap": 0.0720642848784219,
+          "matched_terms": 10,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 1943
+        },
+        {
+          "source_index": 2,
+          "block_index": 0,
+          "overlap": 0.05426733290288712,
+          "matched_terms": 5,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 890
+        },
+        {
+          "source_index": 0,
+          "block_index": 0,
+          "overlap": 0.020853577901569546,
+          "matched_terms": 2,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 237
+        },
+        {
+          "source_index": 1,
+          "block_index": 1,
+          "overlap": 0.00706386655502715,
+          "matched_terms": 1,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 369
+        }
+      ],
+      "not_a_model_decision_or_proposal": true
+    },
+    {
+      "snapshot_id": "dev-e-5618:initial",
+      "paragraph_units": 66,
+      "section_units": 5,
+      "all_source_bytes_retained": true,
+      "messages_bytes_plus_existing_1024_guard": 19983,
+      "independent_advisory_shortlist": {
+        "context_sha256": "fa253a73a1bc61e53d863bb382712d18eb3192c810a747d66b60d6d9d9cc3173",
+        "passages": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "passage_utf8_bytes": 4521,
+        "oversized": [
+          [
+            1,
+            1
+          ]
+        ],
+        "historical": [],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "lexical_hints": [
+        {
+          "source_index": 0,
+          "block_index": 0,
+          "overlap": 0.12457563134540564,
+          "matched_terms": 9,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 3631
+        },
+        {
+          "source_index": 2,
+          "block_index": 0,
+          "overlap": 0.12453149591571303,
+          "matched_terms": 6,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 890
+        },
+        {
+          "source_index": 1,
+          "block_index": 1,
+          "overlap": 0.12253799896586048,
+          "matched_terms": 10,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 3692
+        },
+        {
+          "source_index": 1,
+          "block_index": 0,
+          "overlap": 0.08472961614172458,
+          "matched_terms": 3,
+          "has_body": false,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 310
+        },
+        {
+          "source_index": 0,
+          "block_index": 1,
+          "overlap": 0.052170292162624005,
+          "matched_terms": 2,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 369
+        }
+      ],
+      "not_a_model_decision_or_proposal": true
+    },
+    {
+      "snapshot_id": "dev-e-5618:update",
+      "paragraph_units": 59,
+      "section_units": 6,
+      "all_source_bytes_retained": true,
+      "messages_bytes_plus_existing_1024_guard": 21382,
+      "independent_advisory_shortlist": {
+        "context_sha256": "3843701802f5812c6cedcd3155f612e4791f8ea1d56841ae11c3e40a6220b811",
+        "passages": [
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "passage_utf8_bytes": 5336,
+        "oversized": [
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "historical": [],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "lexical_hints": [
+        {
+          "source_index": 2,
+          "block_index": 0,
+          "overlap": 0.17019351126525661,
+          "matched_terms": 12,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 1749
+        },
+        {
+          "source_index": 0,
+          "block_index": 1,
+          "overlap": 0.14265278396408315,
+          "matched_terms": 17,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 3587
+        },
+        {
+          "source_index": 1,
+          "block_index": 0,
+          "overlap": 0.11043913147083122,
+          "matched_terms": 7,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 890
+        },
+        {
+          "source_index": 2,
+          "block_index": 1,
+          "overlap": 0.10895352164670158,
+          "matched_terms": 18,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 2206
+        },
+        {
+          "source_index": 0,
+          "block_index": 0,
+          "overlap": 0.08978929127911087,
+          "matched_terms": 6,
+          "has_body": false,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 413
+        },
+        {
+          "source_index": 2,
+          "block_index": 2,
+          "overlap": 0.0,
+          "matched_terms": 0,
+          "has_body": false,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 45
+        }
+      ],
+      "not_a_model_decision_or_proposal": true
+    },
+    {
+      "snapshot_id": "dev-f-7206:initial",
+      "paragraph_units": 48,
+      "section_units": 5,
+      "all_source_bytes_retained": true,
+      "messages_bytes_plus_existing_1024_guard": 20860,
+      "independent_advisory_shortlist": {
+        "context_sha256": "5b1fa6abc9369dfe05b09a31de697c3e79323540b2489fb5dfe9b440c69d6920",
+        "passages": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "passage_utf8_bytes": 4579,
+        "oversized": [
+          [
+            1,
+            1
+          ]
+        ],
+        "historical": [],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "lexical_hints": [
+        {
+          "source_index": 0,
+          "block_index": 1,
+          "overlap": 0.14678732538855715,
+          "matched_terms": 25,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 3587
+        },
+        {
+          "source_index": 1,
+          "block_index": 2,
+          "overlap": 0.09071880187174385,
+          "matched_terms": 11,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 992
+        },
+        {
+          "source_index": 1,
+          "block_index": 1,
+          "overlap": 0.06658625616575413,
+          "matched_terms": 14,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 2636
+        },
+        {
+          "source_index": 1,
+          "block_index": 0,
+          "overlap": 0.06250047851399361,
+          "matched_terms": 7,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 383
+        },
+        {
+          "source_index": 0,
+          "block_index": 0,
+          "overlap": 0.03865475074085166,
+          "matched_terms": 6,
+          "has_body": false,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 413
+        }
+      ],
+      "not_a_model_decision_or_proposal": true
+    },
+    {
+      "snapshot_id": "dev-f-7206:update",
+      "paragraph_units": 52,
+      "section_units": 6,
+      "all_source_bytes_retained": true,
+      "messages_bytes_plus_existing_1024_guard": 23274,
+      "independent_advisory_shortlist": {
+        "context_sha256": "17ad3556d15bf0268f72f3b22e0a816c5b2287bde55ce9e633c571b599c6f071",
+        "passages": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "passage_utf8_bytes": 5450,
+        "oversized": [
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "historical": [],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "lexical_hints": [
+        {
+          "source_index": 0,
+          "block_index": 0,
+          "overlap": 0.14362440814422905,
+          "matched_terms": 22,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 3631
+        },
+        {
+          "source_index": 2,
+          "block_index": 1,
+          "overlap": 0.11012870351065614,
+          "matched_terms": 20,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 1819
+        },
+        {
+          "source_index": 2,
+          "block_index": 2,
+          "overlap": 0.0936959262157897,
+          "matched_terms": 16,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 1943
+        },
+        {
+          "source_index": 1,
+          "block_index": 0,
+          "overlap": 0.08457045084830891,
+          "matched_terms": 11,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 890
+        },
+        {
+          "source_index": 2,
+          "block_index": 0,
+          "overlap": 0.053134131044592005,
+          "matched_terms": 4,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 237
+        },
+        {
+          "source_index": 0,
+          "block_index": 1,
+          "overlap": 0.04724097895449572,
+          "matched_terms": 5,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 369
+        }
+      ],
+      "not_a_model_decision_or_proposal": true
+    },
+    {
+      "snapshot_id": "dev-g-9487:initial",
+      "paragraph_units": 53,
+      "section_units": 9,
+      "all_source_bytes_retained": true,
+      "messages_bytes_plus_existing_1024_guard": 21642,
+      "independent_advisory_shortlist": {
+        "context_sha256": "bf715a2d35c568517981edcb27f3410f953272dd478a935039215d546fa63489",
+        "passages": [
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "passage_utf8_bytes": 2811,
+        "oversized": [],
+        "historical": [],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "lexical_hints": [
+        {
+          "source_index": 2,
+          "block_index": 2,
+          "overlap": 0.14929648271794757,
+          "matched_terms": 15,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 992
+        },
+        {
+          "source_index": 1,
+          "block_index": 1,
+          "overlap": 0.11939913571453022,
+          "matched_terms": 16,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 1819
+        },
+        {
+          "source_index": 1,
+          "block_index": 2,
+          "overlap": 0.10468003025269951,
+          "matched_terms": 14,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 1943
+        },
+        {
+          "source_index": 2,
+          "block_index": 0,
+          "overlap": 0.10409629982661392,
+          "matched_terms": 8,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 383
+        },
+        {
+          "source_index": 0,
+          "block_index": 0,
+          "overlap": 0.08906789690616823,
+          "matched_terms": 5,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 292
+        },
+        {
+          "source_index": 2,
+          "block_index": 1,
+          "overlap": 0.08837099473653964,
+          "matched_terms": 12,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 2636
+        },
+        {
+          "source_index": 0,
+          "block_index": 1,
+          "overlap": 0.0804466166259796,
+          "matched_terms": 6,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 321
+        },
+        {
+          "source_index": 1,
+          "block_index": 0,
+          "overlap": 0.07086916878691646,
+          "matched_terms": 4,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 237
+        },
+        {
+          "source_index": 0,
+          "block_index": 2,
+          "overlap": 0.05942589306199518,
+          "matched_terms": 5,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 481
+        }
+      ],
+      "not_a_model_decision_or_proposal": true
+    },
+    {
+      "snapshot_id": "dev-g-9487:update",
+      "paragraph_units": 44,
+      "section_units": 7,
+      "all_source_bytes_retained": true,
+      "messages_bytes_plus_existing_1024_guard": 21565,
+      "independent_advisory_shortlist": {
+        "context_sha256": "2b78f8cb1e5551b86b857b1945d5266af5f27e9b19b50d736c61187e4015ed43",
+        "passages": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "passage_utf8_bytes": 4521,
+        "oversized": [
+          [
+            3,
+            0
+          ]
+        ],
+        "historical": [],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "lexical_hints": [
+        {
+          "source_index": 1,
+          "block_index": 0,
+          "overlap": 0.14994413560955533,
+          "matched_terms": 18,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 3631
+        },
+        {
+          "source_index": 0,
+          "block_index": 0,
+          "overlap": 0.1344619086136434,
+          "matched_terms": 12,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 890
+        },
+        {
+          "source_index": 3,
+          "block_index": 0,
+          "overlap": 0.1303052254364493,
+          "matched_terms": 17,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 1826
+        },
+        {
+          "source_index": 2,
+          "block_index": 0,
+          "overlap": 0.10395503443979927,
+          "matched_terms": 6,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 292
+        },
+        {
+          "source_index": 2,
+          "block_index": 1,
+          "overlap": 0.07495320852852234,
+          "matched_terms": 7,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 321
+        },
+        {
+          "source_index": 2,
+          "block_index": 2,
+          "overlap": 0.05125481413449715,
+          "matched_terms": 5,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 481
+        },
+        {
+          "source_index": 1,
+          "block_index": 1,
+          "overlap": 0.043525489224412586,
+          "matched_terms": 4,
+          "has_body": true,
+          "version_scope": "unconfirmed",
+          "passage_utf8_bytes": 369
+        }
+      ],
+      "not_a_model_decision_or_proposal": true
+    }
+  ],
+  "retained_claim_candidates": [
+    {
+      "original_receipt": "experiments/core_claim_boundary_v1/model-receipt-v1.json",
+      "attempt_pointer": "/batches/2/attempts/3",
+      "original_model_plan_unchanged": true,
+      "original_rendered_final_available": true,
+      "old_binding_sha256": "3dad861cbf9aa0045afce1604538033cf0ef5f1621125d053059de0085856506",
+      "old_passages": [
+        [
+          2,
+          5
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "human_usefulness": null,
+      "new_model_calls": 0,
+      "original_valid": true,
+      "original_render_sha256": "20e48dfa87b6d6351e0d86a307b584accf46da9c5fec12d4909be1ec92e8a2b0",
+      "original_draft_characters": 1459,
+      "original_advisory": {
+        "schema_version": 1,
+        "context_sha256": "3dad861cbf9aa0045afce1604538033cf0ef5f1621125d053059de0085856506",
+        "decision_unchanged": "answer",
+        "selected_units": 2,
+        "selected_raw_utf8_bytes": 617,
+        "warnings": [
+          "heading_or_separator_only"
+        ],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "authored_projection_valid": true,
+      "authored_projection_not_model_output": true,
+      "projection_passages": [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "projection_spans": [
+        {
+          "source_index": 2,
+          "block_index": 0,
+          "start": 0,
+          "end": 2619,
+          "source_excerpt_sha256": "91538e2afe431f10f17ce6e0ca3a6c996007e5db90a39abe3d3276f132c7e349"
+        },
+        {
+          "source_index": 1,
+          "block_index": 0,
+          "start": 0,
+          "end": 2143,
+          "source_excerpt_sha256": "414347d4b9eef71e0b7d2711a84f4037eea0e98870e09b7f5c3c531610019039"
+        }
+      ],
+      "projection_draft_characters": 5962,
+      "projection_advisory": {
+        "schema_version": 1,
+        "context_sha256": "657ae696c4ef70da081ae10471174d98d37aaed75035ced87d93d47ee59e7924",
+        "decision_unchanged": "answer",
+        "selected_units": 2,
+        "selected_raw_utf8_bytes": 4774,
+        "warnings": [],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "projection_decision_unchanged": true,
+      "ask_draft_unchanged": null,
+      "posthoc_observed_span_controls": [
+        {
+          "target_source": 1,
+          "target_start": 98,
+          "target_end": 544,
+          "source_full_excerpt_sha256": "414347d4b9eef71e0b7d2711a84f4037eea0e98870e09b7f5c3c531610019039",
+          "original_covers_whole_span": false,
+          "projection_covers_whole_span": true,
+          "independent_shortlist_covers_whole_span": true,
+          "not_a_semantic_quality_label": true
+        },
+        {
+          "target_source": 1,
+          "target_start": 1896,
+          "target_end": 2143,
+          "source_full_excerpt_sha256": "414347d4b9eef71e0b7d2711a84f4037eea0e98870e09b7f5c3c531610019039",
+          "original_covers_whole_span": false,
+          "projection_covers_whole_span": true,
+          "independent_shortlist_covers_whole_span": true,
+          "not_a_semantic_quality_label": true
+        }
+      ]
+    },
+    {
+      "original_receipt": "experiments/core_claim_boundary_v1/model-receipt-v1.json",
+      "attempt_pointer": "/batches/3/attempts/0",
+      "original_model_plan_unchanged": true,
+      "original_rendered_final_available": false,
+      "old_binding_sha256": "7656a36f1511e26dce2c3fe1bd221e296e74446ffbec25f3ac7f9d825589042c",
+      "old_passages": [
+        [
+          52,
+          55
+        ],
+        [
+          42,
+          49
+        ]
+      ],
+      "human_usefulness": null,
+      "new_model_calls": 0,
+      "original_valid": false,
+      "original_error": "grounded_source_mismatch",
+      "authored_projection_attempted": false
+    },
+    {
+      "original_receipt": "experiments/core_claim_boundary_v1/model-receipt-v1.json",
+      "attempt_pointer": "/batches/3/attempts/2",
+      "original_model_plan_unchanged": true,
+      "original_rendered_final_available": false,
+      "old_binding_sha256": "cacabb16e413b80b5c5b0b640f5d6a23ad1d216a6c218ca65e0be3edd2ed3b9d",
+      "old_passages": [
+        [
+          0,
+          51
+        ],
+        [
+          42,
+          49
+        ]
+      ],
+      "human_usefulness": null,
+      "new_model_calls": 0,
+      "original_valid": false,
+      "original_error": "grounded_source_mismatch",
+      "authored_projection_attempted": false
+    },
+    {
+      "original_receipt": "experiments/core_claim_boundary_v1/model-receipt-v1.json",
+      "attempt_pointer": "/batches/4/attempts/4",
+      "original_model_plan_unchanged": true,
+      "original_rendered_final_available": true,
+      "old_binding_sha256": "8a1eb3d959dbb1f9ef240ee30b8cfcf1ff12f767f9ca0815ad069f7200176701",
+      "old_passages": [
+        [
+          0,
+          7
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "human_usefulness": null,
+      "new_model_calls": 0,
+      "original_valid": true,
+      "original_render_sha256": "e0bc5e0645e037359b456d403f505887b0688435bd450c26789161a8388a04dc",
+      "original_draft_characters": 1760,
+      "original_advisory": {
+        "schema_version": 1,
+        "context_sha256": "8a1eb3d959dbb1f9ef240ee30b8cfcf1ff12f767f9ca0815ad069f7200176701",
+        "decision_unchanged": "answer",
+        "selected_units": 2,
+        "selected_raw_utf8_bytes": 754,
+        "warnings": [],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "authored_projection_valid": true,
+      "authored_projection_not_model_output": true,
+      "projection_passages": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "projection_spans": [
+        {
+          "source_index": 0,
+          "block_index": 1,
+          "start": 237,
+          "end": 2056,
+          "source_excerpt_sha256": "59047771f7fad6c54830ea682cb2d49ffc81923fe82ffb83981c10cc7791bf33"
+        },
+        {
+          "source_index": 1,
+          "block_index": 0,
+          "start": 0,
+          "end": 3631,
+          "source_excerpt_sha256": "99362eb1a9b5b6f3730c28b27bd90007c56667d553294567f18c62752e6644b8"
+        }
+      ],
+      "projection_draft_characters": 7022,
+      "projection_advisory": {
+        "schema_version": 1,
+        "context_sha256": "b121ff1c2cc44223789929ccbb301ab5f631120ba3248ff2da5d1c43003381cc",
+        "decision_unchanged": "answer",
+        "selected_units": 2,
+        "selected_raw_utf8_bytes": 5450,
+        "warnings": [],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "projection_decision_unchanged": true,
+      "ask_draft_unchanged": null
+    },
+    {
+      "original_receipt": "experiments/core_claim_boundary_v1/model-receipt-v1.json",
+      "attempt_pointer": "/batches/5/attempts/0",
+      "original_model_plan_unchanged": true,
+      "original_rendered_final_available": false,
+      "old_binding_sha256": "aebb1ae8f6a2719f39699c2bba17b858b9735ed06bc9d2cf4c8ac539b876b54d",
+      "old_passages": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          28
+        ],
+        [
+          2,
+          36
+        ]
+      ],
+      "human_usefulness": null,
+      "new_model_calls": 0,
+      "original_valid": false,
+      "original_error": "grounded_source_mismatch",
+      "authored_projection_attempted": false
+    },
+    {
+      "original_receipt": "experiments/core_claim_boundary_v1/model-receipt-v1.json",
+      "attempt_pointer": "/batches/5/attempts/2",
+      "original_model_plan_unchanged": true,
+      "original_rendered_final_available": true,
+      "old_binding_sha256": "3bbe391240769a73d830674c500c2e479a1af4d0fd9d5c6bdbf2961c05d51558",
+      "old_passages": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          7
+        ]
+      ],
+      "human_usefulness": null,
+      "new_model_calls": 0,
+      "original_valid": true,
+      "original_render_sha256": "e90019c13e37b433264062de0197e6bb370fc710eb669b15a874be72ab98ba07",
+      "original_draft_characters": 2106,
+      "original_advisory": {
+        "schema_version": 1,
+        "context_sha256": "3bbe391240769a73d830674c500c2e479a1af4d0fd9d5c6bdbf2961c05d51558",
+        "decision_unchanged": "answer",
+        "selected_units": 3,
+        "selected_raw_utf8_bytes": 973,
+        "warnings": [],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "authored_projection_valid": true,
+      "authored_projection_not_model_output": true,
+      "projection_passages": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "projection_spans": [
+        {
+          "source_index": 0,
+          "block_index": 1,
+          "start": 413,
+          "end": 4000,
+          "source_excerpt_sha256": "f255b5500f6fab7f4a1e25056687eace95ecf0306d979778a9a2a57b49c589d3"
+        },
+        {
+          "source_index": 1,
+          "block_index": 0,
+          "start": 0,
+          "end": 890,
+          "source_excerpt_sha256": "f181c7c30a7f43f689acea0cee147006a1279b5c945ab549142576691b89bd5a"
+        },
+        {
+          "source_index": 2,
+          "block_index": 0,
+          "start": 0,
+          "end": 1749,
+          "source_excerpt_sha256": "150aa837889c9e5a927af0d27736c4b2e0aece18f1704db93c56cf11f41dc684"
+        }
+      ],
+      "projection_draft_characters": 7873,
+      "projection_advisory": {
+        "schema_version": 1,
+        "context_sha256": "3843701802f5812c6cedcd3155f612e4791f8ea1d56841ae11c3e40a6220b811",
+        "decision_unchanged": "answer",
+        "selected_units": 3,
+        "selected_raw_utf8_bytes": 6226,
+        "warnings": [],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "projection_decision_unchanged": true,
+      "ask_draft_unchanged": null
+    },
+    {
+      "original_receipt": "experiments/core_claim_boundary_v1/model-receipt-v1.json",
+      "attempt_pointer": "/batches/6/attempts/5",
+      "original_model_plan_unchanged": true,
+      "original_rendered_final_available": true,
+      "old_binding_sha256": "fdd9cfa0def17f02a3cfbe2833a490df3d9b43358bd05127247752f8ba0d5ce7",
+      "old_passages": [
+        [
+          0,
+          18
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          18
+        ]
+      ],
+      "human_usefulness": null,
+      "new_model_calls": 0,
+      "original_valid": true,
+      "original_render_sha256": "c5a0d931dd202394c275e3ddc4ab27a22199a96a42576af93ada715d687e3ec5",
+      "original_draft_characters": 2060,
+      "original_advisory": {
+        "schema_version": 1,
+        "context_sha256": "fdd9cfa0def17f02a3cfbe2833a490df3d9b43358bd05127247752f8ba0d5ce7",
+        "decision_unchanged": "answer",
+        "selected_units": 3,
+        "selected_raw_utf8_bytes": 790,
+        "warnings": [],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "authored_projection_valid": true,
+      "authored_projection_not_model_output": true,
+      "projection_passages": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "projection_spans": [
+        {
+          "source_index": 0,
+          "block_index": 1,
+          "start": 3631,
+          "end": 4000,
+          "source_excerpt_sha256": "99362eb1a9b5b6f3730c28b27bd90007c56667d553294567f18c62752e6644b8"
+        },
+        {
+          "source_index": 1,
+          "block_index": 0,
+          "start": 0,
+          "end": 890,
+          "source_excerpt_sha256": "f181c7c30a7f43f689acea0cee147006a1279b5c945ab549142576691b89bd5a"
+        },
+        {
+          "source_index": 2,
+          "block_index": 2,
+          "start": 2056,
+          "end": 3999,
+          "source_excerpt_sha256": "59047771f7fad6c54830ea682cb2d49ffc81923fe82ffb83981c10cc7791bf33"
+        }
+      ],
+      "projection_draft_characters": 4678,
+      "projection_advisory": {
+        "schema_version": 1,
+        "context_sha256": "17ad3556d15bf0268f72f3b22e0a816c5b2287bde55ce9e633c571b599c6f071",
+        "decision_unchanged": "answer",
+        "selected_units": 3,
+        "selected_raw_utf8_bytes": 3202,
+        "warnings": [],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "projection_decision_unchanged": true,
+      "ask_draft_unchanged": null,
+      "posthoc_observed_span_controls": [
+        {
+          "target_source": 1,
+          "target_start": 304,
+          "target_end": 578,
+          "source_full_excerpt_sha256": "f181c7c30a7f43f689acea0cee147006a1279b5c945ab549142576691b89bd5a",
+          "original_covers_whole_span": false,
+          "projection_covers_whole_span": true,
+          "independent_shortlist_covers_whole_span": false,
+          "not_a_semantic_quality_label": true
+        }
+      ]
+    },
+    {
+      "original_receipt": "experiments/core_claim_boundary_v1/model-receipt-v1.json",
+      "attempt_pointer": "/batches/7/attempts/3",
+      "original_model_plan_unchanged": true,
+      "original_rendered_final_available": true,
+      "old_binding_sha256": "1cbffb606f68e3f9af26ea4ca462b20516012591a8258ae380c7d5868ec140ae",
+      "old_passages": [
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          10
+        ]
+      ],
+      "human_usefulness": null,
+      "new_model_calls": 0,
+      "original_valid": true,
+      "original_render_sha256": "12a8c58a90bbcdfd7849e49c7278e68bd50ce741654bbe41708c3590dc8fa202",
+      "original_draft_characters": 1183,
+      "original_advisory": {
+        "schema_version": 1,
+        "context_sha256": "1cbffb606f68e3f9af26ea4ca462b20516012591a8258ae380c7d5868ec140ae",
+        "decision_unchanged": "answer",
+        "selected_units": 2,
+        "selected_raw_utf8_bytes": 500,
+        "warnings": [
+          "heading_or_separator_only"
+        ],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "authored_projection_valid": true,
+      "authored_projection_not_model_output": true,
+      "projection_passages": [
+        [
+          1,
+          0
+        ]
+      ],
+      "projection_spans": [
+        {
+          "source_index": 1,
+          "block_index": 0,
+          "start": 0,
+          "end": 3631,
+          "source_excerpt_sha256": "99362eb1a9b5b6f3730c28b27bd90007c56667d553294567f18c62752e6644b8"
+        }
+      ],
+      "projection_draft_characters": 4679,
+      "projection_advisory": {
+        "schema_version": 1,
+        "context_sha256": "2b78f8cb1e5551b86b857b1945d5266af5f27e9b19b50d736c61187e4015ed43",
+        "decision_unchanged": "answer",
+        "selected_units": 1,
+        "selected_raw_utf8_bytes": 3631,
+        "warnings": [],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "projection_decision_unchanged": true,
+      "ask_draft_unchanged": null
+    },
+    {
+      "original_receipt": "experiments/core_claim_boundary_v1/model-receipt-v1.json",
+      "attempt_pointer": "/batches/8/attempts/2",
+      "original_model_plan_unchanged": true,
+      "original_rendered_final_available": true,
+      "old_binding_sha256": "b86717da216934db5fc7a4133b51b55a802ec924493a0f4e2cf5f01bf934834c",
+      "old_passages": [
+        [
+          2,
+          14
+        ],
+        [
+          2,
+          13
+        ],
+        [
+          2,
+          11
+        ]
+      ],
+      "human_usefulness": null,
+      "new_model_calls": 0,
+      "original_valid": true,
+      "original_render_sha256": "f854b3aa06912afd426639b9877dea319a6383530c5141e0734e7378a4f22483",
+      "original_draft_characters": 93,
+      "original_advisory": {
+        "schema_version": 1,
+        "context_sha256": "b86717da216934db5fc7a4133b51b55a802ec924493a0f4e2cf5f01bf934834c",
+        "decision_unchanged": "ask",
+        "selected_units": 3,
+        "selected_raw_utf8_bytes": 1065,
+        "warnings": [
+          "heading_or_separator_only",
+          "no_lexical_signal_not_proof_of_irrelevance"
+        ],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "authored_projection_valid": true,
+      "authored_projection_not_model_output": true,
+      "projection_passages": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "projection_spans": [
+        {
+          "source_index": 2,
+          "block_index": 2,
+          "start": 3008,
+          "end": 4000,
+          "source_excerpt_sha256": "032069b132c9d295bde1b845c249944c6c4b9c0e9d06f9ac44cc654cf04b3b35"
+        },
+        {
+          "source_index": 2,
+          "block_index": 1,
+          "start": 383,
+          "end": 3008,
+          "source_excerpt_sha256": "032069b132c9d295bde1b845c249944c6c4b9c0e9d06f9ac44cc654cf04b3b35"
+        }
+      ],
+      "projection_draft_characters": 93,
+      "projection_advisory": {
+        "schema_version": 1,
+        "context_sha256": "bf715a2d35c568517981edcb27f3410f953272dd478a935039215d546fa63489",
+        "decision_unchanged": "ask",
+        "selected_units": 2,
+        "selected_raw_utf8_bytes": 3628,
+        "warnings": [],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "projection_decision_unchanged": true,
+      "ask_draft_unchanged": true
+    },
+    {
+      "original_receipt": "experiments/core_claim_boundary_v1/model-receipt-v1.json",
+      "attempt_pointer": "/batches/8/attempts/3",
+      "original_model_plan_unchanged": true,
+      "original_rendered_final_available": true,
+      "old_binding_sha256": "1cbffb606f68e3f9af26ea4ca462b20516012591a8258ae380c7d5868ec140ae",
+      "old_passages": [
+        [
+          1,
+          17
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "human_usefulness": null,
+      "new_model_calls": 0,
+      "original_valid": true,
+      "original_render_sha256": "06cc795c164f5065d5fe91061509d06fe0e95f786dbd517dd70f53f4ae42c783",
+      "original_draft_characters": 716,
+      "original_advisory": {
+        "schema_version": 1,
+        "context_sha256": "1cbffb606f68e3f9af26ea4ca462b20516012591a8258ae380c7d5868ec140ae",
+        "decision_unchanged": "answer",
+        "selected_units": 2,
+        "selected_raw_utf8_bytes": 92,
+        "warnings": [
+          "heading_or_separator_only"
+        ],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "authored_projection_valid": true,
+      "authored_projection_not_model_output": true,
+      "projection_passages": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "projection_spans": [
+        {
+          "source_index": 1,
+          "block_index": 1,
+          "start": 3631,
+          "end": 4000,
+          "source_excerpt_sha256": "99362eb1a9b5b6f3730c28b27bd90007c56667d553294567f18c62752e6644b8"
+        },
+        {
+          "source_index": 1,
+          "block_index": 0,
+          "start": 0,
+          "end": 3631,
+          "source_excerpt_sha256": "99362eb1a9b5b6f3730c28b27bd90007c56667d553294567f18c62752e6644b8"
+        }
+      ],
+      "projection_draft_characters": 5073,
+      "projection_advisory": {
+        "schema_version": 1,
+        "context_sha256": "2b78f8cb1e5551b86b857b1945d5266af5f27e9b19b50d736c61187e4015ed43",
+        "decision_unchanged": "answer",
+        "selected_units": 2,
+        "selected_raw_utf8_bytes": 4000,
+        "warnings": [],
+        "semantic_support": null,
+        "human_review_required": true
+      },
+      "projection_decision_unchanged": true,
+      "ask_draft_unchanged": null
+    }
+  ],
+  "retained_claim_plans": 10,
+  "unavailable_raw_claim_attempts_not_reconstructed": 21,
+  "original_finals": 7,
+  "original_binding_rejections": 3,
+  "authored_projection_successes": 7,
+  "authored_projection_errors": 0,
+  "median_original_draft_characters_for_projected_subset": 1459,
+  "median_projected_draft_characters_same_subset": 5073,
+  "checks": [
+    {
+      "name": "input_pin:experiments/core_broader_dev_v1/snapshots-v1.json",
+      "passed": true
+    },
+    {
+      "name": "input_pin:experiments/core_claim_boundary_v1/model-receipt-v1.json",
+      "passed": true
+    },
+    {
+      "name": "input_pin:experiments/core_claim_boundary_v1/semantic-review-v1.json",
+      "passed": true
+    },
+    {
+      "name": "input_pin:experiments/core_claim_boundary_v1/acceptance-matrix-v1.json",
+      "passed": true
+    },
+    {
+      "name": "same16baseline_ids",
+      "passed": true
+    },
+    {
+      "name": "default_byte_parity:dev-a:initial",
+      "passed": true
+    },
+    {
+      "name": "whole_sources:dev-a:initial",
+      "passed": true
+    },
+    {
+      "name": "section_full_input_bound:dev-a:initial",
+      "passed": true
+    },
+    {
+      "name": "default_byte_parity:dev-a:version",
+      "passed": true
+    },
+    {
+      "name": "whole_sources:dev-a:version",
+      "passed": true
+    },
+    {
+      "name": "section_full_input_bound:dev-a:version",
+      "passed": true
+    },
+    {
+      "name": "default_byte_parity:dev-b:initial",
+      "passed": true
+    },
+    {
+      "name": "whole_sources:dev-b:initial",
+      "passed": true
+    },
+    {
+      "name": "section_full_input_bound:dev-b:initial",
+      "passed": true
+    },
+    {
+      "name": "default_byte_parity:dev-b:version",
+      "passed": true
+    },
+    {
+      "name": "whole_sources:dev-b:version",
+      "passed": true
+    },
+    {
+      "name": "section_full_input_bound:dev-b:version",
+      "passed": true
+    },
+    {
+      "name": "default_byte_parity:enum-guide:initial",
+      "passed": true
+    },
+    {
+      "name": "whole_sources:enum-guide:initial",
+      "passed": true
+    },
+    {
+      "name": "section_full_input_bound:enum-guide:initial",
+      "passed": true
+    },
+    {
+      "name": "default_byte_parity:enum-guide:correction",
+      "passed": true
+    },
+    {
+      "name": "whole_sources:enum-guide:correction",
+      "passed": true
+    },
+    {
+      "name": "section_full_input_bound:enum-guide:correction",
+      "passed": true
+    },
+    {
+      "name": "default_byte_parity:enum-withheld:initial",
+      "passed": true
+    },
+    {
+      "name": "whole_sources:enum-withheld:initial",
+      "passed": true
+    },
+    {
+      "name": "section_full_input_bound:enum-withheld:initial",
+      "passed": true
+    },
+    {
+      "name": "default_byte_parity:enum-withheld:correction",
+      "passed": true
+    },
+    {
+      "name": "whole_sources:enum-withheld:correction",
+      "passed": true
+    },
+    {
+      "name": "section_full_input_bound:enum-withheld:correction",
+      "passed": true
+    },
+    {
+      "name": "default_byte_parity:dev-d-4713:initial",
+      "passed": true
+    },
+    {
+      "name": "whole_sources:dev-d-4713:initial",
+      "passed": true
+    },
+    {
+      "name": "section_full_input_bound:dev-d-4713:initial",
+      "passed": true
+    },
+    {
+      "name": "default_byte_parity:dev-d-4713:update",
+      "passed": true
+    },
+    {
+      "name": "whole_sources:dev-d-4713:update",
+      "passed": true
+    },
+    {
+      "name": "section_full_input_bound:dev-d-4713:update",
+      "passed": true
+    },
+    {
+      "name": "default_byte_parity:dev-e-5618:initial",
+      "passed": true
+    },
+    {
+      "name": "whole_sources:dev-e-5618:initial",
+      "passed": true
+    },
+    {
+      "name": "section_full_input_bound:dev-e-5618:initial",
+      "passed": true
+    },
+    {
+      "name": "default_byte_parity:dev-e-5618:update",
+      "passed": true
+    },
+    {
+      "name": "whole_sources:dev-e-5618:update",
+      "passed": true
+    },
+    {
+      "name": "section_full_input_bound:dev-e-5618:update",
+      "passed": true
+    },
+    {
+      "name": "default_byte_parity:dev-f-7206:initial",
+      "passed": true
+    },
+    {
+      "name": "whole_sources:dev-f-7206:initial",
+      "passed": true
+    },
+    {
+      "name": "section_full_input_bound:dev-f-7206:initial",
+      "passed": true
+    },
+    {
+      "name": "default_byte_parity:dev-f-7206:update",
+      "passed": true
+    },
+    {
+      "name": "whole_sources:dev-f-7206:update",
+      "passed": true
+    },
+    {
+      "name": "section_full_input_bound:dev-f-7206:update",
+      "passed": true
+    },
+    {
+      "name": "default_byte_parity:dev-g-9487:initial",
+      "passed": true
+    },
+    {
+      "name": "whole_sources:dev-g-9487:initial",
+      "passed": true
+    },
+    {
+      "name": "section_full_input_bound:dev-g-9487:initial",
+      "passed": true
+    },
+    {
+      "name": "default_byte_parity:dev-g-9487:update",
+      "passed": true
+    },
+    {
+      "name": "whole_sources:dev-g-9487:update",
+      "passed": true
+    },
+    {
+      "name": "section_full_input_bound:dev-g-9487:update",
+      "passed": true
+    },
+    {
+      "name": "all10retained_and21unavailable_claim_attempts",
+      "passed": true
+    },
+    {
+      "name": "original_final7_and_rejected3_preserved",
+      "passed": true
+    },
+    {
+      "name": "same_decisions_for_rendered_projections",
+      "passed": true
+    },
+    {
+      "name": "canonical_question_preserved",
+      "passed": true
+    },
+    {
+      "name": "all_frozen_input_bytes_unchanged",
+      "passed": true
+    }
+  ],
+  "checks_passed": 58,
+  "checks_total": 58,
+  "all_checks_passed": true,
+  "model_selection_improvement_claim": false,
+  "semantic_relevance_or_entailment_proven": false,
+  "human_usefulness": null,
+  "real_RAG_or_held_out_test": false,
+  "production_defaults_promoted": false,
+  "limitations": [
+    "Projection is authored after observing failures; it is not new model output.",
+    "Whole sections may grow output and keep irrelevant, malicious or widget-only text.",
+    "A peer/cross-source qualifier can still be omitted; structural subtree is not semantic completeness.",
+    "Lexical scores are inspection hints, with false positives, synonyms and historical message contamination possible.",
+    "All old errors, unavailable raw attempts, unvisited states and human-null labels remain unchanged."
+  ]
+}
