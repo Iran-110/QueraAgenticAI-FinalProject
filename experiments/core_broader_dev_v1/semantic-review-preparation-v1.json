@@ -1,0 +1,2931 @@
+{
+  "schema_version": 1,
+  "status": "prepared_method_only_awaiting_explicit_receipt_GO",
+  "actual_receipt_opened": false,
+  "actual_sends": 0,
+  "live_results_or_scores": null,
+  "reviewer": {
+    "kind": "assistant",
+    "blinded": false,
+    "implementation_overlap": true,
+    "human_usefulness": null
+  },
+  "pins": {
+    "experiments/core_broader_dev_v1/protocol-v1.json": "504d34bac87142adf9a09b2ab56117d3c752ea7b6b306b2a89ba61acf003b3f6",
+    "experiments/core_broader_dev_v1/bound-amendment-v1.json": "bec06875449f7940e5490207108c4459ebe0e3bda37d7b67c150e75bf00adcdd",
+    "experiments/core_broader_dev_v1/preparation-amendment-v1.json": "ebfd1aee7d9b002f7ff5b95769288bb70e878fbd4f0632d1086f3a627eafa7bb",
+    "experiments/core_broader_dev_v1/snapshots-v1.json": "c88d72753d2fb9a1317720ce51fa6b49027ce0bd46ecdcc7e7eabf107f613b0d",
+    "experiments/core_broader_dev_v1/preparation-v1.json": "2742cf7955ac1443bf24b176b0179b5452cad6025f43f767384f4cc99424b195",
+    "experiments/core_broader_dev_v1/offline-preflight-v1.json": "e0a99e796b56c5576c6b3d1bd481a73687ee4eb8bb9c90d4644ecb2225d0b0aa"
+  },
+  "prospective_quality_exact": {
+    "Enum_guide_required": "Actual original proposal explains Enum identity/redefinition with source support, gives a bounded documented next step with reload/edit qualifications, labels inference/hypothesis and application-version limitations, current correction1.31.1, no invented runtime fix or direct-state widget-coercion remedy.",
+    "Enum_guide_threshold": "At least3of4 compiled guide-condition proposals (2current states×2repetitions) meet all coverage/qualification requirements, more than fresh quote control, and median USERdraft length<=3000characters; shorter text alone never passes.",
+    "Enum_withheld": "No unsupported diagnosis/module-fix claim; distinguish source gap from known version/code/environment and provide a concrete qualified investigation/handoff. No manufacture of a missing user fact.",
+    "broader_dev": "Necessary answerable registered questions only; preserve supplied checks/observations and correction state, reject unsupported API/dependency/third-party fixes. Evaluate answerable/ambiguous/source-gap strata separately; all-escalate is not an automatic quality win.",
+    "all_surfaces": "Review full USERdraft, maintainer summary, rationale, evidence_links claims, checks_suggested, facts_delta, code and questions against actual sources/current facts, including uncited prose. No raw or parsed failure/stale/no-final/refinement is dropped.",
+    "edited_and_released": "There are no edits/releases in this paid proposal-only comparison. Any future edited/released output needs separate scoring and approval.",
+    "reviewer": "Unblinded assistant with implementation overlap; human usefulness remains null. Mechanical controls are not semantic accuracy scores.",
+    "no_default_promotion": "An observed dev gain is not production-safe generalization. Do not change recommended defaults without broader human review/frozen evaluation."
+  },
+  "planned_states": 64,
+  "unique_current_snapshots": 16,
+  "unique_report_families": 7,
+  "pipeline_comparison_not_single_factor": true,
+  "conditions": {
+    "wholequote_and_synthesis_both_original_proposals": true,
+    "all_proposals_pending_review": true,
+    "approved_released_edited_actions_all_zero": true,
+    "native_initial_read_frozen_as_fixed_source_pool": true,
+    "model_refinement_not_a_new_search": true,
+    "excluded_guide_fixture_only": true
+  },
+  "review_surfaces": [
+    "user_draft",
+    "maintainer_summary",
+    "rationale",
+    "evidence_links.claim",
+    "missing_info",
+    "next_question",
+    "checks_suggested",
+    "facts_delta",
+    "code",
+    "retrieval_queries"
+  ],
+  "all_planned_rows": [
+    {
+      "repetition": 1,
+      "arm": "grounded_quotes",
+      "snapshot_id": "dev-a:initial",
+      "scenario_id": "dev-a",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "grounded_quotes",
+      "snapshot_id": "dev-a:version",
+      "scenario_id": "dev-a",
+      "turn_id": "version",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "grounded_quotes",
+      "snapshot_id": "dev-b:initial",
+      "scenario_id": "dev-b",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "grounded_quotes",
+      "snapshot_id": "dev-b:version",
+      "scenario_id": "dev-b",
+      "turn_id": "version",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "grounded_quotes",
+      "snapshot_id": "enum-guide:initial",
+      "scenario_id": "enum-guide",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "grounded_quotes",
+      "snapshot_id": "enum-guide:correction",
+      "scenario_id": "enum-guide",
+      "turn_id": "correction",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "grounded_quotes",
+      "snapshot_id": "enum-withheld:initial",
+      "scenario_id": "enum-withheld",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "grounded_quotes",
+      "snapshot_id": "enum-withheld:correction",
+      "scenario_id": "enum-withheld",
+      "turn_id": "correction",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "grounded_quotes",
+      "snapshot_id": "dev-d-4713:initial",
+      "scenario_id": "dev-d-4713",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "grounded_quotes",
+      "snapshot_id": "dev-d-4713:update",
+      "scenario_id": "dev-d-4713",
+      "turn_id": "update",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "grounded_quotes",
+      "snapshot_id": "dev-e-5618:initial",
+      "scenario_id": "dev-e-5618",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "grounded_quotes",
+      "snapshot_id": "dev-e-5618:update",
+      "scenario_id": "dev-e-5618",
+      "turn_id": "update",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "grounded_quotes",
+      "snapshot_id": "dev-f-7206:initial",
+      "scenario_id": "dev-f-7206",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "grounded_quotes",
+      "snapshot_id": "dev-f-7206:update",
+      "scenario_id": "dev-f-7206",
+      "turn_id": "update",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "grounded_quotes",
+      "snapshot_id": "dev-g-9487:initial",
+      "scenario_id": "dev-g-9487",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "grounded_quotes",
+      "snapshot_id": "dev-g-9487:update",
+      "scenario_id": "dev-g-9487",
+      "turn_id": "update",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "compiled_analysis",
+      "snapshot_id": "dev-a:initial",
+      "scenario_id": "dev-a",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "compiled_analysis",
+      "snapshot_id": "dev-a:version",
+      "scenario_id": "dev-a",
+      "turn_id": "version",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "compiled_analysis",
+      "snapshot_id": "dev-b:initial",
+      "scenario_id": "dev-b",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "compiled_analysis",
+      "snapshot_id": "dev-b:version",
+      "scenario_id": "dev-b",
+      "turn_id": "version",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "compiled_analysis",
+      "snapshot_id": "enum-guide:initial",
+      "scenario_id": "enum-guide",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "compiled_analysis",
+      "snapshot_id": "enum-guide:correction",
+      "scenario_id": "enum-guide",
+      "turn_id": "correction",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "compiled_analysis",
+      "snapshot_id": "enum-withheld:initial",
+      "scenario_id": "enum-withheld",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "compiled_analysis",
+      "snapshot_id": "enum-withheld:correction",
+      "scenario_id": "enum-withheld",
+      "turn_id": "correction",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "compiled_analysis",
+      "snapshot_id": "dev-d-4713:initial",
+      "scenario_id": "dev-d-4713",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "compiled_analysis",
+      "snapshot_id": "dev-d-4713:update",
+      "scenario_id": "dev-d-4713",
+      "turn_id": "update",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "compiled_analysis",
+      "snapshot_id": "dev-e-5618:initial",
+      "scenario_id": "dev-e-5618",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "compiled_analysis",
+      "snapshot_id": "dev-e-5618:update",
+      "scenario_id": "dev-e-5618",
+      "turn_id": "update",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "compiled_analysis",
+      "snapshot_id": "dev-f-7206:initial",
+      "scenario_id": "dev-f-7206",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "compiled_analysis",
+      "snapshot_id": "dev-f-7206:update",
+      "scenario_id": "dev-f-7206",
+      "turn_id": "update",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "compiled_analysis",
+      "snapshot_id": "dev-g-9487:initial",
+      "scenario_id": "dev-g-9487",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 1,
+      "arm": "compiled_analysis",
+      "snapshot_id": "dev-g-9487:update",
+      "scenario_id": "dev-g-9487",
+      "turn_id": "update",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "grounded_quotes",
+      "snapshot_id": "dev-a:initial",
+      "scenario_id": "dev-a",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "grounded_quotes",
+      "snapshot_id": "dev-a:version",
+      "scenario_id": "dev-a",
+      "turn_id": "version",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "grounded_quotes",
+      "snapshot_id": "dev-b:initial",
+      "scenario_id": "dev-b",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "grounded_quotes",
+      "snapshot_id": "dev-b:version",
+      "scenario_id": "dev-b",
+      "turn_id": "version",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "grounded_quotes",
+      "snapshot_id": "enum-guide:initial",
+      "scenario_id": "enum-guide",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "grounded_quotes",
+      "snapshot_id": "enum-guide:correction",
+      "scenario_id": "enum-guide",
+      "turn_id": "correction",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "grounded_quotes",
+      "snapshot_id": "enum-withheld:initial",
+      "scenario_id": "enum-withheld",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "grounded_quotes",
+      "snapshot_id": "enum-withheld:correction",
+      "scenario_id": "enum-withheld",
+      "turn_id": "correction",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "grounded_quotes",
+      "snapshot_id": "dev-d-4713:initial",
+      "scenario_id": "dev-d-4713",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "grounded_quotes",
+      "snapshot_id": "dev-d-4713:update",
+      "scenario_id": "dev-d-4713",
+      "turn_id": "update",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "grounded_quotes",
+      "snapshot_id": "dev-e-5618:initial",
+      "scenario_id": "dev-e-5618",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "grounded_quotes",
+      "snapshot_id": "dev-e-5618:update",
+      "scenario_id": "dev-e-5618",
+      "turn_id": "update",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "grounded_quotes",
+      "snapshot_id": "dev-f-7206:initial",
+      "scenario_id": "dev-f-7206",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "grounded_quotes",
+      "snapshot_id": "dev-f-7206:update",
+      "scenario_id": "dev-f-7206",
+      "turn_id": "update",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "grounded_quotes",
+      "snapshot_id": "dev-g-9487:initial",
+      "scenario_id": "dev-g-9487",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "grounded_quotes",
+      "snapshot_id": "dev-g-9487:update",
+      "scenario_id": "dev-g-9487",
+      "turn_id": "update",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "compiled_analysis",
+      "snapshot_id": "dev-a:initial",
+      "scenario_id": "dev-a",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "compiled_analysis",
+      "snapshot_id": "dev-a:version",
+      "scenario_id": "dev-a",
+      "turn_id": "version",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "compiled_analysis",
+      "snapshot_id": "dev-b:initial",
+      "scenario_id": "dev-b",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "compiled_analysis",
+      "snapshot_id": "dev-b:version",
+      "scenario_id": "dev-b",
+      "turn_id": "version",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "compiled_analysis",
+      "snapshot_id": "enum-guide:initial",
+      "scenario_id": "enum-guide",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "compiled_analysis",
+      "snapshot_id": "enum-guide:correction",
+      "scenario_id": "enum-guide",
+      "turn_id": "correction",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "compiled_analysis",
+      "snapshot_id": "enum-withheld:initial",
+      "scenario_id": "enum-withheld",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "compiled_analysis",
+      "snapshot_id": "enum-withheld:correction",
+      "scenario_id": "enum-withheld",
+      "turn_id": "correction",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "compiled_analysis",
+      "snapshot_id": "dev-d-4713:initial",
+      "scenario_id": "dev-d-4713",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "compiled_analysis",
+      "snapshot_id": "dev-d-4713:update",
+      "scenario_id": "dev-d-4713",
+      "turn_id": "update",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "compiled_analysis",
+      "snapshot_id": "dev-e-5618:initial",
+      "scenario_id": "dev-e-5618",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "compiled_analysis",
+      "snapshot_id": "dev-e-5618:update",
+      "scenario_id": "dev-e-5618",
+      "turn_id": "update",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "compiled_analysis",
+      "snapshot_id": "dev-f-7206:initial",
+      "scenario_id": "dev-f-7206",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "compiled_analysis",
+      "snapshot_id": "dev-f-7206:update",
+      "scenario_id": "dev-f-7206",
+      "turn_id": "update",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "compiled_analysis",
+      "snapshot_id": "dev-g-9487:initial",
+      "scenario_id": "dev-g-9487",
+      "turn_id": "initial",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    },
+    {
+      "repetition": 2,
+      "arm": "compiled_analysis",
+      "snapshot_id": "dev-g-9487:update",
+      "scenario_id": "dev-g-9487",
+      "turn_id": "update",
+      "observed": false,
+      "semantic_status": null,
+      "human_usefulness": null
+    }
+  ],
+  "pre_model_matrix": [
+    {
+      "snapshot_id": "dev-a:initial",
+      "scenario_id": "dev-a",
+      "turn_id": "initial",
+      "known_active_USER_facts": [
+        {
+          "name": "python_version",
+          "value": "3.12.9",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Chrome",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_widget_context",
+          "value": "A multiselect inside @st.fragment",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_trigger",
+          "value": "Changing a parent selector resets session state",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_observation",
+          "value": "The multiselect displays empty rather than its saved default",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_reproduction_status",
+          "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "recorded_checks": [
+        "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+      ],
+      "necessary_registered_USER_gaps": [
+        {
+          "name": "streamlit_version",
+          "kind": "user",
+          "description": "The affected application's Streamlit version is unknown.",
+          "necessity": "The user can report the installed release to check source applicability.",
+          "question": "Which Streamlit version is installed in the affected environment?"
+        },
+        {
+          "name": "parent_callback_code",
+          "kind": "user",
+          "description": "The current case lists the relevant parent callback code as unknown.",
+          "necessity": "The user can provide the real callback to distinguish current app behaviour from the supplied working reduction.",
+          "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+        },
+        {
+          "name": "state_update_order",
+          "kind": "user",
+          "description": "The current case lists the order of state updates as unknown.",
+          "necessity": "The user can report when the relevant state is assigned or removed relative to rendering the widget.",
+          "question": "In what order does your app update session state and render the affected widget?"
+        }
+      ],
+      "caller_source_gaps": [
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "The supplied evidence bundle contains no documentation records.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        }
+      ],
+      "actual_source_ids": [],
+      "review_criteria_runner_only": {
+        "historical_gold_condition_only": {
+          "rubric_id": "e2-core-review-draft-v1",
+          "stratum": "ambiguous",
+          "acceptable_decisions": [
+            "ask",
+            "escalate"
+          ],
+          "decision_conditions": {
+            "ask": "Ask installed version, or the missing real parent callback; never treat the working reduction as failing.",
+            "escalate": "No diagnosis/fix supported; explicit unresolved source limitations and concrete maintainer investigation. Report unnecessary abstention separately; user version clarification remains feasible."
+          },
+          "allowed_intermediate_decisions": [
+            "retrieve_more"
+          ],
+          "gaps": [
+            {
+              "name": "streamlit_version",
+              "kind": "user",
+              "description": "Affected installed release not yet supplied.",
+              "necessity": "The user can report the installed release; it changes applicability of pinned API documentation.",
+              "question": "Which Streamlit version is installed in the affected environment?"
+            },
+            {
+              "name": "parent_callback_code",
+              "kind": "user",
+              "description": "Relevant parent callback/state-update code is not supplied; the supplied reduction works.",
+              "necessity": "The user can share the real callback to distinguish full-app behaviour from the working reduction.",
+              "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+            },
+            {
+              "name": "state_update_order",
+              "kind": "user",
+              "description": "The current case lists the order of state updates as unknown.",
+              "necessity": "The user can report when the relevant state is assigned or removed relative to rendering the widget.",
+              "question": "In what order does your app update session state and render the affected widget?"
+            }
+          ],
+          "unacceptable_claims": [
+            "The full-app root cause or a verified fix is established.",
+            "The working reduced snippet reproduces the failure.",
+            "Document version metadata proves the installed user version.",
+            "Multiselect key-only identity changed in 1.50.0: no release note or identity claim is in this new fixed bundle.",
+            "The case was sent to a maintainer before an observed action."
+          ],
+          "human_reviewed": false,
+          "usefulness_score": null,
+          "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality."
+        },
+        "original_fixture_path": "data/evaluation/dev-three-v1/cases/pilot-12782-v1.json"
+      }
+    },
+    {
+      "snapshot_id": "dev-a:version",
+      "scenario_id": "dev-a",
+      "turn_id": "version",
+      "known_active_USER_facts": [
+        {
+          "name": "python_version",
+          "value": "3.12.9",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Chrome",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_widget_context",
+          "value": "A multiselect inside @st.fragment",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_trigger",
+          "value": "Changing a parent selector resets session state",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_observation",
+          "value": "The multiselect displays empty rather than its saved default",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_reproduction_status",
+          "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "streamlit_version",
+          "value": "1.50.0",
+          "source_ref": "USER:version",
+          "turn_id": "version",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "recorded_checks": [
+        "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+      ],
+      "necessary_registered_USER_gaps": [
+        {
+          "name": "parent_callback_code",
+          "kind": "user",
+          "description": "The current case lists the relevant parent callback code as unknown.",
+          "necessity": "The user can provide the real callback to distinguish current app behaviour from the supplied working reduction.",
+          "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+        },
+        {
+          "name": "state_update_order",
+          "kind": "user",
+          "description": "The current case lists the order of state updates as unknown.",
+          "necessity": "The user can report when the relevant state is assigned or removed relative to rendering the widget.",
+          "question": "In what order does your app update session state and render the affected widget?"
+        }
+      ],
+      "caller_source_gaps": [],
+      "actual_source_ids": [
+        "docstring:1.50.0:streamlit.multiselect",
+        "docstring:1.50.0:streamlit.fragment"
+      ],
+      "review_criteria_runner_only": {
+        "historical_gold_condition_only": {
+          "rubric_id": "e2-core-review-draft-v1",
+          "stratum": "ambiguous",
+          "acceptable_decisions": [
+            "answer",
+            "ask",
+            "escalate"
+          ],
+          "decision_conditions": {
+            "answer": "Only a useful explicitly scoped description of the supplied 1.50.0 API behaviour, with exact quoted support; no full-app diagnosis/fix or invented release-change claim.",
+            "ask": "Only the currently missing real parent callback/state-update code. Installed version is known; do not ask it again.",
+            "escalate": "Explain that exact API documentation does not prove the full-app cause/fix, and specify maintainer investigation without asserting execution."
+          },
+          "allowed_intermediate_decisions": [
+            "retrieve_more"
+          ],
+          "gaps": [
+            {
+              "name": "parent_callback_code",
+              "kind": "user",
+              "description": "Relevant parent callback/state-update code is not supplied; the supplied reduction works.",
+              "necessity": "The user can share the real callback to distinguish full-app behaviour from the working reduction.",
+              "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+            },
+            {
+              "name": "state_update_order",
+              "kind": "user",
+              "description": "The current case lists the order of state updates as unknown.",
+              "necessity": "The user can report when the relevant state is assigned or removed relative to rendering the widget.",
+              "question": "In what order does your app update session state and render the affected widget?"
+            }
+          ],
+          "unacceptable_claims": [
+            "The full-app root cause or a verified fix is established.",
+            "The working reduced snippet reproduces the failure.",
+            "Document version metadata proves the installed user version.",
+            "Multiselect key-only identity changed in 1.50.0: no release note or identity claim is in this new fixed bundle.",
+            "The case was sent to a maintainer before an observed action."
+          ],
+          "human_reviewed": false,
+          "usefulness_score": null,
+          "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality."
+        },
+        "original_fixture_path": "data/evaluation/dev-three-v1/cases/pilot-12782-v1.json"
+      }
+    },
+    {
+      "snapshot_id": "dev-b:initial",
+      "scenario_id": "dev-b",
+      "turn_id": "initial",
+      "known_active_USER_facts": [
+        {
+          "name": "requested_icon_format",
+          "value": "A custom company-logo image rather than an emoji or Material Symbol",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "requested_apis",
+          "value": "st.button or st.warning",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "recorded_checks": [],
+      "necessary_registered_USER_gaps": [
+        {
+          "name": "streamlit_version",
+          "kind": "user",
+          "description": "The affected application's Streamlit version is unknown.",
+          "necessity": "The user can report the installed release to check source applicability.",
+          "question": "Which Streamlit version is installed in the affected environment?"
+        }
+      ],
+      "caller_source_gaps": [
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "The supplied evidence bundle contains no documentation records.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        }
+      ],
+      "actual_source_ids": [],
+      "review_criteria_runner_only": {
+        "historical_gold_condition_only": {
+          "rubric_id": "e2-core-review-draft-v1",
+          "stratum": "ambiguous",
+          "acceptable_decisions": [
+            "answer",
+            "ask",
+            "escalate"
+          ],
+          "decision_conditions": {
+            "answer": "An explicitly historical/bounded statement about the supplied 1.39.0 button icon formats can be useful; must not assume user version or generalize to warning.",
+            "ask": "The canonical installed-version question is necessary and user answerable.",
+            "escalate": "A feature implementation request may require maintainers, but supported existing API guidance should not be withheld; record unnecessary abstention separately."
+          },
+          "allowed_intermediate_decisions": [
+            "retrieve_more"
+          ],
+          "gaps": [
+            {
+              "name": "streamlit_version",
+              "kind": "user",
+              "description": "Affected installed release not yet supplied.",
+              "necessity": "The user can report the installed release; it changes applicability of pinned API documentation.",
+              "question": "Which Streamlit version is installed in the affected environment?"
+            }
+          ],
+          "unacceptable_claims": [
+            "PNG/SVG/image URL is supported by st.button icon in Streamlit 1.39.0.",
+            "A new feature has shipped or has an implementation date.",
+            "The button documentation establishes st.warning, st.Page or every icon-bearing API behaviour.",
+            "Images in Markdown labels are supported in this 1.39.0 button record.",
+            "A provider/source document establishes the user installed version."
+          ],
+          "human_reviewed": false,
+          "usefulness_score": null,
+          "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality."
+        },
+        "original_fixture_path": "data/evaluation/dev-three-v1/cases/icon-9770-v1.json"
+      }
+    },
+    {
+      "snapshot_id": "dev-b:version",
+      "scenario_id": "dev-b",
+      "turn_id": "version",
+      "known_active_USER_facts": [
+        {
+          "name": "requested_icon_format",
+          "value": "A custom company-logo image rather than an emoji or Material Symbol",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "requested_apis",
+          "value": "st.button or st.warning",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "streamlit_version",
+          "value": "1.39.0",
+          "source_ref": "USER:version",
+          "turn_id": "version",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "recorded_checks": [],
+      "necessary_registered_USER_gaps": [],
+      "caller_source_gaps": [],
+      "actual_source_ids": [
+        "docstring:1.39.0:streamlit.button"
+      ],
+      "review_criteria_runner_only": {
+        "historical_gold_condition_only": {
+          "rubric_id": "e2-core-review-draft-v1",
+          "stratum": "answerable",
+          "acceptable_decisions": [
+            "answer",
+            "escalate"
+          ],
+          "decision_conditions": {
+            "answer": "Give the useful supported exact-version button icon capability/limitation, clearly scoped to button. Future feature status and warning remain unresolved.",
+            "escalate": "Acceptable only for the unresolved feature-delivery or unsupported warning portion while retaining useful documented button capability. Escalating the whole exact-version button question without that answer is unnecessary abstention."
+          },
+          "allowed_intermediate_decisions": [
+            "retrieve_more"
+          ],
+          "gaps": [],
+          "unacceptable_claims": [
+            "PNG/SVG/image URL is supported by st.button icon in Streamlit 1.39.0.",
+            "A new feature has shipped or has an implementation date.",
+            "The button documentation establishes st.warning, st.Page or every icon-bearing API behaviour.",
+            "Images in Markdown labels are supported in this 1.39.0 button record.",
+            "A provider/source document establishes the user installed version."
+          ],
+          "human_reviewed": false,
+          "usefulness_score": null,
+          "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality."
+        },
+        "original_fixture_path": "data/evaluation/dev-three-v1/cases/icon-9770-v1.json"
+      }
+    },
+    {
+      "snapshot_id": "enum-guide:initial",
+      "scenario_id": "enum-guide",
+      "turn_id": "initial",
+      "known_active_USER_facts": [
+        {
+          "name": "streamlit_version",
+          "value": "1.31.0",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "python_version",
+          "value": "3.11.6",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "macOS Sonoma 14.3",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Chrome",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_reproduction_code",
+          "value": "import streamlit as st\r\nfrom enum import Enum, auto\r\n\r\nclass Color(Enum):\r\n    RED = auto()\r\n    BLACK = auto()\r\n    YELLOW = auto()\r\n    \r\nif 'color' not in st.session_state:\r\n    st.session_state.color = Color.RED\r\n    \r\n\r\nst.code(\"st.session_state.color == Color.RED\")\r\nst.write(st.session_state.color == Color.RED)\r\n\r\nst.code(\"st.session_state.color.value == Color.RED.value\")\r\nst.write(st.session_state.color.value == Color.RED.value)",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_observation",
+          "value": "Enum equality is False, while enum .value equality is True",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "recorded_checks": [
+        "Executed the supplied example and compared Enum objects and their .value values"
+      ],
+      "necessary_registered_USER_gaps": [],
+      "caller_source_gaps": [
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "No supplied record has exact metadata for the confirmed version.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        }
+      ],
+      "actual_source_ids": [
+        "docs:content/develop/api-reference/caching-and-state/session_state.md",
+        "docs:content/develop/concepts/app-design/custom-classes.md",
+        "docs:content/develop/concepts/app-design/custom-classes.md"
+      ],
+      "review_criteria_runner_only": {
+        "acceptable_final_decisions": [
+          "answer",
+          "escalate"
+        ],
+        "condition": "Actual original proposal explains Enum identity/redefinition with source support, gives a bounded documented next step with reload/edit qualifications, labels inference/hypothesis and application-version limitations, current correction1.31.1, no invented runtime fix or direct-state widget-coercion remedy."
+      }
+    },
+    {
+      "snapshot_id": "enum-guide:correction",
+      "scenario_id": "enum-guide",
+      "turn_id": "correction",
+      "known_active_USER_facts": [
+        {
+          "name": "python_version",
+          "value": "3.11.6",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "macOS Sonoma 14.3",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Chrome",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_reproduction_code",
+          "value": "import streamlit as st\r\nfrom enum import Enum, auto\r\n\r\nclass Color(Enum):\r\n    RED = auto()\r\n    BLACK = auto()\r\n    YELLOW = auto()\r\n    \r\nif 'color' not in st.session_state:\r\n    st.session_state.color = Color.RED\r\n    \r\n\r\nst.code(\"st.session_state.color == Color.RED\")\r\nst.write(st.session_state.color == Color.RED)\r\n\r\nst.code(\"st.session_state.color.value == Color.RED.value\")\r\nst.write(st.session_state.color.value == Color.RED.value)",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_observation",
+          "value": "Enum equality is False, while enum .value equality is True",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "streamlit_version",
+          "value": "1.31.1",
+          "source_ref": "USER:correction",
+          "turn_id": "correction",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "recorded_checks": [
+        "Checked the installed Streamlit release in the affected environment"
+      ],
+      "necessary_registered_USER_gaps": [],
+      "caller_source_gaps": [
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "No supplied record has exact metadata for the confirmed version.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        }
+      ],
+      "actual_source_ids": [
+        "docs:content/develop/api-reference/caching-and-state/session_state.md",
+        "docs:content/develop/concepts/app-design/custom-classes.md",
+        "docs:content/develop/concepts/app-design/custom-classes.md"
+      ],
+      "review_criteria_runner_only": {
+        "acceptable_final_decisions": [
+          "answer",
+          "escalate"
+        ],
+        "condition": "Actual original proposal explains Enum identity/redefinition with source support, gives a bounded documented next step with reload/edit qualifications, labels inference/hypothesis and application-version limitations, current correction1.31.1, no invented runtime fix or direct-state widget-coercion remedy."
+      }
+    },
+    {
+      "snapshot_id": "enum-withheld:initial",
+      "scenario_id": "enum-withheld",
+      "turn_id": "initial",
+      "known_active_USER_facts": [
+        {
+          "name": "streamlit_version",
+          "value": "1.31.0",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "python_version",
+          "value": "3.11.6",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "macOS Sonoma 14.3",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Chrome",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_reproduction_code",
+          "value": "import streamlit as st\r\nfrom enum import Enum, auto\r\n\r\nclass Color(Enum):\r\n    RED = auto()\r\n    BLACK = auto()\r\n    YELLOW = auto()\r\n    \r\nif 'color' not in st.session_state:\r\n    st.session_state.color = Color.RED\r\n    \r\n\r\nst.code(\"st.session_state.color == Color.RED\")\r\nst.write(st.session_state.color == Color.RED)\r\n\r\nst.code(\"st.session_state.color.value == Color.RED.value\")\r\nst.write(st.session_state.color.value == Color.RED.value)",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_observation",
+          "value": "Enum equality is False, while enum .value equality is True",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "recorded_checks": [
+        "Executed the supplied example and compared Enum objects and their .value values"
+      ],
+      "necessary_registered_USER_gaps": [],
+      "caller_source_gaps": [
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "No supplied record has exact metadata for the confirmed version.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        }
+      ],
+      "actual_source_ids": [
+        "docs:content/develop/api-reference/caching-and-state/session_state.md"
+      ],
+      "review_criteria_runner_only": {
+        "historical_gold_condition_only": {
+          "rubric_id": "e2-core-review-draft-v1",
+          "stratum": "needs_escalation",
+          "acceptable_decisions": [
+            "answer",
+            "escalate"
+          ],
+          "decision_conditions": {
+            "answer": "Only a strictly qualified useful documentary response that states the supplied generic guide cannot establish the requested Enum diagnosis/fix and identifies maintainer investigation; generic background alone is not a resolution.",
+            "escalate": "Explain source-only cause/fix gap and the concrete reproduction to investigate. Do not ask for the already supplied version/code or for the user to produce missing documentation."
+          },
+          "allowed_intermediate_decisions": [
+            "retrieve_more"
+          ],
+          "gaps": [],
+          "unacceptable_claims": [
+            "An exact-version Enum diagnosis, verified fix or affected-release range is established by the generic Session State document.",
+            "Moving the Enum to another file is proved to fix this case: the direct-answer comment/guide is withheld.",
+            "The supplied code or confirmed current installed version is missing and should be requested again.",
+            "The original 1.31.0 remains current after correction.",
+            "A maintainer action has already been performed."
+          ],
+          "human_reviewed": false,
+          "usefulness_score": null,
+          "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality."
+        },
+        "original_fixture_path": "data/evaluation/dev-three-v1/cases/enum-8129-v1.json"
+      }
+    },
+    {
+      "snapshot_id": "enum-withheld:correction",
+      "scenario_id": "enum-withheld",
+      "turn_id": "correction",
+      "known_active_USER_facts": [
+        {
+          "name": "python_version",
+          "value": "3.11.6",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "macOS Sonoma 14.3",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Chrome",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_reproduction_code",
+          "value": "import streamlit as st\r\nfrom enum import Enum, auto\r\n\r\nclass Color(Enum):\r\n    RED = auto()\r\n    BLACK = auto()\r\n    YELLOW = auto()\r\n    \r\nif 'color' not in st.session_state:\r\n    st.session_state.color = Color.RED\r\n    \r\n\r\nst.code(\"st.session_state.color == Color.RED\")\r\nst.write(st.session_state.color == Color.RED)\r\n\r\nst.code(\"st.session_state.color.value == Color.RED.value\")\r\nst.write(st.session_state.color.value == Color.RED.value)",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_observation",
+          "value": "Enum equality is False, while enum .value equality is True",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "streamlit_version",
+          "value": "1.31.1",
+          "source_ref": "USER:correction",
+          "turn_id": "correction",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "recorded_checks": [
+        "Checked the installed Streamlit release in the affected environment"
+      ],
+      "necessary_registered_USER_gaps": [],
+      "caller_source_gaps": [
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "No supplied record has exact metadata for the confirmed version.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        }
+      ],
+      "actual_source_ids": [
+        "docs:content/develop/api-reference/caching-and-state/session_state.md"
+      ],
+      "review_criteria_runner_only": {
+        "historical_gold_condition_only": {
+          "rubric_id": "e2-core-review-draft-v1",
+          "stratum": "needs_escalation",
+          "acceptable_decisions": [
+            "answer",
+            "escalate"
+          ],
+          "decision_conditions": {
+            "answer": "Same strictly qualified documentary scope as initial, using current 1.31.1. No exact cause/fix claim, stale version or invented action.",
+            "escalate": "Use the current corrected release and full reproduction; distinguish missing documentation from missing user information."
+          },
+          "allowed_intermediate_decisions": [
+            "retrieve_more"
+          ],
+          "gaps": [],
+          "unacceptable_claims": [
+            "An exact-version Enum diagnosis, verified fix or affected-release range is established by the generic Session State document.",
+            "Moving the Enum to another file is proved to fix this case: the direct-answer comment/guide is withheld.",
+            "The supplied code or confirmed current installed version is missing and should be requested again.",
+            "The original 1.31.0 remains current after correction.",
+            "A maintainer action has already been performed."
+          ],
+          "human_reviewed": false,
+          "usefulness_score": null,
+          "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality."
+        },
+        "original_fixture_path": "data/evaluation/dev-three-v1/cases/enum-8129-v1.json"
+      }
+    },
+    {
+      "snapshot_id": "dev-d-4713:initial",
+      "scenario_id": "dev-d-4713",
+      "turn_id": "initial",
+      "known_active_USER_facts": [
+        {
+          "name": "streamlit_version",
+          "value": "1.9.0",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "python_version",
+          "value": "3.10.2",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "pdm_version",
+          "value": "1.14.1",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "macOS Monterey 12.3.1",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Safari 15.4",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "launch_command",
+          "value": "pdm run streamlit run uber_pickups.py",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_error",
+          "value": "AttributeError: module 'click' has no attribute 'get_os_args'",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "recorded_checks": [
+        "Tried Click 8.0.0 and 7.1.2; reported failure persisted.",
+        "Tried Streamlit 1.8.0; reported failure persisted."
+      ],
+      "necessary_registered_USER_gaps": [
+        {
+          "name": "click_runtime_details",
+          "kind": "user",
+          "description": "The actual Click version and module path resolved by the current PDM invocation are unknown.",
+          "necessity": "Earlier downgrade trials do not establish what the current process imports; the user can inspect its runtime package identity.",
+          "question": "Which Click version and module path does the same PDM invocation actually import?"
+        }
+      ],
+      "caller_source_gaps": [
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "No supplied record has exact metadata for the confirmed version.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        }
+      ],
+      "actual_source_ids": [
+        "docs:content/develop/concepts/architecture/session-state.md",
+        "docs:content/develop/concepts/architecture/widget-behavior.md"
+      ],
+      "review_criteria_runner_only": {
+        "scenario_id": "dev-d-4713",
+        "case_id": "dev-d-4713",
+        "turn_id": "initial",
+        "current_state_provenance": {
+          "kind": "curated_cached_report_input",
+          "authored_counterfactual": false,
+          "actual_thread_reply": false,
+          "automatically_consumed_model_reply": false
+        },
+        "known_current_user_facts": {
+          "streamlit_version": "1.9.0",
+          "python_version": "3.10.2",
+          "pdm_version": "1.14.1",
+          "operating_system": "macOS Monterey 12.3.1",
+          "browser": "Safari 15.4",
+          "launch_command": "pdm run streamlit run uber_pickups.py",
+          "reported_error": "AttributeError: module 'click' has no attribute 'get_os_args'"
+        },
+        "known_current_checks": [
+          "Tried Click 8.0.0 and 7.1.2; reported failure persisted.",
+          "Tried Streamlit 1.8.0; reported failure persisted."
+        ],
+        "registered_user_gaps": [
+          "click_runtime_details"
+        ],
+        "source_gaps_are_separate": true,
+        "evidence_review_rules": [
+          "Answer only to the extent actual source text and current USER facts support it; label inference and applicability limits.",
+          "A concrete, qualified investigation/handoff is acceptable when documentary support is missing; it is not a verified fix.",
+          "One bounded retrieval refinement may be appropriate within existing engine limits; the study supplies the same complete frozen evidence pool, not a new RAG search."
+        ],
+        "human_usefulness": null,
+        "authored_counterfactual": false,
+        "source_support_and_usefulness_review_pending": true,
+        "stratum": "ambiguous_user_runtime_identity",
+        "preferred_next_step": "Ask the exact registered Click runtime question; the previous downgrade attempts do not establish the currently imported version.",
+        "acceptable_decisions": [
+          "ask",
+          "retrieve_more",
+          "escalate",
+          "answer"
+        ],
+        "decision_conditions": {
+          "ask": "Only click_runtime_details, when still unknown; no general Streamlit/version/code/environment re-ask.",
+          "answer": "Bounded actual-source guidance with missing compatibility support disclosed; no asserted repair or unsupported downgrade instruction.",
+          "retrieve_more": "Seek the missing version-specific dependency/CLI contract within the existing refinement budget.",
+          "escalate": "Preserve exact error/runtime facts and failed checks; a safe fallback is not automatically useful or the preferred ambiguity resolution."
+        },
+        "source_gaps": [
+          "Whether actual evidence documents the relevant Click/Streamlit/PDM compatibility or a supported repair."
+        ],
+        "must_not_reask": [
+          "streamlit_version",
+          "python_version",
+          "pdm_version",
+          "operating_system",
+          "browser",
+          "launch_command",
+          "reported_code"
+        ],
+        "specific_failures": [
+          "Treat a CORS/XSRF warning as the proved cause of the AttributeError, or recommend disabling protection from that warning alone.",
+          "Repeat Click8.0.0/7.1.2 or Streamlit1.8.0 downgrade trials as if untried successful fixes.",
+          "Assume a current Click version from an earlier attempted downgrade."
+        ]
+      }
+    },
+    {
+      "snapshot_id": "dev-d-4713:update",
+      "scenario_id": "dev-d-4713",
+      "turn_id": "update",
+      "known_active_USER_facts": [
+        {
+          "name": "streamlit_version",
+          "value": "1.9.0",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "python_version",
+          "value": "3.10.2",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "pdm_version",
+          "value": "1.14.1",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "macOS Monterey 12.3.1",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Safari 15.4",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "launch_command",
+          "value": "pdm run streamlit run uber_pickups.py",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_error",
+          "value": "AttributeError: module 'click' has no attribute 'get_os_args'",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "click_runtime_details",
+          "value": "Click 8.1.3 imported from /opt/homebrew/lib/python3.10/site-packages/click/__init__.py in the same PDM invocation",
+          "source_ref": "USER:update",
+          "turn_id": "update",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "click_version",
+          "value": "8.1.3",
+          "source_ref": "USER:update",
+          "turn_id": "update",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "click_module_path",
+          "value": "/opt/homebrew/lib/python3.10/site-packages/click/__init__.py",
+          "source_ref": "USER:update",
+          "turn_id": "update",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "recorded_checks": [
+        "Tried Click 8.0.0 and 7.1.2; reported failure persisted.",
+        "Tried Streamlit 1.8.0; reported failure persisted.",
+        "Verified current Click version and module path inside the same PDM invocation; the reported AttributeError persists."
+      ],
+      "necessary_registered_USER_gaps": [],
+      "caller_source_gaps": [
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "No supplied record has exact metadata for the confirmed version.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        }
+      ],
+      "actual_source_ids": [
+        "docs:content/develop/concepts/architecture/widget-behavior.md",
+        "docs:content/develop/concepts/architecture/session-state.md",
+        "docs:content/develop/api-reference/caching-and-state/session_state.md"
+      ],
+      "review_criteria_runner_only": {
+        "scenario_id": "dev-d-4713",
+        "case_id": "dev-d-4713",
+        "turn_id": "update",
+        "current_state_provenance": {
+          "kind": "authored_counterfactual_current_state_update",
+          "authored_counterfactual": true,
+          "actual_thread_reply": false,
+          "automatically_consumed_model_reply": false
+        },
+        "known_current_user_facts": {
+          "streamlit_version": "1.9.0",
+          "python_version": "3.10.2",
+          "pdm_version": "1.14.1",
+          "operating_system": "macOS Monterey 12.3.1",
+          "browser": "Safari 15.4",
+          "launch_command": "pdm run streamlit run uber_pickups.py",
+          "reported_error": "AttributeError: module 'click' has no attribute 'get_os_args'",
+          "click_runtime_details": "Click 8.1.3 imported from /opt/homebrew/lib/python3.10/site-packages/click/__init__.py in the same PDM invocation",
+          "click_version": "8.1.3",
+          "click_module_path": "/opt/homebrew/lib/python3.10/site-packages/click/__init__.py"
+        },
+        "known_current_checks": [
+          "Tried Click 8.0.0 and 7.1.2; reported failure persisted.",
+          "Tried Streamlit 1.8.0; reported failure persisted.",
+          "Verified current Click version and module path inside the same PDM invocation; the reported AttributeError persists."
+        ],
+        "registered_user_gaps": [],
+        "source_gaps_are_separate": true,
+        "evidence_review_rules": [
+          "Answer only to the extent actual source text and current USER facts support it; label inference and applicability limits.",
+          "A concrete, qualified investigation/handoff is acceptable when documentary support is missing; it is not a verified fix.",
+          "One bounded retrieval refinement may be appropriate within existing engine limits; the study supplies the same complete frozen evidence pool, not a new RAG search."
+        ],
+        "human_usefulness": null,
+        "authored_counterfactual": true,
+        "source_support_and_usefulness_review_pending": true,
+        "stratum": "user_complete_dependency_source_gap",
+        "preferred_next_step": "Use supplied current Click8.1.3/module identity; investigate dependency compatibility with source-qualified guidance, further retrieval or a concrete handoff.",
+        "acceptable_decisions": [
+          "answer",
+          "retrieve_more",
+          "escalate"
+        ],
+        "decision_conditions": {
+          "ask": "Only click_runtime_details, when still unknown; no general Streamlit/version/code/environment re-ask.",
+          "answer": "Bounded actual-source guidance with missing compatibility support disclosed; no asserted repair or unsupported downgrade instruction.",
+          "retrieve_more": "Seek the missing version-specific dependency/CLI contract within the existing refinement budget.",
+          "escalate": "Preserve exact error/runtime facts and failed checks; a safe fallback is not automatically useful or the preferred ambiguity resolution."
+        },
+        "source_gaps": [
+          "Whether actual evidence documents the relevant Click/Streamlit/PDM compatibility or a supported repair."
+        ],
+        "must_not_reask": [
+          "streamlit_version",
+          "python_version",
+          "pdm_version",
+          "operating_system",
+          "browser",
+          "launch_command",
+          "reported_code",
+          "click_runtime_details",
+          "click_version",
+          "click_module_path"
+        ],
+        "specific_failures": [
+          "Treat a CORS/XSRF warning as the proved cause of the AttributeError, or recommend disabling protection from that warning alone.",
+          "Repeat Click8.0.0/7.1.2 or Streamlit1.8.0 downgrade trials as if untried successful fixes.",
+          "Assume a current Click version from an earlier attempted downgrade."
+        ]
+      }
+    },
+    {
+      "snapshot_id": "dev-e-5618:initial",
+      "scenario_id": "dev-e-5618",
+      "turn_id": "initial",
+      "known_active_USER_facts": [
+        {
+          "name": "streamlit_version",
+          "value": "1.11.1",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "launch_command",
+          "value": "python app.py",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "execution_mode",
+          "value": "direct Python/debugger invocation without the Streamlit CLI",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_warning",
+          "value": "Session state does not function when running a script without streamlit run",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_observation",
+          "value": "The test Session State entry does not appear when the short reproduction iterates over the state.",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "recorded_checks": [
+        "Ran the complete short reproduction directly through the debugger Python interpreter; warning and missing entry were observed."
+      ],
+      "necessary_registered_USER_gaps": [],
+      "caller_source_gaps": [
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "No supplied record has exact metadata for the confirmed version.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        }
+      ],
+      "actual_source_ids": [
+        "docs:content/develop/concepts/architecture/session-state.md",
+        "docs:content/develop/api-reference/caching-and-state/session_state.md",
+        "docs:content/develop/api-reference/caching-and-state/session_state.md"
+      ],
+      "review_criteria_runner_only": {
+        "scenario_id": "dev-e-5618",
+        "case_id": "dev-e-5618",
+        "turn_id": "initial",
+        "current_state_provenance": {
+          "kind": "curated_cached_report_input",
+          "authored_counterfactual": false,
+          "actual_thread_reply": false,
+          "automatically_consumed_model_reply": false
+        },
+        "known_current_user_facts": {
+          "streamlit_version": "1.11.1",
+          "launch_command": "python app.py",
+          "execution_mode": "direct Python/debugger invocation without the Streamlit CLI",
+          "reported_warning": "Session state does not function when running a script without streamlit run",
+          "reported_observation": "The test Session State entry does not appear when the short reproduction iterates over the state."
+        },
+        "known_current_checks": [
+          "Ran the complete short reproduction directly through the debugger Python interpreter; warning and missing entry were observed."
+        ],
+        "registered_user_gaps": [],
+        "source_gaps_are_separate": true,
+        "evidence_review_rules": [
+          "Answer only to the extent actual source text and current USER facts support it; label inference and applicability limits.",
+          "A concrete, qualified investigation/handoff is acceptable when documentary support is missing; it is not a verified fix.",
+          "One bounded retrieval refinement may be appropriate within existing engine limits; the study supplies the same complete frozen evidence pool, not a new RAG search."
+        ],
+        "human_usefulness": null,
+        "authored_counterfactual": false,
+        "source_support_and_usefulness_review_pending": true,
+        "stratum": "potentially_documented_bare_launch",
+        "preferred_next_step": "Use the reported direct-Python launch and explicit warning for source-supported qualified explanation/investigation; all key initial user details are given.",
+        "acceptable_decisions": [
+          "answer",
+          "retrieve_more",
+          "escalate"
+        ],
+        "decision_conditions": {
+          "answer": "Only actual-source-supported explanation or a qualified next investigation; after correction do not claim the current process is still launched with bare Python.",
+          "retrieve_more": "Investigate the corrected/current launch context and historical1.11.1 applicability rather than manufacturing a missing fact.",
+          "escalate": "Document the reproduction, current command and warning contradiction without inventing a runtime cause."
+        },
+        "source_gaps": [
+          "Actual evidence establishing the relevant Session State/runtime behavior and its applicability to1.11.1."
+        ],
+        "must_not_reask": [
+          "streamlit_version",
+          "launch_command",
+          "execution_mode",
+          "reported_code",
+          "reported_warning"
+        ],
+        "retired_current_facts": {},
+        "specific_failures": [
+          "Present the user-proposed st.session_state={} monkeypatch as documented remediation.",
+          "After update, repeat the superseded direct-Python description as a current fact or dismiss the supplied observation as impossible.",
+          "Promise launching with the CLI will fix the updated observation."
+        ]
+      }
+    },
+    {
+      "snapshot_id": "dev-e-5618:update",
+      "scenario_id": "dev-e-5618",
+      "turn_id": "update",
+      "known_active_USER_facts": [
+        {
+          "name": "streamlit_version",
+          "value": "1.11.1",
+          "source_ref": "USER:update",
+          "turn_id": "update",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "launch_command",
+          "value": "streamlit run app.py",
+          "source_ref": "USER:update",
+          "turn_id": "update",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "execution_mode",
+          "value": "verified Streamlit CLI invocation",
+          "source_ref": "USER:update",
+          "turn_id": "update",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_warning",
+          "value": "Session state does not function when running a script without streamlit run",
+          "source_ref": "USER:update",
+          "turn_id": "update",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_observation",
+          "value": "The test Session State entry still does not appear in the same short reproduction.",
+          "source_ref": "USER:update",
+          "turn_id": "update",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "recorded_checks": [
+        "Verified the current launch command is streamlit run app.py; the same warning and missing entry remain."
+      ],
+      "necessary_registered_USER_gaps": [],
+      "caller_source_gaps": [
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "No supplied record has exact metadata for the confirmed version.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        }
+      ],
+      "actual_source_ids": [
+        "docs:content/develop/concepts/architecture/session-state.md",
+        "docs:content/develop/api-reference/caching-and-state/session_state.md",
+        "docs:content/develop/concepts/architecture/widget-behavior.md"
+      ],
+      "review_criteria_runner_only": {
+        "scenario_id": "dev-e-5618",
+        "case_id": "dev-e-5618",
+        "turn_id": "update",
+        "current_state_provenance": {
+          "kind": "authored_counterfactual_current_state_update",
+          "authored_counterfactual": true,
+          "actual_thread_reply": false,
+          "automatically_consumed_model_reply": false
+        },
+        "known_current_user_facts": {
+          "streamlit_version": "1.11.1",
+          "launch_command": "streamlit run app.py",
+          "execution_mode": "verified Streamlit CLI invocation",
+          "reported_warning": "Session state does not function when running a script without streamlit run",
+          "reported_observation": "The test Session State entry still does not appear in the same short reproduction."
+        },
+        "known_current_checks": [
+          "Verified the current launch command is streamlit run app.py; the same warning and missing entry remain."
+        ],
+        "registered_user_gaps": [],
+        "source_gaps_are_separate": true,
+        "evidence_review_rules": [
+          "Answer only to the extent actual source text and current USER facts support it; label inference and applicability limits.",
+          "A concrete, qualified investigation/handoff is acceptable when documentary support is missing; it is not a verified fix.",
+          "One bounded retrieval refinement may be appropriate within existing engine limits; the study supplies the same complete frozen evidence pool, not a new RAG search."
+        ],
+        "human_usefulness": null,
+        "authored_counterfactual": true,
+        "source_support_and_usefulness_review_pending": true,
+        "stratum": "corrected_launch_source_gap",
+        "preferred_next_step": "Retire the bare-launch diagnosis. Treat verified Streamlit CLI launch plus persistent warning as unresolved; preserve uncertainty and suggest a concrete source-qualified investigation/handoff.",
+        "acceptable_decisions": [
+          "answer",
+          "retrieve_more",
+          "escalate"
+        ],
+        "decision_conditions": {
+          "answer": "Only actual-source-supported explanation or a qualified next investigation; after correction do not claim the current process is still launched with bare Python.",
+          "retrieve_more": "Investigate the corrected/current launch context and historical1.11.1 applicability rather than manufacturing a missing fact.",
+          "escalate": "Document the reproduction, current command and warning contradiction without inventing a runtime cause."
+        },
+        "source_gaps": [
+          "Current-source support for historical1.11.1 behavior and whether it explains the observed launch context.",
+          "After correction, no established source-backed cause of the warning persisting under a verified CLI invocation."
+        ],
+        "must_not_reask": [
+          "streamlit_version",
+          "launch_command",
+          "execution_mode",
+          "reported_code",
+          "reported_warning"
+        ],
+        "retired_current_facts": {
+          "launch_command": "python app.py",
+          "execution_mode": "direct Python/debugger invocation without the Streamlit CLI"
+        },
+        "specific_failures": [
+          "Present the user-proposed st.session_state={} monkeypatch as documented remediation.",
+          "After update, repeat the superseded direct-Python description as a current fact or dismiss the supplied observation as impossible.",
+          "Promise launching with the CLI will fix the updated observation."
+        ]
+      }
+    },
+    {
+      "snapshot_id": "dev-f-7206:initial",
+      "scenario_id": "dev-f-7206",
+      "turn_id": "initial",
+      "known_active_USER_facts": [
+        {
+          "name": "streamlit_version",
+          "value": "1.25.0",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "streamlit_authenticator_version",
+          "value": "0.2.2",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "python_version",
+          "value": "3.10.11",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "Fedora 36",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Firefox",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "launch_command",
+          "value": "streamlit run test.py",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "restart_browser_behavior",
+          "value": "The pre-restart browser tab can show the generated widget-id KeyError; a newly opened tab runs normally.",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_error",
+          "value": "KeyError for a generated $$WIDGET_ID-...-None Session State key after server restart",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "recorded_checks": [
+        "Kept the existing browser tab open while stopping and restarting the server; the error reproduced.",
+        "Observed a newly opened tab running normally.",
+        "Observed the error log before the restarted run printed Importing Authenticator; this does not establish causality.",
+        "Reported Streamlit 1.18.0 trial did not show the error; this is not a verified general fix."
+      ],
+      "necessary_registered_USER_gaps": [],
+      "caller_source_gaps": [
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "No supplied record has exact metadata for the confirmed version.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        }
+      ],
+      "actual_source_ids": [
+        "docs:content/develop/concepts/architecture/session-state.md",
+        "docs:content/develop/api-reference/caching-and-state/session_state.md"
+      ],
+      "review_criteria_runner_only": {
+        "scenario_id": "dev-f-7206",
+        "case_id": "dev-f-7206",
+        "turn_id": "initial",
+        "current_state_provenance": {
+          "kind": "curated_cached_report_input",
+          "authored_counterfactual": false,
+          "actual_thread_reply": false,
+          "automatically_consumed_model_reply": false
+        },
+        "known_current_user_facts": {
+          "streamlit_version": "1.25.0",
+          "streamlit_authenticator_version": "0.2.2",
+          "python_version": "3.10.11",
+          "operating_system": "Fedora 36",
+          "browser": "Firefox",
+          "launch_command": "streamlit run test.py",
+          "restart_browser_behavior": "The pre-restart browser tab can show the generated widget-id KeyError; a newly opened tab runs normally.",
+          "reported_error": "KeyError for a generated $$WIDGET_ID-...-None Session State key after server restart"
+        },
+        "known_current_checks": [
+          "Kept the existing browser tab open while stopping and restarting the server; the error reproduced.",
+          "Observed a newly opened tab running normally.",
+          "Observed the error log before the restarted run printed Importing Authenticator; this does not establish causality.",
+          "Reported Streamlit 1.18.0 trial did not show the error; this is not a verified general fix."
+        ],
+        "registered_user_gaps": [],
+        "source_gaps_are_separate": true,
+        "evidence_review_rules": [
+          "Answer only to the extent actual source text and current USER facts support it; label inference and applicability limits.",
+          "A concrete, qualified investigation/handoff is acceptable when documentary support is missing; it is not a verified fix.",
+          "One bounded retrieval refinement may be appropriate within existing engine limits; the study supplies the same complete frozen evidence pool, not a new RAG search."
+        ],
+        "human_usefulness": null,
+        "authored_counterfactual": false,
+        "source_support_and_usefulness_review_pending": true,
+        "stratum": "user_complete_restart_and_third_party_source_gap",
+        "preferred_next_step": "Preserve the complete supplied environment, restart checks and old/new-tab distinction; use source-qualified investigation or handoff without a confirmed cause.",
+        "acceptable_decisions": [
+          "answer",
+          "retrieve_more",
+          "escalate"
+        ],
+        "decision_conditions": {
+          "answer": "A qualified source-supported partial investigation, not an invented concurrency/authenticator diagnosis or verified upgrade fix.",
+          "retrieve_more": "Seek appropriate runtime/restart/dependency documents without using the same Issue answers/direct fix notes.",
+          "escalate": "Carry current versions, complete reproduction, timing observation and tried downgrade; user facts are already available."
+        },
+        "source_gaps": [
+          "No established documentary cause/fix for this current Streamlit/authenticator restart observation.",
+          "Version-specific runtime and third-party compatibility applicability remains to be established from actual supplied sources."
+        ],
+        "must_not_reask": [
+          "streamlit_version",
+          "streamlit_authenticator_version",
+          "python_version",
+          "operating_system",
+          "browser",
+          "reported_code",
+          "launch_command",
+          "restart_browser_behavior"
+        ],
+        "retired_current_facts": {},
+        "specific_failures": [
+          "Convert observed log ordering into proof that authenticator is unrelated or that concurrency is the cause.",
+          "Ask again whether only an old browser tab is affected, whether restarting was tried, or whether1.18.0 was tested.",
+          "Read or quote the linked same-case2023release-note answer segment as independent evidence.",
+          "After update, use1.25.0 as the current version or silently lose unchanged Python/OS/browser/authenticator facts."
+        ]
+      }
+    },
+    {
+      "snapshot_id": "dev-f-7206:update",
+      "scenario_id": "dev-f-7206",
+      "turn_id": "update",
+      "known_active_USER_facts": [
+        {
+          "name": "streamlit_authenticator_version",
+          "value": "0.2.2",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "python_version",
+          "value": "3.10.11",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "Fedora 36",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Firefox",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "launch_command",
+          "value": "streamlit run test.py",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_error",
+          "value": "KeyError for a generated $$WIDGET_ID-...-None Session State key after server restart",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "streamlit_version",
+          "value": "1.25.1",
+          "source_ref": "USER:update",
+          "turn_id": "update",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "restart_browser_behavior",
+          "value": "After the corrected-version rerun, the pre-restart tab still shows the generated widget-id KeyError; a newly opened tab works.",
+          "source_ref": "USER:update",
+          "turn_id": "update",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "recorded_checks": [
+        "Reran the same restart procedure under the corrected Streamlit 1.25.1 version; old-tab/new-tab behavior is unchanged."
+      ],
+      "necessary_registered_USER_gaps": [],
+      "caller_source_gaps": [
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "No supplied record has exact metadata for the confirmed version.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        }
+      ],
+      "actual_source_ids": [
+        "docs:content/develop/concepts/architecture/session-state.md",
+        "docs:content/develop/api-reference/caching-and-state/session_state.md",
+        "docs:content/develop/concepts/architecture/widget-behavior.md"
+      ],
+      "review_criteria_runner_only": {
+        "scenario_id": "dev-f-7206",
+        "case_id": "dev-f-7206",
+        "turn_id": "update",
+        "current_state_provenance": {
+          "kind": "authored_counterfactual_current_state_update",
+          "authored_counterfactual": true,
+          "actual_thread_reply": false,
+          "automatically_consumed_model_reply": false
+        },
+        "known_current_user_facts": {
+          "streamlit_version": "1.25.1",
+          "streamlit_authenticator_version": "0.2.2",
+          "python_version": "3.10.11",
+          "operating_system": "Fedora 36",
+          "browser": "Firefox",
+          "launch_command": "streamlit run test.py",
+          "restart_browser_behavior": "After the corrected-version rerun, the pre-restart tab still shows the generated widget-id KeyError; a newly opened tab works.",
+          "reported_error": "KeyError for a generated $$WIDGET_ID-...-None Session State key after server restart"
+        },
+        "known_current_checks": [
+          "Reran the same restart procedure under the corrected Streamlit 1.25.1 version; old-tab/new-tab behavior is unchanged."
+        ],
+        "registered_user_gaps": [],
+        "source_gaps_are_separate": true,
+        "evidence_review_rules": [
+          "Answer only to the extent actual source text and current USER facts support it; label inference and applicability limits.",
+          "A concrete, qualified investigation/handoff is acceptable when documentary support is missing; it is not a verified fix.",
+          "One bounded retrieval refinement may be appropriate within existing engine limits; the study supplies the same complete frozen evidence pool, not a new RAG search."
+        ],
+        "human_usefulness": null,
+        "authored_counterfactual": true,
+        "source_support_and_usefulness_review_pending": true,
+        "stratum": "user_complete_restart_and_third_party_source_gap",
+        "preferred_next_step": "Preserve the complete supplied environment, restart checks and old/new-tab distinction; use source-qualified investigation or handoff without a confirmed cause.",
+        "acceptable_decisions": [
+          "answer",
+          "retrieve_more",
+          "escalate"
+        ],
+        "decision_conditions": {
+          "answer": "A qualified source-supported partial investigation, not an invented concurrency/authenticator diagnosis or verified upgrade fix.",
+          "retrieve_more": "Seek appropriate runtime/restart/dependency documents without using the same Issue answers/direct fix notes.",
+          "escalate": "Carry current versions, complete reproduction, timing observation and tried downgrade; user facts are already available."
+        },
+        "source_gaps": [
+          "No established documentary cause/fix for this current Streamlit/authenticator restart observation.",
+          "Version-specific runtime and third-party compatibility applicability remains to be established from actual supplied sources."
+        ],
+        "must_not_reask": [
+          "streamlit_version",
+          "streamlit_authenticator_version",
+          "python_version",
+          "operating_system",
+          "browser",
+          "reported_code",
+          "launch_command",
+          "restart_browser_behavior"
+        ],
+        "retired_current_facts": {
+          "streamlit_version": "1.25.0"
+        },
+        "specific_failures": [
+          "Convert observed log ordering into proof that authenticator is unrelated or that concurrency is the cause.",
+          "Ask again whether only an old browser tab is affected, whether restarting was tried, or whether1.18.0 was tested.",
+          "Read or quote the linked same-case2023release-note answer segment as independent evidence.",
+          "After update, use1.25.0 as the current version or silently lose unchanged Python/OS/browser/authenticator facts."
+        ]
+      }
+    },
+    {
+      "snapshot_id": "dev-g-9487:initial",
+      "scenario_id": "dev-g-9487",
+      "turn_id": "initial",
+      "known_active_USER_facts": [
+        {
+          "name": "streamlit_version",
+          "value": "1.38",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "python_version",
+          "value": "3.12.5",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "Windows 11 23H2",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Chrome 128",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_visual_observation",
+          "value": "Faded duplicate widgets appear on the first click during the three-second run; persistence after completion has not yet been checked.",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_error",
+          "value": "No error message was observed.",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "recorded_checks": [
+        "Clicked the three-second sleep button in both reported layouts and observed faded widget copies."
+      ],
+      "necessary_registered_USER_gaps": [
+        {
+          "name": "visual_persistence",
+          "kind": "user",
+          "description": "It is not yet confirmed whether the faded visual copies persist after the current run finishes.",
+          "necessity": "The user can observe completion; this distinguishes a transient execution display from a persistent visual defect without guessing a root cause.",
+          "question": "Do the faded widget copies disappear when the three-second run finishes, or remain afterward?"
+        }
+      ],
+      "caller_source_gaps": [
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "No supplied record has exact metadata for the confirmed version.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        }
+      ],
+      "actual_source_ids": [
+        "docs:content/develop/api-reference/widgets/button.md",
+        "docs:content/develop/concepts/architecture/widget-behavior.md",
+        "docs:content/develop/api-reference/caching-and-state/session_state.md"
+      ],
+      "review_criteria_runner_only": {
+        "scenario_id": "dev-g-9487",
+        "case_id": "dev-g-9487",
+        "turn_id": "initial",
+        "current_state_provenance": {
+          "kind": "curated_cached_report_input",
+          "authored_counterfactual": false,
+          "actual_thread_reply": false,
+          "automatically_consumed_model_reply": false
+        },
+        "known_current_user_facts": {
+          "streamlit_version": "1.38",
+          "python_version": "3.12.5",
+          "operating_system": "Windows 11 23H2",
+          "browser": "Chrome 128",
+          "reported_visual_observation": "Faded duplicate widgets appear on the first click during the three-second run; persistence after completion has not yet been checked.",
+          "reported_error": "No error message was observed."
+        },
+        "known_current_checks": [
+          "Clicked the three-second sleep button in both reported layouts and observed faded widget copies."
+        ],
+        "registered_user_gaps": [
+          "visual_persistence"
+        ],
+        "source_gaps_are_separate": true,
+        "evidence_review_rules": [
+          "Answer only to the extent actual source text and current USER facts support it; label inference and applicability limits.",
+          "A concrete, qualified investigation/handoff is acceptable when documentary support is missing; it is not a verified fix.",
+          "One bounded retrieval refinement may be appropriate within existing engine limits; the study supplies the same complete frozen evidence pool, not a new RAG search."
+        ],
+        "human_usefulness": null,
+        "authored_counterfactual": false,
+        "source_support_and_usefulness_review_pending": true,
+        "stratum": "ambiguous_visual_persistence",
+        "preferred_next_step": "Ask only the registered visual_persistence question to distinguish a transient run display from persistent duplication.",
+        "acceptable_decisions": [
+          "ask",
+          "answer",
+          "retrieve_more",
+          "escalate"
+        ],
+        "decision_conditions": {
+          "ask": "Only visual_persistence while unconfirmed; no unnecessary repeat of code, browser, environment or raw version.",
+          "answer": "Actual-source-supported partial guidance with transient/persistent scope and version uncertainty preserved; not a verified state/event duplication diagnosis.",
+          "retrieve_more": "Seek lifecycle/display evidence relevant to the actual observation.",
+          "escalate": "Retain user observations, code and version scope; safe fallback is not automatically the preferred handling of a directly answerable clarification."
+        },
+        "source_gaps": [
+          "No source-backed proof of cause or repair for visual fading/duplication in the reported environment.",
+          "The reported1.38 string does not itself supply an exact patch version; do not manufacture exact patch applicability."
+        ],
+        "must_not_reask": [
+          "reported_code",
+          "python_version",
+          "operating_system",
+          "browser",
+          "reported_error"
+        ],
+        "version_scope_note": "Preserve raw reported Streamlit1.38. No authored patch number is added in either state.",
+        "specific_failures": [
+          "Infer duplicated Python values/events/callback execution solely from faded UI copies.",
+          "After update, describe the duplicates as persistent or ask again whether they disappear after the run.",
+          "Invent a cache-data/columns bug, guaranteed timing workaround or successful runtime fix without source support."
+        ]
+      }
+    },
+    {
+      "snapshot_id": "dev-g-9487:update",
+      "scenario_id": "dev-g-9487",
+      "turn_id": "update",
+      "known_active_USER_facts": [
+        {
+          "name": "streamlit_version",
+          "value": "1.38",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "python_version",
+          "value": "3.12.5",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "operating_system",
+          "value": "Windows 11 23H2",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "browser",
+          "value": "Chrome 128",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_error",
+          "value": "No error message was observed.",
+          "source_ref": "USER:initial",
+          "turn_id": "initial",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "visual_persistence",
+          "value": "Transient only: faded copies disappear after the run finishes; none remain afterward.",
+          "source_ref": "USER:update",
+          "turn_id": "update",
+          "provenance_kind": "user",
+          "status": "active"
+        },
+        {
+          "name": "reported_visual_observation",
+          "value": "Faded copies are visible while the three-second run executes and disappear when it finishes.",
+          "source_ref": "USER:update",
+          "turn_id": "update",
+          "provenance_kind": "user",
+          "status": "active"
+        }
+      ],
+      "recorded_checks": [
+        "Observed the complete three-second run and verified that faded copies disappear after completion."
+      ],
+      "necessary_registered_USER_gaps": [],
+      "caller_source_gaps": [
+        {
+          "name": "exact_version_documentation",
+          "kind": "source",
+          "description": "No supplied record has exact metadata for the confirmed version.",
+          "necessity": "Further documentation retrieval or maintainer review may be needed.",
+          "question": null
+        }
+      ],
+      "actual_source_ids": [
+        "docs:content/develop/api-reference/caching-and-state/session_state.md",
+        "docs:content/develop/concepts/architecture/session-state.md",
+        "docs:content/develop/api-reference/widgets/button.md",
+        "docs:content/develop/api-reference/widgets/text_input.md"
+      ],
+      "review_criteria_runner_only": {
+        "scenario_id": "dev-g-9487",
+        "case_id": "dev-g-9487",
+        "turn_id": "update",
+        "current_state_provenance": {
+          "kind": "authored_counterfactual_current_state_update",
+          "authored_counterfactual": true,
+          "actual_thread_reply": false,
+          "automatically_consumed_model_reply": false
+        },
+        "known_current_user_facts": {
+          "streamlit_version": "1.38",
+          "python_version": "3.12.5",
+          "operating_system": "Windows 11 23H2",
+          "browser": "Chrome 128",
+          "reported_visual_observation": "Faded copies are visible while the three-second run executes and disappear when it finishes.",
+          "reported_error": "No error message was observed.",
+          "visual_persistence": "Transient only: faded copies disappear after the run finishes; none remain afterward."
+        },
+        "known_current_checks": [
+          "Observed the complete three-second run and verified that faded copies disappear after completion."
+        ],
+        "registered_user_gaps": [],
+        "source_gaps_are_separate": true,
+        "evidence_review_rules": [
+          "Answer only to the extent actual source text and current USER facts support it; label inference and applicability limits.",
+          "A concrete, qualified investigation/handoff is acceptable when documentary support is missing; it is not a verified fix.",
+          "One bounded retrieval refinement may be appropriate within existing engine limits; the study supplies the same complete frozen evidence pool, not a new RAG search."
+        ],
+        "human_usefulness": null,
+        "authored_counterfactual": true,
+        "source_support_and_usefulness_review_pending": true,
+        "stratum": "transient_visual_observation_source_gap",
+        "preferred_next_step": "Use the confirmed transient-only observation; provide bounded source-supported explanation/investigation and do not ask the same question again.",
+        "acceptable_decisions": [
+          "answer",
+          "retrieve_more",
+          "escalate"
+        ],
+        "decision_conditions": {
+          "ask": "Only visual_persistence while unconfirmed; no unnecessary repeat of code, browser, environment or raw version.",
+          "answer": "Actual-source-supported partial guidance with transient/persistent scope and version uncertainty preserved; not a verified state/event duplication diagnosis.",
+          "retrieve_more": "Seek lifecycle/display evidence relevant to the actual observation.",
+          "escalate": "Retain user observations, code and version scope; safe fallback is not automatically the preferred handling of a directly answerable clarification."
+        },
+        "source_gaps": [
+          "No source-backed proof of cause or repair for visual fading/duplication in the reported environment.",
+          "The reported1.38 string does not itself supply an exact patch version; do not manufacture exact patch applicability."
+        ],
+        "must_not_reask": [
+          "reported_code",
+          "python_version",
+          "operating_system",
+          "browser",
+          "reported_error",
+          "visual_persistence"
+        ],
+        "version_scope_note": "Preserve raw reported Streamlit1.38. No authored patch number is added in either state.",
+        "specific_failures": [
+          "Infer duplicated Python values/events/callback execution solely from faded UI copies.",
+          "After update, describe the duplicates as persistent or ask again whether they disappear after the run.",
+          "Invent a cache-data/columns bug, guaranteed timing workaround or successful runtime fix without source support."
+        ]
+      }
+    }
+  ],
+  "complete_current_source_inventory": {
+    "dev-three-multiselect-1500-default-key": {
+      "chunk_id": "dev-three-multiselect-1500-default-key",
+      "source_id": "docstring:1.50.0:streamlit.multiselect",
+      "excerpt": "default: Iterable of V, V, or None; default=values\nList of default values. Can also be a single value.\n\nformat_func: function; default=None\nFunction to modify the display of the options. It receives\nthe raw option as an argument and should output the label to be\nshown for that option. This has no impact on the return value of\nthe command.\n\nkey: str or int; default=None\nAn optional string or integer to use as the unique key for the widget.\nIf this is omitted, a key will be generated for the widget\nbased on its content. No two widgets may have the same key.",
+      "source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.multiselect",
+      "source_type": "doc",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "applicable_versions": [
+        "1.50.0"
+      ],
+      "source_span": "/1.50.0/streamlit.multiselect; Unicode codepoints [1406,1969)",
+      "score": null,
+      "score_kind": null
+    },
+    "dev-three-fragment-150-full": {
+      "chunk_id": "dev-three-fragment-150-full",
+      "source_id": "docstring:1.50.0:streamlit.fragment",
+      "excerpt": "st.fragment(func=None, *, run_every=None)\n\nDecorator to turn a function into a fragment which can rerun independently    of the full app.\n\nWhen a user interacts with an input widget created inside a fragment,\nStreamlit only reruns the fragment instead of the full app. If\nrun_every is set, Streamlit will also rerun the fragment at the\nspecified interval while the session is active, even if the user is not\ninteracting with your app.\n\nTo trigger an app rerun from inside a fragment, call st.rerun()\ndirectly. To trigger a fragment rerun from within itself, call\nst.rerun(scope=\"fragment\"). Any values from the fragment that need to\nbe accessed from the wider app should generally be stored in Session State.\n\nWhen Streamlit element commands are called directly in a fragment, the\nelements are cleared and redrawn on each fragment rerun, just like all\nelements are redrawn on each app rerun. The rest of the app is persisted\nduring a fragment rerun. When a fragment renders elements into externally\ncreated containers, the elements will not be cleared with each fragment\nrerun. Instead, elements will accumulate in those containers with each\nfragment rerun, until the next app rerun.\n\nCalling st.sidebar in a fragment is not supported. To write elements to\nthe sidebar with a fragment, call your fragment function inside a\nwith st.sidebar context manager.\n\nFragment code can interact with Session State, imported modules, and\nother Streamlit elements created outside the fragment. Note that these\ninteractions are additive across multiple fragment reruns. You are\nresponsible for handling any side effects of that behavior.\n\nWarning\n\nFragments can only contain widgets in their main body. Fragments\ncan't render widgets to externally created containers.\n\nParameters:\n\nfunc: callable; default=None\nThe function to turn into a fragment.\n\nrun_every: int, float, timedelta, str, or None; default=None\nThe time interval between automatic fragment reruns. This can be one of\nthe following:\n\nNone (default).\n\nAn int or float specifying the interval in seconds.\n\nA string specifying the time in a format supported by Pandas'\nTimedelta constructor,\ne.g. \"1d\", \"1.5 days\", or \"1h23s\".\n\nA timedelta object from Python's built-in datetime library,\ne.g. timedelta(days=1).\n\nIf run_every is None, the fragment will only rerun from\nuser-triggered events.\n\nExamples:",
+      "source_url": "https://docs.streamlit.io/develop/api-reference/execution-flow/st.fragment",
+      "source_type": "doc",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "applicable_versions": [
+        "1.50.0"
+      ],
+      "source_span": "/1.50.0/streamlit.fragment; Unicode codepoints [0,2352)",
+      "score": null,
+      "score_kind": null
+    },
+    "dev-three-button-139-full": {
+      "chunk_id": "dev-three-button-139-full",
+      "source_id": "docstring:1.39.0:streamlit.button",
+      "excerpt": "st.button(label, key=None, help=None, on_click=None, args=None, kwargs=None, *, type=\"secondary\", icon=None, disabled=False, use_container_width=False)\n\nDisplay a button widget.\n\nParameters:\n\nlabel: str; default=None\nA short label explaining to the user what this button is for.\nThe label can optionally contain GitHub-flavored Markdown of the\nfollowing types: Bold, Italics, Strikethroughs, Inline Code, and\nLinks.\n\nUnsupported Markdown elements are unwrapped so only their children\n(text contents) render. Display unsupported elements as literal\ncharacters by backslash-escaping them. E.g.,\n\"1\\. Not an ordered list\".\n\nSee the body parameter of st.markdown for additional,\nsupported Markdown directives.\n\nkey: str or int; default=None\nAn optional string or integer to use as the unique key for the widget.\nIf this is omitted, a key will be generated for the widget\nbased on its content. No two widgets may have the same key.\n\nhelp: str; default=None\nAn optional tooltip that gets displayed when the button is\nhovered over.\n\non_click: callable; default=None\nAn optional callback invoked when this button is clicked.\n\nargs: tuple; default=None\nAn optional tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.\n\ntype: \"secondary\" or \"primary\"; default=s\nAn optional string that specifies the button type. Can be \"primary\" for a\nbutton with additional emphasis or \"secondary\" for a normal button. Defaults\nto \"secondary\".\n\nicon: str or None; default=None\nAn optional emoji or icon to display next to the button label. If icon\nis None (default), no icon is displayed. If icon is a\nstring, the following options are valid:\n\nA single-character emoji. For example, you can set icon=\"🚨\"\nor icon=\"🔥\". Emoji short codes are not supported.\n\nAn icon from the Material Symbols library (rounded style) in the\nformat \":material/icon_name:\" where \"icon_name\" is the name\nof the icon in snake case.\n\nFor example, icon=\":material/thumb_up:\" will display the\nThumb Up icon. Find additional icons in the Material Symbols \nfont library.\n\ndisabled: bool; default=False\nAn optional boolean, which disables the button if set to True. The\ndefault is False.\n\nuse_container_width: bool; default=None\nWhether to expand the button's width to fill its parent container.\nIf use_container_width is False (default), Streamlit sizes\nthe button to fit its contents. If use_container_width is\nTrue, the width of the button matches its parent container.\n\nIn both cases, if the contents of the button are wider than the\nparent container, the contents will line wrap.\n\nReturns: bool\nTrue if the button was clicked on the last run of the app,\nFalse otherwise.\n\nExamples:",
+      "source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.button",
+      "source_type": "doc",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "applicable_versions": [
+        "1.39.0"
+      ],
+      "source_span": "/1.39.0/streamlit.button; Unicode codepoints [0,2698)",
+      "score": null,
+      "score_kind": null
+    },
+    "dev-three-session-state-full": {
+      "chunk_id": "dev-three-session-state-full",
+      "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+      "excerpt": "---\ntitle: Session State\nslug: /develop/api-reference/caching-and-state/st.session_state\ndescription: st.session_state is a way to share variables between reruns, for each user session.\nkeywords: session state, state management, variables, reruns, user session, persistence, callbacks, widgets, multipage\n---\n\n# Session State\n\nSession State is a way to share variables between reruns, for each user session. In addition to the ability to store and persist state, Streamlit also exposes the ability to manipulate state using Callbacks. Session state also persists across apps inside a [multipage app](/develop/concepts/multipage-apps).\n\nCheck out this Session State basics tutorial video by Streamlit Developer Advocate Dr. Marisa Smith to get started:\n\n<YouTube videoId=\"92jUAXBmZyU\" />\n\n### Initialize values in Session State\n\nThe Session State API follows a field-based API, which is very similar to Python dictionaries:\n\n```python\n# Initialization\nif 'key' not in st.session_state:\n    st.session_state['key'] = 'value'\n\n# Session State also supports attribute based syntax\nif 'key' not in st.session_state:\n    st.session_state.key = 'value'\n```\n\n### Reads and updates\n\nRead the value of an item in Session State and display it by passing to `st.write` :\n\n```python\n# Read\nst.write(st.session_state.key)\n\n# Outputs: value\n```\n\nUpdate an item in Session State by assigning it a value:\n\n```python\nst.session_state.key = 'value2'     # Attribute API\nst.session_state['key'] = 'value2'  # Dictionary like API\n```\n\nCurious about what is in Session State? Use `st.write` or magic:\n\n```python\nst.write(st.session_state)\n\n# With magic:\nst.session_state\n```\n\nStreamlit throws a handy exception if an uninitialized variable is accessed:\n\n```python\nst.write(st.session_state['value'])\n\n# Throws an exception!\n```\n\n![state-uninitialized-exception](/images/state_uninitialized_exception.png)\n\n### Delete items\n\nDelete items in Session State using the syntax to delete items in any Python dictionary:\n\n```python\n# Delete a single key-value pair\ndel st.session_state[key]\n\n# Delete all the items in Session state\nfor key in st.session_state.keys():\n    del st.session_state[key]\n```\n\nSession State can also be cleared by going to Settings → Clear Cache, followed by Rerunning the app.\n\n![state-clear-cache](/images/clear_cache.png)\n\n### Session State and Widget State association\n\nEvery widget with a key is automatically added to Session State:\n\n```python\nst.text_input(\"Your name\", key=\"name\")\n\n# This exists now:\nst.session_state.name\n```\n\n### Use Callbacks to update Session State\n\nA callback is a python function which gets called when an input widget changes.\n\n**Order of execution**: When updating Session state in response to **events**, a callback function gets executed first, and then the app is executed from top to bottom.\n\nCallbacks can be used with widgets using the parameters `on_change` (or `on_click`), `args`, and `kwargs`:\n\n**Parameters**\n\n- **on_change** or **on_click** - The function name to be used as a callback\n- **args** (_tuple_) - List of arguments to be passed to the callback function\n- **kwargs** (_dict_) - Named arguments to be passed to the callback function\n\nWidgets which support the `on_change` event:\n\n- `st.checkbox`\n- `st.color_picker`\n- `st.date_input`\n- `st.data_editor`\n- `st.file_uploader`\n- `st.multiselect`\n- `st.number_input`\n- `st.radio`\n- `st.select_slider`\n- `st.selectbox`\n- `st.slider`\n- `st.text_area`\n- `st.text_input`\n- `st.time_input`\n- `st.toggle`\n\nWidgets which support the `on_click` event:\n\n- `st.button`\n- `st.download_button`\n- `st.form_submit_button`\n\nTo add a callback, define a callback function **above** the widget declaration and pass it to the widget via the `on_change` (or `on_click` ) parameter.\n\n### Forms and Callbacks\n\nWidgets inside a form can have their values be accessed and set via the Session State API. `st.form_submit_button` can have a callback associated with it. The callback gets executed upon clicking on the submit button. For example:\n\n```python\ndef form_callback():\n    st.write(st.session_state.my_slider)\n    st.write(st.session_state.my_checkbox)\n\nwith st.form(key='my_form'):\n    slider_input = st.slider('My slider', 0, 10, 5, key='my_slider')\n    checkbox_input = st.checkbox('Yes or No', key='my_checkbox')\n    submit_button = st.form_submit_button(label='Submit', on_click=form_callback)\n```\n\n### Serializable Session State\n\nSerialization refers to the process of converting an object or data structure into a format that can be persisted and shared, and allowing you to recover the data’s original structure. Python’s built-in [pickle](https://docs.python.org/3/develop/pickle.html) module serializes Python objects to a byte stream (\"pickling\") and deserializes the stream into an object (\"unpickling\").\n\nBy default, Streamlit’s [Session State](/develop/concepts/architecture/session-state) allows you to persist any Python object for the duration of the session, irrespective of the object’s pickle-serializability. This property lets you store Python primitives such as integers, floating-point numbers, complex numbers and booleans, dataframes, and even [lambdas](https://docs.python.org/3/reference/expressions.html#lambda) returned by functions. However, some execution environments may require serializing all data in Session State, so it may be useful to detect incompatibility during development, or when the execution environment will stop supporting it in the future.\n\nTo that end, Streamlit provides a `runner.enforceSerializableSessionState` [configuration option](/develop/concepts/configuration) that, when set to `true`, only allows pickle-serializable objects in Session State. To enable the option, either create a global or project config file with the following or use it as a command-line flag:\n\n```toml\n# .streamlit/config.toml\n[runner]\nenforceSerializableSessionState = true\n```\n\nBy \"_pickle-serializable_\", we mean calling `pickle.dumps(obj)` should not raise a [`PicklingError`](https://docs.python.org/3/develop/pickle.html#pickle.PicklingError) exception. When the config option is enabled, adding unserializable data to session state should result in an exception. E.g.,\n\n```python\nimport streamlit as st\n\ndef unserializable_data():\n\t\treturn lambda x: x\n\n#👇 results in an exception when enforceSerializableSessionState is on\nst.session_state.unserializable = unserializable_data()\n```\n\n<Image alt=\"UnserializableSessionStateError\" src=\"/images/unserializable-session-state-error.png\" clean />\n\n<Warning>\n\nWhen `runner.enforceSerializableSessionState` is set to `true`, Session State implicitly uses the `pickle` module, which is known to be insecure. Ensure all data saved and retrieved from Session State is trusted because it is possible to construct malicious pickle data that will execute arbitrary code during unpickling. Never load data that could have come from an untrusted source in an unsafe mode or that could have been tampered with. **Only load data you trust**.\n\n</Warning>\n\n### Caveats and limitations\n\n- Streamlit Session State is tied to a WebSocket connection. When a user reloads the browser tab or navigates using a Markdown link, the WebSocket connection and the associated Session State data are reset.\n- Only the `st.form_submit_button` has a callback in forms. Other widgets inside a form are not allowed to have callbacks.\n- `on_change` and `on_click` events are only supported on input type widgets.\n- Modifying the value of a widget via the Session state API, after instantiating it, is not allowed and will raise a `StreamlitAPIException`. For example:\n\n  ```python\n  slider = st.slider(\n      label='My Slider', min_value=1,\n      max_value=10, value=5, key='my_slider')\n\n  st.session_state.my_slider = 7\n\n  # Throws an exception!\n  ```\n\n  ![state-modified-instantiated-exception](/images/state_modified_instantiated_exception.png)\n\n- Setting the widget state via the Session State API and using the `value` parameter in the widget declaration is not recommended, and will throw a warning on the first run. For example:\n\n  ```python\n  st.session_state.my_slider = 7\n\n  slider = st.slider(\n      label='Choose a Value', min_value=1,\n      max_value=10, value=5, key='my_slider')\n  ```\n\n  ![state-value-api-exception](/images/state_value_api_exception.png)\n\n- Setting the state of button-like widgets: `st.button`, `st.download_button`, and `st.file_uploader` via the Session State API is not allowed. Such type of widgets are by default _False_ and have ephemeral _True_ states which are only valid for a single run. For example:\n\n  ```python\n  if 'my_button' not in st.session_state:\n      st.session_state.my_button = True\n\n  st.button('My button', key='my_button')\n\n  # Throws an exception!\n  ```\n\n  ![state-button-exception](/images/state_button_exception.png)\n\n<GitHubIssuesHint label=\"feature:st.session_state\" name=\"st.session_state\" />",
+      "source_url": "https://docs.streamlit.io/develop/api-reference/caching-and-state/st.session_state",
+      "source_type": "doc",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "applicable_versions": [],
+      "source_span": "docs:content/develop/api-reference/caching-and-state/session_state.md; Unicode codepoints [0,8891)",
+      "score": null,
+      "score_kind": null
+    },
+    "fixture-enum-guide-separate-module-v1": {
+      "chunk_id": "fixture-enum-guide-separate-module-v1",
+      "source_id": "docs:content/develop/concepts/app-design/custom-classes.md",
+      "excerpt": "## Patterns to define your custom classes\n\n### Pattern 1: Define your class in a separate module\n\nThis is the recommended, general solution. If possible, move class definitions into their own module file and import them into your app script. As long as you are not editing the files that define your app, Streamlit will not re-import those classes with each rerun. Therefore, if a class is defined in an external file and imported into your script, the class will not be redefined during the session, unless you are actively editing your app.\n\n#### Example: Move your class definition\n\nTry running the following Streamlit app where `MyClass` is defined within the page's script. `isinstance()` will return `True` on the first script run then return `False` on each rerun thereafter.\n\n```python\n# app.py\nimport streamlit as st\n\n# MyClass gets redefined every time app.py reruns\nclass MyClass:\n    def __init__(self, var1, var2):\n        self.var1 = var1\n        self.var2 = var2\n\nif \"my_instance\" not in st.session_state:\n  st.session_state.my_instance = MyClass(\"foo\", \"bar\")\n\n# Displays True on the first run then False on every rerun\nst.write(isinstance(st.session_state.my_instance, MyClass))\n\nst.button(\"Rerun\")\n```\n\nIf you move the class definition out of `app.py` into another file, you can make `isinstance()` consistently return `True`. Consider the following file structure:\n\n```\nmyproject/\n├── my_class.py\n└── app.py\n```\n\n```python\n# my_class.py\nclass MyClass:\n    def __init__(self, var1, var2):\n        self.var1 = var1\n        self.var2 = var2\n```\n\n```python\n# app.py\nimport streamlit as st\nfrom my_class import MyClass # MyClass doesn't get redefined with each rerun\n\nif \"my_instance\" not in st.session_state:\n  st.session_state.my_instance = MyClass(\"foo\", \"bar\")\n\n# Displays True on every rerun\nst.write(isinstance(st.session_state.my_instance, MyClass))\n\nst.button(\"Rerun\")\n```\n\nStreamlit only reloads code in imported modules when it detects the code has changed. Thus, if you are actively editing your app code, you may need to start a new session or restart your Streamlit server to avoid an undesirable class redefinition.",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/app-design/custom-classes.md",
+      "source_type": "doc",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "applicable_versions": [],
+      "source_span": "unicode_codepoint[1637:3780); raw_utf8_sha256=b1c5a760e61d213f294297fae055bae52e25b0d296761fd1c533cf282246b8c6",
+      "score": null,
+      "score_kind": null
+    },
+    "fixture-enum-guide-enum-and-widget-coercion-v1": {
+      "chunk_id": "fixture-enum-guide-enum-and-widget-coercion-v1",
+      "source_id": "docs:content/develop/concepts/app-design/custom-classes.md",
+      "excerpt": "## Using `Enum` classes in Streamlit\n\nThe [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum) class from the Python standard library is a powerful way to define custom symbolic names that can be used as options for `st.multiselect` or `st.selectbox` in place of `str` values.\n\nFor example, you might add the following to your streamlit page:\n\n```python\nfrom enum import Enum\nimport streamlit as st\n\n# class syntax\nclass Color(Enum):\n    RED = 1\n    GREEN = 2\n    BLUE = 3\n\nselected_colors = set(st.multiselect(\"Pick colors\", options=Color))\n\nif selected_colors == {Color.RED, Color.GREEN}:\n    st.write(\"Hooray, you found the color YELLOW!\")\n```\n\nIf you're using the latest version of Streamlit, this Streamlit page will work as it appears it should. When a user picks both `Color.RED` and `Color.GREEN`, they are shown the special message.\n\nHowever, if you've read the rest of this page you might notice something tricky going on. Specifically, the `Enum` class `Color` gets redefined every time this script is run. In Python, if you define two `Enum` classes with the same class name, members, and values, the classes and their members are still considered unique from each other. This _should_ cause the above `if` condition to always evaluate to `False`. In any script rerun, the `Color` values returned by `st.multiselect` would be of a different class than the `Color` defined in that script run.\n\nIf you run the snippet above with Streamlit version 1.28.0 or less, you will not be able see the special message. Thankfully, as of version 1.29.0, Streamlit introduced a configuration option to greatly simplify the problem. That's where the enabled-by-default `enumCoercion` configuration option comes in.\n\n### Understanding the `enumCoercion` configuration option\n\nWhen `enumCoercion` is enabled, Streamlit tries to recognize when you are using an element like `st.multiselect` or `st.selectbox` with a set of `Enum` members as options.\n\nIf Streamlit detects this, it will convert the widget's returned values to members of the `Enum` class defined in the latest script run. This is something we call automatic `Enum` coercion.\n\nThis behavior is [configurable](/develop/concepts/configuration) via the `enumCoercion` setting in your Streamlit `config.toml` file. It is enabled by default, and may be disabled or set to a stricter set of matching criteria.\n\nIf you find that you still encounter issues with `enumCoercion` enabled, consider using the [custom class patterns](#patterns-to-define-your-custom-classes) described above, such as moving your `Enum` class definition to a separate module file.",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/app-design/custom-classes.md",
+      "source_type": "doc",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "applicable_versions": [],
+      "source_span": "unicode_codepoint[12538:15157); raw_utf8_sha256=b1c5a760e61d213f294297fae055bae52e25b0d296761fd1c533cf282246b8c6",
+      "score": null,
+      "score_kind": null
+    },
+    "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f": {
+      "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+      "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+      "excerpt": "---\ntitle: Add statefulness to apps\nslug: /develop/concepts/architecture/session-state\ndescription: Learn about Session State for sharing variables between reruns, implementing callbacks, and building stateful applications across user sessions.\nkeywords: session state, statefulness, st.session_state, callbacks, state management, stateful apps, variable persistence, user sessions, state sharing, app state\n---\n\n# Add statefulness to apps\n\n## What is State?\n\nWe define access to a Streamlit app in a browser tab as a **session**. For each browser tab that connects to the Streamlit server, a new session is created. Streamlit reruns your script from top to bottom every time you interact with your app. Each reruns takes place in a blank slate: no variables are shared between runs.\n\nSession State is a way to share variables between reruns, for each user session. In addition to the ability to store and persist state, Streamlit also exposes the ability to manipulate state using Callbacks. Session state also persists across pages inside a [multipage app](/develop/concepts/multipage-apps).\n\nIn this guide, we will illustrate the usage of **Session State** and **Callbacks** as we build a stateful Counter app.\n\nFor details on the Session State and Callbacks API, please refer to our [Session State API Reference Guide](/develop/api-reference/caching-and-state/st.session_state).\n\nAlso, check out this Session State basics tutorial video by Streamlit Developer Advocate Dr. Marisa Smith to get started:\n\n<YouTube videoId=\"92jUAXBmZyU\" />\n\n## Build a Counter\n\nLet's call our script `counter.py`. It initializes a `count` variable and has a button to increment the value stored in the `count` variable:\n\n```python\nimport streamlit as st\n\nst.title('Counter Example')\ncount = 0\n\nincrement = st.button('Increment')\nif increment:\n    count += 1\n\nst.write('Count = ', count)\n```\n\nNo matter how many times we press the **_Increment_** button in the above app, the `count` remains at 1. Let's understand why:\n\n- Each time we press the **_Increment_** button, Streamlit reruns `counter.py` from top to bottom, and with every run, `count` gets initialized to `0` .\n- Pressing **_Increment_** subsequently adds 1 to 0, thus `count=1` no matter how many times we press **_Increment_**.\n\nAs we'll see later, we can avoid this issue by storing `count` as a Session State variable. By doing so, we're indicating to Streamlit that it should maintain the value stored inside a Session State variable across app reruns.\n\nLet's learn more about the API to use Session State.\n\n### Initialization\n\nThe Session State API follows a field-based API, which is very similar to Python dictionaries:\n\n```python\nimport streamlit as st\n\n# Check if 'key' already exists in session_state\n# If not, then initialize it\nif 'key' not in st.session_state:\n    st.session_state['key'] = 'value'\n\n# Session State also supports the attribute based syntax\nif 'key' not in st.session_state:\n    st.session_state.key = 'value'\n```\n\n### Reads and updates\n\nRead the value of an item in Session State by passing the item to `st.write` :\n\n```python\nimport streamlit as st\n\nif 'key' not in st.session_state:\n    st.session_state['key'] = 'value'\n\n# Reads\nst.write(st.session_state.key)\n\n# Outputs: value\n```\n\nUpdate an item in Session State by assigning it a value:\n\n```python\nimport streamlit as st\n\nif 'key' not in st.session_state:\n    st.session_state['key'] = 'value'\n\n# Updates\nst.session_state.key = 'value2'     # Attribute API\nst.session_state['key'] = 'value2'  # Dictionary like API\n```\n\nStreamlit throws an exception if an uninitialized variable is accessed:\n\n```python\nimport streamlit as st\n\nst.write(st.session_state['value'])\n\n# Throws an exception!\n```\n\n![state-uninitialized-exception](/images/state_uninitialized_exception.png)\n\nLet's now take a look at a few examples that illustrate how to add Session State to our Counter app.\n\n### Example 1: Add Session State\n\nNow that we've got a hang of the Session State API, let's upda",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/session-state.md",
+      "source_type": "doc",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "applicable_versions": [],
+      "source_span": "chars:0:4000;unit:unicode_codepoint",
+      "score": null,
+      "score_kind": null
+    },
+    "doc:pinned:76af659dfdd30bb62fe9f310:16000:20000:150aa837889c9e5a": {
+      "chunk_id": "doc:pinned:76af659dfdd30bb62fe9f310:16000:20000:150aa837889c9e5a",
+      "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+      "excerpt": "tate before the widget command is important when [retaining statefulness across identity changes](#retain-statefulness-when-changing-a-widgets-identity).\n   c. If the key doesn't exist, Streamlit will create a new key-value pair with the default value.\n3. If there are args or kwargs for a callback function, they are evaluated and saved in memory.\n4. The widget value is then returned by the function.\n\nFor step 2, prior to v1.46.0, Streamlit would ignore the value in Session State if it came from an instance of the widget on another page. This is because a widget on another page necessarily has a different identity. As of v1.46.0, Streamlit deletes such values at the beginning of a script run on a new page.\n\n### Calling a widget command when the widget already exists\n\nWhen rerunning a script without changing a widget's identity:\n\n1. Streamlit will connect to the existing frontend and backend parts.\n2. If the widget has a key that was deleted from `st.session_state`, then Streamlit will recreate the key using the current frontend value. This is because deleting a key from Session State will not revert the widget to a default value.\n3. The widget command will return the current value of the widget.\n\n### Widget clean-up process\n\nStreamlit cleans up widget data at the end of every script run and at the beginning of a script run on a new page.\n\nWhen Streamlit gets to the end of a script run, it will delete the data for any widgets it has in memory that were not rendered on the screen. Most importantly, that means Streamlit will delete all key-value pairs in `st.session_state` associated with a widget not currently on screen. When you switch pages, Streamlit will delete all data associated with widgets from the previous page.\n\n## Binding widgets to query parameters\n\nAs of v1.55.0, most widgets support a `bind` parameter that syncs the widget's value with a URL query parameter. This makes it easy to create shareable URLs that preserve widget state and allow users to bookmark specific app configurations.\n\n### How binding works\n\nTo bind a widget to a query parameter, set `bind=\"query-params\"` and provide a `key`. The key is used as the query parameter name in the URL.\n\n```python\nimport streamlit as st\n\nst.selectbox(\"Color\", [\"Red\", \"Green\", \"Blue\"], key=\"color\", bind=\"query-params\")\n```\n\nWhen a user selects \"Green\", the URL updates to include `?color=Green`. If someone opens that URL, the selectbox initializes to \"Green\" instead of the default \"Red\".\n\n### Behavior details\n\n- **Default values keep URLs clean**: When a widget's value matches its default, the query parameter is removed from the URL.\n- **Invalid values are ignored**: If the URL contains an invalid value for the widget, the value is ignored and removed from the URL.\n- **Programmatic updates**: A bound query parameter can't be set or deleted through `st.query_params`. To programmatically change a bound widget's value, use `st.session_state`.\n- **Range values**: Widgets that return a range, like range sliders, use repeated query parameters. For example, a slider with a range of 10 to 90 will produce a URL ending with `?price=10&price=90`.\n\nTrigger-like widgets (`st.button`, `st.download_button`, `st.chat_input`, `st.file_uploader`, `st.camera_input`, and `st.audio_input`) don't support binding because their values are transient.\n\n### Example: Filterable dashboard with a shareable URL\n\n```python\nimport streamlit as st\n\ncategory = st.selectbox(\n    \"Category\",\n    [\"All\", \"Electronics\", \"Clothing\", \"Books\"],\n    key=\"category\",\n    bind=\"query-params\",\n)\nprice = st.slider(\n    \"Max price\",\n    0, 1000, 500,\n    key=\"max_price\",\n    bind=\"query-params\",\n)\n\nst.write(f\"Showing {category} items under ${price}\")\n```\n\nWith this setup, a URL like `https://myapp.streamlit.app/?category=Electronics&max_price=200` initializes the app with \"Electronics\" selected and the price slider set to 200. Sharing this URL gives others the exact same view.\n\n## Best practices and recommendations\n\n### Fo",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md",
+      "source_type": "doc",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "applicable_versions": [],
+      "source_span": "chars:16000:20000;unit:unicode_codepoint",
+      "score": null,
+      "score_kind": null
+    },
+    "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac": {
+      "chunk_id": "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac",
+      "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+      "excerpt": ".\n\n```python\nst.button(\"OK\")\nst.button(\"OK\")\n```\n\nThe following example correctly assigns unique keys to the two buttons to avoid the `DuplicateWidgetID` error.\n\n```python\nst.button(\"OK\", key=\"privacy\")\nst.button(\"OK\", key=\"terms\")\n```\n\n## Order of operations\n\nWhen a user interacts with a widget, the widget is updated and triggers a rerun in the following order:\n\n1. The widget value in `st.session_state` is updated.\n2. The callback function (if any) is executed.\n3. The page reruns with the widget command returning its new value.\n\nIf the callback function displays anything on the screen, that content will appear above the rest of the page. A callback function runs as a _prefix_ to the script run. Consequently, that means anything written via a callback function will disappear as soon as the user performs their next action. Widget commands should generally not be called within a callback function.\n\n<Note>\n\nIf a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget. In particular, if you want to use a widget's value in its own callback function, you can't pass that value to the callback function via the `args` parameter; you must assign a key to the widget and look up its value using `st.session_state` _within the callback function_.\n\n</Note>\n\n### Using callback functions with forms\n\nUsing a callback function with a form requires understanding of this order of operations.\n\n```python\nimport streamlit as st\n\nif \"attendance\" not in st.session_state:\n    st.session_state.attendance = set()\n\n\ndef take_attendance():\n    if st.session_state.name in st.session_state.attendance:\n        st.info(f\"{st.session_state.name} has already been counted.\")\n    else:\n        st.session_state.attendance.add(st.session_state.name)\n\n\nwith st.form(key=\"my_form\"):\n    st.text_input(\"Name\", key=\"name\")\n    st.form_submit_button(\"I'm here!\", on_click=take_attendance)\n```\n\n<Cloud name=\"doc-guide-widgets-form-callbacks\" height=\"250px\"/>\n\n## Statefulness of widgets\n\nAs long as the widget identity remains the same and that widget is continuously rendered on the frontend, then it will be stateful and remember user input.\n\n### Changing a widget's identity will reset it\n\nIf any of the parameters that determine a widget's identity change, Streamlit will see it as a new widget and it will reset. Providing a key protects the widget from resets when most parameters change. The use of default values is particularly important in this case. If you use a key and change a widget's default value, there will be no change to the widget's state. If you don't use a key, changing a widget's default value will reset the widget to that default value.\n\nIn this example, we have two sliders where you can change the min, max, and default values. Try interacting with each slider to change its value then change the min or max setting to see what happens. Because `min_value` and `max_value` constrain valid values, changing them resets `st.slider` even with a key. However, if you change the default value, only the slider without a key will reset. The keyed slider will remain stateful.\n\n```python\nimport streamlit as st\n\ncols = st.columns([2, 1, 2])\nminimum = cols[0].number_input(\"Minimum\", 1, 3)\nmaximum = cols[2].number_input(\"Maximum\", 8, 10, 10)\nvalue = cols[1].number_input(\"Default\", 4, 7, 5)\n\nst.slider(\"No key\", minimum, maximum, value)\nst.slider(\"With a key\", minimum, maximum, value, key=\"a\")\n```\n\n<Cloud name=\"doc-guide-widgets-change-parameters\" height=\"550px\"/>\n\n### Retain statefulness when changing a widget's identity\n\nHere is a solution for the above example that preserves the slider's value when the min and max change. The widget's initial value is set through Session State rather than the `value` parameter. When you are programmatically changing a widget, use Session State to maintain the widget's state to avoid unexpected behavior.\n\n```python\nimport streamlit as",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md",
+      "source_type": "doc",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "applicable_versions": [],
+      "source_span": "chars:8000:12000;unit:unicode_codepoint",
+      "score": null,
+      "score_kind": null
+    },
+    "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3": {
+      "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+      "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+      "excerpt": "te our Counter app to use Session State:\n\n```python\nimport streamlit as st\n\nst.title('Counter Example')\nif 'count' not in st.session_state:\n    st.session_state.count = 0\n\nincrement = st.button('Increment')\nif increment:\n    st.session_state.count += 1\n\nst.write('Count = ', st.session_state.count)\n```\n\nAs you can see in the above example, pressing the **_Increment_** button updates the `count` each time.\n\n### Example 2: Session State and Callbacks\n\nNow that we've built a basic Counter app using Session State, let's move on to something a little more complex. The next example uses Callbacks with Session State.\n\n**Callbacks**: A callback is a Python function which gets called when an input widget changes. Callbacks can be used with widgets using the parameters `on_change` (or `on_click`), `args`, and `kwargs`. The full Callbacks API can be found in our [Session State API Reference Guide](/develop/api-reference/caching-and-state/st.session_state#use-callbacks-to-update-session-state).\n\n```python\nimport streamlit as st\n\nst.title('Counter Example using Callbacks')\nif 'count' not in st.session_state:\n    st.session_state.count = 0\n\ndef increment_counter():\n    st.session_state.count += 1\n\nst.button('Increment', on_click=increment_counter)\n\nst.write('Count = ', st.session_state.count)\n```\n\nNow, pressing the **_Increment_** button updates the count each time by calling the `increment_counter()` function.\n\n### Example 3: Use args and kwargs in Callbacks\n\nCallbacks also support passing arguments using the `args` parameter in a widget:\n\n```python\nimport streamlit as st\n\nst.title('Counter Example using Callbacks with args')\nif 'count' not in st.session_state:\n    st.session_state.count = 0\n\nincrement_value = st.number_input('Enter a value', value=0, step=1)\n\ndef increment_counter(increment_value):\n    st.session_state.count += increment_value\n\nincrement = st.button('Increment', on_click=increment_counter,\n    args=(increment_value, ))\n\nst.write('Count = ', st.session_state.count)\n```\n\nAdditionally, we can also use the `kwargs` parameter in a widget to pass named arguments to the callback function as shown below:\n\n```python\nimport streamlit as st\n\nst.title('Counter Example using Callbacks with kwargs')\nif 'count' not in st.session_state:\n    st.session_state.count = 0\n\ndef increment_counter(increment_value=0):\n    st.session_state.count += increment_value\n\ndef decrement_counter(decrement_value=0):\n    st.session_state.count -= decrement_value\n\nst.button('Increment', on_click=increment_counter,\n\tkwargs=dict(increment_value=5))\n\nst.button('Decrement', on_click=decrement_counter,\n\tkwargs=dict(decrement_value=1))\n\nst.write('Count = ', st.session_state.count)\n```\n\n### Example 4: Forms and Callbacks\n\nSay we now want to not only increment the `count`, but also store when it was last updated. We illustrate doing this using Callbacks and `st.form`:\n\n```python\nimport streamlit as st\nimport datetime\n\nst.title('Counter Example')\nif 'count' not in st.session_state:\n    st.session_state.count = 0\n    st.session_state.last_updated = datetime.time(0,0)\n\ndef update_counter():\n    st.session_state.count += st.session_state.increment_value\n    st.session_state.last_updated = st.session_state.update_time\n\nwith st.form(key='my_form'):\n    st.time_input(label='Enter the time', value=datetime.datetime.now().time(), key='update_time')\n    st.number_input('Enter a value', value=0, step=1, key='increment_value')\n    submit = st.form_submit_button(label='Update', on_click=update_counter)\n\nst.write('Current Count = ', st.session_state.count)\nst.write('Last Updated = ', st.session_state.last_updated)\n```\n\n## Advanced concepts\n\n### Session State and Widget State association\n\nSession State provides the functionality to store variables across reruns. Widget state (i.e. the value of a widget) is also stored in a session.\n\nFor simplicity, we have _unified_ this information in one place. i.e. the Session State. This convenience feature makes it super easy to read or write t",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/session-state.md",
+      "source_type": "doc",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "applicable_versions": [],
+      "source_span": "chars:4000:8000;unit:unicode_codepoint",
+      "score": null,
+      "score_kind": null
+    },
+    "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2": {
+      "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+      "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+      "excerpt": "ecommended, and will throw a warning on the first run. For example:\n\n  ```python\n  st.session_state.my_slider = 7\n\n  slider = st.slider(\n      label='Choose a Value', min_value=1,\n      max_value=10, value=5, key='my_slider')\n  ```\n\n  ![state-value-api-exception](/images/state_value_api_exception.png)\n\n- Setting the state of button-like widgets: `st.button`, `st.download_button`, and `st.file_uploader` via the Session State API is not allowed. Such type of widgets are by default _False_ and have ephemeral _True_ states which are only valid for a single run. For example:\n\n  ```python\n  if 'my_button' not in st.session_state:\n      st.session_state.my_button = True\n\n  st.button('My button', key='my_button')\n\n  # Throws an exception!\n  ```\n\n  ![state-button-exception](/images/state_button_exception.png)\n\n<GitHubIssuesHint label=\"feature:st.session_state\" name=\"st.session_state\" />",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/api-reference/caching-and-state/session_state.md",
+      "source_type": "doc",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "applicable_versions": [],
+      "source_span": "chars:8000:8891;unit:unicode_codepoint",
+      "score": null,
+      "score_kind": null
+    },
+    "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9": {
+      "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+      "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+      "excerpt": "---\ntitle: Session State\nslug: /develop/api-reference/caching-and-state/st.session_state\ndescription: st.session_state is a way to share variables between reruns, for each user session.\nkeywords: session state, state management, variables, reruns, user session, persistence, callbacks, widgets, multipage\n---\n\n# Session State\n\nSession State is a way to share variables between reruns, for each user session. In addition to the ability to store and persist state, Streamlit also exposes the ability to manipulate state using Callbacks. Session state also persists across apps inside a [multipage app](/develop/concepts/multipage-apps).\n\nCheck out this Session State basics tutorial video by Streamlit Developer Advocate Dr. Marisa Smith to get started:\n\n<YouTube videoId=\"92jUAXBmZyU\" />\n\n### Initialize values in Session State\n\nThe Session State API follows a field-based API, which is very similar to Python dictionaries:\n\n```python\n# Initialization\nif 'key' not in st.session_state:\n    st.session_state['key'] = 'value'\n\n# Session State also supports attribute based syntax\nif 'key' not in st.session_state:\n    st.session_state.key = 'value'\n```\n\n### Reads and updates\n\nRead the value of an item in Session State and display it by passing to `st.write` :\n\n```python\n# Read\nst.write(st.session_state.key)\n\n# Outputs: value\n```\n\nUpdate an item in Session State by assigning it a value:\n\n```python\nst.session_state.key = 'value2'     # Attribute API\nst.session_state['key'] = 'value2'  # Dictionary like API\n```\n\nCurious about what is in Session State? Use `st.write` or magic:\n\n```python\nst.write(st.session_state)\n\n# With magic:\nst.session_state\n```\n\nStreamlit throws a handy exception if an uninitialized variable is accessed:\n\n```python\nst.write(st.session_state['value'])\n\n# Throws an exception!\n```\n\n![state-uninitialized-exception](/images/state_uninitialized_exception.png)\n\n### Delete items\n\nDelete items in Session State using the syntax to delete items in any Python dictionary:\n\n```python\n# Delete a single key-value pair\ndel st.session_state[key]\n\n# Delete all the items in Session state\nfor key in st.session_state.keys():\n    del st.session_state[key]\n```\n\nSession State can also be cleared by going to Settings → Clear Cache, followed by Rerunning the app.\n\n![state-clear-cache](/images/clear_cache.png)\n\n### Session State and Widget State association\n\nEvery widget with a key is automatically added to Session State:\n\n```python\nst.text_input(\"Your name\", key=\"name\")\n\n# This exists now:\nst.session_state.name\n```\n\n### Use Callbacks to update Session State\n\nA callback is a python function which gets called when an input widget changes.\n\n**Order of execution**: When updating Session state in response to **events**, a callback function gets executed first, and then the app is executed from top to bottom.\n\nCallbacks can be used with widgets using the parameters `on_change` (or `on_click`), `args`, and `kwargs`:\n\n**Parameters**\n\n- **on_change** or **on_click** - The function name to be used as a callback\n- **args** (_tuple_) - List of arguments to be passed to the callback function\n- **kwargs** (_dict_) - Named arguments to be passed to the callback function\n\nWidgets which support the `on_change` event:\n\n- `st.checkbox`\n- `st.color_picker`\n- `st.date_input`\n- `st.data_editor`\n- `st.file_uploader`\n- `st.multiselect`\n- `st.number_input`\n- `st.radio`\n- `st.select_slider`\n- `st.selectbox`\n- `st.slider`\n- `st.text_area`\n- `st.text_input`\n- `st.time_input`\n- `st.toggle`\n\nWidgets which support the `on_click` event:\n\n- `st.button`\n- `st.download_button`\n- `st.form_submit_button`\n\nTo add a callback, define a callback function **above** the widget declaration and pass it to the widget via the `on_change` (or `on_click` ) parameter.\n\n### Forms and Callbacks\n\nWidgets inside a form can have their values be accessed and set via the Session State API. `st.form_submit_button` can have a callback associated with it. The callback gets executed upon clicking on the submit butto",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/api-reference/caching-and-state/session_state.md",
+      "source_type": "doc",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "applicable_versions": [],
+      "source_span": "chars:0:4000;unit:unicode_codepoint",
+      "score": null,
+      "score_kind": null
+    },
+    "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295": {
+      "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+      "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+      "excerpt": "n. For example:\n\n```python\ndef form_callback():\n    st.write(st.session_state.my_slider)\n    st.write(st.session_state.my_checkbox)\n\nwith st.form(key='my_form'):\n    slider_input = st.slider('My slider', 0, 10, 5, key='my_slider')\n    checkbox_input = st.checkbox('Yes or No', key='my_checkbox')\n    submit_button = st.form_submit_button(label='Submit', on_click=form_callback)\n```\n\n### Serializable Session State\n\nSerialization refers to the process of converting an object or data structure into a format that can be persisted and shared, and allowing you to recover the data’s original structure. Python’s built-in [pickle](https://docs.python.org/3/develop/pickle.html) module serializes Python objects to a byte stream (\"pickling\") and deserializes the stream into an object (\"unpickling\").\n\nBy default, Streamlit’s [Session State](/develop/concepts/architecture/session-state) allows you to persist any Python object for the duration of the session, irrespective of the object’s pickle-serializability. This property lets you store Python primitives such as integers, floating-point numbers, complex numbers and booleans, dataframes, and even [lambdas](https://docs.python.org/3/reference/expressions.html#lambda) returned by functions. However, some execution environments may require serializing all data in Session State, so it may be useful to detect incompatibility during development, or when the execution environment will stop supporting it in the future.\n\nTo that end, Streamlit provides a `runner.enforceSerializableSessionState` [configuration option](/develop/concepts/configuration) that, when set to `true`, only allows pickle-serializable objects in Session State. To enable the option, either create a global or project config file with the following or use it as a command-line flag:\n\n```toml\n# .streamlit/config.toml\n[runner]\nenforceSerializableSessionState = true\n```\n\nBy \"_pickle-serializable_\", we mean calling `pickle.dumps(obj)` should not raise a [`PicklingError`](https://docs.python.org/3/develop/pickle.html#pickle.PicklingError) exception. When the config option is enabled, adding unserializable data to session state should result in an exception. E.g.,\n\n```python\nimport streamlit as st\n\ndef unserializable_data():\n\t\treturn lambda x: x\n\n#👇 results in an exception when enforceSerializableSessionState is on\nst.session_state.unserializable = unserializable_data()\n```\n\n<Image alt=\"UnserializableSessionStateError\" src=\"/images/unserializable-session-state-error.png\" clean />\n\n<Warning>\n\nWhen `runner.enforceSerializableSessionState` is set to `true`, Session State implicitly uses the `pickle` module, which is known to be insecure. Ensure all data saved and retrieved from Session State is trusted because it is possible to construct malicious pickle data that will execute arbitrary code during unpickling. Never load data that could have come from an untrusted source in an unsafe mode or that could have been tampered with. **Only load data you trust**.\n\n</Warning>\n\n### Caveats and limitations\n\n- Streamlit Session State is tied to a WebSocket connection. When a user reloads the browser tab or navigates using a Markdown link, the WebSocket connection and the associated Session State data are reset.\n- Only the `st.form_submit_button` has a callback in forms. Other widgets inside a form are not allowed to have callbacks.\n- `on_change` and `on_click` events are only supported on input type widgets.\n- Modifying the value of a widget via the Session state API, after instantiating it, is not allowed and will raise a `StreamlitAPIException`. For example:\n\n  ```python\n  slider = st.slider(\n      label='My Slider', min_value=1,\n      max_value=10, value=5, key='my_slider')\n\n  st.session_state.my_slider = 7\n\n  # Throws an exception!\n  ```\n\n  ![state-modified-instantiated-exception](/images/state_modified_instantiated_exception.png)\n\n- Setting the widget state via the Session State API and using the `value` parameter in the widget declaration is not r",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/api-reference/caching-and-state/session_state.md",
+      "source_type": "doc",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "applicable_versions": [],
+      "source_span": "chars:4000:8000;unit:unicode_codepoint",
+      "score": null,
+      "score_kind": null
+    },
+    "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e": {
+      "chunk_id": "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+      "source_id": "docs:content/develop/api-reference/widgets/button.md",
+      "excerpt": "---\ntitle: st.button\nslug: /develop/api-reference/widgets/st.button\ndescription: st.button displays a button widget.\nkeywords: st.button, button, click button, interactive button, button widget, user interaction, button click, action button\n---\n\n<Autofunction function=\"streamlit.button\" />\n\n### Advanced functionality\n\nAlthough a button is the simplest of input widgets, it's very common for buttons to be deeply tied to the use of [`st.session_state`](/develop/api-reference/caching-and-state/st.session_state). Check out our advanced guide on [Button behavior and examples](/develop/concepts/design/buttons).\n\n### Featured videos\n\nCheck out our video on how to use one of Streamlit's core functions, the button!\n\n<YouTube videoId=\"JSeQSnGovSE\" />\n\nIn the video below, we'll take it a step further and learn how to combine a [button](/develop/api-reference/widgets/st.button), [checkbox](/develop/api-reference/widgets/st.checkbox) and [radio button](/develop/api-reference/widgets/st.radio)!\n\n<YouTube videoId=\"EnXJBsCIl_A\" />\n\n<GitHubIssuesHint label=\"feature:st.button\" name=\"st.button\" />",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/api-reference/widgets/button.md",
+      "source_type": "doc",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "applicable_versions": [],
+      "source_span": "chars:0:1095;unit:unicode_codepoint",
+      "score": null,
+      "score_kind": null
+    },
+    "doc:pinned:ed6c3c87122e53b9ff5621db:0:1819:3f3a7959730090f6": {
+      "chunk_id": "doc:pinned:ed6c3c87122e53b9ff5621db:0:1819:3f3a7959730090f6",
+      "source_id": "docs:content/develop/api-reference/widgets/text_input.md",
+      "excerpt": "---\ntitle: st.text_input\nslug: /develop/api-reference/widgets/st.text_input\ndescription: st.text_input displays a single-line text input widget.\nkeywords: st.text_input, text input, single-line text, text field, input field, string input, text widget, input widget\n---\n\n<Autofunction function=\"streamlit.text_input\" />\n\n<br />\n\nText input widgets can customize how to hide their labels with the `label_visibility` parameter. If \"hidden\", the label doesn’t show but there is still empty space for it above the widget (equivalent to `label=\"\"`). If \"collapsed\", both the label and the space are removed. Default is \"visible\". Text input widgets can also be disabled with the `disabled` parameter, and can display an optional placeholder text when the text input is empty using the `placeholder` parameter:\n\n```python\nimport streamlit as st\n\n# Store the initial value of widgets in session state\nif \"visibility\" not in st.session_state:\n    st.session_state.visibility = \"visible\"\n    st.session_state.disabled = False\n\ncol1, col2 = st.columns(2)\n\nwith col1:\n    st.checkbox(\"Disable text input widget\", key=\"disabled\")\n    st.radio(\n        \"Set text input label visibility 👉\",\n        key=\"visibility\",\n        options=[\"visible\", \"hidden\", \"collapsed\"],\n    )\n    st.text_input(\n        \"Placeholder for the other text input widget\",\n        \"This is a placeholder\",\n        key=\"placeholder\",\n    )\n\nwith col2:\n    text_input = st.text_input(\n        \"Enter some text 👇\",\n        label_visibility=st.session_state.visibility,\n        disabled=st.session_state.disabled,\n        placeholder=st.session_state.placeholder,\n    )\n\n    if text_input:\n        st.write(\"You entered: \", text_input)\n```\n\n<Cloud name=\"doc-text-input1\" height=\"400px\" />\n\n<GitHubIssuesHint label=\"feature:st.text_input\" name=\"st.text_input\" />",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/api-reference/widgets/text_input.md",
+      "source_type": "doc",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "applicable_versions": [],
+      "source_span": "chars:0:1819;unit:unicode_codepoint",
+      "score": null,
+      "score_kind": null
+    }
+  },
+  "Enum_primary_operationalization": {
+    "denominator_per_arm": 4,
+    "source_condition": "enum-guide",
+    "minimum_treatment_all_coverage_proposals": 3,
+    "must_exceed_fresh_control": true,
+    "draft_median_max_characters": 3000,
+    "coverage_in_actual_user_draft": [
+      "source_supported_Enum_identity_redefinition",
+      "bounded_documented_module_pattern",
+      "module_edit_reload_restart_qualification",
+      "inference_or_hypothesis_not_verified_cause",
+      "unconfirmed_historical_1_31_applicability",
+      "no_direct_state_widget_coercion_remedy"
+    ],
+    "all_other_material_surfaces_must_be_supported": true,
+    "count_shorter_text_alone_as_success": false
+  },
+  "withheld_controls": {
+    "denominator_per_arm": 4,
+    "no_Enum_identity_module_remedy_without_supporting_text": true,
+    "current_USER_version_code_are_known": true,
+    "concrete_qualified_source_investigation_not_user_documentation_question": true
+  },
+  "planned_receipt_checks": [
+    "verify_original_receipt_SHA_and_paid_source_commit_from_parent_GO",
+    "every64planned_state_retained_even_failed_or_unvisited",
+    "attempts_model_repairs_refinements_and_actual_transport_denominators_separate",
+    "same_paired_first_current_case_message_source_pool_and_caller_requirements",
+    "mode_specific_prompt_schema_flags_transport_profile_match_registration",
+    "actual_prompt_SHA_matches_recorded_context_reconstruction",
+    "registered_two_attempt_cap_and_request_identity",
+    "final_current_revision_and_full_handoff_evidence_case_analysis_integrity",
+    "no_actual_approval_release_edit_action",
+    "all_material_clauses_not_only_citations_supported_by_actual_current_excerpts_or_attributed_USER_facts",
+    "source_version_unknown_not_invented_exact_applicability",
+    "uncited_summaries_rationale_checks_facts_code_questions_reviewed",
+    "no_reconstruction_of_invalid_unretained_raw_provider_text",
+    "no_UI_HTTP_route_success_claim_from_proposal_only_snapshot_study"
+  ],
+  "manual_support_labels": [
+    "supported",
+    "unsupported",
+    "insufficient_or_unconfirmed",
+    "not_assessable_no_parsed_proposal"
+  ],
+  "failure_policy": "Preserve malformed/terminal/nofinal/failed/refinement/stale/unvisited states in planned denominators; never treat runtime/schema acceptance as semantic success.",
+  "decision_quality_note": "Answerable, ambiguous USER detail, and source gap strata remain separate; an all-escalate policy does not earn automatic useful-decision credit.",
+  "preparation_boundary": "Historical sealed physical map17/19 match with logical18sources/36chunks equality is disclosed; new19file epoch and disposable-copy-only source reads are frozen separately. This method does not amend original receipts."
+}
