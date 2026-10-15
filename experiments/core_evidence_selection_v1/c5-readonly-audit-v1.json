@@ -1,0 +1,506 @@
+{
+  "schema_version": 1,
+  "packet_id": "C5-three-uncertain-readonly-2026-10-15-v1",
+  "captured_at_utc": "2026-10-15T21:52:41.335288+00:00",
+  "read_only": true,
+  "actual_provider_or_network_calls": 0,
+  "credential_files_read": false,
+  "app_budget_or_gateway_clients_created": 0,
+  "Chroma_clients_created": 0,
+  "ledger_mutations": 0,
+  "reconciliations_performed": 0,
+  "C5_resolved": false,
+  "live_authorization_or_unhalt": false,
+  "closed_study_IDs_reusable": false,
+  "cost_kind": "Sanitized provider-observed usage times pinned local price for settled rows; uncertain amounts are retained reservations, not verified charges or provider account balance.",
+  "ledger": {
+    "total_reservations": 718,
+    "counts": {
+      "uncertain": 3,
+      "settled": 715
+    },
+    "settled_local_estimate_usd": "0.599798760",
+    "all_three_uncertain_hold_usd": "0.0301376",
+    "pending_usd": "0",
+    "opening_spend_usd": "0",
+    "halted": true,
+    "ceiling_usd": "4.50",
+    "provider_account_reconciled": false,
+    "whole_team_cross_laptop_cost_verified": false
+  },
+  "unresolved_incidents": [
+    {
+      "local_request_id": "call:00d470ec94177a11f66c6cb3dbbb6c83069dd1385ddd6ac7b1e3df96fa50f7fa",
+      "local_request_ID_is_provider_ID": false,
+      "run_id": "experiment:7b8fb45a4698adae4ec42ee61993e42704dab9f747d90feacb8787945aa56d2e",
+      "case_id": "probe-loop-current",
+      "case_revision": 0,
+      "attempt": 1,
+      "requested_model": "gpt-4.1-mini",
+      "phase": "development",
+      "status": "uncertain",
+      "error_code": "ProviderModelMismatch",
+      "held_reservation_usd": "0.02",
+      "actual_charge_usd": null,
+      "actual_input_tokens": null,
+      "actual_output_tokens": null,
+      "verified_serving_model": null,
+      "provider_request_or_response_ID": null,
+      "events": [
+        {
+          "event_id": 123,
+          "status": "reserved",
+          "error_code": null,
+          "recorded_at": "2026-10-07T11:20:50.248Z"
+        },
+        {
+          "event_id": 124,
+          "status": "uncertain",
+          "error_code": "ProviderModelMismatch",
+          "recorded_at": "2026-10-07T11:20:57.443Z"
+        },
+        {
+          "event_id": 125,
+          "status": "held_increased",
+          "error_code": "UserAuthorizedContinuation",
+          "recorded_at": "2026-10-07T13:02:18.206Z"
+        }
+      ],
+      "scope_attribution": [],
+      "provider_evidence_required": [
+        "A provider request/response record correlated to this exact UTC window, requested model and the owner's account/key alias; local caller SHA is not a provider ID.",
+        "Definitive received/not-received/completed/failed disposition, actual serving model, input/output usage and charge/rate/currency/discount/refund or authoritative zero-charge evidence.",
+        "Whole-account export including other team members, embeddings, evaluations and refunds; aggregate wallet delta alone does not allocate this request."
+      ],
+      "evidence_refs": [
+        "private:model-identity-observation-00",
+        "private:model-identity-start-2026-10-07",
+        "private:C5-packet-2026-10-11",
+        "docs/live-reconciliation-2026-10-11.fa.md"
+      ],
+      "http_status_observed": 200,
+      "transport_category_observed": null,
+      "http200_is_model_or_charge_verification": false,
+      "initial_reserved_usd": "0.008560640",
+      "historically_increased_hold_usd": "0.020000000",
+      "interpretation": "Original primary receipt records HTTP200 and ProviderModelMismatch before usable usage was retained. Missing/unverified serving identity is established, not which different model actually served. Increased hold is not actual charge; serving model/usage/provider ID remain unretained."
+    },
+    {
+      "local_request_id": "call:0377ef42aff047e95aca155ea1f66c1c09d34b9ed89ba2428bb17e54df950432",
+      "local_request_ID_is_provider_ID": false,
+      "run_id": "bb093f9c-b631-548d-b3a5-c78fc63629cd",
+      "case_id": "dev-f-7206",
+      "case_revision": 1,
+      "attempt": 1,
+      "requested_model": "gpt-4o-mini",
+      "phase": "development",
+      "status": "uncertain",
+      "error_code": "ProviderRequestFailed",
+      "held_reservation_usd": "0.0067584",
+      "actual_charge_usd": null,
+      "actual_input_tokens": null,
+      "actual_output_tokens": null,
+      "verified_serving_model": null,
+      "provider_request_or_response_ID": null,
+      "events": [
+        {
+          "event_id": 1436,
+          "status": "reserved",
+          "error_code": null,
+          "recorded_at": "2026-10-15T18:05:09.319Z"
+        },
+        {
+          "event_id": 1437,
+          "status": "uncertain",
+          "error_code": "ProviderRequestFailed",
+          "recorded_at": "2026-10-15T18:05:15.805Z"
+        }
+      ],
+      "scope_attribution": [
+        {
+          "kind": "quarantine",
+          "authorization_id": "user-core-claims-v1-r2-dev-f-7206"
+        }
+      ],
+      "provider_evidence_required": [
+        "A provider request/response record correlated to this exact UTC window, requested model and the owner's account/key alias; local caller SHA is not a provider ID.",
+        "Definitive received/not-received/completed/failed disposition, actual serving model, input/output usage and charge/rate/currency/discount/refund or authoritative zero-charge evidence.",
+        "Whole-account export including other team members, embeddings, evaluations and refunds; aggregate wallet delta alone does not allocate this request."
+      ],
+      "evidence_refs": [
+        "experiments/core_claim_boundary_v1/provider-stop-review-v1.json",
+        "experiments/core_claim_boundary_v1/model-receipt-v1.json"
+      ],
+      "transport_attempt_started": true,
+      "http_status_observed": null,
+      "transport_category_observed": "connect_timeout",
+      "input_bytes_plus_guard": 24045,
+      "interpretation": "Sanitized observer classified httpx.ConnectTimeout before an HTTP response/model/output/usage was observed. The pre-transport started flag is not proof of provider receipt; specific DNS/TLS/outage cause, billing and zero charge are not established. The input fit the existing32768 bound; no source/schema failure is established."
+    },
+    {
+      "local_request_id": "call:99512367628b4700a171466d2390b6be8ac708d62bb11ab2f354130ec2118817",
+      "local_request_ID_is_provider_ID": false,
+      "run_id": "c0603340-b677-5dcf-b8ef-4ee96788d04f",
+      "case_id": "dev-case-a",
+      "case_revision": 2,
+      "attempt": 1,
+      "requested_model": "gpt-4o-mini",
+      "phase": "development",
+      "status": "uncertain",
+      "error_code": "ProviderRequestFailed",
+      "held_reservation_usd": "0.0033792",
+      "actual_charge_usd": null,
+      "actual_input_tokens": null,
+      "actual_output_tokens": null,
+      "verified_serving_model": null,
+      "provider_request_or_response_ID": null,
+      "events": [
+        {
+          "event_id": 500,
+          "status": "reserved",
+          "error_code": null,
+          "recorded_at": "2026-10-14T10:01:22.388Z"
+        },
+        {
+          "event_id": 501,
+          "status": "uncertain",
+          "error_code": "ProviderRequestFailed",
+          "recorded_at": "2026-10-14T10:01:52.399Z"
+        }
+      ],
+      "scope_attribution": [
+        {
+          "kind": "experiment",
+          "authorization_id": "user-core-stability-2026-10-14-v1-r4"
+        }
+      ],
+      "provider_evidence_required": [
+        "A provider request/response record correlated to this exact UTC window, requested model and the owner's account/key alias; local caller SHA is not a provider ID.",
+        "Definitive received/not-received/completed/failed disposition, actual serving model, input/output usage and charge/rate/currency/discount/refund or authoritative zero-charge evidence.",
+        "Whole-account export including other team members, embeddings, evaluations and refunds; aggregate wallet delta alone does not allocate this request."
+      ],
+      "evidence_refs": [
+        "experiments/core_stability_adversarial/stability-cost-reconciliation-v1.json",
+        "experiments/core_stability_adversarial/stability-live-receipt-v1.json"
+      ],
+      "transport_attempt_started": true,
+      "http_status_observed": null,
+      "transport_category_observed": null,
+      "interpretation": "ProviderRequestFailed survived, with transport-attempt-started flag but no HTTP status, precise transport category, returned model or usage. Approximately30seconds between ledger events is not proof of read_timeout or provider receipt; network/status/stream/decoding cause and actual charge remain unproven."
+    }
+  ],
+  "authorization_disposition": {
+    "continuations": [
+      {
+        "authorization_id": "user-continuation-2026-10-07-v3",
+        "active": 0,
+        "revocation_code": "NewUncertainty"
+      }
+    ],
+    "quarantine_terminal_counts": {
+      "closed": 100,
+      "revoked": 1
+    }
+  },
+  "existing_reconciliation_mechanisms_static_review": {
+    "source_ref": "src/agent_app/llm/budget.py",
+    "settle": "Accepts known nonnegative USD cost and actual input/output tokens for an existing reserved or uncertain request, even while halted; appends settled event. Cost overrun retains halt, and changed uncertainty invalidates exception scopes. It does not fetch/verify provider evidence itself and was not called here.",
+    "release_unsent": "Only an existing reserved row may be released after proven no-send. All three current rows are uncertain, so this is not a release mechanism for them; a connect_timeout flag alone is insufficient zero-charge proof.",
+    "halt": "No normal automatic unhalt/refund/reset operation is provided. Settlement is not live authorization; old closed/revoked studies remain closed. No command or code change to clear the halt is proposed.",
+    "refund_or_currency": "External evidence must retain rate/currency/refund details. The ledger takes nonnegative USD/tokens; refund/account-wide adjustments are not automatically inferred or obtained by rewriting settled rows or opening a new ledger.",
+    "future_action": "Only after independently correlated provider evidence, document the accounting decision and separately review any controlled existing-ledger settlement and later bounded authorization. This packet is evidence collection only."
+  },
+  "provider_evidence_acquisition": {
+    "safe_next_step": "Account owner obtains sanitized dashboard/provider-support request logs or exports for the three UTC windows and whole-account history; raw credential is unnecessary. No new model call is needed to investigate old charges.",
+    "no_endpoint_discovery_in_this_review": true,
+    "existing_docs_scope": "The older stability packet checked specific public provider docs. This offline audit makes no current universal claim that a billing/log API does or does not exist.",
+    "local_request_hash_not_sent_provider_correlation_ID": true,
+    "aggregate_balance_not_per_request_proof": true
+  },
+  "ledger_files_before": {
+    "private:designated-ledger": {
+      "exists": true,
+      "sha256": "141c3536fb864595d94e0d0dd4a55976418def1012402b70f313c92050222785",
+      "bytes": 1241088
+    },
+    "private:designated-ledger-wal": {
+      "exists": false,
+      "sha256": null,
+      "bytes": null
+    },
+    "private:designated-ledger-shm": {
+      "exists": false,
+      "sha256": null,
+      "bytes": null
+    },
+    "private:designated-ledger-journal": {
+      "exists": false,
+      "sha256": null,
+      "bytes": null
+    }
+  },
+  "ledger_files_after": {
+    "private:designated-ledger": {
+      "exists": true,
+      "sha256": "141c3536fb864595d94e0d0dd4a55976418def1012402b70f313c92050222785",
+      "bytes": 1241088
+    },
+    "private:designated-ledger-wal": {
+      "exists": false,
+      "sha256": null,
+      "bytes": null
+    },
+    "private:designated-ledger-shm": {
+      "exists": false,
+      "sha256": null,
+      "bytes": null
+    },
+    "private:designated-ledger-journal": {
+      "exists": false,
+      "sha256": null,
+      "bytes": null
+    }
+  },
+  "ledger_files_unchanged": true,
+  "ledger_schema_sha256": "76a5f29931a8a3eed93dfc7130949ca6cdd4d0aef903bcc800765c660dd39545",
+  "ledger_table_counts": {
+    "continuation_events": 2,
+    "continuation_requests": 123,
+    "experiment_scope_events": 14,
+    "experiment_scope_requests": 65,
+    "experiment_scope_slots": 152,
+    "experiment_scopes": 7,
+    "ledger_continuations": 1,
+    "ledger_events": 1437,
+    "ledger_meta": 1,
+    "quarantine_scope_events": 202,
+    "quarantine_scope_requests": 468,
+    "quarantine_scope_slots": 796,
+    "quarantine_scopes": 101,
+    "reservations": 718
+  },
+  "ledger_fullrow_snapshot_sha256": "d77edf5d874df059642e3b711a05b9bb8a8ecc975f8be69de1e765680b2af095",
+  "ledger_fullrow_snapshot_unchanged": true,
+  "source_refs": {
+    "private:C5-packet-2026-10-11": {
+      "sha256": "402972621a4e873ee60dafe0f11f40f92859e7e29e9b43669c676e20401f4300",
+      "bytes": 7110,
+      "public": false
+    },
+    "private:model-identity-start-2026-10-07": {
+      "sha256": "b468b40d6cfdfe658cb7d525c0bfeab5001cb79db02567bb73ad046055b9e773",
+      "bytes": 1890,
+      "public": false
+    },
+    "private:model-identity-observation-00": {
+      "sha256": "8f888468fad7cc85c6b17b74115e4c608f42c61c42e9e19f4a118fbc49253238",
+      "bytes": 2789,
+      "public": false
+    },
+    "private:model-identity-summary-2026-10-07": {
+      "sha256": "6ef21b130ad595721b17b51334fa2cf2c51da9eca4f1bb9bebc57930dd4ebb46",
+      "bytes": 835,
+      "public": false
+    },
+    "experiments/core_stability_adversarial/stability-cost-reconciliation-v1.json": {
+      "sha256": "9dd74362bcc4675cdb094302e5bad2c22b78f6aa4f437f9245df270ca00bbb03",
+      "bytes": 4341,
+      "public": true
+    },
+    "experiments/core_stability_adversarial/stability-live-receipt-v1.json": {
+      "sha256": "8346af721b675524c29d34fee25bfe71dc813d0c93f982540e02b56234688ceb",
+      "bytes": 1982987,
+      "public": true
+    },
+    "experiments/core_claim_boundary_v1/provider-stop-review-v1.json": {
+      "sha256": "198831696a82d1d07ac383c13a19b042b6fd3d79dbf7b015cc07e9d28dba602a",
+      "bytes": 2569,
+      "public": true
+    },
+    "experiments/core_claim_boundary_v1/model-receipt-v1.json": {
+      "sha256": "a57cfac1ccd45068a81907e718e32a68d66cedbff1725f5138f7a82abea103f2",
+      "bytes": 3611116,
+      "public": true
+    },
+    "src/agent_app/llm/budget.py": {
+      "sha256": "a5e34297fbe61ce51e98827be697b61cf10791d54cf06ef0c40502b93bf30a68",
+      "bytes": 88782,
+      "public": true
+    },
+    "src/agent_app/llm/metis.py": {
+      "sha256": "aa6fe367f05595dfbfdb9224b8218e7596ccff87530bede12ed9ca06c8fe340f",
+      "bytes": 12820,
+      "public": true
+    },
+    "src/agent_app/llm/pricing.py": {
+      "sha256": "39993b673465401e0926584d3007b8967a1eb4eaad4d377b32324c60d619ec07",
+      "bytes": 1570,
+      "public": true
+    },
+    "src/agent_app/testing/provider_observation.py": {
+      "sha256": "7263398f4285f861128e1a121232ad56123d76d2f0569e5a66b4ce3c6100fae5",
+      "bytes": 3140,
+      "public": true
+    },
+    "docs/live-reconciliation-2026-10-11.fa.md": {
+      "sha256": "b36ca98701153c61da71c0a3139feea8f1b5796be4a23fec3e76687ef48ff32b",
+      "bytes": 3143,
+      "public": true
+    }
+  },
+  "audit_script_sha256": "1b0b85366876b2b0ca8d507ffa5c5fa825c596b3fbc01afb89f7cc1557c8dda5",
+  "checks": [
+    {
+      "check": "original_ledger_matches_closed_C4j_receipt",
+      "passed": true
+    },
+    {
+      "check": "source_pin:private:C5-packet-2026-10-11",
+      "passed": true
+    },
+    {
+      "check": "source_pin:private:model-identity-start-2026-10-07",
+      "passed": true
+    },
+    {
+      "check": "source_pin:private:model-identity-observation-00",
+      "passed": true
+    },
+    {
+      "check": "source_pin:private:model-identity-summary-2026-10-07",
+      "passed": true
+    },
+    {
+      "check": "source_pin:experiments/core_stability_adversarial/stability-live-receipt-v1.json",
+      "passed": true
+    },
+    {
+      "check": "source_pin:experiments/core_claim_boundary_v1/provider-stop-review-v1.json",
+      "passed": true
+    },
+    {
+      "check": "source_pin:experiments/core_claim_boundary_v1/model-receipt-v1.json",
+      "passed": true
+    },
+    {
+      "check": "SQLite_query_only_enabled",
+      "passed": true
+    },
+    {
+      "check": "exact_three_public_uncertain_IDs",
+      "passed": true
+    },
+    {
+      "check": "718rows_715settled_3uncertain_no_pending",
+      "passed": true
+    },
+    {
+      "check": "settled_decimal_and_nanos_agree",
+      "passed": true
+    },
+    {
+      "check": "three_holds_exact",
+      "passed": true
+    },
+    {
+      "check": "halt_ceiling_opening_unchanged",
+      "passed": true
+    },
+    {
+      "check": "all_uncertain_usage_costs_unknown_not_zero",
+      "passed": true
+    },
+    {
+      "check": "fourteen_tables_retained",
+      "passed": true
+    },
+    {
+      "check": "first_incident_original_HTTP200_record",
+      "passed": true
+    },
+    {
+      "check": "first_incident_initial_reserve_and_hold_increase",
+      "passed": true
+    },
+    {
+      "check": "third_incident_allowlisted_connect_timeout",
+      "passed": true
+    },
+    {
+      "check": "second_incident_receipt_dispatch_and_unknown_metadata",
+      "passed": true
+    },
+    {
+      "check": "no_active_continuation_or_quarantine",
+      "passed": true
+    },
+    {
+      "check": "all14fullrow_fingerprints_unchanged_in_readonly_transaction",
+      "passed": true
+    },
+    {
+      "check": "original_DB_and_sidecars_presence_bytes_unchanged",
+      "passed": true
+    },
+    {
+      "check": "source_observed_hash_shape:private:C5-packet-2026-10-11",
+      "passed": true
+    },
+    {
+      "check": "source_observed_hash_shape:private:model-identity-start-2026-10-07",
+      "passed": true
+    },
+    {
+      "check": "source_observed_hash_shape:private:model-identity-observation-00",
+      "passed": true
+    },
+    {
+      "check": "source_observed_hash_shape:private:model-identity-summary-2026-10-07",
+      "passed": true
+    },
+    {
+      "check": "source_observed_hash_shape:experiments/core_stability_adversarial/stability-cost-reconciliation-v1.json",
+      "passed": true
+    },
+    {
+      "check": "source_observed_hash_shape:experiments/core_stability_adversarial/stability-live-receipt-v1.json",
+      "passed": true
+    },
+    {
+      "check": "source_observed_hash_shape:experiments/core_claim_boundary_v1/provider-stop-review-v1.json",
+      "passed": true
+    },
+    {
+      "check": "source_observed_hash_shape:experiments/core_claim_boundary_v1/model-receipt-v1.json",
+      "passed": true
+    },
+    {
+      "check": "source_observed_hash_shape:src/agent_app/llm/budget.py",
+      "passed": true
+    },
+    {
+      "check": "source_observed_hash_shape:src/agent_app/llm/metis.py",
+      "passed": true
+    },
+    {
+      "check": "source_observed_hash_shape:src/agent_app/llm/pricing.py",
+      "passed": true
+    },
+    {
+      "check": "source_observed_hash_shape:src/agent_app/testing/provider_observation.py",
+      "passed": true
+    },
+    {
+      "check": "source_observed_hash_shape:docs/live-reconciliation-2026-10-11.fa.md",
+      "passed": true
+    }
+  ],
+  "checks_passed": 36,
+  "checks_total": 36,
+  "all_checks_passed": true,
+  "limitations": [
+    "No provider/key/dashboard access, usage endpoint or account-wide invoice was queried.",
+    "Historical raw response/serving model/category fields that were never retained cannot be reconstructed from caller hashes, elapsed time or a successful later request.",
+    "This audit preserves all old receipts, reservations, holds and halt. Positive read-only custody controls do not resolve C5, grant live permission, measure model quality or establish final-test/RAG success."
+  ]
+}
