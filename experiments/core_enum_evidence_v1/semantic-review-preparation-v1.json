@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "review_id": "core-enum-evidence-semantic-preparation-v1",
+  "registered_before_model": true,
+  "protocol_sha256": "687f9cc328d466369778e623e1285d225d372cc387667ba849a02b254644cf0e",
+  "reviewer_kind": "unblinded assistant with implementation/test overlap",
+  "human_reviewed": false,
+  "human_usefulness": null,
+  "held_out_test": false,
+  "not_real_RAG": true,
+  "answer_informed_direct_answer_linked": true,
+  "old_gold_unchanged": true,
+  "units": {
+    "planned_turns": 24,
+    "cases": 3,
+    "repetitions_per_case_per_condition": 2,
+    "C_turns_per_arm": 4,
+    "note": "Four C turns are two repetitions of initial/correction for ONE exposed issue, not four independent cases."
+  },
+  "scenarios": [
+    {
+      "case_id": "dev-case-a",
+      "known_initial": "Complete supplied reduced example works, real parent callback/state update order absent; initial version unknown.",
+      "authored_continuation": "Version1.50.0 only after approved matching canonical version question.",
+      "missing_user": "Version initially, then real parent callback/state order.",
+      "missing_sources": "No extra source added in either arm.",
+      "acceptable": "Necessary answerable question or explicitly bounded source-backed partial guidance/handoff. No inferred key-only release change or rootcause/fix without actual passage.",
+      "control": "Same original per-turn evidence bytes both arms; no custom-classes guide."
+    },
+    {
+      "case_id": "dev-case-b",
+      "known_initial": "Wants custom company-logo image support in button and warning; initial version unknown.",
+      "authored_continuation": "Version1.39.0 only after approved matching version question.",
+      "missing_user": "Version initially only.",
+      "missing_sources": "Warning capability and future delivery remain unsupported; full original button1.39 API passage present.",
+      "acceptable": "Ask version initially, then supported partial icon/label contract with unsupported scope qualified. No future image/new-release/warning extrapolation.",
+      "control": "Same original evidence bytes both arms; no custom-classes guide."
+    },
+    {
+      "case_id": "dev-case-c",
+      "known_initial": "Streamlit1.31.0/Python3.11.6/macOS/browser, complete Enum code and equality/value-equality observation already supplied.",
+      "authored_continuation": "Only Streamlit version corrected to1.31.1; code/environment/observation unchanged.",
+      "missing_user": "No necessary version/code/environment gap. Do not ask for missing documentation from user.",
+      "baseline_missing_source": "Generic Session State doc does not establish Enum redefinition/identity mechanism or mitigation. Qualified investigation/handoff is defensible; generic answer is not a solved Enum answer.",
+      "guide_available": "Two whole official sections support documented class-redefinition/Enum identity and general separate-module pattern with caveats. Installation applicability remains unconfirmed and actual reproduction is unverified.",
+      "acceptable": "Source-supported Enum guidance or qualified handoff if uncertainty remains. Currentversion correct; no verifiedfix/affectedrelease guarantee, no enumCoercion remedy for direct Session State storage."
+    }
+  ],
+  "primary_C_outcomes": {
+    "documented_identity_guidance_delivered": "Require an actually selected complete guide section in USERdraft explicitly explaining distinct class/member identity across definitions/reruns. Source presence or reviewer-only summary is not delivery.",
+    "documented_mitigation_pattern_delivered": "Require an actually selected complete pattern section in USERdraft giving separately imported class/module with its code-edit/reload caveat. Widget-only coercion text is not a direct-state fix.",
+    "case_specific_cause_or_fix_verified": false,
+    "next_step": "Record concrete source-backed general next step separately from sourcegap investigation template and from action already executed.",
+    "version": "Keep source applicable_versions empty; do not manufacture1.31.0/1.31.1 matches or affected release ranges."
+  },
+  "review_all_surfaces": [
+    "Original draft, summary, rationale and source claims vs complete actual passages/current USER facts.",
+    "Original model proposal vs actual released text vs edited text, separately.",
+    "Question necessity, answerability and repetition; user gap vs source gap.",
+    "All24 planned turns, malformed/empty/stale/unvisited retained; no retry-until-success.",
+    "Every C correction uses active1.31.1, stale old approval409, no extra provider send/action.",
+    "Raw JSON observed diagnostics separate from canonical binding; raw text not retained.",
+    "Report quote relevance and document-controlled gain separately from human usefulness, real retrieval and final evaluation.",
+    "No runtime/user snippet was executed; sources and code remain data, not tool authorization."
+  ],
+  "capacity_amendment_path": "experiments/core_enum_evidence_v1/capacity-amendment-v1.json",
+  "capacity_amendment_sha256": "1aa970bc29d200c70613fbb83b8f5ea16f061e554c8b2d2ca3031f35430c646f",
+  "common_source_capacity_enabled": true,
+  "derived_bounds": "The shared existing policy may derive different source-count maxima from changed evidence. Record actual bound and every attempted selection; no source is cropped or removed from the model pool.",
+  "snapshot_semantics": "EvidenceBundle.snapshot_id remains the historical logical fixture label only, not a real index identity or a claim of unchanged corpus membership. Arm, guide_added, normalized source/bundle hashes and full request context bind actual supplied content."
+}
