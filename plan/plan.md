@@ -113,6 +113,10 @@
   ۱۸۵۸کنترل cost/source پاس؛ هر۵۶۷reservation قبلی/۱۴جدول حفظ،۶scope بسته،
   ۲۴slotباقی claimed؛ holdها/halt/سقف ثابت. [verification](../experiments/core_source_order_v1/verification-v1.json):
   ۴۸۹۶pytest،Ruff۳۲۹فایل،سهdemo وfixtureHTTP/SQLite۴۵۷/۴۵۷ پاس؛ CI سبز ادعا نمی‌شود.
+  تحویل هر دو آزمایش در [PR #62](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/62)؛
+  [review انتشار](../experiments/core_source_order_v1/publication-review-v1.json)
+  روی head`7cfa066` بدون blocker، با همان Python تست‌شده است. هر دو job Actions
+  همین head قبل اجرای step به علت Billing متوقف شدند؛ workflow/protection تغییر نکرده‌اند.
 
 - [ ] **تنظیم نهایی core پس از review انسانی و dev گسترده‌تر؛ ساسان با محمدحسن.**
   مقایسهٔ usefulness سؤال کوتاه/کامل، متن طولانی عمومی Enum و precision منابع

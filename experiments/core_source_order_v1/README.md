@@ -68,6 +68,10 @@ Artifacts:
   `23245e9cf1369bf05bb7e8b723da032456f714ffef9662efd0d348c24d325ec4`.
 - [Semantic review](semantic-review-v1.json), [cost/source audit v2](cost-review-v2.json),
   [blank human worksheet](human-review-template-v1.json) and [verification](verification-v1.json).
+- [Exact-head review and local publication basis](publication-review-v1.json),
+  [PR #62](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/62): code/report
+  review at`7cfa066` found no blocker; both Actions jobs stopped before executing
+  steps because of account billing/spending limit. No CI success is claimed.
 - [Offline replay](offline-replay-v1.json):24historical wire contexts,
   48ordered-context rows,128subsets with16retained overflow rejections and
   16authored joint-guide7099char drafts. Authored feasibility is not a model win.
