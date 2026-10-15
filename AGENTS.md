@@ -34,6 +34,20 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 ## Runtime rules
 
+- C4h9/C4h9b are closed controlled source-selection studies; read
+  `docs/complementary-sources.fa.md` and both frozen packets. The default-false
+  complementary SYSTEM reminder failed its registered joint-coverage goal and
+  is retained only for reproduction, not recommended as a quality improvement.
+  One uniform-order diagnostic changed one unreleased C initial draft to both
+  full guides/7099chars; its correction reverted to generic+Enum/14494chars.
+  Released joint coverage stays0/2 in both arms; no stable benefit is established.
+  Source-order changes are testing-only, never production ranking. Stale context
+  hashes reject; current integers mean current positions, not stable content IDs.
+  Keep complete sources/caveats, guide exclusion, original gold and all negative
+  results. Stop this selection branch; do not buy more permutations/prompts for
+  a score or resume closed identities. Human usefulness remains unscored, and
+  ordinary halt/old holds/ceiling remain unchanged.
+
 - C4h8 is a closed controlled fixed-evidence study, not a production RAG change;
   read `docs/enum-evidence-quality.fa.md` and its experiment packet. The official
   custom-classes guide is answer-linked and remains excluded from real retrieval.

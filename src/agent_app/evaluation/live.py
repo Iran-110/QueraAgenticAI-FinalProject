@@ -333,6 +333,8 @@ class LiveEvaluationAdapters:
             adapter_id += "_json_object_v1"
         if self._concise_user_draft:
             adapter_id += "_concise_draft_v1"
+        if self._config.grounded_complementary_sources:
+            adapter_id += "_complementary_sources_v1"
         return {
             "model": self._config.model,
             "snapshot_id": self._snapshot,
@@ -504,6 +506,7 @@ def configured_factory(values: Mapping[str, str]) -> LiveEvaluationAdapters:
                 "METIS_GROUNDED_SOURCE_GAP_HANDOFF",
                 "METIS_GROUNDED_SOURCE_GAP_INVESTIGATION",
                 "METIS_GROUNDED_SOURCE_SELECTION_REMINDER",
+                "METIS_GROUNDED_COMPLEMENTARY_SOURCES",
                 "METIS_GROUNDED_RESOURCE_GUIDANCE",
                 "METIS_GROUNDED_SOURCE_CAPACITY",
                 "METIS_GROUNDED_COMPACT_PLAN",
@@ -524,6 +527,8 @@ def configured_factory(values: Mapping[str, str]) -> LiveEvaluationAdapters:
             grounded_source_gap_investigation=switches["METIS_GROUNDED_SOURCE_GAP_INVESTIGATION"]
             == "true",
             grounded_source_selection_reminder=switches["METIS_GROUNDED_SOURCE_SELECTION_REMINDER"]
+            == "true",
+            grounded_complementary_sources=switches["METIS_GROUNDED_COMPLEMENTARY_SOURCES"]
             == "true",
             grounded_resource_guidance=switches["METIS_GROUNDED_RESOURCE_GUIDANCE"] == "true",
             grounded_source_capacity=switches["METIS_GROUNDED_SOURCE_CAPACITY"] == "true",

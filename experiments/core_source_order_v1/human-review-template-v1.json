@@ -1,0 +1,737 @@
+{
+  "schema_version": 1,
+  "review_id": "core-source-order-human-review-template-v1",
+  "receipt_path": "model-live-receipt-v1.json",
+  "receipt_sha256": "23245e9cf1369bf05bb7e8b723da032456f714ffef9662efd0d348c24d325ec4",
+  "reviewer": null,
+  "human_reviewed": false,
+  "human_usefulness": null,
+  "instructions": [
+    "Read full original draft, current request and all selected complete source passages in the pinned receipt before scoring.",
+    "Every score starts blank; assistant review is not a human score.",
+    "Both arms use the same complete sources and common prompt. Current index positions change; compare actual content IDs.",
+    "Score original draft separately from edited and actually released text. Initial C proposals were intentionally not released.",
+    "The only7099char joint-guide C output is an UNRELEASED initial. Its correction returns to14494; both arms have0/2joint released corrections.",
+    "C version1.31.0 then1.31.1 already supplied; guide scope is conceptual, not proof of an installed1.31fix. Enum coercion is widget-only.",
+    "Current version includes canonical replies: A/B unknown initially, then1.50.0/1.39.0.",
+    "Answer-linked guide stays fixture-only. This is one exposed C issue/two repetitions, not independent test cases or RAG quality."
+  ],
+  "rows": [
+    {
+      "job_id": "r1:dev-case-a:original_order",
+      "case_id": "dev-case-a",
+      "round": 1,
+      "arm": "original_order",
+      "turn": "initial",
+      "decision_label": "ask",
+      "current_version": null,
+      "original_analysis_sha256": "2dfe0c053499837bf66e8f25c51018cc1838c24ab71de5fec34ce665985c00de",
+      "original_draft_chars": 65,
+      "cited_chunks": [],
+      "current_source_positions": [],
+      "actual_releases": 1,
+      "model_original_review": {
+        "decision_acceptable": null,
+        "all_material_claims_supported": null,
+        "question_necessary_answerable_not_repeated": null,
+        "documented_guidance_usefulness": null,
+        "version_scope_qualified": null,
+        "comments": null
+      },
+      "edited_draft_review": null,
+      "released_text_review": {
+        "usefulness": null,
+        "comments": null
+      }
+    },
+    {
+      "job_id": "r1:dev-case-a:original_order",
+      "case_id": "dev-case-a",
+      "round": 1,
+      "arm": "original_order",
+      "turn": "version",
+      "decision_label": "ask",
+      "current_version": "1.50.0",
+      "original_analysis_sha256": "d10bc07a0fcb8d6a578a056c88dd21359acc15aafc5379ed9c818e33fd3fff71",
+      "original_draft_chars": 724,
+      "cited_chunks": [
+        "dev-three-multiselect-1500-default-key"
+      ],
+      "current_source_positions": [
+        0
+      ],
+      "actual_releases": 1,
+      "model_original_review": {
+        "decision_acceptable": null,
+        "all_material_claims_supported": null,
+        "question_necessary_answerable_not_repeated": null,
+        "documented_guidance_usefulness": null,
+        "version_scope_qualified": null,
+        "comments": null
+      },
+      "edited_draft_review": null,
+      "released_text_review": {
+        "usefulness": null,
+        "comments": null
+      }
+    },
+    {
+      "job_id": "r1:dev-case-a:rotate_left_one",
+      "case_id": "dev-case-a",
+      "round": 1,
+      "arm": "rotate_left_one",
+      "turn": "initial",
+      "decision_label": "ask",
+      "current_version": null,
+      "original_analysis_sha256": "2dfe0c053499837bf66e8f25c51018cc1838c24ab71de5fec34ce665985c00de",
+      "original_draft_chars": 65,
+      "cited_chunks": [],
+      "current_source_positions": [],
+      "actual_releases": 1,
+      "model_original_review": {
+        "decision_acceptable": null,
+        "all_material_claims_supported": null,
+        "question_necessary_answerable_not_repeated": null,
+        "documented_guidance_usefulness": null,
+        "version_scope_qualified": null,
+        "comments": null
+      },
+      "edited_draft_review": null,
+      "released_text_review": {
+        "usefulness": null,
+        "comments": null
+      }
+    },
+    {
+      "job_id": "r1:dev-case-a:rotate_left_one",
+      "case_id": "dev-case-a",
+      "round": 1,
+      "arm": "rotate_left_one",
+      "turn": "version",
+      "decision_label": "ask",
+      "current_version": "1.50.0",
+      "original_analysis_sha256": "133198b67e5fcdba1ddfcdde0b2d1f39073fb11c61338603b74700fe43f9c75c",
+      "original_draft_chars": 714,
+      "cited_chunks": [
+        "dev-three-fragment-150-full"
+      ],
+      "current_source_positions": [
+        0
+      ],
+      "actual_releases": 1,
+      "model_original_review": {
+        "decision_acceptable": null,
+        "all_material_claims_supported": null,
+        "question_necessary_answerable_not_repeated": null,
+        "documented_guidance_usefulness": null,
+        "version_scope_qualified": null,
+        "comments": null
+      },
+      "edited_draft_review": null,
+      "released_text_review": {
+        "usefulness": null,
+        "comments": null
+      }
+    },
+    {
+      "job_id": "r1:dev-case-b:rotate_left_one",
+      "case_id": "dev-case-b",
+      "round": 1,
+      "arm": "rotate_left_one",
+      "turn": "initial",
+      "decision_label": "ask",
+      "current_version": null,
+      "original_analysis_sha256": "3f9331b1c95b4bf89b3173b1044ad86b820a8d78aeece644d9ada4f6b59205c7",
+      "original_draft_chars": 65,
+      "cited_chunks": [],
+      "current_source_positions": [],
+      "actual_releases": 1,
+      "model_original_review": {
+        "decision_acceptable": null,
+        "all_material_claims_supported": null,
+        "question_necessary_answerable_not_repeated": null,
+        "documented_guidance_usefulness": null,
+        "version_scope_qualified": null,
+        "comments": null
+      },
+      "edited_draft_review": null,
+      "released_text_review": {
+        "usefulness": null,
+        "comments": null
+      }
+    },
+    {
+      "job_id": "r1:dev-case-b:rotate_left_one",
+      "case_id": "dev-case-b",
+      "round": 1,
+      "arm": "rotate_left_one",
+      "turn": "version",
+      "decision_label": "answer",
+      "current_version": "1.39.0",
+      "original_analysis_sha256": "c51b98fa49810747dbcc32386318852be89c9c948b2f30f3a5e62c583dfceeb6",
+      "original_draft_chars": 3383,
+      "cited_chunks": [
+        "dev-three-button-139-full"
+      ],
+      "current_source_positions": [
+        0
+      ],
+      "actual_releases": 1,
+      "model_original_review": {
+        "decision_acceptable": null,
+        "all_material_claims_supported": null,
+        "question_necessary_answerable_not_repeated": null,
+        "documented_guidance_usefulness": null,
+        "version_scope_qualified": null,
+        "comments": null
+      },
+      "edited_draft_review": null,
+      "released_text_review": {
+        "usefulness": null,
+        "comments": null
+      }
+    },
+    {
+      "job_id": "r1:dev-case-b:original_order",
+      "case_id": "dev-case-b",
+      "round": 1,
+      "arm": "original_order",
+      "turn": "initial",
+      "decision_label": "ask",
+      "current_version": null,
+      "original_analysis_sha256": "3f9331b1c95b4bf89b3173b1044ad86b820a8d78aeece644d9ada4f6b59205c7",
+      "original_draft_chars": 65,
+      "cited_chunks": [],
+      "current_source_positions": [],
+      "actual_releases": 1,
+      "model_original_review": {
+        "decision_acceptable": null,
+        "all_material_claims_supported": null,
+        "question_necessary_answerable_not_repeated": null,
+        "documented_guidance_usefulness": null,
+        "version_scope_qualified": null,
+        "comments": null
+      },
+      "edited_draft_review": null,
+      "released_text_review": {
+        "usefulness": null,
+        "comments": null
+      }
+    },
+    {
+      "job_id": "r1:dev-case-b:original_order",
+      "case_id": "dev-case-b",
+      "round": 1,
+      "arm": "original_order",
+      "turn": "version",
+      "decision_label": "answer",
+      "current_version": "1.39.0",
+      "original_analysis_sha256": "c51b98fa49810747dbcc32386318852be89c9c948b2f30f3a5e62c583dfceeb6",
+      "original_draft_chars": 3383,
+      "cited_chunks": [
+        "dev-three-button-139-full"
+      ],
+      "current_source_positions": [
+        0
+      ],
+      "actual_releases": 1,
+      "model_original_review": {
+        "decision_acceptable": null,
+        "all_material_claims_supported": null,
+        "question_necessary_answerable_not_repeated": null,
+        "documented_guidance_usefulness": null,
+        "version_scope_qualified": null,
+        "comments": null
+      },
+      "edited_draft_review": null,
+      "released_text_review": {
+        "usefulness": null,
+        "comments": null
+      }
+    },
+    {
+      "job_id": "r1:dev-case-c:original_order",
+      "case_id": "dev-case-c",
+      "round": 1,
+      "arm": "original_order",
+      "turn": "initial",
+      "decision_label": "answer",
+      "current_version": "1.31.0",
+      "original_analysis_sha256": "7d165ece143350332df73ee0181ea6f31ab64aa53a24e4759a841fb2df8a1640",
+      "original_draft_chars": 14494,
+      "cited_chunks": [
+        "dev-three-session-state-full",
+        "fixture-enum-guide-enum-and-widget-coercion-v1"
+      ],
+      "current_source_positions": [
+        0,
+        2
+      ],
+      "actual_releases": 0,
+      "model_original_review": {
+        "decision_acceptable": null,
+        "all_material_claims_supported": null,
+        "question_necessary_answerable_not_repeated": null,
+        "documented_guidance_usefulness": null,
+        "version_scope_qualified": null,
+        "comments": null
+      },
+      "edited_draft_review": null,
+      "released_text_review": null
+    },
+    {
+      "job_id": "r1:dev-case-c:original_order",
+      "case_id": "dev-case-c",
+      "round": 1,
+      "arm": "original_order",
+      "turn": "correction",
+      "decision_label": "answer",
+      "current_version": "1.31.1",
+      "original_analysis_sha256": "5c5d727d5859cf5092a37b5ba43559f51f43ad13253b20abbc453f4235f93a44",
+      "original_draft_chars": 14494,
+      "cited_chunks": [
+        "dev-three-session-state-full",
+        "fixture-enum-guide-enum-and-widget-coercion-v1"
+      ],
+      "current_source_positions": [
+        0,
+        2
+      ],
+      "actual_releases": 1,
+      "model_original_review": {
+        "decision_acceptable": null,
+        "all_material_claims_supported": null,
+        "question_necessary_answerable_not_repeated": null,
+        "documented_guidance_usefulness": null,
+        "version_scope_qualified": null,
+        "comments": null
+      },
+      "edited_draft_review": null,
+      "released_text_review": {
+        "usefulness": null,
+        "comments": null
+      }
+    },
+    {
+      "job_id": "r1:dev-case-c:rotate_left_one",
+      "case_id": "dev-case-c",
+      "round": 1,
+      "arm": "rotate_left_one",
+      "turn": "initial",
+      "decision_label": "answer",
+      "current_version": "1.31.0",
+      "original_analysis_sha256": "b7007d75caf2098f42ec6605233cb43fed49ab429b10d351de15b360a3d10e7f",
+      "original_draft_chars": 14494,
+      "cited_chunks": [
+        "fixture-enum-guide-enum-and-widget-coercion-v1",
+        "dev-three-session-state-full"
+      ],
+      "current_source_positions": [
+        1,
+        2
+      ],
+      "actual_releases": 0,
+      "model_original_review": {
+        "decision_acceptable": null,
+        "all_material_claims_supported": null,
+        "question_necessary_answerable_not_repeated": null,
+        "documented_guidance_usefulness": null,
+        "version_scope_qualified": null,
+        "comments": null
+      },
+      "edited_draft_review": null,
+      "released_text_review": null
+    },
+    {
+      "job_id": "r1:dev-case-c:rotate_left_one",
+      "case_id": "dev-case-c",
+      "round": 1,
+      "arm": "rotate_left_one",
+      "turn": "correction",
+      "decision_label": "answer",
+      "current_version": "1.31.1",
+      "original_analysis_sha256": "f32f1ca03ff5baf37138acc348b1a973e2157e3a1ff4beba169d242d8986999b",
+      "original_draft_chars": 14494,
+      "cited_chunks": [
+        "fixture-enum-guide-enum-and-widget-coercion-v1",
+        "dev-three-session-state-full"
+      ],
+      "current_source_positions": [
+        1,
+        2
+      ],
+      "actual_releases": 1,
+      "model_original_review": {
+        "decision_acceptable": null,
+        "all_material_claims_supported": null,
+        "question_necessary_answerable_not_repeated": null,
+        "documented_guidance_usefulness": null,
+        "version_scope_qualified": null,
+        "comments": null
+      },
+      "edited_draft_review": null,
+      "released_text_review": {
+        "usefulness": null,
+        "comments": null
+      }
+    },
+    {
+      "job_id": "r2:dev-case-c:rotate_left_one",
+      "case_id": "dev-case-c",
+      "round": 2,
+      "arm": "rotate_left_one",
+      "turn": "initial",
+      "decision_label": "answer",
+      "current_version": "1.31.0",
+      "original_analysis_sha256": "b9eb164ea0a6754ae35a857e13f82616f91b6c9ae43e3efcdeac67249ebb496c",
+      "original_draft_chars": 7099,
+      "cited_chunks": [
+        "fixture-enum-guide-separate-module-v1",
+        "fixture-enum-guide-enum-and-widget-coercion-v1"
+      ],
+      "current_source_positions": [
+        0,
+        1
+      ],
+      "actual_releases": 0,
+      "model_original_review": {
+        "decision_acceptable": null,
+        "all_material_claims_supported": null,
+        "question_necessary_answerable_not_repeated": null,
+        "documented_guidance_usefulness": null,
+        "version_scope_qualified": null,
+        "comments": null
+      },
+      "edited_draft_review": null,
+      "released_text_review": null
+    },
+    {
+      "job_id": "r2:dev-case-c:rotate_left_one",
+      "case_id": "dev-case-c",
+      "round": 2,
+      "arm": "rotate_left_one",
+      "turn": "correction",
+      "decision_label": "answer",
+      "current_version": "1.31.1",
+      "original_analysis_sha256": "f32f1ca03ff5baf37138acc348b1a973e2157e3a1ff4beba169d242d8986999b",
+      "original_draft_chars": 14494,
+      "cited_chunks": [
+        "fixture-enum-guide-enum-and-widget-coercion-v1",
+        "dev-three-session-state-full"
+      ],
+      "current_source_positions": [
+        1,
+        2
+      ],
+      "actual_releases": 1,
+      "model_original_review": {
+        "decision_acceptable": null,
+        "all_material_claims_supported": null,
+        "question_necessary_answerable_not_repeated": null,
+        "documented_guidance_usefulness": null,
+        "version_scope_qualified": null,
+        "comments": null
+      },
+      "edited_draft_review": null,
+      "released_text_review": {
+        "usefulness": null,
+        "comments": null
+      }
+    },
+    {
+      "job_id": "r2:dev-case-c:original_order",
+      "case_id": "dev-case-c",
+      "round": 2,
+      "arm": "original_order",
+      "turn": "initial",
+      "decision_label": "answer",
+      "current_version": "1.31.0",
+      "original_analysis_sha256": "7d165ece143350332df73ee0181ea6f31ab64aa53a24e4759a841fb2df8a1640",
+      "original_draft_chars": 14494,
+      "cited_chunks": [
+        "dev-three-session-state-full",
+        "fixture-enum-guide-enum-and-widget-coercion-v1"
+      ],
+      "current_source_positions": [
+        0,
+        2
+      ],
+      "actual_releases": 0,
+      "model_original_review": {
+        "decision_acceptable": null,
+        "all_material_claims_supported": null,
+        "question_necessary_answerable_not_repeated": null,
+        "documented_guidance_usefulness": null,
+        "version_scope_qualified": null,
+        "comments": null
+      },
+      "edited_draft_review": null,
+      "released_text_review": null
+    },
+    {
+      "job_id": "r2:dev-case-c:original_order",
+      "case_id": "dev-case-c",
+      "round": 2,
+      "arm": "original_order",
+      "turn": "correction",
+      "decision_label": "answer",
+      "current_version": "1.31.1",
+      "original_analysis_sha256": "5c5d727d5859cf5092a37b5ba43559f51f43ad13253b20abbc453f4235f93a44",
+      "original_draft_chars": 14494,
+      "cited_chunks": [
+        "dev-three-session-state-full",
+        "fixture-enum-guide-enum-and-widget-coercion-v1"
+      ],
+      "current_source_positions": [
+        0,
+        2
+      ],
+      "actual_releases": 1,
+      "model_original_review": {
+        "decision_acceptable": null,
+        "all_material_claims_supported": null,
+        "question_necessary_answerable_not_repeated": null,
+        "documented_guidance_usefulness": null,
+        "version_scope_qualified": null,
+        "comments": null
+      },
+      "edited_draft_review": null,
+      "released_text_review": {
+        "usefulness": null,
+        "comments": null
+      }
+    },
+    {
+      "job_id": "r2:dev-case-b:original_order",
+      "case_id": "dev-case-b",
+      "round": 2,
+      "arm": "original_order",
+      "turn": "initial",
+      "decision_label": "ask",
+      "current_version": null,
+      "original_analysis_sha256": "3f9331b1c95b4bf89b3173b1044ad86b820a8d78aeece644d9ada4f6b59205c7",
+      "original_draft_chars": 65,
+      "cited_chunks": [],
+      "current_source_positions": [],
+      "actual_releases": 1,
+      "model_original_review": {
+        "decision_acceptable": null,
+        "all_material_claims_supported": null,
+        "question_necessary_answerable_not_repeated": null,
+        "documented_guidance_usefulness": null,
+        "version_scope_qualified": null,
+        "comments": null
+      },
+      "edited_draft_review": null,
+      "released_text_review": {
+        "usefulness": null,
+        "comments": null
+      }
+    },
+    {
+      "job_id": "r2:dev-case-b:original_order",
+      "case_id": "dev-case-b",
+      "round": 2,
+      "arm": "original_order",
+      "turn": "version",
+      "decision_label": "answer",
+      "current_version": "1.39.0",
+      "original_analysis_sha256": "c51b98fa49810747dbcc32386318852be89c9c948b2f30f3a5e62c583dfceeb6",
+      "original_draft_chars": 3383,
+      "cited_chunks": [
+        "dev-three-button-139-full"
+      ],
+      "current_source_positions": [
+        0
+      ],
+      "actual_releases": 1,
+      "model_original_review": {
+        "decision_acceptable": null,
+        "all_material_claims_supported": null,
+        "question_necessary_answerable_not_repeated": null,
+        "documented_guidance_usefulness": null,
+        "version_scope_qualified": null,
+        "comments": null
+      },
+      "edited_draft_review": null,
+      "released_text_review": {
+        "usefulness": null,
+        "comments": null
+      }
+    },
+    {
+      "job_id": "r2:dev-case-b:rotate_left_one",
+      "case_id": "dev-case-b",
+      "round": 2,
+      "arm": "rotate_left_one",
+      "turn": "initial",
+      "decision_label": "ask",
+      "current_version": null,
+      "original_analysis_sha256": "3f9331b1c95b4bf89b3173b1044ad86b820a8d78aeece644d9ada4f6b59205c7",
+      "original_draft_chars": 65,
+      "cited_chunks": [],
+      "current_source_positions": [],
+      "actual_releases": 1,
+      "model_original_review": {
+        "decision_acceptable": null,
+        "all_material_claims_supported": null,
+        "question_necessary_answerable_not_repeated": null,
+        "documented_guidance_usefulness": null,
+        "version_scope_qualified": null,
+        "comments": null
+      },
+      "edited_draft_review": null,
+      "released_text_review": {
+        "usefulness": null,
+        "comments": null
+      }
+    },
+    {
+      "job_id": "r2:dev-case-b:rotate_left_one",
+      "case_id": "dev-case-b",
+      "round": 2,
+      "arm": "rotate_left_one",
+      "turn": "version",
+      "decision_label": "answer",
+      "current_version": "1.39.0",
+      "original_analysis_sha256": "c51b98fa49810747dbcc32386318852be89c9c948b2f30f3a5e62c583dfceeb6",
+      "original_draft_chars": 3383,
+      "cited_chunks": [
+        "dev-three-button-139-full"
+      ],
+      "current_source_positions": [
+        0
+      ],
+      "actual_releases": 1,
+      "model_original_review": {
+        "decision_acceptable": null,
+        "all_material_claims_supported": null,
+        "question_necessary_answerable_not_repeated": null,
+        "documented_guidance_usefulness": null,
+        "version_scope_qualified": null,
+        "comments": null
+      },
+      "edited_draft_review": null,
+      "released_text_review": {
+        "usefulness": null,
+        "comments": null
+      }
+    },
+    {
+      "job_id": "r2:dev-case-a:rotate_left_one",
+      "case_id": "dev-case-a",
+      "round": 2,
+      "arm": "rotate_left_one",
+      "turn": "initial",
+      "decision_label": "ask",
+      "current_version": null,
+      "original_analysis_sha256": "2dfe0c053499837bf66e8f25c51018cc1838c24ab71de5fec34ce665985c00de",
+      "original_draft_chars": 65,
+      "cited_chunks": [],
+      "current_source_positions": [],
+      "actual_releases": 1,
+      "model_original_review": {
+        "decision_acceptable": null,
+        "all_material_claims_supported": null,
+        "question_necessary_answerable_not_repeated": null,
+        "documented_guidance_usefulness": null,
+        "version_scope_qualified": null,
+        "comments": null
+      },
+      "edited_draft_review": null,
+      "released_text_review": {
+        "usefulness": null,
+        "comments": null
+      }
+    },
+    {
+      "job_id": "r2:dev-case-a:rotate_left_one",
+      "case_id": "dev-case-a",
+      "round": 2,
+      "arm": "rotate_left_one",
+      "turn": "version",
+      "decision_label": "ask",
+      "current_version": "1.50.0",
+      "original_analysis_sha256": "133198b67e5fcdba1ddfcdde0b2d1f39073fb11c61338603b74700fe43f9c75c",
+      "original_draft_chars": 714,
+      "cited_chunks": [
+        "dev-three-fragment-150-full"
+      ],
+      "current_source_positions": [
+        0
+      ],
+      "actual_releases": 1,
+      "model_original_review": {
+        "decision_acceptable": null,
+        "all_material_claims_supported": null,
+        "question_necessary_answerable_not_repeated": null,
+        "documented_guidance_usefulness": null,
+        "version_scope_qualified": null,
+        "comments": null
+      },
+      "edited_draft_review": null,
+      "released_text_review": {
+        "usefulness": null,
+        "comments": null
+      }
+    },
+    {
+      "job_id": "r2:dev-case-a:original_order",
+      "case_id": "dev-case-a",
+      "round": 2,
+      "arm": "original_order",
+      "turn": "initial",
+      "decision_label": "ask",
+      "current_version": null,
+      "original_analysis_sha256": "2dfe0c053499837bf66e8f25c51018cc1838c24ab71de5fec34ce665985c00de",
+      "original_draft_chars": 65,
+      "cited_chunks": [],
+      "current_source_positions": [],
+      "actual_releases": 1,
+      "model_original_review": {
+        "decision_acceptable": null,
+        "all_material_claims_supported": null,
+        "question_necessary_answerable_not_repeated": null,
+        "documented_guidance_usefulness": null,
+        "version_scope_qualified": null,
+        "comments": null
+      },
+      "edited_draft_review": null,
+      "released_text_review": {
+        "usefulness": null,
+        "comments": null
+      }
+    },
+    {
+      "job_id": "r2:dev-case-a:original_order",
+      "case_id": "dev-case-a",
+      "round": 2,
+      "arm": "original_order",
+      "turn": "version",
+      "decision_label": "ask",
+      "current_version": "1.50.0",
+      "original_analysis_sha256": "d10bc07a0fcb8d6a578a056c88dd21359acc15aafc5379ed9c818e33fd3fff71",
+      "original_draft_chars": 724,
+      "cited_chunks": [
+        "dev-three-multiselect-1500-default-key"
+      ],
+      "current_source_positions": [
+        0
+      ],
+      "actual_releases": 1,
+      "model_original_review": {
+        "decision_acceptable": null,
+        "all_material_claims_supported": null,
+        "question_necessary_answerable_not_repeated": null,
+        "documented_guidance_usefulness": null,
+        "version_scope_qualified": null,
+        "comments": null
+      },
+      "edited_draft_review": null,
+      "released_text_review": {
+        "usefulness": null,
+        "comments": null
+      }
+    }
+  ]
+}
