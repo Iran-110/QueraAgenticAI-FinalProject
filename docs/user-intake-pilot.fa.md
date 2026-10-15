@@ -1,5 +1,9 @@
 # اتصال اطلاعات کاربر به core — pilot آفلاین C2 / P2
 
+به‌روزرسانی C2j در۱۶اکتبر: [validation پیش از dump](intake-validation.fa.md)
+در helperهای pending/approved اعمال شد؛ خروجی‌های معتبر ثبت‌شده ثابت‌اند.
+نتایج milestone زیر تاریخی‌اند؛ receiptها و fixtureهای اولیه حفظ شده‌اند.
+
 این milestone ورودی HTTP را به همان `UserTurn` و transition موجود وصل می‌کند.
 متن آزاد fact تأییدشده نمی‌شود؛ UI باید اطلاعاتی را که کاربر صریحاً گفته در
 `reported_facts`، نتیجهٔ بررسی را در `checks_performed` و تغییر محیط را در

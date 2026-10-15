@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "task": "C2j",
+  "verification_date_local": "2026-10-16",
+  "tested_source_commit": "f780ca872b8327daa35724f6278475016f349b79",
+  "baseline_source_commit": "fdd405a3c510425305c5f85357a43a7e61fc9457",
+  "protocol_before_implementation_commit": "ee719d3",
+  "runtime_changed_files": [
+    "src/agent_app/orchestration/intake.py"
+  ],
+  "new_test_file": "tests/test_intake_boundary_validation.py",
+  "pytest": {
+    "tests": 5479,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "pytest_seconds": 246.364,
+  "pytest_XML_source": "local-output:c2j-full-2026-10-16-v1.xml",
+  "pytest_XML_sha256": "cf3c42b0d53b02cfdcaf0c64bdcade9a722e1cf4e72ab2807ed1886700e76643",
+  "root_focused_tests_passed": 166,
+  "new_boundary_tests": 55,
+  "independent_boundary_tests_passed": 55,
+  "separate_review_boundary_and_integration_tests_passed": 67,
+  "valid_prepared_output_canonical_byte_parity": 16,
+  "valid_full_transition_canonical_byte_parity": 16,
+  "input_immutability_controls_passed": true,
+  "rejection_before_extraction_controls_passed": 39,
+  "red_green_comparison": "comparison-v1.json",
+  "locked_sync_passed": true,
+  "ruff_check_passed": true,
+  "ruff_format_files": 357,
+  "required_offline_demos": {
+    "passed": 3,
+    "real_API_calls": 0,
+    "paid_cost_usd": 0,
+    "receipt_source": "local-output:c2j-offline-demos-2026-10-16-v1.json",
+    "receipt_sha256": "1bef6bf84f4b8fd7935f81f63494e87bb4386f5fa6b7211f510a3f8e0a48166a"
+  },
+  "HTTP_SQLite": {
+    "accepted": true,
+    "checks_passed": 457,
+    "checks_total": 457,
+    "same_process_accepted": true,
+    "restart_accepted": true,
+    "source_unchanged_during_run": true,
+    "quality_claim": false,
+    "real_model_tested": false,
+    "production_index_or_embedding_tested": false,
+    "production_ledger_used": false
+  },
+  "HTTP_receipt_source": "local-output:c2j-http-sqlite-2026-10-16-v1.json",
+  "HTTP_receipt_sha256": "1967571e5d35e00660ab366645e4221990a73289e082a57ef6cb2bcd6381ffe6",
+  "review": {
+    "engineering_blockers": 0,
+    "reviewer": "separate assistant, not human usefulness review",
+    "same_allowlisted_error_and_hidden_cause": true,
+    "existing_case_revision_proposal_canonical_guards_unchanged": true,
+    "shared_validator_contracts_turns_unchanged": true
+  },
+  "protected_current_epoch": {
+    "matches": 19,
+    "total": 19,
+    "pin_file": "../core_broader_dev_v1/protected-inputs-v1.json",
+    "historical_original_epoch_restored_claim": false
+  },
+  "primary_ledger": {
+    "sha256_unchanged": "141c3536fb864595d94e0d0dd4a55976418def1012402b70f313c92050222785",
+    "read_as_bytes_only_by_review": true,
+    "budget_client_created_by_review": false,
+    "halt_preserved": true,
+    "uncertain_holds_preserved": 3,
+    "ceiling_usd": "4.50",
+    "closed_IDs_reused": false,
+    "provider_reconciliation_evidence_added": false,
+    "C5_resolved": false
+  },
+  "actual_paid_API_calls": 0,
+  "real_credential_files_read": 0,
+  "group_or_private_messages_sent": 0,
+  "new_production_native_index_trial": false,
+  "shared_validator_contracts_teammate_modules_corpus_exclusion_gold_changed": false,
+  "approval_authority_or_revision_dedup_changed": false,
+  "model_or_RAG_or_final_test_quality_claim": false,
+  "HTTP_exploit_or_universal_internal_boundary_claim": false,
+  "hosted_CI_pass_claim": false,
+  "fresh_Windows_or_browser_run_claim": false,
+  "local_publication_authorized_by_user": true,
+  "source_sha256": {
+    "src/agent_app/orchestration/intake.py": "def5040854e9d0f119bf85e2d16727f5aafaa71fc3bed778c2a9d9b9673012e9",
+    "src/agent_app/orchestration/validation.py": "2debe663263680238268d5034c7e80fe5533b4f66c535d5bf0b4e072835d7f6e",
+    "src/agent_app/contracts.py": "1dcf0de657f3442dfb5e787e6243a9a279501305033e592cbcd060dd808d0a91",
+    "src/agent_app/orchestration/turns.py": "17970a95710dc8351d14f36cc6dfbdf3308231a627fd710b64dee119908eace7",
+    "tests/test_intake_boundary_validation.py": "e53b15cfd765f99d365affd377df5f3c26bbdca9aeddbf4b7a1b293b74c6f3c4"
+  },
+  "artifact_sha256": {
+    "comparison-v1.json": "a35247a67e9fdfad5e6374afcbdb077a0a7c464290d43e39dbca2de862945536",
+    "protocol-v1.json": "5142dd33e6a3b9688a0799773cb24418859e61d608d889c785eaa1e106e91fbe",
+    "valid-baseline-v1.json": "fdd9e418fa37ebe6900fc1b8b55d3d213bea4b4938aa331694ad7f1c618aa399"
+  },
+  "final_document_relative_links_checked": 222
+}
