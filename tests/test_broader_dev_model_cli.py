@@ -1,0 +1,188 @@
+"""Fresh finite comparison lifecycle: disposable history, no network or real key."""
+
+import importlib.util
+import json
+from decimal import Decimal
+from pathlib import Path
+
+import pytest
+import test_dev_rag_model_cli as controls
+import test_enum_evidence_model_cli as parent_controls
+import test_source_capacity_model_cli as lifecycle
+from test_budget_quarantine_scope import multiple_holds as multiple_holds
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def _module(monkeypatch):
+    monkeypatch.syspath_prepend(str(ROOT / "scripts"))
+    spec = importlib.util.spec_from_file_location(
+        "broader_dev_cli_disposable_control", ROOT / "scripts/core_broader_dev_probe.py"
+    )
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+@pytest.fixture
+def cli(tmp_path, monkeypatch, multiple_holds):
+    module = _module(monkeypatch)
+    monkeypatch.setattr(module, "load_source_packet", lambda *_: {}, raising=False)
+    monkeypatch.setattr(parent_controls, "_module", lambda *_: module)
+    value = parent_controls.cli.__wrapped__(tmp_path, monkeypatch, multiple_holds)
+    monkeypatch.setattr(module, "load_packet", lambda: {})
+    return value
+
+
+def test_registered_cap_closes_all_owned_slots_without_release(cli):
+    controls.test_cli_complete_final_batch_closes_real_scope_and_binds_ledger_journal(cli)
+    receipt = controls._read(cli.destination / "receipt.json")
+    assert receipt["proposal_only"] and receipt["no_automatic_approval_or_release"]
+    assert receipt["tracker_actions_executed"] == 0 and receipt["no_route_success_claim"]
+    assert receipt["human_usefulness"] is None and not receipt["held_out_test"]
+    status = cli.ledger.quarantine_scope_status(cli.method["batches"][0]["scope_id"])
+    assert status.additional_cap_usd == Decimal("0.06")
+    assert receipt["batches"][0]["json_object_wire_observed"] is None
+
+
+@pytest.mark.parametrize(
+    "scenario",
+    [
+        "test_cli_source_drift_before_credentials_stops_without_authorization",
+        "test_cli_source_drift_before_next_batch_cannot_authorize_or_run_it",
+        "test_source_drift_after_reservation_checkpoint_blocks_actual_send",
+        "test_index_drift_before_key_cannot_allocate_a_scope",
+    ],
+)
+def test_source_custody_guards(cli, monkeypatch, scenario):
+    getattr(controls, scenario)(cli, monkeypatch)
+
+
+@pytest.mark.parametrize(
+    "scenario",
+    [
+        "test_unknown_record_changed_after_preflight_never_reads_key_or_allocates",
+        "test_new_uncertainty_closes_campaign_without_authorizing_next_pair",
+        "test_foreign_journal_append_before_key_cannot_allocate_or_dispatch",
+    ],
+)
+def test_old_history_and_new_uncertainty_guards(cli, monkeypatch, scenario):
+    getattr(lifecycle, scenario)(cli, monkeypatch)
+
+
+@pytest.mark.parametrize("interrupt", [KeyboardInterrupt, SystemExit])
+def test_cancelled_authorization_permanently_closes_owned_scope(
+    cli, monkeypatch, capsys, interrupt
+):
+    controls.test_cli_cancellation_after_authorization_permanently_closes_scope_and_journals(
+        cli, monkeypatch, capsys, interrupt
+    )
+
+
+def test_non_json_wire_is_observed_as_absent_not_successful_json_mode(monkeypatch):
+    module = _module(monkeypatch)
+    result = {
+        "actual_sends": 1,
+        "provider_sends": [{"http_send_started": True, "wire_response_format": None}],
+    }
+    assert module.observe_no_json_format(result) is None
+    assert result["actual_no_response_format_field"] is True
+    zero = {"actual_sends": 0, "provider_sends": [{"http_send_started": False}]}
+    assert module.observe_no_json_format(zero) is None
+    assert zero["actual_no_response_format_field"] is None
+    result["provider_sends"][0]["wire_response_format"] = "json_object"
+    with pytest.raises(ValueError, match="BroaderDevRegistrationRejected"):
+        module.observe_no_json_format(result)
+
+
+@pytest.mark.parametrize("count", [0, True, "1", 2])
+def test_wire_counter_mismatch_does_not_claim_observation(monkeypatch, count):
+    module = _module(monkeypatch)
+    with pytest.raises(ValueError):
+        module.observe_no_json_format(
+            {
+                "actual_sends": count,
+                "provider_sends": [{"http_send_started": True, "wire_response_format": None}],
+            }
+        )
+
+
+def test_noargs_reports_registered_cap_without_key_or_scope(cli, capsys):
+    assert cli.module.main([]) == 0
+    output = json.loads(capsys.readouterr().out)
+    assert output["cap_usd"] == "0.06" and output["actual_sends"] == 0
+    assert cli.calls["credentials"] == 0 and controls._scope_count(cli.path) == 0
+
+
+@pytest.fixture
+def registered_inputs(tmp_path, monkeypatch, multiple_holds):
+    module = _module(monkeypatch)
+    ledger, path, _ = multiple_holds
+    root = tmp_path / "registered-inputs"
+    protocol = controls._read(ROOT / module.FOLDER / "protocol-v1.json")
+    protected = controls._read(ROOT / protocol["inputs"]["original_protected_inputs"])
+    names = {
+        *(
+            value
+            for key, value in protocol["inputs"].items()
+            if not key.endswith("sha256") and isinstance(value, str)
+        ),
+        *protected["files"],
+        (module.FOLDER / "protocol-v1.json").as_posix(),
+        (module.FOLDER / "bound-amendment-v1.json").as_posix(),
+        (module.FOLDER / "preparation-amendment-v1.json").as_posix(),
+        (module.FOLDER / "preparation-first-failure-v1.json").as_posix(),
+        (module.FOLDER / "protected-inputs-v1.json").as_posix(),
+        (module.FOLDER / "index-recovery-review-v1.json").as_posix(),
+        "scripts/core_broader_dev_probe.py",
+        "scripts/prepare_broader_dev_snapshots.py",
+        "src/agent_app/testing/broader_proposals.py",
+        "src/agent_app/testing/finite_controlled_probe.py",
+        "experiments/core_quality_followup/quarantine-scope-protocol-v1.json",
+    }
+    for name in names:
+        target = root / name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes((ROOT / name).read_bytes())
+    policy = root / "experiments/core_quality_followup/quarantine-scope-protocol-v1.json"
+    value = json.loads(policy.read_bytes())
+    value["known_uncertain_request_ids"] = list(ledger.quarantine_observation().unknown_ids)
+    policy.write_text(json.dumps(value))
+    return module, root, path
+
+
+def test_registered_design_has128_fresh_valid_slots_no_releases(registered_inputs):
+    module, root, path = registered_inputs
+    method = module.build_method(root, path)
+    assert len(method["batches"]) == 16
+    assert len(method["fresh_request_ids"]) == len(set(method["fresh_request_ids"])) == 128
+    assert len(set(method["fresh_scope_ids"])) == 16
+    assert method["proposal_only"] and method["tracker_actions_executed"] == 0
+    assert len(method["protected_files"]) == 19
+    for batch in method["batches"]:
+        assert len(batch["scope_id"]) <= 64 and batch["max_request_slots"] == 8
+        assert Decimal(batch["worst_reserved_usd"]) < Decimal("0.06")
+        for job in batch["jobs"]:
+            assert job["input_token_reserve"] == 32768
+            assert job["max_output_tokens"] == 2048
+
+
+@pytest.mark.parametrize("target", ["protocol", "protected", "offline"])
+def test_changed_registered_inputs_fail_before_any_identity_allocation(registered_inputs, target):
+    module, root, path = registered_inputs
+    if target == "protocol":
+        p = root / module.FOLDER / "protocol-v1.json"
+    elif target == "offline":
+        p = root / module.FOLDER / "offline-preflight-v1.json"
+        value = json.loads(p.read_bytes())
+        value["accepted"] = False
+        p.write_text(json.dumps(value))
+    else:
+        protected = controls._read(
+            root / "experiments/core_enum_evidence_v1/protected-inputs-v1.json"
+        )
+        p = root / next(iter(protected["files"]))
+    if target != "offline":
+        p.write_bytes(p.read_bytes() + b" ")
+    with pytest.raises(ValueError):
+        module.build_method(root, path)

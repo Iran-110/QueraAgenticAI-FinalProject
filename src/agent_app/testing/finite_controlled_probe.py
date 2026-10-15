@@ -38,7 +38,12 @@ def actual_json_wire_observation(result):
     return all(row.get("wire_response_format") == "json_object" for row in sent) if sent else None
 
 
-def run_finite_cli(h, argv=None):
+def run_finite_cli(
+    h,
+    argv=None,
+    *,
+    wire_observer=actual_json_wire_observation,
+):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--prepare", action="store_true")
     parser.add_argument("--live", action="store_true")
@@ -51,6 +56,8 @@ def run_finite_cli(h, argv=None):
     active_digest, active_ref = (None, None)
     batches, registration, method = ([], None, None)
     try:
+        if not callable(wire_observer):
+            raise ValueError("FiniteRegistrationRejected")
         if args.ledger.resolve() != (h.ROOT / "runtime/budget.sqlite3").resolve():
             raise ValueError(h.ERROR_PREFIX + "LedgerPathRejected")
         if args.method.resolve() != (h.ROOT / h.METHOD).resolve():
@@ -241,7 +248,7 @@ def run_finite_cli(h, argv=None):
             # Save the original returned observations before any derived
             # transport/completion verdict can reject the batch.
             h.write_new(folder / "model-result.json", result, secret)
-            result["json_object_wire_observed"] = actual_json_wire_observation(result)
+            result["json_object_wire_observed"] = wire_observer(result)
             result["real_RAG_retrieval"] = False
             result["controlled_fixed_evidence"] = True
             disposition = h.close_owned_scope(ledger, active, active_digest, active_ref)
