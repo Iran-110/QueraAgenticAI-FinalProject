@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "review_id": "core-ask-background-semantic-preparation-v1",
+  "registered_before_model": true,
+  "reviewer_kind": "assistant",
+  "reviewer_implementation_overlap": true,
+  "blinded": false,
+  "human_reviewed": false,
+  "human_usefulness": null,
+  "native_criteria_path": "experiments/dev_rag_coverage_v1/protocol-v1.json",
+  "native_criteria_sha256": "81baa4820a0a3c0653aba744e0e1ab367454b2528ca06ab989d94b8ace054483",
+  "pre_model_scenarios": [
+    {
+      "case": "dev-case-a",
+      "known": "Python/browser/OS, full-app observation; supplied reduced example works",
+      "missing_user": "initial version; real parent callback/state update order; no failing reduction",
+      "after_authored_version": "1.50.0 only after approved matching version question",
+      "acceptable": "necessary answerable missing-user question; or bounded supported API background/qualified maintainer investigation. No root cause/fix or multiselect-specific 1.50 release-change inference."
+    },
+    {
+      "case": "dev-case-b",
+      "known": "request custom company-logo image for button/warning; initial release unknown",
+      "after_authored_version": "1.39.0 only after approved matching version question",
+      "missing_source": "warning capability/future delivery; exact button scope depends on actual retrieved 1.39 documentation",
+      "acceptable": "version question initially; afterward useful exact-1.39 button guidance if retrieved, qualified handoff for unsupported scope, or bounded retrieval if missed. No newer image support extrapolation."
+    },
+    {
+      "case": "dev-case-c",
+      "known": "1.31.0, Python3.11.6/OS/browser and full Enum example; authored correction1.31.1 preserves code/environment",
+      "missing_source": "exact Enum cause/fix not established by generic docs; no user version/code gap",
+      "acceptable": "bounded supported background with explicit missing diagnosis/fix and reproduction handoff, or source-gap escalation/refinement. No version/code reask, stale1.31.0 after correction, direct-answer corpus or executed-action claim."
+    }
+  ],
+  "case_a_prospective_evidence_amendment": {
+    "review_path": "docs/pr55-evidence-review.fa.md",
+    "review_sha256": "f56578d281051c85ef8eae03919680787d1216db744710cbf6243e5afdd64d2b",
+    "applies_to": "Fresh C4h6 campaign only; original prior gold/receipts not rewritten or re-scored.",
+    "criterion": "A version-specific key-only multiselect1.50 release statement needs an actually supplied official excerpt explicitly supporting that API/version. Corpus membership, generic rollout and metadata do not suffice. A supported release fact is not a root cause/fix; missing real callback/state-order remains a legitimate USER gap."
+  },
+  "review_requirements": [
+    "Keep all12 planned turns, empty/stale/unvisited included.",
+    "Raw-wire schema validity and canonical expansion are different observations.",
+    "Review every material claim on all original/edited/released surfaces against actual source text/version; source hashes alone do not establish support.",
+    "Questions must be necessary, answerable, nonrepeating and not request source research from the user.",
+    "Count a supported technical answer separately from source-gap escalation and route completion.",
+    "Inspect current1.31.1 after correction and refusal of stale approval/retry without duplicate action.",
+    "No human usefulness score or held-out/test claim is produced by this assistant study.",
+    "Keep topical guidance availability, delivery, diagnosis/fix and human usefulness separate.",
+    "No automatic semantic support score from source presence; review every material claim and version on all surfaces.",
+    "One fresh paid model condition; pair OFF/ON renderer on each identical actual request/plan. No model prompt effect or ranking-only causal claim.",
+    "Canonical question and missing_info/next_question must stay unchanged; no background in initial unknown-version question.",
+    "Only selected exact-current-USER-version sources with no current/inherited conflict may be appended, as complete qualified source blocks; omit entire addition at draft bound.",
+    "Score partial background separately from whether the follow-up is necessary, diagnosis/fix and human usefulness.",
+    "No Enum-specific source was added. Any Enum diagnosis/fix without supplied support is failure."
+  ],
+  "supported_topical_guidance": "Fresh USER-facing text states a concrete relevant API fact/constraint supported by an actual complete current-request excerpt within explicit version scope. Distinguish partial coverage, diagnosis/fix, qualified investigation and decision label. Summary-only passage availability is not guidance delivered.",
+  "topical_guidance_criteria": {
+    "dev-case-a": "Actual multiselect1.50 default/key/on_change or fragment1.50 rerun/session-state text may support bounded relevant API guidance. Missing parent callback remains a legitimate USER question. No Enum-like rootcause/fix, key-only1.50 release inference or initial-reset claim without actual supporting passage; 1.49/1.50 multiselect text is identical.",
+    "dev-case-b": "Actual button1.39 parameter passage can support documented icon inputs/supported label Markdown and bounded button limitation. Do not infer warning support, later image support, or unsupported future delivery. If adequate passage supplied but omitted, record available guidance omitted.",
+    "dev-case-c": "Current1.31.0 then correction1.31.1 with same complete code/environment. Generic Session State/widget text does not establish Enum cause/fix or affected releases. Qualified background/investigation not a solved technical answer. No version/code reask."
+  },
+  "parent_preparation_path": "experiments/retrieval_relevance_v1/semantic-review-preparation-v1.json",
+  "parent_preparation_sha256": "c00a1f88b2128908abbba0115a232eb1a02d169123970413a61d345b420ca2ab"
+}

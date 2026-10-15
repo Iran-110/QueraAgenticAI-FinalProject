@@ -2,7 +2,10 @@
 
 from dataclasses import dataclass
 
+from agent_app.contracts import ProposalHandoff
+from agent_app.orchestration.handoff import validate_handoff
 from agent_app.orchestration.intake import STREAMLIT_VERSION_QUESTION
+from agent_app.reasoning.grounding import render_grounded_plan, source_content_sha256
 
 MAX_ROUTE_NODES = 64
 MAX_ROUTES = 256
@@ -36,15 +39,17 @@ class Route:
 class RouteGraph:
     node_ids: tuple[str, ...]
     routes: tuple[Route, ...]
+    allow_source_background: bool = False
 
     @classmethod
-    def from_fixture(cls, data):
+    def from_fixture(cls, data, *, allow_source_background=False):
         """Validate every branch locally before constructing any live factory.
 
         Review declarations and graph eligibility are not authenticated human
         judgment. Gold is used only by the local fixture runner, never adapters.
         """
         try:
+            _need(type(allow_source_background) is bool)
             _need(data.get("registered_before_first_run") is True)
             turns = data["turns"]
             _need(type(turns) is list and 1 <= len(turns) <= MAX_ROUTE_NODES)
@@ -124,11 +129,54 @@ class RouteGraph:
                 if route.source in reached and route.target is not None:
                     reached.add(route.target)
             _need(reached == set(ids))
-            return cls(tuple(ids), tuple(routes))
+            return cls(tuple(ids), tuple(routes), allow_source_background)
         except ConditionalRoutesRejected:
             raise
         except (TypeError, KeyError, ValueError, AttributeError, RecursionError):
             raise ConditionalRoutesRejected() from None
+
+    def _question_display_matches(self, route, analysis, proposal):
+        if analysis.get("user_draft") == route.question:
+            return True
+        if (
+            self.allow_source_background is not True
+            or route.question_target == STREAMLIT_VERSION_QUESTION.name
+        ):
+            return False
+        try:
+            handoff = validate_handoff(ProposalHandoff.model_validate(proposal["review_handoff"]))
+            request = handoff.grounded_request
+            if (
+                request is None
+                or handoff.analysis.model_dump(mode="json") != analysis
+                or handoff.proposal_id != proposal["proposal_id"]
+                or handoff.case.case_id != proposal["case_id"]
+                or handoff.case.case_revision != proposal["case_revision"]
+            ):
+                return False
+            hits = {hit.chunk_id: hit for hit in request.evidence.hits}
+            selected = dict.fromkeys(link.chunk_id for link in handoff.analysis.evidence_links)
+            reconstructed = render_grounded_plan(
+                request,
+                {
+                    "context_sha256": request.context_sha256,
+                    "decision": "ask",
+                    "question_name": route.question_target,
+                    "sources": [
+                        {"chunk_id": chunk, "content_sha256": source_content_sha256(hits[chunk])}
+                        for chunk in selected
+                    ],
+                },
+                ask_source_background=True,
+            )
+            # A canonical prefix alone is not enough. Human-edited or arbitrary
+            # text must not unlock a future authored reply or alter old routes.
+            return (
+                reconstructed.user_draft == analysis["user_draft"]
+                and reconstructed.next_question == route.question
+            )
+        except (TypeError, KeyError, ValueError, AttributeError, RecursionError):
+            return False
 
     def select(self, source, step, view):
         """Select only an actual current proposal, then bind any reply to release.
@@ -170,7 +218,7 @@ class RouteGraph:
                 and route.decision == "ask"
                 and analysis.get("missing_info") == [route.question_target]
                 and analysis.get("next_question") == route.question
-                and analysis.get("user_draft") == route.question
+                and self._question_display_matches(route, analysis, proposal)
             ]
             if len(candidates) != 1:
                 return None
