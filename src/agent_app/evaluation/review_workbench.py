@@ -61,6 +61,11 @@ _CAMPAIGNS = {
         "experiments/core_compact_plan_v1/protocol-v1.json",
         "c4h4-offline-review-workbench-v1",
     ),
+    "retrieval-relevance-model-v1": (
+        "live-method-v1.json",
+        "experiments/retrieval_relevance_v1/protocol-v1.json",
+        "r4c-offline-review-workbench-v1",
+    ),
     "core-resource-guidance-model-v1": (
         "live-method-v2.json",
         "experiments/core_resource_guidance_v1/protocol-v1.json",
@@ -77,12 +82,17 @@ _NATIVE_CRITERIA = {
         "core-repeat-repair-model-v1",
         "core-source-capacity-model-v1",
         "core-compact-plan-model-v1",
+        "retrieval-relevance-model-v1",
     )
 }
 
 _NATIVE_AMENDMENTS = {
     "core-compact-plan-model-v1": (
         "experiments/core_compact_plan_v1/semantic-review-preparation-v1.json",
+        "docs/pr55-evidence-review.fa.md",
+    ),
+    "retrieval-relevance-model-v1": (
+        "experiments/retrieval_relevance_v1/semantic-review-preparation-v1.json",
         "docs/pr55-evidence-review.fa.md",
     ),
 }
@@ -273,6 +283,7 @@ def build_workbench(
         if criteria_pin is not None:
             inputs["native_criteria"] = criteria_pin
         amendment = None
+        topical_guidance, supported_topical_guidance = None, None
         if receipt["protocol_id"] in _NATIVE_AMENDMENTS:
             preparation_name, evidence_review_name = _NATIVE_AMENDMENTS[receipt["protocol_id"]]
             preparation, preparation_pin = _read(_ROOT / preparation_name)
@@ -291,6 +302,19 @@ def build_workbench(
             )
             inputs["native_criteria_preparation"] = preparation_pin
             inputs["native_evidence_review"] = evidence_review_pin
+            if receipt["protocol_id"] == "retrieval-relevance-model-v1":
+                topical_guidance = preparation.get("topical_guidance_criteria")
+                supported_topical_guidance = preparation.get("supported_topical_guidance")
+                _need(
+                    type(topical_guidance) is dict
+                    and set(topical_guidance) == set(criteria)
+                    and all(
+                        type(value) is str and value.strip() for value in topical_guidance.values()
+                    )
+                    and type(supported_topical_guidance) is str
+                    and supported_topical_guidance.strip(),
+                    "WorkbenchReceiptMismatch",
+                )
         # The source registration already binds fixture/scenario byte hashes.
         registered = set(method["input_pins"].values())
         _need(
@@ -465,6 +489,9 @@ def build_workbench(
                     }
                     if amendment is not None and case_id == "dev-case-a":
                         row["actual_index_preregistered_amendment"] = amendment
+                    if topical_guidance is not None:
+                        row["supported_topical_guidance"] = supported_topical_guidance
+                        row["topical_guidance_criteria"] = topical_guidance[case_id]
                     row["item_binding_sha256"] = _hash(row)
                     row["review_template"] = (
                         _template(_validate_handoff(observed["handoff"]), scope, item_id)
@@ -567,6 +594,17 @@ def _html_index(workbench):
             parts.append(
                 "<details><summary>Prospective case-A evidence amendment for this campaign</summary>"
                 + pre(row["actual_index_preregistered_amendment"])
+                + "</details>"
+            )
+        if "supported_topical_guidance" in row:
+            parts.append(
+                "<details><summary>Preregistered topical guidance criteria for this case</summary>"
+                + pre(
+                    {
+                        "supported_topical_guidance": row["supported_topical_guidance"],
+                        "topical_guidance_criteria": row["topical_guidance_criteria"],
+                    }
+                )
                 + "</details>"
             )
         parts.append(
