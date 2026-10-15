@@ -4,6 +4,28 @@
 
 ## وضعیت فعلی
 
+- [x] **T4a — review و merge رسیدهای پاک‌سازی‌شدهٔ بهنام؛ ساسان.**
+  [PR #66](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/66) با
+  head`0d21450` به main با`c69b0b4` رسید؛ دو JSON اصلی بدون تغییر حفظ‌اند.
+  [پذیرش و محدودیت‌ها](../docs/pr66-review.fa.md)،
+  [رسید review](../docs/receipts/pr66-final-review-2026-10-16.json).
+  مشاهدهٔ دستی: قطع ACK پس از commit، Retry ازUI و Actionهای۰→۱→۱→۱؛ فقط
+  backend آفلاین/synthetic. ۱۷۶ تست مرتبط محلی پاس؛ merge فقط همان دو JSON
+  را اضافه کرده و source تست‌ها با suite قبلی۵۴۲۴تستی یکسان است، نه اجرای تازهٔ
+  آن suite. fault pin دقیق ندارد؛ بازشدن Chrome پرونده/session تازه ساخته، پس
+  recovery درخواست تأییدنشده در session تازه ثابت نیست. T4 کلی، failure/outcome
+  و handoff ارزیابی بازند؛ CI به علت Billing شروع نشده؛ halt/سهhold حفظ‌اند.
+
+- [ ] **C2j — validation یکسان helperهای پاسخ نسخه؛ ساسان، قدم مستقل بعدی.**
+  probe آفلاین در`intake.py` پذیرش field اضافیِ nested در object دست‌ساز Python
+  را برای pending و approved بازتولید کرد؛ validator موجود همان ورودی را رد
+  می‌کند. [مرز دقیق](../docs/pr66-review.fa.md): استفاده از `detached_contract`
+  پیش از dump، regression برای top-level/nested extra و عدم تغییر ورودی، خطای
+  ثابت`IntakeRejected("InvalidInput")` و خروجی canonical معتبر بدون تغییر.
+  shared contract، extraction، revision/dedup و authority tracker تغییر نکنند؛
+  بدون API و با halt موجود. این تشخیص exploit از HTTP یا بهبود کیفیت مدل نیست؛
+  هنوز پیاده‌سازی نشده و با RAG/UI/tracker اعضا تداخل ندارد.
+
 - [x] **C4l/E2y — context فعلی برای advisor انتخاب شاهد؛ ساسان، تحویل آفلاین.**
   [ثبت پیش از پیاده‌سازی](../experiments/core_selection_context_v1/protocol-v1.json):
   [کد و اتصال](../docs/selection-context.fa.md)،
@@ -20,8 +42,8 @@
   باrestart پاس؛ review جدا۱۲۳تست را تکرار کرد و blocker ندارد. replay قبلی
   ۶۲/۶۲ نیز عین رسید قبلی ماند؛ ledger و۱۹pin فعلی ثابت‌اند. تیک تحویل این
   کنترل اختیاری است، نه کیفیت مدل/RAG/test یا پایان C5. CI پاس ادعا نمی‌شود؛
-  انتشار با مجوز صریح تست محلی ساسان است. PR تازهٔ۶۶ بهنام فقط دو رسید دارد،
-  با این task تداخل ندارد و جدا مانده است.
+  انتشار با مجوز صریح تست محلی ساسان است. PR۶۶ بهنام در آن تحویل جدا ماند؛
+  پذیرش بعدی آن در T4a بالا ثبت شده است.
   کد، شواهد و راهنمای اتصال در [PR #67](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/67)؛
   وضعیت انتشار همان PR مرجع است و مصرف تیم از `origin/main` باشد.
 
@@ -236,7 +258,7 @@
 | --- | --- | --- |
 | حسن | review profile جدید و پوشش/رتبه‌بندی منابع؛ provenance و exclusion بعد از split نهایی | source دقیقِ رسیده به مدل، برچسب relevance/Recall@k و build pinned؛ عضویت در index به‌تنهایی کافی نیست |
 | محمدحسن | usefulness انسانی خروجی‌های فعلی؛ [worksheet تازهٔ C4j/E2w](../experiments/core_claim_boundary_v1/human-review-v1.json) و worksheetهای قبلی بدون نمره، initial/correction و model/edited جدا؛ review پذیرش چهار خانوادهٔ مکمل و exposure هر شش report؛۱۲dev و۱۵test باقی، freeze rubric/gold وابسته به evidence condition | guide answer-linked وارد corpus نشود؛ کوتاهی/quote دقیق بدون caveat بهبود نیست؛ مکمل‌ها خودکار جای رزرو۱۵/۱۵ را نمی‌گیرند؛ test برای tuning دیده نشود؛ حداقل۱۰گفتگوی چندنوبتی شامل۵test؛ سپس baseline وtest نهایی |
-| بهنام | بخش‌های باز T4: receipt پاک‌سازی‌شده و pin، lost-ACK از خود UI و failure/outcome | revision/approval/retry مستقل دو پرونده و شاهد مصرف outcome در تصمیم بعد؛ token/DB خصوصی منتشر نشود |
+| بهنام | T4a/رسیدهای PR66 پذیرفته شد؛ pin دقیق اجرای fault، failure/outcome و handoff ارزیابی باقی است؛ recovery پس از نابودی session با مالک UI هماهنگ شود | lost-ACK و Retry ازUI گزارش شده، اما اصل case فقط در backend durable است؛ fresh-session recovery ثابت نیست؛ شاهد مصرف outcome در تصمیم بعد لازم است؛ token/DB خصوصی منتشر نشود |
 | ساسان | C4k/E2x و C4l/E2y، section و context فعلی اختیاری با replay آفلاین تحویل؛ review انسانیِ ارتباط/کاربرد/طول خروجی، گرفتن مدرک provider برای سه request نامعلوم، سپس protocol/config freeze پیش از API یاtest تازه | projection و lexical shortlist انتخاب مدل یا usefulness نیست؛ context binding منشأ history را authenticate نمی‌کند؛ مسیرهای C4j/compiled آزاد default نشوند؛ شرط case/source-ID و prompt/order tuning تازه برای نمرهٔ Enum ممنوع؛ single-agent/قراردادهای تیم ثابت؛ fixture اثبات fix یا کیفیت RAG/test نیست |
 
 **قاعدهٔ انتشار فعلی — ۱۵ اکتبر، با دستور صریح ساسان:** منتظر رفع Billing
@@ -347,16 +369,18 @@ ledger، holdها، halt و receiptهای تاریخی تغییر نمی‌کن�
   rubric پیش‌نویس را درPR56 رویmain رسانده؛ usefulness۱۷خروجی و۱۲dev/۱۵test
   باقی با اوست. کمک ساسان محدود به اتصال وreviewpack است.
 
-- [ ] **T4 — دریافت و review گزارش تازهٔ بهنام؛ انتشار receipt و بخش‌های باقی‌مانده با بهنام.**
+- [ ] **T4 — گزارش PR52 و رسیدهای PR66 review شدند؛ بخش‌های نهایی هنوز بازند.**
   [گزارش روی commit ثابت`8420a3b`](https://github.com/Iran-110/QueraAgenticAI-FinalProject/blob/8420a3beed37e6bc79504487cd44724a40a30d79/docs/two-case-ui-sqlite-smoke-2026-10-14.md)
   اکنون در [PR #52](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/52)
   بازبینی شد؛ branch او تغییر نکرد. اجرای دستی
   Windows، آفلاین/scripted و رویsource`f8b3106` بوده، نهmain`17426b1`.
   correction، سؤال پس از correction، stale409، Edit/Reject، جداسازی دو case،
   restart backend و یکaction پس از replay تأییدشده را گزارش می‌کند.
-  این‌ها فعلاً گزارش اپراتورند؛ JSON و screenshot در این PR ضمیمه نیستند.
-  retry ازAPI بوده؛ در این گزارش شاهدی برای recovery مرورگر/session و
-  lost-ACK از خودUI ثبت نشده. receipt پاک‌سازی‌شده با pin لازم است؛ token/DB منتشر نشود.
+  این‌ها گزارش اپراتورند؛ JSON و screenshot در PR52 ضمیمه نبودند.
+  retry در گزارش PR52 ازAPI بود. سپس [T4a/PR66](../docs/pr66-review.fa.md)
+  دو JSON پاک‌سازی‌شده و مشاهدهٔ lost-ACK/Retry ازUI را اضافه کرد؛ اصل receiptها
+  حفظ‌اند. pin دقیق اجرای fault و recovery عملیات تأییدنشده در session تازه
+  هنوز ثبت نشده‌اند؛ backend durability جای آن recovery نیست. token/DB منتشر نشود.
   tool failure، مصرف outcome در تصمیم بعد و handoff ارزیابی همچنان بازند؛
   T4 تیک نمی‌خورد و این گزارش، کیفیت مدل/RAG را نشان نمی‌دهد.
 

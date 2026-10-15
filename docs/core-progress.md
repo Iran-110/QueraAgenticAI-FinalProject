@@ -1,3 +1,33 @@
+## 2026-10-16 — T4a: PR66 manual receipts accepted, fresh-session boundary retained
+
+[PR66 review and local scope](pr66-review.fa.md),
+[review receipt](receipts/pr66-final-review-2026-10-16.json).
+Exact head`0d21450` merged main at`c69b0b4`; only two original sanitized JSON
+receipts were added. Behnam reports post-commit approval-response loss, UI retry
+and browser reopen with action counts0→1→1→1. Accept these as collaborator manual
+synthetic/offline observations, not an independently reproduced Chrome/proxy
+run. The fault receipt has no exact tested commit/date or retained proxy.
+
+176existing SQLite/runtime/API/crash/UI-client/AppTest tests pass locally on
+base`d8a3cd3`. The computed prospective merge tree exactly matches the actual
+merge and adds only those JSONs. Runtime/tests still match the earlier tested
+50a3f8d source; the5424-test full suite was not repeated for this docs-only PR.
+Hosted CI did not start because Billing; no fresh Windows/browser/API/native
+index run. All19current physical pins and ledger SHA141c3536... remain exact;
+halt/threeholds/closedIDs preserved, no credential read or team messages.
+
+Fresh browser reopening created a new session and case; the old case remained
+durable in SQLite. This does not prove restoration of an unconfirmed review
+operation after complete session loss. Keep that UI/product boundary and T4
+failure/outcome/evaluation handoff open; do not recreate an approval as recovery.
+
+Next independent core task C2j is identified, not implemented: two version-reply
+intake helpers serialize before revalidation, accepting a bypass-constructed
+nested extra that existing detached_contract rejects. A neutral in-process
+probe reproduces both pending/approved cases. Reuse the existing detacher with
+regression and exact valid-output parity; no HTTP exploit, approval-authority or
+model-quality claim. No teammate module or new framework is needed.
+
 ## 2026-10-16 — C4l/E2y: bound current-user advisory context, offline
 
 PR65 merged main at `efaf02a` after exact-head local review; its additive

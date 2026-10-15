@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "task": "T4a",
+  "review_date_local": "2026-10-16",
+  "PR": 66,
+  "base_main_commit": "d8a3cd3dfc474a3c1e641043db125edc00e6c9d6",
+  "reviewed_head_commit": "0d21450322a10bee9ca95c49000f378141fec913",
+  "merge_commit": "c69b0b435eb275f412ea835c43cbcf31fd2c725c",
+  "computed_prospective_tree": "582352c46a74a2ff2d8603e65a1bfdae72d08245",
+  "actual_merged_tree": "582352c46a74a2ff2d8603e65a1bfdae72d08245",
+  "merge_tree_exact": true,
+  "changed_files": [
+    "docs/receipts/approval-ack-drop-ui-retry-sanitized.json",
+    "docs/receipts/two-case-smoke-2026-10-14-sanitized.json"
+  ],
+  "original_receipts_unchanged": true,
+  "original_receipt_sha256": {
+    "docs/receipts/approval-ack-drop-ui-retry-sanitized.json": "426285e2e73629343d7bd6754417f04124c4f41b49152b089ac61da02ed6fbb3",
+    "docs/receipts/two-case-smoke-2026-10-14-sanitized.json": "7f6ee146a772866fb33e6f0d1938837a9fff210157ca64b007987c4b6ceba2f0"
+  },
+  "acceptance": "sanitized collaborator-reported manual observations, not independent current-main Chrome/proxy reproduction",
+  "manual_reported_action_counts": [
+    0,
+    1,
+    1,
+    1
+  ],
+  "manual_fault_source_commit": "not recorded",
+  "manual_fault_run_date": "not recorded",
+  "manual_proxy_saved": false,
+  "fresh_session_unconfirmed_review_recovery_tested": false,
+  "original_case_auto_restored_in_UI_claim": false,
+  "original_case_backend_durability_reported": true,
+  "T4_fully_closed": false,
+  "local_pytest": {
+    "tests": 176,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "local_pytest_seconds": 8.619,
+  "local_pytest_XML_source": "local-output:pr66-local-review-2026-10-16-pytest-v1.xml",
+  "local_pytest_XML_sha256": "e98ecb763db95e46f943a771fef544561a14881842f66cf1da7e118d53e50910",
+  "test_files": [
+    "tests/test_sqlite_tracker.py",
+    "tests/test_sqlite_runtime.py",
+    "tests/test_persistent_api.py",
+    "tests/test_persistent_http_crash.py",
+    "tests/test_ui_persistent.py",
+    "tests/test_ui_client.py"
+  ],
+  "runtime_and_tests_equal_prior_tested_source": "50a3f8d1483ec8dcf89ecb95c949b9eac963493f",
+  "prior_full_test_verification": "experiments/core_selection_context_v1/verification-v1.json",
+  "prior_full_test_verification_sha256": "0341f0798bc77c19516cfe1dbdbbf1712143eef8e4280f07d5937e99ac6bca22",
+  "prior_5424_suite_repeated_this_review": false,
+  "reviewer": "root plus separate read-only assistant; neither performed a fresh manual Chrome/proxy trial",
+  "engineering_blockers": 0,
+  "hosted_CI_pass_claim": false,
+  "observed_hosted_check_id": 116708106082,
+  "hosted_job_started": false,
+  "hosted_failure_reason": "GitHub billing/payments or spending limit; job annotation inspected",
+  "fresh_Windows_or_browser_run_claim": false,
+  "protected_current_epoch": {
+    "matches": 19,
+    "total": 19,
+    "native_client_created": false,
+    "old_historical_epoch_restored_claim": false
+  },
+  "primary_ledger": {
+    "sha256_unchanged": "141c3536fb864595d94e0d0dd4a55976418def1012402b70f313c92050222785",
+    "budget_client_created": false,
+    "halt_preserved": true,
+    "three_uncertain_holds_preserved": true,
+    "closed_IDs_resumed": false,
+    "mutations": 0
+  },
+  "API_calls": 0,
+  "real_credential_files_read": 0,
+  "team_messages_sent": 0,
+  "model_or_RAG_or_final_test_quality_claim": false,
+  "next_independent_core_task": {
+    "task": "C2j",
+    "implemented": false,
+    "probe": {
+      "kind": "authored_in_process_Pydantic_bypass_probe_not_HTTP_exploit",
+      "pending_question_nested_extra_accepted": true,
+      "approved_question_nested_extra_accepted": true,
+      "existing_detacher_rejects_same_input": true,
+      "canonical_valid_question_unchanged": true,
+      "source_file": "src/agent_app/orchestration/intake.py",
+      "source_SHA256": "a1208ec535fd022d3d20f6847a0a6f21af0d3c42fc75a078e925301397c970b4",
+      "runtime_changes": false,
+      "API_calls": 0,
+      "tracker_or_model_quality_claim": false
+    },
+    "probe_source": "local-output:pr66-intake-followup-probe-2026-10-16-v1.json",
+    "probe_sha256": "921dce6abec2ef4e27e2c3a6d756def4b8fe4c6c50644223f58f0370f9bb0ff0",
+    "scope": "existing recursive detacher for caller-owned intake records, preserving valid extraction and allowlisted error; no HTTP exploit or authorization claim"
+  }
+}
