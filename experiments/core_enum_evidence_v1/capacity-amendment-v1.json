@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "amendment_id": "core-enum-evidence-render-capacity-v1",
+  "registered_before_paid_calls": true,
+  "registered_before_experiment_flag_activation": true,
+  "original_protocol_sha256": "687f9cc328d466369778e623e1285d225d372cc387667ba849a02b254644cf0e",
+  "reason": "Offline complete-record replay found that selecting all3 current C records on the initial turn produces maintainer_summary20015 characters, above the unchanged20000 bound. No API call has occurred.",
+  "failed_preflight_artifact": "experiments/core_enum_evidence_v1/offline-boundary-initial-v1.json",
+  "treatment_change": "Enable existing grounded_source_capacity/source_capacity=True identically in BOTH fresh arms. All original/new complete source records remain present. Only existing per-decision source-count maxima are derived from actual current request and complete renderer costs.",
+  "no_new_production_feature": true,
+  "old_protocol_and_failure_retained": true,
+  "no_source_excerpt_or_metadata_shortening": true,
+  "all_source_records_still_available": true,
+  "bounds_not_raised": {
+    "input": 32768,
+    "user_draft": 20000,
+    "maintainer_summary": 20000,
+    "rationale": 2000,
+    "model_attempts": 2
+  },
+  "offline_acceptance": "Retain every original8subset outcome across both C states, including the over-capacity all3 selection. Record exact dynamic advertised bound and prove every subset within that bound renders. The original renderer remains final enforcement; a model ignoring the count is not salvaged.",
+  "causal_interpretation": "The common core policy is identical; changed evidence can derive a different source-count bound. Compare evidence availability under this shared capacity policy; no isolated prompt/count-cap efficacy or model-intelligence claim.",
+  "A_B_controls": "Their fixed evidence and core policy remain identical between arms; any derived count bound must also be identical.",
+  "human_usefulness": null,
+  "not_real_RAG": true,
+  "held_out_test": false
+}
