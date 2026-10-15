@@ -162,7 +162,7 @@ def observe_no_json_format(result):
     # Reuse the existing strict actual-started/count check, not its mode verdict.
     actual_json_wire_observation(result)
     sent = [r for r in result["provider_sends"] if r["http_send_started"]]
-    if any(r.get("wire_response_format") is not None for r in sent):
+    if any(r.get("wire_response_format") != "absent" for r in sent):
         reject()
     result["actual_no_response_format_field"] = True if sent else None
     # Absence of a JSON-mode request is never reported as successful JSON mode.

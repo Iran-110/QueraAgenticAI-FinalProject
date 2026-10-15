@@ -5,7 +5,6 @@ from dataclasses import asdict
 from decimal import Decimal
 from pathlib import Path
 
-from agent_app.testing.source_order import fixture_retriever_factory
 from core_repeat_model_probe import (
     close_owned_scope,
     ledger_journal_snapshot,
@@ -23,6 +22,7 @@ from agent_app.testing.dev_three_model_probe import ledger_observation, sha
 from agent_app.testing.enum_evidence import load_source_packet
 from agent_app.testing.finite_controlled_probe import run_finite_cli
 from agent_app.testing.quality_probe import quality_slots, run_quality_batch
+from agent_app.testing.source_order import fixture_retriever_factory
 from agent_app.testing.stability_probe import (
     VOCABULARY,
     fixtures_for,

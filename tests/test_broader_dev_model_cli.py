@@ -5,11 +5,19 @@ import json
 from decimal import Decimal
 from pathlib import Path
 
+import httpx
 import pytest
+import test_broader_proposals as proposal_controls
 import test_dev_rag_model_cli as controls
 import test_enum_evidence_model_cli as parent_controls
 import test_source_capacity_model_cli as lifecycle
 from test_budget_quarantine_scope import multiple_holds as multiple_holds
+
+from agent_app.testing.broader_proposals import (
+    fixed_snapshot_factory,
+    proposal_slots,
+    run_proposal_batch,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -83,7 +91,7 @@ def test_non_json_wire_is_observed_as_absent_not_successful_json_mode(monkeypatc
     module = _module(monkeypatch)
     result = {
         "actual_sends": 1,
-        "provider_sends": [{"http_send_started": True, "wire_response_format": None}],
+        "provider_sends": [{"http_send_started": True, "wire_response_format": "absent"}],
     }
     assert module.observe_no_json_format(result) is None
     assert result["actual_no_response_format_field"] is True
@@ -102,7 +110,7 @@ def test_wire_counter_mismatch_does_not_claim_observation(monkeypatch, count):
         module.observe_no_json_format(
             {
                 "actual_sends": count,
-                "provider_sends": [{"http_send_started": True, "wire_response_format": None}],
+                "provider_sends": [{"http_send_started": True, "wire_response_format": "absent"}],
             }
         )
 
@@ -112,6 +120,44 @@ def test_noargs_reports_registered_cap_without_key_or_scope(cli, capsys):
     output = json.loads(capsys.readouterr().out)
     assert output["cap_usd"] == "0.06" and output["actual_sends"] == 0
     assert cli.calls["credentials"] == 0 and controls._scope_count(cli.path) == 0
+
+
+@pytest.mark.parametrize("failure", [None, "invalid_shape", "timeout"])
+def test_real_proposal_gateway_through_finite_cli_retains_bounds(cli, monkeypatch, failure):
+    packet, fixtures, authored_method, batch = proposal_controls._inputs()
+    cli.method["experiment_id"] = authored_method["experiment_id"]
+    slots = proposal_slots(cli.method, batch, fixtures)
+    batch["max_request_slots"] = len(slots)
+    cli.method["batches"] = [batch]
+    cli.method["fresh_request_ids"] = [s.request_id for s in slots]
+    cli.method["fresh_scope_ids"] = [batch["scope_id"]]
+    monkeypatch.setattr(cli.module, "quality_slots", proposal_slots)
+    monkeypatch.setattr(cli.module, "fixtures_for", lambda *_: fixtures)
+    monkeypatch.setattr(cli.module, "load_packet", lambda: packet)
+    monkeypatch.setattr(cli.module, "fixture_retriever_factory", fixed_snapshot_factory)
+
+    def respond(request):
+        if failure == "timeout":
+            raise httpx.ReadTimeout("authored diagnostic timeout")
+        payload = json.loads(request.content)
+        content = "[]" if failure else proposal_controls._payload(payload)
+        return proposal_controls._provider(content)
+
+    def actual(*args, **kwargs):
+        return run_proposal_batch(*args, **kwargs, underlying=httpx.MockTransport(respond))
+
+    monkeypatch.setattr(cli.module, "run_quality_batch", actual)
+    code = controls._main(cli)
+    receipt = controls._read(cli.destination / "receipt.json")
+    result = receipt["batches"][0]
+    assert code == (2 if failure == "timeout" else 0)
+    assert result["completed_routes"] == 0 and result["actions_executed"] == 0
+    assert result["json_object_wire_observed"] is None
+    assert all(row["wire_response_format"] == "absent" for row in result["provider_sends"])
+    assert result["actual_sends"] == (1 if failure == "timeout" else 8 if failure else 4)
+    scope = cli.ledger.quarantine_scope_status(batch["scope_id"])
+    assert not scope.active
+    assert receipt["tracker_actions_executed"] == 0
 
 
 @pytest.fixture
