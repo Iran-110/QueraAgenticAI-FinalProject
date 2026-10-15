@@ -22,7 +22,9 @@ Draft layout for E1/E2. The schema still needs agreement before the full 30
 cases are written; `dev/pilot-12782.json` is the first case in this format.
 The manifest currently selects **one dev case and zero test cases**. It is not
 a frozen split. The [core-owner rubric review](../../docs/evaluation-rubric.md)
-is a recommendation for E2. The additive semantic-review helper below records
+is a recommendation for E2; [rubric v1](../../docs/evaluation-rubric-v1.md)
+(`e2-rubric-v1`) adopts it with Sasan's 2026-10-15 additions for new fixtures
+and reviews. The additive semantic-review helper below records
 caller judgments; rubric adoption, team approval and E2 completion remain open.
 Registered fixtures and historical receipts are preserved unchanged.
 
