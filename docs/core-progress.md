@@ -1,3 +1,19 @@
+## 2026-10-15 — R4c/C4h5: bounded candidate relevance, comparison pending
+
+[Behavior and integration](retrieval-relevance.fa.md): opt-in adapter query/API
+relevance and source diversity over expanded candidates; engine applies existing
+confirmed USER-version scope before finalcap5. After offline overflow9/11,
+whole-record serialized evidence budget was separately preregistered before its
+implementation/API. Replaying11 archived states now fits11/11 common compact
+prompts/repairs; relevant button1.39 and multiselect1.50 actually reach the model
+request. Complete source text/hash/identity,18/36 index and exclusion are unchanged.
+This is availability, not a model-quality gain. Both fresh arms will use identical
+core flags, with all24 denominators and actual native read/selection/prompt traces.
+
+Defaults remain native/multiplier1/budgetNone; no shared models, RAG build,
+tracker/UI or ordinary live factory defaults change. Hassan PR50 head1a18749 is
+unchanged and unmerged; his branch is not edited. Human usefulness stays unscored.
+
 ## 2026-10-15 — C4h4: strict compact wire, closed exposed-dev comparison
 
 [Current behavior](compact-plan-wire.fa.md) keeps the public GroundedPlan and

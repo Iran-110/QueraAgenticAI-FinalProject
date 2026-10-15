@@ -232,6 +232,14 @@ def run_quality_batch(
         raise DevProbeRejected()
     input_profiles = {}
     for job in batch["jobs"]:
+        multiplier = job.get("retrieval_candidate_multiplier", 1)
+        if type(multiplier) is not int or multiplier not in {1, 5}:
+            raise DevProbeRejected()
+        evidence_budget = job.get("evidence_utf8_budget_bytes")
+        if evidence_budget is not None and (
+            type(evidence_budget) is not int or not 2048 <= evidence_budget <= 32768
+        ):
+            raise DevProbeRejected()
         if type(job.get("repair_repeated_queries", False)) is not bool:
             raise DevProbeRejected()
         reserve = job.get("input_token_reserve", INPUT_PROFILES[job["case_id"]])
@@ -342,6 +350,8 @@ def run_quality_batch(
                         **kwargs,
                         evidence_scope="exact_user_version",
                         repair_repeated_queries=job.get("repair_repeated_queries", False),
+                        retrieval_candidate_multiplier=job.get("retrieval_candidate_multiplier", 1),
+                        evidence_utf8_budget_bytes=job.get("evidence_utf8_budget_bytes"),
                     )
 
                 engine_factory = (

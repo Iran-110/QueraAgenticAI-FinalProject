@@ -16,11 +16,13 @@ from agent_app.contracts import (
 )
 from agent_app.orchestration import SupportEngine
 from agent_app.orchestration.turns import propose_user_turn
+from agent_app.reasoning.grounding import source_content_sha256
 from agent_app.retrieval.adapter import ChromaRetrieverAdapter
 from agent_app.retrieval.relevance import rank_candidates
 from agent_app.testing.fakes import FakeReasoner, FakeRetriever
 
 SNAPSHOT = "offline-adapter-snapshot"
+BYTE_BUDGET_WARNING = "Evidence is bounded by the configured whole-record byte budget."
 
 
 def adapter(backend, **changes):
@@ -425,3 +427,235 @@ def test_default_and_explicit_multiplier_one_keep_existing_result_and_trace_byte
         requests.append([item.model_dump_json() for item in retriever.requests])
         observed.append(reasoner.inputs[0][2].model_dump_json())
     assert outputs[0] == outputs[1] and requests[0] == requests[1] and observed[0] == observed[1]
+
+
+def packed_bundle(hits=(), **changes):
+    """An expected complete serialized envelope, including the fixed warning."""
+    return EvidenceBundle(
+        snapshot_id=SNAPSHOT, hits=tuple(hits), warnings=(BYTE_BUDGET_WARNING,), **changes
+    )
+
+
+def budget_run(bundle, budget, *, case=None, multiplier=5, top_k=5):
+    retriever, reasoner = FakeRetriever([bundle]), FakeReasoner([proposal()])
+    outcome = SupportEngine(
+        retriever,
+        reasoner,
+        snapshot_id=SNAPSHOT,
+        top_k=top_k,
+        evidence_scope="exact_user_version",
+        retrieval_candidate_multiplier=multiplier,
+        evidence_utf8_budget_bytes=budget,
+    ).run(case or CaseState(case_id="byte-budget-case"), "Synthetic problem.")
+    return outcome, retriever, reasoner
+
+
+def test_whole_record_packing_skips_oversized_candidates_and_continues_to_final_five():
+    large = hit("too-large-first", excerpt="界" * 5000)
+    small = tuple(hit(f"small:{i}", excerpt=f"Complete source {i}.") for i in range(7))
+    bundle = EvidenceBundle(
+        snapshot_id=SNAPSHOT,
+        hits=(large, *small),
+        queries_used=("original lookup",),
+    )
+    before = bundle.model_dump_json()
+    outcome, retriever, reasoner = budget_run(bundle, 12000)
+    assert outcome.status == "awaiting_approval"
+    selected = reasoner.inputs[0][2]
+    assert selected.hits == small[:5]
+    assert selected.queries_used == bundle.queries_used
+    assert selected.snapshot_id == bundle.snapshot_id and selected.retrieval_round == 1
+    assert selected.warnings == (BYTE_BUDGET_WARNING,)
+    assert len(selected.model_dump_json().encode()) <= 12000
+    assert [source_content_sha256(item) for item in selected.hits] == [
+        source_content_sha256(item) for item in small[:5]
+    ]
+    assert bundle.model_dump_json() == before
+    assert retriever.requests[0].top_k == 25
+    assert outcome.retrieval_rounds == outcome.model_attempts == len(retriever.requests) == 1
+
+
+@pytest.mark.parametrize("multiplier", [1, 5])
+def test_exact_serialized_utf8_boundary_accepts_whole_hit_without_rewriting(multiplier):
+    first = hit("exact-boundary", excerpt="完整引文\n" + "a" * 2200)
+    next_hit = hit("one-more", excerpt="Another complete record.")
+    expected = packed_bundle((first,), queries_used=('lookup with a quoted "term"',))
+    budget = len(expected.model_dump_json().encode())
+    assert 2048 <= budget <= 32768
+    assert (
+        len(expected.model_copy(update={"hits": (first, next_hit)}).model_dump_json().encode())
+        > budget
+    )
+    supplied = expected.model_copy(update={"hits": (first, next_hit), "warnings": ()})
+    outcome, _, reasoner = budget_run(supplied, budget, multiplier=multiplier)
+    assert outcome.status == "awaiting_approval"
+    selected = reasoner.inputs[0][2]
+    assert selected.model_dump_json() == expected.model_dump_json()
+    assert len(selected.model_dump_json().encode()) == budget
+    assert selected.hits[0].model_dump_json() == first.model_dump_json()
+
+
+def test_utf8_budget_counts_unicode_bytes_instead_of_python_characters():
+    unicode_source = hit("unicode", excerpt="界" * 700)
+    ascii_source = hit("ascii", excerpt="a" * 700)
+    oversized = packed_bundle((unicode_source,))
+    assert len(oversized.model_dump_json()) < 2048 < len(oversized.model_dump_json().encode())
+    assert len(packed_bundle((ascii_source,)).model_dump_json().encode()) < 2048
+    outcome, _, reasoner = budget_run(
+        EvidenceBundle(snapshot_id=SNAPSHOT, hits=(unicode_source, ascii_source)), 2048
+    )
+    assert outcome.status == "awaiting_approval"
+    selected = reasoner.inputs[0][2]
+    assert selected.hits == (ascii_source,)
+    assert selected.model_dump_json() == packed_bundle((ascii_source,)).model_dump_json()
+
+
+def test_budget_counts_json_escapes_and_preserves_the_complete_selected_quote():
+    escaped = hit("escape-heavy", excerpt='"\n\\\t' * 350)
+    ordinary = hit("plain", excerpt="A complete ordinary excerpt.")
+    assert len(escaped.excerpt.encode()) < 2048
+    assert len(packed_bundle((escaped,)).model_dump_json().encode()) > 2048
+    outcome, _, reasoner = budget_run(
+        EvidenceBundle(snapshot_id=SNAPSHOT, hits=(escaped, ordinary)), 2048
+    )
+    assert outcome.status == "awaiting_approval" and reasoner.inputs[0][2].hits == (ordinary,)
+    assert reasoner.inputs[0][2].hits[0].model_dump_json() == ordinary.model_dump_json()
+
+
+def test_user_scope_precedes_packing_and_correction_recomputes_the_whole_selection():
+    future = hit("future-first", versions=("1.64.0",), excerpt="f" * 1500)
+    current = hit("current-later", versions=("1.39.0",), excerpt="c" * 1500)
+    assert len(packed_bundle((future,)).model_dump_json().encode()) <= 2048
+    assert len(packed_bundle((current,)).model_dump_json().encode()) <= 2048
+    assert len(packed_bundle((future, current)).model_dump_json().encode()) > 2048
+    original = state("1.39.0")
+    corrected = propose_user_turn(
+        original,
+        UserTurn(
+            case_id=original.case_id,
+            expected_revision=original.case_revision,
+            turn_id="budget-correction",
+            source_ref="user:budget-correction",
+            message="Correction: this environment runs 1.64.0.",
+            reported_facts=(ReportedFact(name="streamlit_version", value="1.64.0"),),
+        ),
+    ).candidate
+    bundle = EvidenceBundle(snapshot_id=SNAPSHOT, hits=(future, current))
+    first, _, first_reasoner = budget_run(bundle, 2048, case=original)
+    second, _, second_reasoner = budget_run(bundle, 2048, case=corrected)
+    assert first.status == second.status == "awaiting_approval"
+    assert first_reasoner.inputs[0][2].hits == (current,)
+    assert second_reasoner.inputs[0][2].hits == (future,)
+    assert original.facts[0].value == "1.39.0" and bundle.hits == (future, current)
+
+
+@pytest.mark.parametrize("budget", [2048, 32768])
+def test_enabled_budget_counts_existing_warning_and_appends_fixed_warning_once(budget):
+    supplied = EvidenceBundle(
+        snapshot_id=SNAPSHOT,
+        hits=(hit("small"),),
+        warnings=("Existing bounded retrieval warning.", BYTE_BUDGET_WARNING),
+    )
+    outcome, _, reasoner = budget_run(supplied, budget)
+    assert outcome.status == "awaiting_approval"
+    assert reasoner.inputs[0][2].model_dump_json() == supplied.model_dump_json()
+    assert reasoner.inputs[0][2].warnings.count(BYTE_BUDGET_WARNING) == 1
+
+
+def test_enabled_budget_adds_warning_even_when_all_records_fit():
+    supplied = EvidenceBundle(
+        snapshot_id=SNAPSHOT, hits=(hit("small"),), warnings=("Original warning.",)
+    )
+    outcome, _, reasoner = budget_run(supplied, 2048)
+    assert outcome.status == "awaiting_approval"
+    assert reasoner.inputs[0][2].warnings == ("Original warning.", BYTE_BUDGET_WARNING)
+    assert reasoner.inputs[0][2].hits == supplied.hits
+
+
+@pytest.mark.parametrize("cause", ["oversized_base", "warning_capacity"])
+def test_oversized_or_unrepresentable_empty_envelope_stops_before_reasoning(cause):
+    if cause == "oversized_base":
+        queries = tuple(f"query-{i}:" + "界" * 490 for i in range(3))
+        supplied = EvidenceBundle(snapshot_id=SNAPSHOT, queries_used=queries)
+        assert len(packed_bundle(queries_used=queries).model_dump_json().encode()) > 2048
+    else:
+        supplied = EvidenceBundle(
+            snapshot_id=SNAPSHOT, warnings=tuple(f"Warning {i}." for i in range(50))
+        )
+    before = supplied.model_dump_json()
+    outcome, retriever, reasoner = budget_run(supplied, 2048)
+    assert outcome.error_code == "RetrievalResultInvalid" and outcome.analysis is None
+    assert outcome.model_attempts == 0 and outcome.retrieval_rounds == len(retriever.requests) == 1
+    assert reasoner.inputs == [] and supplied.model_dump_json() == before
+
+
+@pytest.mark.parametrize("bad", [True, False, "12000", 12000.0, 0, 2047, 32769, [], {}])
+def test_evidence_byte_budget_is_strict_trusted_configuration(bad):
+    retriever, reasoner = FakeRetriever([]), FakeReasoner([])
+    with pytest.raises(ValueError):
+        SupportEngine(retriever, reasoner, snapshot_id=SNAPSHOT, evidence_utf8_budget_bytes=bad)
+    assert retriever.requests == reasoner.inputs == []
+
+
+def test_default_and_explicit_none_budget_preserve_legacy_evidence_result_and_trace_bytes():
+    supplied = EvidenceBundle(
+        snapshot_id=SNAPSHOT,
+        hits=(hit("legacy-complete", excerpt="界" * 5000),),
+        queries_used=("original lookup",),
+        warnings=("Original warning.",),
+    )
+    outcomes, bundles, calls = [], [], []
+    for flags in ({}, {"evidence_utf8_budget_bytes": None}):
+        retriever, reasoner = FakeRetriever([supplied]), FakeReasoner([proposal()])
+        outcome = SupportEngine(
+            retriever, reasoner, snapshot_id=SNAPSHOT, retrieval_candidate_multiplier=5, **flags
+        ).run(
+            CaseState(case_id="legacy-budget-case"), "Synthetic problem.", run_id="same-budget-run"
+        )
+        outcomes.append(outcome.model_dump_json())
+        bundles.append(reasoner.inputs[0][2].model_dump_json())
+        calls.append([item.model_dump_json() for item in retriever.requests])
+    assert outcomes[0] == outcomes[1] and bundles[0] == bundles[1] == supplied.model_dump_json()
+    assert calls[0] == calls[1] and BYTE_BUDGET_WARNING not in bundles[0]
+
+
+def test_whole_record_packing_keeps_query_round_attempt_budgets_and_latest_bundle_metadata():
+    refinement = AnalysisResult(
+        decision="retrieve_more",
+        user_draft="",
+        maintainer_summary="",
+        rationale="A bounded source lookup.",
+        retrieval_queries=("first complete lookup", "second complete lookup"),
+    )
+    large, small = (
+        hit("oversized", excerpt="界" * 5000),
+        hit("complete-small", excerpt="Complete quote."),
+    )
+    supplied = [
+        EvidenceBundle(snapshot_id=SNAPSHOT, hits=(large, small), queries_used=queries)
+        for queries in (("initial lookup",), refinement.retrieval_queries)
+    ]
+    retriever, reasoner = FakeRetriever(supplied), FakeReasoner([refinement, proposal()])
+    outcome = SupportEngine(
+        retriever,
+        reasoner,
+        snapshot_id=SNAPSHOT,
+        top_k=5,
+        retrieval_candidate_multiplier=5,
+        evidence_utf8_budget_bytes=2048,
+    ).run(CaseState(case_id="budget-rounds"), "Synthetic problem.", initial_query="initial lookup")
+    assert outcome.status == "awaiting_approval"
+    assert outcome.retrieval_rounds == outcome.model_attempts == len(retriever.requests) == 2
+    assert [item.queries for item in retriever.requests] == [
+        ("initial lookup",),
+        refinement.retrieval_queries,
+    ]
+    assert [item.top_k for item in retriever.requests] == [25, 25]
+    for round_number, observed in enumerate(reasoner.inputs, 1):
+        bundle = observed[2]
+        assert bundle.hits == (small,) and bundle.retrieval_round == round_number
+        assert bundle.queries_used == supplied[round_number - 1].queries_used
+        assert len(bundle.model_dump_json().encode()) <= 2048
+    assert (
+        reasoner.contexts[1].remaining_model_attempts == 0 and not reasoner.contexts[1].can_refine
+    )

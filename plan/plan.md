@@ -4,6 +4,18 @@
 
 ## وضعیت فعلی
 
+- [ ] **R4c/C4h5 — رساندن منابع مرتبط و مقایسهٔ کیفیت؛ ساسان، کمک مستقل به RAG.**
+  [protocol](../experiments/retrieval_relevance_v1/protocol-v1.json) و
+  [رفتار و اتصال](../docs/retrieval-relevance.fa.md): PR50 حسن درhead`1a18749`
+  تغییری نکرده؛ کار رویbranchجدا وبدونتغییرbranch/index/corpusاوست. کاندیدای۲۵
+  برایخروجی۵،rankingعمومیAPI/واژه‌ها وscopeنسخهٔفعالUSER پیش‌ازcap؛ همهopt-in.
+  [بودجهٔ رکورد کامل](../experiments/retrieval_relevance_v1/whole-record-budget-amendment-v1.json)
+  بعدازمشاهدهٔoverflow آفلاین وپیش‌ازAPI ثبت شد؛ متن منبع بریده نمی‌شود.
+  replayواقعی۱۱state،باpacking۱۱/۱۱زیرسقف؛ button۱٫۳۹ وmultiselect۱٫۵۰به
+  evidenceنوبت‌مناسب‌رسیدند. هنوز availability است، نه کیفیت پاسخ.
+  مقایسهٔ تازه باflagهایcore مشترک،همه۲۴نوبت،هزینه/hold/haltمحفوظ وreview
+  همهٔادعاها/سؤال‌ها لازم است؛نتیجهٔliveوusefulnessهنوزثبت‌نشده‌اند.
+
 - [x] **C4h2 — repair query تکراری و مقایسهٔ محدود؛ ساسان.**
   [ثبت قبل از تغییر](../experiments/core_repeat_repair_v1/protocol-v1.json) و
   [قرارداد رفتار](../docs/repeat-query-repair.fa.md): گزینه پیش‌فرض خاموش است؛
