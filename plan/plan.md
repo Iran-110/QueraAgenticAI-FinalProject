@@ -125,7 +125,7 @@
   مکمل #4713،#5618،#7206،#9487 جدا از رزروهای۱۵/۱۵ محمدحسن‌اند؛ همهٔ شش report
   غربال‌شده در exposure ثبت می‌شوند. این انتخاب، split نهایی را freeze نمی‌کند.
   هفت خانواده،۱۶snapshot جاری و دو تکرار متوازن؛۶۴invocation برنامه‌ریزی‌شده،
-  همه proposal-only و pending review، صفر approval/release/action؛ موفقیت route
+  همه proposal-only، بدون approval/release/action؛ موفقیت route
   ادعا نمی‌شود. ورودی فعلی، شواهد کامل و سؤال‌های ثبت‌شده در هر دو حالت یکسان‌اند.
   guide excluded فقط در condition کنترل‌شدهٔ Enum می‌ماند؛ condition بدون guide
   باید همچنان کمبود سند را از اطلاعات معلوم کاربر جدا کند. معیار موفقیت، توضیح
