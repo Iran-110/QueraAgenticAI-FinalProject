@@ -58,6 +58,15 @@
   تحویل در [PR #60](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/60)
   به main است؛ review نهایی کد/رسید/گزارش، بدون blocker ثبت شده است.
 
+- [ ] **C4h8 — کیفیت Enum با کنترل دسترسی به شواهد؛ ساسان، در حال انجام.**
+  راهنمای رسمی custom-classes در review انسانی عمداً direct-answer excluded است؛
+  index۱۸/۳۶، exclusion، fixture و gold اصلی حفظ می‌شوند. مقایسهٔ تازه فقط
+  fixture کنترل‌شدهٔ همان سه dev است: شواهد generic قبلی در برابر افزودن دو
+  بخش کامل و hash-pinned راهنما برای Enum. این سند answer-linked است و وارد
+  corpus واقعی RAG نمی‌شود. توضیح مستندِ class identity و الگوی عمومی با fix
+  تأییدشدهٔ محیط کاربر و قابلیت widget-only enumCoercion جدا سنجیده می‌شوند.
+  پیش از API معیار هر سناریو، source span، bounds و هویت‌های هزینه freeze شوند.
+
 - [ ] **تنظیم نهایی core پس از review انسانی و dev گسترده‌تر؛ ساسان با محمدحسن.**
   مقایسهٔ usefulness سؤال کوتاه/کامل، متن طولانی عمومی Enum و precision منابع
   اولیهٔ B؛ انتخاب تنظیم پیشنهادی فقط با شواهد dev، سپس freeze پیش از test.

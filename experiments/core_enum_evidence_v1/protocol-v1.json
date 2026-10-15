@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "protocol_id": "core-enum-evidence-v1",
+  "registered_before_implementation": true,
+  "registered_before_paid_calls": true,
+  "baseline_commit": "573df8086fe2ea2e4257cc866c8f39b096418824",
+  "authorization_ref": "user-2026-10-15-controlled-Enum-evidence-quality-comparison",
+  "question": "With the same core/model and the same three exposed dev inputs, can model selection deliver qualified Enum-specific documentary guidance when the otherwise withheld official guide is supplied as controlled fixture evidence?",
+  "experiment_kind": "controlled_fixed_evidence_availability_comparison",
+  "not_real_RAG": true,
+  "not_final_evaluation": true,
+  "answer_informed_exposed_dev": true,
+  "exclusion_boundary": {
+    "official_guide_is_answer_linked": true,
+    "human_exclusion_preserved": [
+      "content/develop/concepts/app-design/custom-classes.md",
+      "legacy/modern URL aliases and answer-linked equivalents"
+    ],
+    "real_RAG_index_unchanged": {
+      "sources": 18,
+      "chunks": 36,
+      "manifest_sha256": "24815c44f7d7e104a59579d444e8abce429f02b594dd6679165c0fbc381b9239"
+    },
+    "guide_location": "Only the new experiment source packet and controlled fixture supplier; never production retrieval corpus/allowlist/index or final-evaluation corpus.",
+    "no_runtime_RAG_search_or_RAG_quality_claim": true,
+    "incidental_reserved_issue": "Reserved Issue #1155 was encountered during source review; it remains excluded and supplies no model input/evidence/answer for this experiment."
+  },
+  "source_packet": {
+    "path": "experiments/core_enum_evidence_v1/source-packet-v1.json",
+    "self_contained_raw_official_guide_text": true,
+    "raw_source_id": "docs:content/develop/concepts/app-design/custom-classes.md",
+    "source_url": "https://docs.streamlit.io/develop/concepts/design/custom-classes",
+    "pinned_source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/app-design/custom-classes.md",
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "raw_utf8_sha256": "b1c5a760e61d213f294297fae055bae52e25b0d296761fd1c533cf282246b8c6",
+    "raw_utf8_bytes": 15170,
+    "raw_unicode_codepoints": 15158,
+    "span_coordinates": "Unicode codepoint offsets, half-open, from raw UTF8 decoding without newline normalization.",
+    "complete_spans": [
+      {
+        "label": "generic class patterns and separately imported module, including module-edit/session caveat",
+        "start": 1637,
+        "end": 3780,
+        "chars": 2143,
+        "excerpt_utf8_sha256": "414347d4b9eef71e0b7d2711a84f4037eea0e98870e09b7f5c3c531610019039"
+      },
+      {
+        "label": "complete Enum section, excluding final delimiter newline only, including widget-only enumCoercion scope",
+        "start": 12538,
+        "end": 15157,
+        "chars": 2619,
+        "excerpt_utf8_sha256": "91538e2afe431f10f17ce6e0ca3a6c996007e5db90a39abe3d3276f132c7e349"
+      }
+    ],
+    "total_added_excerpt_chars": 4762,
+    "applicable_versions": [],
+    "version_scope": "Pinned current conceptual documentation; applicability to installed1.31.0/1.31.1 is unconfirmed. Textual1.29 introduction of widget Enum coercion is not exact applicability metadata and does not establish a direct Session State fix.",
+    "no_Issue_comments_outcomes_gold_or_future_replies_in_packet": true,
+    "source_text_untrusted_not_tool_authority": true,
+    "delimiter_note": "Only trailing section-delimiter newlines are excluded from each exact raw span, matching EvidenceHit whitespace normalization without removing semantic text, codeblocks or caveats.",
+    "not_supplied_middle_section": "Research-only paragraph range8405:10065 is not supplied to the model; no duplicate explanation record."
+  },
+  "evidence_conditions": {
+    "arms": [
+      "fixed_baseline",
+      "fixed_guide_added"
+    ],
+    "baseline": "Use the original frozen per-turn evidence records from data/evaluation/dev-three-v1/evidence-v1.json for all three cases.",
+    "treatment_A_B": "Exactly the same original records as baseline, serving as unchanged controls.",
+    "treatment_C": "Keep the complete original enum-generic record unchanged (8891 excerpt chars), then append exactly the two registered complete guide records (4762chars). Do not replace, crop, deduplicate away or shorten original generic evidence.",
+    "no_ranking_candidate_profile_or_packing": "Fixed supplier returns registered current-turn evidence, not a search ranking. No candidate25 profile, source cap adaptation, whole-record packing/truncation or case-ID RAG filter.",
+    "retrieval_observations": "Logical queries/calls may be logged, but do not measure retrieval relevance or native search; repeated calls supply the registered fixed condition, never a later-turn/gold bundle.",
+    "maximum_C_hits": 3,
+    "model_payload": "Only currently visible user message/facts, current reasoning context and supplied evidence/catalog. No original gold, script, expected decision, reviewer criteria, case answer/comment/outcome, later reply or exposure labels.",
+    "historical_fixture_gold_unchanged": true,
+    "fresh_evidence_conditioned_native_gold_not_reused": "Register new controlled-evidence criteria before paid calls; old needs-escalation/generic-only judgments stay historical and are not retroactively applied to guide-present evidence."
+  },
+  "parent_observation": {
+    "receipt": "experiments/core_json_readability_v1/model-live-receipt-v1.json",
+    "receipt_sha256": "6c988009e6b7646f3104fbd232e382714850544fd6c1609f372b4e7408b3247a",
+    "no_resume_or_reuse_of_parent_slots": true,
+    "ordinary_RAG_Enum_diagnosis_or_fix_not_demonstrated": true
+  },
+  "offline_before_live": [
+    "Validate raw guide hash, both exact whole spans/hashes and complete codeblocks/qualifiers from the self-contained packet.",
+    "Prove original fixture/gold bytes and real18/36 RAG allowlist/index/exclusions unchanged.",
+    "A/B records identical in both conditions; C baseline record identical, treatment differs only by the two specified source records.",
+    "Capture actual enriched model request for current visible turns and repair context; verify full input32768 guard with no excerpt trimming, future reply or reviewer/gold fields. Exhaustively render all8 source subsets across both C turns, preserving complete records and the20000-character AnalysisResult bounds.",
+    "Run actual intercepted HTTP/gateway/route path with disposable ledger and fixed supplier; validate correction, source binding, no paid third attempt and deterministic supplier errors.",
+    "Freeze code, packet, criteria, fixture hashes, all14table ledger journal, grants/holds/history and every fresh request/scope identity before paid calls."
+  ],
+  "live": {
+    "protocol_id": "core-enum-evidence-model-v1",
+    "experiment_id": "core-enum-evidence-2026-10-15-v1",
+    "kind": "controlled_evidence",
+    "model": "gpt-4o-mini",
+    "rounds": 2,
+    "case_order": [
+      [
+        "dev-case-a",
+        "dev-case-b",
+        "dev-case-c"
+      ],
+      [
+        "dev-case-c",
+        "dev-case-b",
+        "dev-case-a"
+      ]
+    ],
+    "arms": [
+      "fixed_baseline",
+      "fixed_guide_added"
+    ],
+    "paired_arm_order": [
+      [
+        "fixed_baseline",
+        "fixed_guide_added"
+      ],
+      [
+        "fixed_guide_added",
+        "fixed_baseline"
+      ],
+      [
+        "fixed_baseline",
+        "fixed_guide_added"
+      ],
+      [
+        "fixed_guide_added",
+        "fixed_baseline"
+      ],
+      [
+        "fixed_baseline",
+        "fixed_guide_added"
+      ],
+      [
+        "fixed_guide_added",
+        "fixed_baseline"
+      ]
+    ],
+    "batches": 6,
+    "jobs": 12,
+    "turns": 24,
+    "fresh_request_slots": 48,
+    "max_output_tokens": 1024,
+    "input_token_reserve": 32768,
+    "scope_cap_usd": "0.06",
+    "campaign_cap_usd": "0.36",
+    "common_flags": {
+      "grounded_json_object": true,
+      "concise_user_draft": true,
+      "ask_source_background": true,
+      "compact_plan": true,
+      "decision_contracts": true,
+      "source_selection_reminder": true,
+      "source_gap_handoff": true,
+      "source_gap_investigation": true,
+      "source_capacity": false,
+      "resource_guidance": false,
+      "repair_repeated_queries": false,
+      "retrieval_profile": "native",
+      "retrieval_candidate_multiplier": 1,
+      "evidence_utf8_budget_bytes": null
+    },
+    "same_user_inputs_core_model_prompt_and_limits_except_supplied_evidence": true,
+    "canary": "No new gateway/model/mode; JSON transport was successfully canaried in the closed previous study. Actual response_format must still be observed as json_object in every new send.",
+    "ledger_before_expected_observation_only": {
+      "reservations": 519,
+      "settled": 517,
+      "uncertain": 2,
+      "pending": 0,
+      "settled_local_estimate_usd": "0.426751215",
+      "old_hold_usd": "0.0233792",
+      "global_halt": true,
+      "ceiling_usd": "4.50",
+      "full_tables": 14
+    },
+    "stop_entire_campaign_on_new_uncertainty_or_changed_source_packet_inputs_accounting": true,
+    "ordinary_global_halt_two_unknown_holds_prior_rows_and_ceiling_preserved": true,
+    "closed_identifiers_never_resume_or_regenerate": true,
+    "all_failed_stale_empty_and_unvisited_turns_retained": true
+  },
+  "prospective_review": {
+    "primary_outcome_C": "Actual USER-facing qualified Enum/class-redefinition guidance selected from and supported by the supplied guide. Report first answer and correction separately, two repetitions of one exposed case, not four independent cases.",
+    "C_baseline": "Generic Session State material alone cannot support Enum-specific mechanism, module workaround, release range or verified fix. A qualified investigation/escalation remains defensible.",
+    "C_guide_added": "May attribute the documented repeated class-definition/retained-instance mechanism and general separately imported-module pattern, retaining its caveat. Do not claim the actual reproduction was verified, installed1.31 releases are established affected versions, or a guaranteed fix.",
+    "enumCoercion": "The guide explicitly discusses Enum values returned by widgets. The reported direct Session State equality example contains no widget; enumCoercion is not established as its remedy.",
+    "correction": "Active USER version1.31.0 initially and1.31.1 after correction. Old1.31.0 must stop being current; full already-given code/environment/checks are not missing and must not be asked again.",
+    "A_B_controls": "Retain source-backed partial guidance and necessary questions where supported. Generic class quotations are not automatically relevant to A/B; no new A/B evidence is supplied.",
+    "all_surfaces": "Check every material claim, source text, version applicability and unanswered portion, including claims outside citations; score draft separately from edited/released. Question necessity/answerability and operational approval are separate.",
+    "decision_labels_and_schema_not_quality": true,
+    "human_usefulness": null,
+    "assistant_review_unblinded_with_implementation_overlap": true,
+    "held_out_test": false,
+    "no_real_RAG_or_final_test_quality_claim": true
+  },
+  "not_changed": [
+    "real RAG corpus/index/exclusion and answer-linked guide ban",
+    "original fixtures/gold/receipts/protocols",
+    "tracker/UI ownership and shared public contracts",
+    "two model attempts/two retrieval rounds/two queries/eight steps limits",
+    "ordinary global ledger halt, all previous rows/grants/holds and USD4.50 ceiling",
+    "single-agent architecture"
+  ],
+  "implementation_files_to_pin": [
+    "src/agent_app/testing/enum_evidence.py",
+    "experiments/core_enum_evidence_v1/source-packet-v1.json",
+    "new finite driver",
+    "offline request/payload replay",
+    "semantic-review preparation",
+    "original fixture/evidence/vocabulary bytes",
+    "parent closed JSON receipt",
+    "all14table ledger journal and unknown/grant history"
+  ]
+}
