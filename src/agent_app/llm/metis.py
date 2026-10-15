@@ -14,7 +14,35 @@ from agent_app.orchestration.ports import ReasoningStopped
 from agent_app.reasoning.grounding import build_grounded_messages, validate_grounded_request
 from agent_app.reasoning.prompts import build_messages
 from agent_app.reasoning.resource_guidance import add_resource_guidance
+from agent_app.reasoning.source_capacity import add_source_capacity
 from agent_app.reasoning.source_selection import add_source_selection_reminder
+
+
+def configured_grounded_messages(config, request, context):
+    """One wire projection shared with the audit hash; no live authorization."""
+    messages = build_grounded_messages(
+        request,
+        context,
+        decision_contracts=config.grounded_decision_contracts,
+    )
+    messages = add_source_selection_reminder(
+        messages, enabled=config.grounded_source_selection_reminder
+    )
+    messages = add_resource_guidance(
+        messages,
+        request,
+        enabled=config.grounded_resource_guidance,
+        source_gap_handoff=config.grounded_source_gap_handoff,
+        source_gap_investigation=config.grounded_source_gap_investigation,
+    )
+    messages = add_source_capacity(
+        messages,
+        request,
+        enabled=config.grounded_source_capacity,
+        source_gap_handoff=config.grounded_source_gap_handoff,
+        source_gap_investigation=config.grounded_source_gap_investigation,
+    )
+    return messages
 
 
 def request_id_for(context: ReasoningContext) -> str:
@@ -90,21 +118,7 @@ class MetisReasoner:
                     or request.evidence != evidence
                 ):
                     raise ValueError("Grounded request does not match reasoning inputs")
-                messages = build_grounded_messages(
-                    request,
-                    context,
-                    decision_contracts=self.config.grounded_decision_contracts,
-                )
-                messages = add_source_selection_reminder(
-                    messages, enabled=self.config.grounded_source_selection_reminder
-                )
-                messages = add_resource_guidance(
-                    messages,
-                    request,
-                    enabled=self.config.grounded_resource_guidance,
-                    source_gap_handoff=self.config.grounded_source_gap_handoff,
-                    source_gap_investigation=self.config.grounded_source_gap_investigation,
-                )
+                messages = configured_grounded_messages(self.config, request, context)
             except (AttributeError, TypeError, ValueError):
                 raise ValueError("Invalid grounded request or context") from None
         if not self.config.live_enabled:
