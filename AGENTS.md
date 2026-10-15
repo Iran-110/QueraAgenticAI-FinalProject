@@ -45,6 +45,12 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
   reconstructs the entire draft from a current validated handoff, never a prefix.
   Normal ledger guards stay unchanged. This is qualified quotation, not concise
   synthesis, human usefulness, automatic diagnosis/fix or held-out quality.
+  The closed14-send C4h6 replication retains12turns (11fresh/1stale),5/6routes,
+  two same-plan A display additions108→7870chars and one final invalid raw JSON.
+  Do not claim improved overall model reliability, reuse its identities or hide
+  the stale Enum correction.3323 recomputation checks preserve all479prior rows,
+  both holds/halt/ceiling;6scopes closed and10unusedslots permanently claimed.
+  Human usefulness is null; source precision and quote verbosity remain open.
 
 - Default to offline mock execution. No paid API calls for routine development; the whole team's API budget is USD 5, including embeddings and evaluation.
 - Never put keys in code, fixtures, commits, trace output, or logs. Use local ignored environment files for real credentials.
