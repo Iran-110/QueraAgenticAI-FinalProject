@@ -696,6 +696,7 @@ handoffها و متن released محفوظ‌اند. ترکیب اصلاحات ب
 ### وضعیت انتشار C4h3/E2r
 
 [بررسی محلی](../experiments/core_source_capacity_v1/verification-v1.json):۳۸۲۷pytest،
-Ruff،سهdemo وHTTP/SQLite۴۵۷/۴۵۷ پاس. تغییرات رویbranch`feat/core-source-capacity`
-برایreview منتشر می‌شوند؛ تاCI همانhead اجرا و پاس نشود merge نشده‌اند.
+Ruff،سهdemo وHTTP/SQLite۴۵۷/۴۵۷ پاس. تغییرات در [PR #54](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/54)
+رویbranch`feat/core-source-capacity` منتشر شدند؛ تاCI همانhead اجرا و پاس نشود
+merge نمی‌شوند. درhead`6a4bd26`، هر دوjob قبل از شروع با خطای Billing متوقف شدند.
 Billing گیت‌هاب باید از سمت صاحب حساب رفع شود؛ نتیجهٔ تست محلی جایCI نیست.

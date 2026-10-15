@@ -85,3 +85,8 @@ commit3891358, Ruff280 files, locked dependency sync, all three offline demos,
 HTTP/SQLite457/457 and137 local plan links. The earlier full run's commit-stability
 failure is retained rather than erased; it passed on a stable checkout and the
 complete final suite was rerun. Local verification is not GitHub CI success.
+
+Published for review in [PR54](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/54).
+At head6a4bd26 both Linux and Windows jobs were prevented from starting by the
+GitHub account billing failure ([Linux annotation job](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38706905486/job/116328453872)).
+No merge or billing-setting change was made. Final-head checks remain required.
