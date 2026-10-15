@@ -38,6 +38,7 @@ class MetisConfig(BaseModel):
     grounded_resource_guidance: Annotated[bool, Field(strict=True)] = False
     grounded_source_capacity: Annotated[bool, Field(strict=True)] = False
     grounded_compact_plan: Annotated[bool, Field(strict=True)] = False
+    grounded_json_object: Annotated[bool, Field(strict=True)] = False
     # Caller-owned accounting authorization, never selected by model output.
     continuation_id: (
         Annotated[str, StringConstraints(pattern=r"^[a-z0-9][a-z0-9-]{0,63}$")] | None
@@ -62,6 +63,8 @@ class MetisConfig(BaseModel):
             raise ValueError("Source capacity requires grounded decision contracts")
         if self.grounded_compact_plan and not self.grounded_decision_contracts:
             raise ValueError("Compact plan requires grounded decision contracts")
+        if self.grounded_json_object and self.response_mode != "grounded_plan":
+            raise ValueError("JSON object mode requires grounded plan mode")
         return self
 
     @model_validator(mode="before")
@@ -116,9 +119,19 @@ class MetisConfig(BaseModel):
         resources = os.environ.get("METIS_GROUNDED_RESOURCE_GUIDANCE", "false")
         capacity = os.environ.get("METIS_GROUNDED_SOURCE_CAPACITY", "false")
         compact = os.environ.get("METIS_GROUNDED_COMPACT_PLAN", "false")
+        json_object = os.environ.get("METIS_GROUNDED_JSON_OBJECT", "false")
         if any(
             value not in {"true", "false"}
-            for value in (contracts, handoff, investigation, reminder, resources, capacity, compact)
+            for value in (
+                contracts,
+                handoff,
+                investigation,
+                reminder,
+                resources,
+                capacity,
+                compact,
+                json_object,
+            )
         ):
             raise ValueError("Grounded mode flags must be true or false")
         return cls(
@@ -134,4 +147,5 @@ class MetisConfig(BaseModel):
             grounded_resource_guidance=resources == "true",
             grounded_source_capacity=capacity == "true",
             grounded_compact_plan=compact == "true",
+            grounded_json_object=json_object == "true",
         )
