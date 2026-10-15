@@ -1,5 +1,16 @@
 # Connect your module to the core
 
+The [C4h8 Enum evidence comparison](enum-evidence-quality.fa.md) adds only a
+controlled fixture supplier and finite testing driver. Shared contracts,
+production factories/defaults, RAG index/exclusions and original gold stay
+unchanged. Its answer-linked official guide is experimental evidence, never
+input to a real corpus loader. The historical fixture snapshot is a logical label;
+arm/bundle/context hashes identify the actual differing content. Both paid arms
+use the existing capacity policy, with evidence/history-dependent schema counts.
+Read the result as documentary guidance availability, not a verified fix or
+real-retrieval acceptance. Local HTTP/SQLite repair/correction/restart/retry uses
+a mocked provider; the paid comparison uses the existing memory runner/gateway.
+
 The optional [named candidate profile](candidate-live-profile.fa.md) now survives
 factory, evaluation runner, memory API and persistent service conversion. Set
 `AGENT_RETRIEVAL_PROFILE=candidate_relevance_v1` with `AGENT_EVAL_TOP_K=5` to use

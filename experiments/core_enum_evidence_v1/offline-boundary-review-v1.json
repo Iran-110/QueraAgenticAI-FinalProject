@@ -1,0 +1,644 @@
+{
+  "schema_version": 1,
+  "report_id": "core-enum-evidence-offline-boundary-v1",
+  "source_capacity": true,
+  "accepted": true,
+  "actual_sends": 0,
+  "actual_search": false,
+  "human_usefulness": null,
+  "is_model_quality_score": false,
+  "measurement_scope": "Direct current context; actual HTTP/USER-history checked separately.",
+  "guide_rows": 16,
+  "all_subset_rows": 20,
+  "actual_renderer_rejections": 2,
+  "permitted_bound_violations": 0,
+  "max_observed_summary_chars": 20015,
+  "prompts": [
+    {
+      "turn_id": "initial",
+      "arm": "fixed_baseline",
+      "repair": false,
+      "full_message_utf8_bytes_plus_guard": 19714,
+      "input_limit": 32768,
+      "full_request_unchanged": true,
+      "advertised_max_sources": 8
+    },
+    {
+      "turn_id": "initial",
+      "arm": "fixed_baseline",
+      "repair": true,
+      "full_message_utf8_bytes_plus_guard": 18922,
+      "input_limit": 32768,
+      "full_request_unchanged": true,
+      "advertised_max_sources": 8
+    },
+    {
+      "turn_id": "initial",
+      "arm": "fixed_guide_added",
+      "repair": false,
+      "full_message_utf8_bytes_plus_guard": 26150,
+      "input_limit": 32768,
+      "full_request_unchanged": true,
+      "advertised_max_sources": 2
+    },
+    {
+      "turn_id": "initial",
+      "arm": "fixed_guide_added",
+      "repair": true,
+      "full_message_utf8_bytes_plus_guard": 25358,
+      "input_limit": 32768,
+      "full_request_unchanged": true,
+      "advertised_max_sources": 2
+    },
+    {
+      "turn_id": "correction",
+      "arm": "fixed_baseline",
+      "repair": false,
+      "full_message_utf8_bytes_plus_guard": 19252,
+      "input_limit": 32768,
+      "full_request_unchanged": true,
+      "advertised_max_sources": 8
+    },
+    {
+      "turn_id": "correction",
+      "arm": "fixed_baseline",
+      "repair": true,
+      "full_message_utf8_bytes_plus_guard": 18460,
+      "input_limit": 32768,
+      "full_request_unchanged": true,
+      "advertised_max_sources": 8
+    },
+    {
+      "turn_id": "correction",
+      "arm": "fixed_guide_added",
+      "repair": false,
+      "full_message_utf8_bytes_plus_guard": 25688,
+      "input_limit": 32768,
+      "full_request_unchanged": true,
+      "advertised_max_sources": 8
+    },
+    {
+      "turn_id": "correction",
+      "arm": "fixed_guide_added",
+      "repair": true,
+      "full_message_utf8_bytes_plus_guard": 24896,
+      "input_limit": 32768,
+      "full_request_unchanged": true,
+      "advertised_max_sources": 8
+    }
+  ],
+  "subset_outcomes": [
+    {
+      "turn_id": "initial",
+      "arm": "fixed_baseline",
+      "selected_indexes": [],
+      "selected_chunk_ids": [],
+      "advertised_max_sources": 8,
+      "within_advertised_source_count": true,
+      "decisions": {
+        "answer": {
+          "status": "ineligible_empty_answer",
+          "renderer_invoked": false
+        },
+        "escalate": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 1202,
+          "maintainer_summary_chars": 3806,
+          "rationale_chars": 1189
+        }
+      }
+    },
+    {
+      "turn_id": "initial",
+      "arm": "fixed_baseline",
+      "selected_indexes": [
+        0
+      ],
+      "selected_chunk_ids": [
+        "dev-three-session-state-full"
+      ],
+      "advertised_max_sources": 8,
+      "within_advertised_source_count": true,
+      "decisions": {
+        "answer": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 11266,
+          "maintainer_summary_chars": 13994,
+          "rationale_chars": 1189
+        },
+        "escalate": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 1202,
+          "maintainer_summary_chars": 13994,
+          "rationale_chars": 1189
+        }
+      }
+    },
+    {
+      "turn_id": "initial",
+      "arm": "fixed_guide_added",
+      "selected_indexes": [],
+      "selected_chunk_ids": [],
+      "advertised_max_sources": 2,
+      "within_advertised_source_count": true,
+      "decisions": {
+        "answer": {
+          "status": "ineligible_empty_answer",
+          "renderer_invoked": false
+        },
+        "escalate": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 1202,
+          "maintainer_summary_chars": 3806,
+          "rationale_chars": 1189
+        }
+      }
+    },
+    {
+      "turn_id": "initial",
+      "arm": "fixed_guide_added",
+      "selected_indexes": [
+        0
+      ],
+      "selected_chunk_ids": [
+        "dev-three-session-state-full"
+      ],
+      "advertised_max_sources": 2,
+      "within_advertised_source_count": true,
+      "decisions": {
+        "answer": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 11266,
+          "maintainer_summary_chars": 13994,
+          "rationale_chars": 1189
+        },
+        "escalate": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 1202,
+          "maintainer_summary_chars": 13994,
+          "rationale_chars": 1189
+        }
+      }
+    },
+    {
+      "turn_id": "initial",
+      "arm": "fixed_guide_added",
+      "selected_indexes": [
+        1
+      ],
+      "selected_chunk_ids": [
+        "fixture-enum-guide-separate-module-v1"
+      ],
+      "advertised_max_sources": 2,
+      "within_advertised_source_count": true,
+      "decisions": {
+        "answer": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 3871,
+          "maintainer_summary_chars": 6599,
+          "rationale_chars": 1189
+        },
+        "escalate": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 1202,
+          "maintainer_summary_chars": 6599,
+          "rationale_chars": 1189
+        }
+      }
+    },
+    {
+      "turn_id": "initial",
+      "arm": "fixed_guide_added",
+      "selected_indexes": [
+        2
+      ],
+      "selected_chunk_ids": [
+        "fixture-enum-guide-enum-and-widget-coercion-v1"
+      ],
+      "advertised_max_sources": 2,
+      "within_advertised_source_count": true,
+      "decisions": {
+        "answer": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 4306,
+          "maintainer_summary_chars": 7034,
+          "rationale_chars": 1189
+        },
+        "escalate": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 1202,
+          "maintainer_summary_chars": 7034,
+          "rationale_chars": 1189
+        }
+      }
+    },
+    {
+      "turn_id": "initial",
+      "arm": "fixed_guide_added",
+      "selected_indexes": [
+        0,
+        1
+      ],
+      "selected_chunk_ids": [
+        "dev-three-session-state-full",
+        "fixture-enum-guide-separate-module-v1"
+      ],
+      "advertised_max_sources": 2,
+      "within_advertised_source_count": true,
+      "decisions": {
+        "answer": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 14059,
+          "maintainer_summary_chars": 16787,
+          "rationale_chars": 1189
+        },
+        "escalate": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 1202,
+          "maintainer_summary_chars": 16787,
+          "rationale_chars": 1189
+        }
+      }
+    },
+    {
+      "turn_id": "initial",
+      "arm": "fixed_guide_added",
+      "selected_indexes": [
+        0,
+        2
+      ],
+      "selected_chunk_ids": [
+        "dev-three-session-state-full",
+        "fixture-enum-guide-enum-and-widget-coercion-v1"
+      ],
+      "advertised_max_sources": 2,
+      "within_advertised_source_count": true,
+      "decisions": {
+        "answer": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 14494,
+          "maintainer_summary_chars": 17222,
+          "rationale_chars": 1189
+        },
+        "escalate": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 1202,
+          "maintainer_summary_chars": 17222,
+          "rationale_chars": 1189
+        }
+      }
+    },
+    {
+      "turn_id": "initial",
+      "arm": "fixed_guide_added",
+      "selected_indexes": [
+        1,
+        2
+      ],
+      "selected_chunk_ids": [
+        "fixture-enum-guide-separate-module-v1",
+        "fixture-enum-guide-enum-and-widget-coercion-v1"
+      ],
+      "advertised_max_sources": 2,
+      "within_advertised_source_count": true,
+      "decisions": {
+        "answer": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 7099,
+          "maintainer_summary_chars": 9827,
+          "rationale_chars": 1189
+        },
+        "escalate": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 1202,
+          "maintainer_summary_chars": 9827,
+          "rationale_chars": 1189
+        }
+      }
+    },
+    {
+      "turn_id": "initial",
+      "arm": "fixed_guide_added",
+      "selected_indexes": [
+        0,
+        1,
+        2
+      ],
+      "selected_chunk_ids": [
+        "dev-three-session-state-full",
+        "fixture-enum-guide-separate-module-v1",
+        "fixture-enum-guide-enum-and-widget-coercion-v1"
+      ],
+      "advertised_max_sources": 2,
+      "within_advertised_source_count": false,
+      "decisions": {
+        "answer": {
+          "status": "rejected",
+          "renderer_invoked": true,
+          "error_code": "grounded_render_too_large",
+          "maintainer_summary_chars": 20015,
+          "length_method": "exact existing renderer resource accounting"
+        },
+        "escalate": {
+          "status": "rejected",
+          "renderer_invoked": true,
+          "error_code": "grounded_render_too_large",
+          "maintainer_summary_chars": 20015,
+          "length_method": "exact existing renderer resource accounting"
+        }
+      }
+    },
+    {
+      "turn_id": "correction",
+      "arm": "fixed_baseline",
+      "selected_indexes": [],
+      "selected_chunk_ids": [],
+      "advertised_max_sources": 8,
+      "within_advertised_source_count": true,
+      "decisions": {
+        "answer": {
+          "status": "ineligible_empty_answer",
+          "renderer_invoked": false
+        },
+        "escalate": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 1202,
+          "maintainer_summary_chars": 3086,
+          "rationale_chars": 1189
+        }
+      }
+    },
+    {
+      "turn_id": "correction",
+      "arm": "fixed_baseline",
+      "selected_indexes": [
+        0
+      ],
+      "selected_chunk_ids": [
+        "dev-three-session-state-full"
+      ],
+      "advertised_max_sources": 8,
+      "within_advertised_source_count": true,
+      "decisions": {
+        "answer": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 11266,
+          "maintainer_summary_chars": 13274,
+          "rationale_chars": 1189
+        },
+        "escalate": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 1202,
+          "maintainer_summary_chars": 13274,
+          "rationale_chars": 1189
+        }
+      }
+    },
+    {
+      "turn_id": "correction",
+      "arm": "fixed_guide_added",
+      "selected_indexes": [],
+      "selected_chunk_ids": [],
+      "advertised_max_sources": 8,
+      "within_advertised_source_count": true,
+      "decisions": {
+        "answer": {
+          "status": "ineligible_empty_answer",
+          "renderer_invoked": false
+        },
+        "escalate": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 1202,
+          "maintainer_summary_chars": 3086,
+          "rationale_chars": 1189
+        }
+      }
+    },
+    {
+      "turn_id": "correction",
+      "arm": "fixed_guide_added",
+      "selected_indexes": [
+        0
+      ],
+      "selected_chunk_ids": [
+        "dev-three-session-state-full"
+      ],
+      "advertised_max_sources": 8,
+      "within_advertised_source_count": true,
+      "decisions": {
+        "answer": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 11266,
+          "maintainer_summary_chars": 13274,
+          "rationale_chars": 1189
+        },
+        "escalate": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 1202,
+          "maintainer_summary_chars": 13274,
+          "rationale_chars": 1189
+        }
+      }
+    },
+    {
+      "turn_id": "correction",
+      "arm": "fixed_guide_added",
+      "selected_indexes": [
+        1
+      ],
+      "selected_chunk_ids": [
+        "fixture-enum-guide-separate-module-v1"
+      ],
+      "advertised_max_sources": 8,
+      "within_advertised_source_count": true,
+      "decisions": {
+        "answer": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 3871,
+          "maintainer_summary_chars": 5879,
+          "rationale_chars": 1189
+        },
+        "escalate": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 1202,
+          "maintainer_summary_chars": 5879,
+          "rationale_chars": 1189
+        }
+      }
+    },
+    {
+      "turn_id": "correction",
+      "arm": "fixed_guide_added",
+      "selected_indexes": [
+        2
+      ],
+      "selected_chunk_ids": [
+        "fixture-enum-guide-enum-and-widget-coercion-v1"
+      ],
+      "advertised_max_sources": 8,
+      "within_advertised_source_count": true,
+      "decisions": {
+        "answer": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 4306,
+          "maintainer_summary_chars": 6314,
+          "rationale_chars": 1189
+        },
+        "escalate": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 1202,
+          "maintainer_summary_chars": 6314,
+          "rationale_chars": 1189
+        }
+      }
+    },
+    {
+      "turn_id": "correction",
+      "arm": "fixed_guide_added",
+      "selected_indexes": [
+        0,
+        1
+      ],
+      "selected_chunk_ids": [
+        "dev-three-session-state-full",
+        "fixture-enum-guide-separate-module-v1"
+      ],
+      "advertised_max_sources": 8,
+      "within_advertised_source_count": true,
+      "decisions": {
+        "answer": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 14059,
+          "maintainer_summary_chars": 16067,
+          "rationale_chars": 1189
+        },
+        "escalate": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 1202,
+          "maintainer_summary_chars": 16067,
+          "rationale_chars": 1189
+        }
+      }
+    },
+    {
+      "turn_id": "correction",
+      "arm": "fixed_guide_added",
+      "selected_indexes": [
+        0,
+        2
+      ],
+      "selected_chunk_ids": [
+        "dev-three-session-state-full",
+        "fixture-enum-guide-enum-and-widget-coercion-v1"
+      ],
+      "advertised_max_sources": 8,
+      "within_advertised_source_count": true,
+      "decisions": {
+        "answer": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 14494,
+          "maintainer_summary_chars": 16502,
+          "rationale_chars": 1189
+        },
+        "escalate": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 1202,
+          "maintainer_summary_chars": 16502,
+          "rationale_chars": 1189
+        }
+      }
+    },
+    {
+      "turn_id": "correction",
+      "arm": "fixed_guide_added",
+      "selected_indexes": [
+        1,
+        2
+      ],
+      "selected_chunk_ids": [
+        "fixture-enum-guide-separate-module-v1",
+        "fixture-enum-guide-enum-and-widget-coercion-v1"
+      ],
+      "advertised_max_sources": 8,
+      "within_advertised_source_count": true,
+      "decisions": {
+        "answer": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 7099,
+          "maintainer_summary_chars": 9107,
+          "rationale_chars": 1189
+        },
+        "escalate": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 1202,
+          "maintainer_summary_chars": 9107,
+          "rationale_chars": 1189
+        }
+      }
+    },
+    {
+      "turn_id": "correction",
+      "arm": "fixed_guide_added",
+      "selected_indexes": [
+        0,
+        1,
+        2
+      ],
+      "selected_chunk_ids": [
+        "dev-three-session-state-full",
+        "fixture-enum-guide-separate-module-v1",
+        "fixture-enum-guide-enum-and-widget-coercion-v1"
+      ],
+      "advertised_max_sources": 8,
+      "within_advertised_source_count": true,
+      "decisions": {
+        "answer": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 17287,
+          "maintainer_summary_chars": 19295,
+          "rationale_chars": 1189
+        },
+        "escalate": {
+          "status": "rendered",
+          "renderer_invoked": true,
+          "user_draft_chars": 1202,
+          "maintainer_summary_chars": 19295,
+          "rationale_chars": 1189
+        }
+      }
+    }
+  ]
+}

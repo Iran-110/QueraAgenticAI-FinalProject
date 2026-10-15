@@ -1,0 +1,4908 @@
+{
+  "schema_version": 1,
+  "review_id": "core-enum-evidence-actual-semantic-audit-v1",
+  "original_receipt_path": "/Users/sasan/Desktop/Agentic AI/output/core-enum-evidence-model-2026-10-15-v1/receipt.json",
+  "original_receipt_sha256": "bf4ba6855c56591ea2875bde060c917363f3507e2cf7e1885fe3b4488b7fabda",
+  "paid_source_commit": "edaef059966f071496a7398836a258d6864f70ad",
+  "protocol_path": "experiments/core_enum_evidence_v1/protocol-v1.json",
+  "capacity_amendment_path": "experiments/core_enum_evidence_v1/capacity-amendment-v1.json",
+  "source_packet_sha256": "f320f1071b2fa1e4ebfdd36c3f91df60f5a0f520ea6c22bb7aac8fae992f7d33",
+  "reviewer": "Unblinded assistant with implementation/test overlap; direct manual inspection plus deterministic revalidation/reconstruction.",
+  "human_reviewed": false,
+  "human_usefulness": null,
+  "LLM_judge_used": false,
+  "new_model_calls": 0,
+  "ledger_writes": 0,
+  "source_snippets_or_USER_code_executed": false,
+  "answer_informed_direct_answer_linked": true,
+  "real_RAG": false,
+  "held_out_test": false,
+  "final_evaluation": false,
+  "scope_note": "Controlled fixed evidence availability under a shared dynamic source-count policy; no model capability gain, pure text-only causal isolation, real retrieval quality or verified runtime fix claimed.",
+  "denominators": {
+    "planned_turns": 24,
+    "reviewed_actual_turns": 24,
+    "fresh_proposals": 24,
+    "model_attempts": 24,
+    "actual_sends": 24,
+    "first_attempt_fresh": 24,
+    "released_outputs": 20,
+    "edited_outputs": 0,
+    "failed_or_stale_or_unvisited_turns": 0,
+    "routes_completed": 12,
+    "no_dropped_failures": true
+  },
+  "mechanical_validation": {
+    "checks": 863,
+    "passed": 863,
+    "failed": [],
+    "not_semantic_accuracy_score": true
+  },
+  "C_outcomes": {
+    "fixed_baseline": {
+      "exposed_cases": 1,
+      "repetitions": 2,
+      "fresh_C_drafts": 4,
+      "actually_released_C_corrections": 2,
+      "initial_C_drafts_not_released": 2,
+      "complete_Enum_identity_section_in_actual_USERdraft": 0,
+      "complete_Enum_identity_section_actually_released": 0,
+      "complete_module_pattern_with_edit_caveat_in_actual_USERdraft": 0,
+      "complete_module_pattern_with_edit_caveat_actually_released": 0,
+      "any_module_mention_not_full_pattern_in_actual_USERdraft": 0,
+      "both_complete_guide_sections_jointly_selected": 0,
+      "generic_session_state_still_selected": 4,
+      "new_USER_gap_requests": 0,
+      "runtime_cause_or_fix_verified": 0,
+      "user_draft_chars": [
+        11266,
+        11266,
+        11266,
+        11266
+      ]
+    },
+    "fixed_guide_added": {
+      "exposed_cases": 1,
+      "repetitions": 2,
+      "fresh_C_drafts": 4,
+      "actually_released_C_corrections": 2,
+      "initial_C_drafts_not_released": 2,
+      "complete_Enum_identity_section_in_actual_USERdraft": 3,
+      "complete_Enum_identity_section_actually_released": 1,
+      "complete_module_pattern_with_edit_caveat_in_actual_USERdraft": 1,
+      "complete_module_pattern_with_edit_caveat_actually_released": 1,
+      "any_module_mention_not_full_pattern_in_actual_USERdraft": 3,
+      "both_complete_guide_sections_jointly_selected": 0,
+      "generic_session_state_still_selected": 4,
+      "new_USER_gap_requests": 0,
+      "runtime_cause_or_fix_verified": 0,
+      "user_draft_chars": [
+        14494,
+        14059,
+        14494,
+        14494
+      ]
+    }
+  },
+  "A_B_control_observations": [
+    {
+      "round": 1,
+      "case_id": "dev-case-a",
+      "turn_id": "initial",
+      "actual_enriched_requests_identical": true,
+      "analysis_identical": true,
+      "selected_chunks_by_arm": {
+        "fixed_baseline": [],
+        "fixed_guide_added": []
+      },
+      "interpretation": "Input/control records are identical; observed output/source-selection differences are descriptive model variability, not a guide effect on these unchanged cases."
+    },
+    {
+      "round": 1,
+      "case_id": "dev-case-a",
+      "turn_id": "version",
+      "actual_enriched_requests_identical": true,
+      "analysis_identical": true,
+      "selected_chunks_by_arm": {
+        "fixed_baseline": [
+          "dev-three-multiselect-1500-default-key",
+          "dev-three-fragment-150-full"
+        ],
+        "fixed_guide_added": [
+          "dev-three-multiselect-1500-default-key",
+          "dev-three-fragment-150-full"
+        ]
+      },
+      "interpretation": "Input/control records are identical; observed output/source-selection differences are descriptive model variability, not a guide effect on these unchanged cases."
+    },
+    {
+      "round": 1,
+      "case_id": "dev-case-b",
+      "turn_id": "initial",
+      "actual_enriched_requests_identical": true,
+      "analysis_identical": true,
+      "selected_chunks_by_arm": {
+        "fixed_guide_added": [],
+        "fixed_baseline": []
+      },
+      "interpretation": "Input/control records are identical; observed output/source-selection differences are descriptive model variability, not a guide effect on these unchanged cases."
+    },
+    {
+      "round": 1,
+      "case_id": "dev-case-b",
+      "turn_id": "version",
+      "actual_enriched_requests_identical": true,
+      "analysis_identical": true,
+      "selected_chunks_by_arm": {
+        "fixed_guide_added": [
+          "dev-three-button-139-full"
+        ],
+        "fixed_baseline": [
+          "dev-three-button-139-full"
+        ]
+      },
+      "interpretation": "Input/control records are identical; observed output/source-selection differences are descriptive model variability, not a guide effect on these unchanged cases."
+    },
+    {
+      "round": 2,
+      "case_id": "dev-case-b",
+      "turn_id": "initial",
+      "actual_enriched_requests_identical": true,
+      "analysis_identical": true,
+      "selected_chunks_by_arm": {
+        "fixed_baseline": [],
+        "fixed_guide_added": []
+      },
+      "interpretation": "Input/control records are identical; observed output/source-selection differences are descriptive model variability, not a guide effect on these unchanged cases."
+    },
+    {
+      "round": 2,
+      "case_id": "dev-case-b",
+      "turn_id": "version",
+      "actual_enriched_requests_identical": true,
+      "analysis_identical": true,
+      "selected_chunks_by_arm": {
+        "fixed_baseline": [
+          "dev-three-button-139-full"
+        ],
+        "fixed_guide_added": [
+          "dev-three-button-139-full"
+        ]
+      },
+      "interpretation": "Input/control records are identical; observed output/source-selection differences are descriptive model variability, not a guide effect on these unchanged cases."
+    },
+    {
+      "round": 2,
+      "case_id": "dev-case-a",
+      "turn_id": "initial",
+      "actual_enriched_requests_identical": true,
+      "analysis_identical": true,
+      "selected_chunks_by_arm": {
+        "fixed_guide_added": [],
+        "fixed_baseline": []
+      },
+      "interpretation": "Input/control records are identical; observed output/source-selection differences are descriptive model variability, not a guide effect on these unchanged cases."
+    },
+    {
+      "round": 2,
+      "case_id": "dev-case-a",
+      "turn_id": "version",
+      "actual_enriched_requests_identical": true,
+      "analysis_identical": false,
+      "selected_chunks_by_arm": {
+        "fixed_guide_added": [
+          "dev-three-multiselect-1500-default-key",
+          "dev-three-fragment-150-full"
+        ],
+        "fixed_baseline": [
+          "dev-three-multiselect-1500-default-key"
+        ]
+      },
+      "interpretation": "Input/control records are identical; observed output/source-selection differences are descriptive model variability, not a guide effect on these unchanged cases."
+    }
+  ],
+  "source_records": [
+    {
+      "chunk_id": "dev-three-multiselect-1500-default-key",
+      "source_id": "docstring:1.50.0:streamlit.multiselect",
+      "source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.multiselect",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "source_span": "/1.50.0/streamlit.multiselect; Unicode codepoints [1406,1969)",
+      "applicable_versions": [
+        "1.50.0"
+      ],
+      "excerpt_utf8_sha256": "7dd22b98a51686beecc664de9316aa04058d558aa3e30256fd19ff87831215a9",
+      "normalized_evidence_sha256": "f12b18bc820e5fa3652c4dcff2cc52ac41a3a505e4ccd0812cb366a14e68730a",
+      "excerpt_chars": 561
+    },
+    {
+      "chunk_id": "dev-three-fragment-150-full",
+      "source_id": "docstring:1.50.0:streamlit.fragment",
+      "source_url": "https://docs.streamlit.io/develop/api-reference/execution-flow/st.fragment",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "source_span": "/1.50.0/streamlit.fragment; Unicode codepoints [0,2352)",
+      "applicable_versions": [
+        "1.50.0"
+      ],
+      "excerpt_utf8_sha256": "2d237d33c27fa367c8bac19ba308ac7e8a40a1bcd92a1351d9606b50898e0ee5",
+      "normalized_evidence_sha256": "27d00d1984e64cc43af3cec3989c02f6d08f4a5660a5740e321b9c281f838273",
+      "excerpt_chars": 2350
+    },
+    {
+      "chunk_id": "dev-three-button-139-full",
+      "source_id": "docstring:1.39.0:streamlit.button",
+      "source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.button",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "source_span": "/1.39.0/streamlit.button; Unicode codepoints [0,2698)",
+      "applicable_versions": [
+        "1.39.0"
+      ],
+      "excerpt_utf8_sha256": "3e4ee8f16a4363b8e204ecf26a34183cf5c92cd5d8b98fc70e35b42d63725012",
+      "normalized_evidence_sha256": "b42b67aa868d8bbf3fb3fb461aadfbe1495df3c2b520f1dea56d22b4f056cfb5",
+      "excerpt_chars": 2696
+    },
+    {
+      "chunk_id": "dev-three-session-state-full",
+      "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+      "source_url": "https://docs.streamlit.io/develop/api-reference/caching-and-state/st.session_state",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "source_span": "docs:content/develop/api-reference/caching-and-state/session_state.md; Unicode codepoints [0,8891)",
+      "applicable_versions": [],
+      "excerpt_utf8_sha256": "c77dca916fe79798e4a28c9cb04176eee6bb842f7a79ba4a576c4da213f23a10",
+      "normalized_evidence_sha256": "b2c299be565ca0c8229fb4e5472ab324d0f1d831a09c320282be87e81cf8e20b",
+      "excerpt_chars": 8890
+    },
+    {
+      "chunk_id": "fixture-enum-guide-enum-and-widget-coercion-v1",
+      "source_id": "docs:content/develop/concepts/app-design/custom-classes.md",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/app-design/custom-classes.md",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "source_span": "unicode_codepoint[12538:15157); raw_utf8_sha256=b1c5a760e61d213f294297fae055bae52e25b0d296761fd1c533cf282246b8c6",
+      "applicable_versions": [],
+      "excerpt_utf8_sha256": "91538e2afe431f10f17ce6e0ca3a6c996007e5db90a39abe3d3276f132c7e349",
+      "normalized_evidence_sha256": "b86c44b64e1914fd0880c21434a0b855c08dcd01933295feb74a3d74353708fa",
+      "excerpt_chars": 2619
+    },
+    {
+      "chunk_id": "fixture-enum-guide-separate-module-v1",
+      "source_id": "docs:content/develop/concepts/app-design/custom-classes.md",
+      "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/app-design/custom-classes.md",
+      "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+      "source_span": "unicode_codepoint[1637:3780); raw_utf8_sha256=b1c5a760e61d213f294297fae055bae52e25b0d296761fd1c533cf282246b8c6",
+      "applicable_versions": [],
+      "excerpt_utf8_sha256": "414347d4b9eef71e0b7d2711a84f4037eea0e98870e09b7f5c3c531610019039",
+      "normalized_evidence_sha256": "514269a3536e5afeac56ae68474f9d40803486fcc8e98a9f4067bc3593332cce",
+      "excerpt_chars": 2143
+    }
+  ],
+  "rows": [
+    {
+      "batch_id": "enum-evidence-r1-dev-case-a",
+      "job_id": "r1:dev-case-a:fixed_baseline",
+      "case_id": "dev-case-a",
+      "arm": "fixed_baseline",
+      "round": 1,
+      "turn_id": "initial",
+      "mechanical_checks": [
+        {
+          "check": "fresh proposal present",
+          "passed": true
+        },
+        {
+          "check": "exactly one first attempt",
+          "passed": true
+        },
+        {
+          "check": "actual request preserved in handoff",
+          "passed": true
+        },
+        {
+          "check": "handoff exact current analysis",
+          "passed": true
+        },
+        {
+          "check": "all original analysis fields exactly reconstructed",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field decision matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field user_draft matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field maintainer_summary matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field rationale matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field next_question matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field missing_info matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field facts_delta matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field checks_suggested matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field retrieval_queries matches analysis",
+          "passed": true
+        },
+        {
+          "check": "no edited proposal",
+          "passed": true
+        },
+        {
+          "check": "current request untrusted payload has no reviewer controller fields",
+          "passed": true
+        },
+        {
+          "check": "all active USER facts quoted in maintainer summary",
+          "passed": true
+        },
+        {
+          "check": "no model facts or checks promoted",
+          "passed": true
+        },
+        {
+          "check": "actual engine pool equals registered current condition after exact USER scope",
+          "passed": true
+        },
+        {
+          "check": "only source gap or necessary registered USER gap",
+          "passed": true
+        },
+        {
+          "check": "no inherited or current source conflict silently won",
+          "passed": true
+        },
+        {
+          "check": "every selected canonical source bound to current full record",
+          "passed": true
+        },
+        {
+          "check": "selected citations exactly match rendered links",
+          "passed": true
+        },
+        {
+          "check": "entire actual supplied request unchanged in compact model projection",
+          "passed": true
+        },
+        {
+          "check": "actual source count within dynamically advertised max",
+          "passed": true
+        },
+        {
+          "check": "actual complete prompt within unchanged 32768 guard",
+          "passed": true
+        },
+        {
+          "check": "provider raw JSON/wire schema/canonical binding valid",
+          "passed": true
+        },
+        {
+          "check": "provider selected indexes bind exact same selected chunks",
+          "passed": true
+        },
+        {
+          "check": "all actually released text equals original untouched draft",
+          "passed": true
+        },
+        {
+          "check": "source applicability and no fix qualification retained for answer",
+          "passed": true
+        },
+        {
+          "check": "A initial version gap necessary",
+          "passed": true
+        }
+      ],
+      "active_user_version": null,
+      "decision": "ask",
+      "question": "Which Streamlit version is installed in the affected environment?",
+      "source_gap_names": [
+        "exact_version_documentation"
+      ],
+      "user_gap_names": [
+        "streamlit_version",
+        "parent_callback_code",
+        "state_update_order"
+      ],
+      "selected_chunk_ids": [],
+      "selected_source_scopes": {},
+      "advertised_max_sources": 8,
+      "full_message_utf8_bytes_plus_guard": 11024,
+      "output_chars": {
+        "user_draft": 65,
+        "maintainer_summary": 1319,
+        "rationale": 689
+      },
+      "original_analysis_sha256": "2dfe0c053499837bf66e8f25c51018cc1838c24ab71de5fec34ce665985c00de",
+      "fresh": true,
+      "edited": false,
+      "actually_released": true,
+      "released_outputs": 1,
+      "has_complete_enum_identity_section_in_USERdraft": false,
+      "has_complete_module_pattern_with_caveat_in_USERdraft": false,
+      "has_any_module_mention_in_selected_guide": false,
+      "actual_case_cause_or_fix_verified": false,
+      "unsupported_material_claims_observed": [],
+      "human_usefulness": null,
+      "semantic_findings": [
+        "Necessary canonical version question: installed release is unknown; no technical diagnosis/fix asserted. The actual version-scoped model pool is empty, so the separate source gap is accurate."
+      ],
+      "prospective_assessment": "appropriate necessary USER question; not a solved technical case"
+    },
+    {
+      "batch_id": "enum-evidence-r1-dev-case-a",
+      "job_id": "r1:dev-case-a:fixed_baseline",
+      "case_id": "dev-case-a",
+      "arm": "fixed_baseline",
+      "round": 1,
+      "turn_id": "version",
+      "mechanical_checks": [
+        {
+          "check": "fresh proposal present",
+          "passed": true
+        },
+        {
+          "check": "exactly one first attempt",
+          "passed": true
+        },
+        {
+          "check": "actual request preserved in handoff",
+          "passed": true
+        },
+        {
+          "check": "handoff exact current analysis",
+          "passed": true
+        },
+        {
+          "check": "all original analysis fields exactly reconstructed",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field decision matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field user_draft matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field maintainer_summary matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field rationale matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field next_question matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field missing_info matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field facts_delta matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field checks_suggested matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field retrieval_queries matches analysis",
+          "passed": true
+        },
+        {
+          "check": "no edited proposal",
+          "passed": true
+        },
+        {
+          "check": "current request untrusted payload has no reviewer controller fields",
+          "passed": true
+        },
+        {
+          "check": "all active USER facts quoted in maintainer summary",
+          "passed": true
+        },
+        {
+          "check": "no model facts or checks promoted",
+          "passed": true
+        },
+        {
+          "check": "actual engine pool equals registered current condition after exact USER scope",
+          "passed": true
+        },
+        {
+          "check": "only source gap or necessary registered USER gap",
+          "passed": true
+        },
+        {
+          "check": "no inherited or current source conflict silently won",
+          "passed": true
+        },
+        {
+          "check": "every selected canonical source bound to current full record",
+          "passed": true
+        },
+        {
+          "check": "selected citations exactly match rendered links",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in summary dev-three-multiselect-1500-default-key",
+          "passed": true
+        },
+        {
+          "check": "selected source inventory exact in actual USER draft dev-three-multiselect-1500-default-key",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in summary dev-three-fragment-150-full",
+          "passed": true
+        },
+        {
+          "check": "selected source inventory exact in actual USER draft dev-three-fragment-150-full",
+          "passed": true
+        },
+        {
+          "check": "entire actual supplied request unchanged in compact model projection",
+          "passed": true
+        },
+        {
+          "check": "actual source count within dynamically advertised max",
+          "passed": true
+        },
+        {
+          "check": "actual complete prompt within unchanged 32768 guard",
+          "passed": true
+        },
+        {
+          "check": "provider raw JSON/wire schema/canonical binding valid",
+          "passed": true
+        },
+        {
+          "check": "provider selected indexes bind exact same selected chunks",
+          "passed": true
+        },
+        {
+          "check": "all actually released text equals original untouched draft",
+          "passed": true
+        },
+        {
+          "check": "source applicability and no fix qualification retained for answer",
+          "passed": true
+        },
+        {
+          "check": "A current version known callback gap necessary",
+          "passed": true
+        },
+        {
+          "check": "A ask remains exact canonical prefix",
+          "passed": true
+        }
+      ],
+      "active_user_version": "1.50.0",
+      "decision": "ask",
+      "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?",
+      "source_gap_names": [],
+      "user_gap_names": [
+        "parent_callback_code",
+        "state_update_order"
+      ],
+      "selected_chunk_ids": [
+        "dev-three-multiselect-1500-default-key",
+        "dev-three-fragment-150-full"
+      ],
+      "selected_source_scopes": {
+        "dev-three-multiselect-1500-default-key": "exact_metadata_match",
+        "dev-three-fragment-150-full": "exact_metadata_match"
+      },
+      "advertised_max_sources": 8,
+      "full_message_utf8_bytes_plus_guard": 15791,
+      "output_chars": {
+        "user_draft": 1109,
+        "maintainer_summary": 4789,
+        "rationale": 366
+      },
+      "original_analysis_sha256": "27de85fcbb9f0355d135b9d8f9cd1afa3950178c006150be65b717c01b451e23",
+      "fresh": true,
+      "edited": false,
+      "actually_released": true,
+      "released_outputs": 1,
+      "has_complete_enum_identity_section_in_USERdraft": false,
+      "has_complete_module_pattern_with_caveat_in_USERdraft": false,
+      "has_any_module_mention_in_selected_guide": false,
+      "actual_case_cause_or_fix_verified": false,
+      "unsupported_material_claims_observed": [],
+      "human_usefulness": null,
+      "semantic_findings": [
+        "Necessary answerable callback/state-update-code question: only the reduced working example is available. Current1.50.0 is known and not asked again.",
+        "Concise source inventory references are relevant and complete API quotations remain in review summary, but the actual USER draft does not deliver those technical API passages.",
+        "No source-backed cause/fix or key-only identity transition claim is asserted."
+      ],
+      "prospective_assessment": "appropriate necessary USER question; not a solved technical case"
+    },
+    {
+      "batch_id": "enum-evidence-r1-dev-case-a",
+      "job_id": "r1:dev-case-a:fixed_guide_added",
+      "case_id": "dev-case-a",
+      "arm": "fixed_guide_added",
+      "round": 1,
+      "turn_id": "initial",
+      "mechanical_checks": [
+        {
+          "check": "fresh proposal present",
+          "passed": true
+        },
+        {
+          "check": "exactly one first attempt",
+          "passed": true
+        },
+        {
+          "check": "actual request preserved in handoff",
+          "passed": true
+        },
+        {
+          "check": "handoff exact current analysis",
+          "passed": true
+        },
+        {
+          "check": "all original analysis fields exactly reconstructed",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field decision matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field user_draft matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field maintainer_summary matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field rationale matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field next_question matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field missing_info matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field facts_delta matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field checks_suggested matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field retrieval_queries matches analysis",
+          "passed": true
+        },
+        {
+          "check": "no edited proposal",
+          "passed": true
+        },
+        {
+          "check": "current request untrusted payload has no reviewer controller fields",
+          "passed": true
+        },
+        {
+          "check": "all active USER facts quoted in maintainer summary",
+          "passed": true
+        },
+        {
+          "check": "no model facts or checks promoted",
+          "passed": true
+        },
+        {
+          "check": "actual engine pool equals registered current condition after exact USER scope",
+          "passed": true
+        },
+        {
+          "check": "only source gap or necessary registered USER gap",
+          "passed": true
+        },
+        {
+          "check": "no inherited or current source conflict silently won",
+          "passed": true
+        },
+        {
+          "check": "every selected canonical source bound to current full record",
+          "passed": true
+        },
+        {
+          "check": "selected citations exactly match rendered links",
+          "passed": true
+        },
+        {
+          "check": "entire actual supplied request unchanged in compact model projection",
+          "passed": true
+        },
+        {
+          "check": "actual source count within dynamically advertised max",
+          "passed": true
+        },
+        {
+          "check": "actual complete prompt within unchanged 32768 guard",
+          "passed": true
+        },
+        {
+          "check": "provider raw JSON/wire schema/canonical binding valid",
+          "passed": true
+        },
+        {
+          "check": "provider selected indexes bind exact same selected chunks",
+          "passed": true
+        },
+        {
+          "check": "all actually released text equals original untouched draft",
+          "passed": true
+        },
+        {
+          "check": "source applicability and no fix qualification retained for answer",
+          "passed": true
+        },
+        {
+          "check": "A initial version gap necessary",
+          "passed": true
+        }
+      ],
+      "active_user_version": null,
+      "decision": "ask",
+      "question": "Which Streamlit version is installed in the affected environment?",
+      "source_gap_names": [
+        "exact_version_documentation"
+      ],
+      "user_gap_names": [
+        "streamlit_version",
+        "parent_callback_code",
+        "state_update_order"
+      ],
+      "selected_chunk_ids": [],
+      "selected_source_scopes": {},
+      "advertised_max_sources": 8,
+      "full_message_utf8_bytes_plus_guard": 11024,
+      "output_chars": {
+        "user_draft": 65,
+        "maintainer_summary": 1319,
+        "rationale": 689
+      },
+      "original_analysis_sha256": "2dfe0c053499837bf66e8f25c51018cc1838c24ab71de5fec34ce665985c00de",
+      "fresh": true,
+      "edited": false,
+      "actually_released": true,
+      "released_outputs": 1,
+      "has_complete_enum_identity_section_in_USERdraft": false,
+      "has_complete_module_pattern_with_caveat_in_USERdraft": false,
+      "has_any_module_mention_in_selected_guide": false,
+      "actual_case_cause_or_fix_verified": false,
+      "unsupported_material_claims_observed": [],
+      "human_usefulness": null,
+      "semantic_findings": [
+        "Necessary canonical version question: installed release is unknown; no technical diagnosis/fix asserted. The actual version-scoped model pool is empty, so the separate source gap is accurate."
+      ],
+      "prospective_assessment": "appropriate necessary USER question; not a solved technical case"
+    },
+    {
+      "batch_id": "enum-evidence-r1-dev-case-a",
+      "job_id": "r1:dev-case-a:fixed_guide_added",
+      "case_id": "dev-case-a",
+      "arm": "fixed_guide_added",
+      "round": 1,
+      "turn_id": "version",
+      "mechanical_checks": [
+        {
+          "check": "fresh proposal present",
+          "passed": true
+        },
+        {
+          "check": "exactly one first attempt",
+          "passed": true
+        },
+        {
+          "check": "actual request preserved in handoff",
+          "passed": true
+        },
+        {
+          "check": "handoff exact current analysis",
+          "passed": true
+        },
+        {
+          "check": "all original analysis fields exactly reconstructed",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field decision matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field user_draft matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field maintainer_summary matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field rationale matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field next_question matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field missing_info matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field facts_delta matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field checks_suggested matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field retrieval_queries matches analysis",
+          "passed": true
+        },
+        {
+          "check": "no edited proposal",
+          "passed": true
+        },
+        {
+          "check": "current request untrusted payload has no reviewer controller fields",
+          "passed": true
+        },
+        {
+          "check": "all active USER facts quoted in maintainer summary",
+          "passed": true
+        },
+        {
+          "check": "no model facts or checks promoted",
+          "passed": true
+        },
+        {
+          "check": "actual engine pool equals registered current condition after exact USER scope",
+          "passed": true
+        },
+        {
+          "check": "only source gap or necessary registered USER gap",
+          "passed": true
+        },
+        {
+          "check": "no inherited or current source conflict silently won",
+          "passed": true
+        },
+        {
+          "check": "every selected canonical source bound to current full record",
+          "passed": true
+        },
+        {
+          "check": "selected citations exactly match rendered links",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in summary dev-three-multiselect-1500-default-key",
+          "passed": true
+        },
+        {
+          "check": "selected source inventory exact in actual USER draft dev-three-multiselect-1500-default-key",
+          "passed": true
+        },
+        {
+          "check": "reused source record identity unchanged dev-three-multiselect-1500-default-key",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in summary dev-three-fragment-150-full",
+          "passed": true
+        },
+        {
+          "check": "selected source inventory exact in actual USER draft dev-three-fragment-150-full",
+          "passed": true
+        },
+        {
+          "check": "reused source record identity unchanged dev-three-fragment-150-full",
+          "passed": true
+        },
+        {
+          "check": "entire actual supplied request unchanged in compact model projection",
+          "passed": true
+        },
+        {
+          "check": "actual source count within dynamically advertised max",
+          "passed": true
+        },
+        {
+          "check": "actual complete prompt within unchanged 32768 guard",
+          "passed": true
+        },
+        {
+          "check": "provider raw JSON/wire schema/canonical binding valid",
+          "passed": true
+        },
+        {
+          "check": "provider selected indexes bind exact same selected chunks",
+          "passed": true
+        },
+        {
+          "check": "all actually released text equals original untouched draft",
+          "passed": true
+        },
+        {
+          "check": "source applicability and no fix qualification retained for answer",
+          "passed": true
+        },
+        {
+          "check": "A current version known callback gap necessary",
+          "passed": true
+        },
+        {
+          "check": "A ask remains exact canonical prefix",
+          "passed": true
+        }
+      ],
+      "active_user_version": "1.50.0",
+      "decision": "ask",
+      "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?",
+      "source_gap_names": [],
+      "user_gap_names": [
+        "parent_callback_code",
+        "state_update_order"
+      ],
+      "selected_chunk_ids": [
+        "dev-three-multiselect-1500-default-key",
+        "dev-three-fragment-150-full"
+      ],
+      "selected_source_scopes": {
+        "dev-three-multiselect-1500-default-key": "exact_metadata_match",
+        "dev-three-fragment-150-full": "exact_metadata_match"
+      },
+      "advertised_max_sources": 8,
+      "full_message_utf8_bytes_plus_guard": 15791,
+      "output_chars": {
+        "user_draft": 1109,
+        "maintainer_summary": 4789,
+        "rationale": 366
+      },
+      "original_analysis_sha256": "27de85fcbb9f0355d135b9d8f9cd1afa3950178c006150be65b717c01b451e23",
+      "fresh": true,
+      "edited": false,
+      "actually_released": true,
+      "released_outputs": 1,
+      "has_complete_enum_identity_section_in_USERdraft": false,
+      "has_complete_module_pattern_with_caveat_in_USERdraft": false,
+      "has_any_module_mention_in_selected_guide": false,
+      "actual_case_cause_or_fix_verified": false,
+      "unsupported_material_claims_observed": [],
+      "human_usefulness": null,
+      "semantic_findings": [
+        "Necessary answerable callback/state-update-code question: only the reduced working example is available. Current1.50.0 is known and not asked again.",
+        "Concise source inventory references are relevant and complete API quotations remain in review summary, but the actual USER draft does not deliver those technical API passages.",
+        "No source-backed cause/fix or key-only identity transition claim is asserted."
+      ],
+      "prospective_assessment": "appropriate necessary USER question; not a solved technical case"
+    },
+    {
+      "batch_id": "enum-evidence-r1-dev-case-b",
+      "job_id": "r1:dev-case-b:fixed_guide_added",
+      "case_id": "dev-case-b",
+      "arm": "fixed_guide_added",
+      "round": 1,
+      "turn_id": "initial",
+      "mechanical_checks": [
+        {
+          "check": "fresh proposal present",
+          "passed": true
+        },
+        {
+          "check": "exactly one first attempt",
+          "passed": true
+        },
+        {
+          "check": "actual request preserved in handoff",
+          "passed": true
+        },
+        {
+          "check": "handoff exact current analysis",
+          "passed": true
+        },
+        {
+          "check": "all original analysis fields exactly reconstructed",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field decision matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field user_draft matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field maintainer_summary matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field rationale matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field next_question matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field missing_info matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field facts_delta matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field checks_suggested matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field retrieval_queries matches analysis",
+          "passed": true
+        },
+        {
+          "check": "no edited proposal",
+          "passed": true
+        },
+        {
+          "check": "current request untrusted payload has no reviewer controller fields",
+          "passed": true
+        },
+        {
+          "check": "all active USER facts quoted in maintainer summary",
+          "passed": true
+        },
+        {
+          "check": "no model facts or checks promoted",
+          "passed": true
+        },
+        {
+          "check": "actual engine pool equals registered current condition after exact USER scope",
+          "passed": true
+        },
+        {
+          "check": "only source gap or necessary registered USER gap",
+          "passed": true
+        },
+        {
+          "check": "no inherited or current source conflict silently won",
+          "passed": true
+        },
+        {
+          "check": "every selected canonical source bound to current full record",
+          "passed": true
+        },
+        {
+          "check": "selected citations exactly match rendered links",
+          "passed": true
+        },
+        {
+          "check": "entire actual supplied request unchanged in compact model projection",
+          "passed": true
+        },
+        {
+          "check": "actual source count within dynamically advertised max",
+          "passed": true
+        },
+        {
+          "check": "actual complete prompt within unchanged 32768 guard",
+          "passed": true
+        },
+        {
+          "check": "provider raw JSON/wire schema/canonical binding valid",
+          "passed": true
+        },
+        {
+          "check": "provider selected indexes bind exact same selected chunks",
+          "passed": true
+        },
+        {
+          "check": "all actually released text equals original untouched draft",
+          "passed": true
+        },
+        {
+          "check": "source applicability and no fix qualification retained for answer",
+          "passed": true
+        },
+        {
+          "check": "B initial version gap necessary",
+          "passed": true
+        }
+      ],
+      "active_user_version": null,
+      "decision": "ask",
+      "question": "Which Streamlit version is installed in the affected environment?",
+      "source_gap_names": [
+        "exact_version_documentation"
+      ],
+      "user_gap_names": [
+        "streamlit_version"
+      ],
+      "selected_chunk_ids": [],
+      "selected_source_scopes": {},
+      "advertised_max_sources": 8,
+      "full_message_utf8_bytes_plus_guard": 8711,
+      "output_chars": {
+        "user_draft": 65,
+        "maintainer_summary": 877,
+        "rationale": 689
+      },
+      "original_analysis_sha256": "3f9331b1c95b4bf89b3173b1044ad86b820a8d78aeece644d9ada4f6b59205c7",
+      "fresh": true,
+      "edited": false,
+      "actually_released": true,
+      "released_outputs": 1,
+      "has_complete_enum_identity_section_in_USERdraft": false,
+      "has_complete_module_pattern_with_caveat_in_USERdraft": false,
+      "has_any_module_mention_in_selected_guide": false,
+      "actual_case_cause_or_fix_verified": false,
+      "unsupported_material_claims_observed": [],
+      "human_usefulness": null,
+      "semantic_findings": [
+        "Necessary canonical version question with initially unknown installed release; no unsupported image or future-release promise."
+      ],
+      "prospective_assessment": "appropriate necessary USER question"
+    },
+    {
+      "batch_id": "enum-evidence-r1-dev-case-b",
+      "job_id": "r1:dev-case-b:fixed_guide_added",
+      "case_id": "dev-case-b",
+      "arm": "fixed_guide_added",
+      "round": 1,
+      "turn_id": "version",
+      "mechanical_checks": [
+        {
+          "check": "fresh proposal present",
+          "passed": true
+        },
+        {
+          "check": "exactly one first attempt",
+          "passed": true
+        },
+        {
+          "check": "actual request preserved in handoff",
+          "passed": true
+        },
+        {
+          "check": "handoff exact current analysis",
+          "passed": true
+        },
+        {
+          "check": "all original analysis fields exactly reconstructed",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field decision matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field user_draft matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field maintainer_summary matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field rationale matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field next_question matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field missing_info matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field facts_delta matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field checks_suggested matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field retrieval_queries matches analysis",
+          "passed": true
+        },
+        {
+          "check": "no edited proposal",
+          "passed": true
+        },
+        {
+          "check": "current request untrusted payload has no reviewer controller fields",
+          "passed": true
+        },
+        {
+          "check": "all active USER facts quoted in maintainer summary",
+          "passed": true
+        },
+        {
+          "check": "no model facts or checks promoted",
+          "passed": true
+        },
+        {
+          "check": "actual engine pool equals registered current condition after exact USER scope",
+          "passed": true
+        },
+        {
+          "check": "only source gap or necessary registered USER gap",
+          "passed": true
+        },
+        {
+          "check": "no inherited or current source conflict silently won",
+          "passed": true
+        },
+        {
+          "check": "every selected canonical source bound to current full record",
+          "passed": true
+        },
+        {
+          "check": "selected citations exactly match rendered links",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in summary dev-three-button-139-full",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in actual USER draft dev-three-button-139-full",
+          "passed": true
+        },
+        {
+          "check": "entire actual supplied request unchanged in compact model projection",
+          "passed": true
+        },
+        {
+          "check": "actual source count within dynamically advertised max",
+          "passed": true
+        },
+        {
+          "check": "actual complete prompt within unchanged 32768 guard",
+          "passed": true
+        },
+        {
+          "check": "provider raw JSON/wire schema/canonical binding valid",
+          "passed": true
+        },
+        {
+          "check": "provider selected indexes bind exact same selected chunks",
+          "passed": true
+        },
+        {
+          "check": "all actually released text equals original untouched draft",
+          "passed": true
+        },
+        {
+          "check": "source applicability and no fix qualification retained for answer",
+          "passed": true
+        },
+        {
+          "check": "B source scope exact1.39.0",
+          "passed": true
+        }
+      ],
+      "active_user_version": "1.39.0",
+      "decision": "answer",
+      "question": null,
+      "source_gap_names": [],
+      "user_gap_names": [],
+      "selected_chunk_ids": [
+        "dev-three-button-139-full"
+      ],
+      "selected_source_scopes": {
+        "dev-three-button-139-full": "exact_metadata_match"
+      },
+      "advertised_max_sources": 8,
+      "full_message_utf8_bytes_plus_guard": 11600,
+      "output_chars": {
+        "user_draft": 3383,
+        "maintainer_summary": 3769,
+        "rationale": 215
+      },
+      "original_analysis_sha256": "c51b98fa49810747dbcc32386318852be89c9c948b2f30f3a5e62c583dfceeb6",
+      "fresh": true,
+      "edited": false,
+      "actually_released": true,
+      "released_outputs": 1,
+      "has_complete_enum_identity_section_in_USERdraft": false,
+      "has_complete_module_pattern_with_caveat_in_USERdraft": false,
+      "has_any_module_mention_in_selected_guide": false,
+      "actual_case_cause_or_fix_verified": false,
+      "unsupported_material_claims_observed": [],
+      "human_usefulness": null,
+      "semantic_findings": [
+        "Complete1.39.0 button API quote supports emoji/Material Symbols icon and listed label-format contract. It does not support company-logo image or warning capability and gives no delivery timeline.",
+        "This remains partial topical guidance; the warning/custom-image remainder is not explicitly resolved. Complete quote preserves its limitations, and no unsupported future capability is asserted.",
+        "The source includes a pre-existing generated default=s artifact in the type field; it is quoted unchanged, not repaired or treated as tested runtime behavior."
+      ],
+      "prospective_assessment": "supported partial button contract, unresolved broader request"
+    },
+    {
+      "batch_id": "enum-evidence-r1-dev-case-b",
+      "job_id": "r1:dev-case-b:fixed_baseline",
+      "case_id": "dev-case-b",
+      "arm": "fixed_baseline",
+      "round": 1,
+      "turn_id": "initial",
+      "mechanical_checks": [
+        {
+          "check": "fresh proposal present",
+          "passed": true
+        },
+        {
+          "check": "exactly one first attempt",
+          "passed": true
+        },
+        {
+          "check": "actual request preserved in handoff",
+          "passed": true
+        },
+        {
+          "check": "handoff exact current analysis",
+          "passed": true
+        },
+        {
+          "check": "all original analysis fields exactly reconstructed",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field decision matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field user_draft matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field maintainer_summary matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field rationale matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field next_question matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field missing_info matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field facts_delta matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field checks_suggested matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field retrieval_queries matches analysis",
+          "passed": true
+        },
+        {
+          "check": "no edited proposal",
+          "passed": true
+        },
+        {
+          "check": "current request untrusted payload has no reviewer controller fields",
+          "passed": true
+        },
+        {
+          "check": "all active USER facts quoted in maintainer summary",
+          "passed": true
+        },
+        {
+          "check": "no model facts or checks promoted",
+          "passed": true
+        },
+        {
+          "check": "actual engine pool equals registered current condition after exact USER scope",
+          "passed": true
+        },
+        {
+          "check": "only source gap or necessary registered USER gap",
+          "passed": true
+        },
+        {
+          "check": "no inherited or current source conflict silently won",
+          "passed": true
+        },
+        {
+          "check": "every selected canonical source bound to current full record",
+          "passed": true
+        },
+        {
+          "check": "selected citations exactly match rendered links",
+          "passed": true
+        },
+        {
+          "check": "entire actual supplied request unchanged in compact model projection",
+          "passed": true
+        },
+        {
+          "check": "actual source count within dynamically advertised max",
+          "passed": true
+        },
+        {
+          "check": "actual complete prompt within unchanged 32768 guard",
+          "passed": true
+        },
+        {
+          "check": "provider raw JSON/wire schema/canonical binding valid",
+          "passed": true
+        },
+        {
+          "check": "provider selected indexes bind exact same selected chunks",
+          "passed": true
+        },
+        {
+          "check": "all actually released text equals original untouched draft",
+          "passed": true
+        },
+        {
+          "check": "source applicability and no fix qualification retained for answer",
+          "passed": true
+        },
+        {
+          "check": "B initial version gap necessary",
+          "passed": true
+        }
+      ],
+      "active_user_version": null,
+      "decision": "ask",
+      "question": "Which Streamlit version is installed in the affected environment?",
+      "source_gap_names": [
+        "exact_version_documentation"
+      ],
+      "user_gap_names": [
+        "streamlit_version"
+      ],
+      "selected_chunk_ids": [],
+      "selected_source_scopes": {},
+      "advertised_max_sources": 8,
+      "full_message_utf8_bytes_plus_guard": 8711,
+      "output_chars": {
+        "user_draft": 65,
+        "maintainer_summary": 877,
+        "rationale": 689
+      },
+      "original_analysis_sha256": "3f9331b1c95b4bf89b3173b1044ad86b820a8d78aeece644d9ada4f6b59205c7",
+      "fresh": true,
+      "edited": false,
+      "actually_released": true,
+      "released_outputs": 1,
+      "has_complete_enum_identity_section_in_USERdraft": false,
+      "has_complete_module_pattern_with_caveat_in_USERdraft": false,
+      "has_any_module_mention_in_selected_guide": false,
+      "actual_case_cause_or_fix_verified": false,
+      "unsupported_material_claims_observed": [],
+      "human_usefulness": null,
+      "semantic_findings": [
+        "Necessary canonical version question with initially unknown installed release; no unsupported image or future-release promise."
+      ],
+      "prospective_assessment": "appropriate necessary USER question"
+    },
+    {
+      "batch_id": "enum-evidence-r1-dev-case-b",
+      "job_id": "r1:dev-case-b:fixed_baseline",
+      "case_id": "dev-case-b",
+      "arm": "fixed_baseline",
+      "round": 1,
+      "turn_id": "version",
+      "mechanical_checks": [
+        {
+          "check": "fresh proposal present",
+          "passed": true
+        },
+        {
+          "check": "exactly one first attempt",
+          "passed": true
+        },
+        {
+          "check": "actual request preserved in handoff",
+          "passed": true
+        },
+        {
+          "check": "handoff exact current analysis",
+          "passed": true
+        },
+        {
+          "check": "all original analysis fields exactly reconstructed",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field decision matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field user_draft matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field maintainer_summary matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field rationale matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field next_question matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field missing_info matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field facts_delta matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field checks_suggested matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field retrieval_queries matches analysis",
+          "passed": true
+        },
+        {
+          "check": "no edited proposal",
+          "passed": true
+        },
+        {
+          "check": "current request untrusted payload has no reviewer controller fields",
+          "passed": true
+        },
+        {
+          "check": "all active USER facts quoted in maintainer summary",
+          "passed": true
+        },
+        {
+          "check": "no model facts or checks promoted",
+          "passed": true
+        },
+        {
+          "check": "actual engine pool equals registered current condition after exact USER scope",
+          "passed": true
+        },
+        {
+          "check": "only source gap or necessary registered USER gap",
+          "passed": true
+        },
+        {
+          "check": "no inherited or current source conflict silently won",
+          "passed": true
+        },
+        {
+          "check": "every selected canonical source bound to current full record",
+          "passed": true
+        },
+        {
+          "check": "selected citations exactly match rendered links",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in summary dev-three-button-139-full",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in actual USER draft dev-three-button-139-full",
+          "passed": true
+        },
+        {
+          "check": "reused source record identity unchanged dev-three-button-139-full",
+          "passed": true
+        },
+        {
+          "check": "entire actual supplied request unchanged in compact model projection",
+          "passed": true
+        },
+        {
+          "check": "actual source count within dynamically advertised max",
+          "passed": true
+        },
+        {
+          "check": "actual complete prompt within unchanged 32768 guard",
+          "passed": true
+        },
+        {
+          "check": "provider raw JSON/wire schema/canonical binding valid",
+          "passed": true
+        },
+        {
+          "check": "provider selected indexes bind exact same selected chunks",
+          "passed": true
+        },
+        {
+          "check": "all actually released text equals original untouched draft",
+          "passed": true
+        },
+        {
+          "check": "source applicability and no fix qualification retained for answer",
+          "passed": true
+        },
+        {
+          "check": "B source scope exact1.39.0",
+          "passed": true
+        }
+      ],
+      "active_user_version": "1.39.0",
+      "decision": "answer",
+      "question": null,
+      "source_gap_names": [],
+      "user_gap_names": [],
+      "selected_chunk_ids": [
+        "dev-three-button-139-full"
+      ],
+      "selected_source_scopes": {
+        "dev-three-button-139-full": "exact_metadata_match"
+      },
+      "advertised_max_sources": 8,
+      "full_message_utf8_bytes_plus_guard": 11600,
+      "output_chars": {
+        "user_draft": 3383,
+        "maintainer_summary": 3769,
+        "rationale": 215
+      },
+      "original_analysis_sha256": "c51b98fa49810747dbcc32386318852be89c9c948b2f30f3a5e62c583dfceeb6",
+      "fresh": true,
+      "edited": false,
+      "actually_released": true,
+      "released_outputs": 1,
+      "has_complete_enum_identity_section_in_USERdraft": false,
+      "has_complete_module_pattern_with_caveat_in_USERdraft": false,
+      "has_any_module_mention_in_selected_guide": false,
+      "actual_case_cause_or_fix_verified": false,
+      "unsupported_material_claims_observed": [],
+      "human_usefulness": null,
+      "semantic_findings": [
+        "Complete1.39.0 button API quote supports emoji/Material Symbols icon and listed label-format contract. It does not support company-logo image or warning capability and gives no delivery timeline.",
+        "This remains partial topical guidance; the warning/custom-image remainder is not explicitly resolved. Complete quote preserves its limitations, and no unsupported future capability is asserted.",
+        "The source includes a pre-existing generated default=s artifact in the type field; it is quoted unchanged, not repaired or treated as tested runtime behavior."
+      ],
+      "prospective_assessment": "supported partial button contract, unresolved broader request"
+    },
+    {
+      "batch_id": "enum-evidence-r1-dev-case-c",
+      "job_id": "r1:dev-case-c:fixed_baseline",
+      "case_id": "dev-case-c",
+      "arm": "fixed_baseline",
+      "round": 1,
+      "turn_id": "initial",
+      "mechanical_checks": [
+        {
+          "check": "fresh proposal present",
+          "passed": true
+        },
+        {
+          "check": "exactly one first attempt",
+          "passed": true
+        },
+        {
+          "check": "actual request preserved in handoff",
+          "passed": true
+        },
+        {
+          "check": "handoff exact current analysis",
+          "passed": true
+        },
+        {
+          "check": "all original analysis fields exactly reconstructed",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field decision matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field user_draft matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field maintainer_summary matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field rationale matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field next_question matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field missing_info matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field facts_delta matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field checks_suggested matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field retrieval_queries matches analysis",
+          "passed": true
+        },
+        {
+          "check": "no edited proposal",
+          "passed": true
+        },
+        {
+          "check": "current request untrusted payload has no reviewer controller fields",
+          "passed": true
+        },
+        {
+          "check": "all active USER facts quoted in maintainer summary",
+          "passed": true
+        },
+        {
+          "check": "no model facts or checks promoted",
+          "passed": true
+        },
+        {
+          "check": "actual engine pool equals registered current condition after exact USER scope",
+          "passed": true
+        },
+        {
+          "check": "only source gap or necessary registered USER gap",
+          "passed": true
+        },
+        {
+          "check": "no inherited or current source conflict silently won",
+          "passed": true
+        },
+        {
+          "check": "every selected canonical source bound to current full record",
+          "passed": true
+        },
+        {
+          "check": "selected citations exactly match rendered links",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in summary dev-three-session-state-full",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in actual USER draft dev-three-session-state-full",
+          "passed": true
+        },
+        {
+          "check": "entire actual supplied request unchanged in compact model projection",
+          "passed": true
+        },
+        {
+          "check": "actual source count within dynamically advertised max",
+          "passed": true
+        },
+        {
+          "check": "actual complete prompt within unchanged 32768 guard",
+          "passed": true
+        },
+        {
+          "check": "provider raw JSON/wire schema/canonical binding valid",
+          "passed": true
+        },
+        {
+          "check": "provider selected indexes bind exact same selected chunks",
+          "passed": true
+        },
+        {
+          "check": "all actually released text equals original untouched draft",
+          "passed": true
+        },
+        {
+          "check": "source applicability and no fix qualification retained for answer",
+          "passed": true
+        },
+        {
+          "check": "C no missing-user question manufactured",
+          "passed": true
+        },
+        {
+          "check": "C source gap explicitly separated from USER facts",
+          "passed": true
+        },
+        {
+          "check": "C current version explicit in actual draft",
+          "passed": true
+        },
+        {
+          "check": "C complete unchanged USER code and environment present",
+          "passed": true
+        },
+        {
+          "check": "C initial proposal deliberately not released",
+          "passed": true
+        }
+      ],
+      "active_user_version": "1.31.0",
+      "decision": "answer",
+      "question": null,
+      "source_gap_names": [
+        "exact_version_documentation"
+      ],
+      "user_gap_names": [],
+      "selected_chunk_ids": [
+        "dev-three-session-state-full"
+      ],
+      "selected_source_scopes": {
+        "dev-three-session-state-full": "unconfirmed"
+      },
+      "advertised_max_sources": 8,
+      "full_message_utf8_bytes_plus_guard": 19714,
+      "output_chars": {
+        "user_draft": 11266,
+        "maintainer_summary": 13994,
+        "rationale": 1189
+      },
+      "original_analysis_sha256": "a45ff0652d60307c51ff010753f112152654397c75776bd240382b093e245f4c",
+      "fresh": true,
+      "edited": false,
+      "actually_released": false,
+      "released_outputs": 0,
+      "has_complete_enum_identity_section_in_USERdraft": false,
+      "has_complete_module_pattern_with_caveat_in_USERdraft": false,
+      "has_any_module_mention_in_selected_guide": false,
+      "actual_case_cause_or_fix_verified": false,
+      "unsupported_material_claims_observed": [],
+      "human_usefulness": null,
+      "semantic_findings": [
+        "Generic Session State quote supports persistence/API background only. It does not explain Enum member identity or provide an Enum-specific mitigation.",
+        "Source-gap/maintainer-investigation language is appropriately qualified; routing label answer is not evidence that this issue was solved.",
+        "Long generic quote contains substantial unrelated widget/callback/serialization material."
+      ],
+      "prospective_assessment": "qualified generic investigation only; no Enum diagnosis/fix"
+    },
+    {
+      "batch_id": "enum-evidence-r1-dev-case-c",
+      "job_id": "r1:dev-case-c:fixed_baseline",
+      "case_id": "dev-case-c",
+      "arm": "fixed_baseline",
+      "round": 1,
+      "turn_id": "correction",
+      "mechanical_checks": [
+        {
+          "check": "fresh proposal present",
+          "passed": true
+        },
+        {
+          "check": "exactly one first attempt",
+          "passed": true
+        },
+        {
+          "check": "actual request preserved in handoff",
+          "passed": true
+        },
+        {
+          "check": "handoff exact current analysis",
+          "passed": true
+        },
+        {
+          "check": "all original analysis fields exactly reconstructed",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field decision matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field user_draft matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field maintainer_summary matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field rationale matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field next_question matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field missing_info matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field facts_delta matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field checks_suggested matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field retrieval_queries matches analysis",
+          "passed": true
+        },
+        {
+          "check": "no edited proposal",
+          "passed": true
+        },
+        {
+          "check": "current request untrusted payload has no reviewer controller fields",
+          "passed": true
+        },
+        {
+          "check": "all active USER facts quoted in maintainer summary",
+          "passed": true
+        },
+        {
+          "check": "no model facts or checks promoted",
+          "passed": true
+        },
+        {
+          "check": "actual engine pool equals registered current condition after exact USER scope",
+          "passed": true
+        },
+        {
+          "check": "only source gap or necessary registered USER gap",
+          "passed": true
+        },
+        {
+          "check": "no inherited or current source conflict silently won",
+          "passed": true
+        },
+        {
+          "check": "every selected canonical source bound to current full record",
+          "passed": true
+        },
+        {
+          "check": "selected citations exactly match rendered links",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in summary dev-three-session-state-full",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in actual USER draft dev-three-session-state-full",
+          "passed": true
+        },
+        {
+          "check": "reused source record identity unchanged dev-three-session-state-full",
+          "passed": true
+        },
+        {
+          "check": "entire actual supplied request unchanged in compact model projection",
+          "passed": true
+        },
+        {
+          "check": "actual source count within dynamically advertised max",
+          "passed": true
+        },
+        {
+          "check": "actual complete prompt within unchanged 32768 guard",
+          "passed": true
+        },
+        {
+          "check": "provider raw JSON/wire schema/canonical binding valid",
+          "passed": true
+        },
+        {
+          "check": "provider selected indexes bind exact same selected chunks",
+          "passed": true
+        },
+        {
+          "check": "all actually released text equals original untouched draft",
+          "passed": true
+        },
+        {
+          "check": "source applicability and no fix qualification retained for answer",
+          "passed": true
+        },
+        {
+          "check": "C no missing-user question manufactured",
+          "passed": true
+        },
+        {
+          "check": "C source gap explicitly separated from USER facts",
+          "passed": true
+        },
+        {
+          "check": "C current version explicit in actual draft",
+          "passed": true
+        },
+        {
+          "check": "C complete unchanged USER code and environment present",
+          "passed": true
+        },
+        {
+          "check": "C correction uses only active1.31.1",
+          "passed": true
+        },
+        {
+          "check": "C original report explicitly historical, not current facts",
+          "passed": true
+        },
+        {
+          "check": "C valid correction proposal actually approved/released",
+          "passed": true
+        },
+        {
+          "check": "C old approval recorded409 without mutation/new model send",
+          "passed": true
+        }
+      ],
+      "active_user_version": "1.31.1",
+      "decision": "answer",
+      "question": null,
+      "source_gap_names": [
+        "exact_version_documentation"
+      ],
+      "user_gap_names": [],
+      "selected_chunk_ids": [
+        "dev-three-session-state-full"
+      ],
+      "selected_source_scopes": {
+        "dev-three-session-state-full": "unconfirmed"
+      },
+      "advertised_max_sources": 8,
+      "full_message_utf8_bytes_plus_guard": 20319,
+      "output_chars": {
+        "user_draft": 11266,
+        "maintainer_summary": 14420,
+        "rationale": 1189
+      },
+      "original_analysis_sha256": "8d5c9b48a6a139a727569acb5125b4ea89b81e7ef636d5bc114a77a5fb634b80",
+      "fresh": true,
+      "edited": false,
+      "actually_released": true,
+      "released_outputs": 1,
+      "has_complete_enum_identity_section_in_USERdraft": false,
+      "has_complete_module_pattern_with_caveat_in_USERdraft": false,
+      "has_any_module_mention_in_selected_guide": false,
+      "actual_case_cause_or_fix_verified": false,
+      "unsupported_material_claims_observed": [],
+      "human_usefulness": null,
+      "semantic_findings": [
+        "Generic Session State quote supports persistence/API background only. It does not explain Enum member identity or provide an Enum-specific mitigation.",
+        "Source-gap/maintainer-investigation language is appropriately qualified; routing label answer is not evidence that this issue was solved.",
+        "Long generic quote contains substantial unrelated widget/callback/serialization material."
+      ],
+      "prospective_assessment": "qualified generic investigation only; no Enum diagnosis/fix"
+    },
+    {
+      "batch_id": "enum-evidence-r1-dev-case-c",
+      "job_id": "r1:dev-case-c:fixed_guide_added",
+      "case_id": "dev-case-c",
+      "arm": "fixed_guide_added",
+      "round": 1,
+      "turn_id": "initial",
+      "mechanical_checks": [
+        {
+          "check": "fresh proposal present",
+          "passed": true
+        },
+        {
+          "check": "exactly one first attempt",
+          "passed": true
+        },
+        {
+          "check": "actual request preserved in handoff",
+          "passed": true
+        },
+        {
+          "check": "handoff exact current analysis",
+          "passed": true
+        },
+        {
+          "check": "all original analysis fields exactly reconstructed",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field decision matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field user_draft matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field maintainer_summary matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field rationale matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field next_question matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field missing_info matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field facts_delta matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field checks_suggested matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field retrieval_queries matches analysis",
+          "passed": true
+        },
+        {
+          "check": "no edited proposal",
+          "passed": true
+        },
+        {
+          "check": "current request untrusted payload has no reviewer controller fields",
+          "passed": true
+        },
+        {
+          "check": "all active USER facts quoted in maintainer summary",
+          "passed": true
+        },
+        {
+          "check": "no model facts or checks promoted",
+          "passed": true
+        },
+        {
+          "check": "actual engine pool equals registered current condition after exact USER scope",
+          "passed": true
+        },
+        {
+          "check": "only source gap or necessary registered USER gap",
+          "passed": true
+        },
+        {
+          "check": "no inherited or current source conflict silently won",
+          "passed": true
+        },
+        {
+          "check": "every selected canonical source bound to current full record",
+          "passed": true
+        },
+        {
+          "check": "selected citations exactly match rendered links",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in summary dev-three-session-state-full",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in actual USER draft dev-three-session-state-full",
+          "passed": true
+        },
+        {
+          "check": "reused source record identity unchanged dev-three-session-state-full",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in summary fixture-enum-guide-enum-and-widget-coercion-v1",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in actual USER draft fixture-enum-guide-enum-and-widget-coercion-v1",
+          "passed": true
+        },
+        {
+          "check": "guide is exact pinned raw complete section fixture-enum-guide-enum-and-widget-coercion-v1",
+          "passed": true
+        },
+        {
+          "check": "guide version remains unconfirmed fixture-enum-guide-enum-and-widget-coercion-v1",
+          "passed": true
+        },
+        {
+          "check": "entire actual supplied request unchanged in compact model projection",
+          "passed": true
+        },
+        {
+          "check": "actual source count within dynamically advertised max",
+          "passed": true
+        },
+        {
+          "check": "actual complete prompt within unchanged 32768 guard",
+          "passed": true
+        },
+        {
+          "check": "provider raw JSON/wire schema/canonical binding valid",
+          "passed": true
+        },
+        {
+          "check": "provider selected indexes bind exact same selected chunks",
+          "passed": true
+        },
+        {
+          "check": "all actually released text equals original untouched draft",
+          "passed": true
+        },
+        {
+          "check": "source applicability and no fix qualification retained for answer",
+          "passed": true
+        },
+        {
+          "check": "C no missing-user question manufactured",
+          "passed": true
+        },
+        {
+          "check": "C source gap explicitly separated from USER facts",
+          "passed": true
+        },
+        {
+          "check": "C current version explicit in actual draft",
+          "passed": true
+        },
+        {
+          "check": "C complete unchanged USER code and environment present",
+          "passed": true
+        },
+        {
+          "check": "C initial proposal deliberately not released",
+          "passed": true
+        }
+      ],
+      "active_user_version": "1.31.0",
+      "decision": "answer",
+      "question": null,
+      "source_gap_names": [
+        "exact_version_documentation"
+      ],
+      "user_gap_names": [],
+      "selected_chunk_ids": [
+        "dev-three-session-state-full",
+        "fixture-enum-guide-enum-and-widget-coercion-v1"
+      ],
+      "selected_source_scopes": {
+        "dev-three-session-state-full": "unconfirmed",
+        "fixture-enum-guide-enum-and-widget-coercion-v1": "unconfirmed"
+      },
+      "advertised_max_sources": 2,
+      "full_message_utf8_bytes_plus_guard": 26150,
+      "output_chars": {
+        "user_draft": 14494,
+        "maintainer_summary": 17222,
+        "rationale": 1189
+      },
+      "original_analysis_sha256": "7d165ece143350332df73ee0181ea6f31ab64aa53a24e4759a841fb2df8a1640",
+      "fresh": true,
+      "edited": false,
+      "actually_released": false,
+      "released_outputs": 0,
+      "has_complete_enum_identity_section_in_USERdraft": true,
+      "has_complete_module_pattern_with_caveat_in_USERdraft": false,
+      "has_any_module_mention_in_selected_guide": true,
+      "actual_case_cause_or_fix_verified": false,
+      "unsupported_material_claims_observed": [],
+      "human_usefulness": null,
+      "semantic_findings": [
+        "Complete pinned Enum section supplies the documented repeated-definition/distinct Enum class/member identity mechanism. This is documentary guidance, not verification of the reported runtime cause.",
+        "Widget-return automatic coercion is explicitly scoped to selectbox/multiselect returned options; the actual USER code has no widget. No outer renderer claim applies enumCoercion as a direct-state fix.",
+        "The section mentions a separately imported Enum module via a link/conditional suggestion, but does not include the complete module-edit/reload caveat; do not count it as the full mitigation-pattern outcome.",
+        "Selected generic Session State quote remains long and partly off-topic; both complementary guide sections were not jointly selected."
+      ],
+      "prospective_assessment": "supported qualified Enum identity documentation; actual reproduction/fix unverified"
+    },
+    {
+      "batch_id": "enum-evidence-r1-dev-case-c",
+      "job_id": "r1:dev-case-c:fixed_guide_added",
+      "case_id": "dev-case-c",
+      "arm": "fixed_guide_added",
+      "round": 1,
+      "turn_id": "correction",
+      "mechanical_checks": [
+        {
+          "check": "fresh proposal present",
+          "passed": true
+        },
+        {
+          "check": "exactly one first attempt",
+          "passed": true
+        },
+        {
+          "check": "actual request preserved in handoff",
+          "passed": true
+        },
+        {
+          "check": "handoff exact current analysis",
+          "passed": true
+        },
+        {
+          "check": "all original analysis fields exactly reconstructed",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field decision matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field user_draft matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field maintainer_summary matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field rationale matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field next_question matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field missing_info matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field facts_delta matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field checks_suggested matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field retrieval_queries matches analysis",
+          "passed": true
+        },
+        {
+          "check": "no edited proposal",
+          "passed": true
+        },
+        {
+          "check": "current request untrusted payload has no reviewer controller fields",
+          "passed": true
+        },
+        {
+          "check": "all active USER facts quoted in maintainer summary",
+          "passed": true
+        },
+        {
+          "check": "no model facts or checks promoted",
+          "passed": true
+        },
+        {
+          "check": "actual engine pool equals registered current condition after exact USER scope",
+          "passed": true
+        },
+        {
+          "check": "only source gap or necessary registered USER gap",
+          "passed": true
+        },
+        {
+          "check": "no inherited or current source conflict silently won",
+          "passed": true
+        },
+        {
+          "check": "every selected canonical source bound to current full record",
+          "passed": true
+        },
+        {
+          "check": "selected citations exactly match rendered links",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in summary dev-three-session-state-full",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in actual USER draft dev-three-session-state-full",
+          "passed": true
+        },
+        {
+          "check": "reused source record identity unchanged dev-three-session-state-full",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in summary fixture-enum-guide-separate-module-v1",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in actual USER draft fixture-enum-guide-separate-module-v1",
+          "passed": true
+        },
+        {
+          "check": "guide is exact pinned raw complete section fixture-enum-guide-separate-module-v1",
+          "passed": true
+        },
+        {
+          "check": "guide version remains unconfirmed fixture-enum-guide-separate-module-v1",
+          "passed": true
+        },
+        {
+          "check": "entire actual supplied request unchanged in compact model projection",
+          "passed": true
+        },
+        {
+          "check": "actual source count within dynamically advertised max",
+          "passed": true
+        },
+        {
+          "check": "actual complete prompt within unchanged 32768 guard",
+          "passed": true
+        },
+        {
+          "check": "provider raw JSON/wire schema/canonical binding valid",
+          "passed": true
+        },
+        {
+          "check": "provider selected indexes bind exact same selected chunks",
+          "passed": true
+        },
+        {
+          "check": "all actually released text equals original untouched draft",
+          "passed": true
+        },
+        {
+          "check": "source applicability and no fix qualification retained for answer",
+          "passed": true
+        },
+        {
+          "check": "C no missing-user question manufactured",
+          "passed": true
+        },
+        {
+          "check": "C source gap explicitly separated from USER facts",
+          "passed": true
+        },
+        {
+          "check": "C current version explicit in actual draft",
+          "passed": true
+        },
+        {
+          "check": "C complete unchanged USER code and environment present",
+          "passed": true
+        },
+        {
+          "check": "C correction uses only active1.31.1",
+          "passed": true
+        },
+        {
+          "check": "C original report explicitly historical, not current facts",
+          "passed": true
+        },
+        {
+          "check": "C valid correction proposal actually approved/released",
+          "passed": true
+        },
+        {
+          "check": "C old approval recorded409 without mutation/new model send",
+          "passed": true
+        }
+      ],
+      "active_user_version": "1.31.1",
+      "decision": "answer",
+      "question": null,
+      "source_gap_names": [
+        "exact_version_documentation"
+      ],
+      "user_gap_names": [],
+      "selected_chunk_ids": [
+        "dev-three-session-state-full",
+        "fixture-enum-guide-separate-module-v1"
+      ],
+      "selected_source_scopes": {
+        "dev-three-session-state-full": "unconfirmed",
+        "fixture-enum-guide-separate-module-v1": "unconfirmed"
+      },
+      "advertised_max_sources": 2,
+      "full_message_utf8_bytes_plus_guard": 26755,
+      "output_chars": {
+        "user_draft": 14059,
+        "maintainer_summary": 17213,
+        "rationale": 1189
+      },
+      "original_analysis_sha256": "b13bd347b186b002b40f7f85d6de98457cbab971d7ea5d56ac6cf61d2655f0ed",
+      "fresh": true,
+      "edited": false,
+      "actually_released": true,
+      "released_outputs": 1,
+      "has_complete_enum_identity_section_in_USERdraft": false,
+      "has_complete_module_pattern_with_caveat_in_USERdraft": true,
+      "has_any_module_mention_in_selected_guide": true,
+      "actual_case_cause_or_fix_verified": false,
+      "unsupported_material_claims_observed": [],
+      "human_usefulness": null,
+      "semantic_findings": [
+        "Complete pinned separate-module pattern supplies a documented general class-definition mitigation, including code-edit/reload/session caveat and full examples.",
+        "The selected pattern demonstrates recreated-class/retained-instance pitfalls but does not explicitly contain the Enum-specific distinct member-identity explanation; do not count the strict Enum-identity outcome.",
+        "Applying the general pattern to this direct-state Enum example is not a verified runtime fix or an exact1.31 applicability claim.",
+        "Selected generic Session State quote remains long and partly off-topic; both complementary guide sections were not jointly selected."
+      ],
+      "prospective_assessment": "supported general class/module pattern with caveat; Enum identity/fix not verified"
+    },
+    {
+      "batch_id": "enum-evidence-r2-dev-case-c",
+      "job_id": "r2:dev-case-c:fixed_guide_added",
+      "case_id": "dev-case-c",
+      "arm": "fixed_guide_added",
+      "round": 2,
+      "turn_id": "initial",
+      "mechanical_checks": [
+        {
+          "check": "fresh proposal present",
+          "passed": true
+        },
+        {
+          "check": "exactly one first attempt",
+          "passed": true
+        },
+        {
+          "check": "actual request preserved in handoff",
+          "passed": true
+        },
+        {
+          "check": "handoff exact current analysis",
+          "passed": true
+        },
+        {
+          "check": "all original analysis fields exactly reconstructed",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field decision matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field user_draft matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field maintainer_summary matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field rationale matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field next_question matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field missing_info matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field facts_delta matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field checks_suggested matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field retrieval_queries matches analysis",
+          "passed": true
+        },
+        {
+          "check": "no edited proposal",
+          "passed": true
+        },
+        {
+          "check": "current request untrusted payload has no reviewer controller fields",
+          "passed": true
+        },
+        {
+          "check": "all active USER facts quoted in maintainer summary",
+          "passed": true
+        },
+        {
+          "check": "no model facts or checks promoted",
+          "passed": true
+        },
+        {
+          "check": "actual engine pool equals registered current condition after exact USER scope",
+          "passed": true
+        },
+        {
+          "check": "only source gap or necessary registered USER gap",
+          "passed": true
+        },
+        {
+          "check": "no inherited or current source conflict silently won",
+          "passed": true
+        },
+        {
+          "check": "every selected canonical source bound to current full record",
+          "passed": true
+        },
+        {
+          "check": "selected citations exactly match rendered links",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in summary dev-three-session-state-full",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in actual USER draft dev-three-session-state-full",
+          "passed": true
+        },
+        {
+          "check": "reused source record identity unchanged dev-three-session-state-full",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in summary fixture-enum-guide-enum-and-widget-coercion-v1",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in actual USER draft fixture-enum-guide-enum-and-widget-coercion-v1",
+          "passed": true
+        },
+        {
+          "check": "reused source record identity unchanged fixture-enum-guide-enum-and-widget-coercion-v1",
+          "passed": true
+        },
+        {
+          "check": "guide is exact pinned raw complete section fixture-enum-guide-enum-and-widget-coercion-v1",
+          "passed": true
+        },
+        {
+          "check": "guide version remains unconfirmed fixture-enum-guide-enum-and-widget-coercion-v1",
+          "passed": true
+        },
+        {
+          "check": "entire actual supplied request unchanged in compact model projection",
+          "passed": true
+        },
+        {
+          "check": "actual source count within dynamically advertised max",
+          "passed": true
+        },
+        {
+          "check": "actual complete prompt within unchanged 32768 guard",
+          "passed": true
+        },
+        {
+          "check": "provider raw JSON/wire schema/canonical binding valid",
+          "passed": true
+        },
+        {
+          "check": "provider selected indexes bind exact same selected chunks",
+          "passed": true
+        },
+        {
+          "check": "all actually released text equals original untouched draft",
+          "passed": true
+        },
+        {
+          "check": "source applicability and no fix qualification retained for answer",
+          "passed": true
+        },
+        {
+          "check": "C no missing-user question manufactured",
+          "passed": true
+        },
+        {
+          "check": "C source gap explicitly separated from USER facts",
+          "passed": true
+        },
+        {
+          "check": "C current version explicit in actual draft",
+          "passed": true
+        },
+        {
+          "check": "C complete unchanged USER code and environment present",
+          "passed": true
+        },
+        {
+          "check": "C initial proposal deliberately not released",
+          "passed": true
+        }
+      ],
+      "active_user_version": "1.31.0",
+      "decision": "answer",
+      "question": null,
+      "source_gap_names": [
+        "exact_version_documentation"
+      ],
+      "user_gap_names": [],
+      "selected_chunk_ids": [
+        "dev-three-session-state-full",
+        "fixture-enum-guide-enum-and-widget-coercion-v1"
+      ],
+      "selected_source_scopes": {
+        "dev-three-session-state-full": "unconfirmed",
+        "fixture-enum-guide-enum-and-widget-coercion-v1": "unconfirmed"
+      },
+      "advertised_max_sources": 2,
+      "full_message_utf8_bytes_plus_guard": 26150,
+      "output_chars": {
+        "user_draft": 14494,
+        "maintainer_summary": 17222,
+        "rationale": 1189
+      },
+      "original_analysis_sha256": "7d165ece143350332df73ee0181ea6f31ab64aa53a24e4759a841fb2df8a1640",
+      "fresh": true,
+      "edited": false,
+      "actually_released": false,
+      "released_outputs": 0,
+      "has_complete_enum_identity_section_in_USERdraft": true,
+      "has_complete_module_pattern_with_caveat_in_USERdraft": false,
+      "has_any_module_mention_in_selected_guide": true,
+      "actual_case_cause_or_fix_verified": false,
+      "unsupported_material_claims_observed": [],
+      "human_usefulness": null,
+      "semantic_findings": [
+        "Complete pinned Enum section supplies the documented repeated-definition/distinct Enum class/member identity mechanism. This is documentary guidance, not verification of the reported runtime cause.",
+        "Widget-return automatic coercion is explicitly scoped to selectbox/multiselect returned options; the actual USER code has no widget. No outer renderer claim applies enumCoercion as a direct-state fix.",
+        "The section mentions a separately imported Enum module via a link/conditional suggestion, but does not include the complete module-edit/reload caveat; do not count it as the full mitigation-pattern outcome.",
+        "Selected generic Session State quote remains long and partly off-topic; both complementary guide sections were not jointly selected."
+      ],
+      "prospective_assessment": "supported qualified Enum identity documentation; actual reproduction/fix unverified"
+    },
+    {
+      "batch_id": "enum-evidence-r2-dev-case-c",
+      "job_id": "r2:dev-case-c:fixed_guide_added",
+      "case_id": "dev-case-c",
+      "arm": "fixed_guide_added",
+      "round": 2,
+      "turn_id": "correction",
+      "mechanical_checks": [
+        {
+          "check": "fresh proposal present",
+          "passed": true
+        },
+        {
+          "check": "exactly one first attempt",
+          "passed": true
+        },
+        {
+          "check": "actual request preserved in handoff",
+          "passed": true
+        },
+        {
+          "check": "handoff exact current analysis",
+          "passed": true
+        },
+        {
+          "check": "all original analysis fields exactly reconstructed",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field decision matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field user_draft matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field maintainer_summary matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field rationale matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field next_question matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field missing_info matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field facts_delta matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field checks_suggested matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field retrieval_queries matches analysis",
+          "passed": true
+        },
+        {
+          "check": "no edited proposal",
+          "passed": true
+        },
+        {
+          "check": "current request untrusted payload has no reviewer controller fields",
+          "passed": true
+        },
+        {
+          "check": "all active USER facts quoted in maintainer summary",
+          "passed": true
+        },
+        {
+          "check": "no model facts or checks promoted",
+          "passed": true
+        },
+        {
+          "check": "actual engine pool equals registered current condition after exact USER scope",
+          "passed": true
+        },
+        {
+          "check": "only source gap or necessary registered USER gap",
+          "passed": true
+        },
+        {
+          "check": "no inherited or current source conflict silently won",
+          "passed": true
+        },
+        {
+          "check": "every selected canonical source bound to current full record",
+          "passed": true
+        },
+        {
+          "check": "selected citations exactly match rendered links",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in summary dev-three-session-state-full",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in actual USER draft dev-three-session-state-full",
+          "passed": true
+        },
+        {
+          "check": "reused source record identity unchanged dev-three-session-state-full",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in summary fixture-enum-guide-enum-and-widget-coercion-v1",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in actual USER draft fixture-enum-guide-enum-and-widget-coercion-v1",
+          "passed": true
+        },
+        {
+          "check": "reused source record identity unchanged fixture-enum-guide-enum-and-widget-coercion-v1",
+          "passed": true
+        },
+        {
+          "check": "guide is exact pinned raw complete section fixture-enum-guide-enum-and-widget-coercion-v1",
+          "passed": true
+        },
+        {
+          "check": "guide version remains unconfirmed fixture-enum-guide-enum-and-widget-coercion-v1",
+          "passed": true
+        },
+        {
+          "check": "entire actual supplied request unchanged in compact model projection",
+          "passed": true
+        },
+        {
+          "check": "actual source count within dynamically advertised max",
+          "passed": true
+        },
+        {
+          "check": "actual complete prompt within unchanged 32768 guard",
+          "passed": true
+        },
+        {
+          "check": "provider raw JSON/wire schema/canonical binding valid",
+          "passed": true
+        },
+        {
+          "check": "provider selected indexes bind exact same selected chunks",
+          "passed": true
+        },
+        {
+          "check": "all actually released text equals original untouched draft",
+          "passed": true
+        },
+        {
+          "check": "source applicability and no fix qualification retained for answer",
+          "passed": true
+        },
+        {
+          "check": "C no missing-user question manufactured",
+          "passed": true
+        },
+        {
+          "check": "C source gap explicitly separated from USER facts",
+          "passed": true
+        },
+        {
+          "check": "C current version explicit in actual draft",
+          "passed": true
+        },
+        {
+          "check": "C complete unchanged USER code and environment present",
+          "passed": true
+        },
+        {
+          "check": "C correction uses only active1.31.1",
+          "passed": true
+        },
+        {
+          "check": "C original report explicitly historical, not current facts",
+          "passed": true
+        },
+        {
+          "check": "C valid correction proposal actually approved/released",
+          "passed": true
+        },
+        {
+          "check": "C old approval recorded409 without mutation/new model send",
+          "passed": true
+        }
+      ],
+      "active_user_version": "1.31.1",
+      "decision": "answer",
+      "question": null,
+      "source_gap_names": [
+        "exact_version_documentation"
+      ],
+      "user_gap_names": [],
+      "selected_chunk_ids": [
+        "dev-three-session-state-full",
+        "fixture-enum-guide-enum-and-widget-coercion-v1"
+      ],
+      "selected_source_scopes": {
+        "dev-three-session-state-full": "unconfirmed",
+        "fixture-enum-guide-enum-and-widget-coercion-v1": "unconfirmed"
+      },
+      "advertised_max_sources": 2,
+      "full_message_utf8_bytes_plus_guard": 26755,
+      "output_chars": {
+        "user_draft": 14494,
+        "maintainer_summary": 17648,
+        "rationale": 1189
+      },
+      "original_analysis_sha256": "5c5d727d5859cf5092a37b5ba43559f51f43ad13253b20abbc453f4235f93a44",
+      "fresh": true,
+      "edited": false,
+      "actually_released": true,
+      "released_outputs": 1,
+      "has_complete_enum_identity_section_in_USERdraft": true,
+      "has_complete_module_pattern_with_caveat_in_USERdraft": false,
+      "has_any_module_mention_in_selected_guide": true,
+      "actual_case_cause_or_fix_verified": false,
+      "unsupported_material_claims_observed": [],
+      "human_usefulness": null,
+      "semantic_findings": [
+        "Complete pinned Enum section supplies the documented repeated-definition/distinct Enum class/member identity mechanism. This is documentary guidance, not verification of the reported runtime cause.",
+        "Widget-return automatic coercion is explicitly scoped to selectbox/multiselect returned options; the actual USER code has no widget. No outer renderer claim applies enumCoercion as a direct-state fix.",
+        "The section mentions a separately imported Enum module via a link/conditional suggestion, but does not include the complete module-edit/reload caveat; do not count it as the full mitigation-pattern outcome.",
+        "Selected generic Session State quote remains long and partly off-topic; both complementary guide sections were not jointly selected."
+      ],
+      "prospective_assessment": "supported qualified Enum identity documentation; actual reproduction/fix unverified"
+    },
+    {
+      "batch_id": "enum-evidence-r2-dev-case-c",
+      "job_id": "r2:dev-case-c:fixed_baseline",
+      "case_id": "dev-case-c",
+      "arm": "fixed_baseline",
+      "round": 2,
+      "turn_id": "initial",
+      "mechanical_checks": [
+        {
+          "check": "fresh proposal present",
+          "passed": true
+        },
+        {
+          "check": "exactly one first attempt",
+          "passed": true
+        },
+        {
+          "check": "actual request preserved in handoff",
+          "passed": true
+        },
+        {
+          "check": "handoff exact current analysis",
+          "passed": true
+        },
+        {
+          "check": "all original analysis fields exactly reconstructed",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field decision matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field user_draft matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field maintainer_summary matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field rationale matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field next_question matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field missing_info matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field facts_delta matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field checks_suggested matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field retrieval_queries matches analysis",
+          "passed": true
+        },
+        {
+          "check": "no edited proposal",
+          "passed": true
+        },
+        {
+          "check": "current request untrusted payload has no reviewer controller fields",
+          "passed": true
+        },
+        {
+          "check": "all active USER facts quoted in maintainer summary",
+          "passed": true
+        },
+        {
+          "check": "no model facts or checks promoted",
+          "passed": true
+        },
+        {
+          "check": "actual engine pool equals registered current condition after exact USER scope",
+          "passed": true
+        },
+        {
+          "check": "only source gap or necessary registered USER gap",
+          "passed": true
+        },
+        {
+          "check": "no inherited or current source conflict silently won",
+          "passed": true
+        },
+        {
+          "check": "every selected canonical source bound to current full record",
+          "passed": true
+        },
+        {
+          "check": "selected citations exactly match rendered links",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in summary dev-three-session-state-full",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in actual USER draft dev-three-session-state-full",
+          "passed": true
+        },
+        {
+          "check": "reused source record identity unchanged dev-three-session-state-full",
+          "passed": true
+        },
+        {
+          "check": "entire actual supplied request unchanged in compact model projection",
+          "passed": true
+        },
+        {
+          "check": "actual source count within dynamically advertised max",
+          "passed": true
+        },
+        {
+          "check": "actual complete prompt within unchanged 32768 guard",
+          "passed": true
+        },
+        {
+          "check": "provider raw JSON/wire schema/canonical binding valid",
+          "passed": true
+        },
+        {
+          "check": "provider selected indexes bind exact same selected chunks",
+          "passed": true
+        },
+        {
+          "check": "all actually released text equals original untouched draft",
+          "passed": true
+        },
+        {
+          "check": "source applicability and no fix qualification retained for answer",
+          "passed": true
+        },
+        {
+          "check": "C no missing-user question manufactured",
+          "passed": true
+        },
+        {
+          "check": "C source gap explicitly separated from USER facts",
+          "passed": true
+        },
+        {
+          "check": "C current version explicit in actual draft",
+          "passed": true
+        },
+        {
+          "check": "C complete unchanged USER code and environment present",
+          "passed": true
+        },
+        {
+          "check": "C initial proposal deliberately not released",
+          "passed": true
+        }
+      ],
+      "active_user_version": "1.31.0",
+      "decision": "answer",
+      "question": null,
+      "source_gap_names": [
+        "exact_version_documentation"
+      ],
+      "user_gap_names": [],
+      "selected_chunk_ids": [
+        "dev-three-session-state-full"
+      ],
+      "selected_source_scopes": {
+        "dev-three-session-state-full": "unconfirmed"
+      },
+      "advertised_max_sources": 8,
+      "full_message_utf8_bytes_plus_guard": 19714,
+      "output_chars": {
+        "user_draft": 11266,
+        "maintainer_summary": 13994,
+        "rationale": 1189
+      },
+      "original_analysis_sha256": "a45ff0652d60307c51ff010753f112152654397c75776bd240382b093e245f4c",
+      "fresh": true,
+      "edited": false,
+      "actually_released": false,
+      "released_outputs": 0,
+      "has_complete_enum_identity_section_in_USERdraft": false,
+      "has_complete_module_pattern_with_caveat_in_USERdraft": false,
+      "has_any_module_mention_in_selected_guide": false,
+      "actual_case_cause_or_fix_verified": false,
+      "unsupported_material_claims_observed": [],
+      "human_usefulness": null,
+      "semantic_findings": [
+        "Generic Session State quote supports persistence/API background only. It does not explain Enum member identity or provide an Enum-specific mitigation.",
+        "Source-gap/maintainer-investigation language is appropriately qualified; routing label answer is not evidence that this issue was solved.",
+        "Long generic quote contains substantial unrelated widget/callback/serialization material."
+      ],
+      "prospective_assessment": "qualified generic investigation only; no Enum diagnosis/fix"
+    },
+    {
+      "batch_id": "enum-evidence-r2-dev-case-c",
+      "job_id": "r2:dev-case-c:fixed_baseline",
+      "case_id": "dev-case-c",
+      "arm": "fixed_baseline",
+      "round": 2,
+      "turn_id": "correction",
+      "mechanical_checks": [
+        {
+          "check": "fresh proposal present",
+          "passed": true
+        },
+        {
+          "check": "exactly one first attempt",
+          "passed": true
+        },
+        {
+          "check": "actual request preserved in handoff",
+          "passed": true
+        },
+        {
+          "check": "handoff exact current analysis",
+          "passed": true
+        },
+        {
+          "check": "all original analysis fields exactly reconstructed",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field decision matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field user_draft matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field maintainer_summary matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field rationale matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field next_question matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field missing_info matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field facts_delta matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field checks_suggested matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field retrieval_queries matches analysis",
+          "passed": true
+        },
+        {
+          "check": "no edited proposal",
+          "passed": true
+        },
+        {
+          "check": "current request untrusted payload has no reviewer controller fields",
+          "passed": true
+        },
+        {
+          "check": "all active USER facts quoted in maintainer summary",
+          "passed": true
+        },
+        {
+          "check": "no model facts or checks promoted",
+          "passed": true
+        },
+        {
+          "check": "actual engine pool equals registered current condition after exact USER scope",
+          "passed": true
+        },
+        {
+          "check": "only source gap or necessary registered USER gap",
+          "passed": true
+        },
+        {
+          "check": "no inherited or current source conflict silently won",
+          "passed": true
+        },
+        {
+          "check": "every selected canonical source bound to current full record",
+          "passed": true
+        },
+        {
+          "check": "selected citations exactly match rendered links",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in summary dev-three-session-state-full",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in actual USER draft dev-three-session-state-full",
+          "passed": true
+        },
+        {
+          "check": "reused source record identity unchanged dev-three-session-state-full",
+          "passed": true
+        },
+        {
+          "check": "entire actual supplied request unchanged in compact model projection",
+          "passed": true
+        },
+        {
+          "check": "actual source count within dynamically advertised max",
+          "passed": true
+        },
+        {
+          "check": "actual complete prompt within unchanged 32768 guard",
+          "passed": true
+        },
+        {
+          "check": "provider raw JSON/wire schema/canonical binding valid",
+          "passed": true
+        },
+        {
+          "check": "provider selected indexes bind exact same selected chunks",
+          "passed": true
+        },
+        {
+          "check": "all actually released text equals original untouched draft",
+          "passed": true
+        },
+        {
+          "check": "source applicability and no fix qualification retained for answer",
+          "passed": true
+        },
+        {
+          "check": "C no missing-user question manufactured",
+          "passed": true
+        },
+        {
+          "check": "C source gap explicitly separated from USER facts",
+          "passed": true
+        },
+        {
+          "check": "C current version explicit in actual draft",
+          "passed": true
+        },
+        {
+          "check": "C complete unchanged USER code and environment present",
+          "passed": true
+        },
+        {
+          "check": "C correction uses only active1.31.1",
+          "passed": true
+        },
+        {
+          "check": "C original report explicitly historical, not current facts",
+          "passed": true
+        },
+        {
+          "check": "C valid correction proposal actually approved/released",
+          "passed": true
+        },
+        {
+          "check": "C old approval recorded409 without mutation/new model send",
+          "passed": true
+        }
+      ],
+      "active_user_version": "1.31.1",
+      "decision": "answer",
+      "question": null,
+      "source_gap_names": [
+        "exact_version_documentation"
+      ],
+      "user_gap_names": [],
+      "selected_chunk_ids": [
+        "dev-three-session-state-full"
+      ],
+      "selected_source_scopes": {
+        "dev-three-session-state-full": "unconfirmed"
+      },
+      "advertised_max_sources": 8,
+      "full_message_utf8_bytes_plus_guard": 20319,
+      "output_chars": {
+        "user_draft": 11266,
+        "maintainer_summary": 14420,
+        "rationale": 1189
+      },
+      "original_analysis_sha256": "8d5c9b48a6a139a727569acb5125b4ea89b81e7ef636d5bc114a77a5fb634b80",
+      "fresh": true,
+      "edited": false,
+      "actually_released": true,
+      "released_outputs": 1,
+      "has_complete_enum_identity_section_in_USERdraft": false,
+      "has_complete_module_pattern_with_caveat_in_USERdraft": false,
+      "has_any_module_mention_in_selected_guide": false,
+      "actual_case_cause_or_fix_verified": false,
+      "unsupported_material_claims_observed": [],
+      "human_usefulness": null,
+      "semantic_findings": [
+        "Generic Session State quote supports persistence/API background only. It does not explain Enum member identity or provide an Enum-specific mitigation.",
+        "Source-gap/maintainer-investigation language is appropriately qualified; routing label answer is not evidence that this issue was solved.",
+        "Long generic quote contains substantial unrelated widget/callback/serialization material."
+      ],
+      "prospective_assessment": "qualified generic investigation only; no Enum diagnosis/fix"
+    },
+    {
+      "batch_id": "enum-evidence-r2-dev-case-b",
+      "job_id": "r2:dev-case-b:fixed_baseline",
+      "case_id": "dev-case-b",
+      "arm": "fixed_baseline",
+      "round": 2,
+      "turn_id": "initial",
+      "mechanical_checks": [
+        {
+          "check": "fresh proposal present",
+          "passed": true
+        },
+        {
+          "check": "exactly one first attempt",
+          "passed": true
+        },
+        {
+          "check": "actual request preserved in handoff",
+          "passed": true
+        },
+        {
+          "check": "handoff exact current analysis",
+          "passed": true
+        },
+        {
+          "check": "all original analysis fields exactly reconstructed",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field decision matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field user_draft matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field maintainer_summary matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field rationale matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field next_question matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field missing_info matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field facts_delta matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field checks_suggested matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field retrieval_queries matches analysis",
+          "passed": true
+        },
+        {
+          "check": "no edited proposal",
+          "passed": true
+        },
+        {
+          "check": "current request untrusted payload has no reviewer controller fields",
+          "passed": true
+        },
+        {
+          "check": "all active USER facts quoted in maintainer summary",
+          "passed": true
+        },
+        {
+          "check": "no model facts or checks promoted",
+          "passed": true
+        },
+        {
+          "check": "actual engine pool equals registered current condition after exact USER scope",
+          "passed": true
+        },
+        {
+          "check": "only source gap or necessary registered USER gap",
+          "passed": true
+        },
+        {
+          "check": "no inherited or current source conflict silently won",
+          "passed": true
+        },
+        {
+          "check": "every selected canonical source bound to current full record",
+          "passed": true
+        },
+        {
+          "check": "selected citations exactly match rendered links",
+          "passed": true
+        },
+        {
+          "check": "entire actual supplied request unchanged in compact model projection",
+          "passed": true
+        },
+        {
+          "check": "actual source count within dynamically advertised max",
+          "passed": true
+        },
+        {
+          "check": "actual complete prompt within unchanged 32768 guard",
+          "passed": true
+        },
+        {
+          "check": "provider raw JSON/wire schema/canonical binding valid",
+          "passed": true
+        },
+        {
+          "check": "provider selected indexes bind exact same selected chunks",
+          "passed": true
+        },
+        {
+          "check": "all actually released text equals original untouched draft",
+          "passed": true
+        },
+        {
+          "check": "source applicability and no fix qualification retained for answer",
+          "passed": true
+        },
+        {
+          "check": "B initial version gap necessary",
+          "passed": true
+        }
+      ],
+      "active_user_version": null,
+      "decision": "ask",
+      "question": "Which Streamlit version is installed in the affected environment?",
+      "source_gap_names": [
+        "exact_version_documentation"
+      ],
+      "user_gap_names": [
+        "streamlit_version"
+      ],
+      "selected_chunk_ids": [],
+      "selected_source_scopes": {},
+      "advertised_max_sources": 8,
+      "full_message_utf8_bytes_plus_guard": 8711,
+      "output_chars": {
+        "user_draft": 65,
+        "maintainer_summary": 877,
+        "rationale": 689
+      },
+      "original_analysis_sha256": "3f9331b1c95b4bf89b3173b1044ad86b820a8d78aeece644d9ada4f6b59205c7",
+      "fresh": true,
+      "edited": false,
+      "actually_released": true,
+      "released_outputs": 1,
+      "has_complete_enum_identity_section_in_USERdraft": false,
+      "has_complete_module_pattern_with_caveat_in_USERdraft": false,
+      "has_any_module_mention_in_selected_guide": false,
+      "actual_case_cause_or_fix_verified": false,
+      "unsupported_material_claims_observed": [],
+      "human_usefulness": null,
+      "semantic_findings": [
+        "Necessary canonical version question with initially unknown installed release; no unsupported image or future-release promise."
+      ],
+      "prospective_assessment": "appropriate necessary USER question"
+    },
+    {
+      "batch_id": "enum-evidence-r2-dev-case-b",
+      "job_id": "r2:dev-case-b:fixed_baseline",
+      "case_id": "dev-case-b",
+      "arm": "fixed_baseline",
+      "round": 2,
+      "turn_id": "version",
+      "mechanical_checks": [
+        {
+          "check": "fresh proposal present",
+          "passed": true
+        },
+        {
+          "check": "exactly one first attempt",
+          "passed": true
+        },
+        {
+          "check": "actual request preserved in handoff",
+          "passed": true
+        },
+        {
+          "check": "handoff exact current analysis",
+          "passed": true
+        },
+        {
+          "check": "all original analysis fields exactly reconstructed",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field decision matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field user_draft matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field maintainer_summary matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field rationale matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field next_question matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field missing_info matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field facts_delta matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field checks_suggested matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field retrieval_queries matches analysis",
+          "passed": true
+        },
+        {
+          "check": "no edited proposal",
+          "passed": true
+        },
+        {
+          "check": "current request untrusted payload has no reviewer controller fields",
+          "passed": true
+        },
+        {
+          "check": "all active USER facts quoted in maintainer summary",
+          "passed": true
+        },
+        {
+          "check": "no model facts or checks promoted",
+          "passed": true
+        },
+        {
+          "check": "actual engine pool equals registered current condition after exact USER scope",
+          "passed": true
+        },
+        {
+          "check": "only source gap or necessary registered USER gap",
+          "passed": true
+        },
+        {
+          "check": "no inherited or current source conflict silently won",
+          "passed": true
+        },
+        {
+          "check": "every selected canonical source bound to current full record",
+          "passed": true
+        },
+        {
+          "check": "selected citations exactly match rendered links",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in summary dev-three-button-139-full",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in actual USER draft dev-three-button-139-full",
+          "passed": true
+        },
+        {
+          "check": "reused source record identity unchanged dev-three-button-139-full",
+          "passed": true
+        },
+        {
+          "check": "entire actual supplied request unchanged in compact model projection",
+          "passed": true
+        },
+        {
+          "check": "actual source count within dynamically advertised max",
+          "passed": true
+        },
+        {
+          "check": "actual complete prompt within unchanged 32768 guard",
+          "passed": true
+        },
+        {
+          "check": "provider raw JSON/wire schema/canonical binding valid",
+          "passed": true
+        },
+        {
+          "check": "provider selected indexes bind exact same selected chunks",
+          "passed": true
+        },
+        {
+          "check": "all actually released text equals original untouched draft",
+          "passed": true
+        },
+        {
+          "check": "source applicability and no fix qualification retained for answer",
+          "passed": true
+        },
+        {
+          "check": "B source scope exact1.39.0",
+          "passed": true
+        }
+      ],
+      "active_user_version": "1.39.0",
+      "decision": "answer",
+      "question": null,
+      "source_gap_names": [],
+      "user_gap_names": [],
+      "selected_chunk_ids": [
+        "dev-three-button-139-full"
+      ],
+      "selected_source_scopes": {
+        "dev-three-button-139-full": "exact_metadata_match"
+      },
+      "advertised_max_sources": 8,
+      "full_message_utf8_bytes_plus_guard": 11600,
+      "output_chars": {
+        "user_draft": 3383,
+        "maintainer_summary": 3769,
+        "rationale": 215
+      },
+      "original_analysis_sha256": "c51b98fa49810747dbcc32386318852be89c9c948b2f30f3a5e62c583dfceeb6",
+      "fresh": true,
+      "edited": false,
+      "actually_released": true,
+      "released_outputs": 1,
+      "has_complete_enum_identity_section_in_USERdraft": false,
+      "has_complete_module_pattern_with_caveat_in_USERdraft": false,
+      "has_any_module_mention_in_selected_guide": false,
+      "actual_case_cause_or_fix_verified": false,
+      "unsupported_material_claims_observed": [],
+      "human_usefulness": null,
+      "semantic_findings": [
+        "Complete1.39.0 button API quote supports emoji/Material Symbols icon and listed label-format contract. It does not support company-logo image or warning capability and gives no delivery timeline.",
+        "This remains partial topical guidance; the warning/custom-image remainder is not explicitly resolved. Complete quote preserves its limitations, and no unsupported future capability is asserted.",
+        "The source includes a pre-existing generated default=s artifact in the type field; it is quoted unchanged, not repaired or treated as tested runtime behavior."
+      ],
+      "prospective_assessment": "supported partial button contract, unresolved broader request"
+    },
+    {
+      "batch_id": "enum-evidence-r2-dev-case-b",
+      "job_id": "r2:dev-case-b:fixed_guide_added",
+      "case_id": "dev-case-b",
+      "arm": "fixed_guide_added",
+      "round": 2,
+      "turn_id": "initial",
+      "mechanical_checks": [
+        {
+          "check": "fresh proposal present",
+          "passed": true
+        },
+        {
+          "check": "exactly one first attempt",
+          "passed": true
+        },
+        {
+          "check": "actual request preserved in handoff",
+          "passed": true
+        },
+        {
+          "check": "handoff exact current analysis",
+          "passed": true
+        },
+        {
+          "check": "all original analysis fields exactly reconstructed",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field decision matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field user_draft matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field maintainer_summary matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field rationale matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field next_question matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field missing_info matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field facts_delta matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field checks_suggested matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field retrieval_queries matches analysis",
+          "passed": true
+        },
+        {
+          "check": "no edited proposal",
+          "passed": true
+        },
+        {
+          "check": "current request untrusted payload has no reviewer controller fields",
+          "passed": true
+        },
+        {
+          "check": "all active USER facts quoted in maintainer summary",
+          "passed": true
+        },
+        {
+          "check": "no model facts or checks promoted",
+          "passed": true
+        },
+        {
+          "check": "actual engine pool equals registered current condition after exact USER scope",
+          "passed": true
+        },
+        {
+          "check": "only source gap or necessary registered USER gap",
+          "passed": true
+        },
+        {
+          "check": "no inherited or current source conflict silently won",
+          "passed": true
+        },
+        {
+          "check": "every selected canonical source bound to current full record",
+          "passed": true
+        },
+        {
+          "check": "selected citations exactly match rendered links",
+          "passed": true
+        },
+        {
+          "check": "entire actual supplied request unchanged in compact model projection",
+          "passed": true
+        },
+        {
+          "check": "actual source count within dynamically advertised max",
+          "passed": true
+        },
+        {
+          "check": "actual complete prompt within unchanged 32768 guard",
+          "passed": true
+        },
+        {
+          "check": "provider raw JSON/wire schema/canonical binding valid",
+          "passed": true
+        },
+        {
+          "check": "provider selected indexes bind exact same selected chunks",
+          "passed": true
+        },
+        {
+          "check": "all actually released text equals original untouched draft",
+          "passed": true
+        },
+        {
+          "check": "source applicability and no fix qualification retained for answer",
+          "passed": true
+        },
+        {
+          "check": "B initial version gap necessary",
+          "passed": true
+        }
+      ],
+      "active_user_version": null,
+      "decision": "ask",
+      "question": "Which Streamlit version is installed in the affected environment?",
+      "source_gap_names": [
+        "exact_version_documentation"
+      ],
+      "user_gap_names": [
+        "streamlit_version"
+      ],
+      "selected_chunk_ids": [],
+      "selected_source_scopes": {},
+      "advertised_max_sources": 8,
+      "full_message_utf8_bytes_plus_guard": 8711,
+      "output_chars": {
+        "user_draft": 65,
+        "maintainer_summary": 877,
+        "rationale": 689
+      },
+      "original_analysis_sha256": "3f9331b1c95b4bf89b3173b1044ad86b820a8d78aeece644d9ada4f6b59205c7",
+      "fresh": true,
+      "edited": false,
+      "actually_released": true,
+      "released_outputs": 1,
+      "has_complete_enum_identity_section_in_USERdraft": false,
+      "has_complete_module_pattern_with_caveat_in_USERdraft": false,
+      "has_any_module_mention_in_selected_guide": false,
+      "actual_case_cause_or_fix_verified": false,
+      "unsupported_material_claims_observed": [],
+      "human_usefulness": null,
+      "semantic_findings": [
+        "Necessary canonical version question with initially unknown installed release; no unsupported image or future-release promise."
+      ],
+      "prospective_assessment": "appropriate necessary USER question"
+    },
+    {
+      "batch_id": "enum-evidence-r2-dev-case-b",
+      "job_id": "r2:dev-case-b:fixed_guide_added",
+      "case_id": "dev-case-b",
+      "arm": "fixed_guide_added",
+      "round": 2,
+      "turn_id": "version",
+      "mechanical_checks": [
+        {
+          "check": "fresh proposal present",
+          "passed": true
+        },
+        {
+          "check": "exactly one first attempt",
+          "passed": true
+        },
+        {
+          "check": "actual request preserved in handoff",
+          "passed": true
+        },
+        {
+          "check": "handoff exact current analysis",
+          "passed": true
+        },
+        {
+          "check": "all original analysis fields exactly reconstructed",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field decision matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field user_draft matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field maintainer_summary matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field rationale matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field next_question matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field missing_info matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field facts_delta matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field checks_suggested matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field retrieval_queries matches analysis",
+          "passed": true
+        },
+        {
+          "check": "no edited proposal",
+          "passed": true
+        },
+        {
+          "check": "current request untrusted payload has no reviewer controller fields",
+          "passed": true
+        },
+        {
+          "check": "all active USER facts quoted in maintainer summary",
+          "passed": true
+        },
+        {
+          "check": "no model facts or checks promoted",
+          "passed": true
+        },
+        {
+          "check": "actual engine pool equals registered current condition after exact USER scope",
+          "passed": true
+        },
+        {
+          "check": "only source gap or necessary registered USER gap",
+          "passed": true
+        },
+        {
+          "check": "no inherited or current source conflict silently won",
+          "passed": true
+        },
+        {
+          "check": "every selected canonical source bound to current full record",
+          "passed": true
+        },
+        {
+          "check": "selected citations exactly match rendered links",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in summary dev-three-button-139-full",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in actual USER draft dev-three-button-139-full",
+          "passed": true
+        },
+        {
+          "check": "reused source record identity unchanged dev-three-button-139-full",
+          "passed": true
+        },
+        {
+          "check": "entire actual supplied request unchanged in compact model projection",
+          "passed": true
+        },
+        {
+          "check": "actual source count within dynamically advertised max",
+          "passed": true
+        },
+        {
+          "check": "actual complete prompt within unchanged 32768 guard",
+          "passed": true
+        },
+        {
+          "check": "provider raw JSON/wire schema/canonical binding valid",
+          "passed": true
+        },
+        {
+          "check": "provider selected indexes bind exact same selected chunks",
+          "passed": true
+        },
+        {
+          "check": "all actually released text equals original untouched draft",
+          "passed": true
+        },
+        {
+          "check": "source applicability and no fix qualification retained for answer",
+          "passed": true
+        },
+        {
+          "check": "B source scope exact1.39.0",
+          "passed": true
+        }
+      ],
+      "active_user_version": "1.39.0",
+      "decision": "answer",
+      "question": null,
+      "source_gap_names": [],
+      "user_gap_names": [],
+      "selected_chunk_ids": [
+        "dev-three-button-139-full"
+      ],
+      "selected_source_scopes": {
+        "dev-three-button-139-full": "exact_metadata_match"
+      },
+      "advertised_max_sources": 8,
+      "full_message_utf8_bytes_plus_guard": 11600,
+      "output_chars": {
+        "user_draft": 3383,
+        "maintainer_summary": 3769,
+        "rationale": 215
+      },
+      "original_analysis_sha256": "c51b98fa49810747dbcc32386318852be89c9c948b2f30f3a5e62c583dfceeb6",
+      "fresh": true,
+      "edited": false,
+      "actually_released": true,
+      "released_outputs": 1,
+      "has_complete_enum_identity_section_in_USERdraft": false,
+      "has_complete_module_pattern_with_caveat_in_USERdraft": false,
+      "has_any_module_mention_in_selected_guide": false,
+      "actual_case_cause_or_fix_verified": false,
+      "unsupported_material_claims_observed": [],
+      "human_usefulness": null,
+      "semantic_findings": [
+        "Complete1.39.0 button API quote supports emoji/Material Symbols icon and listed label-format contract. It does not support company-logo image or warning capability and gives no delivery timeline.",
+        "This remains partial topical guidance; the warning/custom-image remainder is not explicitly resolved. Complete quote preserves its limitations, and no unsupported future capability is asserted.",
+        "The source includes a pre-existing generated default=s artifact in the type field; it is quoted unchanged, not repaired or treated as tested runtime behavior."
+      ],
+      "prospective_assessment": "supported partial button contract, unresolved broader request"
+    },
+    {
+      "batch_id": "enum-evidence-r2-dev-case-a",
+      "job_id": "r2:dev-case-a:fixed_guide_added",
+      "case_id": "dev-case-a",
+      "arm": "fixed_guide_added",
+      "round": 2,
+      "turn_id": "initial",
+      "mechanical_checks": [
+        {
+          "check": "fresh proposal present",
+          "passed": true
+        },
+        {
+          "check": "exactly one first attempt",
+          "passed": true
+        },
+        {
+          "check": "actual request preserved in handoff",
+          "passed": true
+        },
+        {
+          "check": "handoff exact current analysis",
+          "passed": true
+        },
+        {
+          "check": "all original analysis fields exactly reconstructed",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field decision matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field user_draft matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field maintainer_summary matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field rationale matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field next_question matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field missing_info matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field facts_delta matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field checks_suggested matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field retrieval_queries matches analysis",
+          "passed": true
+        },
+        {
+          "check": "no edited proposal",
+          "passed": true
+        },
+        {
+          "check": "current request untrusted payload has no reviewer controller fields",
+          "passed": true
+        },
+        {
+          "check": "all active USER facts quoted in maintainer summary",
+          "passed": true
+        },
+        {
+          "check": "no model facts or checks promoted",
+          "passed": true
+        },
+        {
+          "check": "actual engine pool equals registered current condition after exact USER scope",
+          "passed": true
+        },
+        {
+          "check": "only source gap or necessary registered USER gap",
+          "passed": true
+        },
+        {
+          "check": "no inherited or current source conflict silently won",
+          "passed": true
+        },
+        {
+          "check": "every selected canonical source bound to current full record",
+          "passed": true
+        },
+        {
+          "check": "selected citations exactly match rendered links",
+          "passed": true
+        },
+        {
+          "check": "entire actual supplied request unchanged in compact model projection",
+          "passed": true
+        },
+        {
+          "check": "actual source count within dynamically advertised max",
+          "passed": true
+        },
+        {
+          "check": "actual complete prompt within unchanged 32768 guard",
+          "passed": true
+        },
+        {
+          "check": "provider raw JSON/wire schema/canonical binding valid",
+          "passed": true
+        },
+        {
+          "check": "provider selected indexes bind exact same selected chunks",
+          "passed": true
+        },
+        {
+          "check": "all actually released text equals original untouched draft",
+          "passed": true
+        },
+        {
+          "check": "source applicability and no fix qualification retained for answer",
+          "passed": true
+        },
+        {
+          "check": "A initial version gap necessary",
+          "passed": true
+        }
+      ],
+      "active_user_version": null,
+      "decision": "ask",
+      "question": "Which Streamlit version is installed in the affected environment?",
+      "source_gap_names": [
+        "exact_version_documentation"
+      ],
+      "user_gap_names": [
+        "streamlit_version",
+        "parent_callback_code",
+        "state_update_order"
+      ],
+      "selected_chunk_ids": [],
+      "selected_source_scopes": {},
+      "advertised_max_sources": 8,
+      "full_message_utf8_bytes_plus_guard": 11024,
+      "output_chars": {
+        "user_draft": 65,
+        "maintainer_summary": 1319,
+        "rationale": 689
+      },
+      "original_analysis_sha256": "2dfe0c053499837bf66e8f25c51018cc1838c24ab71de5fec34ce665985c00de",
+      "fresh": true,
+      "edited": false,
+      "actually_released": true,
+      "released_outputs": 1,
+      "has_complete_enum_identity_section_in_USERdraft": false,
+      "has_complete_module_pattern_with_caveat_in_USERdraft": false,
+      "has_any_module_mention_in_selected_guide": false,
+      "actual_case_cause_or_fix_verified": false,
+      "unsupported_material_claims_observed": [],
+      "human_usefulness": null,
+      "semantic_findings": [
+        "Necessary canonical version question: installed release is unknown; no technical diagnosis/fix asserted. The actual version-scoped model pool is empty, so the separate source gap is accurate."
+      ],
+      "prospective_assessment": "appropriate necessary USER question; not a solved technical case"
+    },
+    {
+      "batch_id": "enum-evidence-r2-dev-case-a",
+      "job_id": "r2:dev-case-a:fixed_guide_added",
+      "case_id": "dev-case-a",
+      "arm": "fixed_guide_added",
+      "round": 2,
+      "turn_id": "version",
+      "mechanical_checks": [
+        {
+          "check": "fresh proposal present",
+          "passed": true
+        },
+        {
+          "check": "exactly one first attempt",
+          "passed": true
+        },
+        {
+          "check": "actual request preserved in handoff",
+          "passed": true
+        },
+        {
+          "check": "handoff exact current analysis",
+          "passed": true
+        },
+        {
+          "check": "all original analysis fields exactly reconstructed",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field decision matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field user_draft matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field maintainer_summary matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field rationale matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field next_question matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field missing_info matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field facts_delta matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field checks_suggested matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field retrieval_queries matches analysis",
+          "passed": true
+        },
+        {
+          "check": "no edited proposal",
+          "passed": true
+        },
+        {
+          "check": "current request untrusted payload has no reviewer controller fields",
+          "passed": true
+        },
+        {
+          "check": "all active USER facts quoted in maintainer summary",
+          "passed": true
+        },
+        {
+          "check": "no model facts or checks promoted",
+          "passed": true
+        },
+        {
+          "check": "actual engine pool equals registered current condition after exact USER scope",
+          "passed": true
+        },
+        {
+          "check": "only source gap or necessary registered USER gap",
+          "passed": true
+        },
+        {
+          "check": "no inherited or current source conflict silently won",
+          "passed": true
+        },
+        {
+          "check": "every selected canonical source bound to current full record",
+          "passed": true
+        },
+        {
+          "check": "selected citations exactly match rendered links",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in summary dev-three-multiselect-1500-default-key",
+          "passed": true
+        },
+        {
+          "check": "selected source inventory exact in actual USER draft dev-three-multiselect-1500-default-key",
+          "passed": true
+        },
+        {
+          "check": "reused source record identity unchanged dev-three-multiselect-1500-default-key",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in summary dev-three-fragment-150-full",
+          "passed": true
+        },
+        {
+          "check": "selected source inventory exact in actual USER draft dev-three-fragment-150-full",
+          "passed": true
+        },
+        {
+          "check": "reused source record identity unchanged dev-three-fragment-150-full",
+          "passed": true
+        },
+        {
+          "check": "entire actual supplied request unchanged in compact model projection",
+          "passed": true
+        },
+        {
+          "check": "actual source count within dynamically advertised max",
+          "passed": true
+        },
+        {
+          "check": "actual complete prompt within unchanged 32768 guard",
+          "passed": true
+        },
+        {
+          "check": "provider raw JSON/wire schema/canonical binding valid",
+          "passed": true
+        },
+        {
+          "check": "provider selected indexes bind exact same selected chunks",
+          "passed": true
+        },
+        {
+          "check": "all actually released text equals original untouched draft",
+          "passed": true
+        },
+        {
+          "check": "source applicability and no fix qualification retained for answer",
+          "passed": true
+        },
+        {
+          "check": "A current version known callback gap necessary",
+          "passed": true
+        },
+        {
+          "check": "A ask remains exact canonical prefix",
+          "passed": true
+        }
+      ],
+      "active_user_version": "1.50.0",
+      "decision": "ask",
+      "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?",
+      "source_gap_names": [],
+      "user_gap_names": [
+        "parent_callback_code",
+        "state_update_order"
+      ],
+      "selected_chunk_ids": [
+        "dev-three-multiselect-1500-default-key",
+        "dev-three-fragment-150-full"
+      ],
+      "selected_source_scopes": {
+        "dev-three-multiselect-1500-default-key": "exact_metadata_match",
+        "dev-three-fragment-150-full": "exact_metadata_match"
+      },
+      "advertised_max_sources": 8,
+      "full_message_utf8_bytes_plus_guard": 15791,
+      "output_chars": {
+        "user_draft": 1109,
+        "maintainer_summary": 4789,
+        "rationale": 366
+      },
+      "original_analysis_sha256": "27de85fcbb9f0355d135b9d8f9cd1afa3950178c006150be65b717c01b451e23",
+      "fresh": true,
+      "edited": false,
+      "actually_released": true,
+      "released_outputs": 1,
+      "has_complete_enum_identity_section_in_USERdraft": false,
+      "has_complete_module_pattern_with_caveat_in_USERdraft": false,
+      "has_any_module_mention_in_selected_guide": false,
+      "actual_case_cause_or_fix_verified": false,
+      "unsupported_material_claims_observed": [],
+      "human_usefulness": null,
+      "semantic_findings": [
+        "Necessary answerable callback/state-update-code question: only the reduced working example is available. Current1.50.0 is known and not asked again.",
+        "Concise source inventory references are relevant and complete API quotations remain in review summary, but the actual USER draft does not deliver those technical API passages.",
+        "No source-backed cause/fix or key-only identity transition claim is asserted."
+      ],
+      "prospective_assessment": "appropriate necessary USER question; not a solved technical case"
+    },
+    {
+      "batch_id": "enum-evidence-r2-dev-case-a",
+      "job_id": "r2:dev-case-a:fixed_baseline",
+      "case_id": "dev-case-a",
+      "arm": "fixed_baseline",
+      "round": 2,
+      "turn_id": "initial",
+      "mechanical_checks": [
+        {
+          "check": "fresh proposal present",
+          "passed": true
+        },
+        {
+          "check": "exactly one first attempt",
+          "passed": true
+        },
+        {
+          "check": "actual request preserved in handoff",
+          "passed": true
+        },
+        {
+          "check": "handoff exact current analysis",
+          "passed": true
+        },
+        {
+          "check": "all original analysis fields exactly reconstructed",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field decision matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field user_draft matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field maintainer_summary matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field rationale matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field next_question matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field missing_info matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field facts_delta matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field checks_suggested matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field retrieval_queries matches analysis",
+          "passed": true
+        },
+        {
+          "check": "no edited proposal",
+          "passed": true
+        },
+        {
+          "check": "current request untrusted payload has no reviewer controller fields",
+          "passed": true
+        },
+        {
+          "check": "all active USER facts quoted in maintainer summary",
+          "passed": true
+        },
+        {
+          "check": "no model facts or checks promoted",
+          "passed": true
+        },
+        {
+          "check": "actual engine pool equals registered current condition after exact USER scope",
+          "passed": true
+        },
+        {
+          "check": "only source gap or necessary registered USER gap",
+          "passed": true
+        },
+        {
+          "check": "no inherited or current source conflict silently won",
+          "passed": true
+        },
+        {
+          "check": "every selected canonical source bound to current full record",
+          "passed": true
+        },
+        {
+          "check": "selected citations exactly match rendered links",
+          "passed": true
+        },
+        {
+          "check": "entire actual supplied request unchanged in compact model projection",
+          "passed": true
+        },
+        {
+          "check": "actual source count within dynamically advertised max",
+          "passed": true
+        },
+        {
+          "check": "actual complete prompt within unchanged 32768 guard",
+          "passed": true
+        },
+        {
+          "check": "provider raw JSON/wire schema/canonical binding valid",
+          "passed": true
+        },
+        {
+          "check": "provider selected indexes bind exact same selected chunks",
+          "passed": true
+        },
+        {
+          "check": "all actually released text equals original untouched draft",
+          "passed": true
+        },
+        {
+          "check": "source applicability and no fix qualification retained for answer",
+          "passed": true
+        },
+        {
+          "check": "A initial version gap necessary",
+          "passed": true
+        }
+      ],
+      "active_user_version": null,
+      "decision": "ask",
+      "question": "Which Streamlit version is installed in the affected environment?",
+      "source_gap_names": [
+        "exact_version_documentation"
+      ],
+      "user_gap_names": [
+        "streamlit_version",
+        "parent_callback_code",
+        "state_update_order"
+      ],
+      "selected_chunk_ids": [],
+      "selected_source_scopes": {},
+      "advertised_max_sources": 8,
+      "full_message_utf8_bytes_plus_guard": 11024,
+      "output_chars": {
+        "user_draft": 65,
+        "maintainer_summary": 1319,
+        "rationale": 689
+      },
+      "original_analysis_sha256": "2dfe0c053499837bf66e8f25c51018cc1838c24ab71de5fec34ce665985c00de",
+      "fresh": true,
+      "edited": false,
+      "actually_released": true,
+      "released_outputs": 1,
+      "has_complete_enum_identity_section_in_USERdraft": false,
+      "has_complete_module_pattern_with_caveat_in_USERdraft": false,
+      "has_any_module_mention_in_selected_guide": false,
+      "actual_case_cause_or_fix_verified": false,
+      "unsupported_material_claims_observed": [],
+      "human_usefulness": null,
+      "semantic_findings": [
+        "Necessary canonical version question: installed release is unknown; no technical diagnosis/fix asserted. The actual version-scoped model pool is empty, so the separate source gap is accurate."
+      ],
+      "prospective_assessment": "appropriate necessary USER question; not a solved technical case"
+    },
+    {
+      "batch_id": "enum-evidence-r2-dev-case-a",
+      "job_id": "r2:dev-case-a:fixed_baseline",
+      "case_id": "dev-case-a",
+      "arm": "fixed_baseline",
+      "round": 2,
+      "turn_id": "version",
+      "mechanical_checks": [
+        {
+          "check": "fresh proposal present",
+          "passed": true
+        },
+        {
+          "check": "exactly one first attempt",
+          "passed": true
+        },
+        {
+          "check": "actual request preserved in handoff",
+          "passed": true
+        },
+        {
+          "check": "handoff exact current analysis",
+          "passed": true
+        },
+        {
+          "check": "all original analysis fields exactly reconstructed",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field decision matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field user_draft matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field maintainer_summary matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field rationale matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field next_question matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field missing_info matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field facts_delta matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field checks_suggested matches analysis",
+          "passed": true
+        },
+        {
+          "check": "outer proposal field retrieval_queries matches analysis",
+          "passed": true
+        },
+        {
+          "check": "no edited proposal",
+          "passed": true
+        },
+        {
+          "check": "current request untrusted payload has no reviewer controller fields",
+          "passed": true
+        },
+        {
+          "check": "all active USER facts quoted in maintainer summary",
+          "passed": true
+        },
+        {
+          "check": "no model facts or checks promoted",
+          "passed": true
+        },
+        {
+          "check": "actual engine pool equals registered current condition after exact USER scope",
+          "passed": true
+        },
+        {
+          "check": "only source gap or necessary registered USER gap",
+          "passed": true
+        },
+        {
+          "check": "no inherited or current source conflict silently won",
+          "passed": true
+        },
+        {
+          "check": "every selected canonical source bound to current full record",
+          "passed": true
+        },
+        {
+          "check": "selected citations exactly match rendered links",
+          "passed": true
+        },
+        {
+          "check": "complete selected source retained in summary dev-three-multiselect-1500-default-key",
+          "passed": true
+        },
+        {
+          "check": "selected source inventory exact in actual USER draft dev-three-multiselect-1500-default-key",
+          "passed": true
+        },
+        {
+          "check": "reused source record identity unchanged dev-three-multiselect-1500-default-key",
+          "passed": true
+        },
+        {
+          "check": "entire actual supplied request unchanged in compact model projection",
+          "passed": true
+        },
+        {
+          "check": "actual source count within dynamically advertised max",
+          "passed": true
+        },
+        {
+          "check": "actual complete prompt within unchanged 32768 guard",
+          "passed": true
+        },
+        {
+          "check": "provider raw JSON/wire schema/canonical binding valid",
+          "passed": true
+        },
+        {
+          "check": "provider selected indexes bind exact same selected chunks",
+          "passed": true
+        },
+        {
+          "check": "all actually released text equals original untouched draft",
+          "passed": true
+        },
+        {
+          "check": "source applicability and no fix qualification retained for answer",
+          "passed": true
+        },
+        {
+          "check": "A current version known callback gap necessary",
+          "passed": true
+        },
+        {
+          "check": "A ask remains exact canonical prefix",
+          "passed": true
+        }
+      ],
+      "active_user_version": "1.50.0",
+      "decision": "ask",
+      "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?",
+      "source_gap_names": [],
+      "user_gap_names": [
+        "parent_callback_code",
+        "state_update_order"
+      ],
+      "selected_chunk_ids": [
+        "dev-three-multiselect-1500-default-key"
+      ],
+      "selected_source_scopes": {
+        "dev-three-multiselect-1500-default-key": "exact_metadata_match"
+      },
+      "advertised_max_sources": 8,
+      "full_message_utf8_bytes_plus_guard": 15791,
+      "output_chars": {
+        "user_draft": 724,
+        "maintainer_summary": 1934,
+        "rationale": 366
+      },
+      "original_analysis_sha256": "d10bc07a0fcb8d6a578a056c88dd21359acc15aafc5379ed9c818e33fd3fff71",
+      "fresh": true,
+      "edited": false,
+      "actually_released": true,
+      "released_outputs": 1,
+      "has_complete_enum_identity_section_in_USERdraft": false,
+      "has_complete_module_pattern_with_caveat_in_USERdraft": false,
+      "has_any_module_mention_in_selected_guide": false,
+      "actual_case_cause_or_fix_verified": false,
+      "unsupported_material_claims_observed": [],
+      "human_usefulness": null,
+      "semantic_findings": [
+        "Necessary answerable callback/state-update-code question: only the reduced working example is available. Current1.50.0 is known and not asked again.",
+        "Concise source inventory references are relevant and complete API quotations remain in review summary, but the actual USER draft does not deliver those technical API passages.",
+        "No source-backed cause/fix or key-only identity transition claim is asserted."
+      ],
+      "prospective_assessment": "appropriate necessary USER question; not a solved technical case"
+    }
+  ],
+  "overall_findings": [
+    "C treatment makes documentary guidance available in actual proposal drafts; baseline generic material does not provide the Enum-specific explanation or full module mitigation.",
+    "Initial C drafts are deliberately not approved/released. Strict released identity and full mitigation counts are1/2 each across correction turns, not3/4 and1/4 deliveries.",
+    "All four treatment C plans still select the8891-character generic Session State record plus exactly one guide section. No actual proposal combines both complementary full guide sections.",
+    "Complete Enum excerpts preserve widget-only coercion scope. No direct-state enumCoercion remedy is asserted outside the quote, but widget-heavy material can confuse and remains a relevance/readability concern.",
+    "All C facts already include version/code/environment/observation. No C question or new USER gap is manufactured; every correction uses active1.31.1 with superseded1.31.0 marked historical and stale approval409 retained.",
+    "A continues necessary follow-up; metadata inventories do not count as delivered technical API guidance. B retains complete partial icon/label contract but does not resolve warning/custom image request.",
+    "No unsupported material claim outside the attributed complete records was observed. This is an unblinded assistant judgment, not a human usefulness score. Source quotation/relevance, exact installed applicability and reproduced runtime success remain separate.",
+    "Original runner decision/gold checks and coverage_complete remain immutable operational observations. They are not the prospective evidence-conditioned semantic verdict or proof of solved cases.",
+    "The actual accumulated USER context derives treatment C max2 on ALL4 paid turns versus baseline max8. Earlier isolated offline correction max8 is not the actual paid bound. Both current guide passages remain jointly selectable under max2, but no model plan selects them together. This is evidence availability under a common capacity policy, not pure text-only causality or independent proof of a capacity-prompt benefit."
+  ],
+  "actual_C_capacity": {
+    "fixed_baseline": [
+      {
+        "round": 1,
+        "turn_id": "initial",
+        "advertised_max_sources": 8
+      },
+      {
+        "round": 1,
+        "turn_id": "correction",
+        "advertised_max_sources": 8
+      },
+      {
+        "round": 2,
+        "turn_id": "initial",
+        "advertised_max_sources": 8
+      },
+      {
+        "round": 2,
+        "turn_id": "correction",
+        "advertised_max_sources": 8
+      }
+    ],
+    "fixed_guide_added": [
+      {
+        "round": 1,
+        "turn_id": "initial",
+        "advertised_max_sources": 2
+      },
+      {
+        "round": 1,
+        "turn_id": "correction",
+        "advertised_max_sources": 2
+      },
+      {
+        "round": 2,
+        "turn_id": "initial",
+        "advertised_max_sources": 2
+      },
+      {
+        "round": 2,
+        "turn_id": "correction",
+        "advertised_max_sources": 2
+      }
+    ]
+  },
+  "max_actual_prompt_bytes_plus_guard": 26755
+}

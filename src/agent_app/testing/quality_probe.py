@@ -58,7 +58,7 @@ def quality_slots(protocol, batch, fixtures):
             if (
                 type(reserve) is not int
                 or reserve not in (16384, 24576, 32768)
-                or (reserve == 32768 and batch["kind"] != "real_index")
+                or (reserve == 32768 and batch["kind"] not in {"real_index", "controlled_evidence"})
             ):
                 raise DevProbeRejected()
             slots.append(
@@ -272,7 +272,7 @@ def run_quality_batch(
         if (
             type(reserve) is not int
             or reserve not in (16384, 24576, 32768)
-            or (reserve == 32768 and batch["kind"] != "real_index")
+            or (reserve == 32768 and batch["kind"] not in {"real_index", "controlled_evidence"})
             or input_profiles.get(job["case_id"], reserve) != reserve
         ):
             raise DevProbeRejected()
@@ -413,7 +413,7 @@ def run_quality_batch(
 
                 engine_factory = (
                     scoped_engine
-                    if batch["kind"] in {"adversarial", "real_index"}
+                    if batch["kind"] in {"adversarial", "real_index", "controlled_evidence"}
                     else SupportEngine
                 )
                 with (

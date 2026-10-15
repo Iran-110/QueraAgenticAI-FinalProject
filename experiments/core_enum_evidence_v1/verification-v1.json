@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "tested_commit": "9086ea598c36f46dd8a0c6bd05f152a4155edce2",
+  "paid_source_commit": "edaef059966f071496a7398836a258d6864f70ad",
+  "pytest": {
+    "tests": 4611,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 200.096,
+    "xml_path": "/Users/sasan/Desktop/Agentic AI/output/enum-evidence-full-2026-10-15-v1.xml",
+    "xml_sha256": "d55667e81d13422cdcff8256c3b22fe322afa1e042d969b270d16783c1850d8e",
+    "unchanged_source_through_full_suite": true
+  },
+  "production_python_scripts_tests_changed_after_full_suite": false,
+  "production_runtime_or_public_contract_changes": false,
+  "testing_harness_kind_extended": true,
+  "uv_sync_locked_group_dev": true,
+  "ruff_check": true,
+  "ruff_format_files": 317,
+  "new_focused_tests": 105,
+  "required_offline_demos": [
+    "refine",
+    "gateway repair",
+    "turn-demo"
+  ],
+  "http_sqlite_fixture_acceptance": {
+    "checks_passed": 457,
+    "checks_total": 457,
+    "same_process_accepted": true,
+    "restart_accepted": true,
+    "path": "/Users/sasan/Desktop/Agentic AI/output/enum-evidence-http-sqlite-2026-10-15-v1.json",
+    "sha256": "351131a6fdb0e89311b86de0f01585507781eba7d95c186c080e2f77715d6517",
+    "real_model_quality": false,
+    "mocked_provider": true
+  },
+  "original_receipt_sha256": "bf4ba6855c56591ea2875bde060c917363f3507e2cf7e1885fe3b4488b7fabda",
+  "cost_review_sha256": "8cb380a75f6338aa87d20724392497b4ee7f193f0c35106a523aca6cc67851e2",
+  "semantic_review_sha256": "f46bd730a2c052a7ba6fade2573d3ccf6e546ba1314df6e8dd5e3848648838d0",
+  "cost_source_recomputation_checks": 1627,
+  "semantic_review": {
+    "reviewer": "unblinded assistant with implementation/test overlap",
+    "mechanical_checks_passed": 863,
+    "planned_turns": 24,
+    "fresh": 24,
+    "stale": 0,
+    "empty": 0,
+    "unvisited": 0,
+    "original_releases": 20,
+    "edits": 0,
+    "C_initial_releases": 0,
+    "human_usefulness": null,
+    "runtime_verified_fix": false
+  },
+  "protected_input_files": {
+    "count": 19,
+    "all_unchanged": true,
+    "real_index_sources": 18,
+    "real_index_chunks": 36,
+    "answer_linked_guide_absent_from_index": true,
+    "original_fixtures_gold_exclusion_unchanged": true
+  },
+  "actual_controlled_supplier_calls": 24,
+  "actual_RAG_searches": 0,
+  "paid_runner_storage": "existing memory API/DummyTracker",
+  "fresh_browser_or_live_sqlite_claim": false,
+  "fresh_windows_run": false,
+  "raw_JSON_validity": {
+    "recorded_gateway_observation": true,
+    "raw_provider_text_retained": false,
+    "raw_schema_reparse_possible": false,
+    "canonical_expansion_recomputed": true
+  },
+  "ledger_after_matches_original_receipt": true,
+  "ordinary_halt_retained": true,
+  "old_uncertain_holds_retained": true,
+  "fresh_scopes_closed": 6,
+  "unused_slots_permanently_claimed": 24,
+  "github_actions": "blocked_before_job_steps_billing_or_spending_limit",
+  "ci_pass_claim": false,
+  "local_publication_authorization": "user-2026-10-15-controlled-Enum-evidence-quality-comparison",
+  "review_overlap": {
+    "cost_auditor_has_implementation_test_overlap": true,
+    "semantic_auditor_has_implementation_test_overlap": true,
+    "independent_person_review": false
+  },
+  "final_separate_code_artifact_review": {
+    "reviewer": "separate assistant review pass; not independent human review",
+    "blockers": 0,
+    "worksheet_version_metadata_rechecked": true,
+    "code_and_protected_inputs_rechecked": true,
+    "all_24_semantic_rows_and_source_bundles_reviewed": true
+  },
+  "publication": {
+    "pull_request": "https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/61",
+    "code_and_artifact_review_commit": "a76180d89882952c37584e086fdd83bb6fbdec3b",
+    "final_publication_review_blockers": 0,
+    "billing_failures_verified_before_publication": [
+      38745936295,
+      38745900796
+    ],
+    "jobs_not_started_reason": "recent account payments failed or spending limit needs increase",
+    "workflow_or_protection_changed": false,
+    "publication_after_local_verification_authorized": true
+  },
+  "local_documentation_links": {
+    "checked": 834,
+    "missing": 0
+  },
+  "credential_scan": {
+    "changed_files": 26,
+    "actual_secret_matches": 0,
+    "env_tracked": false
+  },
+  "review_findings_resolved": [
+    "Human worksheet A/B known-version turns now use actual enriched planner active versions, not only explicit reported_facts. Initial unknowns and all human scores remain null.",
+    "Main README explicitly limits correction-only release statement to Enum; A/B initial questions were also released."
+  ]
+}

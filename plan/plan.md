@@ -58,6 +58,38 @@
   تحویل در [PR #60](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/60)
   به main است؛ review نهایی کد/رسید/گزارش، بدون blocker ثبت شده است.
 
+- [x] **C4h8 — کیفیت Enum با کنترل دسترسی به شواهد؛ ساسان، تحویل آزمایش.**
+  [نتیجه و مرز اتصال](../docs/enum-evidence-quality.fa.md)،
+  [protocol پیش از پیاده‌سازی](../experiments/core_enum_evidence_v1/protocol-v1.json) و
+  [روش/رسیدها](../experiments/core_enum_evidence_v1/README.md).
+  راهنمای رسمی custom-classes در review انسانی عمداً direct-answer excluded است؛
+  index۱۸/۳۶، exclusion، fixture و gold اصلی حفظ شدند. مقایسهٔ تازه فقط
+  fixture کنترل‌شدهٔ همان سه dev است: شواهد generic قبلی در برابر افزودن دو
+  بخش کامل و hash-pinned راهنما برای Enum. این سند answer-linked است و وارد
+  corpus واقعی RAG نشد. دو دور متوازن،۱۲job/۲۴نوبت/۲۴send؛هر دو حالت۱۲/۱۲fresh
+  و۶/۶route عملیاتی. در draftهای Enum توضیح هویت۰/۴→۳/۴ و الگوی کامل module
+  با caveat۰/۴→۱/۴؛initialها منتشر نشدند، correctionهای واقعاً released برای
+  هر یک از این دو نوع راهنما۱/۲ در برابر۰/۲اند. این‌ها یک Issue در دو تکرارند،
+  نه چهار case مستقل. هیچ proposal هر دو بخش مکمل را یکجا نیاورد؛generic+oneguide
+  و متن۱۴۰۵۹/۱۴۴۹۴کاراکتری محدودیت‌اند. هیچ runtime fix یا applicability قطعی
+  ۱٫۳۱ ثابت نشده و enumCoercion فقط widget scope دارد؛usefulness انسانیnull.
+  شکست آفلاین۲۰۰۱۵>۲۰۰۰۰ حفظ شد؛amendment پیش از API، capacity موجود را برای
+  هر دو حالت فعال کرد، بدون بریدن منبع/بالابردن سقف. در history واقعی سقف C
+  برابر۸baseline/۲guide بود. هزینه$0.014651340؛۱۶۲۷کنترل source/ledger پاس،
+  ۵۱۹reservation قبلی/۱۴جدول/holdها/halt محفوظ؛۶scope بسته،۲۴slotباقیclaimed.
+  ۴۶۱۱pytest،Ruff۳۱۷فایل،سهdemo وfixtureHTTP/SQLite۴۵۷/۴۵۷ محلی پاس‌اند؛CI
+  اجرا نشده. این تیک پایان آزمایش/ابزار fixture است؛پایان کیفیت Enum/RAG/test نیست.
+  تحویل در [PR #61](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/61)؛
+  review نهایی کد/رسید/گزارش بدون blocker، اصلاح metadata نسخهٔ worksheet و
+  بررسی دوبارهٔ۱۹فایل محافظت‌شده ثبت شد. Actions روی head بازبینی‌شده پیش از
+  شروع jobها به علت Billing متوقف شد؛ publication طبق مجوز review/test محلی است.
+
+- [ ] **C4h9 — انتخاب شاهد مکمل و خوانایی؛ ساسان با review محمدحسن.**
+  قبل از پیاده‌سازی، معیار کیفیت و baseline تازه ثبت شود؛ بررسی کنیم چرا با
+  وجود دو بخش مفید، generic+oneguide انتخاب می‌شود. تعداد route یا answer هدف
+  کیفیت نیست؛ توضیح و قدم بعدی مستند باید در متن کاربر بیاید. راهنمای excluded
+  صرفاً fixture می‌ماند؛ تغییر default یا افزودن framework بدون شواهد انجام نشود.
+
 - [ ] **تنظیم نهایی core پس از review انسانی و dev گسترده‌تر؛ ساسان با محمدحسن.**
   مقایسهٔ usefulness سؤال کوتاه/کامل، متن طولانی عمومی Enum و precision منابع
   اولیهٔ B؛ انتخاب تنظیم پیشنهادی فقط با شواهد dev، سپس freeze پیش از test.
@@ -68,9 +100,9 @@
 | نفر | تحویل بعدی | شرط پایان |
 | --- | --- | --- |
 | حسن | review profile جدید و پوشش/رتبه‌بندی منابع؛ provenance و exclusion بعد از split نهایی | source دقیقِ رسیده به مدل، برچسب relevance/Recall@k و build pinned؛ عضویت در index به‌تنهایی کافی نیست |
-| محمدحسن | usefulness انسانی خروجی‌های فعلی، به‌خصوص مقایسهٔ۱۰۸/۱۲۲۰/۷۸۷۰کاراکتر با trade-off حذف passage فنی از فهرست؛۱۲dev و۱۵test باقی، freeze rubric/gold وابسته به evidence condition | test برای tuning دیده نشود؛ حداقل ۱۰ گفتگوی چندنوبتی شامل ۵ test؛ سپس baseline و test نهایی |
+| محمدحسن | usefulness انسانی خروجی‌های فعلی؛ C4h8 با worksheet بدون نمره، initial و correction/released جدا؛ مقایسهٔ۱۰۸/۱۲۲۰/۷۸۷۰کاراکتر؛۱۲dev و۱۵test باقی، freeze rubric/gold وابسته به evidence condition | guide answer-linked وارد corpus نشود؛ test برای tuning دیده نشود؛ حداقل ۱۰ گفتگوی چندنوبتی شامل ۵ test؛ سپس baseline و test نهایی |
 | بهنام | بخش‌های باز T4: receipt پاک‌سازی‌شده و pin، lost-ACK از خود UI و failure/outcome | revision/approval/retry مستقل دو پرونده و شاهد مصرف outcome در تصمیم بعد؛ token/DB خصوصی منتشر نشود |
-| ساسان | C4h6/C4h7 و R4d/C2i تحویل؛ config پیشنهادی پس از review انسانی و dev بیشتر | قراردادها و defaultها ثابت، source/cost/خطاها کامل؛ این تحویل پایان evaluation نیست |
+| ساسان | C4h8 کنترل شواهد تحویل؛ C4h9 انتخاب شاهد مکمل و خوانایی، سپس config پیشنهادی پس از review انسانی/dev بیشتر | قراردادها و defaultها ثابت، source/cost/خطاها کامل؛ راهنمای fixture به‌معنای fix یا کیفیت RAG/test نیست |
 
 **قاعدهٔ انتشار فعلی — ۱۵ اکتبر، با دستور صریح ساسان:** منتظر رفع Billing
 نمی‌مانیم. برای انتشار، review و تست محلی روی source ثبت‌شده، پذیرش اتصال و
