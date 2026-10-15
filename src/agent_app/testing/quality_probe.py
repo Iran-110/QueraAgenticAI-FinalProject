@@ -254,7 +254,12 @@ def run_quality_batch(
             raise DevProbeRejected()
         if any(
             type(job.get(name, False)) is not bool
-            for name in ("grounded_json_object", "concise_user_draft")
+            for name in ("grounded_json_object", "concise_user_draft", "complementary_sources")
+        ):
+            raise DevProbeRejected()
+        if (
+            job.get("complementary_sources", False)
+            and job.get("source_selection_reminder") is not True
         ):
             raise DevProbeRejected()
         try:
@@ -318,6 +323,7 @@ def run_quality_batch(
                         "grounded_source_selection_reminder": job.get(
                             "source_selection_reminder", False
                         ),
+                        "grounded_complementary_sources": job.get("complementary_sources", False),
                         "grounded_resource_guidance": job.get("resource_guidance", False),
                         "grounded_source_capacity": job.get("source_capacity", False),
                         "grounded_compact_plan": job.get("compact_plan", False),

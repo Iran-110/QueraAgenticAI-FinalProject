@@ -35,6 +35,7 @@ class MetisConfig(BaseModel):
     grounded_source_gap_handoff: Annotated[bool, Field(strict=True)] = False
     grounded_source_gap_investigation: Annotated[bool, Field(strict=True)] = False
     grounded_source_selection_reminder: Annotated[bool, Field(strict=True)] = False
+    grounded_complementary_sources: Annotated[bool, Field(strict=True)] = False
     grounded_resource_guidance: Annotated[bool, Field(strict=True)] = False
     grounded_source_capacity: Annotated[bool, Field(strict=True)] = False
     grounded_compact_plan: Annotated[bool, Field(strict=True)] = False
@@ -57,6 +58,8 @@ class MetisConfig(BaseModel):
             raise ValueError("Source gap investigation requires source gap handoff")
         if self.grounded_source_selection_reminder and self.response_mode != "grounded_plan":
             raise ValueError("Source selection reminder requires grounded plan mode")
+        if self.grounded_complementary_sources and not self.grounded_source_selection_reminder:
+            raise ValueError("Complementary sources require source selection reminder")
         if self.grounded_resource_guidance and self.response_mode != "grounded_plan":
             raise ValueError("Resource guidance requires grounded plan mode")
         if self.grounded_source_capacity and not self.grounded_decision_contracts:
@@ -116,6 +119,7 @@ class MetisConfig(BaseModel):
         handoff = os.environ.get("METIS_GROUNDED_SOURCE_GAP_HANDOFF", "false")
         investigation = os.environ.get("METIS_GROUNDED_SOURCE_GAP_INVESTIGATION", "false")
         reminder = os.environ.get("METIS_GROUNDED_SOURCE_SELECTION_REMINDER", "false")
+        complementary = os.environ.get("METIS_GROUNDED_COMPLEMENTARY_SOURCES", "false")
         resources = os.environ.get("METIS_GROUNDED_RESOURCE_GUIDANCE", "false")
         capacity = os.environ.get("METIS_GROUNDED_SOURCE_CAPACITY", "false")
         compact = os.environ.get("METIS_GROUNDED_COMPACT_PLAN", "false")
@@ -127,6 +131,7 @@ class MetisConfig(BaseModel):
                 handoff,
                 investigation,
                 reminder,
+                complementary,
                 resources,
                 capacity,
                 compact,
@@ -144,6 +149,7 @@ class MetisConfig(BaseModel):
             grounded_source_gap_handoff=handoff == "true",
             grounded_source_gap_investigation=investigation == "true",
             grounded_source_selection_reminder=reminder == "true",
+            grounded_complementary_sources=complementary == "true",
             grounded_resource_guidance=resources == "true",
             grounded_source_capacity=capacity == "true",
             grounded_compact_plan=compact == "true",

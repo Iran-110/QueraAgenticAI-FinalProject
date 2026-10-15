@@ -16,7 +16,10 @@ from agent_app.reasoning.grounding import build_grounded_messages, validate_grou
 from agent_app.reasoning.prompts import build_messages
 from agent_app.reasoning.resource_guidance import add_resource_guidance
 from agent_app.reasoning.source_capacity import add_source_capacity
-from agent_app.reasoning.source_selection import add_source_selection_reminder
+from agent_app.reasoning.source_selection import (
+    add_complementary_source_policy,
+    add_source_selection_reminder,
+)
 
 
 def configured_grounded_messages(config, request, context):
@@ -29,6 +32,8 @@ def configured_grounded_messages(config, request, context):
     messages = add_source_selection_reminder(
         messages, enabled=config.grounded_source_selection_reminder
     )
+    if config.grounded_complementary_sources:
+        messages = add_complementary_source_policy(messages, enabled=True)
     messages = add_resource_guidance(
         messages,
         request,
