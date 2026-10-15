@@ -55,6 +55,8 @@
   قبلی/۱۴جدول/holdها/halt محفوظ؛۷scope بسته و۲۶slotباقیclaimed. CI اجرا نشده؛
   ۴۵۰۶pytest،Ruff۳۱۲فایل،سهdemo وfixtureHTTP/SQLite۴۵۷/۴۵۷ محلی پاس‌اند.
   این تیک پایان آزمایش/اتصال است؛ پایان کیفیت مدل، RAG یا test نهایی نیست.
+  تحویل در [PR #60](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/60)
+  به main است؛ review نهایی کد/رسید/گزارش، بدون blocker ثبت شده است.
 
 - [ ] **تنظیم نهایی core پس از review انسانی و dev گسترده‌تر؛ ساسان با محمدحسن.**
   مقایسهٔ usefulness سؤال کوتاه/کامل، متن طولانی عمومی Enum و precision منابع
