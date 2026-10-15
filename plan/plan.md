@@ -16,7 +16,7 @@
   recovery درخواست تأییدنشده در session تازه ثابت نیست. T4 کلی، failure/outcome
   و handoff ارزیابی بازند؛ CI به علت Billing شروع نشده؛ halt/سهhold حفظ‌اند.
 
-- [ ] **C2j — validation یکسان helperهای پاسخ نسخه؛ ساسان، در حال review.**
+- [x] **C2j — validation یکسان helperهای پاسخ نسخه؛ ساسان، تحویل آفلاین.**
   [protocol پیش از کد](../experiments/intake_validation_v1/protocol-v1.json)،
   [۱۶ baseline معتبر](../experiments/intake_validation_v1/valid-baseline-v1.json)
   و [مقایسهٔ آفلاین](../experiments/intake_validation_v1/comparison-v1.json).
@@ -24,11 +24,14 @@
   بررسی می‌شوند؛ top-level/nested extra و دادهٔ خصوصی قبل از extraction با
   خطای ثابت`IntakeRejected("InvalidInput")` رد می‌شوند و ورودی تغییر نمی‌کند.
   ۵۵ تست تازه در baseline،۲۹fail/۲۶pass و پس از اصلاح۵۵pass؛۱۶ خروجی و transition
-  معتبر دقیقاً ثابت‌اند. تست متمرکز با موارد قبلی۱۶۶pass است؛ تیک پایان پس از
-  suite کامل، HTTP/SQLite و review نهایی ثبت می‌شود. shared validator/contract،
-  extraction، revision/dedup و authority tracker ثابت؛ API صفر و halt محفوظ.
-  این hardening درون Python است، نه exploit از HTTP یا بهبود کیفیت مدل؛ فایل‌های
-  RAG/UI/tracker تیم تغییر نکرده‌اند.
+  معتبر دقیقاً ثابت‌اند. تست متمرکز با موارد قبلی۱۶۶pass؛ روی source ثابت
+  `f780ca8`،۵۴۷۹pytest،Ruff۳۵۷فایل،سهdemo وHTTP/SQLite۴۵۷/۴۵۷ باrestart پاس.
+  [راهنما](../docs/intake-validation.fa.md) و
+  [verification](../experiments/intake_validation_v1/verification-v1.json)؛ review
+  جدا۶۷تست را تکرار کرد و blocker ندارد. shared validator/contract، extraction،
+  revision/dedup و authority tracker ثابت؛ API صفر،۱۹pin وledger ثابت، halt/سهhold
+  محفوظ. hardening دو مرز درون Python است، نه auth یا بهبود مدل/RAG/test؛ فایل‌های
+  RAG/UI/tracker تیم تغییر نکرده‌اند. CI پاس و Windows/browser تازه ادعا نمی‌شود.
 
 - [x] **C4l/E2y — context فعلی برای advisor انتخاب شاهد؛ ساسان، تحویل آفلاین.**
   [ثبت پیش از پیاده‌سازی](../experiments/core_selection_context_v1/protocol-v1.json):
@@ -263,7 +266,7 @@
 | حسن | review profile جدید و پوشش/رتبه‌بندی منابع؛ provenance و exclusion بعد از split نهایی | source دقیقِ رسیده به مدل، برچسب relevance/Recall@k و build pinned؛ عضویت در index به‌تنهایی کافی نیست |
 | محمدحسن | usefulness انسانی خروجی‌های فعلی؛ [worksheet تازهٔ C4j/E2w](../experiments/core_claim_boundary_v1/human-review-v1.json) و worksheetهای قبلی بدون نمره، initial/correction و model/edited جدا؛ review پذیرش چهار خانوادهٔ مکمل و exposure هر شش report؛۱۲dev و۱۵test باقی، freeze rubric/gold وابسته به evidence condition | guide answer-linked وارد corpus نشود؛ کوتاهی/quote دقیق بدون caveat بهبود نیست؛ مکمل‌ها خودکار جای رزرو۱۵/۱۵ را نمی‌گیرند؛ test برای tuning دیده نشود؛ حداقل۱۰گفتگوی چندنوبتی شامل۵test؛ سپس baseline وtest نهایی |
 | بهنام | T4a/رسیدهای PR66 پذیرفته شد؛ pin دقیق اجرای fault، failure/outcome و handoff ارزیابی باقی است؛ recovery پس از نابودی session با مالک UI هماهنگ شود | lost-ACK و Retry ازUI گزارش شده، اما اصل case فقط در backend durable است؛ fresh-session recovery ثابت نیست؛ شاهد مصرف outcome در تصمیم بعد لازم است؛ token/DB خصوصی منتشر نشود |
-| ساسان | C4k/E2x و C4l/E2y، section و context فعلی اختیاری با replay آفلاین تحویل؛ review انسانیِ ارتباط/کاربرد/طول خروجی، گرفتن مدرک provider برای سه request نامعلوم، سپس protocol/config freeze پیش از API یاtest تازه | projection و lexical shortlist انتخاب مدل یا usefulness نیست؛ context binding منشأ history را authenticate نمی‌کند؛ مسیرهای C4j/compiled آزاد default نشوند؛ شرط case/source-ID و prompt/order tuning تازه برای نمرهٔ Enum ممنوع؛ single-agent/قراردادهای تیم ثابت؛ fixture اثبات fix یا کیفیت RAG/test نیست |
+| ساسان | C2j/validation پاسخ نسخه، C4k/E2x و C4l/E2y آفلاین تحویل؛ review انسانیِ ارتباط/کاربرد/طول خروجی، گرفتن مدرک provider برای سه request نامعلوم، سپس protocol/config freeze پیش از API یاtest تازه | validation دوhelper جای authority tracker نیست؛ projection و lexical shortlist انتخاب مدل یا usefulness نیست؛ context binding منشأ history را authenticate نمی‌کند؛ مسیرهای C4j/compiled آزاد default نشوند؛ شرط case/source-ID و prompt/order tuning تازه برای نمرهٔ Enum ممنوع؛ single-agent/قراردادهای تیم ثابت؛ fixture اثبات fix یا کیفیت RAG/test نیست |
 
 **قاعدهٔ انتشار فعلی — ۱۵ اکتبر، با دستور صریح ساسان:** منتظر رفع Billing
 نمی‌مانیم. برای انتشار، review و تست محلی روی source ثبت‌شده، پذیرش اتصال و

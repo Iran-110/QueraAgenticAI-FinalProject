@@ -34,6 +34,13 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 ## Runtime rules
 
+- C2j uses the existing recursive `detached_contract` before serialization in
+  both version-reply intake helpers. Read `docs/intake-validation.fa.md`.
+  Preserve the16 frozen valid prepared-turn/full-transition byte digests and
+  constant `InvalidInput` rejection before extraction; do not revert to dumping
+  away hidden nested fields. Caller-loaded question authority, canonical version
+  extraction, revision and original-ingress dedup remain separate and unchanged.
+
 - C4l/E2y adds optional private bound current-query context to the existing
   lexical advisor; read `docs/selection-context.fa.md`. Omitted/None paths keep
   all24 frozen advisory digests exact. Bind the full current request/case/history,

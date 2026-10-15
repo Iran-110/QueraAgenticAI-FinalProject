@@ -1,3 +1,30 @@
+## 2026-10-16 — C2j: version-reply validation before serialization
+
+[Behavior and limits](intake-validation.fa.md),
+[prospective protocol/baseline/comparison](../experiments/intake_validation_v1/README.md).
+Both pending/approved version-reply helpers now reuse the existing recursive
+detached_contract before dumping. Six validation calls and an import/comment
+change; shared validator/contracts, extraction, caller-loaded question authority,
+revision/ingress dedup and teammate modules remain unchanged. Invalid constructed
+extra/private data rejects before extraction with the existing safe InvalidInput.
+
+Frozen16valid inputs retain exact prepared-turn and full-transition canonical
+bytes/hashes, with unchanged inputs. The same55regressions produce29fail/26pass
+before and55pass after:27old invalid-object acceptances,2old later/misclassified
+rejections,10already-correct invalid controls,16valid cases. These are neutral
+authored in-process software controls, not HTTP exploit or model/RAG quality.
+
+Frozen source`f780ca8`:5479pytest, Ruff357files, three required offline demos
+and fresh HTTP/SQLite457/457 including restart pass. Root166focused intake
+tests and separate assistant67boundary/API/SQLite/history/replay controls pass;
+review has no blocker. [Verification](../experiments/intake_validation_v1/verification-v1.json)
+binds source/artifact/XML/HTTP evidence. No paid API/real credential read or new
+production native-index trial;
+current19pins and primary ledger SHA141c3536... remain exact, halt/threeholds/
+ceiling/closedIDs unchanged. Hosted CI remains unavailable through Billing;
+freshWindows/browser/semantic usefulness not claimed. T4 session recovery,
+human quality review and C5 remain separate open work.
+
 ## 2026-10-16 — T4a: PR66 manual receipts accepted, fresh-session boundary retained
 
 [PR66 review and local scope](pr66-review.fa.md),
