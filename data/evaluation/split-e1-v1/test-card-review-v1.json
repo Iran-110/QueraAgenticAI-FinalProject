@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "review_id": "split-e1-v1-test-card-review-v1",
+  "reviewer_id": "mhg",
+  "reviewer_kind": "human",
+  "reviewed_on": "2026-10-16",
+  "scope": "test gold: expected outcome per case (card review)",
+  "drafted_by": "assistant (claude-opus-5-5); judgments by the human reviewer",
+  "manifest_path": "data/evaluation/split-e1-v1/split-manifest.json",
+  "manifest_sha256": "949b23a078ea9f68956f7f81b36d17f784697b1fb374f5904a2a0bf9b2f96d2b",
+  "cases": [
+    {
+      "case_id": "test-case-01",
+      "fixture_path": "data/evaluation/split-e1-v1/test/chat-6320-v1.json",
+      "fixture_sha256": "624d2e541841efff1706a91d6e85528ac3ba160ae001d02d686f603956ca02cc",
+      "verdict": "correct",
+      "note": null
+    },
+    {
+      "case_id": "test-case-02",
+      "fixture_path": "data/evaluation/split-e1-v1/test/button-callback-4595-v1.json",
+      "fixture_sha256": "65521a515ef68f5f4dc49c4890dedbdb1109e6c91b2a12e4004be8d9cc5f9210",
+      "verdict": "correct",
+      "note": "Unsure at first because the card wording was unclear. After a plain explanation in chat (correct code, the docs say callbacks run only after a user interaction, and no docs cover 1.8.1, so escalate), the reviewer confirmed the expected behaviour on 2026-10-16.",
+      "initial_verdict": "unsure",
+      "initial_note": "مستندات 1.8.1 در دسترس نیست و رفتار گزارش‌شده توضیح داده نمی‌شود.\nاین عبارت واضح نیست."
+    },
+    {
+      "case_id": "test-case-03",
+      "fixture_path": "data/evaluation/split-e1-v1/test/mpa-keyerror-8700-v1.json",
+      "fixture_sha256": "28e3a77a405ecc081d3edce95021ed1f530c16cf73efc5a883149d06f025288f",
+      "verdict": "correct",
+      "note": null
+    },
+    {
+      "case_id": "test-case-04",
+      "fixture_path": "data/evaluation/split-e1-v1/test/fragment-reload-11660-v1.json",
+      "fixture_sha256": "89a00249bad71538384375c5adf1ab5516da847261daeb96b50b62876bf10fad",
+      "verdict": "correct",
+      "note": null
+    },
+    {
+      "case_id": "test-case-05",
+      "fixture_path": "data/evaluation/split-e1-v1/test/run-on-save-12633-v1.json",
+      "fixture_sha256": "1cd7b38c6616434e0f9d2f8de7d31dc522ecb62f47a774cbda9fcead47a39173",
+      "verdict": "correct",
+      "note": null
+    },
+    {
+      "case_id": "test-case-06",
+      "fixture_path": "data/evaluation/split-e1-v1/test/callback-args-7862-v1.json",
+      "fixture_sha256": "b19b569ded8752d091b2dcc6fd3a7f6cf5d67351d5925652fb34b51673a7a38c",
+      "verdict": "correct",
+      "note": null
+    },
+    {
+      "case_id": "test-case-07",
+      "fixture_path": "data/evaluation/split-e1-v1/test/options-mutation-7534-v1.json",
+      "fixture_sha256": "d009b59009f63dd5563a88ea697dfddf1eb084a8d0c87c6a7614afe9eb4748de",
+      "verdict": "correct",
+      "note": null
+    },
+    {
+      "case_id": "test-case-08",
+      "fixture_path": "data/evaluation/split-e1-v1/test/session-memory-12506-v1.json",
+      "fixture_sha256": "315201f56129be622086bfb5e0fbf8ffb7675550252c94b20d4932104f862c7f",
+      "verdict": "correct",
+      "note": null
+    },
+    {
+      "case_id": "test-case-09",
+      "fixture_path": "data/evaluation/split-e1-v1/test/state-init-10089-v1.json",
+      "fixture_sha256": "7de542c6abd8f1658a6cf4c64113d470bc1e4af65a209ee2c3a34ec9c5e9af73",
+      "verdict": "correct",
+      "note": null
+    },
+    {
+      "case_id": "test-case-10",
+      "fixture_path": "data/evaluation/split-e1-v1/test/callback-trigger-10102-v1.json",
+      "fixture_sha256": "c1ba57fc6d3e59564e28e7b0184e7cfee62d3916bda943905c82313806cb9a44",
+      "verdict": "correct",
+      "note": null
+    },
+    {
+      "case_id": "test-case-11",
+      "fixture_path": "data/evaluation/split-e1-v1/test/callback-value-5305-v1.json",
+      "fixture_sha256": "3bdaa7cf7cefe1f8229de00eea0fc3207136a902cd1b874daee6a271cfc3b5ca",
+      "verdict": "correct",
+      "note": null
+    },
+    {
+      "case_id": "test-case-12",
+      "fixture_path": "data/evaluation/split-e1-v1/test/switch-page-state-11115-v1.json",
+      "fixture_sha256": "ad7619154dedb0fd24b6b79d4f9c67a57f8da1e565604c48e77c031da915ac17",
+      "verdict": "correct",
+      "note": null
+    },
+    {
+      "case_id": "test-case-13",
+      "fixture_path": "data/evaluation/split-e1-v1/test/fragment-dialog-17112-v1.json",
+      "fixture_sha256": "3167c9131bda55453df004b656118c6700220e1cc5c0d6b3f7f6176475bdbe60",
+      "verdict": "correct",
+      "note": null
+    },
+    {
+      "case_id": "test-case-14",
+      "fixture_path": "data/evaluation/split-e1-v1/test/selectbox-session-13435-v1.json",
+      "fixture_sha256": "42676005faa9b158cfe2f93a68b5665382512817b04a1d9a4b57130a3bad0e94",
+      "verdict": "correct",
+      "note": null
+    },
+    {
+      "case_id": "test-case-15",
+      "fixture_path": "data/evaluation/split-e1-v1/test/selectbox-seven-14989-v1.json",
+      "fixture_sha256": "009eb99fa4ee07fa832764a06b41bd19384f08abb6ded3818f99b6aef24f3f55",
+      "verdict": "correct",
+      "note": null
+    }
+  ],
+  "review_basis": "Card summaries of the expected behaviour, key source and wrong answer per case, prepared by the assistant. The reviewer did not open the GitHub threads or the full fixture gold.",
+  "coverage": {
+    "cases": 15,
+    "correct": 15,
+    "wrong": 0,
+    "unsure": 0
+  },
+  "limitations": [
+    "Judges the expected outcome at summary level, not every gold field (gaps, unacceptable-claim lists, route details).",
+    "Family completeness was checked by the assistant's GitHub timeline search, not by the reviewer."
+  ]
+}
