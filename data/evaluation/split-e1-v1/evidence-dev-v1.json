@@ -1,0 +1,508 @@
+{
+  "schema_version": 1,
+  "packet_id": "split-e1-v1-dev-fixed-evidence-v1",
+  "registered_on": "2026-10-15",
+  "registered_before_first_run": true,
+  "kind": "controlled_fixed_evidence_not_actual_rag",
+  "quality_claim": false,
+  "selection_note": "Contiguous sections of packaged seed docs, docstrings and release notes chosen by the evaluation curator for development cases. No Issue/comment/outcome text. Release-note bullets that cite a test Issue are ordinary product documentation and stay in scope (rubric v1 section 4).",
+  "source_pins": {
+    "streamlit-data-for-dev-test/sources/docs_scope_candidates.jsonl": "0759c7893481a4da8a11ae1b53f3f932ec60a2358c91422d723c3a2cb38c791d",
+    "streamlit-data-for-dev-test/sources/docstrings_scope_candidates.jsonl": "d3c4213f613738656a0bd366f05cfa7d0562c7a78bac8afaeef395f262b13fe9"
+  },
+  "source_records": [
+    {
+      "chunk_id": "e1d-date-input-1220-value",
+      "seed_path": "streamlit-data-for-dev-test/sources/docstrings_scope_candidates.jsonl",
+      "source_id": "docstring:1.22.0:streamlit.date_input",
+      "source_record_text_sha256": "1d7e793d1818f42dbe185d37d46948f673d4e722b7497f9de5aeb2f79f5d171c",
+      "excerpt_sha256": "c073b6082eba885ace2954a46d38795fd41358e705df1798e927234dcff0100c",
+      "span": {
+        "start": 1339,
+        "end": 1660,
+        "unit": "unicode_codepoint"
+      },
+      "selection_unit": "contiguous_section",
+      "source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.date_input"
+    },
+    {
+      "chunk_id": "e1d-button-1220-args",
+      "seed_path": "streamlit-data-for-dev-test/sources/docstrings_scope_candidates.jsonl",
+      "source_id": "docstring:1.22.0:streamlit.button",
+      "source_record_text_sha256": "b71495e16fdd26c428b78f5eb14c6f8c33e4350ab8f1931c9395d7b51ecc1bd8",
+      "excerpt_sha256": "fe5e84acc31c80578867bf62a8a72d9e7a945f4717238c69c1bd467123196353",
+      "span": {
+        "start": 1538,
+        "end": 1694,
+        "unit": "unicode_codepoint"
+      },
+      "selection_unit": "contiguous_section",
+      "source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.button"
+    },
+    {
+      "chunk_id": "e1d-widget-cleanup",
+      "seed_path": "streamlit-data-for-dev-test/sources/docs_scope_candidates.jsonl",
+      "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+      "source_record_text_sha256": "025129790a1fcb2d448e9ab608389f2ec55ef26751b64d1937cef5705837efeb",
+      "excerpt_sha256": "01f198ae549b96b2c0d296ffc09fd83c30e6a386ad61d4439c0052a0f075f81b",
+      "span": {
+        "start": 17215,
+        "end": 17645,
+        "unit": "unicode_codepoint"
+      },
+      "selection_unit": "contiguous_section",
+      "source_url": "https://docs.streamlit.io/develop/concepts/architecture/widget-behavior"
+    },
+    {
+      "chunk_id": "e1d-widget-hidden-reset",
+      "seed_path": "streamlit-data-for-dev-test/sources/docs_scope_candidates.jsonl",
+      "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+      "source_record_text_sha256": "025129790a1fcb2d448e9ab608389f2ec55ef26751b64d1937cef5705837efeb",
+      "excerpt_sha256": "a9f1c27a0e8238d71b3dc5676a55f1496271be9e7d9e5ed675d0ba87a40b0047",
+      "span": {
+        "start": 13160,
+        "end": 13412,
+        "unit": "unicode_codepoint"
+      },
+      "selection_unit": "contiguous_section",
+      "source_url": "https://docs.streamlit.io/develop/concepts/architecture/widget-behavior"
+    },
+    {
+      "chunk_id": "e1d-widget-keys",
+      "seed_path": "streamlit-data-for-dev-test/sources/docs_scope_candidates.jsonl",
+      "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+      "source_record_text_sha256": "025129790a1fcb2d448e9ab608389f2ec55ef26751b64d1937cef5705837efeb",
+      "excerpt_sha256": "5d43ee4cb804a720371f894bd2a73905fa4b33c09bf928165621e91af864b3b0",
+      "span": {
+        "start": 5787,
+        "end": 6037,
+        "unit": "unicode_codepoint"
+      },
+      "selection_unit": "contiguous_section",
+      "source_url": "https://docs.streamlit.io/develop/concepts/architecture/widget-behavior"
+    },
+    {
+      "chunk_id": "e1d-widget-order-of-operations",
+      "seed_path": "streamlit-data-for-dev-test/sources/docs_scope_candidates.jsonl",
+      "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+      "source_record_text_sha256": "025129790a1fcb2d448e9ab608389f2ec55ef26751b64d1937cef5705837efeb",
+      "excerpt_sha256": "da679e1a971e1f980c01eac2f9b70de833409126198789bb685b37c0623caa55",
+      "span": {
+        "start": 8261,
+        "end": 9365,
+        "unit": "unicode_codepoint"
+      },
+      "selection_unit": "contiguous_section",
+      "source_url": "https://docs.streamlit.io/develop/concepts/architecture/widget-behavior"
+    },
+    {
+      "chunk_id": "e1d-forms-callbacks",
+      "seed_path": "streamlit-data-for-dev-test/sources/docs_scope_candidates.jsonl",
+      "source_id": "docs:content/develop/concepts/architecture/forms.md",
+      "source_record_text_sha256": "b9a551e99eabf739a177572a9d2f697b84d8352fcc28d81098e0c3a4e426be16",
+      "excerpt_sha256": "d1575edc1941ccaec3ba6eec7eb5e2916505999f3c6330f36080f0d0038402e7",
+      "span": {
+        "start": 6113,
+        "end": 6469,
+        "unit": "unicode_codepoint"
+      },
+      "selection_unit": "contiguous_section",
+      "source_url": "https://docs.streamlit.io/develop/concepts/architecture/forms"
+    },
+    {
+      "chunk_id": "e1d-session-state-delete",
+      "seed_path": "streamlit-data-for-dev-test/sources/docs_scope_candidates.jsonl",
+      "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+      "source_record_text_sha256": "81bf1fc22b4e27403ab7e0d6be8377a6ace4767502cb9d972fd7411a90d8e4b9",
+      "excerpt_sha256": "5ece41409c96523da8923893746ba4339f2ac9be8b1a6a36bd83136f516841f6",
+      "span": {
+        "start": 1884,
+        "end": 2171,
+        "unit": "unicode_codepoint"
+      },
+      "selection_unit": "contiguous_section",
+      "source_url": "https://docs.streamlit.io/develop/api-reference/caching-and-state/st.session_state"
+    },
+    {
+      "chunk_id": "e1d-session-state-init",
+      "seed_path": "streamlit-data-for-dev-test/sources/docs_scope_candidates.jsonl",
+      "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+      "source_record_text_sha256": "8b004b429ff29ae446df72171e7f9adb0cc625715295d40c4d072fdcf1a86655",
+      "excerpt_sha256": "0763613306922fb2840b136ab6002b862e08f957c3b339aa4e16acf367ca20df",
+      "span": {
+        "start": 2559,
+        "end": 2989,
+        "unit": "unicode_codepoint"
+      },
+      "selection_unit": "contiguous_section",
+      "source_url": "https://docs.streamlit.io/develop/concepts/architecture/session-state"
+    },
+    {
+      "chunk_id": "e1d-session-state-sessions",
+      "seed_path": "streamlit-data-for-dev-test/sources/docs_scope_candidates.jsonl",
+      "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+      "source_record_text_sha256": "8b004b429ff29ae446df72171e7f9adb0cc625715295d40c4d072fdcf1a86655",
+      "excerpt_sha256": "3f26a10f5c045549117513985b81ec66ff1876a5cc96c3c8ffb6e0ef47465f92",
+      "span": {
+        "start": 441,
+        "end": 865,
+        "unit": "unicode_codepoint"
+      },
+      "selection_unit": "contiguous_section",
+      "source_url": "https://docs.streamlit.io/develop/concepts/architecture/session-state"
+    },
+    {
+      "chunk_id": "e1d-rn-1380-tabs-blank",
+      "seed_path": "streamlit-data-for-dev-test/sources/docs_scope_candidates.jsonl",
+      "source_id": "docs:content/develop/quick-references/release-notes/2024.md",
+      "source_record_text_sha256": "25b3cdabfa3e53ca6cc700f3fdceb80e59eb5b69e273b24bae9803fa1017b51a",
+      "excerpt_sha256": "e4a9d742ca56fcb690d1a35685f8bfe078b837d6962eca9581eb5b7a0d164897",
+      "span": {
+        "start": 24504,
+        "end": 24798,
+        "unit": "unicode_codepoint"
+      },
+      "selection_unit": "contiguous_section",
+      "source_url": "https://docs.streamlit.io/develop/quick-reference/release-notes/2024"
+    },
+    {
+      "chunk_id": "e1d-rn-1380-fragment-revert",
+      "seed_path": "streamlit-data-for-dev-test/sources/docs_scope_candidates.jsonl",
+      "source_id": "docs:content/develop/quick-references/release-notes/2024.md",
+      "source_record_text_sha256": "25b3cdabfa3e53ca6cc700f3fdceb80e59eb5b69e273b24bae9803fa1017b51a",
+      "excerpt_sha256": "ae05468ccfa196d4cdef231f71aeeaf8089107430b7ef26be05053e84b6a8dd9",
+      "span": {
+        "start": 27025,
+        "end": 27250,
+        "unit": "unicode_codepoint"
+      },
+      "selection_unit": "contiguous_section",
+      "source_url": "https://docs.streamlit.io/develop/quick-reference/release-notes/2024"
+    },
+    {
+      "chunk_id": "e1d-rn-1440-range-error",
+      "seed_path": "streamlit-data-for-dev-test/sources/docs_scope_candidates.jsonl",
+      "source_id": "docs:content/develop/quick-references/release-notes/2025.md",
+      "source_record_text_sha256": "51ddfb5da2d2dfd88c2917b1b1542e74e892459c591de3cc1d25159632c4889a",
+      "excerpt_sha256": "370d2072fe7dfd4fd90d753620072bc2a1e0207751e9923b19c82a4e0c716fb7",
+      "span": {
+        "start": 74169,
+        "end": 74403,
+        "unit": "unicode_codepoint"
+      },
+      "selection_unit": "contiguous_section",
+      "source_url": "https://docs.streamlit.io/develop/quick-reference/release-notes/2025"
+    },
+    {
+      "chunk_id": "e1d-rn-1610-status-fragment",
+      "seed_path": "streamlit-data-for-dev-test/sources/docs_scope_candidates.jsonl",
+      "source_id": "docs:content/develop/quick-references/release-notes/2026.md",
+      "source_record_text_sha256": "c866c175d1426dbac67800b6b2b2a3bc3687d015d69a4728b1aed4fdcdfee111",
+      "excerpt_sha256": "967911c95fbccbddaa4cc847ca3dc9534eecb722163c2319d51b228a28d4a5a4",
+      "span": {
+        "start": 39357,
+        "end": 39580,
+        "unit": "unicode_codepoint"
+      },
+      "selection_unit": "contiguous_section",
+      "source_url": "https://docs.streamlit.io/develop/quick-reference/release-notes/2026"
+    },
+    {
+      "chunk_id": "e1d-rn-1640-rerun-widgets",
+      "seed_path": "streamlit-data-for-dev-test/sources/docs_scope_candidates.jsonl",
+      "source_id": "docs:content/develop/quick-references/release-notes/2026.md",
+      "source_record_text_sha256": "c866c175d1426dbac67800b6b2b2a3bc3687d015d69a4728b1aed4fdcdfee111",
+      "excerpt_sha256": "c4c9b42ae3a8fbb84152106ce6f67ea62b35598193bba83e57b47302257d6ed9",
+      "span": {
+        "start": 3241,
+        "end": 3521,
+        "unit": "unicode_codepoint"
+      },
+      "selection_unit": "contiguous_section",
+      "source_url": "https://docs.streamlit.io/develop/quick-reference/release-notes/2026"
+    }
+  ],
+  "evidence_bundles": {
+    "status-fragment": {
+      "snapshot_id": "split-e1-v1-dev-status-fragment",
+      "hits": [
+        {
+          "chunk_id": "e1d-rn-1610-status-fragment",
+          "source_id": "docs:content/develop/quick-references/release-notes/2026.md",
+          "excerpt": "Bug fix: An `st.status` opened on a container declared outside a fragment no longer blanks the app ([#16316](https://github.com/streamlit/streamlit/pull/16316), [#16281](https://github.com/streamlit/streamlit/issues/16281))",
+          "source_url": "https://docs.streamlit.io/develop/quick-reference/release-notes/2026",
+          "source_type": "release_note",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.61.0"
+          ],
+          "source_span": "docs:content/develop/quick-references/release-notes/2026.md; Unicode codepoints [39357,39580)"
+        }
+      ]
+    },
+    "date-range": {
+      "snapshot_id": "split-e1-v1-dev-date-range",
+      "hits": [
+        {
+          "chunk_id": "e1d-date-input-1220-value",
+          "source_id": "docstring:1.22.0:streamlit.date_input",
+          "excerpt": "value: datetime.date or datetime.datetime or list/tuple of datetime.date or datetime.datetime or None; default=today\nThe value of this widget when it first renders. If a list/tuple with\n0 to 2 date/datetime values is provided, the datepicker will allow\nusers to provide a range. Defaults to today as a single-date picker.",
+          "source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.date_input",
+          "source_type": "doc",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.22.0"
+          ],
+          "source_span": "docstring:1.22.0:streamlit.date_input; Unicode codepoints [1339,1660)"
+        }
+      ]
+    },
+    "rerun-widgets": {
+      "snapshot_id": "split-e1-v1-dev-rerun-widgets",
+      "hits": [
+        {
+          "chunk_id": "e1d-rn-1640-rerun-widgets",
+          "source_id": "docs:content/develop/quick-references/release-notes/2026.md",
+          "excerpt": "Bug fix: Widgets after [`st.rerun`](/develop/api-reference/execution-flow/st.rerun) keep the values the user selected, instead of resetting to their defaults ([#16762](https://github.com/streamlit/streamlit/pull/16762), [#3533](https://github.com/streamlit/streamlit/issues/3533))",
+          "source_url": "https://docs.streamlit.io/develop/quick-reference/release-notes/2026",
+          "source_type": "release_note",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.64.0"
+          ],
+          "source_span": "docs:content/develop/quick-references/release-notes/2026.md; Unicode codepoints [3241,3521)"
+        },
+        {
+          "chunk_id": "e1d-widget-order-of-operations",
+          "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+          "excerpt": "When a user interacts with a widget, the widget is updated and triggers a rerun in the following order:\n\n1. The widget value in `st.session_state` is updated.\n2. The callback function (if any) is executed.\n3. The page reruns with the widget command returning its new value.\n\nIf the callback function displays anything on the screen, that content will appear above the rest of the page. A callback function runs as a _prefix_ to the script run. Consequently, that means anything written via a callback function will disappear as soon as the user performs their next action. Widget commands should generally not be called within a callback function.\n\n<Note>\n\nIf a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget. In particular, if you want to use a widget's value in its own callback function, you can't pass that value to the callback function via the `args` parameter; you must assign a key to the widget and look up its value using `st.session_state` _within the callback function_.",
+          "source_url": "https://docs.streamlit.io/develop/concepts/architecture/widget-behavior",
+          "source_type": "doc",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [],
+          "source_span": "docs:content/develop/concepts/architecture/widget-behavior.md; Unicode codepoints [8261,9365)"
+        }
+      ]
+    },
+    "callback-args-tuple": {
+      "snapshot_id": "split-e1-v1-dev-callback-args-tuple",
+      "hits": [
+        {
+          "chunk_id": "e1d-button-1220-args",
+          "source_id": "docstring:1.22.0:streamlit.button",
+          "excerpt": "args: tuple; default=None\nAn optional tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.",
+          "source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.button",
+          "source_type": "doc",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.22.0"
+          ],
+          "source_span": "docstring:1.22.0:streamlit.button; Unicode codepoints [1538,1694)"
+        }
+      ]
+    },
+    "range-assign": {
+      "snapshot_id": "split-e1-v1-dev-range-assign",
+      "hits": [
+        {
+          "chunk_id": "e1d-rn-1440-range-error",
+          "source_id": "docs:content/develop/quick-references/release-notes/2025.md",
+          "excerpt": "`st.slider` and `st.number_input` raise an error when assigned a value in excess of a declared minimum or maximum ([#9964](https://github.com/streamlit/streamlit/pull/9964), [#9342](https://github.com/streamlit/streamlit/issues/9342))",
+          "source_url": "https://docs.streamlit.io/develop/quick-reference/release-notes/2025",
+          "source_type": "release_note",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.44.0"
+          ],
+          "source_span": "docs:content/develop/quick-references/release-notes/2025.md; Unicode codepoints [74169,74403)"
+        }
+      ]
+    },
+    "tabs-blank": {
+      "snapshot_id": "split-e1-v1-dev-tabs-blank",
+      "hits": [
+        {
+          "chunk_id": "e1d-rn-1380-tabs-blank",
+          "source_id": "docs:content/develop/quick-references/release-notes/2024.md",
+          "excerpt": "Bug fix: If a block type changes during a rerun, Streamlit discards the child elements of that block to prevent improper visual artifacts, like `st.tabs` causing a blank page ([#9276](https://github.com/streamlit/streamlit/pull/9276), [#9259](https://github.com/streamlit/streamlit/issues/9259)",
+          "source_url": "https://docs.streamlit.io/develop/quick-reference/release-notes/2024",
+          "source_type": "release_note",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.38.0"
+          ],
+          "source_span": "docs:content/develop/quick-references/release-notes/2024.md; Unicode codepoints [24504,24798)"
+        }
+      ]
+    },
+    "state-typing": {
+      "snapshot_id": "split-e1-v1-dev-state-typing",
+      "hits": [
+        {
+          "chunk_id": "e1d-session-state-sessions",
+          "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+          "excerpt": "## What is State?\n\nWe define access to a Streamlit app in a browser tab as a **session**. For each browser tab that connects to the Streamlit server, a new session is created. Streamlit reruns your script from top to bottom every time you interact with your app. Each reruns takes place in a blank slate: no variables are shared between runs.\n\nSession State is a way to share variables between reruns, for each user session.",
+          "source_url": "https://docs.streamlit.io/develop/concepts/architecture/session-state",
+          "source_type": "doc",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [],
+          "source_span": "docs:content/develop/concepts/architecture/session-state.md; Unicode codepoints [441,865)"
+        }
+      ]
+    },
+    "checkbox-reset": {
+      "snapshot_id": "split-e1-v1-dev-checkbox-reset",
+      "hits": [
+        {
+          "chunk_id": "e1d-widget-keys",
+          "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+          "excerpt": "Widget keys serve three purposes:\n\n1. Distinguishing two otherwise identical widgets.\n2. Maintaining statefulness of the widget while changing its parameters.\n3. Creating a means to access and manipulate the widget's value through `st.session_state`.",
+          "source_url": "https://docs.streamlit.io/develop/concepts/architecture/widget-behavior",
+          "source_type": "doc",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [],
+          "source_span": "docs:content/develop/concepts/architecture/widget-behavior.md; Unicode codepoints [5787,6037)"
+        },
+        {
+          "chunk_id": "e1d-widget-order-of-operations",
+          "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+          "excerpt": "When a user interacts with a widget, the widget is updated and triggers a rerun in the following order:\n\n1. The widget value in `st.session_state` is updated.\n2. The callback function (if any) is executed.\n3. The page reruns with the widget command returning its new value.\n\nIf the callback function displays anything on the screen, that content will appear above the rest of the page. A callback function runs as a _prefix_ to the script run. Consequently, that means anything written via a callback function will disappear as soon as the user performs their next action. Widget commands should generally not be called within a callback function.\n\n<Note>\n\nIf a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget. In particular, if you want to use a widget's value in its own callback function, you can't pass that value to the callback function via the `args` parameter; you must assign a key to the widget and look up its value using `st.session_state` _within the callback function_.",
+          "source_url": "https://docs.streamlit.io/develop/concepts/architecture/widget-behavior",
+          "source_type": "doc",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [],
+          "source_span": "docs:content/develop/concepts/architecture/widget-behavior.md; Unicode codepoints [8261,9365)"
+        }
+      ]
+    },
+    "form-callback": {
+      "snapshot_id": "split-e1-v1-dev-form-callback",
+      "hits": [
+        {
+          "chunk_id": "e1d-forms-callbacks",
+          "source_id": "docs:content/develop/concepts/architecture/forms.md",
+          "excerpt": "For widgets inside a form, any changes made by a user (step 1) do not get passed to the Python backend (step 2) until the form is submitted. Furthermore, the only widget inside a form that can have a callback function is the `st.form_submit_button`. If you need to execute a process using newly submitted values, you have three major patterns for doing so.",
+          "source_url": "https://docs.streamlit.io/develop/concepts/architecture/forms",
+          "source_type": "doc",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [],
+          "source_span": "docs:content/develop/concepts/architecture/forms.md; Unicode codepoints [6113,6469)"
+        },
+        {
+          "chunk_id": "e1d-widget-order-of-operations",
+          "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+          "excerpt": "When a user interacts with a widget, the widget is updated and triggers a rerun in the following order:\n\n1. The widget value in `st.session_state` is updated.\n2. The callback function (if any) is executed.\n3. The page reruns with the widget command returning its new value.\n\nIf the callback function displays anything on the screen, that content will appear above the rest of the page. A callback function runs as a _prefix_ to the script run. Consequently, that means anything written via a callback function will disappear as soon as the user performs their next action. Widget commands should generally not be called within a callback function.\n\n<Note>\n\nIf a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget. In particular, if you want to use a widget's value in its own callback function, you can't pass that value to the callback function via the `args` parameter; you must assign a key to the widget and look up its value using `st.session_state` _within the callback function_.",
+          "source_url": "https://docs.streamlit.io/develop/concepts/architecture/widget-behavior",
+          "source_type": "doc",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [],
+          "source_span": "docs:content/develop/concepts/architecture/widget-behavior.md; Unicode codepoints [8261,9365)"
+        },
+        {
+          "chunk_id": "e1d-button-1220-args",
+          "source_id": "docstring:1.22.0:streamlit.button",
+          "excerpt": "args: tuple; default=None\nAn optional tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.",
+          "source_url": "https://docs.streamlit.io/develop/api-reference/widgets/st.button",
+          "source_type": "doc",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.22.0"
+          ],
+          "source_span": "docstring:1.22.0:streamlit.button; Unicode codepoints [1538,1694)"
+        }
+      ]
+    },
+    "fragment-rerun": {
+      "snapshot_id": "split-e1-v1-dev-fragment-rerun",
+      "hits": [
+        {
+          "chunk_id": "e1d-rn-1380-fragment-revert",
+          "source_id": "docs:content/develop/quick-references/release-notes/2024.md",
+          "excerpt": "Bug fix: We reverted a change to fragments which caused some widgets to lose state in some circumstances ([#9178](https://github.com/streamlit/streamlit/pull/9178), [#9171](https://github.com/streamlit/streamlit/issues/9171))",
+          "source_url": "https://docs.streamlit.io/develop/quick-reference/release-notes/2024",
+          "source_type": "release_note",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [
+            "1.38.0"
+          ],
+          "source_span": "docs:content/develop/quick-references/release-notes/2024.md; Unicode codepoints [27025,27250)"
+        }
+      ]
+    },
+    "state-clear": {
+      "snapshot_id": "split-e1-v1-dev-state-clear",
+      "hits": [
+        {
+          "chunk_id": "e1d-session-state-delete",
+          "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+          "excerpt": "### Delete items\n\nDelete items in Session State using the syntax to delete items in any Python dictionary:\n\n```python\n# Delete a single key-value pair\ndel st.session_state[key]\n\n# Delete all the items in Session state\nfor key in st.session_state.keys():\n    del st.session_state[key]\n```",
+          "source_url": "https://docs.streamlit.io/develop/api-reference/caching-and-state/st.session_state",
+          "source_type": "doc",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [],
+          "source_span": "docs:content/develop/api-reference/caching-and-state/session_state.md; Unicode codepoints [1884,2171)"
+        },
+        {
+          "chunk_id": "e1d-session-state-init",
+          "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+          "excerpt": "### Initialization\n\nThe Session State API follows a field-based API, which is very similar to Python dictionaries:\n\n```python\nimport streamlit as st\n\n# Check if 'key' already exists in session_state\n# If not, then initialize it\nif 'key' not in st.session_state:\n    st.session_state['key'] = 'value'\n\n# Session State also supports the attribute based syntax\nif 'key' not in st.session_state:\n    st.session_state.key = 'value'\n```",
+          "source_url": "https://docs.streamlit.io/develop/concepts/architecture/session-state",
+          "source_type": "doc",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [],
+          "source_span": "docs:content/develop/concepts/architecture/session-state.md; Unicode codepoints [2559,2989)"
+        }
+      ]
+    },
+    "conditional-widget": {
+      "snapshot_id": "split-e1-v1-dev-conditional-widget",
+      "hits": [
+        {
+          "chunk_id": "e1d-widget-cleanup",
+          "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+          "excerpt": "### Widget clean-up process\n\nStreamlit cleans up widget data at the end of every script run and at the beginning of a script run on a new page.\n\nWhen Streamlit gets to the end of a script run, it will delete the data for any widgets it has in memory that were not rendered on the screen. Most importantly, that means Streamlit will delete all key-value pairs in `st.session_state` associated with a widget not currently on screen.",
+          "source_url": "https://docs.streamlit.io/develop/concepts/architecture/widget-behavior",
+          "source_type": "doc",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [],
+          "source_span": "docs:content/develop/concepts/architecture/widget-behavior.md; Unicode codepoints [17215,17645)"
+        },
+        {
+          "chunk_id": "e1d-widget-hidden-reset",
+          "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+          "excerpt": "Even temporarily hiding a widget causes it to reset when it reappears; Streamlit will treat it like a new widget. To preserve widget state across pages or when widgets are temporarily hidden, save the value to a separate placeholder key as shown below.",
+          "source_url": "https://docs.streamlit.io/develop/concepts/architecture/widget-behavior",
+          "source_type": "doc",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [],
+          "source_span": "docs:content/develop/concepts/architecture/widget-behavior.md; Unicode codepoints [13160,13412)"
+        }
+      ]
+    },
+    "checkbox-value-key": {
+      "snapshot_id": "split-e1-v1-dev-checkbox-value-key",
+      "hits": [
+        {
+          "chunk_id": "e1d-widget-keys",
+          "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+          "excerpt": "Widget keys serve three purposes:\n\n1. Distinguishing two otherwise identical widgets.\n2. Maintaining statefulness of the widget while changing its parameters.\n3. Creating a means to access and manipulate the widget's value through `st.session_state`.",
+          "source_url": "https://docs.streamlit.io/develop/concepts/architecture/widget-behavior",
+          "source_type": "doc",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [],
+          "source_span": "docs:content/develop/concepts/architecture/widget-behavior.md; Unicode codepoints [5787,6037)"
+        },
+        {
+          "chunk_id": "e1d-widget-order-of-operations",
+          "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+          "excerpt": "When a user interacts with a widget, the widget is updated and triggers a rerun in the following order:\n\n1. The widget value in `st.session_state` is updated.\n2. The callback function (if any) is executed.\n3. The page reruns with the widget command returning its new value.\n\nIf the callback function displays anything on the screen, that content will appear above the rest of the page. A callback function runs as a _prefix_ to the script run. Consequently, that means anything written via a callback function will disappear as soon as the user performs their next action. Widget commands should generally not be called within a callback function.\n\n<Note>\n\nIf a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget. In particular, if you want to use a widget's value in its own callback function, you can't pass that value to the callback function via the `args` parameter; you must assign a key to the widget and look up its value using `st.session_state` _within the callback function_.",
+          "source_url": "https://docs.streamlit.io/develop/concepts/architecture/widget-behavior",
+          "source_type": "doc",
+          "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+          "applicable_versions": [],
+          "source_span": "docs:content/develop/concepts/architecture/widget-behavior.md; Unicode codepoints [8261,9365)"
+        }
+      ]
+    }
+  }
+}
