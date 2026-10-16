@@ -860,12 +860,17 @@
         ]
       },
       {
-        "path": "data/evaluation/split-e1-v1/dev/state-clear-12740-v1.json",
-        "sha256": "87dc38cfd196a4c079007ffe4bc3194c2e58a3aad51ce27fac8df46171980e34",
+        "path": "data/evaluation/split-e1-v1/dev/state-clear-12740-v2.json",
+        "sha256": "bf44fa86bfb3b201170e8b0865e4015c901f2a14f95b1e1c065cdc3b481e3bd0",
         "case_id": "dev-case-n",
         "family_issue_ids": [
           12740
-        ]
+        ],
+        "supersedes": {
+          "path": "data/evaluation/split-e1-v1/dev/state-clear-12740-v1.json",
+          "sha256": "87dc38cfd196a4c079007ffe4bc3194c2e58a3aad51ce27fac8df46171980e34",
+          "reason": "v2 replaces v1 after the human spot check (mhg, 2026-10-16): v1 said 'Screenshots only, no code', but the real screenshots contain partial code. The agent receives text only and the decisive line was outside the screenshots, so asking for the full code as text remains the expected decision. No model run used v1."
+        }
       },
       {
         "path": "data/evaluation/split-e1-v1/dev/state-typing-9455-v1.json",
