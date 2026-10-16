@@ -402,6 +402,14 @@ ledger، holdها، halt و receiptهای تاریخی تغییر نمی‌کن�
   هنوز وجود ندارد.۹۶/۹۶ صرفاًquery-control بدون خواندن index است.
  ۹۱ تست موجود پاس ولی regression را پوشش نمی‌دهند. Hassan branch تغییر نکرد؛
   native receipt، کنترل نسخهٔunknown/قدیمی/correction وrelevance لازم است.
+  **به‌روزرسانی حسن ۱۶ اکتبر:** adapter در PR50 اصلاح نمی‌شود و کنار می‌رود؛ مسیر R4c
+  روی main (`query_relevance_v1`، multiplier۵، scope دقیق نسخهٔ USER قبل از cap، packing
+  ۱۲۰۰۰byte) هر سه ایراد را برطرف می‌کند. [رسید قبل/بعد](../experiments/r4b_version_ranking/README.md)
+  روی همان۲۴ query آرشیوی (۸ state) و index ثبت‌شدهٔ۱۸/۳۶: backend در PR50/native پنج و
+  در R4b بیست‌وپنج کاندیدا گرفت؛ button۱٫۳۹ و multiselect۱٫۵۰ فقط در R4b و fragment۱٫۵۰
+  در هر سه به مدل رسیدند؛ version_unsafe صفر. ۱۶ تست تازه برای نسخهٔ unknown/قدیمی/فعلی/
+  correction و `since_version`؛ ۱۲۳ تست مرتبط روی Windows پاس. availability است، نه کیفیت
+  پاسخ یا usefulness؛ کد adapter/engine/index تغییر نکرد. بستن PR50 و تیک با review ساسان.
   کار core مستقل از این اصلاح ادامه دارد. محمدحسن review سه dev را درPR55 و
   rubric پیش‌نویس را درPR56 رویmain رسانده؛ usefulness۱۷خروجی و۱۲dev/۱۵test
   باقی با اوست. کمک ساسان محدود به اتصال وreviewpack است.
