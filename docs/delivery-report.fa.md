@@ -27,7 +27,7 @@ factory رد می‌شود. sourceهای قبلی و defaultها تغییر نک
 | بخش | شاهد موجود | باقی‌مانده برای اعلام اتمام |
 | --- | --- | --- |
 | core و اتصال | correction، وضعیت فعلی کاربر، شواهد نسخه‌دار، پیشنهاد جدا از اجرا، API/UI/SQLite؛ recipe منتخب و binding واقعی C4r | داوری مستقل کیفیت تنظیم منتخب و freeze مشترک build/gold |
-| صحت نرم‌افزار | آخرین بررسی گسترده، source C4p یعنی `85d89ea`: پوشش موفق ۶۰۷۳ تست انتخاب‌شده در دو CWD، یک deselection صریح؛ review مستقل و Ruff پاس | یک اجرای یک‌تکهٔ بی‌خطا ادعا نمی‌شود؛ این اعداد کیفیت جواب مدل یا اجرای test نهایی نیستند |
+| صحت نرم‌افزار | آخرین بررسی گسترده C4r، source `9fdb132`: تعداد۶۲۶۵تست انتخاب‌شده در دو CWD، یک مصرف‌کنندهٔheld-out کنارگذاشته؛ review مستقل،Ruff۳۸۸فایل و۳demoپاس | یک اجرای یک‌تکهٔ full-suite ادعا نمی‌شود؛ این اعداد کیفیت جواب مدل یا اجرای test نهایی نیستند |
 | RAG | Chroma واقعی، buildهای pinned، کنترل نسخه و بازپخش dev | بهبود packing/relevance و freeze نهایی corpus/index/config با حسن |
 | evaluation | ثبت۱۶dev/۱۵test و۱۴مسیر چندنوبتی شامل۷test در metadata؛ v2 سه dev با rubric v1 درPR79، اجرای scripted تازه۷۹check | native gold/routes،worksheet C4j،vocabulary/rubric/split freeze،usefulness تنظیم منتخب و ارزیابی نهایی با محمدحسن |
 | tracker | approval/edit/reject، stale409،restart/retry و شاهد lost-ACK | مرزهای باقی‌ماندهٔ T4 با بهنام/محمدحسن؛ recovery درخواست تأییدنشده پس از نابودی کامل session ثابت نشده |

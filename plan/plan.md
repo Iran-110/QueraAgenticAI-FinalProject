@@ -15,7 +15,9 @@
   metadata قبلی حفظ است؛ runner binding و compact diagnostics مجاز را ثبت
   می‌کند و metadata ناسازگار را رد می‌کند. پذیرش factory واقعی با index/SQLite
   موقت و provider mock، correction، stale409، restart/retry و Action یکتا را
-  پوشش می‌دهد. شمارش نهایی تست/review و source در receipt ثبت شده است.
+  پوشش می‌دهد. source `9fdb132`: تعداد۶۲۶۵تست توسعه در دو context پاس؛۱۲۹تست
+  تازه داخل همین شمارش‌اند. reviewهای مستقل۴۷/۱۲۱هم‌پوشان، Ruff۳۸۸فایل و
+  سهdemoپاس‌اند؛ یک مصرف‌کنندهٔheld-outکنارگذاشته شد، نه اجرایtestنهایی.
   انتخاب نرم‌افزاری core بسته شد؛ freeze نهایی index/gold، usefulness انسانی،
   C5 و test نهایی بسته نیستند. Enum fix تأییدشده ندارد؛ halt و سه hold حفظ‌اند.
   **PR81** فقط dev-native بررسی شد؛ rollback plan و دو قاعدهٔ fix بدون passage

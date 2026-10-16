@@ -23,7 +23,13 @@ SQLite/ledger and authored MockTransport responses. It verifies exact current
 USER-version scope, native25/final5/12000-byte policy, current question catalog,
 compact request, fresh legacy handoff, correction, stale409 and restart/retry
 without a second Action. That is software acceptance, never paid model quality.
-Final verification/source counts are in the receipt; primary ledger/19 pins,
+Source `9fdb132`:6265 selected development tests pass across two preregistered
+CWD contexts (6260 neutral +5 required root; disjoint, unchanged source/tests).
+One held-out consumer is explicitly removed before execution;129 new controls
+are included. Independent47/121 focused counts overlap, Ruff388files/3demos pass.
+Initial interrupted absolute-deselection error and correction remain recorded;
+parent protected-open attempts0 is not subprocess attestation or one full run.
+Full verification/source hashes are in the receipt; primary ledger/19 pins,
 halt/three holds, old campaigns/gold, split/test and exclusion stay unchanged.
 PR81's dev-only native artifacts were reviewed structurally; plan rollback and
 two unsupported-fix route conditions remain for evaluation-owner clarification.
