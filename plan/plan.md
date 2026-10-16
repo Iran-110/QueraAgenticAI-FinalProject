@@ -4,6 +4,58 @@
 
 ## وضعیت فعلی
 
+- [x] **C4s — پذیرش تنظیم منتخب از کل runner و تصحیح review؛ ساسان.**
+  [شرح و دستور](../docs/core-selected-runner-acceptance.fa.md)،
+  [verification](../docs/receipts/core-selected-runner-acceptance-2026-10-16.json).
+  factory واقعی، conditional runner، index و ledger موقت و HTTP mock:
+  چهار مسیر سالم/repair/توقف JSON/timeout در دو phase؛۸کنترل تازه پاس‌اند.
+  binding/phase/accounting/engine و عدم ورود gold/script/پاسخ آینده بررسی شد؛
+  حساب unresolved، factory/allocation بعدی را پیش از key/index/send می‌بندد.
+  runner حافظه‌ای است؛ این تست SQLite/restart یا کیفیت مدل تازه نیست.
+  ۲۹۷تست مرتبط تازه و review مستقل۸تست، Ruff۳۸۹فایل پاس؛ runtime و تست‌های
+  قبلی ثابت‌اند، بررسی گستردهٔ C4r دوباره اجرا نشده است. halt/سهhold/۱۹pin و
+  test/exclusion ثابت‌اند. ادعای rollback plan درPR81 تصحیح شد: diffازmerge-base
+  +۱/-۰ و merge سه‌طرفهٔ خودplan بی‌تعارض است؛ receiptقدیمی حفظ شد. دو ابهام
+  native gold هنوز با صاحبevalاست؛ PR81merge/فعال نشده. T4sessionrecovery،
+  humanquality،freeze وC5/testنهایی همچنان بازند. APIپرداختی/پیام صفر.
+
+- [x] **C4r — انتخاب recipe تحویل core و تطبیق با factory/backend واقعی؛ ساسان.**
+  [تنظیم و اتصال](../docs/core-delivery-selection.fa.md)،
+  [recipe](../config/core-delivery-grounded-v1.json)،
+  [verification](../docs/receipts/core-delivery-selection-2026-10-16.json).
+  `grounded_candidate_v1`: مدل `gpt-4o-mini`، compact GroundedPlan، candidate
+  relevance و renderer قبلی؛ vocabulary بازبینی‌شدهٔ dev بدون تغییر pin شد.
+  selector اختیاری در factory موجود، تنظیم مغایر را پیش از key رد می‌کند؛
+  owner/planner/sender و renderer پیش از ارسال دوباره تطبیق می‌یابند.
+  metadata قبلی حفظ است؛ runner binding و compact diagnostics مجاز را ثبت
+  می‌کند و metadata ناسازگار را رد می‌کند. پذیرش factory واقعی با index/SQLite
+  موقت و provider mock، correction، stale409، restart/retry و Action یکتا را
+  پوشش می‌دهد. source `9fdb132`: تعداد۶۲۶۵تست توسعه در دو context پاس؛۱۲۹تست
+  تازه داخل همین شمارش‌اند. reviewهای مستقل۴۷/۱۲۱هم‌پوشان، Ruff۳۸۸فایل و
+  سهdemoپاس‌اند؛ یک مصرف‌کنندهٔheld-outکنارگذاشته شد، نه اجرایtestنهایی.
+  انتخاب نرم‌افزاری core بسته شد؛ freeze نهایی index/gold، usefulness انسانی،
+  C5 و test نهایی بسته نیستند. Enum fix تأییدشده ندارد؛ halt و سه hold حفظ‌اند.
+  **PR81** فقط dev-native بررسی شد؛ دو قاعدهٔ fix بدون passage نیازمند اصلاح
+  صاحب eval است و هنوز merge/فعال نشده. ادعای قبلی rollback plan اشتباه بود:
+  diff از merge-base فقط یک خط اضافه می‌کند؛ [تصحیح C4s](../docs/core-selected-runner-acceptance.fa.md).
+  پیام ارسال نشده است.
+
+- [x] **C4q — بستن اتصال ثبت تنظیم به ساخت reasoner؛ ساسان.**
+  [تحویل core و شرط‌های پایان](../docs/core-closeout.fa.md)،
+  [verification](../docs/receipts/core-freeze-closeout-2026-10-16.json).
+  envelope v2، policy renderer و v1 معتبر را bind می‌کند؛ mismatch قبل از
+  callback رد می‌شود. flagها و catalog واقعی از snapshot ثبت‌شده ساخته می‌شوند.
+  v1 و default/factoryهای قبلی تغییر نکرده‌اند؛ مسیر جدید تزریق صریح است.
+  receipt فقط ساخت reasoner را تأیید می‌کند، نه planner/model، engine، code/index،
+  بودجه یا کیفیت. انتخاب تنظیم نهایی و freeze همچنان کار مشترک است؛ halt و سه
+  hold حفظ‌اند. کار بعدی core، پشتیبانی از freeze/اجرای نهایی است؛ feature تازه
+  در اولویت نیست. source `9f24376`: ۵۸۰ تست مرتبط تازه، review مستقل ۲۷۱ تست،
+  سه دمو و Ruff روی ۳۸۱ فایل پاس؛ ۴۵+۱۸ کنترل تازه در شمارش‌های هم‌پوشان‌اند.
+  صفر تلاش محافظت‌شده/شبکه در parent ثبت شد؛ audit شامل تمام subprocessها نیست.
+  ledger و ۱۹ pin ثابت‌اند. بررسی گستردهٔ C4p تاریخی است؛ full-suite تازه برای
+  این تغییرِ صرفاً افزایشی ادعا نمی‌شود.
+
+
 - [x] **C4p — قالب بررسی maintainer و خوانایی Enum؛ ساسان.**
   [رفتار و اتصال](../docs/maintainer-review-brief.fa.md)،
   [verification](../docs/receipts/maintainer-review-brief-2026-10-16.json)،
@@ -20,7 +72,7 @@
   ۱۲۲۰۱ به ۹۳۸۳ کاراکتر رسید؛ تمام quoteهای انتخاب‌شده حفظ‌اند. این‌ها replay
   همان انتخاب‌های قدیمی‌اند؛ usefulness یا تشخیص/fix تازه تأیید نشده است.
   متن تازه handoff/review تازه لازم دارد؛ approval قبلی قابل انتقال نیست.
-  factory/config نهایی تغییر نکرد؛ descriptor فعلی این policy را bind نمی‌کند.
+  factory/config نهایی تغییر نکرد؛ descriptor v1 این policy را bind نمی‌کند.
   انتخاب و ثبت policy، review انسانی و freeze باقی‌اند؛ halt و سه hold حفظ‌اند.
 
 
@@ -1183,6 +1235,7 @@ handoffها و متن released محفوظ‌اند. ترکیب اصلاحات ب
 - [ ] **E3 — runner قابل تکرار.** caseها از fixture اجرا شوند؛ turn بعدی در زمان درست آشکار شود و case/revision/proposal و config/snapshot، latency و هزینه ثبت شوند. replay منطقی بدون API و اجرای کیفیت با مدل واقعی خروجی جدا داشته باشند. schema/runner و API/UI pytest با خودش؛ برای قراردادها از ساسان کمک بگیرد. وضعیت: runner آفلاین `agent_app.evaluation.runner` آماده است: caseهای یک split را turn به turn اجرا می‌کند، case/revision/proposal، git commit، hash fixture، config/snapshot، latency، تلاش مدل، دور retrieval، step، هزینه و token را ثبت می‌کند و receipt حالت offline و live را در مسیرهای جدا نگه می‌دارد. [receipt آفلاین dev](../data/evaluation/receipts/offline/dev-2026-10-10.json). ([PR #15](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/15)) مسیر live با HTTP intercepted و BudgetLedger موقت آفلاین تست شده؛ provider و ledger اصلی استفاده نشده‌اند. #21 receipt کامل، accounting درخواست و محافظ branch نامتناسب را اضافه می‌کند؛ تکمیل E3 هنوز به adapter U3، branchهای گفتگو و validation ثبت‌شده نیاز دارد. سناریوهای عملیاتی ساختگی برای خرابی ابزار (retrieval، یک خطای مدل با retry در سقف دو تلاش، دو خطا و توقف) و جابه‌جایی میان دو پرونده در `data/evaluation/scenarios/` پیش از اجرا ثبت شدند؛ اجرای اول ۸۱ از ۸۲ پاس شد چون انتظار ثبت‌شده کد توقف را اشتباه پیش‌بینی کرده بود (engine آخرین خطای adapter یعنی `ReasoningUnavailable` را گزارش می‌کند)؛ receipt آن حفظ و نسخهٔ v2 با همان یک تغییر ثبت شد. این سناریوها جزو ۳۰ case ارزیابی نیستند.
 - [ ] **E4 — baseline و تنظیم فقط روی dev.** کیفیت تصمیم/پشتیبانی ادعاها/ضرورت و پاسخ‌پذیری سؤال، retrieval، صحت عملیات و هزینه/latency جدا سنجیده شوند. تغییرات روی ورودی یکسان مقایسه و نسخهٔ code/prompt/corpus/model freeze شود. نمونهٔ قضاوت انسانی ثبت شود؛ JSON معتبر یا نظر همان مدل تنها شاهد کیفیت نیست.
   یادداشت E4 (۱۶ اکتبر): نخستین داوری انسانی خروجی واقعی مدل ثبت شد: [`human-output-card-review-v1.json`](../experiments/dev_rag_coverage_v1/human-output-card-review-v1.json). ۱۷ پیشنهاد تازهٔ C4g در۷گروه case/turn/decision/draft بررسی شدند؛ متن سؤال دو گروه یکسان است و۶متن یکتا داریم. تصمیم۶گروه قابل قبول ویک گروه نامطمئن؛ usefulness دو گروه۲وپنج گروه۱ است:۱٫۲۹به‌ازای گروه و۱٫۴۷باوزن۱۷پیشنهاد. [پذیرش و توضیح واحد شمارش](../docs/pr77-review.fa.md) نمره‌های اصلی را تغییر نمی‌دهد. هر۱۷binding/handoff وhashreceipt تطبیق داده شد؛ export خصوصی وpacket وابسته‌به‌مسیر کاملاً بازتولید نشده‌اند. support بررسی نشده وE4باز است؛ اینdevexposed است، نهtestنهایی. نشانگر `\u000d` درcase-c ازCRLFوescape renderer است، نه خطای مدل.
+  یادداشت C4j (۱۶ اکتبر): [`assistant-informed-output-review-v1.json`](../experiments/core_claim_boundary_v1/assistant-informed-output-review-v1.json) ۲۲ پیش‌نویس موجود C4j را با تصمیم و usefulness محمدحسن ثبت می‌کند. داور پس از خواندن ترجمه و رفتار مورد انتظار، ارزیابی دستیار را باز کرد؛ ۱۹ دلیل متن دستیار است و همهٔ نمره‌ها در بازهٔ پیشنهادی دستیارند، پس این **نمرهٔ مستقل انسانی نیست** و worksheet اصلی دست نخورده (فیلدهای انسانی null). نتیجهٔ توصیفی: سؤال‌ها ۷/۷ قابل قبول (میانگین ۱٫۸۶)، answerها ۱/۱۴ قابل قبول (میانگین ۰٫۵)؛ روش A میانگین ۱٫۲ و روش B ۰٫۴۳. ۴۲ ردیف بدون پیش‌نویس نمره ندارند.
 - [ ] **E5 — test و گزارش نهایی.** بعد از E1–E4 و اتصال واقعی، test بدون tuning اجرا شود؛ شکست‌ها، موارد حل‌نشده و اطلاعات ناقص همراه trace گزارش شوند. شواهد RAG از حسن، tracker از بهنام و core از ساسان جمع شود؛ مالک اجرای evaluation و گزارش محمدحسن است.
 - [ ] **E6 — bonus و ارائه.** فقط پس از مسیر اصلی، Adversarial Testing با دامنهٔ توافق‌شدهٔ منتور و مقایسهٔ منصفانه اجرا شود؛ اسلاید و README با رفتار و هزینهٔ واقعی هماهنگ شوند.
 

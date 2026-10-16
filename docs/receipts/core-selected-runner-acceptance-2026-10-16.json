@@ -1,0 +1,365 @@
+{
+  "schema_version": 1,
+  "task_id": "C4s",
+  "test_source_commit": "1639937656c848dc0fb08a1c6225275822d9195b",
+  "baseline_main_commit": "e8b146c9f4c4572393ab9321f2ab4e81ef35120b",
+  "scope": "actual selected configured factory through complete conditional memory HTTP evaluation runner; authored fixture and mock provider software acceptance only",
+  "runtime_changed": false,
+  "existing_tests_or_configuration_changed": false,
+  "selected_profile_changed": false,
+  "new_test": {
+    "path": "tests/test_core_delivery_runner.py",
+    "sha256": "89914a89aa1364375d64b221e0beaaabb68ee888eb654417a8784144e403321d",
+    "cases": 8,
+    "phases": [
+      "development",
+      "evaluation"
+    ],
+    "scenarios": [
+      "valid",
+      "malformed_then_valid",
+      "malformed_twice",
+      "transport_failure"
+    ],
+    "packet_outcomes_not_model_quality": {
+      "complete_expected_routes": 4,
+      "expected_incomplete_failure_routes": 4
+    }
+  },
+  "actual_wiring": {
+    "configured_factory_used": true,
+    "selected_profile": "grounded_candidate_v1",
+    "full_evaluation_runner_run": true,
+    "conditional_routes": true,
+    "tracker_backend": "process_memory_dummy_tracker",
+    "storage": "fresh native Chroma index and disposable budget SQLite; no persistent case tracker claim",
+    "provider": "httpx CountedMock/MockTransport only",
+    "recipe_binding_phase_and_authoritative_reservation_equal": true,
+    "effective_engine_and_handshake_checked": true,
+    "exact_packet_ledger_settled_reserved_uncertain_totals_checked": true,
+    "known_gold_script_future_canaries_not_leaked_to_earlier_mock_requests": true,
+    "future_canary_check_includes_all_retry_wires": true,
+    "bounded_successful_repair_and_exhaustion_checked": true,
+    "failure_and_unvisited_turns_retained": true,
+    "all_clients_closed_exactly_once": true
+  },
+  "timeout_semantics": {
+    "fresh_temporary_halted_flag": false,
+    "uncertain_reservation_retained": true,
+    "known_cost_total_is_null": true,
+    "global_halt_autoflip_claim": false,
+    "next_same_factory_allocation_rejected": "LiveAccountingUnresolved",
+    "fresh_configured_factory_rejected": "LiveAccountingUnresolved",
+    "further_key_index_transport_observation_or_send": false,
+    "primary_halt_and_three_holds": "exact primary ledger byte hash retained"
+  },
+  "observed_mock_cases": {
+    "selected_runner_development_valid": {
+      "actual_mock_sends": 3,
+      "binding_sha256": "44c9c5824fa5e44a206e823fdd423af4d5e09f195aa91663f8cf5f41df0066b9",
+      "cost_usd_total": "0.0001287",
+      "coverage_complete": true,
+      "effective_engine": {
+        "evidence_scope": "exact_user_version",
+        "evidence_utf8_budget_bytes": 12000,
+        "repair_repeated_queries": true,
+        "retrieval_candidate_multiplier": 5,
+        "top_k": 5
+      },
+      "next_allocation_and_factory_accounting_block_checked": false,
+      "phase": "development",
+      "projected_provider_rows": 3,
+      "recipe_sha256": "a356238d62acfed9ae5087828548460fd7119893218e874fa228940a2fc63ed4",
+      "scenario": "valid",
+      "script_or_gold_leaked": false,
+      "temporary_ledger_halted": false,
+      "uncertain_usd": "0"
+    },
+    "selected_runner_evaluation_valid": {
+      "actual_mock_sends": 3,
+      "binding_sha256": "a4a816838b0b52f08e06dfd88ee070453cde8d8038df7cbe08fff70c250a5855",
+      "cost_usd_total": "0.0001287",
+      "coverage_complete": true,
+      "effective_engine": {
+        "evidence_scope": "exact_user_version",
+        "evidence_utf8_budget_bytes": 12000,
+        "repair_repeated_queries": true,
+        "retrieval_candidate_multiplier": 5,
+        "top_k": 5
+      },
+      "next_allocation_and_factory_accounting_block_checked": false,
+      "phase": "evaluation",
+      "projected_provider_rows": 3,
+      "recipe_sha256": "a356238d62acfed9ae5087828548460fd7119893218e874fa228940a2fc63ed4",
+      "scenario": "valid",
+      "script_or_gold_leaked": false,
+      "temporary_ledger_halted": false,
+      "uncertain_usd": "0"
+    },
+    "selected_runner_development_malformed_then_valid": {
+      "actual_mock_sends": 4,
+      "binding_sha256": "44c9c5824fa5e44a206e823fdd423af4d5e09f195aa91663f8cf5f41df0066b9",
+      "cost_usd_total": "0.0001716",
+      "coverage_complete": true,
+      "effective_engine": {
+        "evidence_scope": "exact_user_version",
+        "evidence_utf8_budget_bytes": 12000,
+        "repair_repeated_queries": true,
+        "retrieval_candidate_multiplier": 5,
+        "top_k": 5
+      },
+      "next_allocation_and_factory_accounting_block_checked": false,
+      "phase": "development",
+      "projected_provider_rows": 4,
+      "recipe_sha256": "a356238d62acfed9ae5087828548460fd7119893218e874fa228940a2fc63ed4",
+      "scenario": "malformed_then_valid",
+      "script_or_gold_leaked": false,
+      "temporary_ledger_halted": false,
+      "uncertain_usd": "0"
+    },
+    "selected_runner_evaluation_malformed_then_valid": {
+      "actual_mock_sends": 4,
+      "binding_sha256": "a4a816838b0b52f08e06dfd88ee070453cde8d8038df7cbe08fff70c250a5855",
+      "cost_usd_total": "0.0001716",
+      "coverage_complete": true,
+      "effective_engine": {
+        "evidence_scope": "exact_user_version",
+        "evidence_utf8_budget_bytes": 12000,
+        "repair_repeated_queries": true,
+        "retrieval_candidate_multiplier": 5,
+        "top_k": 5
+      },
+      "next_allocation_and_factory_accounting_block_checked": false,
+      "phase": "evaluation",
+      "projected_provider_rows": 4,
+      "recipe_sha256": "a356238d62acfed9ae5087828548460fd7119893218e874fa228940a2fc63ed4",
+      "scenario": "malformed_then_valid",
+      "script_or_gold_leaked": false,
+      "temporary_ledger_halted": false,
+      "uncertain_usd": "0"
+    },
+    "selected_runner_development_malformed_twice": {
+      "actual_mock_sends": 3,
+      "binding_sha256": "44c9c5824fa5e44a206e823fdd423af4d5e09f195aa91663f8cf5f41df0066b9",
+      "cost_usd_total": "0.0001287",
+      "coverage_complete": false,
+      "effective_engine": {
+        "evidence_scope": "exact_user_version",
+        "evidence_utf8_budget_bytes": 12000,
+        "repair_repeated_queries": true,
+        "retrieval_candidate_multiplier": 5,
+        "top_k": 5
+      },
+      "next_allocation_and_factory_accounting_block_checked": false,
+      "phase": "development",
+      "projected_provider_rows": 3,
+      "recipe_sha256": "a356238d62acfed9ae5087828548460fd7119893218e874fa228940a2fc63ed4",
+      "scenario": "malformed_twice",
+      "script_or_gold_leaked": false,
+      "temporary_ledger_halted": false,
+      "uncertain_usd": "0"
+    },
+    "selected_runner_evaluation_malformed_twice": {
+      "actual_mock_sends": 3,
+      "binding_sha256": "a4a816838b0b52f08e06dfd88ee070453cde8d8038df7cbe08fff70c250a5855",
+      "cost_usd_total": "0.0001287",
+      "coverage_complete": false,
+      "effective_engine": {
+        "evidence_scope": "exact_user_version",
+        "evidence_utf8_budget_bytes": 12000,
+        "repair_repeated_queries": true,
+        "retrieval_candidate_multiplier": 5,
+        "top_k": 5
+      },
+      "next_allocation_and_factory_accounting_block_checked": false,
+      "phase": "evaluation",
+      "projected_provider_rows": 3,
+      "recipe_sha256": "a356238d62acfed9ae5087828548460fd7119893218e874fa228940a2fc63ed4",
+      "scenario": "malformed_twice",
+      "script_or_gold_leaked": false,
+      "temporary_ledger_halted": false,
+      "uncertain_usd": "0"
+    },
+    "selected_runner_development_transport_failure": {
+      "actual_mock_sends": 2,
+      "binding_sha256": "44c9c5824fa5e44a206e823fdd423af4d5e09f195aa91663f8cf5f41df0066b9",
+      "cost_usd_total": null,
+      "coverage_complete": false,
+      "effective_engine": {
+        "evidence_scope": "exact_user_version",
+        "evidence_utf8_budget_bytes": 12000,
+        "repair_repeated_queries": true,
+        "retrieval_candidate_multiplier": 5,
+        "top_k": 5
+      },
+      "next_allocation_and_factory_accounting_block_checked": true,
+      "phase": "development",
+      "projected_provider_rows": 2,
+      "recipe_sha256": "a356238d62acfed9ae5087828548460fd7119893218e874fa228940a2fc63ed4",
+      "scenario": "transport_failure",
+      "script_or_gold_leaked": false,
+      "temporary_ledger_halted": false,
+      "uncertain_usd": "0.00608256"
+    },
+    "selected_runner_evaluation_transport_failure": {
+      "actual_mock_sends": 2,
+      "binding_sha256": "a4a816838b0b52f08e06dfd88ee070453cde8d8038df7cbe08fff70c250a5855",
+      "cost_usd_total": null,
+      "coverage_complete": false,
+      "effective_engine": {
+        "evidence_scope": "exact_user_version",
+        "evidence_utf8_budget_bytes": 12000,
+        "repair_repeated_queries": true,
+        "retrieval_candidate_multiplier": 5,
+        "top_k": 5
+      },
+      "next_allocation_and_factory_accounting_block_checked": true,
+      "phase": "evaluation",
+      "projected_provider_rows": 2,
+      "recipe_sha256": "a356238d62acfed9ae5087828548460fd7119893218e874fa228940a2fc63ed4",
+      "scenario": "transport_failure",
+      "script_or_gold_leaked": false,
+      "temporary_ledger_halted": false,
+      "uncertain_usd": "0.00608256"
+    }
+  },
+  "verification": {
+    "fresh_focused_passed": 297,
+    "new_controls_included_in_focused": 8,
+    "xml": {
+      "path": "/Users/sasan/Desktop/Agentic AI/output/core-selected-runner-acceptance-2026-10-16-v1/focused.xml",
+      "sha256": "86e7adfca7781cfb4968b4b2bd86af5fbdeb21b50b080f8bf4c320aed1f3aedc"
+    },
+    "log": {
+      "path": "/Users/sasan/Desktop/Agentic AI/output/core-selected-runner-acceptance-2026-10-16-v1/focused.log",
+      "sha256": "9988e374d85f9927a7909922ce86bfcbefd82a42e33ff50366196efaa7dee1cb"
+    },
+    "boundary": {
+      "exit_code": 0,
+      "protected_open_attempts": [],
+      "socket_connect_attempts": 0,
+      "source_unchanged_during_run": true,
+      "selected_test_files": [
+        "test_core_delivery.py",
+        "test_core_delivery_http.py",
+        "test_core_delivery_live.py",
+        "test_core_delivery_metadata.py",
+        "test_core_delivery_review.py",
+        "test_core_delivery_runner.py",
+        "test_eval_conditional_routes.py",
+        "test_eval_runner.py",
+        "test_eval_runner_cleanup.py",
+        "test_evaluation_live.py",
+        "test_candidate_live_profile.py"
+      ],
+      "heldout_consumer_not_selected": true,
+      "guard_scope": "audited parent Python process only; not subprocess filesystem attestation",
+      "neutral_cwd": true
+    },
+    "independent_new_controls_passed": 8,
+    "independent_review": {
+      "path": "/Users/sasan/Desktop/Agentic AI/output/core-selected-runner-acceptance-2026-10-16-v1/independent-selected-runner-review.json",
+      "sha256": "e20ae0b954feb81701ecca7387d6a75ce3662f6542d3a56988281f43637f36b9"
+    },
+    "independent_xml": {
+      "path": "/Users/sasan/Desktop/Agentic AI/output/core-selected-runner-acceptance-2026-10-16-v1/independent-selected-runner.xml",
+      "sha256": "1191fcea2345dbfafa87d9c90c383a3025416fce579d2557cb2bc39c9176f4ea"
+    },
+    "author_new_controls_passed": 8,
+    "author_xml": {
+      "path": "/Users/sasan/Desktop/Agentic AI/output/core-selected-runner-acceptance-2026-10-16-v1/author-runner-focused-final.xml",
+      "sha256": "b2d86e5f24e529e7894968778d56736c9755862d50c97a54e0431e60c0761f59"
+    },
+    "counts_overlap_not_added": true,
+    "ruff_check_passed": true,
+    "ruff_format_check_passed": true,
+    "python_files": 389,
+    "full_development_suite_rerun": false,
+    "prior_broad_verification": {
+      "receipt": "docs/receipts/core-delivery-selection-2026-10-16.json",
+      "receipt_sha256": "6f60682fe07019112639907276d4e21a0d12ba57f15c2919702d2ce21221801a",
+      "selected_passing_observations": 6265,
+      "runtime_existing_tests_and_config_still_exact": true,
+      "not_fresh_suite_claim": true
+    }
+  },
+  "initial_failed_assumption_retained": {
+    "original_author_results": "4 passed,2 failed; fresh-ledger auto-halt assumption was wrong",
+    "initial_xml": {
+      "path": "/Users/sasan/Desktop/Agentic AI/output/core-selected-runner-acceptance-2026-10-16-v1/author-runner-focused-initial.xml",
+      "sha256": "f7132996d037d4e46746ed5ab29599b98b741ef4b8dc6b1324564638e11f09af"
+    },
+    "clarification": {
+      "path": "/Users/sasan/Desktop/Agentic AI/output/core-selected-runner-acceptance-2026-10-16-v1/protocol-clarification-v1.json",
+      "sha256": "3b0756ab0c4aea32b8dfaf1b44fe4445cf27d854300543806124f545836352a1"
+    },
+    "production_change_to_satisfy_test": false
+  },
+  "erratum": {
+    "target": "docs/receipts/core-delivery-selection-2026-10-16.json",
+    "target_sha256": "6f60682fe07019112639907276d4e21a0d12ba57f15c2919702d2ce21221801a",
+    "target_json_pointer": "/friend_update/remaining/0",
+    "superseded_assertion": "PR plan rollback deletes current closeout notes",
+    "correct_status": "withdrawn reviewer error; PR81 contribution adds one plan line and deletes none from merge-base",
+    "proof": {
+      "schema_version": 1,
+      "pr": 81,
+      "head": "77ffd9c88e8489516119e6e4e7510a00850960b9",
+      "base": "981b06d70efd4b5eafda99cc6add2a6a7a55ce14",
+      "current_main": "e8b146c9f4c4572393ab9321f2ab4e81ef35120b",
+      "merge_base_diff_numstat": "1\t0\tplan/plan.md",
+      "plan_only_three_way_merge_exit_code": 0,
+      "plan_only_three_way_merge_sha256": "28a0a4716ff4f324acd4bc1824492efe0582e23f2796166e35ce74551c2255af",
+      "preserves_current_c4r_c4q_c4j_and_adds_native_note": true,
+      "whole_pr_merge_or_gold_activation": false,
+      "historical_receipt_left_unchanged": true,
+      "review_correction": "Prior endpoint comparison incorrectly classified main-only later notes as deletions proposed by PR81. The branch adds one plan line and deletes none.",
+      "still_open": "Two native DEV escalation clauses need evidence-conditional wording; final build pins and eval-owner activation pending."
+    },
+    "historical_target_bytes_unchanged": true,
+    "remaining_native_gold_findings": [
+      "fragment-rerun-9180-native-v1.json:103: missing-passage escalation still requires reporting unsupported fix",
+      "tabs-blank-9259-native-v1.json:104: same evidence-conditional gold ambiguity"
+    ],
+    "gold_not_changed_or_used_for_runtime_tuning": true,
+    "PR81_not_merged_or_activated": true
+  },
+  "T4_boundary_probe": {
+    "path": "/Users/sasan/Desktop/Agentic AI/output/t4-session-boundary-audit-2026-10-16-v1/neutral-session-probe.json",
+    "sha256": "bee76a62c2fa744db093d34a6f36bc3f7e2098be9b0be0b4c21dfed884bd4d92",
+    "cases": [
+      "approve",
+      "reject",
+      "edit"
+    ],
+    "fresh_UI_session_sends_no_replacement_review_and_DB_unchanged": true,
+    "separately_retained_exact_operation_plus_fresh_client_can_confirm_original_receipt": true,
+    "full_UI_session_recovery_implemented_or_closed": false
+  },
+  "preservation": {
+    "ledger_sha256": "141c3536fb864595d94e0d0dd4a55976418def1012402b70f313c92050222785",
+    "physical19_exact": true,
+    "primary_halt_three_holds_and_closed_ids_unchanged": true,
+    "split_manifest_and_heldout_git_tree_exact": true,
+    "vocabulary_corpus_exclusion_golds_unchanged": true,
+    "all_existing_runtime_source_and_test_pins_exact": true,
+    "pin_manifest": {
+      "path": "/Users/sasan/Desktop/Agentic AI/output/core-selected-runner-acceptance-2026-10-16-v1/protocol.json",
+      "sha256": "d2f2fe260035bfb098cb5a47d1c9f54b26614c7857eba84882870eadde1a8d0b"
+    }
+  },
+  "limits": {
+    "new_paid_API_calls": 0,
+    "new_model_quality_measurement": false,
+    "new_human_usefulness_score": null,
+    "enum_fix_verified": false,
+    "final_build_or_gold_freeze_completed": false,
+    "C5_reconciled": false,
+    "heldout_consumed_or_tuned": false,
+    "shared_contract_changes": false,
+    "new_architecture_or_framework": false,
+    "messages_sent": 0,
+    "CI_success_claim": false,
+    "guard_scope": "parent Python processes only; no subprocess filesystem attestation; focused/independent socket guards reported0"
+  }
+}

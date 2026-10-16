@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-10-16T15:12:11.089849+00:00",
+  "pull_request": 80,
+  "reviewed_head": "55718b35db62f9a8f07532233bc0329fdf8afa2f",
+  "artifact_path": "experiments/core_claim_boundary_v1/assistant-informed-output-review-v1.json",
+  "artifact_sha256": "348d5a5f6dec50ff4c9f5299d8cb854584dc0c9c5395f684da68190a15193eca",
+  "approved_scope": "Receipt of assistant-informed feedback on 22 historical exposed C4j drafts; original bytes and scores retained",
+  "local_checks": {
+    "all22_group_bindings_match_unchanged_worksheet": true,
+    "worksheet_sha256_matches": true,
+    "original_model_receipt_sha256_matches": true,
+    "all64_worksheet_rows_and_null_human_score_fields_preserved": true,
+    "E4_checkbox_remains_open_in_PR_plan": true
+  },
+  "peer_assistant_review": "Independent assistant review checked all bindings, receipt hashes, descriptive means/counts and candid assistance provenance; no material blocker.",
+  "provenance": {
+    "independence": "assistant_informed",
+    "pasted_assistant_reasons": 17,
+    "pasted_plus_human_reasons": 2,
+    "human_reason": 1,
+    "empty_reasons": 2,
+    "all_scores_followed_exposed_assistant_suggestions": true
+  },
+  "limits": [
+    "Not independent human usefulness or claim-by-claim support review",
+    "Not evidence of superiority from uneven stopped arm means",
+    "15 error rows and 27 unvisited rows are unscored, not successful responses",
+    "No score transfers to C4p/C4q or a newly selected configuration",
+    "E4, final configuration/native gold/build/freeze and heldout evaluation remain open"
+  ],
+  "test_scope": "Documentation artifact only: JSON/hash/identity bindings verified; existing core source unchanged; no new mirror tests",
+  "new_provider_calls": 0,
+  "heldout_content_opened": false,
+  "primary_ledger_or_index_clients_created": false,
+  "external_messages_sent": 0,
+  "CI_success_claim": false
+}

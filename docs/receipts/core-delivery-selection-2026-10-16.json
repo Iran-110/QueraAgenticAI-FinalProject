@@ -1,0 +1,362 @@
+{
+  "schema_version": 1,
+  "task_id": "C4r",
+  "source_commit": "9fdb1322abdcfcd91c201dd44ea3e5c44d1c9cb9",
+  "baseline_main_commit": "26a552e9f5da0a70f924b2e17f507bce6766ca00",
+  "selected_profile": {
+    "schema_version": 1,
+    "profile_id": "grounded_candidate_v1",
+    "metis": {
+      "live_enabled": true,
+      "model": "gpt-4o-mini",
+      "prompt_policy": "baseline",
+      "response_mode": "grounded_plan",
+      "grounded_decision_contracts": true,
+      "grounded_source_gap_handoff": true,
+      "grounded_source_gap_investigation": true,
+      "grounded_source_selection_reminder": true,
+      "grounded_complementary_sources": false,
+      "grounded_resource_guidance": false,
+      "grounded_source_capacity": false,
+      "grounded_compact_plan": true,
+      "grounded_json_object": false,
+      "continuation_id": null,
+      "max_output_tokens": 1024,
+      "input_token_reserve": 32768,
+      "max_request_usd": "0.02"
+    },
+    "allowed_phases": [
+      "development",
+      "evaluation"
+    ],
+    "retrieval_profile": "candidate_relevance_v1",
+    "adapter_top_k": 5,
+    "engine_policy": {
+      "top_k": 5,
+      "retrieval_candidate_multiplier": 5,
+      "evidence_utf8_budget_bytes": 12000,
+      "repair_repeated_queries": true,
+      "evidence_scope": "exact_user_version"
+    },
+    "renderer_policy": "legacy_v1",
+    "ask_source_background": false,
+    "concise_user_draft": false,
+    "vocabulary_semantic_sha256": "56e6180928536534e99284c270e0a272568b32e3a2fb07a1ff7b441d289a7cd8",
+    "live_authorization": false,
+    "quality_claim": false,
+    "final_corpus_selected": false,
+    "recipe_sha256": "a356238d62acfed9ae5087828548460fd7119893218e874fa228940a2fc63ed4"
+  },
+  "selection_scope": "selected core deployment recipe; not a quality winner, shared freeze or paid authorization",
+  "selection_and_actual_execution": {
+    "explicit_existing_factory_selector": "AGENT_CORE_PROFILE=grounded_candidate_v1",
+    "legacy_omitted_mode_preserved": true,
+    "raw_public_configuration_and_catalog_checked_before_credentials": true,
+    "allocation_and_pre_send_owner_gateway_sender_renderer_checks": true,
+    "actual_binding_observed": {
+      "adapter_top_k": 5,
+      "ask_source_background": false,
+      "binding_sha256": "44c9c5824fa5e44a206e823fdd423af4d5e09f195aa91663f8cf5f41df0066b9",
+      "concise_user_draft": false,
+      "engine_profile_required": true,
+      "live_authorization": false,
+      "observed_metis": {
+        "continuation_id": null,
+        "grounded_compact_plan": true,
+        "grounded_complementary_sources": false,
+        "grounded_decision_contracts": true,
+        "grounded_json_object": false,
+        "grounded_resource_guidance": false,
+        "grounded_source_capacity": false,
+        "grounded_source_gap_handoff": true,
+        "grounded_source_gap_investigation": true,
+        "grounded_source_selection_reminder": true,
+        "input_token_reserve": 32768,
+        "live_enabled": true,
+        "max_output_tokens": 1024,
+        "max_request_usd": "0.02",
+        "model": "gpt-4o-mini",
+        "phase": "development",
+        "prompt_policy": "baseline",
+        "response_mode": "grounded_plan"
+      },
+      "physical_code_or_build_attested": false,
+      "profile_id": "grounded_candidate_v1",
+      "quality_claim": false,
+      "recipe_sha256": "a356238d62acfed9ae5087828548460fd7119893218e874fa228940a2fc63ed4",
+      "renderer_policy": "legacy_v1",
+      "retrieval_profile": "candidate_relevance_v1",
+      "schema_version": 1,
+      "scope": "actual_public_factory_settings_and_catalog",
+      "vocabulary_semantic_sha256": "56e6180928536534e99284c270e0a272568b32e3a2fb07a1ff7b441d289a7cd8"
+    },
+    "actual_engine_observed": {
+      "evidence_scope": "exact_user_version",
+      "evidence_utf8_budget_bytes": 12000,
+      "proposal_checks": false,
+      "repair_repeated_queries": true,
+      "retrieval_candidate_multiplier": 5,
+      "run_limits": {
+        "max_model_attempts": 2,
+        "max_queries_per_round": 2,
+        "max_retrieval_rounds": 2,
+        "max_steps": 8
+      },
+      "top_k": 5
+    },
+    "source_index_physically_attested_by_binding": false,
+    "arbitrary_python_monkeypatch_authentication": false
+  },
+  "independent_acceptance": {
+    "tests_passed": 8,
+    "actual_configured_factory_and_live_backend_used": true,
+    "fresh_exposed_development_index": "temporary18-source36-chunk Chroma index built by existing development-only fixture; primary index untouched",
+    "ledger_and_tracker": "disposable temporary SQLite only; primary ledger untouched",
+    "provider_transport": "CountedMock/MockTransport only;3 authored successful mock responses,0 external sends",
+    "actual_native_query_limit": 25,
+    "actual_final_hit_cap": 5,
+    "actual_complete_bundle_budget_bytes": 12000,
+    "exact_current_USER_version_scope_and_correction_retirement_checked": true,
+    "actual_outbound_model_token_limit_compact_contracts_selection_reminder_checked": true,
+    "actual_catalog_question_and_USER_fact_suppression_checked": true,
+    "all3_final_analyses_equal_legacy_renderer_reconstruction": true,
+    "all3_complete_handoffs_validate": true,
+    "correction_refuses_stale_approval409": true,
+    "approval_restart_and_identical_retry_retain_single_action_without_new_send": true,
+    "all3_real_temporary_settled_provider_observations_project_exactly_through_runner": true,
+    "halt_blocks_before_key_index_transport_or_tracker": true,
+    "explicit_recipe_conflicts_block_before_key_or_send": true,
+    "hidden_catalog_extra_private_and_undeclared_attributes_rejected_before_key_or_gate": true,
+    "postallocation_drift_after_actual_retrieval_stops_before_provider_send_or_reservation": true
+  },
+  "independent_review": {
+    "approved": true,
+    "blocking_findings": [],
+    "actual_http_and_metadata_tests_passed": 47,
+    "helper_live_metadata_second_review_passed": 121,
+    "counts_overlap_development_suite": true,
+    "receipt": {
+      "path": "/Users/sasan/Desktop/Agentic AI/output/core-delivery-selection-2026-10-16-v1/independent-http-review.json",
+      "sha256": "2b76c279f49ffdab6b7a7150678d775ebee196a6fa4a6ba1e1bf7d5a582e4f3f"
+    },
+    "final_xml": {
+      "path": "/Users/sasan/Desktop/Agentic AI/output/core-delivery-selection-2026-10-16-v1/independent-http-metadata-final.xml",
+      "sha256": "d1010e075e653e22e593d19f0fc5b7f90546be12064c47577b56594b6a31423b"
+    },
+    "guards": {
+      "exit_code": 0,
+      "protected_attempts": [],
+      "socket_connect_attempts": 0,
+      "source_sha256": {
+        "src/agent_app/evaluation/runner.py": "b4220c5021a831f27bd8e54e6b36f89378dd9d8b94b3ed73c5ae63eaf33641d1",
+        "src/agent_app/evaluation/provider_metadata.py": "f8ea08d97ec9cd7fbe515ded9a9ac0e1d6fbb1360789e4648e234f4ba77d980a",
+        "src/agent_app/evaluation/live.py": "fedc492a3680fe5cc37e4b9a0b171abf91d10ffd1e621e17eae481b72f4a9947",
+        "src/agent_app/orchestration/core_delivery.py": "d04b034fd04a5b7419c72ee42bff338bca10d61ed489b090b8432b258b3d1c38",
+        "config/core-delivery-grounded-v1.json": "b013ffb865ddce90229e85de3f4fff6407be29dffbbbf3c6ddcf243d6699c36e",
+        "tests/test_core_delivery_http.py": "59f4e3b3afbf8a9250858c97b297f9947caa01a3fd209c248ccbf942bf9cbf6a",
+        "tests/test_core_delivery_metadata.py": "bd264b8f003c9aa2046919b67b51fed10fda74d6979ee70eab3cbbc6b2f1ce02"
+      },
+      "source_files_unchanged_during_run": true,
+      "parent_guard_scope": "current Python process; not a subprocess filesystem attestation",
+      "cwd": "fresh neutral temporary directory",
+      "heldout_consumer_not_selected": true
+    }
+  },
+  "development_verification": {
+    "distinct_selected_tests_with_passing_observations": 6265,
+    "new_regression_tests_included": 129,
+    "neutral_cwd": {
+      "passed": 6260,
+      "deselected": 6,
+      "xml": {
+        "path": "/Users/sasan/Desktop/Agentic AI/output/core-delivery-selection-2026-10-16-v1/development-neutral.xml",
+        "sha256": "03afd1a3f4789c666556108a3668991aab69b0c00b86e5d5ae4331c98d13cc56"
+      },
+      "log": {
+        "path": "/Users/sasan/Desktop/Agentic AI/output/core-delivery-selection-2026-10-16-v1/development-neutral.log",
+        "sha256": "2d4c5c0ffef685d1cda76a007738640612e54b6691615b698260142d3414f6e0"
+      },
+      "boundary": {
+        "exit_code": 0,
+        "blocked_attempts": [],
+        "blocked_count": 0,
+        "scope": "audited parent Python filesystem operations only; not subprocess attestation or network audit",
+        "mode": "development-neutral",
+        "collection": {
+          "selected_count": 6260,
+          "explicit_deselections": [
+            "tests/test_decision_ablations.py::test_default_cli_validates_protocol_without_reading_credentials_or_opening_a_ledger",
+            "tests/test_decision_ablations.py::test_registered_repository_protocol_pins_all_three_input_files_and_the_fixed_grid",
+            "tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture",
+            "tests/test_quality_experiments.py::test_cli_offline_default_needs_neither_key_nor_ledger",
+            "tests/test_quality_experiments.py::test_repository_registration_pins_nine_cases_and_caller_inputs",
+            "tests/test_quality_experiments.py::test_v5_registration_preserves_inputs_while_selecting_separate_compiled_candidate"
+          ],
+          "heldout_consumer_selected": false
+        },
+        "source_pins_unchanged": true
+      }
+    },
+    "repository_cwd": {
+      "passed": 5,
+      "xml": {
+        "path": "/Users/sasan/Desktop/Agentic AI/output/core-delivery-selection-2026-10-16-v1/development-repository.xml",
+        "sha256": "4e6e7a0e91817739b596b61a1ed481c18d7a8ad14fe1c127c119c99e9f059551"
+      },
+      "log": {
+        "path": "/Users/sasan/Desktop/Agentic AI/output/core-delivery-selection-2026-10-16-v1/development-repository.log",
+        "sha256": "dd819a0afb42d62731bfdf3e6970850053d512efec6e0171872d136fd1120648"
+      },
+      "boundary": {
+        "exit_code": 0,
+        "blocked_attempts": [],
+        "blocked_count": 0,
+        "scope": "audited parent Python filesystem operations only; not subprocess attestation or network audit",
+        "mode": "development-repository",
+        "collection": {
+          "selected_count": 5,
+          "explicit_deselections": [],
+          "heldout_consumer_selected": false
+        },
+        "source_pins_unchanged": true
+      }
+    },
+    "success_sets_disjoint": true,
+    "same_source_test_configuration_bytes_in_both_contexts": true,
+    "source_pins": {
+      "path": "/Users/sasan/Desktop/Agentic AI/output/core-delivery-selection-2026-10-16-v1/development-neutral-source-pins.json",
+      "sha256": "12621464810e3946d7b81246b246b89cec26f9940a4954fa711791fd5b8b4a85"
+    },
+    "single_full_suite_invocation_claim": false,
+    "heldout_consumer_not_executed": "tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture"
+  },
+  "ruff": {
+    "check_passed": true,
+    "format_check_passed": true,
+    "python_files": 388,
+    "check_log": {
+      "path": "/Users/sasan/Desktop/Agentic AI/output/core-delivery-selection-2026-10-16-v1/ruff-check.log",
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    "format_log": {
+      "path": "/Users/sasan/Desktop/Agentic AI/output/core-delivery-selection-2026-10-16-v1/ruff-format.log",
+      "sha256": "f9168bdb62be992f7d95a7228e5bdbe2d74280e85a4136bd950457c22b66b793"
+    }
+  },
+  "offline_cli": [
+    {
+      "command": "uv run agent-app demo --scenario refine",
+      "exit_code": 0,
+      "log": {
+        "path": "/Users/sasan/Desktop/Agentic AI/output/core-delivery-selection-2026-10-16-v1/demo-refine.log",
+        "sha256": "7f4a9a9ca5b8611bcbe336ec4ee2d0fab1140064294a3ab7565e647ba60135dc"
+      }
+    },
+    {
+      "command": "uv run agent-app gateway-demo --scenario repair",
+      "exit_code": 0,
+      "log": {
+        "path": "/Users/sasan/Desktop/Agentic AI/output/core-delivery-selection-2026-10-16-v1/demo-repair.log",
+        "sha256": "ab882a1d44fee36ea57a35ca73abf3cded82da9e967ed784e091179e3e9b62fe"
+      }
+    },
+    {
+      "command": "uv run agent-app turn-demo",
+      "exit_code": 0,
+      "log": {
+        "path": "/Users/sasan/Desktop/Agentic AI/output/core-delivery-selection-2026-10-16-v1/demo-turn.log",
+        "sha256": "fb344c4c9eea530dfb756c93966c00292620db8df9dc67ebd2c207948da189d5"
+      }
+    }
+  ],
+  "corrected_findings": [
+    {
+      "issue": "Actual compact/selected observations previously failed runner exact-field projection",
+      "before": "acceptance-before-runner-fix.xml",
+      "result": "1 failed only at ProviderObservationsUnavailable;7 other actual tests passed",
+      "resolution": "Strict bounded optional metadata projection; all actual observations now project exactly."
+    },
+    {
+      "issue": "Typed hidden catalog state could be discarded before new binding check",
+      "resolution": "Detached GroundedGap validation before dumping; factory extra/private and direct undeclared-state regressions pass."
+    },
+    {
+      "issue": "Impossible successful compact diagnostics were accepted",
+      "before": "independent-metadata-consistency-before.json",
+      "resolution": "Success-state/branch consistency constraints added; same neutral reproducer now rejects and39 metadata controls pass."
+    }
+  ],
+  "preparation_amendment": {
+    "record": {
+      "path": "/Users/sasan/Desktop/Agentic AI/output/core-delivery-selection-2026-10-16-v1/deselection-preparation-amendment.json",
+      "sha256": "5a2c4b068aa0283a01b3d5446903a233ce870fde5a3d2f55aa61a7e6090015fe"
+    },
+    "initial_interrupted_xml": {
+      "path": "/Users/sasan/Desktop/Agentic AI/output/core-delivery-selection-2026-10-16-v1/interrupted-absolute-deselect-development-neutral.xml",
+      "sha256": "654b7865057b79cc6cd8fdbf3449f5dcb99bc04d1225638bf8d74d6621f2ce27"
+    },
+    "initial_boundary": {
+      "path": "/Users/sasan/Desktop/Agentic AI/output/core-delivery-selection-2026-10-16-v1/interrupted-absolute-deselect-development-neutral-boundary.json",
+      "sha256": "a3717b11a130bc8ebdf9d5161c96e2d40b756d7d4d0a49cfbfafc51c3071ea62"
+    },
+    "production_test_source_changed_for_harness_correction": false,
+    "initial_incorrect_deselection_boolean_is_not_attestation": true,
+    "initial_4263_passing_observations_not_added_to_final_counts": true
+  },
+  "preservation": {
+    "ledger_sha256": "141c3536fb864595d94e0d0dd4a55976418def1012402b70f313c92050222785",
+    "ledger_exact": true,
+    "physical19_exact": true,
+    "split_manifest_exact": true,
+    "heldout_git_tree_exact": true,
+    "halt_and_three_holds_retained_by_exact_ledger_bytes": true,
+    "closed_identities_unchanged": true,
+    "raw_vocabulary_sha256": "948c3348365ea6a5fe6385166e07cc5fb203958ffda6b45e090527000a6a3bfc"
+  },
+  "friend_update": {
+    "main_unchanged_at_final_fetch": true,
+    "open_pr": 81,
+    "head": "77ffd9c88e8489516119e6e4e7510a00850960b9",
+    "dev_only_structural_review": {
+      "fixtures": 16,
+      "turns": 23,
+      "routes": 52,
+      "passage_requirements": 20,
+      "anchors": 46
+    },
+    "not_merged_or_activated": true,
+    "remaining": [
+      "PR plan rollback deletes current closeout notes",
+      "two missing-passage escalation conditions still require unsupported 1.38 fix language; evaluation owner clarification needed"
+    ],
+    "native_gold_not_used_for_core_tuning": true
+  },
+  "protocol": {
+    "path": "/Users/sasan/Desktop/Agentic AI/output/core-delivery-selection-2026-10-16-v1/protocol.json",
+    "sha256": "ff869698130321b45c55d4f8ec1fba710d1fb961de96abdc7ca0c45b09189f22"
+  },
+  "verification_plan": {
+    "path": "/Users/sasan/Desktop/Agentic AI/output/core-delivery-selection-2026-10-16-v1/verification-plan.json",
+    "sha256": "88381901791bee11af27444ff5abdb7ea1d3156561b41ff0062a0102dfbe5734"
+  },
+  "limitations": {
+    "paid_provider_calls": 0,
+    "new_model_quality_score": false,
+    "human_usefulness_of_selected_recipe": null,
+    "enum_diagnosis_or_fix_verified": false,
+    "final_corpus_or_build_selected": false,
+    "shared_freeze_complete": false,
+    "C5_reconciled": false,
+    "heldout_model_evaluation_executed": false,
+    "heldout_content_used_for_tuning": false,
+    "team_messages_sent": 0,
+    "CI_success_claim": false,
+    "broad_filesystem_guard_scope": "audited parent Python processes; no subprocess filesystem attestation or broad network audit"
+  },
+  "remaining": [
+    "Hassan final corpus/index pins and exclusion readiness",
+    "MohammadHasan native gold/routes amendments, worksheet and independent human review/freeze",
+    "Behnam and UI owner pending-review recovery after completely new session",
+    "mentor-account request-level reconciliation of three C5 uncertainties before authorized final model evaluation"
+  ]
+}

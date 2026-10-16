@@ -7,10 +7,36 @@ receiptهای قبلی تغییر نکرده‌اند.
 
 ## وضعیت امروز
 
+**C4s، پذیرش کامل runner با تنظیم منتخب:**
+[شرح و تصحیح review](core-selected-runner-acceptance.fa.md)،
+[رسید](receipts/core-selected-runner-acceptance-2026-10-16.json).
+۸کنترل تازه و۲۹۷تست مرتبط با provider mock پاس‌اند؛ source اجرایی و recipe
+تغییر نکرده‌اند. runner حافظه‌ای و پذیرش SQLite قبلی دو شاهد جدا هستند.
+repair موفق، توقف پس از خروجی خراب و حساب unresolved بررسی شدند؛ این‌ها نمرهٔ
+کیفیت مدل نیستند. ادعای قبلی rollback plan درPR81 تصحیح شد؛ دو ابهام gold
+آن همچنان باقی‌اند و originalreceipt عینbyteحفظ است.
+
+**C4r، تنظیم منتخب core:** [recipe و اتصال واقعی](core-delivery-selection.fa.md)،
+[رسید](receipts/core-delivery-selection-2026-10-16.json). انتخاب صریح
+`grounded_candidate_v1` به factory موجود وصل شد؛ تنظیم ناسازگار پیش از key یا
+ارسال رد می‌شود و receipt غیرمحرمانه کنار observation واقعی می‌ماند. پذیرش
+backend با index/SQLite موقت و provider mock، correction/stale409/restart/retry
+را پوشش می‌دهد. انتخاب نرم‌افزاری core انجام شد؛ کیفیت انسانی، build/gold و
+freeze نهایی تیم، C5 و test هنوز بازند. شرح‌های بعدی مرز تحویل‌های قبلی‌اند.
+
+**C4q، تحویل نرم‌افزاری core:** [راهنمای پایان کار و اتصال](core-closeout.fa.md)
+و [رسید](receipts/core-freeze-closeout-2026-10-16.json). source `9f24376` با
+۵۸۰ تست مرتبط تازه، review مستقل و سه دمو بررسی شد. مسیر تزریق صریح، policy
+ثبت‌شده را به flagها و catalog واقعی reasoner وصل می‌کند؛ mismatch پیش از
+factory رد می‌شود. sourceهای قبلی و defaultها تغییر نکرده‌اند. این binding
+مدل/engine/index/بودجه را احراز نمی‌کند و انتخاب نهایی یا کیفیت Enum نیست.
+بررسی گستردهٔ C4p در جدول زیر تاریخی است؛ برای C4q full-suite تازه ادعا نمی‌شود.
+
+
 | بخش | شاهد موجود | باقی‌مانده برای اعلام اتمام |
 | --- | --- | --- |
-| core و اتصال | correction، وضعیت فعلی کاربر، شواهد نسخه‌دار، پیشنهاد جدا از اجرا، API/UI/SQLite | انتخاب تنظیم نهایی و کیفیت پاسخ با داوری مستقل |
-| صحت نرم‌افزار | source تازهٔ C4p یعنی `85d89ea`: پوشش موفق ۶۰۷۳ تست انتخاب‌شده در دو CWD، یک deselection صریح؛ review مستقل و Ruff پاس | یک اجرای یک‌تکهٔ بی‌خطا ادعا نمی‌شود؛ این اعداد کیفیت جواب مدل یا اجرای test نهایی نیستند |
+| core و اتصال | correction، وضعیت فعلی کاربر، شواهد نسخه‌دار، پیشنهاد جدا از اجرا، API/UI/SQLite؛ recipe منتخب و binding واقعی C4r | داوری مستقل کیفیت تنظیم منتخب و freeze مشترک build/gold |
+| صحت نرم‌افزار | آخرین بررسی گسترده C4r، source `9fdb132`: تعداد۶۲۶۵تست انتخاب‌شده در دو CWD، یک مصرف‌کنندهٔheld-out کنارگذاشته؛ review مستقل،Ruff۳۸۸فایل و۳demoپاس | یک اجرای یک‌تکهٔ full-suite ادعا نمی‌شود؛ این اعداد کیفیت جواب مدل یا اجرای test نهایی نیستند |
 | RAG | Chroma واقعی، buildهای pinned، کنترل نسخه و بازپخش dev | بهبود packing/relevance و freeze نهایی corpus/index/config با حسن |
 | evaluation | ثبت۱۶dev/۱۵test و۱۴مسیر چندنوبتی شامل۷test در metadata؛ v2 سه dev با rubric v1 درPR79، اجرای scripted تازه۷۹check | native gold/routes،worksheet C4j،vocabulary/rubric/split freeze،usefulness تنظیم منتخب و ارزیابی نهایی با محمدحسن |
 | tracker | approval/edit/reject، stale409،restart/retry و شاهد lost-ACK | مرزهای باقی‌ماندهٔ T4 با بهنام/محمدحسن؛ recovery درخواست تأییدنشده پس از نابودی کامل session ثابت نشده |
