@@ -1,0 +1,81 @@
+{
+  "id": "maintainer-review-brief-v1",
+  "task_id": "C4p",
+  "base_commit": "fee763f263bb4e65d25754a9f67f91988a7b88ee",
+  "recorded_at_utc": "2026-10-16T14:33:58.533432+00:00",
+  "kind": "preregistered offline renderer candidate, no model-quality or human-usefulness score",
+  "policy": "explicit strict default-false review_brief renderer/constructor option only; no factory/config adoption",
+  "invariants": [
+    "Legacy omitted/false output bytes unchanged",
+    "Prompt/request/source bytes and SHA/span identities unchanged",
+    "Current active USER facts only, superseded/evidence facts not promoted",
+    "Canonical ask and retrieve_more unchanged",
+    "All selected quotations and required conflicts retained",
+    "USER CRLF display-only normalization; sources/lone controls/literal escapes retained",
+    "New rendered output must create its own bound proposal/handoff before approval",
+    "No diagnosis/fix/semantic-source-review or action claimed",
+    "No truncation/fallback/limit relaxation",
+    "No heldout fixture/gold, paid model, primary-index client or ledger write"
+  ],
+  "comparison": "Archived exposed C4g proposals re-rendered with the same recorded plans/requests. Before is reconstructed only when exact default flags are known; preserve original archived surfaces independently. Do not count deterministic re-rendering as a new model choice or quality score.",
+  "checks": [
+    "Source inventory coverage including nonselected hits",
+    "Current version/correction and both gap kinds visible",
+    "Explicit proposed reproduction step",
+    "Complete USER code with visible CRLF markers removed only for actual CRLF",
+    "Full selected source quotes/caveats retained",
+    "Output lengths and preserved source/analysis refs reported, not quality-scored"
+  ],
+  "preservation": {
+    "base_commit": "4fc2e97addfac89bdf9b7cd1e304b94bf77a8f51",
+    "pr79_head": "f6ba41be41cbd893634a75f68ab1a076b6edf699",
+    "source_before_observer": "e821ab4b62394d412a5f53e004e006a6025fb831",
+    "ledger_sha256": "141c3536fb864595d94e0d0dd4a55976418def1012402b70f313c92050222785",
+    "physical_hashes": {
+      "data/evaluation/dev-three-v1/scenario-review-v1.json": "c5297daa3ccd966e20b5c9941345ac5218f4e94904b414722024b738268993c6",
+      "data/evaluation/dev-three-v1/exposure-review-v1.json": "ae63d11b8a86a887741ef05c87a229da3fcf580f9e145180f6239af61f360d95",
+      "data/evaluation/dev-three-v1/case-review-v1.json": "eee885146517c8463c1165e1380c99f386701593547a4cecb1512ef9f650abaa",
+      "data/evaluation/dev-three-v1/evidence-v1.json": "d8ddd2dd8234fe328cc49326de1cc83d9096fe833bce254812c44d20a9f79521",
+      "data/evaluation/dev-three-v1/user-gap-vocabulary-v1.json": "d3b63719554f35d1addec14586ebc4fcb10231844097fcea65458ee01d0b6736",
+      "data/evaluation/dev-three-v1/split-manifest.json": "f857fc559673c7ae2f508617fda3f81e3591157740e327109b00ae9a86f449ce",
+      "data/evaluation/dev-three-v1/cases/pilot-12782-v1.json": "6b542b325ac70906b014c9ac9a7bd01fb95c81a9219794f695de1e09de76c901",
+      "data/evaluation/dev-three-v1/cases/enum-8129-v1.json": "c5becdc00a950941cb25de8f775fc1a5b024d54f607a9c494bd9e7820ab216f0",
+      "data/evaluation/dev-three-v1/cases/icon-9770-v1.json": "199b47b1c3a65e853d49ec28d9607eec36982502bd2fd5bde1c640165e35c413",
+      "data/evaluation/split-manifest.json": "78e630cbef86937f2838795a2329ee56e16ea0beef7900db5c63d5fede6404ff",
+      "experiments/dev_rag_coverage_v1/allowlist.json": "ec1d2383f79b11920b3b02ec79d01e6e3d4f180ee51d7d85fb522e9feceaca70",
+      "experiments/dev_rag_coverage_v1/split-manifest.json": "dd50ef2eb883abd8bbea356bda30fddb60861ff173522fc5f4237481a7835e9e",
+      "experiments/corpus/pilot-allowlist.json": "209037d964182070744f608b79b676eb56c072e7655aee440ad75287aa117729",
+      "runtime/dev-rag-coverage-2026-10-14-v1/coverage-18/pilot-manifest.json": "24815c44f7d7e104a59579d444e8abce429f02b594dd6679165c0fbc381b9239",
+      "runtime/dev-rag-coverage-2026-10-14-v1/coverage-18/chroma.sqlite3": "9182440366719e0b25e3e9602fc91fa4fcd77aa3b5c4fc0976f76ee067ca1d20",
+      "runtime/dev-rag-coverage-2026-10-14-v1/coverage-18/5e589f1f-3f80-4bde-b7dd-26c027c129e1/data_level0.bin": "6927a267c5bf734eec8ceb2043db191c3dc37cb9a349be3875d57fb0b384d85b",
+      "runtime/dev-rag-coverage-2026-10-14-v1/coverage-18/5e589f1f-3f80-4bde-b7dd-26c027c129e1/length.bin": "7a12e561363385e9dfeeab326368731c030ed4b374e7f5897ac819159d2884c5",
+      "runtime/dev-rag-coverage-2026-10-14-v1/coverage-18/5e589f1f-3f80-4bde-b7dd-26c027c129e1/link_lists.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "runtime/dev-rag-coverage-2026-10-14-v1/coverage-18/5e589f1f-3f80-4bde-b7dd-26c027c129e1/header.bin": "1ccd9d7b0ac11604ccd409189a9300550d70e0f131002c31be8346e07b069297"
+    },
+    "held_out_git_tree": "040000 tree b4711b3facc883fa1d87bf045d5dd119899545f5\tdata/evaluation/split-e1-v1/test",
+    "held_out_registration_sha256": "d4f8cef6933c6d17f8b1fecb5ccb2904f2924e74cec07416c3b80d74ed298366",
+    "exclusion_sha256": "79909b0ad991a040b871eb52a07e5c62155e5713b29ea54d08631d1133e864bd",
+    "approved_new_manifest_sha256": "ceb4cf2d4eca4542ec7efc6317633311e11574c21fa5651cdc9bf536cc78c185",
+    "historical_report_sha256": {
+      "data/evaluation/split-e1-v1/question-coverage-v1.json": "918aed68d2a8c3c4643d5466919d1506ba0bd356e4583afc8b91e780beddd667",
+      "data/evaluation/split-e1-v1/question-coverage-dev-v2.json": "890df9a23976c944dfe084d933ada9346b9c6f8dca28bc37deba3d77f6b5177f"
+    },
+    "original_review_sha256": "9b4c998d046b738016c3bd085e84b15b2f85a7bdf08c6d60ee1a7394cccfa30a",
+    "vocabulary_sha256": "948c3348365ea6a5fe6385166e07cc5fb203958ffda6b45e090527000a6a3bfc",
+    "runtime_git_trees": {
+      "src/agent_app/orchestration": "08dbac0fbefc762b3679a5cc1db97e8aa6f664e4",
+      "src/agent_app/reasoning": "887bfb25f5a1b508889a106df373cd18ca2e547e",
+      "src/agent_app/llm": "2af04bbb91e4746928c87e4a36905aa484ea51ae",
+      "src/agent_app/retrieval": "0157aa665c828b1481757f4932340616d336935b",
+      "src/agent_app/tracker": "0c54e21968390da288321059549bdb12664bafc5",
+      "config": "2890b0798148a5499fa4b01cc547aac67f57b9cd",
+      "app.py": "c05a9e92049f424b34d6ad8e9fcb88f4ece45f6e",
+      "pyproject.toml": "1f6e670a064155b54ecdfdaf9b0bfba1348e5009",
+      "uv.lock": "891a2b82cab2874e87013adc5016c93ae9263a77",
+      ".github": "391af0930917bb69558f6928e2868327be50ab7d"
+    }
+  },
+  "provider_calls_authorized": false,
+  "halt_must_remain": true,
+  "preparation_amendment": "Initial capture used the wrong parent for the output path and stopped before reading any pin, running a replay or testing; corrected absolute output root. Empty mistaken output directory removed."
+}

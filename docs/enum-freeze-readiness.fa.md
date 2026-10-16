@@ -1,5 +1,11 @@
 # Enum و آمادگی freeze — ۱۶ اکتبر
 
+**ادامهٔ C4p:** [قالب اختیاری review brief](maintainer-review-brief.fa.md)
+خوانایی کد USER و ساختار ارجاع را در replay بهبود داد؛ تشخیص Enum یا نمرهٔ
+usefulness تازه ندارد. renderer تاریخی/default همچنان حفظ است. این policy
+به factory یا descriptor نهایی متصل نشده و قبل از adoption باید جدا bind شود.
+
+
 **Enum هنوز پاسخ مفید و کاملِ تأییدشده ندارد.** این مرحله review خروجی‌های
 موجود و آماده‌سازی ثبت دقیق تنظیم‌هاست؛ مدل تازه‌ای اجرا نشده و defaultها
 به‌خاطر یک replay آفلاین تغییر نمی‌کنند.

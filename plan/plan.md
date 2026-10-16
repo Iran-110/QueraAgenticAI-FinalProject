@@ -4,6 +4,26 @@
 
 ## وضعیت فعلی
 
+- [x] **C4p — قالب بررسی maintainer و خوانایی Enum؛ ساسان.**
+  [رفتار و اتصال](../docs/maintainer-review-brief.fa.md)،
+  [verification](../docs/receipts/maintainer-review-brief-2026-10-16.json)،
+  [replay](../docs/receipts/maintainer-review-brief-replay-2026-10-16.json).
+  گزینهٔ صریح `review_brief=True` در دو reasoner، گزارش USER، نسخهٔ جاری، همهٔ
+  منابع عرضه‌شده، gapهای جدا و قدم پیشنهادی بازتولید را مرتب می‌کند. CRLF فقط
+  در نمایش دادهٔ USER اصلاح می‌شود؛ source و prompt/hash/span تغییر نمی‌کنند.
+  ۸۴ کنترل تازهٔ root و ۲۱ کنترل review مستقل پاس‌اند؛ ۶۶۷ تست متمرکز مستقل
+  هم پاس شدند و با suite جمع نمی‌شوند. روی source `85d89ea`، تمام ۶۰۷۳ تست
+  توسعهٔ انتخاب‌شده پوشش موفق در دو context دارند: ۶۰۶۸ در CWD خنثی و پنج
+  تست مسیر نسبی از root. یک مصرف‌کنندهٔ held-out عمداً کنار گذاشته شد؛ اجرای
+  یک‌تکهٔ بی‌خطا ادعا نمی‌شود. canonical ask، retrieve_more و defaultها حفظ‌اند. ۱۷ پیشنهاد تازهٔ آرشیوی، ۱۵۳ کنترل ساختاری پاس؛ ۱۲ entry دیگر هم
+  ثبت‌اند، نه ۱۲ turn مستقل. Enum draft ارجاع ۲۸۶۴/۳۳۰۲ به ۳۰۶ و answer بلند
+  ۱۲۲۰۱ به ۹۳۸۳ کاراکتر رسید؛ تمام quoteهای انتخاب‌شده حفظ‌اند. این‌ها replay
+  همان انتخاب‌های قدیمی‌اند؛ usefulness یا تشخیص/fix تازه تأیید نشده است.
+  متن تازه handoff/review تازه لازم دارد؛ approval قبلی قابل انتقال نیست.
+  factory/config نهایی تغییر نکرد؛ descriptor فعلی این policy را bind نمی‌کند.
+  انتخاب و ثبت policy، review انسانی و freeze باقی‌اند؛ halt و سه hold حفظ‌اند.
+
+
 - [x] **C4o/E2ab — پذیرش PR79 و مشاهدهٔ دقیق passage برای native review؛ ساسان.**
   [رفتار و اتصال](../docs/native-evidence-review.fa.md)،
   [review PR79](../docs/receipts/pr79-review-2026-10-16.json)،

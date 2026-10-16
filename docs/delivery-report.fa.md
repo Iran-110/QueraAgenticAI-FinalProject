@@ -10,13 +10,27 @@ receiptهای قبلی تغییر نکرده‌اند.
 | بخش | شاهد موجود | باقی‌مانده برای اعلام اتمام |
 | --- | --- | --- |
 | core و اتصال | correction، وضعیت فعلی کاربر، شواهد نسخه‌دار، پیشنهاد جدا از اجرا، API/UI/SQLite | انتخاب تنظیم نهایی و کیفیت پاسخ با داوری مستقل |
-| صحت نرم‌افزار | source تازهٔ C4o/E2ab یعنی `783362c`: پوشش موفق۵۹۶۸تست انتخاب‌شده در دوCWD، یک deselection صریح؛ HTTP/SQLite۴۵۷/۴۵۷ C2k برای runtime یکسان | یک اجرای یک‌تکهٔ بی‌خطا ادعا نمی‌شود؛ این اعداد کیفیت جواب مدل یا اجرای test نهایی نیستند |
+| صحت نرم‌افزار | source تازهٔ C4p یعنی `85d89ea`: پوشش موفق ۶۰۷۳ تست انتخاب‌شده در دو CWD، یک deselection صریح؛ review مستقل و Ruff پاس | یک اجرای یک‌تکهٔ بی‌خطا ادعا نمی‌شود؛ این اعداد کیفیت جواب مدل یا اجرای test نهایی نیستند |
 | RAG | Chroma واقعی، buildهای pinned، کنترل نسخه و بازپخش dev | بهبود packing/relevance و freeze نهایی corpus/index/config با حسن |
 | evaluation | ثبت۱۶dev/۱۵test و۱۴مسیر چندنوبتی شامل۷test در metadata؛ v2 سه dev با rubric v1 درPR79، اجرای scripted تازه۷۹check | native gold/routes،worksheet C4j،vocabulary/rubric/split freeze،usefulness تنظیم منتخب و ارزیابی نهایی با محمدحسن |
 | tracker | approval/edit/reject، stale409،restart/retry و شاهد lost-ACK | مرزهای باقی‌ماندهٔ T4 با بهنام/محمدحسن؛ recovery درخواست تأییدنشده پس از نابودی کامل session ثابت نشده |
 | هزینه | ledger و رسیدها حفظ‌اند؛ سه درخواست نامعلوم وhalt باقی است | مدرک provider و تطبیق usage/charge برای C5 |
 
-[verification تازهٔ C4o/E2ab](receipts/native-evidence-review-2026-10-16.json)
+[verification تازهٔ C4p](receipts/maintainer-review-brief-2026-10-16.json)
+به source `85d89ea` bind است: ۶۰۶۸ تست در CWD خنثی و همان پنج تست مسیر نسبی
+در root پاس‌اند؛ دو مجموعهٔ موفق disjoint هستند و یک مصرف‌کنندهٔ held-out
+عمداً کنار گذاشته شد. دو parent محافظت‌شده، تلاش بازکردن test یا `.env` نداشتند؛
+این audit شامل تمام subprocessها نیست. API پرداخت‌شده، client ایندکس اصلی
+یا نوشتن در ledger نداشتیم.
+
+[قالب اختیاری maintainer](maintainer-review-brief.fa.md) گزارش USER، inventory
+کامل و قدم پیشنهادی را مرتب می‌کند؛ CRLF فقط در نمایش دادهٔ USER اصلاح می‌شود.
+۱۷ پیشنهاد قبلی با ۱۵۳ کنترل ساختاری replay شدند؛ این انتخاب تازهٔ مدل نیست.
+متن draft ارجاع Enum کوتاه‌تر شد، ولی ۱۶ از ۱۷ summary بلندتر شدند؛ usefulness
+تازه نداریم. default و نمره‌های تاریخی حفظ‌اند. این policy هنوز در factory و
+config freeze نهایی انتخاب یا bind نشده است و به handoff/approval تازه نیاز دارد.
+
+[verification قبلی C4o/E2ab](receipts/native-evidence-review-2026-10-16.json)
 به source وartifactهای دقیق bind است؛۵۹۶۳تست درCWDخنثی و پنج تست قدیمی مسیر
 نسبی درریشهٔ مخزن پاس‌اند. IDها و source یکسان و دو مجموعهٔ موفق disjointاند؛
 اجرای اولیهٔ متوقف‌شده باguard.env وپنج failureناشی ازCWD هم حفظ شده‌اند.

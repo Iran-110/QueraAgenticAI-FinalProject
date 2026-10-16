@@ -41,6 +41,20 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 ## Runtime rules
 
+- C4p adds explicit default-false `review_brief` formatting to GroundedReasoner
+  and ClaimReasoner; read `docs/maintainer-review-brief.fa.md`. Omitted/False
+  preserve historical output bytes; canonical ask and retrieve_more stay exact.
+  Only USER report/fact/check display normalizes actual CRLF; raw inputs,
+  source quotations, hashes and spans remain unchanged. Supplied, plan-selected
+  and conflict-required sources are distinct; no semantic review, diagnosis,
+  fix or execution is inferred. This option has no factory/env/runner hook and
+  is not bound by the existing configuration descriptor: register a separate
+  renderer policy before final configuration adoption. New surfaces require a
+  fresh bound proposal/handoff and approval, never rewriting stored reviews.
+  Archived deterministic re-rendering is not a new model choice or human score;
+  recorded entries are not planned/unique-turn denominators. Preserve all
+  original failures/unvisited states, output limits, halt and three holds.
+
 - C4o/E2ab adds an optional pure offline passage observer; read
   `docs/native-evidence-review.fa.md`. Match exact complete passages using stable
   source ID/revision/URL, independently of query score and chunk IDs. Bind the

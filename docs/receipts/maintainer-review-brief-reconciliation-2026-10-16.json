@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "task_id": "C4p",
+  "review_kind": "independent final multi-context development-test reconciliation",
+  "source_commit": "85d89ea361ee8b75ce13b20b28448a3a3d6355cc",
+  "approved_for_scoped_publication": true,
+  "blocking_findings": [],
+  "counts": {
+    "neutral_cwd_passed": 6068,
+    "neutral_cwd_failed_due_to_relative_paths": 5,
+    "repository_cwd_passed": 5,
+    "distinct_selected_tests_with_passing_observations": 6073,
+    "heldout_consumer_deselected": 1
+  },
+  "xml_ids_unique_in_each_run": true,
+  "exact_neutral_failed_ids_equal_all_repository_rerun_ids": true,
+  "successful_sets_disjoint": true,
+  "passing_union_equals_every_neutral_selected_test_id": true,
+  "known_failure_reasons": {
+    "tests.test_decision_ablations::test_default_cli_validates_protocol_without_reading_credentials_or_opening_a_ledger": "SystemExit from default CLI relative protocol lookup in neutral CWD; passes repository CWD",
+    "tests.test_decision_ablations::test_registered_repository_protocol_pins_all_three_input_files_and_the_fixed_grid": "FileNotFoundError for repository-relative experiment protocol; passes repository CWD",
+    "tests.test_quality_experiments::test_cli_offline_default_needs_neither_key_nor_ledger": "SystemExit from default CLI relative protocol lookup in neutral CWD; passes repository CWD",
+    "tests.test_quality_experiments::test_repository_registration_pins_nine_cases_and_caller_inputs": "FileNotFoundError for repository-relative experiment protocol; passes repository CWD",
+    "tests.test_quality_experiments::test_v5_registration_preserves_inputs_while_selecting_separate_compiled_candidate": "FileNotFoundError for repository-relative experiment protocol; passes repository CWD"
+  },
+  "harnesses_reviewed": {
+    "both_preserve_resolved_heldout_and_designated_real_dotenv_guards": true,
+    "neutral_cwd_uses_explicit_absolute_repo_config_and_test_paths": true,
+    "repository_cwd_targets_only_exact_five": true,
+    "parent_guard_attempts_both_runs": 0
+  },
+  "source_test_files_match_prior_review_and_source_commit": true,
+  "current_source_scripts_tests_diff_from_commit_empty": true,
+  "no_code_or_test_change_between_runs": "Root-attested; both receipts bind the same source commit and exact six source/test hashes, which independently match prior review and current committed bytes.",
+  "receipt_hashes_verified": true,
+  "artifacts_sha256": {
+    "development-neutral/development-suite.xml": "9d4c1958afd936e5083e8f1fd1c39bd5a1169ba640afb384b53ed0bfa3167db2",
+    "development-neutral/development-suite.log": "bd939aa62f4465a572211302b42b33f62a07d18a5889a6790ea8f9b1a7492765",
+    "development-neutral/development-boundary.json": "cf583058314fd30d3bdf06273b7ef3b9b599a5ebe12ab86661ea9528eb0f20a1",
+    "development-repository-five/development-five.xml": "13183f142039d1488670fd68e0d5ebc6d85e87bd65d93e94f553fbeb2c564bcc",
+    "development-repository-five/development-five.log": "8d535b0381fb85b6848b335079b49ccef9a5101f9ae6ac998d74d8a32bdc2dc7",
+    "development-repository-five/development-boundary.json": "02649d43c970263e267ce48c3cd49b4eaa1b3698065ea1f0a53838b731d3277b",
+    "test-reconciliation.json": "3eff3060337c4397631448cd2ef6cda5ac80b26ab21ae3af6c697f973afa4016",
+    "public_verification_receipt": "fe8e41e518c83e8a858ed4324132705ef8e26f831a57a207a36f4cf944593c98"
+  },
+  "preservation": "Root finalizer and public receipt agree all preservation checks passed. This review inspected that check logic/metadata; it did not reopen the primary ledger, native index or held-out files.",
+  "assessment": "The five neutral-CWD failures are existing repository-relative protocol/default-CLI tests under the documented repository-root contract; exact repository-CWD reruns pass. No new renderer regression is indicated. Scoped publication of the explicit default-false renderer is justified.",
+  "limits": [
+    "6073 distinct selected tests have passing observations across two contexts; there was no single clean full-suite invocation.",
+    "Parent Python audit guards do not attest subprocess filesystem access.",
+    "Development software tests are not held-out model-quality evaluation, semantic support, human usefulness, final configuration freeze or C5 reconciliation."
+  ]
+}

@@ -1,0 +1,600 @@
+{
+  "schema_version": 1,
+  "task_id": "C4p",
+  "kind": "offline deterministic re-render of existing exposed paid-model plans",
+  "archive_path": "experiments/dev_rag_coverage_v1/model-live-receipt-v1.json",
+  "archive_sha256": "409fe34076fa6772e6442b881332874fe8e66d1f09e80a759e2ab8207d71f901",
+  "original_archive_bytes_preserved": true,
+  "all_recorded_step_entries_accounted_for": true,
+  "recorded_step_entries": 29,
+  "recorded_nonfresh_entries": 12,
+  "nonfresh_states": [
+    {
+      "archive_pointer": "/batches/1/jobs/0/steps/1",
+      "state": "proposal_without_bound_fresh_handoff",
+      "compared_as_fresh_model_output": false
+    },
+    {
+      "archive_pointer": "/batches/1/jobs/0/steps/2",
+      "state": "no_proposal",
+      "compared_as_fresh_model_output": false
+    },
+    {
+      "archive_pointer": "/batches/2/jobs/1/steps/0",
+      "state": "proposal_without_bound_fresh_handoff",
+      "compared_as_fresh_model_output": false
+    },
+    {
+      "archive_pointer": "/batches/2/jobs/1/steps/1",
+      "state": "no_proposal",
+      "compared_as_fresh_model_output": false
+    },
+    {
+      "archive_pointer": "/batches/3/jobs/0/steps/1",
+      "state": "stale_previous_proposal",
+      "compared_as_fresh_model_output": false
+    },
+    {
+      "archive_pointer": "/batches/3/jobs/0/steps/2",
+      "state": "no_proposal",
+      "compared_as_fresh_model_output": false
+    },
+    {
+      "archive_pointer": "/batches/3/jobs/1/steps/1",
+      "state": "stale_previous_proposal",
+      "compared_as_fresh_model_output": false
+    },
+    {
+      "archive_pointer": "/batches/3/jobs/1/steps/2",
+      "state": "no_proposal",
+      "compared_as_fresh_model_output": false
+    },
+    {
+      "archive_pointer": "/batches/4/jobs/0/steps/1",
+      "state": "proposal_without_bound_fresh_handoff",
+      "compared_as_fresh_model_output": false
+    },
+    {
+      "archive_pointer": "/batches/4/jobs/0/steps/2",
+      "state": "no_proposal",
+      "compared_as_fresh_model_output": false
+    },
+    {
+      "archive_pointer": "/batches/4/jobs/1/steps/1",
+      "state": "proposal_without_bound_fresh_handoff",
+      "compared_as_fresh_model_output": false
+    },
+    {
+      "archive_pointer": "/batches/4/jobs/1/steps/2",
+      "state": "no_proposal",
+      "compared_as_fresh_model_output": false
+    }
+  ],
+  "fresh_proposals_compared": 17,
+  "rows": [
+    {
+      "archive_pointer": "/batches/0/jobs/0/steps/0/proposal",
+      "case_id": "dev-case-a",
+      "case_revision": 1,
+      "decision": "ask",
+      "original_handoff_sha256": "770ae1078baaa4bf3c1cf88a2641813d0cbb37c7fa77ee40bbbf531a6a7166f4",
+      "recorded_request_and_plan_bound": true,
+      "legacy_reconstruction_exact": true,
+      "same_decision": true,
+      "same_evidence_links": true,
+      "same_missing_info_and_question": true,
+      "canonical_ask_unchanged": true,
+      "all_selected_complete_source_quotes_in_summary": true,
+      "all_supplied_source_urls_in_inventory": true,
+      "proposed_next_step_visible": true,
+      "legacy_lengths": {
+        "user_draft": 65,
+        "maintainer_summary": 5646,
+        "rationale": 326
+      },
+      "candidate_lengths": {
+        "user_draft": 65,
+        "maintainer_summary": 7784,
+        "rationale": 389
+      },
+      "legacy_visible_cr_markers_in_summary": 0,
+      "candidate_visible_cr_markers_in_summary": 0,
+      "candidate_analysis_sha256": "53fb676bdbddd1a5670ae9f67d28c9fb777526eb12621e97f2eeab5ff44c250a",
+      "quality_claim": false
+    },
+    {
+      "archive_pointer": "/batches/0/jobs/0/steps/1/proposal",
+      "case_id": "dev-case-a",
+      "case_revision": 2,
+      "decision": "ask",
+      "original_handoff_sha256": "5cea4edba2caec5adfbe215c53c7b6398492bdd7bb5de72aed609eaaddd7769e",
+      "recorded_request_and_plan_bound": true,
+      "legacy_reconstruction_exact": true,
+      "same_decision": true,
+      "same_evidence_links": true,
+      "same_missing_info_and_question": true,
+      "canonical_ask_unchanged": true,
+      "all_selected_complete_source_quotes_in_summary": true,
+      "all_supplied_source_urls_in_inventory": true,
+      "proposed_next_step_visible": true,
+      "legacy_lengths": {
+        "user_draft": 108,
+        "maintainer_summary": 6243,
+        "rationale": 730
+      },
+      "candidate_lengths": {
+        "user_draft": 108,
+        "maintainer_summary": 9855,
+        "rationale": 389
+      },
+      "legacy_visible_cr_markers_in_summary": 0,
+      "candidate_visible_cr_markers_in_summary": 0,
+      "candidate_analysis_sha256": "cf46797dc783d1e4dd59aff2733c7b259eb8a3e665e85e42b8ca8666e1be1ff4",
+      "quality_claim": false
+    },
+    {
+      "archive_pointer": "/batches/0/jobs/1/steps/0/proposal",
+      "case_id": "dev-case-a",
+      "case_revision": 1,
+      "decision": "ask",
+      "original_handoff_sha256": "e48c01f5f9bdb8dbcb9b04b46abd3523c0aa2efd376d99d19c9031fc881fc06f",
+      "recorded_request_and_plan_bound": true,
+      "legacy_reconstruction_exact": true,
+      "same_decision": true,
+      "same_evidence_links": true,
+      "same_missing_info_and_question": true,
+      "canonical_ask_unchanged": true,
+      "all_selected_complete_source_quotes_in_summary": true,
+      "all_supplied_source_urls_in_inventory": true,
+      "proposed_next_step_visible": true,
+      "legacy_lengths": {
+        "user_draft": 65,
+        "maintainer_summary": 5646,
+        "rationale": 326
+      },
+      "candidate_lengths": {
+        "user_draft": 65,
+        "maintainer_summary": 7784,
+        "rationale": 389
+      },
+      "legacy_visible_cr_markers_in_summary": 0,
+      "candidate_visible_cr_markers_in_summary": 0,
+      "candidate_analysis_sha256": "53fb676bdbddd1a5670ae9f67d28c9fb777526eb12621e97f2eeab5ff44c250a",
+      "quality_claim": false
+    },
+    {
+      "archive_pointer": "/batches/0/jobs/1/steps/1/proposal",
+      "case_id": "dev-case-a",
+      "case_revision": 2,
+      "decision": "ask",
+      "original_handoff_sha256": "2084aa5f20ba8a016c153993f4c60456108270fa2c166a2ff3b86590d31e4034",
+      "recorded_request_and_plan_bound": true,
+      "legacy_reconstruction_exact": true,
+      "same_decision": true,
+      "same_evidence_links": true,
+      "same_missing_info_and_question": true,
+      "canonical_ask_unchanged": true,
+      "all_selected_complete_source_quotes_in_summary": true,
+      "all_supplied_source_urls_in_inventory": true,
+      "proposed_next_step_visible": true,
+      "legacy_lengths": {
+        "user_draft": 108,
+        "maintainer_summary": 965,
+        "rationale": 366
+      },
+      "candidate_lengths": {
+        "user_draft": 108,
+        "maintainer_summary": 5222,
+        "rationale": 389
+      },
+      "legacy_visible_cr_markers_in_summary": 0,
+      "candidate_visible_cr_markers_in_summary": 0,
+      "candidate_analysis_sha256": "3b125f8f22142cd1a33a0a17163e00788e213f40867f33af6dd2a223870c27d4",
+      "quality_claim": false
+    },
+    {
+      "archive_pointer": "/batches/1/jobs/0/steps/0/proposal",
+      "case_id": "dev-case-b",
+      "case_revision": 1,
+      "decision": "ask",
+      "original_handoff_sha256": "f78a85d38baa6a9ce56bf5ac87a10df200eba259b39c5719373fbf57eee73bca",
+      "recorded_request_and_plan_bound": true,
+      "legacy_reconstruction_exact": true,
+      "same_decision": true,
+      "same_evidence_links": true,
+      "same_missing_info_and_question": true,
+      "canonical_ask_unchanged": true,
+      "all_selected_complete_source_quotes_in_summary": true,
+      "all_supplied_source_urls_in_inventory": true,
+      "proposed_next_step_visible": true,
+      "legacy_lengths": {
+        "user_draft": 65,
+        "maintainer_summary": 514,
+        "rationale": 326
+      },
+      "candidate_lengths": {
+        "user_draft": 65,
+        "maintainer_summary": 3759,
+        "rationale": 389
+      },
+      "legacy_visible_cr_markers_in_summary": 0,
+      "candidate_visible_cr_markers_in_summary": 0,
+      "candidate_analysis_sha256": "7209ee2adf134afcdac33de9f59faaf06b3ed16f04f2723711eb198cb80dbe4a",
+      "quality_claim": false
+    },
+    {
+      "archive_pointer": "/batches/1/jobs/1/steps/0/proposal",
+      "case_id": "dev-case-b",
+      "case_revision": 1,
+      "decision": "ask",
+      "original_handoff_sha256": "469ceaa64242c2b4d1a44e8f409028e5bb9f97f52315fe149cb16086f0d61719",
+      "recorded_request_and_plan_bound": true,
+      "legacy_reconstruction_exact": true,
+      "same_decision": true,
+      "same_evidence_links": true,
+      "same_missing_info_and_question": true,
+      "canonical_ask_unchanged": true,
+      "all_selected_complete_source_quotes_in_summary": true,
+      "all_supplied_source_urls_in_inventory": true,
+      "proposed_next_step_visible": true,
+      "legacy_lengths": {
+        "user_draft": 65,
+        "maintainer_summary": 514,
+        "rationale": 326
+      },
+      "candidate_lengths": {
+        "user_draft": 65,
+        "maintainer_summary": 3759,
+        "rationale": 389
+      },
+      "legacy_visible_cr_markers_in_summary": 0,
+      "candidate_visible_cr_markers_in_summary": 0,
+      "candidate_analysis_sha256": "7209ee2adf134afcdac33de9f59faaf06b3ed16f04f2723711eb198cb80dbe4a",
+      "quality_claim": false
+    },
+    {
+      "archive_pointer": "/batches/1/jobs/1/steps/1/proposal",
+      "case_id": "dev-case-b",
+      "case_revision": 2,
+      "decision": "escalate",
+      "original_handoff_sha256": "4839b309272e427f0e7f313daafe78131082d260a916b59467b4366850d6a454",
+      "recorded_request_and_plan_bound": true,
+      "legacy_reconstruction_exact": true,
+      "same_decision": true,
+      "same_evidence_links": true,
+      "same_missing_info_and_question": true,
+      "canonical_ask_unchanged": true,
+      "all_selected_complete_source_quotes_in_summary": true,
+      "all_supplied_source_urls_in_inventory": true,
+      "proposed_next_step_visible": true,
+      "legacy_lengths": {
+        "user_draft": 1967,
+        "maintainer_summary": 2229,
+        "rationale": 1121
+      },
+      "candidate_lengths": {
+        "user_draft": 306,
+        "maintainer_summary": 4094,
+        "rationale": 304
+      },
+      "legacy_visible_cr_markers_in_summary": 0,
+      "candidate_visible_cr_markers_in_summary": 0,
+      "candidate_analysis_sha256": "02378ae06e1559829793d19633342e415d8c9a11581b4f188b53e48e5bf77974",
+      "quality_claim": false
+    },
+    {
+      "archive_pointer": "/batches/2/jobs/0/steps/0/proposal",
+      "case_id": "dev-case-c",
+      "case_revision": 1,
+      "decision": "escalate",
+      "original_handoff_sha256": "aed435a51df5453300c1ef655e7d26b1735c4f3c80e38828567f8853ad789d9b",
+      "recorded_request_and_plan_bound": true,
+      "legacy_reconstruction_exact": true,
+      "same_decision": true,
+      "same_evidence_links": true,
+      "same_missing_info_and_question": true,
+      "canonical_ask_unchanged": true,
+      "all_selected_complete_source_quotes_in_summary": true,
+      "all_supplied_source_urls_in_inventory": true,
+      "proposed_next_step_visible": true,
+      "legacy_lengths": {
+        "user_draft": 2864,
+        "maintainer_summary": 3806,
+        "rationale": 1121
+      },
+      "candidate_lengths": {
+        "user_draft": 306,
+        "maintainer_summary": 3867,
+        "rationale": 304
+      },
+      "legacy_visible_cr_markers_in_summary": 48,
+      "candidate_visible_cr_markers_in_summary": 0,
+      "candidate_analysis_sha256": "59706450b1f8766b1b47251fc31e7c735daa46fa6bf9417d5b0325599a345317",
+      "quality_claim": false
+    },
+    {
+      "archive_pointer": "/batches/2/jobs/0/steps/1/proposal",
+      "case_id": "dev-case-c",
+      "case_revision": 2,
+      "decision": "escalate",
+      "original_handoff_sha256": "c46dd319b31019da848e82a396fbba0961f0607e2fdfbf9a5ca27368fbf529d9",
+      "recorded_request_and_plan_bound": true,
+      "legacy_reconstruction_exact": true,
+      "same_decision": true,
+      "same_evidence_links": true,
+      "same_missing_info_and_question": true,
+      "canonical_ask_unchanged": true,
+      "all_selected_complete_source_quotes_in_summary": true,
+      "all_supplied_source_urls_in_inventory": true,
+      "proposed_next_step_visible": true,
+      "legacy_lengths": {
+        "user_draft": 3302,
+        "maintainer_summary": 4232,
+        "rationale": 1121
+      },
+      "candidate_lengths": {
+        "user_draft": 306,
+        "maintainer_summary": 4724,
+        "rationale": 304
+      },
+      "legacy_visible_cr_markers_in_summary": 48,
+      "candidate_visible_cr_markers_in_summary": 0,
+      "candidate_analysis_sha256": "0fe144518eefa3e5d3695243e34b26d2c910ef9ddfe42a4dd053a326d537a1fd",
+      "quality_claim": false
+    },
+    {
+      "archive_pointer": "/batches/3/jobs/0/steps/0/proposal",
+      "case_id": "dev-case-c",
+      "case_revision": 1,
+      "decision": "escalate",
+      "original_handoff_sha256": "7a90986039ac6ea4d96d064e20f0bf08236fd2e58786cdca793a25978e7e58c8",
+      "recorded_request_and_plan_bound": true,
+      "legacy_reconstruction_exact": true,
+      "same_decision": true,
+      "same_evidence_links": true,
+      "same_missing_info_and_question": true,
+      "canonical_ask_unchanged": true,
+      "all_selected_complete_source_quotes_in_summary": true,
+      "all_supplied_source_urls_in_inventory": true,
+      "proposed_next_step_visible": true,
+      "legacy_lengths": {
+        "user_draft": 2864,
+        "maintainer_summary": 3806,
+        "rationale": 1121
+      },
+      "candidate_lengths": {
+        "user_draft": 306,
+        "maintainer_summary": 3867,
+        "rationale": 304
+      },
+      "legacy_visible_cr_markers_in_summary": 48,
+      "candidate_visible_cr_markers_in_summary": 0,
+      "candidate_analysis_sha256": "59706450b1f8766b1b47251fc31e7c735daa46fa6bf9417d5b0325599a345317",
+      "quality_claim": false
+    },
+    {
+      "archive_pointer": "/batches/3/jobs/1/steps/0/proposal",
+      "case_id": "dev-case-c",
+      "case_revision": 1,
+      "decision": "answer",
+      "original_handoff_sha256": "450687b748c1aecab922db84343276485022d661f743b3e587883b1b1dc45468",
+      "recorded_request_and_plan_bound": true,
+      "legacy_reconstruction_exact": true,
+      "same_decision": true,
+      "same_evidence_links": true,
+      "same_missing_info_and_question": true,
+      "canonical_ask_unchanged": true,
+      "all_selected_complete_source_quotes_in_summary": true,
+      "all_supplied_source_urls_in_inventory": true,
+      "proposed_next_step_visible": true,
+      "legacy_lengths": {
+        "user_draft": 12201,
+        "maintainer_summary": 13267,
+        "rationale": 1121
+      },
+      "candidate_lengths": {
+        "user_draft": 9383,
+        "maintainer_summary": 13161,
+        "rationale": 304
+      },
+      "legacy_visible_cr_markers_in_summary": 48,
+      "candidate_visible_cr_markers_in_summary": 0,
+      "candidate_analysis_sha256": "11e0e56882bd46d52e78085774f9cb2221c891f039982a68713c2edee949d819",
+      "quality_claim": false
+    },
+    {
+      "archive_pointer": "/batches/4/jobs/0/steps/0/proposal",
+      "case_id": "dev-case-b",
+      "case_revision": 1,
+      "decision": "ask",
+      "original_handoff_sha256": "74ee3b3ee2372683a2e46f1bee6c486425dadb19ba81968843a83dca425eb4c4",
+      "recorded_request_and_plan_bound": true,
+      "legacy_reconstruction_exact": true,
+      "same_decision": true,
+      "same_evidence_links": true,
+      "same_missing_info_and_question": true,
+      "canonical_ask_unchanged": true,
+      "all_selected_complete_source_quotes_in_summary": true,
+      "all_supplied_source_urls_in_inventory": true,
+      "proposed_next_step_visible": true,
+      "legacy_lengths": {
+        "user_draft": 65,
+        "maintainer_summary": 514,
+        "rationale": 326
+      },
+      "candidate_lengths": {
+        "user_draft": 65,
+        "maintainer_summary": 3759,
+        "rationale": 389
+      },
+      "legacy_visible_cr_markers_in_summary": 0,
+      "candidate_visible_cr_markers_in_summary": 0,
+      "candidate_analysis_sha256": "7209ee2adf134afcdac33de9f59faaf06b3ed16f04f2723711eb198cb80dbe4a",
+      "quality_claim": false
+    },
+    {
+      "archive_pointer": "/batches/4/jobs/1/steps/0/proposal",
+      "case_id": "dev-case-b",
+      "case_revision": 1,
+      "decision": "ask",
+      "original_handoff_sha256": "d6a46015f1379e9e2872c6bdf2fb17e93405cfeaa0c07765b9811bb611629c28",
+      "recorded_request_and_plan_bound": true,
+      "legacy_reconstruction_exact": true,
+      "same_decision": true,
+      "same_evidence_links": true,
+      "same_missing_info_and_question": true,
+      "canonical_ask_unchanged": true,
+      "all_selected_complete_source_quotes_in_summary": true,
+      "all_supplied_source_urls_in_inventory": true,
+      "proposed_next_step_visible": true,
+      "legacy_lengths": {
+        "user_draft": 65,
+        "maintainer_summary": 514,
+        "rationale": 326
+      },
+      "candidate_lengths": {
+        "user_draft": 65,
+        "maintainer_summary": 3759,
+        "rationale": 389
+      },
+      "legacy_visible_cr_markers_in_summary": 0,
+      "candidate_visible_cr_markers_in_summary": 0,
+      "candidate_analysis_sha256": "7209ee2adf134afcdac33de9f59faaf06b3ed16f04f2723711eb198cb80dbe4a",
+      "quality_claim": false
+    },
+    {
+      "archive_pointer": "/batches/5/jobs/0/steps/0/proposal",
+      "case_id": "dev-case-a",
+      "case_revision": 1,
+      "decision": "ask",
+      "original_handoff_sha256": "6c1f51e9286b00a5852212a80cf35dc97ffd9a8c508eba9f267fcadbe2998d80",
+      "recorded_request_and_plan_bound": true,
+      "legacy_reconstruction_exact": true,
+      "same_decision": true,
+      "same_evidence_links": true,
+      "same_missing_info_and_question": true,
+      "canonical_ask_unchanged": true,
+      "all_selected_complete_source_quotes_in_summary": true,
+      "all_supplied_source_urls_in_inventory": true,
+      "proposed_next_step_visible": true,
+      "legacy_lengths": {
+        "user_draft": 65,
+        "maintainer_summary": 5646,
+        "rationale": 326
+      },
+      "candidate_lengths": {
+        "user_draft": 65,
+        "maintainer_summary": 7784,
+        "rationale": 389
+      },
+      "legacy_visible_cr_markers_in_summary": 0,
+      "candidate_visible_cr_markers_in_summary": 0,
+      "candidate_analysis_sha256": "53fb676bdbddd1a5670ae9f67d28c9fb777526eb12621e97f2eeab5ff44c250a",
+      "quality_claim": false
+    },
+    {
+      "archive_pointer": "/batches/5/jobs/0/steps/1/proposal",
+      "case_id": "dev-case-a",
+      "case_revision": 2,
+      "decision": "ask",
+      "original_handoff_sha256": "151b3db2fd86fe4529edcae574f95cc325e6f42cf9702886256c1a1812eb3583",
+      "recorded_request_and_plan_bound": true,
+      "legacy_reconstruction_exact": true,
+      "same_decision": true,
+      "same_evidence_links": true,
+      "same_missing_info_and_question": true,
+      "canonical_ask_unchanged": true,
+      "all_selected_complete_source_quotes_in_summary": true,
+      "all_supplied_source_urls_in_inventory": true,
+      "proposed_next_step_visible": true,
+      "legacy_lengths": {
+        "user_draft": 108,
+        "maintainer_summary": 965,
+        "rationale": 366
+      },
+      "candidate_lengths": {
+        "user_draft": 108,
+        "maintainer_summary": 5222,
+        "rationale": 389
+      },
+      "legacy_visible_cr_markers_in_summary": 0,
+      "candidate_visible_cr_markers_in_summary": 0,
+      "candidate_analysis_sha256": "3b125f8f22142cd1a33a0a17163e00788e213f40867f33af6dd2a223870c27d4",
+      "quality_claim": false
+    },
+    {
+      "archive_pointer": "/batches/5/jobs/1/steps/0/proposal",
+      "case_id": "dev-case-a",
+      "case_revision": 1,
+      "decision": "ask",
+      "original_handoff_sha256": "4f0d877cedf44abb4380383e3e006bd688388c2c206ae42607f4cc59e34d47c3",
+      "recorded_request_and_plan_bound": true,
+      "legacy_reconstruction_exact": true,
+      "same_decision": true,
+      "same_evidence_links": true,
+      "same_missing_info_and_question": true,
+      "canonical_ask_unchanged": true,
+      "all_selected_complete_source_quotes_in_summary": true,
+      "all_supplied_source_urls_in_inventory": true,
+      "proposed_next_step_visible": true,
+      "legacy_lengths": {
+        "user_draft": 65,
+        "maintainer_summary": 5646,
+        "rationale": 326
+      },
+      "candidate_lengths": {
+        "user_draft": 65,
+        "maintainer_summary": 7784,
+        "rationale": 389
+      },
+      "legacy_visible_cr_markers_in_summary": 0,
+      "candidate_visible_cr_markers_in_summary": 0,
+      "candidate_analysis_sha256": "53fb676bdbddd1a5670ae9f67d28c9fb777526eb12621e97f2eeab5ff44c250a",
+      "quality_claim": false
+    },
+    {
+      "archive_pointer": "/batches/5/jobs/1/steps/1/proposal",
+      "case_id": "dev-case-a",
+      "case_revision": 2,
+      "decision": "ask",
+      "original_handoff_sha256": "26d80f03649f97626b435956a6ff2982e000e24b5eea5a1e1090f5ff62506b79",
+      "recorded_request_and_plan_bound": true,
+      "legacy_reconstruction_exact": true,
+      "same_decision": true,
+      "same_evidence_links": true,
+      "same_missing_info_and_question": true,
+      "canonical_ask_unchanged": true,
+      "all_selected_complete_source_quotes_in_summary": true,
+      "all_supplied_source_urls_in_inventory": true,
+      "proposed_next_step_visible": true,
+      "legacy_lengths": {
+        "user_draft": 108,
+        "maintainer_summary": 1329,
+        "rationale": 730
+      },
+      "candidate_lengths": {
+        "user_draft": 108,
+        "maintainer_summary": 4994,
+        "rationale": 389
+      },
+      "legacy_visible_cr_markers_in_summary": 0,
+      "candidate_visible_cr_markers_in_summary": 0,
+      "candidate_analysis_sha256": "b3f63dd1527a5460c821df55883e9101c6c204aef16455191daaa247b3e85299",
+      "quality_claim": false
+    }
+  ],
+  "checks_passed": 153,
+  "checks_total": 153,
+  "comparison_limits": [
+    "Recorded decisions and selected references are replayed, not new model choices.",
+    "Lengths, quote retention and section presence do not establish answer usefulness or support.",
+    "Candidate AnalysisResult surfaces require a fresh bound handoff and maintainer approval before any delivery.",
+    "No held-out cases, retrieval, model API, credentials, index or ledger client is used.",
+    "Historical human scores remain attached to original outputs; no score is transferred.",
+    "This projection enumerates recorded step entries, including repeated/stale/failure records, not unique visited or all planned turns. Original unvisited states remain in the unchanged campaign registration; no campaign completion rate is computed here."
+  ],
+  "provider_calls": 0,
+  "human_usefulness": null,
+  "claim_support": "unassessed",
+  "quality_claim": false
+}

@@ -1,5 +1,11 @@
 # اتصال core به split تازه — C4m / E2z
 
+**C4p:** [review brief اختیاری](maintainer-review-brief.fa.md) متن proposal
+تازه می‌سازد؛ نمرهٔ انسانی PR77 به آن منتقل نمی‌شود. worksheet تازه باید hash
+همان proposal و renderer policy را ثبت کند. final config هنوز انتخاب نشده؛
+قالب جدید default نیست و descriptor فعلی آن را bind نمی‌کند.
+
+
 **آپدیت C4o/E2ab:** v2 سه dev در PR79 ثبت و دوباره با شواهد ثابت اجرا شد؛
 همان سه خانواده با rubric v1 هستند، نه native gold یا caseهای تازه.
 [قرارداد native review](native-evidence-review.fa.md) حضور passage را از

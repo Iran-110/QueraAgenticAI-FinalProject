@@ -1,3 +1,53 @@
+## C4p — explicit maintainer review brief and USER-code readability
+
+The default-false `review_brief` renderer/constructor option now builds new
+AnalysisResult surfaces in both grounded and passage reasoners, after existing
+request/source/question/conflict enforcement. Legacy omitted/false bytes,
+canonical asks and retrieve_more are unchanged. The brief retains the complete
+supplied USER report/history, current active USER facts, checks, unknowns,
+all-hit provenance inventory, caller gap kinds/conflicts, exact selected source
+quotations and a proposed reproduction step. Supplied/plan-selected/forced
+conflict display are separate; no semantic source review or diagnosis is inferred.
+
+Actual CRLF is normalized only in USER report/fact/check display. Source text,
+raw requests/messages, hashes, span coordinates, other controls and literal
+escape strings retain their meaning. New output limits still reject rather than
+truncate. Fresh surfaces get their own handoff/review hash before approval; old
+reviews and receipts remain intact. Factories/env/default configuration are not
+changed, and the current freeze descriptor does not bind this option. Explicit
+renderer-policy registration is required before selecting it for final use.
+
+84 authored root controls pass. A pinned archive replay reconstructs all 17
+fresh exposed C4g proposals exactly and passes 153 structural checks for the
+new format. It also accounts for 12 other recorded entries; the 29 stored
+entries are not unique visited or all planned turns. Original failure/unvisited
+states remain in the campaign registration. Enum escalation drafts shrink from
+2864/3302 to 306 characters; one answer draft shrinks from 12201 to 9383 while
+retaining every selected quote. USER CR markers in those Enum summaries change
+from 48 to zero. 16 of 17 maintainer summaries grow because the report and
+all-hit inventory are listed; no maintainer-summary brevity or usefulness improvement is established.
+These are deterministic rendering observations, not new model choices, semantic
+support or human usefulness scores. No old human score is transferred.
+
+Source `85d89ea`: 84 new root controls and 21 independent controls; the
+independent pure-focused run passes 667 tests (two neutral-ledger integration
+consumers excluded). Fresh broad verification covers all 6073 selected distinct
+tests with passing observations across two contexts: 6068 neutral-CWD passes and
+the exact five relative-path/default-CLI items from repository CWD. One held-out
+consumer is explicitly deselected. This is not one clean full-suite invocation;
+both parent guards record zero protected opens and do not attest subprocess
+filesystem activity. Initial independent guard-blocked preparation is retained.
+Ruff check/format passes for all 378 Python files; ledger and all 19 physical
+pins remain exact. Counts overlap and are not added together.
+
+See [behavior/reproduction](maintainer-review-brief.fa.md),
+[verification](receipts/maintainer-review-brief-2026-10-16.json) and
+[archive replay](receipts/maintainer-review-brief-replay-2026-10-16.json).
+No provider calls, held-out content, native index clients or ledger writes; halt,
+three holds and historical artifacts remain protected. Final Enum quality,
+configuration selection, native gold/build and held-out evaluation remain open.
+
+
 ## 2026-10-16 — C4o/E2ab: fixed-dev v2 and native passage review boundary
 
 [Contract and use](native-evidence-review.fa.md),
