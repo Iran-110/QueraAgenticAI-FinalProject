@@ -1,3 +1,36 @@
+## 2026-10-16 — C2k: bounded recursive core ingress validation
+
+[Behavior and limits](core-boundary-validation.fa.md),
+[verification](receipts/core-boundary-validation-2026-10-16.json).
+Reused the existing detacher before serialization of retrieval/analysis port
+results, user-turn inputs, grounded/claim request snapshots and source hashes.
+Malformed typed nested data is rejected instead of silently discarded. Retrieval
+rejects before reasoning; analysis retains safe diagnostics and the existing
+two-attempt repair bound. Contracts/defaults/prompts/renderer, source scope,
+current-user binding and tracker authority are unchanged.
+
+The same169neutral regressions go125fail/44pass→169pass;32pre-change full-surface
+digests remain exact. This is one validation family, not125independent flaws.
+Invalid-hit URL/excerpt/type are retained baseline-green controls: old retrieval
+round stamping already rejected them. A reviewer caught and corrected that
+documentation overclaim; new retrieval rejection concerns hidden typed state.
+
+Frozen source`3f8ff33`:5758development tests pass,1held-out-content consumer
+explicitly deselected and zero protected read attempts; Ruff367files,three
+offline demos and fresh HTTP/SQLite457/457with restart/retry pass. Independent
+cross-review repeats880selected tests with no blocker. All19current physical
+pins and primary ledger SHA141c3536... remain exact; C5read-only36/36preserves
+threeholds/halt/ceiling/closedIDs. No paid call, credential read, original native
+client, held-out content or teammate implementation change; software tests use
+temporary/disposable index/SQLite fixtures. No hosted-CI/freshWindows/browser claim.
+
+This is bounded internal Python hardening, not semantic or model-quality gain.
+Typed planner/context/config serialization patterns outside this scope retain
+declared-value/binding checks; no authority bypass was reproduced. Human
+relevance/completeness/usefulness review, final native/config freeze, C5provider
+evidence and untuned final evaluation remain open. No new feature/flag/framework
+or paid-study continuation was introduced.
+
 ## 2026-10-16 — Deadline healthcheck and delivery draft; no runtime change
 
 Audited main `d0344be` with independent core, launch and deliverable reviews.

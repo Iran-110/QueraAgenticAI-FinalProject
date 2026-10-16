@@ -10,15 +10,16 @@ receiptهای قبلی تغییر نکرده‌اند.
 | بخش | شاهد موجود | باقی‌مانده برای اعلام اتمام |
 | --- | --- | --- |
 | core و اتصال | correction، وضعیت فعلی کاربر، شواهد نسخه‌دار، پیشنهاد جدا از اجرا، API/UI/SQLite | انتخاب تنظیم نهایی و کیفیت پاسخ با داوری مستقل |
-| صحت نرم‌افزار | source ثبت‌شدهٔ `5bbb133`: ۵۵۸۹ تست توسعه، با یک deselection صریح؛ HTTP/SQLite برابر۴۵۷/۴۵۷ | این اعداد کیفیت جواب مدل یا اجرای test نهایی نیستند |
+| صحت نرم‌افزار | source تازهٔ C2k یعنی `3f8ff33`: ۵۷۵۸ تست توسعه، با یک deselection صریح؛ HTTP/SQLite تازه۴۵۷/۴۵۷ | این اعداد کیفیت جواب مدل یا اجرای test نهایی نیستند |
 | RAG | Chroma واقعی، buildهای pinned، کنترل نسخه و بازپخش dev | بهبود packing/relevance و freeze نهایی corpus/index/config با حسن |
 | evaluation | ثبت۱۶dev/۱۵test و۱۴مسیر چندنوبتی شامل۷test در metadata؛ اجرای scripted ثبت‌شده روی۱۶dev،۲۷۳check | native gold/routes،v2 سه dev در صورت انتخاب rubric یکدست v1،vocabulary/rubric/split freeze،usefulness و ارزیابی نهایی با محمدحسن |
 | tracker | approval/edit/reject، stale409،restart/retry و شاهد lost-ACK | مرزهای باقی‌ماندهٔ T4 با بهنام/محمدحسن؛ recovery درخواست تأییدنشده پس از نابودی کامل session ثابت نشده |
 | هزینه | ledger و رسیدها حفظ‌اند؛ سه درخواست نامعلوم وhalt باقی است | مدرک provider و تطبیق usage/charge برای C5 |
 
-[verification اجرایی](../experiments/evaluation_readiness_v1/verification-v1.json)
-به source و artifactهای دقیق bind است. healthcheck تازه، برابری source فعلی
-با همان source تست‌شده را بررسی می‌کند؛ اجرای دوبارهٔ suite کامل ادعا نمی‌شود.
+[verification تازهٔ C2k](receipts/core-boundary-validation-2026-10-16.json)
+به source و artifactهای دقیق bind است؛ suite توسعه برای همین کد دوباره اجرا
+شد. [verification قبلی](../experiments/evaluation_readiness_v1/verification-v1.json)
+و healthcheck قبل ازC2k به source تاریخی خودشان مربوط‌اند و حفظ شده‌اند.
 test نهایی و evidence/gold آن برای این گزارش باز نشده‌اند. GitHub Billing
 مانع hosted CI است؛ انتشار با review و تست محلیِ مجازشده انجام شده است.
 [healthcheck تازه](receipts/deadline-healthcheck-2026-10-16.json) شامل۹۷تست
@@ -121,6 +122,7 @@ seed ثبت‌شده شامل۲۴۰Issue،۱۱۷۸comment،۵۶سندMarkdown و
 | آزمایش | نتیجهٔ مشاهده‌شده | حد ادعا |
 | --- | --- | --- |
 | C2j، validation ورودی دو helper نسخه |۵۵regression:۲۹fail/۲۶pass به۵۵pass؛۱۶transition معتبر ثابت | صحت نرم‌افزار، نه بهبود جواب مدل |
+| C2k، validation پیش از serialize در مرزهای مشخص core |۱۶۹regression:۱۲۵fail/۴۴pass به۱۶۹pass؛۳۲digest معتبر ثابت | رد hidden state داخلی؛ نه رفع تمام مرزها یا بهبود معنایی پاسخ |
 | R4c/R4b روی index ثابت dev |شاهد لازم۱/۵ به۳/۵؛ off_topic۸به۵ با labelهای تأییدشدهٔ حسن | availability/relevance توسعه، نه حل مسئله یا test نهایی |
 | C4i، دو مسیر پاسخ روی dev exposed |هدف کیفیت Enum در هر دو حالت۰/۴ | نتیجهٔ منفی حفظ شده؛ مسیر تازه به default تبدیل نشده |
 | C4k/C4l، section/context فعلی |بدنهٔ section و اصلاح موضوع در replayهای تألیفی بهتر کنترل شدند | انتخاب تازهٔ مدل و usefulness اندازه‌گیری نشده |

@@ -4,6 +4,22 @@
 
 ## وضعیت فعلی
 
+- [x] **C2k — validation مرزهای باقی‌ماندهٔ core؛ ساسان، ۱۶ اکتبر.**
+  [رفتار و حدود](../docs/core-boundary-validation.fa.md)،
+  [verification](../docs/receipts/core-boundary-validation-2026-10-16.json).
+  validator بازگشتی موجود پیش از serialize برای خروجی retrieval/analysis،
+  transition کاربر، snapshot درخواست grounded/claim و hash منبع اعمال شد.
+  ۱۶۹regression یکسان:۱۲۵fail/۴۴pass در baseline به۱۶۹pass؛۳۲digest کامل معتبر
+  ثابت‌اند. source`3f8ff33`:۵۷۵۸تست توسعه تازه پاس، یک مصرف‌کنندهٔ محتوای test
+  صریحاً deselect و صفر read به held-out؛Ruff۳۶۷فایل،سهdemo وHTTP/SQLite تازه
+  ۴۵۷/۴۵۷باrestart/retry پاس‌اند. review مستقل۸۸۰تست منتخب و بررسی diff blocker
+  ندارد. ledger،۱۹pin،سهhold،halt،قراردادها/defaultها و فایل‌های اعضا ثابت‌اند؛
+  C5read-only۳۶/۳۶،APIصفر. خطای URL درEvidenceHit از قبل رد می‌شد و بهبود تازه
+  حساب نشده؛ اصلاح، رد hidden state است. این تیک کیفیت مدل/RAG/test یا اتمام
+  E1/E2/R4/T4/C5 نیست. بعضی مرزهای typed planner/context/config بیرون این scope
+  هستند؛ authority bypass در آن‌ها مشاهده نشد. قدم بعدی،review انسانی کیفیت،
+  freeze تنظیم/native scope و تطبیق provider برایC5 است؛ feature تازه اضافه نشد.
+
 - [x] **healthcheck روز تحویل و پیش‌نویس گزارش؛ ساسان، ۱۶ اکتبر.**
   [گزارش و دستورهای demo](../docs/delivery-report.fa.md) و
   [رسید بررسی](../docs/receipts/deadline-healthcheck-2026-10-16.json).

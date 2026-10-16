@@ -41,6 +41,13 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 ## Runtime rules
 
+- C2k reuses `detached_contract` at retrieval/analysis ingress, user-turn
+  preparation, grounded/claim request validation and source hashing. Read
+  `docs/core-boundary-validation.fa.md`. Preserve the32 pre-change valid surface
+  digests, safe diagnostics and two-attempt bounds; do not dump away hidden
+  nested invalid state before validation. This is bounded Python-contract
+  hardening, not exhaustive boundary validation or measured model quality.
+
 - C4m/E2z adds an optional reviewed development vocabulary and historical
   workbench rubric binding; read `docs/evaluation-readiness.fa.md`. Preserve old
   rubric/fixture/gold/receipt bytes and all valid workbench outputs. Existing

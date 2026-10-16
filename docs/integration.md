@@ -1,5 +1,14 @@
 # Connect your module to the core
 
+The [C2k boundary fix](core-boundary-validation.fa.md) reuses the existing
+recursive detacher for retrieval/analysis port results, user-turn preparation,
+grounded/claim request snapshots and source hashing. Return valid declared
+contracts or mappings; bypass-constructed nested models are revalidated rather
+than silently sanitized. Invalid retrieval stops before reasoning; invalid
+analysis retains the existing two-attempt repair allowance and safe diagnostics.
+Valid serialized output, shared ports/defaults and tracker authority are unchanged.
+This is internal software hardening, not a semantic support or model-quality score.
+
 The [C4h9/C4h9b selection studies](complementary-sources.fa.md) do not change
 shared ports/contracts, renderer, UI/tracker, real index or exclusions.
 `METIS_GROUNDED_COMPLEMENTARY_SOURCES` is strict/default-false and requires the
