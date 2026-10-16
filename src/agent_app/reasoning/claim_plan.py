@@ -32,6 +32,7 @@ from agent_app.contracts import (
     Sha256,
 )
 from agent_app.orchestration.ports import ReasoningStopped
+from agent_app.orchestration.validation import detached_contract
 from agent_app.reasoning.grounding import (
     GroundedReasoner,
     GroundingRejected,
@@ -336,7 +337,7 @@ def build_claim_request(
 
 def validate_claim_request(request: ClaimRequest) -> ClaimRequest:
     try:
-        request = ClaimRequest.model_validate(request.model_dump(warnings=False))
+        request = detached_contract(ClaimRequest, request)
         rebuilt = build_claim_request(request.grounded, block_mode=request.block_mode)
         if rebuilt != request:
             raise ValueError

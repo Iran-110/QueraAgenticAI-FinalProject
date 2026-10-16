@@ -319,15 +319,18 @@ class SupportEngine:
             raise _Stopped("RetrievalUnavailable") from None
         self._ensure_current(case)
         try:
-            # Revalidate even model_construct()/model_copy() results supplied by an adapter.
-            data = raw.model_dump(warnings=False) if isinstance(raw, EvidenceBundle) else raw
-            evidence = EvidenceBundle.model_validate(data)
+            # Preserve nested typed objects until the recursive boundary check;
+            # dumping first would silently discard bypassed extra/private data.
+            candidate = (
+                raw if isinstance(raw, EvidenceBundle) else EvidenceBundle.model_validate(raw)
+            )
+            evidence = detached_contract(EvidenceBundle, candidate)
             if evidence.snapshot_id != self.snapshot_id or len(evidence.hits) > candidate_limit:
                 raise ValueError("Unexpected snapshot or result count")
             evidence = EvidenceBundle.model_validate(
                 {**evidence.model_dump(), "retrieval_round": progress.retrieval_rounds}
             )
-        except (ValidationError, ValueError, TypeError):
+        except (ValidationError, ValueError, TypeError, AttributeError, RecursionError):
             raise _Stopped("RetrievalResultInvalid") from None
         progress.note("evidence_received", f"Received {len(evidence.hits)} evidence chunks.")
         if self.evidence_scope == "exact_user_version":

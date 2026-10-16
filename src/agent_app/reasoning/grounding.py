@@ -28,6 +28,7 @@ from agent_app.contracts import (
     ReasoningContext,
 )
 from agent_app.orchestration.ports import GroundedPlanner, ReasoningStopped
+from agent_app.orchestration.validation import detached_contract
 from agent_app.reasoning.output import InvalidAnalysis
 
 type GroundingCode = Literal[
@@ -96,7 +97,7 @@ def _sha(value: object) -> str:
 
 def source_content_sha256(hit: EvidenceHit) -> str:
     try:
-        hit = EvidenceHit.model_validate(hit.model_dump(warnings=False))
+        hit = detached_contract(EvidenceHit, hit)
         return _sha(hit.model_dump(mode="json"))
     except (ValidationError, ValueError, TypeError, AttributeError, RecursionError):
         raise GroundingRejected("grounded_source_mismatch") from None
@@ -104,7 +105,7 @@ def source_content_sha256(hit: EvidenceHit) -> str:
 
 def validate_grounded_request(request: GroundedRequest) -> GroundedRequest:
     try:
-        request = GroundedRequest.model_validate(request.model_dump(warnings=False))
+        request = detached_contract(GroundedRequest, request)
     except (ValidationError, ValueError, TypeError, AttributeError, RecursionError):
         raise GroundingRejected("grounded_context_mismatch") from None
     payload = request.model_dump(mode="json", exclude={"context_sha256"})
@@ -145,7 +146,7 @@ def make_grounded_request(
             conflict_groups=conflict_groups,
             context_sha256="0" * 64,
         )
-        request = GroundedRequest.model_validate(request.model_dump(warnings=False))
+        request = detached_contract(GroundedRequest, request)
     except (ValidationError, ValueError, TypeError, AttributeError, RecursionError):
         raise GroundingRejected("grounded_context_mismatch") from None
     digest = _sha(request.model_dump(mode="json", exclude={"context_sha256"}))
