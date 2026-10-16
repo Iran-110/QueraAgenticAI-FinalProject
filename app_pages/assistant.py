@@ -36,6 +36,7 @@ FACT_ROW_COUNT = 3
 
 @st.cache_resource(scope="session")
 def get_client() -> ui_client.BackendClient:
+    """Session client v2, including the explicit saved-case read operation."""
     return ui_client.make_client()
 
 
@@ -90,6 +91,20 @@ def start_new_case() -> None:
     st.session_state.cases.append(case_id)
     st.session_state.case_id = case_id
     reset_view_state()
+
+
+def open_saved_case() -> None:
+    try:
+        view = client.get_saved_case(st.session_state.saved_case_id)
+    except ui_client.BackendError as error:
+        st.session_state.notice = ("error", str(error))
+        return
+    case_id = view["case_id"]
+    if case_id not in st.session_state.cases:
+        st.session_state.cases.append(case_id)
+    st.session_state.case_id = case_id
+    reset_view_state()
+    st.session_state.notice = ("info", "Saved case opened.")
 
 
 def unsent_event() -> dict | None:
@@ -538,6 +553,14 @@ with st.sidebar:
     if waiting:
         st.caption(f":material/pending_actions: {waiting} case(s) awaiting review")
     st.button("New case", icon=":material/add:", on_click=start_new_case, width="stretch")
+    if capabilities.durable_reviews:
+        with st.form("open_saved_case_form", border=False):
+            st.text_input("Saved case ID", key="saved_case_id", max_chars=200)
+            st.form_submit_button("Open saved case", on_click=open_saved_case)
+        st.caption(
+            "Reopening restores saved state. Unsent drafts and unconfirmed review retries "
+            "from an earlier browser session are not recovered."
+        )
     if capabilities.reasoning_label != "scripted":
         st.subheader("GroundedPlan pilot")
         st.session_state.scenario = "ask"
