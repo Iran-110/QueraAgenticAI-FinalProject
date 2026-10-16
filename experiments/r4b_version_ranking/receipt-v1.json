@@ -1,0 +1,1406 @@
+{
+  "schema_version": 1,
+  "receipt_id": "r4b-version-ranking-before-after-v1",
+  "task": "R4b",
+  "archive": "experiments/core_repeat_repair_v1/model-live-receipt-v1.json",
+  "archive_sha256": "0be6625a426255ffd8e3b4b010f6c6cb87f6a10536a799d2ed7f09770a37e7d9",
+  "index": {
+    "snapshot_id": "docs-pilot-12ec2995032ad48dbec2c1f1736fca1f97727478373dd1835043eedf21ab0ee1",
+    "manifest_sha256": "24815c44f7d7e104a59579d444e8abce429f02b594dd6679165c0fbc381b9239",
+    "unchanged": true
+  },
+  "pr50": {
+    "ref": "1a18749",
+    "adapter_sha256": "9452648c05fc44f6627528cecc49f038af8046ade13e6cabd29f652eacd3dbba"
+  },
+  "states": 8,
+  "observations": [
+    {
+      "case_id": "dev-case-a",
+      "turn_id": "initial",
+      "retrieval_round": 1,
+      "active_user_version": null,
+      "queries_sha256": [
+        "02402cc966d34aaa9afe178580156fb8d9b887aacc927aebba74862abc14c84c"
+      ],
+      "query_preview": [
+        "python_version=3.12.9; operating_system=Windows 11 / WSL2 Ubuntu / AlmaLinux 9; browser=Chrome; reported_observation=The multiselect displays empty rather than "
+      ],
+      "arms": {
+        "pr50_head": {
+          "arm": "pr50_head",
+          "backend_n_results": [
+            5
+          ],
+          "candidate_count": 5,
+          "candidate_chunk_ids": [
+            "doc:1.64.0:aa4d6b18eeacf49cbad94381:4000:6248:1601bed289ad4380",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:8000:12000:2fd02ea2045b6d75",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:0:4000:0705546ace8833dd",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:4000:8000:6a924cf49d18c34c",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295"
+          ],
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+              "versions": []
+            }
+          ],
+          "version_safe": true,
+          "targets": {
+            "multiselect": {
+              "pre_scope_ranks": [],
+              "reached_model_at_user_version": false
+            },
+            "fragment": {
+              "pre_scope_ranks": [],
+              "reached_model_at_user_version": false
+            }
+          },
+          "stop_code": null
+        },
+        "before_native": {
+          "arm": "before_native",
+          "backend_n_results": [
+            5
+          ],
+          "candidate_count": 5,
+          "candidate_chunk_ids": [
+            "doc:1.64.0:aa4d6b18eeacf49cbad94381:4000:6248:1601bed289ad4380",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:8000:12000:2fd02ea2045b6d75",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:0:4000:0705546ace8833dd",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:4000:8000:6a924cf49d18c34c"
+          ],
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+              "versions": []
+            }
+          ],
+          "version_safe": true,
+          "targets": {
+            "multiselect": {
+              "pre_scope_ranks": [],
+              "reached_model_at_user_version": false
+            },
+            "fragment": {
+              "pre_scope_ranks": [],
+              "reached_model_at_user_version": false
+            }
+          },
+          "stop_code": null
+        },
+        "after_r4b": {
+          "arm": "after_r4b",
+          "backend_n_results": [
+            25
+          ],
+          "candidate_count": 25,
+          "candidate_chunk_ids": [
+            "doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932",
+            "doc:1.49.0:4bc002653b8b3907d008a134:0:4000:592d59c88ffa9fd9",
+            "doc:1.50.0:c82397cf83d9653afc3157df:0:4000:592d59c88ffa9fd9",
+            "doc:1.64.0:f61bf7156e748154ca8949e2:0:1659:3a34fff5b89290f0",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:8000:12000:2fd02ea2045b6d75",
+            "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+            "doc:1.49.0:f1022a6ae56c25bd21b30f3d:0:4000:9810aec980b0359a",
+            "doc:1.50.0:34237be9595e4533779b331a:0:4000:9810aec980b0359a",
+            "doc:1.64.0:aa4d6b18eeacf49cbad94381:0:4000:28719fc87bb005cc",
+            "doc:1.49.0:0e3fc0224f3d3f9fbc9fd032:0:3754:7bd993a4e7d0104f",
+            "doc:1.50.0:591bc7fb64d5970b09de1b0d:0:3754:7bd993a4e7d0104f",
+            "doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+            "doc:1.49.0:4bc002653b8b3907d008a134:4000:4832:75e35043f6aacf7c",
+            "doc:1.50.0:c82397cf83d9653afc3157df:4000:4832:75e35043f6aacf7c",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:4000:8000:6a924cf49d18c34c",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:0:4000:0705546ace8833dd",
+            "doc:pinned:76af659dfdd30bb62fe9f310:4000:8000:502554b24418835b",
+            "doc:1.49.0:f1022a6ae56c25bd21b30f3d:4000:4582:2c1144abb0c8f37f",
+            "doc:1.50.0:34237be9595e4533779b331a:4000:4582:2c1144abb0c8f37f",
+            "doc:pinned:76af659dfdd30bb62fe9f310:16000:20000:150aa837889c9e5a",
+            "doc:pinned:76af659dfdd30bb62fe9f310:0:4000:854ec11b80fbe5fe",
+            "doc:1.64.0:aa4d6b18eeacf49cbad94381:4000:6248:1601bed289ad4380",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:12000:13421:085f27d65a9631a1"
+          ],
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "chunk_id": "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+              "versions": []
+            }
+          ],
+          "version_safe": true,
+          "targets": {
+            "multiselect": {
+              "pre_scope_ranks": [
+                {
+                  "rank": 2,
+                  "source_id": "docstring:1.49.0:streamlit.multiselect",
+                  "versions": [
+                    "1.49.0"
+                  ]
+                },
+                {
+                  "rank": 3,
+                  "source_id": "docstring:1.50.0:streamlit.multiselect",
+                  "versions": [
+                    "1.50.0"
+                  ]
+                },
+                {
+                  "rank": 15,
+                  "source_id": "docstring:1.49.0:streamlit.multiselect",
+                  "versions": [
+                    "1.49.0"
+                  ]
+                },
+                {
+                  "rank": 16,
+                  "source_id": "docstring:1.50.0:streamlit.multiselect",
+                  "versions": [
+                    "1.50.0"
+                  ]
+                }
+              ],
+              "reached_model_at_user_version": false
+            },
+            "fragment": {
+              "pre_scope_ranks": [
+                {
+                  "rank": 1,
+                  "source_id": "docstring:1.50.0:streamlit.fragment",
+                  "versions": [
+                    "1.50.0"
+                  ]
+                }
+              ],
+              "reached_model_at_user_version": false
+            }
+          },
+          "stop_code": null
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-a",
+      "turn_id": "version",
+      "retrieval_round": 1,
+      "active_user_version": "1.50.0",
+      "queries_sha256": [
+        "999f31ca3d710b6ffed170aac4c9c5e633a71ac1fb903a7de9f983633eb28e58"
+      ],
+      "query_preview": [
+        "streamlit_version=1.50.0; python_version=3.12.9; operating_system=Windows 11 / WSL2 Ubuntu / AlmaLinux 9; browser=Chrome; reported_widget_context=A multiselect "
+      ],
+      "arms": {
+        "pr50_head": {
+          "arm": "pr50_head",
+          "backend_n_results": [
+            5
+          ],
+          "candidate_count": 5,
+          "candidate_chunk_ids": [
+            "doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3"
+          ],
+          "final_hits": [
+            {
+              "source_id": "docstring:1.50.0:streamlit.fragment",
+              "chunk_id": "doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932",
+              "versions": [
+                "1.50.0"
+              ]
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+              "versions": []
+            }
+          ],
+          "version_safe": true,
+          "targets": {
+            "multiselect": {
+              "pre_scope_ranks": [],
+              "reached_model_at_user_version": false
+            },
+            "fragment": {
+              "pre_scope_ranks": [
+                {
+                  "rank": 1,
+                  "source_id": "docstring:1.50.0:streamlit.fragment",
+                  "versions": [
+                    "1.50.0"
+                  ]
+                }
+              ],
+              "reached_model_at_user_version": true
+            }
+          },
+          "stop_code": null
+        },
+        "before_native": {
+          "arm": "before_native",
+          "backend_n_results": [
+            5
+          ],
+          "candidate_count": 5,
+          "candidate_chunk_ids": [
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+            "doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3"
+          ],
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+              "versions": []
+            },
+            {
+              "source_id": "docstring:1.50.0:streamlit.fragment",
+              "chunk_id": "doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932",
+              "versions": [
+                "1.50.0"
+              ]
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+              "versions": []
+            }
+          ],
+          "version_safe": true,
+          "targets": {
+            "multiselect": {
+              "pre_scope_ranks": [],
+              "reached_model_at_user_version": false
+            },
+            "fragment": {
+              "pre_scope_ranks": [
+                {
+                  "rank": 3,
+                  "source_id": "docstring:1.50.0:streamlit.fragment",
+                  "versions": [
+                    "1.50.0"
+                  ]
+                }
+              ],
+              "reached_model_at_user_version": true
+            }
+          },
+          "stop_code": null
+        },
+        "after_r4b": {
+          "arm": "after_r4b",
+          "backend_n_results": [
+            25
+          ],
+          "candidate_count": 25,
+          "candidate_chunk_ids": [
+            "doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932",
+            "doc:1.49.0:4bc002653b8b3907d008a134:0:4000:592d59c88ffa9fd9",
+            "doc:1.50.0:c82397cf83d9653afc3157df:0:4000:592d59c88ffa9fd9",
+            "doc:1.49.0:b47daf33edb3406ca4ce5ea0:0:864:948236ecd00dd63f",
+            "doc:1.50.0:9b4617e969d3cf7ad39432dc:0:864:948236ecd00dd63f",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:8000:12000:2fd02ea2045b6d75",
+            "doc:1.64.0:f61bf7156e748154ca8949e2:0:1659:3a34fff5b89290f0",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+            "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+            "doc:1.50.0:34237be9595e4533779b331a:0:4000:9810aec980b0359a",
+            "doc:1.64.0:aa4d6b18eeacf49cbad94381:4000:6248:1601bed289ad4380",
+            "doc:pinned:ed6c3c87122e53b9ff5621db:0:1819:3f3a7959730090f6",
+            "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:0:4000:0705546ace8833dd",
+            "doc:pinned:76af659dfdd30bb62fe9f310:0:4000:854ec11b80fbe5fe",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+            "doc:pinned:76af659dfdd30bb62fe9f310:4000:8000:502554b24418835b",
+            "doc:pinned:76af659dfdd30bb62fe9f310:16000:20000:150aa837889c9e5a",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+            "doc:pinned:76af659dfdd30bb62fe9f310:12000:16000:bca9c737ad38caee",
+            "doc:pinned:76af659dfdd30bb62fe9f310:20000:21389:306acdd89afdc71a",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:12000:12566:9ae7ff24489a7d3c"
+          ],
+          "final_hits": [
+            {
+              "source_id": "docstring:1.50.0:streamlit.fragment",
+              "chunk_id": "doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932",
+              "versions": [
+                "1.50.0"
+              ]
+            },
+            {
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "chunk_id": "doc:1.50.0:c82397cf83d9653afc3157df:0:4000:592d59c88ffa9fd9",
+              "versions": [
+                "1.50.0"
+              ]
+            },
+            {
+              "source_id": "docstring:1.50.0:streamlit.rerun",
+              "chunk_id": "doc:1.50.0:9b4617e969d3cf7ad39432dc:0:864:948236ecd00dd63f",
+              "versions": [
+                "1.50.0"
+              ]
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/text_input.md",
+              "chunk_id": "doc:pinned:ed6c3c87122e53b9ff5621db:0:1819:3f3a7959730090f6",
+              "versions": []
+            }
+          ],
+          "version_safe": true,
+          "targets": {
+            "multiselect": {
+              "pre_scope_ranks": [
+                {
+                  "rank": 2,
+                  "source_id": "docstring:1.49.0:streamlit.multiselect",
+                  "versions": [
+                    "1.49.0"
+                  ]
+                },
+                {
+                  "rank": 3,
+                  "source_id": "docstring:1.50.0:streamlit.multiselect",
+                  "versions": [
+                    "1.50.0"
+                  ]
+                }
+              ],
+              "reached_model_at_user_version": true
+            },
+            "fragment": {
+              "pre_scope_ranks": [
+                {
+                  "rank": 1,
+                  "source_id": "docstring:1.50.0:streamlit.fragment",
+                  "versions": [
+                    "1.50.0"
+                  ]
+                }
+              ],
+              "reached_model_at_user_version": true
+            }
+          },
+          "stop_code": null
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-b",
+      "turn_id": "initial",
+      "retrieval_round": 1,
+      "active_user_version": null,
+      "queries_sha256": [
+        "fa890ad66b3d774a559551d250b38a2ba71bd2769612e0ee20234ba6b5dfe261"
+      ],
+      "query_preview": [
+        "requested_apis=st.button or st.warning; requested_icon_format=A custom company-logo image rather than an emoji or Material Symbol | I want to use a custom compa"
+      ],
+      "arms": {
+        "pr50_head": {
+          "arm": "pr50_head",
+          "backend_n_results": [
+            5
+          ],
+          "candidate_count": 5,
+          "candidate_chunk_ids": [
+            "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295"
+          ],
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/button.md",
+              "chunk_id": "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+              "versions": []
+            }
+          ],
+          "version_safe": true,
+          "targets": {
+            "button": {
+              "pre_scope_ranks": [],
+              "reached_model_at_user_version": false
+            }
+          },
+          "stop_code": null
+        },
+        "before_native": {
+          "arm": "before_native",
+          "backend_n_results": [
+            5
+          ],
+          "candidate_count": 5,
+          "candidate_chunk_ids": [
+            "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295"
+          ],
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/button.md",
+              "chunk_id": "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+              "versions": []
+            }
+          ],
+          "version_safe": true,
+          "targets": {
+            "button": {
+              "pre_scope_ranks": [],
+              "reached_model_at_user_version": false
+            }
+          },
+          "stop_code": null
+        },
+        "after_r4b": {
+          "arm": "after_r4b",
+          "backend_n_results": [
+            25
+          ],
+          "candidate_count": 25,
+          "candidate_chunk_ids": [
+            "doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a",
+            "doc:1.49.0:0e3fc0224f3d3f9fbc9fd032:0:3754:7bd993a4e7d0104f",
+            "doc:1.50.0:591bc7fb64d5970b09de1b0d:0:3754:7bd993a4e7d0104f",
+            "doc:1.64.0:aa4d6b18eeacf49cbad94381:0:4000:28719fc87bb005cc",
+            "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+            "doc:1.49.0:f1022a6ae56c25bd21b30f3d:0:4000:9810aec980b0359a",
+            "doc:1.50.0:34237be9595e4533779b331a:0:4000:9810aec980b0359a",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:4000:8000:6a924cf49d18c34c",
+            "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac",
+            "doc:1.49.0:4bc002653b8b3907d008a134:0:4000:592d59c88ffa9fd9",
+            "doc:1.50.0:c82397cf83d9653afc3157df:0:4000:592d59c88ffa9fd9",
+            "doc:1.64.0:f61bf7156e748154ca8949e2:0:1659:3a34fff5b89290f0",
+            "doc:pinned:ed6c3c87122e53b9ff5621db:0:1819:3f3a7959730090f6",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:8000:12000:2fd02ea2045b6d75",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+            "doc:pinned:76af659dfdd30bb62fe9f310:0:4000:854ec11b80fbe5fe",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:0:4000:0705546ace8833dd",
+            "doc:pinned:76af659dfdd30bb62fe9f310:4000:8000:502554b24418835b",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+            "doc:pinned:76af659dfdd30bb62fe9f310:16000:20000:150aa837889c9e5a",
+            "doc:pinned:76af659dfdd30bb62fe9f310:12000:16000:bca9c737ad38caee"
+          ],
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/button.md",
+              "chunk_id": "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/text_input.md",
+              "chunk_id": "doc:pinned:ed6c3c87122e53b9ff5621db:0:1819:3f3a7959730090f6",
+              "versions": []
+            }
+          ],
+          "version_safe": true,
+          "targets": {
+            "button": {
+              "pre_scope_ranks": [
+                {
+                  "rank": 1,
+                  "source_id": "docstring:1.39.0:streamlit.button",
+                  "versions": [
+                    "1.39.0"
+                  ]
+                },
+                {
+                  "rank": 2,
+                  "source_id": "docstring:1.49.0:streamlit.button",
+                  "versions": [
+                    "1.49.0"
+                  ]
+                },
+                {
+                  "rank": 3,
+                  "source_id": "docstring:1.50.0:streamlit.button",
+                  "versions": [
+                    "1.50.0"
+                  ]
+                },
+                {
+                  "rank": 4,
+                  "source_id": "docstring:1.64.0:streamlit.button",
+                  "versions": [
+                    "1.64.0"
+                  ]
+                }
+              ],
+              "reached_model_at_user_version": false
+            }
+          },
+          "stop_code": null
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-b",
+      "turn_id": "version",
+      "retrieval_round": 1,
+      "active_user_version": "1.39.0",
+      "queries_sha256": [
+        "0d62b77cbaaf81eb12df43e05eb91d547de36a7641f04916a6607cb9443b2007"
+      ],
+      "query_preview": [
+        "streamlit_version=1.39.0; requested_apis=st.button or st.warning; requested_icon_format=A custom company-logo image rather than an emoji or Material Symbol | 1."
+      ],
+      "arms": {
+        "pr50_head": {
+          "arm": "pr50_head",
+          "backend_n_results": [
+            5
+          ],
+          "candidate_count": 5,
+          "candidate_chunk_ids": [
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+            "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f"
+          ],
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/button.md",
+              "chunk_id": "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+              "versions": []
+            }
+          ],
+          "version_safe": true,
+          "targets": {
+            "button": {
+              "pre_scope_ranks": [],
+              "reached_model_at_user_version": false
+            }
+          },
+          "stop_code": null
+        },
+        "before_native": {
+          "arm": "before_native",
+          "backend_n_results": [
+            5
+          ],
+          "candidate_count": 5,
+          "candidate_chunk_ids": [
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+            "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f"
+          ],
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/button.md",
+              "chunk_id": "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+              "versions": []
+            }
+          ],
+          "version_safe": true,
+          "targets": {
+            "button": {
+              "pre_scope_ranks": [],
+              "reached_model_at_user_version": false
+            }
+          },
+          "stop_code": null
+        },
+        "after_r4b": {
+          "arm": "after_r4b",
+          "backend_n_results": [
+            25
+          ],
+          "candidate_count": 25,
+          "candidate_chunk_ids": [
+            "doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a",
+            "doc:1.49.0:0e3fc0224f3d3f9fbc9fd032:0:3754:7bd993a4e7d0104f",
+            "doc:1.50.0:591bc7fb64d5970b09de1b0d:0:3754:7bd993a4e7d0104f",
+            "doc:1.64.0:aa4d6b18eeacf49cbad94381:0:4000:28719fc87bb005cc",
+            "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+            "doc:1.49.0:f1022a6ae56c25bd21b30f3d:0:4000:9810aec980b0359a",
+            "doc:1.50.0:34237be9595e4533779b331a:0:4000:9810aec980b0359a",
+            "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:8000:12000:2fd02ea2045b6d75",
+            "doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932",
+            "doc:1.50.0:c82397cf83d9653afc3157df:0:4000:592d59c88ffa9fd9",
+            "doc:1.64.0:f61bf7156e748154ca8949e2:0:1659:3a34fff5b89290f0",
+            "doc:pinned:ed6c3c87122e53b9ff5621db:0:1819:3f3a7959730090f6",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+            "doc:pinned:76af659dfdd30bb62fe9f310:0:4000:854ec11b80fbe5fe",
+            "doc:pinned:76af659dfdd30bb62fe9f310:4000:8000:502554b24418835b",
+            "doc:pinned:76af659dfdd30bb62fe9f310:16000:20000:150aa837889c9e5a",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:0:4000:0705546ace8833dd",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+            "doc:pinned:76af659dfdd30bb62fe9f310:12000:16000:bca9c737ad38caee",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+            "doc:pinned:76af659dfdd30bb62fe9f310:20000:21389:306acdd89afdc71a"
+          ],
+          "final_hits": [
+            {
+              "source_id": "docstring:1.39.0:streamlit.button",
+              "chunk_id": "doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a",
+              "versions": [
+                "1.39.0"
+              ]
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/button.md",
+              "chunk_id": "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+              "versions": []
+            }
+          ],
+          "version_safe": true,
+          "targets": {
+            "button": {
+              "pre_scope_ranks": [
+                {
+                  "rank": 1,
+                  "source_id": "docstring:1.39.0:streamlit.button",
+                  "versions": [
+                    "1.39.0"
+                  ]
+                },
+                {
+                  "rank": 2,
+                  "source_id": "docstring:1.49.0:streamlit.button",
+                  "versions": [
+                    "1.49.0"
+                  ]
+                },
+                {
+                  "rank": 3,
+                  "source_id": "docstring:1.50.0:streamlit.button",
+                  "versions": [
+                    "1.50.0"
+                  ]
+                },
+                {
+                  "rank": 4,
+                  "source_id": "docstring:1.64.0:streamlit.button",
+                  "versions": [
+                    "1.64.0"
+                  ]
+                }
+              ],
+              "reached_model_at_user_version": true
+            }
+          },
+          "stop_code": null
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-c",
+      "turn_id": "initial",
+      "retrieval_round": 1,
+      "active_user_version": "1.31.0",
+      "queries_sha256": [
+        "9858c498131528eb00c39083a4a01a6e878c6e98898666fa135ac025ef6ad088"
+      ],
+      "query_preview": [
+        "streamlit_version=1.31.0; python_version=3.11.6; operating_system=macOS Sonoma 14.3; browser=Chrome; reported_observation=Enum equality is False, while enum .va"
+      ],
+      "arms": {
+        "pr50_head": {
+          "arm": "pr50_head",
+          "backend_n_results": [
+            5
+          ],
+          "candidate_count": 5,
+          "candidate_chunk_ids": [
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:4000:8000:6a924cf49d18c34c",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:8000:12000:2fd02ea2045b6d75",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f"
+          ],
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+              "versions": []
+            }
+          ],
+          "version_safe": true,
+          "targets": {},
+          "stop_code": null
+        },
+        "before_native": {
+          "arm": "before_native",
+          "backend_n_results": [
+            5
+          ],
+          "candidate_count": 5,
+          "candidate_chunk_ids": [
+            "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:4000:8000:6a924cf49d18c34c",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:8000:12000:2fd02ea2045b6d75",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f"
+          ],
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+              "versions": []
+            }
+          ],
+          "version_safe": true,
+          "targets": {},
+          "stop_code": null
+        },
+        "after_r4b": {
+          "arm": "after_r4b",
+          "backend_n_results": [
+            25
+          ],
+          "candidate_count": 25,
+          "candidate_chunk_ids": [
+            "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+            "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:12000:13421:085f27d65a9631a1",
+            "doc:1.64.0:aa4d6b18eeacf49cbad94381:0:4000:28719fc87bb005cc",
+            "doc:1.49.0:0e3fc0224f3d3f9fbc9fd032:0:3754:7bd993a4e7d0104f",
+            "doc:1.50.0:591bc7fb64d5970b09de1b0d:0:3754:7bd993a4e7d0104f",
+            "doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a",
+            "doc:1.49.0:4bc002653b8b3907d008a134:0:4000:592d59c88ffa9fd9",
+            "doc:1.50.0:c82397cf83d9653afc3157df:0:4000:592d59c88ffa9fd9",
+            "doc:1.49.0:f1022a6ae56c25bd21b30f3d:0:4000:9810aec980b0359a",
+            "doc:1.50.0:34237be9595e4533779b331a:0:4000:9810aec980b0359a",
+            "doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932",
+            "doc:1.64.0:f61bf7156e748154ca8949e2:0:1659:3a34fff5b89290f0",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+            "doc:pinned:76af659dfdd30bb62fe9f310:16000:20000:150aa837889c9e5a",
+            "doc:pinned:76af659dfdd30bb62fe9f310:12000:16000:bca9c737ad38caee",
+            "doc:pinned:76af659dfdd30bb62fe9f310:0:4000:854ec11b80fbe5fe",
+            "doc:pinned:76af659dfdd30bb62fe9f310:4000:8000:502554b24418835b",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:8000:12000:2fd02ea2045b6d75",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:4000:8000:6a924cf49d18c34c",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:0:4000:0705546ace8833dd",
+            "doc:1.64.0:aa4d6b18eeacf49cbad94381:4000:6248:1601bed289ad4380"
+          ],
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+              "versions": []
+            }
+          ],
+          "version_safe": true,
+          "targets": {},
+          "stop_code": null
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-c",
+      "turn_id": "correction",
+      "retrieval_round": 1,
+      "active_user_version": "1.31.1",
+      "queries_sha256": [
+        "9ae057ed9a19d9d730b6c18467708e69174a3f331aae97882dfdeeaa81938b98"
+      ],
+      "query_preview": [
+        "streamlit_version=1.31.1; python_version=3.11.6; operating_system=macOS Sonoma 14.3; browser=Chrome; reported_observation=Enum equality is False, while enum .va"
+      ],
+      "arms": {
+        "pr50_head": {
+          "arm": "pr50_head",
+          "backend_n_results": [
+            5
+          ],
+          "candidate_count": 5,
+          "candidate_chunk_ids": [
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:8000:12000:2fd02ea2045b6d75",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+            "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac"
+          ],
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "chunk_id": "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac",
+              "versions": []
+            }
+          ],
+          "version_safe": true,
+          "targets": {},
+          "stop_code": null
+        },
+        "before_native": {
+          "arm": "before_native",
+          "backend_n_results": [
+            5
+          ],
+          "candidate_count": 5,
+          "candidate_chunk_ids": [
+            "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:8000:12000:2fd02ea2045b6d75",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+            "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac"
+          ],
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "chunk_id": "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac",
+              "versions": []
+            }
+          ],
+          "version_safe": true,
+          "targets": {},
+          "stop_code": null
+        },
+        "after_r4b": {
+          "arm": "after_r4b",
+          "backend_n_results": [
+            25
+          ],
+          "candidate_count": 25,
+          "candidate_chunk_ids": [
+            "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+            "doc:pinned:76af659dfdd30bb62fe9f310:16000:20000:150aa837889c9e5a",
+            "doc:1.64.0:aa4d6b18eeacf49cbad94381:0:4000:28719fc87bb005cc",
+            "doc:pinned:ed6c3c87122e53b9ff5621db:0:1819:3f3a7959730090f6",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:8000:12000:2fd02ea2045b6d75",
+            "doc:1.49.0:4bc002653b8b3907d008a134:0:4000:592d59c88ffa9fd9",
+            "doc:1.50.0:c82397cf83d9653afc3157df:0:4000:592d59c88ffa9fd9",
+            "doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a",
+            "doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932",
+            "doc:1.49.0:f1022a6ae56c25bd21b30f3d:0:4000:9810aec980b0359a",
+            "doc:1.64.0:f61bf7156e748154ca8949e2:0:1659:3a34fff5b89290f0",
+            "doc:1.49.0:b47daf33edb3406ca4ce5ea0:0:864:948236ecd00dd63f",
+            "doc:1.50.0:9b4617e969d3cf7ad39432dc:0:864:948236ecd00dd63f",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+            "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac",
+            "doc:pinned:76af659dfdd30bb62fe9f310:0:4000:854ec11b80fbe5fe",
+            "doc:pinned:76af659dfdd30bb62fe9f310:12000:16000:bca9c737ad38caee",
+            "doc:pinned:76af659dfdd30bb62fe9f310:4000:8000:502554b24418835b",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:12000:13421:085f27d65a9631a1",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:0:4000:0705546ace8833dd",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:4000:8000:6a924cf49d18c34c"
+          ],
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+              "versions": []
+            }
+          ],
+          "version_safe": true,
+          "targets": {},
+          "stop_code": null
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-c",
+      "turn_id": "initial",
+      "retrieval_round": 2,
+      "active_user_version": "1.31.0",
+      "queries_sha256": [
+        "faac38443b06dc97e8ce492afd1af2140d173e289ac1f6ad4a7dfc2c0c1416b9"
+      ],
+      "query_preview": [
+        "streamlit_version=1.31.0; python_version=3.11.6; operating_system=macOS Sonoma 14.3; browser=Chrome; reported_observation=Enum equality is False, while enum .va"
+      ],
+      "arms": {
+        "pr50_head": {
+          "arm": "pr50_head",
+          "backend_n_results": [
+            5
+          ],
+          "candidate_count": 5,
+          "candidate_chunk_ids": [
+            "doc:1.50.0:9b4617e969d3cf7ad39432dc:0:864:948236ecd00dd63f",
+            "doc:1.49.0:b47daf33edb3406ca4ce5ea0:0:864:948236ecd00dd63f",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295"
+          ],
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+              "versions": []
+            }
+          ],
+          "version_safe": true,
+          "targets": {},
+          "stop_code": null
+        },
+        "before_native": {
+          "arm": "before_native",
+          "backend_n_results": [
+            5
+          ],
+          "candidate_count": 5,
+          "candidate_chunk_ids": [
+            "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+            "doc:1.49.0:b47daf33edb3406ca4ce5ea0:0:864:948236ecd00dd63f",
+            "doc:1.50.0:9b4617e969d3cf7ad39432dc:0:864:948236ecd00dd63f"
+          ],
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+              "versions": []
+            }
+          ],
+          "version_safe": true,
+          "targets": {},
+          "stop_code": null
+        },
+        "after_r4b": {
+          "arm": "after_r4b",
+          "backend_n_results": [
+            25
+          ],
+          "candidate_count": 25,
+          "candidate_chunk_ids": [
+            "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+            "doc:pinned:76af659dfdd30bb62fe9f310:0:4000:854ec11b80fbe5fe",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:0:4000:0705546ace8833dd",
+            "doc:1.49.0:f1022a6ae56c25bd21b30f3d:0:4000:9810aec980b0359a",
+            "doc:1.50.0:34237be9595e4533779b331a:0:4000:9810aec980b0359a",
+            "doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932",
+            "doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a",
+            "doc:1.49.0:4bc002653b8b3907d008a134:0:4000:592d59c88ffa9fd9",
+            "doc:1.50.0:c82397cf83d9653afc3157df:0:4000:592d59c88ffa9fd9",
+            "doc:1.49.0:0e3fc0224f3d3f9fbc9fd032:0:3754:7bd993a4e7d0104f",
+            "doc:1.50.0:591bc7fb64d5970b09de1b0d:0:3754:7bd993a4e7d0104f",
+            "doc:1.64.0:aa4d6b18eeacf49cbad94381:0:4000:28719fc87bb005cc",
+            "doc:1.64.0:f61bf7156e748154ca8949e2:0:1659:3a34fff5b89290f0",
+            "doc:1.49.0:b47daf33edb3406ca4ce5ea0:0:864:948236ecd00dd63f",
+            "doc:1.50.0:9b4617e969d3cf7ad39432dc:0:864:948236ecd00dd63f",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+            "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac",
+            "doc:pinned:76af659dfdd30bb62fe9f310:4000:8000:502554b24418835b",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:8000:12000:2fd02ea2045b6d75",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:12000:12566:9ae7ff24489a7d3c",
+            "doc:pinned:76af659dfdd30bb62fe9f310:16000:20000:150aa837889c9e5a",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:12000:13421:085f27d65a9631a1",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:4000:8000:6a924cf49d18c34c",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9"
+          ],
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:12000:12566:9ae7ff24489a7d3c",
+              "versions": []
+            }
+          ],
+          "version_safe": true,
+          "targets": {},
+          "stop_code": null
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-c",
+      "turn_id": "initial",
+      "retrieval_round": 2,
+      "active_user_version": "1.31.0",
+      "queries_sha256": [
+        "c850c369b7d2e636eabaa3998514f84a910defff1d7b7cdaf8b5f34d942005c4"
+      ],
+      "query_preview": [
+        "An Enum stored in st.session_state compares False to Color.RED, while comparing their .value values returns True. I expect the Enum equality comparison to work."
+      ],
+      "arms": {
+        "pr50_head": {
+          "arm": "pr50_head",
+          "backend_n_results": [
+            5
+          ],
+          "candidate_count": 5,
+          "candidate_chunk_ids": [
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:8000:12000:2fd02ea2045b6d75",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9"
+          ],
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+              "versions": []
+            }
+          ],
+          "version_safe": true,
+          "targets": {},
+          "stop_code": null
+        },
+        "before_native": {
+          "arm": "before_native",
+          "backend_n_results": [
+            5
+          ],
+          "candidate_count": 5,
+          "candidate_chunk_ids": [
+            "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:8000:12000:2fd02ea2045b6d75"
+          ],
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+              "versions": []
+            }
+          ],
+          "version_safe": true,
+          "targets": {},
+          "stop_code": null
+        },
+        "after_r4b": {
+          "arm": "after_r4b",
+          "backend_n_results": [
+            25
+          ],
+          "candidate_count": 25,
+          "candidate_chunk_ids": [
+            "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+            "doc:pinned:76af659dfdd30bb62fe9f310:16000:20000:150aa837889c9e5a",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:12000:13421:085f27d65a9631a1",
+            "doc:1.49.0:0e3fc0224f3d3f9fbc9fd032:0:3754:7bd993a4e7d0104f",
+            "doc:1.50.0:591bc7fb64d5970b09de1b0d:0:3754:7bd993a4e7d0104f",
+            "doc:1.64.0:aa4d6b18eeacf49cbad94381:0:4000:28719fc87bb005cc",
+            "doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a",
+            "doc:1.49.0:4bc002653b8b3907d008a134:0:4000:592d59c88ffa9fd9",
+            "doc:1.50.0:c82397cf83d9653afc3157df:0:4000:592d59c88ffa9fd9",
+            "doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932",
+            "doc:1.49.0:f1022a6ae56c25bd21b30f3d:0:4000:9810aec980b0359a",
+            "doc:1.50.0:34237be9595e4533779b331a:0:4000:9810aec980b0359a",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898",
+            "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+            "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+            "doc:pinned:76af659dfdd30bb62fe9f310:0:4000:854ec11b80fbe5fe",
+            "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac",
+            "doc:pinned:76af659dfdd30bb62fe9f310:4000:8000:502554b24418835b",
+            "doc:pinned:76af659dfdd30bb62fe9f310:12000:16000:bca9c737ad38caee",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:8000:12000:2fd02ea2045b6d75",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:4000:8000:6a924cf49d18c34c",
+            "doc:1.64.0:ddfbb59d31684c36f2a2a871:0:4000:0705546ace8833dd",
+            "doc:1.64.0:aa4d6b18eeacf49cbad94381:4000:6248:1601bed289ad4380"
+          ],
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295",
+              "versions": []
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2",
+              "versions": []
+            }
+          ],
+          "version_safe": true,
+          "targets": {},
+          "stop_code": null
+        }
+      }
+    }
+  ],
+  "provider_calls": 0,
+  "quality_claim": false,
+  "human_usefulness": null,
+  "interpretation": "Availability of release-matched records to the model under the engine's exact USER-version scope; not semantic support, answer quality or held-out evaluation. Family labels report outcomes only and never select evidence."
+}
