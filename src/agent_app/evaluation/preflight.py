@@ -122,6 +122,49 @@ def _coverage(fixture, rubric_hash):
     return len(turns) > 1
 
 
+def _native_pins(fixture, corpus_hash):
+    """Check declared native pins only, never a physical index or semantic support.
+
+    The corpus hash is the evaluation corpus JSON verified by this preflight,
+    not the separate physical index manifest consumed by the live factory.
+    Historical fixed-evidence fixtures without native_scope stay unchanged.
+    """
+    conditions = [turn.get("gold", {}).get("evidence_condition") for turn in fixture["turns"]]
+    if "native_index" not in conditions and "native_scope" not in fixture:
+        return None
+    _need(
+        bool(conditions) and all(value == "native_index" for value in conditions),
+        "NativeEvidenceConditionRejected",
+    )
+    scope = fixture.get("native_scope")
+    _need(isinstance(scope, dict), "NativeIndexPinsRequired")
+    _need(scope.get("evidence_condition") == "native_index", "NativeEvidenceConditionRejected")
+    _need(
+        _text(scope.get("build"))
+        and re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}", scope["build"]) is not None
+        and scope["build"].casefold() != "pending_final_build",
+        "NativeIndexPinsRequired",
+    )
+    _need(
+        _text(scope.get("index_snapshot"))
+        and re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._:-]{0,159}", scope["index_snapshot"]) is not None,
+        "NativeIndexPinsRequired",
+    )
+    for key in ("corpus_manifest_sha256", "allowlist_sha256", "exclusion_manifest_sha256"):
+        _need(_hash(scope.get(key)), "NativeIndexPinsRequired")
+    _need(scope["corpus_manifest_sha256"] == corpus_hash, "NativeCorpusHashMismatch")
+    return {
+        key: scope[key]
+        for key in (
+            "build",
+            "index_snapshot",
+            "corpus_manifest_sha256",
+            "allowlist_sha256",
+            "exclusion_manifest_sha256",
+        )
+    }
+
+
 def _validate(paths, manifest, corpus, rubric, exposure, root, report):
     membership_error = "FixtureMembershipRejected"
     source_error, direct_error = ("CorpusSourcesRejected", "DirectAnswerReviewRequired")
@@ -178,6 +221,7 @@ def _validate(paths, manifest, corpus, rubric, exposure, root, report):
     pins = packet.get("fixtures", [])
     _need(isinstance(pins, list) and len(pins) == len(dev | test), membership_error)
     pinned, actual_paths, used_families, multidev, multitest = (set(), set(), set(), 0, 0)
+    native_pins, native_count = None, 0
     for pin in pins:
         fixture, digest, path = _reference(pin, None, root)
         case = fixture.get("case", {})
@@ -195,6 +239,14 @@ def _validate(paths, manifest, corpus, rubric, exposure, root, report):
         _need(match is not None and int(match[1]) in fixture_ids, "FixtureOriginRejected")
         _need(split != "test" or case.get("test_eligible") is True, "ExposedTestFamily")
         multi = _coverage(fixture, rubric_hash)
+        fixture_native_pins = _native_pins(fixture, corpus_hash)
+        if fixture_native_pins is not None:
+            _need(
+                native_pins is None or fixture_native_pins == native_pins,
+                "NativeIndexBindingMismatch",
+            )
+            native_pins = fixture_native_pins
+            native_count += 1
         multidev += multi and split == "dev"
         multitest += multi and split == "test"
         pinned.add(name)
@@ -259,6 +311,16 @@ def _validate(paths, manifest, corpus, rubric, exposure, root, report):
         families=len(families),
         corpus_sources=len(sources),
     )
+    if native_pins is not None:
+        report["native_index_declarations"] = {
+            "scope": "declared_final_packet_pins_only",
+            "fixture_count": native_count,
+            "binding_sha256": hashlib.sha256(
+                json.dumps(native_pins, sort_keys=True, separators=(",", ":")).encode("utf-8")
+            ).hexdigest(),
+            "physical_index_verified": False,
+            "semantic_support_assessed": False,
+        }
 
 
 def validate_final_bundle(
