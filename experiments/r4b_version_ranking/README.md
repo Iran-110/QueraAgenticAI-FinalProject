@@ -50,11 +50,11 @@ adapter and evidence-scope suites, 123 passed on Windows 11.
 ## Coverage, relevance and exclusion review
 
 ```bash
-uv run python scripts/r4b_coverage_relevance_review.py --receipt experiments/r4b_version_ranking/receipt-v1.json --labels experiments/r4b_version_ranking/relevance-labels-v1.json --output experiments/r4b_version_ranking/review-v1.json
+uv run python scripts/r4b_coverage_relevance_review.py --receipt experiments/r4b_version_ranking/receipt-v1.json --labels experiments/r4b_version_ranking/relevance-labels-v1.json --exclusion-manifest data/evaluation/split-e1-v1/split-manifest.json --output experiments/r4b_version_ranking/review-v1.json
 ```
 
-[Labels](relevance-labels-v1.json) are an assistant draft for Hassan's
-confirmation (`human_confirmed: false`), based on chunk text and the human
+[Labels](relevance-labels-v1.json) were drafted by the assistant and confirmed by Hassan
+(`human_confirmed: true`, not an independent review), from chunk text and the human
 case review; they are applied after retrieval and never select evidence.
 Required evidence: case A multiselect and fragment at the USER release plus
 the widget-behavior.md key-identity chunk (`0:4000`); case B button at the
@@ -68,14 +68,16 @@ USER release; case C none in corpus (answer-linked guide excluded).
 
 - Still missing in **every** arm: the widget-behavior.md chunk stating that
   key-based identity was introduced from v1.50 to v1.55. The case review says
-  this exact text must reach the model; index membership is not enough. Its
-  candidate rank per arm is recorded in the review output. This is the next
-  ranking gap for case A; the 1.50 release note is outside this corpus profile.
+  this exact text must reach the model; index membership is not enough.
+  Native/PR50 never fetch it (outside top 5). The R4b path fetches it as
+  candidate **23/25** (initial) and **16/25** (version turn), then the final
+  cap of 5 drops it: a ranking gap, not a retrieval or corpus gap. That is the
+  next R4 step, tuned on dev only. The 1.50 release note is outside this profile.
 - Exclusion holds: 0 indexed Issues/comments, only `doc` sources, no
   custom-classes guide or release note indexed, no final-bundle violation.
-  The seven reservations proposed in the PR55 review (4909, 6985, 7300, 7419,
-  8734, 13022, 14297) are not yet in this manifest; harmless while no Issue
-  is indexed, but required before any Issue-bearing build.
+  Checked against the final `split-e1-v1` manifest's `index_exclusion` as
+  well (count and hash in the review output): every listed Issue is absent
+  from this docs-only build. No `split-e1-v1/test` case or query was used.
 
 ## Limits
 

@@ -51,7 +51,40 @@ def required_met(item, final, version):
     )
 
 
-def review(receipt, labels, corpus):
+def exclusion_ids(manifest):
+    """Collect Issue numbers under every `index_exclusion` key of a split manifest."""
+    found = set()
+
+    def numbers(value):
+        if isinstance(value, bool):
+            return
+        if isinstance(value, int):
+            found.add(value)
+        elif isinstance(value, str) and value.lstrip("#").isdigit():
+            found.add(int(value.lstrip("#")))
+        elif isinstance(value, list):
+            for item in value:
+                numbers(item)
+        elif isinstance(value, dict):
+            for key in ("issue_id", "number", "id", "issue_ids", "issues"):
+                if key in value:
+                    numbers(value[key])
+
+    def walk(node):
+        if isinstance(node, dict):
+            for key, value in node.items():
+                if key == "index_exclusion":
+                    numbers(value)
+                walk(value)
+        elif isinstance(node, list):
+            for item in node:
+                walk(item)
+
+    walk(manifest)
+    return found
+
+
+def review(receipt, labels, corpus, final_exclusion=None):
     chunks = {chunk["chunk_id"]: chunk for chunk in corpus["chunks"]}
     exclusions = corpus["exclusions"]
     source_ids = {chunk["metadata"]["source_id"] for chunk in corpus["chunks"]}
@@ -60,12 +93,25 @@ def review(receipt, labels, corpus):
         "indexed_issue_count": exclusions["indexed_issue_count"],
         "indexed_comment_count": exclusions["indexed_comment_count"],
         "reserved_issue_ids": len(exclusions["reserved_issue_ids"]),
-        "proposed_reservations_not_yet_in_manifest": sorted(
+        "proposed_reservations_not_in_dev_coverage_manifest": sorted(
             set(PROPOSED_RESERVATIONS) - set(exclusions["reserved_issue_ids"])
         ),
         "only_doc_source_types": all(
             chunk["metadata"]["source_type"] == "doc" for chunk in corpus["chunks"]
         ),
+        "final_split_index_exclusion": None
+        if final_exclusion is None
+        else {
+            "manifest": final_exclusion["path"],
+            "manifest_sha256": final_exclusion["sha256"],
+            "issue_count": len(final_exclusion["ids"]),
+            "indexed_issue_count_in_this_build": exclusions["indexed_issue_count"],
+            "all_excluded_from_this_build": exclusions["indexed_issue_count"] == 0
+            and exclusions["indexed_comment_count"] == 0,
+            "proposed_pr55_reservations_missing": sorted(
+                set(PROPOSED_RESERVATIONS) - final_exclusion["ids"]
+            ),
+        },
         "denied_sources_indexed": sorted(
             s for s in source_ids if any(s.startswith(d) for d in DENIED_SOURCES)
         ),
@@ -183,11 +229,27 @@ def main():
     parser.add_argument("--receipt", type=Path, required=True)
     parser.add_argument("--labels", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument(
+        "--exclusion-manifest",
+        type=Path,
+        help="Final split manifest with index_exclusion, e.g. split-e1-v1/split-manifest.json",
+    )
     args = parser.parse_args()
     if args.output.exists():
         raise SystemExit("ReviewOutputExists")
     receipt_raw, labels_raw = args.receipt.read_bytes(), args.labels.read_bytes()
     receipt, labels = json.loads(receipt_raw), json.loads(labels_raw)
+    final_exclusion = None
+    if args.exclusion_manifest is not None:
+        raw = args.exclusion_manifest.read_bytes()
+        ids = exclusion_ids(json.loads(raw))
+        if not ids:
+            raise SystemExit("NoIndexExclusionFound")
+        final_exclusion = {
+            "path": args.exclusion_manifest.as_posix(),
+            "sha256": sha(raw),
+            "ids": ids,
+        }
     corpus_obj = build_pilot_corpus(SEED, SPLIT, ALLOWLIST)
     if corpus_obj.snapshot_id != receipt["index"]["snapshot_id"]:
         raise SystemExit("CorpusSnapshotMismatch")
@@ -200,7 +262,7 @@ def main():
         "labels_reviewer_kind": labels["reviewer_kind"],
         "labels_human_confirmed": labels["human_confirmed"],
         "snapshot_id": corpus_obj.snapshot_id,
-        **review(receipt, labels, corpus_obj.manifest["corpus"]),
+        **review(receipt, labels, corpus_obj.manifest["corpus"], final_exclusion),
         "known_out_of_corpus": labels["known_out_of_corpus"],
         "provider_calls": 0,
         "quality_claim": False,
