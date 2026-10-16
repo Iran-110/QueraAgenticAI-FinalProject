@@ -10,13 +10,13 @@ receiptهای قبلی تغییر نکرده‌اند.
 | بخش | شاهد موجود | باقی‌مانده برای اعلام اتمام |
 | --- | --- | --- |
 | core و اتصال | correction، وضعیت فعلی کاربر، شواهد نسخه‌دار، پیشنهاد جدا از اجرا، API/UI/SQLite | انتخاب تنظیم نهایی و کیفیت پاسخ با داوری مستقل |
-| صحت نرم‌افزار | source تازهٔ C4n یعنی `99e3bc6`: ۵۸۶۱ تست توسعه، یک deselection صریح؛ HTTP/SQLite۴۵۷/۴۵۷ C2k برای runtime یکسان | این اعداد کیفیت جواب مدل یا اجرای test نهایی نیستند |
+| صحت نرم‌افزار | source تازهٔ E2aa یعنی `a9f4358`: ۵۹۰۹ تست توسعه، یک deselection صریح؛ HTTP/SQLite۴۵۷/۴۵۷ C2k برای runtime یکسان | این اعداد کیفیت جواب مدل یا اجرای test نهایی نیستند |
 | RAG | Chroma واقعی، buildهای pinned، کنترل نسخه و بازپخش dev | بهبود packing/relevance و freeze نهایی corpus/index/config با حسن |
 | evaluation | ثبت۱۶dev/۱۵test و۱۴مسیر چندنوبتی شامل۷test در metadata؛ اجرای scripted ثبت‌شده روی۱۶dev،۲۷۳check | native gold/routes،v2 سه dev در صورت انتخاب rubric یکدست v1،vocabulary/rubric/split freeze،usefulness و ارزیابی نهایی با محمدحسن |
 | tracker | approval/edit/reject، stale409،restart/retry و شاهد lost-ACK | مرزهای باقی‌ماندهٔ T4 با بهنام/محمدحسن؛ recovery درخواست تأییدنشده پس از نابودی کامل session ثابت نشده |
 | هزینه | ledger و رسیدها حفظ‌اند؛ سه درخواست نامعلوم وhalt باقی است | مدرک provider و تطبیق usage/charge برای C5 |
 
-[verification تازهٔ C4n](receipts/enum-freeze-readiness-2026-10-16.json)
+[verification تازهٔ E2aa](receipts/question-coverage-state-2026-10-16.json)
 به source و artifactهای دقیق bind است؛ suite توسعه برای همین کد دوباره اجرا
 شد. [verification C2k](receipts/core-boundary-validation-2026-10-16.json)
 و [verification قبلی](../experiments/evaluation_readiness_v1/verification-v1.json)
@@ -36,8 +36,9 @@ test نهایی و evidence/gold آن برای این گزارش باز نشده
 [آمادگی freeze و Enum](enum-freeze-readiness.fa.md) اکنون descriptor جدا برای
 مقایسهٔ تنظیم‌های صریح دارد؛ metadata تاریخی تغییر نکرده و تنظیم نهایی انتخاب
 نشده است. تفاوت configها قابل ثبت است، ولی pin/runtime/quality خودکار احراز
-نمی‌شود. Enum هنوز fix تأییدشده ندارد. PR78 نیز در head ثبت‌شده به‌خاطر دو
-counterexample در projection گزارش باز مانده؛ شواهد این review در plan است.
+نمی‌شود. Enum هنوز fix تأییدشده ندارد. [گزارش سؤال PR78](question-coverage-state.fa.md)
+با حفظ v1 و review قبلی تصحیح شد؛ v2 فقطdev،۱۱ask در دسترس و۴extraoffer دارد.
+این شمارش بهبود تصمیم/پاسخ مدل یا معتبرشدن summary تاریخی test نیست.
 
 ## سیستم چه می‌کند و چرا این ساختار انتخاب شد؟
 

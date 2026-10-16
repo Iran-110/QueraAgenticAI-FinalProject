@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "task_id": "E2aa",
+  "recorded_at_utc": "2026-10-16T09:31:26.092879+00:00",
+  "kind": "offline_question_coverage_correction_and_local_publication_review",
+  "source_commit": "a9f43582996908efe4f112248d8748fa567d5e5e",
+  "base_commit": "e2432cd4e12685c4e1805a7ad48aaae2b4c816ee",
+  "pull_request": 78,
+  "original_pr_head": "3402a597d5d2f7749dfa8db7008779814806f9df",
+  "original_review_path": "docs/receipts/pr78-review-2026-10-16.json",
+  "original_review_sha256": "9b4c998d046b738016c3bd085e84b15b2f85a7bdf08c6d60ee1a7394cccfa30a",
+  "source_sha256": {
+    "scripts/report_question_coverage.py": "a9241115ec1c3dbe7d591bcb8fb6c477e6919c2de4f7205ca1b59397d1239297",
+    "tests/test_report_question_coverage.py": "a2d7170b65a26c475256b178ca23cf1814f71dbd6c54a0cd07bdcbbcfc60a6c4",
+    "data/evaluation/split-e1-v1/question-coverage-dev-v2.json": "890df9a23976c944dfe084d933ada9346b9c6f8dca28bc37deba3d77f6b5177f"
+  },
+  "baseline_reproduced": {
+    "review_sha256": "b10f101e5bd6b3f26c18ad9de1c23da00f17b82d0198c35e62c69b03b8fb5261",
+    "neutral_projection_counterexamples": 3,
+    "historical_dev_asks_available": 11,
+    "historical_dev_extra_offers": 4
+  },
+  "corrected_behavior": [
+    "No fact inferred from an incoming ask edge.",
+    "Independent per-case, per-path core transitions; mixed availability reported explicitly.",
+    "Actual contract normalization and canonical version intake.",
+    "Exact question target and wording checked against offered core catalog.",
+    "Bounded route hypotheses, not actual model/approval/release reachability.",
+    "Default dev only; resolved protected input paths rejected before file reads.",
+    "Explicit owner test processing exports aggregate counts only, including returned details.",
+    "Vocabulary validated and hashed from a single bounded strict byte snapshot.",
+    "Exclusive output creation; existing v1/v2 artifacts never overwritten."
+  ],
+  "prepublication_findings_retained": [
+    "Initial real-dev attempt rejected an ignored historical maintainer note; narrowly permitted text annotation, without workflow change.",
+    "Independent review requested protected-path checks, exclusive output creation and same-byte vocabulary binding; corrected before publication.",
+    "Documentation reproduction command changed to a fresh output path because committed v2 must not be overwritten."
+  ],
+  "dev_only": {
+    "fixtures_checked": 16,
+    "summary": {
+      "ask_branches": 11,
+      "by_question_source": {
+        "built_in_version": 5,
+        "vocabulary": 6
+      },
+      "by_path_availability": {
+        "all": 11,
+        "some": 0,
+        "none": 0
+      },
+      "distinct_targets_not_in_vocabulary": 0,
+      "gold_user_gaps_without_ask_route": 0,
+      "turns_offering_a_question_where_ask_is_not_acceptable": 4
+    },
+    "repeated_cli_output_bytes_equal": true,
+    "guarded_build": {
+      "exit_code": 0,
+      "protected_open_attempts": 0,
+      "held_out_contents_opened": 0,
+      "default_dev_only": true
+    },
+    "historical_test_summary_recomputed": false
+  },
+  "verification": {
+    "development_suite": {
+      "tests": 5909,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 5909,
+      "elapsed_seconds": 256.1,
+      "exit_code": 0,
+      "blocked_read_attempts": 0,
+      "held_out_contents_opened": 0,
+      "deselected": [
+        "tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture"
+      ],
+      "xml_sha256": "695d44e43aff29685e6c36c9c7ca019745e493d8b85f74c7d16bd53cc96732c3",
+      "log_sha256": "314d66ba53b43fa7428a483091f457d097164d842ecda85ea32524122b31e1c8"
+    },
+    "focused_tests_passed": 48,
+    "focused_tests_overlap_full_suite": true,
+    "independent_review": {
+      "review_kind": "independent_read_only_source_neutral_and_dev_review",
+      "source_hashes": {
+        "scripts/report_question_coverage.py": "a9241115ec1c3dbe7d591bcb8fb6c477e6919c2de4f7205ca1b59397d1239297",
+        "tests/test_report_question_coverage.py": "a2d7170b65a26c475256b178ca23cf1814f71dbd6c54a0cd07bdcbbcfc60a6c4",
+        "data/evaluation/split-e1-v1/question-coverage-dev-v2.json": "890df9a23976c944dfe084d933ada9346b9c6f8dca28bc37deba3d77f6b5177f",
+        "data/evaluation/split-e1-v1/question-coverage-v1.json": "918aed68d2a8c3c4643d5466919d1506ba0bd356e4583afc8b91e780beddd667"
+      },
+      "focused_tests": {
+        "passed": 48,
+        "failed": 0,
+        "exit_code": 0
+      },
+      "explicit_splits": [
+        "dev"
+      ],
+      "rebuild_equals_committed": true,
+      "returned_details_splits": [
+        "dev"
+      ],
+      "dev_fixtures": 16,
+      "dev_summary": {
+        "ask_branches": 11,
+        "by_question_source": {
+          "built_in_version": 5,
+          "vocabulary": 6
+        },
+        "by_path_availability": {
+          "all": 11,
+          "some": 0,
+          "none": 0
+        },
+        "distinct_targets_not_in_vocabulary": 0,
+        "gold_user_gaps_without_ask_route": 0,
+        "turns_offering_a_question_where_ask_is_not_acceptable": 4
+      },
+      "original_v1_hash_matches_pr78_head": true,
+      "protected_open_attempts": 0,
+      "new_model_calls": 0,
+      "native_clients_or_ledger_access": false,
+      "repository_edits": false,
+      "approved": true,
+      "limits": [
+        "Authored possible-path projection only; not model choice, actual runtime reachability, approval/release or answer quality.",
+        "No held-out fixtures/questions/gold read or test report recomputation."
+      ]
+    },
+    "ruff_check": "pass",
+    "ruff_format_checked_files": 371,
+    "git_diff_check": "pass",
+    "hosted_CI_success_claim": false,
+    "HTTP_SQLite_result": "C2k 457/457 receipt reused for identical runtime; no fresh HTTP/browser/Windows claim",
+    "HTTP_SQLite_receipt_path": "docs/receipts/core-boundary-http-sqlite-2026-10-16.json",
+    "documentation_review": {
+      "kind": "independent_assistant_read_only_claims_review",
+      "approved": true,
+      "new_human_quality_scores": false,
+      "scope": "Changed docs/plan and sanitized receipt; historical status, report/model separation, test overlap, CRLF and C5 limits."
+    }
+  },
+  "preservation": {
+    "all_current_physical_pins_unchanged": 19,
+    "checks": {
+      "ledger_sha256": true,
+      "physical_hashes": true,
+      "held_out_git_tree": true,
+      "historical_report_sha256": true,
+      "original_review_sha256": true,
+      "evaluation_configuration_sha256": true,
+      "development_git_tree": true,
+      "runtime_git_trees": true
+    },
+    "primary_ledger_sha256": "141c3536fb864595d94e0d0dd4a55976418def1012402b70f313c92050222785",
+    "historical_report_sha256": "918aed68d2a8c3c4643d5466919d1506ba0bd356e4583afc8b91e780beddd667",
+    "held_out_git_tree": "040000 tree b4711b3facc883fa1d87bf045d5dd119899545f5\tdata/evaluation/split-e1-v1/test",
+    "runtime_git_trees": {
+      "src": "6d463b9691721574b4b2bd77f05315f73515715c",
+      "config": "2890b0798148a5499fa4b01cc547aac67f57b9cd",
+      "app.py": "c05a9e92049f424b34d6ad8e9fcb88f4ece45f6e",
+      "pyproject.toml": "1f6e670a064155b54ecdfdaf9b0bfba1348e5009",
+      "uv.lock": "891a2b82cab2874e87013adc5016c93ae9263a77",
+      ".github": "391af0930917bb69558f6928e2868327be50ab7d"
+    },
+    "evaluation_configuration_sha256": {
+      "data/evaluation/split-e1-v1/split-manifest.json": "7e715f74118764415a321d6151d0d2a5135ae8279d5eebf9e1aee7edc07ca815",
+      "config/user-gap-support-dev-v1.json": "948c3348365ea6a5fe6385166e07cc5fb203958ffda6b45e090527000a6a3bfc",
+      "docs/evaluation-rubric-v1.md": "6144d275c64582408055c4636b2b1158f008fa5744679e890c519a8cd0a7d918",
+      "experiments/dev_rag_coverage_v1/human-output-card-review-v1.json": "49da80c5a99ffeed8930486b168631752104b58425ed087ca2f03bbc9a6de329"
+    },
+    "new_report_only_original_fixture_gold_manifest_exclusion_vocabulary_unchanged": true
+  },
+  "C5": {
+    "checks_passed": 36,
+    "checks_total": 36,
+    "all_checks_passed": true,
+    "ledger_files_unchanged": true,
+    "ledger_fullrow_snapshot_unchanged": true,
+    "C5_resolved": false,
+    "live_authorization_or_unhalt": false,
+    "closed_study_IDs_reusable": false
+  },
+  "limits": {
+    "quality_claim": false,
+    "new_paid_model_calls": 0,
+    "primary_native_index_clients_created": 0,
+    "provider_credentials_read": false,
+    "held_out_contents_opened": 0,
+    "runtime_renderer_default_or_contract_changes": false,
+    "new_human_scores": false,
+    "team_or_external_messages_sent": 0,
+    "Enum_fix_verified": false,
+    "configuration_or_manifest_frozen": false
+  },
+  "open_gates": [
+    "Independent usefulness and claim support on selected configuration; useful Enum/escalation guidance.",
+    "Separate native fixture/gold/routes and v2 three-dev rubric binding; final owner test report and manifest freeze.",
+    "Pinned final RAG build/exclusion and runtime configuration selection.",
+    "Provider evidence for three uncertain C5 requests; halt and all holds remain.",
+    "Final untuned held-out execution by evaluation owner."
+  ]
+}

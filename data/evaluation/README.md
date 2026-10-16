@@ -12,17 +12,22 @@ for optional dev vocabulary, separate native gold registration, rubric identity
 and text-only scope. A generic registered vocabulary is the available question
 space; the current core cannot invent arbitrary unregistered questions.
 
-Question coverage for split-e1-v1 against the fixed dev vocabulary
-(`config/user-gap-support-dev-v1.json`) is in
-[`split-e1-v1/question-coverage-v1.json`](split-e1-v1/question-coverage-v1.json),
-rebuilt by `scripts/report_question_coverage.py`. All 11 dev ask branches are
-available (5 built-in version, 6 vocabulary). In test, 2 of 7 ask branches need a
-question that is not in the vocabulary; this is reported as a system limitation
-and no test-derived question is added. The version question is also on offer in
-4 dev and 2 test turns where gold does not accept `ask`, a risk of unneeded
-questions. Test rows are counts only; `--show-test` prints them to stdout for the
-evaluation owner and never writes them. Availability is not proof that the model
-picks the right question.
+Question coverage against the fixed dev vocabulary is a separate offline
+report, not model quality. The original
+[`question-coverage-v1.json`](split-e1-v1/question-coverage-v1.json) is preserved
+as historical evidence: its simplified state projection had three independently
+reproduced counterexamples, documented in the
+[review](../../docs/receipts/pr78-review-2026-10-16.json). Its test counts have
+not been recomputed or verified by core development; they must not be used to
+tune questions. `scripts/report_question_coverage.py` now defaults to dev only,
+uses the actual core transition/catalog and bounded independent registered-path
+hypotheses, and writes a separate v2 report without overwriting an existing
+artifact. See [usage and limits](../../docs/question-coverage-state.fa.md).
+Mixed path availability is distinct from availability on every path. An
+incoming ask does not itself establish a fact, and this report does not attest
+to actual model choices, approval/release, question necessity or usefulness.
+Held-out execution remains with the evaluation owner after freeze; no
+test-derived question or alias is added.
 
 The additive [offline review workbench](../../docs/evaluation-workbench.fa.md)
 now prepares actual C4g/C4h turn contexts, full sources and blank SemanticReview

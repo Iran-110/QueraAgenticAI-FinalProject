@@ -48,8 +48,13 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
   authenticate pins, inspect runtime, establish quality or authorize live calls.
   Exported calls must not read credentials/environment/files or construct runtime;
   retain exact money identities and Decimal-context-independent cost checks.
-  PR78 head3402a59 remains unmerged after neutral report-projection counterexamples;
-  do not consume held-out content or tune vocabulary from its test counts.
+  PR78's original head3402a59 has immutable neutral projection counterexamples;
+  E2aa corrects the report separately, not runtime question behavior. Read
+  `docs/question-coverage-state.fa.md`. Preserve v1; default reporting is dev-only
+  and v2 uses bounded independent registered-path hypotheses with actual core
+  intake/transitions/catalog. Do not consume held-out content or tune vocabulary
+  from historical test counts. Explicit owner processing exports numeric test
+  summaries only and is not authorized during core development.
 
 - C2k reuses `detached_contract` at retrieval/analysis ingress, user-turn
   preparation, grounded/claim request validation and source hashing. Read

@@ -1,3 +1,41 @@
+## 2026-10-16 — E2aa: corrected PR78 question coverage projection
+
+[Usage and limits](question-coverage-state.fa.md),
+[verification](receipts/question-coverage-state-2026-10-16.json).
+Original PR78 head3402a59 and report/review bytes remain in history. Three neutral
+counterexamples reproduce before correction. The report now uses actual core
+normalization, canonical version intake, transitions and user-question catalog;
+independent case/path state prevents unanswered asks and sibling facts from
+becoming knowledge. Availability is all/some/none over bounded registered path
+hypotheses, not actual model choice, approval/release or runtime reachability.
+
+Default processing is dev-only. Resolved protected input paths reject before I/O;
+explicit evaluation-owner test processing exports numeric summary only, including
+the Python return value. Core development did not run it. Vocabulary definitions
+and raw SHA bind one bounded captured snapshot. Exclusive output creation retains
+all earlier reports. The first dev rebuild rejected a nonoperational historical
+maintainer note; its failed receipt is retained and the narrow annotation fix is
+tested. Review also corrected input-path, overwrite and vocabulary-binding gaps
+before publication; these are reporting fixes, not runtime flaws or quality gains.
+
+All16dev fixtures rebuild byte-identically to new v2:11asks available on all
+registered incoming paths (5version/6vocabulary),4extraoffers. Historical dev
+counts agree; test counts are neither recomputed nor verified. Source`a9f4358`:
+5909development tests pass, one held-out consumer explicitly deselected and
+0protected-open attempts. Root48focused controls and independent48repeat pass
+(overlap, not additive); Ruff371files. Original runtime/config/API/UI/tracker
+are unchanged, so C2k HTTP457evidence is reused rather than called a fresh run.
+
+Fresh C5read-only36/36and physical checks retain all19pins, ledger, threeholds,
+halt/ceiling/closedIDs, fixture/gold/manifest/exclusion/vocabulary and human scores.
+No paid model, primary index client, provider credential read or external/team
+message. Latest fetch/PR metadata had no new Hassan/Behnam push and unchangedPR78.
+Human feedback about weak escalation usefulness and CRLF display is recorded in
+the freeze-readiness document; no new technical hypothesis, renderer revision,
+Enum remedy or score is claimed. Native gold/routes, v2 rubric fixtures, selected
+configuration/usefulness, provider C5 evidence and final held-out evaluation stay
+open with their owners.
+
 ## 2026-10-16 — C4n: Enum quality audit and candidate configuration binding
 
 [Result/usage/open gates](enum-freeze-readiness.fa.md),
