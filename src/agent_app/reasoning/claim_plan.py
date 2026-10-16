@@ -495,7 +495,9 @@ def _source_inventory(request, source_indices):
     return "\n\n".join(inventory)
 
 
-def render_claim_plan(request: ClaimRequest, raw) -> AnalysisResult:
+def render_claim_plan(request: ClaimRequest, raw, *, review_brief: bool = False) -> AnalysisResult:
+    if type(review_brief) is not bool:
+        raise GroundingRejected("grounded_context_mismatch")
     request = validate_claim_request(request)
     plan = parse_claim_plan(raw)
     if plan.context_sha256 != request.context_sha256:
@@ -530,6 +532,51 @@ def render_claim_plan(request: ClaimRequest, raw) -> AnalysisResult:
             rationale="Seek additional supplied sources within the caller's existing limits.",
             retrieval_queries=plan.retrieval_queries,
         )
+    if review_brief:
+        from agent_app.reasoning.review_brief import format_review_brief
+
+        quotations = tuple(
+            (
+                grounded.evidence.hits[source],
+                request.blocks[source][block].start,
+                request.blocks[source][block].end,
+            )
+            for source, block in plan.passages
+        )
+        draft, summary, rationale = format_review_brief(
+            grounded,
+            decision=plan.decision,
+            question=question,
+            quotations=quotations,
+            plan_selected_ids={hit.chunk_id for hit, _start, _end in quotations},
+            scopes={
+                hit.chunk_id: source_scope(grounded.case, hit) for hit in grounded.evidence.hits
+            },
+            prior_conflict=_prior_conflict(grounded),
+            selected_user_facts=tuple(facts[i] for i in plan.user_facts),
+        )
+        try:
+            return AnalysisResult(
+                decision=plan.decision,
+                user_draft=draft,
+                maintainer_summary=summary,
+                rationale=rationale,
+                evidence_links=tuple(
+                    EvidenceLink(
+                        claim=(
+                            f"Selected exact source passage [{start},{end}) from "
+                            f"supplied chunk {hit.chunk_id}; scope={source_scope(grounded.case, hit)}; "
+                            "selection does not establish semantic support, cause or fix."
+                        ),
+                        chunk_id=hit.chunk_id,
+                    )
+                    for hit, start, end in quotations
+                ),
+                missing_info=(plan.question_name,) if question else (),
+                next_question=question,
+            )
+        except (ValidationError, ValueError, TypeError, RecursionError):
+            raise GroundingRejected("grounded_render_too_large") from None
     selected = []
     links = []
     user_passages: dict[int, list[str]] = {}
@@ -744,10 +791,18 @@ class ClaimReasoner(GroundedReasoner):
             make_grounded_request
         ),
         block_mode: Literal["paragraphs", "sections"] = "paragraphs",
+        review_brief: bool = False,
     ):
-        if type(block_mode) is not str or block_mode not in {"paragraphs", "sections"}:
+        if (
+            type(block_mode) is not str
+            or block_mode not in {"paragraphs", "sections"}
+            or type(review_brief) is not bool
+        ):
             raise GroundingRejected("grounded_context_mismatch")
-        super().__init__(planner, request_factory=request_factory)
+        if review_brief:
+            super().__init__(planner, request_factory=request_factory, review_brief=True)
+        else:
+            super().__init__(planner, request_factory=request_factory)
         self.block_mode = block_mode
         self.last_request: ClaimRequest | None = None
 
@@ -781,7 +836,11 @@ class ClaimReasoner(GroundedReasoner):
             raw = self.planner.plan(
                 request.model_copy(deep=True), context=context.model_copy(deep=True)
             )
-            result = render_claim_plan(request, raw)
+            result = (
+                render_claim_plan(request, raw, review_brief=True)
+                if self.review_brief
+                else render_claim_plan(request, raw)
+            )
             if result.decision == "retrieve_more" and (
                 not context.can_refine or len(result.retrieval_queries) > context.query_limit
             ):
