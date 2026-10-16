@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "fixture_id": "split-e1-v1-selectbox-seven-14989-v1",
+  "registered_on": "2026-10-15",
+  "registered_before_first_run": true,
+  "purpose": "Selectbox with exactly seven options hides its first option after choosing the last; fixed in 1.58.0 per release notes.",
+  "case": {
+    "case_id": "test-case-15",
+    "split": "test",
+    "family_issue_ids": [
+      14989
+    ],
+    "origin_url": "https://github.com/streamlit/streamlit/issues/14989",
+    "source_snapshot_date": "2026-10-06",
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "test_eligible": true,
+    "exposure": "Held-out test case. The evaluation curator (mhg with assistant drafting) read the Issue thread to author gold; it was not used in core development, prompt tuning, retrieval tuning or model selection. Core developers must not open this file before the final test run."
+  },
+  "evidence_source": {
+    "path": "data/evaluation/split-e1-v1/evidence-test-b-v1.json",
+    "sha256": "da2c1514ce57af260fc33b4e1d81ee48cb673c5edfbafd67cd113ff42afc96b3",
+    "bundles_used": [
+      "selectbox-seven"
+    ],
+    "note": "Fixed seed-backed evidence, not index output. Issue/comment/outcome text excluded."
+  },
+  "boundaries": {
+    "agent": "scripted AnalysisResult for offline plumbing; live ignores agent_script/gold/future turns",
+    "real_model_calls": 0,
+    "api_cost_usd": 0,
+    "storage": "evaluation runner process-local API/DummyTracker; not production durable tracker",
+    "quality_claim": false,
+    "max_reached_turns": 1,
+    "visible_to_agent": [
+      "currently selected turns[].visible"
+    ],
+    "runner_only": [
+      "gold",
+      "agent_script",
+      "maintainer",
+      "probes",
+      "evaluation.coverage",
+      "future turns"
+    ]
+  },
+  "initial_report_provenance": {
+    "kind": "developer_paraphrase_of_latest_cached_body",
+    "source_path": "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+    "issue_number": 14989,
+    "source_created_at": "2026-04-30T19:31:31Z",
+    "source_updated_at": "2026-05-02T00:35:16Z",
+    "source_issue_record_sha256": "4e8fb4f64c49f16b0f0fbaa1f951f8fb7699b8c51a0bfe7b2f98b617ba79f872",
+    "original_initial_text_verified": false,
+    "note": "Cached body can contain later edits. No later comments/outcomes are supplied as the initial user message."
+  },
+  "turns": [
+    {
+      "id": "initial",
+      "conversation_source": "developer_paraphrase_of_latest_cached_issue_body",
+      "visible": {
+        "unknowns": [],
+        "checks_performed": [
+          "Compared 6, 7 and 8+ options",
+          "Worked in 1.54"
+        ],
+        "context_changed": false,
+        "message": "With `st.selectbox('Test', options=['1','2','3','4','5','6','7'])`, if I select the last option and open the dropdown again, the first option is missing. With 6 or fewer, or 8 or more options, it works. It worked in 1.54. Streamlit 1.56, Python 3.14.0, Windows 11, Chrome and Edge.",
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.56"
+          },
+          {
+            "name": "reported_observation",
+            "value": "First option hidden after selecting the last of exactly seven options"
+          }
+        ]
+      },
+      "evidence_bundle": "selectbox-seven",
+      "agent_script": {
+        "decision": "answer",
+        "user_draft": "This is fixed in Streamlit 1.58.0: st.selectbox no longer hides its first option when exactly seven options are present and the last is selected. Upgrading from 1.56 to 1.58.0 or later should resolve it.",
+        "maintainer_summary": "1.56 regression fixed in 1.58.0.",
+        "rationale": "Release note matches the exact symptom.",
+        "evidence_links": [
+          {
+            "claim": "1.58.0: st.selectbox no longer hides its first option with exactly seven options.",
+            "chunk_id": "e1t-rn-1580-selectbox-seven"
+          }
+        ]
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "rubric_id": "e2-rubric-v1",
+        "evidence_condition": "controlled_fixed_evidence",
+        "stratum": "answerable",
+        "acceptable_decisions": [
+          "answer"
+        ],
+        "decision_conditions": {
+          "answer": "Name the 1.58.0 fix and recommend upgrading from 1.56."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [],
+        "required_sources": [
+          "e1t-rn-1580-selectbox-seven"
+        ],
+        "unacceptable_claims": [
+          "The fix is in 1.56 or 1.57.",
+          "The user should limit the selectbox to six options as the documented fix.",
+          "The version is asked again."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality."
+      },
+      "expect": {
+        "revision": 1,
+        "pending_decision": "answer",
+        "after_decision": {
+          "status": "answer_sent",
+          "released_draft": "agent"
+        }
+      }
+    }
+  ],
+  "evaluation": {
+    "coverage": {
+      "turn_ids": [
+        "initial"
+      ],
+      "routes": [
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "answer"
+          }
+        }
+      ]
+    }
+  }
+}

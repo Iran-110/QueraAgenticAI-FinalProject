@@ -351,10 +351,11 @@
         17112
       ],
       "exclude_issue_ids": [
-        17112
+        17112,
+        17011
       ],
       "selection": "keep_reserved",
-      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development.",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development. #17011 added: a maintainer identified it as the same bug.",
       "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
     },
     {
@@ -562,6 +563,7 @@
       16727,
       16732,
       16914,
+      17011,
       17030,
       17093,
       17112,
@@ -593,9 +595,10 @@
     "data/evaluation/dev-three-v1/split-manifest.json"
   ],
   "blockers": [
-    "Fixtures and gold for the remaining 8 test and 13 dev cases (E2, rubric v1)",
-    "Multi-turn: 7 test and 3 dev registered (10 total, 7 in test); more planned",
+    "Fixtures and gold for the 13 remaining dev cases (E2, rubric v1)",
+    "Multi-turn: 7 test and 3 dev registered (10 total, 7 in test)",
     "New user-gap names session_entry_page and runtime_version_check need the reviewed vocabulary before live runs",
+    "Human review of the test gold before freeze",
     "Freeze after fixtures; Hassan rebuilds the index from index_exclusion"
   ],
   "registered_fixtures": {
@@ -620,11 +623,41 @@
         ]
       },
       {
+        "path": "data/evaluation/split-e1-v1/test/callback-trigger-10102-v1.json",
+        "sha256": "c1ba57fc6d3e59564e28e7b0184e7cfee62d3916bda943905c82313806cb9a44",
+        "case_id": "test-case-10",
+        "family_issue_ids": [
+          10102,
+          16732,
+          17215,
+          14710
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/callback-value-5305-v1.json",
+        "sha256": "3bdaa7cf7cefe1f8229de00eea0fc3207136a902cd1b874daee6a271cfc3b5ca",
+        "case_id": "test-case-11",
+        "family_issue_ids": [
+          5305,
+          5498,
+          16727
+        ]
+      },
+      {
         "path": "data/evaluation/split-e1-v1/test/chat-6320-v1.json",
         "sha256": "624d2e541841efff1706a91d6e85528ac3ba160ae001d02d686f603956ca02cc",
         "case_id": "test-case-01",
         "family_issue_ids": [
           6320
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/fragment-dialog-17112-v1.json",
+        "sha256": "3167c9131bda55453df004b656118c6700220e1cc5c0d6b3f7f6176475bdbe60",
+        "case_id": "test-case-13",
+        "family_issue_ids": [
+          17112,
+          17011
         ]
       },
       {
@@ -658,16 +691,76 @@
         "family_issue_ids": [
           12633
         ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/selectbox-session-13435-v1.json",
+        "sha256": "42676005faa9b158cfe2f93a68b5665382512817b04a1d9a4b57130a3bad0e94",
+        "case_id": "test-case-14",
+        "family_issue_ids": [
+          13435
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/selectbox-seven-14989-v1.json",
+        "sha256": "009eb99fa4ee07fa832764a06b41bd19384f08abb6ded3818f99b6aef24f3f55",
+        "case_id": "test-case-15",
+        "family_issue_ids": [
+          14989
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/session-memory-12506-v1.json",
+        "sha256": "315201f56129be622086bfb5e0fbf8ffb7675550252c94b20d4932104f862c7f",
+        "case_id": "test-case-08",
+        "family_issue_ids": [
+          12506
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/state-init-10089-v1.json",
+        "sha256": "7de542c6abd8f1658a6cf4c64113d470bc1e4af65a209ee2c3a34ec9c5e9af73",
+        "case_id": "test-case-09",
+        "family_issue_ids": [
+          10089,
+          14717,
+          16242
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/switch-page-state-11115-v1.json",
+        "sha256": "ad7619154dedb0fd24b6b79d4f9c67a57f8da1e565604c48e77c031da915ac17",
+        "case_id": "test-case-12",
+        "family_issue_ids": [
+          11115
+        ]
       }
     ],
-    "evidence": {
-      "path": "data/evaluation/split-e1-v1/evidence-test-v1.json",
-      "sha256": "c3fa200f2e9b72b4da8e3030034bdc7206e28f5c3a24d444029c4971f20f90e2"
-    },
+    "evidence": [
+      {
+        "path": "data/evaluation/split-e1-v1/evidence-test-v1.json",
+        "sha256": "c3fa200f2e9b72b4da8e3030034bdc7206e28f5c3a24d444029c4971f20f90e2"
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/evidence-test-b-v1.json",
+        "sha256": "da2c1514ce57af260fc33b4e1d81ee48cb673c5edfbafd67cd113ff42afc96b3"
+      }
+    ],
     "multi_turn_registered": {
       "dev": 0,
       "test": 7,
       "note": "The three dev-three multi-turn fixtures live in data/evaluation/dev-three-v1/."
+    },
+    "test_strata": {
+      "all_turns": {
+        "ambiguous": 5,
+        "needs_escalation": 7,
+        "answerable": 10
+      },
+      "first_turn": {
+        "ambiguous": 5,
+        "answerable": 6,
+        "needs_escalation": 4
+      }
     }
   }
 }
