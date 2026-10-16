@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "task": "E2ac",
+  "date": "2026-10-16",
+  "pull_request": 81,
+  "base_main": "a2ef54d2d1a0297cadde7604655840b91632a211",
+  "original_pr_head": "77ffd9c88e8489516119e6e4e7510a00850960b9",
+  "integrated_base": "4b813147ec929eabd7ea673d356e04e902a799f9",
+  "verified_source_commit": "f35804a06cf153a7f513af26e0707dddeef87793",
+  "scope": "Two dev initial escalation gold clauses amended additively; no runtime/model/retrieval behavior change.",
+  "changes": {
+    "active_registration": "data/evaluation/split-e1-v1/native/native-registration-dev-v2.json",
+    "active_registration_sha256": "87f67c6d1098decd740e9dfb7ff0a88caf0d7d1e5fdca1f896ca8fadc810909f",
+    "selection": {
+      "total": 16,
+      "unchanged_v1": 14,
+      "amended_v2": 2
+    },
+    "review": "data/evaluation/split-e1-v1/native/native-dev-gold-amendment-v2.json",
+    "review_sha256": "6abf620ffbec718a1d7cfe6e0ab7527fb15fb557d9b92a9d94df30782db2abfb",
+    "new_fixtures": [
+      {
+        "case_id": "dev-case-m",
+        "path": "data/evaluation/split-e1-v1/native/dev-v2/fragment-rerun-9180-native-v2.json",
+        "sha256": "c00ab3fe6d5e5d1a60618c3ad8615688038035de9aafe3e4da6decf80b4a4746",
+        "native_of": "data/evaluation/split-e1-v1/dev/fragment-rerun-9180-v1.json"
+      },
+      {
+        "case_id": "dev-case-i",
+        "path": "data/evaluation/split-e1-v1/native/dev-v2/tabs-blank-9259-native-v2.json",
+        "sha256": "12aa3893129c904e3446cbc8dcc286af2634e2ac0ba77d8df6bc4db6b7cb5087",
+        "native_of": "data/evaluation/split-e1-v1/dev/tabs-blank-9259-v1.json"
+      }
+    ],
+    "only_semantic_json_pointer": "/turns/0/gold/decision_conditions/escalate"
+  },
+  "verification": {
+    "focused": {
+      "passed": 233,
+      "new_tests_included": 10,
+      "test_files": [
+        "tests/test_native_gold.py",
+        "tests/test_native_gold_amendment.py",
+        "tests/test_evidence_observation.py",
+        "tests/test_native_review_boundaries.py",
+        "tests/test_eval_conditional_routes.py",
+        "tests/test_eval_runner.py",
+        "tests/test_evaluation_semantic_review.py"
+      ],
+      "log_sha256": "dd1a66a043fdb8b07d9f5e38302f6e955f08bffba33f7e65e8ae576e3c01c5e5",
+      "test_amendment_sha256": "cddfb3cdaa8807b9ee4e93d73ea9ca7eead34081fd7c34b6998d74074a31766d",
+      "broad_suite_rerun": false,
+      "held_out_consumer": "tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture not selected (targeted suite only)."
+    },
+    "offline_scripted": {
+      "summary": {
+        "cases": 16,
+        "turns": 23,
+        "planned_turns": 23,
+        "coverage_complete": true,
+        "registered_turns": 23,
+        "unvisited_registered_turns": 0,
+        "selected_path_complete": true,
+        "completed_multi_turn_paths": 7,
+        "completed_multi_turn_test_paths": 0,
+        "checks": 273,
+        "failed": 0,
+        "cases_all_passed": 16,
+        "decisions": {
+          "answer": 13,
+          "ask": 6,
+          "escalate": 4
+        },
+        "latency_ms_total": 60.8,
+        "cost_usd_total": "0",
+        "settled_usd_total": "0",
+        "reserved_usd_total": "0",
+        "uncertain_usd_total": "0",
+        "accounting_complete": true,
+        "unaccounted_requests": 0,
+        "fixture_branches_unavailable": 0
+      },
+      "receipt_sha256": "053e902c540857aff71df9d06fba5e20667a781350b759b25af33b50b3b386c9",
+      "selection": "Explicit16paths pinned in registration v2; existing runner CLI, conditional routes, no final packet flags.",
+      "interpretation": "Scripted fixture evidence; operational/route checks only, not real-index/model quality."
+    },
+    "ruff": {
+      "lint": "passed",
+      "format_check": "passed",
+      "python_files": 391
+    },
+    "initial_failures": {
+      "focused_initial": {
+        "passed": 229,
+        "failed": 4,
+        "cause": "New test helper omitted required Fact.turn_id; fixed using actual visible turn ID. No product/artifact change.",
+        "log_sha256": "fa4c39bee63c2a686a497c7d035c56bd75f417fac2646f798b8cb751141317c7"
+      },
+      "independent_initial": "Same helper defect6pass/4fail, then10pass.",
+      "preparation": "Initial output-path calculation selected Desktop/output and failed before reading preservation baseline or changing artifacts; empty task directory removed and correct project output root selected."
+    },
+    "parent_audits": [
+      {
+        "scope": "Parent interpreter, not subprocess attestation",
+        "blocked_attempts": [],
+        "exit_code": 0
+      },
+      {
+        "scope": "Parent interpreter, not subprocess attestation",
+        "blocked_attempts": [],
+        "exit_code": 0
+      }
+    ],
+    "audit_limit": "Parent interpreter only; not attestation of every subprocess.",
+    "independent_review": {
+      "semantic": "core_release_review approved both clauses and preservation; no blocker.",
+      "graph": {
+        "report_sha256": "122ce078537bfea1bfa06dbdcbc7ef68afe5302e095c482909470d98f2cfaf38",
+        "approved": true,
+        "original_native_files_preserved": 18,
+        "turns": 23,
+        "routes": 52,
+        "requirement_blocks": 17,
+        "requirements": 20,
+        "alternatives": 46
+      },
+      "tests": {
+        "agent": "human_review77",
+        "reviewer_kind": "assistant",
+        "passed": 10,
+        "overlaps_focused": true,
+        "sha256": "cddfb3cdaa8807b9ee4e93d73ea9ca7eead34081fd7c34b6998d74074a31766d"
+      },
+      "human_verdicts_created": 0
+    }
+  },
+  "preservation": {
+    "ledger_sha256": "141c3536fb864595d94e0d0dd4a55976418def1012402b70f313c92050222785",
+    "physical_hashes": {
+      "data/evaluation/dev-three-v1/scenario-review-v1.json": "c5297daa3ccd966e20b5c9941345ac5218f4e94904b414722024b738268993c6",
+      "data/evaluation/dev-three-v1/exposure-review-v1.json": "ae63d11b8a86a887741ef05c87a229da3fcf580f9e145180f6239af61f360d95",
+      "data/evaluation/dev-three-v1/case-review-v1.json": "eee885146517c8463c1165e1380c99f386701593547a4cecb1512ef9f650abaa",
+      "data/evaluation/dev-three-v1/evidence-v1.json": "d8ddd2dd8234fe328cc49326de1cc83d9096fe833bce254812c44d20a9f79521",
+      "data/evaluation/dev-three-v1/user-gap-vocabulary-v1.json": "d3b63719554f35d1addec14586ebc4fcb10231844097fcea65458ee01d0b6736",
+      "data/evaluation/dev-three-v1/split-manifest.json": "f857fc559673c7ae2f508617fda3f81e3591157740e327109b00ae9a86f449ce",
+      "data/evaluation/dev-three-v1/cases/pilot-12782-v1.json": "6b542b325ac70906b014c9ac9a7bd01fb95c81a9219794f695de1e09de76c901",
+      "data/evaluation/dev-three-v1/cases/enum-8129-v1.json": "c5becdc00a950941cb25de8f775fc1a5b024d54f607a9c494bd9e7820ab216f0",
+      "data/evaluation/dev-three-v1/cases/icon-9770-v1.json": "199b47b1c3a65e853d49ec28d9607eec36982502bd2fd5bde1c640165e35c413",
+      "data/evaluation/split-manifest.json": "78e630cbef86937f2838795a2329ee56e16ea0beef7900db5c63d5fede6404ff",
+      "experiments/dev_rag_coverage_v1/allowlist.json": "ec1d2383f79b11920b3b02ec79d01e6e3d4f180ee51d7d85fb522e9feceaca70",
+      "experiments/dev_rag_coverage_v1/split-manifest.json": "dd50ef2eb883abd8bbea356bda30fddb60861ff173522fc5f4237481a7835e9e",
+      "experiments/corpus/pilot-allowlist.json": "209037d964182070744f608b79b676eb56c072e7655aee440ad75287aa117729",
+      "runtime/dev-rag-coverage-2026-10-14-v1/coverage-18/pilot-manifest.json": "24815c44f7d7e104a59579d444e8abce429f02b594dd6679165c0fbc381b9239",
+      "runtime/dev-rag-coverage-2026-10-14-v1/coverage-18/chroma.sqlite3": "9182440366719e0b25e3e9602fc91fa4fcd77aa3b5c4fc0976f76ee067ca1d20",
+      "runtime/dev-rag-coverage-2026-10-14-v1/coverage-18/5e589f1f-3f80-4bde-b7dd-26c027c129e1/data_level0.bin": "6927a267c5bf734eec8ceb2043db191c3dc37cb9a349be3875d57fb0b384d85b",
+      "runtime/dev-rag-coverage-2026-10-14-v1/coverage-18/5e589f1f-3f80-4bde-b7dd-26c027c129e1/length.bin": "7a12e561363385e9dfeeab326368731c030ed4b374e7f5897ac819159d2884c5",
+      "runtime/dev-rag-coverage-2026-10-14-v1/coverage-18/5e589f1f-3f80-4bde-b7dd-26c027c129e1/link_lists.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "runtime/dev-rag-coverage-2026-10-14-v1/coverage-18/5e589f1f-3f80-4bde-b7dd-26c027c129e1/header.bin": "1ccd9d7b0ac11604ccd409189a9300550d70e0f131002c31be8346e07b069297"
+    },
+    "held_out_git_tree": "b4711b3facc883fa1d87bf045d5dd119899545f5",
+    "split_manifest_sha256": "ceb4cf2d4eca4542ec7efc6317633311e11574c21fa5651cdc9bf536cc78c185",
+    "vocabulary_sha256": "948c3348365ea6a5fe6385166e07cc5fb203958ffda6b45e090527000a6a3bfc",
+    "git_objects": {
+      "src": "96aeba8cae6c0633a675e381103a2d685f638ca6",
+      "config": "fa1d782ffa014acd708f6c043087eaf38f33e0e5",
+      "app.py": "c05a9e92049f424b34d6ad8e9fcb88f4ece45f6e",
+      "pyproject.toml": "1f6e670a064155b54ecdfdaf9b0bfba1348e5009",
+      "uv.lock": "891a2b82cab2874e87013adc5016c93ae9263a77",
+      ".github": "391af0930917bb69558f6928e2868327be50ab7d",
+      "experiments": "6f61785fc819a235ed093722ed8996c568e8ada8"
+    },
+    "historical_native_sha256": {
+      "data/evaluation/split-e1-v1/native/dev/args-tuple-4164-native-v1.json": "a8174ec93cce6a6129ade992b9b65a69f38730e305f85a7507cf9a6cd5466e48",
+      "data/evaluation/split-e1-v1/native/dev/checkbox-reset-1924-native-v1.json": "b565c49460c19ff72118c774b0370b94e3fc29aa98003aef2c863bcae60299c2",
+      "data/evaluation/split-e1-v1/native/dev/checkbox-value-key-12165-native-v1.json": "b12e22aae84cf9f68dc216a0dc026d5114d473dc7713b6b9249ab4e25590c753",
+      "data/evaluation/split-e1-v1/native/dev/conditional-widget-9082-native-v1.json": "2a243d5cc0153b48b564fc6a06fb7ec80bd59620763b4b2a595e0ba148bd6c48",
+      "data/evaluation/split-e1-v1/native/dev/date-range-4884-native-v1.json": "6fe0e1cf38d829f526840a52a6c2b5784ea21b2d0648c4ab1474031cd6ff0ed1",
+      "data/evaluation/split-e1-v1/native/dev/enum-8129-native-v1.json": "3fc72a59fc54f3a657a029c443de9d670a7cad909d870503258fe93613e0fb1f",
+      "data/evaluation/split-e1-v1/native/dev/form-callback-8136-native-v1.json": "f42e4efc5d6e751bf22731dbd0466de9e63e12c29d50468a884840a1487174c2",
+      "data/evaluation/split-e1-v1/native/dev/fragment-rerun-9180-native-v1.json": "7137bde0b3019ee845c7220f31fe0915aa5623ad0b1f12242df36d9466fa9c16",
+      "data/evaluation/split-e1-v1/native/dev/icon-9770-native-v1.json": "9a5a8f2fa12bb229165ea7e127d52b868303407ee3fe1956adfcf5dfb97a9d4a",
+      "data/evaluation/split-e1-v1/native/dev/pilot-12782-native-v1.json": "e36bab4483685b32af77c6db7f713ddba3218402097d18db1c4a5a37077591fe",
+      "data/evaluation/split-e1-v1/native/dev/range-assign-9342-native-v1.json": "64277f5301b6f034bef169c83479523a88e66e9d8ce019d8d6265e0955f5e608",
+      "data/evaluation/split-e1-v1/native/dev/rerun-widgets-3533-native-v1.json": "cf9d0b5aa28952a548fa276c391a90333efcfa494045783fa06bfff2925c616e",
+      "data/evaluation/split-e1-v1/native/dev/state-clear-12740-native-v1.json": "592397b07618f7929a67625253b1b0ef383473f1517623b5e6088f67ec0793b4",
+      "data/evaluation/split-e1-v1/native/dev/state-typing-9455-native-v1.json": "8804058d595c5d6ef34baf668458d7be8be4c393212c34faba8bd237d0138159",
+      "data/evaluation/split-e1-v1/native/dev/status-fragment-16281-native-v1.json": "33a6db34bf6468a46baa0b0034c14a825aa33c1a1ad20ed6c1bb24069d758c08",
+      "data/evaluation/split-e1-v1/native/dev/tabs-blank-9259-native-v1.json": "f4f96f01e7876084855c811f598029acf56153dee7c1acb4a0e98ab30473909c",
+      "data/evaluation/split-e1-v1/native/native-registration-dev-v1.json": "c8f5a04521d064828ee7582f4d3defbe5dcc298a622173969020708ee621a406",
+      "data/evaluation/split-e1-v1/native/native-dev-gold-review-v1.json": "8bed9ba7400de3759a47dd17aa7253540c79966049cd7411837a4adc4c56ce38"
+    },
+    "historical_receipts_git_tree": "872f71b1aade4fca71a3cb185bb245223ed24a17",
+    "physical_19_match": true,
+    "original_native_18_match": true,
+    "primary_ledger_match": true,
+    "runtime_source_and_config_match": true,
+    "fixed_manifest_and_vocabulary_match": true,
+    "held_out_git_tree_match": true,
+    "ledger_semantic_state": "Unchanged raw bytes versus known prior epoch: halted,3unknown holds; no provider reconciliation or release.",
+    "test_content_opened": false
+  },
+  "publication_policy": {
+    "authority": "Existing user authorization to publish after local tests/review while GitHub Actions billing is unavailable.",
+    "ci_pass_claim": false,
+    "original_head_checks": "GitHub run38925225512 failed before job steps; successful CI not claimed.",
+    "runtime_activation": false,
+    "ci_block_reason": "Verified original-head run38925225512 annotation: jobs not started because recent account payments failed or spending limit needs increase."
+  },
+  "limits": [
+    "Human confirmation of the two new clauses is pending; v1 human verdicts do not transfer.",
+    "Final native build/allowlist/exclusion hashes remain pending_final_build.",
+    "The unchanged answer anchor condition needs separate semantic/anchor review for adequate equivalent evidence without an observed registered anchor.",
+    "Prose decision conditions and semantic support are not automatically scored by runner.",
+    "No fresh real-model quality, final test or shared freeze claim.",
+    "C5 and full-session UI review recovery remain separate open gates."
+  ],
+  "paid_api_calls": 0,
+  "team_messages_sent": 0,
+  "local_evidence_directory": "/Users/sasan/Desktop/Agentic AI/output/pr81-native-dev-amendment-2026-10-16-v1",
+  "protocol_sha256": "20dec8ab4122a6d20f297cbaa85bae7dc0c141490b0dc0ad99fbd9f8ee86556b"
+}

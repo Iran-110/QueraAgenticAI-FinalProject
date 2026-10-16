@@ -24,7 +24,24 @@ Rules, agreed with Sasan in [native evidence review](../../../../docs/native-evi
 - Pins (`native_scope`) are `pending_final_build` until Hassan's final build,
   allowlist and exclusion exist. The gold is not valid for a run before then.
 
-dev: [registration](native-registration-dev-v1.json) of 16 fixtures and the
+Current dev selection: [registration v2](native-registration-dev-v2.json), with
+14 unchanged v1 fixtures and two additive fixtures in `dev-v2/`. Only the initial
+escalation conditions for fragment-rerun and tabs-blank change: an actual material
+documentation/applicability gap and a concrete next step are required; reporting
+a 1.38.0 remedy without supplied support is not required or permitted. A missing
+observer match alone is not a semantic gap. The known USER version is not asked
+again. Answer conditions, tabs follow-up, visible inputs, scripts, routes and
+passage requirements/hashes are unchanged. The scripted offline path still
+supplies its original fixture evidence; it is plumbing, not native model quality.
+
+The [amendment record](native-dev-gold-amendment-v2.json) binds both new hashes
+and their exact predecessors. It is **assistant review**, with human confirmation
+of the two changed clauses still pending; historical human verdicts are not
+transferred to the new bytes. Build pins remain `pending_final_build`. Select
+exactly the 16 paths in v2; do not recursively collect old and new versions.
+See [E2ac verification and command](../../../../docs/native-dev-gold-amendment.fa.md).
+
+Historical dev v1: [registration](native-registration-dev-v1.json) of 16 fixtures and the
 [human review](native-dev-gold-review-v1.json) (mhg, 2026-10-16: 14 correct and
 2 unsure, both amended and then correct; one label fix after review). Five cases
 (d, f, h, i, m) need release notes, which the current 18-source index lacks.

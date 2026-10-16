@@ -65,8 +65,10 @@ collection حذف شد. ۱۲۹ regression تازه داخل همین شمارش 
 ## باقی‌ماندهٔ مشترک
 
 حسن build و exclusion نهایی را pin می‌کند؛ محمدحسن native gold/routes، freeze و
-review انسانی تنظیم منتخب را جمع می‌کند. در PR81 دو شرط escalation مربوط به
-fix بدون passage نیاز به اصلاح دارند؛ این PR هنوز فعال/merge نشده است.
+review انسانی تنظیم منتخب را جمع می‌کند. دو شرط escalation مربوط به fix بدون
+passage در PR81 با [نسخهٔ افزایشی E2ac](native-dev-gold-amendment.fa.md) اصلاح
+شدند؛ ثبت فعال ۱۶ dev، تأیید انسانی دو بند تازه و pin بیلد را از هم جدا می‌کند.
+این ثبت مجوز اجرای native پیش از pin نهایی نیست.
 ادعای قبلی ما دربارهٔ rollback plan اشتباه بود؛ diff از merge-base فقط یک خط
 اضافه می‌کند. [تصحیح ثبت‌شده](core-selected-runner-acceptance.fa.md) receipt
 تاریخی C4r را عوض نمی‌کند. بهنام و محمدحسن مرز session تازهٔ review تأییدنشده را

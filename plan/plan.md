@@ -4,6 +4,21 @@
 
 ## وضعیت فعلی
 
+- [x] **E2ac — اصلاح دو ابهام gold در PR81 روی dev؛ ساسان.**
+  [شرح و بازتولید](../docs/native-dev-gold-amendment.fa.md)،
+  [رسید](../docs/receipts/native-dev-gold-amendment-2026-10-16.json).
+  دو شرط initial escalation برای fragment/tabs دیگر ادعای fix بدون شاهد را
+  لازم نمی‌دانند؛ کمبود مهمِ واقعی، قدم بعدی و حفظ راهنمایی مستند شرط‌اند.
+  USER نسخهٔ1.37.0 را گفته؛ gap منبع سؤال مجدد نسخه نیست. ثبت فعال dev v2
+  دقیقاً۱۴fixtureقبلی+۲نسخهٔجدید است؛۱۸فایلv1 و review انسانی آن عین byte
+  محفوظ‌اند. answer، follow-up، passage/hash، ورودی، script و route ثابت‌اند.
+  اجرای scripted تازه۱۶case/۲۳turn/۲۷۳check پاس؛ این RAG/کیفیت مدل تازه نیست.
+  ۲۳۳تست مرتبط شامل۱۰regressionتازه و Ruff/format۳۹۱فایل پاس؛ بررسی گستردهٔ
+  قبلی تکرار نشده و CIسبز ادعا نمی‌شود. نقص helper تست اولیه اصلاح و log حفظ شد.
+  review مستقل معنایی و hash-graph بدون blocker؛ تأیید انسانی دو بند تازه و
+  pin بیلد نهایی هنوز pending است. test باز نشد؛ runtime/config/vocabulary،
+  exclusion، halt/سهhold و۱۹pin ثابت‌اند؛ API و پیام صفر. freeze مشترک باز است.
+
 - [x] **C4s — پذیرش تنظیم منتخب از کل runner و تصحیح review؛ ساسان.**
   [شرح و دستور](../docs/core-selected-runner-acceptance.fa.md)،
   [verification](../docs/receipts/core-selected-runner-acceptance-2026-10-16.json).
@@ -16,7 +31,7 @@
   قبلی ثابت‌اند، بررسی گستردهٔ C4r دوباره اجرا نشده است. halt/سهhold/۱۹pin و
   test/exclusion ثابت‌اند. ادعای rollback plan درPR81 تصحیح شد: diffازmerge-base
   +۱/-۰ و merge سه‌طرفهٔ خودplan بی‌تعارض است؛ receiptقدیمی حفظ شد. دو ابهام
-  native gold هنوز با صاحبevalاست؛ PR81merge/فعال نشده. T4sessionrecovery،
+  native gold بعداً درE2ac اصلاح شدند؛ pinبیلد و تأییدانسانی تازه pending است. T4sessionrecovery،
   humanquality،freeze وC5/testنهایی همچنان بازند. APIپرداختی/پیام صفر.
 
 - [x] **C4r — انتخاب recipe تحویل core و تطبیق با factory/backend واقعی؛ ساسان.**
@@ -35,8 +50,8 @@
   سهdemoپاس‌اند؛ یک مصرف‌کنندهٔheld-outکنارگذاشته شد، نه اجرایtestنهایی.
   انتخاب نرم‌افزاری core بسته شد؛ freeze نهایی index/gold، usefulness انسانی،
   C5 و test نهایی بسته نیستند. Enum fix تأییدشده ندارد؛ halt و سه hold حفظ‌اند.
-  **PR81** فقط dev-native بررسی شد؛ دو قاعدهٔ fix بدون passage نیازمند اصلاح
-  صاحب eval است و هنوز merge/فعال نشده. ادعای قبلی rollback plan اشتباه بود:
+  **PR81** فقط dev-native بررسی شد؛ دو قاعدهٔ fix بدون passage بعداً درE2ac
+  با v2 افزایشی اصلاح شدند؛ تأیید انسانی تازه/pinبیلد pending است. ادعای قبلی rollback plan اشتباه بود:
   diff از merge-base فقط یک خط اضافه می‌کند؛ [تصحیح C4s](../docs/core-selected-runner-acceptance.fa.md).
   پیام ارسال نشده است.
 
@@ -507,7 +522,7 @@ gold، default یا ledger انجام نشد؛ halt/سهhold و تمام IDها�
 | نفر | تحویل بعدی | شرط پایان |
 | --- | --- | --- |
 | حسن | packing/relevance شاهد key-identity روی dev؛ پس از freeze، build نهایی با exclusion۹۰Issue و provenance | در رسید فعلی capپنج علت حذف نیست؛ بودجهٔ بایتی/ترتیب و نسخه جدا سنجیده شوند. source دقیق رسیده به مدل، relevance/Recall@k و build pinned؛ عضویت در index کافی نیست؛ corpus/default بدون مقایسه تغییر نکنند |
-| محمدحسن | ثبت۳۱fixture وv2 سه dev با rubric v1 انجام وPR79 پذیرفته شد؛ گزارش پوشش dev در E2aa تصحیح شده و گزارش نهایی test با خودت؛ native gold در scope/fixture/routes تازه، worksheet C4j، usefulness انسانیِ تنظیم منتخب و freeze rubric/manifest باقی است؛ [worksheet C4j/E2w](../experiments/core_claim_boundary_v1/human-review-v1.json)، initial/correction و model/edited جدا | test و evidence/gold آن تا اجرای نهایی محفوظ؛ تعریف سؤال از روی test ساخته نشود. نسخهٔ تازه case مستقل تازه نیست؛ تاریخی‌ها تغییر نکنند. gold ثابت روی native نمره ندهد؛ passage واقعی و نسخه مبنا باشد. guide answer-linked خارج corpus؛۱۴multi-turn شامل۷test در metadata ثبت‌اند، اما کیفیت و freeze هنوز بازند |
+| محمدحسن | ثبت۳۱fixture وv2 سه dev با rubric v1 انجام وPR79 پذیرفته شد؛ گزارش پوشش dev در E2aa تصحیح شده و گزارش نهایی test با خودت؛ native gold dev با ثبت v2 درE2ac آماده است؛ تأیید انسانی دو بند تازه و native gold/routes مربوط بهtest فقط با خودت؛ worksheet C4j، usefulness انسانیِ تنظیم منتخب و freeze rubric/manifest باقی است؛ [worksheet C4j/E2w](../experiments/core_claim_boundary_v1/human-review-v1.json)، initial/correction و model/edited جدا | test و evidence/gold آن تا اجرای نهایی محفوظ؛ تعریف سؤال از روی test ساخته نشود. نسخهٔ تازه case مستقل تازه نیست؛ تاریخی‌ها تغییر نکنند. gold ثابت روی native نمره ندهد؛ passage واقعی و نسخه مبنا باشد. guide answer-linked خارج corpus؛۱۴multi-turn شامل۷test در metadata ثبت‌اند، اما کیفیت و freeze هنوز بازند |
 | بهنام | T4a/رسیدهای PR66 پذیرفته شد؛ pin دقیق اجرای fault، failure/outcome و handoff ارزیابی باقی است؛ recovery پس از نابودی session با مالک UI هماهنگ شود | lost-ACK و Retry ازUI گزارش شده، اما اصل case فقط در backend durable است؛ fresh-session recovery ثابت نیست؛ شاهد مصرف outcome در تصمیم بعد لازم است؛ token/DB خصوصی منتشر نشود |
 | ساسان | C2j/C2k،C4m/E2z،C4n،E2aa وC4o/E2ab: validation، تنظیم پیشنهادی، availability وobserver passage آفلاین بدونداوریخودکار؛ پذیرش امن R4b و اتصال آفلاین؛ مدرک provider برای سه request نامعلوم، سپس protocol/config ثبت‌شده پیش از API تازه | validation/custody جای authority tracker یا داوری معنایی نیست؛ context binding منشأ history را authenticate نمی‌کند؛ مسیرهای experimental آزاد default نشوند؛ شرط case/source-ID و prompt/order tuning تازه برای نمرهٔ Enum ممنوع؛ single-agent/قراردادهای تیم ثابت؛ halt/hold و test محفوظ |
 
@@ -1231,7 +1246,7 @@ handoffها و متن released محفوظ‌اند. ترکیب اصلاحات ب
   یادداشت تاریخی پوشش سؤال (۱۶ اکتبر، head اولیهٔ PR78، پیش از E2aa): [`question-coverage-v1.json`](../data/evaluation/split-e1-v1/question-coverage-v1.json) شاخه‌های ask هر ۳۱ fixture را با vocabulary ثابت dev و همان قاعدهٔ core (سؤال نسخهٔ داخلی تا fact نسخهٔ USER نیامده؛ سؤال vocabulary فقط با نام در unknowns فعلی case) تطبیق می‌دهد. dev: هر ۱۱ شاخه در دسترس‌اند (۵ نسخه، ۶ vocabulary). test: ۲ از ۷ شاخه سؤالی می‌خواهند که در vocabulary نیست؛ این محدودیت سیستم گزارش می‌شود و سؤالی از روی test اضافه نشده. سؤال نسخه در ۴ turn dev و ۲ turn test که ask در gold پذیرفته نیست هم در دسترس است (ریسک سؤال غیرلازم). بخش test فقط شمارش است؛ در دسترس بودن سؤال اثبات انتخاب درست مدل نیست.
   **اصلاح E2aa:** v1 بالا برای حفظ تاریخچه است؛ projection عمومی آن سه counterexample داشت. [v2 فقطdev](../data/evaluation/split-e1-v1/question-coverage-dev-v2.json) با transition/catalog واقعی، همان۱۱ask و۴extraoffer را بازتولید کرد. summary تاریخی test در این اصلاح دوباره اجرا یا تأیید نشده است؛ گزارش نهایی آن با مالک evaluation و بدون تنظیم vocabulary از روی test است.
   یادداشت v2 سه dev (۱۶ اکتبر): [`dev-three-v2`](../data/evaluation/dev-three-v2/README.md) سه case قبلی را برای `e2-rubric-v1` و شواهد ثابت دوباره ثبت می‌کند (fixture_id تازه، خانوادهٔ کامل، `required_sources`، و در case-b یک ادعای غیرقابل قبول و قاعدهٔ «پیشنهاد بی‌منبع فقط با برچسب صریح»). تصمیم‌ها، gapها، routeها و evidence همان v1؛ v1 و receiptهایش دست‌نخورده‌اند. [review انسانی](../data/evaluation/dev-three-v2/gold-review-v1.json): ۸ از ۸ پس از توضیح ساده‌تر سه کارت «مطمئن نیستم» درست؛ محدودیت ثبت‌شده: سؤال callback در case-a نوبت پاسخ ندارد. manifest split-e1-v1 حالا v2 را pin می‌کند و blocker rubric حذف شد؛ [گزارش پوشش dev v3](../data/evaluation/split-e1-v1/question-coverage-dev-v3.json) با v2 فقط در hash manifest فرق دارد. آفلاین ۷۹/۷۹، هزینه صفر.
-  یادداشت native gold dev (۱۶ اکتبر): [۱۶ fixture بومی](../data/evaluation/split-e1-v1/native/README.md) با fixture_id تازه، همان turnهای قابل‌مشاهده و gold شرطی: answer فقط وقتی passage ثبت‌شده در bundle همان turn باشد و ادعا و نسخه را پوشش دهد؛ escalate با نام سند گم‌شده و قدم بعدی وقتی نرسیده باشد (به ۷ turn اضافه شد). requirementها با قالب `evidence_observation` ساسان و همه با متن seed چک شده‌اند؛ pinها `pending_final_build`. [review انسانی](../data/evaluation/split-e1-v1/native/native-dev-gold-review-v1.json): ۱۴ درست و ۲ مطمئن نیستم (p و e)، که اصلاح و سپس درست شدند؛ یک اصلاح برچسب evidence_condition پس از review. آفلاین ۲۷۳/۲۷۳، هزینه صفر. پنج case به release note نیاز دارند که index فعلی ندارد. native gold test جدا و پیش از اجرای نهایی ثبت می‌شود.
+  یادداشت native gold dev (۱۶ اکتبر): [ثبت فعال v2](../data/evaluation/split-e1-v1/native/native-registration-dev-v2.json) در E2ac،۱۴fixtureقبلی و۲اصلاح نسخه‌دار escalation را انتخاب می‌کند. [review انسانی v1](../data/evaluation/split-e1-v1/native/native-dev-gold-review-v1.json) و تمام byteهای قدیمی محفوظ‌اند؛ تأیید انسانی دو بند جدید pending است. [شرح و رسید](../docs/native-dev-gold-amendment.fa.md): آفلاین scripted تازه۱۶case/۲۳turn/۲۷۳check پاس، نه کیفیت مدل. passage/نسخه/support جدا review می‌شوند؛ نبود match خودکار ارجاع درست نیست. pinبیلد همچنان pending؛ native gold مربوط بهtest جدا و فقط با صاحبeval است.
 - [ ] **E3 — runner قابل تکرار.** caseها از fixture اجرا شوند؛ turn بعدی در زمان درست آشکار شود و case/revision/proposal و config/snapshot، latency و هزینه ثبت شوند. replay منطقی بدون API و اجرای کیفیت با مدل واقعی خروجی جدا داشته باشند. schema/runner و API/UI pytest با خودش؛ برای قراردادها از ساسان کمک بگیرد. وضعیت: runner آفلاین `agent_app.evaluation.runner` آماده است: caseهای یک split را turn به turn اجرا می‌کند، case/revision/proposal، git commit، hash fixture، config/snapshot، latency، تلاش مدل، دور retrieval، step، هزینه و token را ثبت می‌کند و receipt حالت offline و live را در مسیرهای جدا نگه می‌دارد. [receipt آفلاین dev](../data/evaluation/receipts/offline/dev-2026-10-10.json). ([PR #15](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/15)) مسیر live با HTTP intercepted و BudgetLedger موقت آفلاین تست شده؛ provider و ledger اصلی استفاده نشده‌اند. #21 receipt کامل، accounting درخواست و محافظ branch نامتناسب را اضافه می‌کند؛ تکمیل E3 هنوز به adapter U3، branchهای گفتگو و validation ثبت‌شده نیاز دارد. سناریوهای عملیاتی ساختگی برای خرابی ابزار (retrieval، یک خطای مدل با retry در سقف دو تلاش، دو خطا و توقف) و جابه‌جایی میان دو پرونده در `data/evaluation/scenarios/` پیش از اجرا ثبت شدند؛ اجرای اول ۸۱ از ۸۲ پاس شد چون انتظار ثبت‌شده کد توقف را اشتباه پیش‌بینی کرده بود (engine آخرین خطای adapter یعنی `ReasoningUnavailable` را گزارش می‌کند)؛ receipt آن حفظ و نسخهٔ v2 با همان یک تغییر ثبت شد. این سناریوها جزو ۳۰ case ارزیابی نیستند.
 - [ ] **E4 — baseline و تنظیم فقط روی dev.** کیفیت تصمیم/پشتیبانی ادعاها/ضرورت و پاسخ‌پذیری سؤال، retrieval، صحت عملیات و هزینه/latency جدا سنجیده شوند. تغییرات روی ورودی یکسان مقایسه و نسخهٔ code/prompt/corpus/model freeze شود. نمونهٔ قضاوت انسانی ثبت شود؛ JSON معتبر یا نظر همان مدل تنها شاهد کیفیت نیست.
   یادداشت E4 (۱۶ اکتبر): نخستین داوری انسانی خروجی واقعی مدل ثبت شد: [`human-output-card-review-v1.json`](../experiments/dev_rag_coverage_v1/human-output-card-review-v1.json). ۱۷ پیشنهاد تازهٔ C4g در۷گروه case/turn/decision/draft بررسی شدند؛ متن سؤال دو گروه یکسان است و۶متن یکتا داریم. تصمیم۶گروه قابل قبول ویک گروه نامطمئن؛ usefulness دو گروه۲وپنج گروه۱ است:۱٫۲۹به‌ازای گروه و۱٫۴۷باوزن۱۷پیشنهاد. [پذیرش و توضیح واحد شمارش](../docs/pr77-review.fa.md) نمره‌های اصلی را تغییر نمی‌دهد. هر۱۷binding/handoff وhashreceipt تطبیق داده شد؛ export خصوصی وpacket وابسته‌به‌مسیر کاملاً بازتولید نشده‌اند. support بررسی نشده وE4باز است؛ اینdevexposed است، نهtestنهایی. نشانگر `\u000d` درcase-c ازCRLFوescape renderer است، نه خطای مدل.
