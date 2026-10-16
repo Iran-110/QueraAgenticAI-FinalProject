@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "labels_id": "r4b-relevance-labels-v1",
+  "reviewer_kind": "assistant_draft",
+  "human_confirmed": false,
+  "confirmation_owner": "Hassan",
+  "basis": "Chunk text of the registered 18/36 corpus read against each case's visible user problem and the human case review data/evaluation/dev-three-v1/case-review-v1.json (mhg, 2026-10-15). Labels are applied after retrieval only; they never select evidence and are not gold answers.",
+  "rubric": {
+    "direct": "Addresses the user's specific API/behavior; usable for the answer itself.",
+    "background": "Related general concept (state, callbacks, widget lifecycle); context, not the answer.",
+    "off_topic": "Does not bear on this case's question."
+  },
+  "required_evidence": {
+    "dev-case-a": [
+      {"kind": "docstring_at_user_version", "api": "multiselect"},
+      {"kind": "docstring_at_user_version", "api": "fragment"},
+      {"kind": "chunk", "chunk_id": "doc:pinned:76af659dfdd30bb62fe9f310:0:4000:854ec11b80fbe5fe", "why": "widget-behavior.md key-based identity rollout v1.50-v1.55; case review: exact text must reach the model"}
+    ],
+    "dev-case-b": [
+      {"kind": "docstring_at_user_version", "api": "button"}
+    ],
+    "dev-case-c": []
+  },
+  "known_out_of_corpus": {
+    "dev-case-a": ["docs:content/develop/quick-references/release-notes/2025.md (1.50 multiselect key-only identity; release notes are an excluded source type in this profile)"],
+    "dev-case-c": ["docs:content/develop/concepts/app-design/custom-classes.md (answer-linked Enum guide; excluded by design)"]
+  },
+  "labels": {
+    "dev-case-a": {
+      "doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932": ["direct", "st.fragment 1.50 rerun semantics; the widget lives inside a fragment"],
+      "doc:1.50.0:c82397cf83d9653afc3157df:0:4000:592d59c88ffa9fd9": ["direct", "st.multiselect 1.50 default/key parameters at the user's release"],
+      "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac": ["direct", "callback order and 'changing a widget's identity will reset it'"],
+      "doc:1.50.0:9b4617e969d3cf7ad39432dc:0:864:948236ecd00dd63f": ["background", "st.rerun scope app/fragment"],
+      "doc:pinned:ed6c3c87122e53b9ff5621db:0:1819:3f3a7959730090f6": ["background", "text_input page; generic 'store initial widget value in session state' pattern"],
+      "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9": ["background", "Session State API basics and widget-state association"],
+      "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295": ["background", "form callbacks, serialization, start of API caveats"],
+      "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2": ["background", "API caveats on setting widget values via Session State"],
+      "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3": ["background", "counter/callback examples"]
+    },
+    "dev-case-b": {
+      "doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a": ["direct", "st.button 1.39 icon/label constraints at the user's release"],
+      "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e": ["background", "button page stub; the API text lives in the docstring"],
+      "doc:pinned:ed6c3c87122e53b9ff5621db:0:1819:3f3a7959730090f6": ["off_topic", "text_input page"],
+      "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9": ["off_topic", "Session State basics; question is about icons/images"],
+      "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295": ["off_topic", "form callbacks/serialization"],
+      "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2": ["off_topic", "button state caveat, not icons"],
+      "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f": ["off_topic", "statefulness intro"],
+      "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3": ["off_topic", "counter/callback examples"],
+      "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898": ["off_topic", "widget-state association/serialization"]
+    },
+    "dev-case-c": {
+      "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9": ["background", "objects stored in Session State"],
+      "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295": ["background", "serializable Session State"],
+      "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2": ["background", "Session State API caveats"],
+      "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f": ["background", "reruns re-execute the script"],
+      "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3": ["background", "callbacks"],
+      "doc:pinned:d5d7c652ec0d9f11786438a3:8000:12000:31737a71f2f8e898": ["background", "serializable Session State"],
+      "doc:pinned:d5d7c652ec0d9f11786438a3:12000:12566:9ae7ff24489a7d3c": ["background", "Session State caveats"],
+      "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac": ["background", "widget statefulness"]
+    }
+  }
+}

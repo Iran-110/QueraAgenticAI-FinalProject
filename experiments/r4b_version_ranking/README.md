@@ -47,6 +47,36 @@ at the active USER version:
 Tests: `test_r4b_version_ranking.py` 16 cases; with the existing relevance,
 adapter and evidence-scope suites, 123 passed on Windows 11.
 
+## Coverage, relevance and exclusion review
+
+```bash
+uv run python scripts/r4b_coverage_relevance_review.py --receipt experiments/r4b_version_ranking/receipt-v1.json --labels experiments/r4b_version_ranking/relevance-labels-v1.json --output experiments/r4b_version_ranking/review-v1.json
+```
+
+[Labels](relevance-labels-v1.json) are an assistant draft for Hassan's
+confirmation (`human_confirmed: false`), based on chunk text and the human
+case review; they are applied after retrieval and never select evidence.
+Required evidence: case A multiselect and fragment at the USER release plus
+the widget-behavior.md key-identity chunk (`0:4000`); case B button at the
+USER release; case C none in corpus (answer-linked guide excluded).
+
+| arm | required reached | final hits | direct | background | off_topic |
+|---|---|---|---|---|---|
+| PR50 head | 1/5 | 30 | 1 | 21 | 8 |
+| main native | 1/5 | 30 | 1 | 21 | 8 |
+| R4b path | 3/5 | 25 | 4 | 16 | 5 |
+
+- Still missing in **every** arm: the widget-behavior.md chunk stating that
+  key-based identity was introduced from v1.50 to v1.55. The case review says
+  this exact text must reach the model; index membership is not enough. Its
+  candidate rank per arm is recorded in the review output. This is the next
+  ranking gap for case A; the 1.50 release note is outside this corpus profile.
+- Exclusion holds: 0 indexed Issues/comments, only `doc` sources, no
+  custom-classes guide or release note indexed, no final-bundle violation.
+  The seven reservations proposed in the PR55 review (4909, 6985, 7300, 7419,
+  8734, 13022, 14297) are not yet in this manifest; harmless while no Issue
+  is indexed, but required before any Issue-bearing build.
+
 ## Limits
 
 Availability only, not semantic support, answer quality, human usefulness or

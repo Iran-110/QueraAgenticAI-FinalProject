@@ -169,6 +169,7 @@ def run_arm(arm, adapter_class, policy, multiplier, budget, client, snapshot, st
         "arm": arm,
         "backend_n_results": [call["n_results"] for call in backend.calls],
         "candidate_count": len(candidates),
+        "candidate_chunk_ids": [h.chunk_id for h in candidates],
         "final_hits": [
             {
                 "source_id": h.source_id,
