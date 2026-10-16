@@ -1,3 +1,34 @@
+## 2026-10-16 — C4r: selected core recipe and actual execution wiring
+
+[Selection and use](core-delivery-selection.fa.md),
+[versioned recipe](../config/core-delivery-grounded-v1.json),
+[verification](receipts/core-delivery-selection-2026-10-16.json).
+Selected `grounded_candidate_v1`: grounded gpt-4o-mini, the compact/candidate
+relevance combination studied in C4h5, current reviewed dev vocabulary, legacy
+renderer. This is a delivery choice, not a new quality winner or completed Enum
+fix. Brief/JSON/resource/capacity/complementary/background/concise stay off.
+
+Optional operator selection now reaches the existing configured factory/backend.
+Explicit public conflicts reject before credentials; actual raw settings/catalog
+are checked without laundering hidden state, and allocation/plan recheck owner,
+gateway, HTTP sender and legacy renderer fields. Detached nonsecret observations
+bind the selected recipe; omitted mode preserves historical settings/metadata.
+Fixed runner's strict optional-metadata boundary: previously real compact/binding
+observations became unavailable. It now projects only known shapes, identities,
+recipe/hash/model/ledger-phase matches and consistent bounded wire diagnostics;
+unknown content stays private. Legacy field order remains exact.
+
+Independent actual-factory HTTP acceptance uses fresh disposable native indexes,
+SQLite/ledger and authored MockTransport responses. It verifies exact current
+USER-version scope, native25/final5/12000-byte policy, current question catalog,
+compact request, fresh legacy handoff, correction, stale409 and restart/retry
+without a second Action. That is software acceptance, never paid model quality.
+Final verification/source counts are in the receipt; primary ledger/19 pins,
+halt/three holds, old campaigns/gold, split/test and exclusion stay unchanged.
+PR81's dev-only native artifacts were reviewed structurally; plan rollback and
+two unsupported-fix route conditions remain for evaluation-owner clarification.
+No merge/activation of that PR, new API call, final test or team message.
+
 ## 2026-10-16 — C4q: core closeout and registered reasoner construction
 
 [Closeout/usage/open gates](core-closeout.fa.md),

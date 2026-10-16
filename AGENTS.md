@@ -41,6 +41,19 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 ## Runtime rules
 
+- C4r selects the explicit `grounded_candidate_v1` core delivery recipe; read
+  `docs/core-delivery-selection.fa.md`. The existing live factory now accepts
+  `AGENT_CORE_PROFILE` as trusted operator configuration, with strict public
+  conflict and actual constructor/allocation/pre-send checks. Omitted mode keeps
+  old defaults/metadata. Legacy renderer is selected; optional review brief stays
+  unselected. Selected binding and bounded compact-wire diagnostics survive the
+  runner's strict metadata projection; this is not provider/build authentication
+  or semantic review. Preserve the recipe/vocabulary pin, require a new version
+  for changes, and do not silently relax the profile or promote study flags.
+  Halt/three holds/closed IDs remain authoritative. Core recipe selection does
+  not close shared native-build/gold freeze, human quality, C5 or final test.
+  Historical C4q/C4p notes below describe those earlier deliveries.
+
 - C4q closes explicit renderer-registration-to-constructor binding; read
   `docs/core-closeout.fa.md`. The new registered_reasoner v2 envelope retains
   the unchanged v1 candidate and rejects mixed versions or inconsistent hashes.

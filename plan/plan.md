@@ -4,6 +4,23 @@
 
 ## وضعیت فعلی
 
+- [x] **C4r — انتخاب recipe تحویل core و تطبیق با factory/backend واقعی؛ ساسان.**
+  [تنظیم و اتصال](../docs/core-delivery-selection.fa.md)،
+  [recipe](../config/core-delivery-grounded-v1.json)،
+  [verification](../docs/receipts/core-delivery-selection-2026-10-16.json).
+  `grounded_candidate_v1`: مدل `gpt-4o-mini`، compact GroundedPlan، candidate
+  relevance و renderer قبلی؛ vocabulary بازبینی‌شدهٔ dev بدون تغییر pin شد.
+  selector اختیاری در factory موجود، تنظیم مغایر را پیش از key رد می‌کند؛
+  owner/planner/sender و renderer پیش از ارسال دوباره تطبیق می‌یابند.
+  metadata قبلی حفظ است؛ runner binding و compact diagnostics مجاز را ثبت
+  می‌کند و metadata ناسازگار را رد می‌کند. پذیرش factory واقعی با index/SQLite
+  موقت و provider mock، correction، stale409، restart/retry و Action یکتا را
+  پوشش می‌دهد. شمارش نهایی تست/review و source در receipt ثبت شده است.
+  انتخاب نرم‌افزاری core بسته شد؛ freeze نهایی index/gold، usefulness انسانی،
+  C5 و test نهایی بسته نیستند. Enum fix تأییدشده ندارد؛ halt و سه hold حفظ‌اند.
+  **PR81** فقط dev-native بررسی شد؛ rollback plan و دو قاعدهٔ fix بدون passage
+  نیازمند اصلاح صاحب eval است و هنوز merge/فعال نشده. پیام ارسال نشده است.
+
 - [x] **C4q — بستن اتصال ثبت تنظیم به ساخت reasoner؛ ساسان.**
   [تحویل core و شرط‌های پایان](../docs/core-closeout.fa.md)،
   [verification](../docs/receipts/core-freeze-closeout-2026-10-16.json).

@@ -1,5 +1,15 @@
 # Connect your module to the core
 
+The selected [C4r core delivery recipe](core-delivery-selection.fa.md) is explicit
+operator configuration: `AGENT_CORE_PROFILE=grounded_candidate_v1` on the existing
+live factory/backend. It supplies reviewed public flags and vocabulary; conflicting
+explicit settings fail before credentials. The actual factory/planner/sender and
+renderer settings are rechecked, with a detached `core_binding` in selected-mode
+observations. The runner preserves only validated known binding/wire diagnostics.
+Without the selector, existing defaults, metadata and valid legacy observation
+ordering remain unchanged. This selects core software settings, not final corpus,
+gold, human quality or paid authorization; the designated C5 halt still blocks live.
+
 The [C2k boundary fix](core-boundary-validation.fa.md) reuses the existing
 recursive detacher for retrieval/analysis port results, user-turn preparation,
 grounded/claim request snapshots and source hashing. Return valid declared

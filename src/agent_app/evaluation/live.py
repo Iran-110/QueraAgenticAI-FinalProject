@@ -29,6 +29,11 @@ from agent_app.llm.config import METIS_CHAT_URL, MetisConfig
 from agent_app.llm.grounded import MetisGroundedPlanner
 from agent_app.llm.metis import configured_grounded_messages, request_id_for
 from agent_app.llm.pricing import get_price, same_verified_price
+from agent_app.orchestration.core_delivery import (
+    DELIVERY_PROFILE_ID,
+    delivery_values,
+    validate_delivery_configuration,
+)
 from agent_app.orchestration.ports import ReasoningStopCode, ReasoningStopped
 from agent_app.orchestration.retrieval_profile import validate_retrieval_profile
 from agent_app.reasoning.catalog import caller_catalog, load_user_gap_vocabulary, validate_user_gaps
@@ -40,6 +45,7 @@ from agent_app.retrieval.retriever import StreamlitRetriever
 
 ROOT = Path(__file__).resolve().parents[3]
 _CODES = frozenset(get_args(ReasoningStopCode.__value__))
+_OWNER_CONFIG = object()
 
 
 def _budget_guard(ledger):
@@ -169,6 +175,8 @@ class _Run:
     def __init__(self, owner, case_id, transport):
         self.owner, self.case_id, self.transport = owner, case_id, transport
         self.lock, self.closed, self.latest = RLock(), False, None
+        self._core_reasoner = None
+        self._core_binding = owner.core_binding
         self.gateway = MetisGroundedPlanner(owner._config, owner.ledger, transport=transport)
 
     def supplied_request(self):
@@ -185,6 +193,22 @@ class _Run:
                 _budget_guard(self.owner.ledger)
             except ValueError:
                 raise ReasoningStopped("BudgetExceeded", "budget_stopped") from None
+            binding = None
+            if self._core_binding is not None or self.owner._core_profile is not None:
+                try:
+                    if self._core_reasoner is None:
+                        raise ValueError
+                    binding = self.owner._validate_core_binding(reasoner=self._core_reasoner)
+                    if binding != self._core_binding:
+                        raise ValueError
+                    for config in (
+                        self.gateway.config,
+                        self.gateway.reasoner.config,
+                        self.transport.config,
+                    ):
+                        self.owner._validate_core_binding(config=config)
+                except Exception:
+                    raise ReasoningStopped("ProviderRequestFailed") from None
             self.latest = request.model_copy(deep=True)
             record = {
                 "request_id": request_id_for(context),
@@ -209,6 +233,8 @@ class _Run:
                 "held_usd": None,
                 "error_code": None,
             }
+            if binding is not None:
+                record["core_binding"] = deepcopy(binding)
             self.owner._observations.append(record)
             self.transport.current = record
             try:
@@ -273,7 +299,25 @@ class LiveEvaluationAdapters:
         ask_source_background: bool = False,
         concise_user_draft: bool = False,
         transport_factory: Callable[[], httpx.BaseTransport] | None = None,
+        core_profile: str | None = None,
     ):
+        selected_gaps = None
+        if core_profile is not None:
+            try:
+                if type(core_profile) is not str or core_profile != DELIVERY_PROFILE_ID:
+                    raise ValueError
+                selected_gaps = tuple(user_gaps)
+                validate_delivery_configuration(
+                    profile_id=core_profile,
+                    config=config,
+                    top_k=top_k,
+                    retrieval_profile=retrieval_profile,
+                    ask_source_background=ask_source_background,
+                    concise_user_draft=concise_user_draft,
+                    user_gaps=selected_gaps,
+                )
+            except Exception:
+                raise ValueError("CoreDeliveryConfigurationMismatch") from None
         try:
             retrieval_profile = validate_retrieval_profile(retrieval_profile, top_k=top_k)
             if type(ask_source_background) is not bool:
@@ -304,9 +348,23 @@ class LiveEvaluationAdapters:
                 or (transport_factory is not None and not callable(transport_factory))
             ):
                 raise ValueError
-            self._gaps = validate_user_gaps(user_gaps)
+            self._gaps = validate_user_gaps(
+                selected_gaps if selected_gaps is not None else user_gaps
+            )
         except Exception:
             raise ValueError("LiveEvaluationConfigurationInvalid") from None
+        self._core_profile = core_profile
+        self._core_binding = deepcopy(
+            validate_delivery_configuration(
+                profile_id=core_profile,
+                config=config,
+                top_k=top_k,
+                retrieval_profile=retrieval_profile,
+                ask_source_background=ask_source_background,
+                concise_user_draft=concise_user_draft,
+                user_gaps=self._gaps,
+            )
+        )
         if price.cost(config.input_token_reserve, config.max_output_tokens) > state.available_usd:
             raise ValueError("LiveBudgetUnavailable")
         self.ledger, self._config, self._snapshot, self._top_k = ledger, config, snapshot_id, top_k
@@ -349,6 +407,41 @@ class LiveEvaluationAdapters:
     def index_path(self) -> Path:
         """Pinned resolved storage directory; callers can protect it from tracker writes."""
         return self._index_path
+
+    @property
+    def core_binding(self) -> dict | None:
+        """Detached selected-mode settings receipt, separate from legacy metadata."""
+        return deepcopy(self._core_binding)
+
+    def _validate_core_binding(self, *, config=_OWNER_CONFIG, reasoner=None):
+        if self._core_binding is None and self._core_profile is None:
+            return None
+        try:
+            if self._core_binding is None or self._core_profile is None:
+                raise ValueError
+            observed = validate_delivery_configuration(
+                profile_id=self._core_profile,
+                config=self._config if config is _OWNER_CONFIG else config,
+                top_k=self._top_k,
+                retrieval_profile=self._retrieval_profile,
+                ask_source_background=self._ask_source_background,
+                concise_user_draft=self._concise_user_draft,
+                user_gaps=self._gaps,
+            )
+            if observed != self._core_binding:
+                raise ValueError
+            if reasoner is not None and (
+                reasoner.review_brief is not False
+                or reasoner.source_gap_handoff is not self._config.grounded_source_gap_handoff
+                or reasoner.source_gap_investigation
+                is not self._config.grounded_source_gap_investigation
+                or reasoner.ask_source_background is not self._ask_source_background
+                or reasoner.concise_user_draft is not self._concise_user_draft
+            ):
+                raise ValueError
+            return deepcopy(observed)
+        except Exception:
+            raise ValueError("CoreDeliveryConfigurationMismatch") from None
 
     @property
     def ask_source_background(self) -> bool:
@@ -403,6 +496,7 @@ class LiveEvaluationAdapters:
         except Exception:
             raise ValueError("LiveEvaluationCaseInvalid") from None
         _budget_guard(self.ledger)
+        self._validate_core_binding()
         self._client.verify()
         run = None
         transport = None
@@ -427,18 +521,22 @@ class LiveEvaluationAdapters:
             transport = _ObservedTransport(underlying, self.ledger, self._config)
             run = _Run(self, case_id, transport)
             self._active.add(run)
+            reasoner = GroundedReasoner(
+                run,
+                source_gap_handoff=self._config.grounded_source_gap_handoff,
+                source_gap_investigation=self._config.grounded_source_gap_investigation,
+                ask_source_background=self._ask_source_background,
+                **({"concise_user_draft": True} if self._concise_user_draft else {}),
+                request_factory=lambda case, message, evidence: caller_catalog(
+                    case, message, evidence, definitions=self._gaps
+                ),
+            )
+            if self._core_binding is not None:
+                self._validate_core_binding(reasoner=reasoner)
+                run._core_reasoner = reasoner
             return api.RunAdapters(
                 retriever,
-                GroundedReasoner(
-                    run,
-                    source_gap_handoff=self._config.grounded_source_gap_handoff,
-                    source_gap_investigation=self._config.grounded_source_gap_investigation,
-                    ask_source_background=self._ask_source_background,
-                    **({"concise_user_draft": True} if self._concise_user_draft else {}),
-                    request_factory=lambda case, message, evidence: caller_catalog(
-                        case, message, evidence, definitions=self._gaps
-                    ),
-                ),
+                reasoner,
                 snapshot_id=self._snapshot,
                 grounded_request_supplier=run.supplied_request,
                 cleanup=run.close,
@@ -470,6 +568,8 @@ class LiveEvaluationAdapters:
 def configured_factory(values: Mapping[str, str]) -> LiveEvaluationAdapters:
     """Budget/index preflight precede the first credential lookup; never load .env."""
     try:
+        values = delivery_values(values)
+        core_profile = values.get("AGENT_CORE_PROFILE")
         if values.get("METIS_LIVE_ENABLED") != "true":
             raise ValueError("LiveCallsDisabled")
         top_k = int(values.get("AGENT_EVAL_TOP_K", "1"))
@@ -539,6 +639,15 @@ def configured_factory(values: Mapping[str, str]) -> LiveEvaluationAdapters:
             max_output_tokens=int(values.get("METIS_MAX_OUTPUT_TOKENS", "1024")),
             max_request_usd=Decimal(values.get("METIS_MAX_REQUEST_USD", "0.02")),
         )
+        validate_delivery_configuration(
+            profile_id=core_profile,
+            config=prepared,
+            top_k=top_k,
+            retrieval_profile=retrieval_profile,
+            ask_source_background=ask_source_background == "true",
+            concise_user_draft=concise_user_draft == "true",
+            user_gaps=user_gaps,
+        )
         price = get_price(prepared.model)
         if (
             price is None
@@ -567,6 +676,7 @@ def configured_factory(values: Mapping[str, str]) -> LiveEvaluationAdapters:
             ask_source_background=ask_source_background == "true",
             concise_user_draft=concise_user_draft == "true",
             user_gaps=user_gaps,
+            **({"core_profile": core_profile} if core_profile is not None else {}),
         )
     except ValueError as error:
         if str(error) in {
@@ -578,6 +688,7 @@ def configured_factory(values: Mapping[str, str]) -> LiveEvaluationAdapters:
             "LiveAccountingUnresolved",
             "LiveBudgetUnavailable",
             "LiveIndexRejected",
+            "CoreDeliveryConfigurationMismatch",
         }:
             raise ValueError(str(error)) from None
         raise ValueError("LiveEvaluationConfigurationInvalid") from None
