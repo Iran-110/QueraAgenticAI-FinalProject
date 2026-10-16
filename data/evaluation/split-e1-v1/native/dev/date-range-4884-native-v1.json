@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "fixture_id": "split-e1-v1-native-date-range-4884-v1",
+  "registered_on": "2026-10-16",
+  "registered_before_first_run": true,
+  "purpose": "date_input initialized from Session State fails when today is outside min/max; docstring explains the default. Native-index gold version.",
+  "case": {
+    "case_id": "dev-case-e",
+    "split": "dev",
+    "family_issue_ids": [
+      4884,
+      11252
+    ],
+    "origin_url": "https://github.com/streamlit/streamlit/issues/4884",
+    "source_snapshot_date": "2026-10-06",
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "test_eligible": false,
+    "exposure": "Development case. The evaluation curator (mhg with assistant drafting) read the Issue thread to author gold; answer-informed and usable for development and tuning. Never a held-out test case."
+  },
+  "evidence_source": {
+    "path": "data/evaluation/split-e1-v1/evidence-dev-v1.json",
+    "sha256": "081f721f38f4487984c6b1c7aabc1ee207a397ee3fcc4520bf153b61ec919489",
+    "bundles_used": [
+      "date-range"
+    ],
+    "note": "Runner loading only: live native runs take evidence from the index, not this bundle. It is not the evidence the native gold is judged against."
+  },
+  "boundaries": {
+    "agent": "scripted AnalysisResult for offline plumbing; live ignores agent_script/gold/future turns",
+    "real_model_calls": 0,
+    "api_cost_usd": 0,
+    "storage": "evaluation runner process-local API/DummyTracker; not production durable tracker",
+    "quality_claim": false,
+    "max_reached_turns": 1,
+    "visible_to_agent": [
+      "currently selected turns[].visible"
+    ],
+    "runner_only": [
+      "gold",
+      "agent_script",
+      "maintainer",
+      "probes",
+      "evaluation.coverage",
+      "future turns"
+    ]
+  },
+  "initial_report_provenance": {
+    "kind": "developer_paraphrase_of_latest_cached_body",
+    "source_path": "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+    "issue_number": 4884,
+    "source_created_at": "2022-06-22T12:39:36Z",
+    "source_updated_at": "2025-05-05T18:01:08Z",
+    "source_issue_record_sha256": "e31997c45cec412d951122eb2eb8f0bcbfe996d1203c4c614b7a5340a8a52504",
+    "original_initial_text_verified": false,
+    "note": "Cached body can contain later edits. No later comments/outcomes are supplied as the initial user message."
+  },
+  "turns": [
+    {
+      "id": "initial",
+      "conversation_source": "developer_paraphrase_of_latest_cached_issue_body",
+      "visible": {
+        "unknowns": [],
+        "checks_performed": [],
+        "context_changed": false,
+        "message": "date_input raises StreamlitAPIException \"The default value of <today> must lie between the min_value ... and the max_value\" when I initialize it from Session State with a min_value in the future. Code:\n\nfrom datetime import date\nmin_date = date(2029, 1, 1)\nst.session_state['with_min_value'] = min_date\nst.date_input('with_min_value', min_value=min_date, key='with_min_value')\n\nIt works if today is inside the range. Streamlit 1.10.0, Python 3.10.4.",
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.10.0"
+          },
+          {
+            "name": "reported_reproduction_code",
+            "value": "from datetime import date\nmin_date = date(2029, 1, 1)\nst.session_state['with_min_value'] = min_date\nst.date_input('with_min_value', min_value=min_date, key='with_min_value')"
+          }
+        ]
+      },
+      "evidence_bundle": "date-range",
+      "agent_script": {
+        "decision": "answer",
+        "user_draft": "date_input's value defaults to today when you do not pass it, so with a min_value in the future the default lies outside the allowed range and raises the error. Pass an explicit value inside [min_value, max_value] or choose a range that contains today. Note that this docstring is from 1.22.0; I cannot confirm 1.10.0 behaviour beyond it.",
+        "maintainer_summary": "value defaults to today; outside min/max raises.",
+        "rationale": "Docstring states the default.",
+        "evidence_links": [
+          {
+            "claim": "date_input value defaults to today as a single-date picker.",
+            "chunk_id": "e1d-date-input-1220-value"
+          }
+        ]
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "rubric_id": "e2-rubric-v1",
+        "evidence_condition": "native_index",
+        "stratum": "ambiguous",
+        "acceptable_decisions": [
+          "answer",
+          "escalate"
+        ],
+        "decision_conditions": {
+          "answer": "Explain the today default from the docstring (version-qualified, 1.22.0 vs 1.10.0) and give a workaround; may note the Session State/value interaction is unclear. Native index: the registered passages must be in this turn's supplied bundle AND support the stated claim, its API scope and the active USER version; presence alone is not support. No 1.10.0 docstring exists in the seed; any date_input docstring is from a later release (three wordings: 1.22-1.26, 1.27-1.40, 1.41+) and the answer must say so.",
+          "escalate": "Acceptable if it reports that initializing from Session State should arguably bypass the default, while still explaining the docstring. Under the native index, escalation is acceptable only when the registered passages were not supplied in this turn or do not cover the claim and version: it must name the missing documentation and a concrete next step, and still keep any supported guidance. When the passages were supplied and cover the case, escalation is unnecessary abstention."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [],
+        "unacceptable_claims": [
+          "The docstring for 1.10.0 is in the sources.",
+          "Session State initialization is documented to skip range validation."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality.",
+        "native_passages": {
+          "answer_required": {
+            "requirements": [
+              {
+                "requirement_id": "date-input-today-default",
+                "alternatives": [
+                  {
+                    "source_id": "docstring:1.22.0:streamlit.date_input",
+                    "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                    "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+                    "passage": "Defaults to today as a single-date picker."
+                  },
+                  {
+                    "source_id": "docstring:1.26.0:streamlit.date_input",
+                    "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                    "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+                    "passage": "Defaults to today as a single-date picker."
+                  },
+                  {
+                    "source_id": "docstring:1.27.0:streamlit.date_input",
+                    "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                    "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+                    "passage": "If \"today\" (default),\nwill initialize with today as a single-date picker."
+                  },
+                  {
+                    "source_id": "docstring:1.33.0:streamlit.date_input",
+                    "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                    "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+                    "passage": "If \"today\" (default),\nwill initialize with today as a single-date picker."
+                  },
+                  {
+                    "source_id": "docstring:1.40.0:streamlit.date_input",
+                    "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                    "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+                    "passage": "If \"today\" (default),\nwill initialize with today as a single-date picker."
+                  },
+                  {
+                    "source_id": "docstring:1.41.0:streamlit.date_input",
+                    "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                    "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+                    "passage": "\"today\" (default): The widget initializes with the current date."
+                  },
+                  {
+                    "source_id": "docstring:1.50.0:streamlit.date_input",
+                    "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                    "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+                    "passage": "\"today\" (default): The widget initializes with the current date."
+                  },
+                  {
+                    "source_id": "docstring:1.57.0:streamlit.date_input",
+                    "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                    "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+                    "passage": "\"today\" (default): The widget initializes with the current date."
+                  },
+                  {
+                    "source_id": "docstring:1.64.0:streamlit.date_input",
+                    "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                    "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+                    "passage": "\"today\" (default): The widget initializes with the current date."
+                  }
+                ]
+              }
+            ],
+            "requirements_sha256": "94886de7b0860342a890b208a346afafe53f6b16b736688dae2e1d7c67e34d8a"
+          },
+          "optional_claim_support": null,
+          "rule": "Observed with agent_app.evaluation.evidence_observation on this turn's captured handoff. Observation is necessary for a supported answer, not sufficient; support, version scope and usefulness stay a human judgment. A missing passage is a bundle gap, not proof that every escalation is right.",
+          "note": null
+        }
+      },
+      "expect": {
+        "revision": 1,
+        "pending_decision": "answer",
+        "after_decision": {
+          "status": "answer_sent",
+          "released_draft": "agent"
+        }
+      }
+    }
+  ],
+  "evaluation": {
+    "coverage": {
+      "turn_ids": [
+        "initial"
+      ],
+      "routes": [
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "answer"
+          }
+        },
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "escalate"
+          }
+        }
+      ]
+    }
+  },
+  "native_of": {
+    "fixture_id": "split-e1-v1-date-range-4884-v1",
+    "path": "data/evaluation/split-e1-v1/dev/date-range-4884-v1.json",
+    "sha256": "087c722fa9e01dbdbc7c2090cf6789cbf2782951c32c4af7ce144d1704dab044",
+    "note": "Same case, family and visible turns; only gold and routes differ. Never run in one invocation with the fixed version."
+  },
+  "native_scope": {
+    "evidence_condition": "native_index",
+    "build": "pending_final_build",
+    "index_snapshot": null,
+    "corpus_manifest_sha256": null,
+    "allowlist_sha256": null,
+    "exclusion_manifest_sha256": null,
+    "note": "Pins are filled from Hassan's final build before the final run; this gold is not valid for a run until then."
+  }
+}

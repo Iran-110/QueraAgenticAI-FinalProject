@@ -1,0 +1,274 @@
+{
+  "schema_version": 1,
+  "review_id": "split-e1-v1-native-dev-gold-review-v1",
+  "reviewer_id": "mhg",
+  "reviewer_kind": "human",
+  "reviewed_on": "2026-10-16",
+  "rubric_id": "e2-rubric-v1",
+  "evidence_condition": "native_index",
+  "scope": "Review of the 16 native-index dev gold fixtures (one card per case)",
+  "drafted_by": "assistant (claude-opus-5-5); judgments by the human reviewer",
+  "exported_file_sha256": "e65a1df46471fd32c41815dd16952580827c080441629685bab1909504a22e58",
+  "independence_note": "The assistant's assessment was shown openly on every card; all initial verdicts match the assistant's suggestions (14 correct, 2 unsure where the assistant said unsure). This is a human-confirmed gold review, not an independent second authoring of the gold.",
+  "summary": {
+    "cases": 16,
+    "initial": {
+      "correct": 14,
+      "unsure": 2
+    },
+    "final": {
+      "correct": 16
+    }
+  },
+  "items": [
+    {
+      "case_id": "dev-case-g",
+      "fixture_path": "data/evaluation/split-e1-v1/native/dev/args-tuple-4164-native-v1.json",
+      "reviewed_sha256": "d4c5385846bb97b3e349db6b2993450ca66ff4b06968587ab48c162515c9b40e",
+      "final_sha256": "a8174ec93cce6a6129ade992b9b65a69f38730e305f85a7507cf9a6cd5466e48",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست. این جمله در docstring دکمه در همهٔ نسخه‌های قدیمی یکسان است، پس برای نسخهٔ نامعلوم هم معتبر است.",
+        "risk": "سقف ابزار ۱۰ نسخه است؛ ۱۰ نسخه بین 1.22 و 1.47 انتخاب شد. اگر index نسخهٔ دیگری با همین جمله بدهد، ابزار آن را «ندیده» گزارش می‌کند؛ داور باید دستی نگاه کند.",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct",
+      "amendment": "Label fix after review: the builder had left evidence_condition as controlled_fixed_evidence; it is now native_index. No other gold field changed (checked field by field)."
+    },
+    {
+      "case_id": "dev-case-k",
+      "fixture_path": "data/evaluation/split-e1-v1/native/dev/checkbox-reset-1924-native-v1.json",
+      "reviewed_sha256": "79daca60f93d67fbbab246a8b6371e102a6df33f6d2ea0751c73d2eb0ec44112",
+      "final_sha256": "b565c49460c19ff72118c774b0370b94e3fc29aa98003aef2c863bcae60299c2",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست. اگر جمله‌ها نرسند، پرسیدن نسخه همچنان قابل قبول است، پس ارجاع تازه لازم نبود.",
+        "risk": "سند widget-behavior بدون نسخه است؛ برای 0.60.0 جواب باید صریحاً بگوید مستندات مال نسخه‌های جدیدتر است.",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct",
+      "amendment": "Label fix after review: the builder had left evidence_condition as controlled_fixed_evidence; it is now native_index. No other gold field changed (checked field by field)."
+    },
+    {
+      "case_id": "dev-case-p",
+      "fixture_path": "data/evaluation/split-e1-v1/native/dev/checkbox-value-key-12165-native-v1.json",
+      "reviewed_sha256": "fc229ab30f3988ca7102967514a6f629aa95716c62b07d6b3edca29a38dfbe80",
+      "final_sha256": "b12e22aae84cf9f68dc216a0dc026d5114d473dc7713b6b9249ab4e25590c753",
+      "initial_verdict": "unsure",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست، ولی این جمله فقط «key راه دسترسی به مقدار است» را پشتیبانی می‌کند، نه کامل «چرا value بعد از کلیک کاربر اثر ندارد».",
+        "risk": "شاید یک جملهٔ دوم دربارهٔ اینکه value فقط مقدار اولیه است لازم باشد؛ فعلاً ثبت نشده.",
+        "suggest": "درست است یا مطمئن نیستم."
+      },
+      "final_verdict": "correct",
+      "amendment": "Second required sentence added (widget-behavior.md: initial value through Session State rather than value; use Session State when changing a widget programmatically). Reviewer: correct. Label fix after review: the builder had left evidence_condition as controlled_fixed_evidence; it is now native_index. No other gold field changed (checked field by field).",
+      "follow_up_basis": "Assistant amended the fixture, explained the change in chat; reviewer answered a two-question choice on 2026-10-16"
+    },
+    {
+      "case_id": "dev-case-o",
+      "fixture_path": "data/evaluation/split-e1-v1/native/dev/conditional-widget-9082-native-v1.json",
+      "reviewed_sha256": "8c444acbb1cc222dcbde8368a967964f7967b3e8d64e86497c7e1a7e54feaf3c",
+      "final_sha256": "2a243d5cc0153b48b564fc6a06fb7ec80bd59620763b4b2a595e0ba148bd6c48",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست؛ همین جمله علت اصلی را پشتیبانی می‌کند.",
+        "risk": "سند بدون نسخه است؛ برای 1.34.0 کافی است بگوید سند فعلی است.",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct",
+      "amendment": "Label fix after review: the builder had left evidence_condition as controlled_fixed_evidence; it is now native_index. No other gold field changed (checked field by field)."
+    },
+    {
+      "case_id": "dev-case-e",
+      "fixture_path": "data/evaluation/split-e1-v1/native/dev/date-range-4884-native-v1.json",
+      "reviewed_sha256": "7801cadc849d952e1ca9bf1b501248e8c31822e604151585bbdc383036315c5a",
+      "final_sha256": "6fe0e1cf38d829f526840a52a6c2b5784ea21b2d0648c4ab1474031cd6ff0ed1",
+      "initial_verdict": "unsure",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست از نظر منطق.",
+        "risk": "**این جملهٔ دقیق فقط در docstringهای 1.22 تا 1.26 هست**؛ بعد از آن عبارت عوض شده، و 1.10.0 اصلاً در داده نیست. اگر index نسخه را دقیق محدود کند، احتمالاً هیچ‌وقت نمی‌رسد. شاید لازم باشد یک جملهٔ دوم از نسخه‌های جدیدتر هم alternative شود.",
+        "suggest": "مطمئن نیستم (به‌خاطر نسخه‌ها)."
+      },
+      "final_verdict": "correct",
+      "amendment": "Required sentence now accepts all three date_input wordings of the today default (1.22-1.26, 1.27-1.40, 1.41+; 9 versions); the answer must still say the docstring is later than 1.10.0. Reviewer: correct. Label fix after review: the builder had left evidence_condition as controlled_fixed_evidence; it is now native_index. No other gold field changed (checked field by field).",
+      "follow_up_basis": "Assistant amended the fixture, explained the change in chat; reviewer answered a two-question choice on 2026-10-16"
+    },
+    {
+      "case_id": "dev-case-c",
+      "fixture_path": "data/evaluation/split-e1-v1/native/dev/enum-8129-native-v1.json",
+      "reviewed_sha256": "db77e468b8cfbae33251899ccea759287c24b39c49d425bd6b6a9e931a0441ce",
+      "final_sha256": "3fc72a59fc54f3a657a029c443de9d670a7cad909d870503258fe93613e0fb1f",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست. اگر راهنمای custom-classes در bundle دیده شود، یعنی exclusion شکسته شده؛ باید گزارش شود، نه اینکه جواب Enum پشتیبانی‌شده حساب شود.",
+        "risk": "ندارد.",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct",
+      "amendment": "Label fix after review: the builder had left evidence_condition as controlled_fixed_evidence; it is now native_index. No other gold field changed (checked field by field)."
+    },
+    {
+      "case_id": "dev-case-l",
+      "fixture_path": "data/evaluation/split-e1-v1/native/dev/form-callback-8136-native-v1.json",
+      "reviewed_sha256": "e334cf1a28100a3f2d7b34b58d87a14bc9236ae417d4689da4f45c2fb14ce1cf",
+      "final_sha256": "f42e4efc5d6e751bf22731dbd0466de9e63e12c29d50468a884840a1487174c2",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست. خطای اصلی (صدا زدن callback به‌جای دادن خودِ تابع) پایتونی است؛ این دو جمله فقط الگوی درست را پشتیبانی می‌کنند.",
+        "risk": "جملهٔ «on_click باید خود تابع باشد نه نتیجهٔ صدا زدن آن» در این دو جمله نیست؛ مدل نباید آن را به سند نسبت دهد.",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct",
+      "amendment": "Label fix after review: the builder had left evidence_condition as controlled_fixed_evidence; it is now native_index. No other gold field changed (checked field by field)."
+    },
+    {
+      "case_id": "dev-case-m",
+      "fixture_path": "data/evaluation/split-e1-v1/native/dev/fragment-rerun-9180-native-v1.json",
+      "reviewed_sha256": "b467bd26639db5b52debf7f35f565395b8f07f52bda0d7fdc1343e004337cc76",
+      "final_sha256": "7137bde0b3019ee845c7220f31fe0915aa5623ad0b1f12242df36d9466fa9c16",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست.",
+        "risk": "**index فعلی release note ندارد.** اگر corpus نهایی حسن هم نداشته باشد، این جمله هیچ‌وقت نمی‌رسد و فقط ارجاع می‌ماند.",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct",
+      "amendment": "Label fix after review: the builder had left evidence_condition as controlled_fixed_evidence; it is now native_index. No other gold field changed (checked field by field)."
+    },
+    {
+      "case_id": "dev-case-b",
+      "fixture_path": "data/evaluation/split-e1-v1/native/dev/icon-9770-native-v1.json",
+      "reviewed_sha256": "a57e9e145b1b5e5f522b12187c61797e75cdfdb3cf53c5e6d211cddb872b2246",
+      "final_sha256": "9a5a8f2fa12bb229165ea7e127d52b868303407ee3fe1956adfcf5dfb97a9d4a",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست. این جمله فقط بخش emoji را نشان می‌دهد؛ جملهٔ Material Symbol و «تصویر پشتیبانی نمی‌شود» از همان docstring می‌آید ولی جدا ثبت نشده.",
+        "risk": "شاید جملهٔ Material Symbol هم باید الزام دوم باشد.",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct",
+      "amendment": "Label fix after review: the builder had left evidence_condition as controlled_fixed_evidence; it is now native_index. No other gold field changed (checked field by field)."
+    },
+    {
+      "case_id": "dev-case-a",
+      "fixture_path": "data/evaluation/split-e1-v1/native/dev/pilot-12782-native-v1.json",
+      "reviewed_sha256": "a259d2926f59ac7c41fba2b5b5107629af419f4bf0c833d11502016fe16a6ec5",
+      "final_sha256": "e36bab4483685b32af77c6db7f713ddba3218402097d18db1c4a5a37077591fe",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست؛ این همان چیزی است که در review ۱۵ اکتبر گفتی: در index واقعی، release note این ادعا را پشتیبانی می‌کند.",
+        "risk": "جملهٔ release note طولانی و چندخطی است؛ اگر index آن را در دو chunk ببرد، ابزار آن را «ندیده» گزارش می‌کند.",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct",
+      "amendment": "Label fix after review: the builder had left evidence_condition as controlled_fixed_evidence; it is now native_index. No other gold field changed (checked field by field)."
+    },
+    {
+      "case_id": "dev-case-h",
+      "fixture_path": "data/evaluation/split-e1-v1/native/dev/range-assign-9342-native-v1.json",
+      "reviewed_sha256": "c92568d4507bdc71d6b78f4321c62aaa28a485b8376f4e21ab69a42addcc4446",
+      "final_sha256": "64277f5301b6f034bef169c83479523a88e66e9d8ce019d8d6265e0955f5e608",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست.",
+        "risk": "مثل m: وابسته به وجود release note در corpus نهایی.",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct",
+      "amendment": "Label fix after review: the builder had left evidence_condition as controlled_fixed_evidence; it is now native_index. No other gold field changed (checked field by field)."
+    },
+    {
+      "case_id": "dev-case-f",
+      "fixture_path": "data/evaluation/split-e1-v1/native/dev/rerun-widgets-3533-native-v1.json",
+      "reviewed_sha256": "d9afa38b5ccccc7a1f4d3353ee5d007beb37b08a5e7be9fdf644de6ab1914fec",
+      "final_sha256": "cf9d0b5aa28952a548fa276c391a90333efcfa494045783fa06bfff2925c616e",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست.",
+        "risk": "وابسته به release note در corpus نهایی.",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct",
+      "amendment": "Label fix after review: the builder had left evidence_condition as controlled_fixed_evidence; it is now native_index. No other gold field changed (checked field by field)."
+    },
+    {
+      "case_id": "dev-case-n",
+      "fixture_path": "data/evaluation/split-e1-v1/native/dev/state-clear-12740-native-v1.json",
+      "reviewed_sha256": "06a1c492613bdb99b4aa5e2943e3cdc3c40c8918a5f2bd79be75e25d2cd7d899",
+      "final_sha256": "592397b07618f7929a67625253b1b0ef383473f1517623b5e6088f67ec0793b4",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست، ولی این جمله فقط حذف یک کلید را نشان می‌دهد؛ اینکه clear() **همه** را پاک می‌کند در این جمله نیست.",
+        "risk": "شاید جملهٔ «Delete all the items in Session state» هم باید alternative یا الزام دوم باشد.",
+        "suggest": "درست است یا مطمئن نیستم."
+      },
+      "final_verdict": "correct",
+      "amendment": "Label fix after review: the builder had left evidence_condition as controlled_fixed_evidence; it is now native_index. No other gold field changed (checked field by field)."
+    },
+    {
+      "case_id": "dev-case-j",
+      "fixture_path": "data/evaluation/split-e1-v1/native/dev/state-typing-9455-native-v1.json",
+      "reviewed_sha256": "f4b862d272aa8251ce9125fd6d6a7cc5b98a7c4ba155e9e9293c057e88e81567",
+      "final_sha256": "8804058d595c5d6ef34baf668458d7be8be4c393212c34faba8bd237d0138159",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست.",
+        "risk": "ندارد.",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct",
+      "amendment": "Label fix after review: the builder had left evidence_condition as controlled_fixed_evidence; it is now native_index. No other gold field changed (checked field by field)."
+    },
+    {
+      "case_id": "dev-case-d",
+      "fixture_path": "data/evaluation/split-e1-v1/native/dev/status-fragment-16281-native-v1.json",
+      "reviewed_sha256": "1ebe7e9bd22c271859635da9e7cb4dcabc0ee7379fd3039bee7d84d466f63faa",
+      "final_sha256": "33a6db34bf6468a46baa0b0034c14a825aa33c1a1ad20ed6c1bb24069d758c08",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست.",
+        "risk": "وابسته به release note در corpus نهایی.",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct",
+      "amendment": "Label fix after review: the builder had left evidence_condition as controlled_fixed_evidence; it is now native_index. No other gold field changed (checked field by field)."
+    },
+    {
+      "case_id": "dev-case-i",
+      "fixture_path": "data/evaluation/split-e1-v1/native/dev/tabs-blank-9259-native-v1.json",
+      "reviewed_sha256": "9e0a6f6b64d3e68c6a6c710640632b0e28acf7e80be3262b4175246b50c21674",
+      "final_sha256": "f4f96f01e7876084855c811f598029acf56153dee7c1acb4a0e98ab30473909c",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست.",
+        "risk": "وابسته به release note در corpus نهایی.",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct",
+      "amendment": "Label fix after review: the builder had left evidence_condition as controlled_fixed_evidence; it is now native_index. No other gold field changed (checked field by field)."
+    }
+  ],
+  "limitations": [
+    "Pins are pending the final build; the gold is not valid for a run until Hassan's build, allowlist and exclusion hashes are recorded.",
+    "Five cases (d, f, h, i, m) need release notes; the current 18-source index has none.",
+    "Passage observation is necessary, not sufficient: support, version scope and usefulness remain human judgments after a run.",
+    "Alternatives are capped at 10 per requirement; an equivalent passage outside the listed versions is reported as not observed and needs manual review.",
+    "All 16 final hashes differ from the reviewed hashes only by the evidence_condition label fix; cases p and e also carry the reviewed passage amendments."
+  ]
+}

@@ -41,6 +41,10 @@ test-derived question or alias is added.
 is the same dev projection rebuilt after the manifest pinned
 [dev-three v2](dev-three-v2/README.md); it differs from v2 only in `manifest_sha256`.
 
+Native-index gold for the 16 dev cases is in
+[`split-e1-v1/native/`](split-e1-v1/native/README.md), registered separately from the
+fixed fixtures with pins pending the final build.
+
 The additive [offline review workbench](../../docs/evaluation-workbench.fa.md)
 now prepares actual C4g/C4h turn contexts, full sources and blank SemanticReview
 sidecars. It preserves stopped, stale and unvisited rows beside fresh proposals,
