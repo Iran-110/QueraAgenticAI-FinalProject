@@ -1,0 +1,271 @@
+{
+  "schema_version": 1,
+  "fixture_id": "dev-three-icon-9770-v2",
+  "registered_on": "2026-10-16",
+  "registered_before_first_run": true,
+  "purpose": "Real feature-request body paraphrase; missing release is clarified with an authored reply, then pinned API capability is answered within button scope.",
+  "case": {
+    "case_id": "dev-case-b",
+    "split": "dev",
+    "family_issue_ids": [
+      9770,
+      7300,
+      8734,
+      14297
+    ],
+    "origin_url": "https://github.com/streamlit/streamlit/issues/9770",
+    "source_snapshot_date": "2026-10-06",
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "test_eligible": false,
+    "exposure": "Assistant reviewed the cached Issue body and comments/outcomes before authoring this DEVELOPMENT fixture; answer-informed and never eligible as held-out test. Authored follow-ups are counterfactual controls, not transcript reconstructions."
+  },
+  "evidence_source": {
+    "path": "data/evaluation/dev-three-v1/evidence-v1.json",
+    "sha256": "d8ddd2dd8234fe328cc49326de1cc83d9096fe833bce254812c44d20a9f79521",
+    "bundles_used": [
+      "icon-139"
+    ],
+    "note": "Fixed seed-backed evidence, not index output. All Issue/comment/outcome answers excluded."
+  },
+  "boundaries": {
+    "agent": "scripted AnalysisResult for offline plumbing; live ignores agent_script/gold/future turns",
+    "real_model_calls": 0,
+    "api_cost_usd": 0,
+    "storage": "evaluation runner process-local API/DummyTracker; not production durable tracker",
+    "quality_claim": false,
+    "max_reached_turns": 2,
+    "visible_to_agent": [
+      "currently selected turns[].visible"
+    ],
+    "runner_only": [
+      "gold",
+      "agent_script",
+      "maintainer",
+      "probes",
+      "evaluation.coverage",
+      "future turns"
+    ]
+  },
+  "initial_report_provenance": {
+    "kind": "developer_paraphrase_of_latest_cached_body",
+    "source_path": "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+    "issue_number": 9770,
+    "source_created_at": "2024-11-01T22:27:56Z",
+    "source_updated_at": "2026-08-23T18:16:03Z",
+    "source_issue_record_sha256": "cb98efea92216557931b7a500f00e534a6a9e284e1f8d608dc9887f13a5e07c5",
+    "original_initial_text_verified": false,
+    "note": "Cached body can contain later edits. Created_at is not proof of the original body; no later comments/outcomes are supplied as the initial user message."
+  },
+  "turns": [
+    {
+      "id": "initial",
+      "conversation_source": "developer_paraphrase_of_latest_cached_issue_body",
+      "visible": {
+        "message": "I want to use a custom company-logo image as an icon, such as on st.button or st.warning. Can the icon parameter accept an image the way st.image does? I have not supplied my installed Streamlit version.",
+        "reported_facts": [
+          {
+            "name": "requested_icon_format",
+            "value": "A custom company-logo image rather than an emoji or Material Symbol"
+          },
+          {
+            "name": "requested_apis",
+            "value": "st.button or st.warning"
+          }
+        ],
+        "unknowns": [
+          "streamlit_version"
+        ],
+        "checks_performed": [],
+        "context_changed": false
+      },
+      "evidence_bundle": "icon-139",
+      "agent_script": {
+        "decision": "ask",
+        "user_draft": "Which Streamlit version is installed in the affected environment?",
+        "maintainer_summary": "Requested custom image icon; installed release unknown.",
+        "rationale": "Version is user-clarifiable and needed before applying the versioned button API record.",
+        "next_question": "Which Streamlit version is installed in the affected environment?",
+        "missing_info": [
+          "streamlit_version"
+        ]
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "rubric_id": "e2-rubric-v1",
+        "evidence_condition": "controlled_fixed_evidence",
+        "stratum": "ambiguous",
+        "acceptable_decisions": [
+          "answer",
+          "ask",
+          "escalate"
+        ],
+        "decision_conditions": {
+          "answer": "An explicitly historical/bounded statement about the supplied 1.39.0 button icon formats can be useful; must not assume user version or generalize to warning.",
+          "ask": "The canonical installed-version question is necessary and user answerable.",
+          "escalate": "A feature implementation request may require maintainers, but supported existing API guidance should not be withheld; record unnecessary abstention separately."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [
+          {
+            "name": "streamlit_version",
+            "kind": "user",
+            "description": "Affected installed release not yet supplied.",
+            "necessity": "The user can report the installed release; it changes applicability of pinned API documentation.",
+            "question": "Which Streamlit version is installed in the affected environment?"
+          }
+        ],
+        "required_sources": [
+          "dev-three-button-139-full"
+        ],
+        "unacceptable_claims": [
+          "PNG/SVG/image URL is supported by st.button icon in Streamlit 1.39.0.",
+          "A new feature has shipped or has an implementation date.",
+          "The button documentation establishes st.warning, st.Page or every icon-bearing API behaviour.",
+          "Images in Markdown labels are supported in this 1.39.0 button record.",
+          "A provider/source document establishes the user installed version."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality."
+      },
+      "expect": {
+        "revision": 1,
+        "pending_decision": "ask",
+        "after_decision": {
+          "status": "awaiting_user",
+          "awaiting_reply": true,
+          "released_draft": "agent"
+        }
+      }
+    },
+    {
+      "id": "version",
+      "conversation_source": "developer_authored_counterfactual_version_reply",
+      "visible": {
+        "message": "1.39.0",
+        "reply_to_approved_question": true
+      },
+      "evidence_bundle": "icon-139",
+      "agent_script": {
+        "decision": "answer",
+        "user_draft": "For Streamlit 1.39.0, the documented st.button icon options are a single-character emoji or a Material Symbol in the :material/icon_name: format. This record does not list custom image paths or URLs as icon formats. It covers st.button; it does not establish the behaviour of st.warning or a delivery date for a new feature.",
+        "maintainer_summary": "User confirmed 1.39.0. The button record supports a bounded answer about its existing icon formats; warning/image-feature implementation is not established.",
+        "rationale": "The exact-version button icon parameter lists the two supported formats; stay within that API and version.",
+        "evidence_links": [
+          {
+            "claim": "Streamlit 1.39.0 st.button icon accepts a single-character emoji or a Material Symbol formatted as :material/icon_name:.",
+            "chunk_id": "dev-three-button-139-full"
+          }
+        ]
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "rubric_id": "e2-rubric-v1",
+        "evidence_condition": "controlled_fixed_evidence",
+        "stratum": "answerable",
+        "acceptable_decisions": [
+          "answer",
+          "escalate"
+        ],
+        "decision_conditions": {
+          "answer": "Give the useful supported exact-version button icon capability/limitation, clearly scoped to button. Future feature status and warning remain unresolved. A tip not found in the supplied sources (for example Markdown image labels in later releases) is allowed only when it says plainly that it was not found in those sources. The answer still states the documented 1.39.0 icon options.",
+          "escalate": "Acceptable only for the unresolved feature-delivery or unsupported warning portion while retaining useful documented button capability. Escalating the whole exact-version button question without that answer is unnecessary abstention. A tip not found in the supplied sources (for example Markdown image labels in later releases) is allowed only when it says plainly that it was not found in those sources. The documented 1.39.0 icon options are still given."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [],
+        "required_sources": [
+          "dev-three-button-139-full"
+        ],
+        "unacceptable_claims": [
+          "PNG/SVG/image URL is supported by st.button icon in Streamlit 1.39.0.",
+          "A new feature has shipped or has an implementation date.",
+          "The button documentation establishes st.warning, st.Page or every icon-bearing API behaviour.",
+          "Images in Markdown labels are supported in this 1.39.0 button record.",
+          "A provider/source document establishes the user installed version.",
+          "The supplied 1.39.0 bundle establishes that Markdown image labels work from 1.40.0."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality."
+      },
+      "expect": {
+        "revision": 2,
+        "pending_decision": "answer",
+        "preparation": "canonical_version_reply",
+        "active_facts": {
+          "streamlit_version": "1.39.0"
+        },
+        "cited_chunks": [
+          "dev-three-button-139-full"
+        ],
+        "version_scope": {
+          "dev-three-button-139-full": "exact_metadata_match"
+        },
+        "after_decision": {
+          "status": "answer_sent",
+          "released_draft": "agent"
+        }
+      }
+    }
+  ],
+  "evaluation": {
+    "coverage": {
+      "turn_ids": [
+        "initial",
+        "version"
+      ],
+      "routes": [
+        {
+          "from_turn": "initial",
+          "to_turn": "version",
+          "guard": {
+            "decision": "ask",
+            "question_target": "streamlit_version"
+          }
+        },
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "answer"
+          }
+        },
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "escalate"
+          }
+        },
+        {
+          "from_turn": "version",
+          "to_turn": null,
+          "guard": {
+            "decision": "answer"
+          }
+        },
+        {
+          "from_turn": "version",
+          "to_turn": null,
+          "guard": {
+            "decision": "escalate"
+          }
+        }
+      ]
+    }
+  },
+  "supersedes": {
+    "fixture_id": "dev-three-icon-9770-v1",
+    "path": "data/evaluation/dev-three-v1/cases/icon-9770-v1.json",
+    "sha256": "199b47b1c3a65e853d49ec28d9607eec36982502bd2fd5bde1c640165e35c413",
+    "reason": "Re-registered for e2-rubric-v1 with gold reviewed again under that rubric. Same case and family, not a new case; v1 and its receipts stay unchanged under e2-core-review-draft-v1."
+  }
+}

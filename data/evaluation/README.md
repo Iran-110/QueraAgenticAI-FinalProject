@@ -29,6 +29,10 @@ to actual model choices, approval/release, question necessity or usefulness.
 Held-out execution remains with the evaluation owner after freeze; no
 test-derived question or alias is added.
 
+[`question-coverage-dev-v3.json`](split-e1-v1/question-coverage-dev-v3.json)
+is the same dev projection rebuilt after the manifest pinned
+[dev-three v2](dev-three-v2/README.md); it differs from v2 only in `manifest_sha256`.
+
 The additive [offline review workbench](../../docs/evaluation-workbench.fa.md)
 now prepares actual C4g/C4h turn contexts, full sources and blank SemanticReview
 sidecars. It preserves stopped, stale and unvisited rows beside fresh proposals,
