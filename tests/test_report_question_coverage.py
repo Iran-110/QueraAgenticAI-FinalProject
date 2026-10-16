@@ -604,9 +604,26 @@ def test_nonoperational_maintainer_note_does_not_change_projection():
     assert _rows(fixture) == before
 
 
-def test_committed_dev_v2_matches_explicit_dev_only_rebuild():
-    path = ROOT / "data/evaluation/split-e1-v1/question-coverage-dev-v2.json"
+def test_committed_dev_v3_matches_explicit_dev_only_rebuild():
+    path = ROOT / "data/evaluation/split-e1-v1/question-coverage-dev-v3.json"
     committed = json.loads(path.read_text(encoding="utf-8"))
     rebuilt, details = coverage.build(splits=("dev",))
     assert rebuilt == committed
     assert set(committed["splits"]) == set(details) == {"dev"}
+
+
+def test_dev_v2_differs_from_v3_only_by_the_manifest_pin():
+    # v2 was built before dev-three v2 replaced v1 in the manifest; the dev
+    # projection itself is unchanged.
+    reports = [
+        json.loads(
+            (ROOT / f"data/evaluation/split-e1-v1/question-coverage-dev-{v}.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        for v in ("v2", "v3")
+    ]
+    assert reports[0]["manifest_sha256"] != reports[1]["manifest_sha256"]
+    for report in reports:
+        report.pop("manifest_sha256")
+    assert reports[0] == reports[1]

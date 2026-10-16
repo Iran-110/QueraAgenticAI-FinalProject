@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "manifest_id": "split-e1-v1",
-  "updated_on": "2026-10-15",
+  "updated_on": "2026-10-16",
   "status": "draft_families_selected_not_frozen",
   "scope": "Family-level E1 selection for the final evaluation (15+ dev, 15 test). Fixtures, gold and freeze pending.",
   "selected_by": "mhg (approved 2026-10-15); assistant-assisted screening",
@@ -601,7 +601,6 @@
   "blockers": [
     "Human review of the dev and test gold before freeze",
     "New user-gap names (session_entry_page, runtime_version_check, updated_form_code, app_state_code) need the reviewed vocabulary before live runs",
-    "dev-three fixtures still name rubric e2-core-review-draft-v1; new fixtures name e2-rubric-v1",
     "Freeze after review; Hassan rebuilds the index from index_exclusion"
   ],
   "registered_fixtures": {
@@ -755,7 +754,7 @@
     "multi_turn_registered": {
       "dev": 7,
       "test": 7,
-      "note": "dev includes the three dev-three fixtures in data/evaluation/dev-three-v1/."
+      "note": "dev includes the three dev-three v2 fixtures in data/evaluation/dev-three-v2/cases/."
     },
     "test_strata": {
       "all_turns": {
@@ -899,31 +898,53 @@
         ]
       },
       {
-        "path": "data/evaluation/dev-three-v1/cases/enum-8129-v1.json",
-        "sha256": "c5becdc00a950941cb25de8f775fc1a5b024d54f607a9c494bd9e7820ab216f0",
+        "path": "data/evaluation/dev-three-v2/cases/enum-8129-v2.json",
+        "sha256": "746f885a60e4d5c88913bdd82c9d77ca6d48c0665775c4cd201bceeb322965bf",
         "case_id": "dev-case-c",
         "family_issue_ids": [
           2379,
           8129,
-          8180
-        ]
+          8180,
+          4909,
+          6985,
+          7419
+        ],
+        "supersedes": {
+          "path": "data/evaluation/dev-three-v1/cases/enum-8129-v1.json",
+          "sha256": "c5becdc00a950941cb25de8f775fc1a5b024d54f607a9c494bd9e7820ab216f0",
+          "reason": "v2 re-registers this case for e2-rubric-v1 with gold reviewed again under that rubric (data/evaluation/dev-three-v2/gold-review-v1.json, mhg, 2026-10-16). Same case and family, not a new case. v1 and its receipts stay unchanged under e2-core-review-draft-v1."
+        }
       },
       {
-        "path": "data/evaluation/dev-three-v1/cases/icon-9770-v1.json",
-        "sha256": "199b47b1c3a65e853d49ec28d9607eec36982502bd2fd5bde1c640165e35c413",
+        "path": "data/evaluation/dev-three-v2/cases/icon-9770-v2.json",
+        "sha256": "4243de41e754bce2272aee0e82cc0f63e590b39e4b04a806a5951dab2c59de15",
         "case_id": "dev-case-b",
         "family_issue_ids": [
-          9770
-        ]
+          9770,
+          7300,
+          8734,
+          14297
+        ],
+        "supersedes": {
+          "path": "data/evaluation/dev-three-v1/cases/icon-9770-v1.json",
+          "sha256": "199b47b1c3a65e853d49ec28d9607eec36982502bd2fd5bde1c640165e35c413",
+          "reason": "v2 re-registers this case for e2-rubric-v1 with gold reviewed again under that rubric (data/evaluation/dev-three-v2/gold-review-v1.json, mhg, 2026-10-16). Same case and family, not a new case. v1 and its receipts stay unchanged under e2-core-review-draft-v1."
+        }
       },
       {
-        "path": "data/evaluation/dev-three-v1/cases/pilot-12782-v1.json",
-        "sha256": "6b542b325ac70906b014c9ac9a7bd01fb95c81a9219794f695de1e09de76c901",
+        "path": "data/evaluation/dev-three-v2/cases/pilot-12782-v2.json",
+        "sha256": "661288119e6fae8a2a6973ffbb50c5ef1e0baafabdd62e20d80429529c059b09",
         "case_id": "dev-case-a",
         "family_issue_ids": [
+          12629,
           12782,
-          12629
-        ]
+          13022
+        ],
+        "supersedes": {
+          "path": "data/evaluation/dev-three-v1/cases/pilot-12782-v1.json",
+          "sha256": "6b542b325ac70906b014c9ac9a7bd01fb95c81a9219794f695de1e09de76c901",
+          "reason": "v2 re-registers this case for e2-rubric-v1 with gold reviewed again under that rubric (data/evaluation/dev-three-v2/gold-review-v1.json, mhg, 2026-10-16). Same case and family, not a new case. v1 and its receipts stay unchanged under e2-core-review-draft-v1."
+        }
       }
     ],
     "dev_strata": {

@@ -1,0 +1,341 @@
+{
+  "schema_version": 1,
+  "fixture_id": "dev-three-pilot-12782-v2",
+  "registered_on": "2026-10-16",
+  "registered_before_first_run": true,
+  "purpose": "Exposed pilot registered anew for at most two reached turns and conditional questions; preserves historical pilot unchanged.",
+  "case": {
+    "case_id": "dev-case-a",
+    "split": "dev",
+    "family_issue_ids": [
+      12629,
+      12782,
+      13022
+    ],
+    "origin_url": "https://github.com/streamlit/streamlit/issues/12782",
+    "source_snapshot_date": "2026-10-06",
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "test_eligible": false,
+    "exposure": "Assistant reviewed the cached Issue body and comments/outcomes before authoring this DEVELOPMENT fixture; answer-informed and never eligible as held-out test. Authored follow-ups are counterfactual controls, not transcript reconstructions."
+  },
+  "evidence_source": {
+    "path": "data/evaluation/dev-three-v1/evidence-v1.json",
+    "sha256": "d8ddd2dd8234fe328cc49326de1cc83d9096fe833bce254812c44d20a9f79521",
+    "bundles_used": [
+      "pilot-mixed",
+      "pilot-confirmed-150"
+    ],
+    "note": "Fixed seed-backed evidence, not index output. All Issue/comment/outcome answers excluded."
+  },
+  "boundaries": {
+    "agent": "scripted AnalysisResult for offline plumbing; live ignores agent_script/gold/future turns",
+    "real_model_calls": 0,
+    "api_cost_usd": 0,
+    "storage": "evaluation runner process-local API/DummyTracker; not production durable tracker",
+    "quality_claim": false,
+    "max_reached_turns": 2,
+    "visible_to_agent": [
+      "currently selected turns[].visible"
+    ],
+    "runner_only": [
+      "gold",
+      "agent_script",
+      "maintainer",
+      "probes",
+      "evaluation.coverage",
+      "future turns"
+    ]
+  },
+  "initial_report_provenance": {
+    "kind": "developer_paraphrase_of_latest_cached_body",
+    "source_path": "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+    "issue_number": 12782,
+    "source_created_at": "2025-10-14T14:44:50Z",
+    "source_updated_at": "2025-10-16T07:30:17Z",
+    "source_issue_record_sha256": "7d7961a641e5194f16fb224554852e68cf96019e58e452cb9ceeaa996a20446f",
+    "original_initial_text_verified": false,
+    "note": "Cached body can contain later edits. Created_at is not proof of the original body; no later comments/outcomes are supplied as the initial user message."
+  },
+  "turns": [
+    {
+      "id": "initial",
+      "conversation_source": "developer_paraphrase_of_cached_issue_body_reused_exposed_pilot",
+      "visible": {
+        "message": "A multiselect inside @st.fragment displays empty instead of its saved default after a parent selector changes and resets state. My reduced example works, but the full app fails and the relevant parent callback is not included. Python 3.12.9 and Chrome. I have not supplied the installed Streamlit version or an earlier version comparison. Which information is useful next?",
+        "reported_facts": [
+          {
+            "name": "python_version",
+            "value": "3.12.9"
+          },
+          {
+            "name": "operating_system",
+            "value": "Windows 11 / WSL2 Ubuntu / AlmaLinux 9"
+          },
+          {
+            "name": "browser",
+            "value": "Chrome"
+          },
+          {
+            "name": "reported_widget_context",
+            "value": "A multiselect inside @st.fragment"
+          },
+          {
+            "name": "reported_trigger",
+            "value": "Changing a parent selector resets session state"
+          },
+          {
+            "name": "reported_observation",
+            "value": "The multiselect displays empty rather than its saved default"
+          },
+          {
+            "name": "reported_reproduction_status",
+            "value": "The small example works correctly and does not reproduce the failure; no minimal failing example is available"
+          }
+        ],
+        "unknowns": [
+          "streamlit_version",
+          "parent_callback_code",
+          "state_update_order",
+          "minimal_failing_reproduction"
+        ],
+        "checks_performed": [
+          "Tried minimal fragment and multiselect examples but they did not reproduce the failure"
+        ],
+        "context_changed": false
+      },
+      "evidence_bundle": "pilot-mixed",
+      "agent_script": {
+        "decision": "ask",
+        "user_draft": "Which Streamlit version is installed in the affected environment?",
+        "maintainer_summary": "Installed version is missing; full-app callback is not supplied.",
+        "rationale": "Ask the currently unknown installed version to check source applicability.",
+        "next_question": "Which Streamlit version is installed in the affected environment?",
+        "missing_info": [
+          "streamlit_version"
+        ]
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "rubric_id": "e2-rubric-v1",
+        "evidence_condition": "controlled_fixed_evidence",
+        "stratum": "ambiguous",
+        "acceptable_decisions": [
+          "ask",
+          "escalate"
+        ],
+        "decision_conditions": {
+          "ask": "Ask installed version, or the missing real parent callback; never treat the working reduction as failing.",
+          "escalate": "No diagnosis/fix supported; explicit unresolved source limitations and concrete maintainer investigation. Report unnecessary abstention separately; user version clarification remains feasible."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [
+          {
+            "name": "streamlit_version",
+            "kind": "user",
+            "description": "Affected installed release not yet supplied.",
+            "necessity": "The user can report the installed release; it changes applicability of pinned API documentation.",
+            "question": "Which Streamlit version is installed in the affected environment?"
+          },
+          {
+            "name": "parent_callback_code",
+            "kind": "user",
+            "description": "Relevant parent callback/state-update code is not supplied; the supplied reduction works.",
+            "necessity": "The user can share the real callback to distinguish full-app behaviour from the working reduction.",
+            "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+          },
+          {
+            "name": "state_update_order",
+            "kind": "user",
+            "description": "The current case lists the order of state updates as unknown.",
+            "necessity": "The user can report when the relevant state is assigned or removed relative to rendering the widget.",
+            "question": "In what order does your app update session state and render the affected widget?"
+          }
+        ],
+        "required_sources": [],
+        "unacceptable_claims": [
+          "The full-app root cause or a verified fix is established.",
+          "The working reduced snippet reproduces the failure.",
+          "Document version metadata proves the installed user version.",
+          "Multiselect key-only identity changed in 1.50.0: no release note or identity claim is in this new fixed bundle.",
+          "The case was sent to a maintainer before an observed action."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality."
+      },
+      "expect": {
+        "revision": 1,
+        "pending_decision": "ask",
+        "no_assistant_message_before_approval": true,
+        "after_decision": {
+          "status": "awaiting_user",
+          "awaiting_reply": true,
+          "released_draft": "agent"
+        }
+      }
+    },
+    {
+      "id": "version",
+      "conversation_source": "developer_authored_counterfactual_version_reply",
+      "visible": {
+        "message": "1.50.0",
+        "reply_to_approved_question": true
+      },
+      "evidence_bundle": "pilot-confirmed-150",
+      "agent_script": {
+        "decision": "ask",
+        "user_draft": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?",
+        "maintainer_summary": "Version 1.50.0 confirmed, but the real parent callback is unavailable.",
+        "rationale": "The exact-version fragment/default API sources do not explain the full-app failure; callback code is a user-clarifiable gap.",
+        "next_question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?",
+        "missing_info": [
+          "parent_callback_code"
+        ]
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "rubric_id": "e2-rubric-v1",
+        "evidence_condition": "controlled_fixed_evidence",
+        "stratum": "ambiguous",
+        "acceptable_decisions": [
+          "answer",
+          "ask",
+          "escalate"
+        ],
+        "decision_conditions": {
+          "answer": "Only a useful explicitly scoped description of the supplied 1.50.0 API behaviour, with exact quoted support; no full-app diagnosis/fix or invented release-change claim.",
+          "ask": "Only the currently missing real parent callback/state-update code. Installed version is known; do not ask it again.",
+          "escalate": "Explain that exact API documentation does not prove the full-app cause/fix, and specify maintainer investigation without asserting execution."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [
+          {
+            "name": "parent_callback_code",
+            "kind": "user",
+            "description": "Relevant parent callback/state-update code is not supplied; the supplied reduction works.",
+            "necessity": "The user can share the real callback to distinguish full-app behaviour from the working reduction.",
+            "question": "Can you share the parent selector callback and the code that updates state before rendering the multiselect?"
+          },
+          {
+            "name": "state_update_order",
+            "kind": "user",
+            "description": "The current case lists the order of state updates as unknown.",
+            "necessity": "The user can report when the relevant state is assigned or removed relative to rendering the widget.",
+            "question": "In what order does your app update session state and render the affected widget?"
+          }
+        ],
+        "required_sources": [
+          "dev-three-multiselect-1500-default-key"
+        ],
+        "unacceptable_claims": [
+          "The full-app root cause or a verified fix is established.",
+          "The working reduced snippet reproduces the failure.",
+          "Document version metadata proves the installed user version.",
+          "Multiselect key-only identity changed in 1.50.0: no release note or identity claim is in this new fixed bundle.",
+          "The case was sent to a maintainer before an observed action."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality."
+      },
+      "expect": {
+        "revision": 2,
+        "pending_decision": "ask",
+        "preparation": "canonical_version_reply",
+        "active_facts": {
+          "streamlit_version": "1.50.0"
+        },
+        "after_decision": {
+          "status": "awaiting_user",
+          "awaiting_reply": true,
+          "released_draft": "agent"
+        }
+      }
+    }
+  ],
+  "evaluation": {
+    "coverage": {
+      "turn_ids": [
+        "initial",
+        "version"
+      ],
+      "routes": [
+        {
+          "from_turn": "initial",
+          "to_turn": "version",
+          "guard": {
+            "decision": "ask",
+            "question_target": "streamlit_version"
+          }
+        },
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "ask",
+            "question_target": "parent_callback_code"
+          }
+        },
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "escalate"
+          }
+        },
+        {
+          "from_turn": "version",
+          "to_turn": null,
+          "guard": {
+            "decision": "answer"
+          }
+        },
+        {
+          "from_turn": "version",
+          "to_turn": null,
+          "guard": {
+            "decision": "ask",
+            "question_target": "parent_callback_code"
+          }
+        },
+        {
+          "from_turn": "version",
+          "to_turn": null,
+          "guard": {
+            "decision": "escalate"
+          }
+        },
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "ask",
+            "question_target": "state_update_order"
+          }
+        },
+        {
+          "from_turn": "version",
+          "to_turn": null,
+          "guard": {
+            "decision": "ask",
+            "question_target": "state_update_order"
+          }
+        }
+      ]
+    }
+  },
+  "supersedes": {
+    "fixture_id": "dev-three-pilot-12782-v1",
+    "path": "data/evaluation/dev-three-v1/cases/pilot-12782-v1.json",
+    "sha256": "6b542b325ac70906b014c9ac9a7bd01fb95c81a9219794f695de1e09de76c901",
+    "reason": "Re-registered for e2-rubric-v1 with gold reviewed again under that rubric. Same case and family, not a new case; v1 and its receipts stay unchanged under e2-core-review-draft-v1."
+  }
+}
