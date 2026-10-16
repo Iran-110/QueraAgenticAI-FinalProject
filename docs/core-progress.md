@@ -1,3 +1,45 @@
+## 2026-10-16 — C4m/E2z and R4b: evaluation readiness after PR70–76
+
+Synced main `9913541` without opening held-out fixtures/gold/evidence/review
+content. Safe manifest metadata declares16dev/15test,14multi-turn including7test,
+and90excluded Issues; the manifest remains draft. [Decisions and owner handoff](evaluation-readiness.fa.md),
+[prospective protocol/baselines/comparison](../experiments/evaluation_readiness_v1/README.md).
+
+Added an optional four-definition development vocabulary with the two original
+questions plus reviewed form/state-code questions.25offline controls preserve
+21default request/message/render digests. Current explicit unknowns activate
+questions; active USER facts/corrections suppress them. No free-form question
+channel, held-out-derived alias, runtime default or shared contract changed.
+
+Historical workbench construction previously combined old rubric IDs with new
+supplied rubric bytes. The guard now binds the original ID/SHA across scenario
+and every turn gold.62regressions go14pass/48fail→62pass:21wrong-byte acceptances,
+27already-rejected diagnostic mismatches. All7complete valid workbench hashes
+remain exact; no old rubric, fixture, gold, receipt or judgment was rewritten.
+New native gold uses a separately registered fixture/gold/routes scope, not an
+unimplemented condition selector or an automatically loaded sidecar.
+
+Reviewed PR72 and corrected native replay to copy-only clients with complete
+original physical-file hashes and failure cleanup.21controls pass after5new
+red controls. Fresh actual18/36-index replay retains8unique dev state/query/round
+triples from24requests; required availability1/5→3/5 and prior labels off_topic8→5
+reproduce. Every final-hit metadata/order matches24historical state-arm rows;
+one candidate-order difference is retained. Key-identity is omitted by checked
+byte packing (14518/16296>12000) with2/4final hits, not by filling the five-hit
+cap. Ranking/corpus/defaults remain unchanged; further dev packing is Hassan's.
+
+Frozen source `5bbb133`:5589development tests pass,1held-out-content consumer
+intentionally deselected; passing-run guard sees zero forbidden reads. Ruff364,
+three offline demos,16dev/23turns/273scripted checks and HTTP/SQLite457/457 with
+restart pass. [Verification](../experiments/evaluation_readiness_v1/verification-v1.json)
+retains the failed first harness/environment restriction and its correction,
+not product fixes or waived assertions. Separate reviews found no blocker.
+Ledger/current19physical pins/held-out Git tree/old receipts remain exact;
+halt/threeholds/ceiling/closedIDs preserved, no paid API or team messages.
+No final-test, human usefulness, hosted-CI or freshWindows/browser claim.
+Final vocabulary/config, native gold, E1/E2/R4/T4 and C5 remain open. Input
+continues to be text-only; requests for code do not establish screenshot access.
+
 <a id="post-c2j-checkpoint"></a>
 
 ## 2026-10-16 — Post-C2j quality checkpoint; runtime unchanged

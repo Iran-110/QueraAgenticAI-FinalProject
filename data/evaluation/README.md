@@ -1,5 +1,17 @@
 # Evaluation cases
 
+Current E1 registration: `split-e1-v1/split-manifest.json` declares **16 dev /
+15 test**, with all31fixtures registered, but remains draft rather than frozen.
+The maintainer reports31/31scripted cases and533/533operational checks; these
+are not model-quality or final-test results. Historical one-case/dev-three
+packets below remain immutable historical scopes, not the current split count.
+Core development must not open held-out fixtures/gold, `evidence-test*.json`,
+`test-card-review-v1.json` or review HTML that includes held-out case content.
+See [core/evaluation readiness decisions](../../docs/evaluation-readiness.fa.md)
+for optional dev vocabulary, separate native gold registration, rubric identity
+and text-only scope. A generic registered vocabulary is the available question
+space; the current core cannot invent arbitrary unregistered questions.
+
 The additive [offline review workbench](../../docs/evaluation-workbench.fa.md)
 now prepares actual C4g/C4h turn contexts, full sources and blank SemanticReview
 sidecars. It preserves stopped, stale and unvisited rows beside fresh proposals,
@@ -18,10 +30,10 @@ one-case manifest and PR35 pins below are preserved. Use
 for its scripted replay. Fixed-evidence model conditions and the actual14-doc
 index are separate; [guide](../../docs/dev-three-baseline.fa.md).
 
-Draft layout for E1/E2. The schema still needs agreement before the full 30
-cases are written; `dev/pilot-12782.json` is the first case in this format.
-The manifest currently selects **one dev case and zero test cases**. It is not
-a frozen split. The [core-owner rubric review](../../docs/evaluation-rubric.md)
+Historical pilot layout for E1/E2: `dev/pilot-12782.json` was the first case
+in this format. Its historical `split-manifest.json` selects **one dev case
+and zero test cases** and is not a frozen split. It is preserved separately
+from the current31-case registration above. The [core-owner rubric review](../../docs/evaluation-rubric.md)
 is a recommendation for E2; [rubric v1](../../docs/evaluation-rubric-v1.md)
 (`e2-rubric-v1`) adopts it with Sasan's 2026-10-15 additions for new fixtures
 and reviews. The additive semantic-review helper below records

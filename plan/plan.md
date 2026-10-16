@@ -4,6 +4,35 @@
 
 ## وضعیت فعلی
 
+- [x] **C4m/E2z و پذیرش R4b — اتصال split تازه؛ ساسان، ۱۶ اکتبر.**
+  PRهای #70 تا #76 روی main دریافت شدند. metadata ثبت۳۱fixture،۱۶dev/۱۵test،
+  ۱۴مسیر چندنوبتی شامل۷test وexclusion۹۰Issue را تأیید می‌کند؛ manifest هنوز
+  draft است. محتوای test، gold آن و evidenceهای آن برای توسعه باز نشده‌اند.
+  [تصمیم‌ها و اتصال](../docs/evaluation-readiness.fa.md)،
+  [protocol و baseline پیش از تغییر](../experiments/evaluation_readiness_v1/README.md).
+  vocabulary اختیاری تازه، دو سؤال dev فرم وstate را با همان قرارداد caller
+  فعال می‌کند؛۲۵کنترل،۲۱digest پیش‌فرض و تعریف‌های تاریخی ثابت‌اند. سؤال آزاد
+  ساخته نمی‌شود و هیچ تعریف یاalias از رویtest اضافه نشده است.
+  مرز rubric تاریخی۲۱پذیرش متن اشتباه و۲۷diagnostic نامتناسب در۴۸fail را به
+  رد ثابت پیش از output تبدیل می‌کند؛۶۲/۶۲تست و هر۷workbench معتبر عین baseline.
+  برای gold، نسخهٔ native باfixture/scope/routes ثبت‌شدهٔ جدا انتخاب شد؛ این
+  تحویل runner را چندشرطی نمی‌کند. rubricهای تاریخی وgold ثابت دست‌نخورده‌اند؛
+  دامنهٔ تحویل text-only است، OCR/تصویر اضافه نشده است.
+  PR72 فقط تست/رسید بود؛ بازپخش آن به کپی index وhash همهٔ فایل‌های اصلی منتقل
+  شد. native واقعی۸state/query یکتا از۲۴درخواست آرشیوی،۱/۵→۳/۵availability را
+  بازتولید کرد؛ exclusion۹۰Issue ونسخه‌ها پاس. key-identity در دو state اصلی
+  با۱۴۵۱۸و۱۶۲۹۶byte ازبودجه۱۲۰۰۰رد می‌شود، نه capپنج؛ bundleها۲و۴hitدارند.
+  پیش‌نویس label با تأیید حسن است، نه داوری مستقل کیفیت پاسخ. ranking/core
+  selector/default تغییر نکرد؛ ادامهٔ packing/relevance فقط رویdev با حسن است.
+  روی source ثابت`5bbb133`،۵۵۸۹pytest توسعه،Ruff۳۶۴فایل و سهdemo پاس؛ یک تست
+  که تمام fixtureهای test را می‌خواند عمداً deselect شد، نه اجراشده/پاس. guard
+  در اجرای موفق،read محتوای test نداشت.۱۶dev/۲۳turn با۲۷۳check وHTTP/SQLite
+  ۴۵۷/۴۵۷ باrestart پاس؛ [verification](../experiments/evaluation_readiness_v1/verification-v1.json).
+  تلاش اولِ harness و اصلاح منع اضافی.env ثبت‌اند؛ یک تفاوت ترتیب candidate
+  native حفظ شده و final-hitهای۲۴arm دقیقاً برابرند. review جدا blocker ندارد.
+  C5، سهhold، ledger،۱۹pin،exclusion وIDهای بسته حفظ‌اند؛APIصفر.
+  CI به علت Billing اجرا نشده؛ E1/E2/R4/T4،freeze وtest نهایی بازند.
+
 **جمع‌بندی پس از C2j — ۱۶ اکتبر:** audit آفلاینِ شکست‌های ثبت‌شده، انتخاب
 شاهد، سؤال تکمیلی و نمایش پاسخ انجام شد؛ تغییر اجرایی تازه‌ای که بهبود معنایی
 آن قابل دفاع باشد پیدا نشد. فعلاً توسعهٔ core را در همین checkpoint متوقف
@@ -293,10 +322,10 @@ gold، default یا ledger انجام نشد؛ halt/سهhold و تمام IDها�
 
 | نفر | تحویل بعدی | شرط پایان |
 | --- | --- | --- |
-| حسن | review profile جدید و پوشش/رتبه‌بندی منابع؛ provenance و exclusion بعد از split نهایی | source دقیقِ رسیده به مدل، برچسب relevance/Recall@k و build pinned؛ عضویت در index به‌تنهایی کافی نیست |
-| محمدحسن | usefulness انسانی خروجی‌های فعلی؛ [worksheet تازهٔ C4j/E2w](../experiments/core_claim_boundary_v1/human-review-v1.json) و worksheetهای قبلی بدون نمره، initial/correction و model/edited جدا؛ review پذیرش چهار خانوادهٔ مکمل و exposure هر شش report؛۱۲dev و۱۵test باقی، freeze rubric/gold وابسته به evidence condition | guide answer-linked وارد corpus نشود؛ کوتاهی/quote دقیق بدون caveat بهبود نیست؛ مکمل‌ها خودکار جای رزرو۱۵/۱۵ را نمی‌گیرند؛ test برای tuning دیده نشود؛ حداقل۱۰گفتگوی چندنوبتی شامل۵test؛ سپس baseline وtest نهایی |
+| حسن | packing/relevance شاهد key-identity روی dev؛ پس از freeze، build نهایی با exclusion۹۰Issue و provenance | در رسید فعلی capپنج علت حذف نیست؛ بودجهٔ بایتی/ترتیب و نسخه جدا سنجیده شوند. source دقیق رسیده به مدل، relevance/Recall@k و build pinned؛ عضویت در index کافی نیست؛ corpus/default بدون مقایسه تغییر نکنند |
+| محمدحسن | ثبت۳۱fixture انجام شده؛ پوشش سؤال‌های vocabulary ثابت، native gold در scope/fixture/routes تازه، v2 سه dev برای rubric جدید، usefulness انسانی و freeze rubric/manifest باقی است؛ [worksheet C4j/E2w](../experiments/core_claim_boundary_v1/human-review-v1.json)، initial/correction و model/edited جدا | test و evidence/gold آن تا اجرای نهایی محفوظ؛ تعریف سؤال از روی test ساخته نشود. نسخهٔ تازه case مستقل تازه نیست؛ تاریخی‌ها تغییر نکنند. gold ثابت روی native نمره ندهد؛ passage واقعی و نسخه مبنا باشد. guide answer-linked خارج corpus؛۱۴multi-turn شامل۷test در metadata ثبت‌اند، اما کیفیت و freeze هنوز بازند |
 | بهنام | T4a/رسیدهای PR66 پذیرفته شد؛ pin دقیق اجرای fault، failure/outcome و handoff ارزیابی باقی است؛ recovery پس از نابودی session با مالک UI هماهنگ شود | lost-ACK و Retry ازUI گزارش شده، اما اصل case فقط در backend durable است؛ fresh-session recovery ثابت نیست؛ شاهد مصرف outcome در تصمیم بعد لازم است؛ token/DB خصوصی منتشر نشود |
-| ساسان | C2j/validation پاسخ نسخه، C4k/E2x و C4l/E2y آفلاین تحویل؛ review انسانیِ ارتباط/کاربرد/طول خروجی، گرفتن مدرک provider برای سه request نامعلوم، سپس protocol/config freeze پیش از API یاtest تازه | validation دوhelper جای authority tracker نیست؛ projection و lexical shortlist انتخاب مدل یا usefulness نیست؛ context binding منشأ history را authenticate نمی‌کند؛ مسیرهای C4j/compiled آزاد default نشوند؛ شرط case/source-ID و prompt/order tuning تازه برای نمرهٔ Enum ممنوع؛ single-agent/قراردادهای تیم ثابت؛ fixture اثبات fix یا کیفیت RAG/test نیست |
+| ساسان | C2j،C4k/C4l و اکنون C4m/E2z: availability سؤال‌های dev و rubric binding؛ پذیرش امن R4b و اتصال آفلاین؛ مدرک provider برای سه request نامعلوم، سپس protocol/config ثبت‌شده پیش از API تازه | validation/custody جای authority tracker یا داوری معنایی نیست؛ context binding منشأ history را authenticate نمی‌کند؛ مسیرهای experimental آزاد default نشوند؛ شرط case/source-ID و prompt/order tuning تازه برای نمرهٔ Enum ممنوع؛ single-agent/قراردادهای تیم ثابت؛ halt/hold و test محفوظ |
 
 **قاعدهٔ انتشار فعلی — ۱۵ اکتبر، با دستور صریح ساسان:** منتظر رفع Billing
 نمی‌مانیم. برای انتشار، review و تست محلی روی source ثبت‌شده، پذیرش اتصال و
@@ -410,14 +439,18 @@ ledger، holdها، halt و receiptهای تاریخی تغییر نمی‌کن�
   در هر سه به مدل رسیدند؛ version_unsafe صفر. ۱۶ تست تازه برای نسخهٔ unknown/قدیمی/فعلی/
   correction و `since_version`. شواهد لازم۱/۵ در PR50/native و۳/۵ در R4b؛ off_topic از۸ به۵
   (برچسب‌ها پیش‌نویس دستیار با تأیید حسن، نه review مستقل). chunk key-identity در
-  widget-behavior (۱٫۵۰تا۱٫۵۵) در R4b کاندیدای۱۶و۲۳ از۲۵ است ولی cap نهایی۵ حذفش می‌کند؛
-  گام بعد ranking همین، فقط روی dev. exclusion حفظ: build فقط docs، صفر Issue/comment، بدون
+  widget-behavior (۱٫۵۰تا۱٫۵۵) در R4b کاندیدای۱۶و۲۳ از۲۵ است و به مدل نمی‌رسد؛
+  bundleهای مربوط۲و۴hit دارند، پس نسبت‌دادن حذف به cap پنج درست نیست. محدودیت
+  packing بایتی/ترتیب و relevance باید جدا بررسی شود؛ گام بعد فقط روی dev است.
+  exclusion حفظ: build فقط docs، صفر Issue/comment، بدون
   custom-classes/release note؛ با `index_exclusion` نهایی split-e1-v1 هم چک شد. هیچ case یا
   query از test استفاده نشد. availability است، نه کیفیت پاسخ؛ کد adapter/engine/index
-  تغییر نکرد. بستن PR50 و تیک با review ساسان.
+  تغییر نکرد. PR50 قبلاً بدون merge بسته شده؛ پذیرش receipt و اصلاح ایمنی بازپخش
+  PR72 تیک جدا دارد و پایان R4 نیست.
   کار core مستقل از این اصلاح ادامه دارد. محمدحسن review سه dev را درPR55 و
-  rubric پیش‌نویس را درPR56 رویmain رسانده؛ usefulness۱۷خروجی و۱۲dev/۱۵test
-  باقی با اوست. کمک ساسان محدود به اتصال وreviewpack است.
+  rubric پیش‌نویس را درPR56 رویmain رسانده؛ اکنون PR70–76 هر۳۱fixture را ثبت
+  کرده‌اند. usefulness، native gold، vocabulary نهایی و freeze هنوز با اوست.
+  کمک ساسان محدود به اتصال وreviewpack است.
 
 - [ ] **T4 — گزارش PR52 و رسیدهای PR66 review شدند؛ بخش‌های نهایی هنوز بازند.**
   [گزارش روی commit ثابت`8420a3b`](https://github.com/Iran-110/QueraAgenticAI-FinalProject/blob/8420a3beed37e6bc79504487cd44724a40a30d79/docs/two-case-ui-sqlite-smoke-2026-10-14.md)

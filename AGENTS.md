@@ -6,6 +6,13 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 - Four owners: agent core/contracts; data/RAG; local tracker/tools; UI/evaluation. Proposed boundaries are in `docs/architecture.md`.
 - Inspect Git status first. Preserve teammates' work, the original brief, and the original plan. Do not overwrite unrelated changes.
+- During core/RAG development, do not open `data/evaluation/split-e1-v1/test/`,
+  its `evidence-test*.json`, `test-card-review-v1.json`, or test-bearing review
+  HTML. Safe manifest counts/exclusion metadata are separate from held-out
+  questions/gold. The evaluation owner retains final artifact review/execution.
+  `tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture`
+  loads all held-out fixtures: deselect it in development verification and report
+  that exclusion explicitly; do not claim a complete held-out run.
 - Keep shared models in `src/agent_app/contracts.py` and ports in `orchestration/ports.py`; coordinate interface changes before adapting another owner's module.
 - Use feature branches and meaningful commits after coherent, verified chunks. Do not fabricate dates, activity, test results, or completed functionality.
 - Keep the owned task in `plan/plan.md` current in the same PR; use its task ID in handoffs and attach completion evidence before checking it off. Sync the feature branch from current `origin/main` without discarding local work. Shared plan changes are visible to teammates after Git sync, not instantly.
@@ -33,6 +40,16 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
   The closed27-send comparison observes5/6 versus6/6 routes,10 versus12 fresh proposals and partial button1.39 guidance0/2 versus2/2 repetitions of one exposed case. A still asks necessary callback questions; C still has no Enum diagnosis/fix. Human usefulness is null and no defaults are promoted.3912 native/cost checks preserve all452 old reservations/14tables/holds/halt; six scopes closed and21 unused slots permanently claimed. Do not resume the closed method or call this final RAG/test quality.
 
 ## Runtime rules
+
+- C4m/E2z adds an optional reviewed development vocabulary and historical
+  workbench rubric binding; read `docs/evaluation-readiness.fa.md`. Preserve old
+  rubric/fixture/gold/receipt bytes and all valid workbench outputs. Existing
+  registered campaigns require the original draft ID and SHA; new v1 reviews
+  need a separate registered scope. Native gold needs a new fixture ID with its
+  own gold/routes and pins; a standalone sidecar is not selected by the runner.
+  Actual consumed passages govern support, not corpus membership or live mode.
+  Questions remain caller-registered choices, not arbitrary generated prose;
+  never add test-derived names/aliases. Text-only input remains unchanged.
 
 - C2j uses the existing recursive `detached_contract` before serialization in
   both version-reply intake helpers. Read `docs/intake-validation.fa.md`.
