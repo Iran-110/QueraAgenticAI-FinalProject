@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "report_id": "split-e1-v1-question-coverage-v1",
+  "manifest_path": "data/evaluation/split-e1-v1/split-manifest.json",
+  "manifest_sha256": "7e715f74118764415a321d6151d0d2a5135ae8279d5eebf9e1aee7edc07ca815",
+  "vocabulary_path": "config/user-gap-support-dev-v1.json",
+  "vocabulary_sha256": "948c3348365ea6a5fe6385166e07cc5fb203958ffda6b45e090527000a6a3bfc",
+  "vocabulary_names": [
+    "app_state_code",
+    "parent_callback_code",
+    "state_update_order",
+    "updated_form_code"
+  ],
+  "rule": "built-in version question while no active USER version fact; a vocabulary question only when its name is in the case's current unknowns",
+  "splits": {
+    "dev": {
+      "fixtures_checked": 16,
+      "summary": {
+        "ask_branches": 11,
+        "by_question_source": {
+          "built_in_version": 5,
+          "vocabulary": 6
+        },
+        "available_on_turn": 11,
+        "distinct_targets_not_in_vocabulary": 0,
+        "gold_user_gaps_without_ask_route": 0,
+        "turns_offering_a_question_where_ask_is_not_acceptable": 4
+      },
+      "ask_branches": [
+        {
+          "case_id": "dev-case-k",
+          "turn_id": "initial",
+          "question_target": "streamlit_version",
+          "question_source": "built_in_version",
+          "available_on_turn": true
+        },
+        {
+          "case_id": "dev-case-p",
+          "turn_id": "initial",
+          "question_target": "streamlit_version",
+          "question_source": "built_in_version",
+          "available_on_turn": true
+        },
+        {
+          "case_id": "dev-case-l",
+          "turn_id": "follow_up",
+          "question_target": "updated_form_code",
+          "question_source": "vocabulary",
+          "available_on_turn": true
+        },
+        {
+          "case_id": "dev-case-h",
+          "turn_id": "initial",
+          "question_target": "streamlit_version",
+          "question_source": "built_in_version",
+          "available_on_turn": true
+        },
+        {
+          "case_id": "dev-case-n",
+          "turn_id": "initial",
+          "question_target": "app_state_code",
+          "question_source": "vocabulary",
+          "available_on_turn": true
+        },
+        {
+          "case_id": "dev-case-b",
+          "turn_id": "initial",
+          "question_target": "streamlit_version",
+          "question_source": "built_in_version",
+          "available_on_turn": true
+        },
+        {
+          "case_id": "dev-case-a",
+          "turn_id": "initial",
+          "question_target": "streamlit_version",
+          "question_source": "built_in_version",
+          "available_on_turn": true
+        },
+        {
+          "case_id": "dev-case-a",
+          "turn_id": "initial",
+          "question_target": "parent_callback_code",
+          "question_source": "vocabulary",
+          "available_on_turn": true
+        },
+        {
+          "case_id": "dev-case-a",
+          "turn_id": "version",
+          "question_target": "parent_callback_code",
+          "question_source": "vocabulary",
+          "available_on_turn": true
+        },
+        {
+          "case_id": "dev-case-a",
+          "turn_id": "initial",
+          "question_target": "state_update_order",
+          "question_source": "vocabulary",
+          "available_on_turn": true
+        },
+        {
+          "case_id": "dev-case-a",
+          "turn_id": "version",
+          "question_target": "state_update_order",
+          "question_source": "vocabulary",
+          "available_on_turn": true
+        }
+      ],
+      "gold_user_gaps_without_ask_route": [],
+      "question_offered_where_ask_is_not_acceptable": [
+        {
+          "case_id": "dev-case-g",
+          "turn_id": "initial",
+          "offered": [
+            "streamlit_version"
+          ]
+        },
+        {
+          "case_id": "dev-case-l",
+          "turn_id": "initial",
+          "offered": [
+            "streamlit_version"
+          ]
+        },
+        {
+          "case_id": "dev-case-n",
+          "turn_id": "code",
+          "offered": [
+            "streamlit_version"
+          ]
+        },
+        {
+          "case_id": "dev-case-j",
+          "turn_id": "initial",
+          "offered": [
+            "streamlit_version"
+          ]
+        }
+      ]
+    },
+    "test": {
+      "fixtures_checked": 15,
+      "summary": {
+        "ask_branches": 7,
+        "by_question_source": {
+          "built_in_version": 5,
+          "not_in_vocabulary": 2
+        },
+        "available_on_turn": 5,
+        "distinct_targets_not_in_vocabulary": 2,
+        "gold_user_gaps_without_ask_route": 0,
+        "turns_offering_a_question_where_ask_is_not_acceptable": 2
+      }
+    }
+  }
+}
