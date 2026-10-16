@@ -22,7 +22,8 @@
   exclusion و handoff/attempt واقعی bind شود. build هنوز ساخته نشده، پس pin
   نهایی ادعا نمی‌شود؛ پیش از اجرای نهایی باید همهٔ pinها تکمیل و freeze شوند.
 - همهٔ routeهای لازم از قبل ثبت شوند، ولی runner فعلی فقط عضویت decision در
-  gold و مسیر ثبت‌شده را بررسی می‌کند. `evidence_condition` و `required_sources`
+  gold و مسیر ثبت‌شده را بررسی می‌کند. gate نهایی در [E2ad](native-freeze-readiness.fa.md)
+  label و pinهای اعلام‌شدهٔ native را کنترل می‌کند؛ `evidence_condition` و `required_sources`
   را داوری معنایی یا شرط خودکار route نمی‌کند؛ نتیجهٔ عملیاتی با review شرطی
   انسان جدا گزارش شود. gold و نیازهای منابع هرگز وارد prompt یا retriever نشوند.
 

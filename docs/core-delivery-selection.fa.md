@@ -64,6 +64,10 @@ collection حذف شد. ۱۲۹ regression تازه داخل همین شمارش 
 
 ## باقی‌ماندهٔ مشترک
 
+[E2ad](native-freeze-readiness.fa.md) رد pinهای ناقصِ native نهایی را اضافه کرد؛
+این بررسی declaration است و index فیزیکی را احراز نمی‌کند. loader فعلی پروفایل
+بستهٔ pilot دارد؛ build گسترده‌تر باید protocol/loader سازگار داشته باشد.
+
 حسن build و exclusion نهایی را pin می‌کند؛ محمدحسن native gold/routes، freeze و
 review انسانی تنظیم منتخب را جمع می‌کند. دو شرط escalation مربوط به fix بدون
 passage در PR81 با [نسخهٔ افزایشی E2ac](native-dev-gold-amendment.fa.md) اصلاح

@@ -7,6 +7,14 @@ receiptهای قبلی تغییر نکرده‌اند.
 
 ## وضعیت امروز
 
+**E2ad، آمادگی pin و freeze:**
+[وضعیت و ترتیب اتصال](native-freeze-readiness.fa.md)،
+[رسید](receipts/native-freeze-readiness-2026-10-16.json).
+gate نهایی دیگر native_scope موقت یا ناسازگار را نمی‌پذیرد؛ ۲۷۹ تست مرتبط
+شامل۷۰کنترل تازه و Ruff/format۳۹۲فایل پاس. این تطبیق declaration است، نه
+تأیید index فیزیکی یا support. بیلد نهایی سازگار با loader، نسخه‌های pinned
+جدید، review/freeze انسانی و C5 باقی‌اند؛ هیچ test واقعی باز نشده است.
+
 **E2ac، اصلاح native gold در PR81:**
 [شرح و بازتولید](native-dev-gold-amendment.fa.md)،
 [رسید](receipts/native-dev-gold-amendment-2026-10-16.json).

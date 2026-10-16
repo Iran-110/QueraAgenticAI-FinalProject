@@ -4,6 +4,20 @@
 
 ## وضعیت فعلی
 
+- [x] **E2ad — بررسی pin/freeze و رد native نهایی با pin ناقص؛ ساسان.**
+  [قرارداد و ترتیب freeze](../docs/native-freeze-readiness.fa.md)،
+  [رسید](../docs/receipts/native-freeze-readiness-2026-10-16.json).
+  counterexample ساختگی قبلاً با native_scope موقت از gate می‌گذشت؛ اکنون
+  pin ناقص، label/hash ناسازگار و binding متفاوت قبل از adapter رد می‌شوند.
+  SHA corpus یعنی فایل corpus ارزیابی؛ hash index فیزیکی جداست. خروجی فقط
+  count/hash است؛ physical/semantic verification ادعا نمی‌کند. مسیر dev و
+  fixed قبلی ثابت؛ ۲۷۹تست مرتبط شامل۷۰کنترل تازه و Ruff/format۳۹۲فایل پاس‌اند.
+  آخرین Git اعضا: PR72/81 رویmain، push/PR تازه در snapshot بررسی دیده نشد.
+  هر۱۶native dev هنوز pending و فاقد family_id/coverage witness نهایی است؛
+  تأیید انسانی دو بند تازه با محمدحسن. بیلد گسترده‌ترِ حسن به protocol/loader
+  سازگار نیاز دارد؛ pilot بستهٔ۱۸source را relabel نکنیم. همهٔ۲۲artifactnative،
+  test/exclusion، halt/سهhold و۱۹pin حفظ‌اند؛ API و پیام صفر. freeze بسته نشده.
+
 - [x] **E2ac — اصلاح دو ابهام gold در PR81 روی dev؛ ساسان.**
   [شرح و بازتولید](../docs/native-dev-gold-amendment.fa.md)،
   [رسید](../docs/receipts/native-dev-gold-amendment-2026-10-16.json).
@@ -512,19 +526,20 @@ gold، default یا ledger انجام نشد؛ halt/سهhold و تمام IDها�
   جواب دارای بدنهٔ راهنما و caveat لازم باشد. اصلاح آفلاین diagnostics هنوز مقایسهٔ
   API ندارد؛ نه نقل نامرتبط، نه error و نه «همه ارجاع» موفقیت کیفیت نیست.
 
-- [ ] **تنظیم نهایی core پس از review انسانی و dev گسترده‌تر؛ ساسان با محمدحسن.**
-  مقایسهٔ usefulness سؤال کوتاه/کامل، متن طولانی عمومی Enum و precision منابع
-  اولیهٔ B؛ انتخاب تنظیم پیشنهادی فقط با شواهد dev، سپس freeze پیش از test.
+- [ ] **داوری انسانی تنظیم منتخب و freeze مشترک؛ محمدحسن با ساسان.**
+  انتخاب نرم‌افزاری `grounded_candidate_v1` در C4r انجام شده؛ review کیفیت همین
+  ترکیب، usefulness، precision منابع و محدودیت Enum هنوز لازم است. pin مشترک
+  build/gold/config پیش از test، مطابق ترتیب E2ad، انجام شود.
   قالب صحیح و route کامل جای داوری ادعا/نسخه/ضرورت سؤال را نمی‌گیرند.
 
 کارهای مستقل اعضا برای نسخهٔ نهایی (پیش از شروع branch خود را از main به‌روز کنید):
 
 | نفر | تحویل بعدی | شرط پایان |
 | --- | --- | --- |
-| حسن | packing/relevance شاهد key-identity روی dev؛ پس از freeze، build نهایی با exclusion۹۰Issue و provenance | در رسید فعلی capپنج علت حذف نیست؛ بودجهٔ بایتی/ترتیب و نسخه جدا سنجیده شوند. source دقیق رسیده به مدل، relevance/Recall@k و build pinned؛ عضویت در index کافی نیست؛ corpus/default بدون مقایسه تغییر نکنند |
+| حسن | packing/relevance شاهد key-identity روی dev؛ پس از ثبت پایدار سیاست corpus/exclusion۹۰Issue، build نهایی با provenance و protocol/loader سازگار طبقE2ad | loader بستهٔ۱۴/۱۸source خودکار corpus گسترده را نمی‌پذیرد؛ build/allowlist/exclusion و receipt فیزیکی لازم است. در رسید فعلی capپنج علت حذف نیست؛ بودجهٔ بایتی/ترتیب و نسخه جدا سنجیده شوند. source رسیده به مدل و relevance جدا از membership؛ corpus/default بدون مقایسه تغییر نکنند |
 | محمدحسن | ثبت۳۱fixture وv2 سه dev با rubric v1 انجام وPR79 پذیرفته شد؛ گزارش پوشش dev در E2aa تصحیح شده و گزارش نهایی test با خودت؛ native gold dev با ثبت v2 درE2ac آماده است؛ تأیید انسانی دو بند تازه و native gold/routes مربوط بهtest فقط با خودت؛ worksheet C4j، usefulness انسانیِ تنظیم منتخب و freeze rubric/manifest باقی است؛ [worksheet C4j/E2w](../experiments/core_claim_boundary_v1/human-review-v1.json)، initial/correction و model/edited جدا | test و evidence/gold آن تا اجرای نهایی محفوظ؛ تعریف سؤال از روی test ساخته نشود. نسخهٔ تازه case مستقل تازه نیست؛ تاریخی‌ها تغییر نکنند. gold ثابت روی native نمره ندهد؛ passage واقعی و نسخه مبنا باشد. guide answer-linked خارج corpus؛۱۴multi-turn شامل۷test در metadata ثبت‌اند، اما کیفیت و freeze هنوز بازند |
 | بهنام | T4a/رسیدهای PR66 پذیرفته شد؛ pin دقیق اجرای fault، failure/outcome و handoff ارزیابی باقی است؛ recovery پس از نابودی session با مالک UI هماهنگ شود | lost-ACK و Retry ازUI گزارش شده، اما اصل case فقط در backend durable است؛ fresh-session recovery ثابت نیست؛ شاهد مصرف outcome در تصمیم بعد لازم است؛ token/DB خصوصی منتشر نشود |
-| ساسان | C2j/C2k،C4m/E2z،C4n،E2aa وC4o/E2ab: validation، تنظیم پیشنهادی، availability وobserver passage آفلاین بدونداوریخودکار؛ پذیرش امن R4b و اتصال آفلاین؛ مدرک provider برای سه request نامعلوم، سپس protocol/config ثبت‌شده پیش از API تازه | validation/custody جای authority tracker یا داوری معنایی نیست؛ context binding منشأ history را authenticate نمی‌کند؛ مسیرهای experimental آزاد default نشوند؛ شرط case/source-ID و prompt/order tuning تازه برای نمرهٔ Enum ممنوع؛ single-agent/قراردادهای تیم ثابت؛ halt/hold و test محفوظ |
+| ساسان | C4r/C4s انتخاب recipe و اتصال واقعی/runner بسته؛ E2ac اصلاح دو gold وE2ad gate pin نهایی/نقشهٔ freeze بسته. پس از تحویل build سازگار، تطبیق فیزیکی و factory روی کپی؛ با مدرک provider برایC5، protocol معتبر پیش از API تازه | validation/custody جای authority tracker یا داوری معنایی نیست؛ declaration pin تأیید index فیزیکی نیست. مسیرهای experimental آزاد default نشوند؛ tuning رویtest ممنوع؛ تک-agent، halt/سهhold و داده‌های محافظت‌شده حفظ‌اند |
 
 **قاعدهٔ انتشار فعلی — ۱۵ اکتبر، با دستور صریح ساسان:** منتظر رفع Billing
 نمی‌مانیم. برای انتشار، review و تست محلی روی source ثبت‌شده، پذیرش اتصال و

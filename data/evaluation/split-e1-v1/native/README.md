@@ -21,6 +21,11 @@ Rules, agreed with Sasan in [native evidence review](../../../../docs/native-evi
   Observation is necessary, not sufficient; support stays a human judgment.
 - Gold and passage requirements never enter the prompt or retriever. The runner
   checks only decision membership and routes.
+- Final frozen packets also validate explicit native condition labels and declared
+  complete/consistent build pins before constructing a live factory. Their
+  `corpus_manifest_sha256` is the raw **evaluation corpus JSON** hash, separate
+  from the physical index manifest pin. This gate does not score passages or
+  verify storage. [Final-pin contract and remaining gates](../../../../docs/native-freeze-readiness.fa.md).
 - Pins (`native_scope`) are `pending_final_build` until Hassan's final build,
   allowlist and exclusion exist. The gold is not valid for a run before then.
 

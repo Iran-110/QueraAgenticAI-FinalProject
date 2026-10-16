@@ -1,3 +1,30 @@
+## 2026-10-16 — E2ad: native final-pin guard and dev-only freeze readiness
+
+[Contract and dependencies](native-freeze-readiness.fa.md),
+[verification](receipts/native-freeze-readiness-2026-10-16.json).
+A neutral frozen packet with pending/null native_scope pins passed the old gate.
+Existing preflight now rejects incomplete native declarations, mixed condition
+labels, mismatched raw evaluation-corpus SHA and inconsistent five-pin bindings
+before a final live factory. Bounded binding hash/count only; physical-index and
+semantic-support verification remain explicitly false. Ordinary dev and historical
+unmarked fixed packets preserve behavior. No parallel freeze tool or loader.
+279 focused tests include70 new neutral controls; independent focused counts
+overlap. Ruff/format392files pass; no fresh broad-suite/hosted-CI claim.
+
+Remote snapshot shows no new teammate push/open PR after PR81; R4b/PR72 and native
+dev/PR81 are already integrated. Safe dev audit validates16fixtures/23turns/52routes,
+all22 native JSON artifact bytes and90Issue exclusion metadata. All16dev native scopes
+are still pending and lack final-contract family_id/coverage witnesses; two new
+clauses still need human confirmation. Nine of16registered answer-required blocks
+have complete exact alternatives in the approved18source/36chunk manifest COPY;
+this is inventory only, never retrieval delivery, version support or model quality.
+Closed14/18-source live loader cannot automatically accept a broader final corpus.
+New pinned fixture/registration versions must follow a compatible owner build;
+old pending artifacts must not be filled in place. Final packet/human reviews,
+physical build-loader binding, C5 and final test remain open. Halt/threeholds,
+primary ledger/19pins/runtime outside preflight/gold/test/vocabulary unchanged;
+no held-out content, new paid API or team messages.
+
 ## 2026-10-16 — E2ac: two dev-native escalation gold amendments in PR81
 
 [Scope and reproduction](native-dev-gold-amendment.fa.md),
