@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "fixture_id": "split-e1-v1-state-clear-12740-v1",
-  "registered_on": "2026-10-15",
+  "fixture_id": "split-e1-v1-state-clear-12740-v2",
+  "registered_on": "2026-10-16",
   "registered_before_first_run": true,
   "purpose": "List in Session State errors; code asked; reply shows st.session_state.clear() wiping initialized keys.",
   "case": {
@@ -64,7 +64,7 @@
         ],
         "checks_performed": [],
         "context_changed": false,
-        "message": "I store a list in st.session_state and append upload responses to it in a for loop, but I get an error. If I build a temporary list and assign it to Session State at the end, the error disappears. (Screenshots only, no code.)",
+        "message": "I store a list in st.session_state and append upload responses to it in a for loop, but I get an error. If I build a temporary list and assign it to Session State at the end, the error disappears. I attached screenshots of parts of my code and the error (images).",
         "reported_facts": [
           {
             "name": "reported_observation",
@@ -75,10 +75,10 @@
       "evidence_bundle": "state-clear",
       "agent_script": {
         "decision": "ask",
-        "user_draft": "Can you share the code that initializes the list in Session State and the code that appends to it?",
+        "user_draft": "Can you paste the full code as text, including where the list is initialized and every place that modifies or clears Session State?",
         "maintainer_summary": "Error appending to Session State list; no code.",
         "rationale": "The cause depends on how and where the key is initialized and modified.",
-        "next_question": "Can you share the code that initializes the list in Session State and the code that appends to it?",
+        "next_question": "Can you paste the full code as text, including where the list is initialized and every place that modifies or clears Session State?",
         "missing_info": [
           "app_state_code"
         ]
@@ -94,7 +94,7 @@
           "ask"
         ],
         "decision_conditions": {
-          "ask": "Ask for the initialization and append code; screenshots only."
+          "ask": "Ask for the full code as text; the agent must not claim to have read the screenshots."
         },
         "allowed_intermediate_decisions": [
           "retrieve_more"
@@ -103,15 +103,16 @@
           {
             "name": "app_state_code",
             "kind": "user",
-            "description": "The code that initializes and appends to the list is not supplied.",
-            "necessity": "The error depends on whether the key exists when appended.",
-            "question": "Can you share the code that initializes the list in Session State and the code that appends to it?"
+            "description": "Code is only partly shown, in screenshots (images, not text); the full script, including every place that modifies Session State, is not supplied.",
+            "necessity": "The agent cannot read code in images, and the error depends on whether the key still exists when appended.",
+            "question": "Can you paste the full code as text, including where the list is initialized and every place that modifies or clears Session State?"
           }
         ],
         "required_sources": [],
         "unacceptable_claims": [
           "Session State cannot store lists.",
-          "This is a confirmed Streamlit bug."
+          "This is a confirmed Streamlit bug.",
+          "The agent read or analysed the code in the screenshots."
         ],
         "human_reviewed": false,
         "usefulness_score": null,
@@ -224,5 +225,6 @@
         }
       ]
     }
-  }
+  },
+  "revision_note": "v2 replaces v1 after the human spot check (mhg, 2026-10-16): v1 said 'Screenshots only, no code', but the real screenshots contain partial code. The agent receives text only and the decisive line was outside the screenshots, so asking for the full code as text remains the expected decision. No model run used v1."
 }
