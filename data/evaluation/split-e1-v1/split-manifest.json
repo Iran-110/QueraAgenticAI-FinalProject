@@ -1,0 +1,600 @@
+{
+  "schema_version": 1,
+  "manifest_id": "split-e1-v1",
+  "updated_on": "2026-10-15",
+  "status": "draft_families_selected_not_frozen",
+  "scope": "Family-level E1 selection for the final evaluation (15+ dev, 15 test). Fixtures, gold and freeze pending.",
+  "selected_by": "mhg (approved 2026-10-15); assistant-assisted screening",
+  "targets": {
+    "dev_cases": 15,
+    "test_cases": 15,
+    "multi_turn_min": 10,
+    "multi_turn_in_test_min": 5
+  },
+  "counts": {
+    "dev_families": 16,
+    "test_families": 15
+  },
+  "families": [
+    {
+      "family_id": "fam-12782",
+      "split": "dev",
+      "origin_issue_ids": [
+        12629,
+        12782,
+        13022
+      ],
+      "exclude_issue_ids": [
+        12629,
+        12782,
+        13022
+      ],
+      "selection": "dev_three",
+      "note": "Reviewed dev-three case-a.",
+      "family_review": "data/evaluation/dev-three-v1/case-review-v1.json"
+    },
+    {
+      "family_id": "fam-9770",
+      "split": "dev",
+      "origin_issue_ids": [
+        9770,
+        7300,
+        8734,
+        14297
+      ],
+      "exclude_issue_ids": [
+        9770,
+        7300,
+        8734,
+        14297
+      ],
+      "selection": "dev_three",
+      "note": "Reviewed dev-three case-b.",
+      "family_review": "data/evaluation/dev-three-v1/case-review-v1.json"
+    },
+    {
+      "family_id": "fam-2379",
+      "split": "dev",
+      "origin_issue_ids": [
+        2379,
+        8129,
+        8180,
+        4909,
+        6985,
+        7419
+      ],
+      "exclude_issue_ids": [
+        2379,
+        8129,
+        8180,
+        4909,
+        6985,
+        7419
+      ],
+      "selection": "dev_three",
+      "note": "Reviewed dev-three case-c.",
+      "family_review": "data/evaluation/dev-three-v1/case-review-v1.json"
+    },
+    {
+      "family_id": "fam-16281",
+      "split": "dev",
+      "origin_issue_ids": [
+        16281
+      ],
+      "exclude_issue_ids": [
+        16281
+      ],
+      "selection": "keep_reserved",
+      "note": "Version-bounded regression (works 1.58.0, fails 1.59.0+) inside fragments.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-4884",
+      "split": "dev",
+      "origin_issue_ids": [
+        4884
+      ],
+      "exclude_issue_ids": [
+        4884,
+        11252
+      ],
+      "selection": "keep_reserved",
+      "note": "date_input value outside min/max via Session State; documented constraint.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-3533",
+      "split": "dev",
+      "origin_issue_ids": [
+        3533,
+        3854
+      ],
+      "exclude_issue_ids": [
+        3533,
+        3854,
+        5537,
+        5859,
+        10114,
+        11202,
+        11204,
+        11266,
+        11790
+      ],
+      "selection": "keep_reserved",
+      "note": "Widget values after rerun / rerun inside callbacks; old API names map to st.rerun.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-4164",
+      "split": "dev",
+      "origin_issue_ids": [
+        4164
+      ],
+      "exclude_issue_ids": [
+        4164
+      ],
+      "selection": "keep_reserved",
+      "note": "Chained form callbacks reading Session State; usage question.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-9342",
+      "split": "dev",
+      "origin_issue_ids": [
+        9342
+      ],
+      "exclude_issue_ids": [
+        9342
+      ],
+      "selection": "keep_reserved",
+      "note": "Out-of-range value assigned through Session State.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-9259",
+      "split": "dev",
+      "origin_issue_ids": [
+        9259
+      ],
+      "exclude_issue_ids": [
+        9259,
+        10245,
+        14672
+      ],
+      "selection": "keep_reserved",
+      "note": "Transient blank page with st.tabs on 1.37.0; little observable detail.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-9455",
+      "split": "dev",
+      "origin_issue_ids": [
+        9455
+      ],
+      "exclude_issue_ids": [
+        9455
+      ],
+      "selection": "keep_reserved",
+      "note": "Feature request: typed Session State; keep one unsupported-feature case in dev.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-1924",
+      "split": "dev",
+      "origin_issue_ids": [
+        1924
+      ],
+      "exclude_issue_ids": [
+        1924,
+        3285
+      ],
+      "selection": "replacement",
+      "note": "Replaces #1644 (old import-path KeyError, pre-1.22). DuplicateWidgetID when a button changes a checkbox; no version.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-8136",
+      "split": "dev",
+      "origin_issue_ids": [
+        8136
+      ],
+      "exclude_issue_ids": [
+        8136
+      ],
+      "selection": "replacement",
+      "note": "Replaces #1085 (feature request). Slider/form rerun in a chatbot; usage question.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-9180",
+      "split": "dev",
+      "origin_issue_ids": [
+        9180
+      ],
+      "exclude_issue_ids": [
+        9180
+      ],
+      "selection": "replacement",
+      "note": "Replaces #5368 (feature request). st.rerun inside fragment with third-party menu.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-12740",
+      "split": "dev",
+      "origin_issue_ids": [
+        12740
+      ],
+      "exclude_issue_ids": [
+        12740
+      ],
+      "selection": "replacement",
+      "note": "Replaces #2584 (old docs typo). List in Session State across uploads; no version.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-9082",
+      "split": "dev",
+      "origin_issue_ids": [
+        9082,
+        16388,
+        17093,
+        17119,
+        17249
+      ],
+      "exclude_issue_ids": [
+        9082,
+        16388,
+        17093,
+        17119,
+        17249,
+        17195
+      ],
+      "selection": "replacement",
+      "note": "Replaces #13147 (feature request). Widget default from Session State under conditions; linked family kept together in dev because it is close to the exposed #12782 topic.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-12506",
+      "split": "test",
+      "origin_issue_ids": [
+        12506
+      ],
+      "exclude_issue_ids": [
+        12506
+      ],
+      "selection": "keep_reserved",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-10089",
+      "split": "test",
+      "origin_issue_ids": [
+        10089,
+        14717,
+        16242
+      ],
+      "exclude_issue_ids": [
+        10089,
+        14717,
+        16242
+      ],
+      "selection": "keep_reserved",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-10102",
+      "split": "test",
+      "origin_issue_ids": [
+        10102,
+        16732,
+        17215
+      ],
+      "exclude_issue_ids": [
+        10102,
+        16732,
+        17215,
+        14710
+      ],
+      "selection": "keep_reserved",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-5305",
+      "split": "test",
+      "origin_issue_ids": [
+        5305,
+        5498,
+        16727
+      ],
+      "exclude_issue_ids": [
+        5305,
+        5498,
+        16727
+      ],
+      "selection": "keep_reserved",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-6320",
+      "split": "test",
+      "origin_issue_ids": [
+        6320
+      ],
+      "exclude_issue_ids": [
+        6320
+      ],
+      "selection": "keep_reserved",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-11115",
+      "split": "test",
+      "origin_issue_ids": [
+        11115
+      ],
+      "exclude_issue_ids": [
+        11115
+      ],
+      "selection": "keep_reserved",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-17112",
+      "split": "test",
+      "origin_issue_ids": [
+        17112
+      ],
+      "exclude_issue_ids": [
+        17112
+      ],
+      "selection": "keep_reserved",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-4595",
+      "split": "test",
+      "origin_issue_ids": [
+        4595
+      ],
+      "exclude_issue_ids": [
+        4595,
+        6404
+      ],
+      "selection": "replacement",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development. Replaces a weak metadata-only reservation.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-8700",
+      "split": "test",
+      "origin_issue_ids": [
+        8700
+      ],
+      "exclude_issue_ids": [
+        8700
+      ],
+      "selection": "replacement",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development. Replaces a weak metadata-only reservation.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-11660",
+      "split": "test",
+      "origin_issue_ids": [
+        11660
+      ],
+      "exclude_issue_ids": [
+        11660
+      ],
+      "selection": "replacement",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development. Replaces a weak metadata-only reservation.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-13435",
+      "split": "test",
+      "origin_issue_ids": [
+        13435
+      ],
+      "exclude_issue_ids": [
+        13435
+      ],
+      "selection": "replacement",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development. Replaces a weak metadata-only reservation.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-12165",
+      "split": "dev",
+      "origin_issue_ids": [
+        12165
+      ],
+      "exclude_issue_ids": [
+        12165,
+        11277
+      ],
+      "selection": "moved_from_test",
+      "note": "Replaces #1155 (deprecated st.cache). Select/deselect-all checkboxes stop working; no version. Moved to dev: it and exposed dev family #12629 both cross-reference umbrella #11277 (key-based widget identity).",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-7862",
+      "split": "test",
+      "origin_issue_ids": [
+        7862
+      ],
+      "exclude_issue_ids": [
+        7862,
+        7868,
+        8365
+      ],
+      "selection": "replacement",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development. Replaces a weak metadata-only reservation.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-14989",
+      "split": "test",
+      "origin_issue_ids": [
+        14989
+      ],
+      "exclude_issue_ids": [
+        14989
+      ],
+      "selection": "replacement",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development. Replaces a weak metadata-only reservation.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-7534",
+      "split": "test",
+      "origin_issue_ids": [
+        7534
+      ],
+      "exclude_issue_ids": [
+        7534
+      ],
+      "selection": "replacement",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development. Replaces a weak metadata-only reservation.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    },
+    {
+      "family_id": "fam-12633",
+      "split": "test",
+      "origin_issue_ids": [
+        12633
+      ],
+      "exclude_issue_ids": [
+        12633
+      ],
+      "selection": "replacement",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development. Replaces a weak metadata-only reservation.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively"
+    }
+  ],
+  "index_exclusion": {
+    "issue_ids": [
+      268,
+      1085,
+      1155,
+      1185,
+      1644,
+      1924,
+      2069,
+      2379,
+      2584,
+      3285,
+      3533,
+      3854,
+      4164,
+      4256,
+      4595,
+      4884,
+      4909,
+      5305,
+      5368,
+      5498,
+      5537,
+      5859,
+      6320,
+      6404,
+      6985,
+      7300,
+      7419,
+      7534,
+      7862,
+      7868,
+      8061,
+      8129,
+      8136,
+      8180,
+      8365,
+      8700,
+      8734,
+      8901,
+      9031,
+      9082,
+      9180,
+      9259,
+      9342,
+      9455,
+      9770,
+      10089,
+      10102,
+      10114,
+      10245,
+      11012,
+      11115,
+      11202,
+      11204,
+      11252,
+      11266,
+      11277,
+      11660,
+      11790,
+      12165,
+      12396,
+      12506,
+      12629,
+      12633,
+      12740,
+      12782,
+      13022,
+      13147,
+      13435,
+      13953,
+      14297,
+      14672,
+      14710,
+      14717,
+      14989,
+      16242,
+      16281,
+      16388,
+      16661,
+      16727,
+      16732,
+      16914,
+      17030,
+      17093,
+      17112,
+      17119,
+      17195,
+      17215,
+      17249
+    ],
+    "scope": "These Issues, all their comments and outcomes. Includes the earlier reservation denylist, retained conservatively.",
+    "direct_answer_documents": [
+      "content/develop/concepts/app-design/custom-classes.md",
+      "https://docs.streamlit.io/develop/concepts/design/custom-classes",
+      "https://docs.streamlit.io/library/advanced-features/custom-classes"
+    ],
+    "keep_in_corpus_note": "Ordinary product docs (release notes, widget-behavior.md, versioned API docstrings) are not leaks and stay in the corpus; see docs/evaluation-rubric-v1.md section 4."
+  },
+  "development_exposure_check": {
+    "packaged": "streamlit-data-for-dev-test/development_exposure.json",
+    "dev_three": "data/evaluation/dev-three-v1/split-manifest.json",
+    "exposed_in_test": []
+  },
+  "checks": [
+    "No exclusion family appears in both splits.",
+    "No development-exposed Issue is in test.",
+    "#12165 moved to dev: it and exposed #12629 cross-reference umbrella #11277."
+  ],
+  "historical_manifests_unchanged": [
+    "data/evaluation/split-manifest.json",
+    "data/evaluation/dev-three-v1/split-manifest.json"
+  ],
+  "blockers": [
+    "Fixtures and gold per case (E2, rubric v1)",
+    "At least 10 multi-turn routes (5 in test) are planned but only the 3 dev-three cases are registered",
+    "Freeze after fixtures; Hassan rebuilds the index from index_exclusion"
+  ]
+}
