@@ -289,5 +289,20 @@
     "The reviewer recorded low confidence on dev-case-a version (callback code question).",
     "The three dev cases are exposed development data, not held-out test; these scores are not test quality.",
     "17 outputs reduce to 7 distinct texts; the sample is small and dominated by repeated version questions."
+  ],
+  "reviewer_followup_comments": [
+    {
+      "reviewer_kind": "human",
+      "reviewer_id": "mhg",
+      "given_on": "2026-10-16",
+      "applies_to": [
+        "dev-case-c:initial:escalate:00e0af84e2",
+        "dev-case-c:correction:escalate:e2999393b7",
+        "dev-case-b:version:escalate:776822669a"
+      ],
+      "comment": "The descriptions when the model escalates are robotic, and I think they carry little information for the maintainer of the Streamlit repository.",
+      "changes_scores": false,
+      "context": "Given in chat after export; recorded verbatim. The escalation surfaces are core-rendered from fixed sentences (model chooses the decision and quotes only), so the three texts share most of their wording."
+    }
   ]
 }
