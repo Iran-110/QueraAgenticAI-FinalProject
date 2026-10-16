@@ -79,6 +79,12 @@ _CAMPAIGNS = {
 }
 
 
+# Every supported campaign registered the original dev-three draft scope.
+# New rubric scopes require separate registration, never relabelled old runs.
+_HISTORICAL_RUBRIC_ID = "e2-core-review-draft-v1"
+_HISTORICAL_RUBRIC_SHA256 = "b68526f6d6aadac50b5eaa670948e4acfdcae801fe271e91ccf111fa2c03f5c8"
+
+
 # These treatments retained C4g's native criteria instead of redefining
 # source sufficiency after seeing outputs. Never infer criteria from fixtures.
 _NATIVE_CRITERIA = {
@@ -240,6 +246,16 @@ def build_workbench(
         protocol, protocol_pin = _read(Path(receipt_path).parent / "protocol-v1.json")
         scenario, scenario_pin = _read(scenario_path)
         rubric_pin = _pin(rubric_path)
+        _need(
+            scenario.get("rubric_id") == _HISTORICAL_RUBRIC_ID
+            and rubric_pin["sha256"] == _HISTORICAL_RUBRIC_SHA256
+            and all(
+                turn.get("gold", {}).get("rubric_id") == _HISTORICAL_RUBRIC_ID
+                for case in scenario["case_reviews"]
+                for turn in case["turns"]
+            ),
+            "WorkbenchScopeMismatch",
+        )
         fixtures, fixture_pins = {}, []
         for path in fixture_paths:
             fixture, pin = _read(path)
@@ -251,6 +267,13 @@ def build_workbench(
                 and case["test_eligible"] is False
                 and fixture["registered_before_first_run"] is True,
                 "WorkbenchFixtureMismatch",
+            )
+            _need(
+                all(
+                    turn.get("gold", {}).get("rubric_id") == _HISTORICAL_RUBRIC_ID
+                    for turn in fixture["turns"]
+                ),
+                "WorkbenchScopeMismatch",
             )
             fixtures[case_id] = (fixture, pin)
             fixture_pins.append(pin)
