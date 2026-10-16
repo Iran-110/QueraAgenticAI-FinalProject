@@ -84,10 +84,16 @@ uv run python experiments/gateway_handoff/replay.py
 سناریوهای دیگر: `escalate` برای ارجاع و `error` برای خرابی بازیابی. خروجی JSON شامل نتیجه و ردگیری اجراست. سناریوی `error` عمداً با کد خروج ۱ تمام می‌شود. برای این دمو کلید API لازم نیست.
 
 ```bash
-uv run pytest
+uv run pytest --deselect=tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture
 uv run ruff check .
 uv run ruff format --check .
 ```
+
+این دستور، suite توسعه را اجرا می‌کند. یک تست که تمام fixtureهای held-out را
+می‌خواند عمداً کنار گذاشته شده؛ اعتبارسنجی آن با مالک evaluation است. اجرای
+این suite، اجرای test نهایی مدل یا تأیید کیفیت جواب‌ها نیست.
+[گزارش توسعه و بستهٔ تحویل](docs/delivery-report.fa.md) وضعیت آماده/باقی‌مانده،
+demo پایدار، شواهد و ترتیب بستن تحویل را یک‌جا جمع می‌کند.
 
 برای اجرای رابط کاربری و اتصال آن به بک‌اند، باید هر دو را در ترمینال‌های جداگانه اجرا کنید:
 

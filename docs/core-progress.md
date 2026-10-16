@@ -1,3 +1,36 @@
+## 2026-10-16 — Deadline healthcheck and delivery draft; no runtime change
+
+Audited main `d0344be` with independent core, launch and deliverable reviews.
+No new independently justified urgent core fix was found; this bounded audit
+is not proof of perfect semantic quality. Runtime/tests/scripts/config/app/lock
+and workflow source still match the fully tested `5bbb133`. Its5589development
+test result, with one explicit held-out-content deselection, is reused rather
+than presented as a fresh full execution.
+
+Fresh checks:97focused tests, locked sync, Ruff364files, four CLI paths with
+expected exit codes, and HTTP/SQLite457/457 including restart/retry. Fresh
+collection confirms5589/5590tests with the same one held-out consumer excluded.
+C5 has36/36read-only checks; ledger SHA141c3536... and all19current physical pins
+remain exact. Three uncertain holds, halt, ceiling and closed IDs stay intact;
+no provider, credential or native-index clients and no held-out content reads.
+[Healthcheck receipt](receipts/deadline-healthcheck-2026-10-16.json),
+[fresh reduced HTTP receipt](receipts/deadline-http-sqlite-2026-10-16.json).
+
+Fixed the default developer test commands in README/AGENTS/development so they
+explicitly exclude the held-out-content consumer, consistent with the existing
+development restriction. Corrected stale Ruff, persistence/credentials and
+hosted-CI guidance. Added a [Persian delivery draft](delivery-report.fa.md) with
+offline persistent UI reproduction, exact correction form steps, evidence limits,
+negative quality results, cost uncertainty and remaining owner gates. E5 final
+report ownership stays with MohammadHasan. No evaluation fixture/gold/rubric,
+ranking/corpus/exclusion or teammate implementation changed.
+
+Today's code/demo/package can be prepared; full mandatory completion still needs
+C5 provider evidence, native evaluation/configuration freeze, human answer-quality
+review and final held-out execution without tuning. The draft/report checklist
+does not close E1/E2/R4/T4/C5, claim hosted CI or guarantee today's completion.
+Pause further exploratory features and focus on those gates.
+
 ## 2026-10-16 — C4m/E2z and R4b: evaluation readiness after PR70–76
 
 Synced main `9913541` without opening held-out fixtures/gold/evidence/review

@@ -204,7 +204,7 @@ From the repository root:
 
 ```bash
 uv sync --locked --group dev
-uv run pytest
+uv run pytest --deselect=tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture
 uv run ruff check .
 uv run ruff format --check .
 uv run agent-app demo --scenario refine
@@ -213,3 +213,10 @@ uv run agent-app turn-demo
 ```
 
 Add meaningful tests for behavior changes, especially limits, evidence validation, corrections, and failure handling. For documentation-only changes, verify paths and commands without duplicating behavioral tests. Report exactly what was checked and any remaining limitation.
+
+This is the development suite with one held-out-content consumer explicitly
+deselected. The evaluation owner handles complete final-artifact validation;
+neither software test execution is the held-out model-quality evaluation.
+Use `docs/delivery-report.fa.md` for the current delivery evidence and open gates;
+do not infer final completion from a passing development suite or historical
+readiness percentages.
