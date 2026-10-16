@@ -14,7 +14,7 @@ spec.loader.exec_module(review)
 
 
 def test_template_starts_unjudged_and_binds_inputs():
-    sheet, template = review.build(MANIFEST)
+    sheet, template, page = review.build(MANIFEST)
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
 
     assert [case["fixture_path"] for case in template["cases"]] == manifest["fixture_paths"]
@@ -30,6 +30,7 @@ def test_template_starts_unjudged_and_binds_inputs():
             if key != "turn_id"
         )
         assert f"## {case['case_id']}" in sheet
+        assert f'id="{case["case_id"]}"' in page
 
 
 def test_seed_cross_links_find_mentions_outside_family():
@@ -42,3 +43,19 @@ def test_seed_cross_links_find_mentions_outside_family():
 def test_refuses_existing_output(tmp_path):
     with pytest.raises(SystemExit):
         review.main(["--manifest", str(MANIFEST), "--output", str(tmp_path)])
+
+
+def test_split_e1_manifest_covers_every_registered_fixture():
+    manifest_path = ROOT / "data/evaluation/split-e1-v1/split-manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    sheet, template, page = review.build(manifest_path)
+    registered = manifest["registered_fixtures"]
+    expected = [row["path"] for split in ("dev", "test") for row in registered[split]]
+
+    assert [case["fixture_path"] for case in template["cases"]] == expected
+    for case in template["cases"]:
+        split = json.loads((ROOT / case["fixture_path"]).read_text(encoding="utf-8"))["case"][
+            "split"
+        ]
+        assert case[f"accept_case_for_{split}"] is None
+    assert page.startswith("<!doctype html>") and 'dir="rtl"' in page
