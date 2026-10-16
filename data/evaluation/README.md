@@ -12,6 +12,18 @@ for optional dev vocabulary, separate native gold registration, rubric identity
 and text-only scope. A generic registered vocabulary is the available question
 space; the current core cannot invent arbitrary unregistered questions.
 
+Question coverage for split-e1-v1 against the fixed dev vocabulary
+(`config/user-gap-support-dev-v1.json`) is in
+[`split-e1-v1/question-coverage-v1.json`](split-e1-v1/question-coverage-v1.json),
+rebuilt by `scripts/report_question_coverage.py`. All 11 dev ask branches are
+available (5 built-in version, 6 vocabulary). In test, 2 of 7 ask branches need a
+question that is not in the vocabulary; this is reported as a system limitation
+and no test-derived question is added. The version question is also on offer in
+4 dev and 2 test turns where gold does not accept `ask`, a risk of unneeded
+questions. Test rows are counts only; `--show-test` prints them to stdout for the
+evaluation owner and never writes them. Availability is not proof that the model
+picks the right question.
+
 The additive [offline review workbench](../../docs/evaluation-workbench.fa.md)
 now prepares actual C4g/C4h turn contexts, full sources and blank SemanticReview
 sidecars. It preserves stopped, stale and unvisited rows beside fresh proposals,
