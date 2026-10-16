@@ -96,3 +96,6 @@ Enum هنوز تشخیص/fix و usefulness تأییدشدهٔ تازه ندار�
 آپدیت هم‌تیمی: [review PR80](receipts/pr80-review-2026-10-16.json) feedback
 با کمک دستیار را برای ۲۲ draft تاریخی C4j ثبت می‌کند. این ثبت جای review مستقل
 یا نمرهٔ claim support را نمی‌گیرد؛ worksheet اصلی و نمره‌های null آن حفظ‌اند.
+
+[رسید اتصال PR80](receipts/pr80-integration-2026-10-16.json): ۳۲ تست مرتبط پاس؛
+artifact اصلی، worksheet و receipt مدل عین byte حفظ شده‌اند.
