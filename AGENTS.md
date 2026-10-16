@@ -41,6 +41,21 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 ## Runtime rules
 
+- C4o/E2ab adds an optional pure offline passage observer; read
+  `docs/native-evidence-review.fa.md`. Match exact complete passages using stable
+  source ID/revision/URL, independently of query score and chunk IDs. Bind the
+  declared requirements and expected handoff hashes; report version/citation
+  observations separately. Presence is not entailment, answer sufficiency,
+  source authenticity, physical build or actual provider-consumption evidence.
+  No runner/scorer/runtime hook, conditional-gold selection or live authority is
+  added. Missing observations do not automatically justify escalation or make a
+  case unanswerable. Gold/required-source data must never enter model/retrieval
+  inputs. Keep all failed/unvisited states; absent handoffs remain unobserved.
+  PR79 v2 is controlled fixed evidence, not native gold; retain its original
+  fixtures and assisted-review bytes. A disclosed unsourced material claim still
+  has strict support zero, independent of decision/usefulness. Private native
+  test gold remains with the evaluation owner before final execution.
+
 - C4n adds a pure explicit `configuration_freeze` descriptor/comparison for
   supplied review-candidate settings only. Read `docs/enum-freeze-readiness.fa.md`.
   Preserve legacy adapter/runner metadata and all defaults; no factory hook or

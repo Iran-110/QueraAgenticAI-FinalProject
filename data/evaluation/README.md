@@ -5,6 +5,14 @@ Current E1 registration: `split-e1-v1/split-manifest.json` declares **16 dev /
 The maintainer reports31/31scripted cases and533/533operational checks; these
 are not model-quality or final-test results. Historical one-case/dev-three
 packets below remain immutable historical scopes, not the current split count.
+PR79 registers the same three exposed dev families as fixed-evidence v2 under
+`e2-rubric-v1`; this is separate from native gold. See the
+[native evidence review contract](../../docs/native-evidence-review.fa.md) for
+exact passage requirements, strict support despite disclaimers, private native
+test registration and the optional offline observer. It does not select gold,
+score semantics or alter runner routes. Current dev projection is
+[`question-coverage-dev-v3.json`](split-e1-v1/question-coverage-dev-v3.json);
+older reports remain historical and are not overwritten.
 Core development must not open held-out fixtures/gold, `evidence-test*.json`,
 `test-card-review-v1.json` or review HTML that includes held-out case content.
 See [core/evaluation readiness decisions](../../docs/evaluation-readiness.fa.md)

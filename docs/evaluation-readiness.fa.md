@@ -1,5 +1,12 @@
 # اتصال core به split تازه — C4m / E2z
 
+**آپدیت C4o/E2ab:** v2 سه dev در PR79 ثبت و دوباره با شواهد ثابت اجرا شد؛
+همان سه خانواده با rubric v1 هستند، نه native gold یا caseهای تازه.
+[قرارداد native review](native-evidence-review.fa.md) حضور passage را از
+پشتیبانی ادعا و کفایت پاسخ جدا می‌کند. runner/scorer و routeها تغییر نکرده‌اند؛
+observer اختیاری فقط مشاهدهٔ ساختاری handoff را ثبت می‌کند. native gold/routes،
+worksheet C4j و freeze همچنان با محمدحسن است؛ corpus/build نهایی با حسن.
+
 این تحویل از `main` در `9913541` شروع شد. PRهای #70 تا #76 به مخزن رسیده‌اند.
 manifest، ۱۶ dev و ۱۵ test را ثبت کرده و هنوز draft است. محتوای fixture، gold
 و evidenceهای test برای این کار باز یا مصرف نشده؛ فقط metadata شمارش، exclusion

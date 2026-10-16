@@ -4,6 +4,31 @@
 
 ## وضعیت فعلی
 
+- [x] **C4o/E2ab — پذیرش PR79 و مشاهدهٔ دقیق passage برای native review؛ ساسان.**
+  [رفتار و اتصال](../docs/native-evidence-review.fa.md)،
+  [review PR79](../docs/receipts/pr79-review-2026-10-16.json)،
+  [تست‌ها و review مستقل](../docs/receipts/native-evidence-review-2026-10-16.json).
+  v2 سه dev با rubric v1 و **شواهد ثابت** پذیرفته شد؛ native gold نیست.
+  fixtureهای قدیمی و فایل‌های review صاحب بخش حفظ‌اند. هشت کارت تغییر پس از
+  توضیح دستیار تأیید شده‌اند؛ این عدد نمرهٔ کیفیت مدل نیست. اجرای scripted تازه
+  روی سه case، شش turn و ۷۹ check پاس شد. report v3 فقط pin جدید manifest دارد.
+  disclaimer برای tip بی‌منبع، support ادعای مهم را از صفر خارج نمی‌کند؛
+  decision و usefulness جدا هستند. شش کنترل scorer موجود این مرز را می‌سنجند.
+  observer جدید فقط حضور passage کامل را با source/revision/URL و hashهای مستقل
+  ثبت می‌کند؛ ۵۲ تست دارد و به runner یا runtime متصل نشده است. حضور متن اثبات
+  support یا مصرف provider نیست؛ نبود آن هم خودکار escalation را درست نمی‌کند.
+  روی source `783362c`، تمام ۵۹۶۸ تست توسعهٔ انتخاب‌شده در دو context پوشش موفق
+  دارند: ۵۹۶۳ در CWD خنثی و پنج تست مسیر نسبی از ریشهٔ مخزن. یک مصرف‌کنندهٔ
+  held-out عمداً کنار گذاشته شد. **یک اجرای یک‌تکهٔ بی‌خطا ادعا نمی‌شود.**
+  شکست‌های اولیه، logها و IDهای rerun حفظ‌اند؛ کد یا guardها برای عبور تغییر
+  نکردند. audit دو اجرای نهایی فقط parent را پوشش می‌دهد، نه تمام subprocessها.
+  review مستقل، Ruff و بررسی حفظ ۱۹ pin پاس‌اند؛ runtime و defaultها ثابت‌اند.
+  ledger، سه hold، halt و exclusion حفظ‌اند؛ C5 read-only برابر ۳۶/۳۶، API صفر.
+  **مانده:** native gold/routes و worksheet C4j با محمدحسن؛ corpus و build نهایی
+  با حسن. بیلد ۱۸ منبعی فعلی release note، منبع forms.md و API نسخهٔ 1.22 ندارد.
+  native gold مربوط به test را فقط مالک evaluation پیش از retrieval نهایی ثبت
+  می‌کند؛ gold وارد prompt/RAG نمی‌شود. freeze، C5، کیفیت Enum و test نهایی بازند.
+
 - [x] **E2aa — اصلاح گزارش PR78 با state واقعی core؛ ساسان.**
   [رفتار و دستور بازتولید](../docs/question-coverage-state.fa.md)،
   [verification و review](../docs/receipts/question-coverage-state-2026-10-16.json).
@@ -410,9 +435,9 @@ gold، default یا ledger انجام نشد؛ halt/سهhold و تمام IDها�
 | نفر | تحویل بعدی | شرط پایان |
 | --- | --- | --- |
 | حسن | packing/relevance شاهد key-identity روی dev؛ پس از freeze، build نهایی با exclusion۹۰Issue و provenance | در رسید فعلی capپنج علت حذف نیست؛ بودجهٔ بایتی/ترتیب و نسخه جدا سنجیده شوند. source دقیق رسیده به مدل، relevance/Recall@k و build pinned؛ عضویت در index کافی نیست؛ corpus/default بدون مقایسه تغییر نکنند |
-| محمدحسن | ثبت۳۱fixture انجام شده؛ گزارش پوشش dev در E2aa تصحیح شده و گزارش نهایی test با خودت؛ native gold در scope/fixture/routes تازه، v2 سه dev برای rubric جدید، usefulness انسانی و freeze rubric/manifest باقی است؛ [worksheet C4j/E2w](../experiments/core_claim_boundary_v1/human-review-v1.json)، initial/correction و model/edited جدا | test و evidence/gold آن تا اجرای نهایی محفوظ؛ تعریف سؤال از روی test ساخته نشود. نسخهٔ تازه case مستقل تازه نیست؛ تاریخی‌ها تغییر نکنند. gold ثابت روی native نمره ندهد؛ passage واقعی و نسخه مبنا باشد. guide answer-linked خارج corpus؛۱۴multi-turn شامل۷test در metadata ثبت‌اند، اما کیفیت و freeze هنوز بازند |
+| محمدحسن | ثبت۳۱fixture وv2 سه dev با rubric v1 انجام وPR79 پذیرفته شد؛ گزارش پوشش dev در E2aa تصحیح شده و گزارش نهایی test با خودت؛ native gold در scope/fixture/routes تازه، worksheet C4j، usefulness انسانیِ تنظیم منتخب و freeze rubric/manifest باقی است؛ [worksheet C4j/E2w](../experiments/core_claim_boundary_v1/human-review-v1.json)، initial/correction و model/edited جدا | test و evidence/gold آن تا اجرای نهایی محفوظ؛ تعریف سؤال از روی test ساخته نشود. نسخهٔ تازه case مستقل تازه نیست؛ تاریخی‌ها تغییر نکنند. gold ثابت روی native نمره ندهد؛ passage واقعی و نسخه مبنا باشد. guide answer-linked خارج corpus؛۱۴multi-turn شامل۷test در metadata ثبت‌اند، اما کیفیت و freeze هنوز بازند |
 | بهنام | T4a/رسیدهای PR66 پذیرفته شد؛ pin دقیق اجرای fault، failure/outcome و handoff ارزیابی باقی است؛ recovery پس از نابودی session با مالک UI هماهنگ شود | lost-ACK و Retry ازUI گزارش شده، اما اصل case فقط در backend durable است؛ fresh-session recovery ثابت نیست؛ شاهد مصرف outcome در تصمیم بعد لازم است؛ token/DB خصوصی منتشر نشود |
-| ساسان | C2j/C2k،C4m/E2z،C4n و E2aa: validation، ثبت تنظیم پیشنهادی و گزارش دقیق availability dev؛ پذیرش امن R4b و اتصال آفلاین؛ مدرک provider برای سه request نامعلوم، سپس protocol/config ثبت‌شده پیش از API تازه | validation/custody جای authority tracker یا داوری معنایی نیست؛ context binding منشأ history را authenticate نمی‌کند؛ مسیرهای experimental آزاد default نشوند؛ شرط case/source-ID و prompt/order tuning تازه برای نمرهٔ Enum ممنوع؛ single-agent/قراردادهای تیم ثابت؛ halt/hold و test محفوظ |
+| ساسان | C2j/C2k،C4m/E2z،C4n،E2aa وC4o/E2ab: validation، تنظیم پیشنهادی، availability وobserver passage آفلاین بدونداوریخودکار؛ پذیرش امن R4b و اتصال آفلاین؛ مدرک provider برای سه request نامعلوم، سپس protocol/config ثبت‌شده پیش از API تازه | validation/custody جای authority tracker یا داوری معنایی نیست؛ context binding منشأ history را authenticate نمی‌کند؛ مسیرهای experimental آزاد default نشوند؛ شرط case/source-ID و prompt/order tuning تازه برای نمرهٔ Enum ممنوع؛ single-agent/قراردادهای تیم ثابت؛ halt/hold و test محفوظ |
 
 **قاعدهٔ انتشار فعلی — ۱۵ اکتبر، با دستور صریح ساسان:** منتظر رفع Billing
 نمی‌مانیم. برای انتشار، review و تست محلی روی source ثبت‌شده، پذیرش اتصال و

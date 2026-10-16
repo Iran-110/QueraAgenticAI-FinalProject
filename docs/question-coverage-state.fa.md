@@ -25,11 +25,14 @@ intake نسخه و catalog موجود استفاده می‌کند. مسیرها
 
 ## اجرای امن برای توسعه
 
-[گزارش تازهٔ dev](../data/evaluation/split-e1-v1/question-coverage-dev-v2.json)
+[گزارش dev مرحلهٔ E2aa](../data/evaluation/split-e1-v1/question-coverage-dev-v2.json)
 روی۱۶fixture،۱۱شاخهٔ ask دارد:۵سؤال نسخه و۶vocabulary، همگی در تمام مسیرهای
 ثبت‌شدهٔ مربوط در دسترس‌اند.۴turn هم گزینهٔ سؤال دارند درحالی‌که gold آن را
 قبول نمی‌کند. شمارش فعلی dev با گزارش قبلی هم‌نتیجه است؛ counterexampleهای
 خنثی نشان می‌دهند چرا الگوریتم قبلی برای وضعیت‌های دیگر قابل اتکا نبود.
+پس از PR79، [v3](../data/evaluation/split-e1-v1/question-coverage-dev-v3.json)
+فقط pin manifest تازهٔ v2 سه dev را عوض می‌کند؛ شمارش و projection همان است.
+هیچ گزارش قدیمی بازنویسی نشده است.
 
 ```bash
 QUESTION_COVERAGE_OUTPUT="$(mktemp -d)/question-coverage-dev-v2.json"

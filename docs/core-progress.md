@@ -1,3 +1,51 @@
+## 2026-10-16 — C4o/E2ab: fixed-dev v2 and native passage review boundary
+
+[Contract and use](native-evidence-review.fa.md),
+[PR79 review](receipts/pr79-review-2026-10-16.json),
+[verification](receipts/native-evidence-review-2026-10-16.json).
+Accepted PR79's separate fixed-evidence v2 registration without rewriting its
+fixtures, gold or assisted human review. All three manifest/final-review and old
+supersedes pins match. Eight assisted change cards (5correct/3unsure initially,
+8correct after explanation) are not independent model/claim review. New scripted
+conditional replay passes3cases/6turns/79checks atzero cost. v3 projection differs
+only by the current manifest pin; oldv1/v2 remain immutable. Missing code-reply
+continuations remain explicitly untested; native gold/routes stay separate.
+
+Confirmed decision membership and route checks do not consume evidence_condition
+or required_sources. Added one optional pure observer, with no runtime/scorer
+hook, that binds exact AND/OR passage requirements and supplied validated handoff.
+Stable source/revision/URL and complete one-hit Unicode text are independent of
+query score/chunk names; observed full hit hashes, metadata version scope and
+citation membership remain separate. All-match is not sufficiency/support,
+missing is not unanswerability, and no-handoff is rejected rather than counted
+missing. Actual consumption/build/source authenticity/preregistration remain
+unverified declarations. No model/retriever sees the criteria. Six authored
+controls retain existing strict support0 despite disclaimer/citation, independently
+of decision/usefulness; no automatic semantic classifier was added.
+
+Source`783362c`:52new observer tests,6new scorer-boundary controls,107rootfocused
+and156independentfocused pass (overlap, not additive), plus12 independent hidden
+state probes. Ruff374files. Wider verification covers all5968selected distinct
+tests in successful observations:5963in neutralCWD, the exact5relative-protocol/
+defaultCLI tests in required repositoryCWD. One held-out consumer is deselected.
+This is not one clean full-suite invocation. The initial repository-CWD guard
+blocked Chroma's implicit dotenv reads (14fail/227setup errors), and neutralCWD
+initially failed5relative-path tests. Both attempts/logs retained, no production
+or test source changed between runs, no guard weakened. Two final audited
+processes report0protected/real.env opens; no subprocess filesystem attestation.
+
+A post-hoc structural probe binds one archived C4g handoff to one recorded
+attempt: source ID is present for both authored probe passages, but only one
+passage is in the bundle. These are not native gold requirements for the icon
+problem and not a new model/retrieval run or quality score. Existing18/36corpus
+metadata has5Markdown+13docstrings and no release-note records, forms.md source
+or1.22API records; it is not
+final corpus coverage. Hassan owns final scope/build and MohammadHasan native
+fixtures/routes/worksheet/freeze. Threeholds/halt/ceiling/closedIDs, primaryledger,
+19physicalpins, old fixtures/oracles, test registration andexclusion remain exact.
+C5read-only36/36doesnotreconcileprovidercosts. No paid calls, primary index client,
+team message, finaltest, default promotion or verified Enum fix.
+
 ## 2026-10-16 — E2aa: corrected PR78 question coverage projection
 
 [Usage and limits](question-coverage-state.fa.md),

@@ -1,0 +1,345 @@
+{
+  "schema_version": 1,
+  "task_id": "C4o/E2ab",
+  "recorded_at_utc": "2026-10-16T14:14:54.368252+00:00",
+  "source_commit": "783362cf197d5d3c88a5f90733b4fa8c525af7c4",
+  "base_commit": "4fc2e97addfac89bdf9b7cd1e304b94bf77a8f51",
+  "PR79_head": "f6ba41be41cbd893634a75f68ab1a076b6edf699",
+  "PR79_review_path": "docs/receipts/pr79-review-2026-10-16.json",
+  "PR79_review_sha256": "6cd9642955d847115efa7255545d09ce2fb821450cde49805962bb9668108a36",
+  "source_sha256": {
+    "src/agent_app/evaluation/evidence_observation.py": "f56cabe2bdeb4cb956a452933018fdf7fa2c5873924a01bbb6bb04c976301344",
+    "tests/test_evidence_observation.py": "e29f16a038af1a66e140645902ce8d9f184b9d5f153769cd91cc207c591db959",
+    "tests/test_native_review_boundaries.py": "13f7693987ee72219c3656bc5e78079560d0acd33d7f2e94dcbe9ed0268dd578",
+    "tests/test_report_question_coverage.py": "f07bb9007af74f9623c541416b141f56b44dbc35ff8021b102e3609e45325c94"
+  },
+  "added_behavior": "Pure caller-declared exact passage observation, stable source/revision/URL and AND/OR requirements, independent handoff/criteria hash checks; no runner hook, semantic judge or decision selection.",
+  "new_observer_tests": 52,
+  "new_existing_scorer_boundary_tests": 6,
+  "focused_root_tests_passed": 107,
+  "focused_independent_review": {
+    "schema_version": 1,
+    "review_kind": "independent_source_and_authored_neutral_regression_review",
+    "recorded_at_utc": "2026-10-16T14:01:29.933029+00:00",
+    "approved": true,
+    "blocking_findings": [],
+    "source_sha256": {
+      "src/agent_app/evaluation/evidence_observation.py": "f56cabe2bdeb4cb956a452933018fdf7fa2c5873924a01bbb6bb04c976301344",
+      "tests/test_evidence_observation.py": "e29f16a038af1a66e140645902ce8d9f184b9d5f153769cd91cc207c591db959",
+      "tests/test_native_review_boundaries.py": "13f7693987ee72219c3656bc5e78079560d0acd33d7f2e94dcbe9ed0268dd578"
+    },
+    "focused_checks": {
+      "pytest_files": [
+        "tests/test_evidence_observation.py",
+        "tests/test_native_review_boundaries.py",
+        "tests/test_evaluation_semantic_review.py",
+        "tests/test_review_handoff.py"
+      ],
+      "passed": 156,
+      "failed": 0,
+      "protected_file_open_attempts": 0,
+      "independent_valid_hash_hidden_state_controls": 12,
+      "all_hidden_state_controls_rejected_with_fixed_error": true,
+      "ruff_lint_passed": true,
+      "ruff_format_passed": true,
+      "python_files_checked": 3
+    },
+    "reviewed_boundaries": [
+      "Exact source identity, explicit revision including None, exact URL and unstripped passage matching.",
+      "Ordered AND groups and OR alternatives, unique IDs/anchors and finite group/alternative/output occurrence bounds.",
+      "Independent expected handoff and requirements hashes, recursive constructed-state rejection, existing handoff integrity checks.",
+      "Empty valid evidence yields unobserved requirements; absent or invalid handoff rejects.",
+      "Current USER version scope and citation membership remain separate from passage presence.",
+      "First exact Unicode-codepoint occurrence per matching hit; no cross-chunk stitching.",
+      "Caller-authored unsupported claim labels remain support gate zero despite a cited supplied source, disclaimer, acceptable decision and usefulness score.",
+      "Same chunk identity cannot reuse review bindings after actual supplied source bytes change."
+    ],
+    "retained_review_amendments": [
+      {
+        "kind": "test_verification",
+        "description": "Cross-review noticed a hidden-state test could reject first on a deliberately mismatched requirements hash; the final frozen test uses a valid pre-mutation hash. Independent attribute/private/extra probes passed for handoff, hit, requirement and anchor."
+      }
+    ],
+    "manifest_inventory": {
+      "kind": "pinned_manifest_metadata_inventory_not_fresh_retrieval",
+      "manifest_sha256": "24815c44f7d7e104a59579d444e8abce429f02b594dd6679165c0fbc381b9239",
+      "allowlist_sha256": "ec1d2383f79b11920b3b02ec79d01e6e3d4f180ee51d7d85fb522e9feceaca70",
+      "sources": 18,
+      "chunks": 36,
+      "markdown_sources": 5,
+      "generated_docstring_sources": 13,
+      "release_note_sources": 0,
+      "release_notes_explicitly_excluded": true,
+      "raw_version_source_counts": {
+        "unversioned": 5,
+        "1.39.0": 1,
+        "1.49.0": 4,
+        "1.50.0": 5,
+        "1.64.0": 3
+      }
+    },
+    "scope": {
+      "repository_files_edited_by_this_reviewer": [
+        "tests/test_native_review_boundaries.py"
+      ],
+      "edits_frozen": true,
+      "held_out_content_read": false,
+      "credential_loader_used": false,
+      "provider_calls": 0,
+      "native_index_clients_created": 0,
+      "ledger_clients_or_writes": 0,
+      "external_messages": 0,
+      "actual_model_consumption_attested": false,
+      "physical_build_verified": false,
+      "source_authenticity_verified": false,
+      "preregistration_verified": false,
+      "semantic_quality_claim": false,
+      "full_development_suite_rerun_by_this_reviewer": false
+    },
+    "limits": [
+      "The observer measures passage presence in supplied handoff bytes only; caller declarations and hashes do not authenticate an actual model attempt or provider consumption.",
+      "All observed passages leave support, whole-answer sufficiency and decision judgment unassessed.",
+      "Metadata inventory is not fresh retrieval or a physical index verification; post hoc archive demonstrations remain post hoc."
+    ]
+  },
+  "focused_counts_overlap_selected_suite": true,
+  "development_verification": {
+    "all_selected_distinct_tests_covered_by_successful_observations": 5968,
+    "same_source_commit_in_all_runs": "783362cf197d5d3c88a5f90733b4fa8c525af7c4",
+    "neutral_cwd_run": {
+      "passed": 5963,
+      "failed_due_to_repository_cwd_assumptions": 5,
+      "deselected": 1,
+      "elapsed_seconds": 254.67,
+      "xml_sha256": "8a2d1e715288bb72e5706777c75239d266de4792d87e1104de3e57ada522a730",
+      "log_sha256": "9bfed4dffcdc06c34be0b0efa4dc26c09cda1c9a7644c76505f5102de4249cad",
+      "boundary": {
+        "exit_code": 1,
+        "blocked_read_attempts": 0,
+        "blocked_held_out_open_attempts": 0,
+        "blocked_designated_credential_open_attempts": 0,
+        "held_out_contents_opened_in_audited_process": 0,
+        "designated_real_credential_contents_opened_in_audited_process": 0,
+        "audit_scope": "this Python process; not a subprocess filesystem attestation",
+        "CWD": "fresh neutral temporary directory",
+        "repository_config_and_test_paths": "explicit absolute paths",
+        "deselected": [
+          "tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture"
+        ]
+      }
+    },
+    "repository_cwd_targeted_rerun": {
+      "passed": 5,
+      "failed": 0,
+      "elapsed_seconds": 0.24,
+      "exact_same_failed_test_identity_set": true,
+      "disjoint_from_neutral_success_set": true,
+      "xml_sha256": "815675a0dcb4fe0d6add93730bd7967c615212b8307bb89a0b8b1fe2c9555af8",
+      "boundary": {
+        "exit_code": 0,
+        "blocked_read_attempts": 0,
+        "guard_scope": "audited Python process",
+        "CWD": "repository root required by these relative-path/default-CLI tests",
+        "targeted_items": [
+          "tests/test_decision_ablations.py::test_registered_repository_protocol_pins_all_three_input_files_and_the_fixed_grid",
+          "tests/test_decision_ablations.py::test_default_cli_validates_protocol_without_reading_credentials_or_opening_a_ledger",
+          "tests/test_quality_experiments.py::test_repository_registration_pins_nine_cases_and_caller_inputs",
+          "tests/test_quality_experiments.py::test_v5_registration_preserves_inputs_while_selecting_separate_compiled_candidate",
+          "tests/test_quality_experiments.py::test_cli_offline_default_needs_neither_key_nor_ledger"
+        ]
+      }
+    },
+    "single_clean_full_suite_invocation_claim": false,
+    "no_test_or_product_source_changed_between_runs": true,
+    "deselection": "tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture",
+    "credential_and_heldout_open_audit_scope": "parent Python process only, not subprocess filesystem attestation"
+  },
+  "preparation_findings_retained": {
+    "initial_repository_cwd_attempt": {
+      "passed": 5727,
+      "failed": 14,
+      "errors": 227,
+      "deselected": 1,
+      "elapsed_seconds": 144.38,
+      "reason": "An added real-.env open guard blocked Chroma Settings CWD dotenv reads and cascaded into index setup errors; no secret content was opened by those blocked attempts. No production change was made.",
+      "log_sha256": "2a99ad249ace69f651a961f91006cabcf86492cb3bbf68e9edddf43cd58ae349",
+      "blocked_sensitive_open_attempts_total": 64,
+      "category_count_limit": "The first harness saved the total sensitive/protected-open count, not separate category counts; Chroma dotenv reads were identified from local dependency source and index setup errors."
+    },
+    "neutral_cwd_followup": "Five legacy relative-protocol/default-CLI tests need documented repository CWD; exact five rerun with guards passed. Both failed attempts retained.",
+    "implementer_preparation_amendments_sha256": "c03542b57a5a20ea8793ad203e437f2ae6fb189d07109e66547e6209f6536b22"
+  },
+  "archived_posthoc_probe_path": "docs/receipts/native-evidence-archive-probe-2026-10-16.json",
+  "archived_posthoc_probe_sha256": "3ca11e731baebf6c9370c32da69788bad0a3c0a3b930b3ba4a1d41376e91a083",
+  "archived_probe_scope": "Two authored structural probes within one exposed archived C4g handoff, not preregistered native gold or requirements of the icon problem; no new model/retrieval run.",
+  "pinned_development_corpus_inventory": {
+    "manifest_sha256": "24815c44f7d7e104a59579d444e8abce429f02b594dd6679165c0fbc381b9239",
+    "allowlist_sha256": "ec1d2383f79b11920b3b02ec79d01e6e3d4f180ee51d7d85fb522e9feceaca70",
+    "sources": 18,
+    "chunks": 36,
+    "markdown_sources": 5,
+    "docstrings": 13,
+    "release_notes": 0,
+    "docstring_versions": [
+      "1.39.0",
+      "1.49.0",
+      "1.50.0",
+      "1.64.0"
+    ],
+    "forms_markdown_present": false,
+    "scope": "metadata inventory only; not a fresh native client or retrieval observation; not final corpus"
+  },
+  "preservation": {
+    "checks": {
+      "ledger_sha256": true,
+      "physical_hashes": true,
+      "held_out_git_tree": true,
+      "held_out_registration_sha256": true,
+      "exclusion_sha256": true,
+      "approved_new_manifest_sha256": true,
+      "historical_report_sha256": true,
+      "original_review_sha256": true,
+      "vocabulary_sha256": true,
+      "runtime_git_trees": true
+    },
+    "primary_ledger_sha256": "141c3536fb864595d94e0d0dd4a55976418def1012402b70f313c92050222785",
+    "current_physical_pins_unchanged": 19,
+    "new_manifest_intentionally_adopted_from_PR79": "ceb4cf2d4eca4542ec7efc6317633311e11574c21fa5651cdc9bf536cc78c185",
+    "test_registration_and_exclusion_unchanged": true,
+    "original_v1_and_human_review_and_native_gold_not_rewritten": true,
+    "historical_report_sha256": {
+      "data/evaluation/split-e1-v1/question-coverage-v1.json": "918aed68d2a8c3c4643d5466919d1506ba0bd356e4583afc8b91e780beddd667",
+      "data/evaluation/split-e1-v1/question-coverage-dev-v2.json": "890df9a23976c944dfe084d933ada9346b9c6f8dca28bc37deba3d77f6b5177f"
+    },
+    "runtime_git_trees": {
+      "src/agent_app/orchestration": "08dbac0fbefc762b3679a5cc1db97e8aa6f664e4",
+      "src/agent_app/reasoning": "887bfb25f5a1b508889a106df373cd18ca2e547e",
+      "src/agent_app/llm": "2af04bbb91e4746928c87e4a36905aa484ea51ae",
+      "src/agent_app/retrieval": "0157aa665c828b1481757f4932340616d336935b",
+      "src/agent_app/tracker": "0c54e21968390da288321059549bdb12664bafc5",
+      "config": "2890b0798148a5499fa4b01cc547aac67f57b9cd",
+      "app.py": "c05a9e92049f424b34d6ad8e9fcb88f4ece45f6e",
+      "pyproject.toml": "1f6e670a064155b54ecdfdaf9b0bfba1348e5009",
+      "uv.lock": "891a2b82cab2874e87013adc5016c93ae9263a77",
+      ".github": "391af0930917bb69558f6928e2868327be50ab7d"
+    }
+  },
+  "C5": {
+    "checks_passed": 36,
+    "checks_total": 36,
+    "ledger_files_unchanged": true,
+    "C5_resolved": false,
+    "live_authorization_or_unhalt": false,
+    "closed_study_IDs_reusable": false
+  },
+  "verification_limits": {
+    "quality_claim": false,
+    "new_paid_model_calls": 0,
+    "primary_native_index_clients_created": 0,
+    "runtime_default_factory_runner_or_semantic_scorer_changes": false,
+    "held_out_gold_or_questions_opened": false,
+    "new_human_claim_support_or_usefulness_scores": false,
+    "final_native_gold_or_index_config_freeze_complete": false,
+    "CI_success_claim": false,
+    "new_HTTP_SQLite_browser_manual_or_Windows_acceptance_claim": false,
+    "team_or_external_messages_sent": 0
+  },
+  "still_open": [
+    "Native fixtures/gold/routes, C4j usefulness worksheet and private native test registration by evaluation owner",
+    "Final corpus scope/build/exclusion and actual passage coverage by RAG owner",
+    "Selected configuration and independent claim/version/usefulness review",
+    "Provider reconciliation of three uncertain holds and final untuned held-out evaluation"
+  ],
+  "development_reconciliation_independent_review": {
+    "schema_version": 1,
+    "review_kind": "independent_junit_identity_cwd_contract_and_guard_reconciliation",
+    "recorded_at_utc": "2026-10-16T14:20:29.226550+00:00",
+    "source_commit": "783362cf197d5d3c88a5f90733b4fa8c525af7c4",
+    "scoped_publication_supported": true,
+    "blocking_findings": [],
+    "checks": {
+      "exact_failed_ids_equal_rerun_ids": true,
+      "rerun_all_passed": true,
+      "successful_id_sets_disjoint": true,
+      "successful_union_equals_all_selected_ids": true,
+      "neutral_no_errors_or_skips": true,
+      "rerun_no_errors_or_skips": true,
+      "neutral_xml_sha_matches_record": true,
+      "rerun_xml_sha_matches_record": true,
+      "neutral_log_sha_matches_record": true,
+      "neutral_guard_attempts_zero": true,
+      "repository_guard_attempts_zero": true,
+      "current_product_test_script_files_match_source_commit": true,
+      "same_source_recorded_for_both_runs": true
+    },
+    "counts": {
+      "neutral_cwd_passed": 5963,
+      "neutral_cwd_relative_path_failures": 5,
+      "repository_cwd_rerun_passed": 5,
+      "distinct_selected_tests_with_passing_observations": 5968,
+      "explicitly_deselected_heldout_consumer": 1
+    },
+    "rerun_ids": [
+      "tests.test_decision_ablations::test_default_cli_validates_protocol_without_reading_credentials_or_opening_a_ledger",
+      "tests.test_decision_ablations::test_registered_repository_protocol_pins_all_three_input_files_and_the_fixed_grid",
+      "tests.test_quality_experiments::test_cli_offline_default_needs_neither_key_nor_ledger",
+      "tests.test_quality_experiments::test_repository_registration_pins_nine_cases_and_caller_inputs",
+      "tests.test_quality_experiments::test_v5_registration_preserves_inputs_while_selecting_separate_compiled_candidate"
+    ],
+    "failure_analysis": {
+      "direct_protocol_reads": 3,
+      "default_cli_protocol_reads": 2,
+      "observed_failures": "Three FileNotFoundError failures for relative repository protocol paths and two offline CLI SystemExit failures using those relative defaults.",
+      "contract_evidence": [
+        "AGENTS.md verification commands specify repository root.",
+        "docs/development.md requires repository-root commands.",
+        "The five legacy tests and both CLI default --plan values use relative experiments/decision_quality paths."
+      ],
+      "actual_observer_or_product_regression_found": false
+    },
+    "guard_review": {
+      "same_designated_repository_credential_and_heldout_path_categories_in_both_harnesses": true,
+      "neutral_parent_blocked_opens": 0,
+      "repository_parent_blocked_opens": 0,
+      "scope": "Audited parent Python processes only; not subprocess filesystem attestation.",
+      "no_guard_weakening_or_production_chroma_patch_observed": true
+    },
+    "source_binding_basis": "Both runs record source 783362c in test-reconciliation.json; the executor reports no intervening source/test edits, and current tracked product/test/script files match that commit. JUnit itself records test outcomes, not a historical source snapshot.",
+    "preserved_limits": {
+      "single_clean_full_suite_invocation_claim": false,
+      "earlier_failed_harness_attempts_remain_retained": true,
+      "held_out_model_quality_evaluation_claim": false,
+      "hosted_CI_or_fresh_browser_platform_claim": false,
+      "further_full_suite_required_for_this_reconciliation": false
+    },
+    "input_sha256": {
+      "neutral_xml": "8a2d1e715288bb72e5706777c75239d266de4792d87e1104de3e57ada522a730",
+      "neutral_boundary": "cf583058314fd30d3bdf06273b7ef3b9b599a5ebe12ab86661ea9528eb0f20a1",
+      "neutral_harness": "c3775323aa9f2d14b71f90512dd5c2636400872cd46577844155e6ef4bcf921b",
+      "neutral_log": "9bfed4dffcdc06c34be0b0efa4dc26c09cda1c9a7644c76505f5102de4249cad",
+      "rerun_xml": "815675a0dcb4fe0d6add93730bd7967c615212b8307bb89a0b8b1fe2c9555af8",
+      "rerun_boundary": "02649d43c970263e267ce48c3cd49b4eaa1b3698065ea1f0a53838b731d3277b",
+      "rerun_harness": "1f12da04ab08db455a9d2940f66086f882545dac30bf83a85e19a002b131e95b",
+      "reconciliation": "1f280787577e76d9cae99becbfe750416f6d0f546756a0f6543693d8b30b2ba7"
+    },
+    "reviewer_actions": {
+      "product_or_test_edits": false,
+      "new_test_executions": false,
+      "protected_content_or_credentials_opened": false,
+      "provider_index_or_ledger_clients_created": false
+    }
+  },
+  "development_reconciliation_review_sha256": "9b87a86f2bb3f3402e3acea08569bc0571f34e80e55254e294bdb021b2e1670b",
+  "independent_documentation_claims_review": {
+    "kind": "assistant_peer_claims_and_receipt_review_not_human_semantic_scoring",
+    "approved": true,
+    "blocking_findings": [],
+    "confirmed": [
+      "Exact 5963 plus five distinct passing test identities and recorded XML bindings",
+      "Two-context verification and parent-only filesystem audit limits explicitly retained",
+      "Passage presence, semantic support, assisted review and post-hoc probes kept separate",
+      "No new model-quality, final native freeze, provider reconciliation or hosted CI claim"
+    ],
+    "new_human_claim_support_or_usefulness_scores": false
+  }
+}
