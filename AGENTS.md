@@ -41,6 +41,16 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 ## Runtime rules
 
+- C4n adds a pure explicit `configuration_freeze` descriptor/comparison for
+  supplied review-candidate settings only. Read `docs/enum-freeze-readiness.fa.md`.
+  Preserve legacy adapter/runner metadata and all defaults; no factory hook or
+  selected final configuration was added. Compatible/equal declarations do not
+  authenticate pins, inspect runtime, establish quality or authorize live calls.
+  Exported calls must not read credentials/environment/files or construct runtime;
+  retain exact money identities and Decimal-context-independent cost checks.
+  PR78 head3402a59 remains unmerged after neutral report-projection counterexamples;
+  do not consume held-out content or tune vocabulary from its test counts.
+
 - C2k reuses `detached_contract` at retrieval/analysis ingress, user-turn
   preparation, grounded/claim request validation and source hashing. Read
   `docs/core-boundary-validation.fa.md`. Preserve the32 pre-change valid surface

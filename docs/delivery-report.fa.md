@@ -10,15 +10,16 @@ receiptهای قبلی تغییر نکرده‌اند.
 | بخش | شاهد موجود | باقی‌مانده برای اعلام اتمام |
 | --- | --- | --- |
 | core و اتصال | correction، وضعیت فعلی کاربر، شواهد نسخه‌دار، پیشنهاد جدا از اجرا، API/UI/SQLite | انتخاب تنظیم نهایی و کیفیت پاسخ با داوری مستقل |
-| صحت نرم‌افزار | source تازهٔ C2k یعنی `3f8ff33`: ۵۷۵۸ تست توسعه، با یک deselection صریح؛ HTTP/SQLite تازه۴۵۷/۴۵۷ | این اعداد کیفیت جواب مدل یا اجرای test نهایی نیستند |
+| صحت نرم‌افزار | source تازهٔ C4n یعنی `99e3bc6`: ۵۸۶۱ تست توسعه، یک deselection صریح؛ HTTP/SQLite۴۵۷/۴۵۷ C2k برای runtime یکسان | این اعداد کیفیت جواب مدل یا اجرای test نهایی نیستند |
 | RAG | Chroma واقعی، buildهای pinned، کنترل نسخه و بازپخش dev | بهبود packing/relevance و freeze نهایی corpus/index/config با حسن |
 | evaluation | ثبت۱۶dev/۱۵test و۱۴مسیر چندنوبتی شامل۷test در metadata؛ اجرای scripted ثبت‌شده روی۱۶dev،۲۷۳check | native gold/routes،v2 سه dev در صورت انتخاب rubric یکدست v1،vocabulary/rubric/split freeze،usefulness و ارزیابی نهایی با محمدحسن |
 | tracker | approval/edit/reject، stale409،restart/retry و شاهد lost-ACK | مرزهای باقی‌ماندهٔ T4 با بهنام/محمدحسن؛ recovery درخواست تأییدنشده پس از نابودی کامل session ثابت نشده |
 | هزینه | ledger و رسیدها حفظ‌اند؛ سه درخواست نامعلوم وhalt باقی است | مدرک provider و تطبیق usage/charge برای C5 |
 
-[verification تازهٔ C2k](receipts/core-boundary-validation-2026-10-16.json)
+[verification تازهٔ C4n](receipts/enum-freeze-readiness-2026-10-16.json)
 به source و artifactهای دقیق bind است؛ suite توسعه برای همین کد دوباره اجرا
-شد. [verification قبلی](../experiments/evaluation_readiness_v1/verification-v1.json)
+شد. [verification C2k](receipts/core-boundary-validation-2026-10-16.json)
+و [verification قبلی](../experiments/evaluation_readiness_v1/verification-v1.json)
 و healthcheck قبل ازC2k به source تاریخی خودشان مربوط‌اند و حفظ شده‌اند.
 test نهایی و evidence/gold آن برای این گزارش باز نشده‌اند. GitHub Billing
 مانع hosted CI است؛ انتشار با review و تست محلیِ مجازشده انجام شده است.
@@ -31,6 +32,12 @@ test نهایی و evidence/gold آن برای این گزارش باز نشده
 ۱٫۴۷است. support بررسی نشده و این نمونه، کیفیت تنظیم فعلی یاtestنهایی را
 نشان نمی‌دهد. نمره‌های اصلی حفظ شده‌اند؛ محدودیت export وhash وابسته‌به‌مسیر
 در بررسی آمده است. E4 همچنان باز می‌ماند.
+
+[آمادگی freeze و Enum](enum-freeze-readiness.fa.md) اکنون descriptor جدا برای
+مقایسهٔ تنظیم‌های صریح دارد؛ metadata تاریخی تغییر نکرده و تنظیم نهایی انتخاب
+نشده است. تفاوت configها قابل ثبت است، ولی pin/runtime/quality خودکار احراز
+نمی‌شود. Enum هنوز fix تأییدشده ندارد. PR78 نیز در head ثبت‌شده به‌خاطر دو
+counterexample در projection گزارش باز مانده؛ شواهد این review در plan است.
 
 ## سیستم چه می‌کند و چرا این ساختار انتخاب شد؟
 

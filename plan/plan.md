@@ -4,6 +4,29 @@
 
 ## وضعیت فعلی
 
+- [x] **C4n — review Enum و binding تنظیمِ کاندیدای freeze؛ ساسان.**
+  [نتیجه، اتصال و gateها](../docs/enum-freeze-readiness.fa.md)،
+  [verification](../docs/receipts/enum-freeze-readiness-2026-10-16.json).
+  سه شکست مستند Enum دوباره بررسی شدند: شاهد مرتبط غایب، انتخابِ فاقد بدنه/caveat
+  و ادعای نسخهٔ بی‌پشتوانه. نسخه/کد USER معلوم‌اند؛ سؤال دوباره راه‌حل نیست.
+  replayهای موجود۶۲/۶۲و۸۱/۸۱عین byte آرشیو ماندند؛ مدل/API تازه،fix تأییدشده
+  یا نمرهٔ انسانی تازه نداریم. guide همچنان fixture-only و Enum حل‌نشده است.
+  metadata قدیمی config برای دو تنظیم متفاوت یکسان بود؛ helper خصوصی و صریحِ
+  descriptor/comparison،flagها/bounds/policy/vocabulary وpinهای اعلام‌شده را
+  bind می‌کند. legacy config/factory/runner/default تغییر نکرد؛ hook فعال یا
+  candidate نهایی انتخاب نشده و runtime/quality/live مجاز نمی‌شود. pinها صرفاً
+  declaration هستند، نه مشاهدهٔ تأییدشدهٔ فایل/سرور.۳ایراد پیش از انتشار helper
+  شامل env کتابخانه و دو مشکل Decimal با شواهد حفظ و اصلاح شدند.
+  source`99e3bc6`:۱۰۳تست جدید،۱۹۷تست متمرکز root و۵۸۶۱تست توسعهٔ تازه پاس؛ یک
+  مصرف‌کنندهٔ held-out صریحاً deselect و readصفر. Ruff۳۶۹فایل و review مستقل
+  پاس؛ HTTP/SQLite۴۵۷/۴۵۷ C2k برای runtime دقیقاً یکسان استفاده شده، نه اجرای
+  تازه. C5read-only۳۶/۳۶،ledger/۱۹pin/سهhold/halt/سقف وIDهای بسته محفوظ؛APIصفر.
+  **PR78محمدحسن درhead`3402a59`باز ماند:** دوP2در projection سؤال/شاخه و یک
+  normalization؛ [رسید review](../docs/receipts/pr78-review-2026-10-16.json).
+  dev-only۱۱/۱۱سؤال و۴extraoffer آرشیوی بازتولید شدند؛ test فقط summary عددی بود.
+  رفع report با محمدحسن؛ فایل‌هایش تغییر نکردند. review انسانی کیفیتِ تنظیم
+  منتخب،native gold/routes،freeze مشترک وC5/testنهایی هنوز بازند؛ پیام ارسال نشد.
+
 - [x] **پذیرش محدود PR77؛ review انسانی C4g دریافت شد.**
   [بررسی و توضیح شمارش](../docs/pr77-review.fa.md)،
   [رسید](../docs/receipts/pr77-review-2026-10-16.json). نمره‌ها و byteهای فایل

@@ -1,3 +1,48 @@
+## 2026-10-16 — C4n: Enum quality audit and candidate configuration binding
+
+[Result/usage/open gates](enum-freeze-readiness.fa.md),
+[verification](receipts/enum-freeze-readiness-2026-10-16.json).
+Reviewed PR77 and retained Enum OBS-01/11/12. Missing guide, omitted available
+module body/edit-reload caveat and unsupported historical version bridge remain
+distinct failures. No new defensible runtime/default/prompt-order change was
+identified. Existing selection/current-context replays pass62/62and81/81with
+identical archived bytes;10retained claim plans reproduce7accepted/3binding
+rejections. These are software/structural observations, not improved model choices,
+independent usefulness or a verified Enum fix. Guide remains fixture-only.
+
+Reproduced identical legacy adapter config metadata for different switches,
+output bounds and vocabulary. Added one private pure descriptor/comparison module
+and103neutral controls. It binds all nonsecret Metis settings, explicit supported
+API/service composition, limits/display/vocabulary and supplied code/index pins.
+Legacy metadata/receipts/factories/defaults are unchanged. No hook is activated;
+no final candidate is selected. Accepted declarations establish compatibility and
+equality only, never pin provenance/completeness, runtime verification, live
+authorization or quality. No key lookup/hash/dump or I/O during exported calls.
+
+Prepublication findings are retained: first no-env test caught Pydantic schema
+construction during calls; schemas moved to import. Exact Decimal formatting
+replaces context-rounding normalization and inconsistent comparison length bounds.
+Independent review also caught underfunded cap.006accepted atprecision1; isolated
+price arithmetic now rejects it and preserves exact.006082560across precision,
+rounding/exponent/trap controls. Existing pricing/ledger code was not changed.
+
+Frozen source`99e3bc6`:5861development tests pass,oneheld-out consumer deliberately
+deselected and0protectedreadattempts; root197focused tests and independent103new
+controls pass. Ruff369files; fresh C5read-only36/36preserves primary ledger,
+19current physical pins,threeholds/halt/ceiling/closedIDs. Existing runtime/API/
+SQLite source still matches3f8ff33,so its HTTP457receipt is reused honestly;
+no new HTTP/browser/Windows/hosted-CI result or paid call is claimed.
+
+Fresh teammate update PR78head3402a59 adds a question-coverage report. Independent
+neutral examples reproduce2P2state errors (ask does not itself establish a fact,
+sibling branch state leaks) plus whitespace normalization. Left unmerged; owner
+files untouched. Dev-only11/11asks and4extraoffers reproduce the report. Only
+numeric test summaries were read,never held-out fixture/gold/questions. The
+[sanitized review](receipts/pr78-review-2026-10-16.json) preserves exact scope.
+Human review on the selected config,native gold/routes/split/rubric/vocabulary
+and index freeze,C5provider evidence and final untuned evaluation remain open.
+No external/team messages sent.
+
 ## 2026-10-16 — PR77: bounded human C4g output review received
 
 [Acceptance and grouping clarification](pr77-review.fa.md),

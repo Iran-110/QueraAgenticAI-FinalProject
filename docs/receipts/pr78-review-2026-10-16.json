@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "review_kind": "independent_read_only_assistant_review_with_authored_neutral_reproductions",
+  "recorded_at_utc": "2026-10-16T08:51:41.530823+00:00",
+  "pull_request": 78,
+  "pr_head_commit": "3402a597d5d2f7749dfa8db7008779814806f9df",
+  "local_core_commit": "18b49a634c88d559b12fe247ac767eddabd47c37",
+  "source_sha256": {
+    "pr_head:scripts/report_question_coverage.py": "dbfb8e8b0610e2a30916e703453dbbccf4b4a3790ba3f74d6c004d00a7356f00",
+    "pr_head:data/evaluation/split-e1-v1/question-coverage-v1.json": "918aed68d2a8c3c4643d5466919d1506ba0bd356e4583afc8b91e780beddd667",
+    "src/agent_app/contracts.py": "1dcf0de657f3442dfb5e787e6243a9a279501305033e592cbcd060dd808d0a91",
+    "src/agent_app/orchestration/turns.py": "9561712617003a01df68e7616370432782e9592865b1fccf6bc8f71db64420a0",
+    "src/agent_app/orchestration/intake.py": "def5040854e9d0f119bf85e2d16727f5aafaa71fc3bed778c2a9d9b9673012e9",
+    "src/agent_app/reasoning/catalog.py": "3624384239857c38925092cd9ecfdaa9bd9af9d12b5fa253d44075481507dcfa",
+    "src/agent_app/evaluation/routes.py": "4808d19cdd8a1e4164476f50a49e4ac46f681541443b529d49e8a9365d94704e"
+  },
+  "reproduction_script_sha256": "e8900ec5b43acec31e7a904c63bae41282791d9dd64b2d0b2a93ae0bd01bf505",
+  "findings": [
+    {
+      "id": "PR78-01",
+      "priority": "P2",
+      "lines": [
+        49,
+        52
+      ],
+      "title": "Incoming ask route does not establish an answered fact",
+      "valid_route_graph_routes": 3,
+      "report_available_on_turn": false,
+      "expected_actual_core_available_on_turn": true,
+      "actual_core": {
+        "active_user_fact_names": [],
+        "unknowns": [
+          "code_sample"
+        ],
+        "offered_user_question_targets": [
+          "code_sample",
+          "streamlit_version"
+        ]
+      },
+      "reason": "The visible reply explicitly retains code_sample as unknown; core leaves the vocabulary question available."
+    },
+    {
+      "id": "PR78-02",
+      "priority": "P2",
+      "lines": [
+        46,
+        65
+      ],
+      "title": "Sequential state fold leaks sibling branch facts into merged state",
+      "valid_route_graph_routes": 5,
+      "actual_route": [
+        "initial",
+        "branch_b",
+        "merged"
+      ],
+      "unvisited_branch": "branch_a",
+      "report_available_on_turn": false,
+      "expected_actual_core_available_on_turn": true,
+      "actual_core": {
+        "active_user_fact_names": [
+          "runtime_context"
+        ],
+        "unknowns": [
+          "code_sample"
+        ],
+        "offered_user_question_targets": [
+          "code_sample",
+          "streamlit_version"
+        ]
+      },
+      "reason": "Only the unvisited sibling supplies code_sample; actual path B retains it as unknown."
+    },
+    {
+      "id": "PR78-03",
+      "priority": "P3",
+      "lines": [
+        54,
+        59
+      ],
+      "title": "Report skips core contract whitespace normalization",
+      "neutral_report_offered": [
+        "code_sample",
+        "streamlit_version"
+      ],
+      "actual_core": {
+        "active_user_fact_names": [
+          "code_sample"
+        ],
+        "unknowns": [],
+        "offered_user_question_targets": [
+          "streamlit_version"
+        ]
+      },
+      "reason": "Core strips the reported fact name before comparison; report uses casefold alone and falsely offers code_sample."
+    }
+  ],
+  "exposed_dev_check": {
+    "explicit_splits_argument": [
+      "dev"
+    ],
+    "committed_dev_section_equal": true,
+    "fixtures_checked": 16,
+    "summary": {
+      "ask_branches": 11,
+      "by_question_source": {
+        "built_in_version": 5,
+        "vocabulary": 6
+      },
+      "available_on_turn": 11,
+      "distinct_targets_not_in_vocabulary": 0,
+      "gold_user_gaps_without_ask_route": 0,
+      "turns_offering_a_question_where_ask_is_not_acceptable": 4
+    },
+    "read_allowlist_enforced": true,
+    "distinct_allowed_paths_read": 18
+  },
+  "held_out_report_safety": {
+    "test_section_keys": [
+      "fixtures_checked",
+      "summary"
+    ],
+    "nested_summary_contains_only_numeric_counts_and_known_category_names": true,
+    "test_rows_questions_or_gold_exported": false,
+    "test_fixture_evidence_or_card_content_read": false
+  },
+  "recommendation": "Leave PR78 open. Correct or explicitly reject unsupported state projections before claiming general core-equivalent coverage. Existing dev counts reproduce; this does not establish test correctness or semantic/model quality.",
+  "limits": {
+    "human_review": false,
+    "new_model_or_quality_score": false,
+    "held_out_evaluation": false,
+    "full_suite_run": false,
+    "API_calls": 0,
+    "index_or_ledger_clients_created": 0,
+    "credential_files_read": false,
+    "repository_or_git_mutations": false,
+    "external_messages": false
+  }
+}
