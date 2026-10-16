@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "fixture_id": "split-e1-v1-native-state-init-10089-v1",
+  "registered_on": "2026-10-16",
+  "registered_before_first_run": true,
+  "purpose": "Initialization boilerplate for several keys; documented patterns include setdefault. Native-index gold version.",
+  "case": {
+    "case_id": "test-case-09",
+    "split": "test",
+    "family_issue_ids": [
+      10089,
+      14717,
+      16242
+    ],
+    "origin_url": "https://github.com/streamlit/streamlit/issues/10089",
+    "source_snapshot_date": "2026-10-06",
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "test_eligible": true,
+    "exposure": "Held-out test case. The evaluation curator (mhg with assistant drafting) read the Issue thread to author gold; it was not used in core development, prompt tuning, retrieval tuning or model selection. Core developers must not open this file before the final test run."
+  },
+  "evidence_source": {
+    "path": "data/evaluation/split-e1-v1/evidence-test-b-v1.json",
+    "sha256": "da2c1514ce57af260fc33b4e1d81ee48cb673c5edfbafd67cd113ff42afc96b3",
+    "bundles_used": [
+      "state-init"
+    ],
+    "note": "Runner loading only: live native runs take evidence from the index, not this bundle. It is not the evidence the native gold is judged against."
+  },
+  "boundaries": {
+    "agent": "scripted AnalysisResult for offline plumbing; live ignores agent_script/gold/future turns",
+    "real_model_calls": 0,
+    "api_cost_usd": 0,
+    "storage": "evaluation runner process-local API/DummyTracker; not production durable tracker",
+    "quality_claim": false,
+    "max_reached_turns": 1,
+    "visible_to_agent": [
+      "currently selected turns[].visible"
+    ],
+    "runner_only": [
+      "gold",
+      "agent_script",
+      "maintainer",
+      "probes",
+      "evaluation.coverage",
+      "future turns"
+    ]
+  },
+  "initial_report_provenance": {
+    "kind": "developer_paraphrase_of_latest_cached_body",
+    "source_path": "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+    "issue_number": 10089,
+    "source_created_at": "2024-12-28T00:02:20Z",
+    "source_updated_at": "2026-08-22T10:25:17Z",
+    "source_issue_record_sha256": "b15d87ddcb804f2d9abb728f6771944c40d5bdd3357bbf3ead2a70629545edf4",
+    "original_initial_text_verified": false,
+    "note": "Cached body can contain later edits. No later comments/outcomes are supplied as the initial user message."
+  },
+  "turns": [
+    {
+      "id": "initial",
+      "conversation_source": "developer_paraphrase_of_latest_cached_issue_body",
+      "visible": {
+        "unknowns": [],
+        "checks_performed": [],
+        "context_changed": false,
+        "message": "Many of my apps repeat `if 'my_key' not in st.session_state: st.session_state.my_key = 'default'` for many keys. Is there a simpler way to initialize several Session State keys at once?",
+        "reported_facts": [
+          {
+            "name": "requested_behaviour",
+            "value": "A simpler way to initialize several Session State keys"
+          }
+        ]
+      },
+      "evidence_bundle": "state-init",
+      "agent_script": {
+        "decision": "answer",
+        "user_draft": "Session State behaves like a dictionary. The documented pattern is `if 'key' not in st.session_state: st.session_state['key'] = value`, and the widget behaviour guide also uses `st.session_state.setdefault(\"a\", 5)`, which sets a value only if the key is missing. For several keys, loop over a dictionary of defaults and call setdefault for each one.",
+        "maintainer_summary": "Documented init pattern plus setdefault; a dedicated bulk helper is not documented.",
+        "rationale": "Both patterns appear in the docs; looping is plain Python over the documented call.",
+        "evidence_links": [
+          {
+            "claim": "Initialize with `if 'key' not in st.session_state`.",
+            "chunk_id": "e1t-session-state-init"
+          },
+          {
+            "claim": "st.session_state.setdefault('a', 5) sets an initial value.",
+            "chunk_id": "e1t-widget-setdefault"
+          }
+        ]
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "rubric_id": "e2-rubric-v1",
+        "evidence_condition": "native_index",
+        "stratum": "answerable",
+        "acceptable_decisions": [
+          "answer",
+          "escalate"
+        ],
+        "decision_conditions": {
+          "answer": "Give the documented init pattern and/or setdefault, optionally looping over a dict; may say a dedicated bulk helper is not documented. Native index: the registered passages must be in this turn's supplied bundle AND support the stated claim, its API scope and the active USER version; presence alone is not support.",
+          "escalate": "Only for the feature-request part, and only while still giving the documented patterns. Under the native index, escalation is acceptable only when the registered passages were not supplied in this turn or do not cover the claim and version: it must name the missing documentation and a concrete next step, and still keep any supported guidance. When the passages were supplied and cover the case, escalation is unnecessary abstention."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [],
+        "unacceptable_claims": [
+          "st.session_state.from_dict or another bulk helper exists.",
+          "Missing Session State keys return None.",
+          "Widget keys support nested paths."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality.",
+        "native_passages": {
+          "answer_required": {
+            "requirements": [
+              {
+                "requirement_id": "init-or-setdefault",
+                "alternatives": [
+                  {
+                    "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+                    "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                    "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/session-state.md",
+                    "passage": "if 'key' not in st.session_state:\n    st.session_state['key'] = 'value'"
+                  },
+                  {
+                    "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+                    "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                    "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md",
+                    "passage": "st.session_state.setdefault(\"a\", 5)"
+                  }
+                ]
+              }
+            ],
+            "requirements_sha256": "6d826e6e04b297f50ac571dbcbe43b5f9ca151a792db6f66e7030956eeaf09e7"
+          },
+          "optional_claim_support": null,
+          "rule": "Observed with agent_app.evaluation.evidence_observation on this turn's captured handoff. Observation is necessary for a supported answer, not sufficient; support, version scope and usefulness stay a human judgment. A missing passage is a bundle gap, not proof that every escalation is right.",
+          "note": null
+        }
+      },
+      "expect": {
+        "revision": 1,
+        "pending_decision": "answer",
+        "after_decision": {
+          "status": "answer_sent",
+          "released_draft": "agent"
+        }
+      }
+    }
+  ],
+  "evaluation": {
+    "coverage": {
+      "turn_ids": [
+        "initial"
+      ],
+      "routes": [
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "answer"
+          }
+        },
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "escalate"
+          }
+        }
+      ]
+    }
+  },
+  "native_of": {
+    "fixture_id": "split-e1-v1-state-init-10089-v1",
+    "path": "data/evaluation/split-e1-v1/test/state-init-10089-v1.json",
+    "sha256": "7de542c6abd8f1658a6cf4c64113d470bc1e4af65a209ee2c3a34ec9c5e9af73",
+    "note": "Same case, family and visible turns; only gold and routes differ. Never run in one invocation with the fixed version."
+  },
+  "native_scope": {
+    "evidence_condition": "native_index",
+    "build": "pending_final_build",
+    "index_snapshot": null,
+    "corpus_manifest_sha256": null,
+    "allowlist_sha256": null,
+    "exclusion_manifest_sha256": null,
+    "note": "Pins are filled from Hassan's final build before the final run; this gold is not valid for a run until then."
+  }
+}

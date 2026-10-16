@@ -1,0 +1,280 @@
+{
+  "schema_version": 1,
+  "fixture_id": "split-e1-v1-native-button-callback-4595-v1",
+  "registered_on": "2026-10-16",
+  "registered_before_first_run": true,
+  "purpose": "Callback appears to fire on save-triggered reruns; version hidden at start, real version supplied after the canonical question. Native-index gold version.",
+  "case": {
+    "case_id": "test-case-02",
+    "split": "test",
+    "family_issue_ids": [
+      4595,
+      6404
+    ],
+    "origin_url": "https://github.com/streamlit/streamlit/issues/4595",
+    "source_snapshot_date": "2026-10-06",
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "test_eligible": true,
+    "exposure": "Held-out test case. The evaluation curator (mhg with assistant drafting) read the Issue thread to author gold; it was not used in core development, prompt tuning, retrieval tuning or model selection. Core developers must not open this file before the final test run."
+  },
+  "evidence_source": {
+    "path": "data/evaluation/split-e1-v1/evidence-test-v1.json",
+    "sha256": "c3fa200f2e9b72b4da8e3030034bdc7206e28f5c3a24d444029c4971f20f90e2",
+    "bundles_used": [
+      "button-callback"
+    ],
+    "note": "Runner loading only: live native runs take evidence from the index, not this bundle. It is not the evidence the native gold is judged against."
+  },
+  "boundaries": {
+    "agent": "scripted AnalysisResult for offline plumbing; live ignores agent_script/gold/future turns",
+    "real_model_calls": 0,
+    "api_cost_usd": 0,
+    "storage": "evaluation runner process-local API/DummyTracker; not production durable tracker",
+    "quality_claim": false,
+    "max_reached_turns": 2,
+    "visible_to_agent": [
+      "currently selected turns[].visible"
+    ],
+    "runner_only": [
+      "gold",
+      "agent_script",
+      "maintainer",
+      "probes",
+      "evaluation.coverage",
+      "future turns"
+    ]
+  },
+  "initial_report_provenance": {
+    "kind": "developer_paraphrase_of_latest_cached_body_with_version_withheld",
+    "source_path": "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+    "issue_number": 4595,
+    "source_created_at": "2022-04-11T08:39:12Z",
+    "source_updated_at": "2024-08-18T19:14:39Z",
+    "source_issue_record_sha256": "58848f430360833841a46f971e2a41c34ca5763f27918ce3bbcdca7b86282c54",
+    "original_initial_text_verified": false,
+    "note": "Cached body can contain later edits. No later comments/outcomes are supplied as the initial user message."
+  },
+  "turns": [
+    {
+      "id": "initial",
+      "conversation_source": "developer_paraphrase_of_latest_cached_issue_body_version_withheld",
+      "visible": {
+        "message": "My st.button on_click callbacks fire on every rerun without a click. When I edit and save my script so the app reruns, the balloons and snow from both callbacks appear. Here is my code:\n\ndef handle_upsert():\n    st.balloons()\n\nst.button('Create or Update', on_click=handle_upsert)\n\ndef handle_remove(args):\n    st.snow()\n\nst.button('Remove', on_click=handle_remove, args=('12123123122135',))\n\nI have not supplied my Streamlit version.",
+        "reported_facts": [
+          {
+            "name": "reported_reproduction_code",
+            "value": "def handle_upsert():\n    st.balloons()\n\nst.button('Create or Update', on_click=handle_upsert)\n\ndef handle_remove(args):\n    st.snow()\n\nst.button('Remove', on_click=handle_remove, args=('12123123122135',))"
+          },
+          {
+            "name": "reported_observation",
+            "value": "Button callbacks run on save-triggered reruns without a click"
+          }
+        ],
+        "unknowns": [
+          "streamlit_version"
+        ],
+        "checks_performed": [],
+        "context_changed": false
+      },
+      "evidence_bundle": "button-callback",
+      "agent_script": {
+        "decision": "ask",
+        "user_draft": "Which Streamlit version is installed in the affected environment?",
+        "maintainer_summary": "Callbacks reportedly fire on reruns; code passes function references; release unknown.",
+        "rationale": "The callback documentation is versioned; the release decides applicability.",
+        "next_question": "Which Streamlit version is installed in the affected environment?",
+        "missing_info": [
+          "streamlit_version"
+        ]
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "rubric_id": "e2-rubric-v1",
+        "evidence_condition": "native_index",
+        "stratum": "ambiguous",
+        "acceptable_decisions": [
+          "ask",
+          "escalate"
+        ],
+        "decision_conditions": {
+          "ask": "Canonical version question; the code already passes function references, so asking for code is unnecessary.",
+          "escalate": "Explain that documented callbacks run only after a user interaction and the code uses them correctly, so the report needs maintainer investigation; version clarification remains feasible."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [
+          {
+            "name": "streamlit_version",
+            "kind": "user",
+            "description": "Affected installed release not yet supplied.",
+            "necessity": "The documented behaviour or fix depends on the installed release.",
+            "question": "Which Streamlit version is installed in the affected environment?"
+          }
+        ],
+        "unacceptable_claims": [
+          "The code calls the callback instead of passing it.",
+          "The documentation confirms a bug that fires callbacks on reruns.",
+          "Moving the work into `if st.button(...)` is proven to fix this report."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality.",
+        "native_passages": {
+          "answer_required": null,
+          "optional_claim_support": null,
+          "rule": "Observed with agent_app.evaluation.evidence_observation on this turn's captured handoff. Observation is necessary for a supported answer, not sufficient; support, version scope and usefulness stay a human judgment. A missing passage is a bundle gap, not proof that every escalation is right.",
+          "note": "No answer is acceptable before the version; the callback docs support only the escalation explanation."
+        }
+      },
+      "expect": {
+        "revision": 1,
+        "pending_decision": "ask",
+        "after_decision": {
+          "status": "awaiting_user",
+          "awaiting_reply": true,
+          "released_draft": "agent"
+        }
+      }
+    },
+    {
+      "id": "version",
+      "conversation_source": "developer_authored_reply_using_real_cached_debug_info",
+      "visible": {
+        "message": "1.8.1",
+        "reply_to_approved_question": true
+      },
+      "evidence_bundle": "button-callback",
+      "agent_script": {
+        "decision": "escalate",
+        "user_draft": "Thanks, you are on Streamlit 1.8.1. Your code passes the callback functions correctly, and the documented order of operations runs a callback only after a user interacts with the widget. The available documentation does not cover 1.8.1 or explain callbacks firing on save-triggered reruns, so I am passing your reproduction to a maintainer.",
+        "maintainer_summary": "1.8.1; correct callback references; callbacks reportedly fire on save-triggered reruns. No source covers this release or behaviour.",
+        "rationale": "Documented behaviour contradicts the report; the release predates the available versioned docs.",
+        "evidence_links": [
+          {
+            "claim": "A callback runs after the widget value is updated by a user interaction, as a prefix to the rerun.",
+            "chunk_id": "e1t-widget-order-of-operations"
+          }
+        ]
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "rubric_id": "e2-rubric-v1",
+        "evidence_condition": "native_index",
+        "stratum": "needs_escalation",
+        "acceptable_decisions": [
+          "answer",
+          "escalate"
+        ],
+        "decision_conditions": {
+          "answer": "Only a bounded statement that documented callbacks run on interaction and the code is correct, explicitly noting that the docs do not cover 1.8.1 or explain the report. Native index: the registered passages must be in this turn's supplied bundle AND support the stated claim, its API scope and the active USER version; presence alone is not support. The callback docs are unversioned and much newer than 1.8.1; the answer must say they do not cover 1.8.1 or explain the report.",
+          "escalate": "Escalate with the reproduction, the save-triggered rerun trigger and the 1.8.1 version; do not claim a cause or fix. Under the native index, escalation is acceptable only when the registered passages were not supplied in this turn or do not cover the claim and version: it must name the missing documentation and a concrete next step, and still keep any supported guidance. When the passages were supplied and cover the case, escalation is unnecessary abstention."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [],
+        "unacceptable_claims": [
+          "The 1.22.0 button documentation applies exactly to 1.8.1.",
+          "Upgrading is proven to fix the problem.",
+          "The cause is the user's editor or file watcher.",
+          "The version 1.8.1 is asked again."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality.",
+        "native_passages": {
+          "answer_required": {
+            "requirements": [
+              {
+                "requirement_id": "widget-callback-order",
+                "alternatives": [
+                  {
+                    "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+                    "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                    "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md",
+                    "passage": "2. The callback function (if any) is executed."
+                  }
+                ]
+              }
+            ],
+            "requirements_sha256": "5ded61f9d9ab40c73adc87eebc228da186be90539844820b1906df37ec012a32"
+          },
+          "optional_claim_support": null,
+          "rule": "Observed with agent_app.evaluation.evidence_observation on this turn's captured handoff. Observation is necessary for a supported answer, not sufficient; support, version scope and usefulness stay a human judgment. A missing passage is a bundle gap, not proof that every escalation is right.",
+          "note": null
+        }
+      },
+      "expect": {
+        "revision": 2,
+        "pending_decision": "escalate",
+        "preparation": "canonical_version_reply",
+        "active_facts": {
+          "streamlit_version": "1.8.1"
+        },
+        "after_decision": {
+          "status": "escalated",
+          "released_draft": "agent"
+        }
+      }
+    }
+  ],
+  "evaluation": {
+    "coverage": {
+      "turn_ids": [
+        "initial",
+        "version"
+      ],
+      "routes": [
+        {
+          "from_turn": "initial",
+          "to_turn": "version",
+          "guard": {
+            "decision": "ask",
+            "question_target": "streamlit_version"
+          }
+        },
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "escalate"
+          }
+        },
+        {
+          "from_turn": "version",
+          "to_turn": null,
+          "guard": {
+            "decision": "answer"
+          }
+        },
+        {
+          "from_turn": "version",
+          "to_turn": null,
+          "guard": {
+            "decision": "escalate"
+          }
+        }
+      ]
+    }
+  },
+  "native_of": {
+    "fixture_id": "split-e1-v1-button-callback-4595-v1",
+    "path": "data/evaluation/split-e1-v1/test/button-callback-4595-v1.json",
+    "sha256": "65521a515ef68f5f4dc49c4890dedbdb1109e6c91b2a12e4004be8d9cc5f9210",
+    "note": "Same case, family and visible turns; only gold and routes differ. Never run in one invocation with the fixed version."
+  },
+  "native_scope": {
+    "evidence_condition": "native_index",
+    "build": "pending_final_build",
+    "index_snapshot": null,
+    "corpus_manifest_sha256": null,
+    "allowlist_sha256": null,
+    "exclusion_manifest_sha256": null,
+    "note": "Pins are filled from Hassan's final build before the final run; this gold is not valid for a run until then."
+  }
+}

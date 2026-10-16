@@ -51,4 +51,8 @@ Historical dev v1: [registration](native-registration-dev-v1.json) of 16 fixture
 2 unsure, both amended and then correct; one label fix after review). Five cases
 (d, f, h, i, m) need release notes, which the current 18-source index lacks.
 
-test: registered separately by the evaluation owner before the final run.
+test (**held-out; do not open during core/RAG development**): [registration](native-registration-test-v1.json)
+of 15 fixtures in `test/` and the human review `native-test-gold-review-v1.json` (mhg,
+2026-10-16: 14 correct and 1 unsure, amended and then correct). Written without any
+retrieval or model run on test. No pytest reads them; the evaluation owner verifies
+them with the runner and the registration hashes.

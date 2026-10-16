@@ -1,0 +1,314 @@
+{
+  "schema_version": 1,
+  "fixture_id": "split-e1-v1-native-callback-args-7862-v1",
+  "registered_on": "2026-10-16",
+  "registered_before_first_run": true,
+  "purpose": "Callback args captured when the widget is created; real thread follow-up confirms the key-based workaround. Native-index gold version.",
+  "case": {
+    "case_id": "test-case-06",
+    "split": "test",
+    "family_issue_ids": [
+      7862,
+      7868,
+      8365
+    ],
+    "origin_url": "https://github.com/streamlit/streamlit/issues/7862",
+    "source_snapshot_date": "2026-10-06",
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "test_eligible": true,
+    "exposure": "Held-out test case. The evaluation curator (mhg with assistant drafting) read the Issue thread to author gold; it was not used in core development, prompt tuning, retrieval tuning or model selection. Core developers must not open this file before the final test run."
+  },
+  "evidence_source": {
+    "path": "data/evaluation/split-e1-v1/evidence-test-v1.json",
+    "sha256": "c3fa200f2e9b72b4da8e3030034bdc7206e28f5c3a24d444029c4971f20f90e2",
+    "bundles_used": [
+      "callback-args"
+    ],
+    "note": "Runner loading only: live native runs take evidence from the index, not this bundle. It is not the evidence the native gold is judged against."
+  },
+  "boundaries": {
+    "agent": "scripted AnalysisResult for offline plumbing; live ignores agent_script/gold/future turns",
+    "real_model_calls": 0,
+    "api_cost_usd": 0,
+    "storage": "evaluation runner process-local API/DummyTracker; not production durable tracker",
+    "quality_claim": false,
+    "max_reached_turns": 2,
+    "visible_to_agent": [
+      "currently selected turns[].visible"
+    ],
+    "runner_only": [
+      "gold",
+      "agent_script",
+      "maintainer",
+      "probes",
+      "evaluation.coverage",
+      "future turns"
+    ]
+  },
+  "initial_report_provenance": {
+    "kind": "developer_paraphrase_of_latest_cached_body",
+    "source_path": "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+    "issue_number": 7862,
+    "source_created_at": "2023-12-20T15:31:02Z",
+    "source_updated_at": "2026-09-16T12:54:43Z",
+    "source_issue_record_sha256": "457ee09e1709632c81bb6dba9d7ce7bdecb0d55c6d40dcada9a7872fa79f821c",
+    "original_initial_text_verified": false,
+    "note": "Cached body can contain later edits. No later comments/outcomes are supplied as the initial user message."
+  },
+  "turns": [
+    {
+      "id": "initial",
+      "conversation_source": "developer_paraphrase_of_latest_cached_issue_body",
+      "visible": {
+        "message": "When I type in st.text_area and click Begin directly, the text is not saved to st.session_state; only the title shows. If I click elsewhere first, it works. The script has a blocking time.sleep(2). Code:\n\ndef set_state(i, text):\n    st.session_state.stage = i\n    st.session_state.lines = text.splitlines()\n\ntime.sleep(2)\nif 'stage' not in st.session_state:\n    st.session_state.stage = 0\nif st.session_state.stage == 0:\n    text = st.text_area('Input your text', height=100)\n    st.button('Begin', on_click=set_state, args=[1, text])\n\nStreamlit 1.29.0, Python 3.11.6, Ubuntu 22.04, Chrome.",
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.29.0"
+          },
+          {
+            "name": "python_version",
+            "value": "3.11.6"
+          },
+          {
+            "name": "reported_reproduction_code",
+            "value": "def set_state(i, text):\n    st.session_state.stage = i\n    st.session_state.lines = text.splitlines()\n\ntime.sleep(2)\nif 'stage' not in st.session_state:\n    st.session_state.stage = 0\nif st.session_state.stage == 0:\n    text = st.text_area('Input your text', height=100)\n    st.button('Begin', on_click=set_state, args=[1, text])"
+          },
+          {
+            "name": "reported_observation",
+            "value": "Text is not saved when Begin is clicked directly after typing"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [
+          "Clicking elsewhere before Begin makes it work"
+        ],
+        "context_changed": false
+      },
+      "evidence_bundle": "callback-args",
+      "agent_script": {
+        "decision": "answer",
+        "user_draft": "Callback args are fixed when the widget command runs, not when you click. Your button passes `text` through args, so the callback receives the value from the previous run. Give the text area a key, for example `key='text'`, and read `st.session_state.text` inside set_state instead of passing it through args.",
+        "maintainer_summary": "args captured at render; documented fix is key + session_state lookup in the callback.",
+        "rationale": "The documented order-of-operations note covers exactly this pattern.",
+        "evidence_links": [
+          {
+            "claim": "Callback args are established when the widget command is called; use a key and read st.session_state inside the callback.",
+            "chunk_id": "e1t-widget-order-of-operations"
+          }
+        ]
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "rubric_id": "e2-rubric-v1",
+        "evidence_condition": "native_index",
+        "stratum": "answerable",
+        "acceptable_decisions": [
+          "answer",
+          "escalate"
+        ],
+        "decision_conditions": {
+          "answer": "Explain the documented args-capture rule and recommend a key on text_area read inside the callback. Must not claim the blocking sleep alone is the documented cause. Native index: the registered passages must be in this turn's supplied bundle AND support the stated claim, its API scope and the active USER version; presence alone is not support.",
+          "escalate": "Acceptable only if it still gives the documented key workaround; escalating without it is unnecessary abstention. Under the native index, escalation is acceptable only when the registered passages were not supplied in this turn or do not cover the claim and version: it must name the missing documentation and a concrete next step, and still keep any supported guidance. When the passages were supplied and cover the case, escalation is unnecessary abstention."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [],
+        "unacceptable_claims": [
+          "The behaviour is caused by time.sleep according to the docs.",
+          "Passing the widget value via args is the documented way to read it in its own callback.",
+          "The version or code is requested again."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality.",
+        "native_passages": {
+          "answer_required": {
+            "requirements": [
+              {
+                "requirement_id": "callback-args-established-at-call",
+                "alternatives": [
+                  {
+                    "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+                    "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                    "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md",
+                    "passage": "If a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget."
+                  }
+                ]
+              },
+              {
+                "requirement_id": "own-value-via-key",
+                "alternatives": [
+                  {
+                    "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+                    "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                    "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md",
+                    "passage": "you must assign a key to the widget and look up its value using"
+                  }
+                ]
+              }
+            ],
+            "requirements_sha256": "91cf5b5029e776be46fdaa31a63211f904f42ed1b0afe2d0072014e3dbf7da2a"
+          },
+          "optional_claim_support": null,
+          "rule": "Observed with agent_app.evaluation.evidence_observation on this turn's captured handoff. Observation is necessary for a supported answer, not sufficient; support, version scope and usefulness stay a human judgment. A missing passage is a bundle gap, not proof that every escalation is right.",
+          "note": null
+        }
+      },
+      "expect": {
+        "revision": 1,
+        "pending_decision": "answer",
+        "after_decision": {
+          "status": "answer_sent",
+          "released_draft": "agent"
+        }
+      }
+    },
+    {
+      "id": "confirmation",
+      "conversation_source": "real_issue_thread_reply_paraphrase",
+      "visible": {
+        "message": "Using a key on text_area and reading st.session_state.text in the callback worked. I will use this workaround for now. Is the original behaviour expected?",
+        "reported_facts": [
+          {
+            "name": "workaround_result",
+            "value": "Key on text_area plus session_state lookup in the callback works"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [
+          "Applied the key-based workaround"
+        ],
+        "context_changed": false
+      },
+      "evidence_bundle": "callback-args",
+      "agent_script": {
+        "decision": "answer",
+        "user_draft": "Glad it works. Yes, the documentation states that callback args are established when the widget command is called, so passing the text area's value through args gives you the value from the previous run; reading it by key inside the callback is the documented approach.",
+        "maintainer_summary": "Workaround confirmed; behaviour matches the documented args rule.",
+        "rationale": "The confirmed fix matches the documented order-of-operations note.",
+        "evidence_links": [
+          {
+            "claim": "Callback args are established when the widget command is called.",
+            "chunk_id": "e1t-widget-order-of-operations"
+          }
+        ]
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "rubric_id": "e2-rubric-v1",
+        "evidence_condition": "native_index",
+        "stratum": "answerable",
+        "acceptable_decisions": [
+          "answer",
+          "escalate"
+        ],
+        "decision_conditions": {
+          "answer": "Confirm the documented rule and the working approach; do not repeat the original troubleshooting. Native index: the registered passages must be in this turn's supplied bundle AND support the stated claim, its API scope and the active USER version; presence alone is not support.",
+          "escalate": "Acceptable only to report the direct-click timing difference as an unexplained part, while still confirming the documented rule. Under the native index, escalation is acceptable only when the registered passages were not supplied in this turn or do not cover the claim and version: it must name the missing documentation and a concrete next step, and still keep any supported guidance. When the passages were supplied and cover the case, escalation is unnecessary abstention."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [],
+        "unacceptable_claims": [
+          "The original behaviour is a confirmed bug according to the docs.",
+          "The workaround is unnecessary in 1.29.0."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality.",
+        "native_passages": {
+          "answer_required": {
+            "requirements": [
+              {
+                "requirement_id": "callback-args-established-at-call",
+                "alternatives": [
+                  {
+                    "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+                    "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                    "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/widget-behavior.md",
+                    "passage": "If a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget."
+                  }
+                ]
+              }
+            ],
+            "requirements_sha256": "c597fe41ccf3277cf0239e84f16d8bb02faec85dd11a3091975e61b8fc058245"
+          },
+          "optional_claim_support": null,
+          "rule": "Observed with agent_app.evaluation.evidence_observation on this turn's captured handoff. Observation is necessary for a supported answer, not sufficient; support, version scope and usefulness stay a human judgment. A missing passage is a bundle gap, not proof that every escalation is right.",
+          "note": null
+        }
+      },
+      "expect": {
+        "revision": 2,
+        "pending_decision": "answer",
+        "active_facts": {
+          "workaround_result": "Key on text_area plus session_state lookup in the callback works"
+        },
+        "after_decision": {
+          "status": "answer_sent",
+          "released_draft": "agent"
+        }
+      }
+    }
+  ],
+  "evaluation": {
+    "coverage": {
+      "turn_ids": [
+        "initial",
+        "confirmation"
+      ],
+      "routes": [
+        {
+          "from_turn": "initial",
+          "to_turn": "confirmation",
+          "guard": {
+            "decision": "answer"
+          }
+        },
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "escalate"
+          }
+        },
+        {
+          "from_turn": "confirmation",
+          "to_turn": null,
+          "guard": {
+            "decision": "answer"
+          }
+        },
+        {
+          "from_turn": "confirmation",
+          "to_turn": null,
+          "guard": {
+            "decision": "escalate"
+          }
+        }
+      ]
+    }
+  },
+  "native_of": {
+    "fixture_id": "split-e1-v1-callback-args-7862-v1",
+    "path": "data/evaluation/split-e1-v1/test/callback-args-7862-v1.json",
+    "sha256": "b19b569ded8752d091b2dcc6fd3a7f6cf5d67351d5925652fb34b51673a7a38c",
+    "note": "Same case, family and visible turns; only gold and routes differ. Never run in one invocation with the fixed version."
+  },
+  "native_scope": {
+    "evidence_condition": "native_index",
+    "build": "pending_final_build",
+    "index_snapshot": null,
+    "corpus_manifest_sha256": null,
+    "allowlist_sha256": null,
+    "exclusion_manifest_sha256": null,
+    "note": "Pins are filled from Hassan's final build before the final run; this gold is not valid for a run until then."
+  }
+}
