@@ -3,7 +3,8 @@
 **C4p:** [review brief اختیاری](maintainer-review-brief.fa.md) متن proposal
 تازه می‌سازد؛ نمرهٔ انسانی PR77 به آن منتقل نمی‌شود. worksheet تازه باید hash
 همان proposal و renderer policy را ثبت کند. final config هنوز انتخاب نشده؛
-قالب جدید default نیست و descriptor فعلی آن را bind نمی‌کند.
+قالب جدید default نیست و descriptor v1 آن را bind نمی‌کند. [مسیر صریح v2](core-closeout.fa.md)
+ثبت policy را به ساخت reasoner وصل می‌کند؛ انتخاب نهایی هنوز با تیم است.
 
 
 **آپدیت C4o/E2ab:** v2 سه dev در PR79 ثبت و دوباره با شواهد ثابت اجرا شد؛

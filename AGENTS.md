@@ -41,6 +41,19 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 ## Runtime rules
 
+- C4q closes explicit renderer-registration-to-constructor binding; read
+  `docs/core-closeout.fa.md`. The new registered_reasoner v2 envelope retains
+  the unchanged v1 candidate and rejects mixed versions or inconsistent hashes.
+  Equal checked declarations derive actual GroundedReasoner flags/catalog before
+  the planner callback; input mutations cannot alter those local settings.
+  Binding receipts attest only that construction, not planner/model/endpoint,
+  engine policy, physical code/build, budget or subsequent runtime mutation.
+  Caller owns guards/resources and persists the binding with a NEW execution.
+  This is explicit injection only: ordinary factories/env/UI/runner remain
+  unchanged. No ClaimReasoner binding, final policy selection, freeze approval,
+  paid permission or new quality score is implied. Keep halt/three holds and all
+  historical/test artifacts unchanged; no new core feature is a delivery gate.
+
 - C4p adds explicit default-false `review_brief` formatting to GroundedReasoner
   and ClaimReasoner; read `docs/maintainer-review-brief.fa.md`. Omitted/False
   preserve historical output bytes; canonical ask and retrieve_more stay exact.
@@ -48,8 +61,8 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
   source quotations, hashes and spans remain unchanged. Supplied, plan-selected
   and conflict-required sources are distinct; no semantic review, diagnosis,
   fix or execution is inferred. This option has no factory/env/runner hook and
-  is not bound by the existing configuration descriptor: register a separate
-  renderer policy before final configuration adoption. New surfaces require a
+  is not bound by the v1 configuration descriptor; C4q supplies explicit v2
+  registration/construction before final configuration adoption. New surfaces require a
   fresh bound proposal/handoff and approval, never rewriting stored reviews.
   Archived deterministic re-rendering is not a new model choice or human score;
   recorded entries are not planned/unique-turn denominators. Preserve all

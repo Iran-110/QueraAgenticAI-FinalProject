@@ -4,6 +4,22 @@
 
 ## وضعیت فعلی
 
+- [x] **C4q — بستن اتصال ثبت تنظیم به ساخت reasoner؛ ساسان.**
+  [تحویل core و شرط‌های پایان](../docs/core-closeout.fa.md)،
+  [verification](../docs/receipts/core-freeze-closeout-2026-10-16.json).
+  envelope v2، policy renderer و v1 معتبر را bind می‌کند؛ mismatch قبل از
+  callback رد می‌شود. flagها و catalog واقعی از snapshot ثبت‌شده ساخته می‌شوند.
+  v1 و default/factoryهای قبلی تغییر نکرده‌اند؛ مسیر جدید تزریق صریح است.
+  receipt فقط ساخت reasoner را تأیید می‌کند، نه planner/model، engine، code/index،
+  بودجه یا کیفیت. انتخاب تنظیم نهایی و freeze همچنان کار مشترک است؛ halt و سه
+  hold حفظ‌اند. کار بعدی core، پشتیبانی از freeze/اجرای نهایی است؛ feature تازه
+  در اولویت نیست. source `9f24376`: ۵۸۰ تست مرتبط تازه، review مستقل ۲۷۱ تست،
+  سه دمو و Ruff روی ۳۸۱ فایل پاس؛ ۴۵+۱۸ کنترل تازه در شمارش‌های هم‌پوشان‌اند.
+  صفر تلاش محافظت‌شده/شبکه در parent ثبت شد؛ audit شامل تمام subprocessها نیست.
+  ledger و ۱۹ pin ثابت‌اند. بررسی گستردهٔ C4p تاریخی است؛ full-suite تازه برای
+  این تغییرِ صرفاً افزایشی ادعا نمی‌شود.
+
+
 - [x] **C4p — قالب بررسی maintainer و خوانایی Enum؛ ساسان.**
   [رفتار و اتصال](../docs/maintainer-review-brief.fa.md)،
   [verification](../docs/receipts/maintainer-review-brief-2026-10-16.json)،
@@ -20,7 +36,7 @@
   ۱۲۲۰۱ به ۹۳۸۳ کاراکتر رسید؛ تمام quoteهای انتخاب‌شده حفظ‌اند. این‌ها replay
   همان انتخاب‌های قدیمی‌اند؛ usefulness یا تشخیص/fix تازه تأیید نشده است.
   متن تازه handoff/review تازه لازم دارد؛ approval قبلی قابل انتقال نیست.
-  factory/config نهایی تغییر نکرد؛ descriptor فعلی این policy را bind نمی‌کند.
+  factory/config نهایی تغییر نکرد؛ descriptor v1 این policy را bind نمی‌کند.
   انتخاب و ثبت policy، review انسانی و freeze باقی‌اند؛ halt و سه hold حفظ‌اند.
 
 

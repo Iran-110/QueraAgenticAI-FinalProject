@@ -1,3 +1,33 @@
+## 2026-10-16 — C4q: core closeout and registered reasoner construction
+
+[Closeout/usage/open gates](core-closeout.fa.md),
+[verification](receipts/core-freeze-closeout-2026-10-16.json).
+The additive registered_reasoner module preserves the complete existing v1
+candidate and separately binds an explicit renderer policy in a v2 envelope.
+Mixed versions, invalid/rehashed inconsistent declarations and mismatches fail
+before the planner factory. Matching declarations create the actual grounded
+reasoner with detached flags and caller catalog; callbacks cannot mutate the
+applied settings through the original descriptors. A returned binding receipt
+records the accepted descriptor SHA/policy, not quality or live authorization.
+
+Source `9f24376`: 580 fresh relevant tests pass, including 45 new root and
+18 independent controls. Independent focused review passes 271 overlapping tests.
+Three offline CLI demos exit zero; Ruff/format passes 381 Python files. Protected
+parent audit records zero protected-file/network attempts; subprocess filesystem
+attestation is not implied. All existing source/scripts/tests/config/data remain
+byte-identical; only the new explicit module/two tests are added. The 6073-test
+C4p broad result remains historical to its source, not a new C4q full-suite claim.
+Ledger/19 physical pins, manifest, held-out Git tree and ordinary halt remain exact.
+
+This is explicit injected GroundedReasoner composition only. Ordinary factories,
+environment settings, runner, shared contracts, data and defaults are unchanged.
+Planner/model/endpoint, engine policy, physical source/build, budget guards and
+subsequent runtime mutation remain outside the construction attestation. Caller
+owns prerequisites, resource cleanup and a NEW execution receipt. ClaimReasoner
+and final configuration selection are not silently included. Halt/three holds
+and original evaluation/experiment bytes remain intact. Core's next delivery
+work is supporting shared freeze/final execution, not another feature campaign.
+
 ## C4p — explicit maintainer review brief and USER-code readability
 
 The default-false `review_brief` renderer/constructor option now builds new

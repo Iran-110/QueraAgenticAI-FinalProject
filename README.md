@@ -162,6 +162,7 @@ pilot آفلاین و restart/retry آن ۴۵۷/۴۵۷ check پاس دارد. cl
 - [خروجی کامل core، آخرین evidence و review؛ نتیجه و قرارداد C3](docs/review-handoff-pilot.fa.md)
 - [بازبینی آمادگی core و اتصال gateway تا review با HTTP شبیه‌سازی‌شده](docs/core-readiness-audit.fa.md)
 - [پیشرفت واقعی هسته و کارهای بعدی](docs/core-progress.md)
+- [تحویل core، ساخت reasoner با تنظیم ثبت‌شده و شرط‌های پایان پروژه](docs/core-closeout.fa.md)
 - [مقایسه روش‌های تصمیم‌گیری و محدودیت نتایج](docs/decision-quality.md)
 - [مقایسه منابع و اطلاعات کاربر با نتایج بازبینی](docs/decision-quality-v3.md)
 - [نتیجه چک‌های callback و سؤال‌های مجاز](docs/decision-quality-v4.md)

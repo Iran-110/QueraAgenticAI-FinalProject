@@ -7,10 +7,19 @@ receiptهای قبلی تغییر نکرده‌اند.
 
 ## وضعیت امروز
 
+**C4q، تحویل نرم‌افزاری core:** [راهنمای پایان کار و اتصال](core-closeout.fa.md)
+و [رسید](receipts/core-freeze-closeout-2026-10-16.json). source `9f24376` با
+۵۸۰ تست مرتبط تازه، review مستقل و سه دمو بررسی شد. مسیر تزریق صریح، policy
+ثبت‌شده را به flagها و catalog واقعی reasoner وصل می‌کند؛ mismatch پیش از
+factory رد می‌شود. sourceهای قبلی و defaultها تغییر نکرده‌اند. این binding
+مدل/engine/index/بودجه را احراز نمی‌کند و انتخاب نهایی یا کیفیت Enum نیست.
+بررسی گستردهٔ C4p در جدول زیر تاریخی است؛ برای C4q full-suite تازه ادعا نمی‌شود.
+
+
 | بخش | شاهد موجود | باقی‌مانده برای اعلام اتمام |
 | --- | --- | --- |
 | core و اتصال | correction، وضعیت فعلی کاربر، شواهد نسخه‌دار، پیشنهاد جدا از اجرا، API/UI/SQLite | انتخاب تنظیم نهایی و کیفیت پاسخ با داوری مستقل |
-| صحت نرم‌افزار | source تازهٔ C4p یعنی `85d89ea`: پوشش موفق ۶۰۷۳ تست انتخاب‌شده در دو CWD، یک deselection صریح؛ review مستقل و Ruff پاس | یک اجرای یک‌تکهٔ بی‌خطا ادعا نمی‌شود؛ این اعداد کیفیت جواب مدل یا اجرای test نهایی نیستند |
+| صحت نرم‌افزار | آخرین بررسی گسترده، source C4p یعنی `85d89ea`: پوشش موفق ۶۰۷۳ تست انتخاب‌شده در دو CWD، یک deselection صریح؛ review مستقل و Ruff پاس | یک اجرای یک‌تکهٔ بی‌خطا ادعا نمی‌شود؛ این اعداد کیفیت جواب مدل یا اجرای test نهایی نیستند |
 | RAG | Chroma واقعی، buildهای pinned، کنترل نسخه و بازپخش dev | بهبود packing/relevance و freeze نهایی corpus/index/config با حسن |
 | evaluation | ثبت۱۶dev/۱۵test و۱۴مسیر چندنوبتی شامل۷test در metadata؛ v2 سه dev با rubric v1 درPR79، اجرای scripted تازه۷۹check | native gold/routes،worksheet C4j،vocabulary/rubric/split freeze،usefulness تنظیم منتخب و ارزیابی نهایی با محمدحسن |
 | tracker | approval/edit/reject، stale409،restart/retry و شاهد lost-ACK | مرزهای باقی‌ماندهٔ T4 با بهنام/محمدحسن؛ recovery درخواست تأییدنشده پس از نابودی کامل session ثابت نشده |

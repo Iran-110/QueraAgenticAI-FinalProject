@@ -1,5 +1,10 @@
 # متن بررسی maintainer و خوانایی Enum
 
+**ادامهٔ C4q:** [ثبت و ساخت کنترل‌شدهٔ reasoner](core-closeout.fa.md) اکنون
+policy جدید را در envelope v2 و constructor واقعی bind می‌کند. descriptor v1
+و factory معمول همچنان تغییر نکرده‌اند؛ انتخاب نهایی و review کیفیت باقی است.
+
+
 این تغییر پاسخ به بازخورد PR77 است: متن ارجاع عمومی بود، منابع عرضه‌شده را
 نشان نمی‌داد و کد گزارش Enum با markerهای CRLF خوانا نبود. قالب جدید، اطلاعات
 موجود را مرتب می‌کند؛ تشخیص Enum، فرضیهٔ تازه یا fix بی‌منبع تولید نمی‌کند.
@@ -52,10 +57,11 @@ reasoner = ClaimReasoner(
 قدیمی نمایش تقدم دارد؛ policy مدل، انتخاب source، validation و سقف تلاش‌ها
 تغییر نمی‌کند. حالت omitted/False تمام byteهای خروجی تاریخی را حفظ می‌کند.
 
-**فعلاً اتصال خودکار به factory، env یا runner ندارد و تنظیم نهایی freeze
-انتخاب نشده است.** descriptor فعلی این گزینه را نمی‌شناسد؛ برای پذیرش در
-composition نهایی باید renderer policy صریحاً در ثبت تنظیم جدید bind شود، نه
-اینکه برابری descriptor قدیمی را معادل یکسان‌بودن این دو renderer بگیریم.
+**اتصال خودکار به factory، env یا runner ندارد و تنظیم نهایی freeze انتخاب
+نشده است.** descriptor تاریخی v1 این گزینه را نمی‌شناسد. مسیر صریح v2 در
+[تحویل C4q](core-closeout.fa.md) اکنون policy و constructor را bind می‌کند؛
+برای پذیرش نهایی باید همان ثبت بازبینی‌شده انتخاب شود. برابری descriptor قدیمی
+به معنی یکسان‌بودن این دو renderer نیست.
 
 متن تازه باید با run/proposal تازهٔ مسیر معمول، handoff و review packet خودش
 را بگیرد؛ هویت بستهٔ آزمایش یا pending قدیمی برای عوض‌کردن renderer دوباره
