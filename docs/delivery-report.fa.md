@@ -7,6 +7,15 @@ receiptهای قبلی تغییر نکرده‌اند.
 
 ## وضعیت امروز
 
+**C4s، پذیرش کامل runner با تنظیم منتخب:**
+[شرح و تصحیح review](core-selected-runner-acceptance.fa.md)،
+[رسید](receipts/core-selected-runner-acceptance-2026-10-16.json).
+۸کنترل تازه و۲۹۷تست مرتبط با provider mock پاس‌اند؛ source اجرایی و recipe
+تغییر نکرده‌اند. runner حافظه‌ای و پذیرش SQLite قبلی دو شاهد جدا هستند.
+repair موفق، توقف پس از خروجی خراب و حساب unresolved بررسی شدند؛ این‌ها نمرهٔ
+کیفیت مدل نیستند. ادعای قبلی rollback plan درPR81 تصحیح شد؛ دو ابهام gold
+آن همچنان باقی‌اند و originalreceipt عینbyteحفظ است.
+
 **C4r، تنظیم منتخب core:** [recipe و اتصال واقعی](core-delivery-selection.fa.md)،
 [رسید](receipts/core-delivery-selection-2026-10-16.json). انتخاب صریح
 `grounded_candidate_v1` به factory موجود وصل شد؛ تنظیم ناسازگار پیش از key یا
