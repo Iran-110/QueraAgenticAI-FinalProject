@@ -75,6 +75,7 @@ passage در PR81 با [نسخهٔ افزایشی E2ac](native-dev-gold-amendmen
 این ثبت مجوز اجرای native پیش از pin نهایی نیست.
 ادعای قبلی ما دربارهٔ rollback plan اشتباه بود؛ diff از merge-base فقط یک خط
 اضافه می‌کند. [تصحیح ثبت‌شده](core-selected-runner-acceptance.fa.md) receipt
-تاریخی C4r را عوض نمی‌کند. بهنام و محمدحسن مرز session تازهٔ review تأییدنشده را
-می‌بندند. C5 به مدرک صاحب حساب mentor برای سه درخواست نامعلوم نیاز دارد.
+تاریخی C4r را عوض نمی‌کند. [U4a](saved-case-reopen.fa.md) pending ذخیره‌شده را
+باID درsessionتازه برمی‌گرداند؛ draft/ReviewOperation ارسال‌نشده outbox ندارد.
+C5 به مدرک صاحب حساب mentor برای سه درخواست نامعلوم نیاز دارد.
 guide آزمایشی Enum همچنان fixture-only است؛ تشخیص/fix آن تأیید نشده است.

@@ -1,8 +1,38 @@
 # plan و checklist تیم — Streamlit Support Assistant
 
-به‌روزرسانی: ۲۰۲۶-۱۰-۱۶. این نسخه ادامهٔ plan محمدحسن روی `main` در commit `2ead870` است؛ [نسخهٔ قبلی](archive/plan-before-task-checklist.md) حفظ شده. مبنای regressionهای بازبینی `6131091` بود؛ انتشار tracker با `464e55e` و سپس #21 با `94b60e1` و [CI موفق](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38151154794) ثبت شده‌اند. مبنای baseline تازهٔ C2a همین `94b60e1` است. این فایل برای تقسیم کار و شرط پایان taskهاست؛ روزهای sprint قبلی را تاریخ تحویل حساب نمی‌کنیم. الزام‌ها از صورت اصلی پروژه می‌آیند، نه از ابزارها و frameworkهای پیشنهادی plan.
+به‌روزرسانی: ۲۰۲۶-۱۰-۱۷. این نسخه ادامهٔ plan محمدحسن روی `main` در commit `2ead870` است؛ [نسخهٔ قبلی](archive/plan-before-task-checklist.md) حفظ شده. مبنای regressionهای بازبینی `6131091` بود؛ انتشار tracker با `464e55e` و سپس #21 با `94b60e1` و [CI موفق](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38151154794) ثبت شده‌اند. مبنای baseline تازهٔ C2a همین `94b60e1` است. این فایل برای تقسیم کار و شرط پایان taskهاست؛ روزهای sprint قبلی را تاریخ تحویل حساب نمی‌کنیم. الزام‌ها از صورت اصلی پروژه می‌آیند، نه از ابزارها و frameworkهای پیشنهادی plan.
 
 ## وضعیت فعلی
+
+- [x] **U4a/T4c — بازکردن پروندهٔ ذخیره‌شده در session تازه؛ ساسان، کمک مستقل UI.**
+  [رفتار و مرز](../docs/saved-case-reopen.fa.md)،
+  [رسید مشترک](../docs/receipts/team-closeout-2026-10-17.json).
+  Open saved case با ID معتبر فقط GET دارد؛ facts/history/revision/proposal
+  جاری را پس از session تازه و restart واقعی backend روی TCP می‌خواند.
+  case ناموجود یا پاسخ خراب انتخاب را عوض نمی‌کند؛ approval/retry/model خودکار
+  نداریم. lost-ACK سپس reopen همان Action را یک بار نشان می‌دهد. envelopeهای
+  نامطمئن همان session محفوظ‌اند؛ draft/ReviewOperation گم‌شدهٔ session قبلی
+  بازسازی نمی‌شود و durable outbox اضافه نشده است.۴۱کنترل تازه؛۳۷۸تست مرتبط
+  مشترک و Ruff/format۳۹۵فایل پاس، review مستقل بدون blocker؛ کیفیت مدل نیست.
+
+- [x] **T4b/C4t — پذیرش PR82/84 و capture ورودی واقعی پس از خطا؛ ساسان با بهنام.**
+  [توضیح](../docs/failure-context-custody.fa.md)،
+  [رسید](../docs/receipts/team-closeout-2026-10-17.json).
+  سند عملیاتی بهنام با محدودیت pin تاریخی/proxy خصوصی پذیرفته شد؛ بازتولید
+  Windows تازه ادعا نمی‌شود. دو تست PR84 و یک capture مستقل روی دو نوع خطا
+  پاس‌اند: outcome تاریخی درDB، replay بدون allocation/retrieval/reasoning،
+  اصلاح نسخه در query واقعی و استقلال caseها. outcome خطای قبلی وارد reasoning
+  بعدی نمی‌شود؛ یکسان‌بودن تصمیم scripted به‌تنهایی bug یا یادگیری/عدم‌یادگیری
+  مدل نیست. قرارداد outcome تازه یا recipe جدید فعال نشده؛ T4 کلی تیک نمی‌خورد.
+
+- [x] **E2ae — ثبت opaque native test در PR83 و پاک‌سازی plan؛ ساسان.**
+  [مرز review و exposure](../docs/pr83-custody.fa.md).
+  ۱۵path/metadata و custody Git بررسی شد؛ payload/review مربوط بهheld-out باز
+  یا اجرا نشد. ادعاهای review انسانی و۲۶۰check با مالکevaluation است، نه تأیید
+  مستقل core. یک جزئیات test در plan مشترک دیده و قبل انتشار از HEAD حذف شد؛
+  اثر همان exposure محدود باید خصوصی با مالکeval تعیین تکلیف شود. tree/review
+  اصلی حفظ‌اند؛ test را کاملاً دیده‌نشده یا frozen اعلام نمی‌کنیم. pinها pending؛
+  دادهٔtest برای prompt/retrieval/model/vocabulary یا تغییر core استفاده نشد.
 
 - [x] **E2ad — بررسی pin/freeze و رد native نهایی با pin ناقص؛ ساسان.**
   [قرارداد و ترتیب freeze](../docs/native-freeze-readiness.fa.md)،
@@ -536,10 +566,10 @@ gold، default یا ledger انجام نشد؛ halt/سهhold و تمام IDها�
 
 | نفر | تحویل بعدی | شرط پایان |
 | --- | --- | --- |
-| حسن | packing/relevance شاهد key-identity روی dev؛ پس از ثبت پایدار سیاست corpus/exclusion۹۰Issue، build نهایی با provenance و protocol/loader سازگار طبقE2ad | loader بستهٔ۱۴/۱۸source خودکار corpus گسترده را نمی‌پذیرد؛ build/allowlist/exclusion و receipt فیزیکی لازم است. در رسید فعلی capپنج علت حذف نیست؛ بودجهٔ بایتی/ترتیب و نسخه جدا سنجیده شوند. source رسیده به مدل و relevance جدا از membership؛ corpus/default بدون مقایسه تغییر نکنند |
-| محمدحسن | ثبت۳۱fixture وv2 سه dev با rubric v1 انجام وPR79 پذیرفته شد؛ گزارش پوشش dev در E2aa تصحیح شده و گزارش نهایی test با خودت؛ native gold dev با ثبت v2 درE2ac آماده است؛ تأیید انسانی دو بند تازه و native gold/routes مربوط بهtest فقط با خودت؛ worksheet C4j، usefulness انسانیِ تنظیم منتخب و freeze rubric/manifest باقی است؛ [worksheet C4j/E2w](../experiments/core_claim_boundary_v1/human-review-v1.json)، initial/correction و model/edited جدا | test و evidence/gold آن تا اجرای نهایی محفوظ؛ تعریف سؤال از روی test ساخته نشود. نسخهٔ تازه case مستقل تازه نیست؛ تاریخی‌ها تغییر نکنند. gold ثابت روی native نمره ندهد؛ passage واقعی و نسخه مبنا باشد. guide answer-linked خارج corpus؛۱۴multi-turn شامل۷test در metadata ثبت‌اند، اما کیفیت و freeze هنوز بازند |
-| بهنام | T4a/رسیدهای PR66 پذیرفته شد؛ pin دقیق اجرای fault، failure/outcome و handoff ارزیابی باقی است؛ recovery پس از نابودی session با مالک UI هماهنگ شود | lost-ACK و Retry ازUI گزارش شده، اما اصل case فقط در backend durable است؛ fresh-session recovery ثابت نیست؛ شاهد مصرف outcome در تصمیم بعد لازم است؛ token/DB خصوصی منتشر نشود |
-| ساسان | C4r/C4s انتخاب recipe و اتصال واقعی/runner بسته؛ E2ac اصلاح دو gold وE2ad gate pin نهایی/نقشهٔ freeze بسته. پس از تحویل build سازگار، تطبیق فیزیکی و factory روی کپی؛ با مدرک provider برایC5، protocol معتبر پیش از API تازه | validation/custody جای authority tracker یا داوری معنایی نیست؛ declaration pin تأیید index فیزیکی نیست. مسیرهای experimental آزاد default نشوند؛ tuning رویtest ممنوع؛ تک-agent، halt/سهhold و داده‌های محافظت‌شده حفظ‌اند |
+| حسن | اول build نهایی با سیاست corpus/exclusion۹۰Issue، provenance و protocol/loader سازگار طبقE2ad؛ PR و دستور آفلاین با snapshot/hashها. packing/relevance key-identity جدا و فقط رویdev | پروفایل‌های قبلی را relabel/بازنویسی نکن؛ loader بستهٔ۱۴/۱۸source خودکار corpus گسترده را نمی‌پذیرد. build/allowlist/exclusion و رسید فیزیکی لازم؛ membership و منبع رسیده به مدل جدا؛ test/native-test باز نشوند |
+| محمدحسن | native dev درE2ac و native test درPR83 ثبت‌اند؛ تأیید انسانی دو بندdev، بررسی خصوصی exposure محدود plan، family_id/coverage witness و نسخه‌های pinned تازه برای packet نهایی؛ review کیفیت تنظیم منتخب و freeze rubric/manifest | payloadtest فقط با خودت؛ core فقطcustody را بررسی کرده. eligibility بعد از exposure باید ثبت شود؛ ازtest سؤال/vocabulary نسازیم. pinbuildوcorpus ارزیابی/فیزیکی جدا؛ initial/correction و model/edited جدا؛ guide answer-linked خارج corpus |
+| بهنام | PR82/84 و capture مستقل C4t آماده‌اند؛ رویmainجدید Open saved case را در Windows یک مرور دستی کن: pending پس از بستن UI، وضعیت فعلی بعد restart و عدم Action تکراری؛ source/command/محدودیت را در گزارش evaluation بده | مسیر بازکردن باID فقطGET و اکنون نرم‌افزاری آزموده شده؛ draft/ReviewOperation گم‌شدهٔ session قبلی بازیابی نشده. outcome قبلی هنوز در ورودی reasoning نیست؛ تصمیم scripted مساوی را کیفیت/یادگیری اعلام نکن؛ token/DB خصوصی منتشر نشود |
+| ساسان | C4r/C4s،E2ac/E2ad،C4t وU4a تحویل شده‌اند؛ پس از build سازگار، تطبیق فیزیکی/adapter و factory روی کپی. برای C5 مدرک provider لازم است؛ API تازه فقط با protocol معتبر | gate declaration تأیید فیزیکی یا معنایی نیست؛ native test و review آن محفوظ؛ تک-agent، recipe/vocabulary، halt/سهhold و IDs بسته حفظ‌اند؛ مدل/داده ازtest تنظیم نشوند |
 
 **قاعدهٔ انتشار فعلی — ۱۵ اکتبر، با دستور صریح ساسان:** منتظر رفع Billing
 نمی‌مانیم. برای انتشار، review و تست محلی روی source ثبت‌شده، پذیرش اتصال و
@@ -680,6 +710,13 @@ ledger، holdها، halt و receiptهای تاریخی تغییر نمی‌کن�
   هنوز ثبت نشده‌اند؛ backend durability جای آن recovery نیست. token/DB منتشر نشود.
   tool failure، مصرف outcome در تصمیم بعد و handoff ارزیابی همچنان بازند؛
   T4 تیک نمی‌خورد و این گزارش، کیفیت مدل/RAG را نشان نمی‌دهد.
+  **به‌روزرسانی ۱۷ اکتبر:** PR82/84 و C4t شواهد خطا/replay و ورودی واقعی را
+  اضافه کردند؛ U4a بازکردن وضعیت ثبت‌شده با ID در session تازه را با AppTest
+  و restart پردازش backend می‌آزماید. بازیابی draft یا ReviewOperation
+  ارسال‌نشده از session قبلی پیاده نشده است؛ outcome قبلی در reasoning نیست.
+  [وضعیت و مرز تازه](../docs/saved-case-reopen.fa.md) و
+  [رسید مشترک](../docs/receipts/team-closeout-2026-10-17.json) جای ادعای بستن
+  کامل T4 یا بازتولید مستقل تست قدیمی Windows را نمی‌گیرند.
 
 تحویل C4h1/E2p/E2q در [PR #49](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/49)
 با head`344b260`، review مستقل وچهار CI موفق، رویmain با`f78c6e9` منتشر شد.

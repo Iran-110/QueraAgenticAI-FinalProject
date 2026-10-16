@@ -1,3 +1,37 @@
+## 2026-10-17 — C4t/U4a: operational PRs, input custody and saved-case reopening
+
+[Failure/context boundary](failure-context-custody.fa.md),
+[saved-case behavior](saved-case-reopen.fa.md),
+[PR83 opaque custody/exposure](pr83-custody.fa.md),
+[verification](receipts/team-closeout-2026-10-17.json).
+PR82’s reported Windows operational evidence and PR84’s2authored tests are
+accepted within their stated limits. One extra test captures actual configured
+core/retriever/reasoner inputs across app/tracker reconstruction for2failure modes.
+Replay allocates no ports; prior errors remain durable, correction changes actual
+query/current evidence and other-case state is unchanged. Prior run_outcome still
+does not enter reasoning; this observation is not adaptive recovery or a reason
+to force different decisions. Core contracts/recipe/prompt/vocabulary are unchanged.
+
+UI now reopens a saved durable case by explicit validated ID, using GET only.
+41new controls cover fresh AppTest sessions, actual TCP backend-process restart,
+current/stale/edited/rejected/approved views, per-case retry custody and lostACK
+without another Action. Missing/invalid IDs retain the current case. The session
+client cache API is versioned by source; original retry envelopes are not rewritten.
+Unsent earlier-session drafts/ReviewOperation IDs are not recovered; no outbox.
+378focused tests and Ruff/format395files pass; independent counts overlap.
+Parent audits record0blocked protected/external attempts and8allowed loopback
+connections; they do not attest every subprocess. No fresh broad-suite/model score.
+
+PR83 integrates only as an opaque owner-attested native-test registration.
+Payload/review blobs remain unopened; original tree/blob IDs are preserved.
+A test-specific review detail was seen in an allowed shared-plan/metadata diff,
+redacted before publication and not used for development tuning. This limited
+exposure is not undone; owner eligibility assessment remains pending. No claim
+that every test remains completely unseen, no semantic review/final execution.
+Hassan’s compatible final build, shared pins/freeze, human quality, C5 and final
+test remain open. Primary ledger/19pins/threeholds/halt and old artifacts remain;
+no paid API, new framework or external team message.
+
 ## 2026-10-16 — E2ad: native final-pin guard and dev-only freeze readiness
 
 [Contract and dependencies](native-freeze-readiness.fa.md),

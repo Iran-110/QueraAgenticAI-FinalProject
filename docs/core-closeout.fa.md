@@ -89,12 +89,17 @@ halt، سه hold و هویت‌های بستهٔ آزمایش حفظ‌اند. �
 | --- | --- | --- |
 | corpus و index نهایی | حسن | build قابل بازتولید، hash، exclusion و مشاهدهٔ passageهای رسیده |
 | native gold، route، worksheet و freeze | محمدحسن، با هماهنگی core/RAG | ثبت قبل از اجرا، pinهای منطبق و review انسانی تنظیم منتخب |
-| مرز باقی‌ماندهٔ T4 | بهنام و محمدحسن | بازیابی review تأییدنشده پس از session کاملاً تازه با رسید مشخص |
+| مرز باقی‌ماندهٔ T4 | بهنام و محمدحسن | pending باID درU4a بازیابی می‌شود؛ مرور دستی نسخهٔ تازه، گزارش evaluation و مرز draft/ReviewOperation گم‌شدهٔ session قبلی باقی است |
 | C5 و اجرای نهایی | صاحب حساب mentor و تیم evaluation | تعیین تکلیف سه درخواست نامعلوم؛ سپس مجوز معتبر و اجرای test بدون tuning |
 
 Enum هنوز تشخیص/fix و usefulness تأییدشدهٔ تازه ندارد. بهبود ساختار متن و
 نمایش CRLF جدا ثبت شده است. در وضعیت فعلی، feature تازه‌ای برای core در اولویت
 نیست؛ نتیجه‌های باقی‌مانده باید با تنظیم و دادهٔ نهایی جمع شوند.
+
+به‌روزرسانی۱۷اکتبر: [U4a](saved-case-reopen.fa.md) ادامهٔ پرونده باID در UI را
+اضافه کرد. [C4t](failure-context-custody.fa.md) durability خطا و ورودی واقعی
+بعدی را ثبت می‌کند؛ outcome قبلی هنوز context مدل نیست. [PR83](pr83-custody.fa.md)
+ثبت opaque است و exposure محدودِ plan باید خصوصی توسط مالکeval بررسی شود.
 
 آپدیت هم‌تیمی: [review PR80](receipts/pr80-review-2026-10-16.json) feedback
 با کمک دستیار را برای ۲۲ draft تاریخی C4j ثبت می‌کند. این ثبت جای review مستقل

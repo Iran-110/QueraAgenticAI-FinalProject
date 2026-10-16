@@ -1,5 +1,12 @@
 # آمادگی pin و freeze نهایی — E2ad
 
+**به‌روزرسانی ۱۷ اکتبر:** PR83 ثبت native test را اضافه کرده است؛ بررسی core
+فقط metadata/custody است و ادعای انسانی یا payloadها را تأیید نمی‌کند.
+[مرز exposure و اصلاح plan](pr83-custody.fa.md) باید پیش از freeze با مالک
+evaluation تعیین تکلیف شود. تأیید دو بند dev، pinهای نهایی و build سازگار
+همچنان بازند. جدول زیر دربارهٔ این gateهاست؛ نیاز به ساخت native test اکنون
+به بررسی ثبت موجود و نسخهٔ pinned تازه تبدیل شده است.
+
 بررسی remote در مبنای `7fbef14`، PR باز یا push تازه‌ای پس از PR81 نشان نداد.
 آخرین تحویل حسن، R4b/PR72، و آخرین تحویل محمدحسن، native dev/PR81، روی main
 هستند. این بررسی دربارهٔ Git است؛ از کار منتشرنشدهٔ اعضا خبری نداریم.
@@ -44,7 +51,7 @@ support، قضاوت انسانی و مجوز هزینه نیز کار این ga
 | --- | --- |
 | حسن؛ corpus/build | سیاست corpus، allowlist، provenance، segmentation و exclusion نهایی؛ سپس build نسخه‌دار و رسید فیزیکی قابل بازتولید |
 | اتصال build به core | loader فعلی فقط پروفایل‌های بستهٔ ۱۴/۱۸ منبعی را می‌پذیرد؛ بیلد گسترده‌ترِ شامل release note به protocol/loader سازگار و review مشترک نیاز دارد. hash تازه به‌تنهایی آن را قابل اجرا نمی‌کند |
-| محمدحسن؛ gold/review | تأیید انسانی دو بند E2ac، native gold مربوط به test فقط توسط خودش، review معنایی تنظیم منتخب و freeze rubric/exposure/family/coverage |
+| محمدحسن؛ gold/review | تأیید انسانی دو بند E2ac، بررسی eligibility پس از exposure محدود، نسخهٔ pinned تازهٔ native gold توسط خودش، review معنایی تنظیم منتخب و freeze rubric/exposure/family/coverage |
 | packet نهایی | fixtureهای native فعلی همگی pending هستند؛ برای pin نهایی نسخه‌های تازه بسازیم. `case.family_id` و coverage witness موردنیاز قرارداد final در ۱۶ dev فعلی هنوز ثبت نشده‌اند |
 | اجرای واقعی | پس از pin و تطبیق فیزیکی index، C5 و سه درخواست نامعلوم باید با مدرک provider تعیین تکلیف شوند؛ halt فعلی مجوز اجرای تازه نمی‌دهد |
 

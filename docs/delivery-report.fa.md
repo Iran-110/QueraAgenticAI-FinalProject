@@ -1,4 +1,4 @@
-# گزارش توسعه و بستهٔ شواهد تحویل — ۱۶ اکتبر
+# گزارش توسعه و بستهٔ شواهد تحویل — ۱۷ اکتبر
 
 **وضعیت: پیش‌نویس تحویل؛ ارزیابی نهایی کامل نشده است.** این فایل کار انجام‌شده
 و شواهدش را جمع می‌کند تا بعد از دریافت نتایج نهایی تکمیل شود. درصد یا نمرهٔ
@@ -6,6 +6,19 @@
 receiptهای قبلی تغییر نکرده‌اند.
 
 ## وضعیت امروز
+
+**۱۷ اکتبر، C4t/U4a و PR82–84:**
+[failure و ورودی واقعی](failure-context-custody.fa.md)،
+[ادامهٔ پرونده در UI](saved-case-reopen.fa.md)،
+[رسید](receipts/team-closeout-2026-10-17.json).
+پروندهٔ durable با ID در session تازه باز می‌شود؛ pending پس از restart واقعی
+backend روی TCP برمی‌گردد و reopen فقطGET است. ۳۷۸تست مرتبط،۴۱کنترل تازهٔUI،
+capture واقعی core و Ruff/format۳۹۵فایل پاس‌اند؛ شمارش‌ها هم‌پوشان‌اند.
+draft و retryID گم‌شدهٔ session قبلی بازیابی نمی‌شوند. PR82/84 شواهد عملیاتی‌اند؛
+outcome قبلی در reasoning نیست و کیفیت مدل از آن‌ها نتیجه نمی‌شود.
+[PR83](pr83-custody.fa.md) فقط با review metadata/custody ثبت شد؛ payloadها باز
+نشدند. جزئیات test از plan حذف شد، ولی exposure محدود نیازمند بررسی مالکeval
+است. freeze، C5 و اجرای نهایی همچنان بازند.
 
 **E2ad، آمادگی pin و freeze:**
 [وضعیت و ترتیب اتصال](native-freeze-readiness.fa.md)،
@@ -54,8 +67,8 @@ factory رد می‌شود. sourceهای قبلی و defaultها تغییر نک
 | core و اتصال | correction، وضعیت فعلی کاربر، شواهد نسخه‌دار، پیشنهاد جدا از اجرا، API/UI/SQLite؛ recipe منتخب و binding واقعی C4r | داوری مستقل کیفیت تنظیم منتخب و freeze مشترک build/gold |
 | صحت نرم‌افزار | آخرین بررسی گسترده C4r، source `9fdb132`: تعداد۶۲۶۵تست انتخاب‌شده در دو CWD، یک مصرف‌کنندهٔheld-out کنارگذاشته؛ review مستقل،Ruff۳۸۸فایل و۳demoپاس | یک اجرای یک‌تکهٔ full-suite ادعا نمی‌شود؛ این اعداد کیفیت جواب مدل یا اجرای test نهایی نیستند |
 | RAG | Chroma واقعی، buildهای pinned، کنترل نسخه و بازپخش dev | بهبود packing/relevance و freeze نهایی corpus/index/config با حسن |
-| evaluation | ثبت۱۶dev/۱۵test و۱۴مسیر چندنوبتی شامل۷test در metadata؛ v2 سه dev با rubric v1 درPR79، اجرای scripted تازه۷۹check | native gold/routes،worksheet C4j،vocabulary/rubric/split freeze،usefulness تنظیم منتخب و ارزیابی نهایی با محمدحسن |
-| tracker | approval/edit/reject، stale409،restart/retry و شاهد lost-ACK | مرزهای باقی‌ماندهٔ T4 با بهنام/محمدحسن؛ recovery درخواست تأییدنشده پس از نابودی کامل session ثابت نشده |
+| evaluation | ثبت۱۶dev/۱۵test و۱۴مسیر چندنوبتی شامل۷test در metadata؛ v2 سه dev با rubric v1 درPR79؛ native dev v2 و native test درPR83، هر دو pending pin | تأیید دو بند dev، بررسی exposure محدود، pin/route نهایی،worksheet C4j،vocabulary/rubric/split freeze،usefulness تنظیم منتخب و ارزیابی نهایی با محمدحسن |
+| tracker/UI | approval/edit/reject،stale409،restart/retry/lost-ACK؛ U4a بازکردن pending باID درsessionتازه و restartپردازش | outboxِ draft/ReviewOperation ارسال‌نشده وجود ندارد؛ مرور دستی Windows جدید و گزارش evaluation با صاحبان بخش؛ outcome عملیاتی قبلی وارد reasoning نمی‌شود |
 | هزینه | ledger و رسیدها حفظ‌اند؛ سه درخواست نامعلوم وhalt باقی است | مدرک provider و تطبیق usage/charge برای C5 |
 
 [verification تازهٔ C4p](receipts/maintainer-review-brief-2026-10-16.json)
