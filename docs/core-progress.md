@@ -1,3 +1,31 @@
+## 2026-10-16 — E2ac: two dev-native escalation gold amendments in PR81
+
+[Scope and reproduction](native-dev-gold-amendment.fa.md),
+[verification](receipts/native-dev-gold-amendment-2026-10-16.json).
+The two initial escalation clauses no longer require an unsupported 1.38.0 fix
+claim when a material documentation/applicability gap remains. Supported guidance
+and a concrete investigation/retrieval next step are required; already-known
+USER1.37.0 is not a new user gap. Missing observer match alone is not a gap.
+The unchanged exact-answer-anchor requirement remains a separate manual-review
+limitation for equivalent evidence; this bounded fix is not exhaustive semantic gold.
+
+Active dev-v2 registration selects14 byte-identical v1 plus2 additive v2 fixtures.
+All18 original v1 fixture/registration/human-review bytes remain exact; new hashes
+and supersedes links are bound to a separate assistant amendment record. Human
+verdicts are not transferred; confirmation of the two new clauses is pending.
+Visible turns/scripts/routes/answers/tabs follow-up/passages/digests and all fixed
+fixtures remain exact. Fresh explicit16 offline conditional replay passes23turns
+and273checks. It uses scripted fixture evidence, not native retrieval/model quality.
+Independent semantic and graph reviews find no blocker. 233 targeted tests pass,
+including10 new controls; independent10-test replay overlaps. Ruff/format391files
+pass. Four initial test-helper errors (missing Fact.turn_id) are corrected using
+the actual turn ID, with original logs retained. Final parent audits record zero
+protected opens/network attempts, not subprocess attestation. Preservation
+evidence is recorded in the receipt; no fresh broad-suite or successful CI claim.
+Final-build pins, human quality, C5 and final test stay open; runtime/vocabulary,
+primary ledger/19pins/threeholds/halt and held-out tree/exclusion stay unchanged.
+No held-out payload, paid API or team message.
+
 ## 2026-10-16 — C4s: selected full-runner acceptance and review correction
 
 [Behavior/reproduction](core-selected-runner-acceptance.fa.md),
@@ -22,10 +50,11 @@ Primary ledger/19pins/threeholds/halt/test/exclusion unchanged; paidAPI/messages
 
 PR81 plan rollback was our review error: merge-base diff+1/-0; plan-only three-way
 merge preserves C4r/C4q/C4j and adds its note. Active docs are corrected additively;
-original receipt bytes remain. Two unsupported-fix native gold conditions remain
-pending evaluation-owner clarification. Full-session UI recovery remains absent;
+original receipt bytes remain. The two unsupported-fix native gold conditions were
+subsequently amended additively in E2ac above, with human confirmation pending.
+Full-session UI recovery remains absent;
 a separate neutral AppTest/SQLite probe verifies safety, not UI recovery. No PR81
-activation, shared freeze, semantic quality, C5 reconciliation or final test.
+activation at the C4s stage, shared freeze, semantic quality, C5 reconciliation or final test.
 
 ## 2026-10-16 — C4r: selected core recipe and actual execution wiring
 
@@ -61,11 +90,11 @@ parent protected-open attempts0 is not subprocess attestation or one full run.
 Full verification/source hashes are in the receipt; primary ledger/19 pins,
 halt/three holds, old campaigns/gold, split/test and exclusion stay unchanged.
 PR81's dev-only native artifacts were reviewed structurally; two unsupported-fix
-route conditions remain for evaluation-owner clarification. The earlier plan
+route conditions were later amended in E2ac above. The earlier plan
 rollback diagnosis was an endpoint-comparison mistake, corrected additively in
 [C4s](core-selected-runner-acceptance.fa.md); a plan-only three-way merge retains
 current C4r/C4q/C4j and adds the native note. The C4r receipt remains immutable.
-No merge/activation of that PR, new API call, final test or team message.
+No merge/activation of that PR at the C4r stage, new API call, final test or team message.
 
 ## 2026-10-16 — C4q: core closeout and registered reasoner construction
 

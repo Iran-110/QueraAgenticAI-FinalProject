@@ -78,9 +78,10 @@ receipt تاریخی C4r عین byte حفظ می‌شود و ادعای rollback
 گذاشته می‌شود. دو یافتهٔ باقی‌مانده مستقل‌اند: در فایل‌های **dev**
 `fragment-rerun-9180-native-v1.json` و `tabs-blank-9259-native-v1.json`، شرط
 ارجاع هنوز گزارش fix نسخهٔ 1.38 را لازم می‌داند، حتی در شاخهٔ نبودن passage
-پشتیبان. صاحب evaluation باید شرط را روشن و hash/review جدید را ثبت کند؛
-غیبت شاهد نباید ادعای بدون منبع را اجباری کند. build pin نهایی هم هنوز pending
-است. gold برای تنظیم runtime استفاده نشده و test باز نشده است.
+پشتیبان. این یافته‌ها در زمان C4s باز بودند؛ اکنون [E2ac](native-dev-gold-amendment.fa.md)
+دو نسخهٔ افزایشی با شرط روشن، hash تازه و review دستیار جدا ثبت می‌کند. v1 و
+review انسانی قبلی حفظ‌اند؛ تأیید انسانی بندهای تازه و build pin نهایی همچنان
+pending است. gold برای تنظیم runtime استفاده نشده و test باز نشده است.
 
 ## مرز recovery در UI
 

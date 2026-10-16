@@ -41,6 +41,15 @@ test-derived question or alias is added.
 is the same dev projection rebuilt after the manifest pinned
 [dev-three v2](dev-three-v2/README.md); it differs from v2 only in `manifest_sha256`.
 
+Native-index gold for the 16 dev cases is in
+[`split-e1-v1/native/`](split-e1-v1/native/README.md), registered separately from the
+fixed fixtures with pins pending the final build.
+The active dev selection is now
+[`native-registration-dev-v2.json`](split-e1-v1/native/native-registration-dev-v2.json):
+14 unchanged v1 fixtures and two versioned initial-escalation amendments. Historical
+v1 human review remains exact; the two amended clauses have assistant review and
+pending human confirmation. [Scope and explicit-path command](../../docs/native-dev-gold-amendment.fa.md).
+
 The additive [offline review workbench](../../docs/evaluation-workbench.fa.md)
 now prepares actual C4g/C4h turn contexts, full sources and blank SemanticReview
 sidecars. It preserves stopped, stale and unvisited rows beside fresh proposals,

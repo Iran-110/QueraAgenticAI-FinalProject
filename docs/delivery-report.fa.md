@@ -7,6 +7,14 @@ receiptهای قبلی تغییر نکرده‌اند.
 
 ## وضعیت امروز
 
+**E2ac، اصلاح native gold در PR81:**
+[شرح و بازتولید](native-dev-gold-amendment.fa.md)،
+[رسید](receipts/native-dev-gold-amendment-2026-10-16.json).
+دو شرط ارجاع دیگر fix بدون شاهد را لازم نمی‌دانند؛ کمبود واقعی، قدم بعدی و
+حفظ راهنمایی مستند شرط‌اند. ثبت dev v2 شامل ۱۴ fixture قبلی و دو اصلاحِ
+نسخه‌دار است؛ hashهای v1 و review انسانی قبلی محفوظ‌اند. تأیید انسانی دو بند
+جدید و build نهایی pending است؛ این تغییر کیفیت تازهٔ مدل یا freeze نیست.
+
 **C4s، پذیرش کامل runner با تنظیم منتخب:**
 [شرح و تصحیح review](core-selected-runner-acceptance.fa.md)،
 [رسید](receipts/core-selected-runner-acceptance-2026-10-16.json).
@@ -14,7 +22,7 @@ receiptهای قبلی تغییر نکرده‌اند.
 تغییر نکرده‌اند. runner حافظه‌ای و پذیرش SQLite قبلی دو شاهد جدا هستند.
 repair موفق، توقف پس از خروجی خراب و حساب unresolved بررسی شدند؛ این‌ها نمرهٔ
 کیفیت مدل نیستند. ادعای قبلی rollback plan درPR81 تصحیح شد؛ دو ابهام gold
-آن همچنان باقی‌اند و originalreceipt عینbyteحفظ است.
+بعداً در E2ac اصلاح شدند و originalreceipt عینbyteحفظ است.
 
 **C4r، تنظیم منتخب core:** [recipe و اتصال واقعی](core-delivery-selection.fa.md)،
 [رسید](receipts/core-delivery-selection-2026-10-16.json). انتخاب صریح
