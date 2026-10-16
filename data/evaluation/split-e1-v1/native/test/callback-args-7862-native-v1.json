@@ -111,7 +111,7 @@
         ],
         "decision_conditions": {
           "answer": "Explain the documented args-capture rule and recommend a key on text_area read inside the callback. Must not claim the blocking sleep alone is the documented cause. Native index: the registered passages must be in this turn's supplied bundle AND support the stated claim, its API scope and the active USER version; presence alone is not support.",
-          "escalate": "Acceptable only if it still gives the documented key workaround; escalating without it is unnecessary abstention. Under the native index, escalation is acceptable only when the registered passages were not supplied in this turn or do not cover the claim and version: it must name the missing documentation and a concrete next step, and still keep any supported guidance. When the passages were supplied and cover the case, escalation is unnecessary abstention."
+          "escalate": "Acceptable only when this turn's supplied evidence leaves a material documentation gap for the callback-args and key-lookup rule. Name the missing documentation and a concrete next step; retain guidance actually supported by the supplied evidence. Do not present the key workaround as documented unless the supplied evidence supports it. Do not ask again for the known version or code. Missing registered-passage observation alone does not justify escalation; if other supplied evidence adequately covers the case, escalation is unnecessary abstention."
         },
         "allowed_intermediate_decisions": [
           "retrieve_more"
@@ -210,7 +210,7 @@
         ],
         "decision_conditions": {
           "answer": "Confirm the documented rule and the working approach; do not repeat the original troubleshooting. Native index: the registered passages must be in this turn's supplied bundle AND support the stated claim, its API scope and the active USER version; presence alone is not support.",
-          "escalate": "Acceptable only to report the direct-click timing difference as an unexplained part, while still confirming the documented rule. Under the native index, escalation is acceptable only when the registered passages were not supplied in this turn or do not cover the claim and version: it must name the missing documentation and a concrete next step, and still keep any supported guidance. When the passages were supplied and cover the case, escalation is unnecessary abstention."
+          "escalate": "Acceptable to report the direct-click timing difference as an unexplained part. Confirm the documented rule only if the supplied evidence supports it; otherwise name the missing documentation and a next step. Missing registered-passage observation alone does not justify escalation; if other supplied evidence adequately covers the case, escalation is unnecessary abstention."
         },
         "allowed_intermediate_decisions": [
           "retrieve_more"

@@ -101,7 +101,7 @@
         ],
         "decision_conditions": {
           "answer": "Give the documented init pattern and/or setdefault, optionally looping over a dict; may say a dedicated bulk helper is not documented. Native index: the registered passages must be in this turn's supplied bundle AND support the stated claim, its API scope and the active USER version; presence alone is not support.",
-          "escalate": "Only for the feature-request part, and only while still giving the documented patterns. Under the native index, escalation is acceptable only when the registered passages were not supplied in this turn or do not cover the claim and version: it must name the missing documentation and a concrete next step, and still keep any supported guidance. When the passages were supplied and cover the case, escalation is unnecessary abstention."
+          "escalate": "Acceptable for the feature-request part (a dedicated bulk-initialization helper). Give the initialization or setdefault pattern only if the supplied evidence supports it; otherwise name the missing documentation and a next step. Missing registered-passage observation alone does not justify escalation; if other supplied evidence adequately covers the case, escalation is unnecessary abstention."
         },
         "allowed_intermediate_decisions": [
           "retrieve_more"
