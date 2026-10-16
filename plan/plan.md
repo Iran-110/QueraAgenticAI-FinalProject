@@ -4,6 +4,15 @@
 
 ## وضعیت فعلی
 
+- [x] **پذیرش محدود PR77؛ review انسانی C4g دریافت شد.**
+  [بررسی و توضیح شمارش](../docs/pr77-review.fa.md)،
+  [رسید](../docs/receipts/pr77-review-2026-10-16.json). نمره‌ها و byteهای فایل
+  محمدحسن حفظ‌اند؛۱۷item وbinding/handoffها تطبیق دارند.۷گروه با زمینهٔ متفاوت
+  داریم و۶متن یکتا؛ usefulness۱٫۲۹میانگین گروه‌هاست،۱٫۴۷باوزن پیشنهادها.
+  support هنوز بررسی نشده؛ export خصوصی و hash کامل workbench وابسته‌به‌مسیر
+  کاملاً تأییدنشده‌اند. این partialreview روی devexposed است؛E4باز و انتخاب
+  config نهایی/کیفیتtest نامشخص است. runtimeهمان`3f8ff33`تست‌شده باقی ماند.
+
 - [x] **C2k — validation مرزهای باقی‌ماندهٔ core؛ ساسان، ۱۶ اکتبر.**
   [رفتار و حدود](../docs/core-boundary-validation.fa.md)،
   [verification](../docs/receipts/core-boundary-validation-2026-10-16.json).
@@ -1080,6 +1089,7 @@ handoffها و متن released محفوظ‌اند. ترکیب اصلاحات ب
 - [ ] **E2 — fixture و rubric پیش از اجرا.** case_id، منبع/زمان، ورودی قابل مشاهده در شروع، پاسخ‌های بعدی به‌ترتیب، factهای معلوم، gap کاربر/منبع، منابع مجاز، تصمیم‌های قابل قبول و انتظار عملیاتی ثبت شوند. جواب/label/gold برای runner/reviewer است و وارد پیام مدل یا index نمی‌شود. schema با ساسان هماهنگ شود؛ مسیر موجود `data/evaluation/` مبنا باشد. placeholder قبلی `dev_cases.json` حذف شد؛ پیش‌نویس schema در [`data/evaluation/README.md`](../data/evaluation/README.md) و نخستین fixture آن (P1) ثبت شده‌اند. هماهنگی schema با ساسان هنوز باز است. [rubric v1](../docs/evaluation-rubric-v1.md) (`e2-rubric-v1`، ۱۵ اکتبر) پیش‌نویس ساسان را مبنا می‌گیرد و خواسته‌های او را اضافه می‌کند: بررسی همهٔ ادعاهای مهم با متن و نسخهٔ منبع حتی بیرون citation، نمرهٔ جدای پیشنهاد مدل و متن edited/released، gap کاربر/منبع با ادامهٔ مورد انتظار برای هر نوع سؤال، و gold جدا برای شواهد ثابت و index واقعی. هنوز freeze نشده؛ پشتیبانی runner از gold چندشرطی پیاده نشده است.
 - [ ] **E3 — runner قابل تکرار.** caseها از fixture اجرا شوند؛ turn بعدی در زمان درست آشکار شود و case/revision/proposal و config/snapshot، latency و هزینه ثبت شوند. replay منطقی بدون API و اجرای کیفیت با مدل واقعی خروجی جدا داشته باشند. schema/runner و API/UI pytest با خودش؛ برای قراردادها از ساسان کمک بگیرد. وضعیت: runner آفلاین `agent_app.evaluation.runner` آماده است: caseهای یک split را turn به turn اجرا می‌کند، case/revision/proposal، git commit، hash fixture، config/snapshot، latency، تلاش مدل، دور retrieval، step، هزینه و token را ثبت می‌کند و receipt حالت offline و live را در مسیرهای جدا نگه می‌دارد. [receipt آفلاین dev](../data/evaluation/receipts/offline/dev-2026-10-10.json). ([PR #15](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/15)) مسیر live با HTTP intercepted و BudgetLedger موقت آفلاین تست شده؛ provider و ledger اصلی استفاده نشده‌اند. #21 receipt کامل، accounting درخواست و محافظ branch نامتناسب را اضافه می‌کند؛ تکمیل E3 هنوز به adapter U3، branchهای گفتگو و validation ثبت‌شده نیاز دارد. سناریوهای عملیاتی ساختگی برای خرابی ابزار (retrieval، یک خطای مدل با retry در سقف دو تلاش، دو خطا و توقف) و جابه‌جایی میان دو پرونده در `data/evaluation/scenarios/` پیش از اجرا ثبت شدند؛ اجرای اول ۸۱ از ۸۲ پاس شد چون انتظار ثبت‌شده کد توقف را اشتباه پیش‌بینی کرده بود (engine آخرین خطای adapter یعنی `ReasoningUnavailable` را گزارش می‌کند)؛ receipt آن حفظ و نسخهٔ v2 با همان یک تغییر ثبت شد. این سناریوها جزو ۳۰ case ارزیابی نیستند.
 - [ ] **E4 — baseline و تنظیم فقط روی dev.** کیفیت تصمیم/پشتیبانی ادعاها/ضرورت و پاسخ‌پذیری سؤال، retrieval، صحت عملیات و هزینه/latency جدا سنجیده شوند. تغییرات روی ورودی یکسان مقایسه و نسخهٔ code/prompt/corpus/model freeze شود. نمونهٔ قضاوت انسانی ثبت شود؛ JSON معتبر یا نظر همان مدل تنها شاهد کیفیت نیست.
+  یادداشت E4 (۱۶ اکتبر): نخستین داوری انسانی خروجی واقعی مدل ثبت شد: [`human-output-card-review-v1.json`](../experiments/dev_rag_coverage_v1/human-output-card-review-v1.json). ۱۷ پیشنهاد تازهٔ C4g در۷گروه case/turn/decision/draft بررسی شدند؛ متن سؤال دو گروه یکسان است و۶متن یکتا داریم. تصمیم۶گروه قابل قبول ویک گروه نامطمئن؛ usefulness دو گروه۲وپنج گروه۱ است:۱٫۲۹به‌ازای گروه و۱٫۴۷باوزن۱۷پیشنهاد. [پذیرش و توضیح واحد شمارش](../docs/pr77-review.fa.md) نمره‌های اصلی را تغییر نمی‌دهد. هر۱۷binding/handoff وhashreceipt تطبیق داده شد؛ export خصوصی وpacket وابسته‌به‌مسیر کاملاً بازتولید نشده‌اند. support بررسی نشده وE4باز است؛ اینdevexposed است، نهtestنهایی. نشانگر `\u000d` درcase-c ازCRLFوescape renderer است، نه خطای مدل.
 - [ ] **E5 — test و گزارش نهایی.** بعد از E1–E4 و اتصال واقعی، test بدون tuning اجرا شود؛ شکست‌ها، موارد حل‌نشده و اطلاعات ناقص همراه trace گزارش شوند. شواهد RAG از حسن، tracker از بهنام و core از ساسان جمع شود؛ مالک اجرای evaluation و گزارش محمدحسن است.
 - [ ] **E6 — bonus و ارائه.** فقط پس از مسیر اصلی، Adversarial Testing با دامنهٔ توافق‌شدهٔ منتور و مقایسهٔ منصفانه اجرا شود؛ اسلاید و README با رفتار و هزینهٔ واقعی هماهنگ شوند.
 

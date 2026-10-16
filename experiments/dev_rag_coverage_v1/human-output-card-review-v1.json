@@ -1,0 +1,308 @@
+{
+  "schema_version": 1,
+  "review_id": "c4g-output-card-review-v1",
+  "reviewer_id": "mhg",
+  "reviewer_kind": "human",
+  "reviewed_on": "2026-10-16",
+  "scope": "Human decision acceptability and usefulness (0-2) for the 17 fresh C4g model proposals, grouped into identical outputs",
+  "review_basis": "Persian case summary, the model's user-facing draft and the registered gold conditions; claim-by-claim source binding not performed",
+  "drafted_by": "assistant (claude-opus-5-5) built the card page from the workbench; every judgment below is the human reviewer's",
+  "exported_file_sha256": "189c50b4cf1d26b930cd19c64c3944e703aae01486b116ec446d2cbf846ee7dc",
+  "receipt_path": "experiments/dev_rag_coverage_v1/model-live-receipt-v1.json",
+  "receipt_sha256": "409fe34076fa6772e6442b881332874fe8e66d1f09e80a759e2ab8207d71f901",
+  "workbench": {
+    "packet_id": "533fadc8f78d524cbc8709012ae029ce2daef37ffd82e811d166c34989ad7a3c",
+    "sha256": "d8555f610b7a336a28568ed16740aaec60e7db4e9deef3db09949246f25020b0",
+    "generated_by": "scripts/prepare_semantic_review.py prepare (default C4g receipt); runtime output, not committed",
+    "item_bindings_checked": "all 17 item_binding_sha256 and handoff_sha256 values match the workbench rows"
+  },
+  "run_id": "dev-real-index-model-2026-10-14-v1",
+  "groups": [
+    {
+      "group_id": "dev-case-a:initial:ask:a03a15504b",
+      "case_id": "dev-case-a",
+      "turn_id": "initial",
+      "model_decision": "ask",
+      "registered_acceptable_decisions": [
+        "ask",
+        "escalate"
+      ],
+      "registered_stratum": "ambiguous",
+      "items": [
+        {
+          "item_id": "001f2088fbeea8acaf113af5",
+          "arm": "new_18_sources",
+          "round": 1,
+          "item_binding_sha256": "38a47f26bf179b25e151f2bffef46ed83489fd1da41bdc5d1914a62febe0195e",
+          "handoff_sha256": "e48c01f5f9bdb8dbcb9b04b46abd3523c0aa2efd376d99d19c9031fc881fc06f"
+        },
+        {
+          "item_id": "32d4ca7f8abb2d598206304d",
+          "arm": "historical_14_sources",
+          "round": 1,
+          "item_binding_sha256": "5175cdc9b78b7f73a6b2e1e29ee8547eee777cdc0b8b6e2dc0c285114b11152a",
+          "handoff_sha256": "770ae1078baaa4bf3c1cf88a2641813d0cbb37c7fa77ee40bbbf531a6a7166f4"
+        },
+        {
+          "item_id": "709ece8695249ee888b851e6",
+          "arm": "historical_14_sources",
+          "round": 2,
+          "item_binding_sha256": "c862f475b376fa7108656add3ee75c6f074c2a941c74eb6a535197c9961512e1",
+          "handoff_sha256": "4f0d877cedf44abb4380383e3e006bd688388c2c206ae42607f4cc59e34d47c3"
+        },
+        {
+          "item_id": "cef9bf8d0a5fb08d5362257a",
+          "arm": "new_18_sources",
+          "round": 2,
+          "item_binding_sha256": "10d8d87d46d3124af27d97b81d8eb6596bb4f81bff8fad1bbdee5ed61be4d46c",
+          "handoff_sha256": "6c1f51e9286b00a5852212a80cf35dc97ffd9a8c508eba9f267fcadbe2998d80"
+        }
+      ],
+      "decision_judgment": "acceptable",
+      "usefulness_score": 2,
+      "reason": null
+    },
+    {
+      "group_id": "dev-case-c:initial:escalate:00e0af84e2",
+      "case_id": "dev-case-c",
+      "turn_id": "initial",
+      "model_decision": "escalate",
+      "registered_acceptable_decisions": [
+        "answer",
+        "escalate"
+      ],
+      "registered_stratum": "needs_escalation",
+      "items": [
+        {
+          "item_id": "0bb0180dfcc0f43526b30c0d",
+          "arm": "historical_14_sources",
+          "round": 1,
+          "item_binding_sha256": "341be394cca302dcd9e7d2575c2ab3372cb582e484dac7a6c73d680ed0cd8db5",
+          "handoff_sha256": "aed435a51df5453300c1ef655e7d26b1735c4f3c80e38828567f8853ad789d9b"
+        },
+        {
+          "item_id": "72473684513892ab553fff85",
+          "arm": "new_18_sources",
+          "round": 2,
+          "item_binding_sha256": "563858c9ac9d6ce29cc93fd00123905642a521e5964e512867dfcafbf8245fa9",
+          "handoff_sha256": "7a90986039ac6ea4d96d064e20f0bf08236fd2e58786cdca793a25978e7e58c8"
+        }
+      ],
+      "decision_judgment": "acceptable",
+      "usefulness_score": 1,
+      "reason": "در کد کارکتر \\u000d دیده می‌شود اگر مشکلی ندارد که هیچ. اگرنه نیاز به اصلاح هست."
+    },
+    {
+      "group_id": "dev-case-a:version:ask:d965a231ed",
+      "case_id": "dev-case-a",
+      "turn_id": "version",
+      "model_decision": "ask",
+      "registered_acceptable_decisions": [
+        "answer",
+        "ask",
+        "escalate"
+      ],
+      "registered_stratum": "ambiguous",
+      "items": [
+        {
+          "item_id": "10c46fe1c08bdf19c61538d3",
+          "arm": "historical_14_sources",
+          "round": 1,
+          "item_binding_sha256": "3302d5e9ddf1d81d8029bae95cbc9aea420ead6663f91e07e04c146a9c5af367",
+          "handoff_sha256": "5cea4edba2caec5adfbe215c53c7b6398492bdd7bb5de72aed609eaaddd7769e"
+        },
+        {
+          "item_id": "1b958a5524b957c17b9ab640",
+          "arm": "new_18_sources",
+          "round": 2,
+          "item_binding_sha256": "848b731b94834143a8914c5c3d0720999afe16bb932f0dbb9621abe4d6922667",
+          "handoff_sha256": "151b3db2fd86fe4529edcae574f95cc325e6f42cf9702886256c1a1812eb3583"
+        },
+        {
+          "item_id": "420413b96baef521a2f027d8",
+          "arm": "new_18_sources",
+          "round": 1,
+          "item_binding_sha256": "7daa5d8a581743a77ecf185cb238b6c4429bdae7c7dc9cb58e7443b0c43f4989",
+          "handoff_sha256": "2084aa5f20ba8a016c153993f4c60456108270fa2c166a2ff3b86590d31e4034"
+        },
+        {
+          "item_id": "eabd2343cc272d9949bb8174",
+          "arm": "historical_14_sources",
+          "round": 2,
+          "item_binding_sha256": "2709e33ce4ec3325839a12ca97c281d8beb57f8e667c8734c87e34628882390d",
+          "handoff_sha256": "26d80f03649f97626b435956a6ff2982e000e24b5eea5a1e1090f5ff62506b79"
+        }
+      ],
+      "decision_judgment": "acceptable",
+      "usefulness_score": 1,
+      "reason": "خیلی مسلط نیستم به مبحث. نمی‌تونم کامل verify کنم."
+    },
+    {
+      "group_id": "dev-case-c:correction:escalate:e2999393b7",
+      "case_id": "dev-case-c",
+      "turn_id": "correction",
+      "model_decision": "escalate",
+      "registered_acceptable_decisions": [
+        "answer",
+        "escalate"
+      ],
+      "registered_stratum": "needs_escalation",
+      "items": [
+        {
+          "item_id": "36280eac3bb45384c558eda4",
+          "arm": "historical_14_sources",
+          "round": 1,
+          "item_binding_sha256": "1be7e8ed203dfa4268afd29902e2fc2cdf0be44744cacf6366901ee7ed97e947",
+          "handoff_sha256": "c46dd319b31019da848e82a396fbba0961f0607e2fdfbf9a5ca27368fbf529d9"
+        }
+      ],
+      "decision_judgment": "acceptable",
+      "usefulness_score": 1,
+      "reason": null
+    },
+    {
+      "group_id": "dev-case-b:initial:ask:a03a15504b",
+      "case_id": "dev-case-b",
+      "turn_id": "initial",
+      "model_decision": "ask",
+      "registered_acceptable_decisions": [
+        "answer",
+        "ask",
+        "escalate"
+      ],
+      "registered_stratum": "ambiguous",
+      "items": [
+        {
+          "item_id": "4ca2751fbef4ff403ee3b6f5",
+          "arm": "historical_14_sources",
+          "round": 2,
+          "item_binding_sha256": "0fed1f71d382e794de064955068ef41a42a6707bdce5b77674a596b1cd138dd6",
+          "handoff_sha256": "74ee3b3ee2372683a2e46f1bee6c486425dadb19ba81968843a83dca425eb4c4"
+        },
+        {
+          "item_id": "6e2e4d77280d4f85806f9020",
+          "arm": "new_18_sources",
+          "round": 2,
+          "item_binding_sha256": "0b23287d3896388bc04d643c49c5c6c194871351743b61e4474d7f2861cfd43a",
+          "handoff_sha256": "d6a46015f1379e9e2872c6bdf2fb17e93405cfeaa0c07765b9811bb611629c28"
+        },
+        {
+          "item_id": "b87b5fa5196a8478b2c73b28",
+          "arm": "historical_14_sources",
+          "round": 1,
+          "item_binding_sha256": "d23c9ef38f4eca300234e3eab1f38baa4c4c41779726ce748e13927d0613728a",
+          "handoff_sha256": "469ceaa64242c2b4d1a44e8f409028e5bb9f97f52315fe149cb16086f0d61719"
+        },
+        {
+          "item_id": "ed0ca945bc97608560fa3864",
+          "arm": "new_18_sources",
+          "round": 1,
+          "item_binding_sha256": "0f14028d1cbae46e7647b482c315ad2a22769fae741ce32e77960a2d90607679",
+          "handoff_sha256": "f78a85d38baa6a9ce56bf5ac87a10df200eba259b39c5719373fbf57eee73bca"
+        }
+      ],
+      "decision_judgment": "acceptable",
+      "usefulness_score": 2,
+      "reason": null
+    },
+    {
+      "group_id": "dev-case-b:version:escalate:776822669a",
+      "case_id": "dev-case-b",
+      "turn_id": "version",
+      "model_decision": "escalate",
+      "registered_acceptable_decisions": [
+        "answer",
+        "escalate"
+      ],
+      "registered_stratum": "answerable",
+      "items": [
+        {
+          "item_id": "e09abccd2327cec2dc0b6ab1",
+          "arm": "historical_14_sources",
+          "round": 1,
+          "item_binding_sha256": "172324b7ae23e86954e6a057d5794ee2c4d25a75ffe1e49624188d26c54cf9a4",
+          "handoff_sha256": "4839b309272e427f0e7f313daafe78131082d260a916b59467b4366850d6a454"
+        }
+      ],
+      "decision_judgment": "acceptable",
+      "usefulness_score": 1,
+      "reason": "متن خیلی قالبی است. با قبلی‌ها که مقایسه می‌کنم همه‌اش یک شکل است و خیلی اطلاعات ندارد."
+    },
+    {
+      "group_id": "dev-case-c:initial:answer:598c4bd934",
+      "case_id": "dev-case-c",
+      "turn_id": "initial",
+      "model_decision": "answer",
+      "registered_acceptable_decisions": [
+        "answer",
+        "escalate"
+      ],
+      "registered_stratum": "needs_escalation",
+      "items": [
+        {
+          "item_id": "f2a5b0267055135757f58d96",
+          "arm": "historical_14_sources",
+          "round": 2,
+          "item_binding_sha256": "8cfe1a538f778dbfc129ffdcdb5dc8fba7a3297c32a084c13ab5c1a915ed20af",
+          "handoff_sha256": "450687b748c1aecab922db84343276485022d661f743b3e587883b1b1dc45468"
+        }
+      ],
+      "decision_judgment": "unassessed",
+      "usefulness_score": 1,
+      "reason": "مطمئن نیستم که پاسخ خوب است یا خیر خیلی بلند بود. و تو لازم است چک کنی."
+    }
+  ],
+  "summary": {
+    "per_output": {
+      "outputs": 17,
+      "decision_judgment": {
+        "acceptable": 16,
+        "unassessed": 1
+      },
+      "usefulness_score": {
+        "1": 9,
+        "2": 8
+      },
+      "usefulness_mean": 1.47
+    },
+    "per_distinct_output": {
+      "groups": 7,
+      "decision_judgment": {
+        "acceptable": 6,
+        "unassessed": 1
+      },
+      "usefulness_score": {
+        "1": 5,
+        "2": 2
+      },
+      "usefulness_mean": 1.29
+    },
+    "note": "Both usefulness 2 groups are version questions (case-a and case-b initial). No escalation or answer scored 2. Per-output figures repeat identical outputs, so the per-distinct-output figures are the fairer view."
+  },
+  "assistant_checks": {
+    "kind": "assistant observations requested by the reviewer; not human judgments and not applied to any score",
+    "dev-case-c:initial:escalate:00e0af84e2": "The visible \\u000d markers come from Windows CRLF line endings in the original issue #8129 code. The core display helper (_display in src/agent_app/reasoning/grounding.py) escapes control characters on purpose; the model did not write them. docs/core-progress.md already records this display defect and an unshipped CRLF-normalisation candidate (it changes 4 of 16 frozen render digests). Readability defect for the core owner, not a model error.",
+    "dev-case-c:initial:answer:598c4bd934": "The draft is 12201 characters, almost all quoted from the generic session-state guide. It ends by saying the supplied quotations do not establish a diagnosis or fix and proposes maintainer investigation, which textually matches the registered answer condition. It gives no Enum diagnosis or fix. The reviewer's decision_judgment stays unassessed; this check does not replace it."
+  },
+  "limitations": [
+    "Claim-by-claim source binding was not performed; claim judgments remain unassessed, so this review gives no support score.",
+    "The reviewer recorded low confidence on dev-case-a version (callback code question).",
+    "The three dev cases are exposed development data, not held-out test; these scores are not test quality.",
+    "17 outputs reduce to 7 distinct texts; the sample is small and dominated by repeated version questions."
+  ],
+  "reviewer_followup_comments": [
+    {
+      "reviewer_kind": "human",
+      "reviewer_id": "mhg",
+      "given_on": "2026-10-16",
+      "applies_to": [
+        "dev-case-c:initial:escalate:00e0af84e2",
+        "dev-case-c:correction:escalate:e2999393b7",
+        "dev-case-b:version:escalate:776822669a"
+      ],
+      "comment": "The descriptions when the model escalates are robotic, and I think they carry little information for the maintainer of the Streamlit repository.",
+      "changes_scores": false,
+      "context": "Given in chat after export; recorded verbatim. The escalation surfaces are core-rendered from fixed sentences (model chooses the decision and quotes only), so the three texts share most of their wording."
+    }
+  ]
+}

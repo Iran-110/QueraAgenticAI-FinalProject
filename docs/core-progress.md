@@ -1,3 +1,22 @@
+## 2026-10-16 — PR77: bounded human C4g output review received
+
+[Acceptance and grouping clarification](pr77-review.fa.md),
+[review receipt](receipts/pr77-review-2026-10-16.json).
+Retained the original human sidecar bytes/scores/comments. All17fresh item and
+handoff bindings match the C4g dev workbench. Seven contextual groups contain
+six globally unique drafts;1.29is group mean,1.47proposal-weighted mean, not an
+independent17-case score. Six group decisions acceptable,one unassessed; support
+remains unassessed. Private human/export provenance is author-attested and the
+original pre-metadata export unavailable. Absolute-path-bound whole-workbench
+hashes do not reproduce here; all path-independent item bindings match.
+
+This receives partial human usefulness evidence for historical exposed C4g,
+not current configuration or final-test quality, claim support or E4 completion.
+No runtime change; the5758development source`3f8ff33`and C2k HTTP457evidence
+remain applicable without another full run. CI jobs did not start due Billing.
+Halt/threeholds and protected input bytes stay intact; no paid call or held-out
+content. Robotic escalations and Enum's missing diagnosis/fix remain limitations.
+
 ## 2026-10-16 — C2k: bounded recursive core ingress validation
 
 [Behavior and limits](core-boundary-validation.fa.md),

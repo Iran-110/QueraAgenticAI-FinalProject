@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-10-16T08:22:50.182137+00:00",
+  "pull_request": 77,
+  "head_commit": "02fca08409376f65b9cad4cd896704a50a090460",
+  "decision": "Accept bounded receipt with additive grouping/provenance clarification",
+  "original_receipt_path": "experiments/dev_rag_coverage_v1/human-output-card-review-v1.json",
+  "original_receipt_sha256": "49da80c5a99ffeed8930486b168631752104b58425ed087ca2f03bbc9a6de329",
+  "original_receipt_bytes_preserved": true,
+  "human_labels_comments_scores_unchanged": true,
+  "independent_binding_review": {
+    "provenance": "Read-only assistant reconstruction of existing C4g dev workbench; no retained console log claimed",
+    "fresh_unique_items_exactly_covered": 17,
+    "all_item_binding_and_handoff_hashes_equal": true,
+    "arm_round_case_turn_decision_registered_condition_equal": true,
+    "study_receipt_sha256": "409fe34076fa6772e6442b881332874fe8e66d1f09e80a759e2ab8207d71f901",
+    "study_receipt_sha256_equal": true
+  },
+  "direct_arithmetic_checks": {
+    "contextual_groups": 7,
+    "globally_distinct_user_drafts": 6,
+    "group_score_sum": 9,
+    "group_usefulness_mean": 1.29,
+    "proposal_weighted_score_sum": 25,
+    "proposal_weighted_mean": 1.47,
+    "acceptable_groups": 6,
+    "unassessed_groups": 1
+  },
+  "clarifications": [
+    "per_distinct_output is a historical field name for7contextualgroups; there are6globallydistinctdrafts.1.29isgroupmean,not6textmean.",
+    "Human identity/private chat/export author-attested. Original pre-metadata export unavailable; exported_file_sha256 unverified. Committed artifact SHA recorded independently.",
+    "Workbench/packet hashes include absolute input paths and do not reproduce exactly across this machine; all17path-independent item bindings match.",
+    "No claim-by-claim support score, final-test score or current-configuration usefulness result. E4 remains open."
+  ],
+  "checks": {
+    "original_artifact_sha256": "49da80c5a99ffeed8930486b168631752104b58425ed087ca2f03bbc9a6de329",
+    "original_artifact_sha256_equal": true,
+    "source_runtime_commit": "3f8ff33c566df9e76276e4a258f7ad4287877cd0",
+    "full_suite_rerun_for_docs": false,
+    "reused_development_tests": 5758,
+    "held_out_content_opened": false,
+    "paid_calls": 0
+  },
+  "hosted_CI": {
+    "run_id": 38871786382,
+    "job_started": false,
+    "reason": "Recent account payments failed or spending limit requires increase; GitHub Billing annotation",
+    "pass_claim": false
+  },
+  "shared_scope_preserved": {
+    "ledger_halt_threeholds": true,
+    "corpus_index_exclusion_gold_test": true,
+    "teammate_code": true
+  },
+  "clarification_review": {
+    "result": "Approved independently; original labels/scores/bytes preserved, contextual grouping and provenance limits correct; no blocker",
+    "relative_links_checked": 372,
+    "missing_links": 0,
+    "runtime_matches_tested_source": true,
+    "ledger_and_all19pins_equal": true
+  }
+}
