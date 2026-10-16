@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "review_id": "split-e1-v1-native-test-gold-review-v1",
+  "reviewer_id": "mhg",
+  "reviewer_kind": "human",
+  "reviewed_on": "2026-10-16",
+  "held_out": true,
+  "do_not_open_during_core_or_rag_development": true,
+  "rubric_id": "e2-rubric-v1",
+  "evidence_condition": "native_index",
+  "scope": "Review of the 15 native-index held-out test gold fixtures (one card per case)",
+  "drafted_by": "assistant (claude-opus-5-5); judgments by the human reviewer",
+  "exported_file_sha256": "b511400083aa6c8d8ed84af1b35ec5cbc5c1c8285a175ef6c7685d72d4df7e2a",
+  "independence_note": "The assistant's assessment was shown openly on every card; all initial verdicts match its suggestions (14 correct, 1 unsure where it said correct-or-unsure). Human-confirmed gold review, not an independent second authoring.",
+  "authoring_note": "Written by the evaluation owner without any retrieval or model run on test; passages come from seed text only.",
+  "summary": {
+    "cases": 15,
+    "initial": {
+      "correct": 14,
+      "unsure": 1
+    },
+    "final": {
+      "correct": 15
+    }
+  },
+  "items": [
+    {
+      "case_id": "test-case-02",
+      "fixture_path": "data/evaluation/split-e1-v1/native/test/button-callback-4595-native-v1.json",
+      "reviewed_sha256": "98ca8ed9c794261b55841e6bb2fcb6aa7eeb0883107908d29f3685bb8e38b560",
+      "final_sha256": "e0370367f8db29eb7bd0ec9087291eb9b9dd30c07e8beb7c424380c1a20916cb",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست. این جمله فقط رفتار مستند را می‌گوید، نه علت گزارش.",
+        "risk": "سند بدون نسخه و خیلی جدیدتر از 1.8.1 است.",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct",
+      "amendment": "Escalation amendment after review (same pattern as Sasan's dev E2ac): escalate conditions no longer demand a documented claim when its passage is missing; escalation needs a material evidence gap, names the missing documentation and a next step, keeps only supported guidance, and a missing passage alone does not justify it if other supplied evidence covers the case. Only escalate conditions changed; the reviewer confirmed on 2026-10-16."
+    },
+    {
+      "case_id": "test-case-06",
+      "fixture_path": "data/evaluation/split-e1-v1/native/test/callback-args-7862-native-v1.json",
+      "reviewed_sha256": "4dbfb0b60bb3242873282471d4ea6e1b4608b07de21baebd0f9cdb0e565b9a15",
+      "final_sha256": "2ad6f5dbfa6c1fa3fc5aebb516068b3314d84c8c7dc590349dd7881962bc5f44",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست؛ این دقیقاً قاعدهٔ مستند این case است. بهتر از gold ثابت که فقط جملهٔ ترتیب اجرا را داشت.",
+        "risk": "ندارد.",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct",
+      "amendment": "Escalation amendment after review (same pattern as Sasan's dev E2ac): escalate conditions no longer demand a documented claim when its passage is missing; escalation needs a material evidence gap, names the missing documentation and a next step, keeps only supported guidance, and a missing passage alone does not justify it if other supplied evidence covers the case. Only escalate conditions changed; the reviewer confirmed on 2026-10-16."
+    },
+    {
+      "case_id": "test-case-10",
+      "fixture_path": "data/evaluation/split-e1-v1/native/test/callback-trigger-10102-native-v1.json",
+      "reviewed_sha256": "c604c48dfec96c38698fcde8774bcd8fe5fa9ad370e14bb68a78f6a212b1b42b",
+      "final_sha256": "c604c48dfec96c38698fcde8774bcd8fe5fa9ad370e14bb68a78f6a212b1b42b",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست.",
+        "risk": "اگر یادداشت CCv2 در bundle بیاید، مدل نباید آن را دلیل بداند (ادعای غیرقابل قبول ثبت شده).",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct"
+    },
+    {
+      "case_id": "test-case-11",
+      "fixture_path": "data/evaluation/split-e1-v1/native/test/callback-value-5305-native-v1.json",
+      "reviewed_sha256": "0d39a90748eb72cdaeeab1c3bb45aef8ca513977dc87ae1ebc01c4fcdc9430a7",
+      "final_sha256": "e50b8bc9073acb9bfe8b84b468a9667c942ca2d45d2861e510de235b433c02b4",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست؛ همان جمله‌ها که gold ثابت ادعای «args موقع تعامل ارزیابی می‌شوند» را رد می‌کند.",
+        "risk": "ندارد.",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct",
+      "amendment": "Escalation amendment after review (same pattern as Sasan's dev E2ac): escalate conditions no longer demand a documented claim when its passage is missing; escalation needs a material evidence gap, names the missing documentation and a next step, keeps only supported guidance, and a missing passage alone does not justify it if other supplied evidence covers the case. Only escalate conditions changed; the reviewer confirmed on 2026-10-16."
+    },
+    {
+      "case_id": "test-case-01",
+      "fixture_path": "data/evaluation/split-e1-v1/native/test/chat-6320-native-v1.json",
+      "reviewed_sha256": "e181a5483528994be9057272b4c59c55884dd152eee76a37f5dd82175066998b",
+      "final_sha256": "f3c3601e23e22da4a0b396d710c3a68bef3a68cd8498b1eef8a6319f0eabdf1d",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست.",
+        "risk": "وابسته به وجود release note در corpus نهایی؛ index فعلی ندارد. اگر نباشد فقط ارجاع می‌ماند.",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct",
+      "amendment": "Escalation amendment after review (same pattern as Sasan's dev E2ac): escalate conditions no longer demand a documented claim when its passage is missing; escalation needs a material evidence gap, names the missing documentation and a next step, keeps only supported guidance, and a missing passage alone does not justify it if other supplied evidence covers the case. Only escalate conditions changed; the reviewer confirmed on 2026-10-16."
+    },
+    {
+      "case_id": "test-case-13",
+      "fixture_path": "data/evaluation/split-e1-v1/native/test/fragment-dialog-17112-native-v1.json",
+      "reviewed_sha256": "8e0b71b0325c8623a38309f867b7307bc0daec5839788c864da629fb9aaec194",
+      "final_sha256": "8e0b71b0325c8623a38309f867b7307bc0daec5839788c864da629fb9aaec194",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست.",
+        "risk": "ندارد.",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct"
+    },
+    {
+      "case_id": "test-case-04",
+      "fixture_path": "data/evaluation/split-e1-v1/native/test/fragment-reload-11660-native-v1.json",
+      "reviewed_sha256": "c18f77a78bcfeb01ff1d0a25663ce58f801c4e5a9716004c20dda9a9abbed13f",
+      "final_sha256": "1937ffa07e32e5c1ab884bb7f0c465442ba6e7fcc7f264805e0c45a807a884bd",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست.",
+        "risk": "وابسته به وجود release note در corpus نهایی؛ index فعلی ندارد. اگر نباشد فقط ارجاع می‌ماند.",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct",
+      "amendment": "Escalation amendment after review (same pattern as Sasan's dev E2ac): escalate conditions no longer demand a documented claim when its passage is missing; escalation needs a material evidence gap, names the missing documentation and a next step, keeps only supported guidance, and a missing passage alone does not justify it if other supplied evidence covers the case. Only escalate conditions changed; the reviewer confirmed on 2026-10-16."
+    },
+    {
+      "case_id": "test-case-03",
+      "fixture_path": "data/evaluation/split-e1-v1/native/test/mpa-keyerror-8700-native-v1.json",
+      "reviewed_sha256": "82e9c8b84d9a95338e43369a61e80e153ffac9de689f45da04f899bc709477d0",
+      "final_sha256": "0c1b3561f5745e6d4e86e8fe145728fa8dcf5c958146c7b94eea0d19dffcad63",
+      "initial_verdict": "unsure",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست. جملهٔ اول دربارهٔ tab است؛ اینکه refresh هم session تازه می‌سازد مستقیم در آن نیست، ولی نزدیک است.",
+        "risk": "شاید جملهٔ caveat («reload، Session State را ریست می‌کند») alternative بهتری برای refresh باشد.",
+        "suggest": "درست است یا مطمئن نیستم."
+      },
+      "final_verdict": "correct",
+      "amendment": "The new-session requirement now also accepts the session_state.md caveat that a browser reload resets Session State (OR alternative). Reviewer: correct. Escalation amendment after review (same pattern as Sasan's dev E2ac): escalate conditions no longer demand a documented claim when its passage is missing; escalation needs a material evidence gap, names the missing documentation and a next step, keeps only supported guidance, and a missing passage alone does not justify it if other supplied evidence covers the case. Only escalate conditions changed; the reviewer confirmed on 2026-10-16.",
+      "follow_up_basis": "Assistant amended the fixture and explained it in chat; reviewer answered on 2026-10-16"
+    },
+    {
+      "case_id": "test-case-07",
+      "fixture_path": "data/evaluation/split-e1-v1/native/test/options-mutation-7534-native-v1.json",
+      "reviewed_sha256": "23192787595d26a69230130a8c1bc92ba5ef4ec8064eb50de22609ec012a15d3",
+      "final_sha256": "215074a141c132b702d1a8b76534af7105037146577a2e2a9d7562ed409060d7",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست.",
+        "risk": "وابسته به وجود release note در corpus نهایی؛ index فعلی ندارد. اگر نباشد فقط ارجاع می‌ماند.",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct",
+      "amendment": "Escalation amendment after review (same pattern as Sasan's dev E2ac): escalate conditions no longer demand a documented claim when its passage is missing; escalation needs a material evidence gap, names the missing documentation and a next step, keeps only supported guidance, and a missing passage alone does not justify it if other supplied evidence covers the case. Only escalate conditions changed; the reviewer confirmed on 2026-10-16."
+    },
+    {
+      "case_id": "test-case-05",
+      "fixture_path": "data/evaluation/split-e1-v1/native/test/run-on-save-12633-native-v1.json",
+      "reviewed_sha256": "0ac60a8431ec9780ce9dd4326940ecc09b065bd36cfbec6d4971ffe57f534b37",
+      "final_sha256": "0ac60a8431ec9780ce9dd4326940ecc09b065bd36cfbec6d4971ffe57f534b37",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست.",
+        "risk": "ندارد.",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct"
+    },
+    {
+      "case_id": "test-case-14",
+      "fixture_path": "data/evaluation/split-e1-v1/native/test/selectbox-session-13435-native-v1.json",
+      "reviewed_sha256": "ccfb8cd0a75fd99963cd14fb3fd96c0051f5e1c703054a667820af0f2939b361",
+      "final_sha256": "06f9a28e26719246aad306e3d6adfc4dccbd8158567a5eec91d15d56465d6381",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست.",
+        "risk": "وابسته به وجود release note در corpus نهایی؛ index فعلی ندارد. اگر نباشد فقط ارجاع می‌ماند.",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct",
+      "amendment": "Escalation amendment after review (same pattern as Sasan's dev E2ac): escalate conditions no longer demand a documented claim when its passage is missing; escalation needs a material evidence gap, names the missing documentation and a next step, keeps only supported guidance, and a missing passage alone does not justify it if other supplied evidence covers the case. Only escalate conditions changed; the reviewer confirmed on 2026-10-16."
+    },
+    {
+      "case_id": "test-case-15",
+      "fixture_path": "data/evaluation/split-e1-v1/native/test/selectbox-seven-14989-native-v1.json",
+      "reviewed_sha256": "206e3d6f05b11c5eb5fed638c488de9f9ac55ad9ac3d03b4b15ec22af8f16e00",
+      "final_sha256": "e74c046487f0a53d89e47d70944f1231c952aab0eab317cb4c434ade6f7df1c7",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست.",
+        "risk": "وابسته به وجود release note در corpus نهایی؛ index فعلی ندارد. اگر نباشد فقط ارجاع می‌ماند.",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct",
+      "amendment": "Escalation amendment after review (same pattern as Sasan's dev E2ac): escalate conditions no longer demand a documented claim when its passage is missing; escalation needs a material evidence gap, names the missing documentation and a next step, keeps only supported guidance, and a missing passage alone does not justify it if other supplied evidence covers the case. Only escalate conditions changed; the reviewer confirmed on 2026-10-16."
+    },
+    {
+      "case_id": "test-case-08",
+      "fixture_path": "data/evaluation/split-e1-v1/native/test/session-memory-12506-native-v1.json",
+      "reviewed_sha256": "1d250e12dbe89d421ca23e06fcb1004485d478bba683746ef39596502cf1ccc4",
+      "final_sha256": "1d250e12dbe89d421ca23e06fcb1004485d478bba683746ef39596502cf1ccc4",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست.",
+        "risk": "ندارد.",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct"
+    },
+    {
+      "case_id": "test-case-09",
+      "fixture_path": "data/evaluation/split-e1-v1/native/test/state-init-10089-native-v1.json",
+      "reviewed_sha256": "82e4f06107f48c576fc8d8059525aec9e5bed38dfe9043687e519745f5ec3c64",
+      "final_sha256": "ec52906c2ae0cea99602c35b2f086b4bdcce8157620e4708f22462e25e89a7d6",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست. اینجا از قابلیت «یکی از چند جایگزین» ابزار استفاده شده.",
+        "risk": "ندارد.",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct",
+      "amendment": "Escalation amendment after review (same pattern as Sasan's dev E2ac): escalate conditions no longer demand a documented claim when its passage is missing; escalation needs a material evidence gap, names the missing documentation and a next step, keeps only supported guidance, and a missing passage alone does not justify it if other supplied evidence covers the case. Only escalate conditions changed; the reviewer confirmed on 2026-10-16."
+    },
+    {
+      "case_id": "test-case-12",
+      "fixture_path": "data/evaluation/split-e1-v1/native/test/switch-page-state-11115-native-v1.json",
+      "reviewed_sha256": "48bd438c5e085752bfcca4b6cff8c6b737a0ff2ac5b5d10986c24990b69b7f71",
+      "final_sha256": "e60d39a8e85b1490abee0cf8d06317bfd7e39dc6635b6daa2cf1591390117f41",
+      "initial_verdict": "correct",
+      "note": null,
+      "assistant_assessment": {
+        "assess": "درست. جملهٔ دوم همان چیزی است که با رفتار گزارش‌شده تعارض دارد.",
+        "risk": "ندارد.",
+        "suggest": "درست است."
+      },
+      "final_verdict": "correct",
+      "amendment": "Escalation amendment after review (same pattern as Sasan's dev E2ac): escalate conditions no longer demand a documented claim when its passage is missing; escalation needs a material evidence gap, names the missing documentation and a next step, keeps only supported guidance, and a missing passage alone does not justify it if other supplied evidence covers the case. Only escalate conditions changed; the reviewer confirmed on 2026-10-16."
+    }
+  ],
+  "offline_check": "uv run python -m agent_app.evaluation.runner data/evaluation/split-e1-v1/native/test --conditional-routes: 15 cases, 22 turns, 7 multi-turn test paths, 260/260, zero cost (scripted fixtures only).",
+  "limitations": [
+    "Pins are pending the final build.",
+    "Five cases (01, 04, 07, 14, 15) need release notes, which the current 18-source index lacks.",
+    "Passage observation is necessary, not sufficient; support, version scope and usefulness stay human judgments after the final run.",
+    "No pytest reads these files, so the development suite never opens held-out content; the evaluation owner verifies them with the runner and the registration hashes.",
+    "11 test fixtures (12 turns) carry the escalation amendment; their final hashes differ from the reviewed hashes only in escalate conditions (and case 03 also in its reviewed passage alternative)."
+  ]
+}

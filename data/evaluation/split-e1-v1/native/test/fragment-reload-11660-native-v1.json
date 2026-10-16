@@ -1,0 +1,296 @@
+{
+  "schema_version": 1,
+  "fixture_id": "split-e1-v1-native-fragment-reload-11660-v1",
+  "registered_on": "2026-10-16",
+  "registered_before_first_run": true,
+  "purpose": "Fragment message after reload or sleep; version withheld at start; the real version (1.45.1) predates the 1.47.0 fix. Native-index gold version.",
+  "case": {
+    "case_id": "test-case-04",
+    "split": "test",
+    "family_issue_ids": [
+      11660
+    ],
+    "origin_url": "https://github.com/streamlit/streamlit/issues/11660",
+    "source_snapshot_date": "2026-10-06",
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "test_eligible": true,
+    "exposure": "Held-out test case. The evaluation curator (mhg with assistant drafting) read the Issue thread to author gold; it was not used in core development, prompt tuning, retrieval tuning or model selection. Core developers must not open this file before the final test run."
+  },
+  "evidence_source": {
+    "path": "data/evaluation/split-e1-v1/evidence-test-v1.json",
+    "sha256": "c3fa200f2e9b72b4da8e3030034bdc7206e28f5c3a24d444029c4971f20f90e2",
+    "bundles_used": [
+      "fragment-reconnect"
+    ],
+    "note": "Runner loading only: live native runs take evidence from the index, not this bundle. It is not the evidence the native gold is judged against."
+  },
+  "boundaries": {
+    "agent": "scripted AnalysisResult for offline plumbing; live ignores agent_script/gold/future turns",
+    "real_model_calls": 0,
+    "api_cost_usd": 0,
+    "storage": "evaluation runner process-local API/DummyTracker; not production durable tracker",
+    "quality_claim": false,
+    "max_reached_turns": 2,
+    "visible_to_agent": [
+      "currently selected turns[].visible"
+    ],
+    "runner_only": [
+      "gold",
+      "agent_script",
+      "maintainer",
+      "probes",
+      "evaluation.coverage",
+      "future turns"
+    ]
+  },
+  "initial_report_provenance": {
+    "kind": "developer_paraphrase_of_latest_cached_body_with_version_withheld",
+    "source_path": "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+    "issue_number": 11660,
+    "source_created_at": "2025-06-16T18:26:54Z",
+    "source_updated_at": "2025-07-09T18:15:59Z",
+    "source_issue_record_sha256": "a9d0b165670a614b7e371328a235914df4499e73af78a76f646a428d90c5ee5f",
+    "original_initial_text_verified": false,
+    "note": "Cached body can contain later edits. No later comments/outcomes are supplied as the initial user message."
+  },
+  "turns": [
+    {
+      "id": "initial",
+      "conversation_source": "developer_paraphrase_of_latest_cached_issue_body_version_withheld",
+      "visible": {
+        "message": "I use `@st.fragment(run_every=...)` for a live table. After I reload the page or my computer wakes from sleep, I keep getting \"The fragment with id ... does not exist anymore - it might have been removed during a preceding full-app rerun.\" I have not supplied my Streamlit version.",
+        "reported_facts": [
+          {
+            "name": "reported_widget_context",
+            "value": "A fragment with run_every refreshing a table"
+          },
+          {
+            "name": "reported_trigger",
+            "value": "Browser reload or computer sleep"
+          }
+        ],
+        "unknowns": [
+          "streamlit_version"
+        ],
+        "checks_performed": [],
+        "context_changed": false
+      },
+      "evidence_bundle": "fragment-reconnect",
+      "agent_script": {
+        "decision": "ask",
+        "user_draft": "Which Streamlit version is installed in the affected environment?",
+        "maintainer_summary": "Fragment missing message after reload/sleep; release unknown.",
+        "rationale": "A release note changes reconnect behaviour; applicability depends on the installed release.",
+        "next_question": "Which Streamlit version is installed in the affected environment?",
+        "missing_info": [
+          "streamlit_version"
+        ]
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "rubric_id": "e2-rubric-v1",
+        "evidence_condition": "native_index",
+        "stratum": "ambiguous",
+        "acceptable_decisions": [
+          "ask",
+          "answer"
+        ],
+        "decision_conditions": {
+          "ask": "Canonical version question: the 1.47.0 reconnect change only applies if the user is older.",
+          "answer": "Only if version-qualified: since 1.47.0 the app fully reruns on WebSocket reconnect to prevent missing fragments; must not assume the user's release. Native index: the registered passages must be in this turn's supplied bundle AND support the stated claim, its API scope and the active USER version; presence alone is not support. Version unknown: the 1.47.0 change must not be assumed for the user's release."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [
+          {
+            "name": "streamlit_version",
+            "kind": "user",
+            "description": "Affected installed release not yet supplied.",
+            "necessity": "The documented behaviour or fix depends on the installed release.",
+            "question": "Which Streamlit version is installed in the affected environment?"
+          }
+        ],
+        "unacceptable_claims": [
+          "The message means the app is broken or data is lost.",
+          "The user's release already includes the 1.47.0 change.",
+          "run_every must be removed to fix it."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality.",
+        "native_passages": {
+          "answer_required": {
+            "requirements": [
+              {
+                "requirement_id": "rn-1470-fragment-reconnect",
+                "alternatives": [
+                  {
+                    "source_id": "docs:content/develop/quick-references/release-notes/2025.md",
+                    "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                    "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md",
+                    "passage": "When a WebSocket reconnects, the app will fully rerun to prevent missing fragments"
+                  }
+                ]
+              }
+            ],
+            "requirements_sha256": "317c41911105923dd137a56d3e7b769b4eea2e8a6d0740284d91d0d11968f629"
+          },
+          "optional_claim_support": null,
+          "rule": "Observed with agent_app.evaluation.evidence_observation on this turn's captured handoff. Observation is necessary for a supported answer, not sufficient; support, version scope and usefulness stay a human judgment. A missing passage is a bundle gap, not proof that every escalation is right.",
+          "note": null
+        }
+      },
+      "expect": {
+        "revision": 1,
+        "pending_decision": "ask",
+        "after_decision": {
+          "status": "awaiting_user",
+          "awaiting_reply": true,
+          "released_draft": "agent"
+        }
+      }
+    },
+    {
+      "id": "version",
+      "conversation_source": "developer_authored_reply_using_real_cached_debug_info",
+      "visible": {
+        "message": "1.45.1",
+        "reply_to_approved_question": true
+      },
+      "evidence_bundle": "fragment-reconnect",
+      "agent_script": {
+        "decision": "answer",
+        "user_draft": "You are on 1.45.1. Streamlit 1.47.0 changed reconnect behaviour: when a WebSocket reconnects, the app fully reruns to prevent missing fragments, which matches your reload and sleep trigger. Upgrading to 1.47.0 or later should address this.",
+        "maintainer_summary": "1.45.1 predates the 1.47.0 reconnect full-rerun fix.",
+        "rationale": "The 1.47.0 release note describes the reconnect fix for missing fragments.",
+        "evidence_links": [
+          {
+            "claim": "Since 1.47.0, when a WebSocket reconnects the app fully reruns to prevent missing fragments.",
+            "chunk_id": "e1t-rn-1470-fragment-reconnect"
+          }
+        ]
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "rubric_id": "e2-rubric-v1",
+        "evidence_condition": "native_index",
+        "stratum": "answerable",
+        "acceptable_decisions": [
+          "answer",
+          "escalate"
+        ],
+        "decision_conditions": {
+          "answer": "Tie the reload/sleep trigger to the 1.47.0 reconnect change and recommend upgrading from 1.45.1; a workaround claim must stay hedged. Native index: the registered passages must be in this turn's supplied bundle AND support the stated claim, its API scope and the active USER version; presence alone is not support.",
+          "escalate": "Acceptable only when this turn's supplied evidence leaves a material documentation or applicability gap for the reported symptom at 1.45.1. Name the missing documentation or uncovered claim and a concrete next step; retain guidance actually supported. Do not assert that 1.47.0 fixes this case or recommend upgrading as a documented remedy unless the supplied evidence supports that claim and its applicability. The user already reported 1.45.1; do not ask it again. Missing registered-passage observation alone does not justify escalation; if other supplied evidence adequately covers the case, escalation is unnecessary abstention."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [],
+        "unacceptable_claims": [
+          "1.45.1 already contains the reconnect fix.",
+          "The fix is in a release other than 1.47.0.",
+          "The version is asked again."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality.",
+        "native_passages": {
+          "answer_required": {
+            "requirements": [
+              {
+                "requirement_id": "rn-1470-fragment-reconnect",
+                "alternatives": [
+                  {
+                    "source_id": "docs:content/develop/quick-references/release-notes/2025.md",
+                    "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                    "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2025.md",
+                    "passage": "When a WebSocket reconnects, the app will fully rerun to prevent missing fragments"
+                  }
+                ]
+              }
+            ],
+            "requirements_sha256": "317c41911105923dd137a56d3e7b769b4eea2e8a6d0740284d91d0d11968f629"
+          },
+          "optional_claim_support": null,
+          "rule": "Observed with agent_app.evaluation.evidence_observation on this turn's captured handoff. Observation is necessary for a supported answer, not sufficient; support, version scope and usefulness stay a human judgment. A missing passage is a bundle gap, not proof that every escalation is right.",
+          "note": null
+        }
+      },
+      "expect": {
+        "revision": 2,
+        "pending_decision": "answer",
+        "preparation": "canonical_version_reply",
+        "active_facts": {
+          "streamlit_version": "1.45.1"
+        },
+        "cited_chunks": [
+          "e1t-rn-1470-fragment-reconnect"
+        ],
+        "after_decision": {
+          "status": "answer_sent",
+          "released_draft": "agent"
+        }
+      }
+    }
+  ],
+  "evaluation": {
+    "coverage": {
+      "turn_ids": [
+        "initial",
+        "version"
+      ],
+      "routes": [
+        {
+          "from_turn": "initial",
+          "to_turn": "version",
+          "guard": {
+            "decision": "ask",
+            "question_target": "streamlit_version"
+          }
+        },
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "answer"
+          }
+        },
+        {
+          "from_turn": "version",
+          "to_turn": null,
+          "guard": {
+            "decision": "answer"
+          }
+        },
+        {
+          "from_turn": "version",
+          "to_turn": null,
+          "guard": {
+            "decision": "escalate"
+          }
+        }
+      ]
+    }
+  },
+  "native_of": {
+    "fixture_id": "split-e1-v1-fragment-reload-11660-v1",
+    "path": "data/evaluation/split-e1-v1/test/fragment-reload-11660-v1.json",
+    "sha256": "89a00249bad71538384375c5adf1ab5516da847261daeb96b50b62876bf10fad",
+    "note": "Same case, family and visible turns; only gold and routes differ. Never run in one invocation with the fixed version."
+  },
+  "native_scope": {
+    "evidence_condition": "native_index",
+    "build": "pending_final_build",
+    "index_snapshot": null,
+    "corpus_manifest_sha256": null,
+    "allowlist_sha256": null,
+    "exclusion_manifest_sha256": null,
+    "note": "Pins are filled from Hassan's final build before the final run; this gold is not valid for a run until then."
+  }
+}

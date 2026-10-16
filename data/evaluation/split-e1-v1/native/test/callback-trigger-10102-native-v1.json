@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "fixture_id": "split-e1-v1-native-callback-trigger-10102-v1",
+  "registered_on": "2026-10-16",
+  "registered_before_first_run": true,
+  "purpose": "on_change fires without interaction under fast typing and a slow script; a related CCv2 release note is a distractor. Native-index gold version.",
+  "case": {
+    "case_id": "test-case-10",
+    "split": "test",
+    "family_issue_ids": [
+      10102,
+      16732,
+      17215,
+      14710
+    ],
+    "origin_url": "https://github.com/streamlit/streamlit/issues/10102",
+    "source_snapshot_date": "2026-10-06",
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "test_eligible": true,
+    "exposure": "Held-out test case. The evaluation curator (mhg with assistant drafting) read the Issue thread to author gold; it was not used in core development, prompt tuning, retrieval tuning or model selection. Core developers must not open this file before the final test run."
+  },
+  "evidence_source": {
+    "path": "data/evaluation/split-e1-v1/evidence-test-b-v1.json",
+    "sha256": "da2c1514ce57af260fc33b4e1d81ee48cb673c5edfbafd67cd113ff42afc96b3",
+    "bundles_used": [
+      "callback-trigger"
+    ],
+    "note": "Runner loading only: live native runs take evidence from the index, not this bundle. It is not the evidence the native gold is judged against."
+  },
+  "boundaries": {
+    "agent": "scripted AnalysisResult for offline plumbing; live ignores agent_script/gold/future turns",
+    "real_model_calls": 0,
+    "api_cost_usd": 0,
+    "storage": "evaluation runner process-local API/DummyTracker; not production durable tracker",
+    "quality_claim": false,
+    "max_reached_turns": 1,
+    "visible_to_agent": [
+      "currently selected turns[].visible"
+    ],
+    "runner_only": [
+      "gold",
+      "agent_script",
+      "maintainer",
+      "probes",
+      "evaluation.coverage",
+      "future turns"
+    ]
+  },
+  "initial_report_provenance": {
+    "kind": "developer_paraphrase_of_latest_cached_body",
+    "source_path": "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+    "issue_number": 10102,
+    "source_created_at": "2025-01-03T14:58:06Z",
+    "source_updated_at": "2026-09-01T13:48:14Z",
+    "source_issue_record_sha256": "3b787adff34db55612fb918f0129b4869a64ca9bafb37bfcd7d9ece1421ea111",
+    "original_initial_text_verified": false,
+    "note": "Cached body can contain later edits. No later comments/outcomes are supplied as the initial user message."
+  },
+  "turns": [
+    {
+      "id": "initial",
+      "conversation_source": "developer_paraphrase_of_latest_cached_issue_body",
+      "visible": {
+        "unknowns": [],
+        "checks_performed": [
+          "Reproduced consistently with runner.fastReruns false and a script delay"
+        ],
+        "context_changed": false,
+        "message": "Checkbox on_change callbacks sometimes fire without user interaction, and checkboxes flip state. With `--runner.fastReruns false` and a small sleep at the top of the script, typing in a text_input and quickly checking the first checkbox triggers other checkboxes' callbacks too. Code:\n\nsleep(0.2)\n\ndef check_on_change(id):\n    print(f'on_change {id}')\n\nst.text_input('text')\nst.checkbox('check 1', key='check_1_input', on_change=check_on_change, args=(1,))\nst.checkbox('check 2', key='check_2_input', on_change=check_on_change, args=(2,))\n\nStreamlit 1.41.1, Python 3.12, macOS 15.2, Chrome/Safari.",
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.41.1"
+          },
+          {
+            "name": "reported_reproduction_code",
+            "value": "sleep(0.2)\n\ndef check_on_change(id):\n    print(f'on_change {id}')\n\nst.text_input('text')\nst.checkbox('check 1', key='check_1_input', on_change=check_on_change, args=(1,))\nst.checkbox('check 2', key='check_2_input', on_change=check_on_change, args=(2,))"
+          },
+          {
+            "name": "reported_configuration",
+            "value": "runner.fastReruns = false (also sporadic with true)"
+          }
+        ]
+      },
+      "evidence_bundle": "callback-trigger",
+      "agent_script": {
+        "decision": "escalate",
+        "user_draft": "Documented behaviour runs a callback only after a user interacts with that widget, so callbacks firing for unclicked checkboxes is not explained by the docs. The 1.64.0 fix for Custom Components v2 trigger values concerns a different widget type, so it does not establish a fix for checkboxes. I am escalating your reproduction with the 1.41.1 version and fastReruns setting.",
+        "maintainer_summary": "Checkbox callbacks fire without interaction on 1.41.1 with fastReruns false; no documented cause; CCv2 1.64.0 fix not applicable.",
+        "rationale": "Report contradicts documented order of operations; related release note is out of scope.",
+        "evidence_links": [
+          {
+            "claim": "A callback runs after a user interaction updates the widget.",
+            "chunk_id": "e1t-widget-order-of-operations"
+          }
+        ]
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "rubric_id": "e2-rubric-v1",
+        "evidence_condition": "native_index",
+        "stratum": "needs_escalation",
+        "acceptable_decisions": [
+          "escalate"
+        ],
+        "decision_conditions": {
+          "escalate": "Escalate with version, configuration and reproduction; distinguish the documented behaviour from the report and do not apply the CCv2 note to checkboxes."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [],
+        "unacceptable_claims": [
+          "The 1.64.0 Custom Components v2 fix resolves checkbox on_change triggers.",
+          "Setting runner.fastReruns is documented to fix this.",
+          "The user's code misuses callback args."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality.",
+        "native_passages": {
+          "answer_required": null,
+          "optional_claim_support": null,
+          "rule": "Observed with agent_app.evaluation.evidence_observation on this turn's captured handoff. Observation is necessary for a supported answer, not sufficient; support, version scope and usefulness stay a human judgment. A missing passage is a bundle gap, not proof that every escalation is right.",
+          "note": "Escalation only: no passage explains the report; the 1.64.0 Custom Components v2 note must not be applied to checkboxes."
+        }
+      },
+      "expect": {
+        "revision": 1,
+        "pending_decision": "escalate",
+        "after_decision": {
+          "status": "escalated",
+          "released_draft": "agent"
+        }
+      }
+    }
+  ],
+  "evaluation": {
+    "coverage": {
+      "turn_ids": [
+        "initial"
+      ],
+      "routes": [
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "escalate"
+          }
+        }
+      ]
+    }
+  },
+  "native_of": {
+    "fixture_id": "split-e1-v1-callback-trigger-10102-v1",
+    "path": "data/evaluation/split-e1-v1/test/callback-trigger-10102-v1.json",
+    "sha256": "c1ba57fc6d3e59564e28e7b0184e7cfee62d3916bda943905c82313806cb9a44",
+    "note": "Same case, family and visible turns; only gold and routes differ. Never run in one invocation with the fixed version."
+  },
+  "native_scope": {
+    "evidence_condition": "native_index",
+    "build": "pending_final_build",
+    "index_snapshot": null,
+    "corpus_manifest_sha256": null,
+    "allowlist_sha256": null,
+    "exclusion_manifest_sha256": null,
+    "note": "Pins are filled from Hassan's final build before the final run; this gold is not valid for a run until then."
+  }
+}
