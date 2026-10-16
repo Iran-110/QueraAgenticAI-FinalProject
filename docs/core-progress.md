@@ -1,3 +1,32 @@
+## 2026-10-16 — C4s: selected full-runner acceptance and review correction
+
+[Behavior/reproduction](core-selected-runner-acceptance.fa.md),
+[verification](receipts/core-selected-runner-acceptance-2026-10-16.json).
+Eight authored controls run the actual selected configured factory through full
+conditional evaluation.runner in development/evaluation phases: valid path,
+malformed→valid repair, two malformed outputs and mock timeout. Fresh native
+index/ledger, intercepted provider and memory DummyTracker only; SQLite/restart
+acceptance remains C4r, not a new claim here. Effective engine, current handoffs,
+nonsecret recipe/binding/phase and exact accounting survive serialized receipts.
+Future reply canaries remain absent through all early retry wires; reviewer
+gold/script never reaches the mock provider. Failure/unvisited states are retained.
+
+Mock timeout retains an uncertain reservation without automatically setting a
+fresh temporary ledger's separate halt flag. Actual next allocation and fresh
+configured factory reject LiveAccountingUnresolved before further key/index/send;
+the earlier contrary test assumption is retained and corrected, not implemented.
+297 focused tests, two independent8-control runs and Ruff389files pass; counts
+overlap. Runtime, existing tests/config/vocabulary and old C4r receipt are exact.
+Prior6265-test C4r verification remains historical; no fresh broad run/model score.
+Primary ledger/19pins/threeholds/halt/test/exclusion unchanged; paidAPI/messages0.
+
+PR81 plan rollback was our review error: merge-base diff+1/-0; plan-only three-way
+merge preserves C4r/C4q/C4j and adds its note. Active docs are corrected additively;
+original receipt bytes remain. Two unsupported-fix native gold conditions remain
+pending evaluation-owner clarification. Full-session UI recovery remains absent;
+a separate neutral AppTest/SQLite probe verifies safety, not UI recovery. No PR81
+activation, shared freeze, semantic quality, C5 reconciliation or final test.
+
 ## 2026-10-16 — C4r: selected core recipe and actual execution wiring
 
 [Selection and use](core-delivery-selection.fa.md),
@@ -31,8 +60,11 @@ Initial interrupted absolute-deselection error and correction remain recorded;
 parent protected-open attempts0 is not subprocess attestation or one full run.
 Full verification/source hashes are in the receipt; primary ledger/19 pins,
 halt/three holds, old campaigns/gold, split/test and exclusion stay unchanged.
-PR81's dev-only native artifacts were reviewed structurally; plan rollback and
-two unsupported-fix route conditions remain for evaluation-owner clarification.
+PR81's dev-only native artifacts were reviewed structurally; two unsupported-fix
+route conditions remain for evaluation-owner clarification. The earlier plan
+rollback diagnosis was an endpoint-comparison mistake, corrected additively in
+[C4s](core-selected-runner-acceptance.fa.md); a plan-only three-way merge retains
+current C4r/C4q/C4j and adds the native note. The C4r receipt remains immutable.
 No merge/activation of that PR, new API call, final test or team message.
 
 ## 2026-10-16 — C4q: core closeout and registered reasoner construction

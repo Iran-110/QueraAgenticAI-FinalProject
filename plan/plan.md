@@ -4,6 +4,21 @@
 
 ## وضعیت فعلی
 
+- [x] **C4s — پذیرش تنظیم منتخب از کل runner و تصحیح review؛ ساسان.**
+  [شرح و دستور](../docs/core-selected-runner-acceptance.fa.md)،
+  [verification](../docs/receipts/core-selected-runner-acceptance-2026-10-16.json).
+  factory واقعی، conditional runner، index و ledger موقت و HTTP mock:
+  چهار مسیر سالم/repair/توقف JSON/timeout در دو phase؛۸کنترل تازه پاس‌اند.
+  binding/phase/accounting/engine و عدم ورود gold/script/پاسخ آینده بررسی شد؛
+  حساب unresolved، factory/allocation بعدی را پیش از key/index/send می‌بندد.
+  runner حافظه‌ای است؛ این تست SQLite/restart یا کیفیت مدل تازه نیست.
+  ۲۹۷تست مرتبط تازه و review مستقل۸تست، Ruff۳۸۹فایل پاس؛ runtime و تست‌های
+  قبلی ثابت‌اند، بررسی گستردهٔ C4r دوباره اجرا نشده است. halt/سهhold/۱۹pin و
+  test/exclusion ثابت‌اند. ادعای rollback plan درPR81 تصحیح شد: diffازmerge-base
+  +۱/-۰ و merge سه‌طرفهٔ خودplan بی‌تعارض است؛ receiptقدیمی حفظ شد. دو ابهام
+  native gold هنوز با صاحبevalاست؛ PR81merge/فعال نشده. T4sessionrecovery،
+  humanquality،freeze وC5/testنهایی همچنان بازند. APIپرداختی/پیام صفر.
+
 - [x] **C4r — انتخاب recipe تحویل core و تطبیق با factory/backend واقعی؛ ساسان.**
   [تنظیم و اتصال](../docs/core-delivery-selection.fa.md)،
   [recipe](../config/core-delivery-grounded-v1.json)،
@@ -20,8 +35,10 @@
   سهdemoپاس‌اند؛ یک مصرف‌کنندهٔheld-outکنارگذاشته شد، نه اجرایtestنهایی.
   انتخاب نرم‌افزاری core بسته شد؛ freeze نهایی index/gold، usefulness انسانی،
   C5 و test نهایی بسته نیستند. Enum fix تأییدشده ندارد؛ halt و سه hold حفظ‌اند.
-  **PR81** فقط dev-native بررسی شد؛ rollback plan و دو قاعدهٔ fix بدون passage
-  نیازمند اصلاح صاحب eval است و هنوز merge/فعال نشده. پیام ارسال نشده است.
+  **PR81** فقط dev-native بررسی شد؛ دو قاعدهٔ fix بدون passage نیازمند اصلاح
+  صاحب eval است و هنوز merge/فعال نشده. ادعای قبلی rollback plan اشتباه بود:
+  diff از merge-base فقط یک خط اضافه می‌کند؛ [تصحیح C4s](../docs/core-selected-runner-acceptance.fa.md).
+  پیام ارسال نشده است.
 
 - [x] **C4q — بستن اتصال ثبت تنظیم به ساخت reasoner؛ ساسان.**
   [تحویل core و شرط‌های پایان](../docs/core-closeout.fa.md)،

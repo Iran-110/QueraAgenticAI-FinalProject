@@ -66,7 +66,9 @@ collection حذف شد. ۱۲۹ regression تازه داخل همین شمارش 
 
 حسن build و exclusion نهایی را pin می‌کند؛ محمدحسن native gold/routes، freeze و
 review انسانی تنظیم منتخب را جمع می‌کند. در PR81 دو شرط escalation مربوط به
-fix بدون passage و rollback ناخواستهٔ plan نیاز به اصلاح دارند؛ این PR هنوز
-فعال/merge نشده است. بهنام و محمدحسن مرز session تازهٔ review تأییدنشده را
+fix بدون passage نیاز به اصلاح دارند؛ این PR هنوز فعال/merge نشده است.
+ادعای قبلی ما دربارهٔ rollback plan اشتباه بود؛ diff از merge-base فقط یک خط
+اضافه می‌کند. [تصحیح ثبت‌شده](core-selected-runner-acceptance.fa.md) receipt
+تاریخی C4r را عوض نمی‌کند. بهنام و محمدحسن مرز session تازهٔ review تأییدنشده را
 می‌بندند. C5 به مدرک صاحب حساب mentor برای سه درخواست نامعلوم نیاز دارد.
 guide آزمایشی Enum همچنان fixture-only است؛ تشخیص/fix آن تأیید نشده است.

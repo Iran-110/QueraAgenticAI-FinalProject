@@ -10,6 +10,13 @@ Without the selector, existing defaults, metadata and valid legacy observation
 ordering remain unchanged. This selects core software settings, not final corpus,
 gold, human quality or paid authorization; the designated C5 halt still blocks live.
 
+[C4s full-runner acceptance](core-selected-runner-acceptance.fa.md) now verifies
+the same selected factory through conditional runner execution in both phases,
+including malformed-wire repair/exhaustion and unresolved transport accounting.
+It uses temporary native indexes/ledgers and mock HTTP; the runner owns a memory
+tracker. Existing persistent-backend acceptance remains separate. Runtime/config
+are unchanged, and this adds no model-quality score or final-test authorization.
+
 The [C2k boundary fix](core-boundary-validation.fa.md) reuses the existing
 recursive detacher for retrieval/analysis port results, user-turn preparation,
 grounded/claim request snapshots and source hashing. Return valid declared
