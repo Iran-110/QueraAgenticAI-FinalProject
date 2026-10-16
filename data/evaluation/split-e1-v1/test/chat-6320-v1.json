@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "fixture_id": "split-e1-v1-chat-6320-v1",
+  "registered_on": "2026-10-15",
+  "registered_before_first_run": true,
+  "purpose": "Version-dependent availability of official chat elements; authored version reply below the introducing release.",
+  "case": {
+    "case_id": "test-case-01",
+    "split": "test",
+    "family_issue_ids": [
+      6320
+    ],
+    "origin_url": "https://github.com/streamlit/streamlit/issues/6320",
+    "source_snapshot_date": "2026-10-06",
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "test_eligible": true,
+    "exposure": "Held-out test case. The evaluation curator (mhg with assistant drafting) read the Issue thread to author gold; it was not used in core development, prompt tuning, retrieval tuning or model selection. Core developers must not open this file before the final test run."
+  },
+  "evidence_source": {
+    "path": "data/evaluation/split-e1-v1/evidence-test-v1.json",
+    "sha256": "c3fa200f2e9b72b4da8e3030034bdc7206e28f5c3a24d444029c4971f20f90e2",
+    "bundles_used": [
+      "chat"
+    ],
+    "note": "Fixed seed-backed evidence, not index output. Issue/comment/outcome text excluded."
+  },
+  "boundaries": {
+    "agent": "scripted AnalysisResult for offline plumbing; live ignores agent_script/gold/future turns",
+    "real_model_calls": 0,
+    "api_cost_usd": 0,
+    "storage": "evaluation runner process-local API/DummyTracker; not production durable tracker",
+    "quality_claim": false,
+    "max_reached_turns": 2,
+    "visible_to_agent": [
+      "currently selected turns[].visible"
+    ],
+    "runner_only": [
+      "gold",
+      "agent_script",
+      "maintainer",
+      "probes",
+      "evaluation.coverage",
+      "future turns"
+    ]
+  },
+  "initial_report_provenance": {
+    "kind": "developer_paraphrase_of_latest_cached_body",
+    "source_path": "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+    "issue_number": 6320,
+    "source_created_at": "2023-03-15T16:00:26Z",
+    "source_updated_at": "2023-06-21T21:49:02Z",
+    "source_issue_record_sha256": "13757edaaaedafb44ac42a0dbf8e4f53c24b8d2c12618562ba7cab2e95cd5e3a",
+    "original_initial_text_verified": false,
+    "note": "Cached body can contain later edits. No later comments/outcomes are supplied as the initial user message."
+  },
+  "turns": [
+    {
+      "id": "initial",
+      "conversation_source": "developer_paraphrase_of_latest_cached_issue_body",
+      "visible": {
+        "message": "I want to build a chat interface for an LLM app. Right now I use the third-party st-chat component with st.text_input, but the experience is not as good as an official component. Does Streamlit have an official component for conversational interfaces?",
+        "reported_facts": [
+          {
+            "name": "current_approach",
+            "value": "Third-party st-chat component with st.text_input"
+          }
+        ],
+        "unknowns": [
+          "streamlit_version"
+        ],
+        "checks_performed": [],
+        "context_changed": false
+      },
+      "evidence_bundle": "chat",
+      "agent_script": {
+        "decision": "ask",
+        "user_draft": "Which Streamlit version is installed in the affected environment?",
+        "maintainer_summary": "Asks for official chat UI; installed release unknown.",
+        "rationale": "Chat element availability depends on the installed release.",
+        "next_question": "Which Streamlit version is installed in the affected environment?",
+        "missing_info": [
+          "streamlit_version"
+        ]
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "rubric_id": "e2-rubric-v1",
+        "evidence_condition": "controlled_fixed_evidence",
+        "stratum": "ambiguous",
+        "acceptable_decisions": [
+          "answer",
+          "ask"
+        ],
+        "decision_conditions": {
+          "answer": "Version-qualified: st.chat_message and st.chat_input were introduced in 1.24.0; must not claim they exist in the user's unknown release.",
+          "ask": "The canonical installed-version question is necessary: availability depends on the release."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [
+          {
+            "name": "streamlit_version",
+            "kind": "user",
+            "description": "Affected installed release not yet supplied.",
+            "necessity": "The documented behaviour or fix depends on the installed release.",
+            "question": "Which Streamlit version is installed in the affected environment?"
+          }
+        ],
+        "required_sources": [
+          "e1t-rn-1240-chat"
+        ],
+        "unacceptable_claims": [
+          "Chat elements are available regardless of version.",
+          "Streamlit has no official chat elements.",
+          "A source establishes the user's installed version."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality."
+      },
+      "expect": {
+        "revision": 1,
+        "pending_decision": "ask",
+        "after_decision": {
+          "status": "awaiting_user",
+          "awaiting_reply": true,
+          "released_draft": "agent"
+        }
+      }
+    },
+    {
+      "id": "version",
+      "conversation_source": "developer_authored_counterfactual_version_reply",
+      "visible": {
+        "message": "1.22.0",
+        "reply_to_approved_question": true
+      },
+      "evidence_bundle": "chat",
+      "agent_script": {
+        "decision": "answer",
+        "user_draft": "Streamlit 1.22.0 does not include official chat elements. st.chat_message and st.chat_input were introduced in 1.24.0, so upgrading to 1.24.0 or later gives you official components for a conversational interface.",
+        "maintainer_summary": "User is on 1.22.0; chat elements arrive in 1.24.0 per release notes.",
+        "rationale": "The 1.24.0 release note introduces both chat elements; the user's release predates it.",
+        "evidence_links": [
+          {
+            "claim": "st.chat_message and st.chat_input were introduced in Streamlit 1.24.0.",
+            "chunk_id": "e1t-rn-1240-chat"
+          }
+        ]
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "rubric_id": "e2-rubric-v1",
+        "evidence_condition": "controlled_fixed_evidence",
+        "stratum": "answerable",
+        "acceptable_decisions": [
+          "answer"
+        ],
+        "decision_conditions": {
+          "answer": "State that 1.22.0 predates the chat elements introduced in 1.24.0 and that upgrading provides st.chat_message/st.chat_input. Do not ask the version again."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [],
+        "required_sources": [
+          "e1t-rn-1240-chat"
+        ],
+        "unacceptable_claims": [
+          "st.chat_message is available in 1.22.0.",
+          "The user must keep using a third-party component; no official option exists.",
+          "A specific API detail not in the release note is presented as sourced."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality."
+      },
+      "expect": {
+        "revision": 2,
+        "pending_decision": "answer",
+        "preparation": "canonical_version_reply",
+        "active_facts": {
+          "streamlit_version": "1.22.0"
+        },
+        "cited_chunks": [
+          "e1t-rn-1240-chat"
+        ],
+        "after_decision": {
+          "status": "answer_sent",
+          "released_draft": "agent"
+        }
+      }
+    }
+  ],
+  "evaluation": {
+    "coverage": {
+      "turn_ids": [
+        "initial",
+        "version"
+      ],
+      "routes": [
+        {
+          "from_turn": "initial",
+          "to_turn": "version",
+          "guard": {
+            "decision": "ask",
+            "question_target": "streamlit_version"
+          }
+        },
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "answer"
+          }
+        },
+        {
+          "from_turn": "version",
+          "to_turn": null,
+          "guard": {
+            "decision": "answer"
+          }
+        }
+      ]
+    }
+  }
+}

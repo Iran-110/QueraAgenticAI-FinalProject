@@ -593,8 +593,81 @@
     "data/evaluation/dev-three-v1/split-manifest.json"
   ],
   "blockers": [
-    "Fixtures and gold per case (E2, rubric v1)",
-    "At least 10 multi-turn routes (5 in test) are planned but only the 3 dev-three cases are registered",
+    "Fixtures and gold for the remaining 8 test and 13 dev cases (E2, rubric v1)",
+    "Multi-turn: 7 test and 3 dev registered (10 total, 7 in test); more planned",
+    "New user-gap names session_entry_page and runtime_version_check need the reviewed vocabulary before live runs",
     "Freeze after fixtures; Hassan rebuilds the index from index_exclusion"
-  ]
+  ],
+  "registered_fixtures": {
+    "test": [
+      {
+        "path": "data/evaluation/split-e1-v1/test/button-callback-4595-v1.json",
+        "sha256": "65521a515ef68f5f4dc49c4890dedbdb1109e6c91b2a12e4004be8d9cc5f9210",
+        "case_id": "test-case-02",
+        "family_issue_ids": [
+          4595,
+          6404
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/callback-args-7862-v1.json",
+        "sha256": "b19b569ded8752d091b2dcc6fd3a7f6cf5d67351d5925652fb34b51673a7a38c",
+        "case_id": "test-case-06",
+        "family_issue_ids": [
+          7862,
+          7868,
+          8365
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/chat-6320-v1.json",
+        "sha256": "624d2e541841efff1706a91d6e85528ac3ba160ae001d02d686f603956ca02cc",
+        "case_id": "test-case-01",
+        "family_issue_ids": [
+          6320
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/fragment-reload-11660-v1.json",
+        "sha256": "89a00249bad71538384375c5adf1ab5516da847261daeb96b50b62876bf10fad",
+        "case_id": "test-case-04",
+        "family_issue_ids": [
+          11660
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/mpa-keyerror-8700-v1.json",
+        "sha256": "28e3a77a405ecc081d3edce95021ed1f530c16cf73efc5a883149d06f025288f",
+        "case_id": "test-case-03",
+        "family_issue_ids": [
+          8700
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/options-mutation-7534-v1.json",
+        "sha256": "d009b59009f63dd5563a88ea697dfddf1eb084a8d0c87c6a7614afe9eb4748de",
+        "case_id": "test-case-07",
+        "family_issue_ids": [
+          7534
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/run-on-save-12633-v1.json",
+        "sha256": "1cd7b38c6616434e0f9d2f8de7d31dc522ecb62f47a774cbda9fcead47a39173",
+        "case_id": "test-case-05",
+        "family_issue_ids": [
+          12633
+        ]
+      }
+    ],
+    "evidence": {
+      "path": "data/evaluation/split-e1-v1/evidence-test-v1.json",
+      "sha256": "c3fa200f2e9b72b4da8e3030034bdc7206e28f5c3a24d444029c4971f20f90e2"
+    },
+    "multi_turn_registered": {
+      "dev": 0,
+      "test": 7,
+      "note": "The three dev-three multi-turn fixtures live in data/evaluation/dev-three-v1/."
+    }
+  }
 }

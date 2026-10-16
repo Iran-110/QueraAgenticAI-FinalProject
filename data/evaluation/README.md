@@ -28,6 +28,8 @@ and reviews. The additive semantic-review helper below records
 caller judgments; rubric adoption, team approval and E2 completion remain open.
 Registered fixtures and historical receipts are preserved unchanged.
 
+`split-e1-v1/test/` holds **held-out test** fixtures and gold. Core developers must not open them or tune prompts, retrieval or model choice on them before the final test run.
+
 - `split-manifest.json` lists selected cases and whole issue families per split,
   the issue IDs already exposed during development, and open blockers. Hassan's
   index exclusion (R2) reads it. It is a draft until `status` says frozen.
