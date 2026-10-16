@@ -12,13 +12,28 @@ receipt proving that; no adapter, engine, corpus, index or default changed.
 ```bash
 uv run pytest tests/test_r4b_version_ranking.py
 uv run python scripts/build_pilot_index.py --destination runtime/r4b-coverage-18 --allowlist experiments/dev_rag_coverage_v1/allowlist.json --split-manifest experiments/dev_rag_coverage_v1/split-manifest.json
-uv run python scripts/r4b_version_ranking_receipt.py --index runtime/r4b-coverage-18 --pr50-ref 1a18749 --output experiments/r4b_version_ranking/receipt-v1.json
+uv run python scripts/r4b_version_ranking_receipt.py --index runtime/r4b-coverage-18 --pr50-ref 1a18749 --output runtime/r4b-version-ranking-replay.json
 ```
 
 The script refuses an index whose manifest differs from the registered
-18-source/36-chunk build (`24815c44…`) and verifies the index is unchanged
-after the replay. Queries are the 24 archived real requests of
-`core_repeat_repair_v1` (8 unique states), the same set the PR50 review used.
+18-source/36-chunk build (`24815c44…`). It hashes every original file, copies
+the complete tree to a temporary directory, checks copy equality, and opens
+native clients only on that disposable copy. It closes the native client and
+removes the copy on success or failure; any added, removed or changed original
+file fails the replay and reports the differing hashes. Fresh receipts retain
+the before/after original file hashes, including the manifest and native files.
+Use a fresh output path; the archived receipts are retained unchanged.
+
+The script replays the **8 unique state/query/round triples** among the 24
+archived real requests of `core_repeat_repair_v1`, the same set the PR50
+review used. Repeated requests are collapsed; these are eight unique query
+strings, not 24 independent cases.
+
+The historical `receipt-v1.json` field `index.unchanged` established logical
+verification and unchanged manifest bytes only. It did not hash all physical
+index files or establish their custody. A fresh copy-only replay establishes
+preservation of its current input file hashes; it does not restore historical
+physical bytes or retroactively establish their preservation in the old run.
 
 ## Result ([receipt](receipt-v1.json))
 
@@ -44,8 +59,12 @@ at the active USER version:
 - `since_version` stays introduction metadata (tests): never exact
   applicability, also with explicit `version=None` or `applicable_versions=[]`.
 
-Tests: `test_r4b_version_ranking.py` 16 cases; with the existing relevance,
-adapter and evidence-scope suites, 123 passed on Windows 11.
+The original 16 cases cover ranking and version scope; five additional neutral
+controls cover disposable native reads, full-file mutation detection, client
+cleanup on construction/final-verification failure, and byte packing versus
+the count cap. All 21 pass locally using synthetic native-like files and an
+injected client. The original report recorded 123 passed on Windows 11 with
+the existing relevance, adapter and evidence-scope suites.
 
 ## Coverage, relevance and exclusion review
 
@@ -70,9 +89,16 @@ USER release; case C none in corpus (answer-linked guide excluded).
   key-based identity was introduced from v1.50 to v1.55. The case review says
   this exact text must reach the model; index membership is not enough.
   Native/PR50 never fetch it (outside top 5). The R4b path fetches it as
-  candidate **23/25** (initial) and **16/25** (version turn), then the final
-  cap of 5 drops it: a ranking gap, not a retrieval or corpus gap. That is the
-  next R4 step, tuned on dev only. The 1.50 release note is outside this profile.
+  candidate **23/25** (initial) and **16/25** (version turn). The corresponding
+  final bundles contain **2 and 4 hits**, below the cap of 5, so that cap
+  cannot explain this omission. The unversioned chunk is eligible; its omission
+  is consistent with ordered whole-record packing under the 12000-byte budget.
+  The old receipt does not contain stepwise packing diagnostics. Fresh receipts
+  add a candidate projection checked against the actual final hits, reporting
+  pre-scope rank, eligible rank, attempted serialized bytes and byte-budget or
+  count-cap decisions separately. This is diagnostic replay, not additional
+  engine telemetry. Packing/order remains a dev follow-up; the 1.50 release
+  note is outside this profile.
 - Exclusion holds: 0 indexed Issues/comments, only `doc` sources, no
   custom-classes guide or release note indexed, no final-bundle violation.
   Checked against the final `split-e1-v1` manifest's `index_exclusion` as

@@ -1,8 +1,8 @@
 """R4b before/after receipt: archived real queries on the real 18/36 index; zero API.
 
-Replays every archived retrieval of the C4h2 repeat-repair run (the same 24
-requests used in the PR50 review) through the actual Chroma index and the
-real engine version scope, in up to three arms:
+Replays the eight unique state/query/round triples among the 24 archived
+C4h2 repeat-repair requests used in the PR50 review through a disposable
+copy of the actual Chroma index and the real engine version scope:
 
 - ``pr50_head``     PR50 adapter loaded from Git (optional, ``--pr50-ref``)
 - ``before_native`` main adapter, native policy, multiplier 1 (legacy top-5)
@@ -13,20 +13,24 @@ For each state it records what the backend was actually asked for
 (``n_results``), the pre-scope rank of the button/multiselect/fragment
 records, and the final evidence the model would receive. Source labels are
 used only to report outcomes; they never select evidence. No model call,
-ledger access, rebuild or index write happens here.
+ledger access or rebuild happens here. Native clients only open the temporary
+copy; all original file hashes are checked before and after, including failure.
 """
 
 import argparse
 import hashlib
 import json
+import shutil
 import subprocess
+import tempfile
 import types
+from contextlib import contextmanager
 from pathlib import Path
 
 from agent_app.contracts import CaseState, RetrievalRequest, RunLimits
 from agent_app.orchestration.engine import SupportEngine, _Progress
+from agent_app.retrieval import offline_index
 from agent_app.retrieval.adapter import ChromaRetrieverAdapter
-from agent_app.retrieval.offline_index import open_verified_index
 from agent_app.retrieval.retriever import StreamlitRetriever
 from agent_app.testing.http_pilot_runtime import offline_network
 
@@ -41,6 +45,72 @@ FAMILY_APIS = {"dev-case-a": ("multiselect", "fragment"), "dev-case-b": ("button
 
 def sha(raw: bytes) -> str:
     return hashlib.sha256(raw).hexdigest()
+
+
+def physical_files(directory):
+    """Hash every regular file, rejecting links and special files before copying."""
+    if not directory.is_dir():
+        raise SystemExit("IndexDirectoryUnavailable")
+    result = {}
+    for path in sorted(directory.rglob("*")):
+        if path.is_symlink() or not (path.is_dir() or path.is_file()):
+            raise SystemExit("IndexTreeUnsupported")
+        if path.is_file():
+            result[path.relative_to(directory).as_posix()] = sha(path.read_bytes())
+    return result
+
+
+@contextmanager
+def disposable_verified_index(index_path, manifest_sha256):
+    """Own the native client so failed logical verification also closes the copy."""
+    original = Path(index_path).resolve()
+    before = physical_files(original)
+    if before.get("pilot-manifest.json") != manifest_sha256:
+        raise SystemExit("IndexManifestMismatch: build the registered 18/36 profile first")
+    audit = {"original_physical_files_before": before}
+    with tempfile.TemporaryDirectory(prefix="r4b-native-copy-") as temporary:
+        copied = Path(temporary) / "index"
+        native = None
+        try:
+            shutil.copytree(original, copied)
+            if physical_files(copied) != before:
+                raise SystemExit("IndexCopyMismatch")
+            if not (copied / "chroma.sqlite3").is_file():
+                raise SystemExit("IndexDatabaseUnavailable")
+            raw = (copied / "pilot-manifest.json").read_bytes()
+            corpus = offline_index.PilotCorpus.from_manifest(json.loads(raw))
+            # Keep ownership before constructing the verifier: its constructor
+            # can fail after PersistentClient has already opened native storage.
+            native = offline_index._persistent_client(copied)
+            client = offline_index.VerifiedChromaClient(copied, native, corpus, raw)
+            yield client, corpus.snapshot_id, audit
+        finally:
+            try:
+                if native is not None:
+                    close = getattr(native, "close", None)
+                    if close is not None:
+                        close()
+                    else:
+                        native._system.stop()
+            finally:
+                after = physical_files(original)
+                audit["original_physical_files_after"] = after
+                changed = sorted(
+                    name
+                    for name in before.keys() | after.keys()
+                    if before.get(name) != after.get(name)
+                )
+                if changed:
+                    raise SystemExit(
+                        json.dumps(
+                            {
+                                "error_code": "OriginalIndexChangedDuringReplay",
+                                "changed_files": changed,
+                                "before_sha256": {name: before.get(name) for name in changed},
+                                "after_sha256": {name: after.get(name) for name in changed},
+                            }
+                        )
+                    )
 
 
 def load_pr50_adapter(ref: str):
@@ -128,6 +198,46 @@ def label(source_id):
     return None, None
 
 
+def selection_replay(bundle, evidence, version, top_k, multiplier, budget):
+    """Explain captured candidates with a projection checked against actual hits.
+
+    This is diagnostic replay, not additional engine telemetry or a selector.
+    A mismatch fails rather than attributing a reason to different behavior.
+    """
+    selected, rows, eligible_rank = (), [], 0
+    count_cap = budget is not None or multiplier != 1
+    for rank, hit in enumerate(bundle.hits, 1):
+        row = {"candidate_rank": rank, "chunk_id": hit.chunk_id, "eligible_rank": None}
+        if hit.applicable_versions and version not in hit.applicable_versions:
+            row["decision"] = "outside_user_version_scope"
+        else:
+            eligible_rank += 1
+            row["eligible_rank"] = eligible_rank
+            if count_cap and len(selected) >= top_k:
+                row["decision"] = "after_final_count_cap"
+            else:
+                candidate = evidence.model_copy(update={"hits": (*selected, hit)})
+                size = len(candidate.model_dump_json().encode("utf-8"))
+                row["packed_candidate_utf8_bytes"] = size
+                if budget is not None and size > budget:
+                    row["decision"] = "byte_budget_exceeded"
+                else:
+                    selected = (*selected, hit)
+                    row["decision"] = "selected"
+        rows.append(row)
+    if selected != evidence.hits:
+        raise SystemExit("SelectionDiagnosticMismatch")
+    return {
+        "method": "captured_candidate_projection_checked_against_actual_final",
+        "matches_actual_final": True,
+        "final_top_k": top_k,
+        "evidence_utf8_budget_bytes": budget,
+        "final_serialized_utf8_bytes": len(evidence.model_dump_json().encode("utf-8")),
+        "final_count_cap_reached": count_cap and len(selected) >= top_k,
+        "candidates": rows,
+    }
+
+
 def run_arm(arm, adapter_class, policy, multiplier, budget, client, snapshot, state):
     backend = RecordingBackend(client, snapshot)
     kwargs = {"snapshot_id": snapshot, "core_retriever": backend}
@@ -143,7 +253,7 @@ def run_arm(arm, adapter_class, policy, multiplier, budget, client, snapshot, st
         evidence_utf8_budget_bytes=budget,
     )
     progress = _Progress(RunLimits(), retrieval_rounds=state["round"] - 1)
-    error = None
+    error, evidence = None, None
     try:
         evidence = engine._retrieve(state["case"], state["queries"], set(), progress)
         final = evidence.hits
@@ -181,6 +291,9 @@ def run_arm(arm, adapter_class, policy, multiplier, budget, client, snapshot, st
         "version_safe": all(
             not h.applicable_versions or version in h.applicable_versions for h in final
         ),
+        "selection_replay": None
+        if evidence is None
+        else selection_replay(adapter.bundle, evidence, version, engine.top_k, multiplier, budget),
         "targets": targets,
         "stop_code": error,
     }
@@ -189,10 +302,6 @@ def run_arm(arm, adapter_class, policy, multiplier, budget, client, snapshot, st
 def probe(index_path, pr50_ref):
     archive_raw = ARCHIVE.read_bytes()
     registration = json.loads(REGISTRATION.read_bytes())["indexes"]["new_18_sources"]
-    manifest = Path(index_path) / "pilot-manifest.json"
-    manifest_before = manifest.read_bytes()
-    if sha(manifest_before) != registration["manifest_sha256"]:
-        raise SystemExit("IndexManifestMismatch: build the registered 18/36 profile first")
     arms = [
         ("before_native", ChromaRetrieverAdapter, "native", 1, None),
         ("after_r4b", ChromaRetrieverAdapter, "query_relevance_v1", 5, 12000),
@@ -203,8 +312,14 @@ def probe(index_path, pr50_ref):
         pr50 = {"ref": pr50_ref, "adapter_sha256": blob_sha}
         arms.insert(0, ("pr50_head", pr50_class, None, 1, None))
     observations = []
-    with offline_network():
-        client, snapshot = open_verified_index(index_path)
+    with (
+        offline_network(),
+        disposable_verified_index(index_path, registration["manifest_sha256"]) as (
+            client,
+            snapshot,
+            audit,
+        ),
+    ):
         if snapshot != registration["snapshot_id"]:
             raise SystemExit("IndexSnapshotMismatch")
         for state in archived_states(json.loads(archive_raw)):
@@ -223,8 +338,6 @@ def probe(index_path, pr50_ref):
                 }
             )
         client.verify()
-    if manifest.read_bytes() != manifest_before:
-        raise SystemExit("IndexChangedDuringReplay")
     return {
         "schema_version": 1,
         "receipt_id": "r4b-version-ranking-before-after-v1",
@@ -235,6 +348,9 @@ def probe(index_path, pr50_ref):
             "snapshot_id": snapshot,
             "manifest_sha256": registration["manifest_sha256"],
             "unchanged": True,
+            "native_reads_disposable_copy_only": True,
+            "copied_index_logically_verified": True,
+            **audit,
         },
         "pr50": pr50,
         "states": len(observations),

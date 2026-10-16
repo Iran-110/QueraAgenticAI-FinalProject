@@ -6,14 +6,23 @@ over-fetch, and `since_version` treated as exact applicability. Version
 labels below are synthetic metadata; no case/source-ID filter selects evidence.
 """
 
+import importlib.util
 import json
 from copy import deepcopy
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 from test_chroma_retrieval_adapter import RawReadBackend, result, row
 
-from agent_app.contracts import AnalysisResult, CaseState, Fact, RetrievalRequest
+from agent_app.contracts import (
+    AnalysisResult,
+    CaseState,
+    EvidenceBundle,
+    EvidenceHit,
+    Fact,
+    RetrievalRequest,
+)
 from agent_app.orchestration import SupportEngine
 from agent_app.retrieval.adapter import ChromaRetrieverAdapter
 from agent_app.testing.fakes import FakeReasoner
@@ -209,3 +218,193 @@ def test_since_version_is_introduction_metadata_not_exact_applicability(metadata
         "", snapshot_id=SNAPSHOT, core_retriever=backend, selection_policy="query_relevance_v1"
     ).search(RetrievalRequest(queries=("st.multiselect",), snapshot_id=SNAPSHOT))
     assert bundle.hits[0].applicable_versions == ()
+
+
+@pytest.fixture
+def receipt_control(tmp_path, monkeypatch):
+    """Synthetic native-like files and an injected client; no Chroma import/read."""
+    spec = importlib.util.spec_from_file_location(
+        "r4b_receipt_control", ROOT / "scripts/r4b_version_ranking_receipt.py"
+    )
+    script = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(script)
+    index = tmp_path / "sealed-index"
+    index.mkdir()
+    files = {
+        "pilot-manifest.json": b'{"synthetic":true}\n',
+        "chroma.sqlite3": b"synthetic sqlite bytes; never a real database",
+        "segment/header.bin": b"synthetic native header",
+    }
+    for name, content in files.items():
+        target = index / name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(content)
+    archive = tmp_path / "archive.json"
+    archive.write_text('{"batches":[]}', encoding="utf-8")
+    registration = tmp_path / "registration.json"
+    registration.write_text(
+        json.dumps(
+            {
+                "indexes": {
+                    "new_18_sources": {
+                        "snapshot_id": SNAPSHOT,
+                        "manifest_sha256": script.sha(files["pilot-manifest.json"]),
+                    }
+                }
+            }
+        ),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(script, "ROOT", tmp_path)
+    monkeypatch.setattr(script, "ARCHIVE", archive)
+    monkeypatch.setattr(script, "REGISTRATION", registration)
+    control = SimpleNamespace(
+        script=script,
+        index=index,
+        files=files,
+        paths=[],
+        clients=[],
+        require_copy=True,
+        mutate_copy=False,
+        mutate_original=False,
+        failure=None,
+    )
+
+    class Native:
+        def __init__(self, path):
+            self.path, self.closed = path, False
+
+        def close(self):
+            self.closed = True
+
+    def open_native(path):
+        path = Path(path)
+        control.paths.append(path)
+        if control.require_copy:
+            assert path != index, "Native clients must never open sealed storage"
+        assert {name: (path / name).read_bytes() for name in files} == files
+        native = Native(path)
+        control.clients.append(native)
+        if control.mutate_copy:
+            (path / "chroma.sqlite3").write_bytes(b"simulated native read-time rewrite")
+        return native
+
+    class Verified:
+        def __init__(self, path, native, corpus, raw):
+            self._client = native
+            if control.failure == "construction":
+                raise RuntimeError("SyntheticVerificationFailure")
+
+        def verify(self):
+            if control.failure == "verify":
+                raise RuntimeError("SyntheticVerificationFailure")
+            if control.mutate_original:
+                (index / "segment/header.bin").write_bytes(b"changed outside the replay")
+
+    from agent_app.retrieval import offline_index
+
+    monkeypatch.setattr(
+        offline_index,
+        "PilotCorpus",
+        SimpleNamespace(from_manifest=lambda _: SimpleNamespace(snapshot_id=SNAPSHOT)),
+    )
+    monkeypatch.setattr(offline_index, "_persistent_client", open_native)
+    monkeypatch.setattr(offline_index, "VerifiedChromaClient", Verified)
+    return control
+
+
+def test_receipt_native_reads_use_a_disposable_copy_and_preserve_every_original_file(
+    receipt_control,
+):
+    control = receipt_control
+    control.mutate_copy = True
+    receipt = control.script.probe(control.index, None)
+    expected = {name: control.script.sha(content) for name, content in control.files.items()}
+    assert receipt["index"]["original_physical_files_before"] == expected
+    assert receipt["index"]["original_physical_files_after"] == expected
+    assert receipt["index"]["native_reads_disposable_copy_only"] is True
+    assert receipt["index"]["unchanged"] is True
+    assert {name: (control.index / name).read_bytes() for name in control.files} == control.files
+    assert all(native.closed for native in control.clients)
+    assert all(not path.exists() for path in control.paths)
+
+
+def test_receipt_rejects_a_physical_change_even_when_the_manifest_is_unchanged(receipt_control):
+    control = receipt_control
+    control.require_copy = False
+    control.mutate_original = True
+    with pytest.raises(SystemExit) as error:
+        control.script.probe(control.index, None)
+    diagnostic = json.loads(str(error.value))
+    assert diagnostic["error_code"] == "OriginalIndexChangedDuringReplay"
+    assert diagnostic["changed_files"] == ["segment/header.bin"]
+    assert diagnostic["before_sha256"] == {
+        "segment/header.bin": control.script.sha(control.files["segment/header.bin"])
+    }
+    assert diagnostic["after_sha256"] == {
+        "segment/header.bin": control.script.sha(b"changed outside the replay")
+    }
+    assert (control.index / "pilot-manifest.json").read_bytes() == control.files[
+        "pilot-manifest.json"
+    ]
+    assert all(native.closed for native in control.clients)
+    assert all(not path.exists() for path in control.paths)
+
+
+@pytest.mark.parametrize("failure", ["construction", "verify"])
+def test_receipt_closes_native_client_and_removes_copy_after_verification_failure(
+    receipt_control, failure
+):
+    control = receipt_control
+    control.require_copy = False
+    control.failure = failure
+    with pytest.raises(RuntimeError, match="SyntheticVerificationFailure"):
+        control.script.probe(control.index, None)
+    assert control.clients and all(native.closed for native in control.clients)
+    assert all(not path.exists() for path in control.paths)
+    assert {name: (control.index / name).read_bytes() for name in control.files} == control.files
+
+
+def test_receipt_selection_diagnostics_separate_byte_packing_from_the_count_cap(
+    receipt_control, monkeypatch
+):
+    script = receipt_control.script
+    hits = tuple(
+        EvidenceHit(
+            chunk_id=name,
+            source_id=f"docs:{name}",
+            source_type="doc",
+            source_url="https://docs.streamlit.io/develop",
+            excerpt=text,
+        )
+        for name, text in (("first", "x" * 1000), ("too-large", "y" * 1000), ("small", "short"))
+    )
+
+    class Adapter:
+        def __init__(self, *args, **kwargs):
+            pass
+
+        def search(self, request):
+            return EvidenceBundle(snapshot_id=SNAPSHOT, hits=hits, queries_used=request.queries)
+
+    monkeypatch.setattr(script, "RecordingBackend", lambda *_: SimpleNamespace(calls=[]))
+    data = script.run_arm(
+        "synthetic",
+        Adapter,
+        None,
+        5,
+        2048,
+        None,
+        SNAPSHOT,
+        {"case": case(), "case_id": "synthetic", "round": 1, "queries": ("synthetic",)},
+    )
+    replay = data["selection_replay"]
+    assert replay["matches_actual_final"] is True
+    assert replay["final_count_cap_reached"] is False
+    assert [item["eligible_rank"] for item in replay["candidates"]] == [1, 2, 3]
+    assert [item["decision"] for item in replay["candidates"]] == [
+        "selected",
+        "byte_budget_exceeded",
+        "selected",
+    ]
+    assert [hit["chunk_id"] for hit in data["final_hits"]] == ["first", "small"]
