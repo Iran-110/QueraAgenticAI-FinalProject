@@ -209,13 +209,9 @@ def describe_candidate_configuration(
             "retrieval": {
                 "profile": retrieval_profile,
                 "adapter_top_k": adapter_top_k,
-                "adapter_candidate_limit": (
-                    25 if retrieval_profile == "candidate_relevance_v1" else adapter_top_k
-                ),
+                "adapter_candidate_limit": (25 if retrieval_profile != "native" else adapter_top_k),
                 "adapter_selection_policy": (
-                    "query_relevance_v1"
-                    if retrieval_profile == "candidate_relevance_v1"
-                    else "native"
+                    "query_relevance_v1" if retrieval_profile != "native" else "native"
                 ),
                 "caller": caller,
                 "caller_evidence_scope": caller_evidence_scope,

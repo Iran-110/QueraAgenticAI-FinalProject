@@ -3,9 +3,13 @@
 
 def validate_retrieval_profile(value, *, top_k=5):
     """Validate an exact registered profile before constructing a reasoning port."""
-    if type(value) is not str or value not in {"native", "candidate_relevance_v1"}:
+    if type(value) is not str or value not in {
+        "native",
+        "candidate_relevance_v1",
+        "candidate_version_prefilter_v1",
+    }:
         raise ValueError("RetrievalProfileInvalid")
-    if value == "candidate_relevance_v1" and (type(top_k) is not int or top_k != 5):
+    if value != "native" and (type(top_k) is not int or top_k != 5):
         raise ValueError("RetrievalProfileInvalid")
     return value
 
@@ -20,9 +24,12 @@ def retrieval_profile_options(value, *, top_k=5):
     validate_retrieval_profile(value, top_k=top_k)
     if value == "native":
         return {}
-    return {
+    options = {
         "retrieval_candidate_multiplier": 5,
         "evidence_utf8_budget_bytes": 12000,
         "repair_repeated_queries": True,
         "evidence_scope": "exact_user_version",
     }
+    if value == "candidate_version_prefilter_v1":
+        options["retrieval_version_prefilter"] = True
+    return options

@@ -1,4 +1,4 @@
-"""One explicitly selected core recipe, checked by the existing live factory.
+"""Versioned opt-in core recipes, checked by the existing live factory.
 
 Selection is local deployment configuration, never permission to spend. The
 ordinary halt/index/credential guards retain authority. This binds actual public
@@ -18,6 +18,11 @@ from agent_app.orchestration.validation import detached_contract
 from agent_app.reasoning.catalog import validate_user_gaps
 
 DELIVERY_PROFILE_ID = "grounded_candidate_v1"
+PREFILTER_DELIVERY_PROFILE_ID = "grounded_candidate_prefilter_v2"
+_RETRIEVAL_PROFILES = {
+    DELIVERY_PROFILE_ID: "candidate_relevance_v1",
+    PREFILTER_DELIVERY_PROFILE_ID: "candidate_version_prefilter_v1",
+}
 _ERROR = "CoreDeliveryConfigurationMismatch"
 _ROOT = Path(__file__).resolve().parents[3]
 _VOCABULARY = _ROOT / "config/user-gap-support-dev-v1.json"
@@ -69,16 +74,23 @@ def _digest(value):
     ).hexdigest()
 
 
-def delivery_recipe() -> dict:
+def _retrieval_profile(profile_id):
+    if type(profile_id) is not str or profile_id not in _RETRIEVAL_PROFILES:
+        raise ValueError(_ERROR)
+    return _RETRIEVAL_PROFILES[profile_id]
+
+
+def delivery_recipe(*, profile_id=DELIVERY_PROFILE_ID) -> dict:
     """Return a detached selected recipe; no file/env/credential/ledger access."""
+    retrieval_profile = _retrieval_profile(profile_id)
     material = {
         "schema_version": 1,
-        "profile_id": DELIVERY_PROFILE_ID,
+        "profile_id": profile_id,
         "metis": dict(_PUBLIC),
         "allowed_phases": ["development", "evaluation"],
-        "retrieval_profile": "candidate_relevance_v1",
+        "retrieval_profile": retrieval_profile,
         "adapter_top_k": 5,
-        "engine_policy": {"top_k": 5, **retrieval_profile_options("candidate_relevance_v1")},
+        "engine_policy": {"top_k": 5, **retrieval_profile_options(retrieval_profile)},
         "renderer_policy": "legacy_v1",
         "ask_source_background": False,
         "concise_user_draft": False,
@@ -101,9 +113,11 @@ def delivery_values(values: Mapping[str, str]) -> Mapping[str, str]:
         selected = values.get("AGENT_CORE_PROFILE")
         if selected is None:
             return values
-        if type(selected) is not str or selected != DELIVERY_PROFILE_ID:
-            raise ValueError
-        for key, expected in _ENVIRONMENT.items():
+        environment = {
+            **_ENVIRONMENT,
+            "AGENT_RETRIEVAL_PROFILE": _retrieval_profile(selected),
+        }
+        for key, expected in environment.items():
             if key in values and (type(values[key]) is not str or values[key] != expected):
                 raise ValueError
         if "AGENT_USER_GAP_CATALOG" in values:
@@ -112,7 +126,7 @@ def delivery_values(values: Mapping[str, str]) -> Mapping[str, str]:
                 raise ValueError
         # ChainMap does not traverse the underlying mapping (which may contain
         # credentials) while installing defaults.
-        return ChainMap({**_ENVIRONMENT, "AGENT_USER_GAP_CATALOG": str(_VOCABULARY)}, values)
+        return ChainMap({**environment, "AGENT_USER_GAP_CATALOG": str(_VOCABULARY)}, values)
     except Exception:
         raise ValueError(_ERROR) from None
 
@@ -135,8 +149,7 @@ def validate_delivery_configuration(
     if profile_id is None:
         return None
     try:
-        if type(profile_id) is not str or profile_id != DELIVERY_PROFILE_ID:
-            raise ValueError
+        required_retrieval_profile = _retrieval_profile(profile_id)
         actual = _public_config(config)
         phase = actual.pop("phase")
         if phase not in {"development", "evaluation"} or actual != _PUBLIC:
@@ -145,7 +158,7 @@ def validate_delivery_configuration(
             type(top_k) is not int
             or top_k != 5
             or type(retrieval_profile) is not str
-            or retrieval_profile != "candidate_relevance_v1"
+            or retrieval_profile != required_retrieval_profile
             or ask_source_background is not False
             or concise_user_draft is not False
             or type(user_gaps) is not tuple
@@ -155,19 +168,20 @@ def validate_delivery_configuration(
         definitions = [gap.model_dump(mode="json") for gap in validate_user_gaps(checked_gaps)]
         if _digest(definitions) != _VOCABULARY_SEMANTIC_SHA256:
             raise ValueError
-        return _binding(phase)
+        return _binding(phase, profile_id)
     except Exception:
         raise ValueError(_ERROR) from None
 
 
-def _binding(phase):
+def _binding(phase, profile_id=DELIVERY_PROFILE_ID):
+    retrieval_profile = _retrieval_profile(profile_id)
     material = {
         "schema_version": 1,
-        "profile_id": DELIVERY_PROFILE_ID,
-        "recipe_sha256": delivery_recipe()["recipe_sha256"],
+        "profile_id": profile_id,
+        "recipe_sha256": delivery_recipe(profile_id=profile_id)["recipe_sha256"],
         "observed_metis": {**_PUBLIC, "phase": phase},
         "adapter_top_k": 5,
-        "retrieval_profile": "candidate_relevance_v1",
+        "retrieval_profile": retrieval_profile,
         "renderer_policy": "legacy_v1",
         "ask_source_background": False,
         "concise_user_draft": False,
@@ -193,7 +207,7 @@ def validated_delivery_binding(value) -> dict:
         phase = value["observed_metis"].get("phase")
         if type(phase) is not str or phase not in {"development", "evaluation"}:
             raise ValueError
-        expected = _binding(phase)
+        expected = _binding(phase, value.get("profile_id"))
         # Canonical JSON distinguishes true/1 and other equality-coercible types.
         if _digest(value) != _digest(expected):
             raise ValueError

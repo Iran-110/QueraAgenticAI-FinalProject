@@ -31,6 +31,7 @@ from agent_app.llm.metis import configured_grounded_messages, request_id_for
 from agent_app.llm.pricing import get_price, same_verified_price
 from agent_app.orchestration.core_delivery import (
     DELIVERY_PROFILE_ID,
+    PREFILTER_DELIVERY_PROFILE_ID,
     delivery_values,
     validate_delivery_configuration,
 )
@@ -304,7 +305,10 @@ class LiveEvaluationAdapters:
         selected_gaps = None
         if core_profile is not None:
             try:
-                if type(core_profile) is not str or core_profile != DELIVERY_PROFILE_ID:
+                if type(core_profile) is not str or core_profile not in {
+                    DELIVERY_PROFILE_ID,
+                    PREFILTER_DELIVERY_PROFILE_ID,
+                }:
                     raise ValueError
                 selected_gaps = tuple(user_gaps)
                 validate_delivery_configuration(
@@ -385,6 +389,9 @@ class LiveEvaluationAdapters:
             retriever_id = (
                 "verified_chroma_lexical_hash_candidate_relevance_top5_window25_bytes12000_v1"
             )
+        elif self._retrieval_profile == "candidate_version_prefilter_v1":
+            adapter_id = "verified_chroma_metis_grounded_candidate_version_prefilter_v1"
+            retriever_id = "verified_chroma_lexical_hash_candidate_version_prefilter_top5_window25_bytes12000_v1"
         if self._ask_source_background:
             adapter_id += "_ask_source_background_v1"
         if self._config.grounded_json_object:
@@ -501,19 +508,19 @@ class LiveEvaluationAdapters:
         run = None
         transport = None
         try:
+            candidate = self._retrieval_profile in {
+                "candidate_relevance_v1",
+                "candidate_version_prefilter_v1",
+            }
             native = StreamlitRetriever("", snapshot_id=self._snapshot, client=self._client)
             retriever = _BoundedRetriever(
                 ChromaRetrieverAdapter(
                     "",
                     snapshot_id=self._snapshot,
                     core_retriever=native,
-                    selection_policy=(
-                        "query_relevance_v1"
-                        if self._retrieval_profile == "candidate_relevance_v1"
-                        else "native"
-                    ),
+                    selection_policy=("query_relevance_v1" if candidate else "native"),
                 ),
-                25 if self._retrieval_profile == "candidate_relevance_v1" else self._top_k,
+                25 if candidate else self._top_k,
             )
             underlying = self._transport_factory()
             if not isinstance(underlying, httpx.BaseTransport):

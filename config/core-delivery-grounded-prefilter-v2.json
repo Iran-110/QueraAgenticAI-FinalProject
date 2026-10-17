@@ -1,0 +1,45 @@
+{
+  "adapter_top_k": 5,
+  "allowed_phases": [
+    "development",
+    "evaluation"
+  ],
+  "ask_source_background": false,
+  "concise_user_draft": false,
+  "engine_policy": {
+    "evidence_scope": "exact_user_version",
+    "evidence_utf8_budget_bytes": 12000,
+    "repair_repeated_queries": true,
+    "retrieval_candidate_multiplier": 5,
+    "retrieval_version_prefilter": true,
+    "top_k": 5
+  },
+  "final_corpus_selected": false,
+  "live_authorization": false,
+  "metis": {
+    "continuation_id": null,
+    "grounded_compact_plan": true,
+    "grounded_complementary_sources": false,
+    "grounded_decision_contracts": true,
+    "grounded_json_object": false,
+    "grounded_resource_guidance": false,
+    "grounded_source_capacity": false,
+    "grounded_source_gap_handoff": true,
+    "grounded_source_gap_investigation": true,
+    "grounded_source_selection_reminder": true,
+    "input_token_reserve": 32768,
+    "live_enabled": true,
+    "max_output_tokens": 1024,
+    "max_request_usd": "0.02",
+    "model": "gpt-4o-mini",
+    "prompt_policy": "baseline",
+    "response_mode": "grounded_plan"
+  },
+  "profile_id": "grounded_candidate_prefilter_v2",
+  "quality_claim": false,
+  "recipe_sha256": "ae7b2d04202324bda360b478dd2dd6dff79a3482395fc5dd1e0deade1d9491c4",
+  "renderer_policy": "legacy_v1",
+  "retrieval_profile": "candidate_version_prefilter_v1",
+  "schema_version": 1,
+  "vocabulary_semantic_sha256": "56e6180928536534e99284c270e0a272568b32e3a2fb07a1ff7b441d289a7cd8"
+}
