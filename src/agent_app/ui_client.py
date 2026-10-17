@@ -1,6 +1,7 @@
 """Small HTTP client the Streamlit UI uses to talk to the FastAPI backend."""
 
 import json
+import math
 import os
 import re
 from dataclasses import dataclass, field
@@ -58,6 +59,10 @@ ERROR_TEXT = {
     "hyphens, starting with a letter or number.",
     "SavedCasesUnavailable": "This backend does not support opening saved cases.",
     "SavedCaseNotFound": "No saved case was found for that ID.",
+    "PresentationSlotUnavailable": "This case or revision is outside the authorized presentation "
+    "slots. Open an available presentation case; this request was not sent to the model.",
+    "PresentationConfigurationInvalid": "The presentation UI configuration is invalid. Check "
+    "the trusted case pool and request timeout before starting.",
 }
 
 OUTCOME_STATUSES = frozenset(
@@ -122,6 +127,7 @@ class BackendCapabilities:
     durable_reviews: bool
     retrieval_label: str = "scripted"
     reasoning_label: str = "scripted"
+    message_auth: bool = False
 
 
 @dataclass(frozen=True)
@@ -232,11 +238,13 @@ class BackendClient:
             and health.get("reasoning_label")
             in {"scripted", "grounded_fake_gateway", "metis_grounded_live"}
             and health.get("quality_claim") is False
+            and ("message_auth" not in health or health["message_auth"] == "bearer")
         ):
             capabilities = BackendCapabilities(
                 durable_reviews=True,
                 retrieval_label=health["retrieval_label"],
                 reasoning_label=health["reasoning_label"],
+                message_auth=health.get("message_auth") == "bearer",
             )
         else:
             self._capabilities = None
@@ -337,8 +345,21 @@ class BackendClient:
         return view
 
     def send_event(self, case_id: str, event: dict[str, Any]) -> dict[str, Any]:
+        headers = {}
+        if self._capabilities is not None and self._capabilities.message_auth:
+            # A cached presentation client must not send its credential after a
+            # backend restart changes the advertised message protocol.
+            capabilities = self.discover_capabilities()
+            if not capabilities.message_auth:
+                raise BackendError(
+                    ERROR_TEXT["BackendCapabilityMismatch"], code="BackendCapabilityMismatch"
+                )
+            if not self.reviewer_configured:
+                raise BackendError(ERROR_TEXT["ReviewerUnauthorized"], code="ReviewerUnauthorized")
+            headers["Authorization"] = f"Bearer {self._reviewer_token}"
         view = self._case_response(
-            self._request("POST", f"/cases/{case_id}/messages", json=event), case_id
+            self._request("POST", f"/cases/{case_id}/messages", json=event, headers=headers),
+            case_id,
         )
         receipt = view["intake"]
         if (
@@ -660,9 +681,42 @@ class BackendClient:
         raise BackendError(ERROR_TEXT[detail], code=detail, retryable=response.status_code >= 500)
 
 
+def presentation_cases() -> tuple[str, ...] | None:
+    """Trusted public UI pool; backend authorization remains authoritative."""
+    value = os.environ.get("AGENT_PRESENTATION_CASES")
+    if value is None:
+        return None
+    try:
+        cases = json.loads(value)
+        if (
+            not isinstance(cases, list)
+            or not 1 <= len(cases) <= 7
+            or any(
+                type(case_id) is not str
+                or re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,199}", case_id) is None
+                for case_id in cases
+            )
+            or len(set(cases)) != len(cases)
+        ):
+            raise ValueError
+        return tuple(cases)
+    except (TypeError, ValueError):
+        raise BackendError(
+            ERROR_TEXT["PresentationConfigurationInvalid"], code="PresentationConfigurationInvalid"
+        ) from None
+
+
 def make_client() -> BackendClient:
     base_url = os.environ.get("AGENT_API_URL", DEFAULT_BASE_URL)
+    try:
+        timeout = float(os.environ.get("AGENT_API_TIMEOUT_SECONDS", "10"))
+        if not math.isfinite(timeout) or not 1 <= timeout <= 90:
+            raise ValueError
+    except ValueError:
+        raise BackendError(
+            ERROR_TEXT["PresentationConfigurationInvalid"], code="PresentationConfigurationInvalid"
+        ) from None
     return BackendClient(
-        httpx.Client(base_url=base_url, timeout=10.0),
+        httpx.Client(base_url=base_url, timeout=timeout),
         reviewer_token=os.environ.get("AGENT_REVIEWER_TOKEN"),
     )

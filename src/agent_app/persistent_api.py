@@ -11,7 +11,7 @@ from typing import Annotated, Any, Literal
 
 from fastapi import FastAPI, Header, HTTPException
 from fastapi.exceptions import RequestValidationError
-from pydantic import model_validator
+from pydantic import TypeAdapter, model_validator
 
 from agent_app import api
 from agent_app.contracts import CaseState, Identifier, RunResult, Sha256, TrackerCaseView
@@ -94,6 +94,8 @@ def create_app(
     reasoning_label: Literal[
         "scripted", "grounded_fake_gateway", "metis_grounded_live"
     ] = "scripted",
+    run_id_resolver: Callable[[str, int], str] | None = None,
+    require_message_auth: bool = False,
 ) -> FastAPI:
     """Caller explicitly supplies storage/config; no .env or default DB is read.
 
@@ -105,6 +107,10 @@ def create_app(
     exact event replay allocates neither. It never receives review gold.
     ``evidence_scope`` is trusted application configuration. Current-installation
     advice may select ``exact_user_version``; comparison workflows retain ``all``.
+    A scoped presentation may supply a pure, fixed ``run_id_resolver`` for the
+    committed revision. It must retain old mappings so exact ingress replays can
+    recover receipts without allocating another run. Message authentication is
+    independent of user text and is opt-in; ordinary offline behavior is exact.
     """
     if (
         not isinstance(tracker, SQLiteCaseTracker)
@@ -116,6 +122,8 @@ def create_app(
         or retrieval_label not in {"scripted", "local_chroma_hash"}
         or reasoning_label not in {"scripted", "grounded_fake_gateway", "metis_grounded_live"}
         or (reasoning_label != "scripted" and adapters is None and case_adapters is None)
+        or (run_id_resolver is not None and not callable(run_id_resolver))
+        or type(require_message_auth) is not bool
     ):
         raise ValueError("Invalid persistent HTTP configuration.")
     reviewers = dict(reviewer_tokens)
@@ -130,6 +138,18 @@ def create_app(
     )
     app = FastAPI(title="Streamlit support assistant — SQLite backend")
     app.add_exception_handler(RequestValidationError, api.request_invalid)
+
+    def reviewer_for(authorization: str | None) -> tuple[str, str]:
+        supplied = (
+            authorization[7:] if authorization and authorization.startswith("Bearer ") else ""
+        )
+        reviewer = None
+        for name, credential in reviewers.items():
+            if secrets.compare_digest(supplied.encode("utf-8"), credential.encode("utf-8")):
+                reviewer = name
+        if reviewer is None:
+            raise HTTPException(status_code=401, detail="ReviewerUnauthorized")
+        return reviewer, supplied
 
     def view(case_id: str) -> dict[str, Any]:
         try:
@@ -177,7 +197,7 @@ def create_app(
 
     @app.get("/health")
     def health():
-        return {
+        result = {
             "status": "ok",
             "mode": mode,
             "tracker_backend": BACKEND,
@@ -190,15 +210,34 @@ def create_app(
             "reasoning_label": reasoning_label,
             "quality_claim": False,
         }
+        if require_message_auth:
+            result["message_auth"] = "bearer"
+        return result
 
     @app.get("/cases/{case_id}")
     def get_case(case_id: api.CaseId):
         return view(case_id)
 
     @app.post("/cases/{case_id}/messages")
-    def post_message(case_id: api.CaseId, request: api.MessageRequest):
+    def post_message(
+        case_id: api.CaseId,
+        request: api.MessageRequest,
+        authorization: Annotated[str | None, Header()] = None,
+    ):
+        if require_message_auth:
+            reviewer_for(authorization)
         if request.turn_id is None or request.expected_revision is None:
             raise HTTPException(status_code=422, detail="RequestInvalid")
+        if run_id_resolver is not None:
+            try:
+                candidate = run_id_resolver(case_id, request.expected_revision + 1)
+                run_id = TypeAdapter(Identifier).validate_python(candidate)
+                if run_id != candidate:
+                    raise ValueError
+            except Exception:
+                raise HTTPException(status_code=403, detail="PresentationSlotUnavailable") from None
+        else:
+            run_id = str(engine_module.uuid4())
 
         def factory(_case, _message, _run_id):
             ports = (
@@ -225,7 +264,7 @@ def create_app(
             request.user_turn(case_id, request.expected_revision),
             reply_to_proposal_id=request.reply_to_proposal_id,
             event_context={"scenario": request.scenario},
-            run_id=str(engine_module.uuid4()),
+            run_id=run_id,
         )
         if outcome.status == "ingress_rejected":
             _raise_tracker(TrackerRejected(outcome.error_code))
@@ -253,15 +292,7 @@ def create_app(
         request: DurableDecisionRequest,
         authorization: Annotated[str | None, Header()] = None,
     ):
-        supplied = (
-            authorization[7:] if authorization and authorization.startswith("Bearer ") else ""
-        )
-        reviewer = None
-        for name, credential in reviewers.items():
-            if secrets.compare_digest(supplied.encode("utf-8"), credential.encode("utf-8")):
-                reviewer = name
-        if reviewer is None:
-            raise HTTPException(status_code=401, detail="ReviewerUnauthorized")
+        reviewer, supplied = reviewer_for(authorization)
         try:
             receipt = tracker.review(
                 case_id,

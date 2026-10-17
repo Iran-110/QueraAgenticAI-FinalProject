@@ -57,8 +57,14 @@ def reset_view_state() -> None:
     st.session_state.pop("edited_draft", None)
 
 
+try:
+    presentation_pool = ui_client.presentation_cases()
+except ui_client.BackendError as error:
+    st.error(str(error), icon=":material/cloud_off:")
+    st.stop()
+
 if "cases" not in st.session_state:
-    first = new_case_id()
+    first = presentation_pool[0] if presentation_pool else new_case_id()
     # Only cases opened in this browser session are listed; the API holds others too.
     st.session_state.cases = [first]
     st.session_state.case_id = first
@@ -76,8 +82,8 @@ st.session_state.setdefault("active_case_id", st.session_state.case_id)
 # immutable operations; credentials remain only in the session-scoped client.
 st.session_state.setdefault("unsent_reviews", {})
 
-client = get_client()
 try:
+    client = get_client()
     capabilities = client.discover_capabilities()
 except ui_client.BackendError as error:
     st.error(str(error), icon=":material/cloud_off:")
@@ -85,15 +91,37 @@ except ui_client.BackendError as error:
     st.code("uv run uvicorn agent_app.api:app --host 127.0.0.1 --port 8000", language="bash")
     st.stop()
 
+if presentation_pool and (
+    not capabilities.message_auth
+    or capabilities.reasoning_label != "metis_grounded_live"
+    or any(case_id not in presentation_pool for case_id in st.session_state.cases)
+):
+    st.error("The presentation case pool does not match this live backend configuration.")
+    st.stop()
+
 
 def start_new_case() -> None:
-    case_id = new_case_id()
+    if presentation_pool:
+        remaining = [
+            case_id for case_id in presentation_pool if case_id not in st.session_state.cases
+        ]
+        if not remaining:
+            return
+        case_id = remaining[0]
+    else:
+        case_id = new_case_id()
     st.session_state.cases.append(case_id)
     st.session_state.case_id = case_id
     reset_view_state()
 
 
 def open_saved_case() -> None:
+    if presentation_pool and st.session_state.saved_case_id not in presentation_pool:
+        st.session_state.notice = (
+            "error",
+            "Open one of the authorized presentation case IDs.",
+        )
+        return
     try:
         view = client.get_saved_case(st.session_state.saved_case_id)
     except ui_client.BackendError as error:
@@ -392,7 +420,9 @@ def render_proposal(proposal: dict) -> None:
                 st.caption("Confirm the pending review receipt before making a new review.")
             else:
                 st.warning(
-                    "Maintainer authorization is not configured. Chat and corrections remain available."
+                    "Authorization is not configured. Live messages and reviews are unavailable."
+                    if capabilities.message_auth
+                    else "Maintainer authorization is not configured. Chat and corrections remain available."
                 )
         if st.session_state.editing:
             with st.form("edit_form", border=False):
@@ -462,6 +492,7 @@ def render_reply(view: dict) -> None:
             icon=":material/reply:",
             on_click=submit_reply,
             args=(view["case_revision"], awaiting["proposal_id"]),
+            disabled=capabilities.message_auth and not client.reviewer_configured,
         )
 
 
@@ -511,7 +542,12 @@ def render_update_form(view: dict) -> None:
                 key=f"update_context_{gen}",
                 help="Earlier unconfirmed facts and checks no longer apply.",
             )
-            submitted = st.form_submit_button("Send update", type="primary", icon=":material/send:")
+            submitted = st.form_submit_button(
+                "Send update",
+                type="primary",
+                icon=":material/send:",
+                disabled=capabilities.message_auth and not client.reviewer_configured,
+            )
     if not submitted:
         return
     if not message.strip():
@@ -552,7 +588,21 @@ with st.sidebar:
     waiting = sum(status == "awaiting_review" for status in statuses.values())
     if waiting:
         st.caption(f":material/pending_actions: {waiting} case(s) awaiting review")
-    st.button("New case", icon=":material/add:", on_click=start_new_case, width="stretch")
+    st.button(
+        "New case",
+        icon=":material/add:",
+        on_click=start_new_case,
+        width="stretch",
+        disabled=bool(presentation_pool)
+        and all(case_id in st.session_state.cases for case_id in presentation_pool),
+    )
+    if presentation_pool:
+        st.caption(
+            f"Presentation pool: {len(st.session_state.cases)} of {len(presentation_pool)} "
+            "authorized cases opened. Questions are free text; request slots are limited."
+        )
+        with st.expander("Authorized case IDs"):
+            st.code("\n".join(presentation_pool), language=None)
     if capabilities.durable_reviews:
         with st.form("open_saved_case_form", border=False):
             st.text_input("Saved case ID", key="saved_case_id", max_chars=200)
@@ -570,7 +620,9 @@ with st.sidebar:
             )
         else:
             st.caption(
-                "GroundedPlan · bounded live development probe · human approval required · "
+                "GroundedPlan · bounded live "
+                + ("presentation" if presentation_pool else "development probe")
+                + " · human approval required · "
                 "not final evaluation."
             )
         st.caption(
@@ -686,7 +738,11 @@ with case_col:
 # Full width so the fact editor's columns stay readable.
 render_update_form(view)
 
-if prompt := st.chat_input("Describe your Streamlit issue...", submit_mode="disable"):
+if prompt := st.chat_input(
+    "Describe your Streamlit issue...",
+    submit_mode="disable",
+    disabled=capabilities.message_auth and not client.reviewer_configured,
+):
     with chat_col, st.spinner("Running the agent..."):
         deliver(
             ui_client.new_event(
