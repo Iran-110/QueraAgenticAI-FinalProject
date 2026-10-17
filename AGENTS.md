@@ -54,6 +54,22 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 ## Runtime rules
 
+- C4v adds the explicitly funded `presentation_scoped_v1` path; read
+  `docs/presentation-live.fa.md` and its sanitized receipt. This is a finite
+  exception using `authorize_quarantine_scope`, not C5 reconciliation or an
+  ordinary live grant. Two independently registered phases each bind 14 exact
+  request slots / 7 turns / USD0.10, the accepted v3, actual case/revision/run,
+  source/config hashes and provider receipts. Any fresh uncertainty stops both;
+  never regenerate protocols, replace closed IDs, refill capacity or edit a
+  funded protocol to continue. Rehearsal is closed after 8 settled requests;
+  the meeting scope is independent and unconsumed at handoff. Existing 21 bound
+  source bytes must match before sending; normal live remains halted. Provider
+  secrets stay backend-only; scoped message ingress also requires the private
+  reviewer bearer. The legacy Synthetic badge is not provider provenance; do
+  not silently relabel original API semantics. Real operational acceptance and
+  partial answer relevance are separate from held-out quality and Enum fixes.
+
+
 - C4u adds explicit `grounded_candidate_prefilter_v2`; read
   `docs/final-build-core-acceptance.fa.md`. It binds R4e's native version prefilter
   through a separate recipe/profile, constructor, engine, runner and metadata.

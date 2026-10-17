@@ -4,6 +4,31 @@
 
 ## وضعیت فعلی
 
+- [x] **C4v — پذیرش زندهٔ محدود ارائه؛ ساسان، بدون تغییر کار native gold/test.**
+  [راه‌اندازی و مرز مجوز](../docs/presentation-live.fa.md)،
+  [رسید پذیرش](../docs/receipts/presentation-live-acceptance-2026-10-17.json).
+  مسیر مستقل `presentation_scoped_v1` با GroundedPlan، gpt-4o-mini، retrieval v2،
+  Chroma v3 و SQLite واقعی آماده است. ۱۲۶۷تست مرتبط/۴۰فایل امن، ۵۹کنترل تازه
+  داخل همان شمارش و Ruff/format۴۱۳فایل پاس؛ review مستقل انجام شد. پذیرش
+  واقعی۷نوبت/۸درخواست (۳نوبت مرورگر UI و۴نوبت client همان backend)، مدل
+  `gpt-4o-mini-2024-07-18` و usage ثبت‌شده؛ هزینهٔ تخمینی `$0.006429390`.
+  correction1.50→1.49، stale409بدون تغییر، approval/retry/reopen و restart واقعی
+  هر۳پرونده پاس؛ retry درخواست مدل یا Action اضافه نساخت. کیفیت **جزئی** است:
+  منابع type/disabled/icon دکمه رسیدند، ولی جواب multiselect کم‌ربط و متن‌ها
+  طولانی‌اند؛ نمرهٔ کیفیت نهایی یا حل Enum ادعا نمی‌شود. تمرین بسته شد؛ scope
+  مستقل ارائه۷نوبت/۱۴درخواست/سقف۰٫۱۰دلار هنوز مصرف نشده. halt/سهhold و تمام
+  ردیف‌های قدیمی ledger محفوظ‌اند؛ مجوز اصلی/C5 حل نشده و تمدید خودکار نداریم.
+  PDF۱۶اسلاید، sourceHTML، یادداشت گفتاری، مرجع چتv4، runbook و launcher در
+  خروجی مستقل `output/presentation-2026-10-18/` تحویل می‌شوند؛ فایل‌های خصوصی
+  مدل/کلید/صوت وارد Git نمی‌شوند. backend عادی و آفلاین قبلی محفوظ‌اند.
+
+- [ ] **M2 — آخرین آمادگی جلسه؛ ساسان و تیم.** ساعت تمرین با علیرضا باید تأیید
+  شود؛ ۴۵دقیقه قبل از جلسه health/pin/ظرفیت scope و فایل‌های پشتیبان بررسی
+  شود. اجرای test/native gold/packet نهایی با محمدحسن می‌ماند؛ حسن rebuild
+  تازه لازم ندارد و بهنام می‌تواند شاهد Windows را تکمیل کند. نتیجهٔ تحویل‌نشده
+  را در اسلاید ادعا نکنیم؛ تغییر feature پس از pin نداریم.
+
+
 - [x] **C4u-M1 — آمادگی نمایش جلسه؛ ساسان.** [برگهٔ فارسی](../docs/meeting-brief.fa.md) و [healthcheck](../docs/receipts/meeting-readiness-2026-10-17.json) آماده‌اند؛ ۱۶۷تست تازه UI/API/SQLite و۳demoآفلاین پاس، UI و backend محلی با DB جدا سالم‌اند. README و فرمان توسعه با freeze۹۵ و۵مصرف‌کنندهٔ محافظت‌شده هماهنگ شد. halt حفظ؛ nativegold/config/C5/testکیفیت نهایی همچنان بازند.
 
 - [x] **C4u-v3 — پذیرش فیزیکی rebuild frozen95؛ ساسان با حسن.** PR91 review مستقل و build محلی تازه دارد؛ ۱۲۲۸source/۱۸۲۷chunk و همهٔ pinهای v3، counts و exclusion منطبق؛ deterministic/historical و دو سرچ خنثی adapter پاس. [رسید](../docs/receipts/final-build-v3-core-acceptance-2026-10-17.json). منبع اجرایی ثابت و۹۲۲تست C4u معتبرند؛ تکرار packet/model یا کیفیت نهایی ادعا نمی‌شود. halt/سهhold/test محافظت‌شده حفظ‌اند.

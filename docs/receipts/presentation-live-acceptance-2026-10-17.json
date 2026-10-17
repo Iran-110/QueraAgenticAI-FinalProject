@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "task_id": "C4v",
+  "recorded_at_utc": "2026-10-17T21:18:03.598020+00:00",
+  "scope": "bounded live presentation acceptance, not final evaluation",
+  "source_commit": "cf5fa501fbe275363bfdfb0261570659518cf071",
+  "bound_source_files": {
+    "app_pages/assistant.py": "c7d720220a71560d8eb0b658957c865b93b3ca96664093b0c195003d8f0da2b0",
+    "src/agent_app/evaluation/live.py": "167cf45375958faee30dbfb7f165a8d47dfa9b54bdda5c432085848d3951db5e",
+    "src/agent_app/llm/budget.py": "a5e34297fbe61ce51e98827be697b61cf10791d54cf06ef0c40502b93bf30a68",
+    "src/agent_app/llm/config.py": "e8aaac020216ba918e0a428c6be29b88f02cc5cb53257c93bce4c9b4accc5d8c",
+    "src/agent_app/llm/grounded.py": "b23b55b3db4b3496341a94ed54c6a34ab8936c102b238a748c2a0f04fcea4645",
+    "src/agent_app/llm/metis.py": "aa6fe367f05595dfbfdb9224b8218e7596ccff87530bede12ed9ca06c8fe340f",
+    "src/agent_app/llm/pricing.py": "39993b673465401e0926584d3007b8967a1eb4eaad4d377b32324c60d619ec07",
+    "src/agent_app/orchestration/core_delivery.py": "2b7198036934f64390de33bdf0c6d85050fad5c7b03495568a578d014d3c0893",
+    "src/agent_app/orchestration/engine.py": "de788e0c322ce3ede5f0093ed024d4203410f8a4eadab21e732a43e1177e319c",
+    "src/agent_app/orchestration/retrieval_profile.py": "95d3ed812593926fb7ffa13e11b82a418536c4bb0dd77e1ac0d10e5e72c2f837",
+    "src/agent_app/orchestration/service.py": "f92a54976b84eaf60af243961a5dfbccee767b137a998078e740a012a58580ff",
+    "src/agent_app/persistent_api.py": "2d1e954969caaa8ac382d8be564bd07595a05a64786c5b4b46cf6db5e51a0c37",
+    "src/agent_app/presentation_runtime.py": "c24fb426773eb3505d90ee5ed9ac8f6eb17f43f1e409f56c99c48335eb66b8bd",
+    "src/agent_app/presentation_session.py": "aa1f264070c832b5ae3b2bf3521a45a2eb91ce97802453340a88a553066ad8eb",
+    "src/agent_app/reasoning/catalog.py": "3624384239857c38925092cd9ecfdaa9bd9af9d12b5fa253d44075481507dcfa",
+    "src/agent_app/reasoning/compact_plan.py": "4a6b09d4d2b30a28e6894ffeaabbdaaf641aa550353a056399e0ef00d1886614",
+    "src/agent_app/reasoning/grounding.py": "dfccfe5aa66fed9232acc01977d52275fafef981dc46aa93036d2fe820c7e79d",
+    "src/agent_app/reasoning/prompts.py": "0bc7b83422eee46f9a598415ea3921281a451da1780db080f091818e3a79329b",
+    "src/agent_app/retrieval/adapter.py": "26e5e326095b36fde3e5cde240dbc82641a1a2002613ef82cf2b19f6f24e75df",
+    "src/agent_app/retrieval/offline_index.py": "69ca4cdfc260028dccc466f4d1cf43a214f8f5c2d00f4e05b160978227ac4f64",
+    "src/agent_app/ui_client.py": "3ce71d33e2030f2f8326fb479994cbcc4dad40ee9fa7a34485f583f4fabc330a"
+  },
+  "model_requested": "gpt-4o-mini",
+  "model_served": "gpt-4o-mini-2024-07-18",
+  "software_verification": {
+    "passed": 1267,
+    "safe_test_files": 40,
+    "new_controls_included": 59,
+    "ruff_format_python_files": 413,
+    "parent_audit_blocked_reads": 0,
+    "audit_scope": "parent interpreter only; subprocess/native internals not attested",
+    "full_heldout_suite": false
+  },
+  "offline_review": {
+    "ui_api_controls": 34,
+    "runtime_controls": 15,
+    "independent_dispatch_controls": 2,
+    "session_controls": 8,
+    "launcher_controls": 11,
+    "overlap_note": "59 new controls are included in 1267; independent runs are not additive"
+  },
+  "online": {
+    "provider_requests": 8,
+    "turns": 7,
+    "browser_ui_turns": 3,
+    "additional_backend_client_turns": 4,
+    "all_settled": true,
+    "new_unknown_usage": 0,
+    "input_tokens": 37130,
+    "output_tokens": 459,
+    "estimated_cost_usd": "0.006429390",
+    "cost_basis": "observed usage × registered local price; not provider invoice reconciliation",
+    "terminal_decisions": {
+      "ask": 1,
+      "answer": 5,
+      "escalate": 1
+    },
+    "retrieve_more_calls": 1,
+    "attempts_per_turn": [
+      1,
+      1,
+      1,
+      2,
+      1,
+      1,
+      1
+    ],
+    "final_quality_score": null
+  },
+  "observed_acceptance": {
+    "free_text_to_real_provider": true,
+    "version_question_necessary": true,
+    "version_reply_committed": true,
+    "correction_150_superseded_149_active": true,
+    "old_approval_http_status": 409,
+    "old_approval_state_unchanged": true,
+    "actual_backend_process_restart": true,
+    "all_three_cases_unchanged_after_restart": true,
+    "review_retry_same_action": true,
+    "message_retry_replayed": true,
+    "case_a_total_actions": 2,
+    "retry_additional_actions": 0,
+    "restart_retry_additional_model_requests": 0
+  },
+  "semantic_review": {
+    "reviewer": "assisted source inspection, not independent human grading",
+    "status": "partial",
+    "supported_topical_passages": [
+      "button icon next to label in 1.39",
+      "button type options in 1.49",
+      "button disabled=True in 1.49"
+    ],
+    "limits": [
+      "multiselect version correction selected unrelated download_button/fragments records; no fix established",
+      "1.39 icon initial turn missed relevant source and escalated after bounded retrieval",
+      "answers reproduce long excerpts, sometimes alongside irrelevant records",
+      "exact quotations and valid JSON do not establish relevance, diagnosis or usefulness"
+    ],
+    "heldout_quality_evaluation": false,
+    "enum_fix_verified": false
+  },
+  "authorization": {
+    "phases": [
+      {
+        "authorization_id": "p261018-rehearsal-6342f4817e34",
+        "additional_cap_usd": "0.1",
+        "used_usd": "0.00642939",
+        "max_requests": 14,
+        "consumed_requests": 8,
+        "active": false,
+        "terminal_status": "closed",
+        "protocol_sha256": "78e0476946617c421f421b535953e7f8299f1a6d47696138ba1ae4ee93aa77a0"
+      },
+      {
+        "authorization_id": "p261018-meeting-91e1e9d5172f",
+        "additional_cap_usd": "0.1",
+        "used_usd": "0",
+        "max_requests": 14,
+        "consumed_requests": 0,
+        "active": true,
+        "terminal_status": null,
+        "protocol_sha256": "64634f1643033e9382748ebd8b909da635c3b38f627f5734162e64c1f964a136"
+      }
+    ],
+    "combined_fresh_cap_usd": "0.20",
+    "meeting_cap_usd": "0.10",
+    "meeting_turns_max": 7,
+    "meeting_requests_unconsumed": 14,
+    "no_automatic_refill": true
+  },
+  "preservation": {
+    "previous_ledger_rows_exact": true,
+    "old_row_count": 4087,
+    "old_uncertain_count": 3,
+    "global_halt": true,
+    "c5_reconciled": false,
+    "original_limit_usd": "4.5",
+    "ordinary_live_still_halted": true,
+    "heldout_payloads_not_opened": true,
+    "historical_artifacts_unchanged": true
+  },
+  "index": {
+    "allowlist_sha256": "dd40ac7b6e66566000c90e3409d23f487f09a26ec66b291daf58aae5fa8290e7",
+    "build": "final-corpus-v1-20ab0d69d12f2c83",
+    "exclusion_manifest_sha256": "1e9f0469ecaaff7cd65918a8d3bf07b84a3b13b70a2ee2d0a95003a7d892d3f5",
+    "index_manifest_sha256": "933682e56386abc5b133565086058030e74783ef424bccd35f0193038d1908dc",
+    "snapshot_id": "docs-pilot-20ab0d69d12f2c83fb424e0ced7a22561019b1d778c68071d4f1d4ce1f8277b6"
+  },
+  "private_receipt_hashes": [
+    {
+      "file": "call-02a7f971f7e3bfa182552be9aca0bc136f271ef299d56f8d45c28f468f9db232.json",
+      "sha256": "0be1d1133159492a44842f293e6d28c5c7f357acb980902b38415837d0b51e24"
+    },
+    {
+      "file": "call-551f96c8843b5b8734a74f4f06b57112da61791101dd5def5cc72f09003ecbc6.json",
+      "sha256": "94d2ef59861405a0cf8fc58b240c7095a00be3c64957cc3dc12a9aef3c5586ec"
+    },
+    {
+      "file": "call-7be505620f303887aa3b1c8188182d329c145cc108890ebd5b530e2d1c931c9c.json",
+      "sha256": "be8724f1398236790c0692acf5cea1b5914d1d5e02041f7cfc5494672e6dc312"
+    },
+    {
+      "file": "call-9db30de77bf56314fd709177180bbdad815d4ee96fbf73d6f1d9a94a2793fb4f.json",
+      "sha256": "ddb4ec94aa12a5d83198c98433139d59d6995b1518a1578994c0dbf06c7b60c4"
+    },
+    {
+      "file": "call-a859a9bdac61e1b84cbc6fe362be6185ca21669629276bcd76c49c8713bd4766.json",
+      "sha256": "9ea351fea4eac2976ab9e027ea7c74f802eb075c8dbe28329b74f64bb556cca3"
+    },
+    {
+      "file": "call-b06effd50e3b5691ed07dd3bd04e3bc8bcba8357798bb131e79c0f80bb49387f.json",
+      "sha256": "1ca05ffe98455d31d00c1ddad385013c741b087c3c231ec2334839c7724f9374"
+    },
+    {
+      "file": "call-c48d24f93c05f7036535ddc101de1a5e5bb7bc799fecc5eda7379d0cba6ab58e.json",
+      "sha256": "4917567795b4d703bd78c15fcfda1a89ba96af90365e39e37db0631a77e9a086"
+    },
+    {
+      "file": "call-eb89f302a3c3b972597f16dc1622190e5f1e08f8f3f9de2126720df53b822620.json",
+      "sha256": "03beb790c56b97f93518a24663a178023bbf310bb0c35bec32199d06223f1963"
+    }
+  ],
+  "private_evidence_root": "/Users/sasan/Desktop/Agentic AI/output/presentation-live-2026-10-18-v1/rehearsal",
+  "semantic_review_sha256": "e51884988101f58068cb4b8d3217db50b2cf2783dd52672b8c66de3c91e33563",
+  "preregistered_scenarios_sha256": "da40a14fcd57307f7561d50e675e95f2737024b8c95680174300345ec9300b7a",
+  "presentation": {
+    "meeting": "2026-10-18 20:00 Tehran / 18:30 Berlin",
+    "ui": "http://127.0.0.1:8502/",
+    "api": "http://127.0.0.1:8001",
+    "offline_backup": "http://127.0.0.1:8501/",
+    "legacy_synthetic_badge": "api legacy metadata; real provider attested by scoped mode and receipts",
+    "native_gold_final_evaluation_owner": "MohammadHasan; not claimed complete"
+  }
+}
