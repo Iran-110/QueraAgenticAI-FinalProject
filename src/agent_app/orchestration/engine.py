@@ -20,6 +20,7 @@ from agent_app.contracts import (
     RetrievalRequest,
     RunLimits,
     RunResult,
+    ShortText,
     TraceEvent,
 )
 from agent_app.orchestration.ports import Reasoner, ReasoningStopCode, ReasoningStopped, Retriever
@@ -330,13 +331,19 @@ class SupportEngine:
             # Records carry canonical single-version applicability; the post-retrieval
             # scope stays authoritative for anything a backend returns.
             version = _active_user_version(case)
-            filters = {
-                "applicable_versions": (
-                    ("[]", json.dumps([version], ensure_ascii=False, separators=(",", ":")))
-                    if version is not None
-                    else "[]"
-                )
-            }
+            if version is None:
+                filters = {"applicable_versions": "[]"}
+            else:
+                encoded = json.dumps([version], ensure_ascii=False, separators=(",", ":"))
+                try:
+                    TypeAdapter(ShortText).validate_python(encoded)
+                except ValidationError:
+                    # Encoding a valid USER fact can exceed the filter bound. This
+                    # optimization may be skipped; never truncate its exact version
+                    # or weaken the authoritative post-retrieval scope below.
+                    pass
+                else:
+                    filters = {"applicable_versions": ("[]", encoded)}
         try:
             request = RetrievalRequest(
                 queries=queries,
