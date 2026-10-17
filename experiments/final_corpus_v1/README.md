@@ -38,7 +38,7 @@ After the evaluation freeze, refresh the exclusion and rebuild:
 
 ```bash
 uv run python scripts/prepare_final_corpus_inputs.py --exclusion-out experiments/final_corpus_v1/exclusion-v2.json
-uv run python scripts/build_final_index.py --exclusion experiments/final_corpus_v1/exclusion-v2.json --destination runtime/final-corpus-v2 --receipt experiments/final_corpus_v1/build-receipt-v2.json
+uv run python scripts/build_final_index.py --exclusion experiments/final_corpus_v1/exclusion-v2.json --destination runtime/final-corpus-v2 --receipt experiments/final_corpus_v1/build-receipt-v3.json
 ```
 
 ## Build (offline, zero API)
