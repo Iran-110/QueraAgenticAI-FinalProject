@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "review_id": "split-e1-v1-native-dev-e2ac-human-confirmation-v1",
+  "task": "E2ac",
+  "reviewer_id": "mhg",
+  "reviewer_kind": "human",
+  "reviewed_on": "2026-10-17",
+  "independence": "assistant_informed",
+  "independence_note": "Each card showed the assistant's recommendation (both 'correct', high confidence) next to the old and new condition; the verdicts are human confirmations of the amendment, not independent blind judgments.",
+  "scope": "Human confirmation of the two E2ac native dev escalation amendments. Confirms only the two changed initial escalation clauses; no usefulness score, model output or test content.",
+  "evidence_condition": "native_index",
+  "amendment": {
+    "path": "data/evaluation/split-e1-v1/native/native-dev-gold-amendment-v2.json",
+    "sha256": "6abf620ffbec718a1d7cfe6e0ab7527fb15fb557d9b92a9d94df30782db2abfb"
+  },
+  "registration": {
+    "path": "data/evaluation/split-e1-v1/native/native-registration-dev-v2.json",
+    "sha256": "87f67c6d1098decd740e9dfb7ff0a88caf0d7d1e5fdca1f896ca8fadc810909f"
+  },
+  "fixtures": [
+    {
+      "case_id": "dev-case-m",
+      "path": "data/evaluation/split-e1-v1/native/dev-v2/fragment-rerun-9180-native-v2.json",
+      "sha256": "c00ab3fe6d5e5d1a60618c3ad8615688038035de9aafe3e4da6decf80b4a4746"
+    },
+    {
+      "case_id": "dev-case-i",
+      "path": "data/evaluation/split-e1-v1/native/dev-v2/tabs-blank-9259-native-v2.json",
+      "sha256": "12aa3893129c904e3446cbc8dcc286af2634e2ac0ba77d8df6bc4db6b7cb5087"
+    }
+  ],
+  "items": [
+    {
+      "item_id": "e2ac-dev-case-m",
+      "case_id": "dev-case-m",
+      "json_pointer": "/turns/0/gold/decision_conditions/escalate",
+      "question": "این شرط ارجاع جدید را تأیید می‌کنی؟",
+      "assistant_recommendation": "درست است (اطمینان بالا). تناقض برطرف شده و هر سه حالت مهم پوشش دارند: سند نرسیده (ارجاع با نام کمبود)، سند رسیده و کافی (ارجاع = احتیاط بی‌جا)، و نسخهٔ معلوم (دوباره نپرسد). در این case یک نکتهٔ اضافه هم هست: منوی جانبی streamlit_option_menu؛ حتی با رسیدن release note، ربط آن revert به این منو قطعی نیست. متن جدید با «کمبود کاربردپذیری» این را می‌پوشاند و جدول review ساسان هم صریحاً حالت «passage هست ولی symptom جانبی پشتیبانی نشده» را دارد. شرط answer عوض نشده و هنوز اجازهٔ جواب محتاطانه به‌خاطر منوی جانبی را می‌دهد. فقط بند ارجاع نوبت اول عوض شده (این case یک نوبت دارد).",
+      "verdict": "correct",
+      "note": null
+    },
+    {
+      "item_id": "e2ac-dev-case-i",
+      "case_id": "dev-case-i",
+      "json_pointer": "/turns/0/gold/decision_conditions/escalate",
+      "question": "این شرط ارجاع جدید را تأیید می‌کنی؟",
+      "assistant_recommendation": "درست است (اطمینان بالا). همان متن case m است و این‌جا هم درست می‌نشیند: release note صراحتاً «st.tabs causing a blank page» را می‌گوید، پس اگر به مدل برسد جواب مستند ممکن است و ارجاع احتیاط بی‌جا حساب می‌شود؛ اگر نرسد، ارجاع با نام کمبود درست است و ادعای fix ممنوع. این case دو نوبت دارد؛ فقط بند ارجاع نوبت اول عوض شده و نوبت دوم و شرط answer عین v1 مانده‌اند (diff را چک کردم: غیر از این بند، فقط fixture_id و فیلد supersedes اضافه شده).",
+      "verdict": "correct",
+      "note": null
+    }
+  ],
+  "summary": {
+    "correct": 2,
+    "wrong": 0,
+    "unsure": 0
+  },
+  "effect": "Resolves the human_confirmation_pending entries of registration v2 for dev-case-m and dev-case-i. The amendment record, registration v2 and fixture bytes are not rewritten (their pending/human_reviewed fields keep their registered values); this sidecar binds their hashes instead.",
+  "pins": "pending_final_build (unchanged)",
+  "source_export": {
+    "sha256": "d5ab8448f4b9a4f5f9d1a3e9613619a62cd54d92237ae6812f159450fa4af4b3",
+    "note": "Browser export ended with a literal backslash-n after the closing brace (card template escaping bug); it was stripped before parsing. Content otherwise used as exported."
+  },
+  "drafted_by": "assistant (claude-opus-5-5); judgments by the human reviewer"
+}
