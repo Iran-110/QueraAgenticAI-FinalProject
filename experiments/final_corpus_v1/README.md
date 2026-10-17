@@ -34,12 +34,17 @@ reservations. No Issue or comment is indexed (`indexed_issue_count = 0`). Only
 the split manifest's exclusion metadata was read; no test fixture, gold or
 review file was opened.
 
-After the evaluation freeze, refresh the exclusion and rebuild:
+After the evaluation freeze, refresh the exclusion and rebuild into new names.
+`build-receipt-v1.json` (before the verification session) and
+`build-receipt-v2.json` (current pins) and `runtime/final-corpus-v2` stay as
+they are; both scripts also refuse an existing output.
 
 ```bash
-uv run python scripts/prepare_final_corpus_inputs.py --exclusion-out experiments/final_corpus_v1/exclusion-v2.json
-uv run python scripts/build_final_index.py --exclusion experiments/final_corpus_v1/exclusion-v2.json --destination runtime/final-corpus-v2 --receipt experiments/final_corpus_v1/build-receipt-v3.json
+uv run python scripts/prepare_final_corpus_inputs.py --split-manifest data/evaluation/split-e1-v1/freeze/split-manifest-frozen-v1.json --exclusion-out experiments/final_corpus_v1/exclusion-v2.json
+uv run python scripts/build_final_index.py --exclusion experiments/final_corpus_v1/exclusion-v2.json --destination runtime/final-corpus-v3 --receipt experiments/final_corpus_v1/build-receipt-v3.json
 ```
+
+The native gold pins then come from `build-receipt-v3.json`.
 
 ## Build (offline, zero API)
 

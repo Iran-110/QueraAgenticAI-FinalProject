@@ -57,6 +57,16 @@ candidates **5 → 10**, reaching the model **2 → 4** of 16.
 | ranking variants (no markdown-name identity, no source diversity, lexical first) | 4/16 each |
 | API-name backfill of docstrings named in the query | 4/16 |
 | larger byte budget (core setting) 16k / 20k / 28k | 4 / 5 / 5 |
+| release-note segmentation at version/bullet lines (250–1500 chars) | 3–4/16; release notes 0/5 |
+| IDF-weighted lexical vectors (256/2048 dims), with or without that segmentation | 4–5/16; release notes 0/5 |
+
+**Release notes.** Five of the 16 eligible requirements are single release-note
+lines (2024–2026 pages). None enters the 25 candidates in the first round under
+any variant above, with or without the prefilter: the user describes a symptom
+("the page goes blank"), the note describes the fix in other words, and their
+native rank stays between 100 and 1,575 of about 2,200 chunks. The tested first-round lexical variants did not recover these passages.
+Model-authored refinement (second round) or semantic retrieval are possible
+next experiments; neither recovery nor answer-quality improvement was measured here.
 
 The remaining gap is first-stage lexical relevance for conceptual passages
 (mostly `widget-behavior.md` and release-note lines) under a 5-hit cap. Model-
