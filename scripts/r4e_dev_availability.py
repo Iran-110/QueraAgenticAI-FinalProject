@@ -40,12 +40,44 @@ def sha(raw: bytes) -> str:
     return hashlib.sha256(raw).hexdigest()
 
 
+def _dev_fixture_path(value):
+    """Validate lexical and resolved custody before reading a fixture payload."""
+    try:
+        if type(value) is not str or not value or "\\" in value:
+            raise ValueError
+        relative = Path(value)
+        if relative.is_absolute() or ".." in relative.parts or relative.suffix != ".json":
+            raise ValueError
+        basename = relative.name.casefold()
+        if basename in {
+            "native-test-exposure-decision-v1.json",
+            "native-test-gold-review-v1.json",
+            "test-card-review-v1.json",
+        } or basename.startswith("evidence-test"):
+            raise ValueError
+        root = ROOT.resolve()
+        allowed = tuple(
+            root / "data/evaluation/split-e1-v1/native" / name for name in ("dev", "dev-v2")
+        )
+        path = root / relative
+        if not any(path.is_relative_to(directory) for directory in allowed):
+            raise ValueError
+        resolved = path.resolve(strict=True)
+        if not any(resolved.is_relative_to(directory) for directory in allowed):
+            raise ValueError
+        if not resolved.is_file():
+            raise ValueError
+        return resolved
+    except (OSError, RuntimeError, TypeError, ValueError):
+        raise SystemExit("DevFixtureMismatch") from None
+
+
 def dev_turns():
     registration = json.loads(REGISTRATION.read_bytes())
     for entry in registration["fixtures"]:
-        path = ROOT / entry["path"]
+        path = _dev_fixture_path(entry["path"])
         raw = path.read_bytes()
-        if sha(raw) != entry["sha256"] or "/test/" in entry["path"]:
+        if sha(raw) != entry["sha256"]:
             raise SystemExit("DevFixtureMismatch")
         fixture = json.loads(raw)
         if fixture["case"]["split"] != "dev":
