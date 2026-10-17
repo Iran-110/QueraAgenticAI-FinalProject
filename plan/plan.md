@@ -4,6 +4,11 @@
 
 ## وضعیت فعلی
 
+- [x] **C4u — پذیرش build گسترده و profile نسخه‌دار؛ ساسان با حسن.**
+  [شرح](../docs/final-build-core-acceptance.fa.md)، [رسید](../docs/receipts/final-build-core-acceptance-2026-10-17.json).
+  build۱۲۲۸source/۱۸۲۷chunk محلی با pinهای pre-freeze برابر شد؛ native/profile/API/SQLite/runner واقعی با provider mock پاس. profile صریح `grounded_candidate_prefilter_v2` و binding جدا، v1/defaultها ثابت؛ regression نسخهٔ طولانی رفع شد.۹۲۲تست مرتبط/۲۹فایل،۹۶کنترل تازه داخل همان شمارش، Ruff۴۰۷فایل و review مستقل پاس. بازپخشdev۲→۴از۱۶requirementسازگار درbundleاست؛ مدل/کیفیت/testنهایی نیست. PR87 تأییددوdev؛ PR88 custody؛ PR89 freezeمنابع/exclusion۹۵؛ PR90 دستورreceiptتازه با ورودیsplitفریز شده. payloadheld-out/exposure بازنشده؛ halt/سهhold حفظ؛ APIپرداختی صفر.
+
+
 - [x] **U4a/T4c — بازکردن پروندهٔ ذخیره‌شده در session تازه؛ ساسان، کمک مستقل UI.**
   [رفتار و مرز](../docs/saved-case-reopen.fa.md)،
   [رسید مشترک](../docs/receipts/team-closeout-2026-10-17.json).
@@ -566,10 +571,10 @@ gold، default یا ledger انجام نشد؛ halt/سهhold و تمام IDها�
 
 | نفر | تحویل بعدی | شرط پایان |
 | --- | --- | --- |
-| حسن | اول build نهایی با سیاست corpus/exclusion۹۰Issue، provenance و protocol/loader سازگار طبقE2ad؛ PR و دستور آفلاین با snapshot/hashها. packing/relevance key-identity جدا و فقط رویdev | پروفایل‌های قبلی را relabel/بازنویسی نکن؛ loader بستهٔ۱۴/۱۸source خودکار corpus گسترده را نمی‌پذیرد. build/allowlist/exclusion و رسید فیزیکی لازم؛ membership و منبع رسیده به مدل جدا؛ test/native-test باز نشوند |
-| محمدحسن | native dev درE2ac و native test درPR83 ثبت‌اند؛ تأیید انسانی دو بندdev، بررسی خصوصی exposure محدود plan، family_id/coverage witness و نسخه‌های pinned تازه برای packet نهایی؛ review کیفیت تنظیم منتخب و freeze rubric/manifest | payloadtest فقط با خودت؛ core فقطcustody را بررسی کرده. eligibility بعد از exposure باید ثبت شود؛ ازtest سؤال/vocabulary نسازیم. pinbuildوcorpus ارزیابی/فیزیکی جدا؛ initial/correction و model/edited جدا؛ guide answer-linked خارج corpus |
+| حسن | build pre-freeze درPR85 و اصلاحR4e پذیرفته‌اند؛ اکنون rebuild با frozen split و exclusion۹۵، نام‌های تازه exclusion-v2 / final-corpus-v3 / build-receipt-v3 | manifest فریز را صریح به prepare بده؛ overwrite نکن. pinهای تازه و دستور آفلاین؛ passage membership و final-bundle availability را از کیفیت پاسخ جدا نگه دار؛ test/gold باز نشوند |
+| محمدحسن | دو بندdev درPR87 تأیید شده؛ PR88 custody و freezeمنابع PR89 ثبت‌اند. پس از rebuild۹۵، nativegold/packet با pinهای تازه، family/coverage و ثبت نسخه‌دار core v2 برای review نهایی | exposure/تصمیمheld-out فقطباخودت؛ core فایل‌ها را باز نکرده. v1 pendingnote را درجا عوض نکن؛ ثبت جدید برای v2. support/usefulness و initial/correction جدا؛ C5/testنهایی باز |
 | بهنام | PR82/84 و capture مستقل C4t آماده‌اند؛ رویmainجدید Open saved case را در Windows یک مرور دستی کن: pending پس از بستن UI، وضعیت فعلی بعد restart و عدم Action تکراری؛ source/command/محدودیت را در گزارش evaluation بده | مسیر بازکردن باID فقطGET و اکنون نرم‌افزاری آزموده شده؛ draft/ReviewOperation گم‌شدهٔ session قبلی بازیابی نشده. outcome قبلی هنوز در ورودی reasoning نیست؛ تصمیم scripted مساوی را کیفیت/یادگیری اعلام نکن؛ token/DB خصوصی منتشر نشود |
-| ساسان | C4r/C4s،E2ac/E2ad،C4t وU4a تحویل شده‌اند؛ پس از build سازگار، تطبیق فیزیکی/adapter و factory روی کپی. برای C5 مدرک provider لازم است؛ API تازه فقط با protocol معتبر | gate declaration تأیید فیزیکی یا معنایی نیست؛ native test و review آن محفوظ؛ تک-agent، recipe/vocabulary، halt/سهhold و IDs بسته حفظ‌اند؛ مدل/داده ازtest تنظیم نشوند |
+| ساسان | C4u تحویل: اتصالprofilev2 به actualfactory/API/SQLite/runner، بازتولید build و devavailability،۹۲۲تست وreview مستقل. بعد از receiptv3 تطبیق فیزیکی pinهای تازه؛ feature مستقل ضروری دیگری نیست | v1/config/vocabulary و داده‌های قدیمی ثابت؛ نه liveباhalt، نه reuse scopeبسته. نیاز C5 به مدرکprovider؛ freeze نهایی و کیفیت با مالکeval |
 
 **قاعدهٔ انتشار فعلی — ۱۵ اکتبر، با دستور صریح ساسان:** منتظر رفع Billing
 نمی‌مانیم. برای انتشار، review و تست محلی روی source ثبت‌شده، پذیرش اتصال و

@@ -1,5 +1,7 @@
 # آمادگی pin و freeze نهایی — E2ad
 
+**آخرین وضعیت، C4u:** loader اکنون protocol بستهٔ۱۲۲۸منبعیِ docs/API/release-note را می‌پذیرد و build محلی pre-freeze با pinهای حسن منطبق شد. [پذیرش اتصال](final-build-core-acceptance.fa.md) و [رسید](receipts/final-build-core-acceptance-2026-10-17.json). دو بندdev درPR87 تأیید انسانی شدند؛ PR88 فقطcustody و PR89 ثبت freeze منابع/exclusion۹۵ است. exposure payload باز نشده. rebuild۹۵ با خروجی تازه، native gold/pin و versioned core v2/config freeze و C5 هنوز لازم‌اند؛ یادداشت‌های E2ad بعدی تاریخی‌اند.
+
 **به‌روزرسانی ۱۷ اکتبر:** PR83 ثبت native test را اضافه کرده است؛ بررسی core
 فقط metadata/custody است و ادعای انسانی یا payloadها را تأیید نمی‌کند.
 [مرز exposure و اصلاح plan](pr83-custody.fa.md) باید پیش از freeze با مالک

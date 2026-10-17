@@ -1,0 +1,287 @@
+{
+  "receipt_id": "final-build-core-acceptance-2026-10-17-v1",
+  "task": "C4u/R4e",
+  "date": "2026-10-17",
+  "base_main": "c055def3a8d66a4bd127abaa4532074678356ff3",
+  "focused_verified_source_commit": "88007862bfdb3592d7d42b5b90ffcec2e7c06d45",
+  "metadata_integrated_head_before_docs": "eebb27c540825ba1316f6a42ce2baf256b9b4b7c",
+  "publication_policy": "User-authorized local tests/review; hosted Actions billing blocked, no CI pass claimed",
+  "pull_requests": {
+    "85": "Already merged by team; independently source-reviewed and locally rebuilt",
+    "86": "Already merged by team; reviewed and opted in only through new versioned profile after boundary regression fix",
+    "87": "Owner human assistant-informed confirmations bind exact two dev amendments; software checks passed, no fresh human/model score",
+    "88": {
+      "head": "cdf8ccf7c429818af5b893c5095e525ca89e3988",
+      "custody_only": true,
+      "decision_blob": "ad53e7602045b9d67c8a6b95aad49a8947b2f00a",
+      "decision_payload_open_parse_or_sha256": false,
+      "semantic_eligibility_reviewed": false
+    },
+    "89": {
+      "head": "3b327769323f7a164f0504268322aed9f06ec320",
+      "scope": "Safe corpus/split/rubric/vocabulary and opaque exposure custody; two safe checks repeated post-merge",
+      "exposure_blob": "22f6395d70955c6b6d98bdfccb3dfeddb5c2c2bc",
+      "exposure_payload_open_parse_or_sha256": false,
+      "excluded_issues": 95,
+      "owner_only_exposure_consuming_tests": 4,
+      "code_model_config_freeze_complete": false
+    },
+    "90": {
+      "head": "23f79e84b584eb78d1f238d63bb9c27aa4fef023",
+      "scope": "Docs only; merge resolved to freshv3 outputs plus explicit frozen split input; release-note follow-up suggestions qualified as unmeasured"
+    }
+  },
+  "local_physical_build": {
+    "protocol": "docs-api-release-final-v1",
+    "sources": 1228,
+    "chunks": 1827,
+    "source_kinds": {
+      "product_docs": 47,
+      "release_notes": 9,
+      "api_docstrings": 1172
+    },
+    "api_versions": 43,
+    "native_pins": {
+      "build": "final-corpus-v1-da1a891b5e3c1d58",
+      "index_snapshot": "docs-pilot-da1a891b5e3c1d587d0a013327c166f6ae51ab907426f86455b239d5489812c4",
+      "index_manifest_sha256": "d5158882f0c266820425f7ab82627939b9af77ae07f70b5b967c5abdb8fd0cf4",
+      "allowlist_sha256": "dd40ac7b6e66566000c90e3409d23f487f09a26ec66b291daf58aae5fa8290e7",
+      "exclusion_manifest_sha256": "f9c4ab62850febeb6981168e2a93c46bec5687a11751ec8be2b01d28a9a1a415",
+      "corpus_manifest_sha256": null,
+      "corpus_manifest_note": "Evaluation corpus JSON hash is owned by the evaluation packet; it is not the physical index manifest hash."
+    },
+    "matches_author_native_pins": true,
+    "same_database_or_hnsw_bytes_across_platforms_claim": false,
+    "deterministic_rebuild": true,
+    "historical_profiles_unchanged": {
+      "pilot_14_sources": true,
+      "dev_coverage_18_sources": true
+    },
+    "pre_freeze_excluded_issues": 90,
+    "final_frozen_exclusion": 95,
+    "post_freeze_rebuild_claim": false,
+    "neutral_search_seconds": [
+      0.356,
+      0.331
+    ],
+    "paired_local_speedup_claim": false,
+    "provider_calls": 0
+  },
+  "dev_first_round_availability": {
+    "turns": 16,
+    "distinct_dev_cases": 14,
+    "totals": {
+      "scope_after_topk": {
+        "requirements": 19,
+        "eligible": 16,
+        "in_candidates": 5,
+        "reached_model": 2
+      },
+      "version_prefilter": {
+        "requirements": 19,
+        "eligible": 16,
+        "in_candidates": 10,
+        "reached_model": 4
+      }
+    },
+    "index_original_preserved": true,
+    "model_or_reasoner_called": false,
+    "legacy_reached_model_field_means": "Exact passage observed in final evidence bundle only; not provider consumption",
+    "semantic_or_quality_score": false,
+    "gold_query_ranking_input": false,
+    "second_round_model_refinement_modelled": false
+  },
+  "new_profile": {
+    "core": "grounded_candidate_prefilter_v2",
+    "retrieval": "candidate_version_prefilter_v1",
+    "recipe_sha256": "ae7b2d04202324bda360b478dd2dd6dff79a3482395fc5dd1e0deade1d9491c4",
+    "v1_recipe_sha256": "a356238d62acfed9ae5087828548460fd7119893218e874fa228940a2fc63ed4",
+    "v1_bytes_default_metadata_descriptor_hashes_preserved": true,
+    "automatic_default_upgrade": false,
+    "actual_constructor_allocation_presend_binding_checked": true,
+    "long_valid_version_fix": "Validate encoded value using ShortText; only encoding overflow skips optimization, exact facts/post-scope remain intact",
+    "model_prompt_vocabulary_renderer_budget_changes": false,
+    "final_owner_config_pin_still_required": true,
+    "live_authorization": false
+  },
+  "actual_composed_acceptance": {
+    "tests": 2,
+    "index_protocol": "docs-api-release-final-v1",
+    "temporary_index_and_disposable_readers": true,
+    "reader_paths_asserted": true,
+    "provider": "MockTransport only",
+    "paths": [
+      "BackendClient / configured ASGI / persistent SQLite service",
+      "Full conditional runner evaluation phase"
+    ],
+    "actual_filters": [
+      "unknown []",
+      "known1.50.0 singleton or unversioned",
+      "corrected1.49.0 singleton or unversioned"
+    ],
+    "native_candidate_cap": 25,
+    "final_records_max": 5,
+    "evidence_bytes_max": 12000,
+    "stale_approval_status": 409,
+    "valid_approval_reconstructed_retry_actions": 1,
+    "restart_scope": "Backend app/SQLite reconstruction in same interpreter, no new OS/browser restart claim",
+    "v2_binding_and_ledger_receipts_verified": true,
+    "semantic_quality_claim": false,
+    "runner_tracker": "process_memory_dummy_tracker; SQLite acceptance belongs to the separate HTTP path"
+  },
+  "verification": {
+    "focused_tests": 922,
+    "selected_test_files": 29,
+    "seconds": 65.99,
+    "new_controls_included": 96,
+    "ruff_check": "passed",
+    "ruff_format_files": 407,
+    "full_suite": false,
+    "held_out_model_evaluation": false,
+    "parent_audit": {
+      "scope": "parent interpreter only, subprocesses not attested",
+      "blocked": [],
+      "allowed_loopback_connections": 0,
+      "seed_package_raw_hash_reads": 150
+    },
+    "freeze_safe_postmerge_tests": 2,
+    "freeze_owner_only_controls_not_executed": 4,
+    "counts": "Author/peer/root counts overlap and must not be added",
+    "initial_guarded_root_cwd_attempts": "Build and dev replay blocked before dotenv contents; retained logs/audits; successful separate runs used neutral CWD",
+    "initial_composed_test_assumptions": "Native query_texts expected before discovering actual query_embeddings; original failures preserved in author receipt; final assertions bind embeddings/current queries and actual disposable reader paths",
+    "reviewer_guard_preparation": "Initial temporary URI guard false positives retained and corrected; final peer evidence separated"
+  },
+  "preservation": {
+    "ledger_sha256": "141c3536fb864595d94e0d0dd4a55976418def1012402b70f313c92050222785",
+    "raw_ledger_unchanged": true,
+    "holds": 3,
+    "halt_preserved": true,
+    "ceiling_usd": 4.5,
+    "paid_calls": 0,
+    "closed_identities_reused": false,
+    "historical_physical_pins_unchanged": 19,
+    "preexisting_native_dev_json_unchanged": 22,
+    "original_draft_split_and_vocabulary_unchanged": true,
+    "opaque_git_objects": {
+      "data/evaluation/split-e1-v1/test": "b4711b3facc883fa1d87bf045d5dd119899545f5",
+      "data/evaluation/split-e1-v1/native/test": "ad71753ec31937383696d099e94ee4cedd849613",
+      "data/evaluation/split-e1-v1/native/native-test-gold-review-v1.json": "55d725d1101d9d49a41444724cafb49831dcfb30",
+      "data/evaluation/split-e1-v1/native/native-registration-test-v1.json": "37a620fdbe0221aaffbd30482b7d9f61eef619a1",
+      "data/evaluation/split-e1-v1/native/native-test-exposure-decision-v1.json": "ad53e7602045b9d67c8a6b95aad49a8947b2f00a",
+      "data/evaluation/split-e1-v1/freeze/exposure-frozen-v1.json": "22f6395d70955c6b6d98bdfccb3dfeddb5c2c2bc"
+    },
+    "frozen_artifacts_rewritten": false,
+    "old_docs_receipts_unchanged": true,
+    "historical_rag_root_restored_sha256": "6ef4aed1b846b68664a6e7f04992ebc1096363a4a43d49a62e197f0307dcc3cc",
+    "pr85_reference_report_archived_sha256": "8322a1a65923b2aab021e5e774c7b76d858758f510a4e1c6db6c176830014b12",
+    "historical_crlf_preserved": true
+  },
+  "source_sha256": {
+    "src/agent_app/orchestration/engine.py": "de788e0c322ce3ede5f0093ed024d4203410f8a4eadab21e732a43e1177e319c",
+    "src/agent_app/orchestration/retrieval_profile.py": "95d3ed812593926fb7ffa13e11b82a418536c4bb0dd77e1ac0d10e5e72c2f837",
+    "src/agent_app/orchestration/core_delivery.py": "2b7198036934f64390de33bdf0c6d85050fad5c7b03495568a578d014d3c0893",
+    "src/agent_app/orchestration/configuration_freeze.py": "235b2c3684c10aa87a091252c9d0e6729ef22779a8241b5500892597c88da30c",
+    "src/agent_app/evaluation/live.py": "167cf45375958faee30dbfb7f165a8d47dfa9b54bdda5c432085848d3951db5e",
+    "scripts/r4e_dev_availability.py": "2836e003cfe4eaa837fdc37429cada9cdcc129e81587513670a4f2ef642fd504",
+    "config/core-delivery-grounded-prefilter-v2.json": "4fe149f51be05ee24d0c018314a02aefe5ff9f8859f5203f0b5c5de94a4b5863",
+    "tests/test_final_core_profile_http.py": "91dd0d5cb27165062f3c6fd9e3ce4774d028afee7feb55c81c854702293a3404",
+    "tests/test_core_delivery_prefilter.py": "1e18e61357f1b414a4d8b720a2c0167d831e4ea896ec2d13ca7d7b560af86513",
+    "tests/test_version_prefilter_boundary.py": "c869e088082f1324a7feba912aa6325c71cc326e5d14cd7bd9595b70f88fcb10",
+    "tests/test_r4e_dev_path_guard.py": "2ca24b5ccbafae4701c73fde5e64550887d4157e36a1b61a9cc65f39033bea1b"
+  },
+  "evidence_files": {
+    "protocol": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/final-build-core-acceptance-2026-10-17-v1/protocol.json",
+      "sha256": "2b3385e050e34f493a981a4e300ac175e08aba5db2c5024df9bcd76720fab5d7"
+    },
+    "focused_selection": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/final-build-core-acceptance-2026-10-17-v1/focused-selection.json",
+      "sha256": "ab6435c68e28563948731f3242e38d86deb638589e4ab6bc11e9a78152209024"
+    },
+    "focused_log": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/final-build-core-acceptance-2026-10-17-v1/focused.log",
+      "sha256": "cc34b3a6230e0b3a7cbd8db0b3fe2de366528a24783f546fff6877367f1eb074"
+    },
+    "focused_xml": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/final-build-core-acceptance-2026-10-17-v1/focused.xml",
+      "sha256": "88d83611d09880c4fb98043d6cf4a3fbd501d7ea66ae5ea849e8ede4b0008b71"
+    },
+    "focused_parent_audit": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/final-build-core-acceptance-2026-10-17-v1/focused-audit.json",
+      "sha256": "4b6faaa28b49011fdd1142a67c0174f72c25f358af6a03d1c57ea826bbf6df5b"
+    },
+    "focused_guard": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/final-build-core-acceptance-2026-10-17-v1/guarded_run.py",
+      "sha256": "40541dde217eb512d149fe0a8c0836fba2259bc1514f495665fbde2aa267a8d0"
+    },
+    "local_build": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/final-build-core-acceptance-2026-10-17-v1/build-local-v2.json",
+      "sha256": "10089efe27bd6528b42a213a8c85fa07fafe1740975c4057b9f31a882b2cf911"
+    },
+    "local_build_audit": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/final-build-core-acceptance-2026-10-17-v1/build-neutral-audit.json",
+      "sha256": "84e4ca595202cd082d61fdf5b1950740794cac6eed67b31cc1da03d707ed88ce"
+    },
+    "dev_availability": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/final-build-core-acceptance-2026-10-17-v1/dev-availability-local-v1.json",
+      "sha256": "f2cd03d2382b26f9d3c624b54d68f5fb34455ea4f164ef6786622149257f38e4"
+    },
+    "dev_parent_audit": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/final-build-core-acceptance-2026-10-17-v1/dev-replay-neutral-audit.json",
+      "sha256": "7e3941d91416f3eefef4fa6547e5bc3f76c0cde36ef6638dcc4827ebe40a96ef"
+    },
+    "freeze_safe_log": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/final-build-core-acceptance-2026-10-17-v1/freeze-safe.log",
+      "sha256": "e8b12eb9c14e20ba6d6f42d6a6564099a0106363b2d2c716df325fb3a6e8b6f6"
+    },
+    "freeze_safe_audit": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/final-build-core-acceptance-2026-10-17-v1/freeze-safe-audit.json",
+      "sha256": "7e3941d91416f3eefef4fa6547e5bc3f76c0cde36ef6638dcc4827ebe40a96ef"
+    },
+    "wiring_author": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/core-delivery-prefilter-2026-10-17-v1/author-wiring-verification.json",
+      "sha256": "8c14087ca1e8b05988c22ab364efd133551201407587e06a54f9100f9572180a"
+    },
+    "wiring_peer": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/pr86-prefilter-review-2026-10-17-v1/wiring-v2/result.json",
+      "sha256": "ac9c6a7ec32428e172f20e1d86ebbdca8d4552e57b3f6a90188c157599109d0b"
+    },
+    "boundary_peer": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/pr86-prefilter-review-2026-10-17-v1/boundary-fix/result.json",
+      "sha256": "e7f22eb9ed9eb74f0bd125ce9b0f5b3ee1dd4541b80ff74b373c17e1d9a7c10a"
+    },
+    "path_author": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/r4e-dev-guard-2026-10-17-v1/acceptance-revised.json",
+      "sha256": "3560a608a422b862e64f9c72bb213668875c3e3cb55fa618560b6a8cab7acc6e"
+    },
+    "path_peer": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/pr86-prefilter-review-2026-10-17-v1/path-guard-revised/result.json",
+      "sha256": "39246937593caae99b49877a057261d7c208e26493f80fa07e86dae0ee9d9fa6"
+    },
+    "composed_author": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/final-core-profile-acceptance-2026-10-17-v1/author-composed-acceptance-v3.json",
+      "sha256": "1c87c6262084f66111b104c00f3294b96a2d8499ab43e7cafe5847eb2118731c"
+    },
+    "composed_peer": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/pr86-prefilter-review-2026-10-17-v1/composed-independent/result.json",
+      "sha256": "6ca358d3d423d92147c798a6e752aceb8fcb0a77ca44d861e288c2be8d1802fb"
+    },
+    "freeze_custody_peer": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/pr89-freeze-custody-review-2026-10-17-v1/independent-freeze-custody-review.json",
+      "sha256": "fd86a2194260021bf6bf8146068194ab2930f2f756f9f51404457fb7fa40f066"
+    }
+  },
+  "remaining": [
+    "Hassan fresh post-freeze95-Issue exclusion/buildreceiptv3; then actual physical binding of those new pins",
+    "Evaluation-owner nativegold/packet and versioned v2 core/config pin/review; exposure and four checks owner-only",
+    "C5 provider evidence for three uncertain requests; halt remains",
+    "Human semantic/usefulness assessment and final held-out execution; Enum fix unproven"
+  ],
+  "claims": {
+    "core_software_handoff_complete": true,
+    "shared_project_freeze_complete": false,
+    "final_model_quality_proven": false,
+    "enum_fixed": false,
+    "team_message_sent": false
+  }
+}

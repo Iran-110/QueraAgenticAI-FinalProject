@@ -1,5 +1,7 @@
 # تنظیم منتخب core و اتصال به اجرای واقعی — C4r
 
+**C4u، به‌روزرسانی۱۷اکتبر:** برای corpus گسترده، profile اختیاری `grounded_candidate_prefilter_v2` به factory/engine/runner وصل و آفلاین پذیرفته شد؛ [شرح و مرزها](final-build-core-acceptance.fa.md). فایل/hash/default نسخهٔ v1 زیر ثابت مانده است. v2 باید صریح انتخاب و در packet نهایی جدا pin/review شود؛ freeze منابع PR89 هنوز code/prompt/model/config را نهایی نمی‌کند. نتیجهٔ۲→۴، availability است، نه امتیاز پاسخ مدل.
+
 تنظیم نرم‌افزاری منتخب `grounded_candidate_v1` در
 [فایل تنظیم](../config/core-delivery-grounded-v1.json) ثبت شده است.
 این انتخاب، پایان آزمایش featureهای core برای تحویل فعلی است؛ freeze مشترک

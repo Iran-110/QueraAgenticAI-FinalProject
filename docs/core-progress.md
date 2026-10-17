@@ -1,3 +1,22 @@
+## 2026-10-17 — C4u: real final-build integration and additive version prefilter
+
+[Behavior, evidence and handoff](final-build-core-acceptance.fa.md),
+[receipt](receipts/final-build-core-acceptance-2026-10-17.json).
+Independent local1228source/1827chunk rebuild matches author native pins;
+historical14/18snapshots remain exact. Separate opt-in core/retrieval profiles
+wire prefilter through actual factory/API/service/SQLite and full runner with
+mock provider; v1 recipe/defaults/descriptors remain exact. Unknown/known/corrected
+USER filters, stale409, reconstructed approval/retry oneAction and current binding
+pass. Encoded long-version regression falls back only from optional prefilter;
+query validation and post-scope remain strict.922focused tests/29files and
+Ruff407files pass;96new controls included, peer counts overlap. Real-index dev
+replay is2to4 final-bundle matches/16eligible requirements, not model quality.
+PR87 human confirmations and PR88 opaque eligibility registration accepted;
+PR89 freezes source metadata/exclusion95; exposure payload remains unopened.
+PR90 rebuild names/notes integrated, with explicit frozen split input corrected.
+Post-freeze rebuild/native pins, versioned core/config freeze, human quality,
+C5/threeholds/halt and held-out final execution remain separate gates. No paidAPI.
+
 ## 2026-10-17 — C4t/U4a: operational PRs, input custody and saved-case reopening
 
 [Failure/context boundary](failure-context-custody.fa.md),

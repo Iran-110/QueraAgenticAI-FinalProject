@@ -9,12 +9,19 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 - During core/RAG development, do not open `data/evaluation/split-e1-v1/test/`,
   its `evidence-test*.json`, `test-card-review-v1.json`, the native test gold
   (`data/evaluation/split-e1-v1/native/test/`, `native-test-gold-review-v1.json` and
-  `native-test-exposure-decision-v1.json`),
+  `native-test-exposure-decision-v1.json`), the frozen exposure payload
+  (`data/evaluation/split-e1-v1/freeze/exposure-frozen-v1.json`),
   or test-bearing review HTML. Safe manifest counts/exclusion metadata are separate from held-out
   questions/gold. The evaluation owner retains final artifact review/execution.
   `tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture`
   loads all held-out fixtures: deselect it in development verification and report
   that exclusion explicitly; do not claim a complete held-out run.
+  Four `tests/test_split_freeze.py` controls consume the opaque exposure payload;
+  during core development deselect `test_record_pins_every_artifact_at_its_current_bytes`,
+  `test_exposure_partitions_known_issues_and_avoids_test_families`,
+  `test_corpus_excludes_every_blocked_issue_and_matches_the_final_allowlist` and
+  `test_every_witness_is_human_and_bound_to_the_frozen_rubric`. The evaluation
+  owner performs those checks. Rubric and frozen split checks may run separately.
 - Keep shared models in `src/agent_app/contracts.py` and ports in `orchestration/ports.py`; coordinate interface changes before adapting another owner's module.
 - Use feature branches and meaningful commits after coherent, verified chunks. Do not fabricate dates, activity, test results, or completed functionality.
 - Keep the owned task in `plan/plan.md` current in the same PR; use its task ID in handoffs and attach completion evidence before checking it off. Sync the feature branch from current `origin/main` without discarding local work. Shared plan changes are visible to teammates after Git sync, not instantly.
@@ -46,6 +53,20 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
   The closed27-send comparison observes5/6 versus6/6 routes,10 versus12 fresh proposals and partial button1.39 guidance0/2 versus2/2 repetitions of one exposed case. A still asks necessary callback questions; C still has no Enum diagnosis/fix. Human usefulness is null and no defaults are promoted.3912 native/cost checks preserve all452 old reservations/14tables/holds/halt; six scopes closed and21 unused slots permanently claimed. Do not resume the closed method or call this final RAG/test quality.
 
 ## Runtime rules
+
+- C4u adds explicit `grounded_candidate_prefilter_v2`; read
+  `docs/final-build-core-acceptance.fa.md`. It binds R4e's native version prefilter
+  through a separate recipe/profile, constructor, engine, runner and metadata.
+  V1/default bytes and fingerprints stay exact; the new profile is not selected
+  implicitly and does not authorize live calls. An oversized encoded USER version
+  skips only this optional prefilter; exact facts and authoritative post-scope
+  remain unchanged. The real pre-freeze1228/1827 build and mock-provider API/SQLite
+  and conditional runner passed offline. The 2-to-4 passage result is first-round
+  final-bundle availability among16eligible requirements, not actual model
+  consumption or quality. PR89 freezes corpus/exclusion metadata to95Issues;
+  Hassan must rebuild into fresh v3 outputs and evaluation must pin native gold
+  and the versioned core configuration separately. Never rewrite old receipts or
+  open frozen exposure to perform core verification. Halt/threeholds remain.
 
 - C4r selects the explicit `grounded_candidate_v1` core delivery recipe; read
   `docs/core-delivery-selection.fa.md`. The existing live factory now accepts
@@ -287,7 +308,7 @@ From the repository root:
 
 ```bash
 uv sync --locked --group dev
-uv run pytest --deselect=tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture
+uv run pytest --deselect=tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture --deselect=tests/test_split_freeze.py::test_record_pins_every_artifact_at_its_current_bytes --deselect=tests/test_split_freeze.py::test_exposure_partitions_known_issues_and_avoids_test_families --deselect=tests/test_split_freeze.py::test_corpus_excludes_every_blocked_issue_and_matches_the_final_allowlist --deselect=tests/test_split_freeze.py::test_every_witness_is_human_and_bound_to_the_frozen_rubric
 uv run ruff check .
 uv run ruff format --check .
 uv run agent-app demo --scenario refine
@@ -297,8 +318,8 @@ uv run agent-app turn-demo
 
 Add meaningful tests for behavior changes, especially limits, evidence validation, corrections, and failure handling. For documentation-only changes, verify paths and commands without duplicating behavioral tests. Report exactly what was checked and any remaining limitation.
 
-This is the development suite with one held-out-content consumer explicitly
-deselected. The evaluation owner handles complete final-artifact validation;
+This is the development suite with one held-out-content consumer and four
+opaque-exposure consumers explicitly deselected. The evaluation owner handles complete final-artifact validation;
 neither software test execution is the held-out model-quality evaluation.
 Use `docs/delivery-report.fa.md` for the current delivery evidence and open gates;
 do not infer final completion from a passing development suite or historical
