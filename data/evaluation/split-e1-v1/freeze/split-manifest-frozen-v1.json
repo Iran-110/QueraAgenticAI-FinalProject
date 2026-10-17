@@ -1,0 +1,1018 @@
+{
+  "schema_version": 1,
+  "manifest_id": "split-e1-v1",
+  "updated_on": "2026-10-17",
+  "status": "frozen",
+  "scope": "Family-level E1 selection for the final evaluation (15+ dev, 15 test). Fixtures, gold and freeze pending.",
+  "selected_by": "mhg (approved 2026-10-15); assistant-assisted screening",
+  "targets": {
+    "dev_cases": 15,
+    "test_cases": 15,
+    "multi_turn_min": 10,
+    "multi_turn_in_test_min": 5
+  },
+  "counts": {
+    "dev_families": 16,
+    "test_families": 15,
+    "registered_dev_fixtures": 16,
+    "registered_test_fixtures": 15
+  },
+  "families": [
+    {
+      "family_id": "fam-12782",
+      "split": "dev",
+      "origin_issue_ids": [
+        12629,
+        12782,
+        13022
+      ],
+      "exclude_issue_ids": [
+        12629,
+        12782,
+        13022
+      ],
+      "selection": "dev_three",
+      "note": "Reviewed dev-three case-a.",
+      "family_review": "data/evaluation/dev-three-v1/case-review-v1.json",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-9770",
+      "split": "dev",
+      "origin_issue_ids": [
+        9770,
+        7300,
+        8734,
+        14297
+      ],
+      "exclude_issue_ids": [
+        9770,
+        7300,
+        8734,
+        14297
+      ],
+      "selection": "dev_three",
+      "note": "Reviewed dev-three case-b.",
+      "family_review": "data/evaluation/dev-three-v1/case-review-v1.json",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-2379",
+      "split": "dev",
+      "origin_issue_ids": [
+        2379,
+        8129,
+        8180,
+        4909,
+        6985,
+        7419
+      ],
+      "exclude_issue_ids": [
+        2379,
+        8129,
+        8180,
+        4909,
+        6985,
+        7419
+      ],
+      "selection": "dev_three",
+      "note": "Reviewed dev-three case-c.",
+      "family_review": "data/evaluation/dev-three-v1/case-review-v1.json",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-16281",
+      "split": "dev",
+      "origin_issue_ids": [
+        16281
+      ],
+      "exclude_issue_ids": [
+        16281
+      ],
+      "selection": "keep_reserved",
+      "note": "Version-bounded regression (works 1.58.0, fails 1.59.0+) inside fragments.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-4884",
+      "split": "dev",
+      "origin_issue_ids": [
+        4884
+      ],
+      "exclude_issue_ids": [
+        4884,
+        11252
+      ],
+      "selection": "keep_reserved",
+      "note": "date_input value outside min/max via Session State; documented constraint.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-3533",
+      "split": "dev",
+      "origin_issue_ids": [
+        3533,
+        3854
+      ],
+      "exclude_issue_ids": [
+        3533,
+        3854,
+        5537,
+        5859,
+        10114,
+        11202,
+        11204,
+        11266,
+        11790
+      ],
+      "selection": "keep_reserved",
+      "note": "Widget values after rerun / rerun inside callbacks; old API names map to st.rerun.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-4164",
+      "split": "dev",
+      "origin_issue_ids": [
+        4164
+      ],
+      "exclude_issue_ids": [
+        4164
+      ],
+      "selection": "keep_reserved",
+      "note": "Chained form callbacks reading Session State; usage question.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-9342",
+      "split": "dev",
+      "origin_issue_ids": [
+        9342
+      ],
+      "exclude_issue_ids": [
+        9342
+      ],
+      "selection": "keep_reserved",
+      "note": "Out-of-range value assigned through Session State.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-9259",
+      "split": "dev",
+      "origin_issue_ids": [
+        9259
+      ],
+      "exclude_issue_ids": [
+        9259,
+        10245,
+        14672
+      ],
+      "selection": "keep_reserved",
+      "note": "Transient blank page with st.tabs on 1.37.0; little observable detail.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-9455",
+      "split": "dev",
+      "origin_issue_ids": [
+        9455
+      ],
+      "exclude_issue_ids": [
+        9455
+      ],
+      "selection": "keep_reserved",
+      "note": "Feature request: typed Session State; keep one unsupported-feature case in dev.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-1924",
+      "split": "dev",
+      "origin_issue_ids": [
+        1924
+      ],
+      "exclude_issue_ids": [
+        1924,
+        3285
+      ],
+      "selection": "replacement",
+      "note": "Replaces #1644 (old import-path KeyError, pre-1.22). DuplicateWidgetID when a button changes a checkbox; no version.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-8136",
+      "split": "dev",
+      "origin_issue_ids": [
+        8136
+      ],
+      "exclude_issue_ids": [
+        8136
+      ],
+      "selection": "replacement",
+      "note": "Replaces #1085 (feature request). Slider/form rerun in a chatbot; usage question.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-9180",
+      "split": "dev",
+      "origin_issue_ids": [
+        9180
+      ],
+      "exclude_issue_ids": [
+        9180,
+        9171
+      ],
+      "selection": "replacement",
+      "note": "Replaces #5368 (feature request). st.rerun inside fragment with third-party menu. #9171 added: closed as its duplicate by a maintainer.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-12740",
+      "split": "dev",
+      "origin_issue_ids": [
+        12740
+      ],
+      "exclude_issue_ids": [
+        12740
+      ],
+      "selection": "replacement",
+      "note": "Replaces #2584 (old docs typo). List in Session State across uploads; no version.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-9082",
+      "split": "dev",
+      "origin_issue_ids": [
+        9082,
+        16388,
+        17093,
+        17119,
+        17249
+      ],
+      "exclude_issue_ids": [
+        9082,
+        16388,
+        17093,
+        17119,
+        17249,
+        17195
+      ],
+      "selection": "replacement",
+      "note": "Replaces #13147 (feature request). Widget default from Session State under conditions; linked family kept together in dev because it is close to the exposed #12782 topic.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-12506",
+      "split": "test",
+      "origin_issue_ids": [
+        12506
+      ],
+      "exclude_issue_ids": [
+        12506
+      ],
+      "selection": "keep_reserved",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-10089",
+      "split": "test",
+      "origin_issue_ids": [
+        10089,
+        14717,
+        16242
+      ],
+      "exclude_issue_ids": [
+        10089,
+        14717,
+        16242
+      ],
+      "selection": "keep_reserved",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-10102",
+      "split": "test",
+      "origin_issue_ids": [
+        10102,
+        16732,
+        17215
+      ],
+      "exclude_issue_ids": [
+        10102,
+        16732,
+        17215,
+        14710
+      ],
+      "selection": "keep_reserved",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-5305",
+      "split": "test",
+      "origin_issue_ids": [
+        5305,
+        5498,
+        16727
+      ],
+      "exclude_issue_ids": [
+        5305,
+        5498,
+        16727
+      ],
+      "selection": "keep_reserved",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-6320",
+      "split": "test",
+      "origin_issue_ids": [
+        6320
+      ],
+      "exclude_issue_ids": [
+        6320
+      ],
+      "selection": "keep_reserved",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-11115",
+      "split": "test",
+      "origin_issue_ids": [
+        11115
+      ],
+      "exclude_issue_ids": [
+        11115
+      ],
+      "selection": "keep_reserved",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-17112",
+      "split": "test",
+      "origin_issue_ids": [
+        17112
+      ],
+      "exclude_issue_ids": [
+        17112,
+        17011
+      ],
+      "selection": "keep_reserved",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development. #17011 added: a maintainer identified it as the same bug.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-4595",
+      "split": "test",
+      "origin_issue_ids": [
+        4595
+      ],
+      "exclude_issue_ids": [
+        4595,
+        6404
+      ],
+      "selection": "replacement",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development. Replaces a weak metadata-only reservation.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-8700",
+      "split": "test",
+      "origin_issue_ids": [
+        8700
+      ],
+      "exclude_issue_ids": [
+        8700
+      ],
+      "selection": "replacement",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development. Replaces a weak metadata-only reservation.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-11660",
+      "split": "test",
+      "origin_issue_ids": [
+        11660
+      ],
+      "exclude_issue_ids": [
+        11660
+      ],
+      "selection": "replacement",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development. Replaces a weak metadata-only reservation.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-13435",
+      "split": "test",
+      "origin_issue_ids": [
+        13435
+      ],
+      "exclude_issue_ids": [
+        13435
+      ],
+      "selection": "replacement",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development. Replaces a weak metadata-only reservation.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-12165",
+      "split": "dev",
+      "origin_issue_ids": [
+        12165
+      ],
+      "exclude_issue_ids": [
+        12165,
+        11277
+      ],
+      "selection": "moved_from_test",
+      "note": "Replaces #1155 (deprecated st.cache). Select/deselect-all checkboxes stop working; no version. Moved to dev: it and exposed dev family #12629 both cross-reference umbrella #11277 (key-based widget identity).",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-7862",
+      "split": "test",
+      "origin_issue_ids": [
+        7862
+      ],
+      "exclude_issue_ids": [
+        7862,
+        7868,
+        8365
+      ],
+      "selection": "replacement",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development. Replaces a weak metadata-only reservation.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-14989",
+      "split": "test",
+      "origin_issue_ids": [
+        14989
+      ],
+      "exclude_issue_ids": [
+        14989
+      ],
+      "selection": "replacement",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development. Replaces a weak metadata-only reservation.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-7534",
+      "split": "test",
+      "origin_issue_ids": [
+        7534
+      ],
+      "exclude_issue_ids": [
+        7534
+      ],
+      "selection": "replacement",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development. Replaces a weak metadata-only reservation.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-12633",
+      "split": "test",
+      "origin_issue_ids": [
+        12633
+      ],
+      "exclude_issue_ids": [
+        12633
+      ],
+      "selection": "replacement",
+      "note": "Held-out test family; selection notes kept outside the repository to avoid hints to core development. Replaces a weak metadata-only reservation.",
+      "family_review": "gh timeline cross-references and duplicate events, 2026-10-15; cross-referenced Issues added conservatively",
+      "review_status": "complete"
+    }
+  ],
+  "index_exclusion": {
+    "issue_ids": [
+      268,
+      1085,
+      1155,
+      1185,
+      1644,
+      1924,
+      2069,
+      2379,
+      2584,
+      3285,
+      3533,
+      3854,
+      4164,
+      4256,
+      4595,
+      4713,
+      4884,
+      4909,
+      5305,
+      5368,
+      5498,
+      5537,
+      5618,
+      5859,
+      6320,
+      6404,
+      6415,
+      6985,
+      7206,
+      7300,
+      7419,
+      7534,
+      7862,
+      7868,
+      8061,
+      8129,
+      8136,
+      8180,
+      8365,
+      8700,
+      8734,
+      8901,
+      9031,
+      9082,
+      9171,
+      9180,
+      9259,
+      9342,
+      9455,
+      9487,
+      9770,
+      10089,
+      10102,
+      10114,
+      10245,
+      11012,
+      11115,
+      11202,
+      11204,
+      11252,
+      11266,
+      11277,
+      11660,
+      11790,
+      12165,
+      12396,
+      12506,
+      12629,
+      12633,
+      12740,
+      12782,
+      13022,
+      13147,
+      13435,
+      13953,
+      14297,
+      14672,
+      14710,
+      14717,
+      14989,
+      16242,
+      16281,
+      16388,
+      16661,
+      16727,
+      16732,
+      16914,
+      17011,
+      17030,
+      17093,
+      17112,
+      17119,
+      17195,
+      17215,
+      17249
+    ],
+    "scope": "These Issues, all their comments and outcomes. Includes the earlier reservation denylist, retained conservatively.",
+    "direct_answer_documents": [
+      "content/develop/concepts/app-design/custom-classes.md",
+      "https://docs.streamlit.io/develop/concepts/design/custom-classes",
+      "https://docs.streamlit.io/library/advanced-features/custom-classes"
+    ],
+    "keep_in_corpus_note": "Ordinary product docs (release notes, widget-behavior.md, versioned API docstrings) are not leaks and stay in the corpus; see docs/evaluation-rubric-v1.md section 4.",
+    "freeze_additions": {
+      "issue_ids": [
+        4713,
+        5618,
+        6415,
+        7206,
+        9487
+      ],
+      "reason": "Supplemental core-dev reports inspected in C4i (exposed dev, outside the split); excluded conservatively."
+    }
+  },
+  "checks": [
+    "No exclusion family appears in both splits.",
+    "No development-exposed Issue is in test.",
+    "#12165 moved to dev: it and exposed #12629 cross-reference umbrella #11277."
+  ],
+  "historical_manifests_unchanged": [
+    "data/evaluation/split-manifest.json",
+    "data/evaluation/dev-three-v1/split-manifest.json"
+  ],
+  "blockers": [],
+  "registered_fixtures": {
+    "test": [
+      {
+        "path": "data/evaluation/split-e1-v1/test/button-callback-4595-v1.json",
+        "sha256": "65521a515ef68f5f4dc49c4890dedbdb1109e6c91b2a12e4004be8d9cc5f9210",
+        "case_id": "test-case-02",
+        "family_issue_ids": [
+          4595,
+          6404
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/callback-args-7862-v1.json",
+        "sha256": "b19b569ded8752d091b2dcc6fd3a7f6cf5d67351d5925652fb34b51673a7a38c",
+        "case_id": "test-case-06",
+        "family_issue_ids": [
+          7862,
+          7868,
+          8365
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/callback-trigger-10102-v1.json",
+        "sha256": "c1ba57fc6d3e59564e28e7b0184e7cfee62d3916bda943905c82313806cb9a44",
+        "case_id": "test-case-10",
+        "family_issue_ids": [
+          10102,
+          16732,
+          17215,
+          14710
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/callback-value-5305-v1.json",
+        "sha256": "3bdaa7cf7cefe1f8229de00eea0fc3207136a902cd1b874daee6a271cfc3b5ca",
+        "case_id": "test-case-11",
+        "family_issue_ids": [
+          5305,
+          5498,
+          16727
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/chat-6320-v1.json",
+        "sha256": "624d2e541841efff1706a91d6e85528ac3ba160ae001d02d686f603956ca02cc",
+        "case_id": "test-case-01",
+        "family_issue_ids": [
+          6320
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/fragment-dialog-17112-v1.json",
+        "sha256": "3167c9131bda55453df004b656118c6700220e1cc5c0d6b3f7f6176475bdbe60",
+        "case_id": "test-case-13",
+        "family_issue_ids": [
+          17112,
+          17011
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/fragment-reload-11660-v1.json",
+        "sha256": "89a00249bad71538384375c5adf1ab5516da847261daeb96b50b62876bf10fad",
+        "case_id": "test-case-04",
+        "family_issue_ids": [
+          11660
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/mpa-keyerror-8700-v1.json",
+        "sha256": "28e3a77a405ecc081d3edce95021ed1f530c16cf73efc5a883149d06f025288f",
+        "case_id": "test-case-03",
+        "family_issue_ids": [
+          8700
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/options-mutation-7534-v1.json",
+        "sha256": "d009b59009f63dd5563a88ea697dfddf1eb084a8d0c87c6a7614afe9eb4748de",
+        "case_id": "test-case-07",
+        "family_issue_ids": [
+          7534
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/run-on-save-12633-v1.json",
+        "sha256": "1cd7b38c6616434e0f9d2f8de7d31dc522ecb62f47a774cbda9fcead47a39173",
+        "case_id": "test-case-05",
+        "family_issue_ids": [
+          12633
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/selectbox-session-13435-v1.json",
+        "sha256": "42676005faa9b158cfe2f93a68b5665382512817b04a1d9a4b57130a3bad0e94",
+        "case_id": "test-case-14",
+        "family_issue_ids": [
+          13435
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/selectbox-seven-14989-v1.json",
+        "sha256": "009eb99fa4ee07fa832764a06b41bd19384f08abb6ded3818f99b6aef24f3f55",
+        "case_id": "test-case-15",
+        "family_issue_ids": [
+          14989
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/session-memory-12506-v1.json",
+        "sha256": "315201f56129be622086bfb5e0fbf8ffb7675550252c94b20d4932104f862c7f",
+        "case_id": "test-case-08",
+        "family_issue_ids": [
+          12506
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/state-init-10089-v1.json",
+        "sha256": "7de542c6abd8f1658a6cf4c64113d470bc1e4af65a209ee2c3a34ec9c5e9af73",
+        "case_id": "test-case-09",
+        "family_issue_ids": [
+          10089,
+          14717,
+          16242
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/test/switch-page-state-11115-v1.json",
+        "sha256": "ad7619154dedb0fd24b6b79d4f9c67a57f8da1e565604c48e77c031da915ac17",
+        "case_id": "test-case-12",
+        "family_issue_ids": [
+          11115
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "path": "data/evaluation/split-e1-v1/evidence-test-v1.json",
+        "sha256": "c3fa200f2e9b72b4da8e3030034bdc7206e28f5c3a24d444029c4971f20f90e2"
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/evidence-test-b-v1.json",
+        "sha256": "da2c1514ce57af260fc33b4e1d81ee48cb673c5edfbafd67cd113ff42afc96b3"
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/evidence-dev-v1.json",
+        "sha256": "081f721f38f4487984c6b1c7aabc1ee207a397ee3fcc4520bf153b61ec919489"
+      }
+    ],
+    "multi_turn_registered": {
+      "dev": 7,
+      "test": 7,
+      "note": "dev includes the three dev-three v2 fixtures in data/evaluation/dev-three-v2/cases/."
+    },
+    "test_strata": {
+      "all_turns": {
+        "ambiguous": 5,
+        "needs_escalation": 7,
+        "answerable": 10
+      },
+      "first_turn": {
+        "ambiguous": 5,
+        "answerable": 6,
+        "needs_escalation": 4
+      }
+    },
+    "dev": [
+      {
+        "path": "data/evaluation/split-e1-v1/dev/args-tuple-4164-v1.json",
+        "sha256": "091d5c3559206c056686ebb3851edf16925e3d35a751096f0128ff44964eadb6",
+        "case_id": "dev-case-g",
+        "family_issue_ids": [
+          4164
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/dev/checkbox-reset-1924-v1.json",
+        "sha256": "9df93b836a8019ffcfcc57ce41422519498453461e10bd2921618c8a47c314f9",
+        "case_id": "dev-case-k",
+        "family_issue_ids": [
+          1924,
+          3285
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/dev/checkbox-value-key-12165-v1.json",
+        "sha256": "26ffaba91da1e5d1c84f1382a16e6114cb55faceb2da97a829d48fd68b2dcac4",
+        "case_id": "dev-case-p",
+        "family_issue_ids": [
+          12165,
+          11277
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/dev/conditional-widget-9082-v1.json",
+        "sha256": "6bd0bfb2f9200539fc0bab105274ec507a4240c1bebb6cac81b95c6f73868bab",
+        "case_id": "dev-case-o",
+        "family_issue_ids": [
+          9082,
+          16388,
+          17093,
+          17119,
+          17249,
+          17195
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/dev/date-range-4884-v1.json",
+        "sha256": "087c722fa9e01dbdbc7c2090cf6789cbf2782951c32c4af7ce144d1704dab044",
+        "case_id": "dev-case-e",
+        "family_issue_ids": [
+          4884,
+          11252
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/dev/form-callback-8136-v1.json",
+        "sha256": "9094e4c9ed4420af23613a64d788729fbbb5bf85de68714850c0254324f73766",
+        "case_id": "dev-case-l",
+        "family_issue_ids": [
+          8136
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/dev/fragment-rerun-9180-v1.json",
+        "sha256": "6e042ce1b040bed18c28e6c4eaf028bbe6072327f87b42336cba4096abcd603b",
+        "case_id": "dev-case-m",
+        "family_issue_ids": [
+          9180,
+          9171
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/dev/range-assign-9342-v1.json",
+        "sha256": "b2c52a6f529a4d65b08e5c0706f551a272c53d06744fc3eb699e074c31d25f2e",
+        "case_id": "dev-case-h",
+        "family_issue_ids": [
+          9342
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/dev/rerun-widgets-3533-v1.json",
+        "sha256": "ad698c0282fc40e6e9568e9f39aa1044982cb677429845ec4467a6dd6149a618",
+        "case_id": "dev-case-f",
+        "family_issue_ids": [
+          3533,
+          3854,
+          5537,
+          5859,
+          10114,
+          11202,
+          11204,
+          11266,
+          11790
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/dev/state-clear-12740-v2.json",
+        "sha256": "bf44fa86bfb3b201170e8b0865e4015c901f2a14f95b1e1c065cdc3b481e3bd0",
+        "case_id": "dev-case-n",
+        "family_issue_ids": [
+          12740
+        ],
+        "supersedes": {
+          "path": "data/evaluation/split-e1-v1/dev/state-clear-12740-v1.json",
+          "sha256": "87dc38cfd196a4c079007ffe4bc3194c2e58a3aad51ce27fac8df46171980e34",
+          "reason": "v2 replaces v1 after the human spot check (mhg, 2026-10-16): v1 said 'Screenshots only, no code', but the real screenshots contain partial code. The agent receives text only and the decisive line was outside the screenshots, so asking for the full code as text remains the expected decision. No model run used v1."
+        }
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/dev/state-typing-9455-v1.json",
+        "sha256": "33e5e80bf00795ec34bfc4ef91ba9d8f3c4a12c20d789b981b8cd366470f80ba",
+        "case_id": "dev-case-j",
+        "family_issue_ids": [
+          9455
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/dev/status-fragment-16281-v1.json",
+        "sha256": "852a65f8d43c22efeadca446c3a4a33c802b4f5e960ea6fa315359b091d0bd2b",
+        "case_id": "dev-case-d",
+        "family_issue_ids": [
+          16281
+        ]
+      },
+      {
+        "path": "data/evaluation/split-e1-v1/dev/tabs-blank-9259-v1.json",
+        "sha256": "3836b56331830f84bdf768fdcda60652e985bcb99308dfd930d519c382ba266d",
+        "case_id": "dev-case-i",
+        "family_issue_ids": [
+          9259,
+          10245,
+          14672
+        ]
+      },
+      {
+        "path": "data/evaluation/dev-three-v2/cases/enum-8129-v2.json",
+        "sha256": "746f885a60e4d5c88913bdd82c9d77ca6d48c0665775c4cd201bceeb322965bf",
+        "case_id": "dev-case-c",
+        "family_issue_ids": [
+          2379,
+          8129,
+          8180,
+          4909,
+          6985,
+          7419
+        ],
+        "supersedes": {
+          "path": "data/evaluation/dev-three-v1/cases/enum-8129-v1.json",
+          "sha256": "c5becdc00a950941cb25de8f775fc1a5b024d54f607a9c494bd9e7820ab216f0",
+          "reason": "v2 re-registers this case for e2-rubric-v1 with gold reviewed again under that rubric (data/evaluation/dev-three-v2/gold-review-v1.json, mhg, 2026-10-16). Same case and family, not a new case. v1 and its receipts stay unchanged under e2-core-review-draft-v1."
+        }
+      },
+      {
+        "path": "data/evaluation/dev-three-v2/cases/icon-9770-v2.json",
+        "sha256": "4243de41e754bce2272aee0e82cc0f63e590b39e4b04a806a5951dab2c59de15",
+        "case_id": "dev-case-b",
+        "family_issue_ids": [
+          9770,
+          7300,
+          8734,
+          14297
+        ],
+        "supersedes": {
+          "path": "data/evaluation/dev-three-v1/cases/icon-9770-v1.json",
+          "sha256": "199b47b1c3a65e853d49ec28d9607eec36982502bd2fd5bde1c640165e35c413",
+          "reason": "v2 re-registers this case for e2-rubric-v1 with gold reviewed again under that rubric (data/evaluation/dev-three-v2/gold-review-v1.json, mhg, 2026-10-16). Same case and family, not a new case. v1 and its receipts stay unchanged under e2-core-review-draft-v1."
+        }
+      },
+      {
+        "path": "data/evaluation/dev-three-v2/cases/pilot-12782-v2.json",
+        "sha256": "661288119e6fae8a2a6973ffbb50c5ef1e0baafabdd62e20d80429529c059b09",
+        "case_id": "dev-case-a",
+        "family_issue_ids": [
+          12629,
+          12782,
+          13022
+        ],
+        "supersedes": {
+          "path": "data/evaluation/dev-three-v1/cases/pilot-12782-v1.json",
+          "sha256": "6b542b325ac70906b014c9ac9a7bd01fb95c81a9219794f695de1e09de76c901",
+          "reason": "v2 re-registers this case for e2-rubric-v1 with gold reviewed again under that rubric (data/evaluation/dev-three-v2/gold-review-v1.json, mhg, 2026-10-16). Same case and family, not a new case. v1 and its receipts stay unchanged under e2-core-review-draft-v1."
+        }
+      }
+    ],
+    "dev_strata": {
+      "all_turns": {
+        "answerable": 11,
+        "ambiguous": 8,
+        "needs_escalation": 4
+      }
+    }
+  },
+  "frozen_on": "2026-10-17",
+  "supersedes": {
+    "path": "data/evaluation/split-e1-v1/split-manifest.json",
+    "sha256": "ceb4cf2d4eca4542ec7efc6317633311e11574c21fa5651cdc9bf536cc78c185",
+    "note": "Draft kept byte-identical; build v1 receipts and question coverage reports pin it."
+  },
+  "freeze_notes": [
+    "Vocabulary frozen as config/user-gap-support-dev-v1.json (dev-derived names only). Test-only user-gap names are never added; their ask branches stay unavailable and are reported as a limitation.",
+    "Native pins wait for Hassan's rebuild from this manifest's index_exclusion."
+  ],
+  "family_review": {
+    "type": "human",
+    "reviewer": "mhg",
+    "reviewed_on": "2026-10-17",
+    "rubric_sha256": "fcf310cd9aa8ab45b58e1479292a45fc4cb1cea882376d5906ebd04515d4ea8b",
+    "item": "families",
+    "independence": "assistant_informed"
+  },
+  "development_exposure_check": {
+    "exposure": "data/evaluation/split-e1-v1/freeze/exposure-frozen-v1.json",
+    "exposure_sha256": "4defbcf092d1cdef496c868aee2e907471d45988b492c7ff0f9941dbd2abbb38",
+    "exposed_in_test": []
+  }
+}
