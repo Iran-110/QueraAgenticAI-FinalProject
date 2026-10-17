@@ -1,0 +1,134 @@
+{
+  "receipt_id": "final-build-v3-core-acceptance-2026-10-17",
+  "task": "C4u post-freeze physical pin acceptance",
+  "pr": 91,
+  "reviewed_head": "d82fbed48815eed95182c1cf9a4f1baf9f3e8fb1",
+  "core_published_commit": "4738368",
+  "focused_verified_source_commit": "88007862bfdb3592d7d42b5b90ffcec2e7c06d45",
+  "native_pins": {
+    "build": "final-corpus-v1-20ab0d69d12f2c83",
+    "index_snapshot": "docs-pilot-20ab0d69d12f2c83fb424e0ced7a22561019b1d778c68071d4f1d4ce1f8277b6",
+    "index_manifest_sha256": "933682e56386abc5b133565086058030e74783ef424bccd35f0193038d1908dc",
+    "allowlist_sha256": "dd40ac7b6e66566000c90e3409d23f487f09a26ec66b291daf58aae5fa8290e7",
+    "exclusion_manifest_sha256": "1e9f0469ecaaff7cd65918a8d3bf07b84a3b13b70a2ee2d0a95003a7d892d3f5",
+    "corpus_manifest_sha256": null,
+    "corpus_manifest_note": "Evaluation corpus JSON hash is owned by the evaluation packet; it is not the physical index manifest hash."
+  },
+  "counts": {
+    "sources": 1228,
+    "chunks": 1827,
+    "by_source_type": {
+      "doc": 1219,
+      "release_note": 9
+    },
+    "chunks_by_source_type": {
+      "doc": 1723,
+      "release_note": 104
+    },
+    "api_versions": 43,
+    "unversioned_sources": 56
+  },
+  "exclusion": {
+    "split_manifest_id": "split-e1-v1",
+    "split_status": "frozen",
+    "excluded_issue_count": 95,
+    "direct_answer_documents": [
+      "content/develop/concepts/app-design/custom-classes.md",
+      "https://docs.streamlit.io/develop/concepts/design/custom-classes",
+      "https://docs.streamlit.io/library/advanced-features/custom-classes"
+    ],
+    "indexed_issue_count": 0,
+    "indexed_comment_count": 0,
+    "denied_documents_indexed": [],
+    "test_content_read": false
+  },
+  "author_receipt_sha256": "c631e009e1c4f8be5b8bcb6967baa39a34e9355eb2019cb1846c94fc1a197f8a",
+  "local_rebuild": {
+    "destination": "/Users/sasan/Desktop/Agentic AI/output/final-build-core-acceptance-2026-10-17-v1/index-post-freeze-v3",
+    "receipt_path": "/Users/sasan/Desktop/Agentic AI/output/final-build-core-acceptance-2026-10-17-v1/build-local-v3.json",
+    "receipt_sha256": "ad23e14aa57d80d274242ffe375c0b542c563646c675866e4c1a175ee1166320",
+    "log_path": "/Users/sasan/Desktop/Agentic AI/output/final-build-core-acceptance-2026-10-17-v1/build-local-v3.log",
+    "log_sha256": "75b63ffaa15d2fd8445a1444238f455b97a97c1500a923f85e1d8281970153b7",
+    "guard_path": "/Users/sasan/Desktop/Agentic AI/output/final-build-core-acceptance-2026-10-17-v1/final-build-v3-audit.json",
+    "guard_sha256": "84e4ca595202cd082d61fdf5b1950740794cac6eed67b31cc1da03d707ed88ce",
+    "native_pins_counts_exclusion_match": true,
+    "deterministic_rebuild": true,
+    "historical_profiles_unchanged": {
+      "pilot_14_sources": true,
+      "dev_coverage_18_sources": true
+    },
+    "timing_seconds": {
+      "build_including_corpus": 5.34,
+      "open_and_verify": 1.32
+    },
+    "adapter_smoke": [
+      {
+        "query": "st.button icon parameter",
+        "seconds": 0.355,
+        "hits": 25,
+        "source_types": {
+          "doc": 25
+        },
+        "versioned_hits": 17,
+        "top_sources": [
+          "docs:content/develop/api-reference/widgets/button.md",
+          "docs:content/develop/api-reference/widgets/radio.md",
+          "docstring:1.53.0:streamlit.page_link",
+          "docstring:1.54.0:streamlit.page_link",
+          "docstring:1.55.0:streamlit.page_link"
+        ]
+      },
+      {
+        "query": "session state widget key callback",
+        "seconds": 0.327,
+        "hits": 25,
+        "source_types": {
+          "doc": 25
+        },
+        "versioned_hits": 17,
+        "top_sources": [
+          "docs:content/develop/api-reference/caching-and-state/session_state.md",
+          "docs:content/develop/concepts/architecture/widget-behavior.md",
+          "docs:content/develop/concepts/architecture/session-state.md",
+          "docs:content/develop/concepts/multipage-apps/widgets.md",
+          "docstring:1.25.0:streamlit.form"
+        ]
+      }
+    ],
+    "audit": {
+      "scope": "parent interpreter only, subprocesses not attested",
+      "blocked": [],
+      "allowed_loopback_connections": 0,
+      "seed_package_raw_hash_reads": 8
+    }
+  },
+  "review": {
+    "independent_metadata_review": "approved, no blocker",
+    "scope": "Frozen95 membership, source/custody metadata, immutable v1/v2, native physical pin reproduction, neutral adapter smoke only",
+    "held_out_and_frozen_exposure_payloads_opened": false,
+    "stale_builder_template_notice": "The author and local builder receipts retain an inherited static pre-freeze limitation sentence. Both new receipts actually bind frozen95 and new physical pins. Original submitted bytes retained; this additive receipt qualifies that sentence."
+  },
+  "verification_reuse": {
+    "focused_tests": 922,
+    "test_files": 29,
+    "new_controls_included": 96,
+    "source_hashes_unchanged": true,
+    "ruff_files": 407,
+    "mock_provider_core_api_runner_acceptance": "Pre-freeze build in C4u; not rerun against v3 as a new full packet or model quality score",
+    "new_v3_verification": "Independent physical rebuild, deterministic corpus rebuild, both historical profiles, two neutral native-adapter smoke searches",
+    "receipt": "final-build-core-acceptance-2026-10-17.json"
+  },
+  "halt_preserved": true,
+  "uncertain_holds": 3,
+  "paid_calls": 0,
+  "remaining": [
+    "Evaluation owner pins native gold and packet to these new native pins",
+    "Versioned explicit v2 core configuration must be reviewed and pinned separately; no default promotion",
+    "C5 provider reconciliation and final held-out execution/human quality remain owner-controlled"
+  ],
+  "claims": {
+    "project_final_freeze_complete": false,
+    "model_quality_improvement": false,
+    "enum_solved": false
+  }
+}

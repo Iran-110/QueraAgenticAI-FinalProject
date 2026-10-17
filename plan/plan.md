@@ -4,6 +4,8 @@
 
 ## وضعیت فعلی
 
+- [x] **C4u-v3 — پذیرش فیزیکی rebuild frozen95؛ ساسان با حسن.** PR91 review مستقل و build محلی تازه دارد؛ ۱۲۲۸source/۱۸۲۷chunk و همهٔ pinهای v3، counts و exclusion منطبق؛ deterministic/historical و دو سرچ خنثی adapter پاس. [رسید](../docs/receipts/final-build-v3-core-acceptance-2026-10-17.json). منبع اجرایی ثابت و۹۲۲تست C4u معتبرند؛ تکرار packet/model یا کیفیت نهایی ادعا نمی‌شود. halt/سهhold/test محافظت‌شده حفظ‌اند.
+
 - [x] **C4u — پذیرش build گسترده و profile نسخه‌دار؛ ساسان با حسن.**
   [شرح](../docs/final-build-core-acceptance.fa.md)، [رسید](../docs/receipts/final-build-core-acceptance-2026-10-17.json).
   build۱۲۲۸source/۱۸۲۷chunk محلی با pinهای pre-freeze برابر شد؛ native/profile/API/SQLite/runner واقعی با provider mock پاس. profile صریح `grounded_candidate_prefilter_v2` و binding جدا، v1/defaultها ثابت؛ regression نسخهٔ طولانی رفع شد.۹۲۲تست مرتبط/۲۹فایل،۹۶کنترل تازه داخل همان شمارش، Ruff۴۰۷فایل و review مستقل پاس. بازپخشdev۲→۴از۱۶requirementسازگار درbundleاست؛ مدل/کیفیت/testنهایی نیست. PR87 تأییددوdev؛ PR88 custody؛ PR89 freezeمنابع/exclusion۹۵؛ PR90 دستورreceiptتازه با ورودیsplitفریز شده. payloadheld-out/exposure بازنشده؛ halt/سهhold حفظ؛ APIپرداختی صفر.
@@ -571,10 +573,10 @@ gold، default یا ledger انجام نشد؛ halt/سهhold و تمام IDها�
 
 | نفر | تحویل بعدی | شرط پایان |
 | --- | --- | --- |
-| حسن | build pre-freeze درPR85 و اصلاحR4e پذیرفته‌اند؛ اکنون rebuild با frozen split و exclusion۹۵، نام‌های تازه exclusion-v2 / final-corpus-v3 / build-receipt-v3 | manifest فریز را صریح به prepare بده؛ overwrite نکن. pinهای تازه و دستور آفلاین؛ passage membership و final-bundle availability را از کیفیت پاسخ جدا نگه دار؛ test/gold باز نشوند |
-| محمدحسن | دو بندdev درPR87 تأیید شده؛ PR88 custody و freezeمنابع PR89 ثبت‌اند. پس از rebuild۹۵، nativegold/packet با pinهای تازه، family/coverage و ثبت نسخه‌دار core v2 برای review نهایی | exposure/تصمیمheld-out فقطباخودت؛ core فایل‌ها را باز نکرده. v1 pendingnote را درجا عوض نکن؛ ثبت جدید برای v2. support/usefulness و initial/correction جدا؛ C5/testنهایی باز |
+| حسن | build نهایی PR91 با frozen95 تحویل و مستقلاً بازتولید شد؛ gate ساخت بسته است. برای binding نهایی با محمدحسن همان receipt v3 را مبنا بگیر | v1/v2 را حفظ کن؛ rebuild یا تغییر ranking بعدی فقط با نسخهٔ تازه و هماهنگی freeze؛ test/gold باز نشوند |
+| محمدحسن | دو بندdev درPR87 تأیید شده؛ PR88 custody و freezeمنابع PR89 ثبت‌اند. اکنون nativegold/packet با pinهای پذیرفته‌شدهٔ v3، family/coverage و ثبت نسخه‌دار core v2 برای review نهایی | exposure/تصمیمheld-out فقطباخودت؛ core فایل‌ها را باز نکرده. v1 pendingnote را درجا عوض نکن؛ ثبت جدید برای v2. support/usefulness و initial/correction جدا؛ C5/testنهایی باز |
 | بهنام | PR82/84 و capture مستقل C4t آماده‌اند؛ رویmainجدید Open saved case را در Windows یک مرور دستی کن: pending پس از بستن UI، وضعیت فعلی بعد restart و عدم Action تکراری؛ source/command/محدودیت را در گزارش evaluation بده | مسیر بازکردن باID فقطGET و اکنون نرم‌افزاری آزموده شده؛ draft/ReviewOperation گم‌شدهٔ session قبلی بازیابی نشده. outcome قبلی هنوز در ورودی reasoning نیست؛ تصمیم scripted مساوی را کیفیت/یادگیری اعلام نکن؛ token/DB خصوصی منتشر نشود |
-| ساسان | C4u تحویل: اتصالprofilev2 به actualfactory/API/SQLite/runner، بازتولید build و devavailability،۹۲۲تست وreview مستقل. بعد از receiptv3 تطبیق فیزیکی pinهای تازه؛ feature مستقل ضروری دیگری نیست | v1/config/vocabulary و داده‌های قدیمی ثابت؛ نه liveباhalt، نه reuse scopeبسته. نیاز C5 به مدرکprovider؛ freeze نهایی و کیفیت با مالکeval |
+| ساسان | C4u تحویل: اتصالprofilev2 به actualfactory/API/SQLite/runner، بازتولید build و devavailability،۹۲۲تست وreview مستقل. receiptv3 نیز مستقلاً بازتولید و pinهایش تأیید شد؛ feature مستقل ضروری دیگری نیست | v1/config/vocabulary و داده‌های قدیمی ثابت؛ نه liveباhalt، نه reuse scopeبسته. نیاز C5 به مدرکprovider؛ freeze نهایی و کیفیت با مالکeval |
 
 **قاعدهٔ انتشار فعلی — ۱۵ اکتبر، با دستور صریح ساسان:** منتظر رفع Billing
 نمی‌مانیم. برای انتشار، review و تست محلی روی source ثبت‌شده، پذیرش اتصال و

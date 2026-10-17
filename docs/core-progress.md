@@ -1,3 +1,15 @@
+## 2026-10-17 — C4u v3: frozen95 physical receipt accepted
+
+PR91 independently reviewed and rebuilt from frozen95 in a fresh external directory.
+All native pins/counts/exclusion match,1228sources/1827chunks, deterministic corpus
+and historical14/18profiles pass; two neutral native-adapter searches0.355/0.327s.
+[Additive receipt](receipts/final-build-v3-core-acceptance-2026-10-17.json).
+No source/config changes or new model/API calls;922focused core checks remain bound
+to unchanged source. V3 adds physical rebuild/adapter smoke, not a repeated full
+core/mock-provider packet or quality score. Old builder template's pre-freeze
+sentence is qualified, not silently rewritten. Native gold/versioned v2 packet,
+C5 and final held-out execution remain evaluation-owned; halt/threeholds intact.
+
 ## 2026-10-17 — C4u: real final-build integration and additive version prefilter
 
 [Behavior, evidence and handoff](final-build-core-acceptance.fa.md),

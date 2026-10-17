@@ -1,3 +1,5 @@
+**تکمیل پس از PR91:** rebuild نهاییِ exclusion۹۵ نیز مستقلاً روی همین سیستم ساخته شد؛ هر پنج pin، counts و exclusion با receipt v3 حسن برابرند. ۱۲۲۸منبع/۱۸۲۷chunk، deterministic rebuild، snapshotهای تاریخی و دو سرچ خنثی adapter پاس‌اند. [رسید پذیرش v3](receipts/final-build-v3-core-acceptance-2026-10-17.json). متن قالبی «پیش از freeze» در limitation خروجی builder قدیمی مانده؛ ورودی واقعی این اجرا frozen95 است و byteهای رسید اصلی تغییر نکرده‌اند. مطالب C4u پایین شاهد تاریخیِ build90 و پذیرش core با provider mock هستند؛ پذیرش تازه v3 کیفیت مدل یا اجرای packet نهایی نیست. اکنون native gold و packet/config نسخه‌دار با محمدحسن است؛ feature مستقل ضروری تازه‌ای سمت core باقی نمانده.
+
 # پذیرش build گسترده و اتصال profile نسخه‌دار — C4u
 
 build حسن در PR85 و prefilter در PR86 قبل از این مرحله روی main بودند.

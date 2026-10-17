@@ -64,8 +64,9 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
   and conditional runner passed offline. The 2-to-4 passage result is first-round
   final-bundle availability among16eligible requirements, not actual model
   consumption or quality. PR89 freezes corpus/exclusion metadata to95Issues;
-  Hassan must rebuild into fresh v3 outputs and evaluation must pin native gold
-  and the versioned core configuration separately. Never rewrite old receipts or
+  PR91 rebuild into fresh v3 outputs was independently reproduced with matching
+  physical pins; read `docs/receipts/final-build-v3-core-acceptance-2026-10-17.json`.
+  Evaluation must pin native gold and the versioned core configuration separately. Never rewrite old receipts or
   open frozen exposure to perform core verification. Halt/threeholds remain.
 
 - C4r selects the explicit `grounded_candidate_v1` core delivery recipe; read

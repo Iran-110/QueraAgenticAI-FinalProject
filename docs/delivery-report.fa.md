@@ -1,3 +1,5 @@
+**تکمیل build نهایی:** PR91 با exclusion فریز۹۵ پذیرفته و روی سیستم ما مستقلاً rebuild شد؛ ۱۲۲۸منبع/۱۸۲۷chunk و همهٔ pinهای v3 منطبق‌اند. [رسید](receipts/final-build-v3-core-acceptance-2026-10-17.json). gate index بسته؛ native gold/config packet، C5 و کیفیت/test نهایی باقی‌اند. halt حفظ است.
+
 # گزارش توسعه و بستهٔ شواهد تحویل — ۱۷ اکتبر
 
 **C4u، آخرین تحویل۱۷اکتبر:** [شرح اتصال](final-build-core-acceptance.fa.md)، [رسید](receipts/final-build-core-acceptance-2026-10-17.json). build۱۲۲۸منبع/۱۸۲۷chunk آفلاین محلی با pinهای رسید حسن منطبق شد؛ پروفایل صریح v2 فیلتر نسخه را از native top-k تا factory/API/service/runner وصل می‌کند و v1/defaultها ثابت‌اند. ۹۲۲ تست مرتبط/۲۹فایل و Ruff۴۰۷فایل پاس؛ provider ساختگی و ledger/SQLite موقت‌اند. بازپخشdev پوششbundle۲→۴از۱۶requirementسازگار را بازتولید کرد، نه کیفیت مدل. PR87/88/89 و PR90 پذیرفته شدند؛ exposure تصمیم/فایلfrozen باز نشده‌اند. freezeمنابع۹۵Issue انجام شده؛ rebuild و nativepin/configfreeze/C5/testنهایی هنوز باقی‌اند. متن‌های بعدی نتایج تاریخی را حفظ می‌کنند.
