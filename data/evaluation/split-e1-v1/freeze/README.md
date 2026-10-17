@@ -25,10 +25,14 @@ test ask branches have no registered question; the final report lists this.
 ## Rebuild (Hassan)
 
 Use new output names so the current v1/v2 receipts and pins stay intact:
+(`runtime/final-corpus-v2` already holds the v2 build, so the script refuses it;
+the published v3 receipt was built into `runtime/final-corpus-v3`. To reproduce
+it, pass a fresh destination and a fresh `--receipt` path so the committed
+`build-receipt-v3.json` is not overwritten; the snapshot must be `docs-pilot-20ab0d69…`.)
 
 ```bash
 uv run python scripts/prepare_final_corpus_inputs.py --split-manifest data/evaluation/split-e1-v1/freeze/split-manifest-frozen-v1.json --exclusion-out experiments/final_corpus_v1/exclusion-v2.json
-uv run python scripts/build_final_index.py --exclusion experiments/final_corpus_v1/exclusion-v2.json --destination runtime/final-corpus-v2 --receipt experiments/final_corpus_v1/build-receipt-v3.json
+uv run python scripts/build_final_index.py --exclusion experiments/final_corpus_v1/exclusion-v2.json --destination runtime/final-corpus-v3 --receipt experiments/final_corpus_v1/build-receipt-v3.json
 ```
 
 A local dry run of the first command, plus an in-memory build, accepted the frozen manifest:
