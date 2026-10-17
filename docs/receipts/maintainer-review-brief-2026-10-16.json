@@ -1,0 +1,321 @@
+{
+  "schema_version": 1,
+  "task_id": "C4p",
+  "recorded_at_utc": "2026-10-16T14:48:37.681088+00:00",
+  "source_commit": "85d89ea361ee8b75ce13b20b28448a3a3d6355cc",
+  "base_commit": "fee763f263bb4e65d25754a9f67f91988a7b88ee",
+  "scope": "Strict explicit default-false renderer candidate; no final configuration/default/factory promotion",
+  "source_and_tests_sha256": {
+    "src/agent_app/reasoning/grounding.py": "dfccfe5aa66fed9232acc01977d52275fafef981dc46aa93036d2fe820c7e79d",
+    "src/agent_app/reasoning/claim_plan.py": "d0c7a7db8759ef1bbd7e8762e60a3386c4f067fd57ec0fff9579ed690e89181b",
+    "src/agent_app/reasoning/review_brief.py": "33fea90e54f046d9d8fd12a17f7900b200262377b62bc46af5189202e0134d45",
+    "scripts/replay_maintainer_brief.py": "12a5ccf5024441fa671c3023f7a7082800853800ddf2658736a2781932e8ace7",
+    "tests/test_maintainer_review_brief.py": "9338756a79e7d29aeddff0276e61d3905130a87b7128e862c1e4693b6e3fc6e9",
+    "tests/test_maintainer_brief_review.py": "7af8dbd849949a520f8c94af02ca22b50597050b90067bca3c231cb88695b57c"
+  },
+  "protocol_path": "docs/receipts/maintainer-review-brief-protocol-2026-10-16.json",
+  "protocol_sha256": "8a92092e4e5b69b497ef7e6e565fc26aa1c9559d2828be0e8bfc8b4e31629a85",
+  "replay_path": "docs/receipts/maintainer-review-brief-replay-2026-10-16.json",
+  "replay_sha256": "dbe610f4deb924557a06a36f7a2096511c2c6d23d7f2da8b9ec1d8110e6d18be",
+  "new_root_controls": 84,
+  "new_independent_controls": 21,
+  "independent_source_review": {
+    "schema_version": 1,
+    "task_id": "C4p",
+    "reviewer": "independent core release review",
+    "source_commit": "85d89ea361ee8b75ce13b20b28448a3a3d6355cc",
+    "review_result": "approve within explicit opt-in renderer scope; no production blocker found",
+    "source_and_tests_sha256": {
+      "src/agent_app/reasoning/grounding.py": "dfccfe5aa66fed9232acc01977d52275fafef981dc46aa93036d2fe820c7e79d",
+      "src/agent_app/reasoning/claim_plan.py": "d0c7a7db8759ef1bbd7e8762e60a3386c4f067fd57ec0fff9579ed690e89181b",
+      "src/agent_app/reasoning/review_brief.py": "33fea90e54f046d9d8fd12a17f7900b200262377b62bc46af5189202e0134d45",
+      "scripts/replay_maintainer_brief.py": "12a5ccf5024441fa671c3023f7a7082800853800ddf2658736a2781932e8ace7",
+      "tests/test_maintainer_review_brief.py": "9338756a79e7d29aeddff0276e61d3905130a87b7128e862c1e4693b6e3fc6e9",
+      "tests/test_maintainer_brief_review.py": "7af8dbd849949a520f8c94af02ca22b50597050b90067bca3c231cb88695b57c"
+    },
+    "source_and_tests_equal_committed_bytes": true,
+    "findings": [],
+    "checks": {
+      "request_plan_source_question_and_conflict_checks_precede_formatting": true,
+      "recursive_hidden_state_rejected_before_formatting": true,
+      "stale_context_invalid_selection_source_gap_question_prior_conflict_rejected": true,
+      "complete_selected_quotations_and_late_caveats_retained": true,
+      "all_supplied_source_inventory_distinguishes_plan_selected_forced_conflict_and_merely_supplied": true,
+      "only_user_report_fact_check_display_normalizes_actual_crlf": true,
+      "source_quotes_lone_cr_literal_escapes_raw_inputs_hashes_and_spans_preserved": true,
+      "omitted_false_frozen_surfaces_and_legacy_call_shapes_preserved": true,
+      "canonical_ask_and_retrieve_more_preserved": true,
+      "new_analysis_requires_new_bound_handoff_old_review_hash_rejected": true,
+      "strict_boolean_and_existing_output_bounds_preserved": true,
+      "no_config_factory_env_runner_default_promotion": true,
+      "docs_disclose_unbound_current_descriptor_and_presentation_flag_precedence": true
+    },
+    "focused_verification": {
+      "passed": 667,
+      "deselected": 2,
+      "new_root_controls": 84,
+      "new_independent_controls": 21,
+      "xml": "independent-focused-v2.xml",
+      "xml_sha256": "304570d0b7dd6c5d7f5c06ac72194f951fea4a06a4d422fe5630396ddce481ce",
+      "guards": "independent-focused-v2-guards.json",
+      "guards_sha256": "c91723de1838293fb221676f8492a1493318d7874c1c2ae2255b8e340be2de84",
+      "protected_open_attempts": 0,
+      "socket_connect_attempts": 0,
+      "deselection_reason": "Two existing neutral temporary-ledger integration consumers excluded from this no-ledger independent scope; native-index integration module also omitted.",
+      "heldout_consumer": "tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture was not selected",
+      "guard_scope": "audited parent Python process only; no subprocess filesystem attestation",
+      "ruff_check": "6 reviewed Python files passed",
+      "ruff_format_check": "6 reviewed Python files passed",
+      "earlier_attempt_retained": {
+        "xml": "independent-focused.xml",
+        "xml_sha256": "120321590976a2dcabf7ad566d3455a358e2cb8ef2bc3b0aff3f3ea24dc9227f",
+        "guards": "independent-focused-guards.json",
+        "guards_sha256": "fc4eba4552ac17ee43f228e3254d19d8a5e8fa303a85560445ded01853733360",
+        "passed": 671,
+        "failed": 2,
+        "setup_errors": 16,
+        "reason": "Overbroad initial selection reached existing temporary-ledger and fresh-index integration consumers. Guard blocked two neutral test-ledger creates and two .env opens before bytes were opened; native build setup then failed. No source patch or guard weakening followed; corrected pure scope passed.",
+        "blocked_open_attempts": 4,
+        "blocked_categories": [
+          "ledger",
+          "ledger",
+          "dotenv",
+          "dotenv"
+        ],
+        "socket_connect_attempts": 0
+      }
+    },
+    "archive_replay": {
+      "fresh_proposals": 17,
+      "nonfresh_recorded_entries": 12,
+      "recorded_step_entries": 29,
+      "stale_entries_excluded": 2,
+      "checks_passed": 153,
+      "checks_total": 153,
+      "full_attempt_contexts_equal": 17,
+      "full_attempt_contexts_total": 17,
+      "recomputed_equals_final_archive_replay_v3": true,
+      "protected_or_network_attempts": 0,
+      "summary_growth_count": 16,
+      "archive_sha256": "409fe34076fa6772e6442b881332874fe8e66d1f09e80a759e2ab8207d71f901",
+      "replay_receipt_sha256": "dbe610f4deb924557a06a36f7a2096511c2c6d23d7f2da8b9ec1d8110e6d18be"
+    },
+    "limits": [
+      "Scoped approval is for explicit presentation-only opt-in; final root development verification remains separate.",
+      "Renderer output is a new proposal; no saved approval or historical human score transfers.",
+      "Current configuration descriptor does not bind review_brief; final composition adoption needs explicit renderer-policy registration.",
+      "Full selected passages remain quotations; complete original sources remain in the handoff. No entailment, caveat completeness beyond selection, diagnosis, fix, action, source sufficiency or human usefulness is inferred.",
+      "Sixteen of seventeen replay summaries grow. Lengths and CR-marker changes are structural observations, not a quality score.",
+      "Replay accounts for stored step entries; it does not measure all planned or unique visited turns.",
+      "No held-out evaluation, actual provider call, primary native-index read or live ledger mutation was performed by this review."
+    ]
+  },
+  "independent_claims_review": {
+    "schema_version": 1,
+    "review_kind": "independent_read_only_renderer_claims_and_qualifications_review",
+    "recorded_at_utc": "2026-10-16T14:41:51.030409+00:00",
+    "approved": true,
+    "blocking_findings": [],
+    "source_sha256": {
+      "src/agent_app/reasoning/review_brief.py": "33fea90e54f046d9d8fd12a17f7900b200262377b62bc46af5189202e0134d45",
+      "src/agent_app/reasoning/grounding.py": "dfccfe5aa66fed9232acc01977d52275fafef981dc46aa93036d2fe820c7e79d",
+      "src/agent_app/reasoning/claim_plan.py": "d0c7a7db8759ef1bbd7e8762e60a3386c4f067fd57ec0fff9579ed690e89181b",
+      "scripts/replay_maintainer_brief.py": "12a5ccf5024441fa671c3023f7a7082800853800ddf2658736a2781932e8ace7"
+    },
+    "archive_replay": {
+      "path": "/Users/sasan/Desktop/Agentic AI/output/maintainer-review-brief-2026-10-16-v1/archive-replay-v3.json",
+      "sha256": "dbe610f4deb924557a06a36f7a2096511c2c6d23d7f2da8b9ec1d8110e6d18be",
+      "independent_rebuild_equal": true,
+      "fresh_proposals": 17,
+      "checks_passed": 153,
+      "checks_total": 153,
+      "recorded_step_entries": 29,
+      "recorded_nonfresh_entries": 12,
+      "nonfresh_entry_kinds": {
+        "proposal_without_bound_fresh_handoff": 4,
+        "no_proposal": 6,
+        "stale_previous_proposal": 2
+      },
+      "campaign_completion_rate_computed": false,
+      "legacy_original_analysis_reconstruction_exact": true,
+      "no_historical_human_score_transfer": true
+    },
+    "authored_neutral_checks": {
+      "grounded_full_selected_source_display_exact": true,
+      "grounded_supplied_distinguished_from_selected": true,
+      "active_USER_fact_section_excludes_evidence_inference": true,
+      "active_USER_version_current": true,
+      "USER_CRLF_only_normalized_for_display": true,
+      "raw_request_unchanged": true,
+      "proposed_not_executed_step": true,
+      "claim_passages_use_unchanged_source_display": true
+    },
+    "observations": {
+      "supplied_selected_conflict_required_distinct": true,
+      "supplied_or_selected_does_not_mean_semantically_reviewed": true,
+      "technical_hypothesis_or_cause_fix_inferred": false,
+      "execution_claimed": false,
+      "source_quotes_or_spans_normalized": false,
+      "USER_CRLF_display_normalization_only": true,
+      "fresh_bound_handoff_and_approval_required_for_delivery": true,
+      "next_step_is_generic_proposed_investigation_not_a_tested_diagnostic_plan": true,
+      "maintainer_summaries_longer_in_16_of_17_replay_rows": true,
+      "shorter_summary_or_usefulness_gain_claimed": false
+    },
+    "corrected_prepublication_reporting": {
+      "earlier_replay_v1_v2_retained": true,
+      "final_scope_is_recorded_step_entries_not_unique_or_all_planned_turns": true,
+      "original_unvisited_states_remain_in_parent_campaign_registration": true
+    },
+    "scope_limits": {
+      "prototype_explicit_opt_in_not_selected_freeze": true,
+      "no_factory_config_hook_claim": true,
+      "full_code_or_runtime_acceptance_review": false,
+      "new_model_choices": 0,
+      "human_usefulness_assessed": false,
+      "semantic_support_assessed": false,
+      "held_out_content_read": false,
+      "provider_calls": 0,
+      "index_or_ledger_clients": 0,
+      "credential_files_read": false,
+      "repository_edits": false
+    }
+  },
+  "focused_counts_overlap_development_suite": true,
+  "development_verification": {
+    "distinct_selected_tests_with_passing_observations": 6073,
+    "neutral_cwd": {
+      "passed": 6068,
+      "failed_due_to_repository_cwd": 5,
+      "deselected": 1,
+      "xml_sha256": "9d4c1958afd936e5083e8f1fd1c39bd5a1169ba640afb384b53ed0bfa3167db2",
+      "log_sha256": "bd939aa62f4465a572211302b42b33f62a07d18a5889a6790ea8f9b1a7492765",
+      "boundary": {
+        "exit_code": 1,
+        "blocked_read_attempts": 0,
+        "blocked_held_out_open_attempts": 0,
+        "blocked_designated_credential_open_attempts": 0,
+        "held_out_contents_opened_in_audited_process": 0,
+        "designated_real_credential_contents_opened_in_audited_process": 0,
+        "audit_scope": "this Python process; not a subprocess filesystem attestation",
+        "CWD": "fresh neutral temporary directory",
+        "repository_config_and_test_paths": "explicit absolute paths",
+        "deselected": [
+          "tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture"
+        ]
+      }
+    },
+    "repository_cwd_five": {
+      "passed": 5,
+      "failed": 0,
+      "xml_sha256": "13183f142039d1488670fd68e0d5ebc6d85e87bd65d93e94f553fbeb2c564bcc",
+      "log_sha256": "8d535b0381fb85b6848b335079b49ccef9a5101f9ae6ac998d74d8a32bdc2dc7",
+      "boundary": {
+        "exit_code": 0,
+        "blocked_read_attempts": 0,
+        "guard_scope": "audited Python process",
+        "CWD": "repository root required by these relative-path/default-CLI tests",
+        "targeted_items": [
+          "tests/test_decision_ablations.py::test_registered_repository_protocol_pins_all_three_input_files_and_the_fixed_grid",
+          "tests/test_decision_ablations.py::test_default_cli_validates_protocol_without_reading_credentials_or_opening_a_ledger",
+          "tests/test_quality_experiments.py::test_repository_registration_pins_nine_cases_and_caller_inputs",
+          "tests/test_quality_experiments.py::test_v5_registration_preserves_inputs_while_selecting_separate_compiled_candidate",
+          "tests/test_quality_experiments.py::test_cli_offline_default_needs_neither_key_nor_ledger"
+        ]
+      }
+    },
+    "successful_sets_disjoint": true,
+    "exact_failed_ids_equal_repository_targets": true,
+    "no_code_or_test_changes_between_runs": true,
+    "source_commit": "85d89ea361ee8b75ce13b20b28448a3a3d6355cc",
+    "single_clean_full_suite_invocation_claim": false,
+    "guard_scope": "audited parent Python processes, not subprocess filesystem attestation",
+    "heldout_consumer_deselected": "tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture"
+  },
+  "ruff": {
+    "check_passed": true,
+    "format_check_passed": true,
+    "python_files": 378
+  },
+  "archived_replay_observations": {
+    "fresh_original_proposals": 17,
+    "structural_checks_passed": 153,
+    "structural_checks_total": 153,
+    "recorded_entries": 29,
+    "other_recorded_entries": 12,
+    "unique_or_planned_turn_denominator_claim": false,
+    "unvisited_states_retained_in_original_campaign_registration": true,
+    "enum_escalation_draft_chars": [
+      [
+        2864,
+        306
+      ],
+      [
+        3302,
+        306
+      ]
+    ],
+    "enum_answer_draft_chars": [
+      12201,
+      9383
+    ],
+    "enum_summary_visible_cr_markers": [
+      48,
+      0
+    ],
+    "maintainer_summaries_that_grow": 16,
+    "total_compared_summaries": 17,
+    "all_selected_source_quotes_preserved": true,
+    "new_model_choices": false,
+    "claim_support": "unassessed",
+    "human_usefulness": null
+  },
+  "preservation": {
+    "checks": {
+      "ledger_unchanged": true,
+      "physical19_unchanged": true,
+      "split_manifest_unchanged": true,
+      "heldout_git_tree_unchanged": true,
+      "historical_reports_unchanged": true,
+      "source_test_bytes_match_commit": true,
+      "team_contracts_fixtures_and_runtime_composition_unchanged": true
+    },
+    "physical_pins": 19,
+    "primary_ledger_sha256": "141c3536fb864595d94e0d0dd4a55976418def1012402b70f313c92050222785",
+    "halt_and_three_holds_retained_by_exact_ledger_hash": true,
+    "C5_resolved": false
+  },
+  "preparation_amendments": [
+    "Initial protocol capture used a wrong output parent and stopped before reading pins or running experiments; empty mistaken directory removed. Original protocol records the correction.",
+    "Initial root tests assumed unescaped gap identifiers and unquoted multiline code. Corrected test assertions for existing literal Markdown escaping/blockquote display; no production change was needed. 84 final controls pass.",
+    "Replay preparation first addressed a nonexistent top-level handoff run_id and a legacy entry without a handoff; corrected access uses reasoning_context and explicitly records nonfresh entries.",
+    {
+      "retained_replay_v1_sha256": "1ae7ac7703f9829a5f741454fab2136f9b4621ef021502177deb34aa68706e34",
+      "not_authoritative": "Counts 19 as fresh because two stale prior handoffs were not yet separated; corrected in v2/v3."
+    },
+    {
+      "retained_replay_v2_sha256": "e936808e2a20e814735430dcd31670d17366440e1ac3715385288297b0b894e8",
+      "not_authoritative": "Fresh17 is correct, but nonfresh wording could imply unique/planned turns. v3 explicitly limits all29 entries to recorded steps."
+    },
+    "Independent initial overbroad guarded run reached existing temporary-index/neutral-ledger tests and stopped those operations; exact failures/errors and the corrected pure-focused scope are retained in independent_source_review."
+  ],
+  "verification_limits": {
+    "new_paid_model_calls": 0,
+    "primary_native_index_clients_created": 0,
+    "primary_ledger_writes": 0,
+    "heldout_questions_or_gold_opened": false,
+    "team_or_external_messages_sent": 0,
+    "human_quality_score_transfer": false,
+    "new_human_usefulness_score": false,
+    "enum_diagnosis_or_fix_verified": false,
+    "selected_final_configuration_or_freeze_complete": false,
+    "CI_success_claim": false,
+    "new_manual_UI_or_Windows_acceptance_claim": false
+  },
+  "remaining": [
+    "Independent human review of the new candidate surfaces",
+    "Explicit renderer policy binding and final configuration selection before adoption",
+    "Native gold/build/freeze and untuned heldout execution with their owners",
+    "Provider reconciliation of the three uncertain C5 requests"
+  ]
+}

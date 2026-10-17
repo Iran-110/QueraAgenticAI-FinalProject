@@ -1,0 +1,266 @@
+{
+  "schema_version": 1,
+  "fixture_id": "split-e1-v1-native-run-on-save-12633-v1",
+  "registered_on": "2026-10-16",
+  "registered_before_first_run": true,
+  "purpose": "Regression report with only a version range; exact version asked; no source explains the behaviour. Native-index gold version.",
+  "case": {
+    "case_id": "test-case-05",
+    "split": "test",
+    "family_issue_ids": [
+      12633
+    ],
+    "origin_url": "https://github.com/streamlit/streamlit/issues/12633",
+    "source_snapshot_date": "2026-10-06",
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "test_eligible": true,
+    "exposure": "Held-out test case. The evaluation curator (mhg with assistant drafting) read the Issue thread to author gold; it was not used in core development, prompt tuning, retrieval tuning or model selection. Core developers must not open this file before the final test run."
+  },
+  "evidence_source": {
+    "path": "data/evaluation/split-e1-v1/evidence-test-v1.json",
+    "sha256": "c3fa200f2e9b72b4da8e3030034bdc7206e28f5c3a24d444029c4971f20f90e2",
+    "bundles_used": [
+      "run-on-save"
+    ],
+    "note": "Runner loading only: live native runs take evidence from the index, not this bundle. It is not the evidence the native gold is judged against."
+  },
+  "boundaries": {
+    "agent": "scripted AnalysisResult for offline plumbing; live ignores agent_script/gold/future turns",
+    "real_model_calls": 0,
+    "api_cost_usd": 0,
+    "storage": "evaluation runner process-local API/DummyTracker; not production durable tracker",
+    "quality_claim": false,
+    "max_reached_turns": 2,
+    "visible_to_agent": [
+      "currently selected turns[].visible"
+    ],
+    "runner_only": [
+      "gold",
+      "agent_script",
+      "maintainer",
+      "probes",
+      "evaluation.coverage",
+      "future turns"
+    ]
+  },
+  "initial_report_provenance": {
+    "kind": "developer_paraphrase_of_latest_cached_body",
+    "source_path": "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+    "issue_number": 12633,
+    "source_created_at": "2025-09-25T15:31:08Z",
+    "source_updated_at": "2025-09-26T08:47:33Z",
+    "source_issue_record_sha256": "5cb85ab4b7a441648fab403cd69e55fc60b8e987dfdc15e1b672f1e98d732631",
+    "original_initial_text_verified": false,
+    "note": "Cached body can contain later edits. No later comments/outcomes are supplied as the initial user message."
+  },
+  "turns": [
+    {
+      "id": "initial",
+      "conversation_source": "developer_paraphrase_of_latest_cached_issue_body",
+      "visible": {
+        "message": "With `streamlit run --server.runOnSave true tmp.py`, saving a small change reruns my script several times (my print runs repeatedly). If I instead enable \"Always rerun\" in the web interface, it reruns once. It started with streamlit 1.47 or later and works as expected below 1.47. Python 3.10.18, Ubuntu 24.04.",
+        "reported_facts": [
+          {
+            "name": "python_version",
+            "value": "3.10.18"
+          },
+          {
+            "name": "operating_system",
+            "value": "Ubuntu 24.04"
+          },
+          {
+            "name": "reported_version_range",
+            "value": "1.47 or later; works below 1.47"
+          },
+          {
+            "name": "reported_observation",
+            "value": "runOnSave reruns several times per save; Always rerun reruns once"
+          }
+        ],
+        "unknowns": [
+          "streamlit_version"
+        ],
+        "checks_performed": [
+          "Compared runOnSave with Always rerun",
+          "Compared versions below and from 1.47"
+        ],
+        "context_changed": false
+      },
+      "evidence_bundle": "run-on-save",
+      "agent_script": {
+        "decision": "ask",
+        "user_draft": "Which Streamlit version is installed in the affected environment?",
+        "maintainer_summary": "runOnSave multiple reruns since >=1.47; exact release unknown.",
+        "rationale": "An exact release is needed to scope a regression report.",
+        "next_question": "Which Streamlit version is installed in the affected environment?",
+        "missing_info": [
+          "streamlit_version"
+        ]
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "rubric_id": "e2-rubric-v1",
+        "evidence_condition": "native_index",
+        "stratum": "ambiguous",
+        "acceptable_decisions": [
+          "ask",
+          "escalate"
+        ],
+        "decision_conditions": {
+          "ask": "Exact installed version is useful because only a range was given.",
+          "escalate": "Escalate the regression with the reported range and comparison; record that the exact version was not collected."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [
+          {
+            "name": "streamlit_version",
+            "kind": "user",
+            "description": "Affected installed release not yet supplied.",
+            "necessity": "The documented behaviour or fix depends on the installed release.",
+            "question": "Which Streamlit version is installed in the affected environment?"
+          }
+        ],
+        "unacceptable_claims": [
+          "The documentation explains the multiple reruns.",
+          "A specific release fixes this.",
+          "The user should stop using runOnSave because it is deprecated."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality.",
+        "native_passages": {
+          "answer_required": null,
+          "optional_claim_support": null,
+          "rule": "Observed with agent_app.evaluation.evidence_observation on this turn's captured handoff. Observation is necessary for a supported answer, not sufficient; support, version scope and usefulness stay a human judgment. A missing passage is a bundle gap, not proof that every escalation is right.",
+          "note": "No passage documents the multiple runOnSave reruns."
+        }
+      },
+      "expect": {
+        "revision": 1,
+        "pending_decision": "ask",
+        "after_decision": {
+          "status": "awaiting_user",
+          "awaiting_reply": true,
+          "released_draft": "agent"
+        }
+      }
+    },
+    {
+      "id": "version",
+      "conversation_source": "developer_authored_counterfactual_version_reply",
+      "visible": {
+        "message": "1.49.1",
+        "reply_to_approved_question": true
+      },
+      "evidence_bundle": "run-on-save",
+      "agent_script": {
+        "decision": "escalate",
+        "user_draft": "Thanks, 1.49.1. The available documentation only describes selecting Always rerun so the app updates as you save changes; it does not cover --server.runOnSave rerunning several times per save. Since this started for you from 1.47 and \"Always rerun\" in the web interface reruns once, I am passing the reproduction and version comparison to a maintainer.",
+        "maintainer_summary": "1.49.1; runOnSave reruns several times per save since >=1.47; Always rerun is a working comparison. No source explains it.",
+        "rationale": "Regression without documentation coverage; the user's own comparison is a usable interim workaround as a reported fact.",
+        "evidence_links": [
+          {
+            "claim": "Selecting Always rerun makes the app update automatically as you save changes.",
+            "chunk_id": "e1t-always-rerun-tutorial"
+          }
+        ]
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "rubric_id": "e2-rubric-v1",
+        "evidence_condition": "native_index",
+        "stratum": "needs_escalation",
+        "acceptable_decisions": [
+          "escalate"
+        ],
+        "decision_conditions": {
+          "escalate": "Escalate with 1.49.1, the >=1.47 range and the Always rerun comparison; may note the user's own comparison as an interim option, attributed to the user."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [],
+        "unacceptable_claims": [
+          "The cause is identified.",
+          "A release containing a fix is named.",
+          "The tutorial describes the runOnSave command-line option or its rerun count.",
+          "The version is asked again."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality.",
+        "native_passages": {
+          "answer_required": null,
+          "optional_claim_support": null,
+          "rule": "Observed with agent_app.evaluation.evidence_observation on this turn's captured handoff. Observation is necessary for a supported answer, not sufficient; support, version scope and usefulness stay a human judgment. A missing passage is a bundle gap, not proof that every escalation is right.",
+          "note": "No passage documents the multiple runOnSave reruns."
+        }
+      },
+      "expect": {
+        "revision": 2,
+        "pending_decision": "escalate",
+        "preparation": "canonical_version_reply",
+        "active_facts": {
+          "streamlit_version": "1.49.1"
+        },
+        "after_decision": {
+          "status": "escalated",
+          "released_draft": "agent"
+        }
+      }
+    }
+  ],
+  "evaluation": {
+    "coverage": {
+      "turn_ids": [
+        "initial",
+        "version"
+      ],
+      "routes": [
+        {
+          "from_turn": "initial",
+          "to_turn": "version",
+          "guard": {
+            "decision": "ask",
+            "question_target": "streamlit_version"
+          }
+        },
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "escalate"
+          }
+        },
+        {
+          "from_turn": "version",
+          "to_turn": null,
+          "guard": {
+            "decision": "escalate"
+          }
+        }
+      ]
+    }
+  },
+  "native_of": {
+    "fixture_id": "split-e1-v1-run-on-save-12633-v1",
+    "path": "data/evaluation/split-e1-v1/test/run-on-save-12633-v1.json",
+    "sha256": "1cd7b38c6616434e0f9d2f8de7d31dc522ecb62f47a774cbda9fcead47a39173",
+    "note": "Same case, family and visible turns; only gold and routes differ. Never run in one invocation with the fixed version."
+  },
+  "native_scope": {
+    "evidence_condition": "native_index",
+    "build": "pending_final_build",
+    "index_snapshot": null,
+    "corpus_manifest_sha256": null,
+    "allowlist_sha256": null,
+    "exclusion_manifest_sha256": null,
+    "note": "Pins are filled from Hassan's final build before the final run; this gold is not valid for a run until then."
+  }
+}

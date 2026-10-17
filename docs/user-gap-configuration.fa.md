@@ -12,6 +12,14 @@ factory استفاده می‌کنند. بدون این تنظیم، vocabulary 
 
 ## تنظیم فایل
 
+تعریف‌های تأییدشدهٔ dev برای فرم و کد state در فایل اختیاری
+[`config/user-gap-support-dev-v1.json`](../config/user-gap-support-dev-v1.json)
+کنار دو تعریف قبلی قرار دارند. caller می‌تواند مسیر آن را به
+`AGENT_USER_GAP_CATALOG` بدهد؛ تعریف‌ها فقط با `unknowns` صریح فعلی فعال
+می‌شوند و تنظیم پیش‌فرض تغییر نکرده است. این فایل vocabulary نهایی test را
+freeze نمی‌کند. [تصمیم اتصال، gold و text-only](evaluation-readiness.fa.md)
+مرز قابلیت سؤال، پوشش fixture و rubric تاریخی را توضیح می‌دهد.
+
 نمونهٔ یک تعریف خنثی؛ این فایل را به‌عنوان تنظیم محلی maintainer آماده کنید:
 
 ```json

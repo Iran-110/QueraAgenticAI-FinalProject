@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "review_kind": "independent_assistant_dev_only_integration_and_provenance_review",
+  "pull_request": 79,
+  "pr_head": "f6ba41be41cbd893634a75f68ab1a076b6edf699",
+  "recorded_at_utc": "2026-10-16T14:11:40.635341+00:00",
+  "scope": "controlled_fixed_evidence_v2_not_native_gold",
+  "fixtures": [
+    {
+      "fixture_id": "dev-three-pilot-12782-v2",
+      "path": "data/evaluation/dev-three-v2/cases/pilot-12782-v2.json",
+      "sha256": "661288119e6fae8a2a6973ffbb50c5ef1e0baafabdd62e20d80429529c059b09",
+      "supersedes_sha256": "6b542b325ac70906b014c9ac9a7bd01fb95c81a9219794f695de1e09de76c901",
+      "unchanged_visible_script_maintainer_expect_routes_evidence": true
+    },
+    {
+      "fixture_id": "dev-three-icon-9770-v2",
+      "path": "data/evaluation/dev-three-v2/cases/icon-9770-v2.json",
+      "sha256": "4243de41e754bce2272aee0e82cc0f63e590b39e4b04a806a5951dab2c59de15",
+      "supersedes_sha256": "199b47b1c3a65e853d49ec28d9607eec36982502bd2fd5bde1c640165e35c413",
+      "unchanged_visible_script_maintainer_expect_routes_evidence": true
+    },
+    {
+      "fixture_id": "dev-three-enum-8129-v2",
+      "path": "data/evaluation/dev-three-v2/cases/enum-8129-v2.json",
+      "sha256": "746f885a60e4d5c88913bdd82c9d77ca6d48c0665775c4cd201bceeb322965bf",
+      "supersedes_sha256": "c5becdc00a950941cb25de8f775fc1a5b024d54f607a9c494bd9e7820ab216f0",
+      "unchanged_visible_script_maintainer_expect_routes_evidence": true
+    }
+  ],
+  "manifest_sha256": "ceb4cf2d4eca4542ec7efc6317633311e11574c21fa5651cdc9bf536cc78c185",
+  "human_review_file_sha256": "b58ffec4ef1737b83589394b1f6ced3d4ce7fc744631149f0aaa1692dc9422dd",
+  "assisted_change_card_review": {
+    "cards": 8,
+    "initial_verdicts": {
+      "correct": 5,
+      "unsure": 3
+    },
+    "final_verdicts": {
+      "correct": 8
+    },
+    "human_and_private_export_provenance": "author_attested_not_authenticated",
+    "output_claim_support_or_model_quality_score": false
+  },
+  "interpretation": "Gold decision condition permits disclosed tips but does not change rubric strict support zero for unsupported material API/version assertions. Existing scorer preserves decision/usefulness independently; six authored regression controls retain this distinction. No original gold/human labels changed.",
+  "historical_fixtures_gold_review_receipts_preserved": true,
+  "test_registration_and_exclusion_unchanged": true,
+  "historical_report_v2_preserved_v3_only_manifest_pin_changed": true,
+  "fresh_offline_replay": {
+    "cases": 3,
+    "turns": 6,
+    "planned_turns": 6,
+    "coverage_complete": true,
+    "registered_turns": 6,
+    "unvisited_registered_turns": 0,
+    "selected_path_complete": true,
+    "completed_multi_turn_paths": 3,
+    "completed_multi_turn_test_paths": 0,
+    "checks": 79,
+    "failed": 0,
+    "cases_all_passed": 3,
+    "decisions": {
+      "escalate": 2,
+      "ask": 3,
+      "answer": 1
+    },
+    "latency_ms_total": 19.4,
+    "cost_usd_total": "0",
+    "settled_usd_total": "0",
+    "reserved_usd_total": "0",
+    "uncertain_usd_total": "0",
+    "accounting_complete": true,
+    "unaccounted_requests": 0,
+    "fixture_branches_unavailable": 0,
+    "receipt_sha256": "f09155cad7477e77e473794298bf2e3684ede0b4905fdf9573bbd50e753aef98",
+    "tracker_scope": "process_local_API_DummyTracker_not_durable_UI_SQLite_acceptance",
+    "scripted_not_model_quality": true
+  },
+  "held_out_contents_opened": 0,
+  "paid_model_calls": 0,
+  "native_index_clients_created": 0,
+  "CI_success_claim": false,
+  "open": [
+    "Native fixture/gold/routes and actual consumed-passage review",
+    "C4j usefulness worksheet",
+    "Final corpus/config/build pins and manifest freeze",
+    "C5 provider evidence and final untuned evaluation"
+  ]
+}

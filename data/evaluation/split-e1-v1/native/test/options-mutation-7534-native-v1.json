@@ -1,0 +1,304 @@
+{
+  "schema_version": 1,
+  "fixture_id": "split-e1-v1-native-options-mutation-7534-v1",
+  "registered_on": "2026-10-16",
+  "registered_before_first_run": true,
+  "purpose": "Mutated options list; authored version correction moves the user across the 1.32.0 shallow-copy fix and must invalidate the first proposal. Native-index gold version.",
+  "case": {
+    "case_id": "test-case-07",
+    "split": "test",
+    "family_issue_ids": [
+      7534
+    ],
+    "origin_url": "https://github.com/streamlit/streamlit/issues/7534",
+    "source_snapshot_date": "2026-10-06",
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "test_eligible": true,
+    "exposure": "Held-out test case. The evaluation curator (mhg with assistant drafting) read the Issue thread to author gold; it was not used in core development, prompt tuning, retrieval tuning or model selection. Core developers must not open this file before the final test run."
+  },
+  "evidence_source": {
+    "path": "data/evaluation/split-e1-v1/evidence-test-v1.json",
+    "sha256": "c3fa200f2e9b72b4da8e3030034bdc7206e28f5c3a24d444029c4971f20f90e2",
+    "bundles_used": [
+      "options-copy"
+    ],
+    "note": "Runner loading only: live native runs take evidence from the index, not this bundle. It is not the evidence the native gold is judged against."
+  },
+  "boundaries": {
+    "agent": "scripted AnalysisResult for offline plumbing; live ignores agent_script/gold/future turns",
+    "real_model_calls": 0,
+    "api_cost_usd": 0,
+    "storage": "evaluation runner process-local API/DummyTracker; not production durable tracker",
+    "quality_claim": false,
+    "max_reached_turns": 2,
+    "visible_to_agent": [
+      "currently selected turns[].visible"
+    ],
+    "runner_only": [
+      "gold",
+      "agent_script",
+      "maintainer",
+      "probes",
+      "evaluation.coverage",
+      "future turns"
+    ]
+  },
+  "initial_report_provenance": {
+    "kind": "developer_paraphrase_of_latest_cached_body",
+    "source_path": "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+    "issue_number": 7534,
+    "source_created_at": "2023-10-10T21:50:39Z",
+    "source_updated_at": "2024-02-02T23:40:41Z",
+    "source_issue_record_sha256": "1723e47ce402b4af4c386d2256f9166807999089c691d39672ed78a6fc9916ac",
+    "original_initial_text_verified": false,
+    "note": "Cached body can contain later edits. No later comments/outcomes are supplied as the initial user message."
+  },
+  "turns": [
+    {
+      "id": "initial",
+      "conversation_source": "developer_paraphrase_of_latest_cached_issue_body",
+      "visible": {
+        "message": "st.selectbox shows the wrong selection after I modify my options list. Code:\n\noptions = ['a', 'b', 'c']\nitem = st.selectbox('Item', options, index=0, key='item')\nst.write('selected', item)\noptions.pop(0)\nst.button('Refresh')\n\nAfter clicking Refresh it shows \"b\" instead of \"a\". Passing deepcopy(options) avoids it. Streamlit 1.27.2, Python 3.9.16, Ubuntu 22.04, Edge.",
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.27.2"
+          },
+          {
+            "name": "reported_reproduction_code",
+            "value": "options = ['a', 'b', 'c']\nitem = st.selectbox('Item', options, index=0, key='item')\nst.write('selected', item)\noptions.pop(0)\nst.button('Refresh')"
+          },
+          {
+            "name": "reported_observation",
+            "value": "Selection shows b instead of a after Refresh"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [
+          "Passing deepcopy(options) avoids the problem"
+        ],
+        "context_changed": false
+      },
+      "evidence_bundle": "options-copy",
+      "agent_script": {
+        "decision": "answer",
+        "user_draft": "In Streamlit 1.32.0 st.selectbox and similar widgets started using shallow copies of their options to prevent unexpected mutations. On 1.27.2, keep passing a copy such as list(options) or deepcopy(options), or upgrade to 1.32.0 or later.",
+        "maintainer_summary": "1.27.2 predates the 1.32.0 shallow-copy fix; copy or upgrade.",
+        "rationale": "The 1.32.0 release note addresses option mutation.",
+        "evidence_links": [
+          {
+            "claim": "Since 1.32.0 selectbox, multiselect, select_slider and radio use shallow copies of their options.",
+            "chunk_id": "e1t-rn-1320-options-copy"
+          }
+        ]
+      },
+      "maintainer": {
+        "decision": "none",
+        "note": "Leave unexecuted; the correction must invalidate it."
+      },
+      "gold": {
+        "rubric_id": "e2-rubric-v1",
+        "evidence_condition": "native_index",
+        "stratum": "answerable",
+        "acceptable_decisions": [
+          "answer",
+          "escalate"
+        ],
+        "decision_conditions": {
+          "answer": "Tie 1.27.2 to the 1.32.0 shallow-copy fix; recommend a copy or upgrading. Native index: the registered passages must be in this turn's supplied bundle AND support the stated claim, its API scope and the active USER version; presence alone is not support.",
+          "escalate": "Acceptable only when this turn's supplied evidence leaves a material documentation or applicability gap for the reported behaviour at 1.27.2. Name the missing documentation or uncovered claim and a concrete next step; retain guidance actually supported. Do not assert that 1.32.0 fixes this case or recommend upgrading as a documented remedy unless the supplied evidence supports that claim and its applicability. Missing registered-passage observation alone does not justify escalation; if other supplied evidence adequately covers the case, escalation is unnecessary abstention."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [],
+        "unacceptable_claims": [
+          "1.27.2 already copies options.",
+          "Mutating options after the call is documented as supported in 1.27.2."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality.",
+        "native_passages": {
+          "answer_required": {
+            "requirements": [
+              {
+                "requirement_id": "rn-1320-options-copy",
+                "alternatives": [
+                  {
+                    "source_id": "docs:content/develop/quick-references/release-notes/2024.md",
+                    "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                    "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2024.md",
+                    "passage": "use shallow copies of their options to prevent unexpected mutations"
+                  }
+                ]
+              }
+            ],
+            "requirements_sha256": "e49b99acfec53f8525c5b1808798c01e1170f21f975cbdb6ec46d81066de2b2a"
+          },
+          "optional_claim_support": null,
+          "rule": "Observed with agent_app.evaluation.evidence_observation on this turn's captured handoff. Observation is necessary for a supported answer, not sufficient; support, version scope and usefulness stay a human judgment. A missing passage is a bundle gap, not proof that every escalation is right.",
+          "note": null
+        }
+      },
+      "expect": {
+        "revision": 1,
+        "pending_decision": "answer"
+      }
+    },
+    {
+      "id": "correction",
+      "conversation_source": "developer_authored_counterfactual_version_correction_not_issue_thread_reply",
+      "visible": {
+        "message": "Correction: I checked again and the affected environment runs Streamlit 1.33.0, not 1.27.2. The code and result are unchanged.",
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.33.0"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [
+          "Checked the installed Streamlit release"
+        ],
+        "context_changed": false
+      },
+      "evidence_bundle": "options-copy",
+      "agent_script": {
+        "decision": "escalate",
+        "user_draft": "Thanks for the correction to 1.33.0. That release already includes the 1.32.0 change that copies selectbox options, so the documented fix should apply to you. Since you still see the wrong selection with the same code, I am passing this to a maintainer with your reproduction.",
+        "maintainer_summary": "Corrected to 1.33.0, which includes the 1.32.0 fix, yet the reproduction still fails. Needs investigation.",
+        "rationale": "The correction moves the user past the documented fix; the remaining failure is unexplained.",
+        "evidence_links": [
+          {
+            "claim": "The shallow-copy change shipped in 1.32.0.",
+            "chunk_id": "e1t-rn-1320-options-copy"
+          }
+        ]
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "rubric_id": "e2-rubric-v1",
+        "evidence_condition": "native_index",
+        "stratum": "needs_escalation",
+        "acceptable_decisions": [
+          "escalate",
+          "ask"
+        ],
+        "decision_conditions": {
+          "escalate": "Recognize that 1.33.0 includes the 1.32.0 fix, so recommending the upgrade is stale; escalate the persisting reproduction.",
+          "ask": "Only a check that the corrected environment really runs the reproduction on 1.33.0 (for example printing st.__version__); not the version question again."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [
+          {
+            "name": "runtime_version_check",
+            "kind": "user",
+            "description": "Whether the reproduction was rerun after confirming the runtime release is unknown.",
+            "necessity": "A stale environment would explain a failure after the documented fix.",
+            "question": "Can you print st.__version__ in the failing app and confirm it shows 1.33.0 while the problem occurs?"
+          }
+        ],
+        "unacceptable_claims": [
+          "Upgrading to 1.32.0 will fix it.",
+          "The user is still on 1.27.2.",
+          "The first proposal is still valid after the correction."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality.",
+        "native_passages": {
+          "answer_required": null,
+          "optional_claim_support": null,
+          "rule": "Observed with agent_app.evaluation.evidence_observation on this turn's captured handoff. Observation is necessary for a supported answer, not sufficient; support, version scope and usefulness stay a human judgment. A missing passage is a bundle gap, not proof that every escalation is right.",
+          "note": "No answer: 1.33.0 already includes the 1.32.0 fix, so the next step is escalation or a runtime check."
+        }
+      },
+      "expect": {
+        "revision": 2,
+        "pending_decision": "escalate",
+        "active_facts": {
+          "streamlit_version": "1.33.0"
+        },
+        "superseded_values": {
+          "streamlit_version": [
+            "1.27.2"
+          ]
+        },
+        "changed_fact_names": [
+          "streamlit_version"
+        ],
+        "previous_proposal_now_stale": true,
+        "after_decision": {
+          "status": "escalated",
+          "released_draft": "agent"
+        }
+      }
+    }
+  ],
+  "evaluation": {
+    "coverage": {
+      "turn_ids": [
+        "initial",
+        "correction"
+      ],
+      "routes": [
+        {
+          "from_turn": "initial",
+          "to_turn": "correction",
+          "guard": {
+            "decision": "answer"
+          }
+        },
+        {
+          "from_turn": "initial",
+          "to_turn": "correction",
+          "guard": {
+            "decision": "escalate"
+          }
+        },
+        {
+          "from_turn": "correction",
+          "to_turn": null,
+          "guard": {
+            "decision": "escalate"
+          }
+        },
+        {
+          "from_turn": "correction",
+          "to_turn": null,
+          "guard": {
+            "decision": "ask",
+            "question_target": "runtime_version_check"
+          }
+        }
+      ]
+    }
+  },
+  "probes": [
+    {
+      "id": "stale_initial_approval_after_correction",
+      "after_turn": "correction",
+      "expect": "HTTP409, first unexecuted proposal never released; operational offline expectation only"
+    }
+  ],
+  "native_of": {
+    "fixture_id": "split-e1-v1-options-mutation-7534-v1",
+    "path": "data/evaluation/split-e1-v1/test/options-mutation-7534-v1.json",
+    "sha256": "d009b59009f63dd5563a88ea697dfddf1eb084a8d0c87c6a7614afe9eb4748de",
+    "note": "Same case, family and visible turns; only gold and routes differ. Never run in one invocation with the fixed version."
+  },
+  "native_scope": {
+    "evidence_condition": "native_index",
+    "build": "pending_final_build",
+    "index_snapshot": null,
+    "corpus_manifest_sha256": null,
+    "allowlist_sha256": null,
+    "exclusion_manifest_sha256": null,
+    "note": "Pins are filled from Hassan's final build before the final run; this gold is not valid for a run until then."
+  }
+}

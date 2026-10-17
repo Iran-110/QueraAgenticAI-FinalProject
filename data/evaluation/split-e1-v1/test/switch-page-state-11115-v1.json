@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "fixture_id": "split-e1-v1-switch-page-state-11115-v1",
+  "registered_on": "2026-10-15",
+  "registered_before_first_run": true,
+  "purpose": "Conflict between documented entrypoint-widget statefulness and observed loss with st.switch_page.",
+  "case": {
+    "case_id": "test-case-12",
+    "split": "test",
+    "family_issue_ids": [
+      11115
+    ],
+    "origin_url": "https://github.com/streamlit/streamlit/issues/11115",
+    "source_snapshot_date": "2026-10-06",
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "test_eligible": true,
+    "exposure": "Held-out test case. The evaluation curator (mhg with assistant drafting) read the Issue thread to author gold; it was not used in core development, prompt tuning, retrieval tuning or model selection. Core developers must not open this file before the final test run."
+  },
+  "evidence_source": {
+    "path": "data/evaluation/split-e1-v1/evidence-test-b-v1.json",
+    "sha256": "da2c1514ce57af260fc33b4e1d81ee48cb673c5edfbafd67cd113ff42afc96b3",
+    "bundles_used": [
+      "mpa-widgets"
+    ],
+    "note": "Fixed seed-backed evidence, not index output. Issue/comment/outcome text excluded."
+  },
+  "boundaries": {
+    "agent": "scripted AnalysisResult for offline plumbing; live ignores agent_script/gold/future turns",
+    "real_model_calls": 0,
+    "api_cost_usd": 0,
+    "storage": "evaluation runner process-local API/DummyTracker; not production durable tracker",
+    "quality_claim": false,
+    "max_reached_turns": 1,
+    "visible_to_agent": [
+      "currently selected turns[].visible"
+    ],
+    "runner_only": [
+      "gold",
+      "agent_script",
+      "maintainer",
+      "probes",
+      "evaluation.coverage",
+      "future turns"
+    ]
+  },
+  "initial_report_provenance": {
+    "kind": "developer_paraphrase_of_latest_cached_body",
+    "source_path": "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+    "issue_number": 11115,
+    "source_created_at": "2025-04-16T17:08:25Z",
+    "source_updated_at": "2026-09-04T07:01:52Z",
+    "source_issue_record_sha256": "265f692c9a55ea12fb9324b20f2647aad5010079bdd51f4f2fbfd45c499f5105",
+    "original_initial_text_verified": false,
+    "note": "Cached body can contain later edits. No later comments/outcomes are supplied as the initial user message."
+  },
+  "turns": [
+    {
+      "id": "initial",
+      "conversation_source": "developer_paraphrase_of_latest_cached_issue_body",
+      "visible": {
+        "unknowns": [],
+        "checks_performed": [
+          "Compared sidebar navigation, st.page_link and st.switch_page"
+        ],
+        "context_changed": false,
+        "message": "In my st.navigation app, a sidebar checkbox with key 'unit' lives in streamlit_app.py. Navigating with the sidebar or st.page_link keeps st.session_state.unit, but clicking a button that calls st.switch_page('page_1.py') loses it: AttributeError: st.session_state has no attribute \"unit\". Code:\n\n# streamlit_app.py\nst.sidebar.checkbox('set unit to True', key='unit')\npg = st.navigation({'Your app': [st.Page('page_1.py'), st.Page('page_2.py')]})\npg.run()\n\n# page_2.py\nif st.button('< Back to Page 1'):\n    st.switch_page('page_1.py')\n\nStreamlit 1.44.1, Python 3.11, macOS, Chrome. It used to work in a previous version.",
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.44.1"
+          },
+          {
+            "name": "reported_reproduction_code",
+            "value": "# streamlit_app.py\nst.sidebar.checkbox('set unit to True', key='unit')\npg = st.navigation({'Your app': [st.Page('page_1.py'), st.Page('page_2.py')]})\npg.run()\n\n# page_2.py\nif st.button('< Back to Page 1'):\n    st.switch_page('page_1.py')"
+          },
+          {
+            "name": "reported_observation",
+            "value": "Key lost only after st.switch_page; kept with sidebar and page_link navigation"
+          }
+        ]
+      },
+      "evidence_bundle": "mpa-widgets",
+      "agent_script": {
+        "decision": "escalate",
+        "user_draft": "The multipage guide says a widget executed in the entrypoint file stays stateful as users switch pages, so losing 'unit' only after st.switch_page contradicts the documented behaviour; I am passing your reproduction on 1.44.1 to a maintainer. As an interim workaround, the guide's dummy-key pattern copies the widget value into a separate Session State key that is preserved between pages.",
+        "maintainer_summary": "Docs say entrypoint widgets stay stateful; switch_page loses the key on 1.44.1. Interim: dummy-key pattern.",
+        "rationale": "Observed behaviour conflicts with the documented option 1; option 2 is a documented workaround.",
+        "evidence_links": [
+          {
+            "claim": "Widgets in the entrypoint file remain stateful as users switch pages.",
+            "chunk_id": "e1t-mpa-entrypoint-widgets"
+          },
+          {
+            "claim": "Copy a widget value into a separate key to preserve it between pages.",
+            "chunk_id": "e1t-mpa-dummy-key"
+          }
+        ]
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "rubric_id": "e2-rubric-v1",
+        "evidence_condition": "controlled_fixed_evidence",
+        "stratum": "needs_escalation",
+        "acceptable_decisions": [
+          "escalate",
+          "answer"
+        ],
+        "decision_conditions": {
+          "escalate": "Name the conflict with the documented entrypoint behaviour and escalate; offering the dummy-key workaround is a plus.",
+          "answer": "Only if it gives the documented dummy-key workaround and states the switch_page loss is unexplained by the docs."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [],
+        "required_sources": [
+          "e1t-mpa-entrypoint-widgets",
+          "e1t-mpa-dummy-key"
+        ],
+        "unacceptable_claims": [
+          "The docs say st.switch_page clears widget state by design.",
+          "Moving the checkbox into the entrypoint fixes it (it is already there).",
+          "The user uses the pages/ directory."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality."
+      },
+      "expect": {
+        "revision": 1,
+        "pending_decision": "escalate",
+        "after_decision": {
+          "status": "escalated",
+          "released_draft": "agent"
+        }
+      }
+    }
+  ],
+  "evaluation": {
+    "coverage": {
+      "turn_ids": [
+        "initial"
+      ],
+      "routes": [
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "escalate"
+          }
+        },
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "answer"
+          }
+        }
+      ]
+    }
+  }
+}

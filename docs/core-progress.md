@@ -1,3 +1,500 @@
+## 2026-10-17 — C4t/U4a: operational PRs, input custody and saved-case reopening
+
+[Failure/context boundary](failure-context-custody.fa.md),
+[saved-case behavior](saved-case-reopen.fa.md),
+[PR83 opaque custody/exposure](pr83-custody.fa.md),
+[verification](receipts/team-closeout-2026-10-17.json).
+PR82’s reported Windows operational evidence and PR84’s2authored tests are
+accepted within their stated limits. One extra test captures actual configured
+core/retriever/reasoner inputs across app/tracker reconstruction for2failure modes.
+Replay allocates no ports; prior errors remain durable, correction changes actual
+query/current evidence and other-case state is unchanged. Prior run_outcome still
+does not enter reasoning; this observation is not adaptive recovery or a reason
+to force different decisions. Core contracts/recipe/prompt/vocabulary are unchanged.
+
+UI now reopens a saved durable case by explicit validated ID, using GET only.
+41new controls cover fresh AppTest sessions, actual TCP backend-process restart,
+current/stale/edited/rejected/approved views, per-case retry custody and lostACK
+without another Action. Missing/invalid IDs retain the current case. The session
+client cache API is versioned by source; original retry envelopes are not rewritten.
+Unsent earlier-session drafts/ReviewOperation IDs are not recovered; no outbox.
+378focused tests and Ruff/format395files pass; independent counts overlap.
+Parent audits record0blocked protected/external attempts and8allowed loopback
+connections; they do not attest every subprocess. No fresh broad-suite/model score.
+
+PR83 integrates only as an opaque owner-attested native-test registration.
+Payload/review blobs remain unopened; original tree/blob IDs are preserved.
+A test-specific review detail was seen in an allowed shared-plan/metadata diff,
+redacted before publication and not used for development tuning. This limited
+exposure is not undone; owner eligibility assessment remains pending. No claim
+that every test remains completely unseen, no semantic review/final execution.
+Hassan’s compatible final build, shared pins/freeze, human quality, C5 and final
+test remain open. Primary ledger/19pins/threeholds/halt and old artifacts remain;
+no paid API, new framework or external team message.
+
+## 2026-10-16 — E2ad: native final-pin guard and dev-only freeze readiness
+
+[Contract and dependencies](native-freeze-readiness.fa.md),
+[verification](receipts/native-freeze-readiness-2026-10-16.json).
+A neutral frozen packet with pending/null native_scope pins passed the old gate.
+Existing preflight now rejects incomplete native declarations, mixed condition
+labels, mismatched raw evaluation-corpus SHA and inconsistent five-pin bindings
+before a final live factory. Bounded binding hash/count only; physical-index and
+semantic-support verification remain explicitly false. Ordinary dev and historical
+unmarked fixed packets preserve behavior. No parallel freeze tool or loader.
+279 focused tests include70 new neutral controls; independent focused counts
+overlap. Ruff/format392files pass; no fresh broad-suite/hosted-CI claim.
+
+Remote snapshot shows no new teammate push/open PR after PR81; R4b/PR72 and native
+dev/PR81 are already integrated. Safe dev audit validates16fixtures/23turns/52routes,
+all22 native JSON artifact bytes and90Issue exclusion metadata. All16dev native scopes
+are still pending and lack final-contract family_id/coverage witnesses; two new
+clauses still need human confirmation. Nine of16registered answer-required blocks
+have complete exact alternatives in the approved18source/36chunk manifest COPY;
+this is inventory only, never retrieval delivery, version support or model quality.
+Closed14/18-source live loader cannot automatically accept a broader final corpus.
+New pinned fixture/registration versions must follow a compatible owner build;
+old pending artifacts must not be filled in place. Final packet/human reviews,
+physical build-loader binding, C5 and final test remain open. Halt/threeholds,
+primary ledger/19pins/runtime outside preflight/gold/test/vocabulary unchanged;
+no held-out content, new paid API or team messages.
+
+## 2026-10-16 — E2ac: two dev-native escalation gold amendments in PR81
+
+[Scope and reproduction](native-dev-gold-amendment.fa.md),
+[verification](receipts/native-dev-gold-amendment-2026-10-16.json).
+The two initial escalation clauses no longer require an unsupported 1.38.0 fix
+claim when a material documentation/applicability gap remains. Supported guidance
+and a concrete investigation/retrieval next step are required; already-known
+USER1.37.0 is not a new user gap. Missing observer match alone is not a gap.
+The unchanged exact-answer-anchor requirement remains a separate manual-review
+limitation for equivalent evidence; this bounded fix is not exhaustive semantic gold.
+
+Active dev-v2 registration selects14 byte-identical v1 plus2 additive v2 fixtures.
+All18 original v1 fixture/registration/human-review bytes remain exact; new hashes
+and supersedes links are bound to a separate assistant amendment record. Human
+verdicts are not transferred; confirmation of the two new clauses is pending.
+Visible turns/scripts/routes/answers/tabs follow-up/passages/digests and all fixed
+fixtures remain exact. Fresh explicit16 offline conditional replay passes23turns
+and273checks. It uses scripted fixture evidence, not native retrieval/model quality.
+Independent semantic and graph reviews find no blocker. 233 targeted tests pass,
+including10 new controls; independent10-test replay overlaps. Ruff/format391files
+pass. Four initial test-helper errors (missing Fact.turn_id) are corrected using
+the actual turn ID, with original logs retained. Final parent audits record zero
+protected opens/network attempts, not subprocess attestation. Preservation
+evidence is recorded in the receipt; no fresh broad-suite or successful CI claim.
+Final-build pins, human quality, C5 and final test stay open; runtime/vocabulary,
+primary ledger/19pins/threeholds/halt and held-out tree/exclusion stay unchanged.
+No held-out payload, paid API or team message.
+
+## 2026-10-16 — C4s: selected full-runner acceptance and review correction
+
+[Behavior/reproduction](core-selected-runner-acceptance.fa.md),
+[verification](receipts/core-selected-runner-acceptance-2026-10-16.json).
+Eight authored controls run the actual selected configured factory through full
+conditional evaluation.runner in development/evaluation phases: valid path,
+malformed→valid repair, two malformed outputs and mock timeout. Fresh native
+index/ledger, intercepted provider and memory DummyTracker only; SQLite/restart
+acceptance remains C4r, not a new claim here. Effective engine, current handoffs,
+nonsecret recipe/binding/phase and exact accounting survive serialized receipts.
+Future reply canaries remain absent through all early retry wires; reviewer
+gold/script never reaches the mock provider. Failure/unvisited states are retained.
+
+Mock timeout retains an uncertain reservation without automatically setting a
+fresh temporary ledger's separate halt flag. Actual next allocation and fresh
+configured factory reject LiveAccountingUnresolved before further key/index/send;
+the earlier contrary test assumption is retained and corrected, not implemented.
+297 focused tests, two independent8-control runs and Ruff389files pass; counts
+overlap. Runtime, existing tests/config/vocabulary and old C4r receipt are exact.
+Prior6265-test C4r verification remains historical; no fresh broad run/model score.
+Primary ledger/19pins/threeholds/halt/test/exclusion unchanged; paidAPI/messages0.
+
+PR81 plan rollback was our review error: merge-base diff+1/-0; plan-only three-way
+merge preserves C4r/C4q/C4j and adds its note. Active docs are corrected additively;
+original receipt bytes remain. The two unsupported-fix native gold conditions were
+subsequently amended additively in E2ac above, with human confirmation pending.
+Full-session UI recovery remains absent;
+a separate neutral AppTest/SQLite probe verifies safety, not UI recovery. No PR81
+activation at the C4s stage, shared freeze, semantic quality, C5 reconciliation or final test.
+
+## 2026-10-16 — C4r: selected core recipe and actual execution wiring
+
+[Selection and use](core-delivery-selection.fa.md),
+[versioned recipe](../config/core-delivery-grounded-v1.json),
+[verification](receipts/core-delivery-selection-2026-10-16.json).
+Selected `grounded_candidate_v1`: grounded gpt-4o-mini, the compact/candidate
+relevance combination studied in C4h5, current reviewed dev vocabulary, legacy
+renderer. This is a delivery choice, not a new quality winner or completed Enum
+fix. Brief/JSON/resource/capacity/complementary/background/concise stay off.
+
+Optional operator selection now reaches the existing configured factory/backend.
+Explicit public conflicts reject before credentials; actual raw settings/catalog
+are checked without laundering hidden state, and allocation/plan recheck owner,
+gateway, HTTP sender and legacy renderer fields. Detached nonsecret observations
+bind the selected recipe; omitted mode preserves historical settings/metadata.
+Fixed runner's strict optional-metadata boundary: previously real compact/binding
+observations became unavailable. It now projects only known shapes, identities,
+recipe/hash/model/ledger-phase matches and consistent bounded wire diagnostics;
+unknown content stays private. Legacy field order remains exact.
+
+Independent actual-factory HTTP acceptance uses fresh disposable native indexes,
+SQLite/ledger and authored MockTransport responses. It verifies exact current
+USER-version scope, native25/final5/12000-byte policy, current question catalog,
+compact request, fresh legacy handoff, correction, stale409 and restart/retry
+without a second Action. That is software acceptance, never paid model quality.
+Source `9fdb132`:6265 selected development tests pass across two preregistered
+CWD contexts (6260 neutral +5 required root; disjoint, unchanged source/tests).
+One held-out consumer is explicitly removed before execution;129 new controls
+are included. Independent47/121 focused counts overlap, Ruff388files/3demos pass.
+Initial interrupted absolute-deselection error and correction remain recorded;
+parent protected-open attempts0 is not subprocess attestation or one full run.
+Full verification/source hashes are in the receipt; primary ledger/19 pins,
+halt/three holds, old campaigns/gold, split/test and exclusion stay unchanged.
+PR81's dev-only native artifacts were reviewed structurally; two unsupported-fix
+route conditions were later amended in E2ac above. The earlier plan
+rollback diagnosis was an endpoint-comparison mistake, corrected additively in
+[C4s](core-selected-runner-acceptance.fa.md); a plan-only three-way merge retains
+current C4r/C4q/C4j and adds the native note. The C4r receipt remains immutable.
+No merge/activation of that PR at the C4r stage, new API call, final test or team message.
+
+## 2026-10-16 — C4q: core closeout and registered reasoner construction
+
+[Closeout/usage/open gates](core-closeout.fa.md),
+[verification](receipts/core-freeze-closeout-2026-10-16.json).
+The additive registered_reasoner module preserves the complete existing v1
+candidate and separately binds an explicit renderer policy in a v2 envelope.
+Mixed versions, invalid/rehashed inconsistent declarations and mismatches fail
+before the planner factory. Matching declarations create the actual grounded
+reasoner with detached flags and caller catalog; callbacks cannot mutate the
+applied settings through the original descriptors. A returned binding receipt
+records the accepted descriptor SHA/policy, not quality or live authorization.
+
+Source `9f24376`: 580 fresh relevant tests pass, including 45 new root and
+18 independent controls. Independent focused review passes 271 overlapping tests.
+Three offline CLI demos exit zero; Ruff/format passes 381 Python files. Protected
+parent audit records zero protected-file/network attempts; subprocess filesystem
+attestation is not implied. All existing source/scripts/tests/config/data remain
+byte-identical; only the new explicit module/two tests are added. The 6073-test
+C4p broad result remains historical to its source, not a new C4q full-suite claim.
+Ledger/19 physical pins, manifest, held-out Git tree and ordinary halt remain exact.
+
+This is explicit injected GroundedReasoner composition only. Ordinary factories,
+environment settings, runner, shared contracts, data and defaults are unchanged.
+Planner/model/endpoint, engine policy, physical source/build, budget guards and
+subsequent runtime mutation remain outside the construction attestation. Caller
+owns prerequisites, resource cleanup and a NEW execution receipt. ClaimReasoner
+and final configuration selection are not silently included. Halt/three holds
+and original evaluation/experiment bytes remain intact. Core's next delivery
+work is supporting shared freeze/final execution, not another feature campaign.
+
+## C4p — explicit maintainer review brief and USER-code readability
+
+The default-false `review_brief` renderer/constructor option now builds new
+AnalysisResult surfaces in both grounded and passage reasoners, after existing
+request/source/question/conflict enforcement. Legacy omitted/false bytes,
+canonical asks and retrieve_more are unchanged. The brief retains the complete
+supplied USER report/history, current active USER facts, checks, unknowns,
+all-hit provenance inventory, caller gap kinds/conflicts, exact selected source
+quotations and a proposed reproduction step. Supplied/plan-selected/forced
+conflict display are separate; no semantic source review or diagnosis is inferred.
+
+Actual CRLF is normalized only in USER report/fact/check display. Source text,
+raw requests/messages, hashes, span coordinates, other controls and literal
+escape strings retain their meaning. New output limits still reject rather than
+truncate. Fresh surfaces get their own handoff/review hash before approval; old
+reviews and receipts remain intact. Factories/env/default configuration are not
+changed, and the current freeze descriptor does not bind this option. Explicit
+renderer-policy registration is required before selecting it for final use.
+
+84 authored root controls pass. A pinned archive replay reconstructs all 17
+fresh exposed C4g proposals exactly and passes 153 structural checks for the
+new format. It also accounts for 12 other recorded entries; the 29 stored
+entries are not unique visited or all planned turns. Original failure/unvisited
+states remain in the campaign registration. Enum escalation drafts shrink from
+2864/3302 to 306 characters; one answer draft shrinks from 12201 to 9383 while
+retaining every selected quote. USER CR markers in those Enum summaries change
+from 48 to zero. 16 of 17 maintainer summaries grow because the report and
+all-hit inventory are listed; no maintainer-summary brevity or usefulness improvement is established.
+These are deterministic rendering observations, not new model choices, semantic
+support or human usefulness scores. No old human score is transferred.
+
+Source `85d89ea`: 84 new root controls and 21 independent controls; the
+independent pure-focused run passes 667 tests (two neutral-ledger integration
+consumers excluded). Fresh broad verification covers all 6073 selected distinct
+tests with passing observations across two contexts: 6068 neutral-CWD passes and
+the exact five relative-path/default-CLI items from repository CWD. One held-out
+consumer is explicitly deselected. This is not one clean full-suite invocation;
+both parent guards record zero protected opens and do not attest subprocess
+filesystem activity. Initial independent guard-blocked preparation is retained.
+Ruff check/format passes for all 378 Python files; ledger and all 19 physical
+pins remain exact. Counts overlap and are not added together.
+
+See [behavior/reproduction](maintainer-review-brief.fa.md),
+[verification](receipts/maintainer-review-brief-2026-10-16.json) and
+[archive replay](receipts/maintainer-review-brief-replay-2026-10-16.json).
+No provider calls, held-out content, native index clients or ledger writes; halt,
+three holds and historical artifacts remain protected. Final Enum quality,
+configuration selection, native gold/build and held-out evaluation remain open.
+
+
+## 2026-10-16 — C4o/E2ab: fixed-dev v2 and native passage review boundary
+
+[Contract and use](native-evidence-review.fa.md),
+[PR79 review](receipts/pr79-review-2026-10-16.json),
+[verification](receipts/native-evidence-review-2026-10-16.json).
+Accepted PR79's separate fixed-evidence v2 registration without rewriting its
+fixtures, gold or assisted human review. All three manifest/final-review and old
+supersedes pins match. Eight assisted change cards (5correct/3unsure initially,
+8correct after explanation) are not independent model/claim review. New scripted
+conditional replay passes3cases/6turns/79checks atzero cost. v3 projection differs
+only by the current manifest pin; oldv1/v2 remain immutable. Missing code-reply
+continuations remain explicitly untested; native gold/routes stay separate.
+
+Confirmed decision membership and route checks do not consume evidence_condition
+or required_sources. Added one optional pure observer, with no runtime/scorer
+hook, that binds exact AND/OR passage requirements and supplied validated handoff.
+Stable source/revision/URL and complete one-hit Unicode text are independent of
+query score/chunk names; observed full hit hashes, metadata version scope and
+citation membership remain separate. All-match is not sufficiency/support,
+missing is not unanswerability, and no-handoff is rejected rather than counted
+missing. Actual consumption/build/source authenticity/preregistration remain
+unverified declarations. No model/retriever sees the criteria. Six authored
+controls retain existing strict support0 despite disclaimer/citation, independently
+of decision/usefulness; no automatic semantic classifier was added.
+
+Source`783362c`:52new observer tests,6new scorer-boundary controls,107rootfocused
+and156independentfocused pass (overlap, not additive), plus12 independent hidden
+state probes. Ruff374files. Wider verification covers all5968selected distinct
+tests in successful observations:5963in neutralCWD, the exact5relative-protocol/
+defaultCLI tests in required repositoryCWD. One held-out consumer is deselected.
+This is not one clean full-suite invocation. The initial repository-CWD guard
+blocked Chroma's implicit dotenv reads (14fail/227setup errors), and neutralCWD
+initially failed5relative-path tests. Both attempts/logs retained, no production
+or test source changed between runs, no guard weakened. Two final audited
+processes report0protected/real.env opens; no subprocess filesystem attestation.
+
+A post-hoc structural probe binds one archived C4g handoff to one recorded
+attempt: source ID is present for both authored probe passages, but only one
+passage is in the bundle. These are not native gold requirements for the icon
+problem and not a new model/retrieval run or quality score. Existing18/36corpus
+metadata has5Markdown+13docstrings and no release-note records, forms.md source
+or1.22API records; it is not
+final corpus coverage. Hassan owns final scope/build and MohammadHasan native
+fixtures/routes/worksheet/freeze. Threeholds/halt/ceiling/closedIDs, primaryledger,
+19physicalpins, old fixtures/oracles, test registration andexclusion remain exact.
+C5read-only36/36doesnotreconcileprovidercosts. No paid calls, primary index client,
+team message, finaltest, default promotion or verified Enum fix.
+
+## 2026-10-16 — E2aa: corrected PR78 question coverage projection
+
+[Usage and limits](question-coverage-state.fa.md),
+[verification](receipts/question-coverage-state-2026-10-16.json).
+Original PR78 head3402a59 and report/review bytes remain in history. Three neutral
+counterexamples reproduce before correction. The report now uses actual core
+normalization, canonical version intake, transitions and user-question catalog;
+independent case/path state prevents unanswered asks and sibling facts from
+becoming knowledge. Availability is all/some/none over bounded registered path
+hypotheses, not actual model choice, approval/release or runtime reachability.
+
+Default processing is dev-only. Resolved protected input paths reject before I/O;
+explicit evaluation-owner test processing exports numeric summary only, including
+the Python return value. Core development did not run it. Vocabulary definitions
+and raw SHA bind one bounded captured snapshot. Exclusive output creation retains
+all earlier reports. The first dev rebuild rejected a nonoperational historical
+maintainer note; its failed receipt is retained and the narrow annotation fix is
+tested. Review also corrected input-path, overwrite and vocabulary-binding gaps
+before publication; these are reporting fixes, not runtime flaws or quality gains.
+
+All16dev fixtures rebuild byte-identically to new v2:11asks available on all
+registered incoming paths (5version/6vocabulary),4extraoffers. Historical dev
+counts agree; test counts are neither recomputed nor verified. Source`a9f4358`:
+5909development tests pass, one held-out consumer explicitly deselected and
+0protected-open attempts. Root48focused controls and independent48repeat pass
+(overlap, not additive); Ruff371files. Original runtime/config/API/UI/tracker
+are unchanged, so C2k HTTP457evidence is reused rather than called a fresh run.
+
+Fresh C5read-only36/36and physical checks retain all19pins, ledger, threeholds,
+halt/ceiling/closedIDs, fixture/gold/manifest/exclusion/vocabulary and human scores.
+No paid model, primary index client, provider credential read or external/team
+message. Latest fetch/PR metadata had no new Hassan/Behnam push and unchangedPR78.
+Human feedback about weak escalation usefulness and CRLF display is recorded in
+the freeze-readiness document; no new technical hypothesis, renderer revision,
+Enum remedy or score is claimed. Native gold/routes, v2 rubric fixtures, selected
+configuration/usefulness, provider C5 evidence and final held-out evaluation stay
+open with their owners.
+
+## 2026-10-16 — C4n: Enum quality audit and candidate configuration binding
+
+[Result/usage/open gates](enum-freeze-readiness.fa.md),
+[verification](receipts/enum-freeze-readiness-2026-10-16.json).
+Reviewed PR77 and retained Enum OBS-01/11/12. Missing guide, omitted available
+module body/edit-reload caveat and unsupported historical version bridge remain
+distinct failures. No new defensible runtime/default/prompt-order change was
+identified. Existing selection/current-context replays pass62/62and81/81with
+identical archived bytes;10retained claim plans reproduce7accepted/3binding
+rejections. These are software/structural observations, not improved model choices,
+independent usefulness or a verified Enum fix. Guide remains fixture-only.
+
+Reproduced identical legacy adapter config metadata for different switches,
+output bounds and vocabulary. Added one private pure descriptor/comparison module
+and103neutral controls. It binds all nonsecret Metis settings, explicit supported
+API/service composition, limits/display/vocabulary and supplied code/index pins.
+Legacy metadata/receipts/factories/defaults are unchanged. No hook is activated;
+no final candidate is selected. Accepted declarations establish compatibility and
+equality only, never pin provenance/completeness, runtime verification, live
+authorization or quality. No key lookup/hash/dump or I/O during exported calls.
+
+Prepublication findings are retained: first no-env test caught Pydantic schema
+construction during calls; schemas moved to import. Exact Decimal formatting
+replaces context-rounding normalization and inconsistent comparison length bounds.
+Independent review also caught underfunded cap.006accepted atprecision1; isolated
+price arithmetic now rejects it and preserves exact.006082560across precision,
+rounding/exponent/trap controls. Existing pricing/ledger code was not changed.
+
+Frozen source`99e3bc6`:5861development tests pass,oneheld-out consumer deliberately
+deselected and0protectedreadattempts; root197focused tests and independent103new
+controls pass. Ruff369files; fresh C5read-only36/36preserves primary ledger,
+19current physical pins,threeholds/halt/ceiling/closedIDs. Existing runtime/API/
+SQLite source still matches3f8ff33,so its HTTP457receipt is reused honestly;
+no new HTTP/browser/Windows/hosted-CI result or paid call is claimed.
+
+Fresh teammate update PR78head3402a59 adds a question-coverage report. Independent
+neutral examples reproduce2P2state errors (ask does not itself establish a fact,
+sibling branch state leaks) plus whitespace normalization. Left unmerged; owner
+files untouched. Dev-only11/11asks and4extraoffers reproduce the report. Only
+numeric test summaries were read,never held-out fixture/gold/questions. The
+[sanitized review](receipts/pr78-review-2026-10-16.json) preserves exact scope.
+Human review on the selected config,native gold/routes/split/rubric/vocabulary
+and index freeze,C5provider evidence and final untuned evaluation remain open.
+No external/team messages sent.
+
+## 2026-10-16 — PR77: bounded human C4g output review received
+
+[Acceptance and grouping clarification](pr77-review.fa.md),
+[review receipt](receipts/pr77-review-2026-10-16.json).
+Retained the original human sidecar bytes/scores/comments. All17fresh item and
+handoff bindings match the C4g dev workbench. Seven contextual groups contain
+six globally unique drafts;1.29is group mean,1.47proposal-weighted mean, not an
+independent17-case score. Six group decisions acceptable,one unassessed; support
+remains unassessed. Private human/export provenance is author-attested and the
+original pre-metadata export unavailable. Absolute-path-bound whole-workbench
+hashes do not reproduce here; all path-independent item bindings match.
+
+This receives partial human usefulness evidence for historical exposed C4g,
+not current configuration or final-test quality, claim support or E4 completion.
+No runtime change; the5758development source`3f8ff33`and C2k HTTP457evidence
+remain applicable without another full run. CI jobs did not start due Billing.
+Halt/threeholds and protected input bytes stay intact; no paid call or held-out
+content. Robotic escalations and Enum's missing diagnosis/fix remain limitations.
+
+## 2026-10-16 — C2k: bounded recursive core ingress validation
+
+[Behavior and limits](core-boundary-validation.fa.md),
+[verification](receipts/core-boundary-validation-2026-10-16.json).
+Reused the existing detacher before serialization of retrieval/analysis port
+results, user-turn inputs, grounded/claim request snapshots and source hashes.
+Malformed typed nested data is rejected instead of silently discarded. Retrieval
+rejects before reasoning; analysis retains safe diagnostics and the existing
+two-attempt repair bound. Contracts/defaults/prompts/renderer, source scope,
+current-user binding and tracker authority are unchanged.
+
+The same169neutral regressions go125fail/44pass→169pass;32pre-change full-surface
+digests remain exact. This is one validation family, not125independent flaws.
+Invalid-hit URL/excerpt/type are retained baseline-green controls: old retrieval
+round stamping already rejected them. A reviewer caught and corrected that
+documentation overclaim; new retrieval rejection concerns hidden typed state.
+
+Frozen source`3f8ff33`:5758development tests pass,1held-out-content consumer
+explicitly deselected and zero protected read attempts; Ruff367files,three
+offline demos and fresh HTTP/SQLite457/457with restart/retry pass. Independent
+cross-review repeats880selected tests with no blocker. All19current physical
+pins and primary ledger SHA141c3536... remain exact; C5read-only36/36preserves
+threeholds/halt/ceiling/closedIDs. No paid call, credential read, original native
+client, held-out content or teammate implementation change; software tests use
+temporary/disposable index/SQLite fixtures. No hosted-CI/freshWindows/browser claim.
+
+This is bounded internal Python hardening, not semantic or model-quality gain.
+Typed planner/context/config serialization patterns outside this scope retain
+declared-value/binding checks; no authority bypass was reproduced. Human
+relevance/completeness/usefulness review, final native/config freeze, C5provider
+evidence and untuned final evaluation remain open. No new feature/flag/framework
+or paid-study continuation was introduced.
+
+## 2026-10-16 — Deadline healthcheck and delivery draft; no runtime change
+
+Audited main `d0344be` with independent core, launch and deliverable reviews.
+No new independently justified urgent core fix was found; this bounded audit
+is not proof of perfect semantic quality. Runtime/tests/scripts/config/app/lock
+and workflow source still match the fully tested `5bbb133`. Its5589development
+test result, with one explicit held-out-content deselection, is reused rather
+than presented as a fresh full execution.
+
+Fresh checks:97focused tests, locked sync, Ruff364files, four CLI paths with
+expected exit codes, and HTTP/SQLite457/457 including restart/retry. Fresh
+collection confirms5589/5590tests with the same one held-out consumer excluded.
+C5 has36/36read-only checks; ledger SHA141c3536... and all19current physical pins
+remain exact. Three uncertain holds, halt, ceiling and closed IDs stay intact;
+no provider, credential or native-index clients and no held-out content reads.
+[Healthcheck receipt](receipts/deadline-healthcheck-2026-10-16.json),
+[fresh reduced HTTP receipt](receipts/deadline-http-sqlite-2026-10-16.json).
+
+Fixed the default developer test commands in README/AGENTS/development so they
+explicitly exclude the held-out-content consumer, consistent with the existing
+development restriction. Corrected stale Ruff, persistence/credentials and
+hosted-CI guidance. Added a [Persian delivery draft](delivery-report.fa.md) with
+offline persistent UI reproduction, exact correction form steps, evidence limits,
+negative quality results, cost uncertainty and remaining owner gates. E5 final
+report ownership stays with MohammadHasan. No evaluation fixture/gold/rubric,
+ranking/corpus/exclusion or teammate implementation changed.
+
+Today's code/demo/package can be prepared; full mandatory completion still needs
+C5 provider evidence, native evaluation/configuration freeze, human answer-quality
+review and final held-out execution without tuning. The draft/report checklist
+does not close E1/E2/R4/T4/C5, claim hosted CI or guarantee today's completion.
+Pause further exploratory features and focus on those gates.
+
+## 2026-10-16 — C4m/E2z and R4b: evaluation readiness after PR70–76
+
+Synced main `9913541` without opening held-out fixtures/gold/evidence/review
+content. Safe manifest metadata declares16dev/15test,14multi-turn including7test,
+and90excluded Issues; the manifest remains draft. [Decisions and owner handoff](evaluation-readiness.fa.md),
+[prospective protocol/baselines/comparison](../experiments/evaluation_readiness_v1/README.md).
+
+Added an optional four-definition development vocabulary with the two original
+questions plus reviewed form/state-code questions.25offline controls preserve
+21default request/message/render digests. Current explicit unknowns activate
+questions; active USER facts/corrections suppress them. No free-form question
+channel, held-out-derived alias, runtime default or shared contract changed.
+
+Historical workbench construction previously combined old rubric IDs with new
+supplied rubric bytes. The guard now binds the original ID/SHA across scenario
+and every turn gold.62regressions go14pass/48fail→62pass:21wrong-byte acceptances,
+27already-rejected diagnostic mismatches. All7complete valid workbench hashes
+remain exact; no old rubric, fixture, gold, receipt or judgment was rewritten.
+New native gold uses a separately registered fixture/gold/routes scope, not an
+unimplemented condition selector or an automatically loaded sidecar.
+
+Reviewed PR72 and corrected native replay to copy-only clients with complete
+original physical-file hashes and failure cleanup.21controls pass after5new
+red controls. Fresh actual18/36-index replay retains8unique dev state/query/round
+triples from24requests; required availability1/5→3/5 and prior labels off_topic8→5
+reproduce. Every final-hit metadata/order matches24historical state-arm rows;
+one candidate-order difference is retained. Key-identity is omitted by checked
+byte packing (14518/16296>12000) with2/4final hits, not by filling the five-hit
+cap. Ranking/corpus/defaults remain unchanged; further dev packing is Hassan's.
+
+Frozen source `5bbb133`:5589development tests pass,1held-out-content consumer
+intentionally deselected; passing-run guard sees zero forbidden reads. Ruff364,
+three offline demos,16dev/23turns/273scripted checks and HTTP/SQLite457/457 with
+restart pass. [Verification](../experiments/evaluation_readiness_v1/verification-v1.json)
+retains the failed first harness/environment restriction and its correction,
+not product fixes or waived assertions. Separate reviews found no blocker.
+Ledger/current19physical pins/held-out Git tree/old receipts remain exact;
+halt/threeholds/ceiling/closedIDs preserved, no paid API or team messages.
+No final-test, human usefulness, hosted-CI or freshWindows/browser claim.
+Final vocabulary/config, native gold, E1/E2/R4/T4 and C5 remain open. Input
+continues to be text-only; requests for code do not establish screenshot access.
+
 <a id="post-c2j-checkpoint"></a>
 
 ## 2026-10-16 — Post-C2j quality checkpoint; runtime unchanged

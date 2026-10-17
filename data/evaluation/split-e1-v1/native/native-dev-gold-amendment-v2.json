@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "review_id": "split-e1-v1-native-dev-gold-amendment-v2",
+  "task": "E2ac",
+  "registered_on": "2026-10-16",
+  "reviewer_kind": "assistant",
+  "human_review_claim": false,
+  "scope": "Two dev initial escalation conditions only. Structural and semantic amendment review, not a new human score or model-quality evaluation.",
+  "prior_registration": {
+    "path": "data/evaluation/split-e1-v1/native/native-registration-dev-v1.json",
+    "sha256": "c8f5a04521d064828ee7582f4d3defbe5dcc298a622173969020708ee621a406"
+  },
+  "historical_human_review": {
+    "path": "data/evaluation/split-e1-v1/native/native-dev-gold-review-v1.json",
+    "sha256": "8bed9ba7400de3759a47dd17aa7253540c79966049cd7411837a4adc4c56ce38",
+    "applies_to": "Original v1 bytes only. Its provenance remains applicable to the 14 byte-identical selected v1 fixtures; its verdict is not transferred to either v2 amendment."
+  },
+  "items": [
+    {
+      "case_id": "dev-case-m",
+      "fixture_path": "data/evaluation/split-e1-v1/native/dev-v2/fragment-rerun-9180-native-v2.json",
+      "final_sha256": "c00ab3fe6d5e5d1a60618c3ad8615688038035de9aafe3e4da6decf80b4a4746",
+      "supersedes": {
+        "path": "data/evaluation/split-e1-v1/native/dev/fragment-rerun-9180-native-v1.json",
+        "sha256": "7137bde0b3019ee845c7220f31fe0915aa5623ad0b1f12242df36d9466fa9c16",
+        "fixture_id": "split-e1-v1-native-fragment-rerun-9180-v1",
+        "changed_gold_json_pointers": [
+          "/turns/0/gold/decision_conditions/escalate"
+        ]
+      },
+      "reviewed_json_pointer": "/turns/0/gold/decision_conditions/escalate",
+      "reviewer_kind": "assistant",
+      "human_confirmation": "pending",
+      "semantic_verdict": "No unconditional fix claim; escalation needs a material current-evidence gap and concrete next step, preserving supported guidance. Equivalent adequate evidence does not justify abstention. Known USER version is not a user gap."
+    },
+    {
+      "case_id": "dev-case-i",
+      "fixture_path": "data/evaluation/split-e1-v1/native/dev-v2/tabs-blank-9259-native-v2.json",
+      "final_sha256": "12aa3893129c904e3446cbc8dcc286af2634e2ac0ba77d8df6bc4db6b7cb5087",
+      "supersedes": {
+        "path": "data/evaluation/split-e1-v1/native/dev/tabs-blank-9259-native-v1.json",
+        "sha256": "f4f96f01e7876084855c811f598029acf56153dee7c1acb4a0e98ab30473909c",
+        "fixture_id": "split-e1-v1-native-tabs-blank-9259-v1",
+        "changed_gold_json_pointers": [
+          "/turns/0/gold/decision_conditions/escalate"
+        ]
+      },
+      "reviewed_json_pointer": "/turns/0/gold/decision_conditions/escalate",
+      "reviewer_kind": "assistant",
+      "human_confirmation": "pending",
+      "semantic_verdict": "No unconditional fix claim; escalation needs a material current-evidence gap and concrete next step, preserving supported guidance. Equivalent adequate evidence does not justify abstention. Known USER version is not a user gap."
+    }
+  ],
+  "review_matrix": [
+    {
+      "supplied_evidence": "Required remedy passage absent and no equivalent adequate evidence",
+      "acceptable": "Escalate for the material documentation gap, naming the missing claim and a concrete retrieval/investigation step; no documented 1.38.0 remedy claim."
+    },
+    {
+      "supplied_evidence": "Passage present but API/version applicability or third-party symptom remains materially unsupported",
+      "acceptable": "Escalate for the named remaining gap; retain supported qualified guidance, without claiming a confirmed cause or remedy."
+    },
+    {
+      "supplied_evidence": "Passages adequately support the claim, API scope and active USER version",
+      "acceptable": "Provide supported guidance under the unchanged answer condition; escalation is unnecessary abstention."
+    },
+    {
+      "supplied_evidence": "Registered anchor unobserved but other supplied evidence adequately covers the case",
+      "acceptable": "Missing observer match alone cannot justify escalation; inspect semantic support and flag anchor coverage separately. The answer anchor condition is unchanged in this bounded amendment."
+    },
+    {
+      "supplied_evidence": "Wrong-version or irrelevant evidence only",
+      "acceptable": "Name the real applicability gap, retain uncertainty and propose an appropriate retrieval/investigation step. Do not ask again for the already known 1.37.0 version."
+    }
+  ],
+  "unchanged": [
+    "All visible USER turns and reported facts",
+    "answer conditions, routes, agent scripts, maintainer actions and tabs follow_up",
+    "native_of fixed fixture hashes and all native passage requirements/hashes",
+    "pending final-build pins, runtime, vocabulary, corpus, fixed manifest and held-out content"
+  ],
+  "freeze_status": "Software-only amendment. Final native build pins, human confirmation of the changed clauses, semantic scoring and final evaluation remain pending."
+}

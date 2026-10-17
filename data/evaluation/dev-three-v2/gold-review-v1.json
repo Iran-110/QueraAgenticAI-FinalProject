@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "review_id": "dev-three-v2-gold-review-v1",
+  "reviewer_id": "mhg",
+  "reviewer_kind": "human",
+  "reviewed_on": "2026-10-16",
+  "rubric_id": "e2-rubric-v1",
+  "evidence_condition": "controlled_fixed_evidence",
+  "scope": "Review of the dev-three v2 gold changes for e2-rubric-v1 (change cards)",
+  "drafted_by": "assistant (claude-opus-5-5); judgments by the human reviewer",
+  "exported_file_sha256": "9d6f4418143f8b07141da9ac2257f665845b2f00d0f23e91ad80fd54b718654d",
+  "reviewed_fixtures": [
+    {
+      "case_id": "dev-case-a",
+      "path": "data/evaluation/dev-three-v2/cases/pilot-12782-v2.json",
+      "sha256": "661288119e6fae8a2a6973ffbb50c5ef1e0baafabdd62e20d80429529c059b09"
+    },
+    {
+      "case_id": "dev-case-b",
+      "path": "data/evaluation/dev-three-v2/cases/icon-9770-v2.json",
+      "sha256": "849002d76b2ee26bb2d9bbd730dbba6010b7fbc381774bbb10bfd0cd83a2a06f"
+    },
+    {
+      "case_id": "dev-case-c",
+      "path": "data/evaluation/dev-three-v2/cases/enum-8129-v2.json",
+      "sha256": "746f885a60e4d5c88913bdd82c9d77ca6d48c0665775c4cd201bceeb322965bf"
+    }
+  ],
+  "final_fixtures": [
+    {
+      "case_id": "dev-case-a",
+      "path": "data/evaluation/dev-three-v2/cases/pilot-12782-v2.json",
+      "sha256": "661288119e6fae8a2a6973ffbb50c5ef1e0baafabdd62e20d80429529c059b09"
+    },
+    {
+      "case_id": "dev-case-b",
+      "path": "data/evaluation/dev-three-v2/cases/icon-9770-v2.json",
+      "sha256": "4243de41e754bce2272aee0e82cc0f63e590b39e4b04a806a5951dab2c59de15"
+    },
+    {
+      "case_id": "dev-case-c",
+      "path": "data/evaluation/dev-three-v2/cases/enum-8129-v2.json",
+      "sha256": "746f885a60e4d5c88913bdd82c9d77ca6d48c0665775c4cd201bceeb322965bf"
+    }
+  ],
+  "amendments_after_review": [
+    {
+      "case_id": "dev-case-b",
+      "path": "data/evaluation/dev-three-v2/cases/icon-9770-v2.json",
+      "from_sha256": "849002d76b2ee26bb2d9bbd730dbba6010b7fbc381774bbb10bfd0cd83a2a06f",
+      "to_sha256": "4243de41e754bce2272aee0e82cc0f63e590b39e4b04a806a5951dab2c59de15",
+      "change": "Version turn: the reviewer's tip rule appended to the answer and escalate decision conditions. Nothing else changed.",
+      "reason": "Follow-up answer on b-new-claim"
+    }
+  ],
+  "items": [
+    {
+      "item_id": "all-family",
+      "case_id": null,
+      "question": "فهرست کامل خانواده‌ها درست است؟",
+      "assistant_recommendation": "درست است. هر سه فهرست را با manifest مقایسه کردم و یکسان‌اند.",
+      "note": null,
+      "initial_verdict": "correct",
+      "final_verdict": "correct"
+    },
+    {
+      "item_id": "all-rubric",
+      "case_id": null,
+      "question": "این تغییر برچسب‌ها درست است؟",
+      "assistant_recommendation": "درست است؛ تغییر مکانیکی است و تصمیم‌ها، gapها و routeها عین v1 مانده‌اند (اجرای آفلاین ۷۹ از ۷۹ پاس).",
+      "note": null,
+      "initial_verdict": "correct",
+      "final_verdict": "correct"
+    },
+    {
+      "item_id": "a-required",
+      "case_id": "dev-case-a",
+      "question": "سند لازم برای جواب درست انتخاب شده؟",
+      "assistant_recommendation": "درست است. این تنها سند نسخهٔ 1.50.0 در bundle است. توجه: این سند فقط توضیح عمومی key است و تغییری در 1.50 را نشان نمی‌دهد (کارت بعد).",
+      "note": null,
+      "initial_verdict": "correct",
+      "final_verdict": "correct"
+    },
+    {
+      "item_id": "a-fixed-claim",
+      "case_id": "dev-case-a",
+      "question": "این ادعا در شواهد ثابت غیرقابل قبول بماند؟",
+      "assistant_recommendation": "درست است؛ دو متن را مقایسه کردم و یکسان‌اند.",
+      "note": null,
+      "initial_verdict": "correct",
+      "final_verdict": "correct"
+    },
+    {
+      "item_id": "a-reply-branch",
+      "case_id": "dev-case-a",
+      "question": "با ثبت محدودیت به‌جای ساختن نوبت جدید موافقی؟",
+      "assistant_recommendation": "پیشنهادم «ثبت محدودیت» است (اطمینان متوسط). اگر دنبال‌کردن رفتار بعد از پاسخ برایت مهم است، «غلط است» بزن و بنویس؛ نوبت سوم را می‌سازم و جدا برای review می‌آورم.",
+      "note": "نمی‌دانم ماجرا چیست. توضیحات خیلی رباتیک و غیر گویا هستند.",
+      "initial_verdict": "unsure",
+      "final_verdict": "correct",
+      "follow_up_answer": "Leave it: record that behaviour after the callback code arrives is not tested in this case.",
+      "follow_up_basis": "Plain-language explanation by the assistant in chat, then a three-question choice answered by the reviewer on 2026-10-16"
+    },
+    {
+      "item_id": "b-required",
+      "case_id": "dev-case-b",
+      "question": "سند لازم درست است؟",
+      "assistant_recommendation": "درست است. در نوبت اول (نسخه نامعلوم) هم جواب فقط به‌شرط اینکه صریحاً بگوید «طبق سند 1.39.0» قابل قبول است و همین سند را لازم دارد.",
+      "note": "در متن فوق چیزی در مورد تصویر نیامده است. نشانک‌ها و شکلک‌ها قابل استفاده هستند. از icon packها یا emojiها. چیز بیشتری در متن نیست.",
+      "initial_verdict": "correct",
+      "final_verdict": "correct"
+    },
+    {
+      "item_id": "b-new-claim",
+      "case_id": "dev-case-b",
+      "question": "این ادعای غیرقابل قبول جدید را قبول داری؟",
+      "assistant_recommendation": "می‌شود قبول کرد یا نکرد، نتیجه تقریباً یکی است: طبق rubric v1 هر ادعای مهم بی‌منبع در بررسی ادعا به ادعا رد می‌شود، با یا بدون این خط. این خط فقط آن را صریح می‌کند. پیشنهادم قبول است (اطمینان متوسط). اگر فکر می‌کنی این پیشنهاد برای کاربر آن‌قدر مفید است که نباید جریمه شود، «غلط است» بزن.",
+      "note": "پیشنهاد مفید خوب است. ولی اگر منبع ندهد باید جریمه شود.\nاگر نمی‌تواند کاری کند احتمالا باید هم پیشنهاد بدهد و هم بگوید که در منابع پیدا نکردم.\nهم esclate کند. روشن نیست.",
+      "initial_verdict": "unsure",
+      "final_verdict": "correct",
+      "follow_up_answer": "Keep the new unacceptable claim and add the reviewer's rule: an unsourced tip is allowed only when it says plainly that it was not found in the supplied sources; the documented 1.39.0 icon options are still given and the feature request is escalated.",
+      "follow_up_basis": "Plain-language explanation by the assistant in chat, then a three-question choice answered by the reviewer on 2026-10-16"
+    },
+    {
+      "item_id": "c-required",
+      "case_id": "dev-case-c",
+      "question": "این درست است؟",
+      "assistant_recommendation": "درست است. کلمهٔ Enum حتی یک بار هم در این سند نیامده (بررسی کردم)، پس هر تشخیص Enum از این سند بی‌پشتوانه است. تصمیم‌ها عین v1 مانده‌اند.",
+      "note": "استناد به راهنمای عمومی Session State نمی‌تواند نسبت به Enum پاسخی بدهد.\nاگر Rag این سند را بازیابی کرده است؛ درست است. این سند بی‌پشتوانه ست.",
+      "initial_verdict": "unsure",
+      "final_verdict": "correct",
+      "follow_up_answer": "Correct once clarified: the limited answer points to the general guide only to state that it does not cover Enum.",
+      "follow_up_basis": "Plain-language explanation by the assistant in chat, then a three-question choice answered by the reviewer on 2026-10-16"
+    }
+  ],
+  "coverage_limitations": [
+    {
+      "case_id": "dev-case-a",
+      "turn_id": "version",
+      "limitation": "The parent_callback_code and state_update_order questions have routes but no reply turn, so the model's use of a supplied callback is not tested (rubric v1 section 3: coverage insufficient for that follow-up, not a model failure).",
+      "decision": "Recorded as a limitation; no authored third turn (reviewer's choice)."
+    }
+  ],
+  "offline_check": "uv run python -m agent_app.evaluation.runner data/evaluation/dev-three-v2/cases --conditional-routes: 3 cases, 6 turns, 79/79 checks, cost 0 (on the final fixtures)",
+  "reviewer_comment": "On card 5 the reviewer noted that the card text was robotic and unclear; the follow-up explanation was rewritten in plain words before the reviewer chose."
+}

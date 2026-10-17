@@ -1,0 +1,346 @@
+{
+  "schema_version": 1,
+  "fixture_id": "split-e1-v1-native-mpa-keyerror-8700-v1",
+  "registered_on": "2026-10-16",
+  "registered_before_first_run": true,
+  "purpose": "Multipage Session State initialization; the decisive fact (session entry page) is asked and answered by an authored reply. Native-index gold version.",
+  "case": {
+    "case_id": "test-case-03",
+    "split": "test",
+    "family_issue_ids": [
+      8700
+    ],
+    "origin_url": "https://github.com/streamlit/streamlit/issues/8700",
+    "source_snapshot_date": "2026-10-06",
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "test_eligible": true,
+    "exposure": "Held-out test case. The evaluation curator (mhg with assistant drafting) read the Issue thread to author gold; it was not used in core development, prompt tuning, retrieval tuning or model selection. Core developers must not open this file before the final test run."
+  },
+  "evidence_source": {
+    "path": "data/evaluation/split-e1-v1/evidence-test-v1.json",
+    "sha256": "c3fa200f2e9b72b4da8e3030034bdc7206e28f5c3a24d444029c4971f20f90e2",
+    "bundles_used": [
+      "mpa-state"
+    ],
+    "note": "Runner loading only: live native runs take evidence from the index, not this bundle. It is not the evidence the native gold is judged against."
+  },
+  "boundaries": {
+    "agent": "scripted AnalysisResult for offline plumbing; live ignores agent_script/gold/future turns",
+    "real_model_calls": 0,
+    "api_cost_usd": 0,
+    "storage": "evaluation runner process-local API/DummyTracker; not production durable tracker",
+    "quality_claim": false,
+    "max_reached_turns": 2,
+    "visible_to_agent": [
+      "currently selected turns[].visible"
+    ],
+    "runner_only": [
+      "gold",
+      "agent_script",
+      "maintainer",
+      "probes",
+      "evaluation.coverage",
+      "future turns"
+    ]
+  },
+  "initial_report_provenance": {
+    "kind": "developer_paraphrase_of_latest_cached_body",
+    "source_path": "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+    "issue_number": 8700,
+    "source_created_at": "2024-05-17T05:30:50Z",
+    "source_updated_at": "2024-05-21T10:20:17Z",
+    "source_issue_record_sha256": "70bf4461e8277c5f303320d1dbeb2c4ec953f0ad81c0b56bd3d844a4d5efb134",
+    "original_initial_text_verified": false,
+    "note": "Cached body can contain later edits. No later comments/outcomes are supplied as the initial user message."
+  },
+  "turns": [
+    {
+      "id": "initial",
+      "conversation_source": "developer_paraphrase_of_latest_cached_issue_body",
+      "visible": {
+        "message": "In my multipage app, app.py initializes st.session_state.my_val with `if 'my_val' not in st.session_state: st.session_state.my_val = 1`, and pages/mypage.py does `st.session_state.my_val = st.session_state.my_val + 1`. The app works in the browser when I navigate between pages, but after a while the terminal shows a KeyError for my_val. Streamlit 1.34.0, Python 3.11, macOS, Safari.",
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.34.0"
+          },
+          {
+            "name": "python_version",
+            "value": "3.11"
+          },
+          {
+            "name": "reported_observation",
+            "value": "KeyError for my_val appears in the terminal while the browser app works"
+          }
+        ],
+        "unknowns": [
+          "session_entry_page"
+        ],
+        "checks_performed": [
+          "Navigated between the main page and mypage in the browser"
+        ],
+        "context_changed": false
+      },
+      "evidence_bundle": "mpa-state",
+      "agent_script": {
+        "decision": "ask",
+        "user_draft": "Does the KeyError appear when a session starts directly on mypage, for example after refreshing the browser while on that page?",
+        "maintainer_summary": "KeyError in terminal on subpage; whether sessions start on mypage is unknown.",
+        "rationale": "Session State is per session; initialization in app.py only helps if that script runs first in the session.",
+        "next_question": "Does the KeyError appear when a session starts directly on mypage, for example after refreshing the browser while on that page?",
+        "missing_info": [
+          "session_entry_page"
+        ]
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "rubric_id": "e2-rubric-v1",
+        "evidence_condition": "native_index",
+        "stratum": "ambiguous",
+        "acceptable_decisions": [
+          "answer",
+          "ask"
+        ],
+        "decision_conditions": {
+          "answer": "Bounded advice: guard or initialize my_val on every page that reads it (documented initialization pattern), without claiming why the error appears only in the terminal. Native index: the registered passages must be in this turn's supplied bundle AND support the stated claim, its API scope and the active USER version; presence alone is not support.",
+          "ask": "Ask whether the failing run starts a session on mypage (refresh, direct link, reconnect); do not ask for the version or code already supplied."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [
+          {
+            "name": "session_entry_page",
+            "kind": "user",
+            "description": "Whether the failing run started a new session directly on mypage is unknown.",
+            "necessity": "If a session starts on mypage, app.py's initialization has not run in that session.",
+            "question": "Does the KeyError appear when a session starts directly on mypage, for example after refreshing the browser while on that page?"
+          }
+        ],
+        "unacceptable_claims": [
+          "The KeyError proves a Streamlit bug.",
+          "Session State is shared across browser tabs or sessions.",
+          "The version 1.34.0 or the code is requested again."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality.",
+        "native_passages": {
+          "answer_required": {
+            "requirements": [
+              {
+                "requirement_id": "new-session-per-tab",
+                "alternatives": [
+                  {
+                    "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+                    "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                    "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/session-state.md",
+                    "passage": "For each browser tab that connects to the Streamlit server, a new session is created."
+                  },
+                  {
+                    "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+                    "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                    "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/api-reference/caching-and-state/session_state.md",
+                    "passage": "When a user reloads the browser tab or navigates using a Markdown link, the WebSocket connection and the associated Session State data are reset."
+                  }
+                ]
+              },
+              {
+                "requirement_id": "state-init-guard",
+                "alternatives": [
+                  {
+                    "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+                    "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                    "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/session-state.md",
+                    "passage": "if 'key' not in st.session_state:\n    st.session_state['key'] = 'value'"
+                  }
+                ]
+              }
+            ],
+            "requirements_sha256": "40a4241b96d59bfe007a80bcbb9e0896913f9295746d4e698fa5c719e5afb3b1"
+          },
+          "optional_claim_support": null,
+          "rule": "Observed with agent_app.evaluation.evidence_observation on this turn's captured handoff. Observation is necessary for a supported answer, not sufficient; support, version scope and usefulness stay a human judgment. A missing passage is a bundle gap, not proof that every escalation is right.",
+          "note": null
+        }
+      },
+      "expect": {
+        "revision": 1,
+        "pending_decision": "ask",
+        "after_decision": {
+          "status": "awaiting_user",
+          "awaiting_reply": true,
+          "released_draft": "agent"
+        }
+      }
+    },
+    {
+      "id": "entry_page",
+      "conversation_source": "developer_authored_counterfactual_reply",
+      "visible": {
+        "message": "Yes. It happens when I refresh the browser while I am on mypage.",
+        "reported_facts": [
+          {
+            "name": "session_entry_page",
+            "value": "Error appears after refreshing the browser while on mypage"
+          }
+        ],
+        "unknowns": [],
+        "checks_performed": [
+          "Refreshed the browser while on mypage"
+        ],
+        "context_changed": false
+      },
+      "evidence_bundle": "mpa-state",
+      "agent_script": {
+        "decision": "answer",
+        "user_draft": "Refreshing the browser starts a new session, and Session State is kept per session. In that new session mypage runs before app.py has initialized my_val, so the key does not exist yet. Initialize or guard my_val on every page that reads it, for example with `if 'my_val' not in st.session_state: st.session_state.my_val = 1` at the top of mypage.py.",
+        "maintainer_summary": "Refresh on mypage starts a new session without app.py initialization; guard per page.",
+        "rationale": "Session State is per session and the documented initialization pattern applies on each page.",
+        "evidence_links": [
+          {
+            "claim": "Each browser tab connection creates a session and Session State is per session.",
+            "chunk_id": "e1t-session-state-sessions"
+          },
+          {
+            "claim": "Initialize a key with `if 'key' not in st.session_state`.",
+            "chunk_id": "e1t-session-state-init"
+          }
+        ]
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "rubric_id": "e2-rubric-v1",
+        "evidence_condition": "native_index",
+        "stratum": "answerable",
+        "acceptable_decisions": [
+          "answer",
+          "escalate"
+        ],
+        "decision_conditions": {
+          "answer": "Explain that a refresh starts a new session in which mypage reads my_val before any initialization, and recommend the documented guard on each page. Keep the terminal-only aspect as unexplained if mentioned. Native index: the registered passages must be in this turn's supplied bundle AND support the stated claim, its API scope and the active USER version; presence alone is not support.",
+          "escalate": "Under the native index, escalation is acceptable only when this turn's supplied evidence leaves a material documentation or applicability gap: name the missing documentation or uncovered claim and a concrete retrieval or maintainer-investigation next step, and retain any guidance actually supported by the supplied evidence. Missing registered-passage observation alone does not justify escalation; if other supplied evidence adequately covers the case, escalation is unnecessary abstention."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [],
+        "unacceptable_claims": [
+          "A Streamlit fix or upgrade is required.",
+          "Session State survives a browser refresh.",
+          "The entry page is asked again."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality.",
+        "native_passages": {
+          "answer_required": {
+            "requirements": [
+              {
+                "requirement_id": "new-session-per-tab",
+                "alternatives": [
+                  {
+                    "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+                    "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                    "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/session-state.md",
+                    "passage": "For each browser tab that connects to the Streamlit server, a new session is created."
+                  },
+                  {
+                    "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+                    "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                    "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/api-reference/caching-and-state/session_state.md",
+                    "passage": "When a user reloads the browser tab or navigates using a Markdown link, the WebSocket connection and the associated Session State data are reset."
+                  }
+                ]
+              },
+              {
+                "requirement_id": "state-init-guard",
+                "alternatives": [
+                  {
+                    "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+                    "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                    "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/concepts/architecture/session-state.md",
+                    "passage": "if 'key' not in st.session_state:\n    st.session_state['key'] = 'value'"
+                  }
+                ]
+              }
+            ],
+            "requirements_sha256": "40a4241b96d59bfe007a80bcbb9e0896913f9295746d4e698fa5c719e5afb3b1"
+          },
+          "optional_claim_support": null,
+          "rule": "Observed with agent_app.evaluation.evidence_observation on this turn's captured handoff. Observation is necessary for a supported answer, not sufficient; support, version scope and usefulness stay a human judgment. A missing passage is a bundle gap, not proof that every escalation is right.",
+          "note": null
+        }
+      },
+      "expect": {
+        "revision": 2,
+        "pending_decision": "answer",
+        "active_facts": {
+          "session_entry_page": "Error appears after refreshing the browser while on mypage"
+        },
+        "after_decision": {
+          "status": "answer_sent",
+          "released_draft": "agent"
+        }
+      }
+    }
+  ],
+  "evaluation": {
+    "coverage": {
+      "turn_ids": [
+        "initial",
+        "entry_page"
+      ],
+      "routes": [
+        {
+          "from_turn": "initial",
+          "to_turn": "entry_page",
+          "guard": {
+            "decision": "ask",
+            "question_target": "session_entry_page"
+          }
+        },
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "answer"
+          }
+        },
+        {
+          "from_turn": "entry_page",
+          "to_turn": null,
+          "guard": {
+            "decision": "answer"
+          }
+        },
+        {
+          "from_turn": "entry_page",
+          "to_turn": null,
+          "guard": {
+            "decision": "escalate"
+          }
+        }
+      ]
+    }
+  },
+  "native_of": {
+    "fixture_id": "split-e1-v1-mpa-keyerror-8700-v1",
+    "path": "data/evaluation/split-e1-v1/test/mpa-keyerror-8700-v1.json",
+    "sha256": "28e3a77a405ecc081d3edce95021ed1f530c16cf73efc5a883149d06f025288f",
+    "note": "Same case, family and visible turns; only gold and routes differ. Never run in one invocation with the fixed version."
+  },
+  "native_scope": {
+    "evidence_condition": "native_index",
+    "build": "pending_final_build",
+    "index_snapshot": null,
+    "corpus_manifest_sha256": null,
+    "allowlist_sha256": null,
+    "exclusion_manifest_sha256": null,
+    "note": "Pins are filled from Hassan's final build before the final run; this gold is not valid for a run until then."
+  }
+}

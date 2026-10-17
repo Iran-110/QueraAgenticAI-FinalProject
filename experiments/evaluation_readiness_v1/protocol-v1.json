@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "tasks": [
+    "E2z historical rubric identity",
+    "C4m reviewed development question availability",
+    "R4b/PR72 acceptance safety"
+  ],
+  "registered_before_runtime_changes": true,
+  "baseline_commit": "991354195392035a1226bfedf00bd46f722cbf3b",
+  "date_local": "2026-10-16",
+  "input_sha256": {
+    "src/agent_app/evaluation/review_workbench.py": "dfda1887df82f76f585e137fad820010afc57c4fc0edeab6b41eefd867121f0f",
+    "docs/evaluation-rubric.md": "b68526f6d6aadac50b5eaa670948e4acfdcae801fe271e91ccf111fa2c03f5c8",
+    "docs/evaluation-rubric-v1.md": "6144d275c64582408055c4636b2b1158f008fa5744679e890c519a8cd0a7d918",
+    "data/evaluation/dev-three-v1/user-gap-vocabulary-v1.json": "d3b63719554f35d1addec14586ebc4fcb10231844097fcea65458ee01d0b6736",
+    "data/evaluation/split-e1-v1/split-manifest.json": "7e715f74118764415a321d6151d0d2a5135ae8279d5eebf9e1aee7edc07ca815"
+  },
+  "held_out_test_tree_git_oid": "b4711b3facc883fa1d87bf045d5dd119899545f5",
+  "held_out_policy": "No held-out fixture/gold/evidence contents opened, displayed or used for implementation/tuning. Metadata/exclusion counts and immutable Git tree identity only. Tests that load final held-out content are not executed during development.",
+  "planned_changes": {
+    "rubric": "Historical campaign allowlist binds the original draft ID and exact original rubric bytes. Reject new v1 bytes/modified old bytes/scenario or turn ID mismatches before output. Preserve complete valid historical workbench bytes for all7campaigns at the same input paths.",
+    "vocabulary": "New optional config with existing2revieweddefinitions plus updated_form_code/app_state_code approved from exposed development requests only. Neutral necessity; activate only current explicitunknown and suppress activeUSERfacts; no defaults/freequestion/heldoutnames/aliases change.",
+    "R4b": "Integrate PR72 evidence/tests after review; native replay opens disposablecopy, hashesoriginalphysicalfiles before/after and closes/cleanscopy. Keep oldreceipt unchanged, write freshreceipt; correct unjustified top-five attribution to investigated packing/order limitation."
+  },
+  "acceptance": [
+    "Meaningful red/green boundary tests",
+    "Seven exact valid workbench hashes unchanged",
+    "Existing/default vocabulary and question authority unchanged",
+    "Disposable index copy safety regression and fresh dev native replay if safe",
+    "No change to shared contracts/ranking/teammate runtime/corpus/exclusion/gold/oldreceipts",
+    "Full development pytest excluding held-out-content consumers after source freeze; Ruff and required offline demos",
+    "Offline HTTP/SQLite acceptance after final source freeze",
+    "Independent review and exact protected ledger/current19pins/Git heldouttree equality before publication"
+  ],
+  "quality_claim": false,
+  "model_API_calls_authorized": 0,
+  "halt_and_three_holds_preserved": true,
+  "closed_IDs_reusable": false,
+  "conditional_gold_decision": "Separate preregistered native gold/scope; no cross-cutting runner contract rewrite this delivery. Corpus membership/live mode alone never establishes consumed support. Historical scopes keep oldrubric; futurev1 scope separate.",
+  "text_only_scope": "No image/OCR feature; request current code/error as text via reviewed user gap. Do not claim to have read screenshots."
+}

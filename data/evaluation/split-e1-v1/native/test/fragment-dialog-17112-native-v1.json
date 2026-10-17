@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "fixture_id": "split-e1-v1-native-fragment-dialog-17112-v1",
+  "registered_on": "2026-10-16",
+  "registered_before_first_run": true,
+  "purpose": "Regression with a dialog opened from a fragment button's on_click; the only nearby doc concerns parallel fragments. Native-index gold version.",
+  "case": {
+    "case_id": "test-case-13",
+    "split": "test",
+    "family_issue_ids": [
+      17112,
+      17011
+    ],
+    "origin_url": "https://github.com/streamlit/streamlit/issues/17112",
+    "source_snapshot_date": "2026-10-06",
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "test_eligible": true,
+    "exposure": "Held-out test case. The evaluation curator (mhg with assistant drafting) read the Issue thread to author gold; it was not used in core development, prompt tuning, retrieval tuning or model selection. Core developers must not open this file before the final test run."
+  },
+  "evidence_source": {
+    "path": "data/evaluation/split-e1-v1/evidence-test-b-v1.json",
+    "sha256": "da2c1514ce57af260fc33b4e1d81ee48cb673c5edfbafd67cd113ff42afc96b3",
+    "bundles_used": [
+      "fragment-dialog"
+    ],
+    "note": "Runner loading only: live native runs take evidence from the index, not this bundle. It is not the evidence the native gold is judged against."
+  },
+  "boundaries": {
+    "agent": "scripted AnalysisResult for offline plumbing; live ignores agent_script/gold/future turns",
+    "real_model_calls": 0,
+    "api_cost_usd": 0,
+    "storage": "evaluation runner process-local API/DummyTracker; not production durable tracker",
+    "quality_claim": false,
+    "max_reached_turns": 1,
+    "visible_to_agent": [
+      "currently selected turns[].visible"
+    ],
+    "runner_only": [
+      "gold",
+      "agent_script",
+      "maintainer",
+      "probes",
+      "evaluation.coverage",
+      "future turns"
+    ]
+  },
+  "initial_report_provenance": {
+    "kind": "developer_paraphrase_of_latest_cached_body",
+    "source_path": "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+    "issue_number": 17112,
+    "source_created_at": "2026-09-24T11:09:13Z",
+    "source_updated_at": "2026-09-24T12:49:05Z",
+    "source_issue_record_sha256": "20da8142109c55d2eb3a25d888164b271ac5bed913c49913bf09a3e72cf40bd6",
+    "original_initial_text_verified": false,
+    "note": "Cached body can contain later edits. No later comments/outcomes are supplied as the initial user message."
+  },
+  "turns": [
+    {
+      "id": "initial",
+      "conversation_source": "developer_paraphrase_of_latest_cached_issue_body",
+      "visible": {
+        "unknowns": [],
+        "checks_performed": [],
+        "context_changed": false,
+        "message": "Since Streamlit 1.64 (it worked on 1.59.2), the Increment button inside a dialog does nothing. The setup is fragment > dialog > fragment: a fragment shows an Open Counter button whose on_click opens a dialog, and the dialog renders another fragment with the Increment button. Is this expected? Should I use a fragment key? Code:\n\n@st.fragment\ndef _render_button_in_dialog(page_key):\n    if st.button('Increment', key=f'{page_key}_increment_btn'):\n        st.session_state[counter_key] += 1\n        st.rerun(scope='fragment')\n\n@st.fragment\ndef _render_button(page_key):\n    @st.dialog('Counter')\n    def _open_dialog():\n        _render_button_in_dialog(page_key)\n    st.button('Open Counter', key=f'{page_key}_open_btn', on_click=_open_dialog)\n\nPython 3.11, Windows, Chrome.",
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.64"
+          },
+          {
+            "name": "reported_reproduction_code",
+            "value": "@st.fragment\ndef _render_button_in_dialog(page_key):\n    if st.button('Increment', key=f'{page_key}_increment_btn'):\n        st.session_state[counter_key] += 1\n        st.rerun(scope='fragment')\n\n@st.fragment\ndef _render_button(page_key):\n    @st.dialog('Counter')\n    def _open_dialog():\n        _render_button_in_dialog(page_key)\n    st.button('Open Counter', key=f'{page_key}_open_btn', on_click=_open_dialog)"
+          },
+          {
+            "name": "reported_observation",
+            "value": "Increment click is dropped; worked on 1.59.2"
+          }
+        ]
+      },
+      "evidence_bundle": "fragment-dialog",
+      "agent_script": {
+        "decision": "escalate",
+        "user_draft": "This looks like a regression between 1.59.2 and 1.64 that the documentation does not explain. The fragments guide only shows opening a dialog behind a button inside the fragment body (`if st.button(...): show_dialog()`), in the context of parallel fragments; it does not cover opening it from on_click or nested fragments in a dialog. I am passing your reproduction to a maintainer.",
+        "maintainer_summary": "Nested fragment in dialog opened from on_click stops rerunning since 1.64; no source explains it.",
+        "rationale": "Regression without documentation coverage; the nearest doc is about parallel fragments.",
+        "evidence_links": [
+          {
+            "claim": "The fragments guide opens a dialog behind a button inside the fragment body.",
+            "chunk_id": "e1t-fragments-parallel-dialog"
+          }
+        ]
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "rubric_id": "e2-rubric-v1",
+        "evidence_condition": "native_index",
+        "stratum": "needs_escalation",
+        "acceptable_decisions": [
+          "escalate",
+          "answer"
+        ],
+        "decision_conditions": {
+          "escalate": "Escalate the 1.64 regression with the reproduction; may mention the documented in-body dialog pattern as an untested alternative.",
+          "answer": "Only a hedged suggestion to open the dialog from the fragment body, explicitly not a confirmed fix. Native index: no passage is registered for this answer, so it must stay hedged and make no sourced Streamlit claim beyond what a supplied passage actually says."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [],
+        "unacceptable_claims": [
+          "The parallel-fragment restriction explains this regression.",
+          "A fragment key is documented to fix it.",
+          "A specific release fixing it is named from the provided sources."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality.",
+        "native_passages": {
+          "answer_required": null,
+          "optional_claim_support": null,
+          "rule": "Observed with agent_app.evaluation.evidence_observation on this turn's captured handoff. Observation is necessary for a supported answer, not sufficient; support, version scope and usefulness stay a human judgment. A missing passage is a bundle gap, not proof that every escalation is right.",
+          "note": "No passage establishes a fix; the parallel-fragment restriction is a near miss and must not be presented as the cause. Any answer is a hedged, untested alternative."
+        }
+      },
+      "expect": {
+        "revision": 1,
+        "pending_decision": "escalate",
+        "after_decision": {
+          "status": "escalated",
+          "released_draft": "agent"
+        }
+      }
+    }
+  ],
+  "evaluation": {
+    "coverage": {
+      "turn_ids": [
+        "initial"
+      ],
+      "routes": [
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "escalate"
+          }
+        },
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "answer"
+          }
+        }
+      ]
+    }
+  },
+  "native_of": {
+    "fixture_id": "split-e1-v1-fragment-dialog-17112-v1",
+    "path": "data/evaluation/split-e1-v1/test/fragment-dialog-17112-v1.json",
+    "sha256": "3167c9131bda55453df004b656118c6700220e1cc5c0d6b3f7f6176475bdbe60",
+    "note": "Same case, family and visible turns; only gold and routes differ. Never run in one invocation with the fixed version."
+  },
+  "native_scope": {
+    "evidence_condition": "native_index",
+    "build": "pending_final_build",
+    "index_snapshot": null,
+    "corpus_manifest_sha256": null,
+    "allowlist_sha256": null,
+    "exclusion_manifest_sha256": null,
+    "note": "Pins are filled from Hassan's final build before the final run; this gold is not valid for a run until then."
+  }
+}

@@ -28,6 +28,7 @@ from agent_app.contracts import (
     ReasoningContext,
 )
 from agent_app.orchestration.ports import GroundedPlanner, ReasoningStopped
+from agent_app.orchestration.validation import detached_contract
 from agent_app.reasoning.output import InvalidAnalysis
 
 type GroundingCode = Literal[
@@ -96,7 +97,7 @@ def _sha(value: object) -> str:
 
 def source_content_sha256(hit: EvidenceHit) -> str:
     try:
-        hit = EvidenceHit.model_validate(hit.model_dump(warnings=False))
+        hit = detached_contract(EvidenceHit, hit)
         return _sha(hit.model_dump(mode="json"))
     except (ValidationError, ValueError, TypeError, AttributeError, RecursionError):
         raise GroundingRejected("grounded_source_mismatch") from None
@@ -104,7 +105,7 @@ def source_content_sha256(hit: EvidenceHit) -> str:
 
 def validate_grounded_request(request: GroundedRequest) -> GroundedRequest:
     try:
-        request = GroundedRequest.model_validate(request.model_dump(warnings=False))
+        request = detached_contract(GroundedRequest, request)
     except (ValidationError, ValueError, TypeError, AttributeError, RecursionError):
         raise GroundingRejected("grounded_context_mismatch") from None
     payload = request.model_dump(mode="json", exclude={"context_sha256"})
@@ -145,7 +146,7 @@ def make_grounded_request(
             conflict_groups=conflict_groups,
             context_sha256="0" * 64,
         )
-        request = GroundedRequest.model_validate(request.model_dump(warnings=False))
+        request = detached_contract(GroundedRequest, request)
     except (ValidationError, ValueError, TypeError, AttributeError, RecursionError):
         raise GroundingRejected("grounded_context_mismatch") from None
     digest = _sha(request.model_dump(mode="json", exclude={"context_sha256"}))
@@ -355,12 +356,14 @@ def render_grounded_plan(
     source_gap_investigation: bool = False,
     ask_source_background: bool = False,
     concise_user_draft: bool = False,
+    review_brief: bool = False,
 ) -> AnalysisResult:
     if (
         type(source_gap_handoff) is not bool
         or type(source_gap_investigation) is not bool
         or type(ask_source_background) is not bool
         or type(concise_user_draft) is not bool
+        or type(review_brief) is not bool
         or (source_gap_investigation and not source_gap_handoff)
     ):
         raise GroundingRejected("grounded_context_mismatch")
@@ -396,6 +399,39 @@ def render_grounded_plan(
     # Conflict records cannot be hidden by selecting only the convenient side.
     selected_ids.update(chunk for group in request.conflict_groups for chunk in group)
     selected_hits = [hit for hit in request.evidence.hits if hit.chunk_id in selected_ids]
+    if review_brief:
+        from agent_app.reasoning.review_brief import format_review_brief
+
+        draft, summary, rationale = format_review_brief(
+            request,
+            decision=plan.decision,
+            question=question,
+            quotations=tuple((hit, 0, len(hit.excerpt)) for hit in selected_hits),
+            plan_selected_ids={item.chunk_id for item in plan.sources},
+            scopes={hit.chunk_id: source_scope(request.case, hit) for hit in request.evidence.hits},
+            prior_conflict=_prior_conflict(request),
+        )
+        try:
+            return AnalysisResult(
+                decision=plan.decision,
+                user_draft=draft,
+                maintainer_summary=summary,
+                rationale=rationale,
+                evidence_links=tuple(
+                    EvidenceLink(
+                        claim=(
+                            f"Attributed complete excerpt from supplied chunk {hit.chunk_id}; "
+                            f"scope={source_scope(request.case, hit)}; not a verified cause or fix."
+                        ),
+                        chunk_id=hit.chunk_id,
+                    )
+                    for hit in selected_hits
+                ),
+                missing_info=(plan.question_name,) if question else (),
+                next_question=question,
+            )
+        except ValidationError:
+            raise GroundingRejected("grounded_render_too_large") from None
     excerpts = "\n\n".join(_source_block(request.case, hit) for hit in selected_hits)
     reported = "\n".join(
         "- " + _display(f"{fact.name}: {fact.value}").replace("\n", "\n  ")
@@ -688,12 +724,14 @@ class GroundedReasoner:
         source_gap_investigation: bool = False,
         ask_source_background: bool = False,
         concise_user_draft: bool = False,
+        review_brief: bool = False,
     ) -> None:
         if (
             type(source_gap_handoff) is not bool
             or type(source_gap_investigation) is not bool
             or type(ask_source_background) is not bool
             or type(concise_user_draft) is not bool
+            or type(review_brief) is not bool
             or (source_gap_investigation and not source_gap_handoff)
         ):
             raise GroundingRejected("grounded_context_mismatch")
@@ -703,6 +741,7 @@ class GroundedReasoner:
         self.source_gap_investigation = source_gap_investigation
         self.ask_source_background = ask_source_background
         self.concise_user_draft = concise_user_draft
+        self.review_brief = review_brief
         self._conflicts: set[tuple[str, str, int]] = set()
         self._conflict_lock = RLock()
 
@@ -773,6 +812,16 @@ class GroundedReasoner:
             )
             result = (
                 render_grounded_plan(
+                    request,
+                    raw,
+                    source_gap_handoff=self.source_gap_handoff,
+                    source_gap_investigation=self.source_gap_investigation,
+                    ask_source_background=self.ask_source_background,
+                    concise_user_draft=self.concise_user_draft,
+                    review_brief=True,
+                )
+                if self.review_brief
+                else render_grounded_plan(
                     request,
                     raw,
                     source_gap_handoff=self.source_gap_handoff,

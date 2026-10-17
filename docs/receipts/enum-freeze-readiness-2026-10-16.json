@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "task": "C4n",
+  "kind": "Enum retained-output audit and supplied core configuration binding for freeze preparation",
+  "recorded_at_utc": "2026-10-16T09:04:29.261023+00:00",
+  "base_commit": "18b49a634c88d559b12fe247ac767eddabd47c37",
+  "source_commit": "99e3bc63ced91f6586344637e7eaa7c711be9141",
+  "source_files": {
+    "src/agent_app/orchestration/configuration_freeze.py": "b0963ab70bbba4f9096ca0ea66cbee315725dd3e29d680e42a97fc92ed92c9c7",
+    "tests/test_configuration_freeze.py": "1d63493b3ce9fa32a1169bd90ef322fbf42176aeda3943a780bd30b3fd032c64"
+  },
+  "legacy_config_collision": {
+    "existing_metadata_equal": true,
+    "changed_fields": [
+      "grounded_decision_contracts",
+      "grounded_compact_plan",
+      "max_output_tokens",
+      "user_gaps"
+    ],
+    "before_receipt_sha256": "a059c7e9473a9ea17ea398fe827fffe27063deb16037c719df91015e9ee94d82",
+    "new_descriptor_A_sha256": "b1b70db8b57e80dbdbf402ab1d4f2e412902d815d4a7441362792f7d9f467626",
+    "new_descriptor_B_sha256": "cafb55ed45d6d719e7b0ee2e5cb68f01db73baec33b54811bac12ed90096915e",
+    "new_hashes_distinct": true,
+    "synthetic_inputs_only": true,
+    "pins_in_neutral_fixture_not_runtime_attestation": true
+  },
+  "new_helper_scope": {
+    "pure_explicit_calls_only": true,
+    "configuration_compatibility_and_equality_only": true,
+    "credential_read_or_hash": false,
+    "factory_runner_hooks_changed": false,
+    "old_config_receipts_defaults_changed": false,
+    "runtime_verified": false,
+    "live_authorization": false,
+    "quality_claim": false,
+    "pin_provenance_or_completeness_verified": false,
+    "final_candidate_selected_or_frozen": false
+  },
+  "fresh_checks": {
+    "new_tests": 103,
+    "root_focused_live_profile_configuration_tests": 197,
+    "development": {
+      "passed": 5861,
+      "failed": 0,
+      "seconds": 258.63,
+      "deselected": [
+        "tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture"
+      ],
+      "protected_read_attempts": 0,
+      "junit_sha256": "f13114eee13d773a3853d4ea5bf97b40c942f0e3e6635da5bd5b33d8ca23ac1e",
+      "log_sha256": "a7d2b99efb16d9b18572ceb7be137e6cbc23afcf6cb68cc7a110e74d948e74ee"
+    },
+    "ruff_lint": "pass",
+    "ruff_format": {
+      "passed": true,
+      "python_files": 369
+    },
+    "replays": [
+      {
+        "archive": "experiments/core_evidence_selection_v1/replay-v2.json",
+        "fresh_local_receipt_sha256": "e55c4c471df98f6dae5d1824983d831df9bc29d66602ccbdc42bfd8f60a33035",
+        "full_bytes_equal": true,
+        "checks_passed": 62,
+        "checks_total": 62,
+        "model_quality_claim": false
+      },
+      {
+        "archive": "experiments/core_selection_context_v1/replay-v1.json",
+        "fresh_local_receipt_sha256": "a247d21d54afccb81d7aa2b154e3093ea22fb1a8d91ab41f01477188bd79cbd9",
+        "full_bytes_equal": true,
+        "checks_passed": 81,
+        "checks_total": 81,
+        "model_quality_claim": false
+      }
+    ],
+    "C5_readonly": {
+      "passed": 36,
+      "total": 36,
+      "ledger_fullrows_and_files_unchanged": true,
+      "resolved": false
+    }
+  },
+  "reused_evidence": {
+    "HTTP_SQLite": {
+      "receipt": "docs/receipts/core-boundary-http-sqlite-2026-10-16.json",
+      "sha256": "90e5238672811c3732353b51bda02b508111bb33730579a9025d57d8586b24de",
+      "passed": 457,
+      "total": 457,
+      "source_commit": "3f8ff33c566df9e76276e4a258f7ad4287877cd0",
+      "fresh_run_this_task": false,
+      "justification": "All existing runtime/API/service/RAG/tracker/UI files are exact; the new pure module has no existing factory/runner hook."
+    }
+  },
+  "enum_quality_audit": {
+    "input_inventory": "experiments/core_evidence_selection_v1/failure-inventory-v1.json",
+    "inventory_sha256": "682eed7efcd83191b11f7bc4b940c22bbdb4e82cd394345915e471adf4d58c03",
+    "retained_observations": [
+      "OBS-01",
+      "OBS-11",
+      "OBS-12"
+    ],
+    "independent_replay_retained_plans": {
+      "total": 10,
+      "accepted": 7,
+      "source_binding_rejected": 3
+    },
+    "new_model_choices": 0,
+    "new_supported_diagnosis_or_fix": 0,
+    "human_support_review_complete": false,
+    "note": "Version/code known; withheld guide is a source gap; paragraph selections omitted available body/caveat, whole quotes lacked complementary coverage, compiled prose invented historical applicability. Existing sections are authored structural replays only."
+  },
+  "teammate_update_review": {
+    "PR78": {
+      "head_commit": "3402a597d5d2f7749dfa8db7008779814806f9df",
+      "review_receipt": "docs/receipts/pr78-review-2026-10-16.json",
+      "sha256": "9b4c998d046b738016c3bd085e84b15b2f85a7bdf08c6d60ee1a7394cccfa30a",
+      "decision": "Leave open;2P2projection mismatches and1normalizationissue; currentdev11of11/4extraoffers reproduced",
+      "held_out_summary_only": true,
+      "teammate_files_modified": false
+    },
+    "PR77": "Already merged before this task; original human labels/comments/scores preserved",
+    "other_refs_at_initial_fetch": "No new Hassan/Behnam ref or open-PR update observed; not an assertion about unpushed work"
+  },
+  "independent_reviews": [
+    {
+      "scope": "Enum retained output/source boundary",
+      "result": "No new defensible runtime/default/prompt-order improvement; diagnosis/fix unresolved; no human score fabricated"
+    },
+    {
+      "scope": "Existing selection/render/current-USER controls",
+      "result": "220focused tests pass,10retained plans inspected, structural/fullquote/unsupported-version failures confirmed"
+    },
+    {
+      "scope": "New helper/code/tests and Decimal compatibility",
+      "result": "Approved;103tests rerun,precision1/28/100,rounding and hostile exponent/trap controls verified; no remaining blocker"
+    },
+    {
+      "scope": "Final delivery claims/owner gates and sanitized receipts",
+      "result": "Approved; no claims blocker; no Enum resolution/final config/default promotion/support/test quality claim, and reused HTTP/C5 limits explicit",
+      "read_only": true
+    }
+  ],
+  "retained_prepublication_findings": [
+    {
+      "correction": "Cache public-field and Identifier schemas at import; exported calls pass the environment/file/network/runtime prohibitions.",
+      "finding": "Strict no-I/O test initially failed because constructing a Pydantic TypeAdapter schema inside an exported call consulted Pydantic environment settings.",
+      "first_focused_result": {
+        "failed": 1,
+        "passed": 92
+      },
+      "next_focused_result": {
+        "failed": 0,
+        "passed": 93
+      }
+    },
+    {
+      "correction": "Use exact fixed-format trailing-zero removal with symmetric 1024 digit/exponent/output bounds; test distinction beyond default precision and long canonical roundtrip.",
+      "finding": "Decimal.normalize obeys ambient precision and merges distinct high-precision caps; initial comparator also rejected long strings emitted by the builder."
+    },
+    {
+      "correction": "Isolate registered-price cost arithmetic in Context(prec=64) with fixed default rounding/exponent/trap settings; do not alter historical pricing.",
+      "finding": "Ambient Decimal context affected reserve-cost compatibility.",
+      "focused_result": {
+        "failed": 0,
+        "passed": 103
+      },
+      "prechange_receipt": "decimal-cost-prechange-v1.json"
+    }
+  ],
+  "preserved": {
+    "ledger_sha256": "141c3536fb864595d94e0d0dd4a55976418def1012402b70f313c92050222785",
+    "current_19_physical_pins_equal": true,
+    "physical_manifest_reference": "docs/receipts/deadline-healthcheck-2026-10-16.json#preserved",
+    "halt": true,
+    "uncertain_requests": 3,
+    "uncertain_hold_usd": "0.030137600",
+    "ledger_ceiling_usd": "4.50",
+    "closed_study_IDs_unchanged": true,
+    "held_out_git_tree_unchanged": true,
+    "credentials_or_held_out_content_read": false,
+    "corpus_exclusion_gold_changed": false,
+    "all_existing_C2k_8file_hashes_equal": true
+  },
+  "scope": {
+    "paid_API_calls": 0,
+    "production_native_index_clients_created": 0,
+    "temporary_index_clients_in_development_tests": true,
+    "team_messages_sent": 0,
+    "hosted_CI_pass_claim": false,
+    "fresh_browser_or_Windows_claim": false
+  },
+  "open_gates": [
+    "Independent claim/source/question/usefulness review on selected dev configuration",
+    "Evaluation owner native fixture/gold/routes and split/rubric/vocabulary freeze",
+    "Hassan final corpus/index/configuration pins and coverage",
+    "C5 mentor provider reconciliation with halt retained",
+    "Untuned held-out evaluation by evaluation owner after freeze"
+  ],
+  "local_artifact_sha256": {
+    "implementation-review-amendments-v1.json": "3609a4dd67500dad3832c8a00b537e9b97b86c2c784c6b54fdb3888c9e30d676",
+    "configuration-freeze-tests-v1.xml": "196ba0c1575c4b716cc859bd23bc4e01ad29abc771cabf63bdd30c6b9eea3f03",
+    "development-boundary.json": "424f19a4c46a10aa53a327a02ec9803692221d062fac4c6124c296cde2cb7faa",
+    "development-suite.log": "a7d2b99efb16d9b18572ceb7be137e6cbc23afcf6cb68cc7a110e74d948e74ee",
+    "configuration-freeze-tests-v2.xml": "5b2649026ba4c7e1e8830701f603df1cf1974a5e1477ad4aed268f83ce1051d4",
+    "focused.xml": "48db981377b9526eaf763547b3d2fbbca7d044563908a6b63e6436e8d4368247",
+    "legacy-config-collision-baseline-v1.json": "a059c7e9473a9ea17ea398fe827fffe27063deb16037c719df91015e9ee94d82",
+    "configuration-binding-comparison-v1.json": "2c548a3e0c47674ef4d8e476b884d72a9d0ab87f05de5af37d8bf908717a0930",
+    "configuration-binding-focused-v1.xml": "86fbe5394116fc4e6e55f056d5cdd4e5df86e635ee5e58cb333472e5de45b821",
+    "evidence-selection-replay.json": "e55c4c471df98f6dae5d1824983d831df9bc29d66602ccbdc42bfd8f60a33035",
+    "c5-readonly.json": "0edcef270ef93e28b8cc50ab728ad2a9e26dc72f84126f8a692e90d46ad0071d",
+    "decimal-cost-prechange-v1.json": "d55dac10920b3ae23cfbfa3524553e044c626d6a20f122c57c6ebb4ba4ae1110",
+    "development-suite.xml": "f13114eee13d773a3853d4ea5bf97b40c942f0e3e6635da5bd5b33d8ca23ac1e",
+    "pr78-independent-review-v1.json": "9b4c998d046b738016c3bd085e84b15b2f85a7bdf08c6d60ee1a7394cccfa30a",
+    "selection-context-replay.json": "a247d21d54afccb81d7aa2b154e3093ea22fb1a8d91ab41f01477188bd79cbd9"
+  },
+  "final_documentation_checks": {
+    "relative_markdown_links_checked": 350,
+    "missing_links": 0,
+    "sanitized_JSON": true,
+    "source_hashes_exact": true,
+    "runtime_matches_verified_source": true,
+    "git_diff_check": "pass"
+  }
+}

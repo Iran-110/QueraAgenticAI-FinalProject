@@ -6,6 +6,14 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 - Four owners: agent core/contracts; data/RAG; local tracker/tools; UI/evaluation. Proposed boundaries are in `docs/architecture.md`.
 - Inspect Git status first. Preserve teammates' work, the original brief, and the original plan. Do not overwrite unrelated changes.
+- During core/RAG development, do not open `data/evaluation/split-e1-v1/test/`,
+  its `evidence-test*.json`, `test-card-review-v1.json`, the native test gold
+  (`data/evaluation/split-e1-v1/native/test/` and `native-test-gold-review-v1.json`),
+  or test-bearing review HTML. Safe manifest counts/exclusion metadata are separate from held-out
+  questions/gold. The evaluation owner retains final artifact review/execution.
+  `tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture`
+  loads all held-out fixtures: deselect it in development verification and report
+  that exclusion explicitly; do not claim a complete held-out run.
 - Keep shared models in `src/agent_app/contracts.py` and ports in `orchestration/ports.py`; coordinate interface changes before adapting another owner's module.
 - Use feature branches and meaningful commits after coherent, verified chunks. Do not fabricate dates, activity, test results, or completed functionality.
 - Keep the owned task in `plan/plan.md` current in the same PR; use its task ID in handoffs and attach completion evidence before checking it off. Sync the feature branch from current `origin/main` without discarding local work. Shared plan changes are visible to teammates after Git sync, not instantly.
@@ -33,6 +41,93 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
   The closed27-send comparison observes5/6 versus6/6 routes,10 versus12 fresh proposals and partial button1.39 guidance0/2 versus2/2 repetitions of one exposed case. A still asks necessary callback questions; C still has no Enum diagnosis/fix. Human usefulness is null and no defaults are promoted.3912 native/cost checks preserve all452 old reservations/14tables/holds/halt; six scopes closed and21 unused slots permanently claimed. Do not resume the closed method or call this final RAG/test quality.
 
 ## Runtime rules
+
+- C4r selects the explicit `grounded_candidate_v1` core delivery recipe; read
+  `docs/core-delivery-selection.fa.md`. The existing live factory now accepts
+  `AGENT_CORE_PROFILE` as trusted operator configuration, with strict public
+  conflict and actual constructor/allocation/pre-send checks. Omitted mode keeps
+  old defaults/metadata. Legacy renderer is selected; optional review brief stays
+  unselected. Selected binding and bounded compact-wire diagnostics survive the
+  runner's strict metadata projection; this is not provider/build authentication
+  or semantic review. Preserve the recipe/vocabulary pin, require a new version
+  for changes, and do not silently relax the profile or promote study flags.
+  Halt/three holds/closed IDs remain authoritative. Core recipe selection does
+  not close shared native-build/gold freeze, human quality, C5 or final test.
+  Historical C4q/C4p notes below describe those earlier deliveries.
+
+- C4q closes explicit renderer-registration-to-constructor binding; read
+  `docs/core-closeout.fa.md`. The new registered_reasoner v2 envelope retains
+  the unchanged v1 candidate and rejects mixed versions or inconsistent hashes.
+  Equal checked declarations derive actual GroundedReasoner flags/catalog before
+  the planner callback; input mutations cannot alter those local settings.
+  Binding receipts attest only that construction, not planner/model/endpoint,
+  engine policy, physical code/build, budget or subsequent runtime mutation.
+  Caller owns guards/resources and persists the binding with a NEW execution.
+  This is explicit injection only: ordinary factories/env/UI/runner remain
+  unchanged. No ClaimReasoner binding, final policy selection, freeze approval,
+  paid permission or new quality score is implied. Keep halt/three holds and all
+  historical/test artifacts unchanged; no new core feature is a delivery gate.
+
+- C4p adds explicit default-false `review_brief` formatting to GroundedReasoner
+  and ClaimReasoner; read `docs/maintainer-review-brief.fa.md`. Omitted/False
+  preserve historical output bytes; canonical ask and retrieve_more stay exact.
+  Only USER report/fact/check display normalizes actual CRLF; raw inputs,
+  source quotations, hashes and spans remain unchanged. Supplied, plan-selected
+  and conflict-required sources are distinct; no semantic review, diagnosis,
+  fix or execution is inferred. This option has no factory/env/runner hook and
+  is not bound by the v1 configuration descriptor; C4q supplies explicit v2
+  registration/construction before final configuration adoption. New surfaces require a
+  fresh bound proposal/handoff and approval, never rewriting stored reviews.
+  Archived deterministic re-rendering is not a new model choice or human score;
+  recorded entries are not planned/unique-turn denominators. Preserve all
+  original failures/unvisited states, output limits, halt and three holds.
+
+- C4o/E2ab adds an optional pure offline passage observer; read
+  `docs/native-evidence-review.fa.md`. Match exact complete passages using stable
+  source ID/revision/URL, independently of query score and chunk IDs. Bind the
+  declared requirements and expected handoff hashes; report version/citation
+  observations separately. Presence is not entailment, answer sufficiency,
+  source authenticity, physical build or actual provider-consumption evidence.
+  No runner/scorer/runtime hook, conditional-gold selection or live authority is
+  added. Missing observations do not automatically justify escalation or make a
+  case unanswerable. Gold/required-source data must never enter model/retrieval
+  inputs. Keep all failed/unvisited states; absent handoffs remain unobserved.
+  PR79 v2 is controlled fixed evidence, not native gold; retain its original
+  fixtures and assisted-review bytes. A disclosed unsourced material claim still
+  has strict support zero, independent of decision/usefulness. Private native
+  test gold remains with the evaluation owner before final execution.
+
+- C4n adds a pure explicit `configuration_freeze` descriptor/comparison for
+  supplied review-candidate settings only. Read `docs/enum-freeze-readiness.fa.md`.
+  Preserve legacy adapter/runner metadata and all defaults; no factory hook or
+  selected final configuration was added. Compatible/equal declarations do not
+  authenticate pins, inspect runtime, establish quality or authorize live calls.
+  Exported calls must not read credentials/environment/files or construct runtime;
+  retain exact money identities and Decimal-context-independent cost checks.
+  PR78's original head3402a59 has immutable neutral projection counterexamples;
+  E2aa corrects the report separately, not runtime question behavior. Read
+  `docs/question-coverage-state.fa.md`. Preserve v1; default reporting is dev-only
+  and v2 uses bounded independent registered-path hypotheses with actual core
+  intake/transitions/catalog. Do not consume held-out content or tune vocabulary
+  from historical test counts. Explicit owner processing exports numeric test
+  summaries only and is not authorized during core development.
+
+- C2k reuses `detached_contract` at retrieval/analysis ingress, user-turn
+  preparation, grounded/claim request validation and source hashing. Read
+  `docs/core-boundary-validation.fa.md`. Preserve the32 pre-change valid surface
+  digests, safe diagnostics and two-attempt bounds; do not dump away hidden
+  nested invalid state before validation. This is bounded Python-contract
+  hardening, not exhaustive boundary validation or measured model quality.
+
+- C4m/E2z adds an optional reviewed development vocabulary and historical
+  workbench rubric binding; read `docs/evaluation-readiness.fa.md`. Preserve old
+  rubric/fixture/gold/receipt bytes and all valid workbench outputs. Existing
+  registered campaigns require the original draft ID and SHA; new v1 reviews
+  need a separate registered scope. Native gold needs a new fixture ID with its
+  own gold/routes and pins; a standalone sidecar is not selected by the runner.
+  Actual consumed passages govern support, not corpus membership or live mode.
+  Questions remain caller-registered choices, not arbitrary generated prose;
+  never add test-derived names/aliases. Text-only input remains unchanged.
 
 - C2j uses the existing recursive `detached_contract` before serialization in
   both version-reply intake helpers. Read `docs/intake-validation.fa.md`.
@@ -187,7 +282,7 @@ From the repository root:
 
 ```bash
 uv sync --locked --group dev
-uv run pytest
+uv run pytest --deselect=tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture
 uv run ruff check .
 uv run ruff format --check .
 uv run agent-app demo --scenario refine
@@ -196,3 +291,10 @@ uv run agent-app turn-demo
 ```
 
 Add meaningful tests for behavior changes, especially limits, evidence validation, corrections, and failure handling. For documentation-only changes, verify paths and commands without duplicating behavioral tests. Report exactly what was checked and any remaining limitation.
+
+This is the development suite with one held-out-content consumer explicitly
+deselected. The evaluation owner handles complete final-artifact validation;
+neither software test execution is the held-out model-quality evaluation.
+Use `docs/delivery-report.fa.md` for the current delivery evidence and open gates;
+do not infer final completion from a passing development suite or historical
+readiness percentages.

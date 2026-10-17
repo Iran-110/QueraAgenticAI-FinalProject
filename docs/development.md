@@ -13,18 +13,36 @@ uv run agent-app demo --scenario refine
 uv run agent-app demo --scenario error
 uv run agent-app gateway-demo --scenario repair
 uv run agent-app turn-demo
-uv run pytest
+uv run pytest --deselect=tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture
 uv run ruff check .
 uv run ruff format --check .
 ```
 
-All demo scenarios run offline, using synthetic evidence and scripted decisions. The `error` scenario intentionally returns exit status 1 with `RetrievalUnavailable`; this is the expected failure path. The Streamlit UI calls the local FastAPI backend; start both with the commands in [README](../README.md). This is an offline prototype with fake retrieval/reasoning and in-memory case storage, so credentials are not needed. The first dependency sync needs package downloads unless cached.
+All demo scenarios run offline, using synthetic evidence and scripted decisions. The `error` scenario intentionally returns exit status 1 with `RetrievalUnavailable`; this is the expected failure path. The first dependency sync needs package downloads unless cached.
 
-Ruff checks the Python core, API and tests; `app.py` and `streamlit_examples/` remain excluded by the current configuration. UI/API tests still run in the full pytest suite.
+The default README server is the memory demo. For UI with persistent SQLite,
+use the [delivery demo](delivery-report.fa.md) or the
+[existing persistent pilot guide](offline-ui-index-pilot.fa.md). It requires a
+private reviewer token; model credentials are unnecessary for the offline mode.
+The optional index is real Chroma with local lexical vectors, while reasoning
+stays scripted or explicitly uses the fake gateway. These modes are not live
+model-quality trials.
+
+The development test command intentionally excludes the one test that reads all
+final held-out fixtures. The evaluation owner retains complete final-artifact
+validation; do not open those fixtures while developing core/RAG or claim that
+the omitted test ran. Ruff checks project Python, including `app.py`; the
+illustrative `streamlit_examples/` directory remains excluded. UI/API tests are
+included in the development suite.
 
 ## Automatic checks
 
-GitHub Actions runs the locked install, Ruff lint/format checks, the full test suite, and offline refinement, gateway accounting and user-turn demos on every branch push and PR update. It needs no API key and makes no paid calls. Review results in the PR checks or repository Actions tab.
+GitHub Actions is configured for locked install, Ruff lint/format, the full
+software suite and offline demos on branch pushes and PR updates, without paid
+model calls. Hosted runs are currently billing-blocked; local verification on
+a recorded source is the authorized publication gate. This does not make
+blocked CI pass or waive the live ledger halt. See the
+[delivery evidence](delivery-report.fa.md) and [plan](../plan/plan.md).
 
 The workflow must be present in a branch to check its pushes. After the foundation PR is merged, update existing feature branches from `main`; new branches then inherit the same checks. Future modules should add their behavioral tests to `tests/` so CI picks them up. Making a successful check mandatory for merging is a separate repository setting for the maintainer.
 

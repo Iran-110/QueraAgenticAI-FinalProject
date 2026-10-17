@@ -1,5 +1,55 @@
 # Evaluation cases
 
+Current E1 registration: `split-e1-v1/split-manifest.json` declares **16 dev /
+15 test**, with all31fixtures registered, but remains draft rather than frozen.
+The maintainer reports31/31scripted cases and533/533operational checks; these
+are not model-quality or final-test results. Historical one-case/dev-three
+packets below remain immutable historical scopes, not the current split count.
+PR79 registers the same three exposed dev families as fixed-evidence v2 under
+`e2-rubric-v1`; this is separate from native gold. See the
+[native evidence review contract](../../docs/native-evidence-review.fa.md) for
+exact passage requirements, strict support despite disclaimers, private native
+test registration and the optional offline observer. It does not select gold,
+score semantics or alter runner routes. Current dev projection is
+[`question-coverage-dev-v3.json`](split-e1-v1/question-coverage-dev-v3.json);
+older reports remain historical and are not overwritten.
+Core development must not open held-out fixtures/gold, `evidence-test*.json`,
+`test-card-review-v1.json` or review HTML that includes held-out case content.
+See [core/evaluation readiness decisions](../../docs/evaluation-readiness.fa.md)
+for optional dev vocabulary, separate native gold registration, rubric identity
+and text-only scope. A generic registered vocabulary is the available question
+space; the current core cannot invent arbitrary unregistered questions.
+
+Question coverage against the fixed dev vocabulary is a separate offline
+report, not model quality. The original
+[`question-coverage-v1.json`](split-e1-v1/question-coverage-v1.json) is preserved
+as historical evidence: its simplified state projection had three independently
+reproduced counterexamples, documented in the
+[review](../../docs/receipts/pr78-review-2026-10-16.json). Its test counts have
+not been recomputed or verified by core development; they must not be used to
+tune questions. `scripts/report_question_coverage.py` now defaults to dev only,
+uses the actual core transition/catalog and bounded independent registered-path
+hypotheses, and writes a separate v2 report without overwriting an existing
+artifact. See [usage and limits](../../docs/question-coverage-state.fa.md).
+Mixed path availability is distinct from availability on every path. An
+incoming ask does not itself establish a fact, and this report does not attest
+to actual model choices, approval/release, question necessity or usefulness.
+Held-out execution remains with the evaluation owner after freeze; no
+test-derived question or alias is added.
+
+[`question-coverage-dev-v3.json`](split-e1-v1/question-coverage-dev-v3.json)
+is the same dev projection rebuilt after the manifest pinned
+[dev-three v2](dev-three-v2/README.md); it differs from v2 only in `manifest_sha256`.
+
+Native-index gold for the 16 dev cases is in
+[`split-e1-v1/native/`](split-e1-v1/native/README.md), registered separately from the
+fixed fixtures with pins pending the final build.
+The active dev selection is now
+[`native-registration-dev-v2.json`](split-e1-v1/native/native-registration-dev-v2.json):
+14 unchanged v1 fixtures and two versioned initial-escalation amendments. Historical
+v1 human review remains exact; the two amended clauses have assistant review and
+pending human confirmation. [Scope and explicit-path command](../../docs/native-dev-gold-amendment.fa.md).
+
 The additive [offline review workbench](../../docs/evaluation-workbench.fa.md)
 now prepares actual C4g/C4h turn contexts, full sources and blank SemanticReview
 sidecars. It preserves stopped, stale and unvisited rows beside fresh proposals,
@@ -18,15 +68,17 @@ one-case manifest and PR35 pins below are preserved. Use
 for its scripted replay. Fixed-evidence model conditions and the actual14-doc
 index are separate; [guide](../../docs/dev-three-baseline.fa.md).
 
-Draft layout for E1/E2. The schema still needs agreement before the full 30
-cases are written; `dev/pilot-12782.json` is the first case in this format.
-The manifest currently selects **one dev case and zero test cases**. It is not
-a frozen split. The [core-owner rubric review](../../docs/evaluation-rubric.md)
+Historical pilot layout for E1/E2: `dev/pilot-12782.json` was the first case
+in this format. Its historical `split-manifest.json` selects **one dev case
+and zero test cases** and is not a frozen split. It is preserved separately
+from the current31-case registration above. The [core-owner rubric review](../../docs/evaluation-rubric.md)
 is a recommendation for E2; [rubric v1](../../docs/evaluation-rubric-v1.md)
 (`e2-rubric-v1`) adopts it with Sasan's 2026-10-15 additions for new fixtures
 and reviews. The additive semantic-review helper below records
 caller judgments; rubric adoption, team approval and E2 completion remain open.
 Registered fixtures and historical receipts are preserved unchanged.
+
+`split-e1-v1/test/` holds **held-out test** fixtures and gold. Core developers must not open them or tune prompts, retrieval or model choice on them before the final test run.
 
 - `split-manifest.json` lists selected cases and whole issue families per split,
   the issue IDs already exposed during development, and open blockers. Hassan's

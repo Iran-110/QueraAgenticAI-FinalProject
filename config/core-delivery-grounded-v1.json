@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "profile_id": "grounded_candidate_v1",
+  "metis": {
+    "live_enabled": true,
+    "model": "gpt-4o-mini",
+    "prompt_policy": "baseline",
+    "response_mode": "grounded_plan",
+    "grounded_decision_contracts": true,
+    "grounded_source_gap_handoff": true,
+    "grounded_source_gap_investigation": true,
+    "grounded_source_selection_reminder": true,
+    "grounded_complementary_sources": false,
+    "grounded_resource_guidance": false,
+    "grounded_source_capacity": false,
+    "grounded_compact_plan": true,
+    "grounded_json_object": false,
+    "continuation_id": null,
+    "max_output_tokens": 1024,
+    "input_token_reserve": 32768,
+    "max_request_usd": "0.02"
+  },
+  "allowed_phases": [
+    "development",
+    "evaluation"
+  ],
+  "retrieval_profile": "candidate_relevance_v1",
+  "adapter_top_k": 5,
+  "engine_policy": {
+    "top_k": 5,
+    "retrieval_candidate_multiplier": 5,
+    "evidence_utf8_budget_bytes": 12000,
+    "repair_repeated_queries": true,
+    "evidence_scope": "exact_user_version"
+  },
+  "renderer_policy": "legacy_v1",
+  "ask_source_background": false,
+  "concise_user_draft": false,
+  "vocabulary_semantic_sha256": "56e6180928536534e99284c270e0a272568b32e3a2fb07a1ff7b441d289a7cd8",
+  "live_authorization": false,
+  "quality_claim": false,
+  "final_corpus_selected": false,
+  "recipe_sha256": "a356238d62acfed9ae5087828548460fd7119893218e874fa228940a2fc63ed4"
+}

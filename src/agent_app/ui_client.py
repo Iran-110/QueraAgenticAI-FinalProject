@@ -2,6 +2,7 @@
 
 import json
 import os
+import re
 from dataclasses import dataclass, field
 from typing import Any, get_args
 from uuid import uuid4
@@ -53,6 +54,10 @@ ERROR_TEXT = {
     "Check the backend configuration.",
     "BackendCapabilityMismatch": "The backend changed its review protocol. Restore the "
     "original backend before retrying this review.",
+    "SavedCaseIdInvalid": "Use a case ID of 1–200 letters, numbers, dots, underscores or "
+    "hyphens, starting with a letter or number.",
+    "SavedCasesUnavailable": "This backend does not support opening saved cases.",
+    "SavedCaseNotFound": "No saved case was found for that ID.",
 }
 
 OUTCOME_STATUSES = frozenset(
@@ -314,6 +319,22 @@ class BackendClient:
 
     def get_case(self, case_id: str) -> dict[str, Any]:
         return self._case_response(self._request("GET", f"/cases/{case_id}"), case_id)
+
+    def get_saved_case(self, case_id: str) -> dict[str, Any]:
+        """Load a manually named durable case without creating or resuming it."""
+        if (
+            type(case_id) is not str
+            or re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,199}", case_id) is None
+        ):
+            raise BackendError(ERROR_TEXT["SavedCaseIdInvalid"], code="SavedCaseIdInvalid")
+        if not self.discover_capabilities().durable_reviews:
+            raise BackendError(ERROR_TEXT["SavedCasesUnavailable"], code="SavedCasesUnavailable")
+        view = self.get_case(case_id)
+        # The durable GET deliberately returns an empty view for an unknown ID.
+        # Only committed input makes a case eligible for reopening in the UI.
+        if view["case_revision"] == 0:
+            raise BackendError(ERROR_TEXT["SavedCaseNotFound"], code="SavedCaseNotFound")
+        return view
 
     def send_event(self, case_id: str, event: dict[str, Any]) -> dict[str, Any]:
         view = self._case_response(

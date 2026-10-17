@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "fixture_id": "split-e1-v1-native-state-typing-9455-v1",
+  "registered_on": "2026-10-16",
+  "registered_before_first_run": true,
+  "purpose": "Feature request: typed Session State values; no documented support. Native-index gold version.",
+  "case": {
+    "case_id": "dev-case-j",
+    "split": "dev",
+    "family_issue_ids": [
+      9455
+    ],
+    "origin_url": "https://github.com/streamlit/streamlit/issues/9455",
+    "source_snapshot_date": "2026-10-06",
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "test_eligible": false,
+    "exposure": "Development case. The evaluation curator (mhg with assistant drafting) read the Issue thread to author gold; answer-informed and usable for development and tuning. Never a held-out test case."
+  },
+  "evidence_source": {
+    "path": "data/evaluation/split-e1-v1/evidence-dev-v1.json",
+    "sha256": "081f721f38f4487984c6b1c7aabc1ee207a397ee3fcc4520bf153b61ec919489",
+    "bundles_used": [
+      "state-typing"
+    ],
+    "note": "Runner loading only: live native runs take evidence from the index, not this bundle. It is not the evidence the native gold is judged against."
+  },
+  "boundaries": {
+    "agent": "scripted AnalysisResult for offline plumbing; live ignores agent_script/gold/future turns",
+    "real_model_calls": 0,
+    "api_cost_usd": 0,
+    "storage": "evaluation runner process-local API/DummyTracker; not production durable tracker",
+    "quality_claim": false,
+    "max_reached_turns": 1,
+    "visible_to_agent": [
+      "currently selected turns[].visible"
+    ],
+    "runner_only": [
+      "gold",
+      "agent_script",
+      "maintainer",
+      "probes",
+      "evaluation.coverage",
+      "future turns"
+    ]
+  },
+  "initial_report_provenance": {
+    "kind": "developer_paraphrase_of_latest_cached_body",
+    "source_path": "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+    "issue_number": 9455,
+    "source_created_at": "2024-09-12T17:26:53Z",
+    "source_updated_at": "2026-08-22T10:25:06Z",
+    "source_issue_record_sha256": "db9dca050a8773fa6d746617fca18a6f495e6d57efcab57775e3bcf8b4de8e6b",
+    "original_initial_text_verified": false,
+    "note": "Cached body can contain later edits. No later comments/outcomes are supplied as the initial user message."
+  },
+  "turns": [
+    {
+      "id": "initial",
+      "conversation_source": "developer_paraphrase_of_latest_cached_issue_body",
+      "visible": {
+        "unknowns": [],
+        "checks_performed": [],
+        "context_changed": false,
+        "message": "I call methods on Session State values a lot. Can I type-hint st.session_state values so Pylance knows st.session_state['my_str'] is a str, for example with a TypedDict?",
+        "reported_facts": [
+          {
+            "name": "requested_behaviour",
+            "value": "Type hints for st.session_state values"
+          }
+        ]
+      },
+      "evidence_bundle": "state-typing",
+      "agent_script": {
+        "decision": "escalate",
+        "user_draft": "The available Session State documentation does not describe type hints or a TypedDict for st.session_state, so I cannot point to a supported way. I am passing this as a feature request to a maintainer.",
+        "maintainer_summary": "Typed Session State requested; not documented.",
+        "rationale": "Source gap.",
+        "evidence_links": [
+          {
+            "claim": "Session State shares variables between reruns for each user session.",
+            "chunk_id": "e1d-session-state-sessions"
+          }
+        ]
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "rubric_id": "e2-rubric-v1",
+        "evidence_condition": "native_index",
+        "stratum": "needs_escalation",
+        "acceptable_decisions": [
+          "escalate",
+          "answer"
+        ],
+        "decision_conditions": {
+          "escalate": "Report it as not documented / a feature request.",
+          "answer": "Only a hedged plain-Python workaround (e.g. a typed local variable or cast) clearly marked as not Streamlit-documented. Native index: the registered passages must be in this turn's supplied bundle AND support the stated claim, its API scope and the active USER version; presence alone is not support."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [],
+        "unacceptable_claims": [
+          "st.session_state supports TypedDict annotations per the docs.",
+          "A release added typed Session State."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality.",
+        "native_passages": {
+          "answer_required": null,
+          "optional_claim_support": null,
+          "rule": "Observed with agent_app.evaluation.evidence_observation on this turn's captured handoff. Observation is necessary for a supported answer, not sufficient; support, version scope and usefulness stay a human judgment. A missing passage is a bundle gap, not proof that every escalation is right.",
+          "note": "No Streamlit passage documents typed Session State; any answer is a hedged plain-Python workaround marked as undocumented."
+        }
+      },
+      "expect": {
+        "revision": 1,
+        "pending_decision": "escalate",
+        "after_decision": {
+          "status": "escalated",
+          "released_draft": "agent"
+        }
+      }
+    }
+  ],
+  "evaluation": {
+    "coverage": {
+      "turn_ids": [
+        "initial"
+      ],
+      "routes": [
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "escalate"
+          }
+        },
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "answer"
+          }
+        }
+      ]
+    }
+  },
+  "native_of": {
+    "fixture_id": "split-e1-v1-state-typing-9455-v1",
+    "path": "data/evaluation/split-e1-v1/dev/state-typing-9455-v1.json",
+    "sha256": "33e5e80bf00795ec34bfc4ef91ba9d8f3c4a12c20d789b981b8cd366470f80ba",
+    "note": "Same case, family and visible turns; only gold and routes differ. Never run in one invocation with the fixed version."
+  },
+  "native_scope": {
+    "evidence_condition": "native_index",
+    "build": "pending_final_build",
+    "index_snapshot": null,
+    "corpus_manifest_sha256": null,
+    "allowlist_sha256": null,
+    "exclusion_manifest_sha256": null,
+    "note": "Pins are filled from Hassan's final build before the final run; this gold is not valid for a run until then."
+  }
+}

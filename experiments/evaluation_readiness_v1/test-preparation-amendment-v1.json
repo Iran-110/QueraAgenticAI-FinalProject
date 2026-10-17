@@ -1,0 +1,15 @@
+{
+  "kind": "test preparation correction; no runtime or test assertion changed",
+  "source_commit": "5bbb133",
+  "first_result": {
+    "passed": 5348,
+    "failed": 14,
+    "errors": 227,
+    "deselected": 1,
+    "blocked_open_attempts": 64
+  },
+  "cause": "The first local audit harness additionally forbade the repository .env. A separate protected-read probe reproduced chromadb import trying to load .env through Pydantic settings. Denial prevented native-index test setup; these are not shown as product regressions or deleted.",
+  "correction": "Preserve held-out-content read blocks and one held-out consumer deselection. Remove only the extra .env ban; ordinary dependency settings initialization is permitted. No credentials are printed or committed and no paid call is allowed.",
+  "old_XML_sha256": "6397813197db6bb775583a0b465e2b26f90e16ceb63309c394e1cef97bcf1625",
+  "no_held_out_inputs_disclosed": true
+}

@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "fixture_id": "split-e1-v1-native-selectbox-session-13435-v1",
+  "registered_on": "2026-10-16",
+  "registered_before_first_run": true,
+  "purpose": "Selectbox display desync after setting its value from Session State; fixed in 1.53.0 per release notes. Native-index gold version.",
+  "case": {
+    "case_id": "test-case-14",
+    "split": "test",
+    "family_issue_ids": [
+      13435
+    ],
+    "origin_url": "https://github.com/streamlit/streamlit/issues/13435",
+    "source_snapshot_date": "2026-10-06",
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "test_eligible": true,
+    "exposure": "Held-out test case. The evaluation curator (mhg with assistant drafting) read the Issue thread to author gold; it was not used in core development, prompt tuning, retrieval tuning or model selection. Core developers must not open this file before the final test run."
+  },
+  "evidence_source": {
+    "path": "data/evaluation/split-e1-v1/evidence-test-b-v1.json",
+    "sha256": "da2c1514ce57af260fc33b4e1d81ee48cb673c5edfbafd67cd113ff42afc96b3",
+    "bundles_used": [
+      "selectbox-session"
+    ],
+    "note": "Runner loading only: live native runs take evidence from the index, not this bundle. It is not the evidence the native gold is judged against."
+  },
+  "boundaries": {
+    "agent": "scripted AnalysisResult for offline plumbing; live ignores agent_script/gold/future turns",
+    "real_model_calls": 0,
+    "api_cost_usd": 0,
+    "storage": "evaluation runner process-local API/DummyTracker; not production durable tracker",
+    "quality_claim": false,
+    "max_reached_turns": 1,
+    "visible_to_agent": [
+      "currently selected turns[].visible"
+    ],
+    "runner_only": [
+      "gold",
+      "agent_script",
+      "maintainer",
+      "probes",
+      "evaluation.coverage",
+      "future turns"
+    ]
+  },
+  "initial_report_provenance": {
+    "kind": "developer_paraphrase_of_latest_cached_body",
+    "source_path": "streamlit-data-for-dev-test/sources/github-snapshot-2026-10-06/catalog/issue_records.jsonl",
+    "issue_number": 13435,
+    "source_created_at": "2025-12-22T16:10:56Z",
+    "source_updated_at": "2025-12-23T04:26:24Z",
+    "source_issue_record_sha256": "2cf2d9e26a925be788ed420840c2619d15c531929bf1c7a6a58af95df24e025e",
+    "original_initial_text_verified": false,
+    "note": "Cached body can contain later edits. No later comments/outcomes are supplied as the initial user message."
+  },
+  "turns": [
+    {
+      "id": "initial",
+      "conversation_source": "developer_paraphrase_of_latest_cached_issue_body",
+      "visible": {
+        "unknowns": [],
+        "checks_performed": [
+          "index=None avoids it"
+        ],
+        "context_changed": false,
+        "message": "After I set a selectbox value through Session State (click 'Set 2'), then open and close the dropdown without choosing, the selectbox shows 1 while the returned value is still 2. Code:\n\nfor value in (1, 2, 3):\n    if st.button(f'Set {value}'):\n        st.session_state['key'] = value\nselected = st.selectbox('Select', options=(1, 2, 3), index=0, key='key')\nst.text(f'Selected option: {selected}')\n\nIt does not happen with index=None, but I don't want a clearable selectbox. Streamlit 1.52.2, Python 3.11.9, macOS, Chrome.",
+        "reported_facts": [
+          {
+            "name": "streamlit_version",
+            "value": "1.52.2"
+          },
+          {
+            "name": "reported_reproduction_code",
+            "value": "for value in (1, 2, 3):\n    if st.button(f'Set {value}'):\n        st.session_state['key'] = value\nselected = st.selectbox('Select', options=(1, 2, 3), index=0, key='key')\nst.text(f'Selected option: {selected}')"
+          },
+          {
+            "name": "reported_observation",
+            "value": "Display switches to the first option while the value stays 2"
+          }
+        ]
+      },
+      "evidence_bundle": "selectbox-session",
+      "agent_script": {
+        "decision": "answer",
+        "user_draft": "Streamlit 1.53.0 includes a fix so st.selectbox is initialized correctly when its value is set from Session State. You are on 1.52.2, so upgrading to 1.53.0 or later should resolve the display mismatch without switching to index=None.",
+        "maintainer_summary": "1.52.2 predates the 1.53.0 selectbox Session State fix.",
+        "rationale": "Release note matches the reported trigger.",
+        "evidence_links": [
+          {
+            "claim": "1.53.0: st.selectbox is initialized correctly when its value is set from Session State.",
+            "chunk_id": "e1t-rn-1530-selectbox-session"
+          }
+        ]
+      },
+      "maintainer": {
+        "decision": "approve"
+      },
+      "gold": {
+        "rubric_id": "e2-rubric-v1",
+        "evidence_condition": "native_index",
+        "stratum": "answerable",
+        "acceptable_decisions": [
+          "answer",
+          "escalate"
+        ],
+        "decision_conditions": {
+          "answer": "Tie 1.52.2 to the 1.53.0 fix and recommend upgrading; do not require index=None. Native index: the registered passages must be in this turn's supplied bundle AND support the stated claim, its API scope and the active USER version; presence alone is not support.",
+          "escalate": "Under the native index, escalation is acceptable only when this turn's supplied evidence leaves a material documentation or applicability gap: name the missing documentation or uncovered claim and a concrete retrieval or maintainer-investigation next step, and retain any guidance actually supported by the supplied evidence. Missing registered-passage observation alone does not justify escalation; if other supplied evidence adequately covers the case, escalation is unnecessary abstention."
+        },
+        "allowed_intermediate_decisions": [
+          "retrieve_more"
+        ],
+        "gaps": [],
+        "unacceptable_claims": [
+          "1.52.2 already includes the fix.",
+          "index=None is the only option.",
+          "The version is asked again."
+        ],
+        "human_reviewed": false,
+        "usefulness_score": null,
+        "review_scope": "All output surfaces and all material claims; JSON validity and evidence_link IDs alone do not establish quality.",
+        "native_passages": {
+          "answer_required": {
+            "requirements": [
+              {
+                "requirement_id": "rn-1530-selectbox-session",
+                "alternatives": [
+                  {
+                    "source_id": "docs:content/develop/quick-references/release-notes/2026.md",
+                    "source_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+                    "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/content/develop/quick-references/release-notes/2026.md",
+                    "passage": "`st.selectbox` is initialized correctly when its value is set from Session State"
+                  }
+                ]
+              }
+            ],
+            "requirements_sha256": "8a83e2a26cc511bd1c8c32a7806dff174689ca716811cbc66cc69647bcc1f286"
+          },
+          "optional_claim_support": null,
+          "rule": "Observed with agent_app.evaluation.evidence_observation on this turn's captured handoff. Observation is necessary for a supported answer, not sufficient; support, version scope and usefulness stay a human judgment. A missing passage is a bundle gap, not proof that every escalation is right.",
+          "note": null
+        }
+      },
+      "expect": {
+        "revision": 1,
+        "pending_decision": "answer",
+        "after_decision": {
+          "status": "answer_sent",
+          "released_draft": "agent"
+        }
+      }
+    }
+  ],
+  "evaluation": {
+    "coverage": {
+      "turn_ids": [
+        "initial"
+      ],
+      "routes": [
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "answer"
+          }
+        },
+        {
+          "from_turn": "initial",
+          "to_turn": null,
+          "guard": {
+            "decision": "escalate"
+          }
+        }
+      ]
+    }
+  },
+  "native_of": {
+    "fixture_id": "split-e1-v1-selectbox-session-13435-v1",
+    "path": "data/evaluation/split-e1-v1/test/selectbox-session-13435-v1.json",
+    "sha256": "42676005faa9b158cfe2f93a68b5665382512817b04a1d9a4b57130a3bad0e94",
+    "note": "Same case, family and visible turns; only gold and routes differ. Never run in one invocation with the fixed version."
+  },
+  "native_scope": {
+    "evidence_condition": "native_index",
+    "build": "pending_final_build",
+    "index_snapshot": null,
+    "corpus_manifest_sha256": null,
+    "allowlist_sha256": null,
+    "exclusion_manifest_sha256": null,
+    "note": "Pins are filled from Hassan's final build before the final run; this gold is not valid for a run until then."
+  }
+}

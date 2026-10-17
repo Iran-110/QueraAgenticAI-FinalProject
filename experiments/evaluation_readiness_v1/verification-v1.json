@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "tasks": [
+    "C4m",
+    "E2z",
+    "R4b PR72 acceptance"
+  ],
+  "date_local": "2026-10-16",
+  "tested_source_commit": "5bbb133e1db2cc9d183f9e2378a68cf12e9ab69c",
+  "baseline_main_commit": "991354195392035a1226bfedf00bd46f722cbf3b",
+  "pr72_reviewed_head": "d2b1cde26719ab6a6f5ba36506555a437d4aa8e7",
+  "protocol_before_code_commit": "fdd6207",
+  "question_baseline_before_config_commit": "7319cc4",
+  "development_pytest": {
+    "tests": 5589,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "deselected": 1,
+    "exclusion": [
+      "tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture"
+    ],
+    "reason": "This test loads all final held-out fixtures. Its final-artifact verification belongs to the evaluation owner/final execution, not core development.",
+    "held_out_read_attempts_blocked": 0,
+    "held_out_fixture_gold_or_evidence_contents_read": 0,
+    "XML_source": "local-output:evaluation-readiness-2026-10-16-v1/development-suite-v2.xml",
+    "XML_sha256": "9002069a8cef64bbc00ae852c70ff7d5eaba5f066726b5947e838de13c993613",
+    "full_held_out_artifact_test_claim": false
+  },
+  "initial_test_preparation_attempt_retained": "test-preparation-amendment-v1.json",
+  "locked_sync_passed": true,
+  "ruff_check_passed": true,
+  "ruff_formatted_files": 364,
+  "required_offline_demos": {
+    "passed": 3,
+    "provider_calls": 0,
+    "receipt_sha256": "ab850987328aa250acd78a079ea96069cb7bd094eb918612ecc2a73cccfc3d89"
+  },
+  "HTTP_SQLite": {
+    "accepted": true,
+    "same_process_accepted": true,
+    "restart_accepted": true,
+    "checks_passed": 457,
+    "checks_total": 457,
+    "source_unchanged_during_run": true,
+    "quality_claim": false,
+    "real_model_tested": false,
+    "production_index_or_embedding_tested": false,
+    "production_ledger_used": false
+  },
+  "HTTP_receipt_sha256": "c0461839a92c8030070f91ee98808fe6bb4f33aebd51508d0c164f5cc2defe5c",
+  "dev_scripted_runner": {
+    "cases": 16,
+    "turns": 23,
+    "checks_passed": 273,
+    "completed_multi_turn_paths": 7,
+    "mode": "offline",
+    "quality_claim": false,
+    "source_unchanged_during_run": true,
+    "receipt_source": "local-output:evaluation-readiness-2026-10-16-v1/offline/dev-v1.json",
+    "receipt_sha256": "5c928228300f84eb898fc4c423fac04e2ce5ff069db2125c33e0aa65c1a2bf82",
+    "test_cases_executed": 0,
+    "initial_CLI_output_directory_rejected_before_execution": true
+  },
+  "native_acceptance": "native-acceptance-v1.json",
+  "rubric_and_vocabulary_comparison": "comparison-v1.json",
+  "reviews": {
+    "separate_assistant_source_reviews": true,
+    "engineering_blockers_after_corrections": 0,
+    "human_usefulness_review_performed_here": false,
+    "native_labels_are_Hassan_confirmed_prior_development_labels": true
+  },
+  "protected": {
+    "current_epoch_matches": 19,
+    "historical_original_physical_epoch_restored_claim": false,
+    "primary_ledger_sha256": "141c3536fb864595d94e0d0dd4a55976418def1012402b70f313c92050222785",
+    "halt_preserved": true,
+    "uncertain_holds": 3,
+    "ceiling_usd": "4.50",
+    "closed_IDs_reused": false,
+    "split_manifest_sha256": "7e715f74118764415a321d6151d0d2a5135ae8279d5eebf9e1aee7edc07ca815",
+    "held_out_test_tree_git_oid_unchanged": "b4711b3facc883fa1d87bf045d5dd119899545f5",
+    "corpus_exclusion_gold_historical_receipts_unchanged": true,
+    "production_ranking_shared_contracts_UI_tracker_unchanged": true
+  },
+  "source_sha256": {
+    "src/agent_app/evaluation/review_workbench.py": "2fd4562b292be72caa7d845767208e25f04408e7c8a1d27f927ece77bc77f8ac",
+    "scripts/r4b_version_ranking_receipt.py": "110d2b66da76828e4e833b2c9df068b3c675f6952cb2c142c8db29d42c141df5",
+    "tests/test_review_rubric_binding.py": "e20479e53c257760bf322cd4c2d1fa4f0461650e4e08690709f0bad5957d8b7a",
+    "tests/test_support_user_gap_vocabulary.py": "3aab50c9ddedeaf84debd564d53a3bf7f8de96f982876766e436d92ad6260a66",
+    "tests/test_r4b_version_ranking.py": "0df812e57621e66e1d7ad1ac429e11e407c655ac1b3dec32c3d2b86e7075a1bd",
+    "config/user-gap-support-dev-v1.json": "948c3348365ea6a5fe6385166e07cc5fb203958ffda6b45e090527000a6a3bfc"
+  },
+  "actual_paid_API_calls": 0,
+  "credential_values_printed_or_committed": false,
+  "group_PV_email_or_PR_comments_sent": 0,
+  "new_PRs_created": 0,
+  "hosted_CI_pass_claim": false,
+  "fresh_Windows_or_browser_run_claim": false,
+  "final_model_RAG_or_held_out_quality_claim": false,
+  "C5_resolved": false,
+  "ordinary_live_authorized": false,
+  "policy_decisions": {
+    "native_gold": "Option A: a separately preregistered native fixture_id, turns[].gold and compatible coverage.routes/pins; no automatic standalone sidecar or conditional-gold runner support",
+    "historical_rubric": "Old artifacts stay exact. For a new uniform e2-rubric-v1 evaluation, register/review v2 copies of the same three dev families; do not recount them as new cases or retrospectively relabel prior results.",
+    "test_vocabulary": "Only reviewed development/general capability configuration before final freeze; no held-out-derived question names/aliases. Unregistered questions cannot be invented by the current core.",
+    "text_only": "No image/OCR pipeline; request code/error text without claiming screenshot inspection."
+  },
+  "documentation_relative_links_checked": 395
+}

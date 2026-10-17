@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "review_id": "split-e1-v1-dev-spot-check-v1",
+  "reviewer_id": "mhg",
+  "reviewer_kind": "human",
+  "reviewed_on": "2026-10-16",
+  "scope": "dev gold spot check: 5 of 13 new dev cases, chosen by the assistant to cover answer, ask, escalate, multi-turn and a source gap",
+  "drafted_by": "assistant (claude-opus-5-5); judgments by the human reviewer",
+  "manifest_path": "data/evaluation/split-e1-v1/split-manifest.json",
+  "manifest_sha256": "949b23a078ea9f68956f7f81b36d17f784697b1fb374f5904a2a0bf9b2f96d2b",
+  "cases": [
+    {
+      "case_id": "dev-case-e",
+      "fixture_path": "data/evaluation/split-e1-v1/dev/date-range-4884-v1.json",
+      "fixture_sha256": "087c722fa9e01dbdbc7c2090cf6789cbf2782951c32c4af7ce144d1704dab044",
+      "verdict": "correct",
+      "note": null
+    },
+    {
+      "case_id": "dev-case-g",
+      "fixture_path": "data/evaluation/split-e1-v1/dev/args-tuple-4164-v1.json",
+      "fixture_sha256": "091d5c3559206c056686ebb3851edf16925e3d35a751096f0128ff44964eadb6",
+      "verdict": "correct",
+      "note": null
+    },
+    {
+      "case_id": "dev-case-i",
+      "fixture_path": "data/evaluation/split-e1-v1/dev/tabs-blank-9259-v1.json",
+      "fixture_sha256": "3836b56331830f84bdf768fdcda60652e985bcb99308dfd930d519c382ba266d",
+      "verdict": "correct",
+      "note": null
+    },
+    {
+      "case_id": "dev-case-j",
+      "fixture_path": "data/evaluation/split-e1-v1/dev/state-typing-9455-v1.json",
+      "fixture_sha256": "33e5e80bf00795ec34bfc4ef91ba9d8f3c4a12c20d789b981b8cd366470f80ba",
+      "verdict": "correct",
+      "note": null
+    },
+    {
+      "case_id": "dev-case-n",
+      "fixture_path": "data/evaluation/split-e1-v1/dev/state-clear-12740-v2.json",
+      "fixture_sha256": "bf44fa86bfb3b201170e8b0865e4015c901f2a14f95b1e1c065cdc3b481e3bd0",
+      "verdict": "correct",
+      "note": "Reviewer noted the screenshots contain code, so v1's 'Screenshots only, no code' was inaccurate. Fixed in v2 (accurate message; ask for the full code as text because the agent reads text only and the decisive line was outside the screenshots). Reviewer confirmed v2 on 2026-10-16.",
+      "initial_verdict": "unsure",
+      "initial_note": "تصاویر همه حاوی کد است.",
+      "reviewed_fixture_path": "data/evaluation/split-e1-v1/dev/state-clear-12740-v1.json",
+      "reviewed_fixture_sha256": "87dc38cfd196a4c079007ffe4bc3194c2e58a3aad51ce27fac8df46171980e34"
+    }
+  ],
+  "review_basis": "Card summaries prepared by the assistant (expected behaviour, key source, wrong answer). The reviewer did not open the GitHub threads or every gold field.",
+  "selection": "Not random: one case per behaviour (answer, documented answer, multi-turn answer then escalate, source gap, multi-turn ask then answer).",
+  "outcome": {
+    "cases": 5,
+    "correct": 5,
+    "fixture_revisions": [
+      "dev-case-n v1 -> v2"
+    ]
+  },
+  "limitations": [
+    "Spot check of 5 of 13 new dev cases; the other 8 dev cases and the 3 dev-three cases (reviewed earlier) are not covered by this file.",
+    "manifest_sha256 is the manifest the reviewer saw; the manifest changed afterwards only to register the dev-case-n v2 fixture."
+  ]
+}

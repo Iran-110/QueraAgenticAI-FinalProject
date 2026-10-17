@@ -7,6 +7,7 @@ from typing import Literal
 from pydantic import ValidationError
 
 from agent_app.contracts import CaseState, CaseTransition, Fact, UserTurn
+from agent_app.orchestration.validation import detached_contract
 
 
 class UserTurnRejected(Exception):
@@ -43,8 +44,8 @@ def propose_user_turn(case: CaseState, turn: UserTurn) -> CaseTransition:
     then atomically compare revisions, save the event/state, and revoke approval.
     Free-text parsing and applying model-suggested facts are outside this boundary.
     """
-    case = CaseState.model_validate(case.model_dump(warnings=False))
-    turn = UserTurn.model_validate(turn.model_dump(warnings=False))
+    case = detached_contract(CaseState, case)
+    turn = detached_contract(UserTurn, turn)
     if turn.case_id != case.case_id:
         raise UserTurnRejected("CaseMismatch")
     if turn.expected_revision != case.case_revision:

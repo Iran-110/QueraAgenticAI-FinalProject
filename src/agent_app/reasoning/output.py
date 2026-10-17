@@ -6,6 +6,7 @@ from collections.abc import Mapping
 from pydantic import ValidationError
 
 from agent_app.contracts import AnalysisResult, OutputIssue
+from agent_app.orchestration.validation import detached_contract
 
 _DECISION_FIELDS = {
     "retrieve_more_queries_required": "retrieval_queries",
@@ -72,13 +73,16 @@ def parse_analysis(raw: object) -> AnalysisResult:
             raise InvalidAnalysis((OutputIssue(code="duplicate_field"),)) from None
         except (ValueError, UnicodeError, RecursionError):
             raise InvalidAnalysis((OutputIssue(code="invalid_json"),)) from None
-    elif isinstance(raw, AnalysisResult):
-        raw = raw.model_dump(warnings=False)
-    elif isinstance(raw, Mapping):
-        raw = dict(raw)
-    if not isinstance(raw, dict):
-        raise InvalidAnalysis((OutputIssue(code="invalid_shape"),))
     try:
-        return AnalysisResult.model_validate(raw)
+        if isinstance(raw, AnalysisResult):
+            return detached_contract(AnalysisResult, raw)
+        if isinstance(raw, Mapping):
+            raw = dict(raw)
+        if not isinstance(raw, dict):
+            raise InvalidAnalysis((OutputIssue(code="invalid_shape"),))
+        # Mapping fields may themselves be bypass-constructed Contract objects.
+        return detached_contract(AnalysisResult, AnalysisResult.model_validate(raw))
     except ValidationError as error:
         raise InvalidAnalysis(_issues(error)) from None
+    except (ValueError, TypeError, AttributeError, RecursionError):
+        raise InvalidAnalysis((OutputIssue(code="invalid_shape"),)) from None

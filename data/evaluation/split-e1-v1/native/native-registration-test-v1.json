@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "registration_id": "split-e1-v1-native-test-v1",
+  "registered_on": "2026-10-16",
+  "registered_before_first_run": true,
+  "held_out": true,
+  "split_manifest": "data/evaluation/split-e1-v1/split-manifest.json",
+  "split_manifest_sha256": "ceb4cf2d4eca4542ec7efc6317633311e11574c21fa5651cdc9bf536cc78c185",
+  "evidence_condition": "native_index",
+  "rubric_id": "e2-rubric-v1",
+  "observer": "src/agent_app/evaluation/evidence_observation.py",
+  "observer_sha256": "f56cabe2bdeb4cb956a452933018fdf7fa2c5873924a01bbb6bb04c976301344",
+  "fixtures": [
+    {
+      "path": "data/evaluation/split-e1-v1/native/test/button-callback-4595-native-v1.json",
+      "sha256": "e0370367f8db29eb7bd0ec9087291eb9b9dd30c07e8beb7c424380c1a20916cb"
+    },
+    {
+      "path": "data/evaluation/split-e1-v1/native/test/callback-args-7862-native-v1.json",
+      "sha256": "2ad6f5dbfa6c1fa3fc5aebb516068b3314d84c8c7dc590349dd7881962bc5f44"
+    },
+    {
+      "path": "data/evaluation/split-e1-v1/native/test/callback-trigger-10102-native-v1.json",
+      "sha256": "c604c48dfec96c38698fcde8774bcd8fe5fa9ad370e14bb68a78f6a212b1b42b"
+    },
+    {
+      "path": "data/evaluation/split-e1-v1/native/test/callback-value-5305-native-v1.json",
+      "sha256": "e50b8bc9073acb9bfe8b84b468a9667c942ca2d45d2861e510de235b433c02b4"
+    },
+    {
+      "path": "data/evaluation/split-e1-v1/native/test/chat-6320-native-v1.json",
+      "sha256": "f3c3601e23e22da4a0b396d710c3a68bef3a68cd8498b1eef8a6319f0eabdf1d"
+    },
+    {
+      "path": "data/evaluation/split-e1-v1/native/test/fragment-dialog-17112-native-v1.json",
+      "sha256": "8e0b71b0325c8623a38309f867b7307bc0daec5839788c864da629fb9aaec194"
+    },
+    {
+      "path": "data/evaluation/split-e1-v1/native/test/fragment-reload-11660-native-v1.json",
+      "sha256": "1937ffa07e32e5c1ab884bb7f0c465442ba6e7fcc7f264805e0c45a807a884bd"
+    },
+    {
+      "path": "data/evaluation/split-e1-v1/native/test/mpa-keyerror-8700-native-v1.json",
+      "sha256": "0c1b3561f5745e6d4e86e8fe145728fa8dcf5c958146c7b94eea0d19dffcad63"
+    },
+    {
+      "path": "data/evaluation/split-e1-v1/native/test/options-mutation-7534-native-v1.json",
+      "sha256": "215074a141c132b702d1a8b76534af7105037146577a2e2a9d7562ed409060d7"
+    },
+    {
+      "path": "data/evaluation/split-e1-v1/native/test/run-on-save-12633-native-v1.json",
+      "sha256": "0ac60a8431ec9780ce9dd4326940ecc09b065bd36cfbec6d4971ffe57f534b37"
+    },
+    {
+      "path": "data/evaluation/split-e1-v1/native/test/selectbox-session-13435-native-v1.json",
+      "sha256": "06f9a28e26719246aad306e3d6adfc4dccbd8158567a5eec91d15d56465d6381"
+    },
+    {
+      "path": "data/evaluation/split-e1-v1/native/test/selectbox-seven-14989-native-v1.json",
+      "sha256": "e74c046487f0a53d89e47d70944f1231c952aab0eab317cb4c434ade6f7df1c7"
+    },
+    {
+      "path": "data/evaluation/split-e1-v1/native/test/session-memory-12506-native-v1.json",
+      "sha256": "1d250e12dbe89d421ca23e06fcb1004485d478bba683746ef39596502cf1ccc4"
+    },
+    {
+      "path": "data/evaluation/split-e1-v1/native/test/state-init-10089-native-v1.json",
+      "sha256": "ec52906c2ae0cea99602c35b2f086b4bdcce8157620e4708f22462e25e89a7d6"
+    },
+    {
+      "path": "data/evaluation/split-e1-v1/native/test/switch-page-state-11115-native-v1.json",
+      "sha256": "e60d39a8e85b1490abee0cf8d06317bfd7e39dc6635b6daa2cf1591390117f41"
+    }
+  ],
+  "review": "data/evaluation/split-e1-v1/native/native-test-gold-review-v1.json",
+  "pins": {
+    "build": "pending_final_build",
+    "index_snapshot": null,
+    "corpus_manifest_sha256": null,
+    "allowlist_sha256": null,
+    "exclusion_manifest_sha256": null
+  },
+  "rules": [
+    "Held-out: core/RAG development must not open native/test/ or this review.",
+    "Never run a native fixture and its fixed version in one invocation.",
+    "Gold and passage requirements never enter the prompt or retriever.",
+    "No retrieval or model run on test before the final run."
+  ]
+}

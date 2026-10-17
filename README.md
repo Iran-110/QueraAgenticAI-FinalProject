@@ -2,7 +2,7 @@
 
 پروژهٔ نهایی بوت‌کمپ Agentic AI کوئرا: دستیار بررسی گزارش خطا و پیگیری پرونده، با شواهد قابل بررسی و تأیید انسانی پیش از اجرای اقدام.
 
-**وضعیت فعلی، ۱۶ اکتبر:** core، correction، API/UI، tracker پایدار SQLite و runner متصل‌اند. [C2j](docs/intake-validation.fa.md) validation دو helper پاسخ نسخه را پیش از dump یکسان کرده؛ [انتخاب section کامل](docs/evidence-selection.fa.md) و [context فعلی advisor](docs/selection-context.fa.md) هم کنترل‌های اختیاری آفلاین‌اند. source اجرایی فعلی همان نسخهٔ تست‌شدهٔ `f780ca8` با ۵۴۷۹ pytest و پذیرش HTTP/SQLite برابر ۴۵۷/۴۵۷ است؛ تغییر مستندات اجرای تازهٔ آن suite نیست. [جمع‌بندی پس از C2j](docs/core-progress.md#post-c2j-checkpoint) بهبود معنایی تازه‌ای برای انتشار پیدا نکرد: انتخاب شاهد مرتبط و کامل، usefulness انسانی، split/config نهایی و test مستقل بازند. Enum هنوز پاسخ کامل و پایدارِ تأییدشده ندارد. halt و هر سه hold حفظ شده‌اند؛ scopeهای بسته دوباره اجرا نمی‌شوند و C5 به مدرک provider نیاز دارد. Actions به علت Billing اجرا نمی‌شود؛ انتشار فعلی با review و verification محلیِ مجازشده توسط ساسان است. برای اتصال از [راهنما](docs/integration.md) و [plan جاری](plan/plan.md) شروع کنید. گزارش‌های پایین، تاریخچهٔ آزمایش‌ها و محدودیت همان زمان‌اند.
+**وضعیت فعلی، ۱۶ اکتبر:** [C4r: تنظیم منتخب core](docs/core-delivery-selection.fa.md) به factory/backend واقعی وصل شد؛ `AGENT_CORE_PROFILE=grounded_candidate_v1` اختیاری است و halt را رفع نمی‌کند. انتخاب این recipe به معنی freeze مشترک یا کیفیت نهایی نیست. core، correction، API/UI، tracker پایدار SQLite و runner متصل‌اند. PRهای #70 تا #76، تعداد ۳۱ fixture شامل ۱۶ dev و ۱۵ test ثبت کرده‌اند؛ manifest هنوز draft است. [تحویل C4m/E2z](docs/evaluation-readiness.fa.md) دو سؤال dev را به vocabulary اختیاری اضافه می‌کند و اتصال rubric تاریخی به ID و hash ثبت‌شده را کنترل می‌کند. [پذیرش R4b](experiments/evaluation_readiness_v1/native-acceptance-v1.json) روی کپی index واقعی، availability قبلی ۱/۵→۳/۵ را بازتولید کرد؛ حذف key-identity در آن اجرا از packing بایتی است، نه پرشدن capپنج. کیفیت نهایی Enum/RAG ثابت نشده؛ gold native، vocabulary/config و split نهایی، usefulness انسانی و test مستقل بازند. محتوای test در توسعه باز و برای tuning مصرف نشده است. halt و هر سه hold حفظ شده‌اند؛ C5 به مدرک provider نیاز دارد و scopeهای بسته تکرار نمی‌شوند. Actions به علت Billing اجرا نمی‌شود؛ انتشار با review و verification محلی مجازشده است. برای ادامه از [راهنمای اتصال](docs/integration.md)، [تصمیم‌های آماده‌سازی ارزیابی](docs/evaluation-readiness.fa.md) و [plan جاری](plan/plan.md) شروع کنید. گزارش‌های پایین تاریخچه و محدودیت همان زمان‌اند.
 
 [C4h9/C4h9b: انتخاب شاهد مکمل و خوانایی Enum](docs/complementary-sources.fa.md): دو مقایسهٔ تازه، مجموع۴۸send روی همان سه dev و منابع ثابت. دستور عمومی انتخاب منابع مکمل هیچ بهبودی نداشت؛ جابه‌جایی ترتیب منابع فقط یک draft اولیهٔ منتشرنشده را با حفظ هر دو guide از۱۴۴۹۴ به۷۰۹۹کاراکتر رساند و correction دوباره طولانی شد. پوشش مشترک پاسخ‌های واقعاً منتشرشده در هر دو حالت۰/۲ بود؛ بهبود پایدار ثابت نشد. flag مکمل خاموش و توصیه‌نشده می‌ماند؛ index/exclusion/gold و قراردادها ثابت‌اند. ۴۸۹۶pytest و fixtureHTTP/SQLite۴۵۷/۴۵۷ محلی پاس؛ داوری انسانی و test نهایی بازند. نتیجهٔ منفی و تمام receiptها حفظ شده‌اند.
 
@@ -84,10 +84,16 @@ uv run python experiments/gateway_handoff/replay.py
 سناریوهای دیگر: `escalate` برای ارجاع و `error` برای خرابی بازیابی. خروجی JSON شامل نتیجه و ردگیری اجراست. سناریوی `error` عمداً با کد خروج ۱ تمام می‌شود. برای این دمو کلید API لازم نیست.
 
 ```bash
-uv run pytest
+uv run pytest --deselect=tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture
 uv run ruff check .
 uv run ruff format --check .
 ```
+
+این دستور، suite توسعه را اجرا می‌کند. یک تست که تمام fixtureهای held-out را
+می‌خواند عمداً کنار گذاشته شده؛ اعتبارسنجی آن با مالک evaluation است. اجرای
+این suite، اجرای test نهایی مدل یا تأیید کیفیت جواب‌ها نیست.
+[گزارش توسعه و بستهٔ تحویل](docs/delivery-report.fa.md) وضعیت آماده/باقی‌مانده،
+demo پایدار، شواهد و ترتیب بستن تحویل را یک‌جا جمع می‌کند.
 
 برای اجرای رابط کاربری و اتصال آن به بک‌اند، باید هر دو را در ترمینال‌های جداگانه اجرا کنید:
 
@@ -156,6 +162,7 @@ pilot آفلاین و restart/retry آن ۴۵۷/۴۵۷ check پاس دارد. cl
 - [خروجی کامل core، آخرین evidence و review؛ نتیجه و قرارداد C3](docs/review-handoff-pilot.fa.md)
 - [بازبینی آمادگی core و اتصال gateway تا review با HTTP شبیه‌سازی‌شده](docs/core-readiness-audit.fa.md)
 - [پیشرفت واقعی هسته و کارهای بعدی](docs/core-progress.md)
+- [تحویل core، ساخت reasoner با تنظیم ثبت‌شده و شرط‌های پایان پروژه](docs/core-closeout.fa.md)
 - [مقایسه روش‌های تصمیم‌گیری و محدودیت نتایج](docs/decision-quality.md)
 - [مقایسه منابع و اطلاعات کاربر با نتایج بازبینی](docs/decision-quality-v3.md)
 - [نتیجه چک‌های callback و سؤال‌های مجاز](docs/decision-quality-v4.md)

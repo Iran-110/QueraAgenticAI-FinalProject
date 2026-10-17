@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-10-16T05:40:26.145822+00:00",
+  "source_commit_before_uncommitted_additions": "5f313166490e9ccf6c5a977bfe8cc8bd9132f1d2",
+  "baseline_path": "/Users/sasan/Desktop/Agentic AI/output/evaluation-readiness-2026-10-16-v1/support-vocabulary-baseline-v1.json",
+  "baseline_sha256": "042b2ff25fe2e440a65fdef5c6d2b05fb4e06f590c41237c8114c3ffd11c0362",
+  "owned_files": {
+    "config/user-gap-support-dev-v1.json": {
+      "sha256": "948c3348365ea6a5fe6385166e07cc5fb203958ffda6b45e090527000a6a3bfc",
+      "length": 1753
+    },
+    "tests/test_support_user_gap_vocabulary.py": {
+      "sha256": "3aab50c9ddedeaf84debd564d53a3bf7f8de96f982876766e436d92ad6260a66",
+      "length": 14515
+    }
+  },
+  "configuration": {
+    "historical_definition_count": 2,
+    "added_definition_names": [
+      "updated_form_code",
+      "app_state_code"
+    ],
+    "total_definition_count": 4,
+    "historical_raw_bytes_unchanged": true,
+    "historical_fields_unchanged": true,
+    "historical_sha256": "d3b63719554f35d1addec14586ebc4fcb10231844097fcea65458ee01d0b6736",
+    "opt_in_only": true
+  },
+  "verification": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/pytest -q tests/test_support_user_gap_vocabulary.py",
+      "exit_code": 0,
+      "result": "25 passed in 0.13s"
+    },
+    {
+      "command": ".venv/bin/ruff check tests/test_support_user_gap_vocabulary.py",
+      "exit_code": 0,
+      "result": "All checks passed!"
+    },
+    {
+      "command": ".venv/bin/ruff format --check tests/test_support_user_gap_vocabulary.py",
+      "exit_code": 0,
+      "result": "1 file already formatted"
+    },
+    {
+      "command": "git diff --check -- config/user-gap-support-dev-v1.json tests/test_support_user_gap_vocabulary.py",
+      "exit_code": 0,
+      "result": "No tracked diff whitespace findings; owned files were still untracked."
+    },
+    {
+      "command": "Pure JSON/AST/hash receipt checks",
+      "exit_code": 0,
+      "result": "21 frozen digests match prospective baseline exactly; historical bytes/fields and all five captured runtime source hashes unchanged."
+    }
+  ],
+  "source_files_unchanged": {
+    "src/agent_app/contracts.py": true,
+    "src/agent_app/reasoning/catalog.py": true,
+    "src/agent_app/reasoning/grounding.py": true,
+    "src/agent_app/orchestration/intake.py": true,
+    "src/agent_app/orchestration/turns.py": true
+  },
+  "default_control_count": 7,
+  "default_utf8_digest_count": 21,
+  "boundaries": {
+    "runtime_changes": false,
+    "provider_calls": 0,
+    "native_index_clients": 0,
+    "budget_clients": 0,
+    "credential_reads": false,
+    "held_out_inputs_or_gold_read": false,
+    "fixture_changes": false,
+    "test_selected_names_or_aliases_added": false,
+    "commit_created_by_subagent": false
+  },
+  "limitations": [
+    "Authored synthetic/development configuration availability only; no model-choice, technical-answer, usefulness, RAG or held-out-quality measurement.",
+    "Vocabulary definitions alone do not activate questions; caller must declare matching current unknowns."
+  ]
+}

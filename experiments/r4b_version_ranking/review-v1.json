@@ -1,0 +1,457 @@
+{
+  "schema_version": 1,
+  "review_id": "r4b-coverage-relevance-review-v1",
+  "task": "R4b",
+  "receipt_sha256": "0d22c4b0615e2b647e8393760bafae07589277d20660c98554cc3c63f39b8a64",
+  "labels_sha256": "00629072ca505c29e2c142bcee5789e808f5532c6b83bf41e802d53dc9578d2e",
+  "labels_reviewer_kind": "assistant_draft",
+  "labels_human_confirmed": true,
+  "snapshot_id": "docs-pilot-12ec2995032ad48dbec2c1f1736fca1f97727478373dd1835043eedf21ab0ee1",
+  "index_exclusion_checks": {
+    "snapshot_matches_receipt": true,
+    "indexed_issue_count": 0,
+    "indexed_comment_count": 0,
+    "reserved_issue_ids": 46,
+    "proposed_reservations_not_in_dev_coverage_manifest": [
+      4909,
+      6985,
+      7300,
+      7419,
+      8734,
+      13022,
+      14297
+    ],
+    "only_doc_source_types": true,
+    "final_split_index_exclusion": {
+      "manifest": "data/evaluation/split-e1-v1/split-manifest.json",
+      "manifest_sha256": "949b23a078ea9f68956f7f81b36d17f784697b1fb374f5904a2a0bf9b2f96d2b",
+      "issue_count": 90,
+      "indexed_issue_count_in_this_build": 0,
+      "all_excluded_from_this_build": true,
+      "proposed_pr55_reservations_missing": []
+    },
+    "denied_sources_indexed": []
+  },
+  "final_bundle_exclusion_violations": [],
+  "states": [
+    {
+      "case_id": "dev-case-a",
+      "turn_id": "initial",
+      "retrieval_round": 1,
+      "active_user_version": null,
+      "arms": {
+        "pr50_head": {
+          "final_count": 1,
+          "relevance_mix": {
+            "direct": 0,
+            "background": 1,
+            "off_topic": 0
+          },
+          "required_eligible": 1,
+          "required_reached": 0,
+          "required_missing": [
+            "doc:pinned:76af659dfdd30bb62fe9f310:0:4000:854ec11b80fbe5fe"
+          ],
+          "missing_chunk_candidate_rank": {
+            "doc:pinned:76af659dfdd30bb62fe9f310:0:4000:854ec11b80fbe5fe": "not_in_candidates"
+          }
+        },
+        "before_native": {
+          "final_count": 1,
+          "relevance_mix": {
+            "direct": 0,
+            "background": 1,
+            "off_topic": 0
+          },
+          "required_eligible": 1,
+          "required_reached": 0,
+          "required_missing": [
+            "doc:pinned:76af659dfdd30bb62fe9f310:0:4000:854ec11b80fbe5fe"
+          ],
+          "missing_chunk_candidate_rank": {
+            "doc:pinned:76af659dfdd30bb62fe9f310:0:4000:854ec11b80fbe5fe": "not_in_candidates"
+          }
+        },
+        "after_r4b": {
+          "final_count": 2,
+          "relevance_mix": {
+            "direct": 1,
+            "background": 1,
+            "off_topic": 0
+          },
+          "required_eligible": 1,
+          "required_reached": 0,
+          "required_missing": [
+            "doc:pinned:76af659dfdd30bb62fe9f310:0:4000:854ec11b80fbe5fe"
+          ],
+          "missing_chunk_candidate_rank": {
+            "doc:pinned:76af659dfdd30bb62fe9f310:0:4000:854ec11b80fbe5fe": 23
+          }
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-a",
+      "turn_id": "version",
+      "retrieval_round": 1,
+      "active_user_version": "1.50.0",
+      "arms": {
+        "pr50_head": {
+          "final_count": 5,
+          "relevance_mix": {
+            "direct": 1,
+            "background": 4,
+            "off_topic": 0
+          },
+          "required_eligible": 3,
+          "required_reached": 1,
+          "required_missing": [
+            "multiselect@1.50.0",
+            "doc:pinned:76af659dfdd30bb62fe9f310:0:4000:854ec11b80fbe5fe"
+          ],
+          "missing_chunk_candidate_rank": {
+            "doc:pinned:76af659dfdd30bb62fe9f310:0:4000:854ec11b80fbe5fe": "not_in_candidates"
+          }
+        },
+        "before_native": {
+          "final_count": 5,
+          "relevance_mix": {
+            "direct": 1,
+            "background": 4,
+            "off_topic": 0
+          },
+          "required_eligible": 3,
+          "required_reached": 1,
+          "required_missing": [
+            "multiselect@1.50.0",
+            "doc:pinned:76af659dfdd30bb62fe9f310:0:4000:854ec11b80fbe5fe"
+          ],
+          "missing_chunk_candidate_rank": {
+            "doc:pinned:76af659dfdd30bb62fe9f310:0:4000:854ec11b80fbe5fe": "not_in_candidates"
+          }
+        },
+        "after_r4b": {
+          "final_count": 4,
+          "relevance_mix": {
+            "direct": 2,
+            "background": 2,
+            "off_topic": 0
+          },
+          "required_eligible": 3,
+          "required_reached": 2,
+          "required_missing": [
+            "doc:pinned:76af659dfdd30bb62fe9f310:0:4000:854ec11b80fbe5fe"
+          ],
+          "missing_chunk_candidate_rank": {
+            "doc:pinned:76af659dfdd30bb62fe9f310:0:4000:854ec11b80fbe5fe": 16
+          }
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-b",
+      "turn_id": "initial",
+      "retrieval_round": 1,
+      "active_user_version": null,
+      "arms": {
+        "pr50_head": {
+          "final_count": 5,
+          "relevance_mix": {
+            "direct": 0,
+            "background": 1,
+            "off_topic": 4
+          },
+          "required_eligible": 0,
+          "required_reached": 0,
+          "required_missing": [],
+          "missing_chunk_candidate_rank": {}
+        },
+        "before_native": {
+          "final_count": 5,
+          "relevance_mix": {
+            "direct": 0,
+            "background": 1,
+            "off_topic": 4
+          },
+          "required_eligible": 0,
+          "required_reached": 0,
+          "required_missing": [],
+          "missing_chunk_candidate_rank": {}
+        },
+        "after_r4b": {
+          "final_count": 4,
+          "relevance_mix": {
+            "direct": 0,
+            "background": 1,
+            "off_topic": 3
+          },
+          "required_eligible": 0,
+          "required_reached": 0,
+          "required_missing": [],
+          "missing_chunk_candidate_rank": {}
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-b",
+      "turn_id": "version",
+      "retrieval_round": 1,
+      "active_user_version": "1.39.0",
+      "arms": {
+        "pr50_head": {
+          "final_count": 5,
+          "relevance_mix": {
+            "direct": 0,
+            "background": 1,
+            "off_topic": 4
+          },
+          "required_eligible": 1,
+          "required_reached": 0,
+          "required_missing": [
+            "button@1.39.0"
+          ],
+          "missing_chunk_candidate_rank": {}
+        },
+        "before_native": {
+          "final_count": 5,
+          "relevance_mix": {
+            "direct": 0,
+            "background": 1,
+            "off_topic": 4
+          },
+          "required_eligible": 1,
+          "required_reached": 0,
+          "required_missing": [
+            "button@1.39.0"
+          ],
+          "missing_chunk_candidate_rank": {}
+        },
+        "after_r4b": {
+          "final_count": 4,
+          "relevance_mix": {
+            "direct": 1,
+            "background": 1,
+            "off_topic": 2
+          },
+          "required_eligible": 1,
+          "required_reached": 1,
+          "required_missing": [],
+          "missing_chunk_candidate_rank": {}
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-c",
+      "turn_id": "initial",
+      "retrieval_round": 1,
+      "active_user_version": "1.31.0",
+      "arms": {
+        "pr50_head": {
+          "final_count": 3,
+          "relevance_mix": {
+            "direct": 0,
+            "background": 3,
+            "off_topic": 0
+          },
+          "required_eligible": 0,
+          "required_reached": 0,
+          "required_missing": [],
+          "missing_chunk_candidate_rank": {}
+        },
+        "before_native": {
+          "final_count": 3,
+          "relevance_mix": {
+            "direct": 0,
+            "background": 3,
+            "off_topic": 0
+          },
+          "required_eligible": 0,
+          "required_reached": 0,
+          "required_missing": [],
+          "missing_chunk_candidate_rank": {}
+        },
+        "after_r4b": {
+          "final_count": 2,
+          "relevance_mix": {
+            "direct": 0,
+            "background": 2,
+            "off_topic": 0
+          },
+          "required_eligible": 0,
+          "required_reached": 0,
+          "required_missing": [],
+          "missing_chunk_candidate_rank": {}
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-c",
+      "turn_id": "correction",
+      "retrieval_round": 1,
+      "active_user_version": "1.31.1",
+      "arms": {
+        "pr50_head": {
+          "final_count": 4,
+          "relevance_mix": {
+            "direct": 0,
+            "background": 4,
+            "off_topic": 0
+          },
+          "required_eligible": 0,
+          "required_reached": 0,
+          "required_missing": [],
+          "missing_chunk_candidate_rank": {}
+        },
+        "before_native": {
+          "final_count": 4,
+          "relevance_mix": {
+            "direct": 0,
+            "background": 4,
+            "off_topic": 0
+          },
+          "required_eligible": 0,
+          "required_reached": 0,
+          "required_missing": [],
+          "missing_chunk_candidate_rank": {}
+        },
+        "after_r4b": {
+          "final_count": 3,
+          "relevance_mix": {
+            "direct": 0,
+            "background": 3,
+            "off_topic": 0
+          },
+          "required_eligible": 0,
+          "required_reached": 0,
+          "required_missing": [],
+          "missing_chunk_candidate_rank": {}
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-c",
+      "turn_id": "initial",
+      "retrieval_round": 2,
+      "active_user_version": "1.31.0",
+      "arms": {
+        "pr50_head": {
+          "final_count": 3,
+          "relevance_mix": {
+            "direct": 0,
+            "background": 3,
+            "off_topic": 0
+          },
+          "required_eligible": 0,
+          "required_reached": 0,
+          "required_missing": [],
+          "missing_chunk_candidate_rank": {}
+        },
+        "before_native": {
+          "final_count": 3,
+          "relevance_mix": {
+            "direct": 0,
+            "background": 3,
+            "off_topic": 0
+          },
+          "required_eligible": 0,
+          "required_reached": 0,
+          "required_missing": [],
+          "missing_chunk_candidate_rank": {}
+        },
+        "after_r4b": {
+          "final_count": 3,
+          "relevance_mix": {
+            "direct": 0,
+            "background": 3,
+            "off_topic": 0
+          },
+          "required_eligible": 0,
+          "required_reached": 0,
+          "required_missing": [],
+          "missing_chunk_candidate_rank": {}
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-c",
+      "turn_id": "initial",
+      "retrieval_round": 2,
+      "active_user_version": "1.31.0",
+      "arms": {
+        "pr50_head": {
+          "final_count": 4,
+          "relevance_mix": {
+            "direct": 0,
+            "background": 4,
+            "off_topic": 0
+          },
+          "required_eligible": 0,
+          "required_reached": 0,
+          "required_missing": [],
+          "missing_chunk_candidate_rank": {}
+        },
+        "before_native": {
+          "final_count": 4,
+          "relevance_mix": {
+            "direct": 0,
+            "background": 4,
+            "off_topic": 0
+          },
+          "required_eligible": 0,
+          "required_reached": 0,
+          "required_missing": [],
+          "missing_chunk_candidate_rank": {}
+        },
+        "after_r4b": {
+          "final_count": 3,
+          "relevance_mix": {
+            "direct": 0,
+            "background": 3,
+            "off_topic": 0
+          },
+          "required_eligible": 0,
+          "required_reached": 0,
+          "required_missing": [],
+          "missing_chunk_candidate_rank": {}
+        }
+      }
+    }
+  ],
+  "totals": {
+    "pr50_head": {
+      "required_eligible": 5,
+      "required_reached": 1,
+      "final": 30,
+      "direct": 1,
+      "background": 21,
+      "off_topic": 8
+    },
+    "before_native": {
+      "required_eligible": 5,
+      "required_reached": 1,
+      "final": 30,
+      "direct": 1,
+      "background": 21,
+      "off_topic": 8
+    },
+    "after_r4b": {
+      "required_eligible": 5,
+      "required_reached": 3,
+      "final": 25,
+      "direct": 4,
+      "background": 16,
+      "off_topic": 5
+    }
+  },
+  "known_out_of_corpus": {
+    "dev-case-a": [
+      "docs:content/develop/quick-references/release-notes/2025.md (1.50 multiselect key-only identity; release notes are an excluded source type in this profile)"
+    ],
+    "dev-case-c": [
+      "docs:content/develop/concepts/app-design/custom-classes.md (answer-linked Enum guide; excluded by design)"
+    ]
+  },
+  "provider_calls": 0,
+  "quality_claim": false,
+  "human_usefulness": null
+}

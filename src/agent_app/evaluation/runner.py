@@ -41,6 +41,7 @@ from fastapi.testclient import TestClient
 from agent_app import api
 from agent_app.contracts import AnalysisResult, EvidenceBundle, ReasoningContext
 from agent_app.evaluation.preflight import validate_final_bundle
+from agent_app.evaluation.provider_metadata import optional_provider_metadata
 from agent_app.evaluation.routes import ConditionalRoutesRejected, RouteGraph
 from agent_app.llm.budget import BudgetLedger
 from agent_app.llm.metis import request_id_for
@@ -309,7 +310,8 @@ def _provider_observations(observer, contexts, ledger):
             raise ValueError
         output, seen = [], set()
         for row in rows:
-            if type(row) is not dict or set(row) != fields:
+            optional = {"core_binding", "wire_output"}
+            if type(row) is not dict or not fields <= set(row) or set(row) - fields - optional:
                 raise ValueError
             identifier = row["request_id"]
             context = expected.get(identifier)
@@ -404,7 +406,19 @@ def _provider_observations(observer, contexts, ledger):
                 )
             ):
                 raise ValueError
-            output.append(deepcopy(row))
+            metadata = optional_provider_metadata(row, request_id=identifier)
+            if (
+                reservation is not None
+                and "core_binding" in metadata
+                and metadata["core_binding"]["observed_metis"]["phase"] != reservation.phase
+            ):
+                raise ValueError
+            output.append(
+                {
+                    **deepcopy({key: value for key, value in row.items() if key in fields}),
+                    **metadata,
+                }
+            )
         return output, None
     except Exception:
         return [], "ProviderObservationsUnavailable"

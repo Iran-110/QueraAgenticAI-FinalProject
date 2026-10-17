@@ -1,0 +1,78 @@
+{
+  "kind": "post_hoc_structural_instrumentation_over_one_exposed_archived_handoff",
+  "not_registered_native_gold_or_semantic_case_requirements": true,
+  "not_a_new_model_or_retrieval_run": true,
+  "archive_path": "experiments/dev_rag_coverage_v1/model-live-receipt-v1.json",
+  "archive_sha256": "409fe34076fa6772e6442b881332874fe8e66d1f09e80a759e2ab8207d71f901",
+  "proposal_pointer": "/batches/1/jobs/1/steps/1/proposal/review_handoff",
+  "matching_recorded_attempt_count": 1,
+  "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+  "raw_source_path": "streamlit-data-for-dev-test/sources/docs_scope_candidates.jsonl",
+  "raw_source_text_sha256": "81bf1fc22b4e27403ab7e0d6be8377a6ace4767502cb9d972fd7411a90d8e4b9",
+  "naive_source_id_present_for_both_requirements": true,
+  "source_text_in_corpus_contains_both_probe_passages": true,
+  "observed": {
+    "schema_version": 1,
+    "scope": "exact_passage_observation_in_supplied_handoff_bundle_only",
+    "requirements_sha256": "49c5829fb4bb2e16dd1493a3c727b43521f97acd4965d4d4ac80f9cc2212b8d7",
+    "handoff_sha256": "4839b309272e427f0e7f313daafe78131082d260a916b59467b4366850d6a454",
+    "case_id": "dev-case-b",
+    "case_revision": 2,
+    "proposal_id": "9b50dd0d-8414-5635-8dc4-00c270777da7",
+    "run_id": "9b50dd0d-8414-5635-8dc4-00c270777da7",
+    "attempt_index": 1,
+    "grounded_context_sha256": "0077bed2e89a575bf39ca297f10156998de7dc67d1f2aff9b8d05800ced714bc",
+    "snapshot_id": "docs-pilot-10e7fc4bf04652d5a8ab5052fe14ef6508d4295b3a6f0d6aa1796ffc77a095aa",
+    "requirements": [
+      {
+        "requirement_id": "posthoc-present-passage",
+        "observed": true,
+        "alternatives": [
+          {
+            "anchor_sha256": "d10c031c16a6c9219c3bfe51defa900d40b1a5d67087fb467834af11e095fd4c",
+            "observed": true,
+            "matches": [
+              {
+                "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9",
+                "content_sha256": "f759a7e0192283bb46c430a86a428697a14596368d666e641f530b4b83949c7d",
+                "start": 2656,
+                "end": 2824,
+                "version_scope": "unconfirmed",
+                "cited_by_analysis": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "requirement_id": "posthoc-omitted-passage",
+        "observed": false,
+        "alternatives": [
+          {
+            "anchor_sha256": "6f1f2c255c84b53f9905272b1048b9b68753e7acea850f8eb7afe03d94cc0f58",
+            "observed": false,
+            "matches": []
+          }
+        ]
+      }
+    ],
+    "all_requirements_observed": false,
+    "observed_requirement_count": 1,
+    "requirement_count": 2,
+    "occurrence_scope": "first_exact_unicode_codepoint_occurrence_per_matching_hit",
+    "citation_scope": "analysis_evidence_links_chunk_membership_only",
+    "missing_scope": "not_observed_in_this_supplied_bundle_only",
+    "claim_support": "unassessed",
+    "whole_answer_sufficiency": "unassessed",
+    "decision_judgment": "unassessed",
+    "actual_model_consumption_verified": false,
+    "physical_build_verified": false,
+    "source_authenticity_verified": false,
+    "preregistration_verified": false,
+    "quality_claim": false
+  },
+  "interpretation": "Both probe passages belong to the same source, but only one occurs in this handoff. The second probe is not a proposed answer requirement for the icon case. Presence does not judge version applicability, relevance, claim support, case sufficiency or model quality.",
+  "paid_model_calls": 0,
+  "native_index_clients_created": 0,
+  "primary_ledger_access": false
+}

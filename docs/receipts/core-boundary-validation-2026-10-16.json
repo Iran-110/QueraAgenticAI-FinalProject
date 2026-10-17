@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-10-16T08:16:46.009113+00:00",
+  "task": "C2k",
+  "kind": "Bounded offline core ingress validation",
+  "base_commit": "35c1ed0c4b54269dfefb8ba8f37e9fe1692412f5",
+  "source_commit": "3f8ff33c566df9e76276e4a258f7ad4287877cd0",
+  "files": {
+    "src/agent_app/orchestration/engine.py": "ef2ef1444a548fc6115eb9842a3284ae6f592aad0626028743623b0b14442ea9",
+    "src/agent_app/orchestration/turns.py": "9561712617003a01df68e7616370432782e9592865b1fccf6bc8f71db64420a0",
+    "src/agent_app/reasoning/claim_plan.py": "9426b3eb49a82d49edafab96e4f69c1091395cb28691bdd2bfae7063f0e1f7f0",
+    "src/agent_app/reasoning/grounding.py": "20f323a5d29a68a115269157ed20b49aa113248c19b1f48ac8f30daaa0870012",
+    "src/agent_app/reasoning/output.py": "f19b20c6887395220540c7518e4aceb381e42d6894d2d1f20651169db96a6aa7",
+    "tests/test_grounding_boundary_detachment.py": "10d9c1fb72c027f6a59feecae9b644eb9899d38271ac64bd6e5f4c330a24e55c",
+    "tests/test_reasoning_boundary_detachment.py": "3b0bd0eb626508a0fcfc58411788fbe44996963020b3cec4952a9bf2d58822b8",
+    "tests/test_turn_boundary_detachment.py": "a2c30ef3b45f1ab8ca24a88a8584c6c00d0ee576d0b5d4536b28dc13a4e43923"
+  },
+  "before_after": {
+    "reasoning": {
+      "before_failed": 29,
+      "before_passed": 22,
+      "after_passed": 51
+    },
+    "grounding": {
+      "before_failed": 84,
+      "before_passed": 10,
+      "after_passed": 94
+    },
+    "turns": {
+      "before_failed": 12,
+      "before_passed": 12,
+      "after_passed": 24
+    },
+    "total_new_controls": 169,
+    "failure_class": "One dump-before-validation family; not125independent vulnerabilities",
+    "valid_prechange_complete_surface_digests": 32,
+    "valid_surfaces_unchanged": true,
+    "known_value_retrieval_controls_already_rejected_before_fix": 3
+  },
+  "fresh_checks": {
+    "development": {
+      "command": ".venv/bin/python <local guarded run-development.py>",
+      "passed": 5758,
+      "failed": 0,
+      "seconds": 260.58,
+      "deselected": [
+        "tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture"
+      ],
+      "protected_read_attempts": 0,
+      "junit_sha256": "fb884f9b3348af318bedc4649ccfafa90b1bddc7b7835fcb673f202e8285be3c",
+      "log_sha256": "5e59fce1e86058757e3f7407d850d2bf2a6a18621f33369e54bf660e7e58a655"
+    },
+    "ruff_lint": {
+      "passed": true
+    },
+    "ruff_format": {
+      "passed": true,
+      "python_files": 367
+    },
+    "demos": {
+      "refine": {
+        "exit_code": 0,
+        "sha256": "e921d60c023d6229bccaba8475517a6982b481bfc47cc80902b7e6b052de368c"
+      },
+      "gateway_repair": {
+        "exit_code": 0,
+        "sha256": "ab882a1d44fee36ea57a35ca73abf3cded82da9e967ed784e091179e3e9b62fe"
+      },
+      "turn": {
+        "exit_code": 0,
+        "sha256": "fb344c4c9eea530dfb756c93966c00292620db8df9dc67ebd2c207948da189d5"
+      }
+    },
+    "http_sqlite": {
+      "receipt": "docs/receipts/core-boundary-http-sqlite-2026-10-16.json",
+      "sha256": "90e5238672811c3732353b51bda02b508111bb33730579a9025d57d8586b24de",
+      "passed": 457,
+      "total": 457,
+      "restart_accepted": true,
+      "same_process_accepted": true,
+      "scripted_only": true
+    },
+    "C5_readonly": {
+      "passed": 36,
+      "total": 36,
+      "ledger_files_unchanged": true,
+      "ledger_fullrow_snapshot_unchanged": true,
+      "C5_resolved": false
+    }
+  },
+  "preserved": {
+    "all_current_19_pins_equal": true,
+    "ledger_sha256": "141c3536fb864595d94e0d0dd4a55976418def1012402b70f313c92050222785",
+    "ledger_unchanged": true,
+    "held_out_tree_unchanged": true,
+    "held_out_content_reads": 0,
+    "paid_calls": 0,
+    "halt": true,
+    "uncertain_requests": 3,
+    "uncertain_hold_usd": "0.030137600",
+    "ledger_ceiling_usd": "4.50",
+    "closed_study_IDs_unchanged": true,
+    "protected_physical_manifest_reference": "docs/receipts/deadline-healthcheck-2026-10-16.json#preserved",
+    "shared_contracts_defaults_prompts_renderer_unchanged": true,
+    "teammate_implementation_files_unchanged": true
+  },
+  "independent_reviews": [
+    {
+      "scope": "All5production and3newregression files",
+      "result": "No blocker;880focused tests pass; unchanged normal bytes/authority/attempts",
+      "read_only": true
+    },
+    {
+      "scope": "Engine/output and documentation example",
+      "result": "Reviewer corrected an overclaim about invalid hit URLs: those3controls already rejected. Example now uses reproduced hidden-private metadata case. No production blocker reported.",
+      "read_only": true
+    },
+    {
+      "scope": "Final independent code/documentation/source binding review",
+      "result": "Approved; independently169newregressions pass,all8source/testSHA256sand457HTTPchecksverified; no blocker",
+      "read_only": true
+    }
+  ],
+  "retained_verification_amendments": [
+    {
+      "kind": "Documentation finding",
+      "description": "Invalid EvidenceHit URL/excerpt/type were existing baseline passes because retrieval round stamping already revalidated declared fields; docs corrected to hidden metadata."
+    },
+    {
+      "kind": "Grounding equality harness",
+      "description": "One manual JSON-array/Python-tuple comparison failed despite equal19hashes; corrected JSON normalization matches full baseline values. No fixture/test/implementation rewrite."
+    },
+    {
+      "kind": "Formatting",
+      "description": "Initial format check found one engine conditional needing wrapping; formatted before full suite and final clean check."
+    }
+  ],
+  "local_artifact_sha256": {
+    "grounding-red.txt": "0c267edf0a4b74cfcb2d5c5a0c03bf3f53b4acb3f41600976255b250374ab79f",
+    "development-boundary.json": "424f19a4c46a10aa53a327a02ec9803692221d062fac4c6124c296cde2cb7faa",
+    "development-suite.log": "5e59fce1e86058757e3f7407d850d2bf2a6a18621f33369e54bf660e7e58a655",
+    "turn-green-existing-turn-integration.log": "590666eec47647941fe5f6880b8bba1453c1e9d914513c9851c14af2bb6ba3e2",
+    "turn-red.log": "35850e1a344487353934b83fad197b7da76f54f620f4f95d36799373c34e300b",
+    "reasoning-green.xml": "59260544f61ca6032aa07825044b2dc5f12b3f42f882f8e4f82f68cda05329a1",
+    "grounding-verification-v1.json": "0619c25cfed27df90cec6c9c8f0bd32c28ea3c678d0d12fb8dd1edb26f8ac5ba",
+    "demo-turn.json": "fb344c4c9eea530dfb756c93966c00292620db8df9dc67ebd2c207948da189d5",
+    "preservation-after.json": "7090a3c651183ca0d8255eb88cdbd6ee529466f8cccc3fe880487b0e9701062e",
+    "reasoning-valid-baseline.json": "bb91058823730a665ac8ed5283a6618b76e13946d8e80a15d6ad7ec0e13a09e5",
+    "turn-red.json": "92947877f5585fb0c21dc55375eb16fabde73efff23d6f4db2bf7be1b3a6e2a4",
+    "demo-refine.json": "e921d60c023d6229bccaba8475517a6982b481bfc47cc80902b7e6b052de368c",
+    "reasoning-red.xml": "900e1dd344239cf262214f3f3862e51c8b06711e82c74dd927fbc7309a7f6024",
+    "http-sqlite.json": "14f9b85753e0f42a0d0e7b46a7351ef4d621d5dd75d665c65366057bdba28cd1",
+    "turn-green-new-regressions.log": "dbec255dff3ea655611e0b5af6d7a01b19e6a9e60a40542837e7bbc5e693320f",
+    "c5-readonly.json": "aef6e6a8e8dd947e88f5dcf9d497373296876e301e7ff13248b1e50defd032ad",
+    "turn-green-format.log": "3bc53bf3e981a98a34a852e175bf9b77af841edea74fca595d9aedcbaf9a4938",
+    "grounding-before-v1.json": "66fa9a17c6360d1815df852db431fd9ccb93098c7698fc6ccb4293c821710917",
+    "reasoning-red.log": "c330cfe1ded4241a9652615f15d227dd2c9a67de482f963464d362a39120bd31",
+    "turn-green-lint.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "turn-valid-baseline.json": "a3d1b20c3762af0d72438188a96612aa2b47647e663b11acdc2ffdf074017c2e",
+    "development-suite.xml": "fb884f9b3348af318bedc4649ccfafa90b1bddc7b7835fcb673f202e8285be3c",
+    "grounding-green.txt": "fc5d1056a766b9d1843a03230208ace2ca2cef20c1786a03f9f86d4ace7a5aeb",
+    "turn-green.json": "16207071b3506adbf873297b19c8ce514534ca66e7cd6247fa2cf4808eda22e6",
+    "demo-repair.json": "ab882a1d44fee36ea57a35ca73abf3cded82da9e967ed784e091179e3e9b62fe"
+  },
+  "scope": {
+    "API_calls": 0,
+    "credential_files_read": false,
+    "native_clients_in_software_suite": "Temporary/disposable test-only clients; original19protected file hashes preserved",
+    "held_out_content_opened": false,
+    "fresh_browser_or_Windows_test_claim": false,
+    "hosted_CI_pass_claim": false,
+    "team_messages_sent": 0,
+    "production_native_index_clients_created_outside_software_suite": 0
+  },
+  "remaining_limits": [
+    "Not exhaustive typed boundary hardening; plan/context/config serialization patterns retain declared-value/binding/bounds checks; no authority bypass reproduced.",
+    "No new semantic entailment, relevance, answer completeness, human usefulness, live model or final-test quality result.",
+    "C5 provider history/reconciliation, native gold/config/index freeze and independent final evaluation remain open."
+  ],
+  "final_documentation_checks": {
+    "relative_markdown_links_checked": 363,
+    "missing_links": 0,
+    "runtime_matches_verified_source": true,
+    "sanitized_receipts": true,
+    "git_diff_check": "pass"
+  }
+}
