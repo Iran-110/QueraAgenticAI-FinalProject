@@ -2,7 +2,13 @@
 
 پروژهٔ نهایی بوت‌کمپ Agentic AI کوئرا: دستیار بررسی گزارش خطا و پیگیری پرونده، با شواهد قابل بررسی و تأیید انسانی پیش از اجرای اقدام.
 
-**وضعیت فعلی، ۱۶ اکتبر:** [C4r: تنظیم منتخب core](docs/core-delivery-selection.fa.md) به factory/backend واقعی وصل شد؛ `AGENT_CORE_PROFILE=grounded_candidate_v1` اختیاری است و halt را رفع نمی‌کند. انتخاب این recipe به معنی freeze مشترک یا کیفیت نهایی نیست. core، correction، API/UI، tracker پایدار SQLite و runner متصل‌اند. PRهای #70 تا #76، تعداد ۳۱ fixture شامل ۱۶ dev و ۱۵ test ثبت کرده‌اند؛ manifest هنوز draft است. [تحویل C4m/E2z](docs/evaluation-readiness.fa.md) دو سؤال dev را به vocabulary اختیاری اضافه می‌کند و اتصال rubric تاریخی به ID و hash ثبت‌شده را کنترل می‌کند. [پذیرش R4b](experiments/evaluation_readiness_v1/native-acceptance-v1.json) روی کپی index واقعی، availability قبلی ۱/۵→۳/۵ را بازتولید کرد؛ حذف key-identity در آن اجرا از packing بایتی است، نه پرشدن capپنج. کیفیت نهایی Enum/RAG ثابت نشده؛ gold native، vocabulary/config و split نهایی، usefulness انسانی و test مستقل بازند. محتوای test در توسعه باز و برای tuning مصرف نشده است. halt و هر سه hold حفظ شده‌اند؛ C5 به مدرک provider نیاز دارد و scopeهای بسته تکرار نمی‌شوند. Actions به علت Billing اجرا نمی‌شود؛ انتشار با review و verification محلی مجازشده است. برای ادامه از [راهنمای اتصال](docs/integration.md)، [تصمیم‌های آماده‌سازی ارزیابی](docs/evaluation-readiness.fa.md) و [plan جاری](plan/plan.md) شروع کنید. گزارش‌های پایین تاریخچه و محدودیت همان زمان‌اند.
+**وضعیت فعلی، ۱۷ اکتبر:** build نهایی RAG با exclusion فریز‌شدهٔ **۹۵ Issue**، **۱۲۲۸ source و ۱۸۲۷ chunk** تحویل و روی این دستگاه مستقلاً بازتولید شده؛ pinهای آن با receipt v3 حسن منطبق‌اند. [رسید پذیرش build نهایی](docs/receipts/final-build-v3-core-acceptance-2026-10-17.json) و [اتصال core](docs/final-build-core-acceptance.fa.md) مرز هر شاهد را ثبت می‌کنند. پروفایل جدید `grounded_candidate_prefilter_v2` فیلتر نسخه را پیش از native top-k به factory/engine/runner وصل می‌کند؛ انتخاب آن صریح است، v1 و defaultهای قبلی حفظ‌اند و halt را رفع نمی‌کند.
+
+برای جلسه از [برگهٔ کوتاه ارائه و پاسخ‌های آماده](docs/meeting-brief.fa.md) شروع کنید؛ دمو آفلاین است و [healthcheck جلسه](docs/receipts/meeting-readiness-2026-10-17.json) نتیجه و مرزهای آن را ثبت می‌کند.
+
+core، correction، API/UI، tracker پایدار SQLite و runner متصل‌اند. پذیرش متمرکز core، **۹۲۲ تست مرتبط** روی source ثبت‌شده را با provider ماک پاس کرده؛ این عدد کیفیت مدل یا اجرای test نهایی نیست. پذیرش تازهٔ v3، rebuild فیزیکی و دو سرچ خنثی adapter است؛ packet کامل core/model روی v3 دوباره اجرا نشده است. **۳۱ fixture شامل ۱۶ dev و ۱۵ test** ثبت شده؛ freeze منابع/split انجام شده، ولی native gold با pinهای تازه، packet/config نسخه‌دار، داوری انسانی کیفیت و test نهایی باقی‌اند. Enum هنوز fix تأییدشده ندارد.
+
+payloadهای محافظت‌شدهٔ test و exposure در review توسعه باز نشده‌اند؛ یک جزئیات محدود test از plan مشترک دیده و حذف شده بود. بررسی اثر exposure با مالک evaluation است و همهٔ test را کاملاً unseen معرفی نمی‌کنیم؛ [مرز custody](docs/pr83-custody.fa.md). halt، هر سه hold و scopeهای بسته حفظ‌اند؛ C5 به مدرک provider نیاز دارد. Actions به‌علت Billing اجرا نمی‌شود و انتشار بر اساس review و verification محلیِ مجازشده است. برای ادامه از [plan جاری](plan/plan.md) و [گزارش تحویل و demo پایدار SQLite](docs/delivery-report.fa.md) استفاده کنید؛ گزارش‌های بعدی تاریخچه و محدودیت همان زمان‌اند.
 
 [C4h9/C4h9b: انتخاب شاهد مکمل و خوانایی Enum](docs/complementary-sources.fa.md): دو مقایسهٔ تازه، مجموع۴۸send روی همان سه dev و منابع ثابت. دستور عمومی انتخاب منابع مکمل هیچ بهبودی نداشت؛ جابه‌جایی ترتیب منابع فقط یک draft اولیهٔ منتشرنشده را با حفظ هر دو guide از۱۴۴۹۴ به۷۰۹۹کاراکتر رساند و correction دوباره طولانی شد. پوشش مشترک پاسخ‌های واقعاً منتشرشده در هر دو حالت۰/۲ بود؛ بهبود پایدار ثابت نشد. flag مکمل خاموش و توصیه‌نشده می‌ماند؛ index/exclusion/gold و قراردادها ثابت‌اند. ۴۸۹۶pytest و fixtureHTTP/SQLite۴۵۷/۴۵۷ محلی پاس؛ داوری انسانی و test نهایی بازند. نتیجهٔ منفی و تمام receiptها حفظ شده‌اند.
 
@@ -84,14 +90,15 @@ uv run python experiments/gateway_handoff/replay.py
 سناریوهای دیگر: `escalate` برای ارجاع و `error` برای خرابی بازیابی. خروجی JSON شامل نتیجه و ردگیری اجراست. سناریوی `error` عمداً با کد خروج ۱ تمام می‌شود. برای این دمو کلید API لازم نیست.
 
 ```bash
-uv run pytest --deselect=tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture
+uv run pytest --deselect=tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture --deselect=tests/test_split_freeze.py::test_record_pins_every_artifact_at_its_current_bytes --deselect=tests/test_split_freeze.py::test_exposure_partitions_known_issues_and_avoids_test_families --deselect=tests/test_split_freeze.py::test_corpus_excludes_every_blocked_issue_and_matches_the_final_allowlist --deselect=tests/test_split_freeze.py::test_every_witness_is_human_and_bound_to_the_frozen_rubric
 uv run ruff check .
 uv run ruff format --check .
 ```
 
-این دستور، suite توسعه را اجرا می‌کند. یک تست که تمام fixtureهای held-out را
-می‌خواند عمداً کنار گذاشته شده؛ اعتبارسنجی آن با مالک evaluation است. اجرای
-این suite، اجرای test نهایی مدل یا تأیید کیفیت جواب‌ها نیست.
+این دستور، suite توسعه را با پنج consumer محافظت‌شده کنارگذاشته‌شده اجرا می‌کند:
+یک تست تمام fixtureهای held-out و چهار تست payloadِ exposure فریز‌شده را می‌خوانند.
+اجرای آن پنج کنترل با مالک evaluation است. اجرای این suite، test نهایی مدل یا
+تأیید کیفیت جواب‌ها نیست؛ برای بررسی core، فرمان بدون این deselectها اجرا نشود.
 [گزارش توسعه و بستهٔ تحویل](docs/delivery-report.fa.md) وضعیت آماده/باقی‌مانده،
 demo پایدار، شواهد و ترتیب بستن تحویل را یک‌جا جمع می‌کند.
 
@@ -147,7 +154,7 @@ pilot آفلاین و restart/retry آن ۴۵۷/۴۵۷ check پاس دارد. cl
 
 سقف **۵ دلار برای کل تیم و کل پروژه** است؛ embedding، توسعه، ارزیابی و امتیازی هم از همین بودجه‌اند. کلاینت پیش از ارسال، مبلغی را در ledger مشترک رزرو می‌کند و هزینهٔ نامعلوم را پس نمی‌دهد. هزینهٔ محاسبه‌شده از مصرف توکن و قیمت عمومی باید با صورتحساب متیس تطبیق داده شود. اجرای زنده پیش‌فرض خاموش است؛ تست‌های منطقی با mock اجرا می‌شوند. جزئیات و محدودیت‌ها در [راهنمای مدل و بودجه](docs/model-gateway.md) آمده‌اند.
 
-پیش از ساخت index، ۱۵ پروندهٔ dev و ۱۵ پروندهٔ test را در سطح پرونده و خانوادهٔ گزارش‌ها جدا می‌کنیم. خود پرونده‌ها و پاسخ‌های بعدی‌شان نباید وارد منابع بازیابی شوند. حداقل ۱۰ سناریو چندنوبتی لازم است، که ۵ موردشان در test باشند.
+اکنون **۳۱ پروندهٔ ارزیابی: ۱۶ dev و ۱۵ test** ثبت شده و **۱۴ سناریوی چندنوبتی، شامل ۷ مورد test** داریم؛ هدف brief برابر ۱۵ dev و ۱۵ test، با دست‌کم ۱۰ چندنوبتی و ۵ مورد در test بود. split/rubric/exclusion در PR89 ثبتِ freeze منابع دارند و build v3 با exclusion نهایی ۹۵ Issue ساخته شده است. خود پرونده‌های هدف، پاسخ‌ها، commentها و خانوادهٔ duplicate آن‌ها وارد corpus واقعی نمی‌شوند. ثبت fixture و freeze منابع به معنی اجرای نهایی یا کیفیت تأییدشده نیست؛ native gold/packet و core/config نسخه‌دار باید جدا pin و review شوند. payloadهای test/exposure فقط در اختیار مالک evaluation می‌مانند و سابقهٔ exposure محدود به‌صورت aggregate در گزارش custody ثبت شده است.
 
 مسیر امتیازی پیشنهادی پس از تکمیل اصل پروژه **Adversarial Testing** است؛ دامنه و سهم امتیاز با منتور هماهنگ می‌شود.
 

@@ -4,6 +4,8 @@
 
 ## وضعیت فعلی
 
+- [x] **C4u-M1 — آمادگی نمایش جلسه؛ ساسان.** [برگهٔ فارسی](../docs/meeting-brief.fa.md) و [healthcheck](../docs/receipts/meeting-readiness-2026-10-17.json) آماده‌اند؛ ۱۶۷تست تازه UI/API/SQLite و۳demoآفلاین پاس، UI و backend محلی با DB جدا سالم‌اند. README و فرمان توسعه با freeze۹۵ و۵مصرف‌کنندهٔ محافظت‌شده هماهنگ شد. halt حفظ؛ nativegold/config/C5/testکیفیت نهایی همچنان بازند.
+
 - [x] **C4u-v3 — پذیرش فیزیکی rebuild frozen95؛ ساسان با حسن.** PR91 review مستقل و build محلی تازه دارد؛ ۱۲۲۸source/۱۸۲۷chunk و همهٔ pinهای v3، counts و exclusion منطبق؛ deterministic/historical و دو سرچ خنثی adapter پاس. [رسید](../docs/receipts/final-build-v3-core-acceptance-2026-10-17.json). منبع اجرایی ثابت و۹۲۲تست C4u معتبرند؛ تکرار packet/model یا کیفیت نهایی ادعا نمی‌شود. halt/سهhold/test محافظت‌شده حفظ‌اند.
 
 - [x] **C4u — پذیرش build گسترده و profile نسخه‌دار؛ ساسان با حسن.**

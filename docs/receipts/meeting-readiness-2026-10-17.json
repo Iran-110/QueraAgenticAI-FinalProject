@@ -1,0 +1,115 @@
+{
+  "receipt_id": "meeting-readiness-2026-10-17",
+  "source_commit": "d00f07094df64b896cda85b7810ddcfb40a3d20a",
+  "scope": "Meeting preparation; docs only; synthetic offline UI/API/SQLite demonstration, no final model evaluation",
+  "remote_open_prs_at_check": 0,
+  "new_ui_api_checks": {
+    "passed": 167,
+    "files": 5,
+    "seconds": 14.73,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "parent_guard_blocked": [],
+    "parent_guard_allowed_loopback": 2,
+    "held_out_or_exposure_payload_reads": 0,
+    "audit_scope": "Parent interpreter only; subprocess/native internals not attested"
+  },
+  "deterministic_cli_demos": [
+    {
+      "command": [
+        "agent-app",
+        "demo",
+        "--scenario",
+        "refine"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "agent-app",
+        "gateway-demo",
+        "--scenario",
+        "repair"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "agent-app",
+        "turn-demo"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "local_meeting_demo": {
+    "ui_url": "http://127.0.0.1:8501/",
+    "ui_health_http_status": 200,
+    "backend_health_http_status": 200,
+    "backend_health": {
+      "status": "ok",
+      "mode": "synthetic_offline_sqlite",
+      "tracker_backend": "sqlite_case_tracker",
+      "capabilities": {
+        "stable_event_ids": true,
+        "durable_reviews": true,
+        "reviewer_auth": "bearer"
+      },
+      "retrieval_label": "scripted",
+      "reasoning_label": "scripted",
+      "quality_claim": false
+    },
+    "browser_visual_state": "Fresh case revision0, SQLite durable, maintainer authorization configured, synthetic/no model mode, no UI error displayed",
+    "database": "Dedicated outside-repository SQLite, separate from primary budget ledger",
+    "provider_credentials_inherited": false,
+    "reviewer_token_printed_or_saved": false
+  },
+  "source_hashes_match_previous_922_test_source": true,
+  "previous_v3_physical_acceptance_receipt": "final-build-v3-core-acceptance-2026-10-17.json",
+  "ledger_sha256": "141c3536fb864595d94e0d0dd4a55976418def1012402b70f313c92050222785",
+  "ledger_bytes_unchanged": true,
+  "halt_and_three_holds_preserved": true,
+  "opaque_git_objects_unchanged": true,
+  "paid_calls": 0,
+  "changes": [
+    "Current README and development checks aligned with frozen95 and five protected consumers",
+    "Short Persian meeting brief with demo sequence, talking points and honest limitations"
+  ],
+  "remaining": [
+    "Native gold/packet and explicit versioned core config binding by evaluation owner",
+    "C5 provider reconciliation",
+    "Final model-quality/held-out execution and human scoring"
+  ],
+  "project_fully_finished": false,
+  "evidence": {
+    "ui-health.log": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/meeting-readiness-2026-10-17-v1/ui-health.log",
+      "sha256": "48fa41f6a98a11ed6930c79c30d77a01a7336fa870b1a0bfa30cfa4802ebe815"
+    },
+    "ui-health.xml": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/meeting-readiness-2026-10-17-v1/ui-health.xml",
+      "sha256": "14dc9e956a0d498b9dc1e1bfad846801e48c31868508a1412f4899a20f09f623"
+    },
+    "ui-health-audit.json": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/meeting-readiness-2026-10-17-v1/ui-health-audit.json",
+      "sha256": "2fe3bc65c2fafe0df93f165c9f7e41879d405c4d767f8c7f3beaa1fba21fa529"
+    },
+    "demos.json": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/meeting-readiness-2026-10-17-v1/demos.json",
+      "sha256": "76fcc79eb19859a3b2b7cef279f92ccb678aa0e99a9c3b458b5218d83b236cf5"
+    },
+    "demo-0.log": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/meeting-readiness-2026-10-17-v1/demo-0.log",
+      "sha256": "e146cfc496d1ab3e811250aa1d4bcaea4c2e06e18b68bae45c7a92c9d17da438"
+    },
+    "demo-1.log": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/meeting-readiness-2026-10-17-v1/demo-1.log",
+      "sha256": "ab882a1d44fee36ea57a35ca73abf3cded82da9e967ed784e091179e3e9b62fe"
+    },
+    "demo-2.log": {
+      "local_path": "/Users/sasan/Desktop/Agentic AI/output/meeting-readiness-2026-10-17-v1/demo-2.log",
+      "sha256": "fb344c4c9eea530dfb756c93966c00292620db8df9dc67ebd2c207948da189d5"
+    }
+  },
+  "review": "Independent assistant review; human-review denominator uses7assessment groups, not7unique texts; stale/new approval distinguished from exact replay of previous success"
+}

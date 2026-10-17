@@ -149,13 +149,14 @@ uv sync --locked --group dev
 uv run agent-app demo --scenario refine
 uv run agent-app gateway-demo --scenario repair
 uv run agent-app turn-demo
-uv run pytest --deselect=tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture
+uv run pytest --deselect=tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture --deselect=tests/test_split_freeze.py::test_record_pins_every_artifact_at_its_current_bytes --deselect=tests/test_split_freeze.py::test_exposure_partitions_known_issues_and_avoids_test_families --deselect=tests/test_split_freeze.py::test_corpus_excludes_every_blocked_issue_and_matches_the_final_allowlist --deselect=tests/test_split_freeze.py::test_every_witness_is_human_and_bound_to_the_frozen_rubric
 uv run ruff check .
 uv run ruff format --check .
 ```
 
-یک تستِ خواندن همهٔ fixtureهای held-out عمداً از فرمان توسعه کنار گذاشته شده؛
-validation کامل آن با مالک evaluation است. دموها synthetic/offline هستند.
+یک consumer خواندن همهٔ fixtureهای held-out و چهار consumer payloadِ exposure
+فریز‌شده عمداً از فرمان توسعه کنار گذاشته شده‌اند؛ این پنج کنترل با مالک
+evaluation هستند. برای بررسی core این deselectها حفظ شوند. دموها synthetic/offline هستند.
 در سناریوی `error`، exit1 و `RetrievalUnavailable` رفتار مورد انتظار است.
 
 برای نمایش UI پایدار، یک DB تازهٔ مخصوص demo انتخاب کنید؛ اگر مسیر زیر از
