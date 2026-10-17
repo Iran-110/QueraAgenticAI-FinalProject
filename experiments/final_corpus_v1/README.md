@@ -45,6 +45,8 @@ uv run python scripts/build_final_index.py --exclusion experiments/final_corpus_
 
 ```bash
 uv run pytest tests/test_final_corpus.py tests/test_pilot_corpus.py tests/test_offline_index.py -q
+# Windows: tests/test_pilot_corpus.py now reads seed/split files as UTF-8 explicitly;
+# with the default cp1256 locale two of its checks failed before this change.
 uv run python scripts/build_final_index.py --destination runtime/final-corpus-v1 --receipt experiments/final_corpus_v1/build-receipt-v1.json
 ```
 
@@ -71,8 +73,10 @@ API queries with timing.
 access. One `StreamlitRetriever.search` triggers **22** full verifications
 (get_collection/metadata/query, before and after, both collections). With
 36 chunks this was invisible; with 1,827 chunks one search took **1.8 s on an
-in-memory stand-in**, before real Chroma I/O. The receipt's `adapter_smoke`
-records the real time on the build machine. Not changed here, because it alters
+in-memory stand-in** and **4.2 s / 5.1 s with real Chroma on Windows 11**
+([build receipt](build-receipt-v1.json), `adapter_smoke`). One engine round can
+issue two queries and a run up to two rounds, so a turn can spend 10–20 s in
+verification alone. Not changed here, because it alters
 a guard's semantics. Options:
 
 1. Verify full storage on open, then re-verify only when the index directory's
