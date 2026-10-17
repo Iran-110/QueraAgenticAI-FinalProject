@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "review_id": "split-e1-v1-test-exposure-decision-v1",
+  "held_out": true,
+  "do_not_open_during_core_or_rag_development": true,
+  "task": "E1/E2 exposure eligibility",
+  "reviewer_id": "mhg",
+  "reviewer_kind": "human",
+  "reviewed_on": "2026-10-17",
+  "independence": "assistant_informed",
+  "case_id": "test-case-03",
+  "fixture": {
+    "path": "data/evaluation/split-e1-v1/native/test/mpa-keyerror-8700-native-v1.json",
+    "sha256": "0c1b3561f5745e6d4e86e8fe145728fa8dcf5c958146c7b94eea0d19dffcad63"
+  },
+  "gold_review": {
+    "path": "data/evaluation/split-e1-v1/native/native-test-gold-review-v1.json",
+    "sha256": "21fb12d832e3096378d6faddfe3106b2d2088ddbbb76aab3789704f47373f4ab"
+  },
+  "exposure": {
+    "source": "Initial PR83 note in plan/plan.md (commit eb55fdf) named this case and one OR alternative of one passage requirement.",
+    "seen_by": "Core owner during authorized plan-diff review; otherwise only via Git history.",
+    "removed_from_shared_plan": "b0515be (Git history not rewritten)",
+    "custody_report": "docs/pr83-custody.fa.md",
+    "not_exposed": "User messages, issue number, second turn, the other passage requirements and decision conditions."
+  },
+  "decision": {
+    "eligibility": "keep_flagged",
+    "meaning": "The case stays in the 15 test cases. The final report gives scores with all 15 cases and without this case, and states any material difference.",
+    "pr83_body": "redact",
+    "pr83_body_action": "On 2026-10-17 the per-case review sentence in the PR83 description was replaced by a general summary; GitHub edit history keeps the old text."
+  },
+  "audit_2026_10_17": {
+    "scope": "All commits to src/, scripts/, experiments/ since eb55fdf (2026-10-16 14:27 -0700).",
+    "terms": [
+      "reload",
+      "refresh",
+      "new session",
+      "KeyError",
+      "my_val",
+      "mypage",
+      "8700"
+    ],
+    "result": "No related change; 8700 appears only in the final-index exclusion list (expected). Development vocabulary unchanged."
+  },
+  "before_final_run": "Repeat the same audit on all core/RAG/vocabulary/prompt changes since eb55fdf and record the result here in a new version.",
+  "source_export_sha256": "97eb9ca03f83fc4e80910a58c25f69fbf7583f72be92ef9dddd1178a1bc5feb3",
+  "drafted_by": "assistant (claude-opus-5-5) drafted the card and recommendations; decisions by the human reviewer"
+}
