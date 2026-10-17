@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "record_id": "split-e1-v1-freeze-v1",
+  "status": "frozen_pending_native_pins",
+  "frozen_on": "2026-10-17",
+  "artifacts": {
+    "rubric": {
+      "path": "data/evaluation/split-e1-v1/freeze/rubric-frozen-v1.json",
+      "sha256": "fcf310cd9aa8ab45b58e1479292a45fc4cb1cea882376d5906ebd04515d4ea8b"
+    },
+    "split_manifest": {
+      "path": "data/evaluation/split-e1-v1/freeze/split-manifest-frozen-v1.json",
+      "sha256": "fa35e344448de14a7a5de6da48d180f896f13ad9c788e0027a74a816bcf5eb4d"
+    },
+    "exposure": {
+      "path": "data/evaluation/split-e1-v1/freeze/exposure-frozen-v1.json",
+      "sha256": "4defbcf092d1cdef496c868aee2e907471d45988b492c7ff0f9941dbd2abbb38"
+    },
+    "corpus": {
+      "path": "data/evaluation/split-e1-v1/freeze/corpus-frozen-v1.json",
+      "sha256": "8f5936a685e47a5e2101fcba41176c4e37da69742b00de07d83e2d53bf04c1c7"
+    },
+    "vocabulary": {
+      "path": "config/user-gap-support-dev-v1.json",
+      "sha256": "948c3348365ea6a5fe6385166e07cc5fb203958ffda6b45e090527000a6a3bfc"
+    },
+    "question_coverage_dev": {
+      "path": "data/evaluation/split-e1-v1/question-coverage-dev-v3.json",
+      "sha256": "0e342eedfe3f225b52e7e7c7335e641bd204c3c7f8b3b4171807b74fea307190"
+    },
+    "native_dev_registration": {
+      "path": "data/evaluation/split-e1-v1/native/native-registration-dev-v2.json",
+      "sha256": "87f67c6d1098decd740e9dfb7ff0a88caf0d7d1e5fdca1f896ca8fadc810909f"
+    },
+    "native_test_registration": {
+      "path": "data/evaluation/split-e1-v1/native/native-registration-test-v1.json",
+      "sha256": "cd61cbb23cda181bf03f3c3abe6d3771eb309793da0a6832bc79b4874e1fcfdf"
+    }
+  },
+  "counts": {
+    "dev_families": 16,
+    "test_families": 15,
+    "excluded_issues": 95,
+    "exposed_issues": 19,
+    "corpus_sources": 1228
+  },
+  "not_yet": [
+    "Hassan rebuilds the index from split-manifest-frozen-v1.json (new exclusion and receipt names).",
+    "Native gold v3 fixtures with case.family_id, origin, coverage witness and the five native pins.",
+    "frozen_final_v1 packet pinning every fixture, then the preflight.",
+    "Code/prompt/model/config freeze (core recipe grounded_candidate_v1) and C5 before any live run."
+  ],
+  "review": {
+    "type": "human",
+    "reviewer": "mhg",
+    "reviewed_on": "2026-10-17",
+    "rubric_sha256": "fcf310cd9aa8ab45b58e1479292a45fc4cb1cea882376d5906ebd04515d4ea8b",
+    "item": "freeze_record",
+    "independence": "assistant_informed"
+  },
+  "review_export": {
+    "review_id": "split-e1-v1-freeze-review-v1",
+    "decisions": {
+      "rubric": "correct",
+      "families": "correct",
+      "exposure": "correct",
+      "exclusion": "correct",
+      "direct_answer": "correct",
+      "duplicates": "correct",
+      "vocabulary": "correct"
+    },
+    "notes": {
+      "rubric": null,
+      "families": null,
+      "exposure": null,
+      "exclusion": null,
+      "direct_answer": null,
+      "duplicates": "بی‌خانواده برایم روشن نیست. ارزیابی دستیار روشن نیست. توضیح بده.",
+      "vocabulary": "توضیح این که vocab سؤال‌ها چیست؟ درست است که باید freeze شود. اما این که این‌ها چه نقشی دارند روشن نیست. این که test و dev واژه‌نامه جدایی دارند معنایی دارد؟"
+    },
+    "sha256": "aa873596e7248782d9bdafff4a7a76301303bcecdf9e8aaae5514ba22b01003b",
+    "answers_to_notes": {
+      "duplicates": "The 13 excluded issues outside any family or exposure set (268, 1085, 1155, 1185, 1644, 2069, 2584, 4256, 5368, 12396, 13147, 13953, 16661) come from the 46-issue historical reservation list (the earlier candidate-corpus denylist, dev-three-v1 exposure_reserved_issue_ids). They were never selected as cases and are not claimed to have been read; they stay excluded only conservatively. The duplicate check covers the 82 family and exposure issues; it used cached data, so duplicates outside the cache are not guaranteed.",
+      "vocabulary": "The vocabulary is the registered list of user-gap questions the core may ask (name, necessity, exact question text); the model cannot invent a question outside it, and the version question is built in. There is one vocabulary for all runs, written from dev cases only, not separate dev and test vocabularies. Test cases whose gap names are absent cannot take the ask route for that gap; this is a measured limitation, not tuning on test."
+    }
+  }
+}
