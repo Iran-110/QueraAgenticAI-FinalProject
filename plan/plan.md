@@ -1240,6 +1240,12 @@ fixture پایهٔ این تحویل، [case چهار‌نوبتی C3](../experi
 
 - [ ] **R1 — بازبینی seed و provenance.** seed و manifest در `streamlit-data-for-dev-test/` روی main موجودند؛ تعدادها، روش انتخاب، URL/تاریخ، commit و نسخهٔ اسناد را تا corpus/index بازبینی و ثبت کند. دامنهٔ اولیه Session State، widgets، callback/rerun است؛ همهٔ Streamlit را نمایندگی نمی‌کند. body فعلی Issue ممکن است بعداً ویرایش شده باشد.
 - [ ] **R2 — کنارگذاری خانواده‌های ارزیابی، قبل از index نهایی.** فهرست dev/test از E1 را بگیرد؛ خود Issue، commentها، outcomeها، duplicateها و docs حاوی جواب مستقیم همان case را بررسی کند. خروجی: corpus allowlist، exclusion manifest و گزارش بررسی linkage/duplicate؛ candidate مرتبط به معنی duplicate قطعی نیست.
+  **به‌روزرسانی حسن ۱۷ اکتبر — build پس از freeze (v3):** rebuild با `split-manifest-frozen-v1.json`؛ exclusion
+  ۹۵ Issue ([exclusion-v2](../experiments/final_corpus_v1/exclusion-v2.json))، همان ۱۲۲۸ منبع/۱۸۲۷ chunk و
+  allowlist. [رسید v3](../experiments/final_corpus_v1/build-receipt-v3.json): snapshot
+  `docs-pilot-20ab0d69…`، index manifest `933682e5…`، exclusion `1e9f0469…`؛ build تکرارپذیر،
+  snapshotهای ۱۴/۱۸ منبعی بدون تغییر، صفر سند ممنوعه. pinهای v1/v2 و index قبلی دست‌نخورده‌اند.
+  ثبت native gold روی این pinها با محمدحسن.
   **به‌روزرسانی حسن ۱۷ اکتبر — build نهایی (E2ad):** protocol سوم `docs-api-release-final-v1`
   کنار دو پروفایل قبلی؛ snapshotهای ۱۴ و ۱۸ منبعی از ورودی فعلی بدون تغییر. منابع بسته: ۴۷ صفحهٔ
   docs، ۹ release note (نوع `release_note`، بدون نسخهٔ استنتاجی) و ۱۱۷۲ رکورد API با نسخهٔ دقیق
