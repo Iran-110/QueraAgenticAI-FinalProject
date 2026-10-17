@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "receipt_id": "final-corpus-build-v1",
+  "protocol": "docs-api-release-final-v1",
+  "native_pins": {
+    "build": "final-corpus-v1-da1a891b5e3c1d58",
+    "index_snapshot": "docs-pilot-da1a891b5e3c1d587d0a013327c166f6ae51ab907426f86455b239d5489812c4",
+    "index_manifest_sha256": "d5158882f0c266820425f7ab82627939b9af77ae07f70b5b967c5abdb8fd0cf4",
+    "allowlist_sha256": "dd40ac7b6e66566000c90e3409d23f487f09a26ec66b291daf58aae5fa8290e7",
+    "exclusion_manifest_sha256": "f9c4ab62850febeb6981168e2a93c46bec5687a11751ec8be2b01d28a9a1a415",
+    "corpus_manifest_sha256": null,
+    "corpus_manifest_note": "Evaluation corpus JSON hash is owned by the evaluation packet; it is not the physical index manifest hash."
+  },
+  "inputs": {
+    "allowlist": "experiments/final_corpus_v1/allowlist.json",
+    "exclusion": "experiments/final_corpus_v1/exclusion-v1.json",
+    "split_manifest_sha256": "ceb4cf2d4eca4542ec7efc6317633311e11574c21fa5651cdc9bf536cc78c185",
+    "package_manifest_sha256": "0dd2b0118cc936b8a423793dbdc45b80a7b10f3aa4f0bfbc7002f5fde3d8e37b",
+    "development_exposure_sha256": "c3c838788952a002c3a65c20528f94cce2e1c363d4cb99101086c0a436dfb028",
+    "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd"
+  },
+  "counts": {
+    "sources": 1228,
+    "chunks": 1827,
+    "by_source_type": {
+      "doc": 1219,
+      "release_note": 9
+    },
+    "chunks_by_source_type": {
+      "doc": 1723,
+      "release_note": 104
+    },
+    "api_versions": 43,
+    "unversioned_sources": 56
+  },
+  "exclusion": {
+    "split_manifest_id": "split-e1-v1",
+    "split_status": "draft_families_selected_not_frozen",
+    "excluded_issue_count": 90,
+    "direct_answer_documents": [
+      "content/develop/concepts/app-design/custom-classes.md",
+      "https://docs.streamlit.io/develop/concepts/design/custom-classes",
+      "https://docs.streamlit.io/library/advanced-features/custom-classes"
+    ],
+    "indexed_issue_count": 0,
+    "indexed_comment_count": 0,
+    "denied_documents_indexed": [],
+    "test_content_read": false
+  },
+  "deterministic_rebuild": true,
+  "historical_profiles_unchanged": {
+    "pilot_14_sources": true,
+    "dev_coverage_18_sources": true
+  },
+  "timing_seconds": {
+    "build_including_corpus": 7.43,
+    "open_and_verify": 1.89
+  },
+  "adapter_smoke": [
+    {
+      "query": "st.button icon parameter",
+      "seconds": 0.49,
+      "hits": 25,
+      "source_types": {
+        "doc": 25
+      },
+      "versioned_hits": 17,
+      "top_sources": [
+        "docs:content/develop/api-reference/widgets/button.md",
+        "docs:content/develop/api-reference/widgets/radio.md",
+        "docstring:1.53.0:streamlit.page_link",
+        "docstring:1.54.0:streamlit.page_link",
+        "docstring:1.55.0:streamlit.page_link"
+      ]
+    },
+    {
+      "query": "session state widget key callback",
+      "seconds": 0.466,
+      "hits": 25,
+      "source_types": {
+        "doc": 25
+      },
+      "versioned_hits": 17,
+      "top_sources": [
+        "docs:content/develop/api-reference/caching-and-state/session_state.md",
+        "docs:content/develop/concepts/architecture/widget-behavior.md",
+        "docs:content/develop/concepts/architecture/session-state.md",
+        "docs:content/develop/concepts/multipage-apps/widgets.md",
+        "docstring:1.25.0:streamlit.form"
+      ]
+    }
+  ],
+  "provider_calls": 0,
+  "quality_claim": false,
+  "limitations": [
+    "Lexical-hash embedding; no semantic retrieval quality claim.",
+    "Built before the evaluation freeze; rebuild after freeze with a refreshed exclusion.",
+    "Ranking and packing of key-identity evidence are unchanged and tracked separately."
+  ]
+}
