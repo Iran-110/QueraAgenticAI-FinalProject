@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "rubric_id": "e2-rubric-v1",
+  "status": "frozen",
+  "frozen_on": "2026-10-17",
+  "documents": [
+    {
+      "role": "base_draft",
+      "path": "docs/evaluation-rubric.md",
+      "sha256": "b68526f6d6aadac50b5eaa670948e4acfdcae801fe271e91ccf111fa2c03f5c8"
+    },
+    {
+      "role": "v1_changes",
+      "path": "docs/evaluation-rubric-v1.md",
+      "sha256": "6144d275c64582408055c4636b2b1158f008fa5744679e890c519a8cd0a7d918"
+    }
+  ],
+  "judge": null,
+  "judge_note": "Human review only; no LLM judge is used, so there are no judge model/prompt settings to calibrate or freeze.",
+  "dev_calibration": [
+    "experiments/dev_rag_coverage_v1/human-output-card-review-v1.json",
+    "experiments/core_claim_boundary_v1/assistant-informed-output-review-v1.json"
+  ],
+  "calibration_note": "Dev human reviews only; the C4j review is assistant-informed. The rubric text is frozen byte-for-byte as reviewed on dev; later changes need a new rubric version."
+}

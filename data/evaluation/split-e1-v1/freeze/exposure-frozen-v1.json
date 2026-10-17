@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "exposure_id": "split-e1-v1-exposure-frozen-v1",
+  "status": "reviewed_complete",
+  "scope": "Issues whose content was inspected during core/RAG development or controlled dev experiments. None may be in a test family; all are excluded from the index.",
+  "sources": [
+    {
+      "path": "streamlit-data-for-dev-test/development_exposure.json",
+      "sha256": "c3c838788952a002c3a65c20528f94cce2e1c363d4cb99101086c0a436dfb028"
+    },
+    {
+      "path": "data/evaluation/dev-three-v1/split-manifest.json",
+      "sha256": "f857fc559673c7ae2f508617fda3f81e3591157740e327109b00ae9a86f449ce",
+      "field": "development_exposure_issue_ids"
+    },
+    {
+      "path": "data/evaluation/supplemental-core-dev-v1/exposure-v1.json",
+      "sha256": "1923e3c695e720786e9b5c50a4d90cdb7bf13a8f96f8e7f60100fd38ad5db326",
+      "field": "newly_inspected_report_issue_ids"
+    }
+  ],
+  "issue_numbers": [
+    2379,
+    4713,
+    5618,
+    6415,
+    7206,
+    8061,
+    8129,
+    8180,
+    8901,
+    9031,
+    9455,
+    9487,
+    9770,
+    11012,
+    12629,
+    12782,
+    16914,
+    17030,
+    17119
+  ],
+  "families": [
+    {
+      "family_id": "fam-2379",
+      "issue_ids": [
+        2379,
+        8129,
+        8180
+      ],
+      "review_status": "complete"
+    },
+    {
+      "family_id": "exposed-4713",
+      "issue_ids": [
+        4713
+      ],
+      "review_status": "complete"
+    },
+    {
+      "family_id": "exposed-5618",
+      "issue_ids": [
+        5618
+      ],
+      "review_status": "complete"
+    },
+    {
+      "family_id": "exposed-6415",
+      "issue_ids": [
+        6415
+      ],
+      "review_status": "complete"
+    },
+    {
+      "family_id": "exposed-7206",
+      "issue_ids": [
+        7206
+      ],
+      "review_status": "complete"
+    },
+    {
+      "family_id": "exposed-8061",
+      "issue_ids": [
+        8061
+      ],
+      "review_status": "complete"
+    },
+    {
+      "family_id": "exposed-8901",
+      "issue_ids": [
+        8901
+      ],
+      "review_status": "complete"
+    },
+    {
+      "family_id": "exposed-9031",
+      "issue_ids": [
+        9031
+      ],
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-9455",
+      "issue_ids": [
+        9455
+      ],
+      "review_status": "complete"
+    },
+    {
+      "family_id": "exposed-9487",
+      "issue_ids": [
+        9487
+      ],
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-9770",
+      "issue_ids": [
+        9770
+      ],
+      "review_status": "complete"
+    },
+    {
+      "family_id": "exposed-11012",
+      "issue_ids": [
+        11012
+      ],
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-12782",
+      "issue_ids": [
+        12629,
+        12782
+      ],
+      "review_status": "complete"
+    },
+    {
+      "family_id": "exposed-16914",
+      "issue_ids": [
+        16914
+      ],
+      "review_status": "complete"
+    },
+    {
+      "family_id": "exposed-17030",
+      "issue_ids": [
+        17030
+      ],
+      "review_status": "complete"
+    },
+    {
+      "family_id": "fam-9082",
+      "issue_ids": [
+        17119
+      ],
+      "review_status": "complete"
+    }
+  ],
+  "separate_gold_exposure": {
+    "note": "The limited PR83 exposure concerned held-out gold text, not Issue content inspected during development; its eligibility decision is a separate held-out record bound here by hash only.",
+    "decision": {
+      "path": "data/evaluation/split-e1-v1/native/native-test-exposure-decision-v1.json",
+      "sha256": "3d8fc058ae4e1501b3d7f8032efa42f0ead33836a0ef5f08dc3b69bc4c82c7cb"
+    }
+  },
+  "review": {
+    "type": "human",
+    "reviewer": "mhg",
+    "reviewed_on": "2026-10-17",
+    "rubric_sha256": "fcf310cd9aa8ab45b58e1479292a45fc4cb1cea882376d5906ebd04515d4ea8b",
+    "item": "exposure",
+    "independence": "assistant_informed"
+  }
+}
