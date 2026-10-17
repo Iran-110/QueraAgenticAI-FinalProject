@@ -1,6 +1,8 @@
 """Build real Chroma storage with local lexical vectors and verified read access."""
 
 import math
+from collections.abc import Iterator
+from contextlib import contextmanager
 from copy import deepcopy
 from pathlib import Path
 from threading import RLock
@@ -15,6 +17,8 @@ from agent_app.retrieval.pilot_corpus import (
     embedding_sha256,
     lexical_embedding,
 )
+
+_ADD_BATCH = 500
 
 
 class OfflineIndexRejected(RuntimeError):
@@ -58,7 +62,15 @@ class VerifiedChromaClient:
         self._raw_manifest = raw_manifest
         self._lock = RLock()
         self._expected = {chunk["chunk_id"]: chunk for chunk in corpus.manifest["corpus"]["chunks"]}
+        # Expected vectors are a pure function of the frozen documents. Computing
+        # them once keeps every later verification exactly as strict, but makes
+        # it independent of corpus size times the number of reads per search.
+        self._vectors = {
+            chunk_id: lexical_embedding(chunk["document"])
+            for chunk_id, chunk in self._expected.items()
+        }
         self.snapshot_id = corpus.snapshot_id
+        self._session_depth = 0
         self.verify()
 
     @property
@@ -67,7 +79,34 @@ class VerifiedChromaClient:
             self.verify()
             return self._corpus.manifest
 
+    @contextmanager
+    def read_session(self) -> Iterator["VerifiedChromaClient"]:
+        """Verify full storage once before and once after a group of reads.
+
+        Inside the session, per-access full verification is skipped; every
+        returned row is still checked against the frozen corpus. The lock is held
+        for the whole session, so no other thread's read interleaves. A failure
+        inside the session propagates without the closing check; the next read
+        verifies again. Nested sessions verify only at the outermost level.
+        """
+        with self._lock:
+            if self._session_depth == 0:
+                self._full_verify()
+            self._session_depth += 1
+            try:
+                yield self
+            finally:
+                self._session_depth -= 1
+            if self._session_depth == 0:
+                self._full_verify()
+
     def verify(self) -> None:
+        with self._lock:
+            if self._session_depth:
+                return
+            self._full_verify()
+
+    def _full_verify(self) -> None:
         with self._lock:
             try:
                 if (self._path / MANIFEST_NAME).read_bytes() != self._raw_manifest:
@@ -103,7 +142,7 @@ class VerifiedChromaClient:
                         vector = [float(value) for value in rows["embeddings"][index]]
                         if len(vector) != EMBEDDING_DIMENSIONS:
                             raise ValueError
-                        if vector != lexical_embedding(chunk["document"]):
+                        if vector != self._vectors[chunk_id]:
                             raise ValueError
                         if embedding_sha256(vector) != chunk["embedding_sha256"]:
                             raise ValueError
@@ -224,12 +263,16 @@ def build_index(corpus: PilotCorpus, destination: str | Path) -> str:
             name="streamlit_issues", metadata=metadata, embedding_function=None
         )
         chunks = corpus.manifest["corpus"]["chunks"]
-        docs.add(
-            ids=[chunk["chunk_id"] for chunk in chunks],
-            documents=[chunk["document"] for chunk in chunks],
-            metadatas=[chunk["metadata"] for chunk in chunks],
-            embeddings=[lexical_embedding(chunk["document"]) for chunk in chunks],
-        )
+        # Bounded batches stay below Chroma's per-call limit for larger profiles;
+        # historical profiles fit in one batch, so their writes are unchanged.
+        for start in range(0, len(chunks), _ADD_BATCH):
+            batch = chunks[start : start + _ADD_BATCH]
+            docs.add(
+                ids=[chunk["chunk_id"] for chunk in batch],
+                documents=[chunk["document"] for chunk in batch],
+                metadatas=[chunk["metadata"] for chunk in batch],
+                embeddings=[lexical_embedding(chunk["document"]) for chunk in batch],
+            )
         raw = (canonical_json(corpus.manifest) + "\n").encode("utf-8")
         with (path / MANIFEST_NAME).open("xb") as output:
             output.write(raw)

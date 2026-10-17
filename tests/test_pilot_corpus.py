@@ -30,7 +30,7 @@ def _write_json(path, value):
 def _repackage(seed, relative, data):
     path = seed / relative
     path.write_bytes(data)
-    manifest = json.loads((seed / "manifest.json").read_text())
+    manifest = json.loads((seed / "manifest.json").read_text(encoding="utf-8"))
     item = next(item for item in manifest["files"] if item["path"] == relative)
     item.update(bytes=len(data), sha256=sha256(data))
     _write_json(seed / "manifest.json", manifest)
@@ -45,7 +45,7 @@ def edited_seed(tmp_path):
 
 def _edit_selected(seed, origin, edit):
     relative = f"sources/{origin}_scope_candidates.jsonl"
-    rows = [json.loads(line) for line in (seed / relative).read_text().splitlines()]
+    rows = [json.loads(line) for line in (seed / relative).read_text(encoding="utf-8").splitlines()]
     wanted = (
         "docs:content/develop/concepts/architecture/session-state.md"
         if origin == "docs"
@@ -74,7 +74,7 @@ def test_registered_scope_hash_pins_and_exact_lossless_source_spans():
     originals = {
         row["source_id"]: row["text"]
         for name in ("docs_scope_candidates.jsonl", "docstrings_scope_candidates.jsonl")
-        for line in (SEED / "sources" / name).read_text().splitlines()
+        for line in (SEED / "sources" / name).read_text(encoding="utf-8").splitlines()
         if (row := json.loads(line))
     }
     for source in manifest["sources"]:
@@ -129,7 +129,7 @@ def test_manifest_detached_deterministic_and_includes_draft_pins(tmp_path):
     altered = first.manifest
     altered["corpus"]["chunks"][0]["document"] = "tampered"
     assert altered != first.manifest
-    split = json.loads(SPLIT.read_text())
+    split = json.loads(SPLIT.read_text(encoding="utf-8"))
     split["updated_on"] = "2026-10-12"
     changed = tmp_path / "split.json"
     _write_json(changed, split)
@@ -188,7 +188,7 @@ def test_selected_oversized_unicode_document_remains_lossless(edited_seed):
 
 @pytest.mark.parametrize("mutation", ["exclusions", "embedding", "missing_version"])
 def test_scope_cannot_silently_expand_or_drop_exclusion_policy(tmp_path, mutation):
-    allowlist = json.loads(ALLOWLIST.read_text())
+    allowlist = json.loads(ALLOWLIST.read_text(encoding="utf-8"))
     if mutation == "exclusions":
         allowlist["excluded_source_types"] = []
     elif mutation == "embedding":
@@ -207,7 +207,7 @@ def test_registered_allowlist_rejects_an_internally_valid_release_notes_substitu
     original = "docs:content/develop/concepts/architecture/session-state.md"
     replacement_file = "content/develop/quick-reference/release-notes.md"
     replacement = "docs:" + replacement_file
-    allowlist = json.loads(ALLOWLIST.read_text())
+    allowlist = json.loads(ALLOWLIST.read_text(encoding="utf-8"))
     allowlist["markdown_source_ids"] = [
         replacement if source_id == original else source_id
         for source_id in allowlist["markdown_source_ids"]
@@ -231,7 +231,7 @@ def test_registered_allowlist_rejects_an_internally_valid_release_notes_substitu
 
 @pytest.mark.parametrize("mutation", ["existing_version", "existing_function", "commit"])
 def test_registered_scope_is_not_replaced_by_another_valid_source_matrix(tmp_path, mutation):
-    allowlist = json.loads(ALLOWLIST.read_text())
+    allowlist = json.loads(ALLOWLIST.read_text(encoding="utf-8"))
     if mutation == "existing_version":
         allowlist["api_versions"][0] = "1.48.0"
     elif mutation == "existing_function":
@@ -271,7 +271,7 @@ def test_rehashed_manifest_with_consistent_replacement_identity_is_still_not_reg
 
 
 def test_missing_exposure_reservation_fails_closed(tmp_path):
-    split = json.loads(SPLIT.read_text())
+    split = json.loads(SPLIT.read_text(encoding="utf-8"))
     split["exposure_reserved_issue_ids"] = []
     path = tmp_path / "split.json"
     _write_json(path, split)
@@ -280,7 +280,7 @@ def test_missing_exposure_reservation_fails_closed(tmp_path):
 
 
 def test_package_traversal_fails_with_fixed_diagnostic(edited_seed):
-    manifest = json.loads((edited_seed / "manifest.json").read_text())
+    manifest = json.loads((edited_seed / "manifest.json").read_text(encoding="utf-8"))
     manifest["files"][0]["path"] = "../private-secret"
     _write_json(edited_seed / "manifest.json", manifest)
     with pytest.raises(PilotCorpusRejected, match="^PilotCorpusRejected$"):
@@ -288,7 +288,7 @@ def test_package_traversal_fails_with_fixed_diagnostic(edited_seed):
 
 
 def test_manifest_cannot_omit_excluded_packaged_hashes(edited_seed):
-    manifest = json.loads((edited_seed / "manifest.json").read_text())
+    manifest = json.loads((edited_seed / "manifest.json").read_text(encoding="utf-8"))
     manifest["files"] = [
         entry for entry in manifest["files"] if not entry["path"].endswith("comment_records.jsonl")
     ]
@@ -320,7 +320,10 @@ def test_even_rehashed_frozen_manifest_must_preserve_structural_provenance(mutat
 
 def test_duplicate_selected_record_is_not_silently_deduplicated(edited_seed):
     relative = "sources/docstrings_scope_candidates.jsonl"
-    rows = [json.loads(line) for line in (edited_seed / relative).read_text().splitlines()]
+    rows = [
+        json.loads(line)
+        for line in (edited_seed / relative).read_text(encoding="utf-8").splitlines()
+    ]
     selected = next(row for row in rows if row["source_id"] == "docstring:1.49.0:streamlit.button")
     rows.append(selected)
     _repackage(

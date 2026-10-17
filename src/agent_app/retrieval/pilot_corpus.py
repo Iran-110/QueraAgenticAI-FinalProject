@@ -102,6 +102,17 @@ DEV_COVERAGE_REQUIRED_ISSUE_IDS = frozenset(
         17215,
     }
 )
+# Final profile: every seed scope page (product docs and release notes) and every
+# versioned API record, pinned by count and a hash of the sorted identity list.
+# Issues, comments, outcomes and answer-linked documents never enter it.
+FINAL_PROTOCOL = "docs-api-release-final-v1"
+RELEASE_NOTES_PREFIX = "content/develop/quick-references/release-notes/"
+ALWAYS_DENIED_DOCUMENT_PATHS = frozenset({"content/develop/concepts/app-design/custom-classes.md"})
+FINAL_SOURCE_COUNT = 1228
+FINAL_SOURCE_SET_SHA256 = "a3866f33a4944bd3ef6faf23e6bb867adda471977fa04291355b80fae2968b16"
+_FINAL_EXCLUDED = {"issue", "comment", "evaluation", "fixture"}
+_API_FUNCTION = re.compile(r"[A-Za-z_][A-Za-z0-9_.]*\Z")
+_VERSION = re.compile(r"[0-9]+\.[0-9]+\.[0-9]+\Z")
 CHUNK_CHARACTERS = 4_000
 EMBEDDING_DIMENSIONS = 256
 COLLECTION_NAMES = ("streamlit_docs", "streamlit_issues")
@@ -176,7 +187,9 @@ class PilotCorpus:
             snapshot = "docs-pilot-" + sha256(encoded.encode("utf-8"))
             if manifest["snapshot_id"] != snapshot:
                 raise ValueError
-            _profile_source_ids(payload["protocol"])
+            final = payload["protocol"] == FINAL_PROTOCOL
+            if not final:
+                _profile_source_ids(payload["protocol"])
             if payload["schema_version"] != 1:
                 raise ValueError
             if payload["config"] != {
@@ -201,14 +214,21 @@ class PilotCorpus:
                     raise ValueError
                 if embedding_sha256(lexical_embedding(document)) != chunk["embedding_sha256"]:
                     raise ValueError
-                if metadata["source_type"] != "doc" or metadata["chunk_id"] != chunk["chunk_id"]:
+                allowed_types = {"doc", "release_note"} if final else {"doc"}
+                if (
+                    metadata["source_type"] not in allowed_types
+                    or metadata["chunk_id"] != chunk["chunk_id"]
+                ):
                     raise ValueError
                 if chunk["span"]["end"] - chunk["span"]["start"] != len(document):
                     raise ValueError
                 if chunk["span"]["unit"] != "unicode_codepoint":
                     raise ValueError
                 _validate_hit(document, metadata)
-            _validate_sources(payload)
+            if final:
+                _validate_final_sources(payload)
+            else:
+                _validate_sources(payload)
         except (KeyError, TypeError, ValueError):
             raise PilotCorpusRejected("PilotManifestRejected") from None
         return cls(snapshot, encoded)
@@ -625,3 +645,386 @@ def build_pilot_corpus(
         )
     except (OSError, UnicodeError, KeyError, TypeError, ValueError):
         raise PilotCorpusRejected("PilotCorpusRejected") from None
+
+
+# --- Final profile: docs + release notes + versioned API records -----------------
+
+
+def _final_source_type(origin: str, pointer: str) -> str:
+    if origin == "docs_markdown" and pointer.startswith(RELEASE_NOTES_PREFIX):
+        return "release_note"
+    return "doc"
+
+
+def _final_source_set_sha256(source_ids) -> str:
+    return sha256(canonical_json(sorted(source_ids)).encode("utf-8"))
+
+
+def _normalized_url(value: str) -> str:
+    return value.strip().rstrip("/").casefold()
+
+
+def _final_allowlist(value: dict[str, Any]) -> tuple[set[str], set[str]]:
+    """Return (markdown ids, api ids) after checking the closed final selection."""
+    if (
+        value["protocol"] != FINAL_PROTOCOL
+        or value["docs_commit"] != DOCS_COMMIT
+        or value["chunk_characters"] != CHUNK_CHARACTERS
+        or value["embedding"]
+        != {"kind": "lexical_hash_v1", "dimensions": EMBEDDING_DIMENSIONS, "quality_claim": False}
+        or value["collection_names"] != list(COLLECTION_NAMES)
+        or len(value["excluded_source_types"]) != len(_FINAL_EXCLUDED)
+        or set(value["excluded_source_types"]) != _FINAL_EXCLUDED
+        or not isinstance(value["scope"], str)
+        or not value["scope"].strip()
+        or not isinstance(value["selection_policy"], str)
+        or not value["selection_policy"].strip()
+    ):
+        raise ValueError
+    markdown, release, api = (
+        value["markdown_source_ids"],
+        value["release_note_source_ids"],
+        value["api_source_ids"],
+    )
+    for values in (markdown, release, api):
+        if not isinstance(values, list) or len(set(values)) != len(values):
+            raise ValueError
+    denied = set(value["denied_document_paths"])
+    if not ALWAYS_DENIED_DOCUMENT_PATHS <= denied:
+        raise ValueError
+    for source_id in markdown:
+        if not source_id.startswith("docs:content/") or source_id[5:] in denied:
+            raise ValueError
+    expected_release = {s for s in markdown if s[5:].startswith(RELEASE_NOTES_PREFIX)}
+    if set(release) != expected_release or not release:
+        raise ValueError
+    for source_id in api:
+        parts = source_id.split(":")
+        if (
+            len(parts) != 3
+            or parts[0] != "docstring"
+            or not _VERSION.fullmatch(parts[1])
+            or not _API_FUNCTION.fullmatch(parts[2])
+        ):
+            raise ValueError
+    every = set(markdown) | set(api)
+    if (
+        len(every) != FINAL_SOURCE_COUNT
+        or _final_source_set_sha256(every) != FINAL_SOURCE_SET_SHA256
+    ):
+        raise ValueError
+    return set(markdown), set(api)
+
+
+def _final_exclusions(
+    exclusion: dict[str, Any], exposure: dict[str, Any], denied: set[str]
+) -> dict[str, Any]:
+    if exclusion["schema_version"] != 1 or exclusion["exclusion_id"] != "final-index-exclusion":
+        raise ValueError
+    ids = exclusion["issue_ids"]
+    if (
+        not ids
+        or any(type(number) is not int or number <= 0 for number in ids)
+        or ids != sorted(set(ids))
+    ):
+        raise ValueError
+    # Every development-exposed and historically reserved Issue stays excluded.
+    if not set(exposure["issue_numbers"]) <= set(ids):
+        raise ValueError
+    if not DEV_COVERAGE_REQUIRED_ISSUE_IDS <= set(ids):
+        raise ValueError
+    documents = exclusion["direct_answer_documents"]
+    if not isinstance(documents, list) or not ALWAYS_DENIED_DOCUMENT_PATHS <= set(documents):
+        raise ValueError
+    if not {d for d in documents if not d.startswith("http")} <= denied:
+        raise ValueError
+    for key in ("source_manifest", "source_manifest_id", "source_manifest_status"):
+        if not isinstance(exclusion[key], str) or not exclusion[key].strip():
+            raise ValueError
+    if not _SHA.fullmatch(exclusion["source_manifest_sha256"]):
+        raise ValueError
+    return {
+        "policy": (
+            "docs, release notes and versioned API records only; every listed Issue, "
+            "its comments and outcomes, and direct-answer documents excluded"
+        ),
+        "split_manifest_id": exclusion["source_manifest_id"],
+        "split_status": exclusion["source_manifest_status"],
+        "split_manifest_sha256": exclusion["source_manifest_sha256"],
+        "reserved_issue_ids": list(ids),
+        "direct_answer_documents": list(documents),
+        "indexed_issue_count": 0,
+        "indexed_comment_count": 0,
+    }
+
+
+def _validate_final_sources(payload: dict[str, Any]) -> None:
+    sources = payload["sources"]
+    pins = payload["source_pins"]
+    exclusions = payload["exclusions"]
+    ids = [source["source_id"] for source in sources]
+    if (
+        len(set(ids)) != len(ids)
+        or len(ids) != FINAL_SOURCE_COUNT
+        or _final_source_set_sha256(ids) != FINAL_SOURCE_SET_SHA256
+        or ids != sorted(ids)
+    ):
+        raise ValueError
+    if pins["docs_commit"] != DOCS_COMMIT:
+        raise ValueError
+    for key in (
+        "package_manifest_sha256",
+        "allowlist_sha256",
+        "exclusion_manifest_sha256",
+        "split_manifest_sha256",
+        "development_exposure_sha256",
+    ):
+        if not _SHA.fullmatch(pins[key]):
+            raise ValueError
+    packaged = pins["packaged_files"]
+    if len(packaged) != len(_PACKAGE_PATHS) or {pin["path"] for pin in packaged} != _PACKAGE_PATHS:
+        raise ValueError
+    for pin in packaged:
+        if type(pin["bytes"]) is not int or pin["bytes"] < 0 or not _SHA.fullmatch(pin["sha256"]):
+            raise ValueError
+    denied = {
+        _normalized_url(document) if document.startswith("http") else document
+        for document in exclusions["direct_answer_documents"]
+    }
+    if not ALWAYS_DENIED_DOCUMENT_PATHS <= denied:
+        raise ValueError
+    if (
+        exclusions["indexed_issue_count"] != 0
+        or exclusions["indexed_comment_count"] != 0
+        or exclusions["split_manifest_sha256"] != pins["split_manifest_sha256"]
+        or not DEV_COVERAGE_REQUIRED_ISSUE_IDS <= set(exclusions["reserved_issue_ids"])
+    ):
+        raise ValueError
+    chunks_by_source: dict[str, list[dict[str, Any]]] = {source_id: [] for source_id in ids}
+    for chunk in payload["chunks"]:
+        chunks_by_source[chunk["metadata"]["source_id"]].append(chunk)
+    for source in sources:
+        if source["source_commit"] != pins["docs_commit"]:
+            raise ValueError
+        pointer = source["source_pointer"]
+        versions = source["applicable_versions"]
+        if source["origin_kind"] == "docs_markdown":
+            if versions or source["source_id"] != "docs:" + pointer:
+                raise ValueError
+            if pointer in denied or _normalized_url(source["canonical_source_url"]) in denied:
+                raise ValueError
+            file = pointer
+        elif source["origin_kind"] == "docs_generated":
+            if len(versions) != 1:
+                raise ValueError
+            version = versions[0]
+            prefix = "python/streamlit.json/" + version + "/"
+            function = pointer.removeprefix(prefix)
+            if (
+                not pointer.startswith(prefix)
+                or not _API_FUNCTION.fullmatch(function)
+                or source["source_id"] != f"docstring:{version}:{function}"
+            ):
+                raise ValueError
+            file = "python/streamlit.json"
+        else:
+            raise ValueError
+        if source["source_type"] != _final_source_type(source["origin_kind"], pointer):
+            raise ValueError
+        if (
+            source["source_url"]
+            != f"https://github.com/streamlit/docs/blob/{pins['docs_commit']}/{file}"
+        ):
+            raise ValueError
+        position = 0
+        text = []
+        for chunk in chunks_by_source[source["source_id"]]:
+            span = chunk["span"]
+            if type(span["start"]) is not int or type(span["end"]) is not int:
+                raise ValueError
+            if span["start"] != position or span["end"] <= position:
+                raise ValueError
+            metadata = chunk["metadata"]
+            for key in (
+                "source_type",
+                "origin_kind",
+                "source_commit",
+                "source_url",
+                "canonical_source_url",
+                "source_pointer",
+            ):
+                if metadata[key] != source[key]:
+                    raise ValueError
+            if metadata["source_text_sha256"] != source["text_sha256"]:
+                raise ValueError
+            if metadata["chunk_text_sha256"] != chunk["text_sha256"]:
+                raise ValueError
+            if metadata["source_span"] != f"chars:{position}:{span['end']};unit:unicode_codepoint":
+                raise ValueError
+            if metadata["applicable_versions"] != canonical_json(versions):
+                raise ValueError
+            if versions and metadata.get("version") != versions[0]:
+                raise ValueError
+            if not versions and "version" in metadata:
+                raise ValueError
+            identity = {key: value for key, value in source.items() if key != "source_type"}
+            if chunk["chunk_id"] != _chunk_id(
+                identity, position, span["end"], chunk["text_sha256"]
+            ):
+                raise ValueError
+            position = span["end"]
+            text.append(chunk["document"])
+        if (
+            position != source["characters"]
+            or sha256("".join(text).encode("utf-8")) != source["text_sha256"]
+        ):
+            raise ValueError
+
+
+def build_final_corpus(
+    seed_root: str | Path, allowlist_path: str | Path, exclusion_path: str | Path
+) -> PilotCorpus:
+    """Build the closed final profile; historical profiles keep their own builder."""
+    try:
+        seed = Path(seed_root)
+        allowlist, allowlist_raw = _read_json(Path(allowlist_path))
+        markdown_ids, api_ids = _final_allowlist(allowlist)
+        package, files, pins = _package(seed)
+        if package["docs_commit"] != allowlist["docs_commit"]:
+            raise ValueError
+        docs_manifest = json.loads(files["sources/docs_manifest.json"])
+        if docs_manifest["commit"] != allowlist["docs_commit"]:
+            raise ValueError
+        exclusion, exclusion_raw = _read_json(Path(exclusion_path))
+        exposure = json.loads(files["development_exposure.json"])
+        if exposure["exclude_from_rag_corpus_with_reviewed_family"] is not True:
+            raise ValueError
+        exclusions = _final_exclusions(exclusion, exposure, set(allowlist["denied_document_paths"]))
+        pins.update(
+            {
+                "allowlist_sha256": sha256(allowlist_raw),
+                "exclusion_manifest_sha256": sha256(exclusion_raw),
+                "split_manifest_sha256": exclusion["source_manifest_sha256"],
+                "development_exposure_sha256": sha256(files["development_exposure.json"]),
+                "docs_commit": allowlist["docs_commit"],
+            }
+        )
+        sources = _selected(
+            files["sources/docs_scope_candidates.jsonl"],
+            markdown_ids,
+            origin="docs_markdown",
+            commit=allowlist["docs_commit"],
+        ) + _selected_api(
+            files["sources/docstrings_scope_candidates.jsonl"],
+            api_ids,
+            commit=allowlist["docs_commit"],
+        )
+        sources.sort(key=lambda source: source["source_id"])
+        chunks = []
+        for source in sources:
+            identity = {key: value for key, value in source.items() if key != "text"}
+            source_type = _final_source_type(source["origin_kind"], source["source_pointer"])
+            text = source["text"]
+            for start in range(0, len(text), CHUNK_CHARACTERS):
+                end = min(len(text), start + CHUNK_CHARACTERS)
+                document = text[start:end]
+                chunk_sha = sha256(document.encode("utf-8"))
+                chunk_id = _chunk_id(identity, start, end, chunk_sha)
+                metadata = {
+                    "chunk_id": chunk_id,
+                    "source_id": source["source_id"],
+                    "source_type": source_type,
+                    "origin_kind": source["origin_kind"],
+                    "source_commit": source["source_commit"],
+                    "source_url": source["source_url"],
+                    "canonical_source_url": source["canonical_source_url"],
+                    "source_pointer": source["source_pointer"],
+                    "source_span": f"chars:{start}:{end};unit:unicode_codepoint",
+                    "source_text_sha256": source["text_sha256"],
+                    "chunk_text_sha256": chunk_sha,
+                    "applicable_versions": canonical_json(source["applicable_versions"]),
+                }
+                if source["applicable_versions"]:
+                    metadata["version"] = source["applicable_versions"][0]
+                _validate_hit(document, metadata)
+                chunks.append(
+                    {
+                        "chunk_id": chunk_id,
+                        "document": document,
+                        "metadata": metadata,
+                        "span": {"start": start, "end": end, "unit": "unicode_codepoint"},
+                        "text_sha256": chunk_sha,
+                        "embedding_sha256": embedding_sha256(lexical_embedding(document)),
+                    }
+                )
+        payload = {
+            "schema_version": 1,
+            "protocol": FINAL_PROTOCOL,
+            "scope": allowlist["scope"],
+            "config": {
+                key: allowlist[key] for key in ("chunk_characters", "embedding", "collection_names")
+            },
+            "source_pins": pins,
+            "exclusions": exclusions,
+            "sources": [
+                {
+                    **{key: value for key, value in source.items() if key != "text"},
+                    "source_type": _final_source_type(
+                        source["origin_kind"], source["source_pointer"]
+                    ),
+                }
+                for source in sources
+            ],
+            "chunks": chunks,
+        }
+        encoded = canonical_json(payload)
+        return PilotCorpus.from_manifest(
+            {"snapshot_id": "docs-pilot-" + sha256(encoded.encode("utf-8")), "corpus": payload}
+        )
+    except (OSError, UnicodeError, KeyError, TypeError, ValueError):
+        raise PilotCorpusRejected("PilotCorpusRejected") from None
+
+
+def _selected_api(raw: bytes, wanted: set[str], *, commit: str) -> list[dict[str, Any]]:
+    """Like `_selected` for API records, also accepting non-`streamlit.` names."""
+    result = []
+    seen = set()
+    for line in raw.decode("utf-8").splitlines():
+        record = json.loads(line)
+        source_id = record["source_id"]
+        if source_id not in wanted:
+            continue
+        text = record["text"]
+        text_hash = sha256(text.encode("utf-8"))
+        version, function = record["version"], record["function"]
+        if (
+            source_id in seen
+            or record["type"] != "docs_generated"
+            or record["docs_commit"] != commit
+            or not text.strip()
+            or source_id != f"docstring:{version}:{function}"
+            or record["json_pointer"] != f"/{version}/{function}"
+            or record["text_sha256"] != text_hash
+        ):
+            raise ValueError
+        pinned_url = f"https://github.com/streamlit/docs/blob/{commit}/python/streamlit.json"
+        if record["pinned_source_url"] != pinned_url:
+            raise ValueError
+        result.append(
+            {
+                "source_id": source_id,
+                "origin_kind": "docs_generated",
+                "source_commit": commit,
+                "source_url": pinned_url,
+                "canonical_source_url": record["source_url"],
+                "source_pointer": "python/streamlit.json" + record["json_pointer"],
+                "applicable_versions": [version],
+                "text_sha256": text_hash,
+                "characters": len(text),
+                "text": text,
+            }
+        )
+        seen.add(source_id)
+    if seen != wanted:
+        raise ValueError
+    return result

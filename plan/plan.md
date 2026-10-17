@@ -1230,6 +1230,19 @@ fixture پایهٔ این تحویل، [case چهار‌نوبتی C3](../experi
 
 - [ ] **R1 — بازبینی seed و provenance.** seed و manifest در `streamlit-data-for-dev-test/` روی main موجودند؛ تعدادها، روش انتخاب، URL/تاریخ، commit و نسخهٔ اسناد را تا corpus/index بازبینی و ثبت کند. دامنهٔ اولیه Session State، widgets، callback/rerun است؛ همهٔ Streamlit را نمایندگی نمی‌کند. body فعلی Issue ممکن است بعداً ویرایش شده باشد.
 - [ ] **R2 — کنارگذاری خانواده‌های ارزیابی، قبل از index نهایی.** فهرست dev/test از E1 را بگیرد؛ خود Issue، commentها، outcomeها، duplicateها و docs حاوی جواب مستقیم همان case را بررسی کند. خروجی: corpus allowlist، exclusion manifest و گزارش بررسی linkage/duplicate؛ candidate مرتبط به معنی duplicate قطعی نیست.
+  **به‌روزرسانی حسن ۱۷ اکتبر — build نهایی (E2ad):** protocol سوم `docs-api-release-final-v1`
+  کنار دو پروفایل قبلی؛ snapshotهای ۱۴ و ۱۸ منبعی از ورودی فعلی بدون تغییر. منابع بسته: ۴۷ صفحهٔ
+  docs، ۹ release note (نوع `release_note`، بدون نسخهٔ استنتاجی) و ۱۱۷۲ رکورد API با نسخهٔ دقیق
+  (۴۳ نسخه)؛ ۱۲۲۸ منبع و ۱۸۲۷ chunk. راهنمای custom-classes در کد و allowlist رد می‌شود.
+  [exclusion](../experiments/final_corpus_v1/exclusion-v1.json) از `index_exclusion` همان۹۰ Issue
+  split-e1-v1؛ صفر Issue/comment index شده؛ فقط metadata manifest خوانده شد، نه test.
+  [دستور build، allowlist و رفع blocker اتصال](../experiments/final_corpus_v1/README.md): هر search
+  ۲۲ بار کل storage را verify می‌کرد (۴٫۲/۵٫۱ ثانیه روی Chroma واقعی). برای صرفه‌جویی در وقت و
+  نزدیک بودن deadline، تصمیم با خود حسن بود: یک verify کامل قبل و یک بعد از هر search با
+  `read_session`؛ ردیف‌های برگشتی همچنان تک‌تک چک می‌شوند و تغییر storage در پایان search رد
+  می‌شود. نتیجه روی Windows: ۰٫۴۹/۰٫۴۷ ثانیه در هر search، همان snapshot و pinها؛ ۱۵۰ تست مرتبط
+  شامل همهٔ تست‌های mutation در Chroma واقعی پاس. ranking/packing جدا. بعد از freeze، exclusion
+  تازه و rebuild.
 - [x] **R3 — adapter بازیابی؛ کد پایه حسن، اصلاح اتصال ساسان.** `search(RetrievalRequest)` با snapshot تنظیم‌شده، سقف کلی top_k و metadata صریح/unknown پیاده است؛ mapper واقعی همراه constructor/backend واقعی با collection ثابت، [۱۴ case و ۱۳۲ check](../docs/rag-adapter-acceptance.fa.md) را پاس کرد. پس از refinement آخرین bundle در handoff است؛ alias یا اصلاح خروجی در binding نداریم. با #27 و #23 منتشر شد و [receipt تمیز main `ec1a1f0`](../experiments/retrieval_acceptance/results-main-ec1a1f0.json) پاس است. این تیک فقط port آفلاین را می‌بندد؛ index/corpus/کیفیت RAG در R1/R2/R4/P4 بازند.
 - [ ] **R4 — آزمون بازیابی روی dev.** سند کامل/ناقص، نسخهٔ نامعلوم/متفاوت، conflict و خطای retrieval را بررسی کند؛ relevance و پوشش منابع را جدا از کیفیت متن مدل ثبت کند. [مشاهدهٔ واقعی C2g](../experiments/retrieval_context/README.md): query تمیز هم `text_input` نسخهٔ 1.64.0 برای مسئلهٔ multiselect کاربر 1.49.0 آورد؛ gate core ranking/backfill ندارد. خروجی: تست adapter و receipt بازیابی با snapshot/config مشخص، منابع مرتبط multiselect/fragment و رفتار پس از رد نسخهٔ نامرتبط.
 
