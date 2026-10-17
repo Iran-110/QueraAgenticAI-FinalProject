@@ -1,5 +1,6 @@
 """Read existing, snapshot-bound Chroma collections without building an index."""
 
+from contextlib import nullcontext
 from copy import deepcopy
 from typing import Any
 
@@ -84,17 +85,22 @@ class StreamlitRetriever:
         except (ValidationError, TypeError, ValueError):
             raise ValueError("InvalidRetrievalRequest") from None
         where = self._where(request.filters)
-        docs, issues = self._collections()
-        results = {}
-        for name, collection in (("docs", docs), ("issues", issues)):
-            arguments = {"query_texts": list(request.queries), "n_results": request.top_k}
-            if where is not None:
-                arguments["where"] = deepcopy(where)
-            try:
-                results[name] = collection.query(**arguments)
-            except Exception:
-                raise RuntimeError("RetrievalUnavailable") from None
-        # A metadata update/replacement during either read invalidates this result.
-        # This cannot certify immutable content when a writer reuses the same ID.
-        self._collections()
+        # A verified offline index checks full storage once before and once after
+        # this whole search instead of on every collection access; other clients
+        # (fixtures, plain Chroma) keep their previous behavior.
+        session = getattr(self.client, "read_session", None)
+        with session() if session is not None else nullcontext():
+            docs, issues = self._collections()
+            results = {}
+            for name, collection in (("docs", docs), ("issues", issues)):
+                arguments = {"query_texts": list(request.queries), "n_results": request.top_k}
+                if where is not None:
+                    arguments["where"] = deepcopy(where)
+                try:
+                    results[name] = collection.query(**arguments)
+                except Exception:
+                    raise RuntimeError("RetrievalUnavailable") from None
+            # A metadata update/replacement during either read invalidates this result.
+            # This cannot certify immutable content when a writer reuses the same ID.
+            self._collections()
         return results

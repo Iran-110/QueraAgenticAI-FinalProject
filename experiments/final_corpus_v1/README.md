@@ -67,22 +67,33 @@ API queries with timing.
   opened instead of on every verification (same comparison, same strictness),
   and writes go in batches of 500 (historical profiles fit in one batch).
 
-## Connection blocker for review (Sasan)
+## Connection blocker: per-search verification (resolved here)
 
 `VerifiedChromaClient` re-reads and compares **every stored row** on each
-access. One `StreamlitRetriever.search` triggers **22** full verifications
+access. One `StreamlitRetriever.search` triggered **22** full verifications
 (get_collection/metadata/query, before and after, both collections). With
 36 chunks this was invisible; with 1,827 chunks one search took **1.8 s on an
 in-memory stand-in** and **4.2 s / 5.1 s with real Chroma on Windows 11**
-([build receipt](build-receipt-v1.json), `adapter_smoke`). One engine round can
-issue two queries and a run up to two rounds, so a turn can spend 10–20 s in
-verification alone. Not changed here, because it alters
-a guard's semantics. Options:
+([before-fix receipt](build-receipt-v1.json), `adapter_smoke`). An engine run can
+issue up to four searches, so a turn could spend 10–20 s in verification alone.
 
-1. Verify full storage on open, then re-verify only when the index directory's
-   file fingerprint (paths, sizes, mtimes) changes; returned rows stay checked
-   one by one by `_verify_result`, as now.
-2. Verify once per `search` call instead of per collection access.
+Decision (Hassan, Sasan unavailable before the deadline): **verify full storage
+once before and once after each search** via `VerifiedChromaClient.read_session()`,
+which `StreamlitRetriever.search` opens when its client offers it.
+
+- Every returned row is still checked against the frozen corpus (`_verify_result`).
+- Storage changed during a search is rejected at the closing check
+  (`PilotIndexChanged`) and by every later read.
+- The lock is held for the whole search; access outside a session (direct facade
+  use, construction, `open_verified_index`) keeps per-access verification.
+- A file-timestamp fingerprint was rejected: Windows can report stale mtimes for
+  files SQLite holds open, which could hide a write.
+
+Result: 2 full verifications per search (stand-in 1.88 s → 0.22 s); the real
+timing is in [build-receipt-v2.json](build-receipt-v2.json).
+[`tests/test_offline_index_session.py`](../../tests/test_offline_index_session.py)
+covers the count, nested sessions, mutation during a search, changed returned
+rows and recovery after a failure, without chromadb, plus a real-Chroma variant.
 
 Ranking/packing of the key-identity evidence is unchanged and stays a separate
 dev-only task.

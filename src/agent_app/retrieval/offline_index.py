@@ -1,6 +1,8 @@
 """Build real Chroma storage with local lexical vectors and verified read access."""
 
 import math
+from collections.abc import Iterator
+from contextlib import contextmanager
 from copy import deepcopy
 from pathlib import Path
 from threading import RLock
@@ -68,6 +70,7 @@ class VerifiedChromaClient:
             for chunk_id, chunk in self._expected.items()
         }
         self.snapshot_id = corpus.snapshot_id
+        self._session_depth = 0
         self.verify()
 
     @property
@@ -76,7 +79,34 @@ class VerifiedChromaClient:
             self.verify()
             return self._corpus.manifest
 
+    @contextmanager
+    def read_session(self) -> Iterator["VerifiedChromaClient"]:
+        """Verify full storage once before and once after a group of reads.
+
+        Inside the session, per-access full verification is skipped; every
+        returned row is still checked against the frozen corpus. The lock is held
+        for the whole session, so no other thread's read interleaves. A failure
+        inside the session propagates without the closing check; the next read
+        verifies again. Nested sessions verify only at the outermost level.
+        """
+        with self._lock:
+            if self._session_depth == 0:
+                self._full_verify()
+            self._session_depth += 1
+            try:
+                yield self
+            finally:
+                self._session_depth -= 1
+            if self._session_depth == 0:
+                self._full_verify()
+
     def verify(self) -> None:
+        with self._lock:
+            if self._session_depth:
+                return
+            self._full_verify()
+
+    def _full_verify(self) -> None:
         with self._lock:
             try:
                 if (self._path / MANIFEST_NAME).read_bytes() != self._raw_manifest:
