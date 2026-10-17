@@ -40,9 +40,12 @@ passage requirements/hashes are unchanged. The scripted offline path still
 supplies its original fixture evidence; it is plumbing, not native model quality.
 
 The [amendment record](native-dev-gold-amendment-v2.json) binds both new hashes
-and their exact predecessors. It is **assistant review**, with human confirmation
-of the two changed clauses still pending; historical human verdicts are not
-transferred to the new bytes. Build pins remain `pending_final_build`. Select
+and their exact predecessors. It is **assistant review**; historical human verdicts are not
+transferred to the new bytes. Human confirmation of the two changed clauses is
+recorded separately in [the E2ac confirmation](native-dev-e2ac-human-confirmation-v1.json)
+(mhg, 2026-10-17: both correct; assistant-informed, since each card showed the
+assistant's recommendation). It binds the amendment, registration and fixture
+hashes; their registered `pending`/`human_reviewed` fields are not rewritten. Build pins remain `pending_final_build`. Select
 exactly the 16 paths in v2; do not recursively collect old and new versions.
 See [E2ac verification and command](../../../../docs/native-dev-gold-amendment.fa.md).
 
