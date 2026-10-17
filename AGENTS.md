@@ -8,7 +8,8 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 - Inspect Git status first. Preserve teammates' work, the original brief, and the original plan. Do not overwrite unrelated changes.
 - During core/RAG development, do not open `data/evaluation/split-e1-v1/test/`,
   its `evidence-test*.json`, `test-card-review-v1.json`, the native test gold
-  (`data/evaluation/split-e1-v1/native/test/` and `native-test-gold-review-v1.json`),
+  (`data/evaluation/split-e1-v1/native/test/`, `native-test-gold-review-v1.json` and
+  `native-test-exposure-decision-v1.json`),
   or test-bearing review HTML. Safe manifest counts/exclusion metadata are separate from held-out
   questions/gold. The evaluation owner retains final artifact review/execution.
   `tests/test_prepare_case_review.py::test_split_e1_manifest_covers_every_registered_fixture`
