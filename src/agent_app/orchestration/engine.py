@@ -1,5 +1,6 @@
 """A mock-first workflow that returns previews and never executes case changes."""
 
+import json
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from typing import Literal, get_args
@@ -32,6 +33,19 @@ _EVIDENCE_BUDGET_WARNING = "Evidence is bounded by the configured whole-record b
 
 def _normalize(text: str) -> str:
     return " ".join(text.split()).casefold()
+
+
+def _active_user_version(case: CaseState) -> str | None:
+    return next(
+        (
+            fact.value
+            for fact in case.facts
+            if fact.name.casefold() == "streamlit_version"
+            and fact.status == "active"
+            and fact.provenance_kind == "user"
+        ),
+        None,
+    )
 
 
 def build_initial_query(case: CaseState, user_message: str) -> str:
@@ -117,6 +131,7 @@ class SupportEngine:
         repair_repeated_queries: bool = False,
         retrieval_candidate_multiplier: int = 1,
         evidence_utf8_budget_bytes: int | None = None,
+        retrieval_version_prefilter: bool = False,
     ) -> None:
         self.retriever = retriever
         self.reasoner = reasoner
@@ -148,6 +163,11 @@ class SupportEngine:
         ):
             raise ValueError("Unsupported whole-record evidence byte budget.")
         self.evidence_utf8_budget_bytes = evidence_utf8_budget_bytes
+        if type(retrieval_version_prefilter) is not bool:
+            raise ValueError("Version prefilter requires an explicit boolean.")
+        if retrieval_version_prefilter and evidence_scope != "exact_user_version":
+            raise ValueError("Version prefilter requires exact USER-version scope.")
+        self.retrieval_version_prefilter = retrieval_version_prefilter
         # Validate configuration before a port is invoked.
         RetrievalRequest(queries=("configuration-check",), snapshot_id=snapshot_id, top_k=top_k)
 
@@ -303,9 +323,26 @@ class SupportEngine:
         if any(_normalize(query) in seen_queries for query in queries):
             raise _Stopped("RepeatedQuery")
         candidate_limit = min(50, self.top_k * self.retrieval_candidate_multiplier)
+        filters = {}
+        if self.retrieval_version_prefilter:
+            # The same eligibility rule as the scope below, applied before the native
+            # top-k cut so other releases of a record cannot crowd out eligible ones.
+            # Records carry canonical single-version applicability; the post-retrieval
+            # scope stays authoritative for anything a backend returns.
+            version = _active_user_version(case)
+            filters = {
+                "applicable_versions": (
+                    ("[]", json.dumps([version], ensure_ascii=False, separators=(",", ":")))
+                    if version is not None
+                    else "[]"
+                )
+            }
         try:
             request = RetrievalRequest(
-                queries=queries, snapshot_id=self.snapshot_id, top_k=candidate_limit
+                queries=queries,
+                snapshot_id=self.snapshot_id,
+                top_k=candidate_limit,
+                filters=filters,
             )
         except ValidationError:
             raise _Stopped("InvalidRetrievalQuery") from None
@@ -337,16 +374,7 @@ class SupportEngine:
             # Applicability is caller/retriever metadata, never inferred from text.
             # This opt-in policy is for advice about the current installation;
             # historical/comparison workflows must keep the default 'all' policy.
-            version = next(
-                (
-                    fact.value
-                    for fact in case.facts
-                    if fact.name.casefold() == "streamlit_version"
-                    and fact.status == "active"
-                    and fact.provenance_kind == "user"
-                ),
-                None,
-            )
+            version = _active_user_version(case)
             hits = tuple(
                 hit
                 for hit in evidence.hits

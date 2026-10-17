@@ -696,6 +696,16 @@ ledger، holdها، halt و receiptهای تاریخی تغییر نمی‌کن�
   کرده‌اند. usefulness، native gold، vocabulary نهایی و freeze هنوز با اوست.
   کمک ساسان محدود به اتصال وreviewpack است.
 
+- [ ] **R4e — version prefilter و benchmark دسترسی dev؛ حسن.**
+  روی corpus نهایی (۴۳ نسخهٔ هر docstring)، ۴ تا ۱۷ از ۲۵ کاندیدا نسخه‌های تکراری همان متن بودند
+  و scope بعد از top-k فقط ۰ تا ۳ کاندیدای مجاز باقی می‌گذاشت؛ docstringهای multiselect/fragment
+  ۱٫۵۰ کیس A کنار می‌رفتند. گزینهٔ opt-in `retrieval_version_prefilter` همان قاعدهٔ scope را
+  پیش از top-k به‌صورت filter بومی می‌فرستد (بدون rebuild؛ هم‌ارزی filter و scope روی هر دو corpus
+  تست شده). [benchmark و نتایج](../experiments/r4e_version_prefilter/README.md) روی ۱۶ کیس dev:
+  passage لازمِ داخل کاندیداها ۵→۱۰ و رسیده به مدل ۲→۴ از ۱۶. segmentation، embedding بزرگ‌تر،
+  BM25، ranking دیگر، backfill API و بودجهٔ بزرگ‌تر اثری نداشتند. پیش‌فرض‌ها، profile و live
+  دست‌نخورده‌اند؛ اتصال به profile تصمیم core است. availability است، نه کیفیت پاسخ.
+
 - [ ] **T4 — گزارش PR52 و رسیدهای PR66 review شدند؛ بخش‌های نهایی هنوز بازند.**
   [گزارش روی commit ثابت`8420a3b`](https://github.com/Iran-110/QueraAgenticAI-FinalProject/blob/8420a3beed37e6bc79504487cd44724a40a30d79/docs/two-case-ui-sqlite-smoke-2026-10-14.md)
   اکنون در [PR #52](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/52)

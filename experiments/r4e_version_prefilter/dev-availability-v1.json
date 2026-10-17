@@ -1,0 +1,1173 @@
+{
+  "schema_version": 1,
+  "receipt_id": "r4e-dev-availability-v1",
+  "task": "R4e",
+  "registration": "data/evaluation/split-e1-v1/native/native-registration-dev-v2.json",
+  "registration_sha256": "87f67c6d1098decd740e9dfb7ff0a88caf0d7d1e5fdca1f896ca8fadc810909f",
+  "index_snapshot": "docs-pilot-da1a891b5e3c1d587d0a013327c166f6ae51ab907426f86455b239d5489812c4",
+  "index_manifest_sha256": "d5158882f0c266820425f7ab82627939b9af77ae07f70b5b967c5abdb8fd0cf4",
+  "original_index_unchanged": true,
+  "turns": 16,
+  "totals": {
+    "scope_after_topk": {
+      "requirements": 19,
+      "eligible": 16,
+      "in_candidates": 5,
+      "reached_model": 2
+    },
+    "version_prefilter": {
+      "requirements": 19,
+      "eligible": 16,
+      "in_candidates": 10,
+      "reached_model": 4
+    }
+  },
+  "rows": [
+    {
+      "case_id": "dev-case-g",
+      "turn_id": "initial",
+      "active_user_version": null,
+      "query_sha256": "32204434beb7f363de7164c83d0b64102819d101d6853e8a7bef1ae89c228171",
+      "arms": {
+        "scope_after_topk": {
+          "request_filters": {},
+          "candidates": 25,
+          "eligible_candidates": 9,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/concepts/architecture/forms.md",
+              "chunk_id": "doc:pinned:e4433a9060a4d83c6cca38ef:0:4000:1e1add62776431f9"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/control-flow/form.md",
+              "chunk_id": "doc:pinned:62db093e4662c5f7c69dd66b:0:589:fa508db2527c8642"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "button-args-tuple",
+              "eligible_under_scope": false,
+              "in_candidates": false,
+              "reached_model": false
+            }
+          ]
+        },
+        "version_prefilter": {
+          "request_filters": {
+            "applicable_versions": "[]"
+          },
+          "candidates": 25,
+          "eligible_candidates": 25,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/concepts/architecture/forms.md",
+              "chunk_id": "doc:pinned:e4433a9060a4d83c6cca38ef:0:4000:1e1add62776431f9"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/control-flow/form.md",
+              "chunk_id": "doc:pinned:62db093e4662c5f7c69dd66b:0:589:fa508db2527c8642"
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "button-args-tuple",
+              "eligible_under_scope": false,
+              "in_candidates": false,
+              "reached_model": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-k",
+      "turn_id": "initial",
+      "active_user_version": null,
+      "query_sha256": "aa22e297cc03184d1103ca021821181c8ff8e8556b2e2c73aa3333018f91c9eb",
+      "arms": {
+        "scope_after_topk": {
+          "request_filters": {},
+          "candidates": 25,
+          "eligible_candidates": 9,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/button.md",
+              "chunk_id": "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/checkbox.md",
+              "chunk_id": "doc:pinned:368f3bda1cd8aefbdd0f7504:0:732:84d679e506278773"
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "chunk_id": "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2"
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/forms.md",
+              "chunk_id": "doc:pinned:e4433a9060a4d83c6cca38ef:8000:9676:9f500bce0b53bf3d"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "widget-keys-session-state",
+              "eligible_under_scope": true,
+              "in_candidates": false,
+              "reached_model": false
+            },
+            {
+              "requirement_id": "widget-callback-order",
+              "eligible_under_scope": true,
+              "in_candidates": true,
+              "reached_model": true
+            }
+          ]
+        },
+        "version_prefilter": {
+          "request_filters": {
+            "applicable_versions": "[]"
+          },
+          "candidates": 25,
+          "eligible_candidates": 25,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/button.md",
+              "chunk_id": "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/checkbox.md",
+              "chunk_id": "doc:pinned:368f3bda1cd8aefbdd0f7504:0:732:84d679e506278773"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/radio.md",
+              "chunk_id": "doc:pinned:70eb2126c5a38fd8eb10d988:0:1907:f197ac8f31864d8d"
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "chunk_id": "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac"
+            },
+            {
+              "source_id": "docs:content/develop/concepts/multipage-apps/widgets.md",
+              "chunk_id": "doc:pinned:9e00a6c044e26cb55fdd459f:4000:4545:6c4cf018568c8615"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "widget-keys-session-state",
+              "eligible_under_scope": true,
+              "in_candidates": true,
+              "reached_model": false
+            },
+            {
+              "requirement_id": "widget-callback-order",
+              "eligible_under_scope": true,
+              "in_candidates": true,
+              "reached_model": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-k",
+      "turn_id": "version",
+      "active_user_version": "0.60.0",
+      "query_sha256": "cfc6e8065aaeaaae523888183b18b8abc012e26f5321af851549d3c559c8cdb8",
+      "arms": {
+        "scope_after_topk": {
+          "request_filters": {},
+          "candidates": 25,
+          "eligible_candidates": 8,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/button.md",
+              "chunk_id": "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/checkbox.md",
+              "chunk_id": "doc:pinned:368f3bda1cd8aefbdd0f7504:0:732:84d679e506278773"
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "chunk_id": "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2"
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/forms.md",
+              "chunk_id": "doc:pinned:e4433a9060a4d83c6cca38ef:8000:9676:9f500bce0b53bf3d"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "widget-keys-session-state",
+              "eligible_under_scope": true,
+              "in_candidates": false,
+              "reached_model": false
+            }
+          ]
+        },
+        "version_prefilter": {
+          "request_filters": {
+            "applicable_versions": [
+              "[]",
+              "[\"0.60.0\"]"
+            ]
+          },
+          "candidates": 25,
+          "eligible_candidates": 25,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/button.md",
+              "chunk_id": "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/checkbox.md",
+              "chunk_id": "doc:pinned:368f3bda1cd8aefbdd0f7504:0:732:84d679e506278773"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/radio.md",
+              "chunk_id": "doc:pinned:70eb2126c5a38fd8eb10d988:0:1907:f197ac8f31864d8d"
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "chunk_id": "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac"
+            },
+            {
+              "source_id": "docs:content/develop/concepts/multipage-apps/widgets.md",
+              "chunk_id": "doc:pinned:9e00a6c044e26cb55fdd459f:4000:4545:6c4cf018568c8615"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "widget-keys-session-state",
+              "eligible_under_scope": true,
+              "in_candidates": true,
+              "reached_model": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-p",
+      "turn_id": "initial",
+      "active_user_version": null,
+      "query_sha256": "8fa7f9a7987d28b1345f965efe9e0c35e05898d1376854d1c6e2b5793d15f72e",
+      "arms": {
+        "scope_after_topk": {
+          "request_filters": {},
+          "candidates": 25,
+          "eligible_candidates": 9,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2"
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3"
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/forms.md",
+              "chunk_id": "doc:pinned:e4433a9060a4d83c6cca38ef:0:4000:1e1add62776431f9"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "widget-keys-session-state",
+              "eligible_under_scope": true,
+              "in_candidates": false,
+              "reached_model": false
+            },
+            {
+              "requirement_id": "programmatic-change-session-state",
+              "eligible_under_scope": true,
+              "in_candidates": true,
+              "reached_model": false
+            }
+          ]
+        },
+        "version_prefilter": {
+          "request_filters": {
+            "applicable_versions": "[]"
+          },
+          "candidates": 25,
+          "eligible_candidates": 25,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/button.md",
+              "chunk_id": "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2"
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/selectbox.md",
+              "chunk_id": "doc:pinned:f19cc51f14cfa32ed8b89f34:0:1442:e07287c91e164d48"
+            },
+            {
+              "source_id": "docs:content/develop/concepts/multipage-apps/widgets.md",
+              "chunk_id": "doc:pinned:9e00a6c044e26cb55fdd459f:4000:4545:6c4cf018568c8615"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "widget-keys-session-state",
+              "eligible_under_scope": true,
+              "in_candidates": true,
+              "reached_model": false
+            },
+            {
+              "requirement_id": "programmatic-change-session-state",
+              "eligible_under_scope": true,
+              "in_candidates": true,
+              "reached_model": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-o",
+      "turn_id": "initial",
+      "active_user_version": "1.34.0",
+      "query_sha256": "dfebf5bc005876006c92e6759c68f82dd94aee2e98abc743b6793d86929ab3e1",
+      "arms": {
+        "scope_after_topk": {
+          "request_filters": {},
+          "candidates": 25,
+          "eligible_candidates": 11,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9"
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f"
+            },
+            {
+              "source_id": "docs:content/develop/concepts/multipage-apps/widgets.md",
+              "chunk_id": "doc:pinned:9e00a6c044e26cb55fdd459f:4000:4545:6c4cf018568c8615"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "widget-cleanup",
+              "eligible_under_scope": true,
+              "in_candidates": true,
+              "reached_model": false
+            }
+          ]
+        },
+        "version_prefilter": {
+          "request_filters": {
+            "applicable_versions": [
+              "[]",
+              "[\"1.34.0\"]"
+            ]
+          },
+          "candidates": 25,
+          "eligible_candidates": 25,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/selectbox.md",
+              "chunk_id": "doc:pinned:f19cc51f14cfa32ed8b89f34:0:1442:e07287c91e164d48"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/text_input.md",
+              "chunk_id": "doc:pinned:ed6c3c87122e53b9ff5621db:0:1819:3f3a7959730090f6"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9"
+            },
+            {
+              "source_id": "docstring:1.34.0:streamlit.form",
+              "chunk_id": "doc:1.34.0:08be227ce47df9b2df079bbd:0:1660:49ebb3d1aa9fb9ce"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "widget-cleanup",
+              "eligible_under_scope": true,
+              "in_candidates": true,
+              "reached_model": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-e",
+      "turn_id": "initial",
+      "active_user_version": "1.10.0",
+      "query_sha256": "382906f2e55fd623c846ba811c23e90c6618e6f8789fddbb8d888c7a58712689",
+      "arms": {
+        "scope_after_topk": {
+          "request_filters": {},
+          "candidates": 25,
+          "eligible_candidates": 1,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/tutorials/execution-flow/fragments/trigger-a-full-script-rerun-from-a-fragment.md",
+              "chunk_id": "doc:pinned:613bc62aecc8e9e8c5f1eca5:8000:12000:34ab9428f764da4f"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "date-input-today-default",
+              "eligible_under_scope": false,
+              "in_candidates": false,
+              "reached_model": false
+            }
+          ]
+        },
+        "version_prefilter": {
+          "request_filters": {
+            "applicable_versions": [
+              "[]",
+              "[\"1.10.0\"]"
+            ]
+          },
+          "candidates": 25,
+          "eligible_candidates": 25,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295"
+            },
+            {
+              "source_id": "docs:content/develop/tutorials/execution-flow/fragments/create-a-multiple-container-fragment.md",
+              "chunk_id": "doc:pinned:e0daebec29b164b07bd97952:8000:9315:697695fabd0b4af6"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "date-input-today-default",
+              "eligible_under_scope": false,
+              "in_candidates": false,
+              "reached_model": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-l",
+      "turn_id": "initial",
+      "active_user_version": null,
+      "query_sha256": "c78423d378703cce83613f50c6326ffc479f5ae0d029ee6318c21acfc1d7ac38",
+      "arms": {
+        "scope_after_topk": {
+          "request_filters": {},
+          "candidates": 25,
+          "eligible_candidates": 3,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/concepts/architecture/forms.md",
+              "chunk_id": "doc:pinned:e4433a9060a4d83c6cca38ef:0:4000:1e1add62776431f9"
+            },
+            {
+              "source_id": "docs:content/develop/tutorials/execution-flow/fragments/trigger-a-full-script-rerun-from-a-fragment.md",
+              "chunk_id": "doc:pinned:613bc62aecc8e9e8c5f1eca5:16000:19450:254db4250a2b8e18"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "widget-callback-order",
+              "eligible_under_scope": true,
+              "in_candidates": false,
+              "reached_model": false
+            },
+            {
+              "requirement_id": "form-only-submit-callback",
+              "eligible_under_scope": true,
+              "in_candidates": true,
+              "reached_model": false
+            }
+          ]
+        },
+        "version_prefilter": {
+          "request_filters": {
+            "applicable_versions": "[]"
+          },
+          "candidates": 25,
+          "eligible_candidates": 25,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/slider.md",
+              "chunk_id": "doc:pinned:4712f3b3d79e4c1299e9237c:0:565:2999699df5aa5eca"
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/forms.md",
+              "chunk_id": "doc:pinned:e4433a9060a4d83c6cca38ef:4000:8000:256cd3f821e26c1e"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "widget-callback-order",
+              "eligible_under_scope": true,
+              "in_candidates": true,
+              "reached_model": false
+            },
+            {
+              "requirement_id": "form-only-submit-callback",
+              "eligible_under_scope": true,
+              "in_candidates": true,
+              "reached_model": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-m",
+      "turn_id": "initial",
+      "active_user_version": "1.37.0",
+      "query_sha256": "3a69a356b2e0806a515f7a4d90c1ea7d47d312cdb683655c8c43e3e17f5297df",
+      "arms": {
+        "scope_after_topk": {
+          "request_filters": {},
+          "candidates": 25,
+          "eligible_candidates": 15,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/control-flow/rerun.md",
+              "chunk_id": "doc:pinned:e195f7038f54188022565752:0:2348:9a46deed3e82716f"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/control-flow/fragment.md",
+              "chunk_id": "doc:pinned:79e8dc68c9ad0d2ea4db3462:0:563:ffc1514299b06e6f"
+            },
+            {
+              "source_id": "docs:content/develop/tutorials/execution-flow/fragments/create-a-multiple-container-fragment.md",
+              "chunk_id": "doc:pinned:e0daebec29b164b07bd97952:0:4000:6fb8fd27230a51f9"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "rn-1380-fragment-revert",
+              "eligible_under_scope": true,
+              "in_candidates": false,
+              "reached_model": false
+            }
+          ]
+        },
+        "version_prefilter": {
+          "request_filters": {
+            "applicable_versions": [
+              "[]",
+              "[\"1.37.0\"]"
+            ]
+          },
+          "candidates": 25,
+          "eligible_candidates": 25,
+          "final_hits": [
+            {
+              "source_id": "docstring:1.37.0:streamlit.fragment",
+              "chunk_id": "doc:1.37.0:3565d150052aaffcf0dc5eaa:0:2352:f5186d0216ca2932"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/control-flow/rerun.md",
+              "chunk_id": "doc:pinned:e195f7038f54188022565752:0:2348:9a46deed3e82716f"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/control-flow/fragment.md",
+              "chunk_id": "doc:pinned:79e8dc68c9ad0d2ea4db3462:0:563:ffc1514299b06e6f"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/button.md",
+              "chunk_id": "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "rn-1380-fragment-revert",
+              "eligible_under_scope": true,
+              "in_candidates": false,
+              "reached_model": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-b",
+      "turn_id": "initial",
+      "active_user_version": null,
+      "query_sha256": "6df9d9e4b703211d0932cf8fb741ea2b7c253c0091a86cde11c6ab3ca89f9066",
+      "arms": {
+        "scope_after_topk": {
+          "request_filters": {},
+          "candidates": 25,
+          "eligible_candidates": 16,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/button.md",
+              "chunk_id": "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/camera_input.md",
+              "chunk_id": "doc:pinned:b0533eda211640d0f90e3f21:0:4000:1c442f66500a740f"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/page_link.md",
+              "chunk_id": "doc:pinned:ed44ff521b175c397506caca:0:588:bc94764438698de5"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/menu_button.md",
+              "chunk_id": "doc:pinned:e571fd502bf06edb259cf126:0:356:59d17e074b31430b"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "button-icon-formats",
+              "eligible_under_scope": false,
+              "in_candidates": false,
+              "reached_model": false
+            }
+          ]
+        },
+        "version_prefilter": {
+          "request_filters": {
+            "applicable_versions": "[]"
+          },
+          "candidates": 25,
+          "eligible_candidates": 25,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/button.md",
+              "chunk_id": "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/camera_input.md",
+              "chunk_id": "doc:pinned:b0533eda211640d0f90e3f21:0:4000:1c442f66500a740f"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/page_link.md",
+              "chunk_id": "doc:pinned:ed44ff521b175c397506caca:0:588:bc94764438698de5"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/radio.md",
+              "chunk_id": "doc:pinned:70eb2126c5a38fd8eb10d988:0:1907:f197ac8f31864d8d"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "button-icon-formats",
+              "eligible_under_scope": false,
+              "in_candidates": false,
+              "reached_model": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-b",
+      "turn_id": "version",
+      "active_user_version": "1.39.0",
+      "query_sha256": "11b4c947f61b8ea21f2ce6ac90892ac8b4a610589ec9e8ef3ed12167d8fdb050",
+      "arms": {
+        "scope_after_topk": {
+          "request_filters": {},
+          "candidates": 25,
+          "eligible_candidates": 13,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/button.md",
+              "chunk_id": "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/camera_input.md",
+              "chunk_id": "doc:pinned:b0533eda211640d0f90e3f21:0:4000:1c442f66500a740f"
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "button-icon-formats-1390",
+              "eligible_under_scope": true,
+              "in_candidates": false,
+              "reached_model": false
+            }
+          ]
+        },
+        "version_prefilter": {
+          "request_filters": {
+            "applicable_versions": [
+              "[]",
+              "[\"1.39.0\"]"
+            ]
+          },
+          "candidates": 25,
+          "eligible_candidates": 25,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/button.md",
+              "chunk_id": "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/camera_input.md",
+              "chunk_id": "doc:pinned:b0533eda211640d0f90e3f21:0:4000:1c442f66500a740f"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/page_link.md",
+              "chunk_id": "doc:pinned:ed44ff521b175c397506caca:0:588:bc94764438698de5"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/radio.md",
+              "chunk_id": "doc:pinned:70eb2126c5a38fd8eb10d988:0:1907:f197ac8f31864d8d"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "button-icon-formats-1390",
+              "eligible_under_scope": true,
+              "in_candidates": false,
+              "reached_model": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-a",
+      "turn_id": "version",
+      "active_user_version": "1.50.0",
+      "query_sha256": "b48151ab326cc8df6368ea18b6ced9028bb7646e3033a3508dbdc9e59cfccba9",
+      "arms": {
+        "scope_after_topk": {
+          "request_filters": {},
+          "candidates": 25,
+          "eligible_candidates": 1,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:4000:8000:032069b132c9d295"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "multiselect-key-1500",
+              "eligible_under_scope": true,
+              "in_candidates": false,
+              "reached_model": false
+            }
+          ]
+        },
+        "version_prefilter": {
+          "request_filters": {
+            "applicable_versions": [
+              "[]",
+              "[\"1.50.0\"]"
+            ]
+          },
+          "candidates": 25,
+          "eligible_candidates": 25,
+          "final_hits": [
+            {
+              "source_id": "docstring:1.50.0:streamlit.fragment",
+              "chunk_id": "doc:1.50.0:de3b01d2f45f1bc9ae549002:0:2352:f5186d0216ca2932"
+            },
+            {
+              "source_id": "docstring:1.50.0:streamlit.multiselect",
+              "chunk_id": "doc:1.50.0:c82397cf83d9653afc3157df:0:4000:592d59c88ffa9fd9"
+            },
+            {
+              "source_id": "docstring:1.50.0:streamlit.camera_input",
+              "chunk_id": "doc:1.50.0:6ced33f4122f70340dd8edae:0:2907:5046f7ea13531476"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "multiselect-key-1500",
+              "eligible_under_scope": true,
+              "in_candidates": true,
+              "reached_model": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-h",
+      "turn_id": "initial",
+      "active_user_version": null,
+      "query_sha256": "9512d06ae3cfd42b2d9b7200d5616324543c9aa2bca002f1da7e85af7408ba04",
+      "arms": {
+        "scope_after_topk": {
+          "request_filters": {},
+          "candidates": 25,
+          "eligible_candidates": 12,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2"
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f"
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "chunk_id": "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "rn-1440-range-error",
+              "eligible_under_scope": true,
+              "in_candidates": false,
+              "reached_model": false
+            }
+          ]
+        },
+        "version_prefilter": {
+          "request_filters": {
+            "applicable_versions": "[]"
+          },
+          "candidates": 25,
+          "eligible_candidates": 25,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2"
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:4000:8000:99362eb1a9b5b6f3"
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/widget-behavior.md",
+              "chunk_id": "doc:pinned:76af659dfdd30bb62fe9f310:8000:12000:124103f8d82fc3ac"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "rn-1440-range-error",
+              "eligible_under_scope": true,
+              "in_candidates": false,
+              "reached_model": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-f",
+      "turn_id": "initial",
+      "active_user_version": "1.60.0",
+      "query_sha256": "d62bbc7ce2c16a977a25c7340fc9d0bb0302b69d46563700a8ec10f8dfae3095",
+      "arms": {
+        "scope_after_topk": {
+          "request_filters": {},
+          "candidates": 25,
+          "eligible_candidates": 12,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/button.md",
+              "chunk_id": "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/radio.md",
+              "chunk_id": "doc:pinned:70eb2126c5a38fd8eb10d988:0:1907:f197ac8f31864d8d"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/control-flow/rerun.md",
+              "chunk_id": "doc:pinned:e195f7038f54188022565752:0:2348:9a46deed3e82716f"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/control-flow/experimental_rerun.md",
+              "chunk_id": "doc:pinned:94dbafa438c846616b21bcc1:0:573:e361bbc63589f858"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "rn-1640-rerun-widgets",
+              "eligible_under_scope": true,
+              "in_candidates": false,
+              "reached_model": false
+            }
+          ]
+        },
+        "version_prefilter": {
+          "request_filters": {
+            "applicable_versions": [
+              "[]",
+              "[\"1.60.0\"]"
+            ]
+          },
+          "candidates": 25,
+          "eligible_candidates": 25,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/radio.md",
+              "chunk_id": "doc:pinned:70eb2126c5a38fd8eb10d988:0:1907:f197ac8f31864d8d"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/widgets/button.md",
+              "chunk_id": "doc:pinned:72e66f191eff8e59983d1565:0:1095:5a8baf2555329a5e"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/control-flow/rerun.md",
+              "chunk_id": "doc:pinned:e195f7038f54188022565752:0:2348:9a46deed3e82716f"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/control-flow/experimental_rerun.md",
+              "chunk_id": "doc:pinned:94dbafa438c846616b21bcc1:0:573:e361bbc63589f858"
+            },
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:8000:8891:e76ce663c43aa0f2"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "rn-1640-rerun-widgets",
+              "eligible_under_scope": true,
+              "in_candidates": false,
+              "reached_model": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-n",
+      "turn_id": "code",
+      "active_user_version": null,
+      "query_sha256": "4ff47b203af234c18173c3ec24507ae48afea07998d15eac22622f69548cd8b3",
+      "arms": {
+        "scope_after_topk": {
+          "request_filters": {},
+          "candidates": 25,
+          "eligible_candidates": 20,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9"
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f"
+            },
+            {
+              "source_id": "docs:content/develop/concepts/multipage-apps/widgets.md",
+              "chunk_id": "doc:pinned:9e00a6c044e26cb55fdd459f:4000:4545:6c4cf018568c8615"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "session-state-delete",
+              "eligible_under_scope": true,
+              "in_candidates": true,
+              "reached_model": true
+            }
+          ]
+        },
+        "version_prefilter": {
+          "request_filters": {
+            "applicable_versions": "[]"
+          },
+          "candidates": 25,
+          "eligible_candidates": 25,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/api-reference/caching-and-state/session_state.md",
+              "chunk_id": "doc:pinned:7c2abc30f8f4d29cd2942ca6:0:4000:ffc3ed5892ffbff9"
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/session-state.md",
+              "chunk_id": "doc:pinned:d5d7c652ec0d9f11786438a3:0:4000:f255b5500f6fab7f"
+            },
+            {
+              "source_id": "docs:content/develop/concepts/multipage-apps/widgets.md",
+              "chunk_id": "doc:pinned:9e00a6c044e26cb55fdd459f:4000:4545:6c4cf018568c8615"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "session-state-delete",
+              "eligible_under_scope": true,
+              "in_candidates": true,
+              "reached_model": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-d",
+      "turn_id": "initial",
+      "active_user_version": "1.60.0",
+      "query_sha256": "59aad9e455dc54fb72e54e76611477ffc6997c59066d678362714d1f53265849",
+      "arms": {
+        "scope_after_topk": {
+          "request_filters": {},
+          "candidates": 25,
+          "eligible_candidates": 10,
+          "final_hits": [
+            {
+              "source_id": "docstring:1.60.0:streamlit.fragment",
+              "chunk_id": "doc:1.60.0:bedb2af66859152247e24010:0:3590:342af85db2c69d78"
+            },
+            {
+              "source_id": "docs:content/develop/tutorials/execution-flow/fragments/trigger-a-full-script-rerun-from-a-fragment.md",
+              "chunk_id": "doc:pinned:613bc62aecc8e9e8c5f1eca5:0:4000:669d99a56215518f"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "rn-1610-status-fragment",
+              "eligible_under_scope": true,
+              "in_candidates": false,
+              "reached_model": false
+            }
+          ]
+        },
+        "version_prefilter": {
+          "request_filters": {
+            "applicable_versions": [
+              "[]",
+              "[\"1.60.0\"]"
+            ]
+          },
+          "candidates": 25,
+          "eligible_candidates": 25,
+          "final_hits": [
+            {
+              "source_id": "docstring:1.60.0:streamlit.fragment",
+              "chunk_id": "doc:1.60.0:bedb2af66859152247e24010:0:3590:342af85db2c69d78"
+            },
+            {
+              "source_id": "docs:content/develop/tutorials/execution-flow/fragments/start-and-stop-fragment-auto-reruns.md",
+              "chunk_id": "doc:pinned:a250c80282230d53759a2b7f:0:4000:6e4ce8ae4b39730f"
+            },
+            {
+              "source_id": "docs:content/develop/concepts/architecture/forms.md",
+              "chunk_id": "doc:pinned:e4433a9060a4d83c6cca38ef:8000:9676:9f500bce0b53bf3d"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "rn-1610-status-fragment",
+              "eligible_under_scope": true,
+              "in_candidates": false,
+              "reached_model": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "dev-case-i",
+      "turn_id": "initial",
+      "active_user_version": "1.37.0",
+      "query_sha256": "e7348b1f697f6836921019e0b52fcaa46d7c0b22e320512a3c06bab645300ba6",
+      "arms": {
+        "scope_after_topk": {
+          "request_filters": {},
+          "candidates": 25,
+          "eligible_candidates": 0,
+          "final_hits": [],
+          "requirements": [
+            {
+              "requirement_id": "rn-1380-tabs-blank",
+              "eligible_under_scope": true,
+              "in_candidates": false,
+              "reached_model": false
+            }
+          ]
+        },
+        "version_prefilter": {
+          "request_filters": {
+            "applicable_versions": [
+              "[]",
+              "[\"1.37.0\"]"
+            ]
+          },
+          "candidates": 25,
+          "eligible_candidates": 25,
+          "final_hits": [
+            {
+              "source_id": "docs:content/develop/tutorials/execution-flow/fragments/trigger-a-full-script-rerun-from-a-fragment.md",
+              "chunk_id": "doc:pinned:613bc62aecc8e9e8c5f1eca5:8000:12000:34ab9428f764da4f"
+            },
+            {
+              "source_id": "docs:content/develop/quick-references/release-notes/2019.md",
+              "chunk_id": "doc:pinned:b75a864a6b422883c9fcfb03:8000:12000:e1e2349fc39aeb6a"
+            }
+          ],
+          "requirements": [
+            {
+              "requirement_id": "rn-1380-tabs-blank",
+              "eligible_under_scope": true,
+              "in_candidates": false,
+              "reached_model": false
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "test_content_read": false,
+  "provider_calls": 0,
+  "quality_claim": false,
+  "interpretation": "First-round availability of registered dev passages in the final bundle. Not semantic support, answer quality or held-out evaluation; model-authored refinement rounds are not modelled."
+}
