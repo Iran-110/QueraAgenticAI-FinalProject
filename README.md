@@ -2,6 +2,13 @@
 
 پروژهٔ نهایی بوت‌کمپ Agentic AI کوئرا: دستیار بررسی گزارش خطا و پیگیری پرونده، با شواهد قابل بررسی و تأیید انسانی پیش از اجرای اقدام.
 
+**فایل فعلی ارائه، نسخهٔ ۳:** [PDF فارسی ۱۵ اسلایدی](docs/presentation/judges-presentation-fa-v3.pdf)،
+[HTML قابل ویرایش](docs/presentation/judges-presentation-fa-v3.html) و
+[راهنمای اسلایدبه‌اسلاید](docs/presentation/speaker-notes-fa-v3.md).
+روایت محصول، داده و تصمیم‌های agent روشن‌تر شده؛ تصویر رابط با شماره‌گذاری
+و جهت درست فارسی/انگلیسی جایگزین شده است. مسیر گفتار۲۹دقیقه، شامل۶دقیقه دمو؛
+متن گفتاری و جزئیات اجرا از PDF داورها جدا هستند. runtime و تنظیم جلسه ثابت‌اند.
+
 **بررسی منبع خام، C4z:** [ریشهٔ ناسازگاری و اصلاح مستقل](docs/core-raw-defaults.fa.md).
 defaultِ `type/disabled` دکمهٔ1.49 در signature و کد رسمی به‌ترتیب `"secondary"/False`
 است؛ metadata خام `null/"is"` را آماده‌سازی قبلی مستقیم به header منتقل کرده بود.
@@ -24,7 +31,7 @@ defaultِ `type/disabled` دکمهٔ1.49 در signature و کد رسمی به‌
 این candidate فقط در `experiments/` است؛ مدل و UI جلسه عوض نشده‌اند و بهبود واقعی
 انتخاب مدل، usefulness یا حل Enum ادعا نمی‌شود. [مقایسهٔ قابل بازبینی](experiments/core_parameter_focus_v1/comparison.fa.md).
 
-**آمادگی ارائه، ۱۸ اکتبر — C4w:** [PDF فارسی ۱۳ اسلایدی مخصوص داورها](docs/presentation/judges-presentation-fa-v2.pdf)
+**آمادگی ثبت‌شدهٔ C4w، نسخهٔ قبلی ارائه:** [PDF فارسی ۱۳ اسلایدی](docs/presentation/judges-presentation-fa-v2.pdf)
 و [HTML مستقل](docs/presentation/judges-presentation-fa-v2.html) آماده‌اند؛ متن آزمایش،
 دستور اجرا و سؤال‌های احتمالی در PDF اصلی نیستند. [نمای اختیاری خواندنی](docs/presentation-view.fa.md)،
 [کنترل تکمیلی نسخه](docs/presentation-release-watch.fa.md) و [healthcheck بدون فراخوانی مدل](docs/presentation-readiness.fa.md)

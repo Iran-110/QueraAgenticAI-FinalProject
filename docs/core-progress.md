@@ -1,3 +1,19 @@
+## 2026-10-18 — M2a: judge narrative and segmented speaker guide
+
+[Current15-slide presentation](presentation/README.fa.md) explains the product,
+data preparation/retrieval, decisions, correction and human review with fuller
+Persian copy. Actual new-case UI image has separate1message/2status/3facts labels;
+English fields/version tokens have independent direction. Public PDF contains no
+demo scripts, runtime commands, possible questions or private finance mechanics.
+[Public speaker notes](presentation/speaker-notes-fa-v3.md) follow the same15slides;
+private HTML guide adds single-slide reading, cue toggle and technical reference.
+29-minute route includes6-minute demo. All15actual PDF pages are Poppler-rendered
+and visually reviewed; content/source review, embedded fonts, HTML navigation and
+390px guide controls pass. [QA](presentation/judges-v3-qa.json) binds current bytes.
+V2 artifacts remain exact; accepted runtime, funded/watch source files, frozen
+build, halt/holds and meeting capacity are unchanged. No fresh model calls,
+software-suite execution or quality score is claimed.
+
 ## 2026-10-18 — C4z: pinned raw default trace and fresh offline normalization
 
 [Findings and future adoption](core-raw-defaults.fa.md),
