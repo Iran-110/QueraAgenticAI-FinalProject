@@ -54,6 +54,19 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 ## Runtime rules
 
+- C4z adds a fresh offline raw-default derivation; read `docs/core-raw-defaults.fa.md`
+  and `experiments/core_raw_defaults_v1/README.md`. Preserve all C4x/C4y bytes,
+  frozen95 and the21funded/117watched session files. Pinned raw metadata predates
+  the bad headers; documentation signatures and parse-only pinned Python declarations
+  corroborate type/disabled, not installed runtime or historical parser behavior.
+  Only header-default spans change in a NEW provenance-bound export; original/raw
+  JSON and bodies remain. Missing/null metadata, explicit None, required and
+  unresolved defaults stay distinct. Raw examples/deprecation remain outside the
+  legacy derived text; it is not complete documentation or a semantic repair.
+  Portable replay does not authenticate full external raw membership; explicit
+  physical file checks are separate. No current builder/source/ID/profile/prompt/UI,
+  human score, approval or financial authority is promoted; halt/holds stay intact.
+
 - C4y adds source-aware offline inspection; read `docs/core-parameter-review.fa.md`.
   AI review is separate from human scoring and never enters selection payload or
   corpus. Preserve all C4x code/input/result bytes. Header/signature observations

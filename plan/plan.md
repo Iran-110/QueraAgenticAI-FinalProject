@@ -4,6 +4,22 @@
 
 ## وضعیت فعلی
 
+- [x] **C4z — بررسی منبع خام و اصلاح نسخه‌دار default؛ ساسان، آفلاین.**
+  [شرح و محدودیت‌ها](../docs/core-raw-defaults.fa.md)،
+  [تغییر دقیق headerها](../experiments/core_raw_defaults_v1/comparison.fa.md) و
+  [verification](../experiments/core_raw_defaults_v1/verification-v1.json).
+  فایل خام کامل با hash/Git blob، دو رکورد با pointer و seedهای قدیمی بایت‌به‌بایت
+  تطبیق یافتند. metadata خام1.49 برای type/disabled، null وis دارد؛ signature
+  و AST کد رسمی1.49، secondary وFalse را تأیید می‌کنند؛ parser تاریخی بازاجرا نشد.
+  normalizer مستقل فقط default-header را از literal صریح signature می‌سازد و
+  required/None/unresolved را جدا نگه می‌دارد؛ کل raw JSON و بدنهٔ متن محفوظ است.
+  مشتق، هویت تازه دارد و کاملِ سند خام نیست؛ examples/deprecation در JSON باقی‌اند.
+  ۸۲۴تست مرتبط شامل۱۲۴کنترل تازه، Ruff/format۴۴۱فایل و review مستقل پاس؛
+  دو خطای import اجرای مستقل با bootstrap فقط تست رفع و شکست اولیه حفظ شد.
+  هیچ corpus/build/gold/پاسخ قبلی یا src/UI/config عوض نشد؛ C4x/C4y بایت‌به‌بایت
+  ثابت‌اند، watch۱۱۷/مالی۲۱، halt/سهhold و۷نوبت مصرف‌نشدهٔ جلسه محفوظ‌اند.
+  API مدل و ledger write صفر؛ این تیک، کیفیت مدل یا اتصال واقعی را نمی‌بندد.
+
 - [x] **C4y — review کیفی سه candidate و نمایش مسئلهٔ منبع؛ ساسان، آفلاین.**
   [نتیجه و حد review](../docs/core-parameter-review.fa.md)،
   [متن سه inspection](../experiments/core_parameter_review_v1/comparison.fa.md) و
@@ -35,8 +51,10 @@
   candidateهای بالا هنوز پیشنهاد قابل approval نیستند. پیش از هر اتصال باید relevance،
   caveatهای خارج پارامتر، ناسازگاری default منبع و usefulness بررسی شوند؛ سپس قرارداد
   تحویل و مقایسهٔ تازهٔ انتخاب مدل با مسیرهای غیرپاسخ جدا ثبت شود. AI review و source
-  inspection در C4y انجام شد، اما review انسانی باقی است. بررسی استخراج default/span
-  با مرجع خام، کار مشترک داده/core برای نسخهٔ بعدی است؛ build فریز‌شده بازنویسی نمی‌شود.
+  inspection در C4y و بررسی خام/default/span در C4z انجام شد؛ review انسانی،
+  استخراج کامل‌تر examples/deprecation و رفع تعارض prose هنوز باقی است. اتصال
+  normalizer به builder/profile فقط در نسخهٔ تازه و با pin/قرارداد مستقل بررسی شود؛
+  build فریز‌شده بازنویسی نمی‌شود.
   scope/watch جلسه برای این کار تغییر نمی‌کند.
 
 - [x] **C4w — نسخهٔ داورپسند و کنترل نهایی اجرای جلسه؛ ساسان.**

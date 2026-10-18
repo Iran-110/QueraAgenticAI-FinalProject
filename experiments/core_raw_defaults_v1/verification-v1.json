@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "task_id": "C4z",
+  "recorded_at_utc": "2026-10-18T08:57:04.053803+00:00",
+  "baseline_commit": "0ed208e9031c7b8064a95d7b6faf54c1742be0f4",
+  "tested_code_commit": "396b273e4542e4eedb665e02231dac105c9ffd28",
+  "condition": "offline raw-source provenance and declared-default derivation on exposed sources; no new model selection",
+  "provider_calls": 0,
+  "ledger_writes": 0,
+  "runtime_adoption": false,
+  "actual_installed_runtime_verified": false,
+  "human_usefulness": null,
+  "model_quality_improvement_established": false,
+  "source_verification": {
+    "full_raw_file_sha_git_blob_official_api_size_verified": true,
+    "raw_json_pointer_entries": 2,
+    "byte_exact_seed_reconstructions": 2,
+    "historical_candidate_source_links": 3,
+    "original_excerpt_hashes_from_seed_trim_match": true,
+    "pinned_python_1_49_type_disabled_ast_verified": true,
+    "third_party_code_executed": false,
+    "historical_parser_version_or_behavior_reproduced": false,
+    "source_aware_replay_full_raw_membership": true,
+    "portable_replay_full_raw_membership": false,
+    "pure_normalizer_authenticates_external_membership": false,
+    "derived_text_is_complete_raw_documentation": false,
+    "remaining_source_limits": [
+      "Plural examples and nested deprecation are retained only in canonical full raw JSON, absent from legacy derived text.",
+      "Prose use_container_width default inconsistency in1.49 remains untouched.",
+      "Signature and source declaration verification are not installed runtime or semantic support."
+    ]
+  },
+  "verification": {
+    "pytest": {
+      "passed": 824,
+      "new_controls_included": 124,
+      "prior_controls_included": 700,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "elapsed_seconds": 20.04,
+      "test_module_counts": {
+        "tests.test_core_raw_defaults": 65,
+        "tests.test_core_raw_defaults_review": 45,
+        "tests.test_core_raw_default_replay": 14,
+        "tests.test_core_parameter_integrity_review": 45,
+        "tests.test_core_parameter_inspection": 40,
+        "tests.test_core_parameter_review_replay": 15,
+        "tests.test_core_parameter_focus": 63,
+        "tests.test_core_parameter_candidate": 71,
+        "tests.test_core_parameter_review": 31,
+        "tests.test_core_parameter_replay": 25,
+        "tests.test_claim_plan": 77,
+        "tests.test_claim_sections": 57,
+        "tests.test_evidence_selection": 46,
+        "tests.test_selection_context": 77,
+        "tests.test_grounding": 40,
+        "tests.test_grounding_boundary_detachment": 94,
+        "tests.test_presentation_release_watch": 19
+      },
+      "new_test_module_counts": {
+        "tests.test_core_raw_defaults": 65,
+        "tests.test_core_raw_defaults_review": 45,
+        "tests.test_core_raw_default_replay": 14
+      },
+      "junit_sha256": "06a1e7357454bb64222cd17f9106e6157a91222436ec81e8fea8e3c93d86bfa9",
+      "log_sha256": "c17ebb9d851fa20d63f4447399dd4b2e74886ee8c8cca3b087b4c6e87f624f3e",
+      "neutral_cwd_without_pythonpath": true
+    },
+    "ruff": {
+      "check": "pass",
+      "format": "pass",
+      "formatted_python_files": 441,
+      "check_log_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "format_log_sha256": "fa75082771a918592efff7dc2b2d1652453706129cd88f2a9d488988c2dd485b"
+    },
+    "protected_input_audit": {
+      "runs": {
+        "regression": {
+          "sha256": "43bd993aaf0c416a1cafcff4360cff3d4507ea03e09ffc15be3e1e37e48885de",
+          "scope": "parent interpreter only, subprocesses not attested",
+          "blocked": [],
+          "allowed_loopback_connections": 0,
+          "seed_package_raw_hash_reads": 2
+        },
+        "source_replay": {
+          "sha256": "7e3941d91416f3eefef4fa6547e5bc3f76c0cde36ef6638dcc4827ebe40a96ef",
+          "scope": "parent interpreter only, subprocesses not attested",
+          "blocked": [],
+          "allowed_loopback_connections": 0,
+          "seed_package_raw_hash_reads": 0
+        },
+        "portable_replay": {
+          "sha256": "7e3941d91416f3eefef4fa6547e5bc3f76c0cde36ef6638dcc4827ebe40a96ef",
+          "scope": "parent interpreter only, subprocesses not attested",
+          "blocked": [],
+          "allowed_loopback_connections": 0,
+          "seed_package_raw_hash_reads": 0
+        }
+      },
+      "scope": "parent Python audit events; subprocess/native calls not attested",
+      "protected_payload_read_attempts": 0,
+      "prior_regression_seed_package_raw_hash_reads": 2,
+      "not_a_full_suite_or_heldout_run": true
+    }
+  },
+  "retained_intermediate_runs": [
+    {
+      "kind": "first neutral-cwd collection failed: missing repository namespace import in2testmodules",
+      "errors": 2,
+      "junit_sha256": "30d48834ce83f24a24c3699960a8660dbe710d4135c5a756bb586fa6cc70cf4c",
+      "log_sha256": "c186c2a4a07fd18782b1a3dcbf67156d9117851049cb37beac5c2615a4a545b5",
+      "resolution": "Test-only explicit repo-root bootstrap; no installed runtime/config change. Final neutral run omits PYTHONPATH."
+    },
+    {
+      "kind": "intermediate824-predecessor run with PYTHONPATH",
+      "passed": 823,
+      "junit_sha256": "9e78e5adb9e1316bd9fc060af15c5ca40fda43f98584792e756112da0bb481ea",
+      "log_sha256": "7af57750c346506a00578df2badd2e5421cd249370bdecbe2d37b3f99d54f65a"
+    },
+    {
+      "kind": "portable run after test bootstrap before one coordinate hardening regression",
+      "passed": 823,
+      "junit_sha256": "7fc434bd3fdd69c01749669e2179a613fcd20d218b51bca07b1864a61d5d4b44",
+      "log_sha256": "288623c071042d6d688e58e7c5f8b3f6feca8d7ed86c481fd85f19e144b0d64e"
+    }
+  ],
+  "independent_review": {
+    "kind": "AI, not human",
+    "remaining_blockers": 0,
+    "neutral_controls_included": 45,
+    "source_trace_review": "raw hash/blob/entry/seed/header chain independently matched",
+    "implementation_review": "strict provenance/output reconstruction, required/null/literal/unresolved, unchanged bodies and no execution/authority",
+    "followups_resolved": [
+      "Derived identity binds full source provenance, not only output text.",
+      "Both testmodules work from neutralcwd without PYTHONPATH.",
+      "Pinned implementation line coordinate rejects equal float."
+    ],
+    "documentation_source_consistency": "pass; complete changed-header table and all limits match receipts"
+  },
+  "old_packages_preservation": {
+    "all_tracked_files_byte_exact": true,
+    "files_checked": 25,
+    "sha256": {
+      "experiments/core_parameter_focus_v1/README.md": "31285f62f36754936f054fe40d5b00587e0b6f3084d8294634083bcd27f10ed5",
+      "experiments/core_parameter_focus_v1/candidate.py": "fc847b62b16146dc71aa8eaa97dd5670bb460db9cedf1fe98170ce1fa8483ef1",
+      "experiments/core_parameter_focus_v1/comparison.fa.md": "0b2479ff6eabd63305cb86a6aefc10680697bd5b7235a90fed84340e60d4ba80",
+      "experiments/core_parameter_focus_v1/input-counts-clarification-v1.json": "684bf0d510f09e3dc311519c23304dd2da4a928f87e4c6f139578c5242b1cfac",
+      "experiments/core_parameter_focus_v1/input-manifest-v1.json": "32f4abf60139dbfe213bdcb1f9ad6341b16fe743564cf5e6a4337c0f7b903ba5",
+      "experiments/core_parameter_focus_v1/parameters.py": "9d3f526bbd10bb741095a0ce5ddf00249dbfd4dd460e5f49839b39c6796b6902",
+      "experiments/core_parameter_focus_v1/protocol-amendment-v1.json": "3eb374b73b839a8292fb9915a2234f8143193da72c667e05e02dadc9e3d9e23e",
+      "experiments/core_parameter_focus_v1/protocol-v1.json": "b6aec79bf2d86f0380783bd5263cf470eff204650f7240770040f246c5336b91",
+      "experiments/core_parameter_focus_v1/replay-fixture-v1.json": "a958b0342f13bbcad7682b31bd92ec6ae45afd0b5a510426664aa839f317806d",
+      "experiments/core_parameter_focus_v1/replay-result-v1.json": "6f07c2774524e03b64e6bbdd44e8046de8c57f2fe166a343089a57820b6ba1a1",
+      "experiments/core_parameter_focus_v1/replay-result-v2.json": "12290434cf603788f81fba0c924ec256728a1227ff2c8145b6a24a922c69c15c",
+      "experiments/core_parameter_focus_v1/replay.py": "754d116bca3304eeb963702743ebc0b1de8e99695c5df7b5e76c82040f2bfa6b",
+      "experiments/core_parameter_focus_v1/source-only-diagnostic-v1.json": "74c925f6b5428b5e7df323db4235618ab3f6f50b11d4cd96cda8501887a05127",
+      "experiments/core_parameter_focus_v1/verification-v1.json": "1f9024bdd59b76906686eaf2cf67f328ec91e48180f52c32a4f25a1748d51899",
+      "experiments/core_parameter_review_v1/README.md": "3e1bf0e0eab3bce76bb3efbb80750d1860cdb134c31f8743feea446f781c01a0",
+      "experiments/core_parameter_review_v1/ai-review-v1.json": "85d84627fd4614dbf0b8df0e0e7014809f973d023bb5b8bfaa0b95aaa35f3688",
+      "experiments/core_parameter_review_v1/boundary-normalization-observation-v1.json": "746783670879d7f8a6d94b1ab6b8b4beb1bf7d8ef639298c43a1a203f37eecb6",
+      "experiments/core_parameter_review_v1/comparison.fa.md": "f523b1ecc62f66a4e88f3de7de952b902ca998e4c395b2814de282fee0bf1089",
+      "experiments/core_parameter_review_v1/display.py": "4e595efc1fbb680dac6d46e8bfcab20de23afbfa84647749c8ccc5d55fe44612",
+      "experiments/core_parameter_review_v1/integrity.py": "9bb8a97f2269bb362691fdfc9a6a72c4954e598d3615e2a22d5ba853a634a7e0",
+      "experiments/core_parameter_review_v1/protocol-v1.json": "2fa94097db4293fd8afc3a8972b1e30375588f2c013d60ef0a6543b277de825d",
+      "experiments/core_parameter_review_v1/replay-result-v1.json": "f08163c7a93ca304da2b0f46a4c59125243ce8901e2ee41561a16b04228452fc",
+      "experiments/core_parameter_review_v1/replay.py": "0dfeeed68fc2b9d33fe80f482d2eaeb1b6e623fb7c8504f53e616e0edf60e60f",
+      "experiments/core_parameter_review_v1/verification-v1.json": "63cc397d59b9f48b54110c9660143e43af283ae0cd59045d8c677097a5525af0",
+      "experiments/core_parameter_review_v1/verification-v2.json": "cf5b4d877e20ff1c3a671a08f38283c81b56de88727266e94b736250dd988732"
+    },
+    "original_attempts_retained": 8,
+    "original_final_turns_retained": 7
+  },
+  "meeting_preservation": {
+    "operator_ready": true,
+    "provider_probe": "not_performed",
+    "provider_key_read": false,
+    "funded_files_unchanged": 21,
+    "additive_watch_files_unchanged": 117,
+    "watch_sha256": "d510e16a552c585652af7d7f53c6692bb3ceb86b325fc8f5e06c456c0693a280",
+    "physical_index_verified": true,
+    "consumed_requests": 0,
+    "maximum_requests": 14,
+    "remaining_message_turns": 7,
+    "remaining_usd": "0.1",
+    "global_halt": true,
+    "c5_reconciled": false,
+    "old_uncertain_holds_modified": false,
+    "fresh_logical_ledger_row_audit_performed": false,
+    "healthcheck_sha256": "d604e74604ce4e5957368e7cf289ef49b784840f5e693b9838b7f70b93aa717a"
+  },
+  "unchanged_source_trees": [
+    "src",
+    "app_pages",
+    "scripts",
+    "data",
+    "config"
+  ],
+  "public_source_network_reads": "Official GitHub code/tag/blob metadata reads only; separate from Metis/model accounting. Offline replay/regression audit recorded0connects.",
+  "code_sha256": {
+    "experiments/core_raw_defaults_v1/normalization.py": "8b36ed4e45a7d1c48d86c0b044c90a289899d3b53c4b0f864ae6815f40f1fb78",
+    "experiments/core_raw_defaults_v1/replay.py": "506793f630c6106a6517b608b90ce5f0d7c627da91e854eedb7c4e012111f94f",
+    "tests/test_core_raw_defaults.py": "27500c9a5711d8fd481b421600d82d9e91bbccddc93fbe2f392e3ddb6eb8f674",
+    "tests/test_core_raw_defaults_review.py": "8be8b2602eec9e05d26461f69c534ea78be80485332926abd5f08610ed26ba03",
+    "tests/test_core_raw_default_replay.py": "a0c3f96dc122a79ae1520f3cc2e5bb96ea7b81bbca204a27256d14cff6ec1e23"
+  },
+  "artifact_sha256": {
+    "protocol-v1.json": "415561dbfe9d85fbb9a0e11a03d208f09215dd9fe57cfc32442a139b53c218f8",
+    "raw-api-snapshot-v1.json": "102ed7ae399230dd9c362ea6dda69c019f2e1c0080e2a729ddfba0aa375553ff",
+    "source-provenance-v1.json": "f468e4e4a30e20886c23fc235ca88a969eb20347d0784748a2272e24acee75f5",
+    "source-replay-v1.json": "02f9991f57711d73d6426e3d0571494f967abee741191e121086e784d8f79363",
+    "portable-replay-v1.json": "4b968293c9e3512438b1358cf1d9694d887c4a9c1691ef32c81098214aa42aa8"
+  },
+  "remaining_for_actual_adoption": [
+    "Human relevance/caveat/usefulness review",
+    "Full examples/deprecation extraction and prose conflicts review",
+    "Fresh corpus/build/profile/delivery/approval/financial binding separate from current frozen/live path",
+    "Broader dev actual model selection and non-answer validation"
+  ],
+  "invalid_claims": [
+    "Not a new model/human quality score",
+    "Not installed runtime verification or exact historical parser reproduction",
+    "Not a complete raw documentation extraction",
+    "Not repaired current index/corpus/source/old proposal",
+    "Not Enum/A3/B1 resolution or final RAG/held-out quality"
+  ]
+}

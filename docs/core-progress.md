@@ -1,3 +1,29 @@
+## 2026-10-18 — C4z: pinned raw default trace and fresh offline normalization
+
+[Findings and future adoption](core-raw-defaults.fa.md),
+[changed headers](../experiments/core_raw_defaults_v1/comparison.fa.md),
+[verification](../experiments/core_raw_defaults_v1/verification-v1.json).
+Full upstream raw SHA/Git blob and two JSON pointer entries match; faithful legacy
+projection equals both seed texts byte-for-byte. Seed boundary trim reproduces
+the3historical supplied excerpt hashes, explaining2LF span differences. Metadata
+already contains type null/disabled is before our preparation. Source documentation
+signature and parse-only pinned Python1.49 declaration corroborate secondary/False.
+Generator channel is observed; no exact historical parser reproduction or installed
+runtime verification. New conservative export patches only header default spans,
+preserves full canonical raw JSON/all legacy bodies and binds fresh provenance IDs.
+Required/literal None/unresolved remain distinct; strict validation rejects drift.
+Plural examples/nested deprecation stay in JSON, absent from old/derived text;
+remaining prose contradictions stay explicit. This is not complete raw-doc repair.
+All C4x/C4y tracked bytes and8attempts/7finals remain exact.824focused tests include
+124new controls; Ruff/format441files and independent AI review pass. Initial2neutral
+cwd import errors and the test-only bootstrap resolution are retained. Public-source
+reads are separate from0Metis/model calls; no ledger writes or held-out payload use.
+GET-only meeting health passes:21funded/117watched files and physical index intact,
+0/14meeting requests consumed,7turns left; halt/threeholds preserved. No runtime,
+prompt/profile/UI/build/gold promotion or new quality score. Human relevance/
+usefulness, complete extraction, broader dev/model/non-answer and separate delivery/
+approval/financial binding remain prerequisites for adoption.
+
 ## 2026-10-18 — C4y: qualitative review and source-aware inspection
 
 [Findings and adoption gaps](core-parameter-review.fa.md),
