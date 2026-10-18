@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "task_id": "C4y",
+  "recorded_at_utc": "2026-10-18T07:55:12.798086+00:00",
+  "kind": "post_hoc_boundary_normalization_diagnostic_not_raw_index_retrieval",
+  "observation": "The existing EvidenceHit Text boundary strips leading/trailing whitespace while preserving supplied source_span metadata. A span-length mismatch is not by itself index corruption.",
+  "unchanged_contract_source": "src/agent_app/contracts.py",
+  "contract_source_sha256": "1dcf0de657f3442dfb5e787e6243a9a279501305033e592cbcd060dd808d0a91",
+  "fixture_sha256": "a958b0342f13bbcad7682b31bd92ec6ae45afd0b5a510426664aa839f317806d",
+  "hypothesis_limit": "Appending two LF characters to these normalized excerpts fits declared lengths and supplied16hex chunk digest prefixes. This is consistent with boundary trimming, not authentication of original raw documents, complete source hashes or file mappings.",
+  "raw_index_or_seed_content_opened_for_this_diagnostic": false,
+  "provider_calls": 0,
+  "ledger_writes": 0,
+  "source_or_metadata_repairs": 0,
+  "rows": [
+    {
+      "turn": "B2",
+      "source_id": "docstring:1.39.0:streamlit.button",
+      "actual_supplied_excerpt_chars": 2696,
+      "declared_upstream_span_chars": 2698,
+      "hypothetical_appended_suffix": "two LF characters",
+      "reconstructed_text_sha256": "348e29001cbb5d5a31a59a546e06555ea8f3fd11a4ccda070709105e8fae3482",
+      "supplied_chunk_id_digest_prefix": "348e29001cbb5d5a",
+      "prefix_hex_characters": 16,
+      "hypothesis_matches_supplied_prefix_and_length": true,
+      "original_raw_document_or_full_hash_authenticated": false,
+      "original_file_offset_mapping_verified": false
+    },
+    {
+      "turn": "C1",
+      "source_id": "docstring:1.49.0:streamlit.button",
+      "actual_supplied_excerpt_chars": 3752,
+      "declared_upstream_span_chars": 3754,
+      "hypothetical_appended_suffix": "two LF characters",
+      "reconstructed_text_sha256": "7bd993a4e7d0104fc869ab219a8a801761efcf1c8e6981c29ec763e3a86ed8ee",
+      "supplied_chunk_id_digest_prefix": "7bd993a4e7d0104f",
+      "prefix_hex_characters": 16,
+      "hypothesis_matches_supplied_prefix_and_length": true,
+      "original_raw_document_or_full_hash_authenticated": false,
+      "original_file_offset_mapping_verified": false
+    },
+    {
+      "turn": "C2",
+      "source_id": "docstring:1.49.0:streamlit.button",
+      "actual_supplied_excerpt_chars": 3752,
+      "declared_upstream_span_chars": 3754,
+      "hypothetical_appended_suffix": "two LF characters",
+      "reconstructed_text_sha256": "7bd993a4e7d0104fc869ab219a8a801761efcf1c8e6981c29ec763e3a86ed8ee",
+      "supplied_chunk_id_digest_prefix": "7bd993a4e7d0104f",
+      "prefix_hex_characters": 16,
+      "hypothesis_matches_supplied_prefix_and_length": true,
+      "original_raw_document_or_full_hash_authenticated": false,
+      "original_file_offset_mapping_verified": false
+    }
+  ],
+  "required_handling": "Keep exact supplied excerpt/local offsets and original metadata. Describe normalization/provenance uncertainty; do not call it corrupted retrieval or ask the user to fix source metadata."
+}

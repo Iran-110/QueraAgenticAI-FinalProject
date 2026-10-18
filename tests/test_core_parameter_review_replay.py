@@ -7,6 +7,9 @@ from pathlib import Path
 
 import pytest
 
+from agent_app.contracts import CaseState, EvidenceBundle, EvidenceHit, Fact
+from agent_app.reasoning.grounding import make_grounded_request
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -124,3 +127,57 @@ def test_symlinked_protocol_is_not_read_as_a_new_regular_artifact(replay, tmp_pa
     link.symlink_to(target)
     with pytest.raises(ValueError):
         replay._read(link)
+
+
+@pytest.mark.parametrize("prefix,suffix", [("", "\n\n"), ("\n", ""), (" \n", "\r\n ")])
+def test_boundary_whitespace_can_explain_span_difference_without_proving_corruption(
+    replay, prefix, suffix
+):
+    normalized = (
+        "neutral.widget(mode=False)\n\nNeutral API.\n\nParameters:\n\n"
+        "mode: bool; default=False\nComplete definition.\n\nReturns: bool\nA value."
+    )
+    raw = prefix + normalized + suffix
+    supplied_span = f"chars:731:{731 + len(raw)};unit:unicode_codepoint"
+    hit = EvidenceHit(
+        source_id="neutral-normalization",
+        chunk_id="neutral-normalization-chunk",
+        source_type="doc",
+        source_url="https://example.invalid/neutral",
+        source_span=supplied_span,
+        applicable_versions=("1.49.0",),
+        excerpt=raw,
+    )
+    # This is the existing public boundary behavior, not a new source repair.
+    assert hit.excerpt == normalized and len(raw) > len(hit.excerpt)
+    request = make_grounded_request(
+        CaseState(
+            case_id="neutral-normalization-case",
+            facts=(
+                Fact(
+                    name="streamlit_version",
+                    value="1.49.0",
+                    source_ref="user:now",
+                    turn_id="now",
+                ),
+            ),
+        ),
+        "Explain the documented mode parameter.",
+        EvidenceBundle(snapshot_id="neutral-snapshot", hits=(hit,)),
+    )
+    focus = replay.build_parameter_focus_request(request)
+    candidate = replay.render_parameter_focus_candidate(
+        focus,
+        json.dumps(
+            {"context_sha256": focus.context_sha256, "decision": "answer", "parameters": [0]}
+        ),
+    )
+    review = replay.build_parameter_review(focus, candidate)
+    binding = review.integrity.source_bindings[0]
+    assert binding.raw_source_span == supplied_span
+    assert binding.excerpt_length == len(normalized)
+    assert binding.declared_span_length_matches_excerpt is False
+    assert binding.original_file_offset_mapping_verified is False
+    assert review.integrity.selected_unit_has_integrity_warning is False
+    assert candidate.quotations[0].text in normalized
+    assert review.semantic_support is None
