@@ -92,7 +92,7 @@ relevance and B1retrieval miss remain unresolved; no new quality score is claime
 
 [Behavior and operator check](presentation-readiness.fa.md),
 [receipt](receipts/presentation-readiness-2026-10-18.json),
-[public13-slide PDF/HTML](presentation/README.fa.md).
+[historical13-slide PDFv2](presentation/judges-presentation-fa-v2.pdf).
 Optional GET-only judges view retains complete original drafts/handoffs/sources.
 Separate117-file public release inventory extends the original unchanged21-file
 funding binding; startup/allocation/final delegation reject drift. ASGI drains

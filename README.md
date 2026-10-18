@@ -2,6 +2,8 @@
 
 پروژهٔ نهایی بوت‌کمپ Agentic AI کوئرا: دستیار بررسی گزارش خطا و پیگیری پرونده، با شواهد قابل بررسی و تأیید انسانی پیش از اجرای اقدام.
 
+**برای شروع مطالعه و دیدن کارهای باز:** [وضعیت فعلی و مسیر مطالعه، ۱۸ اکتبر](docs/current-status.fa.md).
+
 **فایل فعلی ارائه، نسخهٔ ۳:** [PDF فارسی ۱۵ اسلایدی](docs/presentation/judges-presentation-fa-v3.pdf)،
 [HTML قابل ویرایش](docs/presentation/judges-presentation-fa-v3.html) و
 [راهنمای اسلایدبه‌اسلاید](docs/presentation/speaker-notes-fa-v3.md).
