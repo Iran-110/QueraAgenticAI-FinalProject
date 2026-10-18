@@ -10,10 +10,10 @@
   و retry بررسی شده است. [پذیرش واقعی ثبت‌شده](receipts/presentation-live-acceptance-2026-10-17.json).
 - build نهایی v3 با ۱۲۲۸ منبع، ۱۸۲۷ chunk و exclusion فریز‌شدهٔ ۹۵ Issue پذیرفته
   شده است. [رسید مستقل build](receipts/final-build-v3-core-acceptance-2026-10-17.json).
-- [PDF فعلی ۱۵ اسلایدی](presentation/judges-presentation-fa-v4.pdf)،
-  [HTML آن](presentation/judges-presentation-fa-v4.html) و
-  [راهنمای گفتاری هماهنگ](presentation/speaker-notes-fa-v4.md) آماده‌اند.
-  [QA همین نسخه](presentation/judges-v4-qa.json) از receipt نسخهٔ قبلی جداست.
+- [PDF فعلی ۱۵ اسلایدی](presentation/judges-presentation-fa-v5.pdf)،
+  [HTML آن](presentation/judges-presentation-fa-v5.html) و
+  [راهنمای گفتاری هماهنگ](presentation/speaker-notes-fa-v5.md) آماده‌اند.
+  [QA همین نسخه](presentation/judges-v5-qa.json) از receipt نسخهٔ قبلی جداست.
 
 بررسی خواندنی ۱۸ اکتبر، سرویس‌های جلسه و index فیزیکی را سالم دید؛ هر هفت نوبت
 جلسه مصرف‌نشده‌اند. provider در این بررسی فراخوانی نشده؛ سلامت سرویس‌ها تضمین
@@ -33,7 +33,7 @@
 
 ## از کجا بخوانم؟
 
-1. PDF نسخهٔ۴ را یک بار از ابتدا تا انتها بخوان تا تصویر کلی محصول را بگیری.
+1. PDF نسخهٔ۵ را یک بار از ابتدا تا انتها بخوان تا تصویر کلی محصول را بگیری.
 2. همان ترتیب را با راهنمای گفتاری تمرین کن؛ روایت ۲۹ دقیقه، شامل ۶ دقیقه دمو است.
 3. برای چرایی بخش خودمان، [معماری](architecture.md)،
    [تنظیم منتخب core](core-delivery-selection.fa.md) و
@@ -42,7 +42,7 @@
    تمرین بدون ارسال، ظرفیت جلسه را مصرف نمی‌کند؛ درخواست واقعی تابع runbook موجود است.
 
 PDFهای self-learn قبلی برای یادگیری مفاهیم و تاریخچه مفیدند؛ برای تنظیم فعال،
-تعداد منابع، وضعیت تکمیل و نتیجه‌های فعلی، این صفحه و راهنمای نسخهٔ۴ مرجع‌اند.
+تعداد منابع، وضعیت تکمیل و نتیجه‌های فعلی، این صفحه و راهنمای نسخهٔ۵ مرجع‌اند.
 
 ## گزارش‌های تاریخی
 

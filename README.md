@@ -4,11 +4,11 @@
 
 **برای شروع مطالعه و دیدن کارهای باز:** [وضعیت فعلی و مسیر مطالعه، ۱۸ اکتبر](docs/current-status.fa.md).
 
-**فایل فعلی ارائه، نسخهٔ ۴:** [PDF فارسی ۱۵ اسلایدی](docs/presentation/judges-presentation-fa-v4.pdf)،
-[HTML قابل ویرایش](docs/presentation/judges-presentation-fa-v4.html) و
-[راهنمای اسلایدبه‌اسلاید](docs/presentation/speaker-notes-fa-v4.md).
-روایت محصول، داده و تصمیم‌های agent روشن‌تر شده؛ تصویر رابط با شماره‌گذاری
-و جهت درست فارسی/انگلیسی جایگزین شده است. مسیر گفتار۲۹دقیقه، شامل۶دقیقه دمو؛
+**فایل فعلی ارائه، نسخهٔ ۵:** [PDF فارسی ۱۵ اسلایدی](docs/presentation/judges-presentation-fa-v5.pdf)،
+[HTML قابل ویرایش](docs/presentation/judges-presentation-fa-v5.html) و
+[راهنمای اسلایدبه‌اسلاید](docs/presentation/speaker-notes-fa-v5.md).
+روایت محصول، داده و تصمیم‌های agent روشن‌تر شده؛ تصویر رابط بدون نشانگر روی نوشته‌ها، با فرم خوانا
+و جهت درست فارسی/انگلیسی آماده است. مسیر گفتار۲۹دقیقه، شامل۶دقیقه دمو؛
 متن گفتاری و جزئیات اجرا از PDF داورها جدا هستند. runtime و تنظیم جلسه ثابت‌اند.
 
 **بررسی منبع خام، C4z:** [ریشهٔ ناسازگاری و اصلاح مستقل](docs/core-raw-defaults.fa.md).
