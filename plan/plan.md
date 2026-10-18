@@ -4,6 +4,20 @@
 
 ## وضعیت فعلی
 
+- [x] **C4y — review کیفی سه candidate و نمایش مسئلهٔ منبع؛ ساسان، آفلاین.**
+  [نتیجه و حد review](../docs/core-parameter-review.fa.md)،
+  [متن سه inspection](../experiments/core_parameter_review_v1/comparison.fa.md) و
+  [verification](../experiments/core_parameter_review_v1/verification-v2.json).
+  AI review هر سه انتخاب را برای سؤال محدود فعلی مرتبط دید؛ سؤال اضافهٔ کاربر
+  لازم تشخیص داده نشد. این داوری انسانی یا آزمایش انتخاب مدل نیست. defaultِ
+  `type/disabled` در source مشکل دارد و طول span هر سه با excerpt متفاوت است.
+  inspection تازه citation امن، هشدار منتخب/peer و مختصات صریح داخل excerpt دارد؛
+  اختلاف طول با trim مرز سازگار است و خرابی index را ثابت نمی‌کند.
+  هیچ منبع/default/offset اصلاح نشد. candidate و payload/receiptهای C4x عیناً حفظ‌اند.
+  ۷۰۰تست مرتبط شامل۱۰۰کنترل تازه، Ruff/format۴۳۶فایل و review مستقل پاس؛ شکست دو
+  assertion متنی و بازاجرای موفق هم ثبت شد. فقط experiment/test/docs؛ watch۱۱۷فایل،
+  binding۲۱فایل، halt/سهhold و مسیر جلسه ثابت، API/ledger write تازه صفر.
+
 - [x] **C4x — تعریف کامل پارامتر برای پاسخ کوتاه‌تر؛ ساسان، آزمایش آفلاین.**
   [شرح](../docs/core-parameter-focus.fa.md)، [مقایسهٔ متن‌ها](../experiments/core_parameter_focus_v1/comparison.fa.md)
   و [verification](../experiments/core_parameter_focus_v1/verification-v1.json).
@@ -20,7 +34,10 @@
 - [ ] **C4x-next — review انسانی و تصمیم اتصال نسخه‌دار؛ ساسان، اختیاری پس از جلسه.**
   candidateهای بالا هنوز پیشنهاد قابل approval نیستند. پیش از هر اتصال باید relevance،
   caveatهای خارج پارامتر، ناسازگاری default منبع و usefulness بررسی شوند؛ سپس قرارداد
-  تحویل و مقایسهٔ تازهٔ انتخاب مدل جدا ثبت شود. scope/watch جلسه برای این کار تغییر نمی‌کند.
+  تحویل و مقایسهٔ تازهٔ انتخاب مدل با مسیرهای غیرپاسخ جدا ثبت شود. AI review و source
+  inspection در C4y انجام شد، اما review انسانی باقی است. بررسی استخراج default/span
+  با مرجع خام، کار مشترک داده/core برای نسخهٔ بعدی است؛ build فریز‌شده بازنویسی نمی‌شود.
+  scope/watch جلسه برای این کار تغییر نمی‌کند.
 
 - [x] **C4w — نسخهٔ داورپسند و کنترل نهایی اجرای جلسه؛ ساسان.**
   [شرح و فرمان healthcheck](../docs/presentation-readiness.fa.md)،

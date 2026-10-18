@@ -54,6 +54,18 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 ## Runtime rules
 
+- C4y adds source-aware offline inspection; read `docs/core-parameter-review.fa.md`.
+  AI review is separate from human scoring and never enters selection payload or
+  corpus. Preserve all C4x code/input/result bytes. Header/signature observations
+  do not resolve actual defaults; excerpt-local Unicode spans do not authenticate
+  upstream file coordinates, even when lengths match. Keep selected/peer warnings
+  separate; boundary whitespace stripping can explain a span-length difference,
+  which is not proof of index corruption. Preserve historical verification-v1.
+  Retain complete source/candidate custody and mandatory semantic/human review.
+  The new inspection is neither a proposal nor runtime configuration. Broader
+  model/non-answer validation and separate delivery/approval remain prerequisites;
+  no meeting watch/scope, halt/hold, source corpus or frozen gold changes.
+
 - C4x is an offline complete-parameter candidate, outside installed runtime;
   read `docs/core-parameter-focus.fa.md` and its experiment README. Full sources,
   parameter options, exact spans/hashes and current USER-version binding remain.

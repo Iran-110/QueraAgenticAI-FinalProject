@@ -1,0 +1,1685 @@
+{
+  "schema_version": 1,
+  "experiment_id": "core_parameter_review_v1",
+  "protocol_sha256": "2fa94097db4293fd8afc3a8972b1e30375588f2c013d60ef0a6543b277de825d",
+  "input_sha256": {
+    "replay-fixture-v1.json": "a958b0342f13bbcad7682b31bd92ec6ae45afd0b5a510426664aa839f317806d",
+    "replay-result-v2.json": "12290434cf603788f81fba0c924ec256728a1227ff2c8145b6a24a922c69c15c",
+    "protocol-v1.json": "b6aec79bf2d86f0380783bd5263cf470eff204650f7240770040f246c5336b91"
+  },
+  "provider_calls": 0,
+  "ledger_writes": 0,
+  "runtime_adoption": false,
+  "human_usefulness": null,
+  "semantic_support": null,
+  "model_quality_improvement_established": false,
+  "all_eight_old_attempts_and_seven_final_turns_retained": true,
+  "all_old_candidates_exactly_preserved": true,
+  "all_review_surface_controls_pass": true,
+  "rows": [
+    {
+      "turn": "B2",
+      "parameter": "icon",
+      "condition": "same_original_authored_selection; deterministic_review_only",
+      "old_candidate_chars": 1357,
+      "new_inspection_chars": 1381,
+      "length_is_not_the_acceptance_target": true,
+      "selected_unit_has_integrity_warning": false,
+      "selected_source_has_span_warning": true,
+      "controls": {
+        "old_candidate_exactly_preserved": true,
+        "complete_original_parameter_preserved": true,
+        "citation_in_concise_surface": true,
+        "local_coordinate_frame_explicit": true,
+        "source_warning_visible": true,
+        "full_original_review_retained": true,
+        "no_semantic_or_human_score": true,
+        "no_model_or_release_authority": true
+      },
+      "review": {
+        "schema_id": "parameter-inspection-review-v1",
+        "context_sha256": "870f3839746ae7beedb46dbf4d7f1d687f8e98d5a1429972b824c583ba3552ea",
+        "candidate_sha256": "65f763c88c7cf3b755817b1a0d71a02459edf179a3ee40a9385dfee7046847b3",
+        "original_candidate": {
+          "schema_id": "parameter-focus-candidate-v1",
+          "context_sha256": "870f3839746ae7beedb46dbf4d7f1d687f8e98d5a1429972b824c583ba3552ea",
+          "case_id": "p261018-rehearsal-6342f4817e34-b",
+          "case_revision": 2,
+          "user_reported_version": "1.39.0",
+          "decision": "answer",
+          "quotations": [
+            {
+              "parameter_id": 7,
+              "parameter_name": "icon",
+              "api_name": "st.button",
+              "signature": "st.button(label, key=None, help=None, on_click=None, args=None, kwargs=None, *, type=\"secondary\", icon=None, disabled=False, use_container_width=False)",
+              "source_index": 0,
+              "source_id": "docstring:1.39.0:streamlit.button",
+              "chunk_id": "doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_span": "chars:0:2698;unit:unicode_codepoint",
+              "start": 1486,
+              "end": 2083,
+              "source_content_sha256": "16aa13d3117d330630bec0c9fdcab5b65b68fdaf181e19e7808d62254d33e91c",
+              "source_text_sha256": "3e4ee8f16a4363b8e204ecf26a34183cf5c92cd5d8b98fc70e35b42d63725012",
+              "passage_sha256": "2cb5cb3a03267d3c98149ccfd14027079ef654c20cf758334218fa347e6fa32d",
+              "text": "icon: str or None; default=None\nAn optional emoji or icon to display next to the button label. If icon\nis None (default), no icon is displayed. If icon is a\nstring, the following options are valid:\n\nA single-character emoji. For example, you can set icon=\"🚨\"\nor icon=\"🔥\". Emoji short codes are not supported.\n\nAn icon from the Material Symbols library (rounded style) in the\nformat \":material/icon_name:\" where \"icon_name\" is the name\nof the icon in snake case.\n\nFor example, icon=\":material/thumb_up:\" will display the\nThumb Up icon. Find additional icons in the Material Symbols \nfont library.\n\n",
+              "exact_metadata_match": true,
+              "semantic_support": null,
+              "human_review_required": true
+            }
+          ],
+          "qualified_text": "Selected exact parameter quotations from supplied documentation. The source version metadata matches the current USER-reported Streamlit version 1.39.0; this does not verify relevance, applicability, a diagnosis or a fix. Other parameters and source-wide caveats may matter; complete original records remain in the review view. Human review is required.\n\nAPI: st.button; parameter: icon; chunk: doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a; excerpt characters [1486,2083).\nSignature supplied by the source (other parameters are not selected):\n> st.button\\(label, key=None, help=None, on\\_click=None, args=None, kwargs=None, \\*, type=\"secondary\", icon=None, disabled=False, use\\_container\\_width=False\\)\n\n> icon: str or None; default=None\n> An optional emoji or icon to display next to the button label. If icon\n> is None \\(default\\), no icon is displayed. If icon is a\n> string, the following options are valid:\n> \n> A single-character emoji. For example, you can set icon=\"🚨\"\n> or icon=\"🔥\". Emoji short codes are not supported.\n> \n> An icon from the Material Symbols library \\(rounded style\\) in the\n> format \":material/icon\\_name:\" where \"icon\\_name\" is the name\n> of the icon in snake case.\n> \n> For example, icon=\":material/thumb\\_up:\" will display the\n> Thumb Up icon. Find additional icons in the Material Symbols \n> font library.\n> \n> ",
+          "review_text": "Selected exact parameter quotations from supplied documentation. The source version metadata matches the current USER-reported Streamlit version 1.39.0; this does not verify relevance, applicability, a diagnosis or a fix. Other parameters and source-wide caveats may matter; complete original records remain in the review view. Human review is required.\n\nComplete selected source records:\n\nChunk: doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a; URL as supplied: https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json\n> st.button\\(label, key=None, help=None, on\\_click=None, args=None, kwargs=None, \\*, type=\"secondary\", icon=None, disabled=False, use\\_container\\_width=False\\)\n> \n> Display a button widget.\n> \n> Parameters:\n> \n> label: str; default=None\n> A short label explaining to the user what this button is for.\n> The label can optionally contain GitHub-flavored Markdown of the\n> following types: Bold, Italics, Strikethroughs, Inline Code, and\n> Links.\n> \n> Unsupported Markdown elements are unwrapped so only their children\n> \\(text contents\\) render. Display unsupported elements as literal\n> characters by backslash-escaping them. E.g.,\n> \"1\\\\. Not an ordered list\".\n> \n> See the body parameter of st.markdown for additional,\n> supported Markdown directives.\n> \n> key: str or int; default=None\n> An optional string or integer to use as the unique key for the widget.\n> If this is omitted, a key will be generated for the widget\n> based on its content. No two widgets may have the same key.\n> \n> help: str; default=None\n> An optional tooltip that gets displayed when the button is\n> hovered over.\n> \n> on\\_click: callable; default=None\n> An optional callback invoked when this button is clicked.\n> \n> args: tuple; default=None\n> An optional tuple of args to pass to the callback.\n> \n> kwargs: dict; default=None\n> An optional dict of kwargs to pass to the callback.\n> \n> type: \"secondary\" or \"primary\"; default=s\n> An optional string that specifies the button type. Can be \"primary\" for a\n> button with additional emphasis or \"secondary\" for a normal button. Defaults\n> to \"secondary\".\n> \n> icon: str or None; default=None\n> An optional emoji or icon to display next to the button label. If icon\n> is None \\(default\\), no icon is displayed. If icon is a\n> string, the following options are valid:\n> \n> A single-character emoji. For example, you can set icon=\"🚨\"\n> or icon=\"🔥\". Emoji short codes are not supported.\n> \n> An icon from the Material Symbols library \\(rounded style\\) in the\n> format \":material/icon\\_name:\" where \"icon\\_name\" is the name\n> of the icon in snake case.\n> \n> For example, icon=\":material/thumb\\_up:\" will display the\n> Thumb Up icon. Find additional icons in the Material Symbols \n> font library.\n> \n> disabled: bool; default=False\n> An optional boolean, which disables the button if set to True. The\n> default is False.\n> \n> use\\_container\\_width: bool; default=None\n> Whether to expand the button's width to fill its parent container.\n> If use\\_container\\_width is False \\(default\\), Streamlit sizes\n> the button to fit its contents. If use\\_container\\_width is\n> True, the width of the button matches its parent container.\n> \n> In both cases, if the contents of the button are wider than the\n> parent container, the contents will line wrap.\n> \n> Returns: bool\n> True if the button was clicked on the last run of the app,\n> False otherwise.\n> \n> Examples:",
+          "display_normalization": "crlf_to_lf_only",
+          "semantic_support": null,
+          "human_review_required": true,
+          "diagnosis_or_fix_verified": false,
+          "proposal_or_action_authorized": false
+        },
+        "integrity": {
+          "schema_id": "parameter-integrity-review-v1",
+          "context_sha256": "870f3839746ae7beedb46dbf4d7f1d687f8e98d5a1429972b824c583ba3552ea",
+          "candidate_sha256": "65f763c88c7cf3b755817b1a0d71a02459edf179a3ee40a9385dfee7046847b3",
+          "source_bindings": [
+            {
+              "source_index": 0,
+              "source_content_sha256": "16aa13d3117d330630bec0c9fdcab5b65b68fdaf181e19e7808d62254d33e91c",
+              "source_text_sha256": "3e4ee8f16a4363b8e204ecf26a34183cf5c92cd5d8b98fc70e35b42d63725012",
+              "eligibility": "exact_version_parameter_record",
+              "selected": true,
+              "raw_source_span": "chars:0:2698;unit:unicode_codepoint",
+              "coordinate_frame": "excerpt_unicode_codepoint",
+              "excerpt_length": 2696,
+              "declared_span_start": 0,
+              "declared_span_end": 2698,
+              "declared_span_length_matches_excerpt": false,
+              "source_span_status": "declared_length_differs",
+              "span_warning": true,
+              "original_file_offset_mapping_verified": false
+            },
+            {
+              "source_index": 1,
+              "source_content_sha256": "1b88c6d1bb65ba1c4a556fc91edfdc14a8f8972b729b6fba8f1302fdda7d72bc",
+              "source_text_sha256": "6d85a249d894c0dc8b8d4c69b47a49398ab0b86f2d1a834ff5994a7ce2aa94c8",
+              "eligibility": "parameter_structure_unavailable",
+              "selected": false,
+              "raw_source_span": "chars:0:2388;unit:unicode_codepoint",
+              "coordinate_frame": "excerpt_unicode_codepoint",
+              "excerpt_length": 2388,
+              "declared_span_start": 0,
+              "declared_span_end": 2388,
+              "declared_span_length_matches_excerpt": true,
+              "source_span_status": "declared_length_matches_excerpt",
+              "span_warning": false,
+              "original_file_offset_mapping_verified": false
+            },
+            {
+              "source_index": 2,
+              "source_content_sha256": "7a66632a428e6cdfa6e4ff08d7fa8abac980abcfe1d5fd596fd997ba26198cc8",
+              "source_text_sha256": "318f9ffbf470ce9f7b4f6e970db79db3adc905cbbe026f22de187855efd6692d",
+              "eligibility": "exact_version_parameter_record",
+              "selected": false,
+              "raw_source_span": "chars:0:2572;unit:unicode_codepoint",
+              "coordinate_frame": "excerpt_unicode_codepoint",
+              "excerpt_length": 2570,
+              "declared_span_start": 0,
+              "declared_span_end": 2572,
+              "declared_span_length_matches_excerpt": false,
+              "source_span_status": "declared_length_differs",
+              "span_warning": true,
+              "original_file_offset_mapping_verified": false
+            },
+            {
+              "source_index": 3,
+              "source_content_sha256": "c67da28a3dd2242a72295de124f1a99431ec1c7567c7f3d7184cdf2a6c03c98d",
+              "source_text_sha256": "f75e9730c6e30420eff70b9e395ba2588d674298b992f7e6f8d50afbde6144b3",
+              "eligibility": "not_an_exact_version_document",
+              "selected": false,
+              "raw_source_span": "chars:8000:9315;unit:unicode_codepoint",
+              "coordinate_frame": "excerpt_unicode_codepoint",
+              "excerpt_length": 1314,
+              "declared_span_start": 8000,
+              "declared_span_end": 9315,
+              "declared_span_length_matches_excerpt": false,
+              "source_span_status": "declared_length_differs",
+              "span_warning": true,
+              "original_file_offset_mapping_verified": false
+            }
+          ],
+          "observations": [
+            {
+              "source_index": 0,
+              "parameter_id": 0,
+              "parameter_name": "label",
+              "selected": false,
+              "unit_span": [
+                192,
+                707
+              ],
+              "header_span": [
+                192,
+                216
+              ],
+              "header_default_span": [
+                212,
+                216
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": null,
+              "signature_default_text": null,
+              "signature_default_state": "required",
+              "comparison": "header_default_for_required_parameter",
+              "warning": true,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 1,
+              "parameter_name": "key",
+              "selected": false,
+              "unit_span": [
+                707,
+                928
+              ],
+              "header_span": [
+                707,
+                736
+              ],
+              "header_default_span": [
+                732,
+                736
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                21,
+                25
+              ],
+              "signature_default_text": "None",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_matches",
+              "warning": false,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 2,
+              "parameter_name": "help",
+              "selected": false,
+              "unit_span": [
+                928,
+                1026
+              ],
+              "header_span": [
+                928,
+                951
+              ],
+              "header_default_span": [
+                947,
+                951
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                32,
+                36
+              ],
+              "signature_default_text": "None",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_matches",
+              "warning": false,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 3,
+              "parameter_name": "on_click",
+              "selected": false,
+              "unit_span": [
+                1026,
+                1118
+              ],
+              "header_span": [
+                1026,
+                1058
+              ],
+              "header_default_span": [
+                1054,
+                1058
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                47,
+                51
+              ],
+              "signature_default_text": "None",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_matches",
+              "warning": false,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 4,
+              "parameter_name": "args",
+              "selected": false,
+              "unit_span": [
+                1118,
+                1196
+              ],
+              "header_span": [
+                1118,
+                1143
+              ],
+              "header_default_span": [
+                1139,
+                1143
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                58,
+                62
+              ],
+              "signature_default_text": "None",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_matches",
+              "warning": false,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 5,
+              "parameter_name": "kwargs",
+              "selected": false,
+              "unit_span": [
+                1196,
+                1276
+              ],
+              "header_span": [
+                1196,
+                1222
+              ],
+              "header_default_span": [
+                1218,
+                1222
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                71,
+                75
+              ],
+              "signature_default_text": "None",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_matches",
+              "warning": false,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 6,
+              "parameter_name": "type",
+              "selected": false,
+              "unit_span": [
+                1276,
+                1486
+              ],
+              "header_span": [
+                1276,
+                1317
+              ],
+              "header_default_span": [
+                1316,
+                1317
+              ],
+              "header_default_text": "s",
+              "header_default_state": "unresolved_expression",
+              "signature_default_span": [
+                85,
+                96
+              ],
+              "signature_default_text": "\"secondary\"",
+              "signature_default_state": "literal",
+              "comparison": "default_comparison_unavailable",
+              "warning": true,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 7,
+              "parameter_name": "icon",
+              "selected": true,
+              "unit_span": [
+                1486,
+                2083
+              ],
+              "header_span": [
+                1486,
+                1517
+              ],
+              "header_default_span": [
+                1513,
+                1517
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                103,
+                107
+              ],
+              "signature_default_text": "None",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_matches",
+              "warning": false,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 8,
+              "parameter_name": "disabled",
+              "selected": false,
+              "unit_span": [
+                2083,
+                2199
+              ],
+              "header_span": [
+                2083,
+                2112
+              ],
+              "header_default_span": [
+                2107,
+                2112
+              ],
+              "header_default_text": "False",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                118,
+                123
+              ],
+              "signature_default_text": "False",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_matches",
+              "warning": false,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 9,
+              "parameter_name": "use_container_width",
+              "selected": false,
+              "unit_span": [
+                2199,
+                2596
+              ],
+              "header_span": [
+                2199,
+                2238
+              ],
+              "header_default_span": [
+                2234,
+                2238
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                145,
+                150
+              ],
+              "signature_default_text": "False",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_differs",
+              "warning": true,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 2,
+              "parameter_id": 10,
+              "parameter_name": "label",
+              "selected": false,
+              "unit_span": [
+                516,
+                623
+              ],
+              "header_span": [
+                516,
+                537
+              ],
+              "header_default_span": [
+                536,
+                537
+              ],
+              "header_default_text": "s",
+              "header_default_state": "unresolved_expression",
+              "signature_default_span": [
+                28,
+                36
+              ],
+              "signature_default_text": "\"Submit\"",
+              "signature_default_state": "literal",
+              "comparison": "default_comparison_unavailable",
+              "warning": true,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 2,
+              "parameter_id": 11,
+              "parameter_name": "help",
+              "selected": false,
+              "unit_span": [
+                623,
+                737
+              ],
+              "header_span": [
+                623,
+                654
+              ],
+              "header_default_span": [
+                650,
+                654
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                43,
+                47
+              ],
+              "signature_default_text": "None",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_matches",
+              "warning": false,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 2,
+              "parameter_id": 12,
+              "parameter_name": "on_click",
+              "selected": false,
+              "unit_span": [
+                737,
+                829
+              ],
+              "header_span": [
+                737,
+                769
+              ],
+              "header_default_span": [
+                765,
+                769
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                58,
+                62
+              ],
+              "signature_default_text": "None",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_matches",
+              "warning": false,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 2,
+              "parameter_id": 13,
+              "parameter_name": "args",
+              "selected": false,
+              "unit_span": [
+                829,
+                907
+              ],
+              "header_span": [
+                829,
+                854
+              ],
+              "header_default_span": [
+                850,
+                854
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                69,
+                73
+              ],
+              "signature_default_text": "None",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_matches",
+              "warning": false,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 2,
+              "parameter_id": 14,
+              "parameter_name": "kwargs",
+              "selected": false,
+              "unit_span": [
+                907,
+                987
+              ],
+              "header_span": [
+                907,
+                933
+              ],
+              "header_default_span": [
+                929,
+                933
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                82,
+                86
+              ],
+              "signature_default_text": "None",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_matches",
+              "warning": false,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 2,
+              "parameter_id": 15,
+              "parameter_name": "type",
+              "selected": false,
+              "unit_span": [
+                987,
+                1197
+              ],
+              "header_span": [
+                987,
+                1028
+              ],
+              "header_default_span": [
+                1027,
+                1028
+              ],
+              "header_default_text": "s",
+              "header_default_state": "unresolved_expression",
+              "signature_default_span": [
+                96,
+                107
+              ],
+              "signature_default_text": "\"secondary\"",
+              "signature_default_state": "literal",
+              "comparison": "default_comparison_unavailable",
+              "warning": true,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 2,
+              "parameter_id": 16,
+              "parameter_name": "icon",
+              "selected": false,
+              "unit_span": [
+                1197,
+                1793
+              ],
+              "header_span": [
+                1197,
+                1228
+              ],
+              "header_default_span": [
+                1224,
+                1228
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                114,
+                118
+              ],
+              "signature_default_text": "None",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_matches",
+              "warning": false,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 2,
+              "parameter_id": 17,
+              "parameter_name": "disabled",
+              "selected": false,
+              "unit_span": [
+                1793,
+                2117
+              ],
+              "header_span": [
+                1793,
+                1821
+              ],
+              "header_default_span": [
+                1817,
+                1821
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                129,
+                134
+              ],
+              "signature_default_text": "False",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_differs",
+              "warning": true,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 2,
+              "parameter_id": 18,
+              "parameter_name": "use_container_width",
+              "selected": false,
+              "unit_span": [
+                2117,
+                2514
+              ],
+              "header_span": [
+                2117,
+                2156
+              ],
+              "header_default_span": [
+                2152,
+                2156
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                156,
+                161
+              ],
+              "signature_default_text": "False",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_differs",
+              "warning": true,
+              "semantic_support": null,
+              "human_review_required": true
+            }
+          ],
+          "selected_unit_has_integrity_warning": false,
+          "peer_unit_has_integrity_warning": true,
+          "selected_source_has_span_warning": true,
+          "peer_source_has_span_warning": true,
+          "semantic_support": null,
+          "human_review_required": true,
+          "actual_runtime_defaults_verified": false,
+          "original_file_offset_mapping_verified": false,
+          "proposal_or_action_authorized": false
+        },
+        "concise_text": "Experimental inspection; not an approved response.\n\n### st.button · icon · Streamlit 1.39.0 (USER-reported)\n\nSource checks requiring review:\n\n- Supplied span length differs from excerpt length: 2698 versus 2696 Unicode code points; original-file mapping is unverified.\n- Other parameters in this same source have 3 unresolved defaults. This does not disprove the selected quotation; details remain in the maintainer view.\n\n> icon: str or None; default=None\n> An optional emoji or icon to display next to the button label. If icon\n> is None \\(default\\), no icon is displayed. If icon is a\n> string, the following options are valid:\n> \n> A single-character emoji. For example, you can set icon=\"🚨\"\n> or icon=\"🔥\". Emoji short codes are not supported.\n> \n> An icon from the Material Symbols library \\(rounded style\\) in the\n> format \":material/icon\\_name:\" where \"icon\\_name\" is the name\n> of the icon in snake case.\n> \n> For example, icon=\":material/thumb\\_up:\" will display the\n> Thumb Up icon. Find additional icons in the Material Symbols \n> font library.\n> \n> \n\n[Supplied documentation](https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json). Quotation offsets [1486,2083) are Unicode code points within the supplied excerpt.\n\nRelevance, external caveats and usefulness remain unscored. Full sources and signatures: maintainer view.",
+        "maintainer_text": "Experimental inspection; not an approved response.\n\n### st.button · icon · Streamlit 1.39.0 (USER-reported)\n\nSource checks requiring review:\n\n- Supplied span length differs from excerpt length: 2698 versus 2696 Unicode code points; original-file mapping is unverified.\n- Other parameters in this same source have 3 unresolved defaults. This does not disprove the selected quotation; details remain in the maintainer view.\n\n> icon: str or None; default=None\n> An optional emoji or icon to display next to the button label. If icon\n> is None \\(default\\), no icon is displayed. If icon is a\n> string, the following options are valid:\n> \n> A single-character emoji. For example, you can set icon=\"🚨\"\n> or icon=\"🔥\". Emoji short codes are not supported.\n> \n> An icon from the Material Symbols library \\(rounded style\\) in the\n> format \":material/icon\\_name:\" where \"icon\\_name\" is the name\n> of the icon in snake case.\n> \n> For example, icon=\":material/thumb\\_up:\" will display the\n> Thumb Up icon. Find additional icons in the Material Symbols \n> font library.\n> \n> \n\n[Supplied documentation](https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json). Quotation offsets [1486,2083) are Unicode code points within the supplied excerpt.\n\nRelevance, external caveats and usefulness remain unscored. Full sources and signatures: maintainer view.\n\n### Supplied question context\n\n> Original user problem \\(historical context; not current facts\\):\n> In Streamlit 1.39.0, can st.button accept an icon argument? Please cite the supplied documentation and do not infer anything about my app.\n> \n> Current facts and unknowns come from the supplied CaseState. Historical context may contain superseded values; it does not update facts or provide source evidence.\n> \n> Latest user message \\(exact committed input\\):\n> For that same release, can I supply both the label and the icon, or does the icon replace the label? Please use the sources, not a guessed UI screenshot.\n\n### Integrity observations across the supplied catalog\n\n- Source 0; parameter label; selected=False; observation=header_default_for_required_parameter; header span=\\(212, 216\\); signature span=None.\n- Source 0; parameter key; selected=False; observation=supported_literal_matches; header span=\\(732, 736\\); signature span=\\(21, 25\\).\n- Source 0; parameter help; selected=False; observation=supported_literal_matches; header span=\\(947, 951\\); signature span=\\(32, 36\\).\n- Source 0; parameter on\\_click; selected=False; observation=supported_literal_matches; header span=\\(1054, 1058\\); signature span=\\(47, 51\\).\n- Source 0; parameter args; selected=False; observation=supported_literal_matches; header span=\\(1139, 1143\\); signature span=\\(58, 62\\).\n- Source 0; parameter kwargs; selected=False; observation=supported_literal_matches; header span=\\(1218, 1222\\); signature span=\\(71, 75\\).\n- Source 0; parameter type; selected=False; observation=default_comparison_unavailable; header span=\\(1316, 1317\\); signature span=\\(85, 96\\).\n- Source 0; parameter icon; selected=True; observation=supported_literal_matches; header span=\\(1513, 1517\\); signature span=\\(103, 107\\).\n- Source 0; parameter disabled; selected=False; observation=supported_literal_matches; header span=\\(2107, 2112\\); signature span=\\(118, 123\\).\n- Source 0; parameter use\\_container\\_width; selected=False; observation=supported_literal_differs; header span=\\(2234, 2238\\); signature span=\\(145, 150\\).\n- Source 2; parameter label; selected=False; observation=default_comparison_unavailable; header span=\\(536, 537\\); signature span=\\(28, 36\\).\n- Source 2; parameter help; selected=False; observation=supported_literal_matches; header span=\\(650, 654\\); signature span=\\(43, 47\\).\n- Source 2; parameter on\\_click; selected=False; observation=supported_literal_matches; header span=\\(765, 769\\); signature span=\\(58, 62\\).\n- Source 2; parameter args; selected=False; observation=supported_literal_matches; header span=\\(850, 854\\); signature span=\\(69, 73\\).\n- Source 2; parameter kwargs; selected=False; observation=supported_literal_matches; header span=\\(929, 933\\); signature span=\\(82, 86\\).\n- Source 2; parameter type; selected=False; observation=default_comparison_unavailable; header span=\\(1027, 1028\\); signature span=\\(96, 107\\).\n- Source 2; parameter icon; selected=False; observation=supported_literal_matches; header span=\\(1224, 1228\\); signature span=\\(114, 118\\).\n- Source 2; parameter disabled; selected=False; observation=supported_literal_differs; header span=\\(1817, 1821\\); signature span=\\(129, 134\\).\n- Source 2; parameter use\\_container\\_width; selected=False; observation=supported_literal_differs; header span=\\(2152, 2156\\); signature span=\\(156, 161\\).\n\nThese checks compare supplied spellings only. They do not interpret body prose, authenticate a source or map excerpts to the original file. A source defect must not be turned into an unrelated question to the user.\n\n### Original complete candidate review\n\nSelected exact parameter quotations from supplied documentation. The source version metadata matches the current USER-reported Streamlit version 1.39.0; this does not verify relevance, applicability, a diagnosis or a fix. Other parameters and source-wide caveats may matter; complete original records remain in the review view. Human review is required.\n\nComplete selected source records:\n\nChunk: doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a; URL as supplied: https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json\n> st.button\\(label, key=None, help=None, on\\_click=None, args=None, kwargs=None, \\*, type=\"secondary\", icon=None, disabled=False, use\\_container\\_width=False\\)\n> \n> Display a button widget.\n> \n> Parameters:\n> \n> label: str; default=None\n> A short label explaining to the user what this button is for.\n> The label can optionally contain GitHub-flavored Markdown of the\n> following types: Bold, Italics, Strikethroughs, Inline Code, and\n> Links.\n> \n> Unsupported Markdown elements are unwrapped so only their children\n> \\(text contents\\) render. Display unsupported elements as literal\n> characters by backslash-escaping them. E.g.,\n> \"1\\\\. Not an ordered list\".\n> \n> See the body parameter of st.markdown for additional,\n> supported Markdown directives.\n> \n> key: str or int; default=None\n> An optional string or integer to use as the unique key for the widget.\n> If this is omitted, a key will be generated for the widget\n> based on its content. No two widgets may have the same key.\n> \n> help: str; default=None\n> An optional tooltip that gets displayed when the button is\n> hovered over.\n> \n> on\\_click: callable; default=None\n> An optional callback invoked when this button is clicked.\n> \n> args: tuple; default=None\n> An optional tuple of args to pass to the callback.\n> \n> kwargs: dict; default=None\n> An optional dict of kwargs to pass to the callback.\n> \n> type: \"secondary\" or \"primary\"; default=s\n> An optional string that specifies the button type. Can be \"primary\" for a\n> button with additional emphasis or \"secondary\" for a normal button. Defaults\n> to \"secondary\".\n> \n> icon: str or None; default=None\n> An optional emoji or icon to display next to the button label. If icon\n> is None \\(default\\), no icon is displayed. If icon is a\n> string, the following options are valid:\n> \n> A single-character emoji. For example, you can set icon=\"🚨\"\n> or icon=\"🔥\". Emoji short codes are not supported.\n> \n> An icon from the Material Symbols library \\(rounded style\\) in the\n> format \":material/icon\\_name:\" where \"icon\\_name\" is the name\n> of the icon in snake case.\n> \n> For example, icon=\":material/thumb\\_up:\" will display the\n> Thumb Up icon. Find additional icons in the Material Symbols \n> font library.\n> \n> disabled: bool; default=False\n> An optional boolean, which disables the button if set to True. The\n> default is False.\n> \n> use\\_container\\_width: bool; default=None\n> Whether to expand the button's width to fill its parent container.\n> If use\\_container\\_width is False \\(default\\), Streamlit sizes\n> the button to fit its contents. If use\\_container\\_width is\n> True, the width of the button matches its parent container.\n> \n> In both cases, if the contents of the button are wider than the\n> parent container, the contents will line wrap.\n> \n> Returns: bool\n> True if the button was clicked on the last run of the app,\n> False otherwise.\n> \n> Examples:",
+        "source_review_required": true,
+        "pending_semantic_review": [
+          "current_question_relevance",
+          "necessary_caveats_outside_selected_unit",
+          "user_usefulness"
+        ],
+        "review_binding_sha256": "8d2e913616550978d8a3ceeead2ec1fb9cec3ac6a5511937a33fafbd7865335b",
+        "reviewer_basis": "deterministic_source_observations_only",
+        "semantic_support": null,
+        "human_usefulness": null,
+        "human_review_required": true,
+        "model_selection_observed": false,
+        "original_file_offset_mapping_verified": false,
+        "approved_response_or_action": false,
+        "runtime_adoption": false
+      }
+    },
+    {
+      "turn": "C1",
+      "parameter": "type",
+      "condition": "same_original_authored_selection; deterministic_review_only",
+      "old_candidate_chars": 1193,
+      "new_inspection_chars": 1370,
+      "length_is_not_the_acceptance_target": true,
+      "selected_unit_has_integrity_warning": true,
+      "selected_source_has_span_warning": true,
+      "controls": {
+        "old_candidate_exactly_preserved": true,
+        "complete_original_parameter_preserved": true,
+        "citation_in_concise_surface": true,
+        "local_coordinate_frame_explicit": true,
+        "source_warning_visible": true,
+        "full_original_review_retained": true,
+        "no_semantic_or_human_score": true,
+        "no_model_or_release_authority": true
+      },
+      "review": {
+        "schema_id": "parameter-inspection-review-v1",
+        "context_sha256": "da3d3fdfedb1e1ed703f366b2a5f021e2c79cad533a1316082855e41c70e127b",
+        "candidate_sha256": "324f7ea3ca1c04c7148102ee19ecf76bdcaa2386d6f6fffec820ff2d505b1650",
+        "original_candidate": {
+          "schema_id": "parameter-focus-candidate-v1",
+          "context_sha256": "da3d3fdfedb1e1ed703f366b2a5f021e2c79cad533a1316082855e41c70e127b",
+          "case_id": "p261018-rehearsal-6342f4817e34-c",
+          "case_revision": 1,
+          "user_reported_version": "1.49.0",
+          "decision": "answer",
+          "quotations": [
+            {
+              "parameter_id": 6,
+              "parameter_name": "type",
+              "api_name": "st.button",
+              "signature": "st.button(label, key=None, help=None, on_click=None, args=None, kwargs=None, *, type=\"secondary\", icon=None, disabled=False, use_container_width=None, width=\"content\")",
+              "source_index": 0,
+              "source_id": "docstring:1.49.0:streamlit.button",
+              "chunk_id": "doc:1.49.0:0e3fc0224f3d3f9fbc9fd032:0:3754:7bd993a4e7d0104f",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_span": "chars:0:3754;unit:unicode_codepoint",
+              "start": 1581,
+              "end": 2009,
+              "source_content_sha256": "d581c57e2d94693477e38d6b1f90e7ecfcaa0bbf99492f8d257ad48e52164d20",
+              "source_text_sha256": "28b72ea64905d5797d1edc446be5db2c13fe2b9219bf503cffd6c8ca6b06a71e",
+              "passage_sha256": "8dc1303a5532102daa25dedc02fa50a08ed50106231322700bd0c63d58321d14",
+              "text": "type: \"primary\", \"secondary\", or \"tertiary\"; default=None\nAn optional string that specifies the button type. This can be one\nof the following:\n\n\"primary\": The button's background is the app's primary color\nfor additional emphasis.\n\n\"secondary\" (default): The button's background coordinates\nwith the app's background color for normal emphasis.\n\n\"tertiary\": The button is plain text without a border or\nbackground for subtlety.\n\n",
+              "exact_metadata_match": true,
+              "semantic_support": null,
+              "human_review_required": true
+            }
+          ],
+          "qualified_text": "Selected exact parameter quotations from supplied documentation. The source version metadata matches the current USER-reported Streamlit version 1.49.0; this does not verify relevance, applicability, a diagnosis or a fix. Other parameters and source-wide caveats may matter; complete original records remain in the review view. Human review is required.\n\nAPI: st.button; parameter: type; chunk: doc:1.49.0:0e3fc0224f3d3f9fbc9fd032:0:3754:7bd993a4e7d0104f; excerpt characters [1581,2009).\nSignature supplied by the source (other parameters are not selected):\n> st.button\\(label, key=None, help=None, on\\_click=None, args=None, kwargs=None, \\*, type=\"secondary\", icon=None, disabled=False, use\\_container\\_width=None, width=\"content\"\\)\n\n> type: \"primary\", \"secondary\", or \"tertiary\"; default=None\n> An optional string that specifies the button type. This can be one\n> of the following:\n> \n> \"primary\": The button's background is the app's primary color\n> for additional emphasis.\n> \n> \"secondary\" \\(default\\): The button's background coordinates\n> with the app's background color for normal emphasis.\n> \n> \"tertiary\": The button is plain text without a border or\n> background for subtlety.\n> \n> ",
+          "review_text": "Selected exact parameter quotations from supplied documentation. The source version metadata matches the current USER-reported Streamlit version 1.49.0; this does not verify relevance, applicability, a diagnosis or a fix. Other parameters and source-wide caveats may matter; complete original records remain in the review view. Human review is required.\n\nComplete selected source records:\n\nChunk: doc:1.49.0:0e3fc0224f3d3f9fbc9fd032:0:3754:7bd993a4e7d0104f; URL as supplied: https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json\n> st.button\\(label, key=None, help=None, on\\_click=None, args=None, kwargs=None, \\*, type=\"secondary\", icon=None, disabled=False, use\\_container\\_width=None, width=\"content\"\\)\n> \n> Display a button widget.\n> \n> Parameters:\n> \n> label: str; default=None\n> A short label explaining to the user what this button is for.\n> The label can optionally contain GitHub-flavored Markdown of the\n> following types: Bold, Italics, Strikethroughs, Inline Code, Links,\n> and Images. Images display like icons, with a max height equal to\n> the font height.\n> \n> Unsupported Markdown elements are unwrapped so only their children\n> \\(text contents\\) render. Display unsupported elements as literal\n> characters by backslash-escaping them. E.g.,\n> \"1\\\\. Not an ordered list\".\n> \n> See the body parameter of st.markdown for additional,\n> supported Markdown directives.\n> \n> key: str or int; default=None\n> An optional string or integer to use as the unique key for the widget.\n> If this is omitted, a key will be generated for the widget\n> based on its content. No two widgets may have the same key.\n> \n> help: str or None; default=None\n> A tooltip that gets displayed when the button is hovered over. If\n> this is None \\(default\\), no tooltip is displayed.\n> \n> The tooltip can optionally contain GitHub-flavored Markdown,\n> including the Markdown directives described in the body\n> parameter of st.markdown.\n> \n> on\\_click: callable; default=None\n> An optional callback invoked when this button is clicked.\n> \n> args: list or tuple; default=None\n> An optional list or tuple of args to pass to the callback.\n> \n> kwargs: dict; default=None\n> An optional dict of kwargs to pass to the callback.\n> \n> type: \"primary\", \"secondary\", or \"tertiary\"; default=None\n> An optional string that specifies the button type. This can be one\n> of the following:\n> \n> \"primary\": The button's background is the app's primary color\n> for additional emphasis.\n> \n> \"secondary\" \\(default\\): The button's background coordinates\n> with the app's background color for normal emphasis.\n> \n> \"tertiary\": The button is plain text without a border or\n> background for subtlety.\n> \n> icon: str or None; default=None\n> An optional emoji or icon to display next to the button label. If icon\n> is None \\(default\\), no icon is displayed. If icon is a\n> string, the following options are valid:\n> \n> A single-character emoji. For example, you can set icon=\"🚨\"\n> or icon=\"🔥\". Emoji short codes are not supported.\n> \n> An icon from the Material Symbols library \\(rounded style\\) in the\n> format \":material/icon\\_name:\" where \"icon\\_name\" is the name\n> of the icon in snake case.\n> \n> For example, icon=\":material/thumb\\_up:\" will display the\n> Thumb Up icon. Find additional icons in the Material Symbols \n> font library.\n> \n> disabled: bool; default=is\n> An optional boolean that disables the button if set to True.\n> The default is False.\n> \n> use\\_container\\_width: bool; default=None\n> Whether to expand the button's width to fill its parent container.\n> If use\\_container\\_width is False \\(default\\), Streamlit sizes\n> the button to fit its contents. If use\\_container\\_width is\n> True, the width of the button matches its parent container.\n> \n> In both cases, if the contents of the button are wider than the\n> parent container, the contents will line wrap.\n> \n> width: \"content\", \"stretch\", or int; default=None\n> The width of the button. This can be one of the following:\n> \n> \"content\" \\(default\\): The width of the button matches the\n> width of its content, but doesn't exceed the width of the parent\n> container.\n> \n> \"stretch\": The width of the button matches the width of the\n> parent container.\n> \n> An integer specifying the width in pixels: The button has a\n> fixed width. If the specified width is greater than the width of\n> the parent container, the width of the button matches the width\n> of the parent container.\n> \n> Returns: bool\n> True if the button was clicked on the last run of the app,\n> False otherwise.\n> \n> Examples:",
+          "display_normalization": "crlf_to_lf_only",
+          "semantic_support": null,
+          "human_review_required": true,
+          "diagnosis_or_fix_verified": false,
+          "proposal_or_action_authorized": false
+        },
+        "integrity": {
+          "schema_id": "parameter-integrity-review-v1",
+          "context_sha256": "da3d3fdfedb1e1ed703f366b2a5f021e2c79cad533a1316082855e41c70e127b",
+          "candidate_sha256": "324f7ea3ca1c04c7148102ee19ecf76bdcaa2386d6f6fffec820ff2d505b1650",
+          "source_bindings": [
+            {
+              "source_index": 0,
+              "source_content_sha256": "d581c57e2d94693477e38d6b1f90e7ecfcaa0bbf99492f8d257ad48e52164d20",
+              "source_text_sha256": "28b72ea64905d5797d1edc446be5db2c13fe2b9219bf503cffd6c8ca6b06a71e",
+              "eligibility": "exact_version_parameter_record",
+              "selected": true,
+              "raw_source_span": "chars:0:3754;unit:unicode_codepoint",
+              "coordinate_frame": "excerpt_unicode_codepoint",
+              "excerpt_length": 3752,
+              "declared_span_start": 0,
+              "declared_span_end": 3754,
+              "declared_span_length_matches_excerpt": false,
+              "source_span_status": "declared_length_differs",
+              "span_warning": true,
+              "original_file_offset_mapping_verified": false
+            },
+            {
+              "source_index": 1,
+              "source_content_sha256": "15a33b883a3c96d985c86b7c2f99f3a69c30dd253e38122b1970dbad6ff10a51",
+              "source_text_sha256": "274571042b4417c54bb0d461e72c9ae8c037ebb3f3a6cdae6bd23688b503cc07",
+              "eligibility": "parameter_structure_unavailable",
+              "selected": false,
+              "raw_source_span": "chars:0:4000;unit:unicode_codepoint",
+              "coordinate_frame": "excerpt_unicode_codepoint",
+              "excerpt_length": 4000,
+              "declared_span_start": 0,
+              "declared_span_end": 4000,
+              "declared_span_length_matches_excerpt": true,
+              "source_span_status": "declared_length_matches_excerpt",
+              "span_warning": false,
+              "original_file_offset_mapping_verified": false
+            },
+            {
+              "source_index": 2,
+              "source_content_sha256": "28ca491dc548f4af6c6e70d031ec985928fbb57792f81966944a80326d4465d6",
+              "source_text_sha256": "f95cbc001c639286c78139e596cb79a73f852078d85f486f607f7f5ecfd67b71",
+              "eligibility": "parameter_structure_unavailable",
+              "selected": false,
+              "raw_source_span": "chars:4000:5767;unit:unicode_codepoint",
+              "coordinate_frame": "excerpt_unicode_codepoint",
+              "excerpt_length": 1765,
+              "declared_span_start": 4000,
+              "declared_span_end": 5767,
+              "declared_span_length_matches_excerpt": false,
+              "source_span_status": "declared_length_differs",
+              "span_warning": true,
+              "original_file_offset_mapping_verified": false
+            }
+          ],
+          "observations": [
+            {
+              "source_index": 0,
+              "parameter_id": 0,
+              "parameter_name": "label",
+              "selected": false,
+              "unit_span": [
+                208,
+                802
+              ],
+              "header_span": [
+                208,
+                232
+              ],
+              "header_default_span": [
+                228,
+                232
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": null,
+              "signature_default_text": null,
+              "signature_default_state": "required",
+              "comparison": "header_default_for_required_parameter",
+              "warning": true,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 1,
+              "parameter_name": "key",
+              "selected": false,
+              "unit_span": [
+                802,
+                1023
+              ],
+              "header_span": [
+                802,
+                831
+              ],
+              "header_default_span": [
+                827,
+                831
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                21,
+                25
+              ],
+              "signature_default_text": "None",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_matches",
+              "warning": false,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 2,
+              "parameter_name": "help",
+              "selected": false,
+              "unit_span": [
+                1023,
+                1315
+              ],
+              "header_span": [
+                1023,
+                1054
+              ],
+              "header_default_span": [
+                1050,
+                1054
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                32,
+                36
+              ],
+              "signature_default_text": "None",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_matches",
+              "warning": false,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 3,
+              "parameter_name": "on_click",
+              "selected": false,
+              "unit_span": [
+                1315,
+                1407
+              ],
+              "header_span": [
+                1315,
+                1347
+              ],
+              "header_default_span": [
+                1343,
+                1347
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                47,
+                51
+              ],
+              "signature_default_text": "None",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_matches",
+              "warning": false,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 4,
+              "parameter_name": "args",
+              "selected": false,
+              "unit_span": [
+                1407,
+                1501
+              ],
+              "header_span": [
+                1407,
+                1440
+              ],
+              "header_default_span": [
+                1436,
+                1440
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                58,
+                62
+              ],
+              "signature_default_text": "None",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_matches",
+              "warning": false,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 5,
+              "parameter_name": "kwargs",
+              "selected": false,
+              "unit_span": [
+                1501,
+                1581
+              ],
+              "header_span": [
+                1501,
+                1527
+              ],
+              "header_default_span": [
+                1523,
+                1527
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                71,
+                75
+              ],
+              "signature_default_text": "None",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_matches",
+              "warning": false,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 6,
+              "parameter_name": "type",
+              "selected": true,
+              "unit_span": [
+                1581,
+                2009
+              ],
+              "header_span": [
+                1581,
+                1638
+              ],
+              "header_default_span": [
+                1634,
+                1638
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                85,
+                96
+              ],
+              "signature_default_text": "\"secondary\"",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_differs",
+              "warning": true,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 7,
+              "parameter_name": "icon",
+              "selected": false,
+              "unit_span": [
+                2009,
+                2606
+              ],
+              "header_span": [
+                2009,
+                2040
+              ],
+              "header_default_span": [
+                2036,
+                2040
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                103,
+                107
+              ],
+              "signature_default_text": "None",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_matches",
+              "warning": false,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 8,
+              "parameter_name": "disabled",
+              "selected": false,
+              "unit_span": [
+                2606,
+                2717
+              ],
+              "header_span": [
+                2606,
+                2632
+              ],
+              "header_default_span": [
+                2630,
+                2632
+              ],
+              "header_default_text": "is",
+              "header_default_state": "unsupported_literal",
+              "signature_default_span": [
+                118,
+                123
+              ],
+              "signature_default_text": "False",
+              "signature_default_state": "literal",
+              "comparison": "default_comparison_unavailable",
+              "warning": true,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 9,
+              "parameter_name": "use_container_width",
+              "selected": false,
+              "unit_span": [
+                2717,
+                3114
+              ],
+              "header_span": [
+                2717,
+                2756
+              ],
+              "header_default_span": [
+                2752,
+                2756
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                145,
+                149
+              ],
+              "signature_default_text": "None",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_matches",
+              "warning": false,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 10,
+              "parameter_name": "width",
+              "selected": false,
+              "unit_span": [
+                3114,
+                3652
+              ],
+              "header_span": [
+                3114,
+                3163
+              ],
+              "header_default_span": [
+                3159,
+                3163
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                157,
+                166
+              ],
+              "signature_default_text": "\"content\"",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_differs",
+              "warning": true,
+              "semantic_support": null,
+              "human_review_required": true
+            }
+          ],
+          "selected_unit_has_integrity_warning": true,
+          "peer_unit_has_integrity_warning": true,
+          "selected_source_has_span_warning": true,
+          "peer_source_has_span_warning": true,
+          "semantic_support": null,
+          "human_review_required": true,
+          "actual_runtime_defaults_verified": false,
+          "original_file_offset_mapping_verified": false,
+          "proposal_or_action_authorized": false
+        },
+        "concise_text": "Experimental inspection; not an approved response.\n\n### st.button · type · Streamlit 1.49.0 (USER-reported)\n\nSource checks requiring review:\n\n- Header and signature declare different literal defaults; header: None; signature: \"secondary\". These observations do not choose a corrected or actual runtime default.\n- Supplied span length differs from excerpt length: 3754 versus 3752 Unicode code points; original-file mapping is unverified.\n- Other parameters in this same source have 3 unresolved defaults. This does not disprove the selected quotation; details remain in the maintainer view.\n\n> type: \"primary\", \"secondary\", or \"tertiary\"; default=None\n> An optional string that specifies the button type. This can be one\n> of the following:\n> \n> \"primary\": The button's background is the app's primary color\n> for additional emphasis.\n> \n> \"secondary\" \\(default\\): The button's background coordinates\n> with the app's background color for normal emphasis.\n> \n> \"tertiary\": The button is plain text without a border or\n> background for subtlety.\n> \n> \n\n[Supplied documentation](https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json). Quotation offsets [1581,2009) are Unicode code points within the supplied excerpt.\n\nRelevance, external caveats and usefulness remain unscored. Full sources and signatures: maintainer view.",
+        "maintainer_text": "Experimental inspection; not an approved response.\n\n### st.button · type · Streamlit 1.49.0 (USER-reported)\n\nSource checks requiring review:\n\n- Header and signature declare different literal defaults; header: None; signature: \"secondary\". These observations do not choose a corrected or actual runtime default.\n- Supplied span length differs from excerpt length: 3754 versus 3752 Unicode code points; original-file mapping is unverified.\n- Other parameters in this same source have 3 unresolved defaults. This does not disprove the selected quotation; details remain in the maintainer view.\n\n> type: \"primary\", \"secondary\", or \"tertiary\"; default=None\n> An optional string that specifies the button type. This can be one\n> of the following:\n> \n> \"primary\": The button's background is the app's primary color\n> for additional emphasis.\n> \n> \"secondary\" \\(default\\): The button's background coordinates\n> with the app's background color for normal emphasis.\n> \n> \"tertiary\": The button is plain text without a border or\n> background for subtlety.\n> \n> \n\n[Supplied documentation](https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json). Quotation offsets [1581,2009) are Unicode code points within the supplied excerpt.\n\nRelevance, external caveats and usefulness remain unscored. Full sources and signatures: maintainer view.\n\n### Supplied question context\n\n> In Streamlit 1.49.0, what is the type argument of st.button used for? Show the documented options for this release.\n\n### Integrity observations across the supplied catalog\n\n- Source 0; parameter label; selected=False; observation=header_default_for_required_parameter; header span=\\(228, 232\\); signature span=None.\n- Source 0; parameter key; selected=False; observation=supported_literal_matches; header span=\\(827, 831\\); signature span=\\(21, 25\\).\n- Source 0; parameter help; selected=False; observation=supported_literal_matches; header span=\\(1050, 1054\\); signature span=\\(32, 36\\).\n- Source 0; parameter on\\_click; selected=False; observation=supported_literal_matches; header span=\\(1343, 1347\\); signature span=\\(47, 51\\).\n- Source 0; parameter args; selected=False; observation=supported_literal_matches; header span=\\(1436, 1440\\); signature span=\\(58, 62\\).\n- Source 0; parameter kwargs; selected=False; observation=supported_literal_matches; header span=\\(1523, 1527\\); signature span=\\(71, 75\\).\n- Source 0; parameter type; selected=True; observation=supported_literal_differs; header span=\\(1634, 1638\\); signature span=\\(85, 96\\).\n- Source 0; parameter icon; selected=False; observation=supported_literal_matches; header span=\\(2036, 2040\\); signature span=\\(103, 107\\).\n- Source 0; parameter disabled; selected=False; observation=default_comparison_unavailable; header span=\\(2630, 2632\\); signature span=\\(118, 123\\).\n- Source 0; parameter use\\_container\\_width; selected=False; observation=supported_literal_matches; header span=\\(2752, 2756\\); signature span=\\(145, 149\\).\n- Source 0; parameter width; selected=False; observation=supported_literal_differs; header span=\\(3159, 3163\\); signature span=\\(157, 166\\).\n\nThese checks compare supplied spellings only. They do not interpret body prose, authenticate a source or map excerpts to the original file. A source defect must not be turned into an unrelated question to the user.\n\n### Original complete candidate review\n\nSelected exact parameter quotations from supplied documentation. The source version metadata matches the current USER-reported Streamlit version 1.49.0; this does not verify relevance, applicability, a diagnosis or a fix. Other parameters and source-wide caveats may matter; complete original records remain in the review view. Human review is required.\n\nComplete selected source records:\n\nChunk: doc:1.49.0:0e3fc0224f3d3f9fbc9fd032:0:3754:7bd993a4e7d0104f; URL as supplied: https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json\n> st.button\\(label, key=None, help=None, on\\_click=None, args=None, kwargs=None, \\*, type=\"secondary\", icon=None, disabled=False, use\\_container\\_width=None, width=\"content\"\\)\n> \n> Display a button widget.\n> \n> Parameters:\n> \n> label: str; default=None\n> A short label explaining to the user what this button is for.\n> The label can optionally contain GitHub-flavored Markdown of the\n> following types: Bold, Italics, Strikethroughs, Inline Code, Links,\n> and Images. Images display like icons, with a max height equal to\n> the font height.\n> \n> Unsupported Markdown elements are unwrapped so only their children\n> \\(text contents\\) render. Display unsupported elements as literal\n> characters by backslash-escaping them. E.g.,\n> \"1\\\\. Not an ordered list\".\n> \n> See the body parameter of st.markdown for additional,\n> supported Markdown directives.\n> \n> key: str or int; default=None\n> An optional string or integer to use as the unique key for the widget.\n> If this is omitted, a key will be generated for the widget\n> based on its content. No two widgets may have the same key.\n> \n> help: str or None; default=None\n> A tooltip that gets displayed when the button is hovered over. If\n> this is None \\(default\\), no tooltip is displayed.\n> \n> The tooltip can optionally contain GitHub-flavored Markdown,\n> including the Markdown directives described in the body\n> parameter of st.markdown.\n> \n> on\\_click: callable; default=None\n> An optional callback invoked when this button is clicked.\n> \n> args: list or tuple; default=None\n> An optional list or tuple of args to pass to the callback.\n> \n> kwargs: dict; default=None\n> An optional dict of kwargs to pass to the callback.\n> \n> type: \"primary\", \"secondary\", or \"tertiary\"; default=None\n> An optional string that specifies the button type. This can be one\n> of the following:\n> \n> \"primary\": The button's background is the app's primary color\n> for additional emphasis.\n> \n> \"secondary\" \\(default\\): The button's background coordinates\n> with the app's background color for normal emphasis.\n> \n> \"tertiary\": The button is plain text without a border or\n> background for subtlety.\n> \n> icon: str or None; default=None\n> An optional emoji or icon to display next to the button label. If icon\n> is None \\(default\\), no icon is displayed. If icon is a\n> string, the following options are valid:\n> \n> A single-character emoji. For example, you can set icon=\"🚨\"\n> or icon=\"🔥\". Emoji short codes are not supported.\n> \n> An icon from the Material Symbols library \\(rounded style\\) in the\n> format \":material/icon\\_name:\" where \"icon\\_name\" is the name\n> of the icon in snake case.\n> \n> For example, icon=\":material/thumb\\_up:\" will display the\n> Thumb Up icon. Find additional icons in the Material Symbols \n> font library.\n> \n> disabled: bool; default=is\n> An optional boolean that disables the button if set to True.\n> The default is False.\n> \n> use\\_container\\_width: bool; default=None\n> Whether to expand the button's width to fill its parent container.\n> If use\\_container\\_width is False \\(default\\), Streamlit sizes\n> the button to fit its contents. If use\\_container\\_width is\n> True, the width of the button matches its parent container.\n> \n> In both cases, if the contents of the button are wider than the\n> parent container, the contents will line wrap.\n> \n> width: \"content\", \"stretch\", or int; default=None\n> The width of the button. This can be one of the following:\n> \n> \"content\" \\(default\\): The width of the button matches the\n> width of its content, but doesn't exceed the width of the parent\n> container.\n> \n> \"stretch\": The width of the button matches the width of the\n> parent container.\n> \n> An integer specifying the width in pixels: The button has a\n> fixed width. If the specified width is greater than the width of\n> the parent container, the width of the button matches the width\n> of the parent container.\n> \n> Returns: bool\n> True if the button was clicked on the last run of the app,\n> False otherwise.\n> \n> Examples:",
+        "source_review_required": true,
+        "pending_semantic_review": [
+          "current_question_relevance",
+          "necessary_caveats_outside_selected_unit",
+          "user_usefulness"
+        ],
+        "review_binding_sha256": "0b35606f3fc8e873b10185845bf2c67c347936b5a2f6fe835c5032cc37ecca2c",
+        "reviewer_basis": "deterministic_source_observations_only",
+        "semantic_support": null,
+        "human_usefulness": null,
+        "human_review_required": true,
+        "model_selection_observed": false,
+        "original_file_offset_mapping_verified": false,
+        "approved_response_or_action": false,
+        "runtime_adoption": false
+      }
+    },
+    {
+      "turn": "C2",
+      "parameter": "disabled",
+      "condition": "same_original_authored_selection; deterministic_review_only",
+      "old_candidate_chars": 860,
+      "new_inspection_chars": 1029,
+      "length_is_not_the_acceptance_target": true,
+      "selected_unit_has_integrity_warning": true,
+      "selected_source_has_span_warning": true,
+      "controls": {
+        "old_candidate_exactly_preserved": true,
+        "complete_original_parameter_preserved": true,
+        "citation_in_concise_surface": true,
+        "local_coordinate_frame_explicit": true,
+        "source_warning_visible": true,
+        "full_original_review_retained": true,
+        "no_semantic_or_human_score": true,
+        "no_model_or_release_authority": true
+      },
+      "review": {
+        "schema_id": "parameter-inspection-review-v1",
+        "context_sha256": "2c912b5f8f580061bccf6e5d1ee30307b39ccedf937decd9a176523f25c39bb2",
+        "candidate_sha256": "4282900d69a9c9be621d2df89da1b4874633a6190e58fd6aea84b1496ef89c02",
+        "original_candidate": {
+          "schema_id": "parameter-focus-candidate-v1",
+          "context_sha256": "2c912b5f8f580061bccf6e5d1ee30307b39ccedf937decd9a176523f25c39bb2",
+          "case_id": "p261018-rehearsal-6342f4817e34-c",
+          "case_revision": 2,
+          "user_reported_version": "1.49.0",
+          "decision": "answer",
+          "quotations": [
+            {
+              "parameter_id": 8,
+              "parameter_name": "disabled",
+              "api_name": "st.button",
+              "signature": "st.button(label, key=None, help=None, on_click=None, args=None, kwargs=None, *, type=\"secondary\", icon=None, disabled=False, use_container_width=None, width=\"content\")",
+              "source_index": 0,
+              "source_id": "docstring:1.49.0:streamlit.button",
+              "chunk_id": "doc:1.49.0:0e3fc0224f3d3f9fbc9fd032:0:3754:7bd993a4e7d0104f",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_span": "chars:0:3754;unit:unicode_codepoint",
+              "start": 2606,
+              "end": 2717,
+              "source_content_sha256": "d581c57e2d94693477e38d6b1f90e7ecfcaa0bbf99492f8d257ad48e52164d20",
+              "source_text_sha256": "28b72ea64905d5797d1edc446be5db2c13fe2b9219bf503cffd6c8ca6b06a71e",
+              "passage_sha256": "1d7390ca94b32d26742ff5f75988117f34793d950540c14fed1213791b6103e8",
+              "text": "disabled: bool; default=is\nAn optional boolean that disables the button if set to True.\nThe default is False.\n\n",
+              "exact_metadata_match": true,
+              "semantic_support": null,
+              "human_review_required": true
+            }
+          ],
+          "qualified_text": "Selected exact parameter quotations from supplied documentation. The source version metadata matches the current USER-reported Streamlit version 1.49.0; this does not verify relevance, applicability, a diagnosis or a fix. Other parameters and source-wide caveats may matter; complete original records remain in the review view. Human review is required.\n\nAPI: st.button; parameter: disabled; chunk: doc:1.49.0:0e3fc0224f3d3f9fbc9fd032:0:3754:7bd993a4e7d0104f; excerpt characters [2606,2717).\nSignature supplied by the source (other parameters are not selected):\n> st.button\\(label, key=None, help=None, on\\_click=None, args=None, kwargs=None, \\*, type=\"secondary\", icon=None, disabled=False, use\\_container\\_width=None, width=\"content\"\\)\n\n> disabled: bool; default=is\n> An optional boolean that disables the button if set to True.\n> The default is False.\n> \n> ",
+          "review_text": "Selected exact parameter quotations from supplied documentation. The source version metadata matches the current USER-reported Streamlit version 1.49.0; this does not verify relevance, applicability, a diagnosis or a fix. Other parameters and source-wide caveats may matter; complete original records remain in the review view. Human review is required.\n\nComplete selected source records:\n\nChunk: doc:1.49.0:0e3fc0224f3d3f9fbc9fd032:0:3754:7bd993a4e7d0104f; URL as supplied: https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json\n> st.button\\(label, key=None, help=None, on\\_click=None, args=None, kwargs=None, \\*, type=\"secondary\", icon=None, disabled=False, use\\_container\\_width=None, width=\"content\"\\)\n> \n> Display a button widget.\n> \n> Parameters:\n> \n> label: str; default=None\n> A short label explaining to the user what this button is for.\n> The label can optionally contain GitHub-flavored Markdown of the\n> following types: Bold, Italics, Strikethroughs, Inline Code, Links,\n> and Images. Images display like icons, with a max height equal to\n> the font height.\n> \n> Unsupported Markdown elements are unwrapped so only their children\n> \\(text contents\\) render. Display unsupported elements as literal\n> characters by backslash-escaping them. E.g.,\n> \"1\\\\. Not an ordered list\".\n> \n> See the body parameter of st.markdown for additional,\n> supported Markdown directives.\n> \n> key: str or int; default=None\n> An optional string or integer to use as the unique key for the widget.\n> If this is omitted, a key will be generated for the widget\n> based on its content. No two widgets may have the same key.\n> \n> help: str or None; default=None\n> A tooltip that gets displayed when the button is hovered over. If\n> this is None \\(default\\), no tooltip is displayed.\n> \n> The tooltip can optionally contain GitHub-flavored Markdown,\n> including the Markdown directives described in the body\n> parameter of st.markdown.\n> \n> on\\_click: callable; default=None\n> An optional callback invoked when this button is clicked.\n> \n> args: list or tuple; default=None\n> An optional list or tuple of args to pass to the callback.\n> \n> kwargs: dict; default=None\n> An optional dict of kwargs to pass to the callback.\n> \n> type: \"primary\", \"secondary\", or \"tertiary\"; default=None\n> An optional string that specifies the button type. This can be one\n> of the following:\n> \n> \"primary\": The button's background is the app's primary color\n> for additional emphasis.\n> \n> \"secondary\" \\(default\\): The button's background coordinates\n> with the app's background color for normal emphasis.\n> \n> \"tertiary\": The button is plain text without a border or\n> background for subtlety.\n> \n> icon: str or None; default=None\n> An optional emoji or icon to display next to the button label. If icon\n> is None \\(default\\), no icon is displayed. If icon is a\n> string, the following options are valid:\n> \n> A single-character emoji. For example, you can set icon=\"🚨\"\n> or icon=\"🔥\". Emoji short codes are not supported.\n> \n> An icon from the Material Symbols library \\(rounded style\\) in the\n> format \":material/icon\\_name:\" where \"icon\\_name\" is the name\n> of the icon in snake case.\n> \n> For example, icon=\":material/thumb\\_up:\" will display the\n> Thumb Up icon. Find additional icons in the Material Symbols \n> font library.\n> \n> disabled: bool; default=is\n> An optional boolean that disables the button if set to True.\n> The default is False.\n> \n> use\\_container\\_width: bool; default=None\n> Whether to expand the button's width to fill its parent container.\n> If use\\_container\\_width is False \\(default\\), Streamlit sizes\n> the button to fit its contents. If use\\_container\\_width is\n> True, the width of the button matches its parent container.\n> \n> In both cases, if the contents of the button are wider than the\n> parent container, the contents will line wrap.\n> \n> width: \"content\", \"stretch\", or int; default=None\n> The width of the button. This can be one of the following:\n> \n> \"content\" \\(default\\): The width of the button matches the\n> width of its content, but doesn't exceed the width of the parent\n> container.\n> \n> \"stretch\": The width of the button matches the width of the\n> parent container.\n> \n> An integer specifying the width in pixels: The button has a\n> fixed width. If the specified width is greater than the width of\n> the parent container, the width of the button matches the width\n> of the parent container.\n> \n> Returns: bool\n> True if the button was clicked on the last run of the app,\n> False otherwise.\n> \n> Examples:",
+          "display_normalization": "crlf_to_lf_only",
+          "semantic_support": null,
+          "human_review_required": true,
+          "diagnosis_or_fix_verified": false,
+          "proposal_or_action_authorized": false
+        },
+        "integrity": {
+          "schema_id": "parameter-integrity-review-v1",
+          "context_sha256": "2c912b5f8f580061bccf6e5d1ee30307b39ccedf937decd9a176523f25c39bb2",
+          "candidate_sha256": "4282900d69a9c9be621d2df89da1b4874633a6190e58fd6aea84b1496ef89c02",
+          "source_bindings": [
+            {
+              "source_index": 0,
+              "source_content_sha256": "d581c57e2d94693477e38d6b1f90e7ecfcaa0bbf99492f8d257ad48e52164d20",
+              "source_text_sha256": "28b72ea64905d5797d1edc446be5db2c13fe2b9219bf503cffd6c8ca6b06a71e",
+              "eligibility": "exact_version_parameter_record",
+              "selected": true,
+              "raw_source_span": "chars:0:3754;unit:unicode_codepoint",
+              "coordinate_frame": "excerpt_unicode_codepoint",
+              "excerpt_length": 3752,
+              "declared_span_start": 0,
+              "declared_span_end": 3754,
+              "declared_span_length_matches_excerpt": false,
+              "source_span_status": "declared_length_differs",
+              "span_warning": true,
+              "original_file_offset_mapping_verified": false
+            },
+            {
+              "source_index": 1,
+              "source_content_sha256": "15a33b883a3c96d985c86b7c2f99f3a69c30dd253e38122b1970dbad6ff10a51",
+              "source_text_sha256": "274571042b4417c54bb0d461e72c9ae8c037ebb3f3a6cdae6bd23688b503cc07",
+              "eligibility": "parameter_structure_unavailable",
+              "selected": false,
+              "raw_source_span": "chars:0:4000;unit:unicode_codepoint",
+              "coordinate_frame": "excerpt_unicode_codepoint",
+              "excerpt_length": 4000,
+              "declared_span_start": 0,
+              "declared_span_end": 4000,
+              "declared_span_length_matches_excerpt": true,
+              "source_span_status": "declared_length_matches_excerpt",
+              "span_warning": false,
+              "original_file_offset_mapping_verified": false
+            }
+          ],
+          "observations": [
+            {
+              "source_index": 0,
+              "parameter_id": 0,
+              "parameter_name": "label",
+              "selected": false,
+              "unit_span": [
+                208,
+                802
+              ],
+              "header_span": [
+                208,
+                232
+              ],
+              "header_default_span": [
+                228,
+                232
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": null,
+              "signature_default_text": null,
+              "signature_default_state": "required",
+              "comparison": "header_default_for_required_parameter",
+              "warning": true,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 1,
+              "parameter_name": "key",
+              "selected": false,
+              "unit_span": [
+                802,
+                1023
+              ],
+              "header_span": [
+                802,
+                831
+              ],
+              "header_default_span": [
+                827,
+                831
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                21,
+                25
+              ],
+              "signature_default_text": "None",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_matches",
+              "warning": false,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 2,
+              "parameter_name": "help",
+              "selected": false,
+              "unit_span": [
+                1023,
+                1315
+              ],
+              "header_span": [
+                1023,
+                1054
+              ],
+              "header_default_span": [
+                1050,
+                1054
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                32,
+                36
+              ],
+              "signature_default_text": "None",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_matches",
+              "warning": false,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 3,
+              "parameter_name": "on_click",
+              "selected": false,
+              "unit_span": [
+                1315,
+                1407
+              ],
+              "header_span": [
+                1315,
+                1347
+              ],
+              "header_default_span": [
+                1343,
+                1347
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                47,
+                51
+              ],
+              "signature_default_text": "None",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_matches",
+              "warning": false,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 4,
+              "parameter_name": "args",
+              "selected": false,
+              "unit_span": [
+                1407,
+                1501
+              ],
+              "header_span": [
+                1407,
+                1440
+              ],
+              "header_default_span": [
+                1436,
+                1440
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                58,
+                62
+              ],
+              "signature_default_text": "None",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_matches",
+              "warning": false,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 5,
+              "parameter_name": "kwargs",
+              "selected": false,
+              "unit_span": [
+                1501,
+                1581
+              ],
+              "header_span": [
+                1501,
+                1527
+              ],
+              "header_default_span": [
+                1523,
+                1527
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                71,
+                75
+              ],
+              "signature_default_text": "None",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_matches",
+              "warning": false,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 6,
+              "parameter_name": "type",
+              "selected": false,
+              "unit_span": [
+                1581,
+                2009
+              ],
+              "header_span": [
+                1581,
+                1638
+              ],
+              "header_default_span": [
+                1634,
+                1638
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                85,
+                96
+              ],
+              "signature_default_text": "\"secondary\"",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_differs",
+              "warning": true,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 7,
+              "parameter_name": "icon",
+              "selected": false,
+              "unit_span": [
+                2009,
+                2606
+              ],
+              "header_span": [
+                2009,
+                2040
+              ],
+              "header_default_span": [
+                2036,
+                2040
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                103,
+                107
+              ],
+              "signature_default_text": "None",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_matches",
+              "warning": false,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 8,
+              "parameter_name": "disabled",
+              "selected": true,
+              "unit_span": [
+                2606,
+                2717
+              ],
+              "header_span": [
+                2606,
+                2632
+              ],
+              "header_default_span": [
+                2630,
+                2632
+              ],
+              "header_default_text": "is",
+              "header_default_state": "unsupported_literal",
+              "signature_default_span": [
+                118,
+                123
+              ],
+              "signature_default_text": "False",
+              "signature_default_state": "literal",
+              "comparison": "default_comparison_unavailable",
+              "warning": true,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 9,
+              "parameter_name": "use_container_width",
+              "selected": false,
+              "unit_span": [
+                2717,
+                3114
+              ],
+              "header_span": [
+                2717,
+                2756
+              ],
+              "header_default_span": [
+                2752,
+                2756
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                145,
+                149
+              ],
+              "signature_default_text": "None",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_matches",
+              "warning": false,
+              "semantic_support": null,
+              "human_review_required": true
+            },
+            {
+              "source_index": 0,
+              "parameter_id": 10,
+              "parameter_name": "width",
+              "selected": false,
+              "unit_span": [
+                3114,
+                3652
+              ],
+              "header_span": [
+                3114,
+                3163
+              ],
+              "header_default_span": [
+                3159,
+                3163
+              ],
+              "header_default_text": "None",
+              "header_default_state": "literal",
+              "signature_default_span": [
+                157,
+                166
+              ],
+              "signature_default_text": "\"content\"",
+              "signature_default_state": "literal",
+              "comparison": "supported_literal_differs",
+              "warning": true,
+              "semantic_support": null,
+              "human_review_required": true
+            }
+          ],
+          "selected_unit_has_integrity_warning": true,
+          "peer_unit_has_integrity_warning": true,
+          "selected_source_has_span_warning": true,
+          "peer_source_has_span_warning": false,
+          "semantic_support": null,
+          "human_review_required": true,
+          "actual_runtime_defaults_verified": false,
+          "original_file_offset_mapping_verified": false,
+          "proposal_or_action_authorized": false
+        },
+        "concise_text": "Experimental inspection; not an approved response.\n\n### st.button · disabled · Streamlit 1.49.0 (USER-reported)\n\nSource checks requiring review:\n\n- Header and signature defaults cannot be compared safely; header: is; signature: False. These observations do not choose a corrected or actual runtime default.\n- Supplied span length differs from excerpt length: 3754 versus 3752 Unicode code points; original-file mapping is unverified.\n- Other parameters in this same source have 3 unresolved defaults. This does not disprove the selected quotation; details remain in the maintainer view.\n\n> disabled: bool; default=is\n> An optional boolean that disables the button if set to True.\n> The default is False.\n> \n> \n\n[Supplied documentation](https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json). Quotation offsets [2606,2717) are Unicode code points within the supplied excerpt.\n\nRelevance, external caveats and usefulness remain unscored. Full sources and signatures: maintainer view.",
+        "maintainer_text": "Experimental inspection; not an approved response.\n\n### st.button · disabled · Streamlit 1.49.0 (USER-reported)\n\nSource checks requiring review:\n\n- Header and signature defaults cannot be compared safely; header: is; signature: False. These observations do not choose a corrected or actual runtime default.\n- Supplied span length differs from excerpt length: 3754 versus 3752 Unicode code points; original-file mapping is unverified.\n- Other parameters in this same source have 3 unresolved defaults. This does not disprove the selected quotation; details remain in the maintainer view.\n\n> disabled: bool; default=is\n> An optional boolean that disables the button if set to True.\n> The default is False.\n> \n> \n\n[Supplied documentation](https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json). Quotation offsets [2606,2717) are Unicode code points within the supplied excerpt.\n\nRelevance, external caveats and usefulness remain unscored. Full sources and signatures: maintainer view.\n\n### Supplied question context\n\n> Original user problem \\(historical context; not current facts\\):\n> In Streamlit 1.49.0, what is the type argument of st.button used for? Show the documented options for this release.\n> \n> Current facts and unknowns come from the supplied CaseState. Historical context may contain superseded values; it does not update facts or provide source evidence.\n> \n> Latest user message \\(exact committed input\\):\n> What parameter lets me disable that same button temporarily? Please cite the parameter definition.\n\n### Integrity observations across the supplied catalog\n\n- Source 0; parameter label; selected=False; observation=header_default_for_required_parameter; header span=\\(228, 232\\); signature span=None.\n- Source 0; parameter key; selected=False; observation=supported_literal_matches; header span=\\(827, 831\\); signature span=\\(21, 25\\).\n- Source 0; parameter help; selected=False; observation=supported_literal_matches; header span=\\(1050, 1054\\); signature span=\\(32, 36\\).\n- Source 0; parameter on\\_click; selected=False; observation=supported_literal_matches; header span=\\(1343, 1347\\); signature span=\\(47, 51\\).\n- Source 0; parameter args; selected=False; observation=supported_literal_matches; header span=\\(1436, 1440\\); signature span=\\(58, 62\\).\n- Source 0; parameter kwargs; selected=False; observation=supported_literal_matches; header span=\\(1523, 1527\\); signature span=\\(71, 75\\).\n- Source 0; parameter type; selected=False; observation=supported_literal_differs; header span=\\(1634, 1638\\); signature span=\\(85, 96\\).\n- Source 0; parameter icon; selected=False; observation=supported_literal_matches; header span=\\(2036, 2040\\); signature span=\\(103, 107\\).\n- Source 0; parameter disabled; selected=True; observation=default_comparison_unavailable; header span=\\(2630, 2632\\); signature span=\\(118, 123\\).\n- Source 0; parameter use\\_container\\_width; selected=False; observation=supported_literal_matches; header span=\\(2752, 2756\\); signature span=\\(145, 149\\).\n- Source 0; parameter width; selected=False; observation=supported_literal_differs; header span=\\(3159, 3163\\); signature span=\\(157, 166\\).\n\nThese checks compare supplied spellings only. They do not interpret body prose, authenticate a source or map excerpts to the original file. A source defect must not be turned into an unrelated question to the user.\n\n### Original complete candidate review\n\nSelected exact parameter quotations from supplied documentation. The source version metadata matches the current USER-reported Streamlit version 1.49.0; this does not verify relevance, applicability, a diagnosis or a fix. Other parameters and source-wide caveats may matter; complete original records remain in the review view. Human review is required.\n\nComplete selected source records:\n\nChunk: doc:1.49.0:0e3fc0224f3d3f9fbc9fd032:0:3754:7bd993a4e7d0104f; URL as supplied: https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json\n> st.button\\(label, key=None, help=None, on\\_click=None, args=None, kwargs=None, \\*, type=\"secondary\", icon=None, disabled=False, use\\_container\\_width=None, width=\"content\"\\)\n> \n> Display a button widget.\n> \n> Parameters:\n> \n> label: str; default=None\n> A short label explaining to the user what this button is for.\n> The label can optionally contain GitHub-flavored Markdown of the\n> following types: Bold, Italics, Strikethroughs, Inline Code, Links,\n> and Images. Images display like icons, with a max height equal to\n> the font height.\n> \n> Unsupported Markdown elements are unwrapped so only their children\n> \\(text contents\\) render. Display unsupported elements as literal\n> characters by backslash-escaping them. E.g.,\n> \"1\\\\. Not an ordered list\".\n> \n> See the body parameter of st.markdown for additional,\n> supported Markdown directives.\n> \n> key: str or int; default=None\n> An optional string or integer to use as the unique key for the widget.\n> If this is omitted, a key will be generated for the widget\n> based on its content. No two widgets may have the same key.\n> \n> help: str or None; default=None\n> A tooltip that gets displayed when the button is hovered over. If\n> this is None \\(default\\), no tooltip is displayed.\n> \n> The tooltip can optionally contain GitHub-flavored Markdown,\n> including the Markdown directives described in the body\n> parameter of st.markdown.\n> \n> on\\_click: callable; default=None\n> An optional callback invoked when this button is clicked.\n> \n> args: list or tuple; default=None\n> An optional list or tuple of args to pass to the callback.\n> \n> kwargs: dict; default=None\n> An optional dict of kwargs to pass to the callback.\n> \n> type: \"primary\", \"secondary\", or \"tertiary\"; default=None\n> An optional string that specifies the button type. This can be one\n> of the following:\n> \n> \"primary\": The button's background is the app's primary color\n> for additional emphasis.\n> \n> \"secondary\" \\(default\\): The button's background coordinates\n> with the app's background color for normal emphasis.\n> \n> \"tertiary\": The button is plain text without a border or\n> background for subtlety.\n> \n> icon: str or None; default=None\n> An optional emoji or icon to display next to the button label. If icon\n> is None \\(default\\), no icon is displayed. If icon is a\n> string, the following options are valid:\n> \n> A single-character emoji. For example, you can set icon=\"🚨\"\n> or icon=\"🔥\". Emoji short codes are not supported.\n> \n> An icon from the Material Symbols library \\(rounded style\\) in the\n> format \":material/icon\\_name:\" where \"icon\\_name\" is the name\n> of the icon in snake case.\n> \n> For example, icon=\":material/thumb\\_up:\" will display the\n> Thumb Up icon. Find additional icons in the Material Symbols \n> font library.\n> \n> disabled: bool; default=is\n> An optional boolean that disables the button if set to True.\n> The default is False.\n> \n> use\\_container\\_width: bool; default=None\n> Whether to expand the button's width to fill its parent container.\n> If use\\_container\\_width is False \\(default\\), Streamlit sizes\n> the button to fit its contents. If use\\_container\\_width is\n> True, the width of the button matches its parent container.\n> \n> In both cases, if the contents of the button are wider than the\n> parent container, the contents will line wrap.\n> \n> width: \"content\", \"stretch\", or int; default=None\n> The width of the button. This can be one of the following:\n> \n> \"content\" \\(default\\): The width of the button matches the\n> width of its content, but doesn't exceed the width of the parent\n> container.\n> \n> \"stretch\": The width of the button matches the width of the\n> parent container.\n> \n> An integer specifying the width in pixels: The button has a\n> fixed width. If the specified width is greater than the width of\n> the parent container, the width of the button matches the width\n> of the parent container.\n> \n> Returns: bool\n> True if the button was clicked on the last run of the app,\n> False otherwise.\n> \n> Examples:",
+        "source_review_required": true,
+        "pending_semantic_review": [
+          "current_question_relevance",
+          "necessary_caveats_outside_selected_unit",
+          "user_usefulness"
+        ],
+        "review_binding_sha256": "12880c17962015a9e6206b59424c66bbf9a3057df23c831ecfb6bf0b39310e57",
+        "reviewer_basis": "deterministic_source_observations_only",
+        "semantic_support": null,
+        "human_usefulness": null,
+        "human_review_required": true,
+        "model_selection_observed": false,
+        "original_file_offset_mapping_verified": false,
+        "approved_response_or_action": false,
+        "runtime_adoption": false
+      }
+    }
+  ],
+  "limits": [
+    "No actual new model selection measurement",
+    "No human usefulness score",
+    "No Enum fix",
+    "No A3 relevance or B1 retrieval repair",
+    "No interpretation of raw docstring extraction as actual runtime behavior"
+  ],
+  "ai_qualitative_sidecar_used_as_driver_or_model_input": false
+}

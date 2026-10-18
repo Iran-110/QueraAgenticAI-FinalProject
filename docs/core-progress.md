@@ -1,3 +1,29 @@
+## 2026-10-18 — C4y: qualitative review and source-aware inspection
+
+[Findings and adoption gaps](core-parameter-review.fa.md),
+[three inspection texts](../experiments/core_parameter_review_v1/comparison.fa.md),
+[verification](../experiments/core_parameter_review_v1/verification-v2.json).
+Independent AI review found the three authored selections topical for their narrow
+current questions; no necessary omitted clause was identified elsewhere in the
+supplied complete records. This is not human scoring or general completeness.
+Selected type/disabled defaults need source review; every selected source's declared
+span is2characters longer than its actual excerpt. Existing boundary whitespace
+stripping can explain that observation; appending2LF matches supplied lengths and
+16hex chunk prefixes, without authenticating raw/full hashes or original mapping.
+This is not evidence of index corruption. Additive pure diagnostics show
+selected-versus-peer defaults, local Unicode coordinates and supplied metadata
+without correcting source or interpreting prose. A bound inspection surface adds
+safe citations and specific warnings, preserving complete old candidate/source
+bytes and all8attempts/7turns. AI annotations stay outside selection payload/corpus.
+700focused tests include100new controls; Ruff/format436files and independent review
+pass. An earlier broad run's2wording assertions are retained with the successful
+rerun. Inspection length can grow with explicit warnings; no model/human quality
+gain is claimed. GET-only health passes with0/14meeting requests and7turns left;
+21funded/117watched source files, halt/threeholds and corpus/gold remain unchanged.
+Actual adoption still needs human review, upstream extraction/provenance checks,
+broader dev/model/non-answer validation and a separate delivery/approval contract.
+No paid calls, ledger writes, held-out payload reads or Enum/A3/B1 resolution.
+
 ## 2026-10-18 — C4x: complete-parameter offline answer candidate
 
 [Behavior and limits](core-parameter-focus.fa.md),

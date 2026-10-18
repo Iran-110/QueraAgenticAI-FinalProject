@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "task_id": "C4y",
+  "recorded_at_utc": "2026-10-18T07:50:38.003106+00:00",
+  "tested_code_commit": "9fb0cfd052494e7a0898010eb7aa1f64654dd2c3",
+  "baseline_commit": "47f476e034732c1ad6a3f85d4971af5a6cf72ebb",
+  "condition": "deterministic inspection on previously authored exposed selections plus separate qualitative AI review; no fresh model choice",
+  "provider_calls": 0,
+  "ledger_writes": 0,
+  "runtime_adoption": false,
+  "human_usefulness": null,
+  "automatic_semantic_support": null,
+  "human_review_completed": false,
+  "qualitative_ai_review": {
+    "three_narrow_choices_related_to_current_questions": true,
+    "extra_user_clarification_identified_for_questions_as_written": false,
+    "local_sufficiency_limit": "No necessary omitted clause identified elsewhere in these supplied complete records; not general completeness/authenticity.",
+    "candidate_hashes_checked": 3,
+    "request_context_hashes_checked": 3,
+    "source_text_hashes_checked": 3,
+    "exact_support_spans_checked": 8,
+    "annotation_sidecar_used_by_driver_or_model": false
+  },
+  "source_observations": [
+    {
+      "turn": "B2",
+      "selected_default_warning": false,
+      "selected_source_span_warning": true,
+      "candidate_chars_before": 1357,
+      "inspection_chars": 1381,
+      "length_not_acceptance_target": true
+    },
+    {
+      "turn": "C1",
+      "selected_default_warning": true,
+      "selected_source_span_warning": true,
+      "candidate_chars_before": 1193,
+      "inspection_chars": 1370,
+      "length_not_acceptance_target": true
+    },
+    {
+      "turn": "C2",
+      "selected_default_warning": true,
+      "selected_source_span_warning": true,
+      "candidate_chars_before": 860,
+      "inspection_chars": 1029,
+      "length_not_acceptance_target": true
+    }
+  ],
+  "verification": {
+    "pytest": {
+      "passed": 697,
+      "new_controls_included": 97,
+      "prior_controls_included": 600,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "elapsed_seconds": 20.25,
+      "test_module_counts": {
+        "tests.test_core_parameter_integrity_review": 45,
+        "tests.test_core_parameter_inspection": 40,
+        "tests.test_core_parameter_review_replay": 12,
+        "tests.test_core_parameter_focus": 63,
+        "tests.test_core_parameter_candidate": 71,
+        "tests.test_core_parameter_review": 31,
+        "tests.test_core_parameter_replay": 25,
+        "tests.test_claim_plan": 77,
+        "tests.test_claim_sections": 57,
+        "tests.test_evidence_selection": 46,
+        "tests.test_selection_context": 77,
+        "tests.test_grounding": 40,
+        "tests.test_grounding_boundary_detachment": 94,
+        "tests.test_presentation_release_watch": 19
+      },
+      "junit_sha256": "0e8405b9c1a547d6a6a4f89127af0445c219aa303583e3d05b26e234ba02fff0",
+      "log_sha256": "97d8bf77d13bdf5dfadc7d2ee39813fee0ddc4bb34f521ca6395b48b0c604c18"
+    },
+    "ruff": {
+      "check": "pass",
+      "format": "pass",
+      "formatted_python_files": 436,
+      "check_log_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "format_log_sha256": "f8d37af7da07b5a79e6ad1248242b98ff23226c26c25d40ec32798ffae7afdde"
+    },
+    "protected_input_audit": {
+      "scope": "parent interpreter only, subprocesses not attested",
+      "regression": {
+        "scope": "parent interpreter only, subprocesses not attested",
+        "blocked": [],
+        "allowed_loopback_connections": 0,
+        "seed_package_raw_hash_reads": 2
+      },
+      "replay": {
+        "scope": "parent interpreter only, subprocesses not attested",
+        "blocked": [],
+        "allowed_loopback_connections": 0,
+        "seed_package_raw_hash_reads": 0
+      },
+      "heldout_payload_reads": 0,
+      "not_a_full_suite_or_heldout_run": true
+    }
+  },
+  "retained_intermediate_failure": {
+    "passed": 695,
+    "failed": 2,
+    "kind": "wording assertions after warning shortening; no lost source or accepted mutation observed",
+    "resolution": "Restored explicit no-corrected/actual-default statement and lowercase unverified-mapping phrase; full697rerun passed.",
+    "junit_sha256": "7b941cabfe1c4a5919993f50ff8d24f4fad132a06f3b889f8bc872f23a5c56f4",
+    "log_sha256": "13358633cc57a87166c145e73b3faa63ce55108183f8d45aaec9788bd91a8e2a",
+    "earlier_projection_preserved_locally": true
+  },
+  "independent_review": {
+    "remaining_blockers": 0,
+    "semantic_review_kind": "AI, not human",
+    "neutral_integrity_controls": 45,
+    "neutral_inspection_controls": 40,
+    "replay_custody_controls": 12,
+    "counts_included_in97": true,
+    "scope": "parser/default/spans, citation safety, source custody, current followup, mutation rejection and no semantic/action authority"
+  },
+  "old_v1_preservation": {
+    "all_tracked_package_files_byte_exact": true,
+    "files_checked": 14,
+    "sha256": {
+      "experiments/core_parameter_focus_v1/README.md": "31285f62f36754936f054fe40d5b00587e0b6f3084d8294634083bcd27f10ed5",
+      "experiments/core_parameter_focus_v1/candidate.py": "fc847b62b16146dc71aa8eaa97dd5670bb460db9cedf1fe98170ce1fa8483ef1",
+      "experiments/core_parameter_focus_v1/comparison.fa.md": "0b2479ff6eabd63305cb86a6aefc10680697bd5b7235a90fed84340e60d4ba80",
+      "experiments/core_parameter_focus_v1/input-counts-clarification-v1.json": "684bf0d510f09e3dc311519c23304dd2da4a928f87e4c6f139578c5242b1cfac",
+      "experiments/core_parameter_focus_v1/input-manifest-v1.json": "32f4abf60139dbfe213bdcb1f9ad6341b16fe743564cf5e6a4337c0f7b903ba5",
+      "experiments/core_parameter_focus_v1/parameters.py": "9d3f526bbd10bb741095a0ce5ddf00249dbfd4dd460e5f49839b39c6796b6902",
+      "experiments/core_parameter_focus_v1/protocol-amendment-v1.json": "3eb374b73b839a8292fb9915a2234f8143193da72c667e05e02dadc9e3d9e23e",
+      "experiments/core_parameter_focus_v1/protocol-v1.json": "b6aec79bf2d86f0380783bd5263cf470eff204650f7240770040f246c5336b91",
+      "experiments/core_parameter_focus_v1/replay-fixture-v1.json": "a958b0342f13bbcad7682b31bd92ec6ae45afd0b5a510426664aa839f317806d",
+      "experiments/core_parameter_focus_v1/replay-result-v1.json": "6f07c2774524e03b64e6bbdd44e8046de8c57f2fe166a343089a57820b6ba1a1",
+      "experiments/core_parameter_focus_v1/replay-result-v2.json": "12290434cf603788f81fba0c924ec256728a1227ff2c8145b6a24a922c69c15c",
+      "experiments/core_parameter_focus_v1/replay.py": "754d116bca3304eeb963702743ebc0b1de8e99695c5df7b5e76c82040f2bfa6b",
+      "experiments/core_parameter_focus_v1/source-only-diagnostic-v1.json": "74c925f6b5428b5e7df323db4235618ab3f6f50b11d4cd96cda8501887a05127",
+      "experiments/core_parameter_focus_v1/verification-v1.json": "1f9024bdd59b76906686eaf2cf67f328ec91e48180f52c32a4f25a1748d51899"
+    },
+    "all_original_attempts_retained": 8,
+    "all_original_final_turns_retained": 7
+  },
+  "meeting_preservation": {
+    "operator_ready": true,
+    "provider_probe": "not_performed",
+    "funded_files_unchanged": 21,
+    "additive_watch_files_unchanged": 117,
+    "watch_sha256": "d510e16a552c585652af7d7f53c6692bb3ceb86b325fc8f5e06c456c0693a280",
+    "physical_index_verified": true,
+    "consumed_requests": 0,
+    "maximum_requests": 14,
+    "remaining_message_turns": 7,
+    "remaining_usd": "0.1",
+    "global_halt": true,
+    "c5_reconciled": false,
+    "old_uncertain_holds_modified": false,
+    "healthcheck_sha256": "d604e74604ce4e5957368e7cf289ef49b784840f5e693b9838b7f70b93aa717a"
+  },
+  "code_sha256": {
+    "experiments/core_parameter_review_v1/display.py": "4e595efc1fbb680dac6d46e8bfcab20de23afbfa84647749c8ccc5d55fe44612",
+    "experiments/core_parameter_review_v1/integrity.py": "9bb8a97f2269bb362691fdfc9a6a72c4954e598d3615e2a22d5ba853a634a7e0",
+    "experiments/core_parameter_review_v1/replay.py": "0dfeeed68fc2b9d33fe80f482d2eaeb1b6e623fb7c8504f53e616e0edf60e60f",
+    "tests/test_core_parameter_integrity_review.py": "53aa04f3384de01ee1bdfb46985dc650d43dd570d4ae47312dd744619a98a98a",
+    "tests/test_core_parameter_inspection.py": "900d24bc1ced7872d5d8d402479882acea71a7f4d86941645a28b4703012a029",
+    "tests/test_core_parameter_review_replay.py": "7c2256ae2dbc59d2456a96649dd805eb540597d29976b48f6b8f0c1e0ec6ca19"
+  },
+  "artifact_sha256": {
+    "protocol-v1.json": "2fa94097db4293fd8afc3a8972b1e30375588f2c013d60ef0a6543b277de825d",
+    "ai-review-v1.json": "85d84627fd4614dbf0b8df0e0e7014809f973d023bb5b8bfaa0b95aaa35f3688",
+    "replay-result-v1.json": "f08163c7a93ca304da2b0f46a4c59125243ce8901e2ee41561a16b04228452fc"
+  },
+  "remaining_for_actual_adoption": [
+    "Human relevance/caveat/usefulness review",
+    "Upstream raw-source/default/extraction/provenance investigation in a new version, no frozen rebuild overwrite",
+    "Broader dev and actual model selection including non-answer decisions",
+    "Separate reviewed delivery/profile/handoff/approval and financial registration"
+  ],
+  "invalid_claims": [
+    "Not new model or human quality measurement",
+    "Not repaired runtime defaults or verified original-file offsets",
+    "Not a production answer or action approval",
+    "Not Enum fix, A3 relevance or B1 retrieval repair",
+    "Not final RAG/held-out evaluation"
+  ]
+}
