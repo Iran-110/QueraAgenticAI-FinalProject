@@ -4,6 +4,24 @@
 
 ## وضعیت فعلی
 
+- [x] **C4x — تعریف کامل پارامتر برای پاسخ کوتاه‌تر؛ ساسان، آزمایش آفلاین.**
+  [شرح](../docs/core-parameter-focus.fa.md)، [مقایسهٔ متن‌ها](../experiments/core_parameter_focus_v1/comparison.fa.md)
+  و [verification](../experiments/core_parameter_focus_v1/verification-v1.json).
+  هشت attempt/هفت turn آشکار C4v حفظ و عیناً بازسازی شدند. سه انتخاب تألیفی
+  `icon/type/disabled` متن‌های۹۵۵۱/۹۱۹۰/۴۵۵۲را به۱۳۵۷/۱۱۹۳/۸۶۰کاراکتر رساندند؛
+  تمام تعریف پارامتر، گزینه‌ها و source کامل برای review محفوظ است. کنترل پس از
+  مشاهدهٔ فقط یک source هم ثبت شد؛ تغییر renderer مانع ادعای اثر خالص یک عامل است.
+  ۶۰۰تست مرتبط شامل۱۹۰کنترل تازه و Ruff/format۴۳۰فایل پاس؛ review مستقل انجام شد.
+  ناسازگاری headerهای default منبع ثبت و اصلاح خودسرانه نشد. فقط experiment/test/docs
+  اضافه شده؛ UI/مدل/renderer فعلی،۲۱فایل مالی و watch۱۱۷فایل عوض نشده‌اند.
+  API تازه/ledger write صفر؛ healthcheck جلسه بدون provider پاس،۷نوبت مصرف‌نشده.
+  کیفیت انتخاب مدل، usefulness، relevanceِ multiselect و fixِ Enum هنوز اثبات نشده‌اند.
+
+- [ ] **C4x-next — review انسانی و تصمیم اتصال نسخه‌دار؛ ساسان، اختیاری پس از جلسه.**
+  candidateهای بالا هنوز پیشنهاد قابل approval نیستند. پیش از هر اتصال باید relevance،
+  caveatهای خارج پارامتر، ناسازگاری default منبع و usefulness بررسی شوند؛ سپس قرارداد
+  تحویل و مقایسهٔ تازهٔ انتخاب مدل جدا ثبت شود. scope/watch جلسه برای این کار تغییر نمی‌کند.
+
 - [x] **C4w — نسخهٔ داورپسند و کنترل نهایی اجرای جلسه؛ ساسان.**
   [شرح و فرمان healthcheck](../docs/presentation-readiness.fa.md)،
   [رسید](../docs/receipts/presentation-readiness-2026-10-18.json) و

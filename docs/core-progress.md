@@ -1,3 +1,25 @@
+## 2026-10-18 — C4x: complete-parameter offline answer candidate
+
+[Behavior and limits](core-parameter-focus.fa.md),
+[readable comparison](../experiments/core_parameter_focus_v1/comparison.fa.md),
+[verification](../experiments/core_parameter_focus_v1/verification-v1.json).
+An isolated experiment recognizes complete signature-declared API parameter units
+and binds flat selections to full current request/source/version contents. Full
+records, options, raw spans/hashes and human review remain; CRLF changes only in
+display. Three authored projections of already-selected rehearsal sources shrink
+9551/9190/4552 characters to1357/1193/860. A post-hoc source-only control is retained;
+renderer qualifications also differ, so no one-factor model effect is established.
+All8attempt rows/7final turns reproduce exactly;5final analyses matched staged views,
+3attempt rows were reconstructed (2final turns plus1retrieve-only attempt).
+600focused tests include190new controls; Ruff/format430files and independent review
+pass. Strict-type catalog/history defects found in review have regressions. Source
+default-header inconsistencies remain explicit rather than silently repaired.
+No runtime/factory/UI/default promotion, provider calls, ledger writes, corpus/gold
+changes or held-out access. The21funded files and separate117-file watch stay exact;
+GET-only physical healthcheck passes with0/14meeting requests used and7turns left.
+Global halt/threeholds remain. Human usefulness, model selection, Enum fix, A3
+relevance and B1retrieval miss remain unresolved; no new quality score is claimed.
+
 ## 2026-10-18 — C4w: judges presentation and additive session readiness
 
 [Behavior and operator check](presentation-readiness.fa.md),

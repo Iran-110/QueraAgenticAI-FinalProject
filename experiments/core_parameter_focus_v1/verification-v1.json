@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "task_id": "C4x",
+  "recorded_at_utc": "2026-10-18T04:48:08.715025+00:00",
+  "tested_code_commit": "ca26dfd67aee7ebc9758ae19df824cfae3c37f12",
+  "baseline_runtime_commit": "a9d0ae9b78fc7b3d6ae2f8dcc58124ca163b7392",
+  "condition": "offline authored re-expression of previously selected exposed development evidence; no new model selection",
+  "provider_calls": 0,
+  "ledger_writes": 0,
+  "runtime_adoption": false,
+  "heldout_payload_reads": 0,
+  "protected_input_controls": {
+    "test_files_explicitly_selected": true,
+    "audit_scope": "parent interpreter only, subprocesses not attested",
+    "regression": {
+      "scope": "parent interpreter only, subprocesses not attested",
+      "blocked": [],
+      "allowed_loopback_connections": 0,
+      "seed_package_raw_hash_reads": 2
+    },
+    "replay": {
+      "scope": "parent interpreter only, subprocesses not attested",
+      "blocked": [],
+      "allowed_loopback_connections": 0,
+      "seed_package_raw_hash_reads": 0
+    },
+    "not_a_full_suite_or_heldout_run": true
+  },
+  "verification": {
+    "pytest": {
+      "passed": 600,
+      "new_controls_included": 190,
+      "existing_controls_included": 410,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "elapsed_seconds": 19.63,
+      "test_module_counts": {
+        "tests.test_core_parameter_focus": 63,
+        "tests.test_core_parameter_candidate": 71,
+        "tests.test_core_parameter_review": 31,
+        "tests.test_core_parameter_replay": 25,
+        "tests.test_claim_plan": 77,
+        "tests.test_claim_sections": 57,
+        "tests.test_evidence_selection": 46,
+        "tests.test_selection_context": 77,
+        "tests.test_grounding": 40,
+        "tests.test_grounding_boundary_detachment": 94,
+        "tests.test_presentation_release_watch": 19
+      },
+      "junit_sha256": "37a7a27eeb4cfcf64bb85a30b202fa0261255bf7d6d49693a01ec703c3a7cfbc",
+      "log_sha256": "4d1f98d31eaf8e0a32c90ee05e2ba41c2de1dd0e3b90b505a4fcc62aa2b08611"
+    },
+    "ruff": {
+      "check": "pass",
+      "format": "pass",
+      "python_files_formatted": 430,
+      "check_log_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "format_log_sha256": "a6f33285f9f57538cd20d8ed1809ba86a344ed954656dd1e87f2648626b06080"
+    }
+  },
+  "replay": {
+    "attempt_rows_retained": 8,
+    "final_turns_retained": 7,
+    "all_original_analyses_exactly_reproduced": true,
+    "matched_original_staged_final_analyses": 5,
+    "reconstructed_attempt_rows": 3,
+    "reconstructed_final_turns": 2,
+    "reconstructed_retrieve_only_attempts": 1,
+    "historical_call_digests": "supplied pinned historical hashes; portable replay does not reopen/authenticate raw private calls",
+    "primary_authored_projections": [
+      {
+        "turn": "B2",
+        "parameter": "icon",
+        "original_draft_chars": 9551,
+        "post_hoc_source_only_chars": 3434,
+        "candidate_chars": 1357,
+        "complete_parameter_chars": 597,
+        "complete_source_chars": 2696,
+        "all_structural_controls_pass": true
+      },
+      {
+        "turn": "C1",
+        "parameter": "type",
+        "original_draft_chars": 9190,
+        "post_hoc_source_only_chars": 4552,
+        "candidate_chars": 1193,
+        "complete_parameter_chars": 428,
+        "complete_source_chars": 3752,
+        "all_structural_controls_pass": true
+      },
+      {
+        "turn": "C2",
+        "parameter": "disabled",
+        "original_draft_chars": 4552,
+        "post_hoc_source_only_chars": 4552,
+        "candidate_chars": 860,
+        "complete_parameter_chars": 111,
+        "complete_source_chars": 3752,
+        "all_structural_controls_pass": true
+      }
+    ],
+    "source_only_control": "post-hoc authored diagnostic; renderer qualifications differ, so not a one-factor model experiment"
+  },
+  "peer_review": {
+    "independent_review_completed": true,
+    "remaining_blockers": 0,
+    "fixed_findings": [
+      "strict recursive types reject True/1.0 catalog IDs",
+      "historical call digest/origin validation",
+      "attempt ordering, contiguous history, no states after terminal or hidden unfinished turns"
+    ],
+    "source_inconsistencies_preserved": [
+      "type header default=None versus secondary signature/body",
+      "disabled header default=is versus False signature/body"
+    ],
+    "semantic_support": null,
+    "human_usefulness": null
+  },
+  "meeting_preservation": {
+    "healthcheck": "GET-only, no provider probe",
+    "operator_ready": true,
+    "source_verification": "funded_subset_and_additive_release_inventory",
+    "physical_index_verified": true,
+    "funded_file_count": 21,
+    "additive_watched_file_count": 117,
+    "watch_sha256": "d510e16a552c585652af7d7f53c6692bb3ceb86b325fc8f5e06c456c0693a280",
+    "consumed_requests": 0,
+    "maximum_requests": 14,
+    "remaining_message_turns": 7,
+    "remaining_usd": "0.1",
+    "global_halt": true,
+    "c5_reconciled": false,
+    "old_uncertain_holds_modified": false,
+    "healthcheck_sha256": "d604e74604ce4e5957368e7cf289ef49b784840f5e693b9838b7f70b93aa717a"
+  },
+  "unresolved": [
+    "A3 multiselect relevance failure",
+    "B1 retrieval miss/escalation",
+    "Enum diagnosis/fix",
+    "actual model parameter selection",
+    "human relevance/usefulness and source-wide caveats",
+    "current source default-header consistency",
+    "evaluation-owned native packet and held-out execution"
+  ],
+  "code_sha256": {
+    "experiments/core_parameter_focus_v1/candidate.py": "fc847b62b16146dc71aa8eaa97dd5670bb460db9cedf1fe98170ce1fa8483ef1",
+    "experiments/core_parameter_focus_v1/parameters.py": "9d3f526bbd10bb741095a0ce5ddf00249dbfd4dd460e5f49839b39c6796b6902",
+    "experiments/core_parameter_focus_v1/replay.py": "754d116bca3304eeb963702743ebc0b1de8e99695c5df7b5e76c82040f2bfa6b",
+    "tests/test_core_parameter_focus.py": "db613f406bfd440166d47921e007c013e5a8ca31a6e90e866527cba2701dc035",
+    "tests/test_core_parameter_candidate.py": "44d8b7ea9e2f832e81fedccbb2385c1a99a75d73d4bd3bf0556a3db9867f4c0a",
+    "tests/test_core_parameter_review.py": "12161ef17638cfc18bd267b82ad3f04944830d91e2e6d4452d81e4fbcce80b8e",
+    "tests/test_core_parameter_replay.py": "bad5936ee31b898c868b5f7123304fd29bc899681cff57b172f9d26d4841e940"
+  },
+  "artifact_sha256": {
+    "input-counts-clarification-v1.json": "684bf0d510f09e3dc311519c23304dd2da4a928f87e4c6f139578c5242b1cfac",
+    "input-manifest-v1.json": "32f4abf60139dbfe213bdcb1f9ad6341b16fe743564cf5e6a4337c0f7b903ba5",
+    "protocol-amendment-v1.json": "3eb374b73b839a8292fb9915a2234f8143193da72c667e05e02dadc9e3d9e23e",
+    "protocol-v1.json": "b6aec79bf2d86f0380783bd5263cf470eff204650f7240770040f246c5336b91",
+    "replay-fixture-v1.json": "a958b0342f13bbcad7682b31bd92ec6ae45afd0b5a510426664aa839f317806d",
+    "replay-result-v1.json": "6f07c2774524e03b64e6bbdd44e8046de8c57f2fe166a343089a57820b6ba1a1",
+    "replay-result-v2.json": "12290434cf603788f81fba0c924ec256728a1227ff2c8145b6a24a922c69c15c",
+    "source-only-diagnostic-v1.json": "74c925f6b5428b5e7df323db4235618ab3f6f50b11d4cd96cda8501887a05127"
+  },
+  "invalid_claims": [
+    "not a new API/model comparison",
+    "not final RAG or held-out quality",
+    "not a promoted runtime answer or authorized proposal/action",
+    "not a source truth/entailment or repaired default guarantee"
+  ]
+}

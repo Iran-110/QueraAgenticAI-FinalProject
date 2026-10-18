@@ -54,6 +54,17 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 ## Runtime rules
 
+- C4x is an offline complete-parameter candidate, outside installed runtime;
+  read `docs/core-parameter-focus.fa.md` and its experiment README. Full sources,
+  parameter options, exact spans/hashes and current USER-version binding remain.
+  Three authored shorter projections are not new model choices or an Enum fix.
+  Keep source-header inconsistencies explicit; structural completeness is not
+  semantic support. Do not import/promote this experiment into factories, UI,
+  handoffs or the existing funded session. Preserve the unchanged21-file binding,
+  separate117-file watch, halt/threeholds and original8attempt/7turn observations.
+  Any later delivery contract/model study needs separate review and registration;
+  never recapture the meeting watch or reuse closed scope identities to activate it.
+
 - C4w adds optional read-only presentation display and explicit additive release
   inventory; read `docs/presentation-readiness.fa.md`,
   `docs/presentation-release-watch.fa.md` and `docs/presentation-view.fa.md`.

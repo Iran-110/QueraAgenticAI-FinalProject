@@ -1,0 +1,368 @@
+{
+  "schema_version": 1,
+  "experiment_id": "core_parameter_focus_v1",
+  "protocol_sha256": "b6aec79bf2d86f0380783bd5263cf470eff204650f7240770040f246c5336b91",
+  "fixture_sha256": "a958b0342f13bbcad7682b31bd92ec6ae45afd0b5a510426664aa839f317806d",
+  "provider_calls": 0,
+  "ledger_writes": 0,
+  "runtime_adoption": false,
+  "human_usefulness": null,
+  "model_quality_improvement_established": false,
+  "enum_fix_verified": false,
+  "attempt_rows": 8,
+  "final_turns_retained": 7,
+  "all_baselines_exactly_reproduced": true,
+  "original_call_digest_provenance": "supplied_pinned_historical_digest; original call files are not reopened or authenticated by this replay",
+  "all_primary_structural_controls_pass": true,
+  "rows": [
+    {
+      "turn": "A1",
+      "attempt": 1,
+      "original_call_sha256": "9ea351fea4eac2976ab9e027ea7c74f802eb075c8dbe28329b74f64bb556cca3",
+      "original_analysis_origin": "deterministically_reconstructed_from_original_recorded_plan",
+      "original_decision": "ask",
+      "original_draft_chars": 65,
+      "original_draft_sha256": "a03a15504bfa332da9f301e1a1d5351a19bb9bb85c0d63162ca09d76e6303d89",
+      "baseline_exactly_reproduced": true,
+      "projection": {
+        "status": "unchanged_not_a_registered_parameter_answer"
+      }
+    },
+    {
+      "turn": "A2",
+      "attempt": 1,
+      "original_call_sha256": "0be1d1133159492a44842f293e6d28c5c7f357acb980902b38415837d0b51e24",
+      "original_analysis_origin": "deterministically_reconstructed_from_original_recorded_plan",
+      "original_decision": "answer",
+      "original_draft_chars": 11299,
+      "original_draft_sha256": "ca93e027dd25f422782d175ecb240f1bef882fd3e81fb52b26bc04e269d95e0a",
+      "baseline_exactly_reproduced": true,
+      "projection": {
+        "status": "unchanged_not_a_registered_parameter_answer"
+      }
+    },
+    {
+      "turn": "A3",
+      "attempt": 1,
+      "original_call_sha256": "be8724f1398236790c0692acf5cea1b5914d1d5e02041f7cfc5494672e6dc312",
+      "original_analysis_origin": "matched_original_staged_analysis_exactly",
+      "original_decision": "answer",
+      "original_draft_chars": 9443,
+      "original_draft_sha256": "34798222b57eb798a788266176b82e9461757fdb26f81fa2f75a8f3f222c0ad3",
+      "baseline_exactly_reproduced": true,
+      "projection": {
+        "status": "unchanged_not_a_registered_parameter_answer"
+      }
+    },
+    {
+      "turn": "B1",
+      "attempt": 1,
+      "original_call_sha256": "94d2ef59861405a0cf8fc58b240c7095a00be3c64957cc3dc12a9aef3c5586ec",
+      "original_analysis_origin": "deterministically_reconstructed_from_original_recorded_plan",
+      "original_decision": "retrieve_more",
+      "original_draft_chars": 0,
+      "original_draft_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "baseline_exactly_reproduced": true,
+      "projection": {
+        "status": "unchanged_not_a_registered_parameter_answer"
+      }
+    },
+    {
+      "turn": "B1",
+      "attempt": 2,
+      "original_call_sha256": "4917567795b4d703bd78c15fcfda1a89ba96af90365e39e37db0631a77e9a086",
+      "original_analysis_origin": "matched_original_staged_analysis_exactly",
+      "original_decision": "escalate",
+      "original_draft_chars": 1358,
+      "original_draft_sha256": "5a7600d5fd47d8d0e8a5e971e1cfb6d94b68d59bb0d9a5984282d8c9d3a07fa3",
+      "baseline_exactly_reproduced": true,
+      "projection": {
+        "status": "unchanged_not_a_registered_parameter_answer"
+      }
+    },
+    {
+      "turn": "B2",
+      "attempt": 1,
+      "original_call_sha256": "ddb4ec94aa12a5d83198c98433139d59d6995b1518a1578994c0dbf06c7b60c4",
+      "original_analysis_origin": "matched_original_staged_analysis_exactly",
+      "original_decision": "answer",
+      "original_draft_chars": 9551,
+      "original_draft_sha256": "f60b331e6bee2a83ddbf8fd5f68dc185e74960fd615641bf255fcb0a323464bd",
+      "baseline_exactly_reproduced": true,
+      "projection": {
+        "status": "authored_projection_not_new_model_choice",
+        "controls": {
+          "same_original_answer_decision": true,
+          "only_original_selected_source": true,
+          "complete_parameter_text_exact": true,
+          "raw_source_hash_exact": true,
+          "raw_parameter_hash_exact": true,
+          "full_source_retained": true,
+          "registered_clauses_retained": true,
+          "candidate_shorter": true,
+          "semantic_support_not_claimed": true,
+          "human_review_still_required": true,
+          "no_action_authorized": true,
+          "diagnosis_or_fix_not_verified": true
+        },
+        "registered_clause_checks": {
+          "next to the button label": true,
+          "single-character emoji": true,
+          "Material": true
+        },
+        "original_chars": 9551,
+        "candidate_chars": 1357,
+        "character_reduction_fraction": 0.857921,
+        "parameter_chars": 597,
+        "complete_source_chars": 2696,
+        "source_only_diagnostic": {
+          "kind": "post_hoc_authored_display_control_not_model_selection",
+          "draft_chars": 3434,
+          "full_source_quotation_retained": true,
+          "draft_sha256": "7494011881b1cee6a6d114a2758b86d5bc01118b04e407f549c91505c0b29ebb",
+          "focus_shorter_than_source_only": true,
+          "lengths_also_include_renderer_qualification_differences": true
+        },
+        "inspection_payload_utf8_bytes": 25940,
+        "payload_is_not_a_complete_paid_gateway_request": true,
+        "candidate": {
+          "schema_id": "parameter-focus-candidate-v1",
+          "context_sha256": "870f3839746ae7beedb46dbf4d7f1d687f8e98d5a1429972b824c583ba3552ea",
+          "case_id": "p261018-rehearsal-6342f4817e34-b",
+          "case_revision": 2,
+          "user_reported_version": "1.39.0",
+          "decision": "answer",
+          "quotations": [
+            {
+              "parameter_id": 7,
+              "parameter_name": "icon",
+              "api_name": "st.button",
+              "signature": "st.button(label, key=None, help=None, on_click=None, args=None, kwargs=None, *, type=\"secondary\", icon=None, disabled=False, use_container_width=False)",
+              "source_index": 0,
+              "source_id": "docstring:1.39.0:streamlit.button",
+              "chunk_id": "doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_span": "chars:0:2698;unit:unicode_codepoint",
+              "start": 1486,
+              "end": 2083,
+              "source_content_sha256": "16aa13d3117d330630bec0c9fdcab5b65b68fdaf181e19e7808d62254d33e91c",
+              "source_text_sha256": "3e4ee8f16a4363b8e204ecf26a34183cf5c92cd5d8b98fc70e35b42d63725012",
+              "passage_sha256": "2cb5cb3a03267d3c98149ccfd14027079ef654c20cf758334218fa347e6fa32d",
+              "text": "icon: str or None; default=None\nAn optional emoji or icon to display next to the button label. If icon\nis None (default), no icon is displayed. If icon is a\nstring, the following options are valid:\n\nA single-character emoji. For example, you can set icon=\"🚨\"\nor icon=\"🔥\". Emoji short codes are not supported.\n\nAn icon from the Material Symbols library (rounded style) in the\nformat \":material/icon_name:\" where \"icon_name\" is the name\nof the icon in snake case.\n\nFor example, icon=\":material/thumb_up:\" will display the\nThumb Up icon. Find additional icons in the Material Symbols \nfont library.\n\n",
+              "exact_metadata_match": true,
+              "semantic_support": null,
+              "human_review_required": true
+            }
+          ],
+          "qualified_text": "Selected exact parameter quotations from supplied documentation. The source version metadata matches the current USER-reported Streamlit version 1.39.0; this does not verify relevance, applicability, a diagnosis or a fix. Other parameters and source-wide caveats may matter; complete original records remain in the review view. Human review is required.\n\nAPI: st.button; parameter: icon; chunk: doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a; excerpt characters [1486,2083).\nSignature supplied by the source (other parameters are not selected):\n> st.button\\(label, key=None, help=None, on\\_click=None, args=None, kwargs=None, \\*, type=\"secondary\", icon=None, disabled=False, use\\_container\\_width=False\\)\n\n> icon: str or None; default=None\n> An optional emoji or icon to display next to the button label. If icon\n> is None \\(default\\), no icon is displayed. If icon is a\n> string, the following options are valid:\n> \n> A single-character emoji. For example, you can set icon=\"🚨\"\n> or icon=\"🔥\". Emoji short codes are not supported.\n> \n> An icon from the Material Symbols library \\(rounded style\\) in the\n> format \":material/icon\\_name:\" where \"icon\\_name\" is the name\n> of the icon in snake case.\n> \n> For example, icon=\":material/thumb\\_up:\" will display the\n> Thumb Up icon. Find additional icons in the Material Symbols \n> font library.\n> \n> ",
+          "review_text": "Selected exact parameter quotations from supplied documentation. The source version metadata matches the current USER-reported Streamlit version 1.39.0; this does not verify relevance, applicability, a diagnosis or a fix. Other parameters and source-wide caveats may matter; complete original records remain in the review view. Human review is required.\n\nComplete selected source records:\n\nChunk: doc:1.39.0:247abc16624b2e96e3169c26:0:2698:348e29001cbb5d5a; URL as supplied: https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json\n> st.button\\(label, key=None, help=None, on\\_click=None, args=None, kwargs=None, \\*, type=\"secondary\", icon=None, disabled=False, use\\_container\\_width=False\\)\n> \n> Display a button widget.\n> \n> Parameters:\n> \n> label: str; default=None\n> A short label explaining to the user what this button is for.\n> The label can optionally contain GitHub-flavored Markdown of the\n> following types: Bold, Italics, Strikethroughs, Inline Code, and\n> Links.\n> \n> Unsupported Markdown elements are unwrapped so only their children\n> \\(text contents\\) render. Display unsupported elements as literal\n> characters by backslash-escaping them. E.g.,\n> \"1\\\\. Not an ordered list\".\n> \n> See the body parameter of st.markdown for additional,\n> supported Markdown directives.\n> \n> key: str or int; default=None\n> An optional string or integer to use as the unique key for the widget.\n> If this is omitted, a key will be generated for the widget\n> based on its content. No two widgets may have the same key.\n> \n> help: str; default=None\n> An optional tooltip that gets displayed when the button is\n> hovered over.\n> \n> on\\_click: callable; default=None\n> An optional callback invoked when this button is clicked.\n> \n> args: tuple; default=None\n> An optional tuple of args to pass to the callback.\n> \n> kwargs: dict; default=None\n> An optional dict of kwargs to pass to the callback.\n> \n> type: \"secondary\" or \"primary\"; default=s\n> An optional string that specifies the button type. Can be \"primary\" for a\n> button with additional emphasis or \"secondary\" for a normal button. Defaults\n> to \"secondary\".\n> \n> icon: str or None; default=None\n> An optional emoji or icon to display next to the button label. If icon\n> is None \\(default\\), no icon is displayed. If icon is a\n> string, the following options are valid:\n> \n> A single-character emoji. For example, you can set icon=\"🚨\"\n> or icon=\"🔥\". Emoji short codes are not supported.\n> \n> An icon from the Material Symbols library \\(rounded style\\) in the\n> format \":material/icon\\_name:\" where \"icon\\_name\" is the name\n> of the icon in snake case.\n> \n> For example, icon=\":material/thumb\\_up:\" will display the\n> Thumb Up icon. Find additional icons in the Material Symbols \n> font library.\n> \n> disabled: bool; default=False\n> An optional boolean, which disables the button if set to True. The\n> default is False.\n> \n> use\\_container\\_width: bool; default=None\n> Whether to expand the button's width to fill its parent container.\n> If use\\_container\\_width is False \\(default\\), Streamlit sizes\n> the button to fit its contents. If use\\_container\\_width is\n> True, the width of the button matches its parent container.\n> \n> In both cases, if the contents of the button are wider than the\n> parent container, the contents will line wrap.\n> \n> Returns: bool\n> True if the button was clicked on the last run of the app,\n> False otherwise.\n> \n> Examples:",
+          "display_normalization": "crlf_to_lf_only",
+          "semantic_support": null,
+          "human_review_required": true,
+          "diagnosis_or_fix_verified": false,
+          "proposal_or_action_authorized": false
+        },
+        "authored_plan": {
+          "context_sha256": "870f3839746ae7beedb46dbf4d7f1d687f8e98d5a1429972b824c583ba3552ea",
+          "decision": "answer",
+          "parameters": [
+            7
+          ]
+        }
+      }
+    },
+    {
+      "turn": "C1",
+      "attempt": 1,
+      "original_call_sha256": "03beb790c56b97f93518a24663a178023bbf310bb0c35bec32199d06223f1963",
+      "original_analysis_origin": "matched_original_staged_analysis_exactly",
+      "original_decision": "answer",
+      "original_draft_chars": 9190,
+      "original_draft_sha256": "f5e01d070fc81c5a300e790b52d8c6c07af002b10f320ab1e70f84270c1edea8",
+      "baseline_exactly_reproduced": true,
+      "projection": {
+        "status": "authored_projection_not_new_model_choice",
+        "controls": {
+          "same_original_answer_decision": true,
+          "only_original_selected_source": true,
+          "complete_parameter_text_exact": true,
+          "raw_source_hash_exact": true,
+          "raw_parameter_hash_exact": true,
+          "full_source_retained": true,
+          "registered_clauses_retained": true,
+          "candidate_shorter": true,
+          "semantic_support_not_claimed": true,
+          "human_review_still_required": true,
+          "no_action_authorized": true,
+          "diagnosis_or_fix_not_verified": true
+        },
+        "registered_clause_checks": {
+          "primary": true,
+          "secondary": true,
+          "tertiary": true
+        },
+        "original_chars": 9190,
+        "candidate_chars": 1193,
+        "character_reduction_fraction": 0.870185,
+        "parameter_chars": 428,
+        "complete_source_chars": 3752,
+        "source_only_diagnostic": {
+          "kind": "post_hoc_authored_display_control_not_model_selection",
+          "draft_chars": 4552,
+          "full_source_quotation_retained": true,
+          "draft_sha256": "785502415836811e68323cc13183db746f8fc412f01973b16a8e714676f967e4",
+          "focus_shorter_than_source_only": true,
+          "lengths_also_include_renderer_qualification_differences": true
+        },
+        "inspection_payload_utf8_bytes": 20434,
+        "payload_is_not_a_complete_paid_gateway_request": true,
+        "candidate": {
+          "schema_id": "parameter-focus-candidate-v1",
+          "context_sha256": "da3d3fdfedb1e1ed703f366b2a5f021e2c79cad533a1316082855e41c70e127b",
+          "case_id": "p261018-rehearsal-6342f4817e34-c",
+          "case_revision": 1,
+          "user_reported_version": "1.49.0",
+          "decision": "answer",
+          "quotations": [
+            {
+              "parameter_id": 6,
+              "parameter_name": "type",
+              "api_name": "st.button",
+              "signature": "st.button(label, key=None, help=None, on_click=None, args=None, kwargs=None, *, type=\"secondary\", icon=None, disabled=False, use_container_width=None, width=\"content\")",
+              "source_index": 0,
+              "source_id": "docstring:1.49.0:streamlit.button",
+              "chunk_id": "doc:1.49.0:0e3fc0224f3d3f9fbc9fd032:0:3754:7bd993a4e7d0104f",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_span": "chars:0:3754;unit:unicode_codepoint",
+              "start": 1581,
+              "end": 2009,
+              "source_content_sha256": "d581c57e2d94693477e38d6b1f90e7ecfcaa0bbf99492f8d257ad48e52164d20",
+              "source_text_sha256": "28b72ea64905d5797d1edc446be5db2c13fe2b9219bf503cffd6c8ca6b06a71e",
+              "passage_sha256": "8dc1303a5532102daa25dedc02fa50a08ed50106231322700bd0c63d58321d14",
+              "text": "type: \"primary\", \"secondary\", or \"tertiary\"; default=None\nAn optional string that specifies the button type. This can be one\nof the following:\n\n\"primary\": The button's background is the app's primary color\nfor additional emphasis.\n\n\"secondary\" (default): The button's background coordinates\nwith the app's background color for normal emphasis.\n\n\"tertiary\": The button is plain text without a border or\nbackground for subtlety.\n\n",
+              "exact_metadata_match": true,
+              "semantic_support": null,
+              "human_review_required": true
+            }
+          ],
+          "qualified_text": "Selected exact parameter quotations from supplied documentation. The source version metadata matches the current USER-reported Streamlit version 1.49.0; this does not verify relevance, applicability, a diagnosis or a fix. Other parameters and source-wide caveats may matter; complete original records remain in the review view. Human review is required.\n\nAPI: st.button; parameter: type; chunk: doc:1.49.0:0e3fc0224f3d3f9fbc9fd032:0:3754:7bd993a4e7d0104f; excerpt characters [1581,2009).\nSignature supplied by the source (other parameters are not selected):\n> st.button\\(label, key=None, help=None, on\\_click=None, args=None, kwargs=None, \\*, type=\"secondary\", icon=None, disabled=False, use\\_container\\_width=None, width=\"content\"\\)\n\n> type: \"primary\", \"secondary\", or \"tertiary\"; default=None\n> An optional string that specifies the button type. This can be one\n> of the following:\n> \n> \"primary\": The button's background is the app's primary color\n> for additional emphasis.\n> \n> \"secondary\" \\(default\\): The button's background coordinates\n> with the app's background color for normal emphasis.\n> \n> \"tertiary\": The button is plain text without a border or\n> background for subtlety.\n> \n> ",
+          "review_text": "Selected exact parameter quotations from supplied documentation. The source version metadata matches the current USER-reported Streamlit version 1.49.0; this does not verify relevance, applicability, a diagnosis or a fix. Other parameters and source-wide caveats may matter; complete original records remain in the review view. Human review is required.\n\nComplete selected source records:\n\nChunk: doc:1.49.0:0e3fc0224f3d3f9fbc9fd032:0:3754:7bd993a4e7d0104f; URL as supplied: https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json\n> st.button\\(label, key=None, help=None, on\\_click=None, args=None, kwargs=None, \\*, type=\"secondary\", icon=None, disabled=False, use\\_container\\_width=None, width=\"content\"\\)\n> \n> Display a button widget.\n> \n> Parameters:\n> \n> label: str; default=None\n> A short label explaining to the user what this button is for.\n> The label can optionally contain GitHub-flavored Markdown of the\n> following types: Bold, Italics, Strikethroughs, Inline Code, Links,\n> and Images. Images display like icons, with a max height equal to\n> the font height.\n> \n> Unsupported Markdown elements are unwrapped so only their children\n> \\(text contents\\) render. Display unsupported elements as literal\n> characters by backslash-escaping them. E.g.,\n> \"1\\\\. Not an ordered list\".\n> \n> See the body parameter of st.markdown for additional,\n> supported Markdown directives.\n> \n> key: str or int; default=None\n> An optional string or integer to use as the unique key for the widget.\n> If this is omitted, a key will be generated for the widget\n> based on its content. No two widgets may have the same key.\n> \n> help: str or None; default=None\n> A tooltip that gets displayed when the button is hovered over. If\n> this is None \\(default\\), no tooltip is displayed.\n> \n> The tooltip can optionally contain GitHub-flavored Markdown,\n> including the Markdown directives described in the body\n> parameter of st.markdown.\n> \n> on\\_click: callable; default=None\n> An optional callback invoked when this button is clicked.\n> \n> args: list or tuple; default=None\n> An optional list or tuple of args to pass to the callback.\n> \n> kwargs: dict; default=None\n> An optional dict of kwargs to pass to the callback.\n> \n> type: \"primary\", \"secondary\", or \"tertiary\"; default=None\n> An optional string that specifies the button type. This can be one\n> of the following:\n> \n> \"primary\": The button's background is the app's primary color\n> for additional emphasis.\n> \n> \"secondary\" \\(default\\): The button's background coordinates\n> with the app's background color for normal emphasis.\n> \n> \"tertiary\": The button is plain text without a border or\n> background for subtlety.\n> \n> icon: str or None; default=None\n> An optional emoji or icon to display next to the button label. If icon\n> is None \\(default\\), no icon is displayed. If icon is a\n> string, the following options are valid:\n> \n> A single-character emoji. For example, you can set icon=\"🚨\"\n> or icon=\"🔥\". Emoji short codes are not supported.\n> \n> An icon from the Material Symbols library \\(rounded style\\) in the\n> format \":material/icon\\_name:\" where \"icon\\_name\" is the name\n> of the icon in snake case.\n> \n> For example, icon=\":material/thumb\\_up:\" will display the\n> Thumb Up icon. Find additional icons in the Material Symbols \n> font library.\n> \n> disabled: bool; default=is\n> An optional boolean that disables the button if set to True.\n> The default is False.\n> \n> use\\_container\\_width: bool; default=None\n> Whether to expand the button's width to fill its parent container.\n> If use\\_container\\_width is False \\(default\\), Streamlit sizes\n> the button to fit its contents. If use\\_container\\_width is\n> True, the width of the button matches its parent container.\n> \n> In both cases, if the contents of the button are wider than the\n> parent container, the contents will line wrap.\n> \n> width: \"content\", \"stretch\", or int; default=None\n> The width of the button. This can be one of the following:\n> \n> \"content\" \\(default\\): The width of the button matches the\n> width of its content, but doesn't exceed the width of the parent\n> container.\n> \n> \"stretch\": The width of the button matches the width of the\n> parent container.\n> \n> An integer specifying the width in pixels: The button has a\n> fixed width. If the specified width is greater than the width of\n> the parent container, the width of the button matches the width\n> of the parent container.\n> \n> Returns: bool\n> True if the button was clicked on the last run of the app,\n> False otherwise.\n> \n> Examples:",
+          "display_normalization": "crlf_to_lf_only",
+          "semantic_support": null,
+          "human_review_required": true,
+          "diagnosis_or_fix_verified": false,
+          "proposal_or_action_authorized": false
+        },
+        "authored_plan": {
+          "context_sha256": "da3d3fdfedb1e1ed703f366b2a5f021e2c79cad533a1316082855e41c70e127b",
+          "decision": "answer",
+          "parameters": [
+            6
+          ]
+        }
+      }
+    },
+    {
+      "turn": "C2",
+      "attempt": 1,
+      "original_call_sha256": "1ca05ffe98455d31d00c1ddad385013c741b087c3c231ec2334839c7724f9374",
+      "original_analysis_origin": "matched_original_staged_analysis_exactly",
+      "original_decision": "answer",
+      "original_draft_chars": 4552,
+      "original_draft_sha256": "785502415836811e68323cc13183db746f8fc412f01973b16a8e714676f967e4",
+      "baseline_exactly_reproduced": true,
+      "projection": {
+        "status": "authored_projection_not_new_model_choice",
+        "controls": {
+          "same_original_answer_decision": true,
+          "only_original_selected_source": true,
+          "complete_parameter_text_exact": true,
+          "raw_source_hash_exact": true,
+          "raw_parameter_hash_exact": true,
+          "full_source_retained": true,
+          "registered_clauses_retained": true,
+          "candidate_shorter": true,
+          "semantic_support_not_claimed": true,
+          "human_review_still_required": true,
+          "no_action_authorized": true,
+          "diagnosis_or_fix_not_verified": true
+        },
+        "registered_clause_checks": {
+          "True": true,
+          "False": true
+        },
+        "original_chars": 4552,
+        "candidate_chars": 860,
+        "character_reduction_fraction": 0.811072,
+        "parameter_chars": 111,
+        "complete_source_chars": 3752,
+        "source_only_diagnostic": {
+          "kind": "post_hoc_authored_display_control_not_model_selection",
+          "draft_chars": 4552,
+          "full_source_quotation_retained": true,
+          "draft_sha256": "785502415836811e68323cc13183db746f8fc412f01973b16a8e714676f967e4",
+          "focus_shorter_than_source_only": true,
+          "lengths_also_include_renderer_qualification_differences": true
+        },
+        "inspection_payload_utf8_bytes": 18297,
+        "payload_is_not_a_complete_paid_gateway_request": true,
+        "candidate": {
+          "schema_id": "parameter-focus-candidate-v1",
+          "context_sha256": "2c912b5f8f580061bccf6e5d1ee30307b39ccedf937decd9a176523f25c39bb2",
+          "case_id": "p261018-rehearsal-6342f4817e34-c",
+          "case_revision": 2,
+          "user_reported_version": "1.49.0",
+          "decision": "answer",
+          "quotations": [
+            {
+              "parameter_id": 8,
+              "parameter_name": "disabled",
+              "api_name": "st.button",
+              "signature": "st.button(label, key=None, help=None, on_click=None, args=None, kwargs=None, *, type=\"secondary\", icon=None, disabled=False, use_container_width=None, width=\"content\")",
+              "source_index": 0,
+              "source_id": "docstring:1.49.0:streamlit.button",
+              "chunk_id": "doc:1.49.0:0e3fc0224f3d3f9fbc9fd032:0:3754:7bd993a4e7d0104f",
+              "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json",
+              "source_span": "chars:0:3754;unit:unicode_codepoint",
+              "start": 2606,
+              "end": 2717,
+              "source_content_sha256": "d581c57e2d94693477e38d6b1f90e7ecfcaa0bbf99492f8d257ad48e52164d20",
+              "source_text_sha256": "28b72ea64905d5797d1edc446be5db2c13fe2b9219bf503cffd6c8ca6b06a71e",
+              "passage_sha256": "1d7390ca94b32d26742ff5f75988117f34793d950540c14fed1213791b6103e8",
+              "text": "disabled: bool; default=is\nAn optional boolean that disables the button if set to True.\nThe default is False.\n\n",
+              "exact_metadata_match": true,
+              "semantic_support": null,
+              "human_review_required": true
+            }
+          ],
+          "qualified_text": "Selected exact parameter quotations from supplied documentation. The source version metadata matches the current USER-reported Streamlit version 1.49.0; this does not verify relevance, applicability, a diagnosis or a fix. Other parameters and source-wide caveats may matter; complete original records remain in the review view. Human review is required.\n\nAPI: st.button; parameter: disabled; chunk: doc:1.49.0:0e3fc0224f3d3f9fbc9fd032:0:3754:7bd993a4e7d0104f; excerpt characters [2606,2717).\nSignature supplied by the source (other parameters are not selected):\n> st.button\\(label, key=None, help=None, on\\_click=None, args=None, kwargs=None, \\*, type=\"secondary\", icon=None, disabled=False, use\\_container\\_width=None, width=\"content\"\\)\n\n> disabled: bool; default=is\n> An optional boolean that disables the button if set to True.\n> The default is False.\n> \n> ",
+          "review_text": "Selected exact parameter quotations from supplied documentation. The source version metadata matches the current USER-reported Streamlit version 1.49.0; this does not verify relevance, applicability, a diagnosis or a fix. Other parameters and source-wide caveats may matter; complete original records remain in the review view. Human review is required.\n\nComplete selected source records:\n\nChunk: doc:1.49.0:0e3fc0224f3d3f9fbc9fd032:0:3754:7bd993a4e7d0104f; URL as supplied: https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/streamlit.json\n> st.button\\(label, key=None, help=None, on\\_click=None, args=None, kwargs=None, \\*, type=\"secondary\", icon=None, disabled=False, use\\_container\\_width=None, width=\"content\"\\)\n> \n> Display a button widget.\n> \n> Parameters:\n> \n> label: str; default=None\n> A short label explaining to the user what this button is for.\n> The label can optionally contain GitHub-flavored Markdown of the\n> following types: Bold, Italics, Strikethroughs, Inline Code, Links,\n> and Images. Images display like icons, with a max height equal to\n> the font height.\n> \n> Unsupported Markdown elements are unwrapped so only their children\n> \\(text contents\\) render. Display unsupported elements as literal\n> characters by backslash-escaping them. E.g.,\n> \"1\\\\. Not an ordered list\".\n> \n> See the body parameter of st.markdown for additional,\n> supported Markdown directives.\n> \n> key: str or int; default=None\n> An optional string or integer to use as the unique key for the widget.\n> If this is omitted, a key will be generated for the widget\n> based on its content. No two widgets may have the same key.\n> \n> help: str or None; default=None\n> A tooltip that gets displayed when the button is hovered over. If\n> this is None \\(default\\), no tooltip is displayed.\n> \n> The tooltip can optionally contain GitHub-flavored Markdown,\n> including the Markdown directives described in the body\n> parameter of st.markdown.\n> \n> on\\_click: callable; default=None\n> An optional callback invoked when this button is clicked.\n> \n> args: list or tuple; default=None\n> An optional list or tuple of args to pass to the callback.\n> \n> kwargs: dict; default=None\n> An optional dict of kwargs to pass to the callback.\n> \n> type: \"primary\", \"secondary\", or \"tertiary\"; default=None\n> An optional string that specifies the button type. This can be one\n> of the following:\n> \n> \"primary\": The button's background is the app's primary color\n> for additional emphasis.\n> \n> \"secondary\" \\(default\\): The button's background coordinates\n> with the app's background color for normal emphasis.\n> \n> \"tertiary\": The button is plain text without a border or\n> background for subtlety.\n> \n> icon: str or None; default=None\n> An optional emoji or icon to display next to the button label. If icon\n> is None \\(default\\), no icon is displayed. If icon is a\n> string, the following options are valid:\n> \n> A single-character emoji. For example, you can set icon=\"🚨\"\n> or icon=\"🔥\". Emoji short codes are not supported.\n> \n> An icon from the Material Symbols library \\(rounded style\\) in the\n> format \":material/icon\\_name:\" where \"icon\\_name\" is the name\n> of the icon in snake case.\n> \n> For example, icon=\":material/thumb\\_up:\" will display the\n> Thumb Up icon. Find additional icons in the Material Symbols \n> font library.\n> \n> disabled: bool; default=is\n> An optional boolean that disables the button if set to True.\n> The default is False.\n> \n> use\\_container\\_width: bool; default=None\n> Whether to expand the button's width to fill its parent container.\n> If use\\_container\\_width is False \\(default\\), Streamlit sizes\n> the button to fit its contents. If use\\_container\\_width is\n> True, the width of the button matches its parent container.\n> \n> In both cases, if the contents of the button are wider than the\n> parent container, the contents will line wrap.\n> \n> width: \"content\", \"stretch\", or int; default=None\n> The width of the button. This can be one of the following:\n> \n> \"content\" \\(default\\): The width of the button matches the\n> width of its content, but doesn't exceed the width of the parent\n> container.\n> \n> \"stretch\": The width of the button matches the width of the\n> parent container.\n> \n> An integer specifying the width in pixels: The button has a\n> fixed width. If the specified width is greater than the width of\n> the parent container, the width of the button matches the width\n> of the parent container.\n> \n> Returns: bool\n> True if the button was clicked on the last run of the app,\n> False otherwise.\n> \n> Examples:",
+          "display_normalization": "crlf_to_lf_only",
+          "semantic_support": null,
+          "human_review_required": true,
+          "diagnosis_or_fix_verified": false,
+          "proposal_or_action_authorized": false
+        },
+        "authored_plan": {
+          "context_sha256": "2c912b5f8f580061bccf6e5d1ee30307b39ccedf937decd9a176523f25c39bb2",
+          "decision": "answer",
+          "parameters": [
+            8
+          ]
+        }
+      }
+    }
+  ],
+  "unresolved_observations": [
+    "A1 necessary version question remains unchanged.",
+    "A2 background-only answer remains unchanged.",
+    "A3 multiselect relevance failure remains unsolved, not silently replaced by an API answer.",
+    "B1 retrieval miss/escalation remains unchanged.",
+    "Enum has no new model trial or verified fix."
+  ],
+  "limits": [
+    "No claim of improved actual model selection, general semantic support, human usefulness, final RAG quality or held-out success.",
+    "No claim that structural parameter completeness includes every caveat elsewhere in source.",
+    "No promotion into scoped live or existing approved handoff without separately reviewed protocol/config and comparison."
+  ]
+}

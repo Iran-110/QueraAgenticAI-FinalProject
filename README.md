@@ -2,6 +2,12 @@
 
 پروژهٔ نهایی بوت‌کمپ Agentic AI کوئرا: دستیار بررسی گزارش خطا و پیگیری پرونده، با شواهد قابل بررسی و تأیید انسانی پیش از اجرای اقدام.
 
+**آزمایش خوانایی پاسخ، C4x:** [تعریف کامل پارامتر](docs/core-parameter-focus.fa.md)
+سه متن طولانیِ rehearsal را در بازپخش تألیفی از۹۵۵۱/۹۱۹۰/۴۵۵۲به۱۳۵۷/۱۱۹۳/۸۶۰کاراکتر
+رساند؛ تعریف کامل و source برای review حفظ‌اند.۶۰۰تست مرتبط شامل۱۹۰کنترل تازه پاس.
+این candidate فقط در `experiments/` است؛ مدل و UI جلسه عوض نشده‌اند و بهبود واقعی
+انتخاب مدل، usefulness یا حل Enum ادعا نمی‌شود. [مقایسهٔ قابل بازبینی](experiments/core_parameter_focus_v1/comparison.fa.md).
+
 **آمادگی ارائه، ۱۸ اکتبر — C4w:** [PDF فارسی ۱۳ اسلایدی مخصوص داورها](docs/presentation/judges-presentation-fa-v2.pdf)
 و [HTML مستقل](docs/presentation/judges-presentation-fa-v2.html) آماده‌اند؛ متن آزمایش،
 دستور اجرا و سؤال‌های احتمالی در PDF اصلی نیستند. [نمای اختیاری خواندنی](docs/presentation-view.fa.md)،
