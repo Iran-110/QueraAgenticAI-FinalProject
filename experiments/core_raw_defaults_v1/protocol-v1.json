@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "task_id": "C4z",
+  "experiment_id": "core_raw_defaults_v1",
+  "recorded_at_utc": "2026-10-18T08:38:51.044627+00:00",
+  "registration_stage": "after independent raw-source trace and first normalizer implementation; before integrated source replay; not a blind model preregistration",
+  "baseline_commit": "0ed208e9031c7b8064a95d7b6faf54c1742be0f4",
+  "source_snapshot_sha256": "102ed7ae399230dd9c362ea6dda69c019f2e1c0080e2a729ddfba0aa375553ff",
+  "source_provenance_sha256": "f468e4e4a30e20886c23fc235ca88a969eb20347d0784748a2272e24acee75f5",
+  "primary_version": "1.49.0",
+  "primary_function": "streamlit.button",
+  "primary_parameters": [
+    "type",
+    "disabled"
+  ],
+  "control_version": "1.39.0",
+  "question": "Can a fresh declared-signature-default export remove misleading upstream metadata defaults while preserving all original/raw content and explaining source provenance?",
+  "provider_calls_planned": 0,
+  "ledger_writes_planned": 0,
+  "runtime_adoption": false,
+  "frozen_build_changes_allowed": false,
+  "heldout_payload_access_allowed": false,
+  "preserve_current117_watch_and21_funding_files": true,
+  "halt_and_three_holds_preserved": true,
+  "acceptance": [
+    "Rawfile byteSHA/Gitblob/JSONpointer/entry pins and2seed reconstructions match.",
+    "Versioned normalizer uses only safe explicit source signature defaults; required, None, literal and unresolved stay distinct.",
+    "Only headerdefault spans change; old text and all other bytes/options/caveats/lineends preserved.",
+    "Canonical fullrawentry retains pluralexamples/deprecated/extras; derivedtext is NOT complete raw documentation.",
+    "Fresh derivedID binds source version/provenance and full input/output hashes.",
+    "No source-identity/context/flags drift, code execution, old EvidenceHit/draft/handoff rewrite, actualruntime/qualityclaim or corpus promotion.",
+    "Original C4x/C4y code/input/result bytes, frozen95build/exclusion/gold and meeting path remain unchanged."
+  ],
+  "non_goals": [
+    "No actual model selection or human usefulness measurement",
+    "No install/runtime behavior guarantee",
+    "No exact historical parser reproduction",
+    "No Enum/A3/B1 or final RAG/test quality claim",
+    "No current build/source/runtime/prompt/profile changes"
+  ]
+}

@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "kind": "docs-only raw API projection; no questions/gold",
+  "repository": "https://github.com/streamlit/docs",
+  "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+  "source_file": "python/streamlit.json",
+  "source_file_sha256": "5cc1cd6a9aa72ab1de892f53075f46b51be25ce4e7d84799e5b6e9ebbdedae6d",
+  "source_file_git_blob": "44a1a15e5f5cd53effe80a6a80034a5d88fa96cb",
+  "records": [
+    {
+      "version": "1.39.0",
+      "function": "streamlit.button",
+      "json_pointer": "/1.39.0/streamlit.button",
+      "raw_entry_sha256": "bcb9f32e59d4b2cf53b8a1c6fe441380852745c47e411d87eecb0659bc29ac9f",
+      "raw_entry": {
+        "name": "button",
+        "signature": "st.button(label, key=None, help=None, on_click=None, args=None, kwargs=None, *, type=\"secondary\", icon=None, disabled=False, use_container_width=False)",
+        "examples": "<blockquote>\n<pre class=\"doctest-block\">\nimport streamlit as st\n\nst.button(&quot;Reset&quot;, type=&quot;primary&quot;)\nif st.button(&quot;Say hello&quot;):\n    st.write(&quot;Why hello there&quot;)\nelse:\n    st.write(&quot;Goodbye&quot;)\n</pre>\n<Cloud name=\"doc-buton\" path=\"\" query=\"\" stylePlaceholder=\"height: 220px\" /><p>Although you can add icons to your buttons through Markdown, the\n<tt class=\"docutils literal\">icon</tt> parameter is a convenient and consistent alternative.</p>\n<pre class=\"doctest-block\">\nimport streamlit as st\n\nleft, middle, right = st.columns(3)\nif left.button(&quot;Plain button&quot;, use_container_width=True):\n    left.markdown(&quot;You clicked the plain button.&quot;)\nif middle.button(&quot;Emoji button&quot;, icon=&quot;😃&quot;, use_container_width=True):\n    middle.markdown(&quot;You clicked the emoji button.&quot;)\nif right.button(&quot;Material button&quot;, icon=&quot;:material/mood:&quot;, use_container_width=True):\n    right.markdown(&quot;You clicked the Material button.&quot;)\n</pre>\n<Cloud name=\"doc-button-icons\" path=\"\" query=\"\" stylePlaceholder=\"height: 220px\" /></blockquote>\n",
+        "description": "<p>Display a button widget.</p>\n",
+        "args": [
+          {
+            "name": "label",
+            "type_name": "str",
+            "is_optional": false,
+            "is_kwarg_only": false,
+            "description": "<p>A short label explaining to the user what this button is for.\nThe label can optionally contain GitHub-flavored Markdown of the\nfollowing types: Bold, Italics, Strikethroughs, Inline Code, and\nLinks.</p>\n<p>Unsupported Markdown elements are unwrapped so only their children\n(text contents) render. Display unsupported elements as literal\ncharacters by backslash-escaping them. E.g.,\n<tt class=\"docutils literal\">&quot;1\\. Not an ordered list&quot;</tt>.</p>\n<p>See the <tt class=\"docutils literal\">body</tt> parameter of <a class=\"reference external\" href=\"https://docs.streamlit.io/develop/api-reference/text/st.markdown\"><tt class=\"docutils literal\">st.markdown</tt></a> for additional,\nsupported Markdown directives.</p>\n",
+            "default": null
+          },
+          {
+            "name": "key",
+            "type_name": "str or int",
+            "is_optional": false,
+            "is_kwarg_only": false,
+            "description": "<p>An optional string or integer to use as the unique key for the widget.\nIf this is omitted, a key will be generated for the widget\nbased on its content. No two widgets may have the same key.</p>\n",
+            "default": null
+          },
+          {
+            "name": "help",
+            "type_name": "str",
+            "is_optional": false,
+            "is_kwarg_only": false,
+            "description": "<p>An optional tooltip that gets displayed when the button is\nhovered over.</p>\n",
+            "default": null
+          },
+          {
+            "name": "on_click",
+            "type_name": "callable",
+            "is_optional": false,
+            "is_kwarg_only": false,
+            "description": "<p>An optional callback invoked when this button is clicked.</p>\n",
+            "default": null
+          },
+          {
+            "name": "args",
+            "type_name": "tuple",
+            "is_optional": false,
+            "is_kwarg_only": false,
+            "description": "<p>An optional tuple of args to pass to the callback.</p>\n",
+            "default": null
+          },
+          {
+            "name": "kwargs",
+            "type_name": "dict",
+            "is_optional": false,
+            "is_kwarg_only": false,
+            "description": "<p>An optional dict of kwargs to pass to the callback.</p>\n",
+            "default": null
+          },
+          {
+            "name": "type",
+            "type_name": "\"secondary\" or \"primary\"",
+            "is_optional": false,
+            "is_kwarg_only": true,
+            "description": "<p>An optional string that specifies the button type. Can be &quot;primary&quot; for a\nbutton with additional emphasis or &quot;secondary&quot; for a normal button. Defaults\nto &quot;secondary&quot;.</p>\n",
+            "default": "s"
+          },
+          {
+            "name": "icon",
+            "type_name": "str or None",
+            "is_optional": false,
+            "is_kwarg_only": true,
+            "description": "<p>An optional emoji or icon to display next to the button label. If <tt class=\"docutils literal\">icon</tt>\nis <tt class=\"docutils literal\">None</tt> (default), no icon is displayed. If <tt class=\"docutils literal\">icon</tt> is a\nstring, the following options are valid:</p>\n<ul>\n<li><p class=\"first\">A single-character emoji. For example, you can set <tt class=\"docutils literal\"><span class=\"pre\">icon=&quot;🚨&quot;</span></tt>\nor <tt class=\"docutils literal\"><span class=\"pre\">icon=&quot;🔥&quot;</span></tt>. Emoji short codes are not supported.</p>\n</li>\n<li><p class=\"first\">An icon from the Material Symbols library (rounded style) in the\nformat <tt class=\"docutils literal\">&quot;:material/icon_name:&quot;</tt> where &quot;icon_name&quot; is the name\nof the icon in snake case.</p>\n<p>For example, <tt class=\"docutils literal\"><span class=\"pre\">icon=&quot;:material/thumb_up:&quot;</span></tt> will display the\nThumb Up icon. Find additional icons in the <a class=\"reference external\" href=\"https://fonts.google.com/icons?icon.set=Material+Symbols&amp;icon.style=Rounded\">Material Symbols </a>\nfont library.</p>\n</li>\n</ul>\n",
+            "default": null
+          },
+          {
+            "name": "disabled",
+            "type_name": "bool",
+            "is_optional": false,
+            "is_kwarg_only": true,
+            "description": "<p>An optional boolean, which disables the button if set to True. The\ndefault is False.</p>\n",
+            "default": "False"
+          },
+          {
+            "name": "use_container_width",
+            "type_name": "bool",
+            "is_optional": false,
+            "is_kwarg_only": true,
+            "description": "<p>Whether to expand the button's width to fill its parent container.\nIf <tt class=\"docutils literal\">use_container_width</tt> is <tt class=\"docutils literal\">False</tt> (default), Streamlit sizes\nthe button to fit its contents. If <tt class=\"docutils literal\">use_container_width</tt> is\n<tt class=\"docutils literal\">True</tt>, the width of the button matches its parent container.</p>\n<p>In both cases, if the contents of the button are wider than the\nparent container, the contents will line wrap.</p>\n",
+            "default": null
+          }
+        ],
+        "returns": [
+          {
+            "type_name": "bool",
+            "is_generator": false,
+            "description": "<p>True if the button was clicked on the last run of the app,\nFalse otherwise.</p>\n",
+            "return_name": null
+          }
+        ],
+        "source": "https://github.com/streamlit/streamlit/blob/1.39.0/lib/streamlit/elements/widgets/button.py#L86"
+      },
+      "legacy_seed_text": "st.button(label, key=None, help=None, on_click=None, args=None, kwargs=None, *, type=\"secondary\", icon=None, disabled=False, use_container_width=False)\n\nDisplay a button widget.\n\nParameters:\n\nlabel: str; default=None\nA short label explaining to the user what this button is for.\nThe label can optionally contain GitHub-flavored Markdown of the\nfollowing types: Bold, Italics, Strikethroughs, Inline Code, and\nLinks.\n\nUnsupported Markdown elements are unwrapped so only their children\n(text contents) render. Display unsupported elements as literal\ncharacters by backslash-escaping them. E.g.,\n\"1\\. Not an ordered list\".\n\nSee the body parameter of st.markdown for additional,\nsupported Markdown directives.\n\nkey: str or int; default=None\nAn optional string or integer to use as the unique key for the widget.\nIf this is omitted, a key will be generated for the widget\nbased on its content. No two widgets may have the same key.\n\nhelp: str; default=None\nAn optional tooltip that gets displayed when the button is\nhovered over.\n\non_click: callable; default=None\nAn optional callback invoked when this button is clicked.\n\nargs: tuple; default=None\nAn optional tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.\n\ntype: \"secondary\" or \"primary\"; default=s\nAn optional string that specifies the button type. Can be \"primary\" for a\nbutton with additional emphasis or \"secondary\" for a normal button. Defaults\nto \"secondary\".\n\nicon: str or None; default=None\nAn optional emoji or icon to display next to the button label. If icon\nis None (default), no icon is displayed. If icon is a\nstring, the following options are valid:\n\nA single-character emoji. For example, you can set icon=\"🚨\"\nor icon=\"🔥\". Emoji short codes are not supported.\n\nAn icon from the Material Symbols library (rounded style) in the\nformat \":material/icon_name:\" where \"icon_name\" is the name\nof the icon in snake case.\n\nFor example, icon=\":material/thumb_up:\" will display the\nThumb Up icon. Find additional icons in the Material Symbols \nfont library.\n\ndisabled: bool; default=False\nAn optional boolean, which disables the button if set to True. The\ndefault is False.\n\nuse_container_width: bool; default=None\nWhether to expand the button's width to fill its parent container.\nIf use_container_width is False (default), Streamlit sizes\nthe button to fit its contents. If use_container_width is\nTrue, the width of the button matches its parent container.\n\nIn both cases, if the contents of the button are wider than the\nparent container, the contents will line wrap.\n\nReturns: bool\nTrue if the button was clicked on the last run of the app,\nFalse otherwise.\n\nExamples:\n\n",
+      "legacy_seed_text_sha256": "348e29001cbb5d5a31a59a546e06555ea8f3fd11a4ccda070709105e8fae3482",
+      "legacy_seed_record_line": 390,
+      "legacy_seed_record_line_sha256": "865f84fc693edc8b24d9cd31d725096c3ccf34261aae35d05992b603a10a18ba",
+      "legacy_seed_source_id": "docstring:1.39.0:streamlit.button"
+    },
+    {
+      "version": "1.49.0",
+      "function": "streamlit.button",
+      "json_pointer": "/1.49.0/streamlit.button",
+      "raw_entry_sha256": "d959eabd4bea37e5e625c4fb2e729f87bffa19f1edf23daa5d5fed73beade635",
+      "raw_entry": {
+        "name": "button",
+        "signature": "st.button(label, key=None, help=None, on_click=None, args=None, kwargs=None, *, type=\"secondary\", icon=None, disabled=False, use_container_width=None, width=\"content\")",
+        "examples": "<p><strong>Example 1: Customize your button type</strong></p>\n<pre class=\"doctest-block\">\nimport streamlit as st\n\nst.button(&quot;Reset&quot;, type=&quot;primary&quot;)\nif st.button(&quot;Say hello&quot;):\n    st.write(&quot;Why hello there&quot;)\nelse:\n    st.write(&quot;Goodbye&quot;)\n\nif st.button(&quot;Aloha&quot;, type=&quot;tertiary&quot;):\n    st.write(&quot;Ciao&quot;)\n</pre>\n<Cloud name=\"doc-buton\" path=\"\" query=\"\" stylePlaceholder=\"height: 300px\" /><p><strong>Example 2: Add icons to your button</strong></p>\n<p>Although you can add icons to your buttons through Markdown, the\n<tt class=\"docutils literal\">icon</tt> parameter is a convenient and consistent alternative.</p>\n<pre class=\"doctest-block\">\nimport streamlit as st\n\nleft, middle, right = st.columns(3)\nif left.button(&quot;Plain button&quot;, width=&quot;stretch&quot;):\n    left.markdown(&quot;You clicked the plain button.&quot;)\nif middle.button(&quot;Emoji button&quot;, icon=&quot;😃&quot;, width=&quot;stretch&quot;):\n    middle.markdown(&quot;You clicked the emoji button.&quot;)\nif right.button(&quot;Material button&quot;, icon=&quot;:material/mood:&quot;, width=&quot;stretch&quot;):\n    right.markdown(&quot;You clicked the Material button.&quot;)\n</pre>\n<Cloud name=\"doc-button-icons\" path=\"\" query=\"\" stylePlaceholder=\"height: 220px\" />",
+        "description": "<p>Display a button widget.</p>\n",
+        "args": [
+          {
+            "name": "label",
+            "type_name": "str",
+            "is_optional": false,
+            "is_kwarg_only": false,
+            "description": "<p>A short label explaining to the user what this button is for.\nThe label can optionally contain GitHub-flavored Markdown of the\nfollowing types: Bold, Italics, Strikethroughs, Inline Code, Links,\nand Images. Images display like icons, with a max height equal to\nthe font height.</p>\n<p>Unsupported Markdown elements are unwrapped so only their children\n(text contents) render. Display unsupported elements as literal\ncharacters by backslash-escaping them. E.g.,\n<tt class=\"docutils literal\">&quot;1\\. Not an ordered list&quot;</tt>.</p>\n<p>See the <tt class=\"docutils literal\">body</tt> parameter of <a class=\"reference external\" href=\"https://docs.streamlit.io/develop/api-reference/text/st.markdown\"><tt class=\"docutils literal\">st.markdown</tt></a> for additional,\nsupported Markdown directives.</p>\n",
+            "default": null
+          },
+          {
+            "name": "key",
+            "type_name": "str or int",
+            "is_optional": false,
+            "is_kwarg_only": false,
+            "description": "<p>An optional string or integer to use as the unique key for the widget.\nIf this is omitted, a key will be generated for the widget\nbased on its content. No two widgets may have the same key.</p>\n",
+            "default": null
+          },
+          {
+            "name": "help",
+            "type_name": "str or None",
+            "is_optional": false,
+            "is_kwarg_only": false,
+            "description": "<p>A tooltip that gets displayed when the button is hovered over. If\nthis is <tt class=\"docutils literal\">None</tt> (default), no tooltip is displayed.</p>\n<p>The tooltip can optionally contain GitHub-flavored Markdown,\nincluding the Markdown directives described in the <tt class=\"docutils literal\">body</tt>\nparameter of <tt class=\"docutils literal\">st.markdown</tt>.</p>\n",
+            "default": null
+          },
+          {
+            "name": "on_click",
+            "type_name": "callable",
+            "is_optional": false,
+            "is_kwarg_only": false,
+            "description": "<p>An optional callback invoked when this button is clicked.</p>\n",
+            "default": null
+          },
+          {
+            "name": "args",
+            "type_name": "list or tuple",
+            "is_optional": false,
+            "is_kwarg_only": false,
+            "description": "<p>An optional list or tuple of args to pass to the callback.</p>\n",
+            "default": null
+          },
+          {
+            "name": "kwargs",
+            "type_name": "dict",
+            "is_optional": false,
+            "is_kwarg_only": false,
+            "description": "<p>An optional dict of kwargs to pass to the callback.</p>\n",
+            "default": null
+          },
+          {
+            "name": "type",
+            "type_name": "\"primary\", \"secondary\", or \"tertiary\"",
+            "is_optional": false,
+            "is_kwarg_only": true,
+            "description": "<p>An optional string that specifies the button type. This can be one\nof the following:</p>\n<ul class=\"simple\">\n<li><tt class=\"docutils literal\">&quot;primary&quot;</tt>: The button's background is the app's primary color\nfor additional emphasis.</li>\n<li><tt class=\"docutils literal\">&quot;secondary&quot;</tt> (default): The button's background coordinates\nwith the app's background color for normal emphasis.</li>\n<li><tt class=\"docutils literal\">&quot;tertiary&quot;</tt>: The button is plain text without a border or\nbackground for subtlety.</li>\n</ul>\n",
+            "default": null
+          },
+          {
+            "name": "icon",
+            "type_name": "str or None",
+            "is_optional": false,
+            "is_kwarg_only": true,
+            "description": "<p>An optional emoji or icon to display next to the button label. If <tt class=\"docutils literal\">icon</tt>\nis <tt class=\"docutils literal\">None</tt> (default), no icon is displayed. If <tt class=\"docutils literal\">icon</tt> is a\nstring, the following options are valid:</p>\n<ul>\n<li><p class=\"first\">A single-character emoji. For example, you can set <tt class=\"docutils literal\"><span class=\"pre\">icon=&quot;🚨&quot;</span></tt>\nor <tt class=\"docutils literal\"><span class=\"pre\">icon=&quot;🔥&quot;</span></tt>. Emoji short codes are not supported.</p>\n</li>\n<li><p class=\"first\">An icon from the Material Symbols library (rounded style) in the\nformat <tt class=\"docutils literal\">&quot;:material/icon_name:&quot;</tt> where &quot;icon_name&quot; is the name\nof the icon in snake case.</p>\n<p>For example, <tt class=\"docutils literal\"><span class=\"pre\">icon=&quot;:material/thumb_up:&quot;</span></tt> will display the\nThumb Up icon. Find additional icons in the <a class=\"reference external\" href=\"https://fonts.google.com/icons?icon.set=Material+Symbols&amp;icon.style=Rounded\">Material Symbols </a>\nfont library.</p>\n</li>\n</ul>\n",
+            "default": null
+          },
+          {
+            "name": "disabled",
+            "type_name": "bool",
+            "is_optional": false,
+            "is_kwarg_only": true,
+            "description": "<p>An optional boolean that disables the button if set to <tt class=\"docutils literal\">True</tt>.\nThe default is <tt class=\"docutils literal\">False</tt>.</p>\n",
+            "default": "is"
+          },
+          {
+            "name": "use_container_width",
+            "type_name": "bool",
+            "is_optional": false,
+            "is_kwarg_only": true,
+            "description": "<p>Whether to expand the button's width to fill its parent container.\nIf <tt class=\"docutils literal\">use_container_width</tt> is <tt class=\"docutils literal\">False</tt> (default), Streamlit sizes\nthe button to fit its contents. If <tt class=\"docutils literal\">use_container_width</tt> is\n<tt class=\"docutils literal\">True</tt>, the width of the button matches its parent container.</p>\n<p>In both cases, if the contents of the button are wider than the\nparent container, the contents will line wrap.</p>\n",
+            "default": null,
+            "deprecated": {
+              "deprecated": true,
+              "deprecatedText": "<p><tt class=\"docutils literal\">use_container_width</tt> is deprecated and will be removed in a\nfuture release. For <tt class=\"docutils literal\">use_container_width=True</tt>, use\n<tt class=\"docutils literal\"><span class=\"pre\">width=&quot;stretch&quot;</span></tt>. For <tt class=\"docutils literal\">use_container_width=False</tt>, use\n<tt class=\"docutils literal\"><span class=\"pre\">width=&quot;content&quot;</span></tt>.</p>\n"
+            }
+          },
+          {
+            "name": "width",
+            "type_name": "\"content\", \"stretch\", or int",
+            "is_optional": false,
+            "is_kwarg_only": true,
+            "description": "<p>The width of the button. This can be one of the following:</p>\n<ul class=\"simple\">\n<li><tt class=\"docutils literal\">&quot;content&quot;</tt> (default): The width of the button matches the\nwidth of its content, but doesn't exceed the width of the parent\ncontainer.</li>\n<li><tt class=\"docutils literal\">&quot;stretch&quot;</tt>: The width of the button matches the width of the\nparent container.</li>\n<li>An integer specifying the width in pixels: The button has a\nfixed width. If the specified width is greater than the width of\nthe parent container, the width of the button matches the width\nof the parent container.</li>\n</ul>\n",
+            "default": null
+          }
+        ],
+        "returns": [
+          {
+            "type_name": "bool",
+            "is_generator": false,
+            "description": "<p>True if the button was clicked on the last run of the app,\nFalse otherwise.</p>\n",
+            "return_name": null
+          }
+        ],
+        "source": "https://github.com/streamlit/streamlit/blob/1.49.0/lib/streamlit/elements/widgets/button.py#L90"
+      },
+      "legacy_seed_text": "st.button(label, key=None, help=None, on_click=None, args=None, kwargs=None, *, type=\"secondary\", icon=None, disabled=False, use_container_width=None, width=\"content\")\n\nDisplay a button widget.\n\nParameters:\n\nlabel: str; default=None\nA short label explaining to the user what this button is for.\nThe label can optionally contain GitHub-flavored Markdown of the\nfollowing types: Bold, Italics, Strikethroughs, Inline Code, Links,\nand Images. Images display like icons, with a max height equal to\nthe font height.\n\nUnsupported Markdown elements are unwrapped so only their children\n(text contents) render. Display unsupported elements as literal\ncharacters by backslash-escaping them. E.g.,\n\"1\\. Not an ordered list\".\n\nSee the body parameter of st.markdown for additional,\nsupported Markdown directives.\n\nkey: str or int; default=None\nAn optional string or integer to use as the unique key for the widget.\nIf this is omitted, a key will be generated for the widget\nbased on its content. No two widgets may have the same key.\n\nhelp: str or None; default=None\nA tooltip that gets displayed when the button is hovered over. If\nthis is None (default), no tooltip is displayed.\n\nThe tooltip can optionally contain GitHub-flavored Markdown,\nincluding the Markdown directives described in the body\nparameter of st.markdown.\n\non_click: callable; default=None\nAn optional callback invoked when this button is clicked.\n\nargs: list or tuple; default=None\nAn optional list or tuple of args to pass to the callback.\n\nkwargs: dict; default=None\nAn optional dict of kwargs to pass to the callback.\n\ntype: \"primary\", \"secondary\", or \"tertiary\"; default=None\nAn optional string that specifies the button type. This can be one\nof the following:\n\n\"primary\": The button's background is the app's primary color\nfor additional emphasis.\n\n\"secondary\" (default): The button's background coordinates\nwith the app's background color for normal emphasis.\n\n\"tertiary\": The button is plain text without a border or\nbackground for subtlety.\n\nicon: str or None; default=None\nAn optional emoji or icon to display next to the button label. If icon\nis None (default), no icon is displayed. If icon is a\nstring, the following options are valid:\n\nA single-character emoji. For example, you can set icon=\"🚨\"\nor icon=\"🔥\". Emoji short codes are not supported.\n\nAn icon from the Material Symbols library (rounded style) in the\nformat \":material/icon_name:\" where \"icon_name\" is the name\nof the icon in snake case.\n\nFor example, icon=\":material/thumb_up:\" will display the\nThumb Up icon. Find additional icons in the Material Symbols \nfont library.\n\ndisabled: bool; default=is\nAn optional boolean that disables the button if set to True.\nThe default is False.\n\nuse_container_width: bool; default=None\nWhether to expand the button's width to fill its parent container.\nIf use_container_width is False (default), Streamlit sizes\nthe button to fit its contents. If use_container_width is\nTrue, the width of the button matches its parent container.\n\nIn both cases, if the contents of the button are wider than the\nparent container, the contents will line wrap.\n\nwidth: \"content\", \"stretch\", or int; default=None\nThe width of the button. This can be one of the following:\n\n\"content\" (default): The width of the button matches the\nwidth of its content, but doesn't exceed the width of the parent\ncontainer.\n\n\"stretch\": The width of the button matches the width of the\nparent container.\n\nAn integer specifying the width in pixels: The button has a\nfixed width. If the specified width is greater than the width of\nthe parent container, the width of the button matches the width\nof the parent container.\n\nReturns: bool\nTrue if the button was clicked on the last run of the app,\nFalse otherwise.\n\nExamples:\n\n",
+      "legacy_seed_text_sha256": "7bd993a4e7d0104fc869ab219a8a801761efcf1c8e6981c29ec763e3a86ed8ee",
+      "legacy_seed_record_line": 678,
+      "legacy_seed_record_line_sha256": "4dcb29e8bde81d247bb9d03d53f96a48f0347c27e77126939898e184368f7e3e",
+      "legacy_seed_source_id": "docstring:1.49.0:streamlit.button"
+    }
+  ]
+}

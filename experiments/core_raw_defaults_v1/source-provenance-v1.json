@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "task_id": "C4z",
+  "prepared_at_utc": "2026-10-18T08:38:51.025478+00:00",
+  "baseline_commit": "0ed208e9031c7b8064a95d7b6faf54c1742be0f4",
+  "raw_file": {
+    "repository": "https://github.com/streamlit/docs",
+    "commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+    "file": "python/streamlit.json",
+    "sha256": "5cc1cd6a9aa72ab1de892f53075f46b51be25ce4e7d84799e5b6e9ebbdedae6d",
+    "git_blob": "44a1a15e5f5cd53effe80a6a80034a5d88fa96cb",
+    "bytes": 43152536,
+    "local_git_tree_and_blob_verified": true,
+    "official_github_api_blob_and_size_matched": true,
+    "manifest_sha256": "3ee83ed7f9c989e144bd3a565057a91528d8edd22d827ae71544ba20aba87f7f"
+  },
+  "upstream_generator": {
+    "file": "python/generate.py",
+    "sha256": "521d3729c60ea42724f7a5e644d1a74d17a82f71ebe9b1fb57589b0b8fbb028c",
+    "git_blob": "a9067f931b675e0ca6a869e198040158b17eb5fb",
+    "parameter_default_origin": "docstring_parser.parse -> param.default -> args[].default",
+    "parameter_default_assignment_line": 272,
+    "signature_origin": "get_sig_string_without_annots -> inspect.signature",
+    "source_url": "https://github.com/streamlit/docs/blob/695e6ce2fb1b23afc6df66b40420ab0013ad72fd/python/generate.py#L195-L272",
+    "historical_parser_version_or_runtime_reproduced": false
+  },
+  "local_preparation": {
+    "file": "data-prep/inspect_snapshot.py",
+    "sha256": "7603a4a5c6fc086aac8aad572231565c1314849128bbae4b97eb8f5dcac544a7",
+    "header_assignment_lines": [
+      124,
+      130
+    ],
+    "policy": "formatted raw args[].default unchanged, including None/is; no validation against signature",
+    "script_executed": false
+  },
+  "implementation_source_1_49_0": {
+    "schema_version": 1,
+    "repository": "https://github.com/streamlit/streamlit",
+    "release_tag": "1.49.0",
+    "resolved_commit": "9bde6fb465da3ae76b628a32c3258cd600949512",
+    "file": "lib/streamlit/elements/widgets/button.py",
+    "url": "https://raw.githubusercontent.com/streamlit/streamlit/9bde6fb465da3ae76b628a32c3258cd600949512/lib/streamlit/elements/widgets/button.py",
+    "sha256": "ab329f6e76d51b343f6c954457975e296238fa90b5ffbc4e1368a771d0d9ad1d",
+    "bytes": 48031,
+    "qualified_function": "ButtonMixin.button",
+    "parse_only_no_execution": true,
+    "declared_defaults": {
+      "type": {
+        "source_token": "\"secondary\"",
+        "line": 100,
+        "python_literal_type": "str",
+        "value": "secondary"
+      },
+      "disabled": {
+        "source_token": "False",
+        "line": 102,
+        "python_literal_type": "bool",
+        "value": false
+      }
+    },
+    "installed_runtime_verified": false
+  },
+  "source_snapshot_sha256": "102ed7ae399230dd9c362ea6dda69c019f2e1c0080e2a729ddfba0aa375553ff",
+  "raw_source_access_scope": "pinned docs JSON/generator/manifest and two docs-only seedrecords; no issues/comments/test/exposure/index/ledger",
+  "provider_calls": 0,
+  "ledger_writes": 0,
+  "source_and_seed_files_modified": false,
+  "root_cause_limit": "Metadata anomaly predates our headers and is visible in pinned upstream generatedJSON. Generator shows metadata channel; exact historical docstring_parser cause/version not rerun."
+}
