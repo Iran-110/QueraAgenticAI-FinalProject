@@ -1,3 +1,24 @@
+## 2026-10-18 — C4w: judges presentation and additive session readiness
+
+[Behavior and operator check](presentation-readiness.fa.md),
+[receipt](receipts/presentation-readiness-2026-10-18.json),
+[public13-slide PDF/HTML](presentation/README.fa.md).
+Optional GET-only judges view retains complete original drafts/handoffs/sources.
+Separate117-file public release inventory extends the original unchanged21-file
+funding binding; startup/allocation/final delegation reject drift. ASGI drains
+outside the owner lock; direct old Runtime.close remains unchanged. Read-only
+healthcheck verifies physical native index in an isolated audited child before
+ledger/HTTP, validates actual3/2/2turn capacity and binds13-page artifacts to visual QA.
+6736development tests pass with5protected consumers deselected;129new controls are
+included,26external launcher controls separate, Ruff/format423files and103installed
+dependency compatibility pass. Independent review resolved false readiness cases.
+GET observer records340samples over10190.51s; one planned restart sample unavailable,
+not a continuous uptime/load/memory guarantee. Meeting0sends/7turns remain available;
+4087old logical rows/14tables and all3uncertain holds/globalhalt preserved. No new
+paid calls, held-out payload reads, quality score or C5 reconciliation. Original
+C4v receipt and v1 slides retained; main judge PDF omits test prompts/commands/Q&A.
+Native gold/final packet/test remain evaluation-owned; answer quality stays partial.
+
 ## 2026-10-17 — C4u v3: frozen95 physical receipt accepted
 
 PR91 independently reviewed and rebuilt from frozen95 in a fresh external directory.

@@ -2,6 +2,17 @@
 
 پروژهٔ نهایی بوت‌کمپ Agentic AI کوئرا: دستیار بررسی گزارش خطا و پیگیری پرونده، با شواهد قابل بررسی و تأیید انسانی پیش از اجرای اقدام.
 
+**آمادگی ارائه، ۱۸ اکتبر — C4w:** [PDF فارسی ۱۳ اسلایدی مخصوص داورها](docs/presentation/judges-presentation-fa-v2.pdf)
+و [HTML مستقل](docs/presentation/judges-presentation-fa-v2.html) آماده‌اند؛ متن آزمایش،
+دستور اجرا و سؤال‌های احتمالی در PDF اصلی نیستند. [نمای اختیاری خواندنی](docs/presentation-view.fa.md)،
+[کنترل تکمیلی نسخه](docs/presentation-release-watch.fa.md) و [healthcheck بدون فراخوانی مدل](docs/presentation-readiness.fa.md)
+اضافه شدند. **۶۷۳۶ تست توسعه** با پنج مصرف‌کنندهٔ دادهٔ محافظت‌شدهٔ deselect‌شده،
+Ruff/format۴۲۳فایل و بررسی سازگاری۱۰۳dependency پاس‌اند؛ [رسید تازه](docs/receipts/presentation-readiness-2026-10-18.json).
+پایش GET حدود۲ساعت۵۰دقیقه،۳۴۰نمونه داشت؛ یک نمونه هنگام restart برنامه‌ریزی‌شده
+ناموجود بود. ظرفیت جلسه۷نوبت/۱۴درخواست هنوز مصرف نشده و halt/سهhold محفوظ‌اند.
+این تحویل کیفیت مدل یا held-out نهایی را کامل‌شده اعلام نمی‌کند؛ اعداد بعدی
+شواهد تاریخی با source و دامنهٔ خودشان هستند.
+
 **وضعیت فعلی، ۱۷ اکتبر:** build نهایی RAG با exclusion فریز‌شدهٔ **۹۵ Issue**، **۱۲۲۸ source و ۱۸۲۷ chunk** تحویل و روی این دستگاه مستقلاً بازتولید شده؛ pinهای آن با receipt v3 حسن منطبق‌اند. [رسید پذیرش build نهایی](docs/receipts/final-build-v3-core-acceptance-2026-10-17.json) و [اتصال core](docs/final-build-core-acceptance.fa.md) مرز هر شاهد را ثبت می‌کنند. پروفایل جدید `grounded_candidate_prefilter_v2` فیلتر نسخه را پیش از native top-k به factory/engine/runner وصل می‌کند؛ انتخاب آن صریح است، v1 و defaultهای قبلی حفظ‌اند و halt را رفع نمی‌کند.
 
 برای جلسه، [مسیر زندهٔ محدود `presentation_scoped_v1`](docs/presentation-live.fa.md) آماده است: UI → API → Chroma v3 → متیس → SQLite. پذیرش تازه **۷ نوبت / ۸ درخواست واقعی** با هزینهٔ تخمینی **$0.006429390** ثبت شد؛ سه نوبت از خود UI و چهار نوبت از client همان backend. correction، stale approval با 409 و restart/retry پاس‌اند؛ [رسید قابل بررسی و محدودیت کیفیت](docs/receipts/presentation-live-acceptance-2026-10-17.json). مرحلهٔ تمرین بسته و مرحلهٔ ارائه مستقل و مصرف‌نشده است؛ startup هزینه ندارد. [برگهٔ کوتاه قبلی](docs/meeting-brief.fa.md) و دمو آفلاین برای پشتیبان باقی‌اند.

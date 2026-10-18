@@ -54,6 +54,21 @@ Build the Quera Streamlit support assistant in small, reviewable steps. The auth
 
 ## Runtime rules
 
+- C4w adds optional read-only presentation display and explicit additive release
+  inventory; read `docs/presentation-readiness.fa.md`,
+  `docs/presentation-release-watch.fa.md` and `docs/presentation-view.fa.md`.
+  The 117-file reviewed watch is separate from the unchanged21-file financial
+  binding and grants no new calls. Never automatically recapture/rebase a watch
+  after drift. The watched ASGI lifespan drains runs outside the owner lock;
+  direct old Runtime.close is unchanged. Keep presentation messages sequential.
+  The GET-only healthcheck verifies physical index records in a neutral audited
+  child, real remaining message turns, durable API and manually reviewed PDF;
+  health is not provider reachability or answer quality. Judge-facing PDF/HTML
+  in `docs/presentation/` omit test prompts, runtime commands and Q&A; private
+  presenter material stays outside Git. 6736development tests with5protected
+  consumers deselected are software evidence, not a held-out result. Preserve
+  original C4v/v1 artifacts, scopes/halt/holds and evaluation-owner boundaries.
+
 - C4v adds the explicitly funded `presentation_scoped_v1` path; read
   `docs/presentation-live.fa.md` and its sanitized receipt. This is a finite
   exception using `authorize_quarantine_scope`, not C5 reconciliation or an

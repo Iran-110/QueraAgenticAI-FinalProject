@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "task_id": "C4w",
+  "recorded_at_utc": "2026-10-18T03:15:15.275801+00:00",
+  "source_commit": "4f33cf8080495c6dcb5a9f9d3ed77c3725f33b28",
+  "scope": "additive presentation/runtime readiness; no new paid or held-out model evaluation",
+  "software": {
+    "development_suite_passed": 6736,
+    "seconds": 393.92,
+    "protected_consumers_deselected": 5,
+    "new_controls_included": 129,
+    "new_control_breakdown": {
+      "read_only_view": 47,
+      "release_watch_safety": 28,
+      "healthcheck": 54
+    },
+    "independent_launcher_controls_outside_suite": 26,
+    "ruff_format_files": 423,
+    "installed_dependency_check": {
+      "packages": 103,
+      "compatible": true
+    },
+    "audit": {
+      "scope": "parent interpreter only, subprocesses not attested",
+      "blocked": [],
+      "allowed_loopback_connections": 11,
+      "seed_package_raw_hash_reads": 654
+    },
+    "not_hosted_ci": true
+  },
+  "preserved_failed_attempts": [
+    {
+      "label": "full-safe",
+      "passed_before_failure": 275,
+      "reason": "Audit overblocked temporary synthetic review HTML; restricted protection to real repository."
+    },
+    {
+      "label": "full-safe-v2",
+      "passed_before_failure": 2349,
+      "reason": "Neutral cwd lacked repository-relative experiment path; safe linked cwd provided without dotenv."
+    },
+    {
+      "label": "full-safe-v3",
+      "passed_before_failure": 4794,
+      "reason": "New missing-index regression exposed false readiness during active fix; physical child verifier added."
+    }
+  ],
+  "peer_review": {
+    "viewer_and_release_independent_parent_controls": 75,
+    "healthcheck_independent_review_controls_included": 21,
+    "physical_index_review_controls_included": 17,
+    "blocking_findings_resolved": true,
+    "review_is_not_semantic_model_grade": true
+  },
+  "readiness": {
+    "schema_version": 1,
+    "operator_ready": true,
+    "artifacts": {
+      "verified": true,
+      "visual_review_replaced": false,
+      "pages": 13,
+      "sha256": {
+        "judges-presentation-fa-v2.pdf": "81c7197289f5082d5d9e81ff914137b45ba6a978ee56fdfc625a48133ab0b7dd",
+        "judges-presentation-fa-v2.html": "a8bba59bffcdb8f0ca36041e618312fb9a7302f8b98f420b88698aeb1588562f",
+        "judges-presentation-fa-v2-content.json": "c2069affac0401bef578eb18e57bdd9e0175511145a8e4f377b87b73290d46d8"
+      }
+    },
+    "session": {
+      "ready": true,
+      "provider_probe": "not_performed",
+      "request_method": "GET",
+      "source_verification": "funded_subset_and_additive_release_inventory",
+      "index_verification": "verified_physical_manifest_snapshot_and_records",
+      "index_probe": {
+        "schema_version": 1,
+        "verified": true,
+        "blocked": [],
+        "network_connect_attempts": 0,
+        "client_close_available": false,
+        "cleanup": "verifier_process_exit",
+        "audit_scope": "child Python audit events; native calls not attested"
+      },
+      "scope_active": true,
+      "consumed_requests": 0,
+      "maximum_requests": 14,
+      "remaining_usd": "0.1",
+      "global_halt": true,
+      "c5_reconciled": false,
+      "provider_key_read": false,
+      "remaining_message_turns": 7,
+      "case_capacity": [
+        {
+          "revision": 0,
+          "remaining_turns": 3
+        },
+        {
+          "revision": 0,
+          "remaining_turns": 2
+        },
+        {
+          "revision": 0,
+          "remaining_turns": 2
+        }
+      ]
+    },
+    "model_quality": "partial, requires separate source/human review",
+    "heldout_evaluation": "not performed by this healthcheck",
+    "financial_authorization": false
+  },
+  "presentation": {
+    "pages": 13,
+    "audience": "judges; product story with nontechnical narration",
+    "main_pdf_omits_test_prompts_commands_and_possible_questions": true,
+    "actual_pdf_pages_rendered_and_visually_reviewed": true,
+    "parent_content_review_accepted": true,
+    "private_speaker_notes_and_chat_context_separate": true,
+    "artifact_sha256": {
+      "judges-presentation-fa-v2.pdf": "81c7197289f5082d5d9e81ff914137b45ba6a978ee56fdfc625a48133ab0b7dd",
+      "judges-presentation-fa-v2.html": "a8bba59bffcdb8f0ca36041e618312fb9a7302f8b98f420b88698aeb1588562f",
+      "judges-presentation-fa-v2-content.json": "c2069affac0401bef578eb18e57bdd9e0175511145a8e4f377b87b73290d46d8"
+    },
+    "original_c4v_receipt_preserved": true,
+    "repository_pdf_html_exact_copies": true,
+    "original_v1_artifacts_preserved_sha256": {
+      "streamlit-agent-presentation-fa-v1.pdf": "91ff1668feee8c6fd2d4a9c3aa2aca80202aab06b92782b33d72401c85a59121",
+      "streamlit-agent-presentation-fa-v1.html": "ae5eb33e13a47949ff5a1c8a68fc7edf4a54079ac8dcb4282996bf6c2f717bbb",
+      "presenter-notes.fa.md": "ee021416cd2dbb62bf90f791d678218ef7aa88adff2e7c0a91a383a87b4ce910",
+      "sasan-presentation-context-fa-v4.md": "fa1ab6093ca47b5173c2a14558c6b74487ea2e66c04d0ed6da2e08b6c59f717b",
+      "mentor-voices-summary.fa.md": "334ab735b28e8f1a4b5f24cc75ff3d27209ad17d215d025f47d9d165ee6f1b1f",
+      "live-demo-runbook.fa.md": "6ed146e9316d39a63dc5561a4d03bbd1432147102510263ae2bfb5f6f0016a33"
+    }
+  },
+  "release_watch": {
+    "separate_from_original_financial_binding": true,
+    "watched_public_files": 117,
+    "meeting_watch_sha256": "d510e16a552c585652af7d7f53c6692bb3ceb86b325fc8f5e06c456c0693a280",
+    "rehearsal_watch_sha256": "a373c193a1d30ba2dc425cf9a174134762989de3d11a15f7a014591d9e6504f4",
+    "original_21_files_and_protocols_unchanged": true,
+    "checks": [
+      "startup",
+      "allocation",
+      "final_transport_delegation"
+    ],
+    "does_not_attest_installed_wheels_or_native_calls": true,
+    "asgi_lifespan_drain_fixed": true,
+    "direct_old_runtime_close_unchanged": true
+  },
+  "availability_observation": {
+    "elapsed_seconds": 10190.51,
+    "samples": 340,
+    "start_utc": "2026-10-17T21:45:25.504256+00:00",
+    "finish_utc": "2026-10-18T00:35:16.009587+00:00",
+    "get_only": true,
+    "load_test": false,
+    "non_200_samples": {
+      "live_api": 1,
+      "live_ui": 1,
+      "offline_api": 0,
+      "offline_ui": 0,
+      "presentation_html": 0
+    },
+    "one_planned_live_restart_sample_unavailable": true,
+    "all_observed_non_null_revisions_zero": true,
+    "all_meeting_receipt_counts_zero": true,
+    "latency_ms": {
+      "live_api": {
+        "successful_samples": 339,
+        "median_ms": 4.05,
+        "p95_ms": 7.02,
+        "maximum_ms": 15.65
+      },
+      "live_ui": {
+        "successful_samples": 339,
+        "median_ms": 1.74,
+        "p95_ms": 2.48,
+        "maximum_ms": 3.82
+      },
+      "offline_api": {
+        "successful_samples": 340,
+        "median_ms": 2.19,
+        "p95_ms": 3.03,
+        "maximum_ms": 5.04
+      },
+      "offline_ui": {
+        "successful_samples": 340,
+        "median_ms": 1.64,
+        "p95_ms": 2.39,
+        "maximum_ms": 3.72
+      },
+      "presentation_html": {
+        "successful_samples": 340,
+        "median_ms": 2.28,
+        "p95_ms": 3.04,
+        "maximum_ms": 4.67
+      }
+    },
+    "continuous_uptime_or_memory_leak_guarantee": false,
+    "maintenance_journal_sha256": "7126a5dbe8995e8e7f6eb0a27fe9cce298a21dd7ae7548d40ec2c8060d7a6878",
+    "raw_observation_sha256": "f8e451d3f01411edf9e744fa099de1d11033b13abea9162db740871e09ce69e2"
+  },
+  "preservation": {
+    "old_logical_rows_unchanged": 4087,
+    "tables": 14,
+    "global_halt": true,
+    "old_uncertain_count": 3,
+    "old_uncertain_usd": "0.0301376",
+    "c5_reconciled": false,
+    "new_provider_calls": 0,
+    "heldout_payloads_opened": false,
+    "new_financial_authorization": false
+  },
+  "meeting_capacity": {
+    "remaining_message_turns": 7,
+    "maximum_provider_requests": 14,
+    "consumed_requests": 0,
+    "cap_usd": "0.10",
+    "no_automatic_refill": true
+  },
+  "open_limits": [
+    "Model answer quality remains partial; long/unrelated quotations observed in prior acceptance; Enum fix not verified.",
+    "Native gold/final packet/held-out execution remain with evaluation owner.",
+    "Direct concurrent old Runtime.close is not changed; use watched ASGI and stop only while idle.",
+    "Sequential presentation requests required; concurrent different-case ingress can commit before PendingRequest.",
+    "GET health confirms service configuration/liveness, not browser wiring or provider reachability; browser reviewed separately.",
+    "Windows not rerun independently in this refinement; partner receipts remain historical.",
+    "Watched bootstrap uses current real API/SQLite/index for readiness and mock provider for dispatch controls; no fresh paid request after adding watch."
+  ],
+  "evidence_hashes": {
+    "full-safe-final.log": "4cc76143b958f3fb233da06d581972e523c77c381ad2f57e5431322be1de965a",
+    "full-safe-final.xml": "6114e1ffd9fad35ee54e44db4e98352aed7ffdcd9c41120013803ced56f1152e",
+    "full-safe-final-audit.json": "e86d90fc2cf47a28ab0a4bc8bdd5c35ae1f13e840b0e6c06d13973335211d53d",
+    "current-readiness.json": "d604e74604ce4e5957368e7cf289ef49b784840f5e693b9838b7f70b93aa717a",
+    "ledger-preservation-final.json": "9234a96d81eebf9f55138e2c1ec1a18b85ddd61a99c40591d447b006491a0da6",
+    "launchers-final.log": "b19bd753b264486da0797eed2b10e9c9ec3ebeba61f794b46567ef39b058a9c9"
+  }
+}

@@ -1,8 +1,24 @@
 # plan و checklist تیم — Streamlit Support Assistant
 
-به‌روزرسانی: ۲۰۲۶-۱۰-۱۷. این نسخه ادامهٔ plan محمدحسن روی `main` در commit `2ead870` است؛ [نسخهٔ قبلی](archive/plan-before-task-checklist.md) حفظ شده. مبنای regressionهای بازبینی `6131091` بود؛ انتشار tracker با `464e55e` و سپس #21 با `94b60e1` و [CI موفق](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38151154794) ثبت شده‌اند. مبنای baseline تازهٔ C2a همین `94b60e1` است. این فایل برای تقسیم کار و شرط پایان taskهاست؛ روزهای sprint قبلی را تاریخ تحویل حساب نمی‌کنیم. الزام‌ها از صورت اصلی پروژه می‌آیند، نه از ابزارها و frameworkهای پیشنهادی plan.
+به‌روزرسانی: ۲۰۲۶-۱۰-۱۸. این نسخه ادامهٔ plan محمدحسن روی `main` در commit `2ead870` است؛ [نسخهٔ قبلی](archive/plan-before-task-checklist.md) حفظ شده. مبنای regressionهای بازبینی `6131091` بود؛ انتشار tracker با `464e55e` و سپس #21 با `94b60e1` و [CI موفق](https://github.com/Iran-110/QueraAgenticAI-FinalProject/actions/runs/38151154794) ثبت شده‌اند. مبنای baseline تازهٔ C2a همین `94b60e1` است. این فایل برای تقسیم کار و شرط پایان taskهاست؛ روزهای sprint قبلی را تاریخ تحویل حساب نمی‌کنیم. الزام‌ها از صورت اصلی پروژه می‌آیند، نه از ابزارها و frameworkهای پیشنهادی plan.
 
 ## وضعیت فعلی
+
+- [x] **C4w — نسخهٔ داورپسند و کنترل نهایی اجرای جلسه؛ ساسان.**
+  [شرح و فرمان healthcheck](../docs/presentation-readiness.fa.md)،
+  [رسید](../docs/receipts/presentation-readiness-2026-10-18.json) و
+  [PDF/HTML عمومی ۱۳اسلایدی](../docs/presentation/README.fa.md).
+  نمای خواندنی GET-only از UI اپراتور جداست؛ متن کامل پاسخ و منابع حفظ می‌شود.
+  watch جدا۱۱۷فایل عمومی source/config را کنترل می‌کند،۲۱فایل مالی و protocolها
+  ثابت‌اند؛ drain در ASGI بیرون lockِ owner انجام می‌شود و متد مستقیم قدیمی دست‌نخورده.
+  healthcheck index فیزیکی/ظرفیت نوبت/API/SQLite/PDF را بدون key/provider بررسی
+  می‌کند.۶۷۳۶تست توسعه با۵مصرف‌کنندهٔ محافظت‌شدهٔ deselect‌شده،۱۲۹کنترل تازه
+  داخل همین شمارش،۲۶کنترل launcher جدا، Ruff/format۴۲۳فایل و سازگاری۱۰۳package
+  پاس؛ review مستقل انجام شد. پایش GET حدود۲ساعت۵۰دقیقه/۳۴۰نمونه، فقط یک نمونه
+  هنگام restart برنامه‌ریزی‌شده ناموجود؛ load test یا uptime پیوسته نیست.
+  جلسه هنوز۰درخواست/۷نوبت باقی دارد؛۴۰۸۷ردیف قدیمی/۱۴جدول،halt/سهhold ثابت‌اند.
+  PDF اصلی متن آزمایش/command/Q&A ندارد؛ یادداشت خصوصی و مرجع چتv5 جداست.
+  کیفیت مدل، C5 و native/test نهایی با این تیک بسته نمی‌شوند.
 
 - [x] **C4v — پذیرش زندهٔ محدود ارائه؛ ساسان، بدون تغییر کار native gold/test.**
   [راه‌اندازی و مرز مجوز](../docs/presentation-live.fa.md)،
