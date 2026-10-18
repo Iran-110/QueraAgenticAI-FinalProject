@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "experiment_id": "core_parameter_focus_v1",
+  "registered_at_utc": "2026-10-18T04:06:25.354166+00:00",
+  "baseline_source_commit": "a9d0ae9b78fc7b3d6ae2f8dcc58124ca163b7392",
+  "condition": "offline authored re-expression of previously selected exposed development evidence; no model call",
+  "question": "Can complete source-declared API parameter units reduce narrow answer display while preserving every character of selected parameter definitions and current request/source/version binding?",
+  "implementation_boundary": [
+    "experiments/core_parameter_focus_v1/",
+    "tests/test_core_parameter_focus.py",
+    "tests/test_core_parameter_candidate.py",
+    "tests/test_core_parameter_replay.py",
+    "docs/core-parameter-focus.fa.md"
+  ],
+  "runtime_adoption": false,
+  "current_117_watch_unchanged": true,
+  "funded_21_files_unchanged": true,
+  "global_halt_and_three_holds_preserved": true,
+  "provider_calls_planned": 0,
+  "primary_ledger_writes_planned": 0,
+  "heldout_payload_access_allowed": false,
+  "corpus_index_exclusion_or_gold_changes_allowed": false,
+  "primary_authored_projections": [
+    {
+      "turn": "B2",
+      "api_name": "st.button",
+      "parameter": "icon",
+      "required_full_clauses": [
+        "next to the button label",
+        "single-character emoji",
+        "Material"
+      ],
+      "baseline_problem": "9551-character draft and unrelated selected sources"
+    },
+    {
+      "turn": "C1",
+      "api_name": "st.button",
+      "parameter": "type",
+      "required_full_clauses": [
+        "primary",
+        "secondary",
+        "tertiary"
+      ],
+      "baseline_problem": "9190-character draft and unrelated radio record"
+    },
+    {
+      "turn": "C2",
+      "api_name": "st.button",
+      "parameter": "disabled",
+      "required_full_clauses": [
+        "True",
+        "False"
+      ],
+      "baseline_problem": "4552-character whole-record answer for one parameter"
+    }
+  ],
+  "retained_unresolved_observations": [
+    "A1 necessary version question remains unchanged.",
+    "A2 background-only answer remains unchanged.",
+    "A3 multiselect relevance failure remains unsolved, not silently replaced by an API answer.",
+    "B1 retrieval miss/escalation remains unchanged.",
+    "Enum has no new model trial or verified fix."
+  ],
+  "acceptance": [
+    "Lossless full source retention and complete parameter spans, Unicode/CRLF/fences/options/negation preserved.",
+    "Only actual signature-declared unique parameter peers form units; malformed/truncated/ambiguous records explicitly unavailable.",
+    "No free technical prose, source execution, new fact, action, model attempt or semantic approval channel.",
+    "Flat IDs bind only to the current full request and source contents; stale revision/correction/source/config mutations reject.",
+    "Conflict and unknown/current-mismatched version cannot produce a confident parameter answer.",
+    "Authored projection uses a subset of original selected source IDs; no new retrieval or later answer is added.",
+    "Original full drafts and decisions remain recorded; all7turns accounted, unavailable states not dropped.",
+    "For each primary projection: smaller displayed candidate draft, complete target span exact, all registered clauses retained; semantic_support stays null.",
+    "Default/runtime source117 remains identical and existing fixture outputs unchanged."
+  ],
+  "invalid_claims": [
+    "No claim of improved actual model selection, general semantic support, human usefulness, final RAG quality or held-out success.",
+    "No claim that structural parameter completeness includes every caveat elsewhere in source.",
+    "No promotion into scoped live or existing approved handoff without separately reviewed protocol/config and comparison."
+  ],
+  "baseline_artifact_sha256": {
+    "a3-before-approval.json": "44937c0bcd06cd369b10a49b0e4321f280bbbe6ad9a47d058ea2e7ef853a9abd",
+    "api-b1.json": "85d9dffa9a831b53826a1580cf12079f529834d0bff0e339bd8393ac7ada200b",
+    "api-b2.json": "1286480572dfb7126056c9bc78f8cff5c9d4e583bde237c602de88ed0ceddcfe",
+    "api-c1.json": "d1d048da6fe74035adb11b70caacca1774c69ce21234329f5f1e3f5c766f569c",
+    "api-c2.json": "613c17cf249737fd6fa6d863d6beaf3604dd4546d3440197ed8a789274849bd6",
+    "semantic-review.json": "e51884988101f58068cb4b8d3217db50b2cf2783dd52672b8c66de3c91e33563"
+  }
+}

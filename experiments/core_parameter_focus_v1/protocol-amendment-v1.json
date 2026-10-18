@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "amendment_id": "parameter-focus-review-and-display-v1",
+  "recorded_at_utc": "2026-10-18T04:19:53.173481+00:00",
+  "protocol_sha256": "b6aec79bf2d86f0380783bd5263cf470eff204650f7240770040f246c5336b91",
+  "reason": "Independent review and known CRLF readability feedback; no new model invocation or changed target/source.",
+  "additional_review_file": "tests/test_core_parameter_review.py",
+  "additional_display_control": "Experimental quoted display normalizes CRLF to LF only, while exact raw source/parameter text/spans/hashes remain unchanged and visible in structured custody. No standalone CR normalization. Existing default renderer bytes unchanged.",
+  "other_acceptance_criteria_unchanged": true,
+  "financial_authorization": false
+}
