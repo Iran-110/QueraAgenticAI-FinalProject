@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "task_id": "C4y",
+  "experiment_id": "core_parameter_review_v1",
+  "recorded_at_utc": "2026-10-18T07:30:30.527700+00:00",
+  "registration_stage": "after initial independent AI review and diagnostic design; before root display/replay integration; not a blind model preregistration",
+  "baseline_commit": "47f476e034732c1ad6a3f85d4971af5a6cf72ebb",
+  "condition": "offline deterministic source-integrity and review display on three previously authored exposed candidates",
+  "input_sha256": {
+    "replay-fixture-v1.json": "a958b0342f13bbcad7682b31bd92ec6ae45afd0b5a510426664aa839f317806d",
+    "replay-result-v2.json": "12290434cf603788f81fba0c924ec256728a1227ff2c8145b6a24a922c69c15c",
+    "protocol-v1.json": "b6aec79bf2d86f0380783bd5263cf470eff204650f7240770040f246c5336b91"
+  },
+  "targets": [
+    {
+      "turn": "B2",
+      "selected_parameter": "icon",
+      "latest_question": "whether icon replaces label or can coexist",
+      "required_supplied_evidence": [
+        "display next to the button label",
+        "single-character emoji",
+        "Emoji short codes are not supported",
+        "Material Symbols"
+      ]
+    },
+    {
+      "turn": "C1",
+      "selected_parameter": "type",
+      "latest_question": "purpose and documented options",
+      "required_supplied_evidence": [
+        "primary",
+        "secondary",
+        "tertiary"
+      ],
+      "known_selected_source_problem": "header default None differs from signature secondary"
+    },
+    {
+      "turn": "C2",
+      "selected_parameter": "disabled",
+      "latest_question": "parameter to disable same button; not a promise of automatic timed re-enabling",
+      "required_supplied_evidence": [
+        "True",
+        "False"
+      ],
+      "known_selected_source_problem": "header default is not supported literal; signature False"
+    }
+  ],
+  "acceptance": [
+    "Keep old v1 code, payload, baseline, full source and result bytes unchanged.",
+    "Pure integrity report binds full current request and exact candidate; stale/mutated IDs, sources, text or flags reject.",
+    "Compare only safe literal signature/header syntax; unresolved names and body semantics are not evaluated or certified.",
+    "Expose selected-unit and other source-unit observations separately; header contradictions never silently repaired.",
+    "Label candidate spans as excerpt-relative; original source span stays supplied and unverified, length discrepancies explicit.",
+    "Concise review surface includes escaped validated supplied URL and exact full parameter definition; full source stays in maintainer surface.",
+    "Distinguish source-quality issues from user gaps; no unnecessary user question or fabricated evidence/retrieval result.",
+    "Keep AI semantic observations outside current/future model payload and RAG corpus; no human score or semantic approval inferred.",
+    "No new decision, approval, action, live configuration, watch, ledger or paid scope authorization."
+  ],
+  "provider_calls_planned": 0,
+  "ledger_writes_planned": 0,
+  "runtime_adoption": false,
+  "current117_watch_and21_funded_files_unchanged": true,
+  "halt_and_three_holds_preserved": true,
+  "heldout_payload_access_allowed": false,
+  "corpus_index_exclusion_or_gold_changes_allowed": false,
+  "non_goals": [
+    "No actual new model selection measurement",
+    "No human usefulness score",
+    "No Enum fix",
+    "No A3 relevance or B1 retrieval repair",
+    "No interpretation of raw docstring extraction as actual runtime behavior"
+  ]
+}

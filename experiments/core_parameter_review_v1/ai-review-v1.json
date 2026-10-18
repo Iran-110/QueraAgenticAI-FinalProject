@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "task_id": "C4y",
+  "recorded_at_utc": "2026-10-18T07:36:23.265302+00:00",
+  "review_basis": "AI qualitative review of full current request and supplied record; not human scoring, a model selection trial or held-out evaluation",
+  "original_fixture_sha256": "a958b0342f13bbcad7682b31bd92ec6ae45afd0b5a510426664aa839f317806d",
+  "original_result_sha256": "12290434cf603788f81fba0c924ec256728a1227ff2c8145b6a24a922c69c15c",
+  "provider_calls": 0,
+  "model_payload_or_corpus_input": false,
+  "rows": [
+    {
+      "turn": "B2",
+      "candidate_sha256": "65f763c88c7cf3b755817b1a0d71a02459edf179a3ee40a9385dfee7046847b3",
+      "request_context_sha256": "9490b5dcad1b2b1f72da53576cc0baf15d8631b391ba33df6ea299a0c00fca0b",
+      "reviewer_kind": "independent_assistant_qualitative_review",
+      "human_review": false,
+      "human_usefulness_score": null,
+      "automatic_semantic_support": null,
+      "relevance_assessment": "directly_related_to_latest_question_in_this_exposed_example",
+      "local_evidence_assessment": "no_necessary_extra_clause_identified_elsewhere_in_supplied_complete_record_for_this_narrow_question",
+      "global_completeness_or_authenticity_verified": false,
+      "additional_user_clarification_needed_for_question_as_written": false,
+      "missing_information_owner": "source/extraction/provenance review, not the user",
+      "exact_support_spans": [
+        {
+          "exact_text": "An optional emoji or icon to display next to the button label.",
+          "excerpt_relative_start": 1518,
+          "excerpt_relative_end": 1580
+        },
+        {
+          "exact_text": "Emoji short codes are not supported.",
+          "excerpt_relative_start": 1758,
+          "excerpt_relative_end": 1794
+        },
+        {
+          "exact_text": "An icon from the Material Symbols library (rounded style)",
+          "excerpt_relative_start": 1796,
+          "excerpt_relative_end": 1853
+        }
+      ],
+      "source_id": "docstring:1.39.0:streamlit.button",
+      "source_text_sha256": "3e4ee8f16a4363b8e204ecf26a34183cf5c92cd5d8b98fc70e35b42d63725012",
+      "necessary_caveats_not_to_omit": [
+        "All options/format restrictions within the selected unit retained",
+        "Current active USER version remains authority; old message wording is historical context",
+        "Source-wide caveats remain available for maintainer inspection"
+      ],
+      "intent": "Does icon coexist with the label in the already stated 1.39.0 release, or replace it?",
+      "accepted_narrow_interpretation": "The supplied definition explicitly places the optional icon next to the label; the signature includes label and icon.",
+      "unsupported_extensions": [
+        "No claim about the actual app or a screenshot",
+        "No automatic label replacement or label omission inferred"
+      ],
+      "selected_default_problem": null,
+      "usefulness": "Useful for this narrow coexistence question; exact definition already contains the answer. Specific source warnings and visible citation improve inspectability."
+    },
+    {
+      "turn": "C1",
+      "candidate_sha256": "324f7ea3ca1c04c7148102ee19ecf76bdcaa2386d6f6fffec820ff2d505b1650",
+      "request_context_sha256": "c0f1a5ec7ba55af6910f86c921ab64b8476cf5e63cbced4dbc28cf28732a3598",
+      "reviewer_kind": "independent_assistant_qualitative_review",
+      "human_review": false,
+      "human_usefulness_score": null,
+      "automatic_semantic_support": null,
+      "relevance_assessment": "directly_related_to_latest_question_in_this_exposed_example",
+      "local_evidence_assessment": "no_necessary_extra_clause_identified_elsewhere_in_supplied_complete_record_for_this_narrow_question",
+      "global_completeness_or_authenticity_verified": false,
+      "additional_user_clarification_needed_for_question_as_written": false,
+      "missing_information_owner": "source/extraction/provenance review, not the user",
+      "exact_support_spans": [
+        {
+          "exact_text": "\"primary\": The button's background is the app's primary color",
+          "excerpt_relative_start": 1725,
+          "excerpt_relative_end": 1786
+        },
+        {
+          "exact_text": "\"secondary\" (default): The button's background coordinates",
+          "excerpt_relative_start": 1813,
+          "excerpt_relative_end": 1871
+        },
+        {
+          "exact_text": "\"tertiary\": The button is plain text without a border or",
+          "excerpt_relative_start": 1926,
+          "excerpt_relative_end": 1982
+        }
+      ],
+      "source_id": "docstring:1.49.0:streamlit.button",
+      "source_text_sha256": "28b72ea64905d5797d1edc446be5db2c13fe2b9219bf503cffd6c8ca6b06a71e",
+      "necessary_caveats_not_to_omit": [
+        "All options/format restrictions within the selected unit retained",
+        "Current active USER version remains authority; old message wording is historical context",
+        "Source-wide caveats remain available for maintainer inspection"
+      ],
+      "intent": "What does st.button type control, and what are the documented options in 1.49.0?",
+      "accepted_narrow_interpretation": "The supplied complete unit lists primary, secondary and tertiary with their appearance descriptions.",
+      "unsupported_extensions": [
+        "Do not silently reconcile header default=None with signature/body secondary",
+        "No diagnosis or promise about the actual app theme"
+      ],
+      "selected_default_problem": "Header default=None differs from signature type=\"secondary\" and body secondary(default). This review does not authenticate a correct runtime default.",
+      "usefulness": "Options and meanings answer the narrow request; source contradiction must be visible before treating the whole quotation as authoritative."
+    },
+    {
+      "turn": "C2",
+      "candidate_sha256": "4282900d69a9c9be621d2df89da1b4874633a6190e58fd6aea84b1496ef89c02",
+      "request_context_sha256": "8878a206d834a5250099fa3c14e49145bf5428f9d7089d211bedb1f56f48e5af",
+      "reviewer_kind": "independent_assistant_qualitative_review",
+      "human_review": false,
+      "human_usefulness_score": null,
+      "automatic_semantic_support": null,
+      "relevance_assessment": "directly_related_to_latest_question_in_this_exposed_example",
+      "local_evidence_assessment": "no_necessary_extra_clause_identified_elsewhere_in_supplied_complete_record_for_this_narrow_question",
+      "global_completeness_or_authenticity_verified": false,
+      "additional_user_clarification_needed_for_question_as_written": false,
+      "missing_information_owner": "source/extraction/provenance review, not the user",
+      "exact_support_spans": [
+        {
+          "exact_text": "An optional boolean that disables the button if set to True.",
+          "excerpt_relative_start": 2633,
+          "excerpt_relative_end": 2693
+        },
+        {
+          "exact_text": "The default is False.",
+          "excerpt_relative_start": 2694,
+          "excerpt_relative_end": 2715
+        }
+      ],
+      "source_id": "docstring:1.49.0:streamlit.button",
+      "source_text_sha256": "28b72ea64905d5797d1edc446be5db2c13fe2b9219bf503cffd6c8ca6b06a71e",
+      "necessary_caveats_not_to_omit": [
+        "All options/format restrictions within the selected unit retained",
+        "Current active USER version remains authority; old message wording is historical context",
+        "Source-wide caveats remain available for maintainer inspection"
+      ],
+      "intent": "The follow-up now asks which parameter disables the same button, rather than the historical type question.",
+      "accepted_narrow_interpretation": "The disabled unit states the True behavior and a False default. This supports naming a parameter, not a timed implementation.",
+      "unsupported_extensions": [
+        "No invented duration, background scheduling, automatic re-enable or code fix",
+        "Do not choose a corrected default for malformed header default=is",
+        "Do not answer historical type instead of current disabled question"
+      ],
+      "selected_default_problem": "Header default=is is not a supported literal; signature/body say False. Source/extraction review is needed, not an unrelated question to the reporter.",
+      "usefulness": "The complete short definition is sufficient evidence for naming the parameter; warnings and direct citation make the limitation inspectable."
+    }
+  ],
+  "shared_findings": [
+    "Short candidate originally lacks convenient source URL",
+    "Declared upstream Unicode span length differs by2characters from actual supplied excerpt for each selected source",
+    "Do not repair frozen data, call local spans original-file offsets, or infer source truth from hashes",
+    "Semantic/AI observations must stay outside candidate-selection payload and RAG corpus"
+  ],
+  "runtime_adoption_gaps": [
+    "Human relevance/usefulness review remains pending",
+    "Actual future model selection and a non-answer/refusal path must be evaluated",
+    "Cross-parameter/source-wide caveat counterexamples require broader dev validation",
+    "Source metadata/extraction inconsistencies require separate upstream investigation",
+    "New delivery/approval/profile/financial registration required before production use"
+  ]
+}
