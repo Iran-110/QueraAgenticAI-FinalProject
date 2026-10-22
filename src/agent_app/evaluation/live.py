@@ -24,7 +24,7 @@ from pydantic import TypeAdapter
 
 from agent_app import api
 from agent_app.contracts import GroundedGap, Identifier, ReasoningContext, RetrievalRequest
-from agent_app.llm.budget import BudgetLedger
+from agent_app.llm.budget import BudgetLedger, LedgerUnavailable
 from agent_app.llm.config import METIS_CHAT_URL, MetisConfig
 from agent_app.llm.grounded import MetisGroundedPlanner
 from agent_app.llm.metis import configured_grounded_messages, request_id_for
@@ -595,7 +595,10 @@ def configured_factory(values: Mapping[str, str]) -> LiveEvaluationAdapters:
             != ledger_path.resolve()
         ):
             raise ValueError("LiveLedgerPathRejected")
-        ledger = BudgetLedger(ledger_path)
+        try:
+            ledger = BudgetLedger(ledger_path)
+        except LedgerUnavailable:
+            raise ValueError("LiveLedgerUnavailable") from None
         state = _budget_guard(ledger)
         index_path = Path(values["AGENT_EVAL_INDEX"])
         snapshot = values["AGENT_EVAL_SNAPSHOT"]
