@@ -56,33 +56,48 @@ if Decimal(usage["uncertain_usd"]) > 0:
         icon=":material/help:",
     )
 
+
+def usd(value: str) -> str:
+    amount = Decimal(value)
+    if 0 < amount < Decimal("0.0001"):
+        return "< $0.0001"
+    return f"${amount:.4f}"
+
+
 with st.container(horizontal=True):
-    st.metric("Total cost", f"${Decimal(usage['spent_usd']):.6f}", border=True)
+    st.metric("Spent", usd(usage["spent_usd"]), border=True)
     st.metric(
         "Remaining",
-        f"${Decimal(usage['available_usd']):.4f}",
+        usd(usage["available_usd"]),
+        help=f"Out of {usd(usage['limit_usd'])}.",
         border=True,
-        help=f"Of a ${usage['limit_usd']} limit, after reserved and uncertain amounts.",
     )
-    st.metric("Model calls", usage["call_count"], border=True)
+    st.metric("Calls", usage["call_count"], border=True)
 
-st.subheader("Ledger breakdown", anchor=False)
-with st.container(horizontal=True):
-    for label, key, help_text in (
-        ("Limit", "limit_usd", "Maximum this ledger may ever spend."),
-        ("Opening spend", "opening_spend_usd", "Spend recorded when the ledger was created."),
-        ("Spent", "spent_usd", "Provider-confirmed cost of finished calls."),
-        ("Reserved", "reserved_usd", "Held for calls that are still running."),
-        ("Uncertain", "uncertain_usd", "Held for calls whose cost was not confirmed."),
-        ("Available", "available_usd", "Limit minus all of the above."),
-    ):
-        st.metric(label, f"${Decimal(usage[key]):.6f}", help=help_text, border=True)
-    st.metric(
-        "State",
-        "Halted" if usage["halted"] else "Open",
-        help="A halted ledger sends no new calls until a person reconciles it.",
-        border=True,
+with st.expander("Ledger details", icon=":material/account_balance:"):
+    st.table(
+        {
+            "Amount": [
+                usd(usage["limit_usd"]),
+                usd(usage["opening_spend_usd"]),
+                usd(usage["spent_usd"]),
+                usd(usage["reserved_usd"]),
+                usd(usage["uncertain_usd"]),
+                usd(usage["available_usd"]),
+            ],
+            "Meaning": [
+                "Limit: the most this ledger may spend",
+                "Opening spend: recorded when the ledger was created",
+                "Spent: confirmed cost of finished calls",
+                "Reserved: held for calls still running",
+                "Uncertain: held for calls whose cost was not confirmed",
+                "Remaining: limit minus everything above",
+            ],
+        },
+        hide_index=True,
+        alt="Ledger amounts and what each one means",
     )
+    st.caption("Ledger state: " + ("halted" if usage["halted"] else "open"))
 
 st.subheader("Model calls", anchor=False)
 calls = usage["calls"]

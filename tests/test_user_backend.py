@@ -170,16 +170,6 @@ def test_usage_page_shows_total_and_calls(monkeypatch, status, body, expected):
     if expected:
         assert expected in page.error[0].value
         return
-    assert [metric.value for metric in page.metric] == [
-        "$0.000064",
-        "$0.9999",
-        "1",
-        "$1.000000",
-        "$0.000000",
-        "$0.000064",
-        "$0.000000",
-        "$0.000000",
-        "$0.999936",
-        "Open",
-    ]
+    assert [metric.value for metric in page.metric] == ["< $0.0001", "$0.9999", "1"]
+    assert len(page.table) == 1
     assert len(page.dataframe) == 1
