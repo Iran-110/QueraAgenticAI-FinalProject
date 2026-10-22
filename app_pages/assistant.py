@@ -1,3 +1,4 @@
+import os
 import re
 from uuid import uuid4
 
@@ -37,10 +38,50 @@ VERSION_SCOPES = {
 FACT_ROW_COUNT = 3
 
 
+# Optional second backend: the offline replay backend answers with the mock
+# provider at no cost. Without it the page talks to one backend as before.
+REPLAY_URL = os.environ.get("AGENT_REPLAY_API_URL")
+MODES = {"Live": ":material/bolt:", "Replay": ":material/replay:"}
+# Per-browser state that belongs to one backend; switching mode swaps it.
+MODE_STATE_KEYS = (
+    "cases",
+    "case_id",
+    "active_case_id",
+    "unsent",
+    "unsent_reviews",
+    "still_working",
+    "editing",
+    "notice",
+)
+
+
 @st.cache_resource(scope="session")
-def get_client() -> ui_client.BackendClient:
+def get_client(mode: str = "Live") -> ui_client.BackendClient:
     """Session client v2, including the explicit saved-case read operation."""
+    if mode == "Replay":
+        return ui_client.make_client(REPLAY_URL)
     return ui_client.make_client()
+
+
+def switch_mode() -> None:
+    """Keep each mode's cases and retries apart; a case belongs to one backend."""
+    stash = st.session_state.setdefault("mode_stash", {})
+    old = st.session_state.get("active_mode", "Live")
+    new = st.session_state.mode or old
+    st.session_state.mode = new
+    if new == old:
+        return
+    stash[old] = {k: st.session_state[k] for k in MODE_STATE_KEYS if k in st.session_state}
+    for key in MODE_STATE_KEYS:
+        st.session_state.pop(key, None)
+    st.session_state.update(stash.pop(new, {}))
+    st.session_state.active_mode = new
+
+
+if REPLAY_URL:
+    st.session_state.setdefault("mode", "Live")
+    st.session_state.setdefault("active_mode", "Live")
+mode = st.session_state.get("active_mode", "Live") if REPLAY_URL else None
 
 
 def new_case_id() -> str:
@@ -86,7 +127,7 @@ st.session_state.setdefault("unsent_reviews", {})
 st.session_state.setdefault("still_working", {})
 
 try:
-    client = get_client()
+    client = get_client(mode or "Live")
     capabilities = client.discover_capabilities()
 except ui_client.BackendError as error:
     st.error(str(error), icon=":material/cloud_off:")
@@ -357,6 +398,14 @@ def render_gaps(proposal: dict) -> None:
         )
 
 
+def render_mode_badge() -> None:
+    """How this backend produces answers; from its reported reasoning label."""
+    if capabilities.reasoning_label == "metis_grounded_live":
+        st.badge("Live model", color="blue", icon=":material/bolt:")
+    else:
+        st.badge("Replay · no model call", color="gray", icon=":material/replay:")
+
+
 def render_proposal(proposal: dict) -> None:
     # The draft is the agent's next chat turn, marked as waiting: it becomes a
     # normal reply only after a maintainer approves it. Details open on click.
@@ -367,8 +416,7 @@ def render_proposal(proposal: dict) -> None:
             st.badge(label, color=color, icon=icon)
             if proposal["edited"]:
                 st.badge("Edited by maintainer", color="violet", icon=":material/edit:")
-            if proposal["synthetic"]:
-                st.badge("Synthetic", color="gray", icon=":material/science:")
+            render_mode_badge()
 
         if proposal["stale"]:
             st.warning(
@@ -556,6 +604,17 @@ def render_update_form(view: dict) -> None:
 
 
 with st.sidebar:
+    if REPLAY_URL:
+        st.segmented_control(
+            "Mode",
+            list(MODES),
+            format_func=lambda name: f"{MODES[name]} {name}",
+            key="mode",
+            on_change=switch_mode,
+            help="Live sends your messages to the real model and costs money. "
+            "Replay answers offline with a mock model at no cost. Each mode keeps "
+            "its own cases.",
+        )
     st.subheader("Cases")
     statuses = {}
     for case_id in st.session_state.cases:
@@ -599,34 +658,9 @@ with st.sidebar:
             "Reopening restores saved state. Unsent drafts and unconfirmed review retries "
             "from an earlier browser session are not recovered."
         )
-    if capabilities.reasoning_label != "scripted":
-        st.subheader("GroundedPlan pilot")
+    if capabilities.reasoning_label != "scripted" or capabilities.retrieval_label != "scripted":
+        # Indexed and model-backed backends choose their own route.
         st.session_state.scenario = "ask"
-        if capabilities.reasoning_label == "grounded_fake_gateway":
-            st.caption(
-                "GroundedPlan · mocked provider · offline · zero API cost · no model quality result."
-            )
-        else:
-            st.caption(
-                "GroundedPlan · bounded live "
-                + ("presentation" if presentation_pool else "development probe")
-                + " · human approval required · "
-                "not final evaluation."
-            )
-        st.caption(
-            "Retrieval: "
-            + (
-                "local indexed docs"
-                if capabilities.retrieval_label == "local_chroma_hash"
-                else "fixture"
-            )
-        )
-    elif capabilities.retrieval_label == "local_chroma_hash":
-        st.subheader("Offline indexed pilot")
-        st.session_state.scenario = "ask"
-        st.caption(
-            "Local indexed docs · scripted ask-then-escalate policy · offline · no model quality result."
-        )
     else:
         st.subheader("Offline scenario")
         st.selectbox(
@@ -634,12 +668,6 @@ with st.sidebar:
             list(SCENARIOS),
             format_func=SCENARIOS.get,
             key="scenario",
-        )
-        st.caption("Synthetic adapters: no retrieval index, no model calls, no cost.")
-    if capabilities.durable_reviews:
-        st.caption(
-            "SQLite tracker · maintainer authorization "
-            + ("configured" if client.reviewer_configured else "missing")
         )
 
 st.title("Streamlit support assistant")
@@ -705,6 +733,11 @@ with chat_col:
                 note = "Sent after maintainer approval"
                 if entry.get("edited"):
                     note += " (edited)"
+                note += (
+                    " · Live model"
+                    if capabilities.reasoning_label == "metis_grounded_live"
+                    else " · Replay"
+                )
                 st.caption(note)
     if view["pending"]:
         render_proposal(view["pending"])

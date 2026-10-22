@@ -161,6 +161,36 @@ def test_lost_message_retries_with_identical_event(backend, monkeypatch):
     assert len(released(at)) == 1  # Replay did not duplicate the message.
 
 
+def test_mode_switch_keeps_live_and_replay_cases_apart(backend, monkeypatch):
+    monkeypatch.setenv("AGENT_REPLAY_API_URL", "http://replay")
+    live = ui_client.make_client()
+    replay = ui_client.BackendClient(
+        TestClient(api.app, base_url="http://replay"), reviewer_token=None
+    )
+    monkeypatch.setattr(
+        ui_client, "make_client", lambda base_url=None: replay if base_url else live
+    )
+    at = AppTest.from_file(PAGE).run()
+    assert at.session_state.active_mode == "Live"
+    at.chat_input[0].set_value("Live question.").run()
+    live_case = at.session_state.case_id
+    at.segmented_control(key="mode").set_value("Replay").run()
+    assert not at.exception
+    assert at.session_state.active_mode == "Replay"
+    assert at.session_state.case_id != live_case
+    assert not at.chat_message  # The replay mode starts its own empty case.
+    at.chat_input[0].set_value("Replay question.").run()
+    assert any("Replay · no model call" in md.value for md in at.markdown)
+    at.segmented_control(key="mode").set_value("Live").run()
+    assert at.session_state.case_id == live_case
+    assert released(at)[0].markdown[0].value == "Live question."
+
+
+def test_without_replay_backend_there_is_no_mode_switch(backend):
+    at = AppTest.from_file(PAGE).run()
+    assert not [w for w in at.segmented_control if w.key == "mode"]
+
+
 def test_slow_live_run_shows_calm_still_working_state(backend, monkeypatch):
     sent = []
     original = ui_client.BackendClient.send_event

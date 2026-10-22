@@ -713,8 +713,9 @@ def presentation_cases() -> tuple[str, ...] | None:
         ) from None
 
 
-def make_client() -> BackendClient:
-    base_url = os.environ.get("AGENT_API_URL", DEFAULT_BASE_URL)
+def make_client(base_url: str | None = None) -> BackendClient:
+    """``base_url`` selects another trusted backend, e.g. the offline replay one."""
+    base_url = base_url or os.environ.get("AGENT_API_URL", DEFAULT_BASE_URL)
     try:
         timeout = float(os.environ.get("AGENT_API_TIMEOUT_SECONDS", "10"))
         if not math.isfinite(timeout) or not 1 <= timeout <= 90:

@@ -51,6 +51,28 @@ still finishes and "Retry sending" then shows the recorded result:
 set -a; . ./.env; set +a; AGENT_API_URL=http://127.0.0.1:8765 AGENT_API_TIMEOUT_SECONDS=60 uv run streamlit run app.py
 ```
 
+## Live and Replay modes
+
+With `AGENT_REPLAY_API_URL` set, the sidebar shows a **Mode** switch:
+
+- **Live** uses the user backend above: real model calls, charged to the
+  user ledger.
+- **Replay** uses the existing offline backend on the same v3 index with the
+  mock provider: no model call and no cost.
+
+Each mode keeps its own cases and retries in the browser, because a case lives
+in one backend. Every agent answer carries a badge from the backend's own
+reported reasoning label: **Live model** for the real provider, **Replay · no
+model call** otherwise. The legacy "Synthetic" badge is no longer shown.
+
+Replay backend, with its own SQLite file and no provider key:
+
+```bash
+set -a; . ./.env; set +a; env -u METIS_API_KEY -u METIS_LIVE_ENABLED AGENT_TRACKER_DB="$PWD/runtime/replay-cases.sqlite3" AGENT_PILOT_INDEX="$PWD/runtime/demo-final-corpus-v3" AGENT_PILOT_SNAPSHOT=docs-pilot-20ab0d69d12f2c83fb424e0ced7a22561019b1d778c68071d4f1d4ce1f8277b6 AGENT_PILOT_REASONING=grounded_fake_gateway uv run uvicorn agent_app.offline_backend:application_factory --factory --host 127.0.0.1 --port 8766
+```
+
+Then add `AGENT_REPLAY_API_URL=http://127.0.0.1:8766` to the UI command.
+
 The UI menu item **Usage and cost** shows the total cost, the remaining
 credit and the latest 200 model calls (time, case, attempt, status, tokens,
 cost). It reads `GET /usage` on the user backend, which needs the same reviewer
