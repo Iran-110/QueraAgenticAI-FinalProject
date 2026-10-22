@@ -365,10 +365,13 @@ def render_gaps(proposal: dict) -> None:
 
 
 def render_proposal(proposal: dict) -> None:
+    # Shown in the conversation, right after the message it answers, so the
+    # reviewer reads the draft in context. It is not a chat message: the user
+    # only receives it after approval.
     label, color, icon = DECISIONS[proposal["decision"]]
     with st.container(border=True):
-        st.subheader("Proposal awaiting review")
-        with st.container(horizontal=True):
+        with st.container(horizontal=True, vertical_alignment="center"):
+            st.markdown(":material/smart_toy: **Agent draft · waiting for maintainer approval**")
             st.badge(label, color=color, icon=icon)
             if proposal["edited"]:
                 st.badge("Edited by maintainer", color="violet", icon=":material/edit:")
@@ -382,18 +385,18 @@ def render_proposal(proposal: dict) -> None:
                 icon=":material/history:",
             )
 
-        st.markdown("**Draft reply to the user**")
-        with st.container(border=True):
-            st.markdown(proposal["user_draft"] or "_No user-facing draft._")
+        st.markdown(proposal["user_draft"] or "_No user-facing draft._")
         if proposal["next_question"] and proposal["next_question"] != proposal["user_draft"]:
             st.markdown(f"**Next question:** {proposal['next_question']}")
-        bullet_list("Missing information", proposal["missing_info"])
-        st.markdown("**Maintainer summary**")
-        st.markdown(proposal["maintainer_summary"] or "_None._")
-        render_gaps(proposal)
-        render_sources(proposal)
 
-        with st.expander("Rationale, suggestions and run details"):
+        with st.expander("Sources and maintainer notes", icon=":material/menu_book:"):
+            bullet_list("Missing information", proposal["missing_info"])
+            st.markdown("**Maintainer summary**")
+            st.markdown(proposal["maintainer_summary"] or "_None._")
+            render_gaps(proposal)
+            render_sources(proposal)
+
+        with st.expander("Rationale, suggestions and run details", icon=":material/tune:"):
             st.markdown(proposal["rationale"])
             bullet_list("Suggested checks", proposal["checks_suggested"])
             bullet_list("Requested searches", proposal["retrieval_queries"])
@@ -696,7 +699,7 @@ except ui_client.BackendError as error:
     st.code("uv run uvicorn agent_app.api:app --host 127.0.0.1 --port 8000", language="bash")
     st.stop()
 
-chat_col, case_col = st.columns(2, gap="large")
+chat_col, case_col = st.columns([3, 2], gap="large")
 
 with chat_col:
     if not view["log"]:
@@ -712,12 +715,14 @@ with chat_col:
                 if entry.get("edited"):
                     note += " (edited)"
                 st.caption(note)
+    if view["pending"]:
+        render_proposal(view["pending"])
     render_reply(view)
 
 with case_col:
     render_case(view)
     if view["pending"]:
-        render_proposal(view["pending"])
+        st.info("A draft is waiting for review in the conversation.", icon=":material/rate_review:")
     else:
         st.info("No proposal is awaiting review.", icon=":material/inbox:")
 
