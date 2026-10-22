@@ -1,5 +1,6 @@
 from pathlib import Path
 
+import httpx
 import pytest
 import streamlit as st
 from fastapi.testclient import TestClient
@@ -146,6 +147,46 @@ def test_lost_message_retries_with_identical_event(backend, monkeypatch):
     assert at.session_state.unsent == {}
     assert "Already received" in at.info[0].value
     assert len(at.chat_message) == 1  # Replay did not duplicate the message.
+
+
+def test_slow_live_run_shows_calm_still_working_state(backend, monkeypatch):
+    sent = []
+    original = ui_client.BackendClient.send_event
+
+    def slow(self, case_id, event):
+        sent.append(event)
+        if len(sent) == 1:
+            original(self, case_id, event)  # The run finishes after the UI timeout.
+            raise ui_client.BackendError(
+                ui_client.ERROR_TEXT["BackendStillWorking"],
+                code="BackendStillWorking",
+                retryable=True,
+            )
+        return original(self, case_id, event)
+
+    monkeypatch.setattr(ui_client.BackendClient, "send_event", slow)
+    at = AppTest.from_file(PAGE).run()
+    at.chat_input[0].set_value("My widget loses its value.").run()
+    assert not at.error
+    assert "still working" in at.info[0].value
+    labels = [b.label for b in at.button]
+    assert "Retry sending" not in labels
+    at.button[labels.index("Check again")].click().run()
+    assert sent[1] == sent[0]
+    assert at.session_state.unsent == {} and at.session_state.still_working == {}
+    assert at.button(key="approve")
+
+
+def test_read_timeout_is_reported_as_still_working():
+    def timeout(request):
+        raise httpx.ReadTimeout("slow", request=request)
+
+    client = ui_client.BackendClient(
+        httpx.Client(transport=httpx.MockTransport(timeout), base_url="http://backend")
+    )
+    with pytest.raises(ui_client.BackendError) as raised:
+        client.get_case("case-a")
+    assert raised.value.code == "BackendStillWorking" and raised.value.retryable
 
 
 def send_update(at, message, facts=(), gen=0):

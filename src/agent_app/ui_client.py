@@ -24,6 +24,8 @@ DEFAULT_BASE_URL = "http://127.0.0.1:8000"
 
 # Allowlisted API codes mapped to text a user or reviewer can act on.
 ERROR_TEXT = {
+    "BackendStillWorking": "The agent is still working on this. Live runs can take a minute; "
+    "check again shortly to see the result.",
     "StaleRevision": "The case changed before this message arrived. Review the latest state "
     "and send it again.",
     "EventConflict": "This message ID was already used with different content. Start a new "
@@ -655,6 +657,11 @@ class BackendClient:
     def _request(self, method: str, path: str, **kwargs: Any) -> dict[str, Any]:
         try:
             response = self._http.request(method, path, **kwargs)
+        except httpx.ReadTimeout:
+            # The request was sent and the backend is still working on it.
+            raise BackendError(
+                ERROR_TEXT["BackendStillWorking"], code="BackendStillWorking", retryable=True
+            ) from None
         except (httpx.HTTPError, ValueError, UnicodeError):
             raise BackendError(
                 "Cannot reach the backend. Delivery was not confirmed.", retryable=True

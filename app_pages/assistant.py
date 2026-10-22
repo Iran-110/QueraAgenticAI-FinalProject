@@ -81,6 +81,7 @@ st.session_state.setdefault("active_case_id", st.session_state.case_id)
 # Old browser sessions may predate durable review support. Requests are public
 # immutable operations; credentials remain only in the session-scoped client.
 st.session_state.setdefault("unsent_reviews", {})
+st.session_state.setdefault("still_working", {})
 
 try:
     client = get_client()
@@ -147,15 +148,19 @@ def deliver(event: dict) -> bool:
     """Keep the identical event when its delivery or acknowledgment is uncertain."""
     case_id = st.session_state.case_id
     try:
-        view = client.send_event(case_id, event)
+        with st.spinner("The agent is working on it. Live runs can take up to a minute..."):
+            view = client.send_event(case_id, event)
     except ui_client.BackendError as error:
         if error.retryable:
             st.session_state.unsent[case_id] = event
         else:
             st.session_state.unsent.pop(case_id, None)
-        st.session_state.notice = ("error", str(error))
+        still_working = error.code == "BackendStillWorking"
+        st.session_state.still_working[case_id] = still_working
+        st.session_state.notice = None if still_working else ("error", str(error))
         return False
     st.session_state.unsent.pop(case_id, None)
+    st.session_state.still_working.pop(case_id, None)
     st.session_state.editing = False
     if view["intake"] and view["intake"]["replayed"]:
         st.session_state.notice = (
@@ -670,11 +675,17 @@ if st.session_state.notice:
 
 if unsent_event():
     with st.container(horizontal=True, vertical_alignment="center"):
-        st.warning(
-            "Your last message is unconfirmed; it may already be recorded.",
-            icon=":material/sync_problem:",
-        )
-        st.button("Retry sending", icon=":material/refresh:", on_click=retry_unsent)
+        if st.session_state.still_working.get(st.session_state.case_id):
+            # Checking again resends the identical event; the backend replays
+            # its recorded result instead of starting another run.
+            st.info(ui_client.ERROR_TEXT["BackendStillWorking"], icon=":material/hourglass_top:")
+            st.button("Check again", icon=":material/refresh:", on_click=retry_unsent)
+        else:
+            st.warning(
+                "Your last message is unconfirmed; it may already be recorded.",
+                icon=":material/sync_problem:",
+            )
+            st.button("Retry sending", icon=":material/refresh:", on_click=retry_unsent)
 
 if operation := unsent_review():
     payload = operation.payload()
@@ -748,7 +759,7 @@ if prompt := st.chat_input(
     submit_mode="disable",
     disabled=capabilities.message_auth and not client.reviewer_configured,
 ):
-    with chat_col, st.spinner("Running the agent..."):
+    with chat_col:
         deliver(
             ui_client.new_event(
                 prompt,
