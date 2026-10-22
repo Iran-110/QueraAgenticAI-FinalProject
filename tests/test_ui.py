@@ -149,6 +149,31 @@ def test_lost_message_retries_with_identical_event(backend, monkeypatch):
     assert len(at.chat_message) == 1  # Replay did not duplicate the message.
 
 
+def test_version_beside_chat_is_sent_as_a_fact(backend):
+    at = AppTest.from_file(PAGE).run()
+    at.text_input(key="chat_version").set_value("1.5").run()
+    assert at.chat_input[0].disabled
+    assert any("release number" in c.value for c in at.caption)
+    at.text_input(key="chat_version").set_value("1.50.0").run()
+    assert not at.chat_input[0].disabled
+    at.chat_input[0].set_value("My widget loses its value.").run()
+    assert not at.exception
+    case = at.session_state.case_id
+    view = ui_client.make_client().get_case(case)
+    assert [(f["name"], f["value"], f["status"]) for f in view["facts"]] == [
+        ("streamlit_version", "1.50.0", "active")
+    ]
+    assert not [w for w in at.text_input if w.key == "chat_version"]
+    assert any("Streamlit 1.50.0 is recorded" in c.value for c in at.caption)
+
+
+def test_chat_without_version_sends_no_fact(backend):
+    at = AppTest.from_file(PAGE).run()
+    at.chat_input[0].set_value("My widget loses its value.").run()
+    view = ui_client.make_client().get_case(at.session_state.case_id)
+    assert view["facts"] == []
+
+
 def test_slow_live_run_shows_calm_still_working_state(backend, monkeypatch):
     sent = []
     original = ui_client.BackendClient.send_event

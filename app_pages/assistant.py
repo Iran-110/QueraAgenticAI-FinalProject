@@ -1,3 +1,4 @@
+import re
 from uuid import uuid4
 
 import streamlit as st
@@ -26,6 +27,7 @@ STATUSES = {
     "escalated": ("Escalated", "red"),
     "open": ("Open", "gray"),
 }
+VERSION_PATTERN = re.compile(r"[0-9]+\.[0-9]+\.[0-9]+")
 VERSION_SCOPES = {
     "exact_metadata_match": ("Version matches", "green"),
     "historical_or_other_version": ("Other version", "orange"),
@@ -754,17 +756,55 @@ with case_col:
 # Full width so the fact editor's columns stay readable.
 render_update_form(view)
 
-if prompt := st.chat_input(
-    "Describe your Streamlit issue...",
-    submit_mode="disable",
-    disabled=capabilities.message_auth and not client.reviewer_configured,
-):
+known_version = next(
+    (
+        fact["value"]
+        for fact in view["facts"]
+        if fact["name"] == STREAMLIT_VERSION_QUESTION.name and fact["status"] == "active"
+    ),
+    None,
+)
+version = ""
+with st.container(horizontal=True, vertical_alignment="bottom"):
+    if known_version is None:
+        # The version only counts as a fact when it is reported explicitly;
+        # free text in the message is not parsed.
+        version = st.text_input(
+            "Streamlit version",
+            placeholder="1.50.0",
+            key="chat_version",
+            width=170,
+            help="Optional. Sent as a confirmed fact with your message, so the agent "
+            "searches documentation for this exact version.",
+        ).strip()
+    version_invalid = bool(version) and VERSION_PATTERN.fullmatch(version) is None
+    prompt = st.chat_input(
+        "Describe your Streamlit issue...",
+        submit_mode="disable",
+        disabled=version_invalid or (capabilities.message_auth and not client.reviewer_configured),
+    )
+if version_invalid:
+    st.caption(":material/error: Use a release number like 1.50.0 for the version.")
+elif known_version is not None:
+    st.caption(
+        f":material/check_circle: Streamlit {known_version} is recorded for this case. "
+        "Use **Report facts and corrections** to change it."
+    )
+
+if prompt:
     with chat_col:
-        deliver(
+        sent = deliver(
             ui_client.new_event(
                 prompt,
                 expected_revision=view["case_revision"],
                 scenario=st.session_state.scenario,
+                reported_facts=(
+                    [{"name": STREAMLIT_VERSION_QUESTION.name, "value": version}]
+                    if version
+                    else None
+                ),
             )
         )
+    if sent:
+        st.session_state.pop("chat_version", None)
     st.rerun()
