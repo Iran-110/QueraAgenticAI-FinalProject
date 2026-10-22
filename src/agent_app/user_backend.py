@@ -12,12 +12,15 @@ Pinned core modules keep their phase vocabulary, so reservations carry the
 existing ``development`` phase label; the separate ledger file identifies user use.
 """
 
+import hmac
 import os
+import sqlite3
 from collections.abc import Mapping
+from contextlib import closing
 from decimal import Decimal
 from pathlib import Path
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Header, HTTPException
 
 from agent_app.evaluation.live import LiveEvaluationAdapters
 from agent_app.live_backend import configured_app
@@ -34,6 +37,7 @@ DEFAULT_SNAPSHOT = "docs-pilot-20ab0d69d12f2c83fb424e0ced7a22561019b1d778c68071d
 DEFAULT_MANIFEST_SHA256 = "933682e56386abc5b133565086058030e74783ef424bccd35f0193038d1908dc"
 VOCABULARY = ROOT / "config/user-gap-support-dev-v1.json"
 USER_LIMIT_USD = Decimal("1")
+USAGE_ROWS = 200
 
 
 def user_adapters(
@@ -80,15 +84,91 @@ def user_adapters(
         raise ValueError("UserBackendConfigurationInvalid") from None
 
 
+def _usd(nanos) -> str:
+    return str(Decimal(nanos) / Decimal(1_000_000_000))
+
+
+def usage_report(ledger_path: Path) -> dict:
+    """Read-only view of the user ledger: totals and the latest model calls.
+
+    Only accounting columns are returned; no prompt, output or credential is stored there.
+    """
+    ledger = BudgetLedger(ledger_path)
+    snapshot = ledger.snapshot()
+    with closing(
+        sqlite3.connect(Path(ledger_path).resolve().as_uri() + "?mode=ro", uri=True)
+    ) as db:
+        db.execute("PRAGMA query_only=ON")
+        count = db.execute("SELECT COUNT(*) FROM reservations").fetchone()[0]
+        rows = db.execute(
+            """SELECT
+                 (SELECT MIN(recorded_at) FROM ledger_events e
+                  WHERE e.request_id = r.request_id) AS started_at,
+                 r.case_id, r.case_revision, r.attempt, r.model, r.status,
+                 r.input_tokens, r.output_tokens, r.cost_nanos, r.amount_nanos, r.error_code
+               FROM reservations r ORDER BY started_at DESC, r.rowid DESC LIMIT ?""",
+            (USAGE_ROWS,),
+        ).fetchall()
+    return {
+        "limit_usd": str(snapshot.limit_usd),
+        "spent_usd": str(snapshot.settled_usd),
+        "reserved_usd": str(snapshot.reserved_usd),
+        "uncertain_usd": str(snapshot.uncertain_usd),
+        "available_usd": str(snapshot.available_usd),
+        "halted": snapshot.halted,
+        "call_count": count,
+        "calls": [
+            {
+                "started_at": started_at,
+                "case_id": case_id,
+                "case_revision": revision,
+                "attempt": attempt,
+                "model": model,
+                "status": status,
+                "input_tokens": input_tokens,
+                "output_tokens": output_tokens,
+                "cost_usd": None if cost is None else _usd(cost),
+                "reserved_usd": _usd(amount),
+                "error_code": error_code,
+            }
+            for (
+                started_at,
+                case_id,
+                revision,
+                attempt,
+                model,
+                status,
+                input_tokens,
+                output_tokens,
+                cost,
+                amount,
+                error_code,
+            ) in rows
+        ],
+    }
+
+
 def configured_user_app(
     values: Mapping[str, str], *, ledger_path: Path = USER_LEDGER, transport_factory=None
 ) -> FastAPI:
-    return configured_app(
+    app = configured_app(
         values,
         adapters_factory=lambda v: user_adapters(
             v, ledger_path=ledger_path, transport_factory=transport_factory
         ),
     )
+    expected = "Bearer " + values["AGENT_REVIEWER_TOKEN"]
+
+    @app.get("/usage")
+    def usage(authorization: str | None = Header(default=None)) -> dict:
+        if authorization is None or not hmac.compare_digest(authorization, expected):
+            raise HTTPException(status_code=401, detail="ReviewerUnauthorized")
+        try:
+            return usage_report(ledger_path)
+        except Exception:
+            raise HTTPException(status_code=503, detail="UsageUnavailable") from None
+
+    return app
 
 
 def app_factory() -> FastAPI:

@@ -48,7 +48,12 @@ UI, in another shell with the same reviewer token:
 set -a; . ./.env; set +a; AGENT_API_URL=http://127.0.0.1:8765 uv run streamlit run app.py
 ```
 
-Check remaining credit:
+The UI menu item **Usage and cost** shows the total cost, the remaining
+credit and the latest 200 model calls (time, case, attempt, status, tokens,
+cost). It reads `GET /usage` on the user backend, which needs the same reviewer
+bearer token and returns only ledger accounting columns.
+
+Or check remaining credit from the command line:
 
 ```bash
 uv run agent-app budget status --path runtime/user-budget.sqlite3

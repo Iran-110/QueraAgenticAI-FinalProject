@@ -28,6 +28,7 @@ page = st.navigation(
             icon=":material/support_agent:",
             default=True,
         ),
+        st.Page("app_pages/usage.py", title="Usage and cost", icon=":material/receipt_long:"),
         st.Page("app_pages/project_docs.py", title="Project docs", icon=":material/description:"),
     ]
 )
