@@ -42,10 +42,13 @@ pinned snapshot/manifest; override with `AGENT_EVAL_INDEX`,
 set -a; . ./.env; set +a; uv run uvicorn agent_app.user_backend:app_factory --factory --host 127.0.0.1 --port 8765
 ```
 
-UI, in another shell with the same reviewer token:
+UI, in another shell with the same reviewer token. A live run (retrieval plus up
+to two model attempts) can take longer than the default 10 second UI timeout,
+so raise it; otherwise the UI shows "Cannot reach the backend" while the run
+still finishes and "Retry sending" then shows the recorded result:
 
 ```bash
-set -a; . ./.env; set +a; AGENT_API_URL=http://127.0.0.1:8765 uv run streamlit run app.py
+set -a; . ./.env; set +a; AGENT_API_URL=http://127.0.0.1:8765 AGENT_API_TIMEOUT_SECONDS=60 uv run streamlit run app.py
 ```
 
 The UI menu item **Usage and cost** shows the total cost, the remaining
