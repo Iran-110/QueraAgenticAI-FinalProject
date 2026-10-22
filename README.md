@@ -2,14 +2,29 @@
 
 پروژهٔ نهایی بوت‌کمپ Agentic AI کوئرا: دستیار بررسی گزارش خطا و پیگیری پرونده، با شواهد قابل بررسی و تأیید انسانی پیش از اجرای اقدام.
 
-**برای شروع مطالعه و دیدن کارهای باز:** [وضعیت فعلی و مسیر مطالعه، ۱۸ اکتبر](docs/current-status.fa.md).
+## مستندات رسمی تحویل پروژه
 
-**فایل فعلی ارائه، نسخهٔ ۵:** [PDF فارسی ۱۵ اسلایدی](docs/presentation/judges-presentation-fa-v5.pdf)،
-[HTML قابل ویرایش](docs/presentation/judges-presentation-fa-v5.html) و
-[راهنمای اسلایدبه‌اسلاید](docs/presentation/speaker-notes-fa-v5.md).
-روایت محصول، داده و تصمیم‌های agent روشن‌تر شده؛ تصویر رابط بدون نشانگر روی نوشته‌ها، با فرم خوانا
-و جهت درست فارسی/انگلیسی آماده است. مسیر گفتار۲۹دقیقه، شامل۶دقیقه دمو؛
-متن گفتاری و جزئیات اجرا از PDF داورها جدا هستند. runtime و تنظیم جلسه ثابت‌اند.
+| سند | محتوا | فایل |
+| --- | --- | --- |
+| گزارش فنی طراحی، پیاده‌سازی و اعتبارسنجی | روایت تصمیم‌های فنی، ساخت Core و RAG، مشکلات، اصلاح‌ها و نتایج آزمون‌ها | [گزارش فارسی ۶صفحه‌ای](docs/final-delivery/Quera-Streamlit-Support-Assistant-Technical-Report-FA.pdf) |
+| ارائهٔ نهایی پروژه | معرفی محصول، معماری، داده، جریان عامل و شواهد اجرای متصل | [ارائهٔ فارسی ۱۵اسلایدی](docs/final-delivery/Quera-Streamlit-Support-Assistant-Final-Presentation-FA.pdf) |
+
+این دو PDF در ۲۲ اکتبر ۲۰۲۶ پس از بازبینی و تأیید نهایی منتشر شدند. گزارش،
+روند واقعی توسعه را روایت می‌کند؛ تست نرم‌افزار و پذیرش عملیاتی را از ارزیابی
+کیفیت پاسخ جدا نگه می‌دارد. فایل ارائه همان نسخهٔ نهایی v5 استفاده‌شده در ارائه
+است؛ نسخه‌های تاریخی و شواهد آن در پوشهٔ `docs/presentation/` حفظ شده‌اند.
+
+**برنامهٔ جاری تیم:** [plan و checklist](plan/plan.md)،
+[راهنمای Member 4، محمدحسن گل‌محمدیان](plan/member_4_todo.md) و
+[دستورکار بررسی و اصلاح محدود live](docs/post-presentation-live-handoff.fa.md).
+
+## راهنماهای تکمیلی و سوابق توسعه
+
+[جمع‌بندی و مسیر مطالعهٔ ۱۸ اکتبر](docs/current-status.fa.md)،
+[HTML قابل ویرایش ارائهٔ v5](docs/presentation/judges-presentation-fa-v5.html) و
+[راهنمای اسلایدبه‌اسلاید](docs/presentation/speaker-notes-fa-v5.md) برای مطالعهٔ
+جزئیات در دسترس‌اند. بخش‌های زیر سوابق تاریخ‌دار توسعه‌اند؛ وضعیت taskهای جاری
+در plan اصلی ثبت می‌شود.
 
 **بررسی منبع خام، C4z:** [ریشهٔ ناسازگاری و اصلاح مستقل](docs/core-raw-defaults.fa.md).
 defaultِ `type/disabled` دکمهٔ1.49 در signature و کد رسمی به‌ترتیب `"secondary"/False`
@@ -44,7 +59,7 @@ Ruff/format۴۲۳فایل و بررسی سازگاری۱۰۳dependency پاس‌
 این تحویل کیفیت مدل یا held-out نهایی را کامل‌شده اعلام نمی‌کند؛ اعداد بعدی
 شواهد تاریخی با source و دامنهٔ خودشان هستند.
 
-**وضعیت فعلی، ۱۷ اکتبر:** build نهایی RAG با exclusion فریز‌شدهٔ **۹۵ Issue**، **۱۲۲۸ source و ۱۸۲۷ chunk** تحویل و روی این دستگاه مستقلاً بازتولید شده؛ pinهای آن با receipt v3 حسن منطبق‌اند. [رسید پذیرش build نهایی](docs/receipts/final-build-v3-core-acceptance-2026-10-17.json) و [اتصال core](docs/final-build-core-acceptance.fa.md) مرز هر شاهد را ثبت می‌کنند. پروفایل جدید `grounded_candidate_prefilter_v2` فیلتر نسخه را پیش از native top-k به factory/engine/runner وصل می‌کند؛ انتخاب آن صریح است، v1 و defaultهای قبلی حفظ‌اند و halt را رفع نمی‌کند.
+**وضعیت ثبت‌شده، ۱۷ اکتبر:** build نهایی RAG با exclusion فریز‌شدهٔ **۹۵ Issue**، **۱۲۲۸ source و ۱۸۲۷ chunk** تحویل و روی این دستگاه مستقلاً بازتولید شده؛ pinهای آن با receipt v3 حسن منطبق‌اند. [رسید پذیرش build نهایی](docs/receipts/final-build-v3-core-acceptance-2026-10-17.json) و [اتصال core](docs/final-build-core-acceptance.fa.md) مرز هر شاهد را ثبت می‌کنند. پروفایل جدید `grounded_candidate_prefilter_v2` فیلتر نسخه را پیش از native top-k به factory/engine/runner وصل می‌کند؛ انتخاب آن صریح است، v1 و defaultهای قبلی حفظ‌اند و halt را رفع نمی‌کند.
 
 برای جلسه، [مسیر زندهٔ محدود `presentation_scoped_v1`](docs/presentation-live.fa.md) آماده است: UI → API → Chroma v3 → متیس → SQLite. پذیرش تازه **۷ نوبت / ۸ درخواست واقعی** با هزینهٔ تخمینی **$0.006429390** ثبت شد؛ سه نوبت از خود UI و چهار نوبت از client همان backend. correction، stale approval با 409 و restart/retry پاس‌اند؛ [رسید قابل بررسی و محدودیت کیفیت](docs/receipts/presentation-live-acceptance-2026-10-17.json). مرحلهٔ تمرین بسته و مرحلهٔ ارائه مستقل و مصرف‌نشده است؛ startup هزینه ندارد. [برگهٔ کوتاه قبلی](docs/meeting-brief.fa.md) و دمو آفلاین برای پشتیبان باقی‌اند.
 
