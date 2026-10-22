@@ -207,7 +207,7 @@ def test_live_backend_uses_same_case_aware_api_and_closes_on_shutdown(tmp_path, 
 
 
 def test_halted_live_configuration_stops_before_creating_tracker_or_allocating_ports(
-    tmp_path, index, ledger
+    tmp_path, index, ledger, caplog
 ):
     ledger.halt()
     database = tmp_path / "must-not-exist.sqlite3"
@@ -216,7 +216,21 @@ def test_halted_live_configuration_stops_before_creating_tracker_or_allocating_p
             {"AGENT_TRACKER_DB": str(database), "AGENT_REVIEWER_TOKEN": TOKEN},
             adapters_factory=lambda _values: adapters(index, ledger)[0],
         )
+    assert caplog.messages == ["Live backend startup refused: LiveLedgerHalted"]
     assert not database.exists()
+
+
+@pytest.mark.parametrize("error", [ValueError("private detail /tmp/x"), RuntimeError("Live")])
+def test_backend_startup_reason_shows_only_allowlisted_codes(tmp_path, error, caplog):
+    def factory(_values):
+        raise error
+
+    with pytest.raises(ValueError, match="^LiveBackendConfigurationInvalid$"):
+        live_backend.configured_app(
+            {"AGENT_TRACKER_DB": str(tmp_path / "t.sqlite3"), "AGENT_REVIEWER_TOKEN": TOKEN},
+            adapters_factory=factory,
+        )
+    assert caplog.messages == []
 
 
 @pytest.mark.parametrize("alias", ["same_path", "hardlink", "symlink"])

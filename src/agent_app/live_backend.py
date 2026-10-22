@@ -4,6 +4,7 @@ No .env is loaded, no database is reset, and app startup sends no model request.
 The UI uses the same persistent HTTP endpoints and existing SQLite tracker.
 """
 
+import logging
 import os
 import re
 from collections.abc import Callable, Mapping
@@ -17,6 +18,22 @@ from agent_app.contracts import Identifier
 from agent_app.evaluation.live import LiveEvaluationAdapters, configured_factory
 from agent_app.persistent_api import create_app
 from agent_app.tracker.sqlite_tracker import SQLiteCaseTracker
+
+_LOG = logging.getLogger(__name__)
+_OPERATOR_REASONS = frozenset(
+    {
+        "LiveCallsDisabled",
+        "LiveLedgerPathRejected",
+        "LiveLedgerHalted",
+        "LiveLedgerLimitInvalid",
+        "LiveLedgerUnavailable",
+        "LiveAccountingUnresolved",
+        "LiveBudgetUnavailable",
+        "LiveIndexRejected",
+        "LiveEvaluationConfigurationInvalid",
+        "CoreDeliveryConfigurationMismatch",
+    }
+)
 
 
 def configured_app(
@@ -82,12 +99,17 @@ def configured_app(
 
         app.router.lifespan_context = lifespan
         return app
-    except Exception:
+    except Exception as error:
         if factory is not None:
             try:
                 factory.close()
             except Exception:
                 pass
+        # The public error stays constant; only a fixed allowlisted factory code
+        # is logged so the operator can see why startup was refused.
+        reason = str(error) if type(error) is ValueError else ""
+        if reason in _OPERATOR_REASONS:
+            _LOG.error("Live backend startup refused: %s", reason)
         raise ValueError("LiveBackendConfigurationInvalid") from None
 
 

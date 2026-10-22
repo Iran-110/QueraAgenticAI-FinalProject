@@ -600,3 +600,19 @@ def test_production_catalog_backward_compatibility_and_current_unknown_only():
 def test_user_vocabulary_rejects_hidden_gold_source_gaps_and_overrides(definitions):
     with pytest.raises(ValueError, match="UserGapVocabularyInvalid"):
         validate_user_gaps(definitions)
+
+
+def test_missing_designated_ledger_reports_unavailable_without_creating_it(
+    index, tmp_path, monkeypatch
+):
+    monkeypatch.setattr(live, "ROOT", tmp_path)
+    (tmp_path / "runtime").mkdir()
+    values = {
+        "METIS_LIVE_ENABLED": "true",
+        "AGENT_EVAL_INDEX": str(index[0]),
+        "AGENT_EVAL_SNAPSHOT": index[1],
+        "AGENT_EVAL_MANIFEST_SHA256": index[2],
+    }
+    with pytest.raises(ValueError, match="^LiveLedgerUnavailable$"):
+        live.configured_factory(values)
+    assert not (tmp_path / "runtime/budget.sqlite3").exists()
