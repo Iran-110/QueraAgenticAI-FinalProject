@@ -270,15 +270,13 @@ def test_client_resource_is_per_browser_session(runtime, monkeypatch):
     assert runtime.client_creations == 2
 
 
-def test_local_index_health_label_does_not_claim_model_quality(runtime):
+def test_local_index_backend_hides_scenarios_and_technical_labels(runtime):
     health = runtime.backend.get("/health").json()
     runtime.health = {**health, "retrieval_label": "local_chroma_hash"}
     at = AppTest.from_file(PAGE).run()
     assert not at.exception
     captions = " ".join(item.value for item in at.sidebar.caption)
-    assert "Local indexed docs" in captions
-    assert "scripted ask-then-escalate" in captions and "no model quality result" in captions
-    assert "no retrieval index" not in captions
+    assert "scripted ask-then-escalate" not in captions and "SQLite tracker" not in captions
     assert "scenario" not in [item.key for item in at.sidebar.selectbox]
     assert at.session_state.scenario == "ask"
 

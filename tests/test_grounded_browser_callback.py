@@ -73,8 +73,7 @@ def test_main_navigation_approve_uses_the_displayed_case_and_canonical_proposal(
                 assert at.session_state.case_id == case_id
                 # Changing the case status must not impersonate a user changing
                 # cases and clear the freshly submitted version_reply widget.
-                at.text_input(key="version_reply").set_value("1.50.0")
-                next(item for item in at.button if item.label == "Send reply").click().run()
+                at.chat_input[0].set_value("1.50.0").run()
                 assert not at.exception
                 stable_case_selector()
                 assert at.session_state.form_gen == initial_generation

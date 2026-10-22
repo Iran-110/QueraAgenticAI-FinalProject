@@ -362,8 +362,7 @@ def test_real_page_uses_case_bound_backend_and_retries_original_review_after_rec
             assert initial["pending"]["missing_info"] == ["streamlit_version"]
             assert initial["pending"]["review_handoff"]["case"]["case_id"] == case_id
             page.button(key="approve").click().run()
-            page.text_input(key="version_reply").set_value("1.50.0")
-            next(item for item in page.button if item.label == "Send reply").click().run()
+            page.chat_input[0].set_value("1.50.0").run()
             assert not page.exception
             known = state.backend.get(f"/cases/{case_id}").json()
             assert known["pending"]["decision"] == "escalate" and known["case_revision"] == 2

@@ -125,8 +125,7 @@ def test_no_index_app_page_follows_user_facts_and_retries_exact_review_after_rec
             # rather than an in-memory question belonging to the first app.
             state.backend.__exit__(None, None, None)
             state.backend = TestClient(configured_app(config)).__enter__()
-            at.text_input(key="version_reply").set_value("1.50.0")
-            _button(at, "Send reply").click().run()
+            at.chat_input[0].set_value("1.50.0").run()
             assert not at.exception
             known = current()
             widget_proposal = _pending(known, "ask", WIDGET_QUESTION, ("widget_definition",))

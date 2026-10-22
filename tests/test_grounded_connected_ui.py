@@ -87,11 +87,11 @@ def test_indexed_grounded_page_correction_and_original_review_retry_after_backen
             at = AppTest.from_file(str(ROOT / "app_pages/assistant.py"), default_timeout=15).run()
             assert not at.exception
             assert "scenario" not in [item.key for item in at.sidebar.selectbox]
-            captions = " ".join(item.value for item in at.caption)
-            assert "mocked provider" in captions and "no model quality result" in captions
-            assert "local indexed docs" in captions and "scripted ask-then-escalate" not in captions
             original_message = "My text input resets on rerun. The installed version is unknown."
             at.chat_input[0].set_value(original_message).run()
+            # A mocked provider is labeled as replay, never as the live model.
+            badges = " ".join(item.value for item in at.markdown)
+            assert "Replay · no model call" in badges and "Live model" not in badges
             assert not at.exception
             case_id = at.session_state.case_id
             initial = state.backend.get(f"/cases/{case_id}").json()
@@ -108,8 +108,7 @@ def test_indexed_grounded_page_correction_and_original_review_retry_after_backen
             assert all(f"Excerpt: {hit.excerpt}" in captions for hit in request.evidence.hits)
             at.button(key="approve").click().run()
             assert not at.exception
-            at.text_input(key="version_reply").set_value("1.50.0")
-            _button(at, "Send reply").click().run()
+            at.chat_input[0].set_value("1.50.0").run()
             assert not at.exception
             known = state.backend.get(f"/cases/{case_id}").json()
             known_handoff = _handoff(known)
