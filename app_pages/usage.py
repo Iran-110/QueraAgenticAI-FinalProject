@@ -66,6 +66,25 @@ with st.container(horizontal=True):
     )
     st.metric("Model calls", usage["call_count"], border=True)
 
+st.subheader("Ledger breakdown", anchor=False)
+with st.container(horizontal=True):
+    for label, key, help_text in (
+        ("Limit", "limit_usd", "Maximum this ledger may ever spend."),
+        ("Opening spend", "opening_spend_usd", "Spend recorded when the ledger was created."),
+        ("Spent", "spent_usd", "Provider-confirmed cost of finished calls."),
+        ("Reserved", "reserved_usd", "Held for calls that are still running."),
+        ("Uncertain", "uncertain_usd", "Held for calls whose cost was not confirmed."),
+        ("Available", "available_usd", "Limit minus all of the above."),
+    ):
+        st.metric(label, f"${Decimal(usage[key]):.6f}", help=help_text, border=True)
+    st.metric(
+        "State",
+        "Halted" if usage["halted"] else "Open",
+        help="A halted ledger sends no new calls until a person reconciles it.",
+        border=True,
+    )
+
+st.subheader("Model calls", anchor=False)
 calls = usage["calls"]
 if not calls:
     st.info("No model calls yet.", icon=":material/info:")

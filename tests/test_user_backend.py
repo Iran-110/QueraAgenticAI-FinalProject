@@ -71,6 +71,7 @@ def test_user_message_is_reserved_and_settled_on_the_user_ledger(tmp_path, index
     assert transports and snapshot.settled_usd > 0
     assert snapshot.reserved_usd == snapshot.uncertain_usd == 0
     assert usage["spent_usd"] == str(snapshot.settled_usd)
+    assert usage["opening_spend_usd"] == "0" and usage["limit_usd"] == "1"
     assert usage["call_count"] == len(usage["calls"]) >= 1
     assert sum(Decimal(call["cost_usd"]) for call in usage["calls"]) == snapshot.settled_usd
     call = usage["calls"][0]
@@ -118,6 +119,7 @@ def test_halted_user_ledger_stops_before_any_provider_client(index, user_ledger)
 
 USAGE = {
     "limit_usd": "1",
+    "opening_spend_usd": "0",
     "spent_usd": "0.0000637",
     "reserved_usd": "0",
     "uncertain_usd": "0",
@@ -168,5 +170,16 @@ def test_usage_page_shows_total_and_calls(monkeypatch, status, body, expected):
     if expected:
         assert expected in page.error[0].value
         return
-    assert [metric.value for metric in page.metric] == ["$0.000064", "$0.9999", "1"]
+    assert [metric.value for metric in page.metric] == [
+        "$0.000064",
+        "$0.9999",
+        "1",
+        "$1.000000",
+        "$0.000000",
+        "$0.000064",
+        "$0.000000",
+        "$0.000000",
+        "$0.999936",
+        "Open",
+    ]
     assert len(page.dataframe) == 1

@@ -111,6 +111,7 @@ def usage_report(ledger_path: Path) -> dict:
         ).fetchall()
     return {
         "limit_usd": str(snapshot.limit_usd),
+        "opening_spend_usd": str(snapshot.opening_spend_usd),
         "spent_usd": str(snapshot.settled_usd),
         "reserved_usd": str(snapshot.reserved_usd),
         "uncertain_usd": str(snapshot.uncertain_usd),
