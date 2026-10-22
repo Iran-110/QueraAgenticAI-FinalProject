@@ -80,11 +80,12 @@
   review شود. اصلاح روی فایل watched مجوز اجرای scope قدیمی نمی‌سازد؛ هیچ watch،
   pin، scope یا receipt تاریخی برای عبور از guard بازنویسی نشود.
   نتیجه: تست‌های mock و مقایسهٔ startup قبل/بعد روی index v3، بدون model call؛ [بازبینی L1–L4](../docs/live-l1-l4-review.fa.md).
-- [ ] **L4 — تحویل قابل اجرای محمدحسن؛ Member 4، محمدحسن گل‌محمدیان.**
+- [x] **L4 — تحویل قابل اجرای محمدحسن؛ Member 4، محمدحسن گل‌محمدیان.**
   لینک PR، source commit، دستور startup بدون secret، تست‌های واقعاً اجراشده،
   راه بازگشت و blocker باقیمانده ارائه شود. اجرای واقعیِ هزینه‌دار، اگر برای
   پذیرش بعدی لازم شد، تا مجوز صریح مستقل و بررسی scope معتبر معلق بماند؛ این
   plan هیچ بودجه، refill یا رفع halt اعطا نمی‌کند.
+  نتیجه: [PR #96](https://github.com/Iran-110/QueraAgenticAI-FinalProject/pull/96) با commit `a307a71`، دستور startup، تست‌ها، راه بازگشت و blockerهای باقی‌مانده در [بازبینی L1–L4](../docs/live-l1-l4-review.fa.md)؛ model call صفر.
 
 ارزیابی نهایی E4/E5، pinهای native gold/packet، C5 و سه hold تاریخی همچنان
 بازند؛ انتشار گزارش یا تحویل ارائه checkbox آن‌ها را نمی‌بندد. baseline تاریخی
