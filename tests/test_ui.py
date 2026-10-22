@@ -13,6 +13,15 @@ from agent_app.tracker.dummy_tracker import DummyTracker
 PAGE = str(Path(__file__).resolve().parent.parent / "app_pages" / "assistant.py")
 
 
+def released(at):
+    """Conversation turns the user received; a draft waiting for approval is not one."""
+    return [
+        message
+        for message in at.chat_message
+        if not any("Waiting for approval" in md.value for md in message.markdown)
+    ]
+
+
 @pytest.fixture(autouse=True)
 def fresh_client():
     st.cache_resource.clear()
@@ -40,10 +49,11 @@ def test_message_review_and_approve(backend):
     assert not at.exception
     at.chat_input[0].set_value("My widget loses its value.").run()
     assert at.button(key="approve")
-    assert len(at.chat_message) == 1  # The draft stays hidden until approval.
+    assert len(released(at)) == 1  # The draft is not released until approval.
+    assert len(at.chat_message) == 2  # It is shown as a waiting chat bubble.
     at.button(key="approve").click().run()
     assert not at.exception
-    assert len(at.chat_message) == 2
+    assert len(at.chat_message) == len(released(at)) == 2
     assert "Which Streamlit version" in at.chat_message[1].markdown[0].value
 
 
@@ -54,7 +64,7 @@ def test_edit_then_approve(backend):
     at.text_area(key="edited_draft").set_value("Which version do you use?")
     at.button[[b.label for b in at.button].index("Save as new proposal")].click().run()
     assert not at.exception
-    assert len(at.chat_message) == 1
+    assert len(released(at)) == 1
     at.button(key="approve").click().run()
     assert at.chat_message[1].markdown[0].value == "Which version do you use?"
 
@@ -107,8 +117,8 @@ def test_version_reply_binds_to_approved_question(backend):
     select_scenario(at, "ask_version")
     at.chat_input[0].set_value("My widget loses its value.").run()
     at.button(key="approve").click().run()
-    at.text_input(key="version_reply").set_value("1.50.0")
-    at.button[[b.label for b in at.button].index("Send reply")].click().run()
+    assert "Streamlit version" in at.chat_input[0].placeholder
+    at.chat_input[0].set_value("1.50.0").run()  # Same chat box answers the question.
     assert not at.exception
     facts = next(df.value for df in at.dataframe if "Status" in df.value.columns)
     assert list(facts["Name"]) == ["streamlit_version"]
@@ -116,15 +126,17 @@ def test_version_reply_binds_to_approved_question(backend):
     assert list(facts["Status"]) == ["active"]
 
 
-def test_unclear_version_reply_is_explained(backend):
+def test_non_version_text_while_asked_is_a_normal_message(backend):
     at = AppTest.from_file(PAGE).run()
     select_scenario(at, "ask_version")
     at.chat_input[0].set_value("My widget loses its value.").run()
     at.button(key="approve").click().run()
-    at.text_input(key="version_reply").set_value("the latest one")
-    at.button[[b.label for b in at.button].index("Send reply")].click().run()
-    assert "release number only" in at.error[0].value
+    at.chat_input[0].set_value("the latest one").run()
+    assert not at.exception and not at.error
     assert at.session_state.unsent == {}
+    assert released(at)[-1].markdown[0].value == "the latest one"
+    facts = [df.value for df in at.dataframe if "Status" in df.value.columns]
+    assert not facts or "streamlit_version" not in list(facts[0]["Name"])
 
 
 def test_lost_message_retries_with_identical_event(backend, monkeypatch):
@@ -146,32 +158,7 @@ def test_lost_message_retries_with_identical_event(backend, monkeypatch):
     assert sent[1] == sent[0]
     assert at.session_state.unsent == {}
     assert "Already received" in at.info[0].value
-    assert len(at.chat_message) == 1  # Replay did not duplicate the message.
-
-
-def test_version_beside_chat_is_sent_as_a_fact(backend):
-    at = AppTest.from_file(PAGE).run()
-    at.text_input(key="chat_version").set_value("1.5").run()
-    assert at.chat_input[0].disabled
-    assert any("release number" in c.value for c in at.caption)
-    at.text_input(key="chat_version").set_value("1.50.0").run()
-    assert not at.chat_input[0].disabled
-    at.chat_input[0].set_value("My widget loses its value.").run()
-    assert not at.exception
-    case = at.session_state.case_id
-    view = ui_client.make_client().get_case(case)
-    assert [(f["name"], f["value"], f["status"]) for f in view["facts"]] == [
-        ("streamlit_version", "1.50.0", "active")
-    ]
-    assert not [w for w in at.text_input if w.key == "chat_version"]
-    assert any("Streamlit 1.50.0 is recorded" in c.value for c in at.caption)
-
-
-def test_chat_without_version_sends_no_fact(backend):
-    at = AppTest.from_file(PAGE).run()
-    at.chat_input[0].set_value("My widget loses its value.").run()
-    view = ui_client.make_client().get_case(at.session_state.case_id)
-    assert view["facts"] == []
+    assert len(released(at)) == 1  # Replay did not duplicate the message.
 
 
 def test_slow_live_run_shows_calm_still_working_state(backend, monkeypatch):

@@ -58,8 +58,7 @@ def test_page_reads_index_then_approves_question_and_corrects_version(tmp_path, 
                 assert hits and all(f"Excerpt: {hit['excerpt']}" in captions for hit in hits)
                 at.button(key="approve").click().run()
                 assert not at.exception
-                at.text_input(key="version_reply").set_value("1.50.0")
-                next(item for item in at.button if item.label == "Send reply").click().run()
+                at.chat_input[0].set_value("1.50.0").run()
                 assert not at.exception
                 known = backend.get(f"/cases/{case_id}").json()
                 assert known["case_revision"] == 2

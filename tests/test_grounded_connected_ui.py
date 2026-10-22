@@ -108,8 +108,7 @@ def test_indexed_grounded_page_correction_and_original_review_retry_after_backen
             assert all(f"Excerpt: {hit.excerpt}" in captions for hit in request.evidence.hits)
             at.button(key="approve").click().run()
             assert not at.exception
-            at.text_input(key="version_reply").set_value("1.50.0")
-            _button(at, "Send reply").click().run()
+            at.chat_input[0].set_value("1.50.0").run()
             assert not at.exception
             known = state.backend.get(f"/cases/{case_id}").json()
             known_handoff = _handoff(known)

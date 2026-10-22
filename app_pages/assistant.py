@@ -27,7 +27,8 @@ STATUSES = {
     "escalated": ("Escalated", "red"),
     "open": ("Open", "gray"),
 }
-VERSION_PATTERN = re.compile(r"[0-9]+\.[0-9]+\.[0-9]+")
+# Same shape the backend accepts as a version reply.
+VERSION_REPLY = re.compile(r"(?:Streamlit )?[0-9]+\.[0-9]+\.[0-9]+")
 VERSION_SCOPES = {
     "exact_metadata_match": ("Version matches", "green"),
     "historical_or_other_version": ("Other version", "orange"),
@@ -55,7 +56,6 @@ def reset_view_state() -> None:
     # under the newly selected case ID.
     if "form_gen" in st.session_state:
         st.session_state.form_gen += 1
-    st.session_state.pop("version_reply", None)
     st.session_state.pop("edited_draft", None)
 
 
@@ -174,20 +174,6 @@ def deliver(event: dict) -> bool:
 
 def retry_unsent() -> None:
     deliver(unsent_event())
-
-
-def submit_reply(revision: int, proposal_id: str) -> None:
-    reply = st.session_state.version_reply.strip()
-    if not reply:
-        return
-    event = ui_client.new_event(
-        reply,
-        expected_revision=revision,
-        scenario=st.session_state.scenario,
-        reply_to_proposal_id=proposal_id,
-    )
-    if deliver(event):
-        st.session_state.version_reply = ""
 
 
 def decide(proposal: dict, decision: str) -> None:
@@ -372,13 +358,12 @@ def render_gaps(proposal: dict) -> None:
 
 
 def render_proposal(proposal: dict) -> None:
-    # Shown in the conversation, right after the message it answers, so the
-    # reviewer reads the draft in context. It is not a chat message: the user
-    # only receives it after approval.
+    # The draft is the agent's next chat turn, marked as waiting: it becomes a
+    # normal reply only after a maintainer approves it. Details open on click.
     label, color, icon = DECISIONS[proposal["decision"]]
-    with st.container(border=True):
+    with st.chat_message("assistant"):
         with st.container(horizontal=True, vertical_alignment="center"):
-            st.markdown(":material/smart_toy: **Agent draft · waiting for maintainer approval**")
+            st.badge("Waiting for approval", color="orange", icon=":material/hourglass_top:")
             st.badge(label, color=color, icon=icon)
             if proposal["edited"]:
                 st.badge("Edited by maintainer", color="violet", icon=":material/edit:")
@@ -479,30 +464,23 @@ def render_proposal(proposal: dict) -> None:
         st.caption("Approval only updates this local case log. No external action is taken.")
 
 
-def render_reply(view: dict) -> None:
+def version_question(view: dict) -> dict | None:
+    """The approved canonical version question the chat box can answer, if any."""
     awaiting = view["awaiting_reply"]
     if not awaiting:
-        return
+        return None
     question = awaiting["question"]
     canonical = question["next_question"] == STREAMLIT_VERSION_QUESTION.question and question[
         "missing_info"
     ] == [STREAMLIT_VERSION_QUESTION.name]
-    if not canonical:
+    return awaiting if canonical else None
+
+
+def render_reply(view: dict) -> None:
+    if view["awaiting_reply"] and not version_question(view):
         st.caption(
             ":material/info: Answers to this question are recorded as text only. "
             "Use **Report facts and corrections** to confirm values."
-        )
-        return
-    with st.form("reply_form", border=True):
-        st.markdown(f"**Reply to:** {question['next_question']}")
-        st.text_input("Streamlit version", placeholder="1.50.0", key="version_reply")
-        st.form_submit_button(
-            "Send reply",
-            type="primary",
-            icon=":material/reply:",
-            on_click=submit_reply,
-            args=(view["case_revision"], awaiting["proposal_id"]),
-            disabled=capabilities.message_auth and not client.reviewer_configured,
         )
 
 
@@ -756,55 +734,31 @@ with case_col:
 # Full width so the fact editor's columns stay readable.
 render_update_form(view)
 
-known_version = next(
-    (
-        fact["value"]
-        for fact in view["facts"]
-        if fact["name"] == STREAMLIT_VERSION_QUESTION.name and fact["status"] == "active"
-    ),
-    None,
-)
-version = ""
-with st.container(horizontal=True, vertical_alignment="bottom"):
-    if known_version is None:
-        # The version only counts as a fact when it is reported explicitly;
-        # free text in the message is not parsed.
-        version = st.text_input(
-            "Streamlit version",
-            placeholder="1.50.0",
-            key="chat_version",
-            width=170,
-            help="Optional. Sent as a confirmed fact with your message, so the agent "
-            "searches documentation for this exact version.",
-        ).strip()
-    version_invalid = bool(version) and VERSION_PATTERN.fullmatch(version) is None
-    prompt = st.chat_input(
-        "Describe your Streamlit issue...",
-        submit_mode="disable",
-        disabled=version_invalid or (capabilities.message_auth and not client.reviewer_configured),
-    )
-if version_invalid:
-    st.caption(":material/error: Use a release number like 1.50.0 for the version.")
-elif known_version is not None:
-    st.caption(
-        f":material/check_circle: Streamlit {known_version} is recorded for this case. "
-        "Use **Report facts and corrections** to change it."
-    )
-
-if prompt:
+# One chat box: when the agent's approved question asks for the Streamlit
+# version, a bare release number typed here answers it; anything else is sent
+# as a normal message.
+awaiting_version = version_question(view)
+if prompt := st.chat_input(
+    "Reply with your Streamlit version, for example 1.50.0"
+    if awaiting_version
+    else "Describe your Streamlit issue...",
+    submit_mode="disable",
+    disabled=capabilities.message_auth and not client.reviewer_configured,
+):
+    is_version_reply = awaiting_version and VERSION_REPLY.fullmatch(prompt.strip())
     with chat_col:
-        sent = deliver(
+        deliver(
             ui_client.new_event(
+                prompt.strip(),
+                expected_revision=view["case_revision"],
+                scenario=st.session_state.scenario,
+                reply_to_proposal_id=awaiting_version["proposal_id"],
+            )
+            if is_version_reply
+            else ui_client.new_event(
                 prompt,
                 expected_revision=view["case_revision"],
                 scenario=st.session_state.scenario,
-                reported_facts=(
-                    [{"name": STREAMLIT_VERSION_QUESTION.name, "value": version}]
-                    if version
-                    else None
-                ),
             )
         )
-    if sent:
-        st.session_state.pop("chat_version", None)
     st.rerun()

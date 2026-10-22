@@ -235,9 +235,11 @@ def test_fresh_session_reopens_current_pending_handoff_facts_log_and_revision(ob
     assert any("Revision 2" in item.value for item in reopened.markdown)
     assert any(saved["pending"]["user_draft"] == item.value for item in reopened.markdown)
     assert obsolete not in " ".join(item.value for item in reopened.caption)
-    assert [message.markdown[0].value for message in reopened.chat_message] == [
-        entry["text"] for entry in saved["log"] if entry["role"] != "system"
-    ]
+    assert [
+        message.markdown[0].value
+        for message in reopened.chat_message
+        if not any("Waiting for approval" in md.value for md in message.markdown)
+    ] == [entry["text"] for entry in saved["log"] if entry["role"] != "system"]
 
 
 @pytest.mark.parametrize("decision", ["edit", "reject", "approve"])
